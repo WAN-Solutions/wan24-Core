@@ -6,7 +6,7 @@
     public abstract class DisposableBase : IDisposableObject
     {
         /// <summary>
-        /// An object for thread synchronization
+        /// An object for thread synchronization during disposing
         /// </summary>
         private readonly object DisposeSyncObject = new();
 
@@ -23,7 +23,6 @@
             if (!DoDispose()) return;
             Dispose(disposing: true);
             IsDisposed = true;
-            GC.SuppressFinalize(this);
             OnDisposed?.Invoke(this, new());
         }
 
@@ -38,7 +37,7 @@
         /// </summary>
         /// <param name="allowDisposing">Allow disposing state?</param>
         /// <param name="throwException">Throw an exception if disposing/disposed?</param>
-        /// <returns>Continue?</returns>
+        /// <returns>Is not disposing?</returns>
         protected bool EnsureUndisposed(bool allowDisposing = false, bool throwException = true)
         {
             if (IsDisposing)
@@ -106,7 +105,7 @@
         /// <summary>
         /// Dispose
         /// </summary>
-        /// <param name="disposing">Disposing?</param>
+        /// <param name="disposing">Disposing? (may be <see langword="false"/>, if called from the destructor)</param>
         protected abstract void Dispose(bool disposing);
 
         /// <summary>
@@ -146,6 +145,7 @@
         /// <inheritdoc/>
         public async ValueTask DisposeAsync()
         {
+            await Task.Yield();
             if (!DoDispose()) return;
             await DisposeCore().ConfigureAwait(continueOnCapturedContext: false);
             IsDisposed = true;
@@ -155,6 +155,7 @@
 
         /// <inheritdoc/>
         public event IDisposableObject.Dispose_Delegate? OnDisposing;
+
         /// <inheritdoc/>
         public event IDisposableObject.Dispose_Delegate? OnDisposed;
     }

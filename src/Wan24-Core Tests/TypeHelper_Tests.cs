@@ -10,12 +10,12 @@ namespace Wan24_Core_Tests
         {
             Type type = typeof(TypeHelper_Tests);
             int eventRaised = 0;
-            TypeHelper.OnLoadType += (e) => eventRaised++;
-            Assert.IsNull(TypeHelper.GetType(type.ToString()));
+            TypeHelper.Instance.OnLoadType += (e) => eventRaised++;
+            Assert.IsNull(TypeHelper.Instance.GetType(type.ToString()));
             Assert.AreEqual(1, eventRaised);
-            TypeHelper.AddTypes(type);
-            Assert.AreEqual(type, TypeHelper.GetType(type.ToString()));
-            Assert.AreEqual(typeof(BytesExtensions), TypeHelper.GetType(typeof(BytesExtensions).ToString()));
+            TypeHelper.Instance.AddTypes(type);
+            Assert.AreEqual(type, TypeHelper.Instance.GetType(type.ToString()));
+            Assert.AreEqual(typeof(BytesExtensions), TypeHelper.Instance.GetType(typeof(BytesExtensions).ToString()));
             Assert.AreEqual(1, eventRaised);
         }
     }

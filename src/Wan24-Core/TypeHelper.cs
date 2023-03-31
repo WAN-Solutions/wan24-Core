@@ -6,35 +6,65 @@ namespace wan24.Core
     /// <summary>
     /// Type helper
     /// </summary>
-    public static class TypeHelper
+    public sealed class TypeHelper
     {
+        /// <summary>
+        /// Singleton instance
+        /// </summary>
+        private static TypeHelper? _Instance = null;
+
         /// <summary>
         /// Types
         /// </summary>
-        private static readonly ConcurrentDictionary<string, Type> Types = new();
-
+        private readonly ConcurrentDictionary<string, Type> Types = new();
         /// <summary>
         /// Assemblies
         /// </summary>
-        public static readonly ConcurrentBag<Assembly> Assemblies;
+        private readonly List<Assembly> _Assemblies;
 
         /// <summary>
         /// Type helper
         /// </summary>
-        static TypeHelper() => Assemblies = new(new Assembly[]
+        public TypeHelper()
         {
-            typeof(string).Assembly,
-            typeof(TypeHelper).Assembly
-        });
+            _Assemblies = new(new Assembly[]
+            {
+                typeof(string).Assembly,
+                typeof(TypeHelper).Assembly
+            });
+            if (Assembly.GetEntryAssembly() is Assembly entry && !_Assemblies.Contains(entry)) _Assemblies.Add(entry);
+            if (Assembly.GetCallingAssembly() is Assembly calling && !_Assemblies.Contains(calling)) _Assemblies.Add(calling);
+        }
+
+        /// <summary>
+        /// Singleton instance
+        /// </summary>
+        public static TypeHelper Instance => _Instance ??= new();
+
+        /// <summary>
+        /// An object for thread synchronization
+        /// </summary>
+        public object SyncObject { get; } = new();
+
+        /// <summary>
+        /// Assemblies
+        /// </summary>
+        public Assembly[] Assemblies
+        {
+            get
+            {
+                lock (SyncObject) return _Assemblies.ToArray();
+            }
+        }
 
         /// <summary>
         /// Add assemblies
         /// </summary>
         /// <param name="assemblies">Assemblies</param>
         /// <returns>Assemblies</returns>
-        public static Assembly[] AddAssemblies(params Assembly[] assemblies)
+        public Assembly[] AddAssemblies(params Assembly[] assemblies)
         {
-            foreach (Assembly assembly in assemblies) Assemblies.Add(assembly);
+            lock(SyncObject) foreach (Assembly assembly in assemblies) if (!_Assemblies.Contains(assembly)) _Assemblies.Add(assembly);
             return assemblies;
         }
 
@@ -43,11 +73,11 @@ namespace wan24.Core
         /// </summary>
         /// <param name="types">Types</param>
         /// <returns>Types</returns>
-        public static Type[] AddTypes(params Type[] types)
+        public Type[] AddTypes(params Type[] types)
         {
             foreach (Type type in types) Types[type.ToString()] = type;
             Assembly[] assemblies = (from t in types
-                                     where !Assemblies.Contains(t.Assembly)
+                                     where !_Assemblies.Contains(t.Assembly)
                                      select t.Assembly)
                                    .ToArray();
             if (assemblies.Length > 0) AddAssemblies(assemblies);
@@ -59,10 +89,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="name">Name</param>
         /// <returns>Type</returns>
-        public static Type? GetType(string name)
+        public Type? GetType(string name)
         {
-            Type? res = null;
-            if (Types.TryGetValue(name, out res)) return res;
+            if (Types.TryGetValue(name, out Type? res)) return res;
             if ((res ??= Type.GetType(name, throwOnError: false)) != null)
             {
                 Types[name] = res!;
@@ -90,6 +119,6 @@ namespace wan24.Core
         /// <summary>
         /// Raised when loading a type
         /// </summary>
-        public static event LoadType_Delegate? OnLoadType;
+        public event LoadType_Delegate? OnLoadType;
     }
 }

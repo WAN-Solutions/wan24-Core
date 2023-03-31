@@ -26,6 +26,13 @@ namespace Wan24_Core_Tests
             }
         }
 
+        [TestMethod]
+        public async Task Context_Tests()
+        {
+            Assert.IsTrue(await ResultTask(true).DynamicContext());
+            Assert.IsTrue(await ResultTask(true).FixedContext());
+        }
+
         public async Task VoidTask()
         {
             await Task.Yield();

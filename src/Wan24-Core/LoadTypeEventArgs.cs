@@ -3,7 +3,7 @@
     /// <summary>
     /// Type loader event arguments
     /// </summary>
-    public class LoadTypeEventArgs : EventArgs
+    public sealed class LoadTypeEventArgs : EventArgs
     {
         /// <summary>
         /// Constructor
@@ -17,7 +17,7 @@
         public string Name { get; }
 
         /// <summary>
-        /// Type
+        /// Type to use
         /// </summary>
         public Type? Type { get; set; }
     }

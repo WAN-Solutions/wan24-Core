@@ -6,11 +6,11 @@
     public interface IDisposableObject : IDisposable, IAsyncDisposable
     {
         /// <summary>
-        /// Is disposing?
+        /// Is disposing? (is <see langword="true"/> when disposed already, too!)
         /// </summary>
         bool IsDisposing { get; }
         /// <summary>
-        /// Is disposed?
+        /// Is disposed? (final object disposing state)
         /// </summary>
         bool IsDisposed { get; }
         /// <summary>
@@ -18,7 +18,7 @@
         /// </summary>
         /// <param name="sender">Sender</param>
         /// <param name="e">Event arguments</param>
-        public delegate void Dispose_Delegate(object sender, EventArgs e);
+        public delegate void Dispose_Delegate(IDisposableObject sender, EventArgs e);
         /// <summary>
         /// Raised when disposing
         /// </summary>
