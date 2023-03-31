@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Delegate IDisposableObject.Dispose_Delegate
+    <title>Class DisposableExtensions
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Delegate IDisposableObject.Dispose_Delegate
+    <meta name="title" content="Class DisposableExtensions
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,19 +68,66 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.IDisposableObject.Dispose_Delegate">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.DisposableExtensions">
   
   
-  <h1 id="wan24_Core_IDisposableObject_Dispose_Delegate" data-uid="wan24.Core.IDisposableObject.Dispose_Delegate" class="text-break">Delegate IDisposableObject.Dispose_Delegate
+  <h1 id="wan24_Core_DisposableExtensions" data-uid="wan24.Core.DisposableExtensions" class="text-break">Class DisposableExtensions
   </h1>
-  <div class="markdown level0 summary"><p>Delegate for the disposing events</p>
+  <div class="markdown level0 summary"><p>Disposable extensions</p>
 </div>
   <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">DisposableExtensions</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_IDisposableObject_Dispose_Delegate_syntax">Syntax</h5>
+  <h5 id="wan24_Core_DisposableExtensions_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate void Dispose_Delegate(IDisposableObject sender, EventArgs e);</code></pre>
+    <pre><code class="lang-csharp hljs">public static class DisposableExtensions</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableExtensions_DisposeAll_IEnumerable_IDisposable__.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableExtensions.DisposeAll(IEnumerable%7BIDisposable%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableExtensions.cs/#L13">View Source</a>
+  </span>
+  <a id="wan24_Core_DisposableExtensions_DisposeAll_" data-uid="wan24.Core.DisposableExtensions.DisposeAll*"></a>
+  <h4 id="wan24_Core_DisposableExtensions_DisposeAll_IEnumerable_IDisposable__" data-uid="wan24.Core.DisposableExtensions.DisposeAll(IEnumerable{IDisposable})">DisposeAll(IEnumerable&lt;IDisposable&gt;)</h4>
+  <div class="markdown level1 summary"><p>Dispose all</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;IDisposable&gt; DisposeAll(this IEnumerable&lt;IDisposable&gt; disposables)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -93,15 +140,25 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></td>
-        <td><span class="parametername">sender</span></td>
-        <td><p>Sender</p>
+        <td><span class="xref">IEnumerable</span>&lt;<span class="xref">IDisposable</span>&gt;</td>
+        <td><span class="parametername">disposables</span></td>
+        <td><p>Disposables</p>
 </td>
       </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
       <tr>
-        <td><span class="xref">EventArgs</span></td>
-        <td><span class="parametername">e</span></td>
-        <td><p>Event arguments</p>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<span class="xref">IDisposable</span>&gt;</td>
+        <td><p>Disposed disposables</p>
 </td>
       </tr>
     </tbody>
@@ -114,10 +171,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IDisposableObject_Dispose_Delegate.md&amp;value=---%0Auid%3A%20wan24.Core.IDisposableObject.Dispose_Delegate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableExtensions.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableExtensions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IDisposableObject.cs/#L21" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableExtensions.cs/#L6" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
