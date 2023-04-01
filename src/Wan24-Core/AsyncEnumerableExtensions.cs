@@ -14,8 +14,8 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Array</returns>
-        public static async Task<T[]> ToArray<T>(this IAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
-            => (await enumerable.ToList(cancellationToken).DynamicContext()).ToArray();
+        public static async Task<T[]> ToArrayAsync<T>(this IAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
+            => (await enumerable.ToListAsync(cancellationToken).DynamicContext()).ToArray();
 
         /// <summary>
         /// Get as list
@@ -24,7 +24,7 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>List</returns>
-        public static async Task<List<T>> ToList<T>(this IAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
+        public static async Task<List<T>> ToListAsync<T>(this IAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
         {
             List<T> res = new();
             await foreach (T item in enumerable.DynamicContext().WithCancellation(cancellationToken)) res.Add(item);
@@ -38,8 +38,8 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Array</returns>
-        public static async Task<T[]> ToArray<T>(this ConfiguredCancelableAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
-            => (await enumerable.ToList(cancellationToken).DynamicContext()).ToArray();
+        public static async Task<T[]> ToArrayAsync<T>(this ConfiguredCancelableAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
+            => (await enumerable.ToListAsync(cancellationToken).DynamicContext()).ToArray();
 
         /// <summary>
         /// Get as list
@@ -48,7 +48,7 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>List</returns>
-        public static async Task<List<T>> ToList<T>(this ConfiguredCancelableAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
+        public static async Task<List<T>> ToListAsync<T>(this ConfiguredCancelableAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
         {
             List<T> res = new();
             await foreach (T item in enumerable.WithCancellation(cancellationToken)) res.Add(item);

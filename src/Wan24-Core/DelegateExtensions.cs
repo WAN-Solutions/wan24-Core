@@ -25,7 +25,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Invoke all delegates
+        /// Invoke all delegates (need to return <c>tResult</c>)
         /// </summary>
         /// <typeparam name="tDelegate">Delegate type</typeparam>
         /// <typeparam name="tResult">Result type</typeparam>
@@ -49,7 +49,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Invoke all delegates
+        /// Invoke all asynchronous delegates (need to return a task)
         /// </summary>
         /// <typeparam name="T">Delegate type</typeparam>
         /// <param name="delegates">Delegates</param>
@@ -67,7 +67,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Invoke all delegates
+        /// Invoke all delegates (need to return a task of <c>tResult</c>)
         /// </summary>
         /// <typeparam name="tDelegate">Delegate type</typeparam>
         /// <typeparam name="tResult">Result type</typeparam>
@@ -85,7 +85,7 @@ namespace wan24.Core
                 if (mi == null)
                 {
                     mi = d.Method;
-                    if (!mi.ReturnType.IsAssignableFrom(typeof(tResult)))
+                    if (!mi.ReturnType.IsAssignableFrom(typeof(Task<tResult>)))
                         throw new ArgumentException($"Result type {typeof(tResult)} doesn't match delegates return type {mi.ReturnType}", nameof(tResult));
                 }
                 yield return (tResult?)(await mi.InvokeAutoAsync(obj: null, param).DynamicContext());
@@ -93,7 +93,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Invoke all delegates
+        /// Invoke all delegates (need to return a task)
         /// </summary>
         /// <typeparam name="T">Delegate type</typeparam>
         /// <param name="delegates">Delegates</param>
@@ -111,7 +111,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Invoke all delegates
+        /// Invoke all delegates (need to return a task of <c>tResult</c>)
         /// </summary>
         /// <typeparam name="tDelegate">Delegate type</typeparam>
         /// <typeparam name="tResult">Result type</typeparam>
@@ -129,7 +129,7 @@ namespace wan24.Core
                 if (mi == null)
                 {
                     mi = d.Method;
-                    if (!mi.ReturnType.IsAssignableFrom(typeof(tResult)))
+                    if (!mi.ReturnType.IsAssignableFrom(typeof(Task<tResult>)))
                         throw new ArgumentException($"Result type {typeof(tResult)} doesn't match delegates return type {mi.ReturnType}", nameof(tResult));
                 }
                 yield return (tResult?)(await mi.InvokeAutoAsync(obj: null, param).DynamicContext());

@@ -9,9 +9,9 @@ namespace Wan24_Core_Tests
         public async Task AsyncEnumerable_Tests()
         {
             bool[] data = new bool[] { false, true };
-            bool[] arr = await AsyncEnumerable(data).ToArray();
+            bool[] arr = await AsyncEnumerable(data).ToArrayAsync();
             Assert.IsTrue(data.SequenceEqual(arr));
-            List<bool> list = await AsyncEnumerable(data).ToList();
+            List<bool> list = await AsyncEnumerable(data).ToListAsync();
             Assert.IsTrue(data.SequenceEqual(list));
         }
 

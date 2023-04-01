@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace wan24.Core
 {
@@ -82,7 +81,15 @@ namespace wan24.Core
         /// <typeparam name="T">Enumeration type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>May contain flags?</returns>
-        public static bool MayContainFlags<T>(this T value) where T : struct, Enum, IConvertible => Enum.GetNames<T>().Contains(FLAGS_NAME);
+        public static bool MayContainFlags<T>(this T value) where T : struct, Enum, IConvertible
+            => typeof(T).IsEnum && typeof(T).GetCustomAttribute<FlagsAttribute>() != null && Enum.GetNames<T>().Contains(FLAGS_NAME);
+
+        /// <summary>
+        /// Determine if a type is a mixed enumeration (which contains enumeration values and flags)
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>Is a mixed enumeration?</returns>
+        public static bool IsMixedEnum(this Type type) => type.IsEnum && type.GetCustomAttribute<FlagsAttribute>() != null && Enum.GetNames(type).Contains(FLAGS_NAME);
 
         /// <summary>
         /// Cast a type
@@ -90,7 +97,6 @@ namespace wan24.Core
         /// <typeparam name="T">Numeric result type</typeparam>
         /// <param name="value">Enumeration value</param>
         /// <returns>Numeric value</returns>
-        private static T CastType<T>(object value) where T : struct, IConvertible
-            => typeof(T).IsEnum ? (T)Enum.ToObject(typeof(T), value) : (T)Convert.ChangeType(value, typeof(T));
+        private static T CastType<T>(object value) where T : struct, IConvertible => typeof(T).IsEnum ? (T)Enum.ToObject(typeof(T), value) : (T)Convert.ChangeType(value, typeof(T));
     }
 }

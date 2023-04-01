@@ -1,4 +1,5 @@
-﻿using wan24.Core;
+﻿using System.Net.Sockets;
+using wan24.Core;
 
 namespace Wan24_Core_Tests
 {
@@ -18,6 +19,9 @@ namespace Wan24_Core_Tests
             Assert.IsFalse(TestEnum.Flag1.IsValue());
             Assert.AreEqual("Test", TestEnum.Value1.GetDisplayText());
             Assert.AreEqual(nameof(TestEnum.Value2), TestEnum.Value2.GetDisplayText());
+            Assert.IsTrue(typeof(TestEnum).IsMixedEnum());
+            Assert.IsFalse(typeof(string).IsMixedEnum());
+            Assert.IsFalse(typeof(AddressFamily).IsMixedEnum());
         }
 
         [TestMethod]
