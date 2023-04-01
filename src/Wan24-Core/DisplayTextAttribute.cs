@@ -9,12 +9,12 @@
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="text">Display text</param>
-        public DisplayTextAttribute(string text) : base() => Text = text;
+        /// <param name="displayText">Display text</param>
+        public DisplayTextAttribute(string displayText) : base() => DisplayText = displayText;
 
         /// <summary>
         /// Display text
         /// </summary>
-        public string Text { get; }
+        public string DisplayText { get; }
     }
 }

@@ -22,7 +22,6 @@ namespace wan24.Core
         /// </summary>
         public static IServiceProvider? ServiceProvider { get; set; }
 
-
         /// <summary>
         /// Get a DI object
         /// </summary>
@@ -31,14 +30,8 @@ namespace wan24.Core
         /// <returns>Use the result?</returns>
         public static bool GetDiObject(Type type, out object? obj)
         {
-            obj = null;
-            if (ServiceProvider != null)
-            {
-                obj = ServiceProvider.GetService(type);
-                if (obj != null) return true;
-            }
-            if (!ObjectFactories.TryGetValue(type, out Di_Delegate? factory)) return false;
-            return factory(type, out obj);
+            obj = ServiceProvider?.GetService(type);
+            return obj != null || (ObjectFactories.TryGetValue(type, out Di_Delegate? factory) && factory(type, out obj));
         }
 
         /// <summary>
@@ -50,12 +43,7 @@ namespace wan24.Core
         public static async Task<(object? Object, bool UseObject)> GetDiObjectAsync(Type type, CancellationToken cancellationToken = default)
         {
             await Task.Yield();
-            object? res;
-            if (ServiceProvider != null)
-            {
-                res = ServiceProvider.GetService(type);
-                if (res != null) return (res, true);
-            }
+            object? res = ServiceProvider?.GetService(type);
             bool use = AsyncObjectFactories.TryGetValue(type, out DiAsync_Delegate? factory)
                 ? GetDiObject(type, out res) || await factory(type, out res, cancellationToken).DynamicContext()
                 : GetDiObject(type, out res);

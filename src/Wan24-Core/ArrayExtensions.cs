@@ -16,12 +16,9 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown on offset/length error</exception>
         public static Span<T> EnsureValid<T>(this Span<T> span, int offset, int length)
         {
-            if (offset < 0) throw new ArgumentOutOfRangeException(nameof(offset));
-            if (length < 0) throw new ArgumentOutOfRangeException(nameof(length));
             long lastOffset = offset + length;
-            if (lastOffset > int.MaxValue) throw new ArgumentOutOfRangeException(nameof(length));
-            if (offset > span.Length) throw new ArgumentOutOfRangeException(nameof(offset));
-            if (lastOffset > span.Length) throw new ArgumentOutOfRangeException(nameof(length));
+            if (offset < 0 || offset > span.Length) throw new ArgumentOutOfRangeException(nameof(offset));
+            if (length < 0 || lastOffset > int.MaxValue || lastOffset > span.Length) throw new ArgumentOutOfRangeException(nameof(length));
             return span;
         }
 
@@ -35,13 +32,8 @@
         /// <returns>Is valid?</returns>
         public static bool IsValid<T>(this Span<T> span, int offset, int length)
         {
-            if (offset < 0) return false;
-            if (length < 0) return false;
             long lastOffset = offset + length;
-            if (lastOffset > int.MaxValue) return false;
-            if (offset > span.Length) return false;
-            if (lastOffset > span.Length) return false;
-            return true;
+            return !(offset < 0 || length < 0 || lastOffset > int.MaxValue || offset > span.Length || lastOffset > span.Length);
         }
 
         /// <summary>

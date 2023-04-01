@@ -40,16 +40,10 @@
         /// <returns>Is not disposing?</returns>
         protected bool EnsureUndisposed(bool allowDisposing = false, bool throwException = true)
         {
-            if (IsDisposing)
-            {
-                if (!allowDisposing)
-                {
-                    if (throwException) throw new ObjectDisposedException(GetType().ToString());
-                    return false;
-                }
-                return IsDisposed;
-            }
-            return true;
+            if (!IsDisposing) return true;
+            if (allowDisposing) return IsDisposed;
+            if (throwException) throw new ObjectDisposedException(GetType().ToString());
+            return false;
         }
 
         /// <summary>
@@ -111,10 +105,10 @@
         /// <summary>
         /// Dispose
         /// </summary>
-        protected virtual Task DisposeCore()
+        protected virtual async Task DisposeCore()
         {
+            await Task.Yield();
             Dispose(disposing: true);
-            return Task.CompletedTask;
         }
 
         /// <summary>

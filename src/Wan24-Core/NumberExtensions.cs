@@ -6,39 +6,42 @@
     public static class NumberExtensions
     {
         /// <summary>
-        /// Determine if a numeric value is unsigned
+        /// Determine if a numeric value is unsigned (works for enumerations, too)
         /// </summary>
-        /// <typeparam name="T">Number type</typeparam>
+        /// <typeparam name="T">Value type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Is unsigned?</returns>
-        public static bool IsUnsigned<T>(this T value) where T : struct, IConvertible
-        {
-            try
+        public static bool IsUnsigned<T>(this T value) where T : struct, IConvertible => typeof(T).IsUnsigned();
+
+        /// <summary>
+        /// Determine if a numeric value is unsigned (works for enumerations, too)
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <returns>Is unsigned?</returns>
+        public static bool IsUnsigned<T>() where T : struct, IConvertible => typeof(T).IsUnsigned();
+
+        /// <summary>
+        /// Determine if a numeric type is unsigned (works for enumerations, too)
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>Is unsigned?</returns>
+        public static bool IsUnsigned(this Type type)
+            => Activator.CreateInstance(type.IsEnum ? type.GetEnumUnderlyingType() : type) switch
             {
-                Type type = typeof(T).IsEnum ? typeof(T).GetEnumUnderlyingType() : typeof(T);
-                object v = Activator.CreateInstance(type)!;
-                return v switch
-                {
-                    sbyte => false,
-                    byte => true,
-                    short => false,
-                    ushort => true,
-                    int => false,
-                    uint => true,
-                    long => false,
-                    ulong => true,
-                    Half => false,
-                    float => false,
-                    double => false,
-                    decimal => false,
-                    _ => throw new ArgumentException($"Not a supported numeric type {typeof(T)}")
-                };
-            }
-            catch(Exception ex)
-            {
-                throw new ArgumentException($"Not a supported numeric type {typeof(T)}", ex);
-            }
-        }
+                sbyte => false,
+                byte => true,
+                short => false,
+                ushort => true,
+                int => false,
+                uint => true,
+                long => false,
+                ulong => true,
+                Half => false,
+                float => false,
+                double => false,
+                decimal => false,
+                _ => throw new ArgumentException($"Not a supported numeric type {type}")
+            };
 
         /// <summary>
         /// Determine if a type is numeric

@@ -19,18 +19,18 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Display text</returns>
         public static string GetDisplayText<T>(this T value) where T : struct, Enum, IConvertible
-            => typeof(T).GetField(value.ToString())?.GetCustomAttribute<DisplayTextAttribute>()?.Text ?? value.ToString();
+            => typeof(T).GetField(value.ToString())?.GetCustomAttribute<DisplayTextAttribute>()?.DisplayText ?? value.ToString();
 
         /// <summary>
         /// Get the display text for an enumeration value
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Display text</returns>
-        public static string GetEnumDisplayText(object value)
+        public static string GetEnumDisplayText(this object value)
         {
             Type type = value.GetType();
             if (!type.IsEnum) throw new ArgumentException("Enumeration value expected", nameof(value));
-            return type.GetField(value.ToString()!)?.GetCustomAttribute<DisplayTextAttribute>()?.Text ?? value.ToString()!;
+            return type.GetField(value.ToString()!)?.GetCustomAttribute<DisplayTextAttribute>()?.DisplayText ?? value.ToString()!;
         }
 
         /// <summary>

@@ -20,18 +20,18 @@ namespace wan24.Core
             ParameterInfo[] pis = mi.GetParameters();
             object? di;
             for (int i = par.Count; i < pis.Length; i++)
-            {
-                if(DiHelper.GetDiObject(pis[i].ParameterType, out di))
+                if (DiHelper.GetDiObject(pis[i].ParameterType, out di))
                 {
                     par.Add(di);
-                    continue;
                 }
                 else if (!pis[i].HasDefaultValue)
                 {
                     throw new ArgumentException($"Missing required parameter #{i} ({pis[i].Name}) for invoking method {mi.DeclaringType}.{mi.Name}", nameof(param));
                 }
-                par.Add(pis[i].DefaultValue);
-            }
+                else
+                {
+                    par.Add(pis[i].DefaultValue);
+                }
             return mi.Invoke(obj, par.ToArray());
         }
 
@@ -68,13 +68,15 @@ namespace wan24.Core
                 if (use)
                 {
                     par.Add(di);
-                    continue;
                 }
                 else if (!pis[i].HasDefaultValue)
                 {
                     throw new ArgumentException($"Missing required parameter #{i} ({pis[i].Name}) for invoking method {mi.DeclaringType}.{mi.Name}", nameof(param));
                 }
-                par.Add(pis[i].DefaultValue);
+                else
+                {
+                    par.Add(pis[i].DefaultValue);
+                }
             }
             if (mi.Invoke(obj, par.ToArray()) is not object res) return null;
             if (isTask)

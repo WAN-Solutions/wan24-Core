@@ -87,3 +87,9 @@ MixedEnum value = MixedEnum.Value1 | MixedEnum.Flag1,
     valueOnly = value.RemoveFlags(),// == MixedEnum.Value1
     flagsOnly = value.OnlyFlags();// == MixedEnum.Flag1
 ```
+
+## Unsafe code
+
+The library uses unsafe code. If you don't want/need that, you can compile the 
+library with the `NO_UNSAFE` compiler constant to disable any unsafe 
+operation. Remember to unset the unsafe compiler option, too!

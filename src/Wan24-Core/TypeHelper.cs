@@ -9,11 +9,6 @@ namespace wan24.Core
     public sealed class TypeHelper
     {
         /// <summary>
-        /// Singleton instance
-        /// </summary>
-        private static TypeHelper? _Instance = null;
-
-        /// <summary>
         /// Types
         /// </summary>
         private readonly ConcurrentDictionary<string, Type> Types = new();
@@ -21,6 +16,11 @@ namespace wan24.Core
         /// Assemblies
         /// </summary>
         private readonly List<Assembly> _Assemblies;
+
+        /// <summary>
+        /// Static constructor
+        /// </summary>
+        static TypeHelper() => Instance = new();
 
         /// <summary>
         /// Type helper
@@ -39,7 +39,7 @@ namespace wan24.Core
         /// <summary>
         /// Singleton instance
         /// </summary>
-        public static TypeHelper Instance => _Instance ??= new();
+        public static TypeHelper Instance { get; }
 
         /// <summary>
         /// An object for thread synchronization

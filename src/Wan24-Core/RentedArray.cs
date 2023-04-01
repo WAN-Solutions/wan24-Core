@@ -45,11 +45,7 @@ namespace wan24.Core
         public T this[int offset]
         {
             get => IfUndisposed(_Array[offset]);
-            set
-            {
-                EnsureUndisposed();
-                _Array[offset] = value;
-            }
+            set => IfUndisposed(() => _Array[offset] = value);
         }
 
         /// <summary>

@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -16,12 +15,7 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         public static void InvokeAll<T>(this IEnumerable<T> delegates, params object?[] param) where T : Delegate
         {
-            MethodInfo? mi = null;
-            foreach (T d in delegates)
-            {
-                mi ??= d.Method;
-                mi.InvokeAuto(obj: null, param);
-            }
+            foreach (T d in delegates) d.Method.InvokeAuto(obj: null, param);
         }
 
         /// <summary>
@@ -34,16 +28,11 @@ namespace wan24.Core
         public static IEnumerable<tResult?> InvokeAll<tDelegate, tResult>(this IEnumerable<tDelegate> delegates, params object?[] param) where tDelegate : Delegate
         {
             List<tResult?> res = new();
-            MethodInfo? mi = null;
             foreach (tDelegate d in delegates)
             {
-                if (mi == null)
-                {
-                    mi = d.Method;
-                    if (!mi.ReturnType.IsAssignableFrom(typeof(tResult)))
-                        throw new ArgumentException($"Result type {typeof(tResult)} doesn't match delegates return type {mi.ReturnType}", nameof(tResult));
-                }
-                res.Add((tResult?)mi.InvokeAuto(obj: null, param));
+                if (!d.Method.ReturnType.IsAssignableFrom(typeof(tResult)))
+                    throw new ArgumentException($"Result type {typeof(tResult)} doesn't match delegates return type {d.Method.ReturnType}", nameof(tResult));
+                res.Add(d.Method.InvokeAuto<tResult>(obj: null, param));
             }
             return res;
         }
@@ -57,12 +46,10 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         public static async Task InvokeAllAsync<T>(this IEnumerable<T> delegates, CancellationToken cancellationToken = default, params object?[] param) where T : Delegate
         {
-            MethodInfo? mi = null;
             foreach (T d in delegates)
             {
-                if (cancellationToken.IsCancellationRequested) return;
-                mi ??= d.Method;
-                await mi.InvokeAutoAsync(obj: null, param).DynamicContext();
+                cancellationToken.ThrowIfCancellationRequested();
+                await d.Method.InvokeAutoAsync(obj: null, param).DynamicContext();
             }
         }
 
@@ -79,16 +66,11 @@ namespace wan24.Core
             [EnumeratorCancellation] CancellationToken cancellationToken = default,
             params object?[] param) where tDelegate : Delegate
         {
-            MethodInfo? mi = null;
             foreach (tDelegate d in delegates)
             {
-                if (mi == null)
-                {
-                    mi = d.Method;
-                    if (!mi.ReturnType.IsAssignableFrom(typeof(Task<tResult>)))
-                        throw new ArgumentException($"Result type {typeof(tResult)} doesn't match delegates return type {mi.ReturnType}", nameof(tResult));
-                }
-                yield return (tResult?)(await mi.InvokeAutoAsync(obj: null, param).DynamicContext());
+                if (!d.Method.ReturnType.IsAssignableFrom(typeof(Task<tResult>)))
+                    throw new ArgumentException($"Result type {typeof(tResult)} doesn't match delegates return type {d.Method.ReturnType}", nameof(tResult));
+                yield return await d.Method.InvokeAutoAsync<tResult>(obj: null, param).DynamicContext();
             }
         }
 
@@ -101,12 +83,10 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         public static async Task InvokeAllAsync<T>(this IAsyncEnumerable<T> delegates, CancellationToken cancellationToken = default, params object?[] param) where T : Delegate
         {
-            MethodInfo? mi = null;
             await foreach (T d in delegates.DynamicContext().WithCancellation(cancellationToken))
             {
-                if (cancellationToken.IsCancellationRequested) return;
-                mi ??= d.Method;
-                await mi.InvokeAutoAsync(obj: null, param).DynamicContext();
+                cancellationToken.ThrowIfCancellationRequested();
+                await d.Method.InvokeAutoAsync(obj: null, param).DynamicContext();
             }
         }
 
@@ -123,16 +103,11 @@ namespace wan24.Core
             [EnumeratorCancellation] CancellationToken cancellationToken = default,
             params object?[] param) where tDelegate : Delegate
         {
-            MethodInfo? mi = null;
             await foreach (tDelegate d in delegates.DynamicContext().WithCancellation(cancellationToken))
             {
-                if (mi == null)
-                {
-                    mi = d.Method;
-                    if (!mi.ReturnType.IsAssignableFrom(typeof(Task<tResult>)))
-                        throw new ArgumentException($"Result type {typeof(tResult)} doesn't match delegates return type {mi.ReturnType}", nameof(tResult));
-                }
-                yield return (tResult?)(await mi.InvokeAutoAsync(obj: null, param).DynamicContext());
+                if (!d.Method.ReturnType.IsAssignableFrom(typeof(Task<tResult>)))
+                    throw new ArgumentException($"Result type {typeof(tResult)} doesn't match delegates return type {d.Method.ReturnType}", nameof(tResult));
+                yield return await d.Method.InvokeAutoAsync<tResult>(obj: null, param).DynamicContext();
             }
         }
     }

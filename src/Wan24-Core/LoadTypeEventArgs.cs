@@ -8,11 +8,11 @@
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="name">Type name</param>
+        /// <param name="name">Requested type name</param>
         public LoadTypeEventArgs(string name) : base() => Name = name;
 
         /// <summary>
-        /// Type name
+        /// Requested type name
         /// </summary>
         public string Name { get; }
 
