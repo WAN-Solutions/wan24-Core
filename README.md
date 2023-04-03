@@ -38,6 +38,11 @@ disposing
     - Determine if a type is a number
     - Determine if a number type is unsigned
 
+## How to get it
+
+This library is available as 
+(NuGet package "wan24-Core")[https://www.nuget.org/packages/wan24-Core/].
+
 ## Type helper
 
 You'll have to register searchable assemblies using the 
