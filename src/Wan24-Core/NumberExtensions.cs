@@ -122,5 +122,74 @@
                 return false;
             }
         }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static byte[] GetBytes(this short value) => BitConverter.GetBytes(value).ConvertEndian();
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static byte[] GetBytes(this ushort value) => BitConverter.GetBytes(value).ConvertEndian();
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static byte[] GetBytes(this int value) => BitConverter.GetBytes(value).ConvertEndian();
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static byte[] GetBytes(this uint value) => BitConverter.GetBytes(value).ConvertEndian();
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static byte[] GetBytes(this long value) => BitConverter.GetBytes(value).ConvertEndian();
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static byte[] GetBytes(this ulong value) => BitConverter.GetBytes(value).ConvertEndian();
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static byte[] GetBytes(this float value) => BitConverter.GetBytes(value).ConvertEndian();
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static byte[] GetBytes(this double value) => BitConverter.GetBytes(value).ConvertEndian();
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static byte[] GetBytes(this decimal value)
+        {
+            byte[] res = new byte[sizeof(int) << 2];
+            int[] bits = decimal.GetBits(value);
+            for (int i = 0; i < bits.Length; Array.Copy(bits[i].GetBytes(), 0, res, i << 2, sizeof(int)), i++) ;
+            return res;
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Reflection;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Base class for a disposable type
@@ -8,7 +10,7 @@
         /// <summary>
         /// An object for thread synchronization during disposing
         /// </summary>
-        private readonly object DisposeSyncObject = new();
+        protected readonly object DisposeSyncObject = new();
 
         /// <summary>
         /// Constructor
@@ -42,7 +44,7 @@
         {
             if (!IsDisposing) return true;
             if (allowDisposing) return IsDisposed;
-            if (throwException) throw new ObjectDisposedException(GetType().ToString());
+            if (throwException) throw new ObjectDisposedException(ToString());
             return false;
         }
 
@@ -109,6 +111,82 @@
         {
             await Task.Yield();
             Dispose(disposing: true);
+        }
+
+        /// <summary>
+        /// Dispose fields/properties with the <see cref="DisposeAttribute"/>
+        /// </summary>
+        protected void DisposeAttributes()
+        {
+            foreach (FieldInfo fi in from fi in GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                                     where fi.GetCustomAttribute<DisposeAttribute>() != null
+                                     select fi)
+                switch (fi.GetValue(this))
+                {
+                    case IDisposableObject dObj:
+                        if (!dObj.IsDisposing) dObj.Dispose();
+                        break;
+                    case IDisposable disposable:
+                        disposable.Dispose();
+                        break;
+                    case IAsyncDisposable asyncDisposable:
+                        asyncDisposable.DisposeAsync().AsTask().Wait();
+                        break;
+                }
+            foreach (PropertyInfo pi in from pi in GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                                        where pi.GetCustomAttribute<DisposeAttribute>() != null &&
+                                            pi.GetMethod != null
+                                        select pi)
+                switch (pi.GetValue(this))
+                {
+                    case IDisposableObject dObj:
+                        if (!dObj.IsDisposing) dObj.Dispose();
+                        break;
+                    case IDisposable disposable:
+                        disposable.Dispose();
+                        break;
+                    case IAsyncDisposable asyncDisposable:
+                        asyncDisposable.DisposeAsync().AsTask().Wait();
+                        break;
+                }
+        }
+
+        /// <summary>
+        /// Dispose fields/properties with the <see cref="DisposeAttribute"/>
+        /// </summary>
+        protected async Task DisposeAttributesAsync()
+        {
+            foreach (FieldInfo fi in from fi in GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                                     where fi.GetCustomAttribute<DisposeAttribute>() != null
+                                     select fi)
+                switch (fi.GetValue(this))
+                {
+                    case IDisposableObject dObj:
+                        if (!dObj.IsDisposing) await dObj.DisposeAsync().DynamicContext();
+                        break;
+                    case IAsyncDisposable asyncDisposable:
+                        await asyncDisposable.DisposeAsync().DynamicContext();
+                        break;
+                    case IDisposable disposable:
+                        disposable.Dispose();
+                        break;
+                }
+            foreach (PropertyInfo pi in from pi in GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                                        where pi.GetCustomAttribute<DisposeAttribute>() != null &&
+                                            pi.GetMethod != null
+                                        select pi)
+                switch (pi.GetValue(this))
+                {
+                    case IDisposableObject dObj:
+                        if (!dObj.IsDisposing) await dObj.DisposeAsync().DynamicContext();
+                        break;
+                    case IAsyncDisposable asyncDisposable:
+                        await asyncDisposable.DisposeAsync().DynamicContext();
+                        break;
+                    case IDisposable disposable:
+                        disposable.Dispose();
+                        break;
+                }
         }
 
         /// <summary>

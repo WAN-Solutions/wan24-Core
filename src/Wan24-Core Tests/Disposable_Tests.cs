@@ -34,6 +34,7 @@ namespace Wan24_Core_Tests
             Assert.AreEqual(1, disposed);
             Assert.IsTrue(obj.IsDisposing);
             Assert.IsTrue(obj.IsDisposed);
+            Assert.IsTrue(obj.Disposing.IsDisposed);
         }
 
         [TestMethod]
@@ -65,11 +66,22 @@ namespace Wan24_Core_Tests
             Assert.AreEqual(1, disposed);
             Assert.IsTrue(obj.IsDisposing);
             Assert.IsTrue(obj.IsDisposed);
+            Assert.IsTrue(obj.Disposing.IsDisposed);
         }
 
         public sealed class DisposeableTestType : DisposableBase
         {
+            [Dispose]
+            public readonly DisposeableTestType2 Disposing = new();
+
             public DisposeableTestType() : base() { }
+
+            protected override void Dispose(bool disposing) => DisposeAttributes();
+        }
+
+        public sealed class DisposeableTestType2 : DisposableBase
+        {
+            public DisposeableTestType2() : base() { }
 
             protected override void Dispose(bool disposing) { }
         }

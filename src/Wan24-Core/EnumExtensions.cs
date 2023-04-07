@@ -78,11 +78,25 @@ namespace wan24.Core
         /// <summary>
         /// Determine if an enumeration value is mixed and may contain flags
         /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>May contain flags?</returns>
+        public static bool MayContainFlags(this Type type)
+            => type.IsEnum && type.GetCustomAttribute<FlagsAttribute>() != null && Enum.GetNames(type).Contains(FLAGS_NAME);
+
+        /// <summary>
+        /// Determine if an enumeration value is mixed and may contain flags
+        /// </summary>
+        /// <typeparam name="T">Enumeration type</typeparam>
+        /// <returns>May contain flags?</returns>
+        public static bool MayContainFlags<T>() where T : struct, Enum, IConvertible => MayContainFlags(typeof(T));
+
+        /// <summary>
+        /// Determine if an enumeration value is mixed and may contain flags
+        /// </summary>
         /// <typeparam name="T">Enumeration type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>May contain flags?</returns>
-        public static bool MayContainFlags<T>(this T value) where T : struct, Enum, IConvertible
-            => typeof(T).IsEnum && typeof(T).GetCustomAttribute<FlagsAttribute>() != null && Enum.GetNames<T>().Contains(FLAGS_NAME);
+        public static bool MayContainFlags<T>(this T value) where T : struct, Enum, IConvertible => MayContainFlags<T>();
 
         /// <summary>
         /// Determine if a type is a mixed enumeration (which contains enumeration values and flags)
@@ -90,6 +104,43 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <returns>Is a mixed enumeration?</returns>
         public static bool IsMixedEnum(this Type type) => type.IsEnum && type.GetCustomAttribute<FlagsAttribute>() != null && Enum.GetNames(type).Contains(FLAGS_NAME);
+
+        /// <summary>
+        /// Get enumeration key/value pairs
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>Key/value pairs</returns>
+        public static Dictionary<string, object> GetEnumKeyValues(this Type type) => type.IsUnsigned()
+            ? new(from value in Enum.GetValues(type).Cast<object>()
+                  orderby CastType<ulong>(value)
+                  select new KeyValuePair<string, object>(value.ToString()!, value)
+                  )
+            : new(from value in Enum.GetValues(type).Cast<object>()
+                  orderby CastType<long>(value)
+                  select new KeyValuePair<string, object>(value.ToString()!, value)
+                  );
+
+        /// <summary>
+        /// Get enumeration key/value pairs
+        /// </summary>
+        /// <typeparam name="T">Enumeration type</typeparam>
+        /// <returns>Key/value pairs</returns>
+        public static Dictionary<string, T> GetEnumKeyValues<T>() where T : struct, Enum, IConvertible => typeof(T).IsUnsigned()
+            ? new(from value in Enum.GetValues<T>()
+                  orderby CastType<ulong>(value)
+                  select new KeyValuePair<string, T>(value.ToString()!, value)
+                  )
+            : new(from value in Enum.GetValues<T>()
+                  orderby CastType<long>(value)
+                  select new KeyValuePair<string, T>(value.ToString()!, value)
+                  );
+
+        /// <summary>
+        /// Get enumeration key/value pairs
+        /// </summary>
+        /// <typeparam name="T">Enumeration type</typeparam>
+        /// <returns>Key/value pairs</returns>
+        public static Dictionary<string, T> GetEnumKeyValues<T>(this T value) where T : struct, Enum, IConvertible => GetEnumKeyValues<T>();
 
         /// <summary>
         /// Cast a type

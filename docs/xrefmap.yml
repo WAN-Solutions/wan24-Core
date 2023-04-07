@@ -117,6 +117,47 @@ references:
   commentId: T:wan24.Core.AsyncEnumerableExtensions
   fullName: wan24.Core.AsyncEnumerableExtensions
   nameWithType: AsyncEnumerableExtensions
+- uid: wan24.Core.AsyncEnumerableExtensions.ChunkEnumAsync*
+  name: ChunkEnumAsync
+  href: api/wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_ChunkEnumAsync_
+  commentId: Overload:wan24.Core.AsyncEnumerableExtensions.ChunkEnumAsync
+  isSpec: "True"
+  fullName: wan24.Core.AsyncEnumerableExtensions.ChunkEnumAsync
+  nameWithType: AsyncEnumerableExtensions.ChunkEnumAsync
+- uid: wan24.Core.AsyncEnumerableExtensions.ChunkEnumAsync``1(IAsyncEnumerable{``0},System.Int32,CancellationToken)
+  name: ChunkEnumAsync<T>(IAsyncEnumerable<T>, Int32, CancellationToken)
+  href: api/wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_ChunkEnumAsync__1_IAsyncEnumerable___0__System_Int32_CancellationToken_
+  commentId: M:wan24.Core.AsyncEnumerableExtensions.ChunkEnumAsync``1(IAsyncEnumerable{``0},System.Int32,CancellationToken)
+  name.vb: ChunkEnumAsync(Of T)(IAsyncEnumerable(Of T), Int32, CancellationToken)
+  fullName: wan24.Core.AsyncEnumerableExtensions.ChunkEnumAsync<T>(IAsyncEnumerable<T>, System.Int32, CancellationToken)
+  fullName.vb: wan24.Core.AsyncEnumerableExtensions.ChunkEnumAsync(Of T)(IAsyncEnumerable(Of T), System.Int32, CancellationToken)
+  nameWithType: AsyncEnumerableExtensions.ChunkEnumAsync<T>(IAsyncEnumerable<T>, Int32, CancellationToken)
+  nameWithType.vb: AsyncEnumerableExtensions.ChunkEnumAsync(Of T)(IAsyncEnumerable(Of T), Int32, CancellationToken)
+- uid: wan24.Core.AsyncEnumerableExtensions.CombineAsync*
+  name: CombineAsync
+  href: api/wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CombineAsync_
+  commentId: Overload:wan24.Core.AsyncEnumerableExtensions.CombineAsync
+  isSpec: "True"
+  fullName: wan24.Core.AsyncEnumerableExtensions.CombineAsync
+  nameWithType: AsyncEnumerableExtensions.CombineAsync
+- uid: wan24.Core.AsyncEnumerableExtensions.CombineAsync``1(IAsyncEnumerable{IAsyncEnumerable{``0}},CancellationToken)
+  name: CombineAsync<T>(IAsyncEnumerable<IAsyncEnumerable<T>>, CancellationToken)
+  href: api/wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CombineAsync__1_IAsyncEnumerable_IAsyncEnumerable___0___CancellationToken_
+  commentId: M:wan24.Core.AsyncEnumerableExtensions.CombineAsync``1(IAsyncEnumerable{IAsyncEnumerable{``0}},CancellationToken)
+  name.vb: CombineAsync(Of T)(IAsyncEnumerable(Of IAsyncEnumerable(Of T)), CancellationToken)
+  fullName: wan24.Core.AsyncEnumerableExtensions.CombineAsync<T>(IAsyncEnumerable<IAsyncEnumerable<T>>, CancellationToken)
+  fullName.vb: wan24.Core.AsyncEnumerableExtensions.CombineAsync(Of T)(IAsyncEnumerable(Of IAsyncEnumerable(Of T)), CancellationToken)
+  nameWithType: AsyncEnumerableExtensions.CombineAsync<T>(IAsyncEnumerable<IAsyncEnumerable<T>>, CancellationToken)
+  nameWithType.vb: AsyncEnumerableExtensions.CombineAsync(Of T)(IAsyncEnumerable(Of IAsyncEnumerable(Of T)), CancellationToken)
+- uid: wan24.Core.AsyncEnumerableExtensions.CombineAsync``1(IAsyncEnumerable{IEnumerable{``0}},CancellationToken)
+  name: CombineAsync<T>(IAsyncEnumerable<IEnumerable<T>>, CancellationToken)
+  href: api/wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CombineAsync__1_IAsyncEnumerable_IEnumerable___0___CancellationToken_
+  commentId: M:wan24.Core.AsyncEnumerableExtensions.CombineAsync``1(IAsyncEnumerable{IEnumerable{``0}},CancellationToken)
+  name.vb: CombineAsync(Of T)(IAsyncEnumerable(Of IEnumerable(Of T)), CancellationToken)
+  fullName: wan24.Core.AsyncEnumerableExtensions.CombineAsync<T>(IAsyncEnumerable<IEnumerable<T>>, CancellationToken)
+  fullName.vb: wan24.Core.AsyncEnumerableExtensions.CombineAsync(Of T)(IAsyncEnumerable(Of IEnumerable(Of T)), CancellationToken)
+  nameWithType: AsyncEnumerableExtensions.CombineAsync<T>(IAsyncEnumerable<IEnumerable<T>>, CancellationToken)
+  nameWithType.vb: AsyncEnumerableExtensions.CombineAsync(Of T)(IAsyncEnumerable(Of IEnumerable(Of T)), CancellationToken)
 - uid: wan24.Core.AsyncEnumerableExtensions.DynamicContext*
   name: DynamicContext
   href: api/wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_DynamicContext_
@@ -223,6 +264,15 @@ references:
   fullName.vb: wan24.Core.BytesExtensions.ConvertEndian(Span(Of System.Byte))
   nameWithType: BytesExtensions.ConvertEndian(Span<Byte>)
   nameWithType.vb: BytesExtensions.ConvertEndian(Span(Of Byte))
+- uid: wan24.Core.BytesExtensions.ConvertEndian(System.Byte[])
+  name: ConvertEndian(Byte[])
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ConvertEndian_System_Byte___
+  commentId: M:wan24.Core.BytesExtensions.ConvertEndian(System.Byte[])
+  name.vb: ConvertEndian(Byte())
+  fullName: wan24.Core.BytesExtensions.ConvertEndian(System.Byte[])
+  fullName.vb: wan24.Core.BytesExtensions.ConvertEndian(System.Byte())
+  nameWithType: BytesExtensions.ConvertEndian(Byte[])
+  nameWithType.vb: BytesExtensions.ConvertEndian(Byte())
 - uid: wan24.Core.BytesExtensions.ConvertEndian*
   name: ConvertEndian
   href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ConvertEndian_
@@ -246,6 +296,150 @@ references:
   isSpec: "True"
   fullName: wan24.Core.BytesExtensions.SlowCompare
   nameWithType: BytesExtensions.SlowCompare
+- uid: wan24.Core.BytesExtensions.ToDecimal(Span{System.Byte})
+  name: ToDecimal(Span<Byte>)
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToDecimal_Span_System_Byte__
+  commentId: M:wan24.Core.BytesExtensions.ToDecimal(Span{System.Byte})
+  name.vb: ToDecimal(Span(Of Byte))
+  fullName: wan24.Core.BytesExtensions.ToDecimal(Span<System.Byte>)
+  fullName.vb: wan24.Core.BytesExtensions.ToDecimal(Span(Of System.Byte))
+  nameWithType: BytesExtensions.ToDecimal(Span<Byte>)
+  nameWithType.vb: BytesExtensions.ToDecimal(Span(Of Byte))
+- uid: wan24.Core.BytesExtensions.ToDecimal*
+  name: ToDecimal
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToDecimal_
+  commentId: Overload:wan24.Core.BytesExtensions.ToDecimal
+  isSpec: "True"
+  fullName: wan24.Core.BytesExtensions.ToDecimal
+  nameWithType: BytesExtensions.ToDecimal
+- uid: wan24.Core.BytesExtensions.ToDouble(Span{System.Byte})
+  name: ToDouble(Span<Byte>)
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToDouble_Span_System_Byte__
+  commentId: M:wan24.Core.BytesExtensions.ToDouble(Span{System.Byte})
+  name.vb: ToDouble(Span(Of Byte))
+  fullName: wan24.Core.BytesExtensions.ToDouble(Span<System.Byte>)
+  fullName.vb: wan24.Core.BytesExtensions.ToDouble(Span(Of System.Byte))
+  nameWithType: BytesExtensions.ToDouble(Span<Byte>)
+  nameWithType.vb: BytesExtensions.ToDouble(Span(Of Byte))
+- uid: wan24.Core.BytesExtensions.ToDouble*
+  name: ToDouble
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToDouble_
+  commentId: Overload:wan24.Core.BytesExtensions.ToDouble
+  isSpec: "True"
+  fullName: wan24.Core.BytesExtensions.ToDouble
+  nameWithType: BytesExtensions.ToDouble
+- uid: wan24.Core.BytesExtensions.ToFloat(Span{System.Byte})
+  name: ToFloat(Span<Byte>)
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToFloat_Span_System_Byte__
+  commentId: M:wan24.Core.BytesExtensions.ToFloat(Span{System.Byte})
+  name.vb: ToFloat(Span(Of Byte))
+  fullName: wan24.Core.BytesExtensions.ToFloat(Span<System.Byte>)
+  fullName.vb: wan24.Core.BytesExtensions.ToFloat(Span(Of System.Byte))
+  nameWithType: BytesExtensions.ToFloat(Span<Byte>)
+  nameWithType.vb: BytesExtensions.ToFloat(Span(Of Byte))
+- uid: wan24.Core.BytesExtensions.ToFloat*
+  name: ToFloat
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToFloat_
+  commentId: Overload:wan24.Core.BytesExtensions.ToFloat
+  isSpec: "True"
+  fullName: wan24.Core.BytesExtensions.ToFloat
+  nameWithType: BytesExtensions.ToFloat
+- uid: wan24.Core.BytesExtensions.ToInt(Span{System.Byte})
+  name: ToInt(Span<Byte>)
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToInt_Span_System_Byte__
+  commentId: M:wan24.Core.BytesExtensions.ToInt(Span{System.Byte})
+  name.vb: ToInt(Span(Of Byte))
+  fullName: wan24.Core.BytesExtensions.ToInt(Span<System.Byte>)
+  fullName.vb: wan24.Core.BytesExtensions.ToInt(Span(Of System.Byte))
+  nameWithType: BytesExtensions.ToInt(Span<Byte>)
+  nameWithType.vb: BytesExtensions.ToInt(Span(Of Byte))
+- uid: wan24.Core.BytesExtensions.ToInt*
+  name: ToInt
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToInt_
+  commentId: Overload:wan24.Core.BytesExtensions.ToInt
+  isSpec: "True"
+  fullName: wan24.Core.BytesExtensions.ToInt
+  nameWithType: BytesExtensions.ToInt
+- uid: wan24.Core.BytesExtensions.ToLong(Span{System.Byte})
+  name: ToLong(Span<Byte>)
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToLong_Span_System_Byte__
+  commentId: M:wan24.Core.BytesExtensions.ToLong(Span{System.Byte})
+  name.vb: ToLong(Span(Of Byte))
+  fullName: wan24.Core.BytesExtensions.ToLong(Span<System.Byte>)
+  fullName.vb: wan24.Core.BytesExtensions.ToLong(Span(Of System.Byte))
+  nameWithType: BytesExtensions.ToLong(Span<Byte>)
+  nameWithType.vb: BytesExtensions.ToLong(Span(Of Byte))
+- uid: wan24.Core.BytesExtensions.ToLong*
+  name: ToLong
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToLong_
+  commentId: Overload:wan24.Core.BytesExtensions.ToLong
+  isSpec: "True"
+  fullName: wan24.Core.BytesExtensions.ToLong
+  nameWithType: BytesExtensions.ToLong
+- uid: wan24.Core.BytesExtensions.ToShort(Span{System.Byte})
+  name: ToShort(Span<Byte>)
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToShort_Span_System_Byte__
+  commentId: M:wan24.Core.BytesExtensions.ToShort(Span{System.Byte})
+  name.vb: ToShort(Span(Of Byte))
+  fullName: wan24.Core.BytesExtensions.ToShort(Span<System.Byte>)
+  fullName.vb: wan24.Core.BytesExtensions.ToShort(Span(Of System.Byte))
+  nameWithType: BytesExtensions.ToShort(Span<Byte>)
+  nameWithType.vb: BytesExtensions.ToShort(Span(Of Byte))
+- uid: wan24.Core.BytesExtensions.ToShort*
+  name: ToShort
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToShort_
+  commentId: Overload:wan24.Core.BytesExtensions.ToShort
+  isSpec: "True"
+  fullName: wan24.Core.BytesExtensions.ToShort
+  nameWithType: BytesExtensions.ToShort
+- uid: wan24.Core.BytesExtensions.ToUInt(Span{System.Byte})
+  name: ToUInt(Span<Byte>)
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToUInt_Span_System_Byte__
+  commentId: M:wan24.Core.BytesExtensions.ToUInt(Span{System.Byte})
+  name.vb: ToUInt(Span(Of Byte))
+  fullName: wan24.Core.BytesExtensions.ToUInt(Span<System.Byte>)
+  fullName.vb: wan24.Core.BytesExtensions.ToUInt(Span(Of System.Byte))
+  nameWithType: BytesExtensions.ToUInt(Span<Byte>)
+  nameWithType.vb: BytesExtensions.ToUInt(Span(Of Byte))
+- uid: wan24.Core.BytesExtensions.ToUInt*
+  name: ToUInt
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToUInt_
+  commentId: Overload:wan24.Core.BytesExtensions.ToUInt
+  isSpec: "True"
+  fullName: wan24.Core.BytesExtensions.ToUInt
+  nameWithType: BytesExtensions.ToUInt
+- uid: wan24.Core.BytesExtensions.ToULong(Span{System.Byte})
+  name: ToULong(Span<Byte>)
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToULong_Span_System_Byte__
+  commentId: M:wan24.Core.BytesExtensions.ToULong(Span{System.Byte})
+  name.vb: ToULong(Span(Of Byte))
+  fullName: wan24.Core.BytesExtensions.ToULong(Span<System.Byte>)
+  fullName.vb: wan24.Core.BytesExtensions.ToULong(Span(Of System.Byte))
+  nameWithType: BytesExtensions.ToULong(Span<Byte>)
+  nameWithType.vb: BytesExtensions.ToULong(Span(Of Byte))
+- uid: wan24.Core.BytesExtensions.ToULong*
+  name: ToULong
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToULong_
+  commentId: Overload:wan24.Core.BytesExtensions.ToULong
+  isSpec: "True"
+  fullName: wan24.Core.BytesExtensions.ToULong
+  nameWithType: BytesExtensions.ToULong
+- uid: wan24.Core.BytesExtensions.ToUShort(Span{System.Byte})
+  name: ToUShort(Span<Byte>)
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToUShort_Span_System_Byte__
+  commentId: M:wan24.Core.BytesExtensions.ToUShort(Span{System.Byte})
+  name.vb: ToUShort(Span(Of Byte))
+  fullName: wan24.Core.BytesExtensions.ToUShort(Span<System.Byte>)
+  fullName.vb: wan24.Core.BytesExtensions.ToUShort(Span(Of System.Byte))
+  nameWithType: BytesExtensions.ToUShort(Span<Byte>)
+  nameWithType.vb: BytesExtensions.ToUShort(Span(Of Byte))
+- uid: wan24.Core.BytesExtensions.ToUShort*
+  name: ToUShort
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToUShort_
+  commentId: Overload:wan24.Core.BytesExtensions.ToUShort
+  isSpec: "True"
+  fullName: wan24.Core.BytesExtensions.ToUShort
+  nameWithType: BytesExtensions.ToUShort
 - uid: wan24.Core.DelegateExtensions
   name: DelegateExtensions
   href: api/wan24.Core.DelegateExtensions.html
@@ -475,6 +669,32 @@ references:
   isSpec: "True"
   fullName: wan24.Core.DisposableBase.DisposeAsync
   nameWithType: DisposableBase.DisposeAsync
+- uid: wan24.Core.DisposableBase.DisposeAttributes
+  name: DisposeAttributes()
+  href: api/wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributes
+  commentId: M:wan24.Core.DisposableBase.DisposeAttributes
+  fullName: wan24.Core.DisposableBase.DisposeAttributes()
+  nameWithType: DisposableBase.DisposeAttributes()
+- uid: wan24.Core.DisposableBase.DisposeAttributes*
+  name: DisposeAttributes
+  href: api/wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributes_
+  commentId: Overload:wan24.Core.DisposableBase.DisposeAttributes
+  isSpec: "True"
+  fullName: wan24.Core.DisposableBase.DisposeAttributes
+  nameWithType: DisposableBase.DisposeAttributes
+- uid: wan24.Core.DisposableBase.DisposeAttributesAsync
+  name: DisposeAttributesAsync()
+  href: api/wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributesAsync
+  commentId: M:wan24.Core.DisposableBase.DisposeAttributesAsync
+  fullName: wan24.Core.DisposableBase.DisposeAttributesAsync()
+  nameWithType: DisposableBase.DisposeAttributesAsync()
+- uid: wan24.Core.DisposableBase.DisposeAttributesAsync*
+  name: DisposeAttributesAsync
+  href: api/wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributesAsync_
+  commentId: Overload:wan24.Core.DisposableBase.DisposeAttributesAsync
+  isSpec: "True"
+  fullName: wan24.Core.DisposableBase.DisposeAttributesAsync
+  nameWithType: DisposableBase.DisposeAttributesAsync
 - uid: wan24.Core.DisposableBase.DisposeCore
   name: DisposeCore()
   href: api/wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeCore
@@ -488,6 +708,12 @@ references:
   isSpec: "True"
   fullName: wan24.Core.DisposableBase.DisposeCore
   nameWithType: DisposableBase.DisposeCore
+- uid: wan24.Core.DisposableBase.DisposeSyncObject
+  name: DisposeSyncObject
+  href: api/wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeSyncObject
+  commentId: F:wan24.Core.DisposableBase.DisposeSyncObject
+  fullName: wan24.Core.DisposableBase.DisposeSyncObject
+  nameWithType: DisposableBase.DisposeSyncObject
 - uid: wan24.Core.DisposableBase.EnsureUndisposed(System.Boolean,System.Boolean)
   name: EnsureUndisposed(Boolean, Boolean)
   href: api/wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_EnsureUndisposed_System_Boolean_System_Boolean_
@@ -621,6 +847,63 @@ references:
   isSpec: "True"
   fullName: wan24.Core.DisposableExtensions.DisposeAll
   nameWithType: DisposableExtensions.DisposeAll
+- uid: wan24.Core.DisposeAttribute
+  name: DisposeAttribute
+  href: api/wan24.Core.DisposeAttribute.html
+  commentId: T:wan24.Core.DisposeAttribute
+  fullName: wan24.Core.DisposeAttribute
+  nameWithType: DisposeAttribute
+- uid: wan24.Core.DisposeAttribute.#ctor
+  name: DisposeAttribute()
+  href: api/wan24.Core.DisposeAttribute.html#wan24_Core_DisposeAttribute__ctor
+  commentId: M:wan24.Core.DisposeAttribute.#ctor
+  fullName: wan24.Core.DisposeAttribute.DisposeAttribute()
+  nameWithType: DisposeAttribute.DisposeAttribute()
+- uid: wan24.Core.DisposeAttribute.#ctor*
+  name: DisposeAttribute
+  href: api/wan24.Core.DisposeAttribute.html#wan24_Core_DisposeAttribute__ctor_
+  commentId: Overload:wan24.Core.DisposeAttribute.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.DisposeAttribute.DisposeAttribute
+  nameWithType: DisposeAttribute.DisposeAttribute
+- uid: wan24.Core.EnumerableExtensions
+  name: EnumerableExtensions
+  href: api/wan24.Core.EnumerableExtensions.html
+  commentId: T:wan24.Core.EnumerableExtensions
+  fullName: wan24.Core.EnumerableExtensions
+  nameWithType: EnumerableExtensions
+- uid: wan24.Core.EnumerableExtensions.ChunkEnum*
+  name: ChunkEnum
+  href: api/wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ChunkEnum_
+  commentId: Overload:wan24.Core.EnumerableExtensions.ChunkEnum
+  isSpec: "True"
+  fullName: wan24.Core.EnumerableExtensions.ChunkEnum
+  nameWithType: EnumerableExtensions.ChunkEnum
+- uid: wan24.Core.EnumerableExtensions.ChunkEnum``1(IEnumerable{``0},System.Int32)
+  name: ChunkEnum<T>(IEnumerable<T>, Int32)
+  href: api/wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ChunkEnum__1_IEnumerable___0__System_Int32_
+  commentId: M:wan24.Core.EnumerableExtensions.ChunkEnum``1(IEnumerable{``0},System.Int32)
+  name.vb: ChunkEnum(Of T)(IEnumerable(Of T), Int32)
+  fullName: wan24.Core.EnumerableExtensions.ChunkEnum<T>(IEnumerable<T>, System.Int32)
+  fullName.vb: wan24.Core.EnumerableExtensions.ChunkEnum(Of T)(IEnumerable(Of T), System.Int32)
+  nameWithType: EnumerableExtensions.ChunkEnum<T>(IEnumerable<T>, Int32)
+  nameWithType.vb: EnumerableExtensions.ChunkEnum(Of T)(IEnumerable(Of T), Int32)
+- uid: wan24.Core.EnumerableExtensions.Combine*
+  name: Combine
+  href: api/wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Combine_
+  commentId: Overload:wan24.Core.EnumerableExtensions.Combine
+  isSpec: "True"
+  fullName: wan24.Core.EnumerableExtensions.Combine
+  nameWithType: EnumerableExtensions.Combine
+- uid: wan24.Core.EnumerableExtensions.Combine``1(IEnumerable{IEnumerable{``0}})
+  name: Combine<T>(IEnumerable<IEnumerable<T>>)
+  href: api/wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Combine__1_IEnumerable_IEnumerable___0___
+  commentId: M:wan24.Core.EnumerableExtensions.Combine``1(IEnumerable{IEnumerable{``0}})
+  name.vb: Combine(Of T)(IEnumerable(Of IEnumerable(Of T)))
+  fullName: wan24.Core.EnumerableExtensions.Combine<T>(IEnumerable<IEnumerable<T>>)
+  fullName.vb: wan24.Core.EnumerableExtensions.Combine(Of T)(IEnumerable(Of IEnumerable(Of T)))
+  nameWithType: EnumerableExtensions.Combine<T>(IEnumerable<IEnumerable<T>>)
+  nameWithType.vb: EnumerableExtensions.Combine(Of T)(IEnumerable(Of IEnumerable(Of T)))
 - uid: wan24.Core.EnumExtensions
   name: EnumExtensions
   href: api/wan24.Core.EnumExtensions.html
@@ -662,6 +945,37 @@ references:
   isSpec: "True"
   fullName: wan24.Core.EnumExtensions.GetEnumDisplayText
   nameWithType: EnumExtensions.GetEnumDisplayText
+- uid: wan24.Core.EnumExtensions.GetEnumKeyValues(Type)
+  name: GetEnumKeyValues(Type)
+  href: api/wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_GetEnumKeyValues_Type_
+  commentId: M:wan24.Core.EnumExtensions.GetEnumKeyValues(Type)
+  fullName: wan24.Core.EnumExtensions.GetEnumKeyValues(Type)
+  nameWithType: EnumExtensions.GetEnumKeyValues(Type)
+- uid: wan24.Core.EnumExtensions.GetEnumKeyValues*
+  name: GetEnumKeyValues
+  href: api/wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_GetEnumKeyValues_
+  commentId: Overload:wan24.Core.EnumExtensions.GetEnumKeyValues
+  isSpec: "True"
+  fullName: wan24.Core.EnumExtensions.GetEnumKeyValues
+  nameWithType: EnumExtensions.GetEnumKeyValues
+- uid: wan24.Core.EnumExtensions.GetEnumKeyValues``1
+  name: GetEnumKeyValues<T>()
+  href: api/wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_GetEnumKeyValues__1
+  commentId: M:wan24.Core.EnumExtensions.GetEnumKeyValues``1
+  name.vb: GetEnumKeyValues(Of T)()
+  fullName: wan24.Core.EnumExtensions.GetEnumKeyValues<T>()
+  fullName.vb: wan24.Core.EnumExtensions.GetEnumKeyValues(Of T)()
+  nameWithType: EnumExtensions.GetEnumKeyValues<T>()
+  nameWithType.vb: EnumExtensions.GetEnumKeyValues(Of T)()
+- uid: wan24.Core.EnumExtensions.GetEnumKeyValues``1(``0)
+  name: GetEnumKeyValues<T>(T)
+  href: api/wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_GetEnumKeyValues__1___0_
+  commentId: M:wan24.Core.EnumExtensions.GetEnumKeyValues``1(``0)
+  name.vb: GetEnumKeyValues(Of T)(T)
+  fullName: wan24.Core.EnumExtensions.GetEnumKeyValues<T>(T)
+  fullName.vb: wan24.Core.EnumExtensions.GetEnumKeyValues(Of T)(T)
+  nameWithType: EnumExtensions.GetEnumKeyValues<T>(T)
+  nameWithType.vb: EnumExtensions.GetEnumKeyValues(Of T)(T)
 - uid: wan24.Core.EnumExtensions.IsFlag*
   name: IsFlag
   href: api/wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsFlag_
@@ -707,6 +1021,12 @@ references:
   fullName.vb: wan24.Core.EnumExtensions.IsValue(Of T)(T)
   nameWithType: EnumExtensions.IsValue<T>(T)
   nameWithType.vb: EnumExtensions.IsValue(Of T)(T)
+- uid: wan24.Core.EnumExtensions.MayContainFlags(Type)
+  name: MayContainFlags(Type)
+  href: api/wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_MayContainFlags_Type_
+  commentId: M:wan24.Core.EnumExtensions.MayContainFlags(Type)
+  fullName: wan24.Core.EnumExtensions.MayContainFlags(Type)
+  nameWithType: EnumExtensions.MayContainFlags(Type)
 - uid: wan24.Core.EnumExtensions.MayContainFlags*
   name: MayContainFlags
   href: api/wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_MayContainFlags_
@@ -714,6 +1034,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.EnumExtensions.MayContainFlags
   nameWithType: EnumExtensions.MayContainFlags
+- uid: wan24.Core.EnumExtensions.MayContainFlags``1
+  name: MayContainFlags<T>()
+  href: api/wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_MayContainFlags__1
+  commentId: M:wan24.Core.EnumExtensions.MayContainFlags``1
+  name.vb: MayContainFlags(Of T)()
+  fullName: wan24.Core.EnumExtensions.MayContainFlags<T>()
+  fullName.vb: wan24.Core.EnumExtensions.MayContainFlags(Of T)()
+  nameWithType: EnumExtensions.MayContainFlags<T>()
+  nameWithType.vb: EnumExtensions.MayContainFlags(Of T)()
 - uid: wan24.Core.EnumExtensions.MayContainFlags``1(``0)
   name: MayContainFlags<T>(T)
   href: api/wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_MayContainFlags__1___0_
@@ -805,6 +1134,92 @@ references:
   commentId: E:wan24.Core.IDisposableObject.OnDisposing
   fullName: wan24.Core.IDisposableObject.OnDisposing
   nameWithType: IDisposableObject.OnDisposing
+- uid: wan24.Core.JsonHelper
+  name: JsonHelper
+  href: api/wan24.Core.JsonHelper.html
+  commentId: T:wan24.Core.JsonHelper
+  fullName: wan24.Core.JsonHelper
+  nameWithType: JsonHelper
+- uid: wan24.Core.JsonHelper.Decode*
+  name: Decode
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_Decode_
+  commentId: Overload:wan24.Core.JsonHelper.Decode
+  isSpec: "True"
+  fullName: wan24.Core.JsonHelper.Decode
+  nameWithType: JsonHelper.Decode
+- uid: wan24.Core.JsonHelper.Decode``1(System.String)
+  name: Decode<T>(String)
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_Decode__1_System_String_
+  commentId: M:wan24.Core.JsonHelper.Decode``1(System.String)
+  name.vb: Decode(Of T)(String)
+  fullName: wan24.Core.JsonHelper.Decode<T>(System.String)
+  fullName.vb: wan24.Core.JsonHelper.Decode(Of T)(System.String)
+  nameWithType: JsonHelper.Decode<T>(String)
+  nameWithType.vb: JsonHelper.Decode(Of T)(String)
+- uid: wan24.Core.JsonHelper.DecodeObject(Type,System.String)
+  name: DecodeObject(Type, String)
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_DecodeObject_Type_System_String_
+  commentId: M:wan24.Core.JsonHelper.DecodeObject(Type,System.String)
+  fullName: wan24.Core.JsonHelper.DecodeObject(Type, System.String)
+  nameWithType: JsonHelper.DecodeObject(Type, String)
+- uid: wan24.Core.JsonHelper.DecodeObject*
+  name: DecodeObject
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_DecodeObject_
+  commentId: Overload:wan24.Core.JsonHelper.DecodeObject
+  isSpec: "True"
+  fullName: wan24.Core.JsonHelper.DecodeObject
+  nameWithType: JsonHelper.DecodeObject
+- uid: wan24.Core.JsonHelper.Decoder
+  name: Decoder
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_Decoder
+  commentId: P:wan24.Core.JsonHelper.Decoder
+  fullName: wan24.Core.JsonHelper.Decoder
+  nameWithType: JsonHelper.Decoder
+- uid: wan24.Core.JsonHelper.Decoder*
+  name: Decoder
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_Decoder_
+  commentId: Overload:wan24.Core.JsonHelper.Decoder
+  isSpec: "True"
+  fullName: wan24.Core.JsonHelper.Decoder
+  nameWithType: JsonHelper.Decoder
+- uid: wan24.Core.JsonHelper.Decoder_Delegate
+  name: JsonHelper.Decoder_Delegate
+  href: api/wan24.Core.JsonHelper.Decoder_Delegate.html
+  commentId: T:wan24.Core.JsonHelper.Decoder_Delegate
+  fullName: wan24.Core.JsonHelper.Decoder_Delegate
+  nameWithType: JsonHelper.Decoder_Delegate
+- uid: wan24.Core.JsonHelper.Encode(System.Object,System.Boolean)
+  name: Encode(Object, Boolean)
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_Encode_System_Object_System_Boolean_
+  commentId: M:wan24.Core.JsonHelper.Encode(System.Object,System.Boolean)
+  fullName: wan24.Core.JsonHelper.Encode(System.Object, System.Boolean)
+  nameWithType: JsonHelper.Encode(Object, Boolean)
+- uid: wan24.Core.JsonHelper.Encode*
+  name: Encode
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_Encode_
+  commentId: Overload:wan24.Core.JsonHelper.Encode
+  isSpec: "True"
+  fullName: wan24.Core.JsonHelper.Encode
+  nameWithType: JsonHelper.Encode
+- uid: wan24.Core.JsonHelper.Encoder
+  name: Encoder
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_Encoder
+  commentId: P:wan24.Core.JsonHelper.Encoder
+  fullName: wan24.Core.JsonHelper.Encoder
+  nameWithType: JsonHelper.Encoder
+- uid: wan24.Core.JsonHelper.Encoder*
+  name: Encoder
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_Encoder_
+  commentId: Overload:wan24.Core.JsonHelper.Encoder
+  isSpec: "True"
+  fullName: wan24.Core.JsonHelper.Encoder
+  nameWithType: JsonHelper.Encoder
+- uid: wan24.Core.JsonHelper.Encoder_Delegate
+  name: JsonHelper.Encoder_Delegate
+  href: api/wan24.Core.JsonHelper.Encoder_Delegate.html
+  commentId: T:wan24.Core.JsonHelper.Encoder_Delegate
+  fullName: wan24.Core.JsonHelper.Encoder_Delegate
+  nameWithType: JsonHelper.Encoder_Delegate
 - uid: wan24.Core.LoadTypeEventArgs
   name: LoadTypeEventArgs
   href: api/wan24.Core.LoadTypeEventArgs.html
@@ -856,6 +1271,67 @@ references:
   commentId: T:wan24.Core.NumberExtensions
   fullName: wan24.Core.NumberExtensions
   nameWithType: NumberExtensions
+- uid: wan24.Core.NumberExtensions.GetBytes(System.Decimal)
+  name: GetBytes(Decimal)
+  href: api/wan24.Core.NumberExtensions.html#wan24_Core_NumberExtensions_GetBytes_System_Decimal_
+  commentId: M:wan24.Core.NumberExtensions.GetBytes(System.Decimal)
+  fullName: wan24.Core.NumberExtensions.GetBytes(System.Decimal)
+  nameWithType: NumberExtensions.GetBytes(Decimal)
+- uid: wan24.Core.NumberExtensions.GetBytes(System.Double)
+  name: GetBytes(Double)
+  href: api/wan24.Core.NumberExtensions.html#wan24_Core_NumberExtensions_GetBytes_System_Double_
+  commentId: M:wan24.Core.NumberExtensions.GetBytes(System.Double)
+  fullName: wan24.Core.NumberExtensions.GetBytes(System.Double)
+  nameWithType: NumberExtensions.GetBytes(Double)
+- uid: wan24.Core.NumberExtensions.GetBytes(System.Int16)
+  name: GetBytes(Int16)
+  href: api/wan24.Core.NumberExtensions.html#wan24_Core_NumberExtensions_GetBytes_System_Int16_
+  commentId: M:wan24.Core.NumberExtensions.GetBytes(System.Int16)
+  fullName: wan24.Core.NumberExtensions.GetBytes(System.Int16)
+  nameWithType: NumberExtensions.GetBytes(Int16)
+- uid: wan24.Core.NumberExtensions.GetBytes(System.Int32)
+  name: GetBytes(Int32)
+  href: api/wan24.Core.NumberExtensions.html#wan24_Core_NumberExtensions_GetBytes_System_Int32_
+  commentId: M:wan24.Core.NumberExtensions.GetBytes(System.Int32)
+  fullName: wan24.Core.NumberExtensions.GetBytes(System.Int32)
+  nameWithType: NumberExtensions.GetBytes(Int32)
+- uid: wan24.Core.NumberExtensions.GetBytes(System.Int64)
+  name: GetBytes(Int64)
+  href: api/wan24.Core.NumberExtensions.html#wan24_Core_NumberExtensions_GetBytes_System_Int64_
+  commentId: M:wan24.Core.NumberExtensions.GetBytes(System.Int64)
+  fullName: wan24.Core.NumberExtensions.GetBytes(System.Int64)
+  nameWithType: NumberExtensions.GetBytes(Int64)
+- uid: wan24.Core.NumberExtensions.GetBytes(System.Single)
+  name: GetBytes(Single)
+  href: api/wan24.Core.NumberExtensions.html#wan24_Core_NumberExtensions_GetBytes_System_Single_
+  commentId: M:wan24.Core.NumberExtensions.GetBytes(System.Single)
+  fullName: wan24.Core.NumberExtensions.GetBytes(System.Single)
+  nameWithType: NumberExtensions.GetBytes(Single)
+- uid: wan24.Core.NumberExtensions.GetBytes(System.UInt16)
+  name: GetBytes(UInt16)
+  href: api/wan24.Core.NumberExtensions.html#wan24_Core_NumberExtensions_GetBytes_System_UInt16_
+  commentId: M:wan24.Core.NumberExtensions.GetBytes(System.UInt16)
+  fullName: wan24.Core.NumberExtensions.GetBytes(System.UInt16)
+  nameWithType: NumberExtensions.GetBytes(UInt16)
+- uid: wan24.Core.NumberExtensions.GetBytes(System.UInt32)
+  name: GetBytes(UInt32)
+  href: api/wan24.Core.NumberExtensions.html#wan24_Core_NumberExtensions_GetBytes_System_UInt32_
+  commentId: M:wan24.Core.NumberExtensions.GetBytes(System.UInt32)
+  fullName: wan24.Core.NumberExtensions.GetBytes(System.UInt32)
+  nameWithType: NumberExtensions.GetBytes(UInt32)
+- uid: wan24.Core.NumberExtensions.GetBytes(System.UInt64)
+  name: GetBytes(UInt64)
+  href: api/wan24.Core.NumberExtensions.html#wan24_Core_NumberExtensions_GetBytes_System_UInt64_
+  commentId: M:wan24.Core.NumberExtensions.GetBytes(System.UInt64)
+  fullName: wan24.Core.NumberExtensions.GetBytes(System.UInt64)
+  nameWithType: NumberExtensions.GetBytes(UInt64)
+- uid: wan24.Core.NumberExtensions.GetBytes*
+  name: GetBytes
+  href: api/wan24.Core.NumberExtensions.html#wan24_Core_NumberExtensions_GetBytes_
+  commentId: Overload:wan24.Core.NumberExtensions.GetBytes
+  isSpec: "True"
+  fullName: wan24.Core.NumberExtensions.GetBytes
+  nameWithType: NumberExtensions.GetBytes
 - uid: wan24.Core.NumberExtensions.IsNumeric(Type)
   name: IsNumeric(Type)
   href: api/wan24.Core.NumberExtensions.html#wan24_Core_NumberExtensions_IsNumeric_Type_
@@ -1868,6 +2344,627 @@ references:
   fullName.vb: wan24.Core.TaskExtensions.WaitAll(Of T)(IEnumerable(Of ValueTask(Of T)))
   nameWithType: TaskExtensions.WaitAll<T>(IEnumerable<ValueTask<T>>)
   nameWithType.vb: TaskExtensions.WaitAll(Of T)(IEnumerable(Of ValueTask(Of T)))
+- uid: wan24.Core.Threading
+  name: wan24.Core.Threading
+  href: api/wan24.Core.Threading.html
+  commentId: N:wan24.Core.Threading
+  fullName: wan24.Core.Threading
+  nameWithType: wan24.Core.Threading
+- uid: wan24.Core.Threading.State
+  name: State
+  href: api/wan24.Core.Threading.State.html
+  commentId: T:wan24.Core.Threading.State
+  fullName: wan24.Core.Threading.State
+  nameWithType: State
+- uid: wan24.Core.Threading.State.#ctor(System.Boolean)
+  name: State(Boolean)
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State__ctor_System_Boolean_
+  commentId: M:wan24.Core.Threading.State.#ctor(System.Boolean)
+  fullName: wan24.Core.Threading.State.State(System.Boolean)
+  nameWithType: State.State(Boolean)
+- uid: wan24.Core.Threading.State.#ctor*
+  name: State
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State__ctor_
+  commentId: Overload:wan24.Core.Threading.State.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.Threading.State.State
+  nameWithType: State.State
+- uid: wan24.Core.Threading.State._IsSet
+  name: _IsSet
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State__IsSet
+  commentId: F:wan24.Core.Threading.State._IsSet
+  fullName: wan24.Core.Threading.State._IsSet
+  nameWithType: State._IsSet
+- uid: wan24.Core.Threading.State.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_Dispose_System_Boolean_
+  commentId: M:wan24.Core.Threading.State.Dispose(System.Boolean)
+  fullName: wan24.Core.Threading.State.Dispose(System.Boolean)
+  nameWithType: State.Dispose(Boolean)
+- uid: wan24.Core.Threading.State.Dispose*
+  name: Dispose
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_Dispose_
+  commentId: Overload:wan24.Core.Threading.State.Dispose
+  isSpec: "True"
+  fullName: wan24.Core.Threading.State.Dispose
+  nameWithType: State.Dispose
+- uid: wan24.Core.Threading.State.IsSet
+  name: IsSet
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_IsSet
+  commentId: P:wan24.Core.Threading.State.IsSet
+  fullName: wan24.Core.Threading.State.IsSet
+  nameWithType: State.IsSet
+- uid: wan24.Core.Threading.State.IsSet*
+  name: IsSet
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_IsSet_
+  commentId: Overload:wan24.Core.Threading.State.IsSet
+  isSpec: "True"
+  fullName: wan24.Core.Threading.State.IsSet
+  nameWithType: State.IsSet
+- uid: wan24.Core.Threading.State.OnReset
+  name: OnReset
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_OnReset
+  commentId: E:wan24.Core.Threading.State.OnReset
+  fullName: wan24.Core.Threading.State.OnReset
+  nameWithType: State.OnReset
+- uid: wan24.Core.Threading.State.OnResetLocked
+  name: OnResetLocked
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_OnResetLocked
+  commentId: E:wan24.Core.Threading.State.OnResetLocked
+  fullName: wan24.Core.Threading.State.OnResetLocked
+  nameWithType: State.OnResetLocked
+- uid: wan24.Core.Threading.State.OnSet
+  name: OnSet
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_OnSet
+  commentId: E:wan24.Core.Threading.State.OnSet
+  fullName: wan24.Core.Threading.State.OnSet
+  nameWithType: State.OnSet
+- uid: wan24.Core.Threading.State.OnSetLocked
+  name: OnSetLocked
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_OnSetLocked
+  commentId: E:wan24.Core.Threading.State.OnSetLocked
+  fullName: wan24.Core.Threading.State.OnSetLocked
+  nameWithType: State.OnSetLocked
+- uid: wan24.Core.Threading.State.OnStateChanged
+  name: OnStateChanged
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_OnStateChanged
+  commentId: E:wan24.Core.Threading.State.OnStateChanged
+  fullName: wan24.Core.Threading.State.OnStateChanged
+  nameWithType: State.OnStateChanged
+- uid: wan24.Core.Threading.State.OnStateChangedLocked
+  name: OnStateChangedLocked
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_OnStateChangedLocked
+  commentId: E:wan24.Core.Threading.State.OnStateChangedLocked
+  fullName: wan24.Core.Threading.State.OnStateChangedLocked
+  nameWithType: State.OnStateChangedLocked
+- uid: wan24.Core.Threading.State.ResetEvent
+  name: ResetEvent
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_ResetEvent
+  commentId: F:wan24.Core.Threading.State.ResetEvent
+  fullName: wan24.Core.Threading.State.ResetEvent
+  nameWithType: State.ResetEvent
+- uid: wan24.Core.Threading.State.ResetQueue
+  name: ResetQueue
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_ResetQueue
+  commentId: F:wan24.Core.Threading.State.ResetQueue
+  fullName: wan24.Core.Threading.State.ResetQueue
+  nameWithType: State.ResetQueue
+- uid: wan24.Core.Threading.State.Set(System.Boolean)
+  name: Set(Boolean)
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_Set_System_Boolean_
+  commentId: M:wan24.Core.Threading.State.Set(System.Boolean)
+  fullName: wan24.Core.Threading.State.Set(System.Boolean)
+  nameWithType: State.Set(Boolean)
+- uid: wan24.Core.Threading.State.Set*
+  name: Set
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_Set_
+  commentId: Overload:wan24.Core.Threading.State.Set
+  isSpec: "True"
+  fullName: wan24.Core.Threading.State.Set
+  nameWithType: State.Set
+- uid: wan24.Core.Threading.State.SetEvent
+  name: SetEvent
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_SetEvent
+  commentId: F:wan24.Core.Threading.State.SetEvent
+  fullName: wan24.Core.Threading.State.SetEvent
+  nameWithType: State.SetEvent
+- uid: wan24.Core.Threading.State.SetIfEffects(System.Boolean)
+  name: SetIfEffects(Boolean)
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_SetIfEffects_System_Boolean_
+  commentId: M:wan24.Core.Threading.State.SetIfEffects(System.Boolean)
+  fullName: wan24.Core.Threading.State.SetIfEffects(System.Boolean)
+  nameWithType: State.SetIfEffects(Boolean)
+- uid: wan24.Core.Threading.State.SetIfEffects*
+  name: SetIfEffects
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_SetIfEffects_
+  commentId: Overload:wan24.Core.Threading.State.SetIfEffects
+  isSpec: "True"
+  fullName: wan24.Core.Threading.State.SetIfEffects
+  nameWithType: State.SetIfEffects
+- uid: wan24.Core.Threading.State.SetQueue
+  name: SetQueue
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_SetQueue
+  commentId: F:wan24.Core.Threading.State.SetQueue
+  fullName: wan24.Core.Threading.State.SetQueue
+  nameWithType: State.SetQueue
+- uid: wan24.Core.Threading.State.State_Delegate
+  name: State.State_Delegate
+  href: api/wan24.Core.Threading.State.State_Delegate.html
+  commentId: T:wan24.Core.Threading.State.State_Delegate
+  fullName: wan24.Core.Threading.State.State_Delegate
+  nameWithType: State.State_Delegate
+- uid: wan24.Core.Threading.State.StateWhenDisposing
+  name: StateWhenDisposing
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_StateWhenDisposing
+  commentId: P:wan24.Core.Threading.State.StateWhenDisposing
+  fullName: wan24.Core.Threading.State.StateWhenDisposing
+  nameWithType: State.StateWhenDisposing
+- uid: wan24.Core.Threading.State.StateWhenDisposing*
+  name: StateWhenDisposing
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_StateWhenDisposing_
+  commentId: Overload:wan24.Core.Threading.State.StateWhenDisposing
+  isSpec: "True"
+  fullName: wan24.Core.Threading.State.StateWhenDisposing
+  nameWithType: State.StateWhenDisposing
+- uid: wan24.Core.Threading.State.SyncObject
+  name: SyncObject
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_SyncObject
+  commentId: P:wan24.Core.Threading.State.SyncObject
+  fullName: wan24.Core.Threading.State.SyncObject
+  nameWithType: State.SyncObject
+- uid: wan24.Core.Threading.State.SyncObject*
+  name: SyncObject
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_SyncObject_
+  commentId: Overload:wan24.Core.Threading.State.SyncObject
+  isSpec: "True"
+  fullName: wan24.Core.Threading.State.SyncObject
+  nameWithType: State.SyncObject
+- uid: wan24.Core.Threading.State.Tag
+  name: Tag
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_Tag
+  commentId: P:wan24.Core.Threading.State.Tag
+  fullName: wan24.Core.Threading.State.Tag
+  nameWithType: State.Tag
+- uid: wan24.Core.Threading.State.Tag*
+  name: Tag
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_Tag_
+  commentId: Overload:wan24.Core.Threading.State.Tag
+  isSpec: "True"
+  fullName: wan24.Core.Threading.State.Tag
+  nameWithType: State.Tag
+- uid: wan24.Core.Threading.State.WaitReset(CancellationToken)
+  name: WaitReset(CancellationToken)
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_WaitReset_CancellationToken_
+  commentId: M:wan24.Core.Threading.State.WaitReset(CancellationToken)
+  fullName: wan24.Core.Threading.State.WaitReset(CancellationToken)
+  nameWithType: State.WaitReset(CancellationToken)
+- uid: wan24.Core.Threading.State.WaitReset(System.Nullable{TimeSpan})
+  name: WaitReset(Nullable<TimeSpan>)
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_WaitReset_System_Nullable_TimeSpan__
+  commentId: M:wan24.Core.Threading.State.WaitReset(System.Nullable{TimeSpan})
+  name.vb: WaitReset(Nullable(Of TimeSpan))
+  fullName: wan24.Core.Threading.State.WaitReset(System.Nullable<TimeSpan>)
+  fullName.vb: wan24.Core.Threading.State.WaitReset(System.Nullable(Of TimeSpan))
+  nameWithType: State.WaitReset(Nullable<TimeSpan>)
+  nameWithType.vb: State.WaitReset(Nullable(Of TimeSpan))
+- uid: wan24.Core.Threading.State.WaitReset*
+  name: WaitReset
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_WaitReset_
+  commentId: Overload:wan24.Core.Threading.State.WaitReset
+  isSpec: "True"
+  fullName: wan24.Core.Threading.State.WaitReset
+  nameWithType: State.WaitReset
+- uid: wan24.Core.Threading.State.WaitResetAndSet(System.Nullable{TimeSpan})
+  name: WaitResetAndSet(Nullable<TimeSpan>)
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_WaitResetAndSet_System_Nullable_TimeSpan__
+  commentId: M:wan24.Core.Threading.State.WaitResetAndSet(System.Nullable{TimeSpan})
+  name.vb: WaitResetAndSet(Nullable(Of TimeSpan))
+  fullName: wan24.Core.Threading.State.WaitResetAndSet(System.Nullable<TimeSpan>)
+  fullName.vb: wan24.Core.Threading.State.WaitResetAndSet(System.Nullable(Of TimeSpan))
+  nameWithType: State.WaitResetAndSet(Nullable<TimeSpan>)
+  nameWithType.vb: State.WaitResetAndSet(Nullable(Of TimeSpan))
+- uid: wan24.Core.Threading.State.WaitResetAndSet*
+  name: WaitResetAndSet
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_WaitResetAndSet_
+  commentId: Overload:wan24.Core.Threading.State.WaitResetAndSet
+  isSpec: "True"
+  fullName: wan24.Core.Threading.State.WaitResetAndSet
+  nameWithType: State.WaitResetAndSet
+- uid: wan24.Core.Threading.State.WaitSet(CancellationToken)
+  name: WaitSet(CancellationToken)
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_WaitSet_CancellationToken_
+  commentId: M:wan24.Core.Threading.State.WaitSet(CancellationToken)
+  fullName: wan24.Core.Threading.State.WaitSet(CancellationToken)
+  nameWithType: State.WaitSet(CancellationToken)
+- uid: wan24.Core.Threading.State.WaitSet(System.Nullable{TimeSpan})
+  name: WaitSet(Nullable<TimeSpan>)
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_WaitSet_System_Nullable_TimeSpan__
+  commentId: M:wan24.Core.Threading.State.WaitSet(System.Nullable{TimeSpan})
+  name.vb: WaitSet(Nullable(Of TimeSpan))
+  fullName: wan24.Core.Threading.State.WaitSet(System.Nullable<TimeSpan>)
+  fullName.vb: wan24.Core.Threading.State.WaitSet(System.Nullable(Of TimeSpan))
+  nameWithType: State.WaitSet(Nullable<TimeSpan>)
+  nameWithType.vb: State.WaitSet(Nullable(Of TimeSpan))
+- uid: wan24.Core.Threading.State.WaitSet*
+  name: WaitSet
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_WaitSet_
+  commentId: Overload:wan24.Core.Threading.State.WaitSet
+  isSpec: "True"
+  fullName: wan24.Core.Threading.State.WaitSet
+  nameWithType: State.WaitSet
+- uid: wan24.Core.Threading.State.WaitSetAndReset(System.Nullable{TimeSpan})
+  name: WaitSetAndReset(Nullable<TimeSpan>)
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_WaitSetAndReset_System_Nullable_TimeSpan__
+  commentId: M:wan24.Core.Threading.State.WaitSetAndReset(System.Nullable{TimeSpan})
+  name.vb: WaitSetAndReset(Nullable(Of TimeSpan))
+  fullName: wan24.Core.Threading.State.WaitSetAndReset(System.Nullable<TimeSpan>)
+  fullName.vb: wan24.Core.Threading.State.WaitSetAndReset(System.Nullable(Of TimeSpan))
+  nameWithType: State.WaitSetAndReset(Nullable<TimeSpan>)
+  nameWithType.vb: State.WaitSetAndReset(Nullable(Of TimeSpan))
+- uid: wan24.Core.Threading.State.WaitSetAndReset*
+  name: WaitSetAndReset
+  href: api/wan24.Core.Threading.State.html#wan24_Core_Threading_State_WaitSetAndReset_
+  commentId: Overload:wan24.Core.Threading.State.WaitSetAndReset
+  isSpec: "True"
+  fullName: wan24.Core.Threading.State.WaitSetAndReset
+  nameWithType: State.WaitSetAndReset
+- uid: wan24.Core.Threading.Worker
+  name: Worker
+  href: api/wan24.Core.Threading.Worker.html
+  commentId: T:wan24.Core.Threading.Worker
+  fullName: wan24.Core.Threading.Worker
+  nameWithType: Worker
+- uid: wan24.Core.Threading.Worker.#ctor(System.Boolean,System.Boolean)
+  name: Worker(Boolean, Boolean)
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker__ctor_System_Boolean_System_Boolean_
+  commentId: M:wan24.Core.Threading.Worker.#ctor(System.Boolean,System.Boolean)
+  fullName: wan24.Core.Threading.Worker.Worker(System.Boolean, System.Boolean)
+  nameWithType: Worker.Worker(Boolean, Boolean)
+- uid: wan24.Core.Threading.Worker.#ctor*
+  name: Worker
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker__ctor_
+  commentId: Overload:wan24.Core.Threading.Worker.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.Worker
+  nameWithType: Worker.Worker
+- uid: wan24.Core.Threading.Worker.Cancellation
+  name: Cancellation
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_Cancellation
+  commentId: F:wan24.Core.Threading.Worker.Cancellation
+  fullName: wan24.Core.Threading.Worker.Cancellation
+  nameWithType: Worker.Cancellation
+- uid: wan24.Core.Threading.Worker.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_Dispose_System_Boolean_
+  commentId: M:wan24.Core.Threading.Worker.Dispose(System.Boolean)
+  fullName: wan24.Core.Threading.Worker.Dispose(System.Boolean)
+  nameWithType: Worker.Dispose(Boolean)
+- uid: wan24.Core.Threading.Worker.Dispose*
+  name: Dispose
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_Dispose_
+  commentId: Overload:wan24.Core.Threading.Worker.Dispose
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.Dispose
+  nameWithType: Worker.Dispose
+- uid: wan24.Core.Threading.Worker.DisposeCore
+  name: DisposeCore()
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_DisposeCore
+  commentId: M:wan24.Core.Threading.Worker.DisposeCore
+  fullName: wan24.Core.Threading.Worker.DisposeCore()
+  nameWithType: Worker.DisposeCore()
+- uid: wan24.Core.Threading.Worker.DisposeCore*
+  name: DisposeCore
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_DisposeCore_
+  commentId: Overload:wan24.Core.Threading.Worker.DisposeCore
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.DisposeCore
+  nameWithType: Worker.DisposeCore
+- uid: wan24.Core.Threading.Worker.DoWork
+  name: DoWork()
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_DoWork
+  commentId: M:wan24.Core.Threading.Worker.DoWork
+  fullName: wan24.Core.Threading.Worker.DoWork()
+  nameWithType: Worker.DoWork()
+- uid: wan24.Core.Threading.Worker.DoWork*
+  name: DoWork
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_DoWork_
+  commentId: Overload:wan24.Core.Threading.Worker.DoWork
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.DoWork
+  nameWithType: Worker.DoWork
+- uid: wan24.Core.Threading.Worker.DoWorkAsync
+  name: DoWorkAsync()
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_DoWorkAsync
+  commentId: M:wan24.Core.Threading.Worker.DoWorkAsync
+  fullName: wan24.Core.Threading.Worker.DoWorkAsync()
+  nameWithType: Worker.DoWorkAsync()
+- uid: wan24.Core.Threading.Worker.DoWorkAsync*
+  name: DoWorkAsync
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_DoWorkAsync_
+  commentId: Overload:wan24.Core.Threading.Worker.DoWorkAsync
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.DoWorkAsync
+  nameWithType: Worker.DoWorkAsync
+- uid: wan24.Core.Threading.Worker.IsCancelled
+  name: IsCancelled
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_IsCancelled
+  commentId: P:wan24.Core.Threading.Worker.IsCancelled
+  fullName: wan24.Core.Threading.Worker.IsCancelled
+  nameWithType: Worker.IsCancelled
+- uid: wan24.Core.Threading.Worker.IsCancelled*
+  name: IsCancelled
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_IsCancelled_
+  commentId: Overload:wan24.Core.Threading.Worker.IsCancelled
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.IsCancelled
+  nameWithType: Worker.IsCancelled
+- uid: wan24.Core.Threading.Worker.IsRunning
+  name: IsRunning
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_IsRunning
+  commentId: P:wan24.Core.Threading.Worker.IsRunning
+  fullName: wan24.Core.Threading.Worker.IsRunning
+  nameWithType: Worker.IsRunning
+- uid: wan24.Core.Threading.Worker.IsRunning*
+  name: IsRunning
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_IsRunning_
+  commentId: Overload:wan24.Core.Threading.Worker.IsRunning
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.IsRunning
+  nameWithType: Worker.IsRunning
+- uid: wan24.Core.Threading.Worker.IsWorking
+  name: IsWorking
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_IsWorking
+  commentId: P:wan24.Core.Threading.Worker.IsWorking
+  fullName: wan24.Core.Threading.Worker.IsWorking
+  nameWithType: Worker.IsWorking
+- uid: wan24.Core.Threading.Worker.IsWorking*
+  name: IsWorking
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_IsWorking_
+  commentId: Overload:wan24.Core.Threading.Worker.IsWorking
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.IsWorking
+  nameWithType: Worker.IsWorking
+- uid: wan24.Core.Threading.Worker.LastRunTime
+  name: LastRunTime
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_LastRunTime
+  commentId: P:wan24.Core.Threading.Worker.LastRunTime
+  fullName: wan24.Core.Threading.Worker.LastRunTime
+  nameWithType: Worker.LastRunTime
+- uid: wan24.Core.Threading.Worker.LastRunTime*
+  name: LastRunTime
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_LastRunTime_
+  commentId: Overload:wan24.Core.Threading.Worker.LastRunTime
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.LastRunTime
+  nameWithType: Worker.LastRunTime
+- uid: wan24.Core.Threading.Worker.LastStarted
+  name: LastStarted
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_LastStarted
+  commentId: P:wan24.Core.Threading.Worker.LastStarted
+  fullName: wan24.Core.Threading.Worker.LastStarted
+  nameWithType: Worker.LastStarted
+- uid: wan24.Core.Threading.Worker.LastStarted*
+  name: LastStarted
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_LastStarted_
+  commentId: Overload:wan24.Core.Threading.Worker.LastStarted
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.LastStarted
+  nameWithType: Worker.LastStarted
+- uid: wan24.Core.Threading.Worker.LastStopped
+  name: LastStopped
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_LastStopped
+  commentId: P:wan24.Core.Threading.Worker.LastStopped
+  fullName: wan24.Core.Threading.Worker.LastStopped
+  nameWithType: Worker.LastStopped
+- uid: wan24.Core.Threading.Worker.LastStopped*
+  name: LastStopped
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_LastStopped_
+  commentId: Overload:wan24.Core.Threading.Worker.LastStopped
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.LastStopped
+  nameWithType: Worker.LastStopped
+- uid: wan24.Core.Threading.Worker.LastWorkCount
+  name: LastWorkCount
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_LastWorkCount
+  commentId: P:wan24.Core.Threading.Worker.LastWorkCount
+  fullName: wan24.Core.Threading.Worker.LastWorkCount
+  nameWithType: Worker.LastWorkCount
+- uid: wan24.Core.Threading.Worker.LastWorkCount*
+  name: LastWorkCount
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_LastWorkCount_
+  commentId: Overload:wan24.Core.Threading.Worker.LastWorkCount
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.LastWorkCount
+  nameWithType: Worker.LastWorkCount
+- uid: wan24.Core.Threading.Worker.OnException
+  name: OnException
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_OnException
+  commentId: E:wan24.Core.Threading.Worker.OnException
+  fullName: wan24.Core.Threading.Worker.OnException
+  nameWithType: Worker.OnException
+- uid: wan24.Core.Threading.Worker.OnStart
+  name: OnStart
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_OnStart
+  commentId: E:wan24.Core.Threading.Worker.OnStart
+  fullName: wan24.Core.Threading.Worker.OnStart
+  nameWithType: Worker.OnStart
+- uid: wan24.Core.Threading.Worker.OnStop
+  name: OnStop
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_OnStop
+  commentId: E:wan24.Core.Threading.Worker.OnStop
+  fullName: wan24.Core.Threading.Worker.OnStop
+  nameWithType: Worker.OnStop
+- uid: wan24.Core.Threading.Worker.OnWork
+  name: OnWork
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_OnWork
+  commentId: E:wan24.Core.Threading.Worker.OnWork
+  fullName: wan24.Core.Threading.Worker.OnWork
+  nameWithType: Worker.OnWork
+- uid: wan24.Core.Threading.Worker.OnWorkDone
+  name: OnWorkDone
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_OnWorkDone
+  commentId: E:wan24.Core.Threading.Worker.OnWorkDone
+  fullName: wan24.Core.Threading.Worker.OnWorkDone
+  nameWithType: Worker.OnWorkDone
+- uid: wan24.Core.Threading.Worker.Running
+  name: Running
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_Running
+  commentId: F:wan24.Core.Threading.Worker.Running
+  fullName: wan24.Core.Threading.Worker.Running
+  nameWithType: Worker.Running
+- uid: wan24.Core.Threading.Worker.Start
+  name: Start()
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_Start
+  commentId: M:wan24.Core.Threading.Worker.Start
+  fullName: wan24.Core.Threading.Worker.Start()
+  nameWithType: Worker.Start()
+- uid: wan24.Core.Threading.Worker.Start*
+  name: Start
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_Start_
+  commentId: Overload:wan24.Core.Threading.Worker.Start
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.Start
+  nameWithType: Worker.Start
+- uid: wan24.Core.Threading.Worker.Stop
+  name: Stop()
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_Stop
+  commentId: M:wan24.Core.Threading.Worker.Stop
+  fullName: wan24.Core.Threading.Worker.Stop()
+  nameWithType: Worker.Stop()
+- uid: wan24.Core.Threading.Worker.Stop*
+  name: Stop
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_Stop_
+  commentId: Overload:wan24.Core.Threading.Worker.Stop
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.Stop
+  nameWithType: Worker.Stop
+- uid: wan24.Core.Threading.Worker.SyncObject
+  name: SyncObject
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_SyncObject
+  commentId: P:wan24.Core.Threading.Worker.SyncObject
+  fullName: wan24.Core.Threading.Worker.SyncObject
+  nameWithType: Worker.SyncObject
+- uid: wan24.Core.Threading.Worker.SyncObject*
+  name: SyncObject
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_SyncObject_
+  commentId: Overload:wan24.Core.Threading.Worker.SyncObject
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.SyncObject
+  nameWithType: Worker.SyncObject
+- uid: wan24.Core.Threading.Worker.SyncWait
+  name: SyncWait
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_SyncWait
+  commentId: F:wan24.Core.Threading.Worker.SyncWait
+  fullName: wan24.Core.Threading.Worker.SyncWait
+  nameWithType: Worker.SyncWait
+- uid: wan24.Core.Threading.Worker.SyncWork
+  name: SyncWork
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_SyncWork
+  commentId: F:wan24.Core.Threading.Worker.SyncWork
+  fullName: wan24.Core.Threading.Worker.SyncWork
+  nameWithType: Worker.SyncWork
+- uid: wan24.Core.Threading.Worker.TotalWorkCount
+  name: TotalWorkCount
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_TotalWorkCount
+  commentId: P:wan24.Core.Threading.Worker.TotalWorkCount
+  fullName: wan24.Core.Threading.Worker.TotalWorkCount
+  nameWithType: Worker.TotalWorkCount
+- uid: wan24.Core.Threading.Worker.TotalWorkCount*
+  name: TotalWorkCount
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_TotalWorkCount_
+  commentId: Overload:wan24.Core.Threading.Worker.TotalWorkCount
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.TotalWorkCount
+  nameWithType: Worker.TotalWorkCount
+- uid: wan24.Core.Threading.Worker.WaitStart(System.Nullable{TimeSpan})
+  name: WaitStart(Nullable<TimeSpan>)
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_WaitStart_System_Nullable_TimeSpan__
+  commentId: M:wan24.Core.Threading.Worker.WaitStart(System.Nullable{TimeSpan})
+  name.vb: WaitStart(Nullable(Of TimeSpan))
+  fullName: wan24.Core.Threading.Worker.WaitStart(System.Nullable<TimeSpan>)
+  fullName.vb: wan24.Core.Threading.Worker.WaitStart(System.Nullable(Of TimeSpan))
+  nameWithType: Worker.WaitStart(Nullable<TimeSpan>)
+  nameWithType.vb: Worker.WaitStart(Nullable(Of TimeSpan))
+- uid: wan24.Core.Threading.Worker.WaitStart*
+  name: WaitStart
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_WaitStart_
+  commentId: Overload:wan24.Core.Threading.Worker.WaitStart
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.WaitStart
+  nameWithType: Worker.WaitStart
+- uid: wan24.Core.Threading.Worker.WaitStop(System.Nullable{TimeSpan})
+  name: WaitStop(Nullable<TimeSpan>)
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_WaitStop_System_Nullable_TimeSpan__
+  commentId: M:wan24.Core.Threading.Worker.WaitStop(System.Nullable{TimeSpan})
+  name.vb: WaitStop(Nullable(Of TimeSpan))
+  fullName: wan24.Core.Threading.Worker.WaitStop(System.Nullable<TimeSpan>)
+  fullName.vb: wan24.Core.Threading.Worker.WaitStop(System.Nullable(Of TimeSpan))
+  nameWithType: Worker.WaitStop(Nullable<TimeSpan>)
+  nameWithType.vb: Worker.WaitStop(Nullable(Of TimeSpan))
+- uid: wan24.Core.Threading.Worker.WaitStop*
+  name: WaitStop
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_WaitStop_
+  commentId: Overload:wan24.Core.Threading.Worker.WaitStop
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.WaitStop
+  nameWithType: Worker.WaitStop
+- uid: wan24.Core.Threading.Worker.WaitWorkLogic
+  name: WaitWorkLogic()
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_WaitWorkLogic
+  commentId: M:wan24.Core.Threading.Worker.WaitWorkLogic
+  fullName: wan24.Core.Threading.Worker.WaitWorkLogic()
+  nameWithType: Worker.WaitWorkLogic()
+- uid: wan24.Core.Threading.Worker.WaitWorkLogic*
+  name: WaitWorkLogic
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_WaitWorkLogic_
+  commentId: Overload:wan24.Core.Threading.Worker.WaitWorkLogic
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.WaitWorkLogic
+  nameWithType: Worker.WaitWorkLogic
+- uid: wan24.Core.Threading.Worker.WaitWorkLogicAsync
+  name: WaitWorkLogicAsync()
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_WaitWorkLogicAsync
+  commentId: M:wan24.Core.Threading.Worker.WaitWorkLogicAsync
+  fullName: wan24.Core.Threading.Worker.WaitWorkLogicAsync()
+  nameWithType: Worker.WaitWorkLogicAsync()
+- uid: wan24.Core.Threading.Worker.WaitWorkLogicAsync*
+  name: WaitWorkLogicAsync
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_WaitWorkLogicAsync_
+  commentId: Overload:wan24.Core.Threading.Worker.WaitWorkLogicAsync
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.WaitWorkLogicAsync
+  nameWithType: Worker.WaitWorkLogicAsync
+- uid: wan24.Core.Threading.Worker.Work
+  name: Work
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_Work
+  commentId: F:wan24.Core.Threading.Worker.Work
+  fullName: wan24.Core.Threading.Worker.Work
+  nameWithType: Worker.Work
+- uid: wan24.Core.Threading.Worker.Worker_Delegate
+  name: Worker.Worker_Delegate
+  href: api/wan24.Core.Threading.Worker.Worker_Delegate.html
+  commentId: T:wan24.Core.Threading.Worker.Worker_Delegate
+  fullName: wan24.Core.Threading.Worker.Worker_Delegate
+  nameWithType: Worker.Worker_Delegate
+- uid: wan24.Core.Threading.Worker.WorkerException
+  name: WorkerException
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_WorkerException
+  commentId: P:wan24.Core.Threading.Worker.WorkerException
+  fullName: wan24.Core.Threading.Worker.WorkerException
+  nameWithType: Worker.WorkerException
+- uid: wan24.Core.Threading.Worker.WorkerException*
+  name: WorkerException
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_WorkerException_
+  commentId: Overload:wan24.Core.Threading.Worker.WorkerException
+  isSpec: "True"
+  fullName: wan24.Core.Threading.Worker.WorkerException
+  nameWithType: Worker.WorkerException
+- uid: wan24.Core.Threading.Worker.WorkerTask
+  name: WorkerTask
+  href: api/wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_WorkerTask
+  commentId: F:wan24.Core.Threading.Worker.WorkerTask
+  fullName: wan24.Core.Threading.Worker.WorkerTask
+  nameWithType: Worker.WorkerTask
 - uid: wan24.Core.TypeHelper
   name: TypeHelper
   href: api/wan24.Core.TypeHelper.html

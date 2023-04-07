@@ -70,5 +70,55 @@ namespace wan24.Core
         /// <param name="enumeration">Enumeration</param>
         /// <returns>Enumeration</returns>
         public static ConfiguredCancelableAsyncEnumerable<T> DynamicContext<T>(this IAsyncEnumerable<T> enumeration) => enumeration.ConfigureAwait(continueOnCapturedContext: false);
+
+        /// <summary>
+        /// Combine enumerables
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerables">Enumerables</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Combined enumerable</returns>
+        public static async IAsyncEnumerable<T> CombineAsync<T>(this IAsyncEnumerable<IEnumerable<T>> enumerables, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+        {
+            await foreach (IEnumerable<T> e in enumerables.DynamicContext().WithCancellation(cancellationToken))
+                foreach (T item in e)
+                    yield return item;
+        }
+
+        /// <summary>
+        /// Combine enumerables
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerables">Enumerables</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Combined enumerable</returns>
+        public static async IAsyncEnumerable<T> CombineAsync<T>(this IAsyncEnumerable<IAsyncEnumerable<T>> enumerables, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+        {
+            await foreach (IAsyncEnumerable<T> e in enumerables.DynamicContext().WithCancellation(cancellationToken))
+                await foreach (T item in e.DynamicContext().WithCancellation(cancellationToken))
+                    yield return item;
+        }
+
+        /// <summary>
+        /// Chunk an enumerable
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="chunkSize">Chunk size</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Chunks</returns>
+        public static async IAsyncEnumerable<T[]> ChunkEnumAsync<T>(this IAsyncEnumerable<T> enumerable, int chunkSize, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+        {
+            if (chunkSize < 1) throw new ArgumentOutOfRangeException(nameof(chunkSize));
+            List<T> res = new(chunkSize);
+            await foreach (T item in enumerable.DynamicContext().WithCancellation(cancellationToken))
+            {
+                res.Add(item);
+                if (res.Count < chunkSize) continue;
+                yield return res.ToArray();
+                res.Clear();
+            }
+            if (res.Count > 0) yield return res.ToArray();
+        }
     }
 }

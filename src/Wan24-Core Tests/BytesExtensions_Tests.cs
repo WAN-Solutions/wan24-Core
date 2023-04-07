@@ -32,5 +32,20 @@ namespace Wan24_Core_Tests
             Assert.IsFalse(a.AsSpan().SlowCompare(b));
             Assert.IsFalse(b.AsSpan().SlowCompare(a));
         }
+
+        [TestMethod]
+        public void BitConverter_Tests()
+        {
+            int value = 123;
+            Assert.AreEqual((short)value, ((short)value).GetBytes().AsSpan().ToShort());
+            Assert.AreEqual((ushort)value, ((ushort)value).GetBytes().AsSpan().ToUShort());
+            Assert.AreEqual(value, value.GetBytes().AsSpan().ToInt());
+            Assert.AreEqual((uint)value, ((uint)value).GetBytes().AsSpan().ToUInt());
+            Assert.AreEqual(value, ((long)value).GetBytes().AsSpan().ToLong());
+            Assert.AreEqual((ulong)value, ((ulong)value).GetBytes().AsSpan().ToULong());
+            Assert.AreEqual(value, ((float)value).GetBytes().AsSpan().ToFloat());
+            Assert.AreEqual(value, ((double)value).GetBytes().AsSpan().ToDouble());
+            Assert.AreEqual(value, ((decimal)value).GetBytes().AsSpan().ToDecimal());
+        }
     }
 }

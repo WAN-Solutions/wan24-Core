@@ -22,6 +22,46 @@ namespace Wan24_Core_Tests
             Assert.IsTrue(typeof(TestEnum).IsMixedEnum());
             Assert.IsFalse(typeof(string).IsMixedEnum());
             Assert.IsFalse(typeof(AddressFamily).IsMixedEnum());
+            {
+                Dictionary<string, object> dict = typeof(TestEnum).GetEnumKeyValues();
+                Assert.AreEqual(7, dict.Count);
+                string[] keys = dict.Keys.ToArray();
+                object[] values = dict.Values.ToArray();
+                Assert.AreEqual(nameof(TestEnum.None), keys[0]);
+                Assert.AreEqual(TestEnum.None, values[0]);
+                Assert.AreEqual(nameof(TestEnum.Value1), keys[1]);
+                Assert.AreEqual(TestEnum.Value1, values[1]);
+                Assert.AreEqual(nameof(TestEnum.Value2), keys[2]);
+                Assert.AreEqual(TestEnum.Value2, values[2]);
+                Assert.AreEqual(nameof(TestEnum.Value3), keys[3]);
+                Assert.AreEqual(TestEnum.Value3, values[3]);
+                Assert.AreEqual(nameof(TestEnum.Flag1), keys[4]);
+                Assert.AreEqual(TestEnum.Flag1, values[4]);
+                Assert.AreEqual(nameof(TestEnum.Flag2), keys[5]);
+                Assert.AreEqual(TestEnum.Flag2, values[5]);
+                Assert.AreEqual(nameof(TestEnum.FLAGS), keys[6]);
+                Assert.AreEqual(TestEnum.FLAGS, values[6]);
+            }
+            {
+                Dictionary<string, TestEnum> dict = EnumExtensions.GetEnumKeyValues<TestEnum>();
+                Assert.AreEqual(7, dict.Count);
+                string[] keys = dict.Keys.ToArray();
+                TestEnum[] values = dict.Values.ToArray();
+                Assert.AreEqual(nameof(TestEnum.None), keys[0]);
+                Assert.AreEqual(TestEnum.None, values[0]);
+                Assert.AreEqual(nameof(TestEnum.Value1), keys[1]);
+                Assert.AreEqual(TestEnum.Value1, values[1]);
+                Assert.AreEqual(nameof(TestEnum.Value2), keys[2]);
+                Assert.AreEqual(TestEnum.Value2, values[2]);
+                Assert.AreEqual(nameof(TestEnum.Value3), keys[3]);
+                Assert.AreEqual(TestEnum.Value3, values[3]);
+                Assert.AreEqual(nameof(TestEnum.Flag1), keys[4]);
+                Assert.AreEqual(TestEnum.Flag1, values[4]);
+                Assert.AreEqual(nameof(TestEnum.Flag2), keys[5]);
+                Assert.AreEqual(TestEnum.Flag2, values[5]);
+                Assert.AreEqual(nameof(TestEnum.FLAGS), keys[6]);
+                Assert.AreEqual(TestEnum.FLAGS, values[6]);
+            }
         }
 
         [TestMethod]

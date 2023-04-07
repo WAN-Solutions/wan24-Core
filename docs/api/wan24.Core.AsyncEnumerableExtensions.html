@@ -115,6 +115,228 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerableExtensions_ChunkEnumAsync__1_IAsyncEnumerable___0__System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerableExtensions.ChunkEnumAsync%60%601(IAsyncEnumerable%7B%60%600%7D%2CSystem.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L110">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEnumerableExtensions_ChunkEnumAsync_" data-uid="wan24.Core.AsyncEnumerableExtensions.ChunkEnumAsync*"></a>
+  <h4 id="wan24_Core_AsyncEnumerableExtensions_ChunkEnumAsync__1_IAsyncEnumerable___0__System_Int32_CancellationToken_" data-uid="wan24.Core.AsyncEnumerableExtensions.ChunkEnumAsync``1(IAsyncEnumerable{``0},System.Int32,CancellationToken)">ChunkEnumAsync&lt;T&gt;(IAsyncEnumerable&lt;T&gt;, Int32, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Chunk an enumerable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static async IAsyncEnumerable&lt;T[]&gt; ChunkEnumAsync&lt;T&gt;(this IAsyncEnumerable&lt;T&gt; enumerable, int chunkSize, CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IAsyncEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">chunkSize</span></td>
+        <td><p>Chunk size</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IAsyncEnumerable</span>&lt;T[]&gt;</td>
+        <td><p>Chunks</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerableExtensions_CombineAsync__1_IAsyncEnumerable_IAsyncEnumerable___0___CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerableExtensions.CombineAsync%60%601(IAsyncEnumerable%7BIAsyncEnumerable%7B%60%600%7D%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L95">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEnumerableExtensions_CombineAsync_" data-uid="wan24.Core.AsyncEnumerableExtensions.CombineAsync*"></a>
+  <h4 id="wan24_Core_AsyncEnumerableExtensions_CombineAsync__1_IAsyncEnumerable_IAsyncEnumerable___0___CancellationToken_" data-uid="wan24.Core.AsyncEnumerableExtensions.CombineAsync``1(IAsyncEnumerable{IAsyncEnumerable{``0}},CancellationToken)">CombineAsync&lt;T&gt;(IAsyncEnumerable&lt;IAsyncEnumerable&lt;T&gt;&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Combine enumerables</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static async IAsyncEnumerable&lt;T&gt; CombineAsync&lt;T&gt;(this IAsyncEnumerable&lt;IAsyncEnumerable&lt;T&gt;&gt; enumerables, CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IAsyncEnumerable</span>&lt;<span class="xref">IAsyncEnumerable</span>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">enumerables</span></td>
+        <td><p>Enumerables</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IAsyncEnumerable</span>&lt;T&gt;</td>
+        <td><p>Combined enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerableExtensions_CombineAsync__1_IAsyncEnumerable_IEnumerable___0___CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerableExtensions.CombineAsync%60%601(IAsyncEnumerable%7BIEnumerable%7B%60%600%7D%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L81">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEnumerableExtensions_CombineAsync_" data-uid="wan24.Core.AsyncEnumerableExtensions.CombineAsync*"></a>
+  <h4 id="wan24_Core_AsyncEnumerableExtensions_CombineAsync__1_IAsyncEnumerable_IEnumerable___0___CancellationToken_" data-uid="wan24.Core.AsyncEnumerableExtensions.CombineAsync``1(IAsyncEnumerable{IEnumerable{``0}},CancellationToken)">CombineAsync&lt;T&gt;(IAsyncEnumerable&lt;IEnumerable&lt;T&gt;&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Combine enumerables</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static async IAsyncEnumerable&lt;T&gt; CombineAsync&lt;T&gt;(this IAsyncEnumerable&lt;IEnumerable&lt;T&gt;&gt; enumerables, CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IAsyncEnumerable</span>&lt;<span class="xref">IEnumerable</span>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">enumerables</span></td>
+        <td><p>Enumerables</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IAsyncEnumerable</span>&lt;T&gt;</td>
+        <td><p>Combined enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerableExtensions_DynamicContext__1_IAsyncEnumerable___0__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerableExtensions.DynamicContext%60%601(IAsyncEnumerable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">

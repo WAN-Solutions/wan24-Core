@@ -30,7 +30,7 @@ namespace Wan24_Core_Tests
                 VoidAsync_Method,
                 VoidAsync_Method
             }.InvokeAllAsync(default, true);
-            bool[] res = await new BoolAsync_Delegate[]
+            bool[] res = await new BoolAsync_Delegate[]//FIXME Sometimes fails!?
             {
                 BoolAsync_Method,
                 BoolAsync_Method
