@@ -50,6 +50,9 @@ disposing
     per default)
 - Threading helper
     - `State` is a thread-safe boolean state which supports events
+    - `Worker` is an abstract background worker, which only requires a work 
+    wait logic (event driven per default) and a worker method (synchronous or 
+    asynchronous)
 
 ## How to get it
 
