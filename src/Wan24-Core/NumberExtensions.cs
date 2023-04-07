@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Dynamic;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Number extensions
@@ -191,5 +193,14 @@
             for (int i = 0; i < bits.Length; Array.Copy(bits[i].GetBytes(), 0, res, i << 2, sizeof(int)), i++) ;
             return res;
         }
+
+        /// <summary>
+        /// Determine if a value is within a range
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="lowerBorder">Range begin (including)</param>
+        /// <param name="higherBorder">Range end (including)</param>
+        /// <returns>Is within the range?</returns>
+        public static bool IsBetween<T>(this T value, T lowerBorder, T higherBorder) where T : IComparable => value.CompareTo(lowerBorder) >= 0 && value.CompareTo(higherBorder) <= 0;
     }
 }

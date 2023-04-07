@@ -116,12 +116,6 @@ namespace Wan24_Core_Tests
             Assert.IsFalse(mi.GetParameters()[1].IsNullable());
         }
 
-        [TestMethod]
-        public void TypeConversion_Tests()
-        {
-            Assert.AreEqual(1, ((ushort)1).ConvertType<int>());
-        }
-
         public int? TestField = null;
 
         public int TestField2 = 0;

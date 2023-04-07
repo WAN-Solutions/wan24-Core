@@ -13,6 +13,8 @@ namespace Wan24_Core_Tests
             Assert.IsTrue(typeof(int).IsNumeric());
             Assert.IsFalse(typeof(int).IsNumericAndUnsigned());
             Assert.IsTrue(typeof(uint).IsNumericAndUnsigned());
+            Assert.IsTrue(1.IsBetween(0, 2));
+            Assert.IsFalse(3.IsBetween(0, 2));
         }
     }
 }

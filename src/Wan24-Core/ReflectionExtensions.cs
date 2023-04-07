@@ -183,13 +183,5 @@ namespace wan24.Core
         /// <param name="ni">Nullability info</param>
         /// <returns>Is nullable?</returns>
         public static bool IsNullable(this NullabilityInfo ni) => !(ni.ReadState == NullabilityState.NotNull || ni.WriteState == NullabilityState.NotNull);
-
-        /// <summary>
-        /// Change the type of an object
-        /// </summary>
-        /// <typeparam name="T">Target type</typeparam>
-        /// <param name="obj">Object</param>
-        /// <returns>Converted object</returns>
-        public static T ConvertType<T>(this object obj) => (T)Convert.ChangeType(obj, typeof(T));
     }
 }
