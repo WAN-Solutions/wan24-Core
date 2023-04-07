@@ -6,7 +6,6 @@ This core library contains some .NET extensions:
 disposing
     - Dispose attribute for fields/properties which should be disposed 
     automatic when disposing
-    - Worker
 - Type helpr (type loading)
 - Secure byte array, which clears its contents when disposing
 - Pool rented array as disposable object
