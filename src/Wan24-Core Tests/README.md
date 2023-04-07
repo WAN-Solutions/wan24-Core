@@ -24,6 +24,7 @@ disposing
     - Automatic constructor invokation using a given parameter set (with DI 
     support)
     - Nullability detection
+    - Type conversion
 - Delegate extensions
     - Delegate list invokation (with or without return values, with DI support)
     - Asynchronous delegate list invokation (with or without return values, 
@@ -50,6 +51,9 @@ disposing
     per default)
 - Threading helper
     - `State` is a thread-safe boolean state which supports events
+    - `Worker` is an abstract background worker, which only requires a work 
+    wait logic (event driven per default) and a worker method (synchronous or 
+    asynchronous)
 
 ## How to get it
 

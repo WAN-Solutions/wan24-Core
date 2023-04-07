@@ -24,6 +24,7 @@ disposing
     - Automatic constructor invokation using a given parameter set (with DI 
     support)
     - Nullability detection
+    - Type conversion
 - Delegate extensions
     - Delegate list invokation (with or without return values, with DI support)
     - Asynchronous delegate list invokation (with or without return values, 
