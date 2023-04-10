@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Delegate TypeHelper.LoadType_Delegate
+    <title>Delegate HostedServiceBase.HostedService_Delegate
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Delegate TypeHelper.LoadType_Delegate
+    <meta name="title" content="Delegate HostedServiceBase.HostedService_Delegate
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,19 +68,19 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.TypeHelper.LoadType_Delegate">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.HostedServiceBase.HostedService_Delegate">
   
   
-  <h1 id="wan24_Core_TypeHelper_LoadType_Delegate" data-uid="wan24.Core.TypeHelper.LoadType_Delegate" class="text-break">Delegate TypeHelper.LoadType_Delegate
+  <h1 id="wan24_Core_HostedServiceBase_HostedService_Delegate" data-uid="wan24.Core.HostedServiceBase.HostedService_Delegate" class="text-break">Delegate HostedServiceBase.HostedService_Delegate
   </h1>
-  <div class="markdown level0 summary"><p>Delegate for the type loader event</p>
+  <div class="markdown level0 summary"><p>Delegate for a hosted service event</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_TypeHelper_LoadType_Delegate_syntax">Syntax</h5>
+  <h5 id="wan24_Core_HostedServiceBase_HostedService_Delegate_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate void LoadType_Delegate(LoadTypeEventArgs e);</code></pre>
+    <pre><code class="lang-csharp hljs">public delegate void HostedService_Delegate(HostedServiceBase service, EventArgs e);</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -93,7 +93,13 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="wan24.Core.LoadTypeEventArgs.html">LoadTypeEventArgs</a></td>
+        <td><a class="xref" href="wan24.Core.HostedServiceBase.html">HostedServiceBase</a></td>
+        <td><span class="parametername">service</span></td>
+        <td><p>Service</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">EventArgs</span></td>
         <td><span class="parametername">e</span></td>
         <td><p>Event arguments</p>
 </td>
@@ -121,10 +127,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TypeHelper_LoadType_Delegate.md&amp;value=---%0Auid%3A%20wan24.Core.TypeHelper.LoadType_Delegate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_HostedServiceBase_HostedService_Delegate.md&amp;value=---%0Auid%3A%20wan24.Core.HostedServiceBase.HostedService_Delegate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TypeHelper.cs/#L118" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/HostedServiceBase.cs/#L114" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
