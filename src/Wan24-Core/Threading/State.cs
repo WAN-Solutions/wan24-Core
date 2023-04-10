@@ -342,5 +342,11 @@ namespace wan24.Core.Threading
         /// Raised on reset
         /// </summary>
         public event State_Delegate? OnReset;
+
+        /// <summary>
+        /// Cast as boolean (is set?)
+        /// </summary>
+        /// <param name="state">State</param>
+        public static implicit operator bool(State state) => state.IsSet;
     }
 }

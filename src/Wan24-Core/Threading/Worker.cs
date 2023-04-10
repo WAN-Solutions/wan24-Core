@@ -347,5 +347,11 @@
         /// Raised on exception (the worker will stop working, and <see cref="WorkerException"/> will contain the last exception)
         /// </summary>
         public event Worker_Delegate? OnException;
+
+        /// <summary>
+        /// Cast as boolean (is running?)
+        /// </summary>
+        /// <param name="worker">Worker</param>
+        public static implicit operator bool(Worker worker) => worker.IsRunning;
     }
 }

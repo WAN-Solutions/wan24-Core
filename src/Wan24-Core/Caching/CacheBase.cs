@@ -182,6 +182,12 @@ namespace wan24.Core.Caching
         protected virtual void RaiseOnRemoved(ICacheItem item) => OnRemoved?.Invoke(this, new(item));
 
         /// <summary>
+        /// Cast count
+        /// </summary>
+        /// <param name="cache">Cache</param>
+        public static implicit operator int(CacheBase cache) => cache.Count;
+
+        /// <summary>
         /// Base class for a cache item
         /// </summary>
         public abstract class CacheItemBase : DisposableBase, ICacheItem

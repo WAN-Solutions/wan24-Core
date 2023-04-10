@@ -27,7 +27,7 @@ namespace Wan24_Core_Tests.Threading
             state.OnReset += (s, e) => reset++;
             // Test set events
             state.Set(true);
-            Assert.IsTrue(state.IsSet);
+            Assert.IsTrue((bool)state);
             Assert.AreEqual(1, changedLocked);
             Assert.AreEqual(1, changed);
             Assert.AreEqual(1, setLocked);
@@ -77,17 +77,17 @@ namespace Wan24_Core_Tests.Threading
             await Task.Delay(50);
             state.Set(true);
             await Task.Delay(50);
-            Assert.IsFalse(state.IsSet);
+            Assert.IsFalse((bool)state);
             // Test wait reset and set
             state.Set(true);
             Task resetTask = Task.Run(() => state.WaitResetAndSet());
             await Task.Delay(50);
             state.Set(false);
             await Task.Delay(50);
-            Assert.IsTrue(state.IsSet);
+            Assert.IsTrue((bool)state);
             // Test state when disposing
             state.Dispose();
-            Assert.IsFalse(state.IsSet);
+            Assert.IsFalse((bool)state);
         }
     }
 }

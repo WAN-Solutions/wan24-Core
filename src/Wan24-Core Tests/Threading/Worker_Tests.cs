@@ -30,12 +30,12 @@ namespace Wan24_Core_Tests.Threading
                     didStop++;
                 });
             // Test initial state
-            Assert.IsFalse(worker.IsRunning);
+            Assert.IsFalse((bool)worker);
             Assert.IsFalse(worker.IsWorking);
             Assert.IsTrue(worker.IsCancelled);
             // Test start
             worker.Start();
-            Assert.IsTrue(worker.IsRunning);
+            Assert.IsTrue((bool)worker);
             Assert.IsFalse(worker.IsWorking);
             Assert.IsFalse(worker.IsCancelled);
             Assert.AreEqual(0, work);
@@ -57,7 +57,7 @@ namespace Wan24_Core_Tests.Threading
             Assert.IsFalse(worker.IsWorking);
             // Test stop
             worker.Stop();
-            Assert.IsFalse(worker.IsRunning);
+            Assert.IsFalse((bool)worker);
             Assert.IsFalse(worker.IsWorking);
             Assert.IsTrue(worker.IsCancelled);
             Assert.AreEqual(1, started);
