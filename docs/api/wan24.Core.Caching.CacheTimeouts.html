@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Delegate DiHelper.Di_Delegate
+    <title>Enum CacheTimeouts
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Delegate DiHelper.Di_Delegate
+    <meta name="title" content="Enum CacheTimeouts
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,72 +68,59 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.DiHelper.Di_Delegate">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.Caching.CacheTimeouts">
   
   
-  <h1 id="wan24_Core_DiHelper_Di_Delegate" data-uid="wan24.Core.DiHelper.Di_Delegate" class="text-break">Delegate DiHelper.Di_Delegate
+  <h1 id="wan24_Core_Caching_CacheTimeouts" data-uid="wan24.Core.Caching.CacheTimeouts" class="text-break">Enum CacheTimeouts
   </h1>
-  <div class="markdown level0 summary"><p>DI delegate</p>
+  <div class="markdown level0 summary"><p>Cache timeouts</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.Caching.html">wan24.Core.Caching</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_DiHelper_Di_Delegate_syntax">Syntax</h5>
+  <h5 id="wan24_Core_Caching_CacheTimeouts_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate bool Di_Delegate(Type type, out object obj);</code></pre>
+    <pre><code class="lang-csharp hljs">public enum CacheTimeouts</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
+  <h3 id="fields">Fields
+  </h3>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
-        <th>Type</th>
         <th>Name</th>
         <th>Description</th>
       </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Type</span></td>
-        <td><span class="parametername">type</span></td>
-        <td><p>Type</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Object</span></td>
-        <td><span class="parametername">obj</span></td>
-        <td><p>Object</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
     <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><p>Use the object?</p>
+        <td id="wan24_Core_Caching_CacheTimeouts_Fixed">Fixed</td>
+        <td><p>Fixed time</p>
+</td>
+      </tr>
+      <tr>
+        <td id="wan24_Core_Caching_CacheTimeouts_None">None</td>
+        <td><p>None (never expires)</p>
+</td>
+      </tr>
+      <tr>
+        <td id="wan24_Core_Caching_CacheTimeouts_Sliding">Sliding</td>
+        <td><p>Sliding time (expiring time will be updated when updating the cached value or accessing it)</p>
 </td>
       </tr>
     </tbody>
-  </table>
+  </thead></thead></table>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_GetEnumDisplayText_System_Object_">EnumExtensions.GetEnumDisplayText(Object)</a>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_GetEnumDisplayText_System_Object_">EnumExtensions.GetEnumDisplayText()</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean_">JsonExtensions.ToJson(Object, Boolean)</a>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean_">JsonExtensions.ToJson(Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object[])</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;()</a>
   </div>
 </article>
           </div>
@@ -143,10 +130,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DiHelper_Di_Delegate.md&amp;value=---%0Auid%3A%20wan24.Core.DiHelper.Di_Delegate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheTimeouts.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheTimeouts%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DiHelper.cs/#L59" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheTimeouts.cs/#L6" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

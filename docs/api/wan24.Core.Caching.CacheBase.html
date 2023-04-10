@@ -1,0 +1,1182 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CacheBase
+   | wan24-Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CacheBase
+   | wan24-Core ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.Caching.CacheBase">
+  
+  
+  <h1 id="wan24_Core_Caching_CacheBase" data-uid="wan24.Core.Caching.CacheBase" class="text-break">Class CacheBase
+  </h1>
+  <div class="markdown level0 summary"><p>Memory cache</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="wan24.Core.DisposableBase.html">DisposableBase</a></div>
+    <div class="level2"><span class="xref">CacheBase</span></div>
+      <div class="level3"><a class="xref" href="wan24.Core.Caching.AsyncCacheBase.html">AsyncCacheBase</a></div>
+      <div class="level3"><a class="xref" href="wan24.Core.Caching.MemoryCache.html">MemoryCache</a></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.Caching.ICache.html">ICache</a></div>
+    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><span class="xref">IDisposable</span></div>
+    <div><span class="xref">IAsyncDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeSyncObject">DisposableBase.DisposeSyncObject</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposing">DisposableBase.IsDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposed">DisposableBase.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_EnsureUndisposed_System_Boolean_System_Boolean_">DisposableBase.EnsureUndisposed(Boolean, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed__1___0_System_Boolean_">DisposableBase.IfUndisposed&lt;T&gt;(T, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed_Action_System_Boolean_">DisposableBase.IfUndisposed(Action, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed__1_Func___0__System_Boolean_">DisposableBase.IfUndisposed&lt;T&gt;(Func&lt;T&gt;, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposedNullable__1_Func___0__System_Boolean_">DisposableBase.IfUndisposedNullable&lt;T&gt;(Func&lt;T&gt;, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributes">DisposableBase.DisposeAttributes()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributesAsync">DisposableBase.DisposeAttributesAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose">DisposableBase.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAsync">DisposableBase.DisposeAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposing">DisposableBase.OnDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposed">DisposableBase.OnDisposed</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.Caching.html">wan24.Core.Caching</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_Caching_CacheBase_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class CacheBase : DisposableBase, ICache, IDisposableObject</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase__ctor_System_Double_.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.%23ctor(System.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L24">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase__ctor_" data-uid="wan24.Core.Caching.CacheBase.#ctor*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase__ctor_System_Double_" data-uid="wan24.Core.Caching.CacheBase.#ctor(System.Double)">CacheBase(Double)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected CacheBase(double tidyInterval = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">tidyInterval</span></td>
+        <td><p>Tidy interval in ms</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_Items.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.Items%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L14">View Source</a>
+  </span>
+  <h4 id="wan24_Core_Caching_CacheBase_Items" data-uid="wan24.Core.Caching.CacheBase.Items">Items</h4>
+  <div class="markdown level1 summary"><p>Cached items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly ConcurrentDictionary&lt;string, CacheBase.CacheItemBase&gt; Items</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Concurrent.ConcurrentDictionary</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="wan24.Core.Caching.CacheBase.CacheItemBase.html">CacheBase.CacheItemBase</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_TidyTimer.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.TidyTimer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L18">View Source</a>
+  </span>
+  <h4 id="wan24_Core_Caching_CacheBase_TidyTimer" data-uid="wan24.Core.Caching.CacheBase.TidyTimer">TidyTimer</h4>
+  <div class="markdown level1 summary"><p>Tidy timer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Timer TidyTimer</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Timers.Timer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_Count.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.Count%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L63">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase_Count_" data-uid="wan24.Core.Caching.CacheBase.Count*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase_Count" data-uid="wan24.Core.Caching.CacheBase.Count">Count</h4>
+  <div class="markdown level1 summary"><p>Number of cached items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_Keys.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.Keys%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L66">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase_Keys_" data-uid="wan24.Core.Caching.CacheBase.Keys*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase_Keys" data-uid="wan24.Core.Caching.CacheBase.Keys">Keys</h4>
+  <div class="markdown level1 summary"><p>Cached item keys</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string[] Keys { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_SyncObject.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.SyncObject%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L38">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase_SyncObject_" data-uid="wan24.Core.Caching.CacheBase.SyncObject*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase_SyncObject" data-uid="wan24.Core.Caching.CacheBase.SyncObject">SyncObject</h4>
+  <div class="markdown level1 summary"><p>An object for thread synchronization</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object SyncObject { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_TidyInterval.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.TidyInterval%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L43">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase_TidyInterval_" data-uid="wan24.Core.Caching.CacheBase.TidyInterval*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase_TidyInterval" data-uid="wan24.Core.Caching.CacheBase.TidyInterval">TidyInterval</h4>
+  <div class="markdown level1 summary"><p>Tidy interval in ms (zero to disable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double TidyInterval { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_CacheItemFactory__1_System_String_Func_wan24_Core_Caching_ICache___0__wan24_Core_Caching_CacheTimeouts_System_Nullable_DateTime__System_Nullable_TimeSpan__.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.CacheItemFactory%60%601(System.String%2CFunc%7Bwan24.Core.Caching.ICache%2C%60%600%7D%2Cwan24.Core.Caching.CacheTimeouts%2CSystem.Nullable%7BDateTime%7D%2CSystem.Nullable%7BTimeSpan%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L128">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase_CacheItemFactory_" data-uid="wan24.Core.Caching.CacheBase.CacheItemFactory*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase_CacheItemFactory__1_System_String_Func_wan24_Core_Caching_ICache___0__wan24_Core_Caching_CacheTimeouts_System_Nullable_DateTime__System_Nullable_TimeSpan__" data-uid="wan24.Core.Caching.CacheBase.CacheItemFactory``1(System.String,Func{wan24.Core.Caching.ICache,``0},wan24.Core.Caching.CacheTimeouts,System.Nullable{DateTime},System.Nullable{TimeSpan})">CacheItemFactory&lt;T&gt;(String, Func&lt;ICache, T&gt;, CacheTimeouts, Nullable&lt;DateTime&gt;, Nullable&lt;TimeSpan&gt;)</h4>
+  <div class="markdown level1 summary"><p>Cache item factory</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract CacheBase.CacheItemBase CacheItemFactory&lt;T&gt;(string key, Func&lt;ICache, T&gt; factory, CacheTimeouts timeout, DateTime? expires = null, TimeSpan? timespan = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="wan24.Core.Caching.ICache.html">ICache</a>, T&gt;</td>
+        <td><span class="parametername">factory</span></td>
+        <td><p>Object factory</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Caching.CacheTimeouts.html">CacheTimeouts</a></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">DateTime</span>&gt;</td>
+        <td><span class="parametername">expires</span></td>
+        <td><p>Expires</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">timespan</span></td>
+        <td><p>Timespan</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Caching.CacheBase.CacheItemBase.html">CacheBase.CacheItemBase</a></td>
+        <td><p>Cache item</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L147">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase_Dispose_" data-uid="wan24.Core.Caching.CacheBase.Dispose*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase_Dispose_System_Boolean_" data-uid="wan24.Core.Caching.CacheBase.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Dispose</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>Disposing? (may be <span class="xref">false</span>, if called from the destructor)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose_System_Boolean_">DisposableBase.Dispose(Boolean)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.DisposeCore%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L158">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase_DisposeCore_" data-uid="wan24.Core.Caching.CacheBase.DisposeCore*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase_DisposeCore" data-uid="wan24.Core.Caching.CacheBase.DisposeCore">DisposeCore()</h4>
+  <div class="markdown level1 summary"><p>Dispose</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override async Task DisposeCore()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeCore">DisposableBase.DisposeCore()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_Exists_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.Exists(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L69">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase_Exists_" data-uid="wan24.Core.Caching.CacheBase.Exists*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase_Exists_System_String_" data-uid="wan24.Core.Caching.CacheBase.Exists(System.String)">Exists(String)</h4>
+  <div class="markdown level1 summary"><p>Determine if a key exists</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Exists(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Exists?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_GetAndRemove_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.GetAndRemove(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L90">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase_GetAndRemove_" data-uid="wan24.Core.Caching.CacheBase.GetAndRemove*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase_GetAndRemove_System_String_" data-uid="wan24.Core.Caching.CacheBase.GetAndRemove(System.String)">GetAndRemove(String)</h4>
+  <div class="markdown level1 summary"><p>Get and remove an object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual object GetAndRemove(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><p>Removed object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_GetAndRemove__1_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.GetAndRemove%60%601(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L99">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase_GetAndRemove_" data-uid="wan24.Core.Caching.CacheBase.GetAndRemove*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase_GetAndRemove__1_System_String_" data-uid="wan24.Core.Caching.CacheBase.GetAndRemove``1(System.String)">GetAndRemove&lt;T&gt;(String)</h4>
+  <div class="markdown level1 summary"><p>Get and remove an object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual T GetAndRemove&lt;T&gt;(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Removed object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_GetOrAdd__1_System_String_Func_wan24_Core_Caching_ICache___0__wan24_Core_Caching_CacheTimeouts_System_Nullable_DateTime__System_Nullable_TimeSpan__.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.GetOrAdd%60%601(System.String%2CFunc%7Bwan24.Core.Caching.ICache%2C%60%600%7D%2Cwan24.Core.Caching.CacheTimeouts%2CSystem.Nullable%7BDateTime%7D%2CSystem.Nullable%7BTimeSpan%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L72">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase_GetOrAdd_" data-uid="wan24.Core.Caching.CacheBase.GetOrAdd*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase_GetOrAdd__1_System_String_Func_wan24_Core_Caching_ICache___0__wan24_Core_Caching_CacheTimeouts_System_Nullable_DateTime__System_Nullable_TimeSpan__" data-uid="wan24.Core.Caching.CacheBase.GetOrAdd``1(System.String,Func{wan24.Core.Caching.ICache,``0},wan24.Core.Caching.CacheTimeouts,System.Nullable{DateTime},System.Nullable{TimeSpan})">GetOrAdd&lt;T&gt;(String, Func&lt;ICache, T&gt;, CacheTimeouts, Nullable&lt;DateTime&gt;, Nullable&lt;TimeSpan&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get or add an object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual T GetOrAdd&lt;T&gt;(string key, Func&lt;ICache, T&gt; factory, CacheTimeouts timeout, DateTime? expires = null, TimeSpan? timespan = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="wan24.Core.Caching.ICache.html">ICache</a>, T&gt;</td>
+        <td><span class="parametername">factory</span></td>
+        <td><p>Object factory</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Caching.CacheTimeouts.html">CacheTimeouts</a></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">DateTime</span>&gt;</td>
+        <td><span class="parametername">expires</span></td>
+        <td><p>Expires</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">timespan</span></td>
+        <td><p>Timespan</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_RaiseOnAdded_wan24_Core_Caching_ICacheItem_.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.RaiseOnAdded(wan24.Core.Caching.ICacheItem)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L174">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase_RaiseOnAdded_" data-uid="wan24.Core.Caching.CacheBase.RaiseOnAdded*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase_RaiseOnAdded_wan24_Core_Caching_ICacheItem_" data-uid="wan24.Core.Caching.CacheBase.RaiseOnAdded(wan24.Core.Caching.ICacheItem)">RaiseOnAdded(ICacheItem)</h4>
+  <div class="markdown level1 summary"><p>Raise the <a class="xref" href="wan24.Core.Caching.CacheBase.html#wan24_Core_Caching_CacheBase_OnAdded">OnAdded</a> event</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void RaiseOnAdded(ICacheItem item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Caching.ICacheItem.html">ICacheItem</a></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>Item</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_RaiseOnRemoved_wan24_Core_Caching_ICacheItem_.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.RaiseOnRemoved(wan24.Core.Caching.ICacheItem)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L182">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase_RaiseOnRemoved_" data-uid="wan24.Core.Caching.CacheBase.RaiseOnRemoved*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase_RaiseOnRemoved_wan24_Core_Caching_ICacheItem_" data-uid="wan24.Core.Caching.CacheBase.RaiseOnRemoved(wan24.Core.Caching.ICacheItem)">RaiseOnRemoved(ICacheItem)</h4>
+  <div class="markdown level1 summary"><p>Raise the <a class="xref" href="wan24.Core.Caching.CacheBase.html#wan24_Core_Caching_CacheBase_OnRemoved">OnRemoved</a> event</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void RaiseOnRemoved(ICacheItem item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Caching.ICacheItem.html">ICacheItem</a></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>Item</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_Remove_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.Remove(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L81">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase_Remove_" data-uid="wan24.Core.Caching.CacheBase.Remove*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase_Remove_System_String_" data-uid="wan24.Core.Caching.CacheBase.Remove(System.String)">Remove(String)</h4>
+  <div class="markdown level1 summary"><p>Remove an object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual ICache Remove(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Caching.ICache.html">ICache</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_Tidy.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.Tidy%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L133">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase_Tidy_" data-uid="wan24.Core.Caching.CacheBase.Tidy*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase_Tidy" data-uid="wan24.Core.Caching.CacheBase.Tidy">Tidy()</h4>
+  <div class="markdown level1 summary"><p>Tidy the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Tidy()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_TryGetItem_System_String_wan24_Core_Caching_ICacheItem__.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.TryGetItem(System.String%2Cwan24.Core.Caching.ICacheItem%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L102">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase_TryGetItem_" data-uid="wan24.Core.Caching.CacheBase.TryGetItem*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase_TryGetItem_System_String_wan24_Core_Caching_ICacheItem__" data-uid="wan24.Core.Caching.CacheBase.TryGetItem(System.String,wan24.Core.Caching.ICacheItem@)">TryGetItem(String, out ICacheItem)</h4>
+  <div class="markdown level1 summary"><p>Try getting a cache item</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetItem(string key, out ICacheItem item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Caching.ICacheItem.html">ICacheItem</a></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>Cache item</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Succeed?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_TryRemoveItem_System_String_wan24_Core_Caching_ICacheItem__.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.TryRemoveItem(System.String%2Cwan24.Core.Caching.ICacheItem%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L110">View Source</a>
+  </span>
+  <a id="wan24_Core_Caching_CacheBase_TryRemoveItem_" data-uid="wan24.Core.Caching.CacheBase.TryRemoveItem*"></a>
+  <h4 id="wan24_Core_Caching_CacheBase_TryRemoveItem_System_String_wan24_Core_Caching_ICacheItem__" data-uid="wan24.Core.Caching.CacheBase.TryRemoveItem(System.String,wan24.Core.Caching.ICacheItem@)">TryRemoveItem(String, out ICacheItem)</h4>
+  <div class="markdown level1 summary"><p>Try removing an item</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool TryRemoveItem(string key, out ICacheItem item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Caching.ICacheItem.html">ICacheItem</a></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>Item</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Removed?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="events">Events
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_OnAdded.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.OnAdded%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L169">View Source</a>
+  </span>
+  <h4 id="wan24_Core_Caching_CacheBase_OnAdded" data-uid="wan24.Core.Caching.CacheBase.OnAdded">OnAdded</h4>
+  <div class="markdown level1 summary"><p>Raised when an item was added</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ICache.CacheItem_Delegate OnAdded</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Caching.ICache.CacheItem_Delegate.html">ICache.CacheItem_Delegate</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase_OnRemoved.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase.OnRemoved%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L177">View Source</a>
+  </span>
+  <h4 id="wan24_Core_Caching_CacheBase_OnRemoved" data-uid="wan24.Core.Caching.CacheBase.OnRemoved">OnRemoved</h4>
+  <div class="markdown level1 summary"><p>Raised when an item was removed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ICache.CacheItem_Delegate OnRemoved</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Caching.ICache.CacheItem_Delegate.html">ICache.CacheItem_Delegate</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.Caching.ICache.html">ICache</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
+      <span class="xref">IDisposable</span>
+  </div>
+  <div>
+      <span class="xref">IAsyncDisposable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_GetEnumDisplayText_System_Object_">EnumExtensions.GetEnumDisplayText(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean_">JsonExtensions.ToJson(Object, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Caching_CacheBase.md&amp;value=---%0Auid%3A%20wan24.Core.Caching.CacheBase%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Caching/CacheBase.cs/#L9" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            (c) 2023 Andreas Zimmermann, wan24.de
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

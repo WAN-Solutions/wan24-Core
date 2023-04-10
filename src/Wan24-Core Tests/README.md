@@ -57,11 +57,15 @@ disposing
 - Object extensions
     - Type conversion
     - Determine if a value is within a list of values
-- Threading helper
+- Threading
     - `State` is a thread-safe boolean state which supports events
     - `Worker` is an abstract background worker, which only requires a work 
     wait logic (event driven per default) and a worker method (synchronous or 
     asynchronous)
+- Caching
+    - `MemoryCache` caches objects in memory
+    - `ByteFileCache` caches byte arrays in files
+    - `JsonFileCache` caches objects JSON encoded in files
 
 ## How to get it
 

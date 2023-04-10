@@ -484,7 +484,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_LastRunTime.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.LastRunTime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L109">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L119">View Source</a>
   </span>
   <a id="wan24_Core_Threading_Worker_LastRunTime_" data-uid="wan24.Core.Threading.Worker.LastRunTime*"></a>
   <h4 id="wan24_Core_Threading_Worker_LastRunTime" data-uid="wan24.Core.Threading.Worker.LastRunTime">LastRunTime</h4>
@@ -519,7 +519,7 @@
   </span>
   <a id="wan24_Core_Threading_Worker_LastStarted_" data-uid="wan24.Core.Threading.Worker.LastStarted*"></a>
   <h4 id="wan24_Core_Threading_Worker_LastStarted" data-uid="wan24.Core.Threading.Worker.LastStarted">LastStarted</h4>
-  <div class="markdown level1 summary"><p>Last start time (or <see cref="!:TimeSpan.Zero"></see>, if never started)</p>
+  <div class="markdown level1 summary"><p>Last start time (or <see cref="!:DateTime.MinValue"></see>, if never started)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -546,11 +546,11 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_LastStopped.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.LastStopped%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L104">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L114">View Source</a>
   </span>
   <a id="wan24_Core_Threading_Worker_LastStopped_" data-uid="wan24.Core.Threading.Worker.LastStopped*"></a>
   <h4 id="wan24_Core_Threading_Worker_LastStopped" data-uid="wan24.Core.Threading.Worker.LastStopped">LastStopped</h4>
-  <div class="markdown level1 summary"><p>Last stopped time (or <see cref="!:TimeSpan.Zero"></see>, if never stopped)</p>
+  <div class="markdown level1 summary"><p>Last stopped time (or <see cref="!:DateTime.MinValue"></see>, if never stopped)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -574,10 +574,41 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_LastWork.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.LastWork%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L104">View Source</a>
+  </span>
+  <a id="wan24_Core_Threading_Worker_LastWork_" data-uid="wan24.Core.Threading.Worker.LastWork*"></a>
+  <h4 id="wan24_Core_Threading_Worker_LastWork" data-uid="wan24.Core.Threading.Worker.LastWork">LastWork</h4>
+  <div class="markdown level1 summary"><p>Last work time (or <see cref="!:DateTime.MinValue"></see>, if never worked)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime LastWork { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DateTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_LastWorkCount.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.LastWorkCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L123">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L133">View Source</a>
   </span>
   <a id="wan24_Core_Threading_Worker_LastWorkCount_" data-uid="wan24.Core.Threading.Worker.LastWorkCount*"></a>
   <h4 id="wan24_Core_Threading_Worker_LastWorkCount" data-uid="wan24.Core.Threading.Worker.LastWorkCount">LastWorkCount</h4>
@@ -599,6 +630,37 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_LastWorkDuration.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.LastWorkDuration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L109">View Source</a>
+  </span>
+  <a id="wan24_Core_Threading_Worker_LastWorkDuration_" data-uid="wan24.Core.Threading.Worker.LastWorkDuration*"></a>
+  <h4 id="wan24_Core_Threading_Worker_LastWorkDuration" data-uid="wan24.Core.Threading.Worker.LastWorkDuration">LastWorkDuration</h4>
+  <div class="markdown level1 summary"><p>Last work duration (or <see cref="!:TimeSpan.Zero"></see>, if never worked)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeSpan LastWorkDuration { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -639,7 +701,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_TotalWorkCount.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.TotalWorkCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L118">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L128">View Source</a>
   </span>
   <a id="wan24_Core_Threading_Worker_TotalWorkCount_" data-uid="wan24.Core.Threading.Worker.TotalWorkCount*"></a>
   <h4 id="wan24_Core_Threading_Worker_TotalWorkCount" data-uid="wan24.Core.Threading.Worker.TotalWorkCount">TotalWorkCount</h4>
@@ -670,7 +732,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_WorkerException.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.WorkerException%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L128">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L138">View Source</a>
   </span>
   <a id="wan24_Core_Threading_Worker_WorkerException_" data-uid="wan24.Core.Threading.Worker.WorkerException*"></a>
   <h4 id="wan24_Core_Threading_Worker_WorkerException" data-uid="wan24.Core.Threading.Worker.WorkerException">WorkerException</h4>
@@ -703,7 +765,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L180">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L232">View Source</a>
   </span>
   <a id="wan24_Core_Threading_Worker_Dispose_" data-uid="wan24.Core.Threading.Worker.Dispose*"></a>
   <h4 id="wan24_Core_Threading_Worker_Dispose_System_Boolean_" data-uid="wan24.Core.Threading.Worker.Dispose(System.Boolean)">Dispose(Boolean)</h4>
@@ -739,7 +801,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.DisposeCore%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L183">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L235">View Source</a>
   </span>
   <a id="wan24_Core_Threading_Worker_DisposeCore_" data-uid="wan24.Core.Threading.Worker.DisposeCore*"></a>
   <h4 id="wan24_Core_Threading_Worker_DisposeCore" data-uid="wan24.Core.Threading.Worker.DisposeCore">DisposeCore()</h4>
@@ -772,7 +834,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_DoWork.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.DoWork%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L157">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L209">View Source</a>
   </span>
   <a id="wan24_Core_Threading_Worker_DoWork_" data-uid="wan24.Core.Threading.Worker.DoWork*"></a>
   <h4 id="wan24_Core_Threading_Worker_DoWork" data-uid="wan24.Core.Threading.Worker.DoWork">DoWork()</h4>
@@ -788,7 +850,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_DoWorkAsync.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.DoWorkAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L162">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L214">View Source</a>
   </span>
   <a id="wan24_Core_Threading_Worker_DoWorkAsync_" data-uid="wan24.Core.Threading.Worker.DoWorkAsync*"></a>
   <h4 id="wan24_Core_Threading_Worker_DoWorkAsync" data-uid="wan24.Core.Threading.Worker.DoWorkAsync">DoWorkAsync()</h4>
@@ -819,7 +881,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_Start.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.Start%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L133">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L143">View Source</a>
   </span>
   <a id="wan24_Core_Threading_Worker_Start_" data-uid="wan24.Core.Threading.Worker.Start*"></a>
   <h4 id="wan24_Core_Threading_Worker_Start" data-uid="wan24.Core.Threading.Worker.Start">Start()</h4>
@@ -835,7 +897,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_Stop.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.Stop%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L138">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L148">View Source</a>
   </span>
   <a id="wan24_Core_Threading_Worker_Stop_" data-uid="wan24.Core.Threading.Worker.Stop*"></a>
   <h4 id="wan24_Core_Threading_Worker_Stop" data-uid="wan24.Core.Threading.Worker.Stop">Stop()</h4>
@@ -848,10 +910,260 @@
   </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_WaitBoring_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.WaitBoring(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L204">View Source</a>
+  </span>
+  <a id="wan24_Core_Threading_Worker_WaitBoring_" data-uid="wan24.Core.Threading.Worker.WaitBoring*"></a>
+  <h4 id="wan24_Core_Threading_Worker_WaitBoring_CancellationToken_" data-uid="wan24.Core.Threading.Worker.WaitBoring(CancellationToken)">WaitBoring(CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Wait for boring state</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool WaitBoring(CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Is bored?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_WaitBoring_System_Nullable_TimeSpan__.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.WaitBoring(System.Nullable%7BTimeSpan%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L197">View Source</a>
+  </span>
+  <a id="wan24_Core_Threading_Worker_WaitBoring_" data-uid="wan24.Core.Threading.Worker.WaitBoring*"></a>
+  <h4 id="wan24_Core_Threading_Worker_WaitBoring_System_Nullable_TimeSpan__" data-uid="wan24.Core.Threading.Worker.WaitBoring(System.Nullable{TimeSpan})">WaitBoring(Nullable&lt;TimeSpan&gt;)</h4>
+  <div class="markdown level1 summary"><p>Wait for boring state</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool WaitBoring(TimeSpan? timeout = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Is bored?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_WaitBusy_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.WaitBusy(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L190">View Source</a>
+  </span>
+  <a id="wan24_Core_Threading_Worker_WaitBusy_" data-uid="wan24.Core.Threading.Worker.WaitBusy*"></a>
+  <h4 id="wan24_Core_Threading_Worker_WaitBusy_CancellationToken_" data-uid="wan24.Core.Threading.Worker.WaitBusy(CancellationToken)">WaitBusy(CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Wait for busy state</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool WaitBusy(CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Is busy?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_WaitBusy_System_Nullable_TimeSpan__.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.WaitBusy(System.Nullable%7BTimeSpan%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L183">View Source</a>
+  </span>
+  <a id="wan24_Core_Threading_Worker_WaitBusy_" data-uid="wan24.Core.Threading.Worker.WaitBusy*"></a>
+  <h4 id="wan24_Core_Threading_Worker_WaitBusy_System_Nullable_TimeSpan__" data-uid="wan24.Core.Threading.Worker.WaitBusy(System.Nullable{TimeSpan})">WaitBusy(Nullable&lt;TimeSpan&gt;)</h4>
+  <div class="markdown level1 summary"><p>Wait for busy state</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool WaitBusy(TimeSpan? timeout = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Is busy?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_WaitStart_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.WaitStart(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L162">View Source</a>
+  </span>
+  <a id="wan24_Core_Threading_Worker_WaitStart_" data-uid="wan24.Core.Threading.Worker.WaitStart*"></a>
+  <h4 id="wan24_Core_Threading_Worker_WaitStart_CancellationToken_" data-uid="wan24.Core.Threading.Worker.WaitStart(CancellationToken)">WaitStart(CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Wait started</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool WaitStart(CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Started?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_WaitStart_System_Nullable_TimeSpan__.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.WaitStart(System.Nullable%7BTimeSpan%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L145">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L155">View Source</a>
   </span>
   <a id="wan24_Core_Threading_Worker_WaitStart_" data-uid="wan24.Core.Threading.Worker.WaitStart*"></a>
   <h4 id="wan24_Core_Threading_Worker_WaitStart_System_Nullable_TimeSpan__" data-uid="wan24.Core.Threading.Worker.WaitStart(System.Nullable{TimeSpan})">WaitStart(Nullable&lt;TimeSpan&gt;)</h4>
@@ -898,10 +1210,60 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_WaitStop_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.WaitStop(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L176">View Source</a>
+  </span>
+  <a id="wan24_Core_Threading_Worker_WaitStop_" data-uid="wan24.Core.Threading.Worker.WaitStop*"></a>
+  <h4 id="wan24_Core_Threading_Worker_WaitStop_CancellationToken_" data-uid="wan24.Core.Threading.Worker.WaitStop(CancellationToken)">WaitStop(CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Wait stopped</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool WaitStop(CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Stopped?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_WaitStop_System_Nullable_TimeSpan__.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.WaitStop(System.Nullable%7BTimeSpan%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L152">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L169">View Source</a>
   </span>
   <a id="wan24_Core_Threading_Worker_WaitStop_" data-uid="wan24.Core.Threading.Worker.WaitStop*"></a>
   <h4 id="wan24_Core_Threading_Worker_WaitStop_System_Nullable_TimeSpan__" data-uid="wan24.Core.Threading.Worker.WaitStop(System.Nullable{TimeSpan})">WaitStop(Nullable&lt;TimeSpan&gt;)</h4>
@@ -951,7 +1313,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_WaitWorkLogic.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.WaitWorkLogic%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L167">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L219">View Source</a>
   </span>
   <a id="wan24_Core_Threading_Worker_WaitWorkLogic_" data-uid="wan24.Core.Threading.Worker.WaitWorkLogic*"></a>
   <h4 id="wan24_Core_Threading_Worker_WaitWorkLogic" data-uid="wan24.Core.Threading.Worker.WaitWorkLogic">WaitWorkLogic()</h4>
@@ -967,7 +1329,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_WaitWorkLogicAsync.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.WaitWorkLogicAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L173">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L225">View Source</a>
   </span>
   <a id="wan24_Core_Threading_Worker_WaitWorkLogicAsync_" data-uid="wan24.Core.Threading.Worker.WaitWorkLogicAsync*"></a>
   <h4 id="wan24_Core_Threading_Worker_WaitWorkLogicAsync" data-uid="wan24.Core.Threading.Worker.WaitWorkLogicAsync">WaitWorkLogicAsync()</h4>
@@ -1000,7 +1362,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_OnException.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.OnException%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L296">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L349">View Source</a>
   </span>
   <h4 id="wan24_Core_Threading_Worker_OnException" data-uid="wan24.Core.Threading.Worker.OnException">OnException</h4>
   <div class="markdown level1 summary"><p>Raised on exception (the worker will stop working, and <a class="xref" href="wan24.Core.Threading.Worker.html#wan24_Core_Threading_Worker_WorkerException">WorkerException</a> will contain the last exception)</p>
@@ -1030,7 +1392,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_OnStart.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.OnStart%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L276">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L329">View Source</a>
   </span>
   <h4 id="wan24_Core_Threading_Worker_OnStart" data-uid="wan24.Core.Threading.Worker.OnStart">OnStart</h4>
   <div class="markdown level1 summary"><p>Raised on start</p>
@@ -1060,7 +1422,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_OnStop.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.OnStop%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L281">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L334">View Source</a>
   </span>
   <h4 id="wan24_Core_Threading_Worker_OnStop" data-uid="wan24.Core.Threading.Worker.OnStop">OnStop</h4>
   <div class="markdown level1 summary"><p>Raised on stop</p>
@@ -1090,7 +1452,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_OnWork.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.OnWork%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L286">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L339">View Source</a>
   </span>
   <h4 id="wan24_Core_Threading_Worker_OnWork" data-uid="wan24.Core.Threading.Worker.OnWork">OnWork</h4>
   <div class="markdown level1 summary"><p>Raised when working</p>
@@ -1120,7 +1482,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Threading_Worker_OnWorkDone.md&amp;value=---%0Auid%3A%20wan24.Core.Threading.Worker.OnWorkDone%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L291">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Threading/Worker.cs/#L344">View Source</a>
   </span>
   <h4 id="wan24_Core_Threading_Worker_OnWorkDone" data-uid="wan24.Core.Threading.Worker.OnWorkDone">OnWorkDone</h4>
   <div class="markdown level1 summary"><p>Raised when waiting for work</p>
@@ -1158,6 +1520,15 @@
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_GetEnumDisplayText_System_Object_">EnumExtensions.GetEnumDisplayText(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean_">JsonExtensions.ToJson(Object, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
   </div>
 </article>
           </div>
