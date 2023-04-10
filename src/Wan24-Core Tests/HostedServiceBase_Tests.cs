@@ -8,11 +8,11 @@ namespace Wan24_Core_Tests
         [TestMethod, Timeout(3000)]
         public async Task General_Tests()
         {
-            using TestObject test = new();
-            await test.StartAsync(default);
-            test.WorkDone.Set();
+            using TestObject service = new();
+            await service.StartAsync(default);
+            service.WorkDone.Set();
             Thread.Sleep(20);
-            Assert.IsFalse(test.IsRunning);
+            Assert.IsFalse(service.IsRunning);
         }
 
         public sealed class TestObject : HostedServiceBase

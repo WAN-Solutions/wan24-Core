@@ -175,3 +175,20 @@ worker.Enqueue((ct)=>
 ```
 
 The `QueueWorker` class can be extended as you need it.
+
+## Hosted worker
+
+```cs
+public class YourHostedWorker : HostedWorkerBase
+{
+    public YourHostedWorker() : base() { }
+
+    protected override async Task WorkerAsync()
+    {
+        // Perform the service actions here
+    }
+}
+```
+
+The hosted worker implements the `IHostedService` interface and can be 
+extended as you need it.
