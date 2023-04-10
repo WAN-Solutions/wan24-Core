@@ -16,11 +16,11 @@ namespace wan24.Core.Threading
         /// </summary>
         protected readonly ManualResetEventSlim ResetEvent = new(initialState: true);
         /// <summary>
-        /// Set queue
+        /// Set queue (will reset the state)
         /// </summary>
         protected readonly ConcurrentQueue<State> SetQueue = new();
         /// <summary>
-        /// Reset queue
+        /// Reset queue (will set the state)
         /// </summary>
         protected readonly ConcurrentQueue<State> ResetQueue = new();
         /// <summary>
@@ -38,11 +38,6 @@ namespace wan24.Core.Threading
         /// An object for thread synchronization
         /// </summary>
         public object SyncObject { get; } = new();
-
-        /// <summary>
-        /// Tag
-        /// </summary>
-        public object? Tag { get; set; }
 
         /// <summary>
         /// State to ensure when disposing
@@ -72,7 +67,7 @@ namespace wan24.Core.Threading
                 RaiseLockedEvents();
                 // Process the set/reset queue
                 for (
-                    State? e = null;
+                    State? e;
                     EnsureUndisposed() && ((state && SetQueue.TryDequeue(out e)) || (!state && ResetQueue.TryDequeue(out e))) && !e.IsSet;
                     e.Dispose()
                     )
@@ -80,7 +75,7 @@ namespace wan24.Core.Threading
                     {
                         state = _IsSet = !state;
                         RaiseLockedEvents();
-                        e.Set(true);
+                        e.Set(state: true);
                     }
                     catch
                     {
@@ -157,6 +152,25 @@ namespace wan24.Core.Threading
         }
 
         /// <summary>
+        /// Wait set and reset
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Is reset?</returns>
+        public bool WaitSetAndReset(CancellationToken cancellationToken)
+        {
+            // Get a queue
+            State e;
+            lock (DisposeSyncObject)
+            {
+                EnsureUndisposed();
+                e = new(initialState: false);
+                SetQueue.Enqueue(e);
+            }
+            // Wait until the queue was processed
+            return WaitSet(cancellationToken) && e.WaitSet(cancellationToken);
+        }
+
+        /// <summary>
         /// Wait reset
         /// </summary>
         /// <param name="timeout">Timeout</param>
@@ -208,6 +222,25 @@ namespace wan24.Core.Threading
             if (timeout != null) return e.WaitSet(timeout.Value);
             e.WaitSet();
             return true;
+        }
+
+        /// <summary>
+        /// Wait reset and set
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Is set?</returns>
+        public bool WaitResetAndSet(CancellationToken cancellationToken)
+        {
+            // Get a queue
+            State e;
+            lock (DisposeSyncObject)
+            {
+                EnsureUndisposed();
+                e = new(initialState: false);
+                ResetQueue.Enqueue(e);
+            }
+            // Wait until the queue was processed
+            return WaitReset(cancellationToken) && e.WaitSet(cancellationToken);
         }
 
         /// <inheritdoc/>

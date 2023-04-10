@@ -94,12 +94,22 @@
         public bool IsCancelled => (Cancellation?.IsCancellationRequested ?? true) || IsDisposing;
 
         /// <summary>
-        /// Last start time (or <see cref="TimeSpan.Zero"/>, if never started)
+        /// Last start time (or <see cref="DateTime.MinValue"/>, if never started)
         /// </summary>
         public DateTime LastStarted { get; protected set; } = DateTime.MinValue;
 
         /// <summary>
-        /// Last stopped time (or <see cref="TimeSpan.Zero"/>, if never stopped)
+        /// Last work time (or <see cref="DateTime.MinValue"/>, if never worked)
+        /// </summary>
+        public DateTime LastWork { get; protected set; } = DateTime.MinValue;
+
+        /// <summary>
+        /// Last work duration (or <see cref="TimeSpan.Zero"/>, if never worked)
+        /// </summary>
+        public TimeSpan LastWorkDuration { get; protected set; } = TimeSpan.MinValue;
+
+        /// <summary>
+        /// Last stopped time (or <see cref="DateTime.MinValue"/>, if never stopped)
         /// </summary>
         public DateTime LastStopped { get; protected set; } = DateTime.MinValue;
 
@@ -142,7 +152,14 @@
         /// </summary>
         /// <param name="timeout">Timeout</param>
         /// <returns>Started?</returns>
-        public bool WaitStart(TimeSpan? timeout = null) => Running.WaitSet(timeout);
+        public bool WaitStart(TimeSpan? timeout = null) => IfUndisposed(() => Running.WaitSet(timeout));
+
+        /// <summary>
+        /// Wait started
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Started?</returns>
+        public bool WaitStart(CancellationToken cancellationToken) => IfUndisposed(() => Running.WaitSet(cancellationToken));
 
         /// <summary>
         /// Wait stopped
@@ -150,6 +167,41 @@
         /// <param name="timeout">Timeout</param>
         /// <returns>Stopped?</returns>
         public bool WaitStop(TimeSpan? timeout = null) => Running.WaitReset(timeout);
+
+        /// <summary>
+        /// Wait stopped
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Stopped?</returns>
+        public bool WaitStop(CancellationToken cancellationToken) => Running.WaitReset(cancellationToken);
+
+        /// <summary>
+        /// Wait for busy state
+        /// </summary>
+        /// <param name="timeout">Timeout</param>
+        /// <returns>Is busy?</returns>
+        public bool WaitBusy(TimeSpan? timeout = null) => IfUndisposed(() => Working.WaitSet(timeout));
+
+        /// <summary>
+        /// Wait for busy state
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Is busy?</returns>
+        public bool WaitBusy(CancellationToken cancellationToken) => IfUndisposed(() => Working.WaitSet(cancellationToken));
+
+        /// <summary>
+        /// Wait for boring state
+        /// </summary>
+        /// <param name="timeout">Timeout</param>
+        /// <returns>Is bored?</returns>
+        public bool WaitBoring(TimeSpan? timeout = null) => IfUndisposed(() => Working.WaitReset(timeout));
+
+        /// <summary>
+        /// Wait for boring state
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Is bored?</returns>
+        public bool WaitBoring(CancellationToken cancellationToken) => IfUndisposed(() => Working.WaitReset(cancellationToken));
 
         /// <summary>
         /// Do work synchronous
@@ -232,6 +284,7 @@
                     try
                     {
                         if (IsCancelled) break;
+                        LastWork = DateTime.Now;
                         if (SyncWork)
                         {
                             DoWork();
@@ -243,6 +296,7 @@
                     }
                     finally
                     {
+                        LastWorkDuration = DateTime.Now - LastWork;
                         Working.Set(state: false);
                     }
                 }
@@ -256,9 +310,8 @@
             {
                 Working.Set(state: false);
                 Cancellation!.Cancel();
-                CancellationTokenSource cts = Cancellation;
+                using CancellationTokenSource cts = Cancellation;
                 Cancellation = null;
-                cts.Dispose();
                 WorkerTask = null;
             }
         }

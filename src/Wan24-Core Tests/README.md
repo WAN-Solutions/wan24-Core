@@ -6,7 +6,6 @@ This core library contains some .NET extensions:
 disposing
     - Dispose attribute for fields/properties which should be disposed 
     automatic when disposing
-    - Worker
 - Type helpr (type loading)
 - Secure byte array, which clears its contents when disposing
 - Pool rented array as disposable object
@@ -24,7 +23,6 @@ disposing
     - Automatic constructor invokation using a given parameter set (with DI 
     support)
     - Nullability detection
-    - Type conversion
 - Delegate extensions
     - Delegate list invokation (with or without return values, with DI support)
     - Asynchronous delegate list invokation (with or without return values, 
@@ -46,9 +44,19 @@ disposing
     - Determine if a type is a number
     - Determine if a number type is unsigned
     - Bit-converter (endian-safe)
+    - Determine if a number (or any `IComparable`) is within a range
+- Collection extensions
+    - Add a range if items
 - JSON helper
     - Exchangeable JSON encoder/decoder delegates (using `System.Text.Json` 
     per default)
+- JSON extensions
+    - Encode an object
+    - Decode from a type
+    - Decode a string
+- Object extensions
+    - Type conversion
+    - Determine if a value is within a list of values
 - Threading helper
     - `State` is a thread-safe boolean state which supports events
     - `Worker` is an abstract background worker, which only requires a work 
