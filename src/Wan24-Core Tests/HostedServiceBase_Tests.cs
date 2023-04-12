@@ -27,7 +27,17 @@ namespace Wan24_Core_Tests
                 WorkDone.Wait();
             }
 
-            protected override void Dispose(bool disposing) => WorkDone.Dispose();
+            protected override void Dispose(bool disposing)
+            {
+                base.Dispose(disposing);
+                WorkDone.Dispose();
+            }
+
+            protected override async Task DisposeCore()
+            {
+                await base.DisposeCore().DynamicContext();
+                WorkDone.Dispose();
+            }
         }
     }
 }

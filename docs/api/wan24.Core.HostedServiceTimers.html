@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Delegate HostedServiceBase.HostedService_Delegate
+    <title>Enum HostedServiceTimers
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Delegate HostedServiceBase.HostedService_Delegate
+    <meta name="title" content="Enum HostedServiceTimers
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,56 +68,59 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.HostedServiceBase.HostedService_Delegate">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.HostedServiceTimers">
   
   
-  <h1 id="wan24_Core_HostedServiceBase_HostedService_Delegate" data-uid="wan24.Core.HostedServiceBase.HostedService_Delegate" class="text-break">Delegate HostedServiceBase.HostedService_Delegate
+  <h1 id="wan24_Core_HostedServiceTimers" data-uid="wan24.Core.HostedServiceTimers" class="text-break">Enum HostedServiceTimers
   </h1>
-  <div class="markdown level0 summary"><p>Delegate for a hosted service event</p>
+  <div class="markdown level0 summary"><p>Hosted service timer types</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_HostedServiceBase_HostedService_Delegate_syntax">Syntax</h5>
+  <h5 id="wan24_Core_HostedServiceTimers_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate void HostedService_Delegate(HostedServiceBase service, EventArgs e);</code></pre>
+    <pre><code class="lang-csharp hljs">public enum HostedServiceTimers</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
+  <h3 id="fields">Fields
+  </h3>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
-        <th>Type</th>
         <th>Name</th>
         <th>Description</th>
       </tr>
-    </thead>
+    <thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="wan24.Core.HostedServiceBase.html">HostedServiceBase</a></td>
-        <td><span class="parametername">service</span></td>
-        <td><p>Service</p>
+        <td id="wan24_Core_HostedServiceTimers_Default">Default</td>
+        <td><p>Default (restart after processed)</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">EventArgs</span></td>
-        <td><span class="parametername">e</span></td>
-        <td><p>Event arguments</p>
+        <td id="wan24_Core_HostedServiceTimers_Exact">Exact</td>
+        <td><p>Exact (restart to match the exact interval without processing time)</p>
+</td>
+      </tr>
+      <tr>
+        <td id="wan24_Core_HostedServiceTimers_ExactCatchingUp">ExactCatchingUp</td>
+        <td><p>Exact and catching up (restart to match the exact interval without processing time and catch up missing processing runs without a delay)</p>
 </td>
       </tr>
     </tbody>
-  </table>
+  </thead></thead></table>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_GetEnumDisplayText_System_Object_">EnumExtensions.GetEnumDisplayText(Object)</a>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_GetEnumDisplayText_System_Object_">EnumExtensions.GetEnumDisplayText()</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean_">JsonExtensions.ToJson(Object, Boolean)</a>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean_">JsonExtensions.ToJson(Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object[])</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;()</a>
   </div>
 </article>
           </div>
@@ -127,10 +130,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_HostedServiceBase_HostedService_Delegate.md&amp;value=---%0Auid%3A%20wan24.Core.HostedServiceBase.HostedService_Delegate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_HostedServiceTimers.md&amp;value=---%0Auid%3A%20wan24.Core.HostedServiceTimers%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/HostedServiceBase.cs/#L143" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/HostedServiceTimers.cs/#L6" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

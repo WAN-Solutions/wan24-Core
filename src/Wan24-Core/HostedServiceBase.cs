@@ -36,6 +36,11 @@ namespace wan24.Core
         public bool IsRunning { get; protected set; }
 
         /// <summary>
+        /// Is stopping?
+        /// </summary>
+        public bool IsStopping => !Stopping.IsSet;
+
+        /// <summary>
         /// Last exception
         /// </summary>
         public Exception? LastException { get; protected set; }
@@ -59,19 +64,26 @@ namespace wan24.Core
             await Task.Yield();
             bool waitStop = false;
             lock (SyncObject)
-                if (Stopping.IsSet)
+            {
+                if (!IsRunning) return;
+                if (!Stopping.IsSet)
                 {
+                    // Another thread is stopping the service - wait until that tread did stop the service
                     waitStop = true;
                 }
                 else
                 {
+                    // We're going to stop the service
                     Stopping.Reset();
                 }
+            }
             if (waitStop)
             {
+                // Another thread is stopping the service - wait until that tread did stop the service
                 Stopping.Wait();
                 return;
             }
+            // Stop the service
             Task serviceTask = ServiceTask!;
             Cancellation!.Cancel();
             await serviceTask!.DynamicContext();
@@ -85,15 +97,18 @@ namespace wan24.Core
         {
             try
             {
+                // Wait for the worker to finish
                 await WorkerAsync().DynamicContext();
             }
             catch(Exception ex)
             {
+                // Handle a worker exception
                 LastException = ex;
                 OnException?.Invoke(this, new());
             }
             finally
             {
+                // Stop the service
                 Cancellation!.Dispose();
                 Cancellation = null;
                 ServiceTask = null;
@@ -105,6 +120,20 @@ namespace wan24.Core
         /// Service worker
         /// </summary>
         protected abstract Task WorkerAsync();
+
+        /// <inheritdoc/>
+        protected override void Dispose(bool disposing)
+        {
+            StopAsync(default).Wait();
+            Stopping.Dispose();
+        }
+
+        /// <inheritdoc/>
+        protected override async Task DisposeCore()
+        {
+            await StopAsync(default).DynamicContext();
+            Stopping.Dispose();
+        }
 
         /// <summary>
         /// Delegate for a hosted service event

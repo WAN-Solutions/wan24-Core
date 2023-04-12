@@ -118,7 +118,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_QueueWorker_TaskQueue__ctor_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.TaskQueue.%23ctor(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/QueueWorker.cs/#L79">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/QueueWorker.cs/#L83">View Source</a>
   </span>
   <a id="wan24_Core_QueueWorker_TaskQueue__ctor_" data-uid="wan24.Core.QueueWorker.TaskQueue.#ctor*"></a>
   <h4 id="wan24_Core_QueueWorker_TaskQueue__ctor_System_Int32_" data-uid="wan24.Core.QueueWorker.TaskQueue.#ctor(System.Int32)">TaskQueue(Int32)</h4>
@@ -154,7 +154,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_QueueWorker_TaskQueue_Queue.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.TaskQueue.Queue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/QueueWorker.cs/#L73">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/QueueWorker.cs/#L77">View Source</a>
   </span>
   <h4 id="wan24_Core_QueueWorker_TaskQueue_Queue" data-uid="wan24.Core.QueueWorker.TaskQueue.Queue">Queue</h4>
   <div class="markdown level1 summary"><p>Queue</p>
@@ -162,7 +162,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly Channel&lt;Func&lt;CancellationToken, ValueTask&gt;&gt; Queue</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly Channel&lt;QueueWorker.TaskQueue.Task_Delegate&gt; Queue</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -174,7 +174,40 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Channels.Channel</span>&lt;<span class="xref">Func</span>&lt;<span class="xref">CancellationToken</span>, <span class="xref">ValueTask</span>&gt;&gt;</td>
+        <td><span class="xref">System.Threading.Channels.Channel</span>&lt;<a class="xref" href="wan24.Core.QueueWorker.TaskQueue.Task_Delegate.html">QueueWorker.TaskQueue.Task_Delegate</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_QueueWorker_TaskQueue_Queued.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.TaskQueue.Queued%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/QueueWorker.cs/#L91">View Source</a>
+  </span>
+  <a id="wan24_Core_QueueWorker_TaskQueue_Queued_" data-uid="wan24.Core.QueueWorker.TaskQueue.Queued*"></a>
+  <h4 id="wan24_Core_QueueWorker_TaskQueue_Queued" data-uid="wan24.Core.QueueWorker.TaskQueue.Queued">Queued</h4>
+  <div class="markdown level1 summary"><p>Number of queued items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Queued { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -186,7 +219,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_QueueWorker_TaskQueue_DequeueAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.TaskQueue.DequeueAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/QueueWorker.cs/#L95">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/QueueWorker.cs/#L104">View Source</a>
   </span>
   <a id="wan24_Core_QueueWorker_TaskQueue_DequeueAsync_" data-uid="wan24.Core.QueueWorker.TaskQueue.DequeueAsync*"></a>
   <h4 id="wan24_Core_QueueWorker_TaskQueue_DequeueAsync_CancellationToken_" data-uid="wan24.Core.QueueWorker.TaskQueue.DequeueAsync(CancellationToken)">DequeueAsync(CancellationToken)</h4>
@@ -195,7 +228,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public async ValueTask&lt;Func&lt;CancellationToken, ValueTask&gt;&gt; DequeueAsync(CancellationToken cancellationToken)</code></pre>
+    <pre><code class="lang-csharp hljs">public async ValueTask&lt;QueueWorker.TaskQueue.Task_Delegate&gt; DequeueAsync(CancellationToken cancellationToken)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -225,7 +258,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ValueTask</span>&lt;<span class="xref">Func</span>&lt;<span class="xref">CancellationToken</span>, <span class="xref">ValueTask</span>&gt;&gt;</td>
+        <td><span class="xref">ValueTask</span>&lt;<a class="xref" href="wan24.Core.QueueWorker.TaskQueue.Task_Delegate.html">QueueWorker.TaskQueue.Task_Delegate</a>&gt;</td>
         <td><p>Task</p>
 </td>
       </tr>
@@ -233,19 +266,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_QueueWorker_TaskQueue_EnqueueAsync_Func_CancellationToken_ValueTask__.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.TaskQueue.EnqueueAsync(Func%7BCancellationToken%2CValueTask%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_QueueWorker_TaskQueue_EnqueueAsync_wan24_Core_QueueWorker_TaskQueue_Task_Delegate_.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.TaskQueue.EnqueueAsync(wan24.Core.QueueWorker.TaskQueue.Task_Delegate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/QueueWorker.cs/#L88">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/QueueWorker.cs/#L97">View Source</a>
   </span>
   <a id="wan24_Core_QueueWorker_TaskQueue_EnqueueAsync_" data-uid="wan24.Core.QueueWorker.TaskQueue.EnqueueAsync*"></a>
-  <h4 id="wan24_Core_QueueWorker_TaskQueue_EnqueueAsync_Func_CancellationToken_ValueTask__" data-uid="wan24.Core.QueueWorker.TaskQueue.EnqueueAsync(Func{CancellationToken,ValueTask})">EnqueueAsync(Func&lt;CancellationToken, ValueTask&gt;)</h4>
+  <h4 id="wan24_Core_QueueWorker_TaskQueue_EnqueueAsync_wan24_Core_QueueWorker_TaskQueue_Task_Delegate_" data-uid="wan24.Core.QueueWorker.TaskQueue.EnqueueAsync(wan24.Core.QueueWorker.TaskQueue.Task_Delegate)">EnqueueAsync(QueueWorker.TaskQueue.Task_Delegate)</h4>
   <div class="markdown level1 summary"><p>Enqueue</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public async ValueTask EnqueueAsync(Func&lt;CancellationToken, ValueTask&gt; task)</code></pre>
+    <pre><code class="lang-csharp hljs">public async ValueTask EnqueueAsync(QueueWorker.TaskQueue.Task_Delegate task)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -258,7 +291,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Func</span>&lt;<span class="xref">CancellationToken</span>, <span class="xref">ValueTask</span>&gt;</td>
+        <td><a class="xref" href="wan24.Core.QueueWorker.TaskQueue.Task_Delegate.html">QueueWorker.TaskQueue.Task_Delegate</a></td>
         <td><span class="parametername">task</span></td>
         <td><p>Task</p>
 </td>
@@ -304,7 +337,7 @@
                     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_QueueWorker_TaskQueue.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.TaskQueue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/QueueWorker.cs/#L68" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/QueueWorker.cs/#L72" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
