@@ -65,6 +65,8 @@ disposing
 interface (timed or permanent running)
 - `EventThrottle` for throttling event handler calls
 - `ProcessThrottle` for throttling a processing channel
+- `OrderedDictionary<tKey, tValue>` is used for working with indexed key/value 
+pairs
 
 ## How to get it
 

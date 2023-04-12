@@ -103,15 +103,10 @@ namespace wan24.Core
         /// <inheritdoc/>
         public tValue this[tKey key]
         {
-            get
-            {
-                int index = IndexOfKey(key);
-                if (index == -1) throw new KeyNotFoundException();
-                return Items[index].Value;
-            }
+            get => Items[EnsureExistingKey(key)].Value;
             set
             {
-                if (IsReadOnly) throw new NotSupportedException();
+                EnsureWritable();
                 int index = IndexOfKey(key);
                 if (index == -1)
                 {
@@ -127,28 +122,18 @@ namespace wan24.Core
         /// <inheritdoc/>
         public tValue this[int index]
         {
-            get => Items.Count <= index ? throw new IndexOutOfRangeException() : Items[index].Value;
-            set
-            {
-                if (index < 0 || index >= Items.Count) throw new IndexOutOfRangeException();
-                Items[index] = new(Items[index].Key, value);
-            }
+            get => Items[EnsureValidIndex(index)].Value;
+            set => Items[EnsureValidIndex(index)] = new(Items[index].Key, value);
         }
 
         /// <inheritdoc/>
         public object? this[object key]
         {
-            get
-            {
-                if (key == null || !typeof(tKey).IsAssignableFrom(key.GetType())) throw new KeyNotFoundException();
-                return this[(tKey)key];
-            }
+            get => this[(tKey)EnsureValidKey(key)];
             set
             {
-                if (IsReadOnly) throw new NotSupportedException();
-                if (key == null || !typeof(tKey).IsAssignableFrom(key.GetType())) throw new ArgumentException("Invalid key", nameof(key));
-                if (value != null && !typeof(tValue).IsAssignableFrom(value.GetType())) throw new ArgumentException("Invalid value", nameof(value));
-                this[(tKey)key] = (tValue)value!;
+                EnsureWritable();
+                this[(tKey)EnsureValidKey(key)] = (tValue)EnsureValidValue(value)!;
             }
         }
 
@@ -158,69 +143,61 @@ namespace wan24.Core
             get => this[index];
             set
             {
-                if (index < 0 || index >= Items.Count) throw new IndexOutOfRangeException();
-                if (value != null && !typeof(tValue).IsAssignableFrom(value.GetType())) throw new ArgumentException("Invalid value", nameof(value));
-                this[index] = (tValue)value!;
+                EnsureWritable();
+                this[EnsureValidIndex(index)] = (tValue)EnsureValidValue(value)!;
             }
         }
 
         /// <inheritdoc/>
         public virtual void Add(tKey key, tValue value)
         {
-            if (IsReadOnly) throw new InvalidOperationException();
-            if (IndexOfKey(key) != -1) throw new InvalidOperationException("Key exists");
-            Items.Add(new(key, value));
+            EnsureWritable();
+            Items.Add(new(EnsureFreshKey(key), value));
         }
 
         /// <inheritdoc/>
         public virtual void Add(KeyValuePair<tKey, tValue> item)
         {
-            if (IsReadOnly) throw new InvalidOperationException();
-            if (IndexOfKey(item.Key) != -1) throw new InvalidOperationException("Key exists");
+            EnsureWritable();
+            EnsureFreshKey(item.Key);
             Items.Add(item);
         }
 
         /// <inheritdoc/>
         public void Add(object key, object? value)
         {
-            if (IsReadOnly) throw new InvalidOperationException();
-            if (key == null || !typeof(tKey).IsAssignableFrom(key.GetType())) throw new ArgumentException("Invalid key", nameof(key));
-            if (value != null && !typeof(tValue).IsAssignableFrom(value.GetType())) throw new ArgumentException("Invalid value", nameof(value));
-            tKey k = (tKey)key;
-            if (IndexOfKey(k) != -1) throw new InvalidOperationException("Key exists");
-            Items.Add(new(k, (tValue)value!));
+            EnsureWritable();
+            tKey k = (tKey)EnsureValidKey(key);
+            EnsureFreshKey(k);
+            Items.Add(new(k, (tValue)EnsureValidValue(value)!));
         }
 
         /// <inheritdoc/>
         public void Insert(int index, tKey key, tValue value)
         {
-            if (IsReadOnly) throw new InvalidOperationException();
+            EnsureWritable();
             if (index < 0 || index > Items.Count) throw new IndexOutOfRangeException();
             if (index == Items.Count)
             {
                 Add(key, value);
                 return;
             }
-            if (IndexOfKey(key) != -1) throw new InvalidOperationException("Key exists");
+            EnsureFreshKey(key);
             Items.Insert(index, new(key, value));
         }
 
         /// <inheritdoc/>
         public void Insert(int index, object key, object? value)
         {
-            if (IsReadOnly) throw new InvalidOperationException();
-            if (index < 0 || index > Items.Count) throw new IndexOutOfRangeException();
-            if (key == null || !typeof(tKey).IsAssignableFrom(key.GetType())) throw new ArgumentException("Invalid key", nameof(key));
-            if (value != null && !typeof(tValue).IsAssignableFrom(value.GetType())) throw new ArgumentException("Invalid value", nameof(value));
-            Insert(index, (tKey)key, (tValue)value!);
+            EnsureWritable();
+            Insert(EnsureValidIndex(index), (tKey)EnsureValidKey(key), (tValue)EnsureValidValue(value)!);
         }
 
         /// <inheritdoc/>
         public void ReplaceAt(int index, tKey key, tValue value)
         {
-            if (IsReadOnly) throw new InvalidOperationException();
-            if (index < 0 || index >= Items.Count) throw new IndexOutOfRangeException();
-            Items[index] = new(key, value);
+            EnsureWritable();
+            Items[EnsureValidIndex(index)] = new(key, value);
         }
 
         /// <inheritdoc/>
@@ -260,7 +237,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public virtual bool Remove(tKey key)
         {
-            if (IsReadOnly) throw new InvalidOperationException();
+            EnsureWritable();
             int index = IndexOfKey(key);
             if (index == -1) return false;
             RemoveAt(index);
@@ -270,7 +247,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public virtual bool Remove(KeyValuePair<tKey, tValue> item)
         {
-            if (IsReadOnly) throw new InvalidOperationException();
+            EnsureWritable();
             int index = IndexOfKey(item.Key);
             if (index == -1 || IsEqual(Items[index].Value, item.Value)) return false;
             RemoveAt(index);
@@ -280,22 +257,21 @@ namespace wan24.Core
         /// <inheritdoc/>
         public void Remove(object key)
         {
-            if (IsReadOnly) throw new InvalidOperationException();
-            if (key == null || !typeof(tKey).IsAssignableFrom(key.GetType()) || !Remove((tKey)key)) throw new KeyNotFoundException();
+            EnsureWritable();
+            if (!Remove((tKey)EnsureValidKey(key))) throw new KeyNotFoundException();
         }
 
         /// <inheritdoc/>
         public virtual void RemoveAt(int index)
         {
-            if (IsReadOnly) throw new InvalidOperationException();
-            if (index < 0 || index >= Items.Count) throw new IndexOutOfRangeException();
-            Items.RemoveAt(index);
+            EnsureWritable();
+            Items.RemoveAt(EnsureValidIndex(index));
         }
 
         /// <inheritdoc/>
         public virtual void Clear()
         {
-            if (IsReadOnly) throw new InvalidOperationException();
+            EnsureWritable();
             Items.Clear();
         }
 
@@ -367,6 +343,62 @@ namespace wan24.Core
         /// <param name="b">B</param>
         /// <returns>Are equal?</returns>
         protected bool IsEqual(object? a, object? b) => (a == null && b == null) || (a != null && a.Equals(b)) || (b != null && b.Equals(a));
+
+        /// <summary>
+        /// Ensure a valid key
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <returns>Key</returns>
+        /// <exception cref="ArgumentException">If the key is invalid</exception>
+        protected object EnsureValidKey(object key)
+            => key == null || !typeof(tKey).IsAssignableFrom(key.GetType()) ? throw new ArgumentException("Invalid key", nameof(key)) : key;
+
+        /// <summary>
+        /// Ensure a valid value
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Value</returns>
+        /// <exception cref="ArgumentException">If the value is invalid</exception>
+        protected object? EnsureValidValue(object? value)
+            => value != null && !typeof(tValue).IsAssignableFrom(value.GetType()) ? throw new ArgumentException("Invalid value", nameof(value)) : value;
+
+        /// <summary>
+        /// Ensure a valid index
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <returns>Index</returns>
+        /// <exception cref="IndexOutOfRangeException">If the index is invalid</exception>
+        protected int EnsureValidIndex(int index) => index < 0 || index >= Items.Count ? throw new IndexOutOfRangeException() : index;
+
+        /// <summary>
+        /// Ensure writable
+        /// </summary>
+        /// <exception cref="NotSupportedException">If read-only</exception>
+        protected void EnsureWritable()
+        {
+            if (IsReadOnly) throw new NotSupportedException();
+        }
+
+        /// <summary>
+        /// Ensure a fresh (non-existing) key
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <returns>Key</returns>
+        /// <exception cref="ArgumentException">If the key exists</exception>
+        protected tKey EnsureFreshKey(tKey key) => IndexOfKey(key) == -1 ? key : throw new ArgumentException("Key exists", nameof(key));
+
+        /// <summary>
+        /// Ensure an existing key
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <returns>Index</returns>
+        /// <exception cref="KeyNotFoundException">If the key doesn't exist</exception>
+        protected int EnsureExistingKey(tKey key)
+        {
+            int index = IndexOfKey(key);
+            if (index == -1) throw new KeyNotFoundException();
+            return index;
+        }
 
         /// <summary>
         /// Dictionary enumerator
