@@ -13,6 +13,7 @@ disposing
 - Byte array extensions
     - Endian conversion
     - Bit-converter (endian-safe)
+    - UTF-8 string decoding
 - Array helper extensions
     - Offset/length validation
 - Enumerable extensions
@@ -58,6 +59,8 @@ disposing
 - Object extensions
     - Type conversion
     - Determine if a value is within a list of values
+- String extensions
+    - Get UTF-8 bytes
 - Queue worker (for actions and/or items)
 - Parallel queue worker (for actions and/or items)
 - `ParallelAsync` implementation

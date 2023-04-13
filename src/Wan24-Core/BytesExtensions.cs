@@ -1,4 +1,5 @@
 ﻿using System.Buffers;
+using System.Text;
 
 namespace wan24.Core
 {
@@ -127,6 +128,20 @@ namespace wan24.Core
             {
                 ArrayPool<int>.Shared.Return(intBits);
             }
+        }
+
+        /// <summary>
+        /// Get an UTF-8 string
+        /// </summary>
+        /// <param name="bytes">Bytes</param>
+        /// <returns>String</returns>
+        public static string ToUtf8String(this byte[] bytes)
+        {
+            UTF8Encoding utf8 = new(encoderShouldEmitUTF8Identifier: true);
+            char[] chars = new char[bytes.Length];
+            utf8.GetDecoder().Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
+            if (!completed || used != bytes.Length) throw new InvalidDataException();
+            return new string(chars, 0, count);
         }
     }
 }
