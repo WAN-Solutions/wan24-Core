@@ -70,6 +70,8 @@ interface (timed or permanent running)
 - `ProcessThrottle` for throttling a processing channel
 - `OrderedDictionary<tKey, tValue>` is used for working with indexed key/value 
 pairs
+- `Timeout` will count down and raise an event, if not reset before reaching 
+the timeout
 
 ## How to get it
 
