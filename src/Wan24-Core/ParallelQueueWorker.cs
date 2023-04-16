@@ -112,6 +112,19 @@
             {
                 await task(cancellationToken).DynamicContext();
             }
+            catch(OperationCanceledException ex)
+            {
+                if (!cancellationToken.IsCancellationRequested)
+                {
+                    LastException = ex;
+                    RaiseOnException();
+                }
+            }
+            catch(Exception ex)
+            {
+                LastException = ex;
+                RaiseOnException();
+            }
             finally
             {
                 lock (SyncObject)
