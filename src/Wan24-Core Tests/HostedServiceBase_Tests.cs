@@ -12,12 +12,15 @@ namespace Wan24_Core_Tests
             await service.StartAsync(default);
             service.WorkDone.Set();
             Thread.Sleep(20);
-            Assert.IsFalse(service.IsRunning);
+            Assert.AreEqual(1, service.Worked);
+            Assert.IsTrue(service.IsRunning);
         }
 
         public sealed class TestObject : HostedServiceBase
         {
             public readonly ManualResetEventSlim WorkDone = new(initialState: false);
+
+            public int Worked = 0;
 
             public TestObject() : base() { }
 
@@ -25,6 +28,7 @@ namespace Wan24_Core_Tests
             {
                 await Task.Yield();
                 WorkDone.Wait();
+                Worked++;
             }
 
             protected override void Dispose(bool disposing)

@@ -10,7 +10,7 @@ namespace Wan24_Core_Tests
         {
             using TestObject worker = new();
             await worker.StartAsync(default);
-            ManualResetEventSlim mre = new(initialState: false);
+            using ManualResetEventSlim mre = new(initialState: false);
             await worker.EnqueueAsync(mre);
             Thread.Sleep(20);
             Assert.AreEqual(0, worker.Worked);
@@ -29,7 +29,6 @@ namespace Wan24_Core_Tests
             {
                 await Task.Yield();
                 item.Wait(cancellationToken);
-                item.Dispose();
                 Worked++;
             }
         }
