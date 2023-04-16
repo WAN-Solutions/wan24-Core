@@ -8,9 +8,9 @@ namespace wan24.Core
     public abstract class HostedServiceBase : DisposableBase, IHostedService
     {
         /// <summary>
-        /// Stopping event (raised when stopped)
+        /// Stop task
         /// </summary>
-        protected readonly ManualResetEventSlim Stopping = new(initialState: true);
+        protected volatile TaskCompletionSource? StopTask = null;
         /// <summary>
         /// Cancellation token
         /// </summary>
@@ -38,7 +38,7 @@ namespace wan24.Core
         /// <summary>
         /// Is stopping?
         /// </summary>
-        public bool IsStopping => !Stopping.IsSet;
+        public bool IsStopping => StopTask != null;
 
         /// <summary>
         /// Last exception
@@ -53,66 +53,59 @@ namespace wan24.Core
                 if (IsRunning) return Task.CompletedTask;
                 IsRunning = true;
                 Cancellation = new();
-                ServiceTask = ServiceAsync();
+                ServiceTask = RunServiceAsync();
             }
             return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
-        public async Task StopAsync(CancellationToken cancellationToken)
+        public Task StopAsync(CancellationToken cancellationToken)
         {
-            await Task.Yield();
-            bool waitStop = false;
             lock (SyncObject)
             {
-                if (!IsRunning) return;
-                if (!Stopping.IsSet)
-                {
-                    // Another thread is stopping the service - wait until that tread did stop the service
-                    waitStop = true;
-                }
-                else
-                {
-                    // We're going to stop the service
-                    Stopping.Reset();
-                }
+                if (!IsRunning) return Task.CompletedTask;
+                if (StopTask != null) return StopTask.Task;
+                StopTask = new();
             }
-            if (waitStop)
-            {
-                // Another thread is stopping the service - wait until that tread did stop the service
-                Stopping.Wait();
-                return;
-            }
-            // Stop the service
-            Task serviceTask = ServiceTask!;
             Cancellation!.Cancel();
-            await serviceTask!.DynamicContext();
-            Stopping.Set();
+            return StopTask?.Task ?? Task.CompletedTask;
         }
 
         /// <summary>
         /// Service handler
         /// </summary>
-        protected async Task ServiceAsync()
+        protected async Task RunServiceAsync()
         {
             try
             {
-                // Wait for the worker to finish
                 await WorkerAsync().DynamicContext();
             }
-            catch(Exception ex)
+            catch (OperationCanceledException ex)
             {
-                // Handle a worker exception
+                if (!Cancellation!.IsCancellationRequested)
+                {
+                    LastException = ex;
+                    OnException?.Invoke(this, new());
+                    throw;
+                }
+            }
+            catch (Exception ex)
+            {
                 LastException = ex;
                 OnException?.Invoke(this, new());
             }
             finally
             {
-                // Stop the service
                 Cancellation!.Dispose();
                 Cancellation = null;
                 ServiceTask = null;
                 IsRunning = false;
+                lock (SyncObject)
+                    if (StopTask != null)
+                    {
+                        StopTask?.SetResult();
+                        StopTask = null;
+                    }
             }
         }
 
@@ -122,18 +115,10 @@ namespace wan24.Core
         protected abstract Task WorkerAsync();
 
         /// <inheritdoc/>
-        protected override void Dispose(bool disposing)
-        {
-            StopAsync(default).Wait();
-            Stopping.Dispose();
-        }
+        protected override void Dispose(bool disposing) => StopAsync(default).Wait();
 
         /// <inheritdoc/>
-        protected override async Task DisposeCore()
-        {
-            await StopAsync(default).DynamicContext();
-            Stopping.Dispose();
-        }
+        protected override async Task DisposeCore() => await StopAsync(default).DynamicContext();
 
         /// <summary>
         /// Delegate for a hosted service event

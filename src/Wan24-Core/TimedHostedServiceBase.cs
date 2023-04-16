@@ -8,16 +8,20 @@ namespace wan24.Core
     public abstract class TimedHostedServiceBase : DisposableBase, IHostedService
     {
         /// <summary>
-        /// Stopping event (raised when stopped)
-        /// </summary>
-        protected readonly ManualResetEventSlim Stop = new(initialState: true);
-        /// <summary>
         /// Timer
         /// </summary>
         protected readonly System.Timers.Timer Timer = new()
         {
             AutoReset = false
         };
+        /// <summary>
+        /// Run event (raised when should run)
+        /// </summary>
+        protected readonly AutoResetEvent RunEvent = new(initialState: false);
+        /// <summary>
+        /// Stop task
+        /// </summary>
+        protected volatile TaskCompletionSource? StopTask = null;
         /// <summary>
         /// Cancellation token
         /// </summary>
@@ -36,10 +40,11 @@ namespace wan24.Core
         /// </summary>
         /// <param name="interval">Interval in ms</param>
         /// <param name="timer">Timer type</param>
-        protected TimedHostedServiceBase(double interval, HostedServiceTimers timer = HostedServiceTimers.Default) : base()
+        /// <param name="nextRun">Fixed next run time (if given, the timer will be started!)</param>
+        protected TimedHostedServiceBase(double interval, HostedServiceTimers timer = HostedServiceTimers.Default, DateTime? nextRun = null) : base()
         {
-            Timer.Elapsed += (s, e) => ServiceAsync();
-            SetTimerAsync(interval, timer).Wait();
+            Timer.Elapsed += (s, e) => RunEvent.Set();
+            SetTimerAsync(interval, timer, nextRun).Wait();
         }
 
         /// <summary>
@@ -55,7 +60,7 @@ namespace wan24.Core
         /// <summary>
         /// Is stopping?
         /// </summary>
-        public bool IsStopping => !Stop.IsSet;
+        public bool IsStopping => StopTask != null;
 
         /// <summary>
         /// Last exception
@@ -104,9 +109,10 @@ namespace wan24.Core
         /// <param name="timer">Timer</param>
         /// <param name="nextRun">Fixed next run time (may interrupt a running worker, service will be stopped/(re)started!)</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        public async Task SetTimerAsync(double interval, HostedServiceTimers timer, DateTime? nextRun = null, CancellationToken cancellationToken = default)
+        public async Task SetTimerAsync(double interval, HostedServiceTimers? timer = null, DateTime? nextRun = null, CancellationToken cancellationToken = default)
         {
             if (interval <= 0) throw new ArgumentOutOfRangeException(nameof(interval));
+            timer ??= TimerType;
             // Handle fixed next run time
             if (nextRun != null)
                 while (true)
@@ -117,20 +123,21 @@ namespace wan24.Core
                         lock (SyncObject)
                         {
                             if (IsRunning) continue;
-                            Interval = 1000;
-                            TimerType = timer;
+                            Interval = 30000;
+                            TimerType = timer.Value;
                         }
                         await StartAsync(cancellationToken).DynamicContext();
                         // Reset the timer to elapse on the desired time
+                        DateTime now = DateTime.Now;
                         lock (SyncObject)
                         {
                             if (!Timer.Enabled) continue;
                             Timer.Stop();
                             Interval = interval;
-                            TimerType = timer;
-                            if (nextRun.HasValue && nextRun <= DateTime.Now) throw new ArgumentOutOfRangeException(nameof(nextRun));
+                            TimerType = timer.Value;
+                            if (nextRun <= now) throw new ArgumentOutOfRangeException(nameof(nextRun));
                             NextRun = nextRun.Value;
-                            Timer.Interval = (nextRun.Value - DateTime.Now).TotalMilliseconds;
+                            Timer.Interval = (nextRun.Value - now).TotalMilliseconds;
                             Timer.Start();
                             return;
                         }
@@ -144,14 +151,14 @@ namespace wan24.Core
             lock (SyncObject)
             {
                 Interval = interval;
-                TimerType = timer;
+                TimerType = timer.Value;
                 if (!Timer.Enabled) return;
                 // Update the running timer
                 Timer.Stop();
                 nextRun = (LastRun + LastDuration).AddMilliseconds(interval);
-                if (nextRun >= DateTime.Now)
+                if (nextRun <= DateTime.Now)
                 {
-                    ServiceAsync();
+                    RunEvent.Set();
                     return;
                 }
                 NextRun = nextRun.Value;
@@ -161,136 +168,124 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public Task StartAsync(CancellationToken cancellationToken)
+        public async Task StartAsync(CancellationToken cancellationToken)
         {
+            await Task.Yield();
             lock (SyncObject)
             {
-                if (IsRunning) return Task.CompletedTask;
-                IsRunning = true;
+                if (IsRunning) return;
                 Started = DateTime.Now;
-                Cancellation = new();
                 LastRun = DateTime.MinValue;
                 LastDuration = TimeSpan.Zero;
+                IsRunning = true;
+                Cancellation = new();
+                RunEvent.Reset();
+                RunServiceAsync();
                 EnableTimer();
             }
-            return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
-        public async Task StopAsync(CancellationToken cancellationToken)
-        {
-            await Task.Yield();
-            bool waitStop = false;
-            lock (SyncObject)
-            {
-                if (!IsRunning) return;
-                if (!Stop.IsSet)
-                {
-                    // Another thread is stopping the service - wait until that tread did stop the service
-                    waitStop = true;
-                }
-                else
-                {
-                    // We're going to stop the service
-                    Stop.Reset();
-                }
-            }
-            if (waitStop)
-            {
-                // Another thread is stopping the service - wait until that tread did stop the service
-                Stop.Wait();
-                return;
-            }
-            // Stop the service
-            Timer.Stop();
-            Task? serviceTask = ServiceTask;
-            Cancellation!.Cancel();
-            if (serviceTask != null) await serviceTask.DynamicContext();
-            NextRun = DateTime.MinValue;
-            Stop.Set();
-        }
-
-        /// <summary>
-        /// Enable the timer
-        /// </summary>
-        protected void EnableTimer()
+        public Task StopAsync(CancellationToken cancellationToken)
         {
             lock (SyncObject)
             {
-                if (LastRun == DateTime.MinValue)
-                {
-                    // Fresh started service
-                    NextRun = DateTime.Now.AddMilliseconds(Interval);
-                }
-                else
-                {
-                    // Find the interval for restarting the timer
-                    switch (TimerType)
-                    {
-                        case HostedServiceTimers.Default:
-                            NextRun = DateTime.Now.AddMilliseconds(Interval);
-                            break;
-                        case HostedServiceTimers.Exact:
-                            NextRun = (LastRun + LastDuration).AddMilliseconds(Interval - LastDuration.TotalMilliseconds);
-                            while (NextRun <= DateTime.Now) NextRun = NextRun.AddMilliseconds(Interval);
-                            break;
-                        case HostedServiceTimers.ExactCatchingUp:
-                            NextRun = (NextRun + LastDuration).AddMilliseconds(Interval - LastDuration.TotalMilliseconds);
-                            if (NextRun <= DateTime.Now)
-                            {
-                                // Catch up a missing processing run
-                                ServiceAsync();
-                                return;
-                            }
-                            break;
-                        default:
-                            throw new NotImplementedException($"Timer type {TimerType} isn't implemented");
-                    }
-                }
-                // Start the timer
-                Timer.Interval = (NextRun - DateTime.Now).TotalMilliseconds;
-                Timer.Start();
+                if (!IsRunning) return Task.CompletedTask;
+                if (StopTask != null) return StopTask.Task;
+                StopTask = new();
+                Cancellation?.Cancel();
+                Timer.Stop();
+                NextRun = DateTime.MinValue;
+                RunEvent.Set();
             }
+            return StopTask?.Task ?? Task.CompletedTask;
         }
 
         /// <summary>
-        /// Service handler
+        /// Run the service
         /// </summary>
-        protected async void ServiceAsync()
+        protected async void RunServiceAsync()
         {
             await Task.Yield();
             bool hadException = false;
             try
             {
-                // Wait for the worker to finish
-                LastRun = DateTime.Now;
-                ServiceTask = WorkerAsync();
-                await ServiceTask.DynamicContext();
+                while (!Cancellation!.IsCancellationRequested)
+                    try
+                    {
+                        RunEvent.WaitOne();
+                        if (Cancellation.IsCancellationRequested) break;
+                        LastRun = DateTime.Now;
+                        ServiceTask = WorkerAsync();
+                        await ServiceTask.DynamicContext();
+                    }
+                    catch (OperationCanceledException ex)
+                    {
+                        if (!Cancellation.IsCancellationRequested)
+                        {
+                            hadException = true;
+                            LastException = ex;
+                            throw;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        hadException = true;
+                        LastException = ex;
+                        throw;
+                    }
+                    finally
+                    {
+                        ServiceTask = null;
+                        LastDuration = DateTime.Now - LastRun;
+                        if (StopTask != null || hadException || RunOnce || Cancellation.IsCancellationRequested)
+                        {
+                            Cancellation.Cancel();
+                        }
+                        else
+                        {
+                            EnableTimer();
+                        }
+                    }
+            }
+            catch (OperationCanceledException ex)
+            {
+                if (!hadException && !Cancellation!.IsCancellationRequested)
+                {
+                    hadException = true;
+                    LastException = ex;
+                    throw;
+                }
+                else if (hadException)
+                {
+                    throw;
+                }
             }
             catch (Exception ex)
             {
-                // Handle a worker exception
-                hadException = true;
-                LastException = ex;
-                OnException?.Invoke(this, new());
+                if (!hadException)
+                {
+                    hadException = true;
+                    LastException = ex;
+                }
+                throw;
             }
             finally
             {
-                ServiceTask = null;
-                LastDuration = DateTime.Now - LastRun;
-                if (!Stop.IsSet || hadException || RunOnce)
+                if (hadException) OnException?.Invoke(this, new());
+                lock (SyncObject)
                 {
-                    // Process requested service stop (also stop on exception)
-                    Cancellation!.Dispose();
+                    Cancellation!.Cancel();
+                    Cancellation.Dispose();
                     Cancellation = null;
                     IsRunning = false;
-                    if (RunOnce) RaiseOnRan();
+                    if (StopTask != null)
+                    {
+                        StopTask.SetResult();
+                        StopTask = null;
+                    }
                 }
-                else
-                {
-                    // Restart the timer
-                    EnableTimer();
-                }
+                if (RunOnce) RaiseOnRan();
             }
         }
 
@@ -299,20 +294,64 @@ namespace wan24.Core
         /// </summary>
         protected abstract Task WorkerAsync();
 
+        /// <summary>
+        /// Enable the timer
+        /// </summary>
+        protected void EnableTimer()
+        {
+            DateTime now = DateTime.Now;
+            lock (SyncObject)
+            {
+                if (LastRun == DateTime.MinValue)
+                {
+                    // Fresh started service
+                    NextRun = now.AddMilliseconds(Interval);
+                }
+                else
+                {
+                    // Find the interval for restarting the timer
+                    switch (TimerType)
+                    {
+                        case HostedServiceTimers.Default:
+                            NextRun = now.AddMilliseconds(Interval);
+                            break;
+                        case HostedServiceTimers.Exact:
+                            NextRun = (LastRun + LastDuration).AddMilliseconds(Interval - LastDuration.TotalMilliseconds);
+                            while (NextRun <= now) NextRun = NextRun.AddMilliseconds(Interval);
+                            break;
+                        case HostedServiceTimers.ExactCatchingUp:
+                            NextRun = (NextRun + LastDuration).AddMilliseconds(Interval - LastDuration.TotalMilliseconds);
+                            if (NextRun <= now)
+                            {
+                                // Catch up a missing processing run
+                                RunEvent.Set();
+                                return;
+                            }
+                            break;
+                        default:
+                            throw new NotImplementedException($"Timer type {TimerType} isn't implemented");
+                    }
+                }
+                // Start the timer
+                Timer.Interval = (NextRun - now).TotalMilliseconds;
+                Timer.Start();
+            }
+        }
+
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
             StopAsync(default).Wait();
-            Stop.Dispose();
             Timer.Dispose();
+            RunEvent.Dispose();
         }
 
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
             await StopAsync(default).DynamicContext();
-            Stop.Dispose();
             Timer.Dispose();
+            RunEvent.Dispose();
         }
 
         /// <summary>

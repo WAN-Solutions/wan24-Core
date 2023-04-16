@@ -10,7 +10,7 @@ namespace Wan24_Core_Tests
         {
             using TestObject worker = new(30, HostedServiceTimers.Default);
             await worker.StartAsync(default);
-            await Task.Delay(60);
+            await Task.Delay(50);
             await worker.StopAsync(default);
             Assert.AreEqual(1, worker.Worked);
         }
@@ -20,7 +20,7 @@ namespace Wan24_Core_Tests
         {
             using TestObject worker = new(30, HostedServiceTimers.Exact);
             await worker.StartAsync(default);
-            await Task.Delay(75);
+            await Task.Delay(80);
             await worker.StopAsync(default);
             Assert.AreEqual(2, worker.Worked);
         }
