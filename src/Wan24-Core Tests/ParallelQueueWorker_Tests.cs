@@ -27,16 +27,16 @@ namespace Wan24_Core_Tests
                         worked++;
                     });
                 }
-                await Task.Delay(20);
+                await Task.Delay(100);
                 Assert.AreEqual(2, working);
                 events[0]!.Set();
                 events[1]!.Set();
-                await Task.Delay(20);
+                await Task.Delay(100);
                 Assert.AreEqual(2, worked);
-                await Task.Delay(20);
+                await Task.Delay(100);
                 Assert.AreEqual(3, working);
                 events[2]!.Set();
-                await Task.Delay(20);
+                await Task.Delay(100);
                 Assert.AreEqual(3, worked);
             }
             finally

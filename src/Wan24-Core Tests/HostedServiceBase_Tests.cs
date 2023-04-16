@@ -11,7 +11,7 @@ namespace Wan24_Core_Tests
             using TestObject service = new();
             await service.StartAsync(default);
             service.WorkDone.Set();
-            Thread.Sleep(50);
+            await Task.Delay(100);
             Assert.AreEqual(1, service.Worked);
             Assert.IsFalse(service.IsRunning);
         }

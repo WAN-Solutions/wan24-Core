@@ -14,16 +14,16 @@ namespace Wan24_Core_Tests
             try
             {
                 for (int i = 0; i < events.Length; await worker.EnqueueAsync(events[i] = new(initialState: false)), i++) ;
-                await Task.Delay(20);
+                await Task.Delay(100);
                 Assert.AreEqual(2, worker.Working);
                 events[0]!.Set();
                 events[1]!.Set();
-                await Task.Delay(20);
+                await Task.Delay(100);
                 Assert.AreEqual(2, worker.Worked);
-                await Task.Delay(20);
+                await Task.Delay(100);
                 Assert.AreEqual(3, worker.Working);
                 events[2]!.Set();
-                await Task.Delay(20);
+                await Task.Delay(100);
                 Assert.AreEqual(3, worker.Worked);
             }
             finally

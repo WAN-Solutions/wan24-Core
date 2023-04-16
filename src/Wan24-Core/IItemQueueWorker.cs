@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Interface for an item queue worker

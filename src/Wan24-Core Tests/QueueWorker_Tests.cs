@@ -26,11 +26,11 @@ namespace Wan24_Core_Tests
                 worked++;
             });
             task1Event.Set();
-            Thread.Sleep(20);
+            await Task.Delay(100);
             Assert.AreEqual(1, worked);
             await addTask;
             task2Event.Set();
-            Thread.Sleep(20);
+            await Task.Delay(100);
             Assert.AreEqual(2, worked);
         }
     }

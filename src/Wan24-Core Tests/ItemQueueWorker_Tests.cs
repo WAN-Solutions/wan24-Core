@@ -12,10 +12,10 @@ namespace Wan24_Core_Tests
             await worker.StartAsync(default);
             using ManualResetEventSlim mre = new(initialState: false);
             await worker.EnqueueAsync(mre);
-            Thread.Sleep(20);
+            await Task.Delay(20);
             Assert.AreEqual(0, worker.Worked);
             mre.Set();
-            Thread.Sleep(50);
+            await Task.Delay(100);
             Assert.AreEqual(1, worker.Worked);
         }
 
