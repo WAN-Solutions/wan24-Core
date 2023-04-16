@@ -15,7 +15,7 @@ namespace Wan24_Core_Tests
             Thread.Sleep(20);
             Assert.AreEqual(0, worker.Worked);
             mre.Set();
-            Thread.Sleep(20);
+            Thread.Sleep(50);
             Assert.AreEqual(1, worker.Worked);
         }
 

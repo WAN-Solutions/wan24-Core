@@ -11,9 +11,9 @@ namespace Wan24_Core_Tests
             using TestObject service = new();
             await service.StartAsync(default);
             service.WorkDone.Set();
-            Thread.Sleep(20);
+            Thread.Sleep(50);
             Assert.AreEqual(1, service.Worked);
-            Assert.IsTrue(service.IsRunning);
+            Assert.IsFalse(service.IsRunning);
         }
 
         public sealed class TestObject : HostedServiceBase

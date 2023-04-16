@@ -96,6 +96,7 @@ namespace wan24.Core
             }
             finally
             {
+                lock (SyncObject) StopTask ??= new();
                 Cancellation!.Dispose();
                 Cancellation = null;
                 ServiceTask = null;
