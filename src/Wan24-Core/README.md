@@ -2,6 +2,7 @@
 
 This core library contains some .NET extensions:
 
+- Bootstrapping
 - Disposable base class for disposable types, which supports asynchronous 
 disposing
     - Dispose attribute for fields/properties which should be disposed 
@@ -12,6 +13,7 @@ disposing
 - Byte array extensions
     - Endian conversion
     - Bit-converter (endian-safe)
+    - UTF-8 string decoding
 - Array helper extensions
     - Offset/length validation
 - Enumerable extensions
@@ -57,20 +59,69 @@ disposing
 - Object extensions
     - Type conversion
     - Determine if a value is within a list of values
-- Threading
-    - `State` is a thread-safe boolean state which supports events
-    - `Worker` is an abstract background worker, which only requires a work 
-    wait logic (event driven per default) and a worker method (synchronous or 
-    asynchronous)
-- Caching
-    - `MemoryCache` caches objects in memory
-    - `ByteFileCache` caches byte arrays in files
-    - `JsonFileCache` caches objects JSON encoded in files
+- String extensions
+    - Get UTF-8 bytes
+- Queue worker (for actions and/or items)
+- Parallel queue worker (for actions and/or items)
+- `ParallelAsync` implementation
+- Base class for a hosted worker, which implements the `IHostedService` 
+interface (timed or permanent running)
+- `EventThrottle` for throttling event handler calls
+- `ProcessThrottle` for throttling a processing channel
+- `OrderedDictionary<tKey, tValue>` is used for working with indexed key/value 
+pairs
+- `Timeout` will count down and raise an event, if not reset before reaching 
+the timeout
 
 ## How to get it
 
 This library is available as 
 (NuGet package "wan24-Core")[https://www.nuget.org/packages/wan24-Core/].
+
+## Bootstrapping
+
+The `Bootstrapper.Async` method calls all static methods having the 
+`BootstrapperAttribute`. In order to be able to find the methods, it's 
+required to
+
+- add their assembly to the type helper using 
+`TypeHelper.Instance.AddAssemblies` and 
+- add the `BootstrapperAttribute` to the assembly
+
+You may also ad the `BootstrapperAttribute` to a type and/or the bootstrapper 
+method, in case the assembly contains multiple of them.
+
+The bootstrapper methods may consume parameters which are available from the 
+DI helper. The method may be synchronous or asynchronous. The method can't be 
+defined in a generic class, and it can't be generic itself.
+
+```cs
+[assembly:Bootstrapper(typeof(YourBootstrapper),nameof(YourBootstrapper.BootstrapperMethod))]
+
+public static class YourBootstrapper
+{
+    public static async Task BootstrapperMethod()
+    {
+        // Perform your bootstrapping here
+    }
+}
+
+// Call the bootstrapper somewhere in your apps initialization code
+TypeHelper.Instance.AddAssemblies(typeof(YourBootstrapper).Assembly);
+await Bootstrap.Async();
+```
+
+The `BootstrapperAttribute` can be initialized with a numeric priority. The 
+bootstrapper will order the found bootstrapping methods by priority, where the 
+one with the highest number will be executed first (assembly and type 
+priorities count, too). At last there's a assembly location, type and method 
+name sorting. Bootstrapper methods will be executed sequential.
+
+If you give a type and a method name to the assembly `BootstrapperAttribute`, 
+you won't need to add the attribute to the type and the method.
+
+During bootstrapping, the cancellation token which was given to the 
+`Bootstrap.Async` method, can be injected to a bootstrappers method parameters.
 
 ## Type helper
 
@@ -163,150 +214,200 @@ The `IsDisposing` property value will be `true` as soon as the disposing
 process started, and it will never become `false` again. The `IsDisposed` 
 property value will be `true` as soon as the disposing process did finish.
 
-## Worker
-
-The `Worker` base class allows implementing a background worker with your 
-own work waiting logic (timer or event driven f.e.) and synchronous or 
-asynchronous worker methods.
-
-The base class handles the start/stop and exception handling logic, and it 
-provides events to listeners.
+## Queue worker
 
 ```cs
-public class MyWorker : Worker
+using QueueWorker worker = new();
+await worker.EnqueueAsync((ct) =>
 {
-    // Manage a queue with work
-    protected readonly Queue<Stream> MyWork = new();
+    // Do any background action here
+});
+```
 
-    // Reset the work state, 'cause we're going to use it as event, 
-    // which will be set as soon as work is available
-    public MyWorker() : base() => Work.IsSet = false;
+The `QueueWorker` class can be extended as you need it.
 
-    // Add work to the queue and update the work state
-    public void AddWork(Stream stream)
+The `ParallelQueueWorker` requires a number of threads in the constructor, 
+which defines the degree of parallelism, in which enqueued tasks will be 
+processed.
+
+## Queue item worker
+
+```cs
+using QueueItemWorker<ItemType> worker = new();
+await worker.EnqueueAsync(new ItemType());
+```
+
+The `QueueItemWorker<T>` class can be extended as you need it.
+
+The `ParallelItemQueueWorker<T>` requires a number of threads in the 
+constructor, which defines the degree of parallelism, in which enqueued items 
+will be processed.
+
+## `ParallelAsync`
+
+Using the .NET parallel implementation it's not possible to invoke 
+asynchronous item handlers. For this you can use the 
+`ParallelAsync.ForEachAsync` method, which uses a parallel item queue worker 
+in the background for asynchronous processing.
+
+## Hosted worker
+
+```cs
+public class YourHostedWorker : HostedWorkerBase
+{
+    public YourHostedWorker() : base() { }
+
+    protected override async Task WorkerAsync()
     {
-        EnsureUndisposed();
-        lock(SyncObject)
-        {
-            MyWork.Enqueue(stream);
-            Work.IsSet = true;
-        }
-    }
-
-    // We want to work asynchronous on streams
-    protected override async Task DoWorkAsync()
-    {
-        // Process the queue unless cancelled, or the queue is empty
-        while(!IsCancelled && !IsDisposing && Work.IsSet)
-        {
-            // Dequeue the next stream and reset the work state, if the queue is empty
-            Stream stream;
-            lock(SyncObject)
-            {
-                stream = MyWork.Dequeue();
-                if(MyWork.Count < 1) Work.IsSet = false;
-            }
-            // Process the stream
-            try
-            {
-                ...
-            }
-            finally
-            {
-                await stream.DisposeAsync();
-            }
-        }
-    }
-
-    // Dispose queued streams
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-        MyWork.DisposeAll();
-    }
-
-    // Dispose queued streams asynchronous
-    protected override async Task DisposeCore()
-    {
-        await base.DisposeCore();
-        await MyWork.DisposeAllAsync();
+        // Perform the service actions here
     }
 }
 ```
 
-The default work wait logic does run the worker as soon as the work state is 
-set, so we don't need to implement our own work wait logic, since we're using 
-the work state after we've enqueued new work.
+The hosted worker implements the `IHostedService` interface and can be 
+extended as you need it.
 
-We implement an asynchronous worker method, 'cause we're going to process 
-streams. In this method we dequeue and process streams unless the queue is 
-empty, or the worker was cancelled. We have to reset the work state as soon as 
-we took the last enqueued stream out of the queue.
-
-Because the queue we use isn't thread-safe, we use the `SyncObject` for thread 
-synchronization.
-
-Finally we ensure queued, but never processed streams are disposed, if the 
-worker is disposing. For this we override the synchronous and asynchronous 
-disposing logic to append our own disposing.
-
-Another example using a timer:
+## Timed hosted worker
 
 ```cs
-public class MyWorker : Worker
+public class YourHostedWorker : TimedHostedWorkerBase
 {
-    // The timer we want to use
-    protected readonly System.Timers.Timer Timer;
+    public YourHostedWorker() : base(interval: 500) { }
 
-    public MyWorker()
+    protected override async Task WorkerAsync()
     {
-        // We reset the work state, because we want to use it 
-        // as work event when the timer elapsed
-        Work.IsSet = false;
-        // If the timer was elapsed, the worker method should run
-        Timer = new()
-        {
-            AutoReset = false
-        };
-        Timer.Elapsed = (s, e) => Work.IsSet = true;
-        // Worker start/stop needs to start/stop the timer
-        Running.OnSetLocked += (s, e) => Timer.Start();
-        Running.OnResetLocked += (s, e) => Timer.Stop();
-    }
-
-    // Our worker implementation
-    protected override void DoWork()
-    {
-        bool restartTimer = true;
-        try
-        {
-            // Work goes here
-        }
-        catch
-        {
-            // Avoid restarting the timer in case of any error
-            restartTimer = false;
-            throw;
-        }
-        finally
-        {
-            // Start the timer again, if the worker wasn't cancelled
-            if(restartTimer && !IsCancelled && !IsDisposing) Timer.Start();
-        }
-    }
-
-    // Ensure our timer is going to be disposed, too
-    protected override void Dispose(bool disposing)
-    {
-        Timer.Stop();
-        base.Dispose(disposing);
-        Timer.Dispose();
+        // Perform the service actions here
     }
 }
 ```
 
-The default work wait logic uses the work state as work event, which needs to 
-be set to execute the worker method(s). If you need to implement an own logic, 
-you can override the `WaitWorkLogic` or `WaitWorkLogicAsync` methods, which 
-should return in case the worker is stopping, or work is available. Then you 
-don't have to use the work state at all.
+This example uses a 500ms timer. Based on the defined timer type, the interval 
+will be processed in different ways:
+
+- `Default`: Next worker run is now plus the interval (used by default)
+- `Exact`: Next worker run is now plus the interval minus the processing 
+duration (used, if the start time of the processing is important)
+- `ExactCatchingUp`: As `Exact`, but catching up missing processing runs 
+without delay, if a worker run duration exceeds the interval (used, if the 
+number of worker runs is important)
+
+Using the `SetTimerAsync` method you can change the timer settings at any 
+time. If you give the `nextRun` parameter, you may set a fixed next run time 
+(which won't effect the given interval, but just force the service to run at a 
+specific time for the next time).
+
+**NOTE**: The `nextRun` parameter will also force the service to (re)start!
+
+By setting the property `RunOnce` to `true`, the service will stop after 
+running the worker once. In combination with the `SetTimerAsync` parameter 
+`nextRun` you can execute the worker at a specific time once.
+
+The hosted worker implements the `IHostedService` interface and can be 
+extended as you need it.
+
+## `EventThrottle`
+
+```cs
+public class YourType : DisposableBase
+{
+    protected readonly YourEventThrottle EventThrottle;
+
+    public YourType() : base() => EventThrottle = new(this);
+
+    // This method will raise the OnEvent
+    public void AnyMethod()
+    {
+        RaiseOnEventThrottled();
+    }
+
+    protected override Dispose(bool disposing) => EventThrottle.Dispose();
+
+    // Delegate for OnEvent
+    public delegate void YourTypeEvent_Delegate();
+    // Event to throttle
+    public event YourTypeEvent_Delegate? OnEvent;
+    // Raise the OnEvent using the event throttle
+    protected void RaiseOnEventThrottled() => EventThrottle.Raise();
+    // Finally let the event handlers process the event
+    protected void RaiseOnEvent() => OnEvent?.Invoke();
+
+    // Event throttle implementation
+    public class YourEventThrottle : EventThrottle
+    {
+        // Throttle the event handling down to max. one handling per 300ms
+        public YourEventThrottle(YourType instance) : base(timeout: 300) => Instance = instance;
+
+        public YourType Instance { get; }
+
+        protected override HandleEvent(DateTime raised, int raisedCount)
+        {
+            Instance.RaiseOnEvent();
+        }
+    }
+}
+```
+
+If `AnyMethod` is being called, the event will be forwarded to the event 
+throttle, which decides to throttle or raise the event. If `AnyMethod` was 
+called three times within 300ms, the first call will be executed in realtime, 
+while the 2nd and the 3rd call will be sqashed and executed once 300ms after 
+the 1st call was processed.
+
+This example assumes you're working with a real event - but you may throttle 
+any event (which may not be a real event) using throttling logic.
+
+## `ProcessThrottle`
+
+```cs
+public class YourProcessThrottle : ProcessThrottle
+{
+    // Throttle to processing one object per second
+    public YourProcessThrottle() : base(limit: 1, timeout: 1000) { }
+
+    // Processing API using a timeout
+    public async Task<int> ProcessAsync(Memory<bool> items, TimeSpan timeout)
+        => await ProcessAsync(items.Length, (count) => 
+        {
+            await Task.Yield();
+            Span<bool> toProcess = items.Span[..count];
+            items = items[count..];
+            // Process toProcess
+        }, timeout);
+
+    // Processing API using a cancellation token
+    public async Task<int> ProcessAsync(Memory<bool> items, CancellationToken token = default)
+        => await ProcessAsync(items.Length, (count) => 
+        {
+            await Task.Yield();
+            Span<bool> toProcess = items.Span[..count];
+            items = items[count..];
+            // Process toProcess
+        }, token);
+}
+```
+
+The example will throttle the processing to a maximum of one object per 
+second. Multiple threads may call `ProcessAsync` concurrent - processing will 
+be organized thread-safe.
+
+The return value of `ProcessAsync` is the number of objects processed until 
+timeout or cancelled.
+
+The processing delegate shouldn't care about the timeout or if cancelled and 
+just process the given number of objects.
+
+**NOTE**: A usage gap will slide the throttling timer. Example:
+
+The timeout was set to 3 objects per 100ms. Now processing goes like this:
+
+- First processed object on `0ms` will activate the throttling timeout
+- Next processed object on `10ms` will increase the object throttling counter
+- Next processed object on `110ms` will reset the throttling timeout and 
+counter (the usage gap of 100ms does exceed the timeout)
+- Next 2 processed objects on `120ms` will activate the throttle
+- Next object will have to wait until the throttle was released
+- The throttle will be released on `210ms`, which allows the last object to be 
+processed now
+
+In short words: The throttle timer will not reset in an fixed interval, but 
+the interval starts when processing items.

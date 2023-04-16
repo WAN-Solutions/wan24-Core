@@ -10,7 +10,8 @@ namespace Wan24_Core_Tests
         public void SignedEnum_Tests()
         {
             TestEnum value = TestEnum.Value1 | TestEnum.Flag1;
-            Assert.IsTrue(value.MayContainFlags());
+            EnumInfo<TestEnum> info = new();
+            Assert.IsTrue(info.HasFlags);
             Assert.AreEqual(TestEnum.Value1, value.RemoveFlags());
             Assert.AreEqual(TestEnum.Flag1, value.OnlyFlags());
             Assert.IsTrue(TestEnum.Value1.IsValue());
@@ -19,11 +20,10 @@ namespace Wan24_Core_Tests
             Assert.IsFalse(TestEnum.Flag1.IsValue());
             Assert.AreEqual("Test", TestEnum.Value1.GetDisplayText());
             Assert.AreEqual(nameof(TestEnum.Value2), TestEnum.Value2.GetDisplayText());
-            Assert.IsTrue(typeof(TestEnum).IsMixedEnum());
-            Assert.IsFalse(typeof(string).IsMixedEnum());
-            Assert.IsFalse(typeof(AddressFamily).IsMixedEnum());
+            Assert.IsTrue(typeof(TestEnum).GetEnumInfo().IsMixed);
+            Assert.IsFalse(typeof(AddressFamily).GetEnumInfo().IsMixed);
             {
-                Dictionary<string, object> dict = typeof(TestEnum).GetEnumKeyValues();
+                IReadOnlyDictionary<string, object> dict = info.NumericEnumValues;
                 Assert.AreEqual(7, dict.Count);
                 string[] keys = dict.Keys.ToArray();
                 object[] values = dict.Values.ToArray();
@@ -43,7 +43,7 @@ namespace Wan24_Core_Tests
                 Assert.AreEqual(TestEnum.FLAGS, values[6]);
             }
             {
-                Dictionary<string, TestEnum> dict = EnumExtensions.GetEnumKeyValues<TestEnum>();
+                IReadOnlyDictionary<string, TestEnum> dict = EnumInfo<TestEnum>.KeyValues;
                 Assert.AreEqual(7, dict.Count);
                 string[] keys = dict.Keys.ToArray();
                 TestEnum[] values = dict.Values.ToArray();
@@ -68,7 +68,7 @@ namespace Wan24_Core_Tests
         public void UnsignedEnum_Tests()
         {
             TestEnum2 value = TestEnum2.Value1 | TestEnum2.Flag1;
-            Assert.IsTrue(value.MayContainFlags());
+            Assert.IsTrue(value.GetInfo().HasFlags);
             Assert.AreEqual(TestEnum2.Value1, value.RemoveFlags());
             Assert.AreEqual(TestEnum2.Flag1, value.OnlyFlags());
             Assert.IsTrue(TestEnum2.Value1.IsValue());
