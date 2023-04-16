@@ -8,9 +8,9 @@ namespace Wan24_Core_Tests
         [TestMethod, Timeout(3000)]
         public async Task Default_Tests()
         {
-            using TestObject worker = new(30, HostedServiceTimers.Default);
+            using TestObject worker = new(20, HostedServiceTimers.Default);
             await worker.StartAsync(default);
-            await Task.Delay(50);
+            await Task.Delay(220);
             await worker.StopAsync(default);
             Assert.AreEqual(1, worker.Worked);
         }
@@ -18,9 +18,9 @@ namespace Wan24_Core_Tests
         [TestMethod, Timeout(3000)]
         public async Task Exact_Tests()
         {
-            using TestObject worker = new(30, HostedServiceTimers.Exact);
+            using TestObject worker = new(20, HostedServiceTimers.Exact);
             await worker.StartAsync(default);
-            await Task.Delay(80);
+            await Task.Delay(250);
             await worker.StopAsync(default);
             Assert.AreEqual(2, worker.Worked);
         }
@@ -28,9 +28,9 @@ namespace Wan24_Core_Tests
         [TestMethod, Timeout(3000)]
         public async Task ExactCatchingUp_Tests()
         {
-            using TestObject worker = new(20, HostedServiceTimers.ExactCatchingUp, 50);
+            using TestObject worker = new(20, HostedServiceTimers.ExactCatchingUp);
             await worker.StartAsync(default);
-            await Task.Delay(180);
+            await Task.Delay(350);
             await worker.StopAsync(default);
             Assert.AreEqual(3, worker.Worked);
         }
@@ -38,16 +38,16 @@ namespace Wan24_Core_Tests
         [TestMethod, Timeout(3000)]
         public async Task RunOnceAndNextRun_Tests()
         {
-            using TestObject worker = new(10, HostedServiceTimers.ExactCatchingUp)
+            using TestObject worker = new(20, HostedServiceTimers.ExactCatchingUp)
             {
                 RunOnce = true
             };
             int ran = 0;
             worker.OnRan += (s, e) => ran++;
             await worker.SetTimerAsync(20, HostedServiceTimers.Default, DateTime.Now.AddMilliseconds(100));
-            await Task.Delay(80);
+            await Task.Delay(50);
             Assert.AreEqual(0, worker.Worked);
-            await Task.Delay(170);
+            await Task.Delay(200);
             Assert.IsFalse(worker.IsRunning);
             Assert.AreEqual(1, worker.Worked);
             Assert.AreEqual(1, ran);
@@ -58,7 +58,7 @@ namespace Wan24_Core_Tests
             public readonly int Delay;
             public int Worked = 0;
 
-            public TestObject(int delay, HostedServiceTimers timer, double interval = 20) : base(interval, timer) => Delay = delay;
+            public TestObject(int delay, HostedServiceTimers timer, double interval = 100) : base(interval, timer) => Delay = delay;
 
             protected override async Task WorkerAsync()
             {
