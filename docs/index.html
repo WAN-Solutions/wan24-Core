@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>This is the HOMEPAGE. | wan24-Core </title>
+    <title>wan24-Core | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="This is the HOMEPAGE. | wan24-Core ">
+    <meta name="title" content="wan24-Core | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="favicon.ico">
@@ -60,13 +60,393 @@
         <div class="article row grid">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="this-is-the-homepage">This is the <strong>HOMEPAGE</strong>.</h1>
+<h1 id="wan24-core">wan24-Core</h1>
 
-<p>Refer to <a href="http://daringfireball.net/projects/markdown/">Markdown</a> for how to write markdown files.</p>
-<h2 id="quick-start-notes">Quick Start Notes:</h2>
-<ol>
-<li>Add images to the <em>images</em> folder if the file is referencing an image.</li>
-</ol>
+<p>This core library contains some .NET extensions:</p>
+<ul>
+<li>Bootstrapping</li>
+<li>Disposable base class for disposable types, which supports asynchronous
+disposing
+<ul>
+<li>Dispose attribute for fields/properties which should be disposed
+automatic when disposing</li>
+</ul>
+</li>
+<li>Type helpr (type loading)</li>
+<li>Secure byte array, which clears its contents when disposing</li>
+<li>Pool rented array as disposable object</li>
+<li>Byte array extensions
+<ul>
+<li>Endian conversion</li>
+<li>Bit-converter (endian-safe)</li>
+<li>UTF-8 string decoding</li>
+</ul>
+</li>
+<li>Array helper extensions
+<ul>
+<li>Offset/length validation</li>
+</ul>
+</li>
+<li>Enumerable extensions
+<ul>
+<li>Combine enumerables</li>
+<li>Chunk enumerables</li>
+</ul>
+</li>
+<li>Reflection extensions
+<ul>
+<li>Automatic parameter extension when invoking a method (with DI support)</li>
+<li>Synchronous/asynchronous method invokation</li>
+<li>Automatic constructor invokation using a given parameter set (with DI
+support)</li>
+<li>Nullability detection</li>
+</ul>
+</li>
+<li>Delegate extensions
+<ul>
+<li>Delegate list invokation (with or without return values, with DI support)</li>
+<li>Asynchronous delegate list invokation (with or without return values,
+with DI support)</li>
+</ul>
+</li>
+<li>Task extensions
+<ul>
+<li>Result getting of a generic task</li>
+<li>Asynchronous task list awaiting</li>
+<li>Shortcuts for await configurations</li>
+</ul>
+</li>
+<li>DI helper
+<ul>
+<li>Service provider adoption</li>
+<li>DI object factory delegates</li>
+<li>Asynchronous DI object factory delegates</li>
+</ul>
+</li>
+<li>Enumeration extensions
+<ul>
+<li>Get enumeration value display string from <code>DisplayTextAttribute</code> or
+using <code>ToString</code> (fallback)</li>
+<li>Remove flags of a mixed enumeration value</li>
+<li>Get only flags of a mixed enumeration value</li>
+</ul>
+</li>
+<li>Number extensions
+<ul>
+<li>Determine if a type is a number</li>
+<li>Determine if a number type is unsigned</li>
+<li>Bit-converter (endian-safe)</li>
+<li>Determine if a number (or any <code>IComparable</code>) is within a range</li>
+</ul>
+</li>
+<li>Collection extensions
+<ul>
+<li>Add a range if items</li>
+</ul>
+</li>
+<li>JSON helper
+<ul>
+<li>Exchangeable JSON encoder/decoder delegates (using <code>System.Text.Json</code>
+per default)</li>
+</ul>
+</li>
+<li>JSON extensions
+<ul>
+<li>Encode an object</li>
+<li>Decode from a type</li>
+<li>Decode a string</li>
+</ul>
+</li>
+<li>Object extensions
+<ul>
+<li>Type conversion</li>
+<li>Determine if a value is within a list of values</li>
+</ul>
+</li>
+<li>String extensions
+<ul>
+<li>Get UTF-8 bytes</li>
+</ul>
+</li>
+<li>Queue worker (for actions and/or items)</li>
+<li>Parallel queue worker (for actions and/or items)</li>
+<li><code>ParallelAsync</code> implementation</li>
+<li>Base class for a hosted worker, which implements the <code>IHostedService</code>
+interface (timed or permanent running)</li>
+<li><code>EventThrottle</code> for throttling event handler calls</li>
+<li><code>ProcessThrottle</code> for throttling a processing channel</li>
+<li><code>OrderedDictionary&lt;tKey, tValue&gt;</code> is used for working with indexed key/value
+pairs</li>
+<li><code>Timeout</code> will count down and raise an event, if not reset before reaching
+the timeout</li>
+</ul>
+<h2 id="how-to-get-it">How to get it</h2>
+<p>This library is available as
+(NuGet package &quot;wan24-Core&quot;)[https://www.nuget.org/packages/wan24-Core/].</p>
+<h2 id="bootstrapping">Bootstrapping</h2>
+<p>The <code>Bootstrapper.Async</code> method calls all static methods having the
+<code>BootstrapperAttribute</code>. In order to be able to find the methods, it's
+required to</p>
+<ul>
+<li>add their assembly to the type helper using
+<code>TypeHelper.Instance.AddAssemblies</code> and</li>
+<li>add the <code>BootstrapperAttribute</code> to the assembly</li>
+</ul>
+<p>You may also ad the <code>BootstrapperAttribute</code> to a type and/or the bootstrapper
+method, in case the assembly contains multiple of them.</p>
+<p>The bootstrapper methods may consume parameters which are available from the
+DI helper. The method may be synchronous or asynchronous. The method can't be
+defined in a generic class, and it can't be generic itself.</p>
+<pre><code class="lang-cs">[assembly:Bootstrapper(typeof(YourBootstrapper),nameof(YourBootstrapper.BootstrapperMethod))]
+
+public static class YourBootstrapper
+{
+    public static async Task BootstrapperMethod()
+    {
+        // Perform your bootstrapping here
+    }
+}
+
+// Call the bootstrapper somewhere in your apps initialization code
+TypeHelper.Instance.AddAssemblies(typeof(YourBootstrapper).Assembly);
+await Bootstrap.Async();
+</code></pre>
+<p>The <code>BootstrapperAttribute</code> can be initialized with a numeric priority. The
+bootstrapper will order the found bootstrapping methods by priority, where the
+one with the highest number will be executed first (assembly and type
+priorities count, too). At last there's a assembly location, type and method
+name sorting. Bootstrapper methods will be executed sequential.</p>
+<p>If you give a type and a method name to the assembly <code>BootstrapperAttribute</code>,
+you won't need to add the attribute to the type and the method.</p>
+<p>During bootstrapping, the cancellation token which was given to the
+<code>Bootstrap.Async</code> method, can be injected to a bootstrappers method parameters.</p>
+<h2 id="type-helper">Type helper</h2>
+<p>You'll have to register searchable assemblies using the
+<code>TypeHelper.AddAssemblies</code> method. If you use the <code>TypeHelper.AddTypes</code>
+method, the unknown assemblies of the added types will be added as searchable
+assemblies automatic.</p>
+<p>You may attach to the <code>TypeHelper.OnLoadType</code> event for handling requests
+more dynamic.</p>
+<p>The <code>TypeHelper.GetType</code> method will try <code>Type.GetType</code> first and fall back to
+the helper, if no type was found.</p>
+<h2 id="di-helper">DI helper</h2>
+<p>In order to make DI (dependency injection) working, you need to</p>
+<ul>
+<li>set a <code>DiHelper.ServiceProvider</code> and/or</li>
+<li>add <code>DiHelper.(Async)ObjectFactories</code></li>
+</ul>
+<p>The <code>DiHelper.GetDiObjectAsync</code> method will try to resolve the request
+synchronous, first. But the <code>DiHelper.GetDiObject</code> won't try asynchronous
+object factories.</p>
+<h2 id="mixed-enumeration-value">Mixed enumeration value</h2>
+<p>A mixed enumeration contains X bits enumeration values, and Y bits flags:</p>
+<pre><code class="lang-cs">public enum MixedEnum : int
+{
+    None = 0,
+    Value1 = 1,
+    Value2 = 2,
+    Value3 = 3,
+    ...
+    Flag1 = 1 &lt;&lt; 8,
+    Flag2 = 1 &lt;&lt; 9,
+    FLAGS = Flag1 | Flag2 // Required to identify flags
+}
+</code></pre>
+<p>The <code>FLAGS</code> value helps these extension methods to handle flag values:</p>
+<pre><code class="lang-cs">MixedEnum value = MixedEnum.Value1 | MixedEnum.Flag1,
+    valueOnly = value.RemoveFlags(),// == MixedEnum.Value1
+    flagsOnly = value.OnlyFlags();// == MixedEnum.Flag1
+</code></pre>
+<h2 id="unsafe-code">Unsafe code</h2>
+<p>The library uses unsafe code. If you don't want/need that, you can compile the
+library with the <code>NO_UNSAFE</code> compiler constant to disable any unsafe
+operation. Remember to unset the unsafe compiler option, too!</p>
+<h2 id="disposable-base-class">Disposable base class</h2>
+<p>The <code>DisposableBase</code> implements the <code>IDisposable</code> and <code>IAsyncDisposable</code>
+interfaces. It provides some helpers and events, and also the
+<code>DisposeAttribute</code>, which can be applied to fields and properties which you
+wish to dispose automatic when disposing.</p>
+<p>When your type derives from the <code>DisposableBase</code>, you'll need to implement the
+abstract <code>Dispose</code> method:</p>
+<pre><code class="lang-cs">protected override Dispose(bool disposing)
+{
+    // Your dispose logic here
+}
+</code></pre>
+<p>There are measures to avoid that this method is being called twice.</p>
+<p>To implement custom asynchronous disposing:</p>
+<pre><code class="lang-cs">protected override async Task DisposeCore()
+{
+    // Your dispose logic here
+}
+</code></pre>
+<p>In order to make the <code>DisposeAttribute</code> working, you have to call the
+protected method <code>DisposeAttributes</code> or <code>DisposeAttributesAsync</code>.</p>
+<p>The <code>IsDisposing</code> property value will be <code>true</code> as soon as the disposing
+process started, and it will never become <code>false</code> again. The <code>IsDisposed</code>
+property value will be <code>true</code> as soon as the disposing process did finish.</p>
+<h2 id="queue-worker">Queue worker</h2>
+<pre><code class="lang-cs">using QueueWorker worker = new();
+await worker.EnqueueAsync((ct) =&gt;
+{
+    // Do any background action here
+});
+</code></pre>
+<p>The <code>QueueWorker</code> class can be extended as you need it.</p>
+<p>The <code>ParallelQueueWorker</code> requires a number of threads in the constructor,
+which defines the degree of parallelism, in which enqueued tasks will be
+processed.</p>
+<h2 id="queue-item-worker">Queue item worker</h2>
+<pre><code class="lang-cs">using QueueItemWorker&lt;ItemType&gt; worker = new();
+await worker.EnqueueAsync(new ItemType());
+</code></pre>
+<p>The <code>QueueItemWorker&lt;T&gt;</code> class can be extended as you need it.</p>
+<p>The <code>ParallelItemQueueWorker&lt;T&gt;</code> requires a number of threads in the
+constructor, which defines the degree of parallelism, in which enqueued items
+will be processed.</p>
+<h2 id="parallelasync"><code>ParallelAsync</code></h2>
+<p>Using the .NET parallel implementation it's not possible to invoke
+asynchronous item handlers. For this you can use the
+<code>ParallelAsync.ForEachAsync</code> method, which uses a parallel item queue worker
+in the background for asynchronous processing.</p>
+<h2 id="hosted-worker">Hosted worker</h2>
+<pre><code class="lang-cs">public class YourHostedWorker : HostedWorkerBase
+{
+    public YourHostedWorker() : base() { }
+
+    protected override async Task WorkerAsync()
+    {
+        // Perform the service actions here
+    }
+}
+</code></pre>
+<p>The hosted worker implements the <code>IHostedService</code> interface and can be
+extended as you need it.</p>
+<h2 id="timed-hosted-worker">Timed hosted worker</h2>
+<pre><code class="lang-cs">public class YourHostedWorker : TimedHostedWorkerBase
+{
+    public YourHostedWorker() : base(interval: 500) { }
+
+    protected override async Task WorkerAsync()
+    {
+        // Perform the service actions here
+    }
+}
+</code></pre>
+<p>This example uses a 500ms timer. Based on the defined timer type, the interval
+will be processed in different ways:</p>
+<ul>
+<li><code>Default</code>: Next worker run is now plus the interval (used by default)</li>
+<li><code>Exact</code>: Next worker run is now plus the interval minus the processing
+duration (used, if the start time of the processing is important)</li>
+<li><code>ExactCatchingUp</code>: As <code>Exact</code>, but catching up missing processing runs
+without delay, if a worker run duration exceeds the interval (used, if the
+number of worker runs is important)</li>
+</ul>
+<p>Using the <code>SetTimerAsync</code> method you can change the timer settings at any
+time. If you give the <code>nextRun</code> parameter, you may set a fixed next run time
+(which won't effect the given interval, but just force the service to run at a
+specific time for the next time).</p>
+<p><strong>NOTE</strong>: The <code>nextRun</code> parameter will also force the service to (re)start!</p>
+<p>By setting the property <code>RunOnce</code> to <code>true</code>, the service will stop after
+running the worker once. In combination with the <code>SetTimerAsync</code> parameter
+<code>nextRun</code> you can execute the worker at a specific time once.</p>
+<p>The hosted worker implements the <code>IHostedService</code> interface and can be
+extended as you need it.</p>
+<h2 id="eventthrottle"><code>EventThrottle</code></h2>
+<pre><code class="lang-cs">public class YourType : DisposableBase
+{
+    protected readonly YourEventThrottle EventThrottle;
+
+    public YourType() : base() =&gt; EventThrottle = new(this);
+
+    // This method will raise the OnEvent
+    public void AnyMethod()
+    {
+        RaiseOnEventThrottled();
+    }
+
+    protected override Dispose(bool disposing) =&gt; EventThrottle.Dispose();
+
+    // Delegate for OnEvent
+    public delegate void YourTypeEvent_Delegate();
+    // Event to throttle
+    public event YourTypeEvent_Delegate? OnEvent;
+    // Raise the OnEvent using the event throttle
+    protected void RaiseOnEventThrottled() =&gt; EventThrottle.Raise();
+    // Finally let the event handlers process the event
+    protected void RaiseOnEvent() =&gt; OnEvent?.Invoke();
+
+    // Event throttle implementation
+    public class YourEventThrottle : EventThrottle
+    {
+        // Throttle the event handling down to max. one handling per 300ms
+        public YourEventThrottle(YourType instance) : base(timeout: 300) =&gt; Instance = instance;
+
+        public YourType Instance { get; }
+
+        protected override HandleEvent(DateTime raised, int raisedCount)
+        {
+            Instance.RaiseOnEvent();
+        }
+    }
+}
+</code></pre>
+<p>If <code>AnyMethod</code> is being called, the event will be forwarded to the event
+throttle, which decides to throttle or raise the event. If <code>AnyMethod</code> was
+called three times within 300ms, the first call will be executed in realtime,
+while the 2nd and the 3rd call will be sqashed and executed once 300ms after
+the 1st call was processed.</p>
+<p>This example assumes you're working with a real event - but you may throttle
+any event (which may not be a real event) using throttling logic.</p>
+<h2 id="processthrottle"><code>ProcessThrottle</code></h2>
+<pre><code class="lang-cs">public class YourProcessThrottle : ProcessThrottle
+{
+    // Throttle to processing one object per second
+    public YourProcessThrottle() : base(limit: 1, timeout: 1000) { }
+
+    // Processing API using a timeout
+    public async Task&lt;int&gt; ProcessAsync(Memory&lt;bool&gt; items, TimeSpan timeout)
+        =&gt; await ProcessAsync(items.Length, (count) =&gt; 
+        {
+            await Task.Yield();
+            Span&lt;bool&gt; toProcess = items.Span[..count];
+            items = items[count..];
+            // Process toProcess
+        }, timeout);
+
+    // Processing API using a cancellation token
+    public async Task&lt;int&gt; ProcessAsync(Memory&lt;bool&gt; items, CancellationToken token = default)
+        =&gt; await ProcessAsync(items.Length, (count) =&gt; 
+        {
+            await Task.Yield();
+            Span&lt;bool&gt; toProcess = items.Span[..count];
+            items = items[count..];
+            // Process toProcess
+        }, token);
+}
+</code></pre>
+<p>The example will throttle the processing to a maximum of one object per
+second. Multiple threads may call <code>ProcessAsync</code> concurrent - processing will
+be organized thread-safe.</p>
+<p>The return value of <code>ProcessAsync</code> is the number of objects processed until
+timeout or cancelled.</p>
+<p>The processing delegate shouldn't care about the timeout or if cancelled and
+just process the given number of objects.</p>
+<p><strong>NOTE</strong>: A usage gap will slide the throttling timer. Example:</p>
+<p>The timeout was set to 3 objects per 100ms. Now processing goes like this:</p>
+<ul>
+<li>First processed object on <code>0ms</code> will activate the throttling timeout</li>
+<li>Next processed object on <code>10ms</code> will increase the object throttling counter</li>
+<li>Next processed object on <code>110ms</code> will reset the throttling timeout and
+counter (the usage gap of 100ms does exceed the timeout)</li>
+<li>Next 2 processed objects on <code>120ms</code> will activate the throttle</li>
+<li>Next object will have to wait until the throttle was released</li>
+<li>The throttle will be released on <code>210ms</code>, which allows the last object to be
+processed now</li>
+</ul>
+<p>In short words: The throttle timer will not reset in an fixed interval, but
+the interval starts when processing items.</p>
 </article>
           </div>
           
@@ -75,7 +455,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core Docs/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core Docs/index.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
