@@ -8,11 +8,11 @@ namespace Wan24_Core_Tests
         [TestMethod, Timeout(3000)]
         public async Task Default_Tests()
         {
-            using TestObject worker = new(20, HostedServiceTimers.Default);
+            using TestObject worker = new(50, HostedServiceTimers.Default);
             await worker.StartAsync(default);
-            await Task.Delay(220);
+            await Task.Delay(350);
             await worker.StopAsync(default);
-            Assert.AreEqual(1, worker.Worked);
+            Assert.AreEqual(2, worker.Worked);
         }
 
         [TestMethod, Timeout(3000)]
