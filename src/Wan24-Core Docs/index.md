@@ -70,6 +70,8 @@ interface (timed or permanent running)
 - `ProcessThrottle` for throttling a processing channel
 - `OrderedDictionary<tKey, tValue>` is used for working with indexed key/value 
 pairs
+- `Timeout` will count down and raise an event, if not reset before reaching 
+the timeout
 
 ## How to get it
 
@@ -83,21 +85,21 @@ The `Bootstrapper.Async` method calls all static methods having the
 required to
 
 - add their assembly to the type helper using 
-`TypeHelper.Instance.AddAssemblies`
+`TypeHelper.Instance.AddAssemblies` and 
 - add the `BootstrapperAttribute` to the assembly
-- add the `BootstrapperAttribute` to their enclosing class
-- add the `BootstrapperAttribute` directly to the method
+
+You may also ad the `BootstrapperAttribute` to a type and/or the bootstrapper 
+method, in case the assembly contains multiple of them.
 
 The bootstrapper methods may consume parameters which are available from the 
 DI helper. The method may be synchronous or asynchronous. The method can't be 
 defined in a generic class, and it can't be generic itself.
 
 ```cs
-[assembly:Bootstrapper]
-[Bootstrapper]
+[assembly:Bootstrapper(typeof(YourBootstrapper),nameof(YourBootstrapper.BootstrapperMethod))]
+
 public static class YourBootstrapper
 {
-    [Bootstrapper]
     public static async Task BootstrapperMethod()
     {
         // Perform your bootstrapping here
@@ -114,6 +116,9 @@ bootstrapper will order the found bootstrapping methods by priority, where the
 one with the highest number will be executed first (assembly and type 
 priorities count, too). At last there's a assembly location, type and method 
 name sorting. Bootstrapper methods will be executed sequential.
+
+If you give a type and a method name to the assembly `BootstrapperAttribute`, 
+you won't need to add the attribute to the type and the method.
 
 During bootstrapping, the cancellation token which was given to the 
 `Bootstrap.Async` method, can be injected to a bootstrappers method parameters.

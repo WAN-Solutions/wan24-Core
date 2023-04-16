@@ -177,6 +177,8 @@ interface (timed or permanent running)</li>
 <li><code>ProcessThrottle</code> for throttling a processing channel</li>
 <li><code>OrderedDictionary&lt;tKey, tValue&gt;</code> is used for working with indexed key/value
 pairs</li>
+<li><code>Timeout</code> will count down and raise an event, if not reset before reaching
+the timeout</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
@@ -187,19 +189,18 @@ pairs</li>
 required to</p>
 <ul>
 <li>add their assembly to the type helper using
-<code>TypeHelper.Instance.AddAssemblies</code></li>
+<code>TypeHelper.Instance.AddAssemblies</code> and</li>
 <li>add the <code>BootstrapperAttribute</code> to the assembly</li>
-<li>add the <code>BootstrapperAttribute</code> to their enclosing class</li>
-<li>add the <code>BootstrapperAttribute</code> directly to the method</li>
 </ul>
+<p>You may also ad the <code>BootstrapperAttribute</code> to a type and/or the bootstrapper
+method, in case the assembly contains multiple of them.</p>
 <p>The bootstrapper methods may consume parameters which are available from the
 DI helper. The method may be synchronous or asynchronous. The method can't be
 defined in a generic class, and it can't be generic itself.</p>
-<pre><code class="lang-cs">[assembly:Bootstrapper]
-[Bootstrapper]
+<pre><code class="lang-cs">[assembly:Bootstrapper(typeof(YourBootstrapper),nameof(YourBootstrapper.BootstrapperMethod))]
+
 public static class YourBootstrapper
 {
-    [Bootstrapper]
     public static async Task BootstrapperMethod()
     {
         // Perform your bootstrapping here
@@ -215,6 +216,8 @@ bootstrapper will order the found bootstrapping methods by priority, where the
 one with the highest number will be executed first (assembly and type
 priorities count, too). At last there's a assembly location, type and method
 name sorting. Bootstrapper methods will be executed sequential.</p>
+<p>If you give a type and a method name to the assembly <code>BootstrapperAttribute</code>,
+you won't need to add the attribute to the type and the method.</p>
 <p>During bootstrapping, the cancellation token which was given to the
 <code>Bootstrap.Async</code> method, can be injected to a bootstrappers method parameters.</p>
 <h2 id="type-helper">Type helper</h2>
