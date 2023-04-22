@@ -34,6 +34,21 @@ namespace wan24.Core
             });
             if (Assembly.GetEntryAssembly() is Assembly entry && !_Assemblies.Contains(entry)) _Assemblies.Add(entry);
             if (Assembly.GetCallingAssembly() is Assembly calling && !_Assemblies.Contains(calling)) _Assemblies.Add(calling);
+            Assembly? reference = Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly();
+            if (reference == null) return;
+            List<Assembly> seen = new();
+            void AddAssemblies(Assembly ass)
+            {
+                if (seen.Contains(ass)) return;
+                seen.Add(ass);
+                foreach (AssemblyName name in ass.GetReferencedAssemblies())
+                {
+                    ass = Assembly.Load(name);
+                    if (!_Assemblies.Contains(ass)) _Assemblies.Add(ass);
+                    AddAssemblies(ass);
+                }
+            }
+            AddAssemblies(reference);
         }
 
         /// <summary>

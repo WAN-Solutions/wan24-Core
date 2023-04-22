@@ -47,5 +47,16 @@ namespace Wan24_Core_Tests
             Assert.AreEqual(value, ((double)value).GetBytes().AsSpan().ToDouble());
             Assert.AreEqual(value, ((decimal)value).GetBytes().AsSpan().ToDecimal());
         }
+
+        [TestMethod]
+        public void Clear_Tests()
+        {
+            byte[] arr = new byte[] { 1, 2, 3 },
+                temp = (byte[])arr.Clone();
+            Assert.IsTrue(arr.SequenceEqual(temp));
+            temp.Clear();
+            Assert.IsFalse(arr.SequenceEqual(temp));
+            Assert.IsTrue(temp.SequenceEqual(Enumerable.Repeat((byte)0, 3)));
+        }
     }
 }

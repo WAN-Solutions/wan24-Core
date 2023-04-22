@@ -3,6 +3,8 @@ using System.Collections.Specialized;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
+//TODO .NET 8: Get as frozen dictionary
+
 namespace wan24.Core
 {
     /// <summary>

@@ -1,4 +1,5 @@
 ﻿using System.Buffers;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace wan24.Core
@@ -137,11 +138,22 @@ namespace wan24.Core
         /// <returns>String</returns>
         public static string ToUtf8String(this byte[] bytes)
         {
-            UTF8Encoding utf8 = new(encoderShouldEmitUTF8Identifier: true);
+            UTF8Encoding utf8 = new(encoderShouldEmitUTF8Identifier: true, throwOnInvalidBytes: true);
             char[] chars = new char[bytes.Length];
             utf8.GetDecoder().Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
             if (!completed || used != bytes.Length) throw new InvalidDataException();
             return new string(chars, 0, count);
+        }
+
+        /// <summary>
+        /// Clear the array
+        /// </summary>
+        /// <param name="bytes">Bytes</param>
+        public static void Clear(this byte[] bytes)
+        {
+            if (bytes.Length == 0) return;
+            RandomNumberGenerator.Fill(bytes);
+            Array.Clear(bytes);
         }
     }
 }

@@ -186,5 +186,27 @@ namespace wan24.Core
         /// Flag values
         /// </summary>
         public ReadOnlyCollection<T> EnumFlagValues => FlagValues;
+
+        /// <summary>
+        /// Determine if a value is value
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Is valid?</returns>
+        public static bool IsValid(T value)
+        {
+            if (IsUnsigned)
+            {
+                ulong allValues = 0;
+                foreach (T v in KeyValues.Values) allValues |= EnumExtensions.CastType<ulong>(v);
+                if ((EnumExtensions.CastType<ulong>(value) & ~allValues) != 0) return false;
+            }
+            else
+            {
+                long allValues = 0;
+                foreach (T v in KeyValues.Values) allValues |= EnumExtensions.CastType<long>(v);
+                if ((EnumExtensions.CastType<long>(value) & ~allValues) != 0) return false;
+            }
+            return true;
+        }
     }
 }

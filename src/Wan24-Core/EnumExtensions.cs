@@ -87,6 +87,14 @@
         public static bool IsValue<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.Values.Contains(value);
 
         /// <summary>
+        /// Determine if an enumeration value is valid
+        /// </summary>
+        /// <typeparam name="T">Enumeration type</typeparam>
+        /// <param name="value">Value</param>
+        /// <returns>Is valid?</returns>
+        public static bool IsValid<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.IsValid(value);
+
+        /// <summary>
         /// Cast a type
         /// </summary>
         /// <typeparam name="T">Numeric result type</typeparam>
