@@ -14,6 +14,7 @@ disposing
     - Endian conversion
     - Bit-converter (endian-safe)
     - UTF-8 string decoding
+    - Clearing
 - Array helper extensions
     - Offset/length validation
 - Enumerable extensions
@@ -42,6 +43,7 @@ disposing
     using `ToString` (fallback)
     - Remove flags of a mixed enumeration value
     - Get only flags of a mixed enumeration value
+    - Value validation
 - Number extensions
     - Determine if a type is a number
     - Determine if a number type is unsigned

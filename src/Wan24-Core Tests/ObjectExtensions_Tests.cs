@@ -10,6 +10,7 @@ namespace Wan24_Core_Tests
         {
             Assert.IsTrue(1.In(1, 2, 3));
             Assert.IsFalse(1.In(4, 5, 6));
+            Assert.IsTrue(1.In(new int[] { 1, 2, 3 }.AsEnumerable()));
         }
 
         [TestMethod]

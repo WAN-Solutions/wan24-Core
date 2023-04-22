@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 
@@ -157,8 +158,7 @@ namespace wan24.Core
             try
             {
                 if (Detached || _Array.Length < 1) return;
-                RandomNumberGenerator.Fill(_Array);
-                System.Array.Clear(_Array);
+                _Array.Clear();
             }
             finally
             {
