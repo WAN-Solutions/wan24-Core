@@ -18,6 +18,8 @@ namespace Wan24_Core_Tests
             Assert.IsFalse(TestEnum.Value1.IsFlag());
             Assert.IsTrue(TestEnum.Flag1.IsFlag());
             Assert.IsFalse(TestEnum.Flag1.IsValue());
+            Assert.IsTrue(value.IsValid());
+            Assert.IsFalse(((TestEnum)4).IsValid());
             Assert.AreEqual("Test", TestEnum.Value1.GetDisplayText());
             Assert.AreEqual(nameof(TestEnum.Value2), TestEnum.Value2.GetDisplayText());
             Assert.IsTrue(typeof(TestEnum).GetEnumInfo().IsMixed);
@@ -75,10 +77,12 @@ namespace Wan24_Core_Tests
             Assert.IsFalse(TestEnum2.Value1.IsFlag());
             Assert.IsTrue(TestEnum2.Flag1.IsFlag());
             Assert.IsFalse(TestEnum2.Flag1.IsValue());
+            Assert.IsTrue(value.IsValid());
+            Assert.IsFalse(((TestEnum2)4).IsValid());
         }
 
         [Flags]
-        public enum TestEnum : int
+        public enum TestEnum : short
         {
             None = 0,
             [DisplayText("Test")]
@@ -91,7 +95,7 @@ namespace Wan24_Core_Tests
         }
 
         [Flags]
-        public enum TestEnum2 : uint
+        public enum TestEnum2 : ushort
         {
             None = 0,
             Value1 = 1,
