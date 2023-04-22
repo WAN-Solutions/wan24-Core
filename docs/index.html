@@ -188,12 +188,7 @@ the timeout</li>
 <h2 id="bootstrapping">Bootstrapping</h2>
 <p>The <code>Bootstrapper.Async</code> method calls all static methods having the
 <code>BootstrapperAttribute</code>. In order to be able to find the methods, it's
-required to</p>
-<ul>
-<li>add their assembly to the type helper using
-<code>TypeHelper.Instance.AddAssemblies</code> and</li>
-<li>add the <code>BootstrapperAttribute</code> to the assembly</li>
-</ul>
+required to add the <code>BootstrapperAttribute</code> to the assembly.</p>
 <p>You may also ad the <code>BootstrapperAttribute</code> to a type and/or the bootstrapper
 method, in case the assembly contains multiple of them.</p>
 <p>The bootstrapper methods may consume parameters which are available from the
@@ -210,7 +205,6 @@ public static class YourBootstrapper
 }
 
 // Call the bootstrapper somewhere in your apps initialization code
-TypeHelper.Instance.AddAssemblies(typeof(YourBootstrapper).Assembly);
 await Bootstrap.Async();
 </code></pre>
 <p>The <code>BootstrapperAttribute</code> can be initialized with a numeric priority. The
@@ -223,10 +217,8 @@ you won't need to add the attribute to the type and the method.</p>
 <p>During bootstrapping, the cancellation token which was given to the
 <code>Bootstrap.Async</code> method, can be injected to a bootstrappers method parameters.</p>
 <h2 id="type-helper">Type helper</h2>
-<p>You'll have to register searchable assemblies using the
-<code>TypeHelper.AddAssemblies</code> method. If you use the <code>TypeHelper.AddTypes</code>
-method, the unknown assemblies of the added types will be added as searchable
-assemblies automatic.</p>
+<p>If you use the <code>TypeHelper.AddTypes</code> method, the unknown assemblies of the
+added types will be added as searchable assemblies automatic.</p>
 <p>You may attach to the <code>TypeHelper.OnLoadType</code> event for handling requests
 more dynamic.</p>
 <p>The <code>TypeHelper.GetType</code> method will try <code>Type.GetType</code> first and fall back to
@@ -457,7 +449,7 @@ the interval starts when processing items.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core Docs/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core Docs/index.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

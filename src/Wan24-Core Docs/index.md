@@ -84,11 +84,7 @@ This library is available as
 
 The `Bootstrapper.Async` method calls all static methods having the 
 `BootstrapperAttribute`. In order to be able to find the methods, it's 
-required to
-
-- add their assembly to the type helper using 
-`TypeHelper.Instance.AddAssemblies` and 
-- add the `BootstrapperAttribute` to the assembly
+required to add the `BootstrapperAttribute` to the assembly.
 
 You may also ad the `BootstrapperAttribute` to a type and/or the bootstrapper 
 method, in case the assembly contains multiple of them.
@@ -109,7 +105,6 @@ public static class YourBootstrapper
 }
 
 // Call the bootstrapper somewhere in your apps initialization code
-TypeHelper.Instance.AddAssemblies(typeof(YourBootstrapper).Assembly);
 await Bootstrap.Async();
 ```
 
@@ -127,10 +122,8 @@ During bootstrapping, the cancellation token which was given to the
 
 ## Type helper
 
-You'll have to register searchable assemblies using the 
-`TypeHelper.AddAssemblies` method. If you use the `TypeHelper.AddTypes` 
-method, the unknown assemblies of the added types will be added as searchable 
-assemblies automatic.
+If you use the `TypeHelper.AddTypes` method, the unknown assemblies of the 
+added types will be added as searchable assemblies automatic.
 
 You may attach to the `TypeHelper.OnLoadType` event for handling requests 
 more dynamic.
