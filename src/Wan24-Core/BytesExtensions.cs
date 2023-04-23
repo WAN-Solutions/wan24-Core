@@ -136,7 +136,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
-        public static string ToUtf8String(this byte[] bytes)
+        public static string ToUtf8String(this Span<byte> bytes)
         {
             UTF8Encoding utf8 = new(encoderShouldEmitUTF8Identifier: true, throwOnInvalidBytes: true);
             char[] chars = new char[bytes.Length];
@@ -144,6 +144,22 @@ namespace wan24.Core
             if (!completed || used != bytes.Length) throw new InvalidDataException();
             return new string(chars, 0, count);
         }
+
+        /// <summary>
+        /// Get an UTF-8 string
+        /// </summary>
+        /// <param name="bytes">Bytes</param>
+        /// <returns>String</returns>
+        public static string ToUtf8String(this Memory<byte> bytes)
+            => bytes.Span.ToUtf8String();
+
+        /// <summary>
+        /// Get an UTF-8 string
+        /// </summary>
+        /// <param name="bytes">Bytes</param>
+        /// <returns>String</returns>
+        public static string ToUtf8String(this byte[] bytes)
+            => bytes.AsSpan().ToUtf8String();
 
         /// <summary>
         /// Clear the array
