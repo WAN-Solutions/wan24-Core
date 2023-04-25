@@ -26,7 +26,7 @@ namespace wan24.Core
             T[] values = (T[])Enum.GetValues(typeof(T));
             if (IsUnsigned)
             {
-                Flags = HasFlagsAttribute ? EnumExtensions.CastType<ulong>(Enum.Parse<T>(FLAGS_NAME)) : 0;
+                Flags = IsMixedEnum ? EnumExtensions.CastType<ulong>(Enum.Parse<T>(FLAGS_NAME)) : 0;
                 NumericValues = (new OrderedDictionary<string, object>(from value in values.Cast<object>()
                                                                        orderby EnumExtensions.CastType<ulong>(value)
                                                                        select new KeyValuePair<string, object>(value.ToString()!, value)
@@ -66,7 +66,7 @@ namespace wan24.Core
             }
             else
             {
-                Flags = HasFlagsAttribute ? EnumExtensions.CastType<long>(Enum.Parse<T>(FLAGS_NAME)) : 0;
+                Flags = IsMixedEnum ? EnumExtensions.CastType<long>(Enum.Parse<T>(FLAGS_NAME)) : 0;
                 NumericValues = (new OrderedDictionary<string, object>(from value in values.Cast<object>()
                                                                        orderby EnumExtensions.CastType<long>(value)
                                                                        select new KeyValuePair<string, object>(value.ToString()!, value)
