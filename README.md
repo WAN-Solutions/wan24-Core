@@ -148,6 +148,7 @@ object factories.
 A mixed enumeration contains X bits enumeration values, and Y bits flags:
 
 ```cs
+[Flags]
 public enum MixedEnum : int
 {
     None = 0,
