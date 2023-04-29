@@ -74,6 +74,7 @@ interface (timed or permanent running)
 pairs
 - `Timeout` will count down and raise an event, if not reset before reaching 
 the timeout
+- `ILogger` support
 
 ## How to get it
 
