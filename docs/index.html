@@ -235,7 +235,8 @@ synchronous, first. But the <code>DiHelper.GetDiObject</code> won't try asynchro
 object factories.</p>
 <h2 id="mixed-enumeration-value">Mixed enumeration value</h2>
 <p>A mixed enumeration contains X bits enumeration values, and Y bits flags:</p>
-<pre><code class="lang-cs">public enum MixedEnum : int
+<pre><code class="lang-cs">[Flags]
+public enum MixedEnum : int
 {
     None = 0,
     Value1 = 1,
