@@ -137,11 +137,13 @@
         }
 
         /// <inheritdoc/>
+#pragma warning disable CA1816 // Call GC
         public override void Dispose()
         {
             base.Dispose();
             Busy.Dispose();
             Processing.Dispose();
         }
+#pragma warning restore CA1816 // Call GC
     }
 }

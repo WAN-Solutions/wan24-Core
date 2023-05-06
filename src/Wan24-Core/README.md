@@ -63,6 +63,15 @@ disposing
     - Determine if a value is within a list of values
 - String extensions
     - Get UTF-8 bytes
+- Generic helper
+    - Determine if two generic values are equal
+    - Determine if a value is `null`
+    - Determine if a value is `default`
+    - Determine if a value is `null` or `default`
+- `DateTime` extensions
+    - Determine if a time is within a range
+    - Determine if a time matches a reference time plus/minus an offset
+    - Apply an offset to a time base on a reference time
 - Queue worker (for actions and/or items)
 - Parallel queue worker (for actions and/or items)
 - `ParallelAsync` implementation
@@ -74,6 +83,7 @@ interface (timed or permanent running)
 pairs
 - `Timeout` will count down and raise an event, if not reset before reaching 
 the timeout
+- `ILogger` support
 
 ## How to get it
 
@@ -147,6 +157,7 @@ object factories.
 A mixed enumeration contains X bits enumeration values, and Y bits flags:
 
 ```cs
+[Flags]
 public enum MixedEnum : int
 {
     None = 0,

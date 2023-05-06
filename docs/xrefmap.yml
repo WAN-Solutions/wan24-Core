@@ -604,6 +604,50 @@ references:
   fullName.vb: wan24.Core.CollectionExtensions.AddRange(Of T)(ICollection(Of T), IEnumerable(Of T))
   nameWithType: CollectionExtensions.AddRange<T>(ICollection<T>, IEnumerable<T>)
   nameWithType.vb: CollectionExtensions.AddRange(Of T)(ICollection(Of T), IEnumerable(Of T))
+- uid: wan24.Core.DateTimeExtensions
+  name: DateTimeExtensions
+  href: api/wan24.Core.DateTimeExtensions.html
+  commentId: T:wan24.Core.DateTimeExtensions
+  fullName: wan24.Core.DateTimeExtensions
+  nameWithType: DateTimeExtensions
+- uid: wan24.Core.DateTimeExtensions.ApplyOffset(DateTime,TimeSpan,System.Nullable{DateTime})
+  name: ApplyOffset(DateTime, TimeSpan, Nullable<DateTime>)
+  href: api/wan24.Core.DateTimeExtensions.html#wan24_Core_DateTimeExtensions_ApplyOffset_DateTime_TimeSpan_System_Nullable_DateTime__
+  commentId: M:wan24.Core.DateTimeExtensions.ApplyOffset(DateTime,TimeSpan,System.Nullable{DateTime})
+  name.vb: ApplyOffset(DateTime, TimeSpan, Nullable(Of DateTime))
+  fullName: wan24.Core.DateTimeExtensions.ApplyOffset(DateTime, TimeSpan, System.Nullable<DateTime>)
+  fullName.vb: wan24.Core.DateTimeExtensions.ApplyOffset(DateTime, TimeSpan, System.Nullable(Of DateTime))
+  nameWithType: DateTimeExtensions.ApplyOffset(DateTime, TimeSpan, Nullable<DateTime>)
+  nameWithType.vb: DateTimeExtensions.ApplyOffset(DateTime, TimeSpan, Nullable(Of DateTime))
+- uid: wan24.Core.DateTimeExtensions.ApplyOffset*
+  name: ApplyOffset
+  href: api/wan24.Core.DateTimeExtensions.html#wan24_Core_DateTimeExtensions_ApplyOffset_
+  commentId: Overload:wan24.Core.DateTimeExtensions.ApplyOffset
+  isSpec: "True"
+  fullName: wan24.Core.DateTimeExtensions.ApplyOffset
+  nameWithType: DateTimeExtensions.ApplyOffset
+- uid: wan24.Core.DateTimeExtensions.IsInRange(DateTime,DateTime,DateTime,System.Boolean,System.Boolean)
+  name: IsInRange(DateTime, DateTime, DateTime, Boolean, Boolean)
+  href: api/wan24.Core.DateTimeExtensions.html#wan24_Core_DateTimeExtensions_IsInRange_DateTime_DateTime_DateTime_System_Boolean_System_Boolean_
+  commentId: M:wan24.Core.DateTimeExtensions.IsInRange(DateTime,DateTime,DateTime,System.Boolean,System.Boolean)
+  fullName: wan24.Core.DateTimeExtensions.IsInRange(DateTime, DateTime, DateTime, System.Boolean, System.Boolean)
+  nameWithType: DateTimeExtensions.IsInRange(DateTime, DateTime, DateTime, Boolean, Boolean)
+- uid: wan24.Core.DateTimeExtensions.IsInRange(DateTime,TimeSpan,System.Nullable{DateTime})
+  name: IsInRange(DateTime, TimeSpan, Nullable<DateTime>)
+  href: api/wan24.Core.DateTimeExtensions.html#wan24_Core_DateTimeExtensions_IsInRange_DateTime_TimeSpan_System_Nullable_DateTime__
+  commentId: M:wan24.Core.DateTimeExtensions.IsInRange(DateTime,TimeSpan,System.Nullable{DateTime})
+  name.vb: IsInRange(DateTime, TimeSpan, Nullable(Of DateTime))
+  fullName: wan24.Core.DateTimeExtensions.IsInRange(DateTime, TimeSpan, System.Nullable<DateTime>)
+  fullName.vb: wan24.Core.DateTimeExtensions.IsInRange(DateTime, TimeSpan, System.Nullable(Of DateTime))
+  nameWithType: DateTimeExtensions.IsInRange(DateTime, TimeSpan, Nullable<DateTime>)
+  nameWithType.vb: DateTimeExtensions.IsInRange(DateTime, TimeSpan, Nullable(Of DateTime))
+- uid: wan24.Core.DateTimeExtensions.IsInRange*
+  name: IsInRange
+  href: api/wan24.Core.DateTimeExtensions.html#wan24_Core_DateTimeExtensions_IsInRange_
+  commentId: Overload:wan24.Core.DateTimeExtensions.IsInRange
+  isSpec: "True"
+  fullName: wan24.Core.DateTimeExtensions.IsInRange
+  nameWithType: DateTimeExtensions.IsInRange
 - uid: wan24.Core.DelegateExtensions
   name: DelegateExtensions
   href: api/wan24.Core.DelegateExtensions.html
@@ -1768,6 +1812,76 @@ references:
   isSpec: "True"
   fullName: wan24.Core.EventThrottle.TotalThrottledRaisedCount
   nameWithType: EventThrottle.TotalThrottledRaisedCount
+- uid: wan24.Core.GenericHelper
+  name: GenericHelper
+  href: api/wan24.Core.GenericHelper.html
+  commentId: T:wan24.Core.GenericHelper
+  fullName: wan24.Core.GenericHelper
+  nameWithType: GenericHelper
+- uid: wan24.Core.GenericHelper.AreEqual*
+  name: AreEqual
+  href: api/wan24.Core.GenericHelper.html#wan24_Core_GenericHelper_AreEqual_
+  commentId: Overload:wan24.Core.GenericHelper.AreEqual
+  isSpec: "True"
+  fullName: wan24.Core.GenericHelper.AreEqual
+  nameWithType: GenericHelper.AreEqual
+- uid: wan24.Core.GenericHelper.AreEqual``1(``0,``0)
+  name: AreEqual<T>(T, T)
+  href: api/wan24.Core.GenericHelper.html#wan24_Core_GenericHelper_AreEqual__1___0___0_
+  commentId: M:wan24.Core.GenericHelper.AreEqual``1(``0,``0)
+  name.vb: AreEqual(Of T)(T, T)
+  fullName: wan24.Core.GenericHelper.AreEqual<T>(T, T)
+  fullName.vb: wan24.Core.GenericHelper.AreEqual(Of T)(T, T)
+  nameWithType: GenericHelper.AreEqual<T>(T, T)
+  nameWithType.vb: GenericHelper.AreEqual(Of T)(T, T)
+- uid: wan24.Core.GenericHelper.IsDefault*
+  name: IsDefault
+  href: api/wan24.Core.GenericHelper.html#wan24_Core_GenericHelper_IsDefault_
+  commentId: Overload:wan24.Core.GenericHelper.IsDefault
+  isSpec: "True"
+  fullName: wan24.Core.GenericHelper.IsDefault
+  nameWithType: GenericHelper.IsDefault
+- uid: wan24.Core.GenericHelper.IsDefault``1(``0)
+  name: IsDefault<T>(T)
+  href: api/wan24.Core.GenericHelper.html#wan24_Core_GenericHelper_IsDefault__1___0_
+  commentId: M:wan24.Core.GenericHelper.IsDefault``1(``0)
+  name.vb: IsDefault(Of T)(T)
+  fullName: wan24.Core.GenericHelper.IsDefault<T>(T)
+  fullName.vb: wan24.Core.GenericHelper.IsDefault(Of T)(T)
+  nameWithType: GenericHelper.IsDefault<T>(T)
+  nameWithType.vb: GenericHelper.IsDefault(Of T)(T)
+- uid: wan24.Core.GenericHelper.IsNull*
+  name: IsNull
+  href: api/wan24.Core.GenericHelper.html#wan24_Core_GenericHelper_IsNull_
+  commentId: Overload:wan24.Core.GenericHelper.IsNull
+  isSpec: "True"
+  fullName: wan24.Core.GenericHelper.IsNull
+  nameWithType: GenericHelper.IsNull
+- uid: wan24.Core.GenericHelper.IsNull``1(``0)
+  name: IsNull<T>(T)
+  href: api/wan24.Core.GenericHelper.html#wan24_Core_GenericHelper_IsNull__1___0_
+  commentId: M:wan24.Core.GenericHelper.IsNull``1(``0)
+  name.vb: IsNull(Of T)(T)
+  fullName: wan24.Core.GenericHelper.IsNull<T>(T)
+  fullName.vb: wan24.Core.GenericHelper.IsNull(Of T)(T)
+  nameWithType: GenericHelper.IsNull<T>(T)
+  nameWithType.vb: GenericHelper.IsNull(Of T)(T)
+- uid: wan24.Core.GenericHelper.IsNullOrDefault*
+  name: IsNullOrDefault
+  href: api/wan24.Core.GenericHelper.html#wan24_Core_GenericHelper_IsNullOrDefault_
+  commentId: Overload:wan24.Core.GenericHelper.IsNullOrDefault
+  isSpec: "True"
+  fullName: wan24.Core.GenericHelper.IsNullOrDefault
+  nameWithType: GenericHelper.IsNullOrDefault
+- uid: wan24.Core.GenericHelper.IsNullOrDefault``1(``0)
+  name: IsNullOrDefault<T>(T)
+  href: api/wan24.Core.GenericHelper.html#wan24_Core_GenericHelper_IsNullOrDefault__1___0_
+  commentId: M:wan24.Core.GenericHelper.IsNullOrDefault``1(``0)
+  name.vb: IsNullOrDefault(Of T)(T)
+  fullName: wan24.Core.GenericHelper.IsNullOrDefault<T>(T)
+  fullName.vb: wan24.Core.GenericHelper.IsNullOrDefault(Of T)(T)
+  nameWithType: GenericHelper.IsNullOrDefault<T>(T)
+  nameWithType.vb: GenericHelper.IsNullOrDefault(Of T)(T)
 - uid: wan24.Core.HostedServiceBase
   name: HostedServiceBase
   href: api/wan24.Core.HostedServiceBase.html
@@ -2921,6 +3035,38 @@ references:
   fullName.vb: wan24.Core.ObjectExtensions.In(Of T)(T, IEnumerable(Of T))
   nameWithType: ObjectExtensions.In<T>(T, IEnumerable<T>)
   nameWithType.vb: ObjectExtensions.In(Of T)(T, IEnumerable(Of T))
+- uid: wan24.Core.ObjectHelper
+  name: ObjectHelper
+  href: api/wan24.Core.ObjectHelper.html
+  commentId: T:wan24.Core.ObjectHelper
+  fullName: wan24.Core.ObjectHelper
+  nameWithType: ObjectHelper
+- uid: wan24.Core.ObjectHelper.AreEqual(System.Object,System.Object)
+  name: AreEqual(Object, Object)
+  href: api/wan24.Core.ObjectHelper.html#wan24_Core_ObjectHelper_AreEqual_System_Object_System_Object_
+  commentId: M:wan24.Core.ObjectHelper.AreEqual(System.Object,System.Object)
+  fullName: wan24.Core.ObjectHelper.AreEqual(System.Object, System.Object)
+  nameWithType: ObjectHelper.AreEqual(Object, Object)
+- uid: wan24.Core.ObjectHelper.AreEqual*
+  name: AreEqual
+  href: api/wan24.Core.ObjectHelper.html#wan24_Core_ObjectHelper_AreEqual_
+  commentId: Overload:wan24.Core.ObjectHelper.AreEqual
+  isSpec: "True"
+  fullName: wan24.Core.ObjectHelper.AreEqual
+  nameWithType: ObjectHelper.AreEqual
+- uid: wan24.Core.ObjectHelper.IsNull(System.Object)
+  name: IsNull(Object)
+  href: api/wan24.Core.ObjectHelper.html#wan24_Core_ObjectHelper_IsNull_System_Object_
+  commentId: M:wan24.Core.ObjectHelper.IsNull(System.Object)
+  fullName: wan24.Core.ObjectHelper.IsNull(System.Object)
+  nameWithType: ObjectHelper.IsNull(Object)
+- uid: wan24.Core.ObjectHelper.IsNull*
+  name: IsNull
+  href: api/wan24.Core.ObjectHelper.html#wan24_Core_ObjectHelper_IsNull_
+  commentId: Overload:wan24.Core.ObjectHelper.IsNull
+  isSpec: "True"
+  fullName: wan24.Core.ObjectHelper.IsNull
+  nameWithType: ObjectHelper.IsNull
 - uid: wan24.Core.OrderedDictionary`2
   name: OrderedDictionary<tKey, tValue>
   href: api/wan24.Core.OrderedDictionary-2.html
