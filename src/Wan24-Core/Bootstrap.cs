@@ -8,6 +8,11 @@ namespace wan24.Core
     public static class Bootstrap
     {
         /// <summary>
+        /// Asynchronous bootstrapper
+        /// </summary>
+        public static List<BootStrapAsync_Delegate> AsyncBootstrapper { get; } = new();
+
+        /// <summary>
         /// Bootstrap
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
@@ -68,11 +73,30 @@ namespace wan24.Core
                         mi.InvokeAuto(obj: null);
                     }
                 }
+                // Raise the events
+                foreach (BootStrapAsync_Delegate bootstrapper in AsyncBootstrapper) await bootstrapper(cancellationToken).DynamicContext();
+                OnBootstrap?.Invoke();
             }
             finally
             {
                 DiHelper.ObjectFactories.Remove(typeof(CancellationToken), out _);
             }
         }
+
+        /// <summary>
+        /// Delegate for the <see cref="OnBootstrap"/> event
+        /// </summary>
+        public delegate void Bootstrap_Delegate();
+        /// <summary>
+        /// Raised when bootstrapping
+        /// </summary>
+        public static event Bootstrap_Delegate? OnBootstrap;
+
+        /// <summary>
+        /// Delegate for asynchronous bootstrapper
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns></returns>
+        public delegate Task BootStrapAsync_Delegate(CancellationToken cancellationToken);
     }
 }
