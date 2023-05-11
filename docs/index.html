@@ -143,7 +143,7 @@ using <code>ToString</code> (fallback)</li>
 </li>
 <li>Collection extensions
 <ul>
-<li>Add a range if items</li>
+<li>Add a range of items</li>
 </ul>
 </li>
 <li>JSON helper
@@ -170,6 +170,21 @@ per default)</li>
 <li>Get UTF-8 bytes</li>
 </ul>
 </li>
+<li>Generic helper
+<ul>
+<li>Determine if two generic values are equal</li>
+<li>Determine if a value is <code>null</code></li>
+<li>Determine if a value is <code>default</code></li>
+<li>Determine if a value is <code>null</code> or <code>default</code></li>
+</ul>
+</li>
+<li><code>DateTime</code> extensions
+<ul>
+<li>Determine if a time is within a range</li>
+<li>Determine if a time matches a reference time plus/minus an offset</li>
+<li>Apply an offset to a time base on a reference time</li>
+</ul>
+</li>
 <li>Queue worker (for actions and/or items)</li>
 <li>Parallel queue worker (for actions and/or items)</li>
 <li><code>ParallelAsync</code> implementation</li>
@@ -181,10 +196,13 @@ interface (timed or permanent running)</li>
 pairs</li>
 <li><code>Timeout</code> will count down and raise an event, if not reset before reaching
 the timeout</li>
+<li><code>ILogger</code> support</li>
+<li><code>IChangeToken</code> support using <code>ChangeCallback</code></li>
+<li>Hierarchic configuration using <code>OverrideableConfig</code></li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
-(NuGet package &quot;wan24-Core&quot;)[https://www.nuget.org/packages/wan24-Core/].</p>
+<a href="https://www.nuget.org/packages/wan24-Core/">NuGet package &quot;wan24-Core&quot;</a>.</p>
 <h2 id="bootstrapping">Bootstrapping</h2>
 <p>The <code>Bootstrapper.Async</code> method calls all static methods having the
 <code>BootstrapperAttribute</code>. In order to be able to find the methods, it's
@@ -234,7 +252,8 @@ synchronous, first. But the <code>DiHelper.GetDiObject</code> won't try asynchro
 object factories.</p>
 <h2 id="mixed-enumeration-value">Mixed enumeration value</h2>
 <p>A mixed enumeration contains X bits enumeration values, and Y bits flags:</p>
-<pre><code class="lang-cs">public enum MixedEnum : int
+<pre><code class="lang-cs">[Flags]
+public enum MixedEnum : int
 {
     None = 0,
     Value1 = 1,
@@ -441,6 +460,159 @@ processed now</li>
 </ul>
 <p>In short words: The throttle timer will not reset in an fixed interval, but
 the interval starts when processing items.</p>
+<h2 id="change-token">Change token</h2>
+<p>Implement by extending <code>ChangeToken</code>:</p>
+<pre><code class="lang-cs">public class YourObservableType : ChangeToken
+{
+    public YourObservableType() : base()
+    {
+        ChangeIdentifier = () =&gt; HasChanged;
+    }
+
+    public bool HasChanged =&gt; ...;// Return if the object was changed
+
+    public void ChangeAction()
+    {
+        // Perform changes
+        InvokeCallbacks();
+    }
+}
+</code></pre>
+<p>Or by using a <code>ChangeToken</code> instance:</p>
+<pre><code class="lang-cs">public class YourObservableType : IChangeToken
+{
+    public readonly ChangeToken ChangeToken;
+
+    public YourObservableType() =&gt; ChangeToken = new(() =&gt; HasChanged);
+
+    public bool HasChanged =&gt; ...;// Return if the object was changed
+
+    public void ChangeAction()
+    {
+        // Perform changes
+        ChangeToken.InvokeCallbacks();
+    }
+
+    // Implement the IChangeToken interface using our ChangeToken instance
+
+    bool IChangeToken.HasChanged =&gt; ChangeToken.HasChanged;
+
+    bool IChangeToken.ActiveChangeCallbacks =&gt; ChangeToken.ActiveChangeCallbacks;
+
+    IDisposable IChangeToken.RegisterChangeCallback(Action&lt;object?&gt; callback, object? state)
+        =&gt; ChangeToken.RegisterChangeCallback(callback, state);
+}
+</code></pre>
+<h2 id="hierarchic-configuration">Hierarchic configuration</h2>
+<p>Assume this configuration hierarchy:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Default values</td>
+</tr>
+<tr>
+<td>2</td>
+<td>User values (can override default values)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Administrator values (can override default/user values)</td>
+</tr>
+</tbody>
+</table>
+<p>In code:</p>
+<pre><code class="lang-cs">public sealed class Config : OverrideableConfig&lt;Config&gt;
+{
+    public Config() : base()
+    {
+        SubConfig = new(this, new(this));// User values
+        InitProperties();
+    }
+
+    private Config(Config parent, Config? sub = null) : base(parent)
+    {
+        if(sub != null)
+        {
+            SubConfig = sub;
+            sub.ParentConfig = this;
+            sub.SubConfig = new(sub);// Administrator values
+        }
+        InitProperties();
+    }
+
+    // A configuration value
+    public ConfigOption&lt;string, Config&gt; AnyValue { get; private set; } = null!;
+
+    private void InitProperties()
+    {
+        AnyValue = ParentConfig == null 
+            // The master option has a default value
+            ? new(this, nameof(AnyValue), canBeOverridden: true, &quot;default&quot;)
+            // No default value for a sub-option
+            : new(this, nameof(AnyValue));
+    }
+}
+
+Config config = new(),
+    user = config.SubConfig,
+    admin = user.SubConfig;
+</code></pre>
+<p><strong>CAUTION</strong>: There's no endless-recursion protection for the <code>ParentConfig</code> or
+the <code>SubConfig</code> properties!</p>
+<p>Now users are able to override default values, and administrators are able to
+override default and/or user values:</p>
+<pre><code class="lang-cs">// Still the default value
+Assert.AreEqual(&quot;default&quot;, config.AnyValue.FinalValue);
+
+// User overrides the default value
+user.AnyValue.Value = &quot;user&quot;;
+Assert.AreEqual(&quot;default&quot;, config.AnyValue.Value);
+Assert.AreEqual(&quot;user&quot;, config.AnyValue.FinalValue);
+
+// Administrator overrides the user value
+admin.AnyValue.Value = &quot;admin&quot;;
+Assert.AreEqual(&quot;admin&quot;, config.AnyValue.FinalValue);
+
+// User can't override the administrator value (but still store his own value 
+// in case the administrator would unset his value)
+user.AnyValue.Value = &quot;test&quot;;
+Assert.AreEqual(&quot;admin&quot;, config.AnyValue.FinalValue);
+Assert.AreEqual(&quot;test&quot;, user.AnyValue.Value);
+</code></pre>
+<p><strong>NOTE</strong>: Setting an option value is thread-safe.</p>
+<p>It's also possible to flip the hierarchy:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Default values</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Administrator values (can define not overrideable values)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>User values (can override overrideable values)</td>
+</tr>
+</tbody>
+</table>
+<p>Using this hierarchy an administrator could also allow or deny overriding
+values at any time, for example.</p>
+<p>The hierarchy depth isn't limited.</p>
 </article>
           </div>
           
