@@ -8,7 +8,7 @@ namespace wan24.Core
     public static class Bootstrap
     {
         /// <summary>
-        /// Asynchronous bootstrapper
+        /// Asynchronous bootstrapper (after running bootstrapper methods)
         /// </summary>
         public static List<BootStrapAsync_Delegate> AsyncBootstrapper { get; } = new();
 
@@ -88,7 +88,7 @@ namespace wan24.Core
         /// </summary>
         public delegate void Bootstrap_Delegate();
         /// <summary>
-        /// Raised when bootstrapping
+        /// Raised when bootstrapping (after running bootstrapper methods and the asynchronous bootstrapper delegates)
         /// </summary>
         public static event Bootstrap_Delegate? OnBootstrap;
 

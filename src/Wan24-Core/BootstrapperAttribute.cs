@@ -9,7 +9,7 @@
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="priority">Priority</param>
+        /// <param name="priority">Priority (higher value runs first)</param>
         public BootstrapperAttribute(int priority = 0) : base() => Priority = priority;
 
         /// <summary>
@@ -17,7 +17,7 @@
         /// </summary>
         /// <param name="type">Bootstrapper type</param>
         /// <param name="method">Method name</param>
-        /// <param name="priority">Priority</param>
+        /// <param name="priority">Priority (higher value runs first)</param>
         public BootstrapperAttribute(Type type, string? method = null, int priority = 0) : base()
         {
             Priority = priority;
@@ -26,7 +26,7 @@
         }
 
         /// <summary>
-        /// Priority
+        /// Priority (higher value runs first)
         /// </summary>
         public int Priority { get; }
 

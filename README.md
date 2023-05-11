@@ -50,7 +50,7 @@ disposing
     - Bit-converter (endian-safe)
     - Determine if a number (or any `IComparable`) is within a range
 - Collection extensions
-    - Add a range if items
+    - Add a range of items
 - JSON helper
     - Exchangeable JSON encoder/decoder delegates (using `System.Text.Json` 
     per default)
@@ -84,11 +84,13 @@ pairs
 - `Timeout` will count down and raise an event, if not reset before reaching 
 the timeout
 - `ILogger` support
+- `IChangeToken` support using `ChangeCallback`
+- Hierarchic configuration using `OverrideableConfig`
 
 ## How to get it
 
 This library is available as 
-(NuGet package "wan24-Core")[https://www.nuget.org/packages/wan24-Core/].
+[NuGet package "wan24-Core"](https://www.nuget.org/packages/wan24-Core/).
 
 ## Bootstrapping
 
@@ -417,3 +419,144 @@ processed now
 
 In short words: The throttle timer will not reset in an fixed interval, but 
 the interval starts when processing items.
+
+## Change token
+
+Implement by extending `ChangeToken`:
+
+```cs
+public class YourObservableType : ChangeToken
+{
+    public YourObservableType() : base()
+    {
+        ChangeIdentifier = () => HasChanged;
+    }
+
+    public bool HasChanged => ...;// Return if the object was changed
+
+    public void ChangeAction()
+    {
+        // Perform changes
+        InvokeCallbacks();
+    }
+}
+```
+
+Or by using a `ChangeToken` instance:
+
+```cs
+public class YourObservableType : IChangeToken
+{
+    public readonly ChangeToken ChangeToken;
+
+    public YourObservableType() => ChangeToken = new(() => HasChanged);
+
+    public bool HasChanged => ...;// Return if the object was changed
+
+    public void ChangeAction()
+    {
+        // Perform changes
+        ChangeToken.InvokeCallbacks();
+    }
+
+    // Implement the IChangeToken interface using our ChangeToken instance
+
+    bool IChangeToken.HasChanged => ChangeToken.HasChanged;
+
+    bool IChangeToken.ActiveChangeCallbacks => ChangeToken.ActiveChangeCallbacks;
+
+    IDisposable IChangeToken.RegisterChangeCallback(Action<object?> callback, object? state)
+        => ChangeToken.RegisterChangeCallback(callback, state);
+}
+```
+
+## Hierarchic configuration
+
+Assume this configuration hierarchy:
+
+| Level | Description |
+| --- | --- |
+| 1 | Default values |
+| 2 | User values (can override default values) |
+| 3 | Administrator values (can override default/user values) |
+
+In code:
+
+```cs
+public sealed class Config : OverrideableConfig<Config>
+{
+    public Config() : base()
+    {
+        SubConfig = new(this, new(this));// User values
+        InitProperties();
+    }
+
+    private Config(Config parent, Config? sub = null) : base(parent)
+    {
+        if(sub != null)
+        {
+            SubConfig = sub;
+            sub.ParentConfig = this;
+            sub.SubConfig = new(sub);// Administrator values
+        }
+        InitProperties();
+    }
+
+    // A configuration value
+    public ConfigOption<string, Config> AnyValue { get; private set; } = null!;
+
+    private void InitProperties()
+    {
+        AnyValue = ParentConfig == null 
+            // The master option has a default value
+            ? new(this, nameof(AnyValue), canBeOverridden: true, "default")
+            // No default value for a sub-option
+            : new(this, nameof(AnyValue));
+    }
+}
+
+Config config = new(),
+    user = config.SubConfig,
+    admin = user.SubConfig;
+```
+
+**CAUTION**: There's no endless-recursion protection for the `ParentConfig` or 
+the `SubConfig` properties!
+
+Now users are able to override default values, and administrators are able to 
+override default and/or user values:
+
+```cs
+// Still the default value
+Assert.AreEqual("default", config.AnyValue.FinalValue);
+
+// User overrides the default value
+user.AnyValue.Value = "user";
+Assert.AreEqual("default", config.AnyValue.Value);
+Assert.AreEqual("user", config.AnyValue.FinalValue);
+
+// Administrator overrides the user value
+admin.AnyValue.Value = "admin";
+Assert.AreEqual("admin", config.AnyValue.FinalValue);
+
+// User can't override the administrator value (but still store his own value 
+// in case the administrator would unset his value)
+user.AnyValue.Value = "test";
+Assert.AreEqual("admin", config.AnyValue.FinalValue);
+Assert.AreEqual("test", user.AnyValue.Value);
+```
+
+**NOTE**: Setting an option value is thread-safe.
+
+It's also possible to flip the hierarchy:
+
+| Level | Description |
+| --- | --- |
+| 1 | Default values |
+| 2 | Administrator values (can define not overrideable values) |
+| 3 | User values (can override overrideable values) |
+
+Using this hierarchy an administrator could also allow or deny overriding 
+values at any time, for example.
+
+The hierarchy depth isn't limited.

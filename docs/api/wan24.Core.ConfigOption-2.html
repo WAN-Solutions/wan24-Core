@@ -1,0 +1,1705 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ConfigOption&lt;tValue, tConfig&gt;
+   | wan24-Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ConfigOption&lt;tValue, tConfig&gt;
+   | wan24-Core ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.ConfigOption`2">
+  
+  
+  <h1 id="wan24_Core_ConfigOption_2" data-uid="wan24.Core.ConfigOption`2" class="text-break">Class ConfigOption&lt;tValue, tConfig&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>Configuration option</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">ConfigOption&lt;tValue, tConfig&gt;</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IConfigOption.html">IConfigOption</a></div>
+    <div><span class="xref">Microsoft.Extensions.Primitives.IChangeToken</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_ConfigOption_2_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class ConfigOption&lt;tValue, tConfig&gt; : IConfigOption, IChangeToken where tConfig : OverrideableConfig&lt;tConfig&gt;, new()</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tValue</span></td>
+        <td><p>Value type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tConfig</span></td>
+        <td><p>Configuration type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2__ctor__1_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.%23ctor(%601%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L37">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2__ctor_" data-uid="wan24.Core.ConfigOption`2.#ctor*"></a>
+  <h4 id="wan24_Core_ConfigOption_2__ctor__1_System_String_System_Boolean_" data-uid="wan24.Core.ConfigOption`2.#ctor(`1,System.String,System.Boolean)">ConfigOption(tConfig, String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConfigOption(tConfig config, string propertyName, bool canBeOverridden = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tConfig</span></td>
+        <td><span class="parametername">config</span></td>
+        <td><p>Configuration</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>Property name</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">canBeOverridden</span></td>
+        <td><p>Can be overridden?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2__ctor__1_System_String_System_Boolean__0_.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.%23ctor(%601%2CSystem.String%2CSystem.Boolean%2C%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L52">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2__ctor_" data-uid="wan24.Core.ConfigOption`2.#ctor*"></a>
+  <h4 id="wan24_Core_ConfigOption_2__ctor__1_System_String_System_Boolean__0_" data-uid="wan24.Core.ConfigOption`2.#ctor(`1,System.String,System.Boolean,`0)">ConfigOption(tConfig, String, Boolean, tValue)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConfigOption(tConfig config, string propertyName, bool canBeOverridden, tValue defaultValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tConfig</span></td>
+        <td><span class="parametername">config</span></td>
+        <td><p>Configuration</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>Property name</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">canBeOverridden</span></td>
+        <td><p>Can be overridden?</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">tValue</span></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td><p>Default value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2__ctor__1_System_String_System_Boolean__0__0_.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.%23ctor(%601%2CSystem.String%2CSystem.Boolean%2C%600%2C%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L69">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2__ctor_" data-uid="wan24.Core.ConfigOption`2.#ctor*"></a>
+  <h4 id="wan24_Core_ConfigOption_2__ctor__1_System_String_System_Boolean__0__0_" data-uid="wan24.Core.ConfigOption`2.#ctor(`1,System.String,System.Boolean,`0,`0)">ConfigOption(tConfig, String, Boolean, tValue, tValue)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConfigOption(tConfig config, string propertyName, bool canBeOverridden, tValue value, tValue defaultValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tConfig</span></td>
+        <td><span class="parametername">config</span></td>
+        <td><p>Configuration</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>Property name</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">canBeOverridden</span></td>
+        <td><p>Can be overridden?</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">tValue</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value to set</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">tValue</span></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td><p>Default value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_ActiveChangeCallbacks.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.ActiveChangeCallbacks%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L185">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_ActiveChangeCallbacks_" data-uid="wan24.Core.ConfigOption`2.ActiveChangeCallbacks*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_ActiveChangeCallbacks" data-uid="wan24.Core.ConfigOption`2.ActiveChangeCallbacks">ActiveChangeCallbacks</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ActiveChangeCallbacks { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_CanBeOverridden.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.CanBeOverridden%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L163">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_CanBeOverridden_" data-uid="wan24.Core.ConfigOption`2.CanBeOverridden*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_CanBeOverridden" data-uid="wan24.Core.ConfigOption`2.CanBeOverridden">CanBeOverridden</h4>
+  <div class="markdown level1 summary"><p>Can be overridden by a sub-option?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanBeOverridden { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_CanOverride.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.CanOverride%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L170">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_CanOverride_" data-uid="wan24.Core.ConfigOption`2.CanOverride*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_CanOverride" data-uid="wan24.Core.ConfigOption`2.CanOverride">CanOverride</h4>
+  <div class="markdown level1 summary"><p>Can override the parent option?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanOverride { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_Configuration.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.Configuration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L85">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_Configuration_" data-uid="wan24.Core.ConfigOption`2.Configuration*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_Configuration" data-uid="wan24.Core.ConfigOption`2.Configuration">Configuration</h4>
+  <div class="markdown level1 summary"><p>Configuration</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public tConfig Configuration { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tConfig</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_Default.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.Default%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L141">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_Default_" data-uid="wan24.Core.ConfigOption`2.Default*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_Default" data-uid="wan24.Core.ConfigOption`2.Default">Default</h4>
+  <div class="markdown level1 summary"><p>Default value (returned, if is not set)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public tValue Default { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tValue</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_DoesOverride.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.DoesOverride%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L160">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_DoesOverride_" data-uid="wan24.Core.ConfigOption`2.DoesOverride*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_DoesOverride" data-uid="wan24.Core.ConfigOption`2.DoesOverride">DoesOverride</h4>
+  <div class="markdown level1 summary"><p>Does override the parent option?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DoesOverride { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_DynamicValueConverter.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.DynamicValueConverter%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L131">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_DynamicValueConverter_" data-uid="wan24.Core.ConfigOption`2.DynamicValueConverter*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_DynamicValueConverter" data-uid="wan24.Core.ConfigOption`2.DynamicValueConverter">DynamicValueConverter</h4>
+  <div class="markdown level1 summary"><p>Dynamic value converter callbak</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Func&lt;dynamic, object&gt;? DynamicValueConverter { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Func</span>&lt;<span class="xref">System.Object</span>, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_FinalValue.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.FinalValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L136">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_FinalValue_" data-uid="wan24.Core.ConfigOption`2.FinalValue*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_FinalValue" data-uid="wan24.Core.ConfigOption`2.FinalValue">FinalValue</h4>
+  <div class="markdown level1 summary"><p>Final value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public tValue FinalValue { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tValue</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_HasChanged.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.HasChanged%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L182">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_HasChanged_" data-uid="wan24.Core.ConfigOption`2.HasChanged*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_HasChanged" data-uid="wan24.Core.ConfigOption`2.HasChanged">HasChanged</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasChanged { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_HasValue.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.HasValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L106">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_HasValue_" data-uid="wan24.Core.ConfigOption`2.HasValue*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_HasValue" data-uid="wan24.Core.ConfigOption`2.HasValue">HasValue</h4>
+  <div class="markdown level1 summary"><p>Has this option a (sub-)value?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasValue { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_IsChanged.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.IsChanged%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L157">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_IsChanged_" data-uid="wan24.Core.ConfigOption`2.IsChanged*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_IsChanged" data-uid="wan24.Core.ConfigOption`2.IsChanged">IsChanged</h4>
+  <div class="markdown level1 summary"><p>Is changed?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsChanged { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_IsOverridden.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.IsOverridden%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L179">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_IsOverridden_" data-uid="wan24.Core.ConfigOption`2.IsOverridden*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_IsOverridden" data-uid="wan24.Core.ConfigOption`2.IsOverridden">IsOverridden</h4>
+  <div class="markdown level1 summary"><p>If the sub-option overrides this option</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsOverridden { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_IsSet.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.IsSet%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L154">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_IsSet_" data-uid="wan24.Core.ConfigOption`2.IsSet*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_IsSet" data-uid="wan24.Core.ConfigOption`2.IsSet">IsSet</h4>
+  <div class="markdown level1 summary"><p>Is set?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSet { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_MasterOption.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.MasterOption%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L93">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_MasterOption_" data-uid="wan24.Core.ConfigOption`2.MasterOption*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_MasterOption" data-uid="wan24.Core.ConfigOption`2.MasterOption">MasterOption</h4>
+  <div class="markdown level1 summary"><p>Master configuration option</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConfigOption&lt;tValue, tConfig&gt; MasterOption { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ConfigOption-2.html">ConfigOption</a>&lt;tValue, tConfig&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_ParentDoesOverride.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.ParentDoesOverride%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L176">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_ParentDoesOverride_" data-uid="wan24.Core.ConfigOption`2.ParentDoesOverride*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_ParentDoesOverride" data-uid="wan24.Core.ConfigOption`2.ParentDoesOverride">ParentDoesOverride</h4>
+  <div class="markdown level1 summary"><p>Does the parent option override its parents option?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ParentDoesOverride { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_ParentOption.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.ParentOption%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L98">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_ParentOption_" data-uid="wan24.Core.ConfigOption`2.ParentOption*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_ParentOption" data-uid="wan24.Core.ConfigOption`2.ParentOption">ParentOption</h4>
+  <div class="markdown level1 summary"><p>Parent configuration option</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConfigOption&lt;tValue, tConfig&gt; ParentOption { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ConfigOption-2.html">ConfigOption</a>&lt;tValue, tConfig&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_ParentValue.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.ParentValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L151">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_ParentValue_" data-uid="wan24.Core.ConfigOption`2.ParentValue*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_ParentValue" data-uid="wan24.Core.ConfigOption`2.ParentValue">ParentValue</h4>
+  <div class="markdown level1 summary"><p>Overriding parent option value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public tValue ParentValue { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tValue</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_PropertyName.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.PropertyName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L88">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_PropertyName_" data-uid="wan24.Core.ConfigOption`2.PropertyName*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_PropertyName" data-uid="wan24.Core.ConfigOption`2.PropertyName">PropertyName</h4>
+  <div class="markdown level1 summary"><p>Property name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string PropertyName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_SubOption.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.SubOption%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L103">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_SubOption_" data-uid="wan24.Core.ConfigOption`2.SubOption*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_SubOption" data-uid="wan24.Core.ConfigOption`2.SubOption">SubOption</h4>
+  <div class="markdown level1 summary"><p>Sub-configuration option</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConfigOption&lt;tValue, tConfig&gt; SubOption { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ConfigOption-2.html">ConfigOption</a>&lt;tValue, tConfig&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_SubValue.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.SubValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L146">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_SubValue_" data-uid="wan24.Core.ConfigOption`2.SubValue*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_SubValue" data-uid="wan24.Core.ConfigOption`2.SubValue">SubValue</h4>
+  <div class="markdown level1 summary"><p>Sub-configuration value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public tValue SubValue { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tValue</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_SubWantsOverride.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.SubWantsOverride%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L173">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_SubWantsOverride_" data-uid="wan24.Core.ConfigOption`2.SubWantsOverride*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_SubWantsOverride" data-uid="wan24.Core.ConfigOption`2.SubWantsOverride">SubWantsOverride</h4>
+  <div class="markdown level1 summary"><p>If the sub-option wants to override this option</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SubWantsOverride { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_SyncObject.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.SyncObject%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L80">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_SyncObject_" data-uid="wan24.Core.ConfigOption`2.SyncObject*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_SyncObject" data-uid="wan24.Core.ConfigOption`2.SyncObject">SyncObject</h4>
+  <div class="markdown level1 summary"><p>An object for thread synchronization</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object SyncObject { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_Value.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.Value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L111">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_Value_" data-uid="wan24.Core.ConfigOption`2.Value*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_Value" data-uid="wan24.Core.ConfigOption`2.Value">Value</h4>
+  <div class="markdown level1 summary"><p>Value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public tValue Value { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tValue</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_RegisterChangeCallback_Action_System_Object__System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.RegisterChangeCallback(Action%7BSystem.Object%7D%2CSystem.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L258">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_RegisterChangeCallback_" data-uid="wan24.Core.ConfigOption`2.RegisterChangeCallback*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_RegisterChangeCallback_Action_System_Object__System_Object_" data-uid="wan24.Core.ConfigOption`2.RegisterChangeCallback(Action{System.Object},System.Object)">RegisterChangeCallback(Action&lt;Object&gt;, Object)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IDisposable RegisterChangeCallback(Action&lt;object&gt; callback, object state)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">callback</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">state</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IDisposable</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_ResetChanged_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.ResetChanged(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L251">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_ResetChanged_" data-uid="wan24.Core.ConfigOption`2.ResetChanged*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_ResetChanged_System_Boolean_" data-uid="wan24.Core.ConfigOption`2.ResetChanged(System.Boolean)">ResetChanged(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Reset the changed state</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetChanged(bool recursive = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">recursive</span></td>
+        <td><p>Recursive?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_SetDynamicValue_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.SetDynamicValue(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L230">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_SetDynamicValue_" data-uid="wan24.Core.ConfigOption`2.SetDynamicValue*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_SetDynamicValue_System_Object_" data-uid="wan24.Core.ConfigOption`2.SetDynamicValue(System.Object)">SetDynamicValue(Object)</h4>
+  <div class="markdown level1 summary"><p>Set a dynamic value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetDynamicValue(dynamic value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_Unset_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.Unset(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L233">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_Unset_" data-uid="wan24.Core.ConfigOption`2.Unset*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_Unset_System_Boolean_" data-uid="wan24.Core.ConfigOption`2.Unset(System.Boolean)">Unset(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Unset the value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Unset(bool recursive = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">recursive</span></td>
+        <td><p>Recursive?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_UnsetOverrides.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.UnsetOverrides%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L248">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_UnsetOverrides_" data-uid="wan24.Core.ConfigOption`2.UnsetOverrides*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_UnsetOverrides" data-uid="wan24.Core.ConfigOption`2.UnsetOverrides">UnsetOverrides()</h4>
+  <div class="markdown level1 summary"><p>Unset overrides (recursive!)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UnsetOverrides()</code></pre>
+  </div>
+  <h3 id="events">Events
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_OnChange.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.OnChange%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L261">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ConfigOption_2_OnChange" data-uid="wan24.Core.ConfigOption`2.OnChange">OnChange</h4>
+  <div class="markdown level1 summary"><p>Raised when the value was changed (bubbles to the root option)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event IConfigOption.Option_Delegate OnChange</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IConfigOption.Option_Delegate.html">IConfigOption.Option_Delegate</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="operators">Operators
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_op_Implicit_wan24_Core_ConfigOption__0__1____0.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.op_Implicit(wan24.Core.ConfigOption%7B%600%2C%601%7D)~%600%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L278">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_op_Implicit_" data-uid="wan24.Core.ConfigOption`2.op_Implicit*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_op_Implicit_wan24_Core_ConfigOption__0__1____0" data-uid="wan24.Core.ConfigOption`2.op_Implicit(wan24.Core.ConfigOption{`0,`1})~`0">Implicit(ConfigOption&lt;tValue, tConfig&gt; to tValue)</h4>
+  <div class="markdown level1 summary"><p>Cast as value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator tValue(ConfigOption&lt;tValue, tConfig&gt; option)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ConfigOption-2.html">ConfigOption</a>&lt;tValue, tConfig&gt;</td>
+        <td><span class="parametername">option</span></td>
+        <td><p>Option</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tValue</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_Configuration.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.wan24%23Core%23IConfigOption%23Configuration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L189">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_Configuration_" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#Configuration*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_Configuration" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#Configuration">IConfigOption.Configuration</h4>
+  <div class="markdown level1 summary"><p>Hosting configuration</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IOverrideableConfig IConfigOption.Configuration { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IOverrideableConfig.html">IOverrideableConfig</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_DynamicFinalValue.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.wan24%23Core%23IConfigOption%23DynamicFinalValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L214">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_DynamicFinalValue_" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#DynamicFinalValue*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_DynamicFinalValue" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#DynamicFinalValue">IConfigOption.DynamicFinalValue</h4>
+  <div class="markdown level1 summary"><p>Dynamic final value (may be the default value, if not set and not overridden)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">dynamic IConfigOption.DynamicFinalValue { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_DynamicParentValue.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.wan24%23Core%23IConfigOption%23DynamicParentValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L226">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_DynamicParentValue_" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#DynamicParentValue*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_DynamicParentValue" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#DynamicParentValue">IConfigOption.DynamicParentValue</h4>
+  <div class="markdown level1 summary"><p>Overriding parent option dynamic value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">dynamic IConfigOption.DynamicParentValue { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_DynamicSubValue.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.wan24%23Core%23IConfigOption%23DynamicSubValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L220">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_DynamicSubValue_" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#DynamicSubValue*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_DynamicSubValue" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#DynamicSubValue">IConfigOption.DynamicSubValue</h4>
+  <div class="markdown level1 summary"><p>Sub-configuration dynamic value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">dynamic IConfigOption.DynamicSubValue { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_DynamicValue.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.wan24%23Core%23IConfigOption%23DynamicValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L208">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_DynamicValue_" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#DynamicValue*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_DynamicValue" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#DynamicValue">IConfigOption.DynamicValue</h4>
+  <div class="markdown level1 summary"><p>Dynamic value (may be the default value, if not set)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">dynamic IConfigOption.DynamicValue { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_FinalValue.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.wan24%23Core%23IConfigOption%23FinalValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L211">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_FinalValue_" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#FinalValue*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_FinalValue" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#FinalValue">IConfigOption.FinalValue</h4>
+  <div class="markdown level1 summary"><p>Final value (may be the default value, if not set and not overridden)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">object IConfigOption.FinalValue { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_MasterOption.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.wan24%23Core%23IConfigOption%23MasterOption%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L192">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_MasterOption_" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#MasterOption*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_MasterOption" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#MasterOption">IConfigOption.MasterOption</h4>
+  <div class="markdown level1 summary"><p>Master configuration option</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IConfigOption IConfigOption.MasterOption { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IConfigOption.html">IConfigOption</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_ParentOption.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.wan24%23Core%23IConfigOption%23ParentOption%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L195">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_ParentOption_" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#ParentOption*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_ParentOption" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#ParentOption">IConfigOption.ParentOption</h4>
+  <div class="markdown level1 summary"><p>Parent configuration option</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IConfigOption IConfigOption.ParentOption { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IConfigOption.html">IConfigOption</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_ParentValue.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.wan24%23Core%23IConfigOption%23ParentValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L223">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_ParentValue_" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#ParentValue*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_ParentValue" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#ParentValue">IConfigOption.ParentValue</h4>
+  <div class="markdown level1 summary"><p>Overriding parent option value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">object IConfigOption.ParentValue { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_SubOption.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.wan24%23Core%23IConfigOption%23SubOption%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L198">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_SubOption_" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#SubOption*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_SubOption" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#SubOption">IConfigOption.SubOption</h4>
+  <div class="markdown level1 summary"><p>Sub-configuration option</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IConfigOption IConfigOption.SubOption { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IConfigOption.html">IConfigOption</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_SubValue.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.wan24%23Core%23IConfigOption%23SubValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L217">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_SubValue_" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#SubValue*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_SubValue" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#SubValue">IConfigOption.SubValue</h4>
+  <div class="markdown level1 summary"><p>Sub-configuration value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">object IConfigOption.SubValue { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_Value.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602.wan24%23Core%23IConfigOption%23Value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L201">View Source</a>
+  </span>
+  <a id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_Value_" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#Value*"></a>
+  <h4 id="wan24_Core_ConfigOption_2_wan24_Core_IConfigOption_Value" data-uid="wan24.Core.ConfigOption`2.wan24#Core#IConfigOption#Value">IConfigOption.Value</h4>
+  <div class="markdown level1 summary"><p>Value (may be the default value, if not set)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">object IConfigOption.Value { get; set; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IConfigOption.html">IConfigOption</a>
+  </div>
+  <div>
+      <span class="xref">Microsoft.Extensions.Primitives.IChangeToken</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_GetEnumDisplayText_System_Object_">EnumExtensions.GetEnumDisplayText(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean_">JsonExtensions.ToJson(Object, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_IEnumerable___0__">ObjectExtensions.In&lt;T&gt;(T, IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ConfigOption_2.md&amp;value=---%0Auid%3A%20wan24.Core.ConfigOption%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ConfigOption.cs/#L8" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            (c) 2023 Andreas Zimmermann, wan24.de
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
