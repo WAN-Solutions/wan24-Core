@@ -3,12 +3,12 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class A_TypeHelper_Tests
+    public class AA_TypeHelper_Tests
     {
         [TestMethod]
         public void GetType_Tests()
         {
-            Type type = typeof(A_TypeHelper_Tests);
+            Type type = typeof(AA_TypeHelper_Tests);
             int eventRaised = 0;
             TypeHelper.Instance.OnLoadType += (e) => eventRaised++;
             Assert.IsNull(TypeHelper.Instance.GetType(type.ToString()));

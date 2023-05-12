@@ -39,5 +39,15 @@
         /// Method name
         /// </summary>
         public string? Method { get; }
+
+        /// <summary>
+        /// Scan the assembly for classes with a <see cref="BootstrapperAttribute"/>?
+        /// </summary>
+        public bool ScanClasses { get; set; }
+
+        /// <summary>
+        /// Scan the assembly for methods with a <see cref="BootstrapperAttribute"/>?
+        /// </summary>
+        public bool ScanMethods { get; set; }
     }
 }

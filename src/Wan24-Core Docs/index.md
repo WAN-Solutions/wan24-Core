@@ -99,7 +99,9 @@ The `Bootstrapper.Async` method calls all static methods having the
 required to add the `BootstrapperAttribute` to the assembly.
 
 You may also ad the `BootstrapperAttribute` to a type and/or the bootstrapper 
-method, in case the assembly contains multiple of them.
+method, in case the assembly contains multiple of them. In the assembly 
+attribute you need to set `ScanClasses` and/or `ScanMethods` to `true` in 
+order to perform a deep scanning during bootstrapping for performance reasons.
 
 The bootstrapper methods may consume parameters which are available from the 
 DI helper. The method may be synchronous or asynchronous. The method can't be 
@@ -131,6 +133,12 @@ you won't need to add the attribute to the type and the method.
 
 During bootstrapping, the cancellation token which was given to the 
 `Bootstrap.Async` method, can be injected to a bootstrappers method parameters.
+
+After that bootstrapping was done, the `Bootstrap.AsyncBootstrapper` will be 
+called. At last the `Bootstrap.OnBootstrap` event will be raised.
+
+During bootstrapping the `Bootstrap.IsBooting` property is `true`. After 
+bootstrapping the `Bootstrap.DidBoot` property is `true`.
 
 ## Type helper
 

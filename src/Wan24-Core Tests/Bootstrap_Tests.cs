@@ -1,6 +1,6 @@
 ﻿using wan24.Core;
 
-[assembly: Bootstrapper]
+[assembly: Bootstrapper(ScanClasses = true, ScanMethods = true)]
 
 namespace Wan24_Core_Tests
 {
@@ -14,6 +14,8 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public async Task General_Tests()
         {
+            Bootstrap.FindClasses = true;
+            Bootstrap.FindMethods = true;
             await Bootstrap.Async();
             Assert.AreEqual(2, Runs.Count);
             Assert.AreEqual("async", Runs[0]);

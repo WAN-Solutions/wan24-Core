@@ -246,12 +246,12 @@ references:
   commentId: T:wan24.Core.Bootstrap
   fullName: wan24.Core.Bootstrap
   nameWithType: Bootstrap
-- uid: wan24.Core.Bootstrap.Async(CancellationToken)
-  name: Async(CancellationToken)
-  href: api/wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_Async_CancellationToken_
-  commentId: M:wan24.Core.Bootstrap.Async(CancellationToken)
-  fullName: wan24.Core.Bootstrap.Async(CancellationToken)
-  nameWithType: Bootstrap.Async(CancellationToken)
+- uid: wan24.Core.Bootstrap.Async(System.Reflection.Assembly,CancellationToken)
+  name: Async(Assembly, CancellationToken)
+  href: api/wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_Async_System_Reflection_Assembly_CancellationToken_
+  commentId: M:wan24.Core.Bootstrap.Async(System.Reflection.Assembly,CancellationToken)
+  fullName: wan24.Core.Bootstrap.Async(System.Reflection.Assembly, CancellationToken)
+  nameWithType: Bootstrap.Async(Assembly, CancellationToken)
 - uid: wan24.Core.Bootstrap.Async*
   name: Async
   href: api/wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_Async_
@@ -284,6 +284,58 @@ references:
   commentId: T:wan24.Core.Bootstrap.BootStrapAsync_Delegate
   fullName: wan24.Core.Bootstrap.BootStrapAsync_Delegate
   nameWithType: Bootstrap.BootStrapAsync_Delegate
+- uid: wan24.Core.Bootstrap.DidBoot
+  name: DidBoot
+  href: api/wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_DidBoot
+  commentId: P:wan24.Core.Bootstrap.DidBoot
+  fullName: wan24.Core.Bootstrap.DidBoot
+  nameWithType: Bootstrap.DidBoot
+- uid: wan24.Core.Bootstrap.DidBoot*
+  name: DidBoot
+  href: api/wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_DidBoot_
+  commentId: Overload:wan24.Core.Bootstrap.DidBoot
+  isSpec: "True"
+  fullName: wan24.Core.Bootstrap.DidBoot
+  nameWithType: Bootstrap.DidBoot
+- uid: wan24.Core.Bootstrap.FindClasses
+  name: FindClasses
+  href: api/wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_FindClasses
+  commentId: P:wan24.Core.Bootstrap.FindClasses
+  fullName: wan24.Core.Bootstrap.FindClasses
+  nameWithType: Bootstrap.FindClasses
+- uid: wan24.Core.Bootstrap.FindClasses*
+  name: FindClasses
+  href: api/wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_FindClasses_
+  commentId: Overload:wan24.Core.Bootstrap.FindClasses
+  isSpec: "True"
+  fullName: wan24.Core.Bootstrap.FindClasses
+  nameWithType: Bootstrap.FindClasses
+- uid: wan24.Core.Bootstrap.FindMethods
+  name: FindMethods
+  href: api/wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_FindMethods
+  commentId: P:wan24.Core.Bootstrap.FindMethods
+  fullName: wan24.Core.Bootstrap.FindMethods
+  nameWithType: Bootstrap.FindMethods
+- uid: wan24.Core.Bootstrap.FindMethods*
+  name: FindMethods
+  href: api/wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_FindMethods_
+  commentId: Overload:wan24.Core.Bootstrap.FindMethods
+  isSpec: "True"
+  fullName: wan24.Core.Bootstrap.FindMethods
+  nameWithType: Bootstrap.FindMethods
+- uid: wan24.Core.Bootstrap.IsBooting
+  name: IsBooting
+  href: api/wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_IsBooting
+  commentId: P:wan24.Core.Bootstrap.IsBooting
+  fullName: wan24.Core.Bootstrap.IsBooting
+  nameWithType: Bootstrap.IsBooting
+- uid: wan24.Core.Bootstrap.IsBooting*
+  name: IsBooting
+  href: api/wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_IsBooting_
+  commentId: Overload:wan24.Core.Bootstrap.IsBooting
+  isSpec: "True"
+  fullName: wan24.Core.Bootstrap.IsBooting
+  nameWithType: Bootstrap.IsBooting
 - uid: wan24.Core.Bootstrap.OnBootstrap
   name: OnBootstrap
   href: api/wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_OnBootstrap
@@ -341,6 +393,32 @@ references:
   isSpec: "True"
   fullName: wan24.Core.BootstrapperAttribute.Priority
   nameWithType: BootstrapperAttribute.Priority
+- uid: wan24.Core.BootstrapperAttribute.ScanClasses
+  name: ScanClasses
+  href: api/wan24.Core.BootstrapperAttribute.html#wan24_Core_BootstrapperAttribute_ScanClasses
+  commentId: P:wan24.Core.BootstrapperAttribute.ScanClasses
+  fullName: wan24.Core.BootstrapperAttribute.ScanClasses
+  nameWithType: BootstrapperAttribute.ScanClasses
+- uid: wan24.Core.BootstrapperAttribute.ScanClasses*
+  name: ScanClasses
+  href: api/wan24.Core.BootstrapperAttribute.html#wan24_Core_BootstrapperAttribute_ScanClasses_
+  commentId: Overload:wan24.Core.BootstrapperAttribute.ScanClasses
+  isSpec: "True"
+  fullName: wan24.Core.BootstrapperAttribute.ScanClasses
+  nameWithType: BootstrapperAttribute.ScanClasses
+- uid: wan24.Core.BootstrapperAttribute.ScanMethods
+  name: ScanMethods
+  href: api/wan24.Core.BootstrapperAttribute.html#wan24_Core_BootstrapperAttribute_ScanMethods
+  commentId: P:wan24.Core.BootstrapperAttribute.ScanMethods
+  fullName: wan24.Core.BootstrapperAttribute.ScanMethods
+  nameWithType: BootstrapperAttribute.ScanMethods
+- uid: wan24.Core.BootstrapperAttribute.ScanMethods*
+  name: ScanMethods
+  href: api/wan24.Core.BootstrapperAttribute.html#wan24_Core_BootstrapperAttribute_ScanMethods_
+  commentId: Overload:wan24.Core.BootstrapperAttribute.ScanMethods
+  isSpec: "True"
+  fullName: wan24.Core.BootstrapperAttribute.ScanMethods
+  nameWithType: BootstrapperAttribute.ScanMethods
 - uid: wan24.Core.BootstrapperAttribute.Type
   name: Type
   href: api/wan24.Core.BootstrapperAttribute.html#wan24_Core_BootstrapperAttribute_Type
@@ -8785,6 +8863,32 @@ references:
   commentId: E:wan24.Core.TypeHelper.OnLoadType
   fullName: wan24.Core.TypeHelper.OnLoadType
   nameWithType: TypeHelper.OnLoadType
+- uid: wan24.Core.TypeHelper.ScanAssemblies(System.Reflection.Assembly,System.Boolean)
+  name: ScanAssemblies(Assembly, Boolean)
+  href: api/wan24.Core.TypeHelper.html#wan24_Core_TypeHelper_ScanAssemblies_System_Reflection_Assembly_System_Boolean_
+  commentId: M:wan24.Core.TypeHelper.ScanAssemblies(System.Reflection.Assembly,System.Boolean)
+  fullName: wan24.Core.TypeHelper.ScanAssemblies(System.Reflection.Assembly, System.Boolean)
+  nameWithType: TypeHelper.ScanAssemblies(Assembly, Boolean)
+- uid: wan24.Core.TypeHelper.ScanAssemblies*
+  name: ScanAssemblies
+  href: api/wan24.Core.TypeHelper.html#wan24_Core_TypeHelper_ScanAssemblies_
+  commentId: Overload:wan24.Core.TypeHelper.ScanAssemblies
+  isSpec: "True"
+  fullName: wan24.Core.TypeHelper.ScanAssemblies
+  nameWithType: TypeHelper.ScanAssemblies
+- uid: wan24.Core.TypeHelper.ScanReferencedAssemblies
+  name: ScanReferencedAssemblies
+  href: api/wan24.Core.TypeHelper.html#wan24_Core_TypeHelper_ScanReferencedAssemblies
+  commentId: P:wan24.Core.TypeHelper.ScanReferencedAssemblies
+  fullName: wan24.Core.TypeHelper.ScanReferencedAssemblies
+  nameWithType: TypeHelper.ScanReferencedAssemblies
+- uid: wan24.Core.TypeHelper.ScanReferencedAssemblies*
+  name: ScanReferencedAssemblies
+  href: api/wan24.Core.TypeHelper.html#wan24_Core_TypeHelper_ScanReferencedAssemblies_
+  commentId: Overload:wan24.Core.TypeHelper.ScanReferencedAssemblies
+  isSpec: "True"
+  fullName: wan24.Core.TypeHelper.ScanReferencedAssemblies
+  nameWithType: TypeHelper.ScanReferencedAssemblies
 - uid: wan24.Core.TypeHelper.SyncObject
   name: SyncObject
   href: api/wan24.Core.TypeHelper.html#wan24_Core_TypeHelper_SyncObject
