@@ -72,7 +72,7 @@ namespace wan24.Core
             reference ??= Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly();
             if (reference == null)
             {
-                Logging.WriteTrace("No reference assembly for scanning");
+                Logging.WriteWarning("No reference assembly for scanning");
                 return Array.Empty<Assembly>();
             }
             // Scan referenced assemblies recursive
