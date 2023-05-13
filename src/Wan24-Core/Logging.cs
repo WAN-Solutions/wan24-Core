@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace wan24.Core
 {
@@ -18,7 +19,20 @@ namespace wan24.Core
         /// <param name="str">Message</param>
         /// <param name="level">Level</param>
 #pragma warning disable CA2254 // Logger call shouldn't be different from the template
-        public static void WriteLog(this string str, LogLevel level = LogLevel.Information) => Logger?.Log(level, str);
+        public static void WriteLog(this string str, LogLevel level = LogLevel.Information)
+        {
+            if (Logger == null)
+            {
+#if DEBUG
+                Debug.WriteLine(str);
+#endif
+            }
+            else
+            {
+                Logger.Log(level, str);
+                if (level <= LogLevel.Debug) Debug.WriteLine(str);
+            }
+        }
 #pragma warning restore CA2254
 
         /// <summary>

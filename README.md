@@ -7,7 +7,7 @@ This core library contains some .NET extensions:
 disposing
     - Dispose attribute for fields/properties which should be disposed 
     automatic when disposing
-- Type helpr (type loading)
+- Type helper (type loading)
 - Secure byte array, which clears its contents when disposing
 - Pool rented array as disposable object
 - Byte array extensions
@@ -99,7 +99,9 @@ The `Bootstrapper.Async` method calls all static methods having the
 required to add the `BootstrapperAttribute` to the assembly.
 
 You may also ad the `BootstrapperAttribute` to a type and/or the bootstrapper 
-method, in case the assembly contains multiple of them.
+method, in case the assembly contains multiple of them. In the assembly 
+attribute you need to set `ScanClasses` and/or `ScanMethods` to `true` in 
+order to perform a deep scanning during bootstrapping for performance reasons.
 
 The bootstrapper methods may consume parameters which are available from the 
 DI helper. The method may be synchronous or asynchronous. The method can't be 
@@ -131,6 +133,16 @@ you won't need to add the attribute to the type and the method.
 
 During bootstrapping, the cancellation token which was given to the 
 `Bootstrap.Async` method, can be injected to a bootstrappers method parameters.
+
+After that bootstrapping was done, the `Bootstrap.AsyncBootstrapper` will be 
+called. At last the `Bootstrap.OnBootstrap` event will be raised.
+
+During bootstrapping the `Bootstrap.IsBooting` property is `true`. After 
+bootstrapping the `Bootstrap.DidBoot` property is `true`.
+
+The bootstrapper will load all referenced assemblies. If you load an assembly 
+later, it'll be bootstrapped automatic and added to the `TypeHelper` singleton 
+instance.
 
 ## Type helper
 
@@ -553,7 +565,7 @@ It's also possible to flip the hierarchy:
 | Level | Description |
 | --- | --- |
 | 1 | Default values |
-| 2 | Administrator values (can define not overrideable values) |
+| 2 | Administrator values (can define user visible and optional not overrideable values) |
 | 3 | User values (can override overrideable values) |
 
 Using this hierarchy an administrator could also allow or deny overriding 

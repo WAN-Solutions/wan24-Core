@@ -72,7 +72,7 @@ disposing
 automatic when disposing</li>
 </ul>
 </li>
-<li>Type helpr (type loading)</li>
+<li>Type helper (type loading)</li>
 <li>Secure byte array, which clears its contents when disposing</li>
 <li>Pool rented array as disposable object</li>
 <li>Byte array extensions
@@ -208,7 +208,9 @@ the timeout</li>
 <code>BootstrapperAttribute</code>. In order to be able to find the methods, it's
 required to add the <code>BootstrapperAttribute</code> to the assembly.</p>
 <p>You may also ad the <code>BootstrapperAttribute</code> to a type and/or the bootstrapper
-method, in case the assembly contains multiple of them.</p>
+method, in case the assembly contains multiple of them. In the assembly
+attribute you need to set <code>ScanClasses</code> and/or <code>ScanMethods</code> to <code>true</code> in
+order to perform a deep scanning during bootstrapping for performance reasons.</p>
 <p>The bootstrapper methods may consume parameters which are available from the
 DI helper. The method may be synchronous or asynchronous. The method can't be
 defined in a generic class, and it can't be generic itself.</p>
@@ -234,6 +236,10 @@ name sorting. Bootstrapper methods will be executed sequential.</p>
 you won't need to add the attribute to the type and the method.</p>
 <p>During bootstrapping, the cancellation token which was given to the
 <code>Bootstrap.Async</code> method, can be injected to a bootstrappers method parameters.</p>
+<p>After that bootstrapping was done, the <code>Bootstrap.AsyncBootstrapper</code> will be
+called. At last the <code>Bootstrap.OnBootstrap</code> event will be raised.</p>
+<p>During bootstrapping the <code>Bootstrap.IsBooting</code> property is <code>true</code>. After
+bootstrapping the <code>Bootstrap.DidBoot</code> property is <code>true</code>.</p>
 <h2 id="type-helper">Type helper</h2>
 <p>If you use the <code>TypeHelper.AddTypes</code> method, the unknown assemblies of the
 added types will be added as searchable assemblies automatic.</p>
@@ -602,7 +608,7 @@ Assert.AreEqual(&quot;test&quot;, user.AnyValue.Value);
 </tr>
 <tr>
 <td>2</td>
-<td>Administrator values (can define not overrideable values)</td>
+<td>Administrator values (can define user visible and optional not overrideable values)</td>
 </tr>
 <tr>
 <td>3</td>
