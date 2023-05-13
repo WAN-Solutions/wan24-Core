@@ -7,7 +7,7 @@ This core library contains some .NET extensions:
 disposing
     - Dispose attribute for fields/properties which should be disposed 
     automatic when disposing
-- Type helpr (type loading)
+- Type helper (type loading)
 - Secure byte array, which clears its contents when disposing
 - Pool rented array as disposable object
 - Byte array extensions
@@ -139,6 +139,10 @@ called. At last the `Bootstrap.OnBootstrap` event will be raised.
 
 During bootstrapping the `Bootstrap.IsBooting` property is `true`. After 
 bootstrapping the `Bootstrap.DidBoot` property is `true`.
+
+The bootstrapper will load all referenced assemblies. If you load an assembly 
+later, it'll be bootstrapped automatic and added to the `TypeHelper` singleton 
+instance.
 
 ## Type helper
 
@@ -561,7 +565,7 @@ It's also possible to flip the hierarchy:
 | Level | Description |
 | --- | --- |
 | 1 | Default values |
-| 2 | Administrator values (can define not overrideable values) |
+| 2 | Administrator values (can define user visible and optional not overrideable values) |
 | 3 | User values (can override overrideable values) |
 
 Using this hierarchy an administrator could also allow or deny overriding 

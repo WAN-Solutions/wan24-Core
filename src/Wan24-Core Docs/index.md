@@ -7,7 +7,7 @@ This core library contains some .NET extensions:
 disposing
     - Dispose attribute for fields/properties which should be disposed 
     automatic when disposing
-- Type helpr (type loading)
+- Type helper (type loading)
 - Secure byte array, which clears its contents when disposing
 - Pool rented array as disposable object
 - Byte array extensions
@@ -561,7 +561,7 @@ It's also possible to flip the hierarchy:
 | Level | Description |
 | --- | --- |
 | 1 | Default values |
-| 2 | Administrator values (can define not overrideable values) |
+| 2 | Administrator values (can define user visible and optional not overrideable values) |
 | 3 | User values (can override overrideable values) |
 
 Using this hierarchy an administrator could also allow or deny overriding 

@@ -15,27 +15,41 @@ namespace wan24.Core
         /// <summary>
         /// Assemblies
         /// </summary>
-        private readonly List<Assembly> _Assemblies;
+        private readonly ConcurrentDictionary<string, Assembly> _Assemblies = new();
 
         /// <summary>
         /// Static constructor
         /// </summary>
-        static TypeHelper() => Instance = new();
+        static TypeHelper()
+        {
+            // Create the singleton instance with all known assemblies
+            Instance = new();
+            Instance._Assemblies.AddRange(new KeyValuePair<string, Assembly>[]
+            {
+                new(typeof(string).Assembly.GetName().FullName, typeof(string).Assembly),
+                new(typeof(TypeHelper).Assembly.GetName().FullName, typeof(TypeHelper).Assembly)
+            });
+            if (Assembly.GetEntryAssembly() is Assembly entry) Instance._Assemblies[entry.GetName().FullName] = entry;
+            if (Assembly.GetCallingAssembly() is Assembly calling) Instance._Assemblies[calling.GetName().FullName] = calling;
+            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()) Instance._Assemblies[assembly.GetName().FullName] = assembly;
+            // Scan known assemblies recursive
+            foreach (Assembly assembly in Instance._Assemblies.Values.ToArray()) Instance.ScanAssemblies(assembly);
+            // When a new assembly was loaded, scan it and boot all added assemblies
+            AppDomain.CurrentDomain.AssemblyLoad += (s, e) =>
+            {
+                Logging.WriteDebug($"Scanning and booting late loaded assembly {e.LoadedAssembly.GetName().FullName}");
+                List<Task> tasks = new();
+                foreach (Assembly ass in Instance.ScanAssemblies(e.LoadedAssembly))
+                    if (ass.GetCustomAttribute<BootstrapperAttribute>() != null)
+                        tasks.Add(Bootstrap.AssemblyAsync(ass, Bootstrap.FindClasses, Bootstrap.FindMethods));
+                tasks.WaitAll().Wait();
+            };
+        }
 
         /// <summary>
         /// Type helper
         /// </summary>
-        public TypeHelper()
-        {
-            _Assemblies = new(new Assembly[]
-            {
-                typeof(string).Assembly,
-                typeof(TypeHelper).Assembly
-            });
-            if (Assembly.GetEntryAssembly() is Assembly entry && !_Assemblies.Contains(entry)) _Assemblies.Add(entry);
-            if (Assembly.GetCallingAssembly() is Assembly calling && !_Assemblies.Contains(calling)) _Assemblies.Add(calling);
-            ScanAssemblies(Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly());
-        }
+        public TypeHelper() { }
 
         /// <summary>
         /// Singleton instance
@@ -43,64 +57,43 @@ namespace wan24.Core
         public static TypeHelper Instance { get; }
 
         /// <summary>
-        /// An object for thread synchronization
-        /// </summary>
-        public object SyncObject { get; } = new();
-
-        /// <summary>
         /// Assemblies
         /// </summary>
-        public Assembly[] Assemblies
-        {
-            get
-            {
-                lock (SyncObject) return _Assemblies.ToArray();
-            }
-        }
+        public Assembly[] Assemblies => _Assemblies.Values.ToArray();
 
         /// <summary>
-        /// Scan referenced assemblies?
-        /// </summary>
-        public bool ScanReferencedAssemblies { get; set; } = true;
-
-        /// <summary>
-        /// Scan all loaded and referenced assemblies
+        /// Scan all referenced assemblies
         /// </summary>
         /// <param name="reference">Reference assembly (starting point)</param>
-        /// <param name="force">Force assembly scan? (even if <see cref="ScanReferencedAssemblies"/> is <see langword="false"/>)</param>
         /// <returns>Added assemblies</returns>
-        public Assembly[] ScanAssemblies(Assembly? reference = null, bool force = false)
+        public Assembly[] ScanAssemblies(Assembly? reference = null)
         {
-            if (!force && reference == null && !ScanReferencedAssemblies) return Array.Empty<Assembly>();
+            // Ensure having a reference assembly where we're starting at
             reference ??= Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly();
             if (reference == null)
             {
-                Logging.WriteDebug("No reference assembly or scanning");
+                Logging.WriteTrace("No reference assembly for scanning");
                 return Array.Empty<Assembly>();
             }
+            // Scan referenced assemblies recursive
             Logging.WriteDebug($"Scanning reference assembly {reference.GetName().FullName}");
-            List<Assembly> seen = new(),// Seen assemblies (avoid recursion)
-                added = new();// Added assemblies (the return value)
-            void AddAssemblies(Assembly ass)
+            HashSet<Assembly> added = new(),// Added assemblies (the return value)
+                seen = new();// Seen assemblies (avoid recursion)
+            Queue<Assembly> queue = new();// Assemblies to scan
+            added.Add(reference);
+            queue.Enqueue(reference);
+            while (queue.TryDequeue(out Assembly? assembly))
             {
-                if (seen.Contains(ass)) return;
-                seen.Add(ass);
-                Logging.WriteDebug($"Scanning assembly {ass.GetName().FullName}");
-                bool isKnown;
-                foreach (AssemblyName name in ass.GetReferencedAssemblies())
-                {
-                    ass = Assembly.Load(name);
-                    if (!added.Contains(ass))
+                if (!seen.Add(assembly)) continue;
+                Logging.WriteTrace($"\tScanning assembly {assembly.GetName().FullName}");
+                foreach (AssemblyName name in assembly.GetReferencedAssemblies())
+                    if (added.Add(assembly = Assembly.Load(name)))
                     {
-                        lock (SyncObject) isKnown = _Assemblies.Contains(ass);
-                        if (!isKnown) added.Add(ass);
+                        Logging.WriteTrace($"\t\tFound new referenced assembly {assembly.GetName().FullName}");
+                        queue.Enqueue(assembly);
                     }
-                    AddAssemblies(ass);
-                }
             }
-            AddAssemblies(reference);
-            Assembly[] res = added.Count == 0 ? Array.Empty<Assembly>() : added.ToArray();
-            return res.Length == 0 ? res : this.AddAssemblies(res);
+            return AddAssemblies(added.ToArray());
         }
 
         /// <summary>
@@ -110,13 +103,9 @@ namespace wan24.Core
         /// <returns>Assemblies</returns>
         public Assembly[] AddAssemblies(params Assembly[] assemblies)
         {
-            lock (SyncObject)
-                foreach (Assembly assembly in assemblies)
-                    if (!_Assemblies.Contains(assembly))
-                    {
-                        _Assemblies.Add(assembly);
-                        Logging.WriteDebug($"Added assembly {assembly.GetName().FullName}");
-                    }
+            foreach (Assembly assembly in assemblies.Distinct())
+                if (_Assemblies.TryAdd(assembly.GetName().FullName, assembly))
+                    Logging.WriteDebug($"Added assembly {assembly.GetName().FullName}");
             return assemblies;
         }
 
@@ -127,13 +116,12 @@ namespace wan24.Core
         /// <returns>Types</returns>
         public Type[] AddTypes(params Type[] types)
         {
-            foreach (Type type in types) Types[type.ToString()] = type;
-            Assembly[] assemblies;
-            lock (SyncObject) assemblies = (from t in types
-                                            where !_Assemblies.Contains(t.Assembly)
-                                            select t.Assembly)
-                                   .ToArray();
-            if (assemblies.Length > 0) AddAssemblies(assemblies);
+            Types.AddRange(from type in types.Distinct()
+                           select new KeyValuePair<string, Type>(type.ToString(), type));
+            foreach (Assembly ass in (from t in types
+                                      where !_Assemblies.ContainsKey(t.Assembly.GetName().FullName)
+                                      select t.Assembly).Distinct())
+                ScanAssemblies(ass);
             return types;
         }
 
@@ -141,19 +129,19 @@ namespace wan24.Core
         /// Load a type from its name
         /// </summary>
         /// <param name="name">Name</param>
+        /// <param name="throwOnError">Throw an exception on error?</param>
         /// <returns>Type</returns>
-        public Type? GetType(string name)
+        public Type? GetType(string name, bool throwOnError = false)
         {
             if (Types.TryGetValue(name, out Type? res)) return res;
-            if ((res ??= Type.GetType(name, throwOnError: false)) != null)
+            if ((res = Type.GetType(name, throwOnError)) != null)
             {
-                Types[name] = res!;
+                Types[name] = res;
                 return res;
             }
             res = (from a in Assemblies
-                   where (res = a.GetType(name, throwOnError: false)) != null
-                   select res)
-                  .FirstOrDefault();
+                   where (res = a.GetType(name, throwOnError)) != null
+                   select res).FirstOrDefault();
             if (res == null)
             {
                 LoadTypeEventArgs e = new(name);

@@ -6,12 +6,12 @@ namespace Wan24_Core_Tests
     [TestClass]
     public class A_Initialization
     {
-        [TestMethod]
-        public void General_Tests()
+        [AssemblyInitialize]
+        public static void Init(TestContext tc)
         {
-            ILoggerFactory loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
-            Logging.Logger = loggerFactory.CreateLogger("Tests");
-            Logging.WriteInfo("Tests initialized");
+            Logging.Logger = LoggerFactory.Create(builder => builder.AddConsole()).CreateLogger("Tests");
+            Logging.WriteInfo("wan24-Core Tests initialized");
+            Bootstrap.Async().Wait();
         }
     }
 }
