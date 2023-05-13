@@ -140,6 +140,10 @@ called. At last the `Bootstrap.OnBootstrap` event will be raised.
 During bootstrapping the `Bootstrap.IsBooting` property is `true`. After 
 bootstrapping the `Bootstrap.DidBoot` property is `true`.
 
+The bootstrapper will load all referenced assemblies. If you load an assembly 
+later, it'll be bootstrapped automatic and added to the `TypeHelper` singleton 
+instance.
+
 ## Type helper
 
 If you use the `TypeHelper.AddTypes` method, the unknown assemblies of the 
