@@ -196,7 +196,7 @@ namespace wan24.Core
         /// <param name="bindingFlags">Binding flags (used to select methods of the type)</param>
         /// <param name="filter">Additional filter function (needs to return <see langword="true"/> to accept the given method as return value)</param>
         /// <param name="exactTypes">Compare exact types (otherwise use <see cref="Type.IsAssignableFrom(Type?)"/>)</param>
-        /// <param name="genericArgumentCount">Number of generic arguments (or <c>0</c>)</param>
+        /// <param name="genericArgumentCount">Number of generic arguments</param>
         /// <param name="returnType">Return type (<see langword="null"/> equals a <see cref="void"/> return value)</param>
         /// <param name="parameterTypes">Parameter types (or <see langword="null"/> to skip parameter type checks)</param>
         /// <returns>Matching method</returns>
@@ -211,14 +211,14 @@ namespace wan24.Core
             params Type[]? parameterTypes
             )
         {
-            Type[] pt;
+            Type[] pt;//TODO Test
             foreach(MethodInfo mi in type.GetMethods(bindingFlags))
             {
                 // Check method name, return type and generic argument count
                 if (
                     (name != null && mi.Name != name) ||
                     (returnType == null && mi.ReturnType != null) || (returnType != null && (exactTypes ? mi.ReturnType != returnType : !returnType.IsAssignableFrom(mi.ReturnType))) ||
-                    (genericArgumentCount > 0 && (!mi.IsGenericMethodDefinition || mi.GetGenericArguments().Length != genericArgumentCount))
+                    (!mi.IsGenericMethodDefinition || mi.GetGenericArguments().Length != genericArgumentCount)
                     )
                     continue;
                 // Check parameters
@@ -229,9 +229,12 @@ namespace wan24.Core
                     if (!exactTypes)
                     {
                         bool isMatch = true;
-                        for (int i = 0; isMatch && i < parameterTypes.Length; i++)
-                            if (!parameterTypes[i].IsAssignableFrom(pt[i]))
-                                isMatch = false;
+                        for (int i = 0; i < parameterTypes.Length; i++)
+                        {
+                            if (parameterTypes[i].IsAssignableFrom(pt[i])) continue;
+                            isMatch = false;
+                            break;
+                        }
                         if (!isMatch) continue;
                     }
                 }
