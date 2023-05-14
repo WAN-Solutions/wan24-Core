@@ -18,7 +18,9 @@ namespace wan24.Core
         {
             List<object?> par = new(param);
             ParameterInfo[] pis = mi.GetParameters();
+#pragma warning disable IDE0018 // Can declare inline
             object? di;
+#pragma warning restore IDE0018 // Can declare inline
             for (int i = par.Count; i < pis.Length; i++)
                 if (DiHelper.GetDiObject(pis[i].ParameterType, out di))
                 {
@@ -119,7 +121,9 @@ namespace wan24.Core
                 : BindingFlags.Public | BindingFlags.Instance;
             List<object?> par;
             ParameterInfo[] pis;
+#pragma warning disable IDE0018 // Can declare inline
             object? di;
+#pragma warning restore IDE0018 // Can declare inline
             bool use;
             foreach (ConstructorInfo ci in type.GetConstructors(flags).OrderByDescending(c => c.GetParameters().Length))
             {
@@ -183,5 +187,59 @@ namespace wan24.Core
         /// <param name="ni">Nullability info</param>
         /// <returns>Is nullable?</returns>
         public static bool IsNullable(this NullabilityInfo ni) => !(ni.ReadState == NullabilityState.NotNull || ni.WriteState == NullabilityState.NotNull);
+
+        /// <summary>
+        /// Get a method which matches the given filter parameters
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="name">Method name (<see langword="null"/> to skip method name check)</param>
+        /// <param name="bindingFlags">Binding flags (used to select methods of the type)</param>
+        /// <param name="filter">Additional filter function (needs to return <see langword="true"/> to accept the given method as return value)</param>
+        /// <param name="exactTypes">Compare exact types (otherwise use <see cref="Type.IsAssignableFrom(Type?)"/>)</param>
+        /// <param name="genericArgumentCount">Number of generic arguments (or <c>0</c>)</param>
+        /// <param name="returnType">Return type (<see langword="null"/> equals a <see cref="void"/> return value)</param>
+        /// <param name="parameterTypes">Parameter types (or <see langword="null"/> to skip parameter type checks)</param>
+        /// <returns>Matching method</returns>
+        public static MethodInfo? GetMethod(
+            this Type type, 
+            string? name, 
+            BindingFlags bindingFlags, 
+            Func<MethodInfo, bool>? filter, 
+            bool exactTypes, 
+            int genericArgumentCount, 
+            Type? returnType, 
+            params Type[]? parameterTypes
+            )
+        {
+            Type[] pt;
+            foreach(MethodInfo mi in type.GetMethods(bindingFlags))
+            {
+                // Check method name, return type and generic argument count
+                if (
+                    (name != null && mi.Name != name) ||
+                    (returnType == null && mi.ReturnType != null) || (returnType != null && (exactTypes ? mi.ReturnType != returnType : !returnType.IsAssignableFrom(mi.ReturnType))) ||
+                    (genericArgumentCount > 0 && (!mi.IsGenericMethodDefinition || mi.GetGenericArguments().Length != genericArgumentCount))
+                    )
+                    continue;
+                // Check parameters
+                if (parameterTypes != null)
+                {
+                    pt = mi.GetParameters().Select(p => p.ParameterType).ToArray();
+                    if (pt.Length != parameterTypes.Length || (exactTypes && !parameterTypes.SequenceEqual(pt))) continue;
+                    if (!exactTypes)
+                    {
+                        bool isMatch = true;
+                        for (int i = 0; isMatch && i < parameterTypes.Length; i++)
+                            if (!parameterTypes[i].IsAssignableFrom(pt[i]))
+                                isMatch = false;
+                        if (!isMatch) continue;
+                    }
+                }
+                // Run additional filter
+                if (!(filter?.Invoke(mi) ?? true)) continue;
+                return mi;
+            }
+            return null;
+        }
     }
 }

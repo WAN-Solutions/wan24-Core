@@ -14,5 +14,15 @@
         /// Buffer size in bytes
         /// </summary>
         public static int BufferSize { get; set; } = DEFAULT_BUFFER_SIZE;
+
+        /// <summary>
+        /// Temporary folder (may be the customized value or the system users temporary folder)
+        /// </summary>
+        public static string TempFolder => CustomTempFolder ?? Path.GetTempPath();
+
+        /// <summary>
+        /// Custom temporary folder
+        /// </summary>
+        public static string? CustomTempFolder { get; set; }
     }
 }
