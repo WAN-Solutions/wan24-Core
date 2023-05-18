@@ -195,54 +195,81 @@ namespace wan24.Core
         /// <param name="name">Method name (<see langword="null"/> to skip method name check)</param>
         /// <param name="bindingFlags">Binding flags (used to select methods of the type)</param>
         /// <param name="filter">Additional filter function (needs to return <see langword="true"/> to accept the given method as return value)</param>
-        /// <param name="exactTypes">Compare exact types (otherwise use <see cref="Type.IsAssignableFrom(Type?)"/>)</param>
         /// <param name="genericArgumentCount">Number of generic arguments</param>
-        /// <param name="returnType">Return type (<see langword="null"/> equals a <see cref="void"/> return value)</param>
-        /// <param name="parameterTypes">Parameter types (or <see langword="null"/> to skip parameter type checks)</param>
+        /// <param name="exactTypes">Require exact types?</param>
+        /// <param name="returnType">Return type (<see langword="null"/> to skip the return value type check)</param>
+        /// <param name="parameterTypes">Parameter types (or <see langword="null"/> to skip parameter type checks; a single <see langword="null"/> parameter type would allow any parameter 
+        /// type)</param>
         /// <returns>Matching method</returns>
         public static MethodInfo? GetMethod(
-            this Type type, 
-            string? name, 
-            BindingFlags bindingFlags, 
-            Func<MethodInfo, bool>? filter, 
-            bool exactTypes, 
-            int genericArgumentCount, 
-            Type? returnType, 
-            params Type[]? parameterTypes
+            this Type type,
+            string? name = null,
+            BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic,
+            Func<MethodInfo, bool>? filter = null,
+            int? genericArgumentCount = null,
+            bool exactTypes = true,
+            Type? returnType = null,
+            params Type?[]? parameterTypes
             )
         {
-            Type[] pt;//TODO Test ReflectionExtensions.GetMethod
+            Type[] pt;
             foreach (MethodInfo mi in type.GetMethods(bindingFlags))
             {
                 // Check method name, return type and generic argument count
                 if (
                     (name != null && mi.Name != name) ||
-                    (returnType == null && mi.ReturnType != null) || (returnType != null && (exactTypes ? mi.ReturnType != returnType : !returnType.IsAssignableFrom(mi.ReturnType))) ||
-                    (!mi.IsGenericMethodDefinition || mi.GetGenericArguments().Length != genericArgumentCount)
+                    (returnType != null && !MatchReturnType(mi, returnType, exactTypes)) ||
+                    (genericArgumentCount != null && (genericArgumentCount.Value != 0 != mi.IsGenericMethodDefinition || mi.GetGenericArguments().Length != genericArgumentCount.Value))
                     )
                     continue;
                 // Check parameters
                 if (parameterTypes != null)
                 {
                     pt = mi.GetParameters().Select(p => p.ParameterType).ToArray();
-                    if (pt.Length != parameterTypes.Length || (exactTypes && !parameterTypes.SequenceEqual(pt))) continue;
-                    if (!exactTypes)
+                    if (pt.Length != parameterTypes.Length) continue;
+                    bool isMatch = true;
+                    for (int i = 0; i < parameterTypes.Length; i++)
                     {
-                        bool isMatch = true;
-                        for (int i = 0; i < parameterTypes.Length; i++)
-                        {
-                            if (parameterTypes[i].IsAssignableFrom(pt[i])) continue;
-                            isMatch = false;
-                            break;
-                        }
-                        if (!isMatch) continue;
+                        if (parameterTypes[i] == null || MatchParameterType(mi, pt[i], parameterTypes[i]!, exactTypes)) continue;
+                        isMatch = false;
+                        break;
                     }
+                    if (!isMatch) continue;
                 }
                 // Run additional filter
                 if (!(filter?.Invoke(mi) ?? true)) continue;
                 return mi;
             }
             return null;
+        }
+
+        /// <summary>
+        /// Match a method return type agsinst an expected type
+        /// </summary>
+        /// <param name="method">Method</param>
+        /// <param name="expectedReturnType">Expected return type</param>
+        /// <param name="exact">Exact type match?</param>
+        /// <returns>Is match?</returns>
+        private static bool MatchReturnType(MethodInfo method, Type expectedReturnType, bool exact)
+        {
+            if (method.IsGenericMethod && method.ReturnType.IsGenericType && method.ReturnType.GetGenericArguments()[0].IsGenericMethodParameter)
+                return expectedReturnType.IsAssignableFrom(method.ReturnType.GetGenericTypeDefinition());
+            return (exact && method.ReturnType == expectedReturnType) || (!exact && expectedReturnType.IsAssignableFrom(method.ReturnType));
+        }
+
+        /// <summary>
+        /// Match a method return type agsinst an expected type
+        /// </summary>
+        /// <param name="method">Method</param>
+        /// <param name="parameterType">Parameter type</param>
+        /// <param name="expectedType">Expected type</param>
+        /// <param name="exact">Exact type match?</param>
+        /// <returns>Is match?</returns>
+        private static bool MatchParameterType(MethodInfo method, Type parameterType, Type expectedType, bool exact)
+        {
+            if (method.IsGenericMethod && parameterType.IsGenericType && parameterType.GetGenericArguments()[0].IsGenericMethodParameter)
+                return parameterType.GetGenericTypeDefinition().IsAssignableFrom(expectedType);
+            return (exact && parameterType == expectedType) || (!exact && parameterType.IsAssignableFrom(expectedType));
         }
     }
 }
