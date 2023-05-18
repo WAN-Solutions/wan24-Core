@@ -211,8 +211,8 @@ namespace wan24.Core
             params Type[]? parameterTypes
             )
         {
-            Type[] pt;//TODO Test
-            foreach(MethodInfo mi in type.GetMethods(bindingFlags))
+            Type[] pt;//TODO Test ReflectionExtensions.GetMethod
+            foreach (MethodInfo mi in type.GetMethods(bindingFlags))
             {
                 // Check method name, return type and generic argument count
                 if (

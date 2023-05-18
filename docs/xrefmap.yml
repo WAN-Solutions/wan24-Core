@@ -7377,6 +7377,22 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ReflectionExtensions.ConstructAuto
   nameWithType: ReflectionExtensions.ConstructAuto
+- uid: wan24.Core.ReflectionExtensions.GetMethod(Type,System.String,System.Reflection.BindingFlags,System.Nullable{Func{System.Reflection.MethodInfo,System.Boolean}},System.Boolean,System.Int32,System.Nullable{Type},Type[])
+  name: GetMethod(Type, String, BindingFlags, Nullable<Func<MethodInfo, Boolean>>, Boolean, Int32, Nullable<Type>, Type[])
+  href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetMethod_Type_System_String_System_Reflection_BindingFlags_System_Nullable_Func_System_Reflection_MethodInfo_System_Boolean___System_Boolean_System_Int32_System_Nullable_Type__Type___
+  commentId: M:wan24.Core.ReflectionExtensions.GetMethod(Type,System.String,System.Reflection.BindingFlags,System.Nullable{Func{System.Reflection.MethodInfo,System.Boolean}},System.Boolean,System.Int32,System.Nullable{Type},Type[])
+  name.vb: GetMethod(Type, String, BindingFlags, Nullable(Of Func(Of MethodInfo, Boolean)), Boolean, Int32, Nullable(Of Type), Type())
+  fullName: wan24.Core.ReflectionExtensions.GetMethod(Type, System.String, System.Reflection.BindingFlags, System.Nullable<Func<System.Reflection.MethodInfo, System.Boolean>>, System.Boolean, System.Int32, System.Nullable<Type>, Type[])
+  fullName.vb: wan24.Core.ReflectionExtensions.GetMethod(Type, System.String, System.Reflection.BindingFlags, System.Nullable(Of Func(Of System.Reflection.MethodInfo, System.Boolean)), System.Boolean, System.Int32, System.Nullable(Of Type), Type())
+  nameWithType: ReflectionExtensions.GetMethod(Type, String, BindingFlags, Nullable<Func<MethodInfo, Boolean>>, Boolean, Int32, Nullable<Type>, Type[])
+  nameWithType.vb: ReflectionExtensions.GetMethod(Type, String, BindingFlags, Nullable(Of Func(Of MethodInfo, Boolean)), Boolean, Int32, Nullable(Of Type), Type())
+- uid: wan24.Core.ReflectionExtensions.GetMethod*
+  name: GetMethod
+  href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetMethod_
+  commentId: Overload:wan24.Core.ReflectionExtensions.GetMethod
+  isSpec: "True"
+  fullName: wan24.Core.ReflectionExtensions.GetMethod
+  nameWithType: ReflectionExtensions.GetMethod
 - uid: wan24.Core.ReflectionExtensions.InvokeAuto(System.Reflection.MethodInfo,System.Object,System.Object[])
   name: InvokeAuto(MethodInfo, Object, Object[])
   href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeAuto_System_Reflection_MethodInfo_System_Object_System_Object___
@@ -7479,6 +7495,15 @@ references:
   fullName.vb: wan24.Core.RentedArray(Of T)
   nameWithType: RentedArray<T>
   nameWithType.vb: RentedArray(Of T)
+- uid: wan24.Core.RentedArray`1.#ctor(System.Buffers.ArrayPool{`0},`0[],System.Nullable{System.Int32})
+  name: RentedArray(ArrayPool<T>, T[], Nullable<Int32>)
+  href: api/wan24.Core.RentedArray-1.html#wan24_Core_RentedArray_1__ctor_System_Buffers_ArrayPool__0___0___System_Nullable_System_Int32__
+  commentId: M:wan24.Core.RentedArray`1.#ctor(System.Buffers.ArrayPool{`0},`0[],System.Nullable{System.Int32})
+  name.vb: RentedArray(ArrayPool(Of T), T(), Nullable(Of Int32))
+  fullName: wan24.Core.RentedArray<T>.RentedArray(System.Buffers.ArrayPool<T>, T[], System.Nullable<System.Int32>)
+  fullName.vb: wan24.Core.RentedArray(Of T).RentedArray(System.Buffers.ArrayPool(Of T), T(), System.Nullable(Of System.Int32))
+  nameWithType: RentedArray<T>.RentedArray(ArrayPool<T>, T[], Nullable<Int32>)
+  nameWithType.vb: RentedArray(Of T).RentedArray(ArrayPool(Of T), T(), Nullable(Of Int32))
 - uid: wan24.Core.RentedArray`1.#ctor(System.Int32,System.Buffers.ArrayPool{`0})
   name: RentedArray(Int32, ArrayPool<T>)
   href: api/wan24.Core.RentedArray-1.html#wan24_Core_RentedArray_1__ctor_System_Int32_System_Buffers_ArrayPool__0__
@@ -8132,12 +8157,38 @@ references:
   isSpec: "True"
   fullName: wan24.Core.Settings.BufferSize
   nameWithType: Settings.BufferSize
+- uid: wan24.Core.Settings.CustomTempFolder
+  name: CustomTempFolder
+  href: api/wan24.Core.Settings.html#wan24_Core_Settings_CustomTempFolder
+  commentId: P:wan24.Core.Settings.CustomTempFolder
+  fullName: wan24.Core.Settings.CustomTempFolder
+  nameWithType: Settings.CustomTempFolder
+- uid: wan24.Core.Settings.CustomTempFolder*
+  name: CustomTempFolder
+  href: api/wan24.Core.Settings.html#wan24_Core_Settings_CustomTempFolder_
+  commentId: Overload:wan24.Core.Settings.CustomTempFolder
+  isSpec: "True"
+  fullName: wan24.Core.Settings.CustomTempFolder
+  nameWithType: Settings.CustomTempFolder
 - uid: wan24.Core.Settings.DEFAULT_BUFFER_SIZE
   name: DEFAULT_BUFFER_SIZE
   href: api/wan24.Core.Settings.html#wan24_Core_Settings_DEFAULT_BUFFER_SIZE
   commentId: F:wan24.Core.Settings.DEFAULT_BUFFER_SIZE
   fullName: wan24.Core.Settings.DEFAULT_BUFFER_SIZE
   nameWithType: Settings.DEFAULT_BUFFER_SIZE
+- uid: wan24.Core.Settings.TempFolder
+  name: TempFolder
+  href: api/wan24.Core.Settings.html#wan24_Core_Settings_TempFolder
+  commentId: P:wan24.Core.Settings.TempFolder
+  fullName: wan24.Core.Settings.TempFolder
+  nameWithType: Settings.TempFolder
+- uid: wan24.Core.Settings.TempFolder*
+  name: TempFolder
+  href: api/wan24.Core.Settings.html#wan24_Core_Settings_TempFolder_
+  commentId: Overload:wan24.Core.Settings.TempFolder
+  isSpec: "True"
+  fullName: wan24.Core.Settings.TempFolder
+  nameWithType: Settings.TempFolder
 - uid: wan24.Core.StringExtensions
   name: StringExtensions
   href: api/wan24.Core.StringExtensions.html

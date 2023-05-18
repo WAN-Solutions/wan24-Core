@@ -240,6 +240,9 @@ you won't need to add the attribute to the type and the method.</p>
 called. At last the <code>Bootstrap.OnBootstrap</code> event will be raised.</p>
 <p>During bootstrapping the <code>Bootstrap.IsBooting</code> property is <code>true</code>. After
 bootstrapping the <code>Bootstrap.DidBoot</code> property is <code>true</code>.</p>
+<p>The bootstrapper will load all referenced assemblies. If you load an assembly
+later, it'll be bootstrapped automatic and added to the <code>TypeHelper</code> singleton
+instance.</p>
 <h2 id="type-helper">Type helper</h2>
 <p>If you use the <code>TypeHelper.AddTypes</code> method, the unknown assemblies of the
 added types will be added as searchable assemblies automatic.</p>
