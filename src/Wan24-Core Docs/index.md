@@ -49,6 +49,7 @@ disposing
     - Determine if a number type is unsigned
     - Bit-converter (endian-safe)
     - Determine if a number (or any `IComparable`) is within a range
+- Numeric bitwise extensions
 - Collection extensions
     - Add a range of items
 - JSON helper
@@ -139,6 +140,10 @@ called. At last the `Bootstrap.OnBootstrap` event will be raised.
 
 During bootstrapping the `Bootstrap.IsBooting` property is `true`. After 
 bootstrapping the `Bootstrap.DidBoot` property is `true`.
+
+The bootstrapper will load all referenced assemblies. If you load an assembly 
+later, it'll be bootstrapped automatic and added to the `TypeHelper` singleton 
+instance.
 
 ## Type helper
 

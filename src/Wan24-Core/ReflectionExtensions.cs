@@ -18,7 +18,9 @@ namespace wan24.Core
         {
             List<object?> par = new(param);
             ParameterInfo[] pis = mi.GetParameters();
+#pragma warning disable IDE0018 // Can declare inline
             object? di;
+#pragma warning restore IDE0018 // Can declare inline
             for (int i = par.Count; i < pis.Length; i++)
                 if (DiHelper.GetDiObject(pis[i].ParameterType, out di))
                 {
@@ -119,7 +121,9 @@ namespace wan24.Core
                 : BindingFlags.Public | BindingFlags.Instance;
             List<object?> par;
             ParameterInfo[] pis;
+#pragma warning disable IDE0018 // Can declare inline
             object? di;
+#pragma warning restore IDE0018 // Can declare inline
             bool use;
             foreach (ConstructorInfo ci in type.GetConstructors(flags).OrderByDescending(c => c.GetParameters().Length))
             {
@@ -183,5 +187,89 @@ namespace wan24.Core
         /// <param name="ni">Nullability info</param>
         /// <returns>Is nullable?</returns>
         public static bool IsNullable(this NullabilityInfo ni) => !(ni.ReadState == NullabilityState.NotNull || ni.WriteState == NullabilityState.NotNull);
+
+        /// <summary>
+        /// Get a method which matches the given filter parameters
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="name">Method name (<see langword="null"/> to skip method name check)</param>
+        /// <param name="bindingFlags">Binding flags (used to select methods of the type)</param>
+        /// <param name="filter">Additional filter function (needs to return <see langword="true"/> to accept the given method as return value)</param>
+        /// <param name="genericArgumentCount">Number of generic arguments</param>
+        /// <param name="exactTypes">Require exact types?</param>
+        /// <param name="returnType">Return type (<see langword="null"/> to skip the return value type check)</param>
+        /// <param name="parameterTypes">Parameter types (or <see langword="null"/> to skip parameter type checks; a single <see langword="null"/> parameter type would allow any parameter 
+        /// type)</param>
+        /// <returns>Matching method</returns>
+        public static MethodInfo? GetMethod(
+            this Type type,
+            string? name = null,
+            BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic,
+            Func<MethodInfo, bool>? filter = null,
+            int? genericArgumentCount = null,
+            bool exactTypes = true,
+            Type? returnType = null,
+            params Type?[]? parameterTypes
+            )
+        {
+            Type[] pt;
+            foreach (MethodInfo mi in type.GetMethods(bindingFlags))
+            {
+                // Check method name, return type and generic argument count
+                if (
+                    (name != null && mi.Name != name) ||
+                    (returnType != null && !MatchReturnType(mi, returnType, exactTypes)) ||
+                    (genericArgumentCount != null && (genericArgumentCount.Value != 0 != mi.IsGenericMethodDefinition || mi.GetGenericArguments().Length != genericArgumentCount.Value))
+                    )
+                    continue;
+                // Check parameters
+                if (parameterTypes != null)
+                {
+                    pt = mi.GetParameters().Select(p => p.ParameterType).ToArray();
+                    if (pt.Length != parameterTypes.Length) continue;
+                    bool isMatch = true;
+                    for (int i = 0; i < parameterTypes.Length; i++)
+                    {
+                        if (parameterTypes[i] == null || MatchParameterType(mi, pt[i], parameterTypes[i]!, exactTypes)) continue;
+                        isMatch = false;
+                        break;
+                    }
+                    if (!isMatch) continue;
+                }
+                // Run additional filter
+                if (!(filter?.Invoke(mi) ?? true)) continue;
+                return mi;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Match a method return type agsinst an expected type
+        /// </summary>
+        /// <param name="method">Method</param>
+        /// <param name="expectedReturnType">Expected return type</param>
+        /// <param name="exact">Exact type match?</param>
+        /// <returns>Is match?</returns>
+        private static bool MatchReturnType(MethodInfo method, Type expectedReturnType, bool exact)
+        {
+            if (method.IsGenericMethod && method.ReturnType.IsGenericType && method.ReturnType.GetGenericArguments()[0].IsGenericMethodParameter)
+                return expectedReturnType.IsAssignableFrom(method.ReturnType.GetGenericTypeDefinition());
+            return (exact && method.ReturnType == expectedReturnType) || (!exact && expectedReturnType.IsAssignableFrom(method.ReturnType));
+        }
+
+        /// <summary>
+        /// Match a method return type agsinst an expected type
+        /// </summary>
+        /// <param name="method">Method</param>
+        /// <param name="parameterType">Parameter type</param>
+        /// <param name="expectedType">Expected type</param>
+        /// <param name="exact">Exact type match?</param>
+        /// <returns>Is match?</returns>
+        private static bool MatchParameterType(MethodInfo method, Type parameterType, Type expectedType, bool exact)
+        {
+            if (method.IsGenericMethod && parameterType.IsGenericType && parameterType.GetGenericArguments()[0].IsGenericMethodParameter)
+                return parameterType.GetGenericTypeDefinition().IsAssignableFrom(expectedType);
+            return (exact && parameterType == expectedType) || (!exact && parameterType.IsAssignableFrom(expectedType));
+        }
     }
 }

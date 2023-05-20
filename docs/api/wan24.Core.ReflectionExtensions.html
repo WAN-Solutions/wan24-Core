@@ -118,7 +118,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ReflectionExtensions_ConstructAuto_Type_System_Boolean_System_Object___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.ConstructAuto(Type%2CSystem.Boolean%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L114">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L116">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_ConstructAuto_" data-uid="wan24.Core.ReflectionExtensions.ConstructAuto*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_ConstructAuto_Type_System_Boolean_System_Object___" data-uid="wan24.Core.ReflectionExtensions.ConstructAuto(Type,System.Boolean,System.Object[])">ConstructAuto(Type, Boolean, Object[])</h4>
@@ -171,6 +171,99 @@
       <tr>
         <td><span class="xref">System.Object</span></td>
         <td><p>Instance or <span class="xref">null</span>, if no constructor could be found</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetMethod_Type_System_String_System_Reflection_BindingFlags_System_Nullable_Func_System_Reflection_MethodInfo_System_Boolean___System_Nullable_System_Int32__System_Boolean_System_Nullable_Type__System_Nullable_Type____.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetMethod(Type%2CSystem.String%2CSystem.Reflection.BindingFlags%2CSystem.Nullable%7BFunc%7BSystem.Reflection.MethodInfo%2CSystem.Boolean%7D%7D%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean%2CSystem.Nullable%7BType%7D%2CSystem.Nullable%7BType%7D%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L204">View Source</a>
+  </span>
+  <a id="wan24_Core_ReflectionExtensions_GetMethod_" data-uid="wan24.Core.ReflectionExtensions.GetMethod*"></a>
+  <h4 id="wan24_Core_ReflectionExtensions_GetMethod_Type_System_String_System_Reflection_BindingFlags_System_Nullable_Func_System_Reflection_MethodInfo_System_Boolean___System_Nullable_System_Int32__System_Boolean_System_Nullable_Type__System_Nullable_Type____" data-uid="wan24.Core.ReflectionExtensions.GetMethod(Type,System.String,System.Reflection.BindingFlags,System.Nullable{Func{System.Reflection.MethodInfo,System.Boolean}},System.Nullable{System.Int32},System.Boolean,System.Nullable{Type},System.Nullable{Type}[])">GetMethod(Type, String, BindingFlags, Nullable&lt;Func&lt;MethodInfo, Boolean&gt;&gt;, Nullable&lt;Int32&gt;, Boolean, Nullable&lt;Type&gt;, Nullable&lt;Type&gt;[])</h4>
+  <div class="markdown level1 summary"><p>Get a method which matches the given filter parameters</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MethodInfo GetMethod(this Type type, string name = null, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic, Func&lt;MethodInfo, bool&gt;? filter = null, int? genericArgumentCount = null, bool exactTypes = true, Type? returnType = null, params Type? [] parameterTypes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Type</span></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>Method name (<span class="xref">null</span> to skip method name check)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Reflection.BindingFlags</span></td>
+        <td><span class="parametername">bindingFlags</span></td>
+        <td><p>Binding flags (used to select methods of the type)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Func</span>&lt;<span class="xref">System.Reflection.MethodInfo</span>, <span class="xref">System.Boolean</span>&gt;&gt;</td>
+        <td><span class="parametername">filter</span></td>
+        <td><p>Additional filter function (needs to return <span class="xref">true</span> to accept the given method as return value)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">genericArgumentCount</span></td>
+        <td><p>Number of generic arguments</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">exactTypes</span></td>
+        <td><p>Require exact types?</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Type</span>&gt;</td>
+        <td><span class="parametername">returnType</span></td>
+        <td><p>Return type (<span class="xref">null</span> to skip the return value type check)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Type</span>&gt;[]</td>
+        <td><span class="parametername">parameterTypes</span></td>
+        <td><p>Parameter types (or <span class="xref">null</span> to skip parameter type checks; a single <span class="xref">null</span> parameter type would allow any parameter
+type)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.MethodInfo</span></td>
+        <td><p>Matching method</p>
 </td>
       </tr>
     </tbody>
@@ -242,7 +335,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ReflectionExtensions_InvokeAuto__1_System_Reflection_MethodInfo_System_Object_System_Object___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.InvokeAuto%60%601(System.Reflection.MethodInfo%2CSystem.Object%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L46">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L48">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_InvokeAuto_" data-uid="wan24.Core.ReflectionExtensions.InvokeAuto*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_InvokeAuto__1_System_Reflection_MethodInfo_System_Object_System_Object___" data-uid="wan24.Core.ReflectionExtensions.InvokeAuto``1(System.Reflection.MethodInfo,System.Object,System.Object[])">InvokeAuto&lt;T&gt;(MethodInfo, Object, Object[])</h4>
@@ -320,7 +413,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ReflectionExtensions_InvokeAutoAsync_System_Reflection_MethodInfo_System_Object_System_Object___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.InvokeAutoAsync(System.Reflection.MethodInfo%2CSystem.Object%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L55">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L57">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_InvokeAutoAsync_" data-uid="wan24.Core.ReflectionExtensions.InvokeAutoAsync*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_InvokeAutoAsync_System_Reflection_MethodInfo_System_Object_System_Object___" data-uid="wan24.Core.ReflectionExtensions.InvokeAutoAsync(System.Reflection.MethodInfo,System.Object,System.Object[])">InvokeAutoAsync(MethodInfo, Object, Object[])</h4>
@@ -382,7 +475,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ReflectionExtensions_InvokeAutoAsync__1_System_Reflection_MethodInfo_System_Object_System_Object___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.InvokeAutoAsync%60%601(System.Reflection.MethodInfo%2CSystem.Object%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L104">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L106">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_InvokeAutoAsync_" data-uid="wan24.Core.ReflectionExtensions.InvokeAutoAsync*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_InvokeAutoAsync__1_System_Reflection_MethodInfo_System_Object_System_Object___" data-uid="wan24.Core.ReflectionExtensions.InvokeAutoAsync``1(System.Reflection.MethodInfo,System.Object,System.Object[])">InvokeAutoAsync&lt;T&gt;(MethodInfo, Object, Object[])</h4>
@@ -460,7 +553,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ReflectionExtensions_IsNullable_System_Reflection_FieldInfo_System_Reflection_NullabilityInfoContext_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.IsNullable(System.Reflection.FieldInfo%2CSystem.Reflection.NullabilityInfoContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L178">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L182">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_IsNullable_" data-uid="wan24.Core.ReflectionExtensions.IsNullable*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_IsNullable_System_Reflection_FieldInfo_System_Reflection_NullabilityInfoContext_" data-uid="wan24.Core.ReflectionExtensions.IsNullable(System.Reflection.FieldInfo,System.Reflection.NullabilityInfoContext)">IsNullable(FieldInfo, NullabilityInfoContext)</h4>
@@ -516,7 +609,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ReflectionExtensions_IsNullable_System_Reflection_MethodInfo_System_Reflection_NullabilityInfoContext_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.IsNullable(System.Reflection.MethodInfo%2CSystem.Reflection.NullabilityInfoContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L154">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L158">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_IsNullable_" data-uid="wan24.Core.ReflectionExtensions.IsNullable*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_IsNullable_System_Reflection_MethodInfo_System_Reflection_NullabilityInfoContext_" data-uid="wan24.Core.ReflectionExtensions.IsNullable(System.Reflection.MethodInfo,System.Reflection.NullabilityInfoContext)">IsNullable(MethodInfo, NullabilityInfoContext)</h4>
@@ -572,7 +665,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ReflectionExtensions_IsNullable_System_Reflection_NullabilityInfo_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.IsNullable(System.Reflection.NullabilityInfo)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L185">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L189">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_IsNullable_" data-uid="wan24.Core.ReflectionExtensions.IsNullable*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_IsNullable_System_Reflection_NullabilityInfo_" data-uid="wan24.Core.ReflectionExtensions.IsNullable(System.Reflection.NullabilityInfo)">IsNullable(NullabilityInfo)</h4>
@@ -622,7 +715,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ReflectionExtensions_IsNullable_System_Reflection_ParameterInfo_System_Reflection_NullabilityInfoContext_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.IsNullable(System.Reflection.ParameterInfo%2CSystem.Reflection.NullabilityInfoContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L162">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L166">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_IsNullable_" data-uid="wan24.Core.ReflectionExtensions.IsNullable*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_IsNullable_System_Reflection_ParameterInfo_System_Reflection_NullabilityInfoContext_" data-uid="wan24.Core.ReflectionExtensions.IsNullable(System.Reflection.ParameterInfo,System.Reflection.NullabilityInfoContext)">IsNullable(ParameterInfo, NullabilityInfoContext)</h4>
@@ -678,7 +771,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ReflectionExtensions_IsNullable_System_Reflection_PropertyInfo_System_Reflection_NullabilityInfoContext_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.IsNullable(System.Reflection.PropertyInfo%2CSystem.Reflection.NullabilityInfoContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L170">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L174">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_IsNullable_" data-uid="wan24.Core.ReflectionExtensions.IsNullable*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_IsNullable_System_Reflection_PropertyInfo_System_Reflection_NullabilityInfoContext_" data-uid="wan24.Core.ReflectionExtensions.IsNullable(System.Reflection.PropertyInfo,System.Reflection.NullabilityInfoContext)">IsNullable(PropertyInfo, NullabilityInfoContext)</h4>
@@ -734,7 +827,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ReflectionExtensions_IsNullable_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.IsNullable(Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L146">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ReflectionExtensions.cs/#L150">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_IsNullable_" data-uid="wan24.Core.ReflectionExtensions.IsNullable*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_IsNullable_Type_" data-uid="wan24.Core.ReflectionExtensions.IsNullable(Type)">IsNullable(Type)</h4>

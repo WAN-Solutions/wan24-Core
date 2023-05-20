@@ -49,6 +49,7 @@ disposing
     - Determine if a number type is unsigned
     - Bit-converter (endian-safe)
     - Determine if a number (or any `IComparable`) is within a range
+- Numeric bitwise extensions
 - Collection extensions
     - Add a range of items
 - JSON helper

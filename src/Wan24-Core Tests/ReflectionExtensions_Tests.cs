@@ -116,6 +116,73 @@ namespace Wan24_Core_Tests
             Assert.IsFalse(mi.GetParameters()[1].IsNullable());
         }
 
+        [TestMethod]
+        public void GetMethod_Tests()
+        {
+            // Match method
+            MethodInfo? mi = typeof(ArrayExtensions).GetMethod(
+                nameof(ArrayExtensions.EnsureValid),
+                BindingFlags.Public | BindingFlags.Static,
+                filter: null,
+                genericArgumentCount: 1,
+                exactTypes: true,
+                typeof(Memory<>),
+                typeof(Memory<>),
+                typeof(int),
+                typeof(int)
+                );
+            Assert.IsNotNull(mi);
+            Assert.AreEqual(nameof(ArrayExtensions.EnsureValid), mi.Name);
+            Assert.IsTrue(typeof(Memory<>).IsAssignableFrom(mi.ReturnType.GetGenericTypeDefinition()));
+            ParameterInfo[] param = mi.GetParameters();
+            Assert.AreEqual(3, param.Length);
+            Assert.IsTrue(typeof(Memory<>).IsAssignableFrom(param[0].ParameterType.GetGenericTypeDefinition()));
+            Assert.AreEqual(typeof(int), param[1].ParameterType);
+            Assert.AreEqual(typeof(int), param[2].ParameterType);
+
+            // Miss generic parameter count
+            mi = typeof(ArrayExtensions).GetMethod(
+                nameof(ArrayExtensions.EnsureValid),
+                BindingFlags.Public | BindingFlags.Static,
+                filter: null,
+                genericArgumentCount: 0,
+                exactTypes: true,
+                typeof(Memory<>),
+                typeof(Memory<>),
+                typeof(int),
+                typeof(int)
+                );
+            Assert.IsNull(mi);
+
+            // Skipped type checks
+            mi = typeof(ArrayExtensions).GetMethod(
+                nameof(ArrayExtensions.EnsureValid),
+                BindingFlags.Public | BindingFlags.Static,
+                filter: null,
+                genericArgumentCount: null,
+                exactTypes: true,
+                returnType: null,
+                null,
+                typeof(int),
+                typeof(int)
+                );
+            Assert.IsNotNull(mi);
+
+            // Miss parameter types
+            mi = typeof(ArrayExtensions).GetMethod(
+                nameof(ArrayExtensions.EnsureValid),
+                BindingFlags.Public | BindingFlags.Static,
+                filter: null,
+                genericArgumentCount: 1,
+                exactTypes: false,
+                typeof(Memory<>),
+                typeof(Memory<>),
+                typeof(int),
+                typeof(short)
+                );
+            Assert.IsNull(mi);
+        }
+
         public int? TestField = null;
 
         public int TestField2 = 0;

@@ -28,6 +28,25 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="pool">Pool</param>
+        /// <param name="arr">Rented array</param>
+        /// <param name="len">Length</param>
+        public RentedArray(ArrayPool<T> pool, T[] arr, int? len = null) : base()
+        {
+            len ??= arr.Length;
+            if (len < 1 || len > arr.Length)
+            {
+                pool.Return(arr);
+                throw new ArgumentOutOfRangeException(nameof(len));
+            }
+            Pool = pool;
+            Length = len.Value;
+            _Array = arr;
+        }
+
+        /// <summary>
         /// Pool
         /// </summary>
         public ArrayPool<T> Pool { get; }
