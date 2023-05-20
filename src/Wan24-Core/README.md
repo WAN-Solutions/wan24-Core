@@ -17,6 +17,8 @@ disposing
     - Clearing
 - Array helper extensions
     - Offset/length validation
+- Array pool extensions
+    - Renting a cleared array
 - Enumerable extensions
     - Combine enumerables
     - Chunk enumerables
