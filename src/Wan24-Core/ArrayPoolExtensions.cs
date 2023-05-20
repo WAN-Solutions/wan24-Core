@@ -17,7 +17,7 @@ namespace wan24.Core
         public static T[] RentClean<T>(this ArrayPool<T> pool, int len)
         {
             T[] res = pool.Rent(len);
-            res.AsSpan(len).Clear();
+            res.AsSpan(0, len).Clear();
             return res;
         }
     }
