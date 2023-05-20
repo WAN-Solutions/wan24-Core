@@ -63,6 +63,28 @@ references:
   fullName.vb: wan24.Core.ArrayExtensions.IsValid(Of T)(Span(Of T), System.Int32, System.Int32)
   nameWithType: ArrayExtensions.IsValid<T>(Span<T>, Int32, Int32)
   nameWithType.vb: ArrayExtensions.IsValid(Of T)(Span(Of T), Int32, Int32)
+- uid: wan24.Core.ArrayPoolExtensions
+  name: ArrayPoolExtensions
+  href: api/wan24.Core.ArrayPoolExtensions.html
+  commentId: T:wan24.Core.ArrayPoolExtensions
+  fullName: wan24.Core.ArrayPoolExtensions
+  nameWithType: ArrayPoolExtensions
+- uid: wan24.Core.ArrayPoolExtensions.RentClean*
+  name: RentClean
+  href: api/wan24.Core.ArrayPoolExtensions.html#wan24_Core_ArrayPoolExtensions_RentClean_
+  commentId: Overload:wan24.Core.ArrayPoolExtensions.RentClean
+  isSpec: "True"
+  fullName: wan24.Core.ArrayPoolExtensions.RentClean
+  nameWithType: ArrayPoolExtensions.RentClean
+- uid: wan24.Core.ArrayPoolExtensions.RentClean``1(System.Buffers.ArrayPool{``0},System.Int32)
+  name: RentClean<T>(ArrayPool<T>, Int32)
+  href: api/wan24.Core.ArrayPoolExtensions.html#wan24_Core_ArrayPoolExtensions_RentClean__1_System_Buffers_ArrayPool___0__System_Int32_
+  commentId: M:wan24.Core.ArrayPoolExtensions.RentClean``1(System.Buffers.ArrayPool{``0},System.Int32)
+  name.vb: RentClean(Of T)(ArrayPool(Of T), Int32)
+  fullName: wan24.Core.ArrayPoolExtensions.RentClean<T>(System.Buffers.ArrayPool<T>, System.Int32)
+  fullName.vb: wan24.Core.ArrayPoolExtensions.RentClean(Of T)(System.Buffers.ArrayPool(Of T), System.Int32)
+  nameWithType: ArrayPoolExtensions.RentClean<T>(ArrayPool<T>, Int32)
+  nameWithType.vb: ArrayPoolExtensions.RentClean(Of T)(ArrayPool(Of T), Int32)
 - uid: wan24.Core.AsyncDisposableExtensions
   name: AsyncDisposableExtensions
   href: api/wan24.Core.AsyncDisposableExtensions.html
@@ -596,12 +618,12 @@ references:
   isSpec: "True"
   fullName: wan24.Core.BitwiseInt64Extensions.HasFlags
   nameWithType: BitwiseInt64Extensions.HasFlags
-- uid: wan24.Core.BitwiseInt64Extensions.RemoveFlags(System.Int64,System.Int32)
-  name: RemoveFlags(Int64, Int32)
-  href: api/wan24.Core.BitwiseInt64Extensions.html#wan24_Core_BitwiseInt64Extensions_RemoveFlags_System_Int64_System_Int32_
-  commentId: M:wan24.Core.BitwiseInt64Extensions.RemoveFlags(System.Int64,System.Int32)
-  fullName: wan24.Core.BitwiseInt64Extensions.RemoveFlags(System.Int64, System.Int32)
-  nameWithType: BitwiseInt64Extensions.RemoveFlags(Int64, Int32)
+- uid: wan24.Core.BitwiseInt64Extensions.RemoveFlags(System.Int64,System.Int64)
+  name: RemoveFlags(Int64, Int64)
+  href: api/wan24.Core.BitwiseInt64Extensions.html#wan24_Core_BitwiseInt64Extensions_RemoveFlags_System_Int64_System_Int64_
+  commentId: M:wan24.Core.BitwiseInt64Extensions.RemoveFlags(System.Int64,System.Int64)
+  fullName: wan24.Core.BitwiseInt64Extensions.RemoveFlags(System.Int64, System.Int64)
+  nameWithType: BitwiseInt64Extensions.RemoveFlags(Int64, Int64)
 - uid: wan24.Core.BitwiseInt64Extensions.RemoveFlags*
   name: RemoveFlags
   href: api/wan24.Core.BitwiseInt64Extensions.html#wan24_Core_BitwiseInt64Extensions_RemoveFlags_
@@ -8791,24 +8813,24 @@ references:
   fullName.vb: wan24.Core.RentedArray(Of T)
   nameWithType: RentedArray<T>
   nameWithType.vb: RentedArray(Of T)
-- uid: wan24.Core.RentedArray`1.#ctor(System.Buffers.ArrayPool{`0},`0[],System.Nullable{System.Int32})
-  name: RentedArray(ArrayPool<T>, T[], Nullable<Int32>)
-  href: api/wan24.Core.RentedArray-1.html#wan24_Core_RentedArray_1__ctor_System_Buffers_ArrayPool__0___0___System_Nullable_System_Int32__
-  commentId: M:wan24.Core.RentedArray`1.#ctor(System.Buffers.ArrayPool{`0},`0[],System.Nullable{System.Int32})
-  name.vb: RentedArray(ArrayPool(Of T), T(), Nullable(Of Int32))
-  fullName: wan24.Core.RentedArray<T>.RentedArray(System.Buffers.ArrayPool<T>, T[], System.Nullable<System.Int32>)
-  fullName.vb: wan24.Core.RentedArray(Of T).RentedArray(System.Buffers.ArrayPool(Of T), T(), System.Nullable(Of System.Int32))
-  nameWithType: RentedArray<T>.RentedArray(ArrayPool<T>, T[], Nullable<Int32>)
-  nameWithType.vb: RentedArray(Of T).RentedArray(ArrayPool(Of T), T(), Nullable(Of Int32))
-- uid: wan24.Core.RentedArray`1.#ctor(System.Int32,System.Buffers.ArrayPool{`0})
-  name: RentedArray(Int32, ArrayPool<T>)
-  href: api/wan24.Core.RentedArray-1.html#wan24_Core_RentedArray_1__ctor_System_Int32_System_Buffers_ArrayPool__0__
-  commentId: M:wan24.Core.RentedArray`1.#ctor(System.Int32,System.Buffers.ArrayPool{`0})
-  name.vb: RentedArray(Int32, ArrayPool(Of T))
-  fullName: wan24.Core.RentedArray<T>.RentedArray(System.Int32, System.Buffers.ArrayPool<T>)
-  fullName.vb: wan24.Core.RentedArray(Of T).RentedArray(System.Int32, System.Buffers.ArrayPool(Of T))
-  nameWithType: RentedArray<T>.RentedArray(Int32, ArrayPool<T>)
-  nameWithType.vb: RentedArray(Of T).RentedArray(Int32, ArrayPool(Of T))
+- uid: wan24.Core.RentedArray`1.#ctor(System.Buffers.ArrayPool{`0},`0[],System.Nullable{System.Int32},System.Boolean)
+  name: RentedArray(ArrayPool<T>, T[], Nullable<Int32>, Boolean)
+  href: api/wan24.Core.RentedArray-1.html#wan24_Core_RentedArray_1__ctor_System_Buffers_ArrayPool__0___0___System_Nullable_System_Int32__System_Boolean_
+  commentId: M:wan24.Core.RentedArray`1.#ctor(System.Buffers.ArrayPool{`0},`0[],System.Nullable{System.Int32},System.Boolean)
+  name.vb: RentedArray(ArrayPool(Of T), T(), Nullable(Of Int32), Boolean)
+  fullName: wan24.Core.RentedArray<T>.RentedArray(System.Buffers.ArrayPool<T>, T[], System.Nullable<System.Int32>, System.Boolean)
+  fullName.vb: wan24.Core.RentedArray(Of T).RentedArray(System.Buffers.ArrayPool(Of T), T(), System.Nullable(Of System.Int32), System.Boolean)
+  nameWithType: RentedArray<T>.RentedArray(ArrayPool<T>, T[], Nullable<Int32>, Boolean)
+  nameWithType.vb: RentedArray(Of T).RentedArray(ArrayPool(Of T), T(), Nullable(Of Int32), Boolean)
+- uid: wan24.Core.RentedArray`1.#ctor(System.Int32,System.Buffers.ArrayPool{`0},System.Boolean)
+  name: RentedArray(Int32, ArrayPool<T>, Boolean)
+  href: api/wan24.Core.RentedArray-1.html#wan24_Core_RentedArray_1__ctor_System_Int32_System_Buffers_ArrayPool__0__System_Boolean_
+  commentId: M:wan24.Core.RentedArray`1.#ctor(System.Int32,System.Buffers.ArrayPool{`0},System.Boolean)
+  name.vb: RentedArray(Int32, ArrayPool(Of T), Boolean)
+  fullName: wan24.Core.RentedArray<T>.RentedArray(System.Int32, System.Buffers.ArrayPool<T>, System.Boolean)
+  fullName.vb: wan24.Core.RentedArray(Of T).RentedArray(System.Int32, System.Buffers.ArrayPool(Of T), System.Boolean)
+  nameWithType: RentedArray<T>.RentedArray(Int32, ArrayPool<T>, Boolean)
+  nameWithType.vb: RentedArray(Of T).RentedArray(Int32, ArrayPool(Of T), Boolean)
 - uid: wan24.Core.RentedArray`1.#ctor*
   name: RentedArray
   href: api/wan24.Core.RentedArray-1.html#wan24_Core_RentedArray_1__ctor_
@@ -8835,6 +8857,23 @@ references:
   fullName.vb: wan24.Core.RentedArray(Of T).Array
   nameWithType: RentedArray<T>.Array
   nameWithType.vb: RentedArray(Of T).Array
+- uid: wan24.Core.RentedArray`1.Clear
+  name: Clear
+  href: api/wan24.Core.RentedArray-1.html#wan24_Core_RentedArray_1_Clear
+  commentId: P:wan24.Core.RentedArray`1.Clear
+  fullName: wan24.Core.RentedArray<T>.Clear
+  fullName.vb: wan24.Core.RentedArray(Of T).Clear
+  nameWithType: RentedArray<T>.Clear
+  nameWithType.vb: RentedArray(Of T).Clear
+- uid: wan24.Core.RentedArray`1.Clear*
+  name: Clear
+  href: api/wan24.Core.RentedArray-1.html#wan24_Core_RentedArray_1_Clear_
+  commentId: Overload:wan24.Core.RentedArray`1.Clear
+  isSpec: "True"
+  fullName: wan24.Core.RentedArray<T>.Clear
+  fullName.vb: wan24.Core.RentedArray(Of T).Clear
+  nameWithType: RentedArray<T>.Clear
+  nameWithType.vb: RentedArray(Of T).Clear
 - uid: wan24.Core.RentedArray`1.Dispose(System.Boolean)
   name: Dispose(Boolean)
   href: api/wan24.Core.RentedArray-1.html#wan24_Core_RentedArray_1_Dispose_System_Boolean_

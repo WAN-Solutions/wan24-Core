@@ -43,7 +43,7 @@
         /// <param name="value">Value</param>
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
-        public static long RemoveFlags(this long value, int flags) => value & ~flags;
+        public static long RemoveFlags(this long value, long flags) => value & ~flags;
 
         /// <summary>
         /// Cast as signed byte

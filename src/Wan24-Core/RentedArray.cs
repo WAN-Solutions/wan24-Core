@@ -19,12 +19,13 @@ namespace wan24.Core
         /// </summary>
         /// <param name="len">Length</param>
         /// <param name="pool">Pool</param>
-        public RentedArray(int len, ArrayPool<T>? pool = null) : base()
+        /// <param name="clean">Clean the rented array?</param>
+        public RentedArray(int len, ArrayPool<T>? pool = null, bool clean = true) : base()
         {
             if (len < 1) throw new ArgumentOutOfRangeException(nameof(len));
             Pool = pool ?? ArrayPool<T>.Shared;
             Length = len;
-            _Array = Pool.Rent(len);
+            _Array = clean ? Pool.RentClean(len) : Pool.Rent(len);
         }
 
         /// <summary>
@@ -33,17 +34,19 @@ namespace wan24.Core
         /// <param name="pool">Pool</param>
         /// <param name="arr">Rented array</param>
         /// <param name="len">Length</param>
-        public RentedArray(ArrayPool<T> pool, T[] arr, int? len = null) : base()
+        /// <param name="clean">Clean the rented array?</param>
+        public RentedArray(ArrayPool<T> pool, T[] arr, int? len = null, bool clean = false) : base()
         {
             len ??= arr.Length;
             if (len < 1 || len > arr.Length)
             {
-                pool.Return(arr);
+                pool.Return(arr, clearArray: clean);
                 throw new ArgumentOutOfRangeException(nameof(len));
             }
             Pool = pool;
             Length = len.Value;
             _Array = arr;
+            if (clean) System.Array.Clear(arr, 0, len ?? arr.Length);
         }
 
         /// <summary>
@@ -98,6 +101,11 @@ namespace wan24.Core
         public Memory<T> Memory => Array.AsMemory(0, Length);
 
         /// <summary>
+        /// Clear the array when returning?
+        /// </summary>
+        public bool Clear { get; set; }
+
+        /// <summary>
         /// Create a non-rented copy of the array
         /// </summary>
         /// <returns>Copy</returns>
@@ -129,7 +137,7 @@ namespace wan24.Core
         {
             T[] arr = _Array;
             _Array = System.Array.Empty<T>();
-            Pool.Return(arr);
+            Pool.Return(arr, clearArray: Clear);
         }
 
         /// <summary>
