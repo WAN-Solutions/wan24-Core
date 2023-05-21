@@ -56,6 +56,54 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Slow compare
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Equal?</returns>
+        public static bool SlowCompare(this Span<byte> a, ReadOnlySpan<byte> b) => SlowCompare((ReadOnlySpan<byte>)a, b);
+
+        /// <summary>
+        /// Slow compare
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Equal?</returns>
+        public static bool SlowCompare(this byte[] a, ReadOnlySpan<byte> b) => SlowCompare((ReadOnlySpan<byte>)a, b);
+
+        /// <summary>
+        /// Slow compare
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Equal?</returns>
+        public static bool SlowCompare(this ReadOnlyMemory<byte> a, ReadOnlySpan<byte> b) => SlowCompare(a.Span, b);
+
+        /// <summary>
+        /// Slow compare
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Equal?</returns>
+        public static bool SlowCompare(this Memory<byte> a, ReadOnlySpan<byte> b) => SlowCompare((ReadOnlySpan<byte>)a.Span, b);
+
+        /// <summary>
+        /// Slow compare
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Equal?</returns>
+        public static bool SlowCompare(this ReadOnlyMemory<byte> a, ReadOnlyMemory<byte> b) => SlowCompare(a.Span, b.Span);
+
+        /// <summary>
+        /// Slow compare
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Equal?</returns>
+        public static bool SlowCompare(this Memory<byte> a, Memory<byte> b) => SlowCompare((ReadOnlySpan<byte>)a.Span, b.Span);
+
+        /// <summary>
         /// Get an Int16
         /// </summary>
         /// <param name="bits">Bits (may be modified!)</param>

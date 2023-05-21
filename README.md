@@ -89,6 +89,7 @@ the timeout
 - `ILogger` support
 - `IChangeToken` support using `ChangeCallback`
 - Hierarchic configuration using `OverrideableConfig`
+- Cancellation token awaiter
 
 ## How to get it
 
