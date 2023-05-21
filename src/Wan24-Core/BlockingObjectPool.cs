@@ -12,28 +12,22 @@ namespace wan24.Core
         /// Pool
         /// </summary>
         protected readonly BlockingCollection<T> Pool = new();
-        /// <summary>
-        /// Factory
-        /// </summary>
-        protected readonly Func<T> Factory;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="capacity">Capacity (may overflow a bit)</param>
-        /// <param name="factory">Item factory</param>
-        public BlockingObjectPool(int capacity, Func<T> factory) : base()
+        /// <param name="items">Pooled items</param>
+        public BlockingObjectPool(T[] items) : base()
         {
-            Capacity = capacity;
-            Factory = factory;
-            Pool = new(capacity);
-            for (int i = 0; i < capacity; Pool.Add(factory()), i++) ;
+            if (items.Length < 1) throw new ArgumentException("Items required", nameof(items));
+            Pool = new(items.Length);
+            for (int i = 0; i < items.Length; Pool.Add(items[i]), i++) ;
         }
 
         /// <summary>
         /// Capacity
         /// </summary>
-        public int Capacity { get; }
+        public int Capacity => Pool.BoundedCapacity;
 
         /// <summary>
         /// Number of items in the pool
