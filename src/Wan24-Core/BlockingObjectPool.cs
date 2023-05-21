@@ -3,15 +3,15 @@
 namespace wan24.Core
 {
     /// <summary>
-    /// Disposable object pool (disposes trashed items)
+    /// Disposable blocking object pool (disposes trashed items, if <see cref="IDisposable"/>)
     /// </summary>
     /// <typeparam name="T">Disposable item type</typeparam>
-    public class DisposableObjectPool<T> : DisposableBase, IObjectPool<T> where T : IDisposable
+    public class BlockingObjectPool<T> : DisposableBase, IObjectPool<T>
     {
         /// <summary>
         /// Pool
         /// </summary>
-        protected readonly ConcurrentBag<T> Pool = new();
+        protected readonly BlockingCollection<T> Pool = new();
         /// <summary>
         /// Factory
         /// </summary>
@@ -22,10 +22,12 @@ namespace wan24.Core
         /// </summary>
         /// <param name="capacity">Capacity (may overflow a bit)</param>
         /// <param name="factory">Item factory</param>
-        public DisposableObjectPool(int capacity, Func<T> factory) : base()
+        public BlockingObjectPool(int capacity, Func<T> factory) : base()
         {
             Capacity = capacity;
             Factory = factory;
+            Pool = new(capacity);
+            for (int i = 0; i < capacity; Pool.Add(factory()), i++) ;
         }
 
         /// <summary>
@@ -42,36 +44,31 @@ namespace wan24.Core
         public virtual T Rent()
         {
             EnsureUndisposed();
-            if (!Pool.TryTake(out T? res))
-            {
-                res = Factory();
-            }
-            else if (res is IObjectPoolItem item)
-            {
-                item.Reset();
-            }
+            T res = Pool.Take();
+            if (res is IObjectPoolItem item) item.Reset();
             return res;
         }
 
         /// <inheritdoc/>
         public virtual void Return(T item, bool reset = false)
         {
-            if (Pool.Count >= Capacity || !EnsureUndisposed(throwException: false))
+            if (!EnsureUndisposed(throwException: false))
             {
-                item.Dispose();
+                if (item is IDisposable disposable) disposable.Dispose();
+                return;
             }
-            else
-            {
-                if (reset && item is IObjectPoolItem opItem) opItem.Reset();
-                Pool.Add(item);
-            }
+            if (reset && item is IObjectPoolItem opItem) opItem.Reset();
+            if (Pool.Count >= Capacity) throw new OverflowException();
+            Pool.Add(item);
         }
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            foreach (T item in Pool) item.Dispose();
-            Pool.Clear();
+            if (typeof(IDisposable).IsAssignableFrom(typeof(T)))
+                foreach (IDisposable disposable in Pool.Cast<IDisposable>())
+                    disposable.Dispose();
+            Pool.Dispose();
         }
     }
 }

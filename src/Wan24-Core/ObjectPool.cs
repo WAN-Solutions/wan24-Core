@@ -57,7 +57,7 @@ namespace wan24.Core
         {
             if (Pool.Count < Capacity)
             {
-                if (item is IObjectPoolItem opItem) opItem.Reset();
+                if (reset && item is IObjectPoolItem opItem) opItem.Reset();
                 Pool.Add(item);
             }
             else if (item is IObjectPoolItem opItem)
