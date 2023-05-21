@@ -90,6 +90,8 @@ the timeout
 - `IChangeToken` support using `ChangeCallback`
 - Hierarchic configuration using `OverrideableConfig`
 - Cancellation token awaiter
+- `ObjectPool` for pooling objects (`DisposableObjectPool` for disposable 
+types)
 
 ## How to get it
 

@@ -6,7 +6,7 @@ namespace wan24.Core
     /// Disposable object pool (disposes trashed items)
     /// </summary>
     /// <typeparam name="T">Disposable item type</typeparam>
-    public class DisposableObjectPool<T> : DisposableBase where T : IDisposable
+    public class DisposableObjectPool<T> : DisposableBase, IObjectPool<T> where T : IDisposable
     {
         /// <summary>
         /// Pool
@@ -20,7 +20,7 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="capacity">Capacity</param>
+        /// <param name="capacity">Capacity (may overflow a bit)</param>
         /// <param name="factory">Item factory</param>
         public DisposableObjectPool(int capacity, Func<T> factory) : base()
         {
@@ -34,16 +34,27 @@ namespace wan24.Core
         public int Capacity { get; }
 
         /// <summary>
-        /// Rent an item
+        /// Number of items in the pool
         /// </summary>
-        /// <returns>Item</returns>
-        public virtual T Rent() => IfUndisposed(() => Pool.TryTake(out T? res) ? res : Factory());
+        public int Pooled => Pool.Count;
 
-        /// <summary>
-        /// Return an item
-        /// </summary>
-        /// <param name="item">Item</param>
-        public virtual void Return(T item)
+        /// <inheritdoc/>
+        public virtual T Rent()
+        {
+            EnsureUndisposed();
+            if (!Pool.TryTake(out T? res))
+            {
+                res = Factory();
+            }
+            else if (res is IObjectPoolItem item)
+            {
+                item.Reset();
+            }
+            return res;
+        }
+
+        /// <inheritdoc/>
+        public virtual void Return(T item, bool reset = false)
         {
             if (Pool.Count >= Capacity || !EnsureUndisposed(throwException: false))
             {
@@ -51,6 +62,7 @@ namespace wan24.Core
             }
             else
             {
+                if (item is IObjectPoolItem opItem) opItem.Reset();
                 Pool.Add(item);
             }
         }
@@ -59,6 +71,7 @@ namespace wan24.Core
         protected override void Dispose(bool disposing)
         {
             foreach (T item in Pool) item.Dispose();
+            Pool.Clear();
         }
     }
 }

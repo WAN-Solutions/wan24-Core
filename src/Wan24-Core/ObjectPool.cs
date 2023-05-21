@@ -6,7 +6,7 @@ namespace wan24.Core
     /// Object pool
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
-    public class ObjectPool<T>
+    public class ObjectPool<T> : IObjectPool<T>
     {
         /// <summary>
         /// Pool
@@ -20,7 +20,7 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="capacity">Capacity</param>
+        /// <param name="capacity">Capacity (may overflow a bit)</param>
         /// <param name="factory">Item factory</param>
         public ObjectPool(int capacity, Func<T> factory)
         {
@@ -34,18 +34,36 @@ namespace wan24.Core
         public int Capacity { get; }
 
         /// <summary>
-        /// Rent an item
+        /// Number of items in the pool
         /// </summary>
-        /// <returns>Item</returns>
-        public virtual T Rent() => Pool.TryTake(out T? res) ? res : Factory();
+        public int Pooled => Pool.Count;
 
-        /// <summary>
-        /// Return an item
-        /// </summary>
-        /// <param name="item">Item</param>
-        public virtual void Return(T item)
+        /// <inheritdoc/>
+        public virtual T Rent()
         {
-            if (Pool.Count < Capacity) Pool.Add(item);
+            if (!Pool.TryTake(out T? res))
+            {
+                res = Factory();
+            }
+            else if (res is IObjectPoolItem item)
+            {
+                item.Reset();
+            }
+            return res;
+        }
+
+        /// <inheritdoc/>
+        public virtual void Return(T item, bool reset = false)
+        {
+            if (Pool.Count < Capacity)
+            {
+                if (item is IObjectPoolItem opItem) opItem.Reset();
+                Pool.Add(item);
+            }
+            else if (item is IObjectPoolItem opItem)
+            {
+                opItem.Reset();
+            }
         }
     }
 }
