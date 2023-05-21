@@ -19,18 +19,18 @@ namespace Wan24_Core_Tests
         {
             byte[] a = new byte[] { 0, 1, 2 },
                 b = new byte[] { 0, 1, 2 };
-            Assert.IsTrue(a.AsSpan().SlowCompare(b));
-            Assert.IsTrue(b.AsSpan().SlowCompare(a));
+            Assert.IsTrue(a.SlowCompare(b));
+            Assert.IsTrue(b.SlowCompare(a));
             b[0] = 1;
-            Assert.IsFalse(a.AsSpan().SlowCompare(b));
-            Assert.IsFalse(b.AsSpan().SlowCompare(a));
+            Assert.IsFalse(a.SlowCompare(b));
+            Assert.IsFalse(b.SlowCompare(a));
             b = new byte[] { 0, 1 };
-            Assert.IsFalse(a.AsSpan().SlowCompare(b));
-            Assert.IsFalse(b.AsSpan().SlowCompare(a));
+            Assert.IsFalse(a.SlowCompare(b));
+            Assert.IsFalse(b.SlowCompare(a));
             a = b;
             b = new byte[] { 0, 1, 2 };
-            Assert.IsFalse(a.AsSpan().SlowCompare(b));
-            Assert.IsFalse(b.AsSpan().SlowCompare(a));
+            Assert.IsFalse(a.SlowCompare(b));
+            Assert.IsFalse(b.SlowCompare(a));
         }
 
         [TestMethod]
