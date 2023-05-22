@@ -36,7 +36,17 @@ namespace wan24.Core
         /// <summary>
         /// Number of items in the pool
         /// </summary>
-        public int Pooled => Pool.Count;
+        public int Available => Pool.Count;
+
+        /// <summary>
+        /// Reset rented objects (if they don't come from the factory)
+        /// </summary>
+        public bool ResetOnRent { get; set; } = true;
+
+        /// <summary>
+        /// Force resetting returned items (if they're going back to the pool)? (trashed items will be reset anyway)
+        /// </summary>
+        public bool ForceResetOnReturn { get; set; }
 
         /// <inheritdoc/>
         public virtual T Rent()
@@ -45,7 +55,7 @@ namespace wan24.Core
             {
                 res = Factory();
             }
-            else if (res is IObjectPoolItem item)
+            else if (ResetOnRent && res is IObjectPoolItem item)
             {
                 item.Reset();
             }
@@ -57,10 +67,10 @@ namespace wan24.Core
         {
             if (Pool.Count < Capacity)
             {
-                if (reset && item is IObjectPoolItem opItem) opItem.Reset();
+                if ((reset || ForceResetOnReturn) && item is IObjectPoolItem opItem) opItem.Reset();
                 Pool.Add(item);
             }
-            else if (item is IObjectPoolItem opItem)
+            else if (!reset && !ForceResetOnReturn && item is IObjectPoolItem opItem)
             {
                 opItem.Reset();
             }
