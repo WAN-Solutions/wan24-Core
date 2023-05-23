@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Threading;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Parallel queue worker
@@ -8,11 +10,15 @@
         /// <summary>
         /// Busy event (raised when not busy)
         /// </summary>
-        protected readonly ManualResetEventSlim Busy = new(initialState: true);
+        protected readonly ResetEvent Busy = new(initialState: true);
         /// <summary>
         /// Processing event (raised when there's space for more processes)
         /// </summary>
-        protected readonly ManualResetEventSlim Processing = new(initialState: true);
+        protected readonly ResetEvent Processing = new(initialState: true);
+        /// <summary>
+        /// Thread synchronization
+        /// </summary>
+        protected readonly SemaphoreSlim Sync = new(1, 1);
         /// <summary>
         /// Processing workers
         /// </summary>
@@ -29,47 +35,78 @@
             Threads = threads;
         }
 
-        /// <summary>
-        /// An object for thread synchronization
-        /// </summary>
-        public object SyncObject { get; } = new();
-
         /// <inheritdoc/>
         public int Threads { get; }
 
-        /// <summary>
-        /// Wait until all queued work was done
-        /// </summary>
-        /// <param name="timeout">Timeout</param>
-        /// <returns>All done?</returns>
+        /// <inheritdoc/>
         public bool WaitBoring(TimeSpan timeout)
         {
             DateTime started = DateTime.Now;
-            while (Queued > 0 || !Busy.IsSet)
-            {
-                if (!Busy.Wait(timeout)) return Busy.IsSet && Queued == 0;
-                DateTime now = DateTime.Now;
-                if (now - started > timeout) return Busy.IsSet && Queued == 0;
-                timeout -= now - started;
-                started = now;
-            }
+            while (ExecuteTask != null && (Queued != 0 || !Busy.IsSet))
+                try
+                {
+                    Busy.Wait(timeout);
+                    if (!TimeSpanHelper.UpdateTimeout(ref started, ref timeout)) break;
+                }
+                catch (TimeoutException)
+                {
+                    break;
+                }
             return Busy.IsSet && Queued == 0;
         }
 
-        /// <summary>
-        /// Wait until all queued work was done
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
-        public void WaitBoring(CancellationToken cancellationToken = default)
+        /// <inheritdoc/>
+        public async Task<bool> WaitBoringAsync(TimeSpan timeout)
         {
-            while (Queued > 0 || !Busy.IsSet) Busy.Wait(cancellationToken);
+            DateTime started = DateTime.Now;
+            while (ExecuteTask != null && (Queued != 0 || !Busy.IsSet))
+                try
+                {
+                    await Busy.WaitAsync(timeout).DynamicContext();
+                    if (!TimeSpanHelper.UpdateTimeout(ref started, ref timeout)) break;
+                }
+                catch (TimeoutException)
+                {
+                    break;
+                }
+            return Busy.IsSet && Queued == 0;
+        }
+
+        /// <inheritdoc/>
+        public bool WaitBoring(CancellationToken cancellationToken = default)
+        {
+            while (ExecuteTask != null && (Queued != 0 || !Busy.IsSet))
+                try
+                {
+                    Busy.Wait(cancellationToken);
+                }
+                catch (OperationCanceledException)
+                {
+                    break;
+                }
+            return Busy.IsSet && Queued == 0;
+        }
+
+        /// <inheritdoc/>
+        public async Task<bool> WaitBoringAsync(CancellationToken cancellationToken = default)
+        {
+            while (ExecuteTask != null && (Queued != 0 || !Busy.IsSet))
+                try
+                {
+                    await Busy.WaitAsync(cancellationToken).DynamicContext();
+                }
+                catch (OperationCanceledException)
+                {
+                    break;
+                }
+            return Busy.IsSet && Queued == 0;
         }
 
         /// <inheritdoc/>
         public override async Task StopAsync(CancellationToken cancellationToken)
         {
             await base.StopAsync(cancellationToken).DynamicContext();
-            Busy.Wait(cancellationToken);
+            await Busy.WaitAsync(cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
@@ -78,15 +115,20 @@
             while (!stoppingToken.IsCancellationRequested)
                 try
                 {
-                    Processing.Wait(stoppingToken);
+                    await Processing.WaitAsync(stoppingToken).DynamicContext();
                     Task_Delegate task = await Queue.Reader.ReadAsync(stoppingToken).DynamicContext();
-                    lock (SyncObject)
+                    await Sync.WaitAsync(stoppingToken).DynamicContext();
+                    try
                     {
                         ProcessCount++;
-                        if (ProcessCount >= Threads) Processing.Reset();
-                        Busy.Reset();
+                        if (ProcessCount >= Threads) await Processing.ResetAsync().DynamicContext();
+                        await Busy.ResetAsync().DynamicContext();
                     }
-                    Process(task, stoppingToken);
+                    finally
+                    {
+                        Sync.Release();
+                    }
+                    _ = Process(task, stoppingToken);
                 }
                 catch (OperationCanceledException ex)
                 {
@@ -106,13 +148,13 @@
         /// </summary>
         /// <param name="task">Task</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        protected async void Process(Task_Delegate task, CancellationToken cancellationToken)
+        protected async Task Process(Task_Delegate task, CancellationToken cancellationToken)
         {
             try
             {
                 await task(cancellationToken).DynamicContext();
             }
-            catch(OperationCanceledException ex)
+            catch (OperationCanceledException ex)
             {
                 if (!cancellationToken.IsCancellationRequested)
                 {
@@ -120,18 +162,23 @@
                     RaiseOnException();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LastException = ex;
                 RaiseOnException();
             }
             finally
             {
-                lock (SyncObject)
+                await Sync.WaitAsync(CancellationToken.None).DynamicContext();
+                try
                 {
                     ProcessCount--;
-                    if (ProcessCount < Threads) Processing.Set();
-                    if (ProcessCount == 0) Busy.Set();
+                    if (ProcessCount < Threads) await Processing.SetAsync().DynamicContext();
+                    if (ProcessCount == 0) await Busy.SetAsync().DynamicContext();
+                }
+                finally
+                {
+                    Sync.Release();
                 }
             }
         }
@@ -143,6 +190,7 @@
             base.Dispose();
             Busy.Dispose();
             Processing.Dispose();
+            Sync.Dispose();
         }
 #pragma warning restore CA1816 // Call GC
     }

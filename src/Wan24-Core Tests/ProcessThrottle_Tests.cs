@@ -5,7 +5,7 @@ namespace Wan24_Core_Tests
     [TestClass]
     public class ProcessThrottle_Tests
     {
-        [TestMethod]
+        [TestMethod, Timeout(3000)]
         public async Task General_Tests()
         {
             using TestObject throttle = new();

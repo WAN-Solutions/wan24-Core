@@ -11,7 +11,9 @@
         /// <typeparam name="T">Enumeration type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Informations</returns>
+#pragma warning disable IDE0060 // Remove unused parameter
         public static EnumInfo<T> GetInfo<T>(this T value) where T : struct, Enum, IConvertible => new();
+#pragma warning restore IDE0060 // Remove unused parameter
 
         /// <summary>
         /// Get enumeration informations

@@ -9,9 +9,9 @@ namespace Wan24_Core_Tests
         public async Task Default_Tests()
         {
             using TestObject worker = new(50, HostedServiceTimers.Default);
-            await worker.StartAsync(default);
+            await worker.StartAsync();
             await Task.Delay(350);
-            await worker.StopAsync(default);
+            await worker.StopAsync();
             Assert.AreEqual(2, worker.Worked);
         }
 
@@ -19,20 +19,20 @@ namespace Wan24_Core_Tests
         public async Task Exact_Tests()
         {
             using TestObject worker = new(20, HostedServiceTimers.Exact);
-            await worker.StartAsync(default);
+            await worker.StartAsync();
             await Task.Delay(250);
-            await worker.StopAsync(default);
-            Assert.AreEqual(2, worker.Worked);
+            await worker.StopAsync();
+            Assert.AreEqual(3, worker.Worked);
         }
 
         [TestMethod, Timeout(3000)]
         public async Task ExactCatchingUp_Tests()
         {
             using TestObject worker = new(20, HostedServiceTimers.ExactCatchingUp);
-            await worker.StartAsync(default);
+            await worker.StartAsync();
             await Task.Delay(350);
-            await worker.StopAsync(default);
-            Assert.AreEqual(3, worker.Worked);
+            await worker.StopAsync();
+            Assert.AreEqual(4, worker.Worked);
         }
 
         [TestMethod, Timeout(3000)]

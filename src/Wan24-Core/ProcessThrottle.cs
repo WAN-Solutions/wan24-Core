@@ -12,11 +12,15 @@
         /// <summary>
         /// Throttle (raised when not throttling)
         /// </summary>
-        protected readonly ManualResetEventSlim Throttle = new(initialState: true);
+        protected readonly ResetEvent Throttle = new(initialState: true);
         /// <summary>
         /// Processing event (raised when not processing)
         /// </summary>
-        protected readonly ManualResetEventSlim Processing = new(initialState: true);
+        protected readonly ResetEvent Processing = new(initialState: true);
+        /// <summary>
+        /// Thread synchronization
+        /// </summary>
+        protected readonly SemaphoreSlim Sync = new(1, 1);
 
         /// <summary>
         /// Constructor
@@ -31,21 +35,21 @@
             };
             Timer.Elapsed += (s, e) =>
             {
-                lock (SyncObject)
+                Sync.Wait();
+                try
                 {
                     ThrottleStart = DateTime.MinValue;
                     CurrentCount = 0;
+                }
+                finally
+                {
+                    Sync.Release();
                 }
                 Throttle.Set();
                 OnThrottleEnd?.Invoke(this, new());
             };
             SetLimit(limit, timeout);
         }
-
-        /// <summary>
-        /// An object for thread synchronization
-        /// </summary>
-        public object SyncObject { get; } = new();
 
         /// <summary>
         /// Processing count limit
@@ -94,6 +98,13 @@
         public int GetProcessChunkSize(int count) => GetProcessChunkSize(count, process: false);
 
         /// <summary>
+        /// Get a chunk size to process now
+        /// </summary>
+        /// <param name="count">Count</param>
+        /// <returns>Number that can be processed now</returns>
+        public Task<int> GetProcessChunkSizeAsync(int count) => GetProcessChunkSizeAsync(count, process: false);
+
+        /// <summary>
         /// Process
         /// </summary>
         /// <param name="count">Count</param>
@@ -102,52 +113,34 @@
         /// <returns>Processed count</returns>
         protected async Task<int> ProcessAsync(int count, Processor_Delegate processor, TimeSpan timeout)
         {
-            await Task.Yield();
             EnsureUndisposed();
             int res = 0;
-            DateTime started = DateTime.Now,
-                now;
-            bool UpdateTimeout()
-            {
-                now = DateTime.Now;
-                if (now - started > timeout) return false;
-                timeout -= now - started;
-                started = DateTime.Now;
-                return true;
-            }
-            while (EnsureUndisposed())
-            {
-                Processing.Wait(timeout);
-                lock (SyncObject)
-                {
-                    if (!UpdateTimeout()) return res;
-                    if (!Processing.IsSet) continue;
-                    Processing.Reset();
-                    break;
-                }
-            }
+            DateTime started = DateTime.Now;
             try
             {
-                while (count > 0)
+                await Processing.WaitAndResetAsync(timeout).DynamicContext();
+                while (EnsureUndisposed() && TimeSpanHelper.UpdateTimeout(ref started, ref timeout) && count > 0)
                 {
-                    int chunk = GetProcessChunkSize(count, process: true);
+                    int chunk = await GetProcessChunkSizeAsync(count, process: true).DynamicContext();
                     if (chunk < 1)
                     {
-                        Throttle.Wait(timeout);
-                        if (!UpdateTimeout()) return res;
-                        EnsureUndisposed();
+                        await Throttle.WaitAsync(timeout).DynamicContext();
                         continue;
                     }
+                    EnsureUndisposed();
                     count -= chunk;
                     res += chunk;
                     await processor(chunk).DynamicContext();
-                    if (!UpdateTimeout()) return res;
                 }
+                return res;
+            }
+            catch (TimeoutException)
+            {
                 return res;
             }
             finally
             {
-                Processing.Set();
+                await Processing.SetAsync().DynamicContext();
             }
         }
 
@@ -160,54 +153,33 @@
         /// <returns>Processed count</returns>
         protected async Task<int> ProcessAsync(int count, Processor_Delegate processor, CancellationToken cancellationToken)
         {
-            await Task.Yield();
             EnsureUndisposed();
             int res = 0;
-            while (EnsureUndisposed())
-            {
-                try
-                {
-                    Processing.Wait(cancellationToken);
-                }
-                catch (OperationCanceledException)
-                {
-                    return res;
-                }
-                lock (SyncObject)
-                {
-                    if (!Processing.IsSet) continue;
-                    Processing.Reset();
-                    break;
-                }
-            }
             try
             {
-                while (count > 0)
+                await Processing.WaitAndResetAsync(cancellationToken).DynamicContext();
+                while (EnsureUndisposed() && !cancellationToken.IsCancellationRequested && count > 0)
                 {
-                    int chunk = GetProcessChunkSize(count, process: true);
+                    int chunk = await GetProcessChunkSizeAsync(count, process: true).DynamicContext();
                     if (chunk < 1)
                     {
-                        try
-                        {
-                            Throttle.Wait(cancellationToken);
-                        }
-                        catch (OperationCanceledException)
-                        {
-                            return res;
-                        }
-                        EnsureUndisposed();
+                        await Throttle.WaitAsync(cancellationToken).DynamicContext();
                         continue;
                     }
+                    EnsureUndisposed();
                     count -= chunk;
                     res += chunk;
                     await processor(chunk).DynamicContext();
-                    if (cancellationToken.IsCancellationRequested) return res;
                 }
+                return res;
+            }
+            catch (OperationCanceledException)
+            {
                 return res;
             }
             finally
             {
-                Processing.Set();
+                await Processing.SetAsync().DynamicContext();
             }
         }
 
@@ -220,45 +192,81 @@
         protected int GetProcessChunkSize(int count, bool process)
         {
             bool throttling = false;
+            Sync.Wait();
             try
             {
-                lock (DisposeSyncObject)
+                (int canProcess, throttling) = GetProcessChunkSizeLocked(count, process);
+                if (throttling)
                 {
-                    EnsureUndisposed();
-                    lock (SyncObject)
-                    {
-                        if (!Throttle.IsSet) return 0;
-                        if (ThrottleStart == DateTime.MinValue || (DateTime.Now - ThrottleStart).TotalMilliseconds >= Timeout)
-                        {
-                            ThrottleStart = DateTime.Now;
-                            CurrentCount = 0;
-                        }
-                        int canProcess = Limit - CurrentCount;
-                        if (canProcess <= 0) return 0;
-                        if (count >= canProcess)
-                        {
-                            if (process)
-                            {
-                                CurrentCount += canProcess;
-                                Throttle.Reset();
-                                Timer.Interval = Timeout - (DateTime.Now - ThrottleStart).TotalMilliseconds;
-                                Timer.Start();
-                                throttling = true;
-                            }
-                            return canProcess;
-                        }
-                        else
-                        {
-                            if (process) CurrentCount += count;
-                            return count;
-                        }
-                    }
+                    Throttle.Reset();
+                    Timer.Interval = Timeout - (DateTime.Now - ThrottleStart).TotalMilliseconds;
+                    Timer.Start();
                 }
+                return canProcess;
             }
             finally
             {
+                Sync.Release();
                 if (throttling) OnThrottleStart?.Invoke(this, new());
             }
+        }
+
+        /// <summary>
+        /// Get a chunk size to process now
+        /// </summary>
+        /// <param name="count">Count</param>
+        /// <param name="process">Process the chunk size?</param>
+        /// <returns>Number to process now</returns>
+        protected async Task<int> GetProcessChunkSizeAsync(int count, bool process)
+        {
+            bool throttling = false;
+            await Sync.WaitAsync().DynamicContext();
+            try
+            {
+                (int canProcess, throttling) = GetProcessChunkSizeLocked(count, process);
+                if (throttling)
+                {
+                    await Throttle.ResetAsync().DynamicContext();
+                    Timer.Interval = Timeout - (DateTime.Now - ThrottleStart).TotalMilliseconds;
+                    Timer.Start();
+                }
+                return canProcess;
+            }
+            finally
+            {
+                Sync.Release();
+                if (throttling) OnThrottleStart?.Invoke(this, new());
+            }
+        }
+
+        /// <summary>
+        /// Get a chunk size to process now
+        /// </summary>
+        /// <param name="count">Count</param>
+        /// <param name="process">Process the chunk size?</param>
+        /// <returns>Number to process now, and if throttling</returns>
+        protected (int Process, bool Throttling) GetProcessChunkSizeLocked(int count, bool process)
+        {
+            bool throttling = false;
+            if (!Throttle.IsSet) return (0, throttling);
+            if (ThrottleStart == DateTime.MinValue || (DateTime.Now - ThrottleStart).TotalMilliseconds >= Timeout)
+            {
+                ThrottleStart = DateTime.Now;
+                CurrentCount = 0;
+            }
+            int canProcess = Limit - CurrentCount;
+            if (canProcess <= 0) return (0, throttling);
+            if (count >= canProcess)
+            {
+                if (process)
+                {
+                    CurrentCount += canProcess;
+                    throttling = true;
+                }
+                return (canProcess, throttling);
+            }
+            if (process) CurrentCount += count;
+            return (count, throttling);
         }
 
         /// <inheritdoc/>
@@ -267,6 +275,7 @@
             Timer.Dispose();
             Throttle.Dispose();
             Processing.Dispose();
+            Sync.Dispose();
         }
 
         /// <summary>

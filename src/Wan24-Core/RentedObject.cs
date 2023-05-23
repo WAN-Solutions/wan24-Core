@@ -49,5 +49,25 @@
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing) => Pool.Return(_Object, Reset);
+
+        /// <inheritdoc/>
+        protected override async Task DisposeCore()
+        {
+            if(Pool is IAsyncObjectPool<T> asyncPool)
+            {
+                await asyncPool.ReturnAsync(_Object, Reset).DynamicContext();
+            }
+            else
+            {
+                Pool.Return(_Object, Reset);
+            }
+        }
+
+        /// <summary>
+        /// Create an instance asynchronous
+        /// </summary>
+        /// <param name="pool">Object pool</param>
+        /// <returns>Rented object</returns>
+        public static async Task<RentedObject<T>> CreateAsync(IAsyncObjectPool<T> pool) => new RentedObject<T>(pool, await pool.RentAsync().DynamicContext());
     }
 }

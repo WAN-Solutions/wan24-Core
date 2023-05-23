@@ -8,6 +8,10 @@ namespace wan24.Core
     public abstract class HostedServiceBase : DisposableBase, IHostedService
     {
         /// <summary>
+        /// Thread synchronization
+        /// </summary>
+        protected readonly SemaphoreSlim Sync = new(1, 1);
+        /// <summary>
         /// Stop task
         /// </summary>
         protected volatile TaskCompletionSource? StopTask = null;
@@ -26,11 +30,6 @@ namespace wan24.Core
         protected HostedServiceBase() : base() { }
 
         /// <summary>
-        /// An object for thread synchronization
-        /// </summary>
-        public object SyncObject { get; } = new();
-
-        /// <summary>
         /// Is running?
         /// </summary>
         public bool IsRunning { get; protected set; }
@@ -46,29 +45,38 @@ namespace wan24.Core
         public Exception? LastException { get; protected set; }
 
         /// <inheritdoc/>
-        public Task StartAsync(CancellationToken cancellationToken)
+        public async Task StartAsync(CancellationToken cancellationToken = default)
         {
-            lock (SyncObject)
+            await Sync.WaitAsync(cancellationToken).DynamicContext();
+            try
             {
-                if (IsRunning) return Task.CompletedTask;
+                if (IsRunning) return;
                 IsRunning = true;
                 Cancellation = new();
                 ServiceTask = RunServiceAsync();
             }
-            return Task.CompletedTask;
+            finally
+            {
+                Sync.Release();
+            }
         }
 
         /// <inheritdoc/>
-        public Task StopAsync(CancellationToken cancellationToken)
+        public async Task StopAsync(CancellationToken cancellationToken = default)
         {
-            lock (SyncObject)
+            await Sync.WaitAsync(cancellationToken).DynamicContext();
+            try
             {
-                if (!IsRunning) return Task.CompletedTask;
-                if (StopTask != null) return StopTask.Task;
-                StopTask = new();
+                if (!IsRunning) return;
+                if (StopTask != null) return;
+                StopTask = new(TaskCreationOptions.RunContinuationsAsynchronously);
+            }
+            finally
+            {
+                Sync.Release();
             }
             Cancellation!.Cancel();
-            return StopTask?.Task ?? Task.CompletedTask;
+            if (StopTask != null) await StopTask.Task.DynamicContext();
         }
 
         /// <summary>
@@ -96,17 +104,29 @@ namespace wan24.Core
             }
             finally
             {
-                lock (SyncObject) StopTask ??= new();
+                await Sync.WaitAsync(Cancellation?.Token ?? default).DynamicContext();
+                try
+                {
+                    StopTask ??= new(TaskCreationOptions.RunContinuationsAsynchronously);
+                }
+                finally
+                {
+                    Sync.Release();
+                }
                 Cancellation!.Dispose();
                 Cancellation = null;
                 ServiceTask = null;
                 IsRunning = false;
-                lock (SyncObject)
-                    if (StopTask != null)
-                    {
-                        StopTask?.SetResult();
-                        StopTask = null;
-                    }
+                await Sync.WaitAsync(Cancellation?.Token ?? default).DynamicContext();
+                try
+                {
+                    StopTask.SetResult();
+                    StopTask = null;
+                }
+                finally
+                {
+                    Sync.Release();
+                }
             }
         }
 
@@ -116,10 +136,18 @@ namespace wan24.Core
         protected abstract Task WorkerAsync();
 
         /// <inheritdoc/>
-        protected override void Dispose(bool disposing) => StopAsync(default).Wait();
+        protected override void Dispose(bool disposing)
+        {
+            StopAsync().Wait();
+            Sync.Dispose();
+        }
 
         /// <inheritdoc/>
-        protected override async Task DisposeCore() => await StopAsync(default).DynamicContext();
+        protected override async Task DisposeCore()
+        {
+            await StopAsync().DynamicContext();
+            Sync.Dispose();
+        }
 
         /// <summary>
         /// Delegate for a hosted service event

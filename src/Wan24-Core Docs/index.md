@@ -75,6 +75,8 @@ disposing
     - Determine if a time is within a range
     - Determine if a time matches a reference time plus/minus an offset
     - Apply an offset to a time base on a reference time
+- `TimeSpanHelper`
+    - Update a timeout
 - Queue worker (for actions and/or items)
 - Parallel queue worker (for actions and/or items)
 - `ParallelAsync` implementation
@@ -91,7 +93,8 @@ the timeout
 - Hierarchic configuration using `OverrideableConfig`
 - Cancellation token awaiter
 - `ObjectPool` for pooling objects (`DisposableObjectPool` for disposable 
-types)
+types), and `BlockingObjectPool` for a strict pool capacity limit
+- `ResetEvent` for (a)synchronous event waiting
 
 ## How to get it
 

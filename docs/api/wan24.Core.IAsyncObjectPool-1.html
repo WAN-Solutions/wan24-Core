@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Delegate ProcessThrottle.Processor_Delegate
+    <title>Interface IAsyncObjectPool&lt;T&gt;
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Delegate ProcessThrottle.Processor_Delegate
+    <meta name="title" content="Interface IAsyncObjectPool&lt;T&gt;
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,19 +68,94 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.ProcessThrottle.Processor_Delegate">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.IAsyncObjectPool`1">
   
   
-  <h1 id="wan24_Core_ProcessThrottle_Processor_Delegate" data-uid="wan24.Core.ProcessThrottle.Processor_Delegate" class="text-break">Delegate ProcessThrottle.Processor_Delegate
+  <h1 id="wan24_Core_IAsyncObjectPool_1" data-uid="wan24.Core.IAsyncObjectPool`1" class="text-break">Interface IAsyncObjectPool&lt;T&gt;
   </h1>
-  <div class="markdown level0 summary"><p>Delegate for a processor</p>
+  <div class="markdown level0 summary"><p>Interface for an object pool which supports asynchronous renting / returning</p>
 </div>
   <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.IObjectPool-1.html#wan24_Core_IObjectPool_1_Rent">IObjectPool&lt;T&gt;.Rent()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IObjectPool-1.html#wan24_Core_IObjectPool_1_Return__0_System_Boolean_">IObjectPool&lt;T&gt;.Return(T, Boolean)</a>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_ProcessThrottle_Processor_Delegate_syntax">Syntax</h5>
+  <h5 id="wan24_Core_IAsyncObjectPool_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate Task Processor_Delegate(int count);</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IAsyncObjectPool&lt;T&gt; : IObjectPool&lt;T&gt;</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_IAsyncObjectPool_1_RentAsync.md&amp;value=---%0Auid%3A%20wan24.Core.IAsyncObjectPool%601.RentAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/IAsyncObjectPool.cs/#L13">View Source</a>
+  </span>
+  <a id="wan24_Core_IAsyncObjectPool_1_RentAsync_" data-uid="wan24.Core.IAsyncObjectPool`1.RentAsync*"></a>
+  <h4 id="wan24_Core_IAsyncObjectPool_1_RentAsync" data-uid="wan24.Core.IAsyncObjectPool`1.RentAsync">RentAsync()</h4>
+  <div class="markdown level1 summary"><p>Rent an item</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;T&gt; RentAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;T&gt;</td>
+        <td><p>Item (<a class="xref" href="wan24.Core.IObjectPoolItem.html">IObjectPoolItem</a> will be reset before returning)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_IAsyncObjectPool_1_ReturnAsync__0_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.IAsyncObjectPool%601.ReturnAsync(%600%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/IAsyncObjectPool.cs/#L19">View Source</a>
+  </span>
+  <a id="wan24_Core_IAsyncObjectPool_1_ReturnAsync_" data-uid="wan24.Core.IAsyncObjectPool`1.ReturnAsync*"></a>
+  <h4 id="wan24_Core_IAsyncObjectPool_1_ReturnAsync__0_System_Boolean_" data-uid="wan24.Core.IAsyncObjectPool`1.ReturnAsync(`0,System.Boolean)">ReturnAsync(T, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Return an item</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task ReturnAsync(T item, bool reset = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -93,9 +168,15 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">count</span></td>
-        <td><p>Count</p>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>Item</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">reset</span></td>
+        <td><p>Reset the <a class="xref" href="wan24.Core.IObjectPoolItem.html">IObjectPoolItem</a> object?</p>
 </td>
       </tr>
     </tbody>
@@ -139,10 +220,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ProcessThrottle_Processor_Delegate.md&amp;value=---%0Auid%3A%20wan24.Core.ProcessThrottle.Processor_Delegate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_IAsyncObjectPool_1.md&amp;value=---%0Auid%3A%20wan24.Core.IAsyncObjectPool%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ProcessThrottle.cs/#L285" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/IAsyncObjectPool.cs/#L7" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

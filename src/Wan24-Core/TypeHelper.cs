@@ -35,14 +35,15 @@ namespace wan24.Core
             // Scan known assemblies recursive
             foreach (Assembly assembly in Instance._Assemblies.Values.ToArray()) Instance.ScanAssemblies(assembly);
             // When a new assembly was loaded, scan it and boot all added assemblies
-            AppDomain.CurrentDomain.AssemblyLoad += (s, e) =>
+            AppDomain.CurrentDomain.AssemblyLoad += async (s, e) =>
             {
+                await Task.Yield();
                 Logging.WriteDebug($"Scanning and booting late loaded assembly {e.LoadedAssembly.GetName().FullName}");
                 List<Task> tasks = new();
                 foreach (Assembly ass in Instance.ScanAssemblies(e.LoadedAssembly))
                     if (ass.GetCustomAttribute<BootstrapperAttribute>() != null)
                         tasks.Add(Bootstrap.AssemblyAsync(ass, Bootstrap.FindClasses, Bootstrap.FindMethods));
-                tasks.WaitAll().Wait();
+                await tasks.WaitAll().DynamicContext();
             };
         }
 

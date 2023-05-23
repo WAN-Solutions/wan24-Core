@@ -191,6 +191,11 @@ per default)</li>
 <li>Apply an offset to a time base on a reference time</li>
 </ul>
 </li>
+<li><code>TimeSpanHelper</code>
+<ul>
+<li>Update a timeout</li>
+</ul>
+</li>
 <li>Queue worker (for actions and/or items)</li>
 <li>Parallel queue worker (for actions and/or items)</li>
 <li><code>ParallelAsync</code> implementation</li>
@@ -207,7 +212,8 @@ the timeout</li>
 <li>Hierarchic configuration using <code>OverrideableConfig</code></li>
 <li>Cancellation token awaiter</li>
 <li><code>ObjectPool</code> for pooling objects (<code>DisposableObjectPool</code> for disposable
-types)</li>
+types), and <code>BlockingObjectPool</code> for a strict pool capacity limit</li>
+<li><code>ResetEvent</code> for (a)synchronous event waiting</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as

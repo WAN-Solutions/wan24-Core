@@ -131,7 +131,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_IParallelQueueWorker_WaitBoring_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.IParallelQueueWorker.WaitBoring(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/IParallelQueueWorker.cs/#L22">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/IParallelQueueWorker.cs/#L29">View Source</a>
   </span>
   <a id="wan24_Core_IParallelQueueWorker_WaitBoring_" data-uid="wan24.Core.IParallelQueueWorker.WaitBoring*"></a>
   <h4 id="wan24_Core_IParallelQueueWorker_WaitBoring_CancellationToken_" data-uid="wan24.Core.IParallelQueueWorker.WaitBoring(CancellationToken)">WaitBoring(CancellationToken)</h4>
@@ -140,7 +140,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void WaitBoring(CancellationToken cancellationToken = null)</code></pre>
+    <pre><code class="lang-csharp hljs">bool WaitBoring(CancellationToken cancellationToken = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -156,6 +156,22 @@
         <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
         <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>All done?</p>
 </td>
       </tr>
     </tbody>
@@ -205,6 +221,106 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
+        <td><p>All done?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_IParallelQueueWorker_WaitBoringAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.IParallelQueueWorker.WaitBoringAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/IParallelQueueWorker.cs/#L35">View Source</a>
+  </span>
+  <a id="wan24_Core_IParallelQueueWorker_WaitBoringAsync_" data-uid="wan24.Core.IParallelQueueWorker.WaitBoringAsync*"></a>
+  <h4 id="wan24_Core_IParallelQueueWorker_WaitBoringAsync_CancellationToken_" data-uid="wan24.Core.IParallelQueueWorker.WaitBoringAsync(CancellationToken)">WaitBoringAsync(CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Wait until all queued work was done</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; WaitBoringAsync(CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><p>All done?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_IParallelQueueWorker_WaitBoringAsync_TimeSpan_.md&amp;value=---%0Auid%3A%20wan24.Core.IParallelQueueWorker.WaitBoringAsync(TimeSpan)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/IParallelQueueWorker.cs/#L23">View Source</a>
+  </span>
+  <a id="wan24_Core_IParallelQueueWorker_WaitBoringAsync_" data-uid="wan24.Core.IParallelQueueWorker.WaitBoringAsync*"></a>
+  <h4 id="wan24_Core_IParallelQueueWorker_WaitBoringAsync_TimeSpan_" data-uid="wan24.Core.IParallelQueueWorker.WaitBoringAsync(TimeSpan)">WaitBoringAsync(TimeSpan)</h4>
+  <div class="markdown level1 summary"><p>Wait until all queued work was done</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; WaitBoringAsync(TimeSpan timeout)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
         <td><p>All done?</p>
 </td>
       </tr>
