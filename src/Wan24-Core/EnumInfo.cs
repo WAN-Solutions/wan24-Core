@@ -7,7 +7,7 @@ namespace wan24.Core
     /// Enumeration information
     /// </summary>
     /// <typeparam name="T">Enumeration type</typeparam>
-    public sealed class EnumInfo<T> : IEnumInfo where T : struct, Enum, IConvertible
+    public sealed class EnumInfo<T> : IEnumInfo<T> where T : struct, Enum, IConvertible
     {
         /// <summary>
         /// Flags value name
@@ -20,10 +20,17 @@ namespace wan24.Core
         static EnumInfo()
         {
             if (!typeof(T).IsEnum) throw new ArgumentException("Enumeration type required", nameof(T));
-            IsUnsigned = typeof(T).IsUnsigned();
-            IsMixedEnum = typeof(T).GetCustomAttribute<FlagsAttribute>() != null && Enum.GetNames(typeof(T)).Contains(FLAGS_NAME);
-            HasFlagsAttribute = typeof(T).GetCustomAttribute<FlagsAttribute>() != null;
+            string[] names = Enum.GetNames(typeof(T));
             T[] values = (T[])Enum.GetValues(typeof(T));
+            HasFlagsAttribute = typeof(T).GetCustomAttribute<FlagsAttribute>() != null;
+            IsUnsigned = typeof(T).IsUnsigned();
+            IsMixedEnum = HasFlagsAttribute && names.Contains(FLAGS_NAME);
+            Names = IsMixedEnum
+                ? new List<string>(from name in names
+                                   where name != FLAGS_NAME
+                                   orderby name
+                                   select name).AsReadOnly()
+                : new List<string>(names).AsReadOnly();
             if (IsUnsigned)
             {
                 Flags = IsMixedEnum ? EnumExtensions.CastType<ulong>(Enum.Parse<T>(FLAGS_NAME)) : 0;
@@ -154,9 +161,7 @@ namespace wan24.Core
         /// </summary>
         public static IReadOnlyDictionary<string, T> KeyValues { get; }
 
-        /// <summary>
-        /// All enumeration keys and their enumeration values
-        /// </summary>
+        /// <inheritdoc/>
         public IReadOnlyDictionary<string, T> EnumKeyValues => KeyValues;
 
         /// <summary>
@@ -168,13 +173,19 @@ namespace wan24.Core
         public IReadOnlyDictionary<string, string> ValueDisplayTexts => DisplayTexts;
 
         /// <summary>
-        /// Enumeration values
+        /// Enumeration names
         /// </summary>
-        public static ReadOnlyCollection<T> Values { get; }
+        public static ReadOnlyCollection<string> Names { get; }
+
+        /// <inheritdoc/>
+        public ReadOnlyCollection<string> EnumNames => Names;
 
         /// <summary>
         /// Enumeration values
         /// </summary>
+        public static ReadOnlyCollection<T> Values { get; }
+
+        /// <inheritdoc/>
         public ReadOnlyCollection<T> EnumValues => Values;
 
         /// <summary>
@@ -182,9 +193,7 @@ namespace wan24.Core
         /// </summary>
         public static ReadOnlyCollection<T> FlagValues { get; }
 
-        /// <summary>
-        /// Flag values
-        /// </summary>
+        /// <inheritdoc/>
         public ReadOnlyCollection<T> EnumFlagValues => FlagValues;
 
         /// <summary>

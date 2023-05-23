@@ -10,12 +10,12 @@ namespace Wan24_Core_Tests
         {
             using CancellationTokenSource cts = new();
             DateTime start = DateTime.Now;
-            DelayCancellation(cts);
+            _ = DelayCancellation(cts);
             await Assert.ThrowsExceptionAsync<OperationCanceledException>(async () => await cts.Token);
             Assert.IsTrue((DateTime.Now - start).TotalMilliseconds >= 100);
         }
 
-        private static async void DelayCancellation(CancellationTokenSource cts)
+        private static async Task DelayCancellation(CancellationTokenSource cts)
         {
             await Task.Delay(100);
             cts.Cancel();

@@ -87,5 +87,22 @@ namespace wan24.Core
                 item.Dispose();
             }
         }
+
+        /// <inheritdoc/>
+        protected override async Task DisposeCore()
+        {
+            while (Pool.TryTake(out T? item))
+            {
+                if (item is IObjectPoolItem opItem) opItem.Reset();
+                if (item is IAsyncDisposable asyncDisposable)
+                {
+                    await asyncDisposable.DisposeAsync().DynamicContext();
+                }
+                else
+                {
+                    item.Dispose();
+                }
+            }
+        }
     }
 }

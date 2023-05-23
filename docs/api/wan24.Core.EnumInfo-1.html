@@ -83,6 +83,7 @@
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IEnumInfo-1.html">IEnumInfo</a>&lt;T&gt;</div>
     <div><a class="xref" href="wan24.Core.IEnumInfo.html">IEnumInfo</a></div>
   </div>
   <div class="inheritedMembers">
@@ -113,7 +114,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_EnumInfo_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class EnumInfo&lt;T&gt; : IEnumInfo where T : struct, Enum, IConvertible</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class EnumInfo&lt;T&gt; : IEnumInfo&lt;T&gt;, IEnumInfo where T : struct, Enum, IConvertible</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -138,7 +139,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L110">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L117">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1__ctor_" data-uid="wan24.Core.EnumInfo`1.#ctor*"></a>
   <h4 id="wan24_Core_EnumInfo_1__ctor" data-uid="wan24.Core.EnumInfo`1.#ctor">EnumInfo()</h4>
@@ -188,7 +189,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_DisplayTexts.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.DisplayTexts%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L165">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L170">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_DisplayTexts_" data-uid="wan24.Core.EnumInfo`1.DisplayTexts*"></a>
   <h4 id="wan24_Core_EnumInfo_1_DisplayTexts" data-uid="wan24.Core.EnumInfo`1.DisplayTexts">DisplayTexts</h4>
@@ -219,7 +220,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_EnumFlagValues.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.EnumFlagValues%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L188">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L197">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_EnumFlagValues_" data-uid="wan24.Core.EnumInfo`1.EnumFlagValues*"></a>
   <h4 id="wan24_Core_EnumInfo_1_EnumFlagValues" data-uid="wan24.Core.EnumInfo`1.EnumFlagValues">EnumFlagValues</h4>
@@ -250,7 +251,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_EnumKeyValues.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.EnumKeyValues%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L160">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L165">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_EnumKeyValues_" data-uid="wan24.Core.EnumInfo`1.EnumKeyValues*"></a>
   <h4 id="wan24_Core_EnumInfo_1_EnumKeyValues" data-uid="wan24.Core.EnumInfo`1.EnumKeyValues">EnumKeyValues</h4>
@@ -278,10 +279,41 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_EnumNames.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.EnumNames%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L181">View Source</a>
+  </span>
+  <a id="wan24_Core_EnumInfo_1_EnumNames_" data-uid="wan24.Core.EnumInfo`1.EnumNames*"></a>
+  <h4 id="wan24_Core_EnumInfo_1_EnumNames" data-uid="wan24.Core.EnumInfo`1.EnumNames">EnumNames</h4>
+  <div class="markdown level1 summary"><p>Enumeration names</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlyCollection&lt;string&gt; EnumNames { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.ObjectModel.ReadOnlyCollection</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_EnumValues.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.EnumValues%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L178">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L189">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_EnumValues_" data-uid="wan24.Core.EnumInfo`1.EnumValues*"></a>
   <h4 id="wan24_Core_EnumInfo_1_EnumValues" data-uid="wan24.Core.EnumInfo`1.EnumValues">EnumValues</h4>
@@ -312,7 +344,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_Flags.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.Flags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L139">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L146">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_Flags_" data-uid="wan24.Core.EnumInfo`1.Flags*"></a>
   <h4 id="wan24_Core_EnumInfo_1_Flags" data-uid="wan24.Core.EnumInfo`1.Flags">Flags</h4>
@@ -343,7 +375,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_FlagsValue.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.FlagsValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L142">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L149">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_FlagsValue_" data-uid="wan24.Core.EnumInfo`1.FlagsValue*"></a>
   <h4 id="wan24_Core_EnumInfo_1_FlagsValue" data-uid="wan24.Core.EnumInfo`1.FlagsValue">FlagsValue</h4>
@@ -374,7 +406,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_FlagValues.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.FlagValues%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L183">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L194">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_FlagValues_" data-uid="wan24.Core.EnumInfo`1.FlagValues*"></a>
   <h4 id="wan24_Core_EnumInfo_1_FlagValues" data-uid="wan24.Core.EnumInfo`1.FlagValues">FlagValues</h4>
@@ -405,7 +437,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_HasFlags.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.HasFlags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L134">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L141">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_HasFlags_" data-uid="wan24.Core.EnumInfo`1.HasFlags*"></a>
   <h4 id="wan24_Core_EnumInfo_1_HasFlags" data-uid="wan24.Core.EnumInfo`1.HasFlags">HasFlags</h4>
@@ -436,7 +468,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_HasFlagsAttribute.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.HasFlagsAttribute%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L131">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L138">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_HasFlagsAttribute_" data-uid="wan24.Core.EnumInfo`1.HasFlagsAttribute*"></a>
   <h4 id="wan24_Core_EnumInfo_1_HasFlagsAttribute" data-uid="wan24.Core.EnumInfo`1.HasFlagsAttribute">HasFlagsAttribute</h4>
@@ -467,7 +499,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_IsMixed.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.IsMixed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L126">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L133">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_IsMixed_" data-uid="wan24.Core.EnumInfo`1.IsMixed*"></a>
   <h4 id="wan24_Core_EnumInfo_1_IsMixed" data-uid="wan24.Core.EnumInfo`1.IsMixed">IsMixed</h4>
@@ -498,7 +530,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_IsMixedEnum.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.IsMixedEnum%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L123">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L130">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_IsMixedEnum_" data-uid="wan24.Core.EnumInfo`1.IsMixedEnum*"></a>
   <h4 id="wan24_Core_EnumInfo_1_IsMixedEnum" data-uid="wan24.Core.EnumInfo`1.IsMixedEnum">IsMixedEnum</h4>
@@ -529,7 +561,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_IsUnsigned.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.IsUnsigned%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L115">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L122">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_IsUnsigned_" data-uid="wan24.Core.EnumInfo`1.IsUnsigned*"></a>
   <h4 id="wan24_Core_EnumInfo_1_IsUnsigned" data-uid="wan24.Core.EnumInfo`1.IsUnsigned">IsUnsigned</h4>
@@ -560,7 +592,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_IsUnsignedNumeric.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.IsUnsignedNumeric%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L118">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L125">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_IsUnsignedNumeric_" data-uid="wan24.Core.EnumInfo`1.IsUnsignedNumeric*"></a>
   <h4 id="wan24_Core_EnumInfo_1_IsUnsignedNumeric" data-uid="wan24.Core.EnumInfo`1.IsUnsignedNumeric">IsUnsignedNumeric</h4>
@@ -591,7 +623,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_KeyValues.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.KeyValues%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L155">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L162">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_KeyValues_" data-uid="wan24.Core.EnumInfo`1.KeyValues*"></a>
   <h4 id="wan24_Core_EnumInfo_1_KeyValues" data-uid="wan24.Core.EnumInfo`1.KeyValues">KeyValues</h4>
@@ -619,10 +651,41 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_Names.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.Names%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L178">View Source</a>
+  </span>
+  <a id="wan24_Core_EnumInfo_1_Names_" data-uid="wan24.Core.EnumInfo`1.Names*"></a>
+  <h4 id="wan24_Core_EnumInfo_1_Names" data-uid="wan24.Core.EnumInfo`1.Names">Names</h4>
+  <div class="markdown level1 summary"><p>Enumeration names</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ReadOnlyCollection&lt;string&gt; Names { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.ObjectModel.ReadOnlyCollection</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_NumericEnumValues.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.NumericEnumValues%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L150">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L157">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_NumericEnumValues_" data-uid="wan24.Core.EnumInfo`1.NumericEnumValues*"></a>
   <h4 id="wan24_Core_EnumInfo_1_NumericEnumValues" data-uid="wan24.Core.EnumInfo`1.NumericEnumValues">NumericEnumValues</h4>
@@ -653,7 +716,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_NumericValues.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.NumericValues%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L147">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L154">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_NumericValues_" data-uid="wan24.Core.EnumInfo`1.NumericValues*"></a>
   <h4 id="wan24_Core_EnumInfo_1_NumericValues" data-uid="wan24.Core.EnumInfo`1.NumericValues">NumericValues</h4>
@@ -684,7 +747,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_ValueDisplayTexts.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.ValueDisplayTexts%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L168">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L173">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_ValueDisplayTexts_" data-uid="wan24.Core.EnumInfo`1.ValueDisplayTexts*"></a>
   <h4 id="wan24_Core_EnumInfo_1_ValueDisplayTexts" data-uid="wan24.Core.EnumInfo`1.ValueDisplayTexts">ValueDisplayTexts</h4>
@@ -715,7 +778,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_Values.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.Values%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L173">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L186">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_Values_" data-uid="wan24.Core.EnumInfo`1.Values*"></a>
   <h4 id="wan24_Core_EnumInfo_1_Values" data-uid="wan24.Core.EnumInfo`1.Values">Values</h4>
@@ -748,7 +811,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumInfo_1_IsValid__0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumInfo%601.IsValid(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L195">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumInfo.cs/#L204">View Source</a>
   </span>
   <a id="wan24_Core_EnumInfo_1_IsValid_" data-uid="wan24.Core.EnumInfo`1.IsValid*"></a>
   <h4 id="wan24_Core_EnumInfo_1_IsValid__0_" data-uid="wan24.Core.EnumInfo`1.IsValid(`0)">IsValid(T)</h4>
@@ -794,6 +857,9 @@
     </tbody>
   </table>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IEnumInfo-1.html">IEnumInfo&lt;T&gt;</a>
+  </div>
   <div>
       <a class="xref" href="wan24.Core.IEnumInfo.html">IEnumInfo</a>
   </div>

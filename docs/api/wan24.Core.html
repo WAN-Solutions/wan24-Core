@@ -117,7 +117,7 @@
       <section><p>Bitwise UInt8 extensions</p>
 </section>
       <h4><a class="xref" href="wan24.Core.BlockingObjectPool-1.html">BlockingObjectPool&lt;T&gt;</a></h4>
-      <section><p>Disposable blocking object pool (disposes items when disposing, if <see cref="!:IDisposable"></see>)</p>
+      <section><p>Disposable blocking object pool (disposes items when disposing, if <see cref="!:IDisposable"></see>/<see cref="!:IAsyncDisposable"></see>)</p>
 </section>
       <h4><a class="xref" href="wan24.Core.Bootstrap.html">Bootstrap</a></h4>
       <section><p>Bootstrapping</p>
@@ -257,6 +257,9 @@
       <h4><a class="xref" href="wan24.Core.RentedObject-1.html">RentedObject&lt;T&gt;</a></h4>
       <section><p>Rented object (returns the rented object to the pool when diposing)</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.ResetEvent.html">ResetEvent</a></h4>
+      <section><p>Reset event</p>
+</section>
       <h4><a class="xref" href="wan24.Core.SecureByteArray.html">SecureByteArray</a></h4>
       <section><p>Secure byte array (will delete its contents when disposing)</p>
 </section>
@@ -275,11 +278,17 @@
       <h4><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></h4>
       <section><p>Timeout</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.TimeSpanHelper.html">TimeSpanHelper</a></h4>
+      <section><p><see cref="!:TimeSpan"></see> helper</p>
+</section>
       <h4><a class="xref" href="wan24.Core.TypeHelper.html">TypeHelper</a></h4>
       <section><p>Type helper</p>
 </section>
     <h3 id="interfaces">Interfaces
   </h3>
+      <h4><a class="xref" href="wan24.Core.IAsyncObjectPool-1.html">IAsyncObjectPool&lt;T&gt;</a></h4>
+      <section><p>Interface for an object pool which supports asynchronous renting / returning</p>
+</section>
       <h4><a class="xref" href="wan24.Core.IConfigOption.html">IConfigOption</a></h4>
       <section><p>Interface for a configuration option</p>
 </section>
@@ -287,6 +296,9 @@
       <section><p>Interface for a disposable object</p>
 </section>
       <h4><a class="xref" href="wan24.Core.IEnumInfo.html">IEnumInfo</a></h4>
+      <section><p>Interface for an enumeration information object</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.IEnumInfo-1.html">IEnumInfo&lt;T&gt;</a></h4>
       <section><p>Interface for an enumeration information object</p>
 </section>
       <h4><a class="xref" href="wan24.Core.IEventThrottle.html">IEventThrottle</a></h4>

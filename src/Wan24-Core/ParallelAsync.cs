@@ -19,7 +19,8 @@
             using ParallelAsyncProcessor<T> processor = new(itemHandler, threads ?? Environment.ProcessorCount);
             await processor.StartAsync(cancellationToken).DynamicContext();
             await processor.EnqueueRangeAsync(items).DynamicContext();
-            processor.WaitBoring(cancellationToken);
+            await processor.WaitBoringAsync(cancellationToken).DynamicContext();
+            await processor.StopAsync(cancellationToken).DynamicContext();
         }
 
         /// <summary>
@@ -36,7 +37,8 @@
             using ParallelAsyncProcessor<T> processor = new(itemHandler, threads ?? Environment.ProcessorCount);
             await processor.StartAsync(cancellationToken).DynamicContext();
             await processor.EnqueueRangeAsync(items).DynamicContext();
-            processor.WaitBoring(cancellationToken);
+            await processor.WaitBoringAsync(cancellationToken).DynamicContext();
+            await processor.StopAsync(cancellationToken).DynamicContext();
         }
 
         /// <summary>
