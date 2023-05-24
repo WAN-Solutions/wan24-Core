@@ -13,6 +13,7 @@
         /// Enqueue
         /// </summary>
         /// <param name="task">Task</param>
-        ValueTask EnqueueAsync(QueueWorker.Task_Delegate task);
+        /// <param name="cancellationToken">Cancellation token</param>
+        ValueTask EnqueueAsync(QueueWorker.Task_Delegate task, CancellationToken cancellationToken = default);
     }
 }

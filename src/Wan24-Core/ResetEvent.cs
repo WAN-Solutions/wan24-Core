@@ -148,9 +148,8 @@
         public async Task WaitAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            await Task.Factory.StartNew(async () => await TaskCompletion.Task.DynamicContext(), cancellationToken, TaskCreationOptions.PreferFairness, TaskScheduler.Current)
-                .Unwrap()
-                .DynamicContext();
+            async Task WaitAsyncInt() => await TaskCompletion.Task.DynamicContext();
+            await ((Func<Task>)WaitAsyncInt).StartFairTask(cancellationToken: cancellationToken).DynamicContext();
         }
 
         /// <summary>
