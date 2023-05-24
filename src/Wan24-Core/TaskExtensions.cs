@@ -9,73 +9,139 @@ namespace wan24.Core
     public static class TaskExtensions
     {
         /// <summary>
-        /// Task result property name
+        /// <see cref="GetResult{T}(Task)"/> method
         /// </summary>
-        private const string RESULT_PROPERTY_NAME = "Result";
+        private static readonly MethodInfo GetResultMethod;
+        /// <summary>
+        /// <see cref="GetResultNullable{T}(Task)"/> method
+        /// </summary>
+        private static readonly MethodInfo GetResultNullableMethod;
+        /// <summary>
+        /// <see cref="GetResult{T}(ValueTask)"/> method
+        /// </summary>
+        private static readonly MethodInfo GetResultValueMethod;
+        /// <summary>
+        /// <see cref="GetResultNullable{T}(ValueTask)"/> method
+        /// </summary>
+        private static readonly MethodInfo GetResultNullableValueMethod;
 
         /// <summary>
-        /// Get the result from a task
+        /// Constructor
+        /// </summary>
+        static TaskExtensions()
+        {
+            Type type = typeof(TaskExtensions);
+            GetResultMethod = type.GetMethod(
+                nameof(GetResult),
+                BindingFlags.Public | BindingFlags.Static,
+                filter: null,
+                genericArgumentCount: 1,
+                exactTypes: true,
+                returnType: null,
+                typeof(Task)
+                )
+                ?? throw new InvalidProgramException($"Failed to reflect the {nameof(GetResult)} method");
+            GetResultNullableMethod = type.GetMethod(
+                nameof(GetResultNullable),
+                BindingFlags.Public | BindingFlags.Static,
+                filter: null,
+                genericArgumentCount: 1,
+                exactTypes: true,
+                returnType: null,
+                typeof(Task)
+                )
+                ?? throw new InvalidProgramException($"Failed to reflect the {nameof(GetResultNullable)} method");
+            GetResultValueMethod = type.GetMethod(
+                nameof(GetResult),
+                BindingFlags.Public | BindingFlags.Static,
+                filter: null,
+                genericArgumentCount: 1,
+                exactTypes: true,
+                returnType: null,
+                typeof(ValueTask)
+                )
+                ?? throw new InvalidProgramException($"Failed to reflect the {nameof(GetResult)} method");
+            GetResultNullableValueMethod = type.GetMethod(
+                nameof(GetResultNullable),
+                BindingFlags.Public | BindingFlags.Static,
+                filter: null,
+                genericArgumentCount: 1,
+                exactTypes: true,
+                returnType: null,
+                typeof(ValueTask)
+                )
+                ?? throw new InvalidProgramException($"Failed to reflect the {nameof(GetResultNullable)} method");
+        }
+
+        /// <summary>
+        /// Get the result from a task (the task should be completed already!)
         /// </summary>
         /// <typeparam name="T">Result type</typeparam>
         /// <param name="task">Task</param>
         /// <returns>Result</returns>
-        public static T GetResult<T>(this Task task) => (T)GetTaskResult(task, typeof(T))!;
+        public static T GetResult<T>(this Task task) => ((Task<T>)task).Result;
 
         /// <summary>
-        /// Get the result from a task
+        /// Get the result from a task (the task should be completed already!)
         /// </summary>
         /// <typeparam name="T">Result type</typeparam>
         /// <param name="task">Task</param>
         /// <returns>Result</returns>
-        public static T? GetResultNullable<T>(this Task task) => (T?)GetTaskResult(task, typeof(T?));
+        public static T? GetResultNullable<T>(this Task task) => ((Task<T?>)task).Result;
 
         /// <summary>
-        /// Get the result from a task
+        /// Get the result from a task (the task should be completed already!)
         /// </summary>
         /// <param name="task">Task</param>
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
-        public static object GetResult(this Task task, Type type) => GetTaskResult(task, type)!;
+        public static object GetResult(this Task task, Type type)
+            => GetResultMethod.MakeGenericMethod(type).Invoke(obj: null, new object?[] { task })
+                ?? throw new ArgumentException("The task result is NULL", nameof(task));
 
         /// <summary>
-        /// Get the result from a task
+        /// Get the result from a task (the task should be completed already!)
         /// </summary>
         /// <param name="task">Task</param>
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
-        public static object? GetResultNullable(this Task task, Type type) => GetTaskResult(task, type);
+        public static object? GetResultNullable(this Task task, Type type) => GetResultNullableMethod.MakeGenericMethod(type).Invoke(obj: null, new object?[] { task });
 
         /// <summary>
-        /// Get the result from a task
+        /// Get the result from a task (the task should be completed already!)
         /// </summary>
         /// <typeparam name="T">Result type</typeparam>
         /// <param name="task">Task</param>
         /// <returns>Result</returns>
-        public static T GetResult<T>(this ValueTask task) => (T)GetTaskResult(task, typeof(T))!;
+        public static T GetResult<T>(this ValueTask task)
+            => task is ValueTask<T> valueTask ? valueTask.Result : throw new ArgumentException($"{nameof(ValueTask)} is not a {nameof(ValueTask)}<T>", nameof(task));
 
         /// <summary>
-        /// Get the result from a task
+        /// Get the result from a task (the task should be completed already!)
         /// </summary>
         /// <typeparam name="T">Result type</typeparam>
         /// <param name="task">Task</param>
         /// <returns>Result</returns>
-        public static T? GetResultNullable<T>(this ValueTask task) => (T?)GetTaskResult(task, typeof(T?));
+        public static T? GetResultNullable<T>(this ValueTask task)
+            => task is ValueTask<T> valueTask ? valueTask.Result : throw new ArgumentException($"{nameof(ValueTask)} is not a {nameof(ValueTask)}<T>", nameof(task));
 
         /// <summary>
-        /// Get the result from a task
+        /// Get the result from a task (the task should be completed already!)
         /// </summary>
         /// <param name="task">Task</param>
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
-        public static object GetResult(this ValueTask task, Type type) => GetTaskResult(task, type)!;
+        public static object GetResult(this ValueTask task, Type type)
+            => GetResultValueMethod.MakeGenericMethod(type).Invoke(obj: null, new object?[] { task })
+                ?? throw new ArgumentException("The task result is NULL", nameof(task));
 
         /// <summary>
-        /// Get the result from a task
+        /// Get the result from a task (the task should be completed already!)
         /// </summary>
         /// <param name="task">Task</param>
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
-        public static object? GetResultNullable(this ValueTask task, Type type) => GetTaskResult(task, type);
+        public static object? GetResultNullable(this ValueTask task, Type type) => GetResultNullableValueMethod.MakeGenericMethod(type).Invoke(obj: null, new object?[] { task });
 
         /// <summary>
         /// Wait for all tasks
@@ -83,7 +149,17 @@ namespace wan24.Core
         /// <param name="tasks">Tasks</param>
         public static async Task WaitAll(this IEnumerable<Task> tasks)
         {
-            foreach (Task task in tasks) await task.ConfigureAwait(continueOnCapturedContext: false);
+            List<Exception> exceptions = new();
+            foreach (Task task in tasks)
+                try
+                {
+                    await task.DynamicContext();
+                }
+                catch(Exception ex)
+                {
+                    exceptions.Add(ex);
+                }
+            if (exceptions.Count != 0) throw new AggregateException(exceptions);
         }
 
         /// <summary>
@@ -94,8 +170,18 @@ namespace wan24.Core
         /// <returns>Results</returns>
         public static async Task<T[]> WaitAll<T>(this IEnumerable<Task<T>> tasks)
         {
+            List<Exception> exceptions = new();
             List<T> res = new();
-            foreach (Task<T> task in tasks) res.Add(await task.ConfigureAwait(continueOnCapturedContext: false));
+            foreach (Task<T> task in tasks)
+                try
+                {
+                    res.Add(await task.DynamicContext());
+                }
+                catch(Exception ex)
+                {
+                    exceptions.Add(ex);
+                }
+            if (exceptions.Count != 0) throw new AggregateException(exceptions);
             return res.ToArray();
         }
 
@@ -105,7 +191,17 @@ namespace wan24.Core
         /// <param name="tasks">Tasks</param>
         public static async Task WaitAll(this IEnumerable<ValueTask> tasks)
         {
-            foreach (ValueTask task in tasks) await task.ConfigureAwait(continueOnCapturedContext: false);
+            List<Exception> exceptions = new();
+            foreach (ValueTask task in tasks)
+                try
+                {
+                    await task.DynamicContext();
+                }
+                catch (Exception ex)
+                {
+                    exceptions.Add(ex);
+                }
+            if (exceptions.Count != 0) throw new AggregateException(exceptions);
         }
 
         /// <summary>
@@ -116,8 +212,18 @@ namespace wan24.Core
         /// <returns>Results</returns>
         public static async Task<T[]> WaitAll<T>(this IEnumerable<ValueTask<T>> tasks)
         {
+            List<Exception> exceptions = new();
             List<T> res = new();
-            foreach (ValueTask<T> task in tasks) res.Add(await task.ConfigureAwait(continueOnCapturedContext: false));
+            foreach (ValueTask<T> task in tasks)
+                try
+                {
+                    res.Add(await task.DynamicContext());
+                }
+                catch (Exception ex)
+                {
+                    exceptions.Add(ex);
+                }
+            if (exceptions.Count != 0) throw new AggregateException(exceptions);
             return res.ToArray();
         }
 
@@ -182,21 +288,69 @@ namespace wan24.Core
         public static ConfiguredValueTaskAwaitable<T> DynamicContext<T>(this ValueTask<T> task) => task.ConfigureAwait(continueOnCapturedContext: false);
 
         /// <summary>
-        /// Get the task result
+        /// Start a long running task
         /// </summary>
-        /// <param name="task">Task</param>
-        /// <param name="type">Result type</param>
-        /// <returns>Result</returns>
-        private static object? GetTaskResult(Task task, Type type)
-                => typeof(Task<>).MakeGenericType(type).GetProperty(RESULT_PROPERTY_NAME, BindingFlags.Instance | BindingFlags.Public)!.GetValue(task);
+        /// <param name="action">Action</param>
+        /// <param name="scheduler">Scheduler</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Long running task</returns>
+        public static Task StartLongRunningTask(this Func<Task> action, TaskScheduler? scheduler = null, CancellationToken cancellationToken = default)
+            => Task.Factory.StartNew(
+                action,
+                cancellationToken,
+                TaskCreationOptions.LongRunning | TaskCreationOptions.RunContinuationsAsynchronously,
+                scheduler ?? TaskScheduler.Current
+                )
+                .Unwrap();
 
         /// <summary>
-        /// Get the task result
+        /// Start a long running task
         /// </summary>
-        /// <param name="task">Task</param>
-        /// <param name="type">Result type</param>
-        /// <returns>Result</returns>
-        private static object? GetTaskResult(ValueTask task, Type type)
-                => typeof(ValueTask<>).MakeGenericType(type).GetProperty(RESULT_PROPERTY_NAME, BindingFlags.Instance | BindingFlags.Public)!.GetValue(task);
+        /// <typeparam name="T">Result type</typeparam>
+        /// <param name="action">Action</param>
+        /// <param name="scheduler">Scheduler</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Long running task</returns>
+        public static Task<T> StartLongRunningTask<T>(this Func<Task<T>> action, TaskScheduler? scheduler = null, CancellationToken cancellationToken = default)
+            => Task.Factory.StartNew(
+                action,
+                cancellationToken,
+                TaskCreationOptions.LongRunning | TaskCreationOptions.RunContinuationsAsynchronously,
+                scheduler ?? TaskScheduler.Current
+                )
+                .Unwrap();
+
+        /// <summary>
+        /// Start a task which will use fair task scheduler selection
+        /// </summary>
+        /// <param name="action">Action</param>
+        /// <param name="scheduler">Scheduler</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Task</returns>
+        public static Task StartFairTask(this Func<Task> action, TaskScheduler? scheduler = null, CancellationToken cancellationToken = default)
+            => Task.Factory.StartNew(
+                action,
+                cancellationToken,
+                TaskCreationOptions.PreferFairness | TaskCreationOptions.RunContinuationsAsynchronously,
+                scheduler ?? TaskScheduler.Current
+                )
+                .Unwrap();
+
+        /// <summary>
+        /// Start a task which will use fair task scheduler selection
+        /// </summary>
+        /// <typeparam name="T">Result type</typeparam>
+        /// <param name="action">Action</param>
+        /// <param name="scheduler">Scheduler</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Task</returns>
+        public static Task<T> StartFairTask<T>(this Func<Task<T>> action, TaskScheduler? scheduler = null, CancellationToken cancellationToken = default)
+            => Task.Factory.StartNew(
+                action,
+                cancellationToken,
+                TaskCreationOptions.PreferFairness | TaskCreationOptions.RunContinuationsAsynchronously,
+                scheduler ?? TaskScheduler.Current
+                )
+                .Unwrap();
     }
 }

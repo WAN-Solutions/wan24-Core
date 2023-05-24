@@ -30,7 +30,7 @@ namespace wan24.Core
         public Exception? LastException { get; protected set; }
 
         /// <inheritdoc/>
-        public async ValueTask EnqueueAsync(Task_Delegate task) => await Queue.Writer.WriteAsync(task).DynamicContext();
+        public async ValueTask EnqueueAsync(Task_Delegate task, CancellationToken cancellationToken = default) => await Queue.Writer.WriteAsync(task, cancellationToken).DynamicContext();
 
         /// <inheritdoc/>
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)

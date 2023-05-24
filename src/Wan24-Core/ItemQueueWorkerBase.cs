@@ -13,19 +13,20 @@
         protected ItemQueueWorkerBase(int capacity) : base(capacity) { }
 
         /// <inheritdoc/>
-        public async ValueTask EnqueueAsync(T item)
-            => await EnqueueAsync(async (ct) => await ProcessItem(item, ct).DynamicContext()).DynamicContext();
+        public ValueTask EnqueueAsync(T item, CancellationToken cancellationToken = default)
+            => EnqueueAsync(async (ct) => await ProcessItem(item, ct).DynamicContext(), cancellationToken);
 
         /// <inheritdoc/>
-        public async ValueTask EnqueueRangeAsync(IEnumerable<T> items)
+        public async ValueTask EnqueueRangeAsync(IEnumerable<T> items, CancellationToken cancellationToken = default)
         {
-            foreach (T item in items) await EnqueueAsync(item).DynamicContext();
+            foreach (T item in items) await EnqueueAsync(item, cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
-        public async ValueTask EnqueueRangeAsync(IAsyncEnumerable<T> items)
+        public async ValueTask EnqueueRangeAsync(IAsyncEnumerable<T> items, CancellationToken cancellationToken = default)
         {
-            await foreach (T item in items.DynamicContext()) await EnqueueAsync(item).DynamicContext();
+            await foreach (T item in items.WithCancellation(cancellationToken).ConfigureAwait(continueOnCapturedContext: false))
+                await EnqueueAsync(item, cancellationToken).DynamicContext();
         }
 
         /// <summary>

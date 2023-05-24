@@ -36,6 +36,9 @@ disposing
     - Result getting of a generic task
     - Asynchronous task list awaiting
     - Shortcuts for await configurations
+    - Shortcuts for starting a function as long running task
+    - Shortcuts for starting a function as task with fair execution by the 
+    scheduler
 - DI helper
     - Service provider adoption
     - DI object factory delegates

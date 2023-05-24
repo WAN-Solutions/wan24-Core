@@ -53,7 +53,7 @@ namespace wan24.Core
                 if (IsRunning) return;
                 IsRunning = true;
                 Cancellation = new();
-                ServiceTask = RunServiceAsync();
+                ServiceTask = ((Func<Task>)RunServiceAsync).StartLongRunningTask(cancellationToken: CancellationToken.None);
             }
             finally
             {
@@ -64,19 +64,27 @@ namespace wan24.Core
         /// <inheritdoc/>
         public async Task StopAsync(CancellationToken cancellationToken = default)
         {
+            Task stopTask;
             await Sync.WaitAsync(cancellationToken).DynamicContext();
             try
             {
                 if (!IsRunning) return;
-                if (StopTask != null) return;
-                StopTask = new(TaskCreationOptions.RunContinuationsAsynchronously);
+                if (StopTask == null)
+                {
+                    StopTask = new(TaskCreationOptions.RunContinuationsAsynchronously);
+                    Cancellation!.Cancel();
+                    stopTask = StopTask.Task;
+                }
+                else
+                {
+                    stopTask = StopTask.Task;
+                }
             }
             finally
             {
                 Sync.Release();
             }
-            Cancellation!.Cancel();
-            if (StopTask != null) await StopTask.Task.DynamicContext();
+            await stopTask.DynamicContext();
         }
 
         /// <summary>
@@ -104,7 +112,7 @@ namespace wan24.Core
             }
             finally
             {
-                await Sync.WaitAsync(Cancellation?.Token ?? default).DynamicContext();
+                await Sync.WaitAsync().DynamicContext();
                 try
                 {
                     StopTask ??= new(TaskCreationOptions.RunContinuationsAsynchronously);
