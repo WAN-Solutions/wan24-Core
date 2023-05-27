@@ -1,0 +1,1226 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Struct RentedArrayStruct&lt;T&gt;
+   | wan24-Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Struct RentedArrayStruct&lt;T&gt;
+   | wan24-Core ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.RentedArrayStruct`1">
+  
+  
+  <h1 id="wan24_Core_RentedArrayStruct_1" data-uid="wan24.Core.RentedArrayStruct`1" class="text-break">Struct RentedArrayStruct&lt;T&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>Pool rented array (returns the array to the pool, when disposed)</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IRentedArray-1.html">IRentedArray</a>&lt;T&gt;</div>
+    <div><a class="xref" href="wan24.Core.IArray-1.html">IArray</a>&lt;T&gt;</div>
+    <div><span class="xref">System.Collections.IEnumerable</span>&lt;T&gt;</div>
+    <div><span class="xref">System.Collections.IEnumerable</span></div>
+    <div><span class="xref">IEquatable</span>&lt;<span class="xref">Memory</span>&lt;T&gt;&gt;</div>
+    <div><span class="xref">IDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.ValueType.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_RentedArrayStruct_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public struct RentedArrayStruct&lt;T&gt; : IRentedArray&lt;T&gt;, IArray&lt;T&gt;, IEnumerable</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1__ctor_System_Buffers_ArrayPool__0___0___System_Nullable_System_Int32__System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.%23ctor(System.Buffers.ArrayPool%7B%600%7D%2C%600%5B%5D%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L47">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1__ctor_" data-uid="wan24.Core.RentedArrayStruct`1.#ctor*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1__ctor_System_Buffers_ArrayPool__0___0___System_Nullable_System_Int32__System_Boolean_" data-uid="wan24.Core.RentedArrayStruct`1.#ctor(System.Buffers.ArrayPool{`0},`0[],System.Nullable{System.Int32},System.Boolean)">RentedArrayStruct(ArrayPool&lt;T&gt;, T[], Nullable&lt;Int32&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RentedArrayStruct(ArrayPool&lt;T&gt; pool, T[] arr, int? len = null, bool clean = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Buffers.ArrayPool</span>&lt;T&gt;</td>
+        <td><span class="parametername">pool</span></td>
+        <td><p>Pool</p>
+</td>
+      </tr>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">arr</span></td>
+        <td><p>Rented array</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">len</span></td>
+        <td><p>Length</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">clean</span></td>
+        <td><p>Clean the rented array?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1__ctor_System_Int32_System_Buffers_ArrayPool__0__System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.%23ctor(System.Int32%2CSystem.Buffers.ArrayPool%7B%600%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L32">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1__ctor_" data-uid="wan24.Core.RentedArrayStruct`1.#ctor*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1__ctor_System_Int32_System_Buffers_ArrayPool__0__System_Boolean_" data-uid="wan24.Core.RentedArrayStruct`1.#ctor(System.Int32,System.Buffers.ArrayPool{`0},System.Boolean)">RentedArrayStruct(Int32, ArrayPool&lt;T&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RentedArrayStruct(int len, ArrayPool&lt;T&gt; pool = null, bool clean = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">len</span></td>
+        <td><p>Length</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Buffers.ArrayPool</span>&lt;T&gt;</td>
+        <td><span class="parametername">pool</span></td>
+        <td><p>Pool</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">clean</span></td>
+        <td><p>Clean the rented array?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_Array.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.Array%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L111">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_Array_" data-uid="wan24.Core.RentedArrayStruct`1.Array*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_Array" data-uid="wan24.Core.RentedArrayStruct`1.Array">Array</h4>
+  <div class="markdown level1 summary"><p>Array</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly T[] Array { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_Clear.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.Clear%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L120">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_Clear_" data-uid="wan24.Core.RentedArrayStruct`1.Clear*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_Clear" data-uid="wan24.Core.RentedArrayStruct`1.Clear">Clear</h4>
+  <div class="markdown level1 summary"><p>Clear the array when returning?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Clear { readonly get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_Item_Index_Index_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.Item(Index%2CIndex)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L98">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_Item_" data-uid="wan24.Core.RentedArrayStruct`1.Item*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_Item_Index_Index_" data-uid="wan24.Core.RentedArrayStruct`1.Item(Index,Index)">Item[Index, Index]</h4>
+  <div class="markdown level1 summary"><p>Get a range</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly Memory&lt;T&gt; this[Index start, Index end] { get; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Index</span></td>
+        <td><span class="parametername">start</span></td>
+        <td><p>Start</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Index</span></td>
+        <td><span class="parametername">end</span></td>
+        <td><p>End</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;T&gt;</td>
+        <td><p>Range memory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_Item_Range_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.Item(Range)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L85">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_Item_" data-uid="wan24.Core.RentedArrayStruct`1.Item*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_Item_Range_" data-uid="wan24.Core.RentedArrayStruct`1.Item(Range)">Item[Range]</h4>
+  <div class="markdown level1 summary"><p>Get a range</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly Memory&lt;T&gt; this[Range range] { get; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Range</span></td>
+        <td><span class="parametername">range</span></td>
+        <td><p>Range</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;T&gt;</td>
+        <td><p>Range memory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_Item_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.Item(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L71">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_Item_" data-uid="wan24.Core.RentedArrayStruct`1.Item*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_Item_System_Int32_" data-uid="wan24.Core.RentedArrayStruct`1.Item(System.Int32)">Item[Int32]</h4>
+  <div class="markdown level1 summary"><p>Get/set an element</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly T this[int offset] { get; set; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>Index</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Element</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_Length.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.Length%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L65">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_Length_" data-uid="wan24.Core.RentedArrayStruct`1.Length*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_Length" data-uid="wan24.Core.RentedArrayStruct`1.Length">Length</h4>
+  <div class="markdown level1 summary"><p>Length</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Length { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_LongLength.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.LongLength%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L68">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_LongLength_" data-uid="wan24.Core.RentedArrayStruct`1.LongLength*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_LongLength" data-uid="wan24.Core.RentedArrayStruct`1.LongLength">LongLength</h4>
+  <div class="markdown level1 summary"><p>Length</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly long LongLength { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_Memory.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.Memory%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L117">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_Memory_" data-uid="wan24.Core.RentedArrayStruct`1.Memory*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_Memory" data-uid="wan24.Core.RentedArrayStruct`1.Memory">Memory</h4>
+  <div class="markdown level1 summary"><p>Memory</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly Memory&lt;T&gt; Memory { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_Pool.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.Pool%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L62">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_Pool_" data-uid="wan24.Core.RentedArrayStruct`1.Pool*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_Pool" data-uid="wan24.Core.RentedArrayStruct`1.Pool">Pool</h4>
+  <div class="markdown level1 summary"><p>Pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly ArrayPool&lt;T&gt; Pool { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Buffers.ArrayPool</span>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_Span.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.Span%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L114">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_Span_" data-uid="wan24.Core.RentedArrayStruct`1.Span*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_Span" data-uid="wan24.Core.RentedArrayStruct`1.Span">Span</h4>
+  <div class="markdown level1 summary"><p>Span</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly Span&lt;T&gt; Span { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_Dispose.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L168">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_Dispose_" data-uid="wan24.Core.RentedArrayStruct`1.Dispose*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_Dispose" data-uid="wan24.Core.RentedArrayStruct`1.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_Equals_Memory__0__.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.Equals(Memory%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L135">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_Equals_" data-uid="wan24.Core.RentedArrayStruct`1.Equals*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_Equals_Memory__0__" data-uid="wan24.Core.RentedArrayStruct`1.Equals(Memory{`0})">Equals(Memory&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly bool Equals(Memory&lt;T&gt; other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;T&gt;</td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_Equals_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L132">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_Equals_" data-uid="wan24.Core.RentedArrayStruct`1.Equals*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_Equals_System_Object_" data-uid="wan24.Core.RentedArrayStruct`1.Equals(System.Object)">Equals(Object)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override readonly bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ValueType.Equals(System.Object)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_GetCopy.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.GetCopy%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L123">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_GetCopy_" data-uid="wan24.Core.RentedArrayStruct`1.GetCopy*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_GetCopy" data-uid="wan24.Core.RentedArrayStruct`1.GetCopy">GetCopy()</h4>
+  <div class="markdown level1 summary"><p>Create a non-rented copy of the array</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly T[] GetCopy()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><p>Copy</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_GetEnumerator.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.GetEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L141">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_GetEnumerator_" data-uid="wan24.Core.RentedArrayStruct`1.GetEnumerator*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_GetEnumerator" data-uid="wan24.Core.RentedArrayStruct`1.GetEnumerator">GetEnumerator()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly IEnumerator&lt;T&gt; GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.IEnumerator</span>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_GetHashCode.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L138">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_GetHashCode_" data-uid="wan24.Core.RentedArrayStruct`1.GetHashCode*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_GetHashCode" data-uid="wan24.Core.RentedArrayStruct`1.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override readonly int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ValueType.GetHashCode()</span></div>
+  <h3 id="operators">Operators
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_op_Equality_wan24_Core_RentedArrayStruct__0__wan24_Core_RentedArrayStruct__0__.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.op_Equality(wan24.Core.RentedArrayStruct%7B%600%7D%2Cwan24.Core.RentedArrayStruct%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L228">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_op_Equality_" data-uid="wan24.Core.RentedArrayStruct`1.op_Equality*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_op_Equality_wan24_Core_RentedArrayStruct__0__wan24_Core_RentedArrayStruct__0__" data-uid="wan24.Core.RentedArrayStruct`1.op_Equality(wan24.Core.RentedArrayStruct{`0},wan24.Core.RentedArrayStruct{`0})">Equality(RentedArrayStruct&lt;T&gt;, RentedArrayStruct&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Equals</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(RentedArrayStruct&lt;T&gt; left, RentedArrayStruct&lt;T&gt; right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedArrayStruct-1.html">RentedArrayStruct</a>&lt;T&gt;</td>
+        <td><span class="parametername">left</span></td>
+        <td><p>Left</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedArrayStruct-1.html">RentedArrayStruct</a>&lt;T&gt;</td>
+        <td><span class="parametername">right</span></td>
+        <td><p>Right</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Equals?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_op_Implicit_wan24_Core_RentedArrayStruct__0____0__.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.op_Implicit(wan24.Core.RentedArrayStruct%7B%600%7D)~%600%5B%5D%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L202">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_op_Implicit_" data-uid="wan24.Core.RentedArrayStruct`1.op_Implicit*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_op_Implicit_wan24_Core_RentedArrayStruct__0____0__" data-uid="wan24.Core.RentedArrayStruct`1.op_Implicit(wan24.Core.RentedArrayStruct{`0})~`0[]">Implicit(RentedArrayStruct&lt;T&gt; to T[])</h4>
+  <div class="markdown level1 summary"><p>Cast as array</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator T[](RentedArrayStruct&lt;T&gt; arr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedArrayStruct-1.html">RentedArrayStruct</a>&lt;T&gt;</td>
+        <td><span class="parametername">arr</span></td>
+        <td><p>Array (may be longer than <a class="xref" href="wan24.Core.RentedArrayStruct-1.html#wan24_Core_RentedArrayStruct_1_Length">Length</a>!)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_op_Implicit_wan24_Core_RentedArrayStruct__0___Memory__0_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.op_Implicit(wan24.Core.RentedArrayStruct%7B%600%7D)~Memory%7B%600%7D%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L214">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_op_Implicit_" data-uid="wan24.Core.RentedArrayStruct`1.op_Implicit*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_op_Implicit_wan24_Core_RentedArrayStruct__0___Memory__0_" data-uid="wan24.Core.RentedArrayStruct`1.op_Implicit(wan24.Core.RentedArrayStruct{`0})~Memory{`0}">Implicit(RentedArrayStruct&lt;T&gt; to Memory&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Cast as memory</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator Memory&lt;T&gt;(RentedArrayStruct&lt;T&gt; arr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedArrayStruct-1.html">RentedArrayStruct</a>&lt;T&gt;</td>
+        <td><span class="parametername">arr</span></td>
+        <td><p>Array</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_op_Implicit_wan24_Core_RentedArrayStruct__0___Span__0_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.op_Implicit(wan24.Core.RentedArrayStruct%7B%600%7D)~Span%7B%600%7D%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L208">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_op_Implicit_" data-uid="wan24.Core.RentedArrayStruct`1.op_Implicit*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_op_Implicit_wan24_Core_RentedArrayStruct__0___Span__0_" data-uid="wan24.Core.RentedArrayStruct`1.op_Implicit(wan24.Core.RentedArrayStruct{`0})~Span{`0}">Implicit(RentedArrayStruct&lt;T&gt; to Span&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Cast as span</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator Span&lt;T&gt;(RentedArrayStruct&lt;T&gt; arr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedArrayStruct-1.html">RentedArrayStruct</a>&lt;T&gt;</td>
+        <td><span class="parametername">arr</span></td>
+        <td><p>Array</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_op_Implicit_wan24_Core_RentedArrayStruct__0___System_Int32.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.op_Implicit(wan24.Core.RentedArrayStruct%7B%600%7D)~System.Int32%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L220">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_op_Implicit_" data-uid="wan24.Core.RentedArrayStruct`1.op_Implicit*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_op_Implicit_wan24_Core_RentedArrayStruct__0___System_Int32" data-uid="wan24.Core.RentedArrayStruct`1.op_Implicit(wan24.Core.RentedArrayStruct{`0})~System.Int32">Implicit(RentedArrayStruct&lt;T&gt; to Int32)</h4>
+  <div class="markdown level1 summary"><p>Cast as Int32 (length value)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator int (RentedArrayStruct&lt;T&gt; arr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedArrayStruct-1.html">RentedArrayStruct</a>&lt;T&gt;</td>
+        <td><span class="parametername">arr</span></td>
+        <td><p>Array</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_op_Inequality_wan24_Core_RentedArrayStruct__0__wan24_Core_RentedArrayStruct__0__.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.op_Inequality(wan24.Core.RentedArrayStruct%7B%600%7D%2Cwan24.Core.RentedArrayStruct%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L236">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_op_Inequality_" data-uid="wan24.Core.RentedArrayStruct`1.op_Inequality*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_op_Inequality_wan24_Core_RentedArrayStruct__0__wan24_Core_RentedArrayStruct__0__" data-uid="wan24.Core.RentedArrayStruct`1.op_Inequality(wan24.Core.RentedArrayStruct{`0},wan24.Core.RentedArrayStruct{`0})">Inequality(RentedArrayStruct&lt;T&gt;, RentedArrayStruct&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Not equal</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(RentedArrayStruct&lt;T&gt; left, RentedArrayStruct&lt;T&gt; right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedArrayStruct-1.html">RentedArrayStruct</a>&lt;T&gt;</td>
+        <td><span class="parametername">left</span></td>
+        <td><p>Left</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedArrayStruct-1.html">RentedArrayStruct</a>&lt;T&gt;</td>
+        <td><span class="parametername">right</span></td>
+        <td><p>Right</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Not equal?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1_System_Collections_IEnumerable_GetEnumerator.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601.System%23Collections%23IEnumerable%23GetEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L144">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArrayStruct_1_System_Collections_IEnumerable_GetEnumerator_" data-uid="wan24.Core.RentedArrayStruct`1.System#Collections#IEnumerable#GetEnumerator*"></a>
+  <h4 id="wan24_Core_RentedArrayStruct_1_System_Collections_IEnumerable_GetEnumerator" data-uid="wan24.Core.RentedArrayStruct`1.System#Collections#IEnumerable#GetEnumerator">IEnumerable.GetEnumerator()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">readonly IEnumerator IEnumerable.GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.IEnumerator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IRentedArray-1.html">IRentedArray&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IArray-1.html">IArray&lt;T&gt;</a>
+  </div>
+  <div>
+      <span class="xref">System.Collections.IEnumerable&lt;&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.IEnumerable</span>
+  </div>
+  <div>
+      <span class="xref">IEquatable&lt;&gt;</span>
+  </div>
+  <div>
+      <span class="xref">IDisposable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_GetEnumDisplayText_System_Object_">EnumExtensions.GetEnumDisplayText(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean_">JsonExtensions.ToJson(Object, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_IEnumerable___0__">ObjectExtensions.In&lt;T&gt;(T, IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RentedArrayStruct_1.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArrayStruct%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RentedArrayStruct.cs/#L11" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            (c) 2023 Andreas Zimmermann, wan24.de
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

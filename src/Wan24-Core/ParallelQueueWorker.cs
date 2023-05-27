@@ -1,6 +1,4 @@
-﻿using System.Threading;
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Parallel queue worker
@@ -173,7 +171,7 @@ namespace wan24.Core
                 try
                 {
                     ProcessCount--;
-                    if (ProcessCount < Threads) await Processing.SetAsync().DynamicContext();
+                    if (ProcessCount == Threads - 1) await Processing.SetAsync().DynamicContext();
                     if (ProcessCount == 0) await Busy.SetAsync().DynamicContext();
                 }
                 finally

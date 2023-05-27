@@ -89,6 +89,9 @@
       <h4><a class="xref" href="wan24.Core.AsyncDisposableExtensions.html">AsyncDisposableExtensions</a></h4>
       <section><p>Asynchronous disposable extensions</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.AsyncDisposableLazyValue-1.html">AsyncDisposableLazyValue&lt;T&gt;</a></h4>
+      <section><p>Disposable lazy value</p>
+</section>
       <h4><a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html">AsyncEnumerableExtensions</a></h4>
       <section><p>Asynchronous enumerable extensions</p>
 </section>
@@ -143,6 +146,9 @@
       <h4><a class="xref" href="wan24.Core.ChangeToken.html">ChangeToken</a></h4>
       <section><p>Change token</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.CharsExtensions.html">CharsExtensions</a></h4>
+      <section><p><span class="xref">System.Char</span> array extensions</p>
+</section>
       <h4><a class="xref" href="wan24.Core.CollectionExtensions.html">CollectionExtensions</a></h4>
       <section><p>Collection extensions</p>
 </section>
@@ -172,6 +178,9 @@
 </section>
       <h4><a class="xref" href="wan24.Core.DisposableExtensions.html">DisposableExtensions</a></h4>
       <section><p>Disposable extensions</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.DisposableLazyValue-1.html">DisposableLazyValue&lt;T&gt;</a></h4>
+      <section><p>Disposable lazy value</p>
 </section>
       <h4><a class="xref" href="wan24.Core.DisposableObjectPool-1.html">DisposableObjectPool&lt;T&gt;</a></h4>
       <section><p>Disposable object pool (disposes trashed items)</p>
@@ -205,6 +214,9 @@
 </section>
       <h4><a class="xref" href="wan24.Core.JsonHelper.html">JsonHelper</a></h4>
       <section><p>JSON helper</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.LazyValue-1.html">LazyValue&lt;T&gt;</a></h4>
+      <section><p>Lazy value</p>
 </section>
       <h4><a class="xref" href="wan24.Core.LoadTypeEventArgs.html">LoadTypeEventArgs</a></h4>
       <section><p>Type loader event arguments</p>
@@ -260,8 +272,14 @@
       <h4><a class="xref" href="wan24.Core.ResetEvent.html">ResetEvent</a></h4>
       <section><p>Reset event</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.SecureArrayBase-1.html">SecureArrayBase&lt;T&gt;</a></h4>
+      <section><p>Base class for a secure array</p>
+</section>
       <h4><a class="xref" href="wan24.Core.SecureByteArray.html">SecureByteArray</a></h4>
       <section><p>Secure byte array (will delete its contents when disposing)</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.SecureCharArray.html">SecureCharArray</a></h4>
+      <section><p>Secure char array (will delete its contents when disposing)</p>
 </section>
       <h4><a class="xref" href="wan24.Core.Settings.html">Settings</a></h4>
       <section><p>Settings</p>
@@ -278,14 +296,31 @@
       <h4><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></h4>
       <section><p>Timeout</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.TimeoutValue-1.html">TimeoutValue&lt;T&gt;</a></h4>
+      <section><p>Timeout value (disposable value will be disposed on timeout or when disposing)</p>
+</section>
       <h4><a class="xref" href="wan24.Core.TimeSpanHelper.html">TimeSpanHelper</a></h4>
       <section><p><see cref="!:TimeSpan"></see> helper</p>
 </section>
       <h4><a class="xref" href="wan24.Core.TypeHelper.html">TypeHelper</a></h4>
       <section><p>Type helper</p>
 </section>
+    <h3 id="structs">Structs
+  </h3>
+      <h4><a class="xref" href="wan24.Core.RentedArrayStruct-1.html">RentedArrayStruct&lt;T&gt;</a></h4>
+      <section><p>Pool rented array (returns the array to the pool, when disposed)</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.SecureByteArrayStruct.html">SecureByteArrayStruct</a></h4>
+      <section><p>Secure byte array (will delete its contents when disposing)</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.SecureCharArrayStruct.html">SecureCharArrayStruct</a></h4>
+      <section><p>Secure char array (will delete its contents when disposing)</p>
+</section>
     <h3 id="interfaces">Interfaces
   </h3>
+      <h4><a class="xref" href="wan24.Core.IArray-1.html">IArray&lt;T&gt;</a></h4>
+      <section><p>Interface for an array</p>
+</section>
       <h4><a class="xref" href="wan24.Core.IAsyncObjectPool-1.html">IAsyncObjectPool&lt;T&gt;</a></h4>
       <section><p>Interface for an object pool which supports asynchronous renting / returning</p>
 </section>
@@ -324,6 +359,15 @@
 </section>
       <h4><a class="xref" href="wan24.Core.IQueueWorker.html">IQueueWorker</a></h4>
       <section><p>Interface for a queue worker</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.IRentedArray-1.html">IRentedArray&lt;T&gt;</a></h4>
+      <section><p>Interface for a rented array</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.IRentedObject-1.html">IRentedObject&lt;T&gt;</a></h4>
+      <section><p>Interface for a rented object</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ISecureArray-1.html">ISecureArray&lt;T&gt;</a></h4>
+      <section><p>Interface for a secure array</p>
 </section>
     <h3 id="enums">Enums
   </h3>

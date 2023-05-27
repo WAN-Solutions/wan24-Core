@@ -18,7 +18,7 @@
             if (threads != null && threads < 1) throw new ArgumentOutOfRangeException(nameof(threads));
             using ParallelAsyncProcessor<T> processor = new(itemHandler, threads ?? Environment.ProcessorCount);
             await processor.StartAsync(cancellationToken).DynamicContext();
-            await processor.EnqueueRangeAsync(items).DynamicContext();
+            await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
             await processor.WaitBoringAsync(cancellationToken).DynamicContext();
             await processor.StopAsync(cancellationToken).DynamicContext();
         }
@@ -36,7 +36,7 @@
             if (threads != null && threads < 1) throw new ArgumentOutOfRangeException(nameof(threads));
             using ParallelAsyncProcessor<T> processor = new(itemHandler, threads ?? Environment.ProcessorCount);
             await processor.StartAsync(cancellationToken).DynamicContext();
-            await processor.EnqueueRangeAsync(items).DynamicContext();
+            await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
             await processor.WaitBoringAsync(cancellationToken).DynamicContext();
             await processor.StopAsync(cancellationToken).DynamicContext();
         }
@@ -45,23 +45,22 @@
         /// Asynchronous parallel item processor
         /// </summary>
         /// <typeparam name="T">Item type</typeparam>
-        private sealed class ParallelAsyncProcessor<T> : ParallelItemQueueWorker<T>
+        internal sealed class ParallelAsyncProcessor<T> : ParallelItemQueueWorker<T>
         {
+            /// <summary>
+            /// Item handler
+            /// </summary>
+            private readonly Func<T, CancellationToken, Task> ItemHandler;
+
             /// <summary>
             /// Constructor
             /// </summary>
             /// <param name="itemHandler">Item handler</param>
             /// <param name="threads">Number of threads to use</param>
-            public ParallelAsyncProcessor(Func<T, CancellationToken, Task> itemHandler, int threads) : base(threads, threads) => ItemHandler = itemHandler;
-
-            /// <summary>
-            /// Item handler
-            /// </summary>
-            public Func<T, CancellationToken, Task> ItemHandler { get; }
+            internal ParallelAsyncProcessor(Func<T, CancellationToken, Task> itemHandler, int threads) : base(threads, threads) => ItemHandler = itemHandler;
 
             /// <inheritdoc/>
-            protected override async Task ProcessItem(T item, CancellationToken cancellationToken)
-                => await ItemHandler(item, cancellationToken).DynamicContext();
+            protected override Task ProcessItem(T item, CancellationToken cancellationToken) => ItemHandler(item, cancellationToken);
         }
     }
 }

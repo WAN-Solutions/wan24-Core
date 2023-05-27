@@ -9,6 +9,10 @@
         /// Default buffer size in bytes
         /// </summary>
         public const int DEFAULT_BUFFER_SIZE = 81920;
+        /// <summary>
+        /// Default stack allocation border
+        /// </summary>
+        public const int DEFAULT_STACK_ALLOC_BORDER = 1024;
 
         /// <summary>
         /// Buffer size in bytes
@@ -24,5 +28,10 @@
         /// Custom temporary folder
         /// </summary>
         public static string? CustomTempFolder { get; set; }
+
+        /// <summary>
+        /// Stack allocation border in bytes
+        /// </summary>
+        public static int StackAllocBorder { get; set; } = DEFAULT_STACK_ALLOC_BORDER;
     }
 }

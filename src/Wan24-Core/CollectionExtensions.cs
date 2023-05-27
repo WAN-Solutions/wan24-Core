@@ -12,11 +12,7 @@
         /// <param name="collection">Collection</param>
         /// <param name="items">Items</param>
         /// <returns>Collection</returns>
-        public static ICollection<T> AddRange<T>(this ICollection<T> collection, params T[] items)
-        {
-            foreach (T item in items) collection.Add(item);
-            return collection;
-        }
+        public static ICollection<T> AddRange<T>(this ICollection<T> collection, params T[] items) => AddRange(collection, items.AsEnumerable());
 
         /// <summary>
         /// Add items

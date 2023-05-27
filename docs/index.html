@@ -73,13 +73,19 @@ automatic when disposing</li>
 </ul>
 </li>
 <li>Type helper (type loading)</li>
-<li>Secure byte array, which clears its contents when disposing</li>
-<li>Pool rented array as disposable object</li>
+<li>Secure byte and char array, which clears its contents when disposing</li>
+<li>Pool rented array as disposable object (which optionally clears its contents
+when disposing; for byte/char arrays just like the <code>Secure*Array</code>)</li>
 <li>Byte array extensions
 <ul>
 <li>Endian conversion</li>
 <li>Bit-converter (endian-safe)</li>
 <li>UTF-8 string decoding</li>
+<li>Clearing</li>
+</ul>
+</li>
+<li>Char array extensions
+<ul>
 <li>Clearing</li>
 </ul>
 </li>
@@ -136,6 +142,8 @@ scheduler</li>
 <ul>
 <li>Get enumeration value display string from <code>DisplayTextAttribute</code> or
 using <code>ToString</code> (fallback)</li>
+<li>Determine if all, any or which flags are contained in an enumeration
+value</li>
 <li>Remove flags of a mixed enumeration value</li>
 <li>Get only flags of a mixed enumeration value</li>
 <li>Value validation</li>
@@ -217,6 +225,8 @@ the timeout</li>
 <li><code>ObjectPool</code> for pooling objects (<code>DisposableObjectPool</code> for disposable
 types), and <code>BlockingObjectPool</code> for a strict pool capacity limit</li>
 <li><code>ResetEvent</code> for (a)synchronous event waiting</li>
+<li><code>LazyValue&lt;T&gt;</code>, <code>DisposableLazyValue&lt;T&gt;</code>, <code>AsyncDisposableLazyValue&lt;T&gt;</code> and
+<code>TimeoutValue&lt;T&gt;</code> for lazy and timeout value serving</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as

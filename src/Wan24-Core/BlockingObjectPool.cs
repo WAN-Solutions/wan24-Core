@@ -99,7 +99,12 @@ namespace wan24.Core
             EnsureUndisposed();
             if (AsyncFactory != null) throw new InvalidOperationException("No synchronous object factory");
             T? res;
-            if (Factory != null) Sync.Wait();
+            bool synced = false;
+            if (Factory != null)
+            {
+                Sync.Wait();
+                synced = true;
+            }
             try
             {
                 if (Factory == null || _Initialized >= Capacity)
@@ -119,7 +124,7 @@ namespace wan24.Core
             }
             finally
             {
-                if (Factory != null) Sync.Release();
+                if (synced) Sync.Release();
             }
             return res;
         }
@@ -129,10 +134,15 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             T? res;
-            if (AsyncFactory != null) await Sync.WaitAsync().DynamicContext(); ;
+            bool synced = false;
+            if (AsyncFactory != null || Factory != null)
+            {
+                await Sync.WaitAsync().DynamicContext(); ;
+                synced = true;
+            }
             try
             {
-                if (AsyncFactory == null || _Initialized >= Capacity)
+                if ((AsyncFactory == null && Factory == null) || _Initialized >= Capacity)
                 {
                     res = Pool.Take();
                     if (ResetOnRent && res is IObjectPoolItem item) item.Reset();
@@ -153,7 +163,7 @@ namespace wan24.Core
             }
             finally
             {
-                if (AsyncFactory != null) Sync.Release();
+                if (synced) Sync.Release();
             }
             return res;
         }
@@ -198,6 +208,7 @@ namespace wan24.Core
             catch
             {
                 Sync.Release();
+                throw;
             }
         }
 
@@ -248,6 +259,7 @@ namespace wan24.Core
             catch
             {
                 Sync.Release();
+                throw;
             }
         }
 

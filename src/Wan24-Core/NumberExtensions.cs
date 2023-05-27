@@ -1,4 +1,4 @@
-﻿using System.Dynamic;
+﻿using System.Buffers.Binary;
 
 namespace wan24.Core
 {
@@ -13,7 +13,15 @@ namespace wan24.Core
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Is unsigned?</returns>
-        public static bool IsUnsigned<T>(this T value) where T : struct, IConvertible => typeof(T).IsUnsigned();
+        public static bool IsUnsigned<T>(this T? value) where T : struct, IConvertible => (value?.GetType() ?? typeof(T)).IsUnsigned();
+
+        /// <summary>
+        /// Determine if a numeric value is unsigned (works for enumerations, too)
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="value">Value</param>
+        /// <returns>Is unsigned?</returns>
+        public static bool IsUnsigned<T>(this T value) where T : struct, IConvertible => value.GetType().IsUnsigned();
 
         /// <summary>
         /// Determine if a numeric value is unsigned (works for enumerations, too)
@@ -130,56 +138,288 @@ namespace wan24.Core
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Bytes (endian converted)</returns>
-        public static byte[] GetBytes(this short value) => BitConverter.GetBytes(value).ConvertEndian();
+        public static byte[] GetBytes(this short value)
+        {
+            byte[] res = new byte[sizeof(short)];
+            BinaryPrimitives.WriteInt16LittleEndian(res, value);
+            return res;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Span<byte> GetBytes(this short value, Span<byte> target)
+        {
+            BinaryPrimitives.WriteInt16LittleEndian(target, value);
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target memory</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Memory<byte> GetBytes(this short value, Memory<byte> target)
+        {
+            BinaryPrimitives.WriteInt16LittleEndian(target.Span, value);
+            return target;
+        }
 
         /// <summary>
         /// Get bytes
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Bytes (endian converted)</returns>
-        public static byte[] GetBytes(this ushort value) => BitConverter.GetBytes(value).ConvertEndian();
+        public static byte[] GetBytes(this ushort value)
+        {
+            byte[] res = new byte[sizeof(ushort)];
+            BinaryPrimitives.WriteUInt16LittleEndian(res, value);
+            return res;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Span<byte> GetBytes(this ushort value, Span<byte> target)
+        {
+            BinaryPrimitives.WriteUInt16LittleEndian(target, value);
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target memory</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Memory<byte> GetBytes(this ushort value, Memory<byte> target)
+        {
+            BinaryPrimitives.WriteUInt16LittleEndian(target.Span, value);
+            return target;
+        }
 
         /// <summary>
         /// Get bytes
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Bytes (endian converted)</returns>
-        public static byte[] GetBytes(this int value) => BitConverter.GetBytes(value).ConvertEndian();
+        public static byte[] GetBytes(this int value)
+        {
+            byte[] res = new byte[sizeof(int)];
+            BinaryPrimitives.WriteInt32LittleEndian(res, value);
+            return res;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Span<byte> GetBytes(this int value, Span<byte> target)
+        {
+            BinaryPrimitives.WriteInt32LittleEndian(target, value);
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target memory</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Memory<byte> GetBytes(this int value, Memory<byte> target)
+        {
+            BinaryPrimitives.WriteInt32LittleEndian(target.Span, value);
+            return target;
+        }
 
         /// <summary>
         /// Get bytes
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Bytes (endian converted)</returns>
-        public static byte[] GetBytes(this uint value) => BitConverter.GetBytes(value).ConvertEndian();
+        public static byte[] GetBytes(this uint value)
+        {
+            byte[] res = new byte[sizeof(uint)];
+            BinaryPrimitives.WriteUInt32LittleEndian(res, value);
+            return res;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Span<byte> GetBytes(this uint value, Span<byte> target)
+        {
+            BinaryPrimitives.WriteUInt32LittleEndian(target, value);
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target memory</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Memory<byte> GetBytes(this uint value, Memory<byte> target)
+        {
+            BinaryPrimitives.WriteUInt32LittleEndian(target.Span, value);
+            return target;
+        }
 
         /// <summary>
         /// Get bytes
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Bytes (endian converted)</returns>
-        public static byte[] GetBytes(this long value) => BitConverter.GetBytes(value).ConvertEndian();
+        public static byte[] GetBytes(this long value)
+        {
+            byte[] res = new byte[sizeof(long)];
+            BinaryPrimitives.WriteInt64LittleEndian(res, value);
+            return res;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Span<byte> GetBytes(this long value, Span<byte> target)
+        {
+            BinaryPrimitives.WriteInt64LittleEndian(target, value);
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target memory</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Memory<byte> GetBytes(this long value, Memory<byte> target)
+        {
+            BinaryPrimitives.WriteInt64LittleEndian(target.Span, value);
+            return target;
+        }
 
         /// <summary>
         /// Get bytes
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Bytes (endian converted)</returns>
-        public static byte[] GetBytes(this ulong value) => BitConverter.GetBytes(value).ConvertEndian();
+        public static byte[] GetBytes(this ulong value)
+        {
+            byte[] res = new byte[sizeof(ulong)];
+            BinaryPrimitives.WriteUInt64LittleEndian(res, value);
+            return res;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Span<byte> GetBytes(this ulong value, Span<byte> target)
+        {
+            BinaryPrimitives.WriteUInt64LittleEndian(target, value);
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target memory</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Memory<byte> GetBytes(this ulong value, Memory<byte> target)
+        {
+            BinaryPrimitives.WriteUInt64LittleEndian(target.Span, value);
+            return target;
+        }
 
         /// <summary>
         /// Get bytes
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Bytes (endian converted)</returns>
-        public static byte[] GetBytes(this float value) => BitConverter.GetBytes(value).ConvertEndian();
+        public static byte[] GetBytes(this float value)
+        {
+            byte[] res = new byte[sizeof(float)];
+            BinaryPrimitives.WriteSingleLittleEndian(res, value);
+            return res;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Span<byte> GetBytes(this float value, Span<byte> target)
+        {
+            BinaryPrimitives.WriteSingleLittleEndian(target, value);
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target memory</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Memory<byte> GetBytes(this float value, Memory<byte> target)
+        {
+            BinaryPrimitives.WriteSingleLittleEndian(target.Span, value);
+            return target;
+        }
 
         /// <summary>
         /// Get bytes
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Bytes (endian converted)</returns>
-        public static byte[] GetBytes(this double value) => BitConverter.GetBytes(value).ConvertEndian();
+        public static byte[] GetBytes(this double value)
+        {
+            byte[] res = new byte[sizeof(double)];
+            BinaryPrimitives.WriteDoubleLittleEndian(res, value);
+            return res;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Span<byte> GetBytes(this double value, Span<byte> target)
+        {
+            BinaryPrimitives.WriteDoubleLittleEndian(target, value);
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target memory</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Memory<byte> GetBytes(this double value, Memory<byte> target)
+        {
+            BinaryPrimitives.WriteDoubleLittleEndian(target.Span, value);
+            return target;
+        }
 
         /// <summary>
         /// Get bytes
@@ -192,6 +432,34 @@ namespace wan24.Core
             int[] bits = decimal.GetBits(value);
             for (int i = 0; i < bits.Length; Array.Copy(bits[i].GetBytes(), 0, res, i << 2, sizeof(int)), i++) ;
             return res;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Span<byte> GetBytes(this decimal value, Span<byte> target)
+        {
+            if (target.Length < sizeof(int) << 2) throw new ArgumentOutOfRangeException(nameof(target));
+            int[] bits = decimal.GetBits(value);
+            for (int i = 0; i < bits.Length; bits[i].GetBytes().CopyTo(target.Slice(i << 2, sizeof(int))), i++) ;
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target memory</param>
+        /// <returns>Bytes (endian converted)</returns>
+        public static Memory<byte> GetBytes(this decimal value, Memory<byte> target)
+        {
+            if (target.Length < sizeof(int) << 2) throw new ArgumentOutOfRangeException(nameof(target));
+            int[] bits = decimal.GetBits(value);
+            for (int i = 0; i < bits.Length; bits[i].GetBytes().CopyTo(target.Slice(i << 2, sizeof(int))), i++) ;
+            return target;
         }
 
         /// <summary>

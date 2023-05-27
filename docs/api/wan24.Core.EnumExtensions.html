@@ -118,7 +118,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumExtensions_CastType__1_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumExtensions.CastType%60%601(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumExtensions.cs/#L105">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumExtensions.cs/#L192">View Source</a>
   </span>
   <a id="wan24_Core_EnumExtensions_CastType_" data-uid="wan24.Core.EnumExtensions.CastType*"></a>
   <h4 id="wan24_Core_EnumExtensions_CastType__1_System_Object_" data-uid="wan24.Core.EnumExtensions.CastType``1(System.Object)">CastType&lt;T&gt;(Object)</h4>
@@ -176,6 +176,225 @@
       <tr>
         <td><span class="parametername">T</span></td>
         <td><p>Numeric result type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumExtensions_ContainsAllFlags__1___0___0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumExtensions.ContainsAllFlags%60%601(%60%600%2C%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumExtensions.cs/#L60">View Source</a>
+  </span>
+  <a id="wan24_Core_EnumExtensions_ContainsAllFlags_" data-uid="wan24.Core.EnumExtensions.ContainsAllFlags*"></a>
+  <h4 id="wan24_Core_EnumExtensions_ContainsAllFlags__1___0___0_" data-uid="wan24.Core.EnumExtensions.ContainsAllFlags``1(``0,``0)">ContainsAllFlags&lt;T&gt;(T, T)</h4>
+  <div class="markdown level1 summary"><p>Determine if an enumeration value contains all of the given flags</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool ContainsAllFlags&lt;T&gt;(this T value, T flags)
+    where T : struct, Enum, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">flags</span></td>
+        <td><p>Flags</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Contains all flags?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Enumeration type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumExtensions_ContainsAnyFlag__1___0___0___.md&amp;value=---%0Auid%3A%20wan24.Core.EnumExtensions.ContainsAnyFlag%60%601(%60%600%2C%60%600%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumExtensions.cs/#L85">View Source</a>
+  </span>
+  <a id="wan24_Core_EnumExtensions_ContainsAnyFlag_" data-uid="wan24.Core.EnumExtensions.ContainsAnyFlag*"></a>
+  <h4 id="wan24_Core_EnumExtensions_ContainsAnyFlag__1___0___0___" data-uid="wan24.Core.EnumExtensions.ContainsAnyFlag``1(``0,``0[])">ContainsAnyFlag&lt;T&gt;(T, T[])</h4>
+  <div class="markdown level1 summary"><p>Determine if an enumeration value contains any of the given flags</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool ContainsAnyFlag&lt;T&gt;(this T value, params T[] flags)
+    where T : struct, Enum, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">flags</span></td>
+        <td><p>Flags</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Contains any flags?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Enumeration type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumExtensions_GetContainedFlags__1___0___0___.md&amp;value=---%0Auid%3A%20wan24.Core.EnumExtensions.GetContainedFlags%60%601(%60%600%2C%60%600%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumExtensions.cs/#L113">View Source</a>
+  </span>
+  <a id="wan24_Core_EnumExtensions_GetContainedFlags_" data-uid="wan24.Core.EnumExtensions.GetContainedFlags*"></a>
+  <h4 id="wan24_Core_EnumExtensions_GetContainedFlags__1___0___0___" data-uid="wan24.Core.EnumExtensions.GetContainedFlags``1(``0,``0[])">GetContainedFlags&lt;T&gt;(T, T[])</h4>
+  <div class="markdown level1 summary"><p>Get contained flags</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;T&gt; GetContainedFlags&lt;T&gt;(this T value, params T[] flags)
+    where T : struct, Enum, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">flags</span></td>
+        <td><p>Flags</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><p>Contained flags</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Enumeration type</p>
 </td>
       </tr>
     </tbody>
@@ -468,7 +687,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumExtensions_IsFlag__1___0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumExtensions.IsFlag%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumExtensions.cs/#L81">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumExtensions.cs/#L168">View Source</a>
   </span>
   <a id="wan24_Core_EnumExtensions_IsFlag_" data-uid="wan24.Core.EnumExtensions.IsFlag*"></a>
   <h4 id="wan24_Core_EnumExtensions_IsFlag__1___0_" data-uid="wan24.Core.EnumExtensions.IsFlag``1(``0)">IsFlag&lt;T&gt;(T)</h4>
@@ -535,7 +754,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumExtensions_IsValid__1___0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumExtensions.IsValid%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumExtensions.cs/#L97">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumExtensions.cs/#L184">View Source</a>
   </span>
   <a id="wan24_Core_EnumExtensions_IsValid_" data-uid="wan24.Core.EnumExtensions.IsValid*"></a>
   <h4 id="wan24_Core_EnumExtensions_IsValid__1___0_" data-uid="wan24.Core.EnumExtensions.IsValid``1(``0)">IsValid&lt;T&gt;(T)</h4>
@@ -602,7 +821,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumExtensions_IsValue__1___0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumExtensions.IsValue%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumExtensions.cs/#L89">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumExtensions.cs/#L176">View Source</a>
   </span>
   <a id="wan24_Core_EnumExtensions_IsValue_" data-uid="wan24.Core.EnumExtensions.IsValue*"></a>
   <h4 id="wan24_Core_EnumExtensions_IsValue__1___0_" data-uid="wan24.Core.EnumExtensions.IsValue``1(``0)">IsValue&lt;T&gt;(T)</h4>
@@ -669,7 +888,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumExtensions_OnlyFlags__1___0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumExtensions.OnlyFlags%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumExtensions.cs/#L70">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumExtensions.cs/#L157">View Source</a>
   </span>
   <a id="wan24_Core_EnumExtensions_OnlyFlags_" data-uid="wan24.Core.EnumExtensions.OnlyFlags*"></a>
   <h4 id="wan24_Core_EnumExtensions_OnlyFlags__1___0_" data-uid="wan24.Core.EnumExtensions.OnlyFlags``1(``0)">OnlyFlags&lt;T&gt;(T)</h4>
@@ -736,7 +955,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumExtensions_RemoveFlags__1___0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumExtensions.RemoveFlags%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumExtensions.cs/#L59">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumExtensions.cs/#L146">View Source</a>
   </span>
   <a id="wan24_Core_EnumExtensions_RemoveFlags_" data-uid="wan24.Core.EnumExtensions.RemoveFlags*"></a>
   <h4 id="wan24_Core_EnumExtensions_RemoveFlags__1___0_" data-uid="wan24.Core.EnumExtensions.RemoveFlags``1(``0)">RemoveFlags&lt;T&gt;(T)</h4>

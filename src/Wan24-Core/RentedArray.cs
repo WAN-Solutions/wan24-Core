@@ -1,5 +1,6 @@
 ﻿using System.Buffers;
 using System.Collections;
+using System.Security.Cryptography;
 
 namespace wan24.Core
 {
@@ -7,7 +8,7 @@ namespace wan24.Core
     /// Pool rented array (returns the array to the pool, when disposed)
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
-    public sealed class RentedArray<T> : DisposableBase, IEnumerable<T>, IEnumerable, IEquatable<Memory<byte>>
+    public sealed class RentedArray<T> : DisposableBase, IRentedArray<T>
     {
         /// <summary>
         /// Rented array
@@ -49,66 +50,41 @@ namespace wan24.Core
             if (clean) System.Array.Clear(arr, 0, len ?? arr.Length);
         }
 
-        /// <summary>
-        /// Pool
-        /// </summary>
+        /// <inheritdoc/>
         public ArrayPool<T> Pool { get; }
 
-        /// <summary>
-        /// Length
-        /// </summary>
+        /// <inheritdoc/>
         public int Length { get; }
 
-        /// <summary>
-        /// Get/set a byte
-        /// </summary>
-        /// <param name="offset">Index</param>
-        /// <returns>Byte</returns>
+        /// <inheritdoc/>
+        public long LongLength => Length;
+
+        /// <inheritdoc/>
         public T this[int offset]
         {
             get => IfUndisposed(_Array[offset]);
             set => IfUndisposed(() => _Array[offset] = value);
         }
 
-        /// <summary>
-        /// Get a range
-        /// </summary>
-        /// <param name="range">Range</param>
-        /// <returns>Range memory</returns>
+        /// <inheritdoc/>
         public Memory<T> this[Range range] => IfUndisposed(() => Memory[range]);
 
-        /// <summary>
-        /// Get a range
-        /// </summary>
-        /// <param name="start">Start</param>
-        /// <param name="end">End</param>
-        /// <returns>Range memory</returns>
+        /// <inheritdoc/>
         public Memory<T> this[Index start, Index end] => IfUndisposed(() => Memory[new Range(start, end)]);
 
-        /// <summary>
-        /// Array (may be longer than <see cref="Length"/>!)
-        /// </summary>
+        /// <inheritdoc/>
         public T[] Array => IfUndisposed(_Array);
 
-        /// <summary>
-        /// Span
-        /// </summary>
+        /// <inheritdoc/>
         public Span<T> Span => Memory.Span;
 
-        /// <summary>
-        /// Memory
-        /// </summary>
+        /// <inheritdoc/>
         public Memory<T> Memory => Array.AsMemory(0, Length);
 
-        /// <summary>
-        /// Clear the array when returning?
-        /// </summary>
+        /// <inheritdoc/>
         public bool Clear { get; set; }
 
-        /// <summary>
-        /// Create a non-rented copy of the array
-        /// </summary>
-        /// <returns>Copy</returns>
+        /// <inheritdoc/>
         public T[] GetCopy()
         {
             if (Length == 0) return System.Array.Empty<T>();
@@ -121,7 +97,7 @@ namespace wan24.Core
         public override bool Equals(object? obj) => Memory.Equals(obj);
 
         /// <inheritdoc/>
-        public bool Equals(Memory<byte> other) => Memory.Equals(other);
+        public bool Equals(Memory<T> other) => Memory.Equals(other);
 
         /// <inheritdoc/>
         public override int GetHashCode() => Memory.GetHashCode();
@@ -137,7 +113,24 @@ namespace wan24.Core
         {
             T[] arr = _Array;
             _Array = System.Array.Empty<T>();
-            Pool.Return(arr, clearArray: Clear);
+            if (Clear)
+            {
+                bool clear = true;
+                if (arr is byte[] byteArr)
+                {
+                    RandomNumberGenerator.Fill(byteArr.AsSpan(0, Length));
+                }
+                else if(arr is char[] charArr)
+                {
+                    clear = false;
+                    charArr.Clear();
+                }
+                Pool.Return(arr, clearArray: clear);
+            }
+            else
+            {
+                Pool.Return(arr, clearArray: false);
+            }
         }
 
         /// <summary>

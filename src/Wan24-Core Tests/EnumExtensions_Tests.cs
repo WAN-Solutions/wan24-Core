@@ -10,6 +10,13 @@ namespace Wan24_Core_Tests
         public void SignedEnum_Tests()
         {
             TestEnum value = TestEnum.Value1 | TestEnum.Flag1;
+            Assert.IsTrue(value.ContainsAnyFlag(TestEnum.Flag1, TestEnum.Flag2));
+            Assert.IsFalse(value.ContainsAllFlags(TestEnum.Flag1 | TestEnum.Flag2));
+            Assert.IsTrue(value.ContainsAllFlags(TestEnum.Flag1));
+            Assert.IsFalse(value.ContainsAllFlags(TestEnum.Flag2));
+            TestEnum[] flags = value.GetContainedFlags(TestEnum.Flag1, TestEnum.Flag2).ToArray();
+            Assert.AreEqual(1, flags.Length);
+            Assert.AreEqual(TestEnum.Flag1, flags[0]);
             EnumInfo<TestEnum> info = new();
             Assert.IsTrue(info.HasFlags);
             Assert.AreEqual(TestEnum.Value1, value.RemoveFlags());
