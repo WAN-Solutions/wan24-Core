@@ -118,7 +118,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_Clear_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.Clear(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L216">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L349">View Source</a>
   </span>
   <a id="wan24_Core_BytesExtensions_Clear_" data-uid="wan24.Core.BytesExtensions.Clear*"></a>
   <h4 id="wan24_Core_BytesExtensions_Clear_System_Byte___" data-uid="wan24.Core.BytesExtensions.Clear(System.Byte[])">Clear(Byte[])</h4>
@@ -152,7 +152,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ConvertEndian_Memory_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ConvertEndian(Memory%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L28">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L47">View Source</a>
   </span>
   <a id="wan24_Core_BytesExtensions_ConvertEndian_" data-uid="wan24.Core.BytesExtensions.ConvertEndian*"></a>
   <h4 id="wan24_Core_BytesExtensions_ConvertEndian_Memory_System_Byte__" data-uid="wan24.Core.BytesExtensions.ConvertEndian(Memory{System.Byte})">ConvertEndian(Memory&lt;Byte&gt;)</h4>
@@ -199,10 +199,110 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ConvertEndian_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ConvertEndian(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ConvertEndian_ReadOnlyMemory_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ConvertEndian(ReadOnlyMemory%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L29">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ConvertEndian_" data-uid="wan24.Core.BytesExtensions.ConvertEndian*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ConvertEndian_ReadOnlyMemory_System_Byte__" data-uid="wan24.Core.BytesExtensions.ConvertEndian(ReadOnlyMemory{System.Byte})">ConvertEndian(ReadOnlyMemory&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Convert the endian to be little endian for serializing, and big endian, if the system uses it</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] ConvertEndian(this ReadOnlyMemory&lt;byte&gt; bytes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlyMemory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>Bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><p>Converted bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ConvertEndian_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ConvertEndian(ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L17">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ConvertEndian_" data-uid="wan24.Core.BytesExtensions.ConvertEndian*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ConvertEndian_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BytesExtensions.ConvertEndian(ReadOnlySpan{System.Byte})">ConvertEndian(ReadOnlySpan&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Convert the endian to be little endian for serializing, and big endian, if the system uses it</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] ConvertEndian(this ReadOnlySpan&lt;byte&gt; bytes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>Bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><p>Converted bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ConvertEndian_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ConvertEndian(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L36">View Source</a>
   </span>
   <a id="wan24_Core_BytesExtensions_ConvertEndian_" data-uid="wan24.Core.BytesExtensions.ConvertEndian*"></a>
   <h4 id="wan24_Core_BytesExtensions_ConvertEndian_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ConvertEndian(Span{System.Byte})">ConvertEndian(Span&lt;Byte&gt;)</h4>
@@ -252,7 +352,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ConvertEndian_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ConvertEndian(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L39">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L58">View Source</a>
   </span>
   <a id="wan24_Core_BytesExtensions_ConvertEndian_" data-uid="wan24.Core.BytesExtensions.ConvertEndian*"></a>
   <h4 id="wan24_Core_BytesExtensions_ConvertEndian_System_Byte___" data-uid="wan24.Core.BytesExtensions.ConvertEndian(System.Byte[])">ConvertEndian(Byte[])</h4>
@@ -302,7 +402,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_SlowCompare_Memory_System_Byte__Memory_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.SlowCompare(Memory%7BSystem.Byte%7D%2CMemory%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L104">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L123">View Source</a>
   </span>
   <a id="wan24_Core_BytesExtensions_SlowCompare_" data-uid="wan24.Core.BytesExtensions.SlowCompare*"></a>
   <h4 id="wan24_Core_BytesExtensions_SlowCompare_Memory_System_Byte__Memory_System_Byte__" data-uid="wan24.Core.BytesExtensions.SlowCompare(Memory{System.Byte},Memory{System.Byte})">SlowCompare(Memory&lt;Byte&gt;, Memory&lt;Byte&gt;)</h4>
@@ -358,7 +458,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_SlowCompare_Memory_System_Byte__ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.SlowCompare(Memory%7BSystem.Byte%7D%2CReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L88">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L107">View Source</a>
   </span>
   <a id="wan24_Core_BytesExtensions_SlowCompare_" data-uid="wan24.Core.BytesExtensions.SlowCompare*"></a>
   <h4 id="wan24_Core_BytesExtensions_SlowCompare_Memory_System_Byte__ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BytesExtensions.SlowCompare(Memory{System.Byte},ReadOnlySpan{System.Byte})">SlowCompare(Memory&lt;Byte&gt;, ReadOnlySpan&lt;Byte&gt;)</h4>
@@ -414,7 +514,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_SlowCompare_ReadOnlyMemory_System_Byte__ReadOnlyMemory_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.SlowCompare(ReadOnlyMemory%7BSystem.Byte%7D%2CReadOnlyMemory%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L96">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L115">View Source</a>
   </span>
   <a id="wan24_Core_BytesExtensions_SlowCompare_" data-uid="wan24.Core.BytesExtensions.SlowCompare*"></a>
   <h4 id="wan24_Core_BytesExtensions_SlowCompare_ReadOnlyMemory_System_Byte__ReadOnlyMemory_System_Byte__" data-uid="wan24.Core.BytesExtensions.SlowCompare(ReadOnlyMemory{System.Byte},ReadOnlyMemory{System.Byte})">SlowCompare(ReadOnlyMemory&lt;Byte&gt;, ReadOnlyMemory&lt;Byte&gt;)</h4>
@@ -470,7 +570,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_SlowCompare_ReadOnlyMemory_System_Byte__ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.SlowCompare(ReadOnlyMemory%7BSystem.Byte%7D%2CReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L80">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L99">View Source</a>
   </span>
   <a id="wan24_Core_BytesExtensions_SlowCompare_" data-uid="wan24.Core.BytesExtensions.SlowCompare*"></a>
   <h4 id="wan24_Core_BytesExtensions_SlowCompare_ReadOnlyMemory_System_Byte__ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BytesExtensions.SlowCompare(ReadOnlyMemory{System.Byte},ReadOnlySpan{System.Byte})">SlowCompare(ReadOnlyMemory&lt;Byte&gt;, ReadOnlySpan&lt;Byte&gt;)</h4>
@@ -526,7 +626,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_SlowCompare_ReadOnlySpan_System_Byte__ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.SlowCompare(ReadOnlySpan%7BSystem.Byte%7D%2CReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L51">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L70">View Source</a>
   </span>
   <a id="wan24_Core_BytesExtensions_SlowCompare_" data-uid="wan24.Core.BytesExtensions.SlowCompare*"></a>
   <h4 id="wan24_Core_BytesExtensions_SlowCompare_ReadOnlySpan_System_Byte__ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BytesExtensions.SlowCompare(ReadOnlySpan{System.Byte},ReadOnlySpan{System.Byte})">SlowCompare(ReadOnlySpan&lt;Byte&gt;, ReadOnlySpan&lt;Byte&gt;)</h4>
@@ -582,7 +682,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_SlowCompare_Span_System_Byte__ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.SlowCompare(Span%7BSystem.Byte%7D%2CReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L64">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L83">View Source</a>
   </span>
   <a id="wan24_Core_BytesExtensions_SlowCompare_" data-uid="wan24.Core.BytesExtensions.SlowCompare*"></a>
   <h4 id="wan24_Core_BytesExtensions_SlowCompare_Span_System_Byte__ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BytesExtensions.SlowCompare(Span{System.Byte},ReadOnlySpan{System.Byte})">SlowCompare(Span&lt;Byte&gt;, ReadOnlySpan&lt;Byte&gt;)</h4>
@@ -638,7 +738,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_SlowCompare_System_Byte___ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.SlowCompare(System.Byte%5B%5D%2CReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L72">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L91">View Source</a>
   </span>
   <a id="wan24_Core_BytesExtensions_SlowCompare_" data-uid="wan24.Core.BytesExtensions.SlowCompare*"></a>
   <h4 id="wan24_Core_BytesExtensions_SlowCompare_System_Byte___ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BytesExtensions.SlowCompare(System.Byte[],ReadOnlySpan{System.Byte})">SlowCompare(Byte[], ReadOnlySpan&lt;Byte&gt;)</h4>
@@ -691,19 +791,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToDecimal_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToDecimal(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToDecimal_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToDecimal(ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L167">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L242">View Source</a>
   </span>
   <a id="wan24_Core_BytesExtensions_ToDecimal_" data-uid="wan24.Core.BytesExtensions.ToDecimal*"></a>
-  <h4 id="wan24_Core_BytesExtensions_ToDecimal_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToDecimal(Span{System.Byte})">ToDecimal(Span&lt;Byte&gt;)</h4>
-  <div class="markdown level1 summary"><p>Get an Int16</p>
+  <h4 id="wan24_Core_BytesExtensions_ToDecimal_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToDecimal(ReadOnlySpan{System.Byte})">ToDecimal(ReadOnlySpan&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get a decimal</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static decimal ToDecimal(this Span&lt;byte&gt; bits)</code></pre>
+    <pre><code class="lang-csharp hljs">public static decimal ToDecimal(this ReadOnlySpan&lt;byte&gt; bits)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -716,9 +816,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td><span class="parametername">bits</span></td>
-        <td><p>Bits (may be modified!)</p>
+        <td><p>Bits</p>
 </td>
       </tr>
     </tbody>
@@ -741,19 +841,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToDouble_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToDouble(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToDecimal_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToDecimal(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L160">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L255">View Source</a>
   </span>
-  <a id="wan24_Core_BytesExtensions_ToDouble_" data-uid="wan24.Core.BytesExtensions.ToDouble*"></a>
-  <h4 id="wan24_Core_BytesExtensions_ToDouble_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToDouble(Span{System.Byte})">ToDouble(Span&lt;Byte&gt;)</h4>
-  <div class="markdown level1 summary"><p>Get an Int16</p>
+  <a id="wan24_Core_BytesExtensions_ToDecimal_" data-uid="wan24.Core.BytesExtensions.ToDecimal*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToDecimal_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToDecimal(Span{System.Byte})">ToDecimal(Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get a decimal</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static double ToDouble(this Span&lt;byte&gt; bits)</code></pre>
+    <pre><code class="lang-csharp hljs">public static decimal ToDecimal(this Span&lt;byte&gt; bits)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -768,7 +868,57 @@
       <tr>
         <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td><span class="parametername">bits</span></td>
-        <td><p>Bits (may be modified!)</p>
+        <td><p>Bits</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Decimal</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToDouble_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToDouble(ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L228">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ToDouble_" data-uid="wan24.Core.BytesExtensions.ToDouble*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToDouble_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToDouble(ReadOnlySpan{System.Byte})">ToDouble(ReadOnlySpan&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get a double</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static double ToDouble(this ReadOnlySpan&lt;byte&gt; bits)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bits</span></td>
+        <td><p>Bits</p>
 </td>
       </tr>
     </tbody>
@@ -791,19 +941,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToFloat_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToFloat(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToDouble_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToDouble(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L153">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L235">View Source</a>
   </span>
-  <a id="wan24_Core_BytesExtensions_ToFloat_" data-uid="wan24.Core.BytesExtensions.ToFloat*"></a>
-  <h4 id="wan24_Core_BytesExtensions_ToFloat_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToFloat(Span{System.Byte})">ToFloat(Span&lt;Byte&gt;)</h4>
-  <div class="markdown level1 summary"><p>Get an Int16</p>
+  <a id="wan24_Core_BytesExtensions_ToDouble_" data-uid="wan24.Core.BytesExtensions.ToDouble*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToDouble_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToDouble(Span{System.Byte})">ToDouble(Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get a double</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static float ToFloat(this Span&lt;byte&gt; bits)</code></pre>
+    <pre><code class="lang-csharp hljs">public static double ToDouble(this Span&lt;byte&gt; bits)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -818,7 +968,57 @@
       <tr>
         <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td><span class="parametername">bits</span></td>
-        <td><p>Bits (may be modified!)</p>
+        <td><p>Bits</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToFloat_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToFloat(ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L214">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ToFloat_" data-uid="wan24.Core.BytesExtensions.ToFloat*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToFloat_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToFloat(ReadOnlySpan{System.Byte})">ToFloat(ReadOnlySpan&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get a float</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float ToFloat(this ReadOnlySpan&lt;byte&gt; bits)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bits</span></td>
+        <td><p>Bits</p>
 </td>
       </tr>
     </tbody>
@@ -841,19 +1041,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToInt_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToInt(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToFloat_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToFloat(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L125">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L221">View Source</a>
   </span>
-  <a id="wan24_Core_BytesExtensions_ToInt_" data-uid="wan24.Core.BytesExtensions.ToInt*"></a>
-  <h4 id="wan24_Core_BytesExtensions_ToInt_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToInt(Span{System.Byte})">ToInt(Span&lt;Byte&gt;)</h4>
-  <div class="markdown level1 summary"><p>Get an Int16</p>
+  <a id="wan24_Core_BytesExtensions_ToFloat_" data-uid="wan24.Core.BytesExtensions.ToFloat*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToFloat_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToFloat(Span{System.Byte})">ToFloat(Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get a float</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int ToInt(this Span&lt;byte&gt; bits)</code></pre>
+    <pre><code class="lang-csharp hljs">public static float ToFloat(this Span&lt;byte&gt; bits)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -868,7 +1068,57 @@
       <tr>
         <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td><span class="parametername">bits</span></td>
-        <td><p>Bits (may be modified!)</p>
+        <td><p>Bits</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToInt_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToInt(ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L158">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ToInt_" data-uid="wan24.Core.BytesExtensions.ToInt*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToInt_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToInt(ReadOnlySpan{System.Byte})">ToInt(ReadOnlySpan&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get an Int32</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int ToInt(this ReadOnlySpan&lt;byte&gt; bits)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bits</span></td>
+        <td><p>Bits</p>
 </td>
       </tr>
     </tbody>
@@ -891,19 +1141,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToLong_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToLong(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToInt_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToInt(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L139">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L165">View Source</a>
   </span>
-  <a id="wan24_Core_BytesExtensions_ToLong_" data-uid="wan24.Core.BytesExtensions.ToLong*"></a>
-  <h4 id="wan24_Core_BytesExtensions_ToLong_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToLong(Span{System.Byte})">ToLong(Span&lt;Byte&gt;)</h4>
-  <div class="markdown level1 summary"><p>Get an Int16</p>
+  <a id="wan24_Core_BytesExtensions_ToInt_" data-uid="wan24.Core.BytesExtensions.ToInt*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToInt_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToInt(Span{System.Byte})">ToInt(Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get an Int32</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static long ToLong(this Span&lt;byte&gt; bits)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int ToInt(this Span&lt;byte&gt; bits)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -918,7 +1168,57 @@
       <tr>
         <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td><span class="parametername">bits</span></td>
-        <td><p>Bits (may be modified!)</p>
+        <td><p>Bits</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToLong_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToLong(ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L186">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ToLong_" data-uid="wan24.Core.BytesExtensions.ToLong*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToLong_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToLong(ReadOnlySpan{System.Byte})">ToLong(ReadOnlySpan&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get an Int64</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long ToLong(this ReadOnlySpan&lt;byte&gt; bits)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bits</span></td>
+        <td><p>Bits</p>
 </td>
       </tr>
     </tbody>
@@ -941,10 +1241,110 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToLong_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToLong(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L193">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ToLong_" data-uid="wan24.Core.BytesExtensions.ToLong*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToLong_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToLong(Span{System.Byte})">ToLong(Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get an Int64</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long ToLong(this Span&lt;byte&gt; bits)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bits</span></td>
+        <td><p>Bits</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToShort_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToShort(ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L130">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ToShort_" data-uid="wan24.Core.BytesExtensions.ToShort*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToShort_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToShort(ReadOnlySpan{System.Byte})">ToShort(ReadOnlySpan&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get an Int16</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static short ToShort(this ReadOnlySpan&lt;byte&gt; bits)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bits</span></td>
+        <td><p>Bits</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int16</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToShort_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToShort(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L111">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L137">View Source</a>
   </span>
   <a id="wan24_Core_BytesExtensions_ToShort_" data-uid="wan24.Core.BytesExtensions.ToShort*"></a>
   <h4 id="wan24_Core_BytesExtensions_ToShort_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToShort(Span{System.Byte})">ToShort(Span&lt;Byte&gt;)</h4>
@@ -968,7 +1368,7 @@
       <tr>
         <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td><span class="parametername">bits</span></td>
-        <td><p>Bits (may be modified!)</p>
+        <td><p>Bits</p>
 </td>
       </tr>
     </tbody>
@@ -991,19 +1391,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToUInt_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToUInt(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToUInt_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToUInt(ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L132">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L172">View Source</a>
   </span>
   <a id="wan24_Core_BytesExtensions_ToUInt_" data-uid="wan24.Core.BytesExtensions.ToUInt*"></a>
-  <h4 id="wan24_Core_BytesExtensions_ToUInt_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToUInt(Span{System.Byte})">ToUInt(Span&lt;Byte&gt;)</h4>
-  <div class="markdown level1 summary"><p>Get an Int16</p>
+  <h4 id="wan24_Core_BytesExtensions_ToUInt_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToUInt(ReadOnlySpan{System.Byte})">ToUInt(ReadOnlySpan&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get an UInt32</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static uint ToUInt(this Span&lt;byte&gt; bits)</code></pre>
+    <pre><code class="lang-csharp hljs">public static uint ToUInt(this ReadOnlySpan&lt;byte&gt; bits)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1016,9 +1416,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td><span class="parametername">bits</span></td>
-        <td><p>Bits (may be modified!)</p>
+        <td><p>Bits</p>
 </td>
       </tr>
     </tbody>
@@ -1041,19 +1441,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToULong_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToULong(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToUInt_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToUInt(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L146">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L179">View Source</a>
   </span>
-  <a id="wan24_Core_BytesExtensions_ToULong_" data-uid="wan24.Core.BytesExtensions.ToULong*"></a>
-  <h4 id="wan24_Core_BytesExtensions_ToULong_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToULong(Span{System.Byte})">ToULong(Span&lt;Byte&gt;)</h4>
-  <div class="markdown level1 summary"><p>Get an Int16</p>
+  <a id="wan24_Core_BytesExtensions_ToUInt_" data-uid="wan24.Core.BytesExtensions.ToUInt*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToUInt_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToUInt(Span{System.Byte})">ToUInt(Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get an UInt32</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ulong ToULong(this Span&lt;byte&gt; bits)</code></pre>
+    <pre><code class="lang-csharp hljs">public static uint ToUInt(this Span&lt;byte&gt; bits)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1068,7 +1468,57 @@
       <tr>
         <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td><span class="parametername">bits</span></td>
-        <td><p>Bits (may be modified!)</p>
+        <td><p>Bits</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToULong_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToULong(ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L200">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ToULong_" data-uid="wan24.Core.BytesExtensions.ToULong*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToULong_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToULong(ReadOnlySpan{System.Byte})">ToULong(ReadOnlySpan&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get an UInt64</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ulong ToULong(this ReadOnlySpan&lt;byte&gt; bits)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bits</span></td>
+        <td><p>Bits</p>
 </td>
       </tr>
     </tbody>
@@ -1091,19 +1541,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToUShort_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToUShort(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToULong_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToULong(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L118">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L207">View Source</a>
   </span>
-  <a id="wan24_Core_BytesExtensions_ToUShort_" data-uid="wan24.Core.BytesExtensions.ToUShort*"></a>
-  <h4 id="wan24_Core_BytesExtensions_ToUShort_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToUShort(Span{System.Byte})">ToUShort(Span&lt;Byte&gt;)</h4>
-  <div class="markdown level1 summary"><p>Get an Int16</p>
+  <a id="wan24_Core_BytesExtensions_ToULong_" data-uid="wan24.Core.BytesExtensions.ToULong*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToULong_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToULong(Span{System.Byte})">ToULong(Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get an UInt64</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ushort ToUShort(this Span&lt;byte&gt; bits)</code></pre>
+    <pre><code class="lang-csharp hljs">public static ulong ToULong(this Span&lt;byte&gt; bits)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1118,7 +1568,57 @@
       <tr>
         <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td><span class="parametername">bits</span></td>
-        <td><p>Bits (may be modified!)</p>
+        <td><p>Bits</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToUShort_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToUShort(ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L144">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ToUShort_" data-uid="wan24.Core.BytesExtensions.ToUShort*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToUShort_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToUShort(ReadOnlySpan{System.Byte})">ToUShort(ReadOnlySpan&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get an UInt16</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ushort ToUShort(this ReadOnlySpan&lt;byte&gt; bits)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bits</span></td>
+        <td><p>Bits</p>
 </td>
       </tr>
     </tbody>
@@ -1141,10 +1641,316 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToUShort_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToUShort(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L151">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ToUShort_" data-uid="wan24.Core.BytesExtensions.ToUShort*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToUShort_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToUShort(Span{System.Byte})">ToUShort(Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get an UInt16</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ushort ToUShort(this Span&lt;byte&gt; bits)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bits</span></td>
+        <td><p>Bits</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt16</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToUtf8SChars_Memory_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToUtf8SChars(Memory%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L336">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ToUtf8SChars_" data-uid="wan24.Core.BytesExtensions.ToUtf8SChars*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToUtf8SChars_Memory_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToUtf8SChars(Memory{System.Byte})">ToUtf8SChars(Memory&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get an UTF-8 string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static char[] ToUtf8SChars(this Memory&lt;byte&gt; bytes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>Bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span>[]</td>
+        <td><p>String</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToUtf8SChars_ReadOnlyMemory_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToUtf8SChars(ReadOnlyMemory%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L329">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ToUtf8SChars_" data-uid="wan24.Core.BytesExtensions.ToUtf8SChars*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToUtf8SChars_ReadOnlyMemory_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToUtf8SChars(ReadOnlyMemory{System.Byte})">ToUtf8SChars(ReadOnlyMemory&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get an UTF-8 string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static char[] ToUtf8SChars(this ReadOnlyMemory&lt;byte&gt; bytes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlyMemory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>Bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span>[]</td>
+        <td><p>String</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToUtf8SChars_ReadOnlySpan_System_Byte__System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToUtf8SChars(ReadOnlySpan%7BSystem.Byte%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L307">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ToUtf8SChars_" data-uid="wan24.Core.BytesExtensions.ToUtf8SChars*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToUtf8SChars_ReadOnlySpan_System_Byte__System_Boolean_" data-uid="wan24.Core.BytesExtensions.ToUtf8SChars(ReadOnlySpan{System.Byte},System.Boolean)">ToUtf8SChars(ReadOnlySpan&lt;Byte&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Get an UTF-8 string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static char[] ToUtf8SChars(this ReadOnlySpan&lt;byte&gt; bytes, bool ignoreUsed = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>Bytes</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">ignoreUsed</span></td>
+        <td><p>Ignore the number of used bytes?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span>[]</td>
+        <td><p>String</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToUtf8SChars_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToUtf8SChars(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L322">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ToUtf8SChars_" data-uid="wan24.Core.BytesExtensions.ToUtf8SChars*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToUtf8SChars_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToUtf8SChars(Span{System.Byte})">ToUtf8SChars(Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get an UTF-8 string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static char[] ToUtf8SChars(this Span&lt;byte&gt; bytes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>Bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span>[]</td>
+        <td><p>String</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToUtf8SChars_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToUtf8SChars(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L343">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ToUtf8SChars_" data-uid="wan24.Core.BytesExtensions.ToUtf8SChars*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToUtf8SChars_System_Byte___" data-uid="wan24.Core.BytesExtensions.ToUtf8SChars(System.Byte[])">ToUtf8SChars(Byte[])</h4>
+  <div class="markdown level1 summary"><p>Get an UTF-8 string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static char[] ToUtf8SChars(this byte[] bytes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>Bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span>[]</td>
+        <td><p>String</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToUtf8String_Memory_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToUtf8String(Memory%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L201">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L292">View Source</a>
   </span>
   <a id="wan24_Core_BytesExtensions_ToUtf8String_" data-uid="wan24.Core.BytesExtensions.ToUtf8String*"></a>
   <h4 id="wan24_Core_BytesExtensions_ToUtf8String_Memory_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToUtf8String(Memory{System.Byte})">ToUtf8String(Memory&lt;Byte&gt;)</h4>
@@ -1191,10 +1997,116 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToUtf8String_ReadOnlyMemory_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToUtf8String(ReadOnlyMemory%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L285">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ToUtf8String_" data-uid="wan24.Core.BytesExtensions.ToUtf8String*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToUtf8String_ReadOnlyMemory_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToUtf8String(ReadOnlyMemory{System.Byte})">ToUtf8String(ReadOnlyMemory&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get an UTF-8 string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToUtf8String(this ReadOnlyMemory&lt;byte&gt; bytes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlyMemory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>Bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>String</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToUtf8String_ReadOnlySpan_System_Byte__System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToUtf8String(ReadOnlySpan%7BSystem.Byte%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L263">View Source</a>
+  </span>
+  <a id="wan24_Core_BytesExtensions_ToUtf8String_" data-uid="wan24.Core.BytesExtensions.ToUtf8String*"></a>
+  <h4 id="wan24_Core_BytesExtensions_ToUtf8String_ReadOnlySpan_System_Byte__System_Boolean_" data-uid="wan24.Core.BytesExtensions.ToUtf8String(ReadOnlySpan{System.Byte},System.Boolean)">ToUtf8String(ReadOnlySpan&lt;Byte&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Get an UTF-8 string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToUtf8String(this ReadOnlySpan&lt;byte&gt; bytes, bool ignoreUsed = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>Bytes</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">ignoreUsed</span></td>
+        <td><p>Ignore the number of used bytes?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>String</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToUtf8String_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToUtf8String(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L187">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L278">View Source</a>
   </span>
   <a id="wan24_Core_BytesExtensions_ToUtf8String_" data-uid="wan24.Core.BytesExtensions.ToUtf8String*"></a>
   <h4 id="wan24_Core_BytesExtensions_ToUtf8String_Span_System_Byte__" data-uid="wan24.Core.BytesExtensions.ToUtf8String(Span{System.Byte})">ToUtf8String(Span&lt;Byte&gt;)</h4>
@@ -1244,7 +2156,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BytesExtensions_ToUtf8String_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.ToUtf8String(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L209">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BytesExtensions.cs/#L299">View Source</a>
   </span>
   <a id="wan24_Core_BytesExtensions_ToUtf8String_" data-uid="wan24.Core.BytesExtensions.ToUtf8String*"></a>
   <h4 id="wan24_Core_BytesExtensions_ToUtf8String_System_Byte___" data-uid="wan24.Core.BytesExtensions.ToUtf8String(System.Byte[])">ToUtf8String(Byte[])</h4>

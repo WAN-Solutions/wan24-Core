@@ -12,7 +12,9 @@ namespace Wan24_Core_Tests
             DateTime start = DateTime.Now;
             _ = DelayCancellation(cts);
             await Assert.ThrowsExceptionAsync<OperationCanceledException>(async () => await cts.Token);
-            Assert.IsTrue((DateTime.Now - start).TotalMilliseconds >= 100);
+            TimeSpan runTime = DateTime.Now - start;
+            Logging.WriteInfo($"Runtime {runTime}");
+            Assert.IsTrue(runTime.TotalMilliseconds >= 100);//FIXME Sometimes fails on Linux!?
         }
 
         private static async Task DelayCancellation(CancellationTokenSource cts)

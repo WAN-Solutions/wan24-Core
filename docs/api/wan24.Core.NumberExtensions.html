@@ -118,7 +118,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Decimal_.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Decimal)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L189">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L429">View Source</a>
   </span>
   <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Decimal_" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Decimal)">GetBytes(Decimal)</h4>
@@ -165,10 +165,122 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Decimal_Memory_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Decimal%2CMemory%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L457">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Decimal_Memory_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Decimal,Memory{System.Byte})">GetBytes(Decimal, Memory&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Memory&lt;byte&gt; GetBytes(this decimal value, Memory&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Decimal</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target memory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Decimal_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Decimal%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L443">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Decimal_Span_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Decimal,Span{System.Byte})">GetBytes(Decimal, Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Span&lt;byte&gt; GetBytes(this decimal value, Span&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Decimal</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target span</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Double_.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L182">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L393">View Source</a>
   </span>
   <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Double_" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Double)">GetBytes(Double)</h4>
@@ -215,10 +327,122 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Double_Memory_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Double%2CMemory%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L418">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Double_Memory_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Double,Memory{System.Byte})">GetBytes(Double, Memory&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Memory&lt;byte&gt; GetBytes(this double value, Memory&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target memory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Double_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Double%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L406">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Double_Span_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Double,Span{System.Byte})">GetBytes(Double, Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Span&lt;byte&gt; GetBytes(this double value, Span&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target span</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Int16_.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Int16)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L133">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L141">View Source</a>
   </span>
   <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Int16_" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Int16)">GetBytes(Int16)</h4>
@@ -265,10 +489,122 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Int16_Memory_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Int16%2CMemory%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L166">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Int16_Memory_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Int16,Memory{System.Byte})">GetBytes(Int16, Memory&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Memory&lt;byte&gt; GetBytes(this short value, Memory&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int16</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target memory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Int16_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Int16%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L154">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Int16_Span_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Int16,Span{System.Byte})">GetBytes(Int16, Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Span&lt;byte&gt; GetBytes(this short value, Span&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int16</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target span</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L147">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L213">View Source</a>
   </span>
   <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Int32_" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Int32)">GetBytes(Int32)</h4>
@@ -315,10 +651,122 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Int32_Memory_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Int32%2CMemory%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L238">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Int32_Memory_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Int32,Memory{System.Byte})">GetBytes(Int32, Memory&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Memory&lt;byte&gt; GetBytes(this int value, Memory&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target memory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Int32_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Int32%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L226">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Int32_Span_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Int32,Span{System.Byte})">GetBytes(Int32, Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Span&lt;byte&gt; GetBytes(this int value, Span&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target span</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L161">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L285">View Source</a>
   </span>
   <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Int64_" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Int64)">GetBytes(Int64)</h4>
@@ -365,10 +813,122 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Int64_Memory_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Int64%2CMemory%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L310">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Int64_Memory_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Int64,Memory{System.Byte})">GetBytes(Int64, Memory&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Memory&lt;byte&gt; GetBytes(this long value, Memory&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target memory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Int64_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Int64%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L298">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Int64_Span_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Int64,Span{System.Byte})">GetBytes(Int64, Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Span&lt;byte&gt; GetBytes(this long value, Span&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target span</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Single_.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L175">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L357">View Source</a>
   </span>
   <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Single_" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Single)">GetBytes(Single)</h4>
@@ -415,10 +975,122 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Single_Memory_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Single%2CMemory%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L382">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Single_Memory_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Single,Memory{System.Byte})">GetBytes(Single, Memory&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Memory&lt;byte&gt; GetBytes(this float value, Memory&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target memory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_Single_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.Single%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L370">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_Single_Span_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.Single,Span{System.Byte})">GetBytes(Single, Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Span&lt;byte&gt; GetBytes(this float value, Span&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target span</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_UInt16_.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.UInt16)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L140">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L177">View Source</a>
   </span>
   <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_NumberExtensions_GetBytes_System_UInt16_" data-uid="wan24.Core.NumberExtensions.GetBytes(System.UInt16)">GetBytes(UInt16)</h4>
@@ -465,10 +1137,122 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_UInt16_Memory_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.UInt16%2CMemory%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L202">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_UInt16_Memory_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.UInt16,Memory{System.Byte})">GetBytes(UInt16, Memory&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Memory&lt;byte&gt; GetBytes(this ushort value, Memory&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt16</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target memory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_UInt16_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.UInt16%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L190">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_UInt16_Span_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.UInt16,Span{System.Byte})">GetBytes(UInt16, Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Span&lt;byte&gt; GetBytes(this ushort value, Span&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt16</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target span</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_UInt32_.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L154">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L249">View Source</a>
   </span>
   <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_NumberExtensions_GetBytes_System_UInt32_" data-uid="wan24.Core.NumberExtensions.GetBytes(System.UInt32)">GetBytes(UInt32)</h4>
@@ -515,10 +1299,122 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_UInt32_Memory_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.UInt32%2CMemory%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L274">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_UInt32_Memory_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.UInt32,Memory{System.Byte})">GetBytes(UInt32, Memory&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Memory&lt;byte&gt; GetBytes(this uint value, Memory&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target memory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_UInt32_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.UInt32%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L262">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_UInt32_Span_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.UInt32,Span{System.Byte})">GetBytes(UInt32, Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Span&lt;byte&gt; GetBytes(this uint value, Span&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target span</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_UInt64_.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L168">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L321">View Source</a>
   </span>
   <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_NumberExtensions_GetBytes_System_UInt64_" data-uid="wan24.Core.NumberExtensions.GetBytes(System.UInt64)">GetBytes(UInt64)</h4>
@@ -565,10 +1461,122 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_UInt64_Memory_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.UInt64%2CMemory%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L346">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_UInt64_Memory_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.UInt64,Memory{System.Byte})">GetBytes(UInt64, Memory&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Memory&lt;byte&gt; GetBytes(this ulong value, Memory&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target memory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_GetBytes_System_UInt64_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.GetBytes(System.UInt64%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L334">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_GetBytes_" data-uid="wan24.Core.NumberExtensions.GetBytes*"></a>
+  <h4 id="wan24_Core_NumberExtensions_GetBytes_System_UInt64_Span_System_Byte__" data-uid="wan24.Core.NumberExtensions.GetBytes(System.UInt64,Span{System.Byte})">GetBytes(UInt64, Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Span&lt;byte&gt; GetBytes(this ulong value, Span&lt;byte&gt; target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target span</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><p>Bytes (endian converted)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_IsBetween__1___0___0___0_.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.IsBetween%60%601(%60%600%2C%60%600%2C%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L204">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L472">View Source</a>
   </span>
   <a id="wan24_Core_NumberExtensions_IsBetween_" data-uid="wan24.Core.NumberExtensions.IsBetween*"></a>
   <h4 id="wan24_Core_NumberExtensions_IsBetween__1___0___0___0_" data-uid="wan24.Core.NumberExtensions.IsBetween``1(``0,``0,``0)">IsBetween&lt;T&gt;(T, T, T)</h4>
@@ -646,7 +1654,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_IsNumeric_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.IsNumeric(Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L53">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L61">View Source</a>
   </span>
   <a id="wan24_Core_NumberExtensions_IsNumeric_" data-uid="wan24.Core.NumberExtensions.IsNumeric*"></a>
   <h4 id="wan24_Core_NumberExtensions_IsNumeric_Type_" data-uid="wan24.Core.NumberExtensions.IsNumeric(Type)">IsNumeric(Type)</h4>
@@ -696,7 +1704,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_IsNumericAndUnsigned_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.IsNumericAndUnsigned(Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L85">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L93">View Source</a>
   </span>
   <a id="wan24_Core_NumberExtensions_IsNumericAndUnsigned_" data-uid="wan24.Core.NumberExtensions.IsNumericAndUnsigned*"></a>
   <h4 id="wan24_Core_NumberExtensions_IsNumericAndUnsigned_Type_" data-uid="wan24.Core.NumberExtensions.IsNumericAndUnsigned(Type)">IsNumericAndUnsigned(Type)</h4>
@@ -746,7 +1754,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_IsUnsigned_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.IsUnsigned(Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L30">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L38">View Source</a>
   </span>
   <a id="wan24_Core_NumberExtensions_IsUnsigned_" data-uid="wan24.Core.NumberExtensions.IsUnsigned*"></a>
   <h4 id="wan24_Core_NumberExtensions_IsUnsigned_Type_" data-uid="wan24.Core.NumberExtensions.IsUnsigned(Type)">IsUnsigned(Type)</h4>
@@ -796,7 +1804,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_IsUnsigned__1.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.IsUnsigned%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L23">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L31">View Source</a>
   </span>
   <a id="wan24_Core_NumberExtensions_IsUnsigned_" data-uid="wan24.Core.NumberExtensions.IsUnsigned*"></a>
   <h4 id="wan24_Core_NumberExtensions_IsUnsigned__1" data-uid="wan24.Core.NumberExtensions.IsUnsigned``1">IsUnsigned&lt;T&gt;()</h4>
@@ -845,7 +1853,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_IsUnsigned__1___0_.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.IsUnsigned%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L16">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L24">View Source</a>
   </span>
   <a id="wan24_Core_NumberExtensions_IsUnsigned_" data-uid="wan24.Core.NumberExtensions.IsUnsigned*"></a>
   <h4 id="wan24_Core_NumberExtensions_IsUnsigned__1___0_" data-uid="wan24.Core.NumberExtensions.IsUnsigned``1(``0)">IsUnsigned&lt;T&gt;(T)</h4>
@@ -869,6 +1877,73 @@
     <tbody>
       <tr>
         <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Is unsigned?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Value type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_NumberExtensions_IsUnsigned__1_System_Nullable___0__.md&amp;value=---%0Auid%3A%20wan24.Core.NumberExtensions.IsUnsigned%60%601(System.Nullable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/NumberExtensions.cs/#L16">View Source</a>
+  </span>
+  <a id="wan24_Core_NumberExtensions_IsUnsigned_" data-uid="wan24.Core.NumberExtensions.IsUnsigned*"></a>
+  <h4 id="wan24_Core_NumberExtensions_IsUnsigned__1_System_Nullable___0__" data-uid="wan24.Core.NumberExtensions.IsUnsigned``1(System.Nullable{``0})">IsUnsigned&lt;T&gt;(Nullable&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Determine if a numeric value is unsigned (works for enumerations, too)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsUnsigned&lt;T&gt;(this T? value)
+    where T : struct, IConvertible</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;T&gt;</td>
         <td><span class="parametername">value</span></td>
         <td><p>Value</p>
 </td>

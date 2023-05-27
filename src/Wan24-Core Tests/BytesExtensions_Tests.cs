@@ -49,6 +49,38 @@ namespace Wan24_Core_Tests
         }
 
         [TestMethod]
+        public void BitConverterBufferSpan_Tests()
+        {
+            int value = 123;
+            byte[] buffer = new byte[20];
+            Assert.AreEqual((short)value, ((short)value).GetBytes(buffer.AsSpan()).ToShort());
+            Assert.AreEqual((ushort)value, ((ushort)value).GetBytes(buffer.AsSpan()).ToUShort());
+            Assert.AreEqual(value, value.GetBytes(buffer.AsSpan()).ToInt());
+            Assert.AreEqual((uint)value, ((uint)value).GetBytes(buffer.AsSpan()).ToUInt());
+            Assert.AreEqual(value, ((long)value).GetBytes(buffer.AsSpan()).ToLong());
+            Assert.AreEqual((ulong)value, ((ulong)value).GetBytes(buffer.AsSpan()).ToULong());
+            Assert.AreEqual(value, ((float)value).GetBytes(buffer.AsSpan()).ToFloat());
+            Assert.AreEqual(value, ((double)value).GetBytes(buffer.AsSpan()).ToDouble());
+            Assert.AreEqual(value, ((decimal)value).GetBytes(buffer.AsSpan()).ToDecimal());
+        }
+
+        [TestMethod]
+        public void BitConverterBufferMemory_Tests()
+        {
+            int value = 123;
+            byte[] buffer = new byte[20];
+            Assert.AreEqual((short)value, ((short)value).GetBytes(buffer.AsMemory()).Span.ToShort());
+            Assert.AreEqual((ushort)value, ((ushort)value).GetBytes(buffer.AsMemory()).Span.ToUShort());
+            Assert.AreEqual(value, value.GetBytes(buffer.AsMemory()).Span.ToInt());
+            Assert.AreEqual((uint)value, ((uint)value).GetBytes(buffer.AsMemory()).Span.ToUInt());
+            Assert.AreEqual(value, ((long)value).GetBytes(buffer.AsMemory()).Span.ToLong());
+            Assert.AreEqual((ulong)value, ((ulong)value).GetBytes(buffer.AsMemory()).Span.ToULong());
+            Assert.AreEqual(value, ((float)value).GetBytes(buffer.AsMemory()).Span.ToFloat());
+            Assert.AreEqual(value, ((double)value).GetBytes(buffer.AsMemory()).Span.ToDouble());
+            Assert.AreEqual(value, ((decimal)value).GetBytes(buffer.AsMemory()).Span.ToDecimal());
+        }
+
+        [TestMethod]
         public void Clear_Tests()
         {
             byte[] arr = new byte[] { 1, 2, 3 },
@@ -57,6 +89,12 @@ namespace Wan24_Core_Tests
             temp.Clear();
             Assert.IsFalse(arr.SequenceEqual(temp));
             Assert.IsTrue(temp.SequenceEqual(Enumerable.Repeat((byte)0, 3)));
+            char[] carr = new char[] { 'a', 'b', 'c' },
+                ctemp = (char[])carr.Clone();
+            Assert.IsTrue(carr.SequenceEqual(ctemp));
+            ctemp.Clear();
+            Assert.IsFalse(carr.SequenceEqual(ctemp));
+            Assert.IsTrue(ctemp.SequenceEqual(Enumerable.Repeat((char)0, 3)));
         }
     }
 }

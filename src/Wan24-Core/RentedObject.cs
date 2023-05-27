@@ -4,7 +4,7 @@
     /// Rented object (returns the rented object to the pool when diposing)
     /// </summary>
     /// <typeparam name="T">Rented object type</typeparam>
-    public sealed class RentedObject<T> : DisposableBase
+    public sealed class RentedObject<T> : DisposableBase, IRentedObject<T>
     {
         /// <summary>
         /// Rented object
@@ -26,25 +26,19 @@
         /// </summary>
         /// <param name="pool">Pool</param>
         /// <param name="obj">Rented object</param>
-        public RentedObject(IObjectPool<T> pool, T obj)
+        public RentedObject(IObjectPool<T> pool, T obj) : base()
         {
             Pool = pool;
             _Object = obj;
         }
 
-        /// <summary>
-        /// Object pool
-        /// </summary>
+        /// <inheritdoc/>
         public IObjectPool<T> Pool { get; }
 
-        /// <summary>
-        /// Rented object
-        /// </summary>
+        /// <inheritdoc/>
         public T Object => IfUndisposed(_Object);
 
-        /// <summary>
-        /// Reset the <see cref="IObjectPoolItem"/> object when returning?
-        /// </summary>
+        /// <inheritdoc/>
         public bool Reset { get; set; }
 
         /// <inheritdoc/>

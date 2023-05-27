@@ -8,12 +8,15 @@ disposing
     - Dispose attribute for fields/properties which should be disposed 
     automatic when disposing
 - Type helper (type loading)
-- Secure byte array, which clears its contents when disposing
-- Pool rented array as disposable object
+- Secure byte and char array, which clears its contents when disposing
+- Pool rented array as disposable object (which optionally clears its contents 
+when disposing; for byte/char arrays just like the `Secure*Array`)
 - Byte array extensions
     - Endian conversion
     - Bit-converter (endian-safe)
     - UTF-8 string decoding
+    - Clearing
+- Char array extensions
     - Clearing
 - Array helper extensions
     - Offset/length validation
@@ -46,6 +49,8 @@ disposing
 - Enumeration extensions
     - Get enumeration value display string from `DisplayTextAttribute` or 
     using `ToString` (fallback)
+    - Determine if all, any or which flags are contained in an enumeration 
+    value
     - Remove flags of a mixed enumeration value
     - Get only flags of a mixed enumeration value
     - Value validation
@@ -98,6 +103,8 @@ the timeout
 - `ObjectPool` for pooling objects (`DisposableObjectPool` for disposable 
 types), and `BlockingObjectPool` for a strict pool capacity limit
 - `ResetEvent` for (a)synchronous event waiting
+- `LazyValue<T>`, `DisposableLazyValue<T>`, `AsyncDisposableLazyValue<T>` and 
+`TimeoutValue<T>` for lazy and timeout value serving
 
 ## How to get it
 
