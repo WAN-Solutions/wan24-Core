@@ -109,6 +109,7 @@ types), and `BlockingObjectPool` for a strict pool capacity limit
 - `ResetEvent` for (a)synchronous event waiting
 - `LazyValue<T>`, `DisposableLazyValue<T>`, `AsyncDisposableLazyValue<T>` and 
 `TimeoutValue<T>` for lazy and timeout value serving
+- `ObjectLockManager` for asynchronous and awaitable object locking
 
 ## How to get it
 
