@@ -13,16 +13,24 @@
         /// <param name="cancellationToken">Cancellation token</param>
         ValueTask EnqueueAsync(T item, CancellationToken cancellationToken = default);
         /// <summary>
-        /// Enqueue many items for processing
+        /// Try enqueueing an item to process
         /// </summary>
-        /// <param name="items">Items</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        ValueTask EnqueueRangeAsync(IEnumerable<T> items, CancellationToken cancellationToken = default);
+        /// <param name="item">Item</param>
+        /// <returns>Enqueued?</returns>
+        bool TryEnqueue(T item);
         /// <summary>
         /// Enqueue many items for processing
         /// </summary>
         /// <param name="items">Items</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        ValueTask EnqueueRangeAsync(IAsyncEnumerable<T> items, CancellationToken cancellationToken = default);
+        /// <returns>Number of enqueued items</returns>
+        ValueTask<int> EnqueueRangeAsync(IEnumerable<T> items, CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Enqueue many items for processing
+        /// </summary>
+        /// <param name="items">Items</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Number of enqueued items</returns>
+        ValueTask<int> EnqueueRangeAsync(IAsyncEnumerable<T> items, CancellationToken cancellationToken = default);
     }
 }

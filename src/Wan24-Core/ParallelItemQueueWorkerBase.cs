@@ -1,16 +1,17 @@
 ﻿namespace wan24.Core
 {
     /// <summary>
-    /// Base class for an item queue worker
+    /// Base class for a parallel item queue worker
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
-    public abstract class ItemQueueWorkerBase<T> : QueueWorker, IItemQueueWorker<T>
+    public abstract class ParallelItemQueueWorkerBase<T> : ParallelQueueWorker, IItemQueueWorker<T>
     {
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
-        protected ItemQueueWorkerBase(int capacity) : base(capacity) { }
+        /// <param name="threads">Number of threads</param>
+        protected ParallelItemQueueWorkerBase(int capacity, int threads) : base(capacity, threads) { }
 
         /// <inheritdoc/>
         public ValueTask EnqueueAsync(T item, CancellationToken cancellationToken = default)
@@ -20,7 +21,7 @@
         public bool TryEnqueue(T item) => TryEnqueue(async (ct) => await ProcessItem(item, ct).DynamicContext());
 
         /// <inheritdoc/>
-        public async ValueTask<int> EnqueueRangeAsync(IEnumerable<T> items, CancellationToken cancellationToken = default)
+        public virtual async ValueTask<int> EnqueueRangeAsync(IEnumerable<T> items, CancellationToken cancellationToken = default)
         {
             int enqueued = 0;
             foreach (T item in items)
@@ -32,7 +33,7 @@
         }
 
         /// <inheritdoc/>
-        public async ValueTask<int> EnqueueRangeAsync(IAsyncEnumerable<T> items, CancellationToken cancellationToken = default)
+        public virtual async ValueTask<int> EnqueueRangeAsync(IAsyncEnumerable<T> items, CancellationToken cancellationToken = default)
         {
             int enqueued = 0;
             await foreach (T item in items.WithCancellation(cancellationToken).ConfigureAwait(continueOnCapturedContext: false))

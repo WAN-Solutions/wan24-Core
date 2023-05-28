@@ -6496,6 +6496,23 @@ references:
   fullName.vb: wan24.Core.IItemQueueWorker(Of T).EnqueueRangeAsync
   nameWithType: IItemQueueWorker<T>.EnqueueRangeAsync
   nameWithType.vb: IItemQueueWorker(Of T).EnqueueRangeAsync
+- uid: wan24.Core.IItemQueueWorker`1.TryEnqueue(`0)
+  name: TryEnqueue(T)
+  href: api/wan24.Core.IItemQueueWorker-1.html#wan24_Core_IItemQueueWorker_1_TryEnqueue__0_
+  commentId: M:wan24.Core.IItemQueueWorker`1.TryEnqueue(`0)
+  fullName: wan24.Core.IItemQueueWorker<T>.TryEnqueue(T)
+  fullName.vb: wan24.Core.IItemQueueWorker(Of T).TryEnqueue(T)
+  nameWithType: IItemQueueWorker<T>.TryEnqueue(T)
+  nameWithType.vb: IItemQueueWorker(Of T).TryEnqueue(T)
+- uid: wan24.Core.IItemQueueWorker`1.TryEnqueue*
+  name: TryEnqueue
+  href: api/wan24.Core.IItemQueueWorker-1.html#wan24_Core_IItemQueueWorker_1_TryEnqueue_
+  commentId: Overload:wan24.Core.IItemQueueWorker`1.TryEnqueue
+  isSpec: "True"
+  fullName: wan24.Core.IItemQueueWorker<T>.TryEnqueue
+  fullName.vb: wan24.Core.IItemQueueWorker(Of T).TryEnqueue
+  nameWithType: IItemQueueWorker<T>.TryEnqueue
+  nameWithType.vb: IItemQueueWorker(Of T).TryEnqueue
 - uid: wan24.Core.IObjectKey
   name: IObjectKey
   href: api/wan24.Core.IObjectKey.html
@@ -7123,6 +7140,31 @@ references:
   isSpec: "True"
   fullName: wan24.Core.IQueueWorker.EnqueueAsync
   nameWithType: IQueueWorker.EnqueueAsync
+- uid: wan24.Core.IQueueWorker.EnqueueRangeAsync(IAsyncEnumerable{wan24.Core.QueueWorker.Task_Delegate},CancellationToken)
+  name: EnqueueRangeAsync(IAsyncEnumerable<QueueWorker.Task_Delegate>, CancellationToken)
+  href: api/wan24.Core.IQueueWorker.html#wan24_Core_IQueueWorker_EnqueueRangeAsync_IAsyncEnumerable_wan24_Core_QueueWorker_Task_Delegate__CancellationToken_
+  commentId: M:wan24.Core.IQueueWorker.EnqueueRangeAsync(IAsyncEnumerable{wan24.Core.QueueWorker.Task_Delegate},CancellationToken)
+  name.vb: EnqueueRangeAsync(IAsyncEnumerable(Of QueueWorker.Task_Delegate), CancellationToken)
+  fullName: wan24.Core.IQueueWorker.EnqueueRangeAsync(IAsyncEnumerable<wan24.Core.QueueWorker.Task_Delegate>, CancellationToken)
+  fullName.vb: wan24.Core.IQueueWorker.EnqueueRangeAsync(IAsyncEnumerable(Of wan24.Core.QueueWorker.Task_Delegate), CancellationToken)
+  nameWithType: IQueueWorker.EnqueueRangeAsync(IAsyncEnumerable<QueueWorker.Task_Delegate>, CancellationToken)
+  nameWithType.vb: IQueueWorker.EnqueueRangeAsync(IAsyncEnumerable(Of QueueWorker.Task_Delegate), CancellationToken)
+- uid: wan24.Core.IQueueWorker.EnqueueRangeAsync(IEnumerable{wan24.Core.QueueWorker.Task_Delegate},CancellationToken)
+  name: EnqueueRangeAsync(IEnumerable<QueueWorker.Task_Delegate>, CancellationToken)
+  href: api/wan24.Core.IQueueWorker.html#wan24_Core_IQueueWorker_EnqueueRangeAsync_IEnumerable_wan24_Core_QueueWorker_Task_Delegate__CancellationToken_
+  commentId: M:wan24.Core.IQueueWorker.EnqueueRangeAsync(IEnumerable{wan24.Core.QueueWorker.Task_Delegate},CancellationToken)
+  name.vb: EnqueueRangeAsync(IEnumerable(Of QueueWorker.Task_Delegate), CancellationToken)
+  fullName: wan24.Core.IQueueWorker.EnqueueRangeAsync(IEnumerable<wan24.Core.QueueWorker.Task_Delegate>, CancellationToken)
+  fullName.vb: wan24.Core.IQueueWorker.EnqueueRangeAsync(IEnumerable(Of wan24.Core.QueueWorker.Task_Delegate), CancellationToken)
+  nameWithType: IQueueWorker.EnqueueRangeAsync(IEnumerable<QueueWorker.Task_Delegate>, CancellationToken)
+  nameWithType.vb: IQueueWorker.EnqueueRangeAsync(IEnumerable(Of QueueWorker.Task_Delegate), CancellationToken)
+- uid: wan24.Core.IQueueWorker.EnqueueRangeAsync*
+  name: EnqueueRangeAsync
+  href: api/wan24.Core.IQueueWorker.html#wan24_Core_IQueueWorker_EnqueueRangeAsync_
+  commentId: Overload:wan24.Core.IQueueWorker.EnqueueRangeAsync
+  isSpec: "True"
+  fullName: wan24.Core.IQueueWorker.EnqueueRangeAsync
+  nameWithType: IQueueWorker.EnqueueRangeAsync
 - uid: wan24.Core.IQueueWorker.Queued
   name: Queued
   href: api/wan24.Core.IQueueWorker.html#wan24_Core_IQueueWorker_Queued
@@ -7136,6 +7178,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.IQueueWorker.Queued
   nameWithType: IQueueWorker.Queued
+- uid: wan24.Core.IQueueWorker.TryEnqueue(wan24.Core.QueueWorker.Task_Delegate)
+  name: TryEnqueue(QueueWorker.Task_Delegate)
+  href: api/wan24.Core.IQueueWorker.html#wan24_Core_IQueueWorker_TryEnqueue_wan24_Core_QueueWorker_Task_Delegate_
+  commentId: M:wan24.Core.IQueueWorker.TryEnqueue(wan24.Core.QueueWorker.Task_Delegate)
+  fullName: wan24.Core.IQueueWorker.TryEnqueue(wan24.Core.QueueWorker.Task_Delegate)
+  nameWithType: IQueueWorker.TryEnqueue(QueueWorker.Task_Delegate)
+- uid: wan24.Core.IQueueWorker.TryEnqueue*
+  name: TryEnqueue
+  href: api/wan24.Core.IQueueWorker.html#wan24_Core_IQueueWorker_TryEnqueue_
+  commentId: Overload:wan24.Core.IQueueWorker.TryEnqueue
+  isSpec: "True"
+  fullName: wan24.Core.IQueueWorker.TryEnqueue
+  nameWithType: IQueueWorker.TryEnqueue
 - uid: wan24.Core.IRentedArray`1
   name: IRentedArray<T>
   href: api/wan24.Core.IRentedArray-1.html
@@ -7386,6 +7441,23 @@ references:
   fullName.vb: wan24.Core.ItemQueueWorkerBase(Of T).ProcessItem
   nameWithType: ItemQueueWorkerBase<T>.ProcessItem
   nameWithType.vb: ItemQueueWorkerBase(Of T).ProcessItem
+- uid: wan24.Core.ItemQueueWorkerBase`1.TryEnqueue(`0)
+  name: TryEnqueue(T)
+  href: api/wan24.Core.ItemQueueWorkerBase-1.html#wan24_Core_ItemQueueWorkerBase_1_TryEnqueue__0_
+  commentId: M:wan24.Core.ItemQueueWorkerBase`1.TryEnqueue(`0)
+  fullName: wan24.Core.ItemQueueWorkerBase<T>.TryEnqueue(T)
+  fullName.vb: wan24.Core.ItemQueueWorkerBase(Of T).TryEnqueue(T)
+  nameWithType: ItemQueueWorkerBase<T>.TryEnqueue(T)
+  nameWithType.vb: ItemQueueWorkerBase(Of T).TryEnqueue(T)
+- uid: wan24.Core.ItemQueueWorkerBase`1.TryEnqueue*
+  name: TryEnqueue
+  href: api/wan24.Core.ItemQueueWorkerBase-1.html#wan24_Core_ItemQueueWorkerBase_1_TryEnqueue_
+  commentId: Overload:wan24.Core.ItemQueueWorkerBase`1.TryEnqueue
+  isSpec: "True"
+  fullName: wan24.Core.ItemQueueWorkerBase<T>.TryEnqueue
+  fullName.vb: wan24.Core.ItemQueueWorkerBase(Of T).TryEnqueue
+  nameWithType: ItemQueueWorkerBase<T>.TryEnqueue
+  nameWithType.vb: ItemQueueWorkerBase(Of T).TryEnqueue
 - uid: wan24.Core.JsonExtensions
   name: JsonExtensions
   href: api/wan24.Core.JsonExtensions.html
@@ -10380,67 +10452,110 @@ references:
   fullName.vb: wan24.Core.ParallelItemQueueWorker(Of T).ParallelItemQueueWorker
   nameWithType: ParallelItemQueueWorker<T>.ParallelItemQueueWorker
   nameWithType.vb: ParallelItemQueueWorker(Of T).ParallelItemQueueWorker
-- uid: wan24.Core.ParallelItemQueueWorker`1.EnqueueAsync(`0,CancellationToken)
+- uid: wan24.Core.ParallelItemQueueWorkerBase`1
+  name: ParallelItemQueueWorkerBase<T>
+  href: api/wan24.Core.ParallelItemQueueWorkerBase-1.html
+  commentId: T:wan24.Core.ParallelItemQueueWorkerBase`1
+  name.vb: ParallelItemQueueWorkerBase(Of T)
+  fullName: wan24.Core.ParallelItemQueueWorkerBase<T>
+  fullName.vb: wan24.Core.ParallelItemQueueWorkerBase(Of T)
+  nameWithType: ParallelItemQueueWorkerBase<T>
+  nameWithType.vb: ParallelItemQueueWorkerBase(Of T)
+- uid: wan24.Core.ParallelItemQueueWorkerBase`1.#ctor(System.Int32,System.Int32)
+  name: ParallelItemQueueWorkerBase(Int32, Int32)
+  href: api/wan24.Core.ParallelItemQueueWorkerBase-1.html#wan24_Core_ParallelItemQueueWorkerBase_1__ctor_System_Int32_System_Int32_
+  commentId: M:wan24.Core.ParallelItemQueueWorkerBase`1.#ctor(System.Int32,System.Int32)
+  fullName: wan24.Core.ParallelItemQueueWorkerBase<T>.ParallelItemQueueWorkerBase(System.Int32, System.Int32)
+  fullName.vb: wan24.Core.ParallelItemQueueWorkerBase(Of T).ParallelItemQueueWorkerBase(System.Int32, System.Int32)
+  nameWithType: ParallelItemQueueWorkerBase<T>.ParallelItemQueueWorkerBase(Int32, Int32)
+  nameWithType.vb: ParallelItemQueueWorkerBase(Of T).ParallelItemQueueWorkerBase(Int32, Int32)
+- uid: wan24.Core.ParallelItemQueueWorkerBase`1.#ctor*
+  name: ParallelItemQueueWorkerBase
+  href: api/wan24.Core.ParallelItemQueueWorkerBase-1.html#wan24_Core_ParallelItemQueueWorkerBase_1__ctor_
+  commentId: Overload:wan24.Core.ParallelItemQueueWorkerBase`1.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.ParallelItemQueueWorkerBase<T>.ParallelItemQueueWorkerBase
+  fullName.vb: wan24.Core.ParallelItemQueueWorkerBase(Of T).ParallelItemQueueWorkerBase
+  nameWithType: ParallelItemQueueWorkerBase<T>.ParallelItemQueueWorkerBase
+  nameWithType.vb: ParallelItemQueueWorkerBase(Of T).ParallelItemQueueWorkerBase
+- uid: wan24.Core.ParallelItemQueueWorkerBase`1.EnqueueAsync(`0,CancellationToken)
   name: EnqueueAsync(T, CancellationToken)
-  href: api/wan24.Core.ParallelItemQueueWorker-1.html#wan24_Core_ParallelItemQueueWorker_1_EnqueueAsync__0_CancellationToken_
-  commentId: M:wan24.Core.ParallelItemQueueWorker`1.EnqueueAsync(`0,CancellationToken)
-  fullName: wan24.Core.ParallelItemQueueWorker<T>.EnqueueAsync(T, CancellationToken)
-  fullName.vb: wan24.Core.ParallelItemQueueWorker(Of T).EnqueueAsync(T, CancellationToken)
-  nameWithType: ParallelItemQueueWorker<T>.EnqueueAsync(T, CancellationToken)
-  nameWithType.vb: ParallelItemQueueWorker(Of T).EnqueueAsync(T, CancellationToken)
-- uid: wan24.Core.ParallelItemQueueWorker`1.EnqueueAsync*
+  href: api/wan24.Core.ParallelItemQueueWorkerBase-1.html#wan24_Core_ParallelItemQueueWorkerBase_1_EnqueueAsync__0_CancellationToken_
+  commentId: M:wan24.Core.ParallelItemQueueWorkerBase`1.EnqueueAsync(`0,CancellationToken)
+  fullName: wan24.Core.ParallelItemQueueWorkerBase<T>.EnqueueAsync(T, CancellationToken)
+  fullName.vb: wan24.Core.ParallelItemQueueWorkerBase(Of T).EnqueueAsync(T, CancellationToken)
+  nameWithType: ParallelItemQueueWorkerBase<T>.EnqueueAsync(T, CancellationToken)
+  nameWithType.vb: ParallelItemQueueWorkerBase(Of T).EnqueueAsync(T, CancellationToken)
+- uid: wan24.Core.ParallelItemQueueWorkerBase`1.EnqueueAsync*
   name: EnqueueAsync
-  href: api/wan24.Core.ParallelItemQueueWorker-1.html#wan24_Core_ParallelItemQueueWorker_1_EnqueueAsync_
-  commentId: Overload:wan24.Core.ParallelItemQueueWorker`1.EnqueueAsync
+  href: api/wan24.Core.ParallelItemQueueWorkerBase-1.html#wan24_Core_ParallelItemQueueWorkerBase_1_EnqueueAsync_
+  commentId: Overload:wan24.Core.ParallelItemQueueWorkerBase`1.EnqueueAsync
   isSpec: "True"
-  fullName: wan24.Core.ParallelItemQueueWorker<T>.EnqueueAsync
-  fullName.vb: wan24.Core.ParallelItemQueueWorker(Of T).EnqueueAsync
-  nameWithType: ParallelItemQueueWorker<T>.EnqueueAsync
-  nameWithType.vb: ParallelItemQueueWorker(Of T).EnqueueAsync
-- uid: wan24.Core.ParallelItemQueueWorker`1.EnqueueRangeAsync(IAsyncEnumerable{`0},CancellationToken)
+  fullName: wan24.Core.ParallelItemQueueWorkerBase<T>.EnqueueAsync
+  fullName.vb: wan24.Core.ParallelItemQueueWorkerBase(Of T).EnqueueAsync
+  nameWithType: ParallelItemQueueWorkerBase<T>.EnqueueAsync
+  nameWithType.vb: ParallelItemQueueWorkerBase(Of T).EnqueueAsync
+- uid: wan24.Core.ParallelItemQueueWorkerBase`1.EnqueueRangeAsync(IAsyncEnumerable{`0},CancellationToken)
   name: EnqueueRangeAsync(IAsyncEnumerable<T>, CancellationToken)
-  href: api/wan24.Core.ParallelItemQueueWorker-1.html#wan24_Core_ParallelItemQueueWorker_1_EnqueueRangeAsync_IAsyncEnumerable__0__CancellationToken_
-  commentId: M:wan24.Core.ParallelItemQueueWorker`1.EnqueueRangeAsync(IAsyncEnumerable{`0},CancellationToken)
+  href: api/wan24.Core.ParallelItemQueueWorkerBase-1.html#wan24_Core_ParallelItemQueueWorkerBase_1_EnqueueRangeAsync_IAsyncEnumerable__0__CancellationToken_
+  commentId: M:wan24.Core.ParallelItemQueueWorkerBase`1.EnqueueRangeAsync(IAsyncEnumerable{`0},CancellationToken)
   name.vb: EnqueueRangeAsync(IAsyncEnumerable(Of T), CancellationToken)
-  fullName: wan24.Core.ParallelItemQueueWorker<T>.EnqueueRangeAsync(IAsyncEnumerable<T>, CancellationToken)
-  fullName.vb: wan24.Core.ParallelItemQueueWorker(Of T).EnqueueRangeAsync(IAsyncEnumerable(Of T), CancellationToken)
-  nameWithType: ParallelItemQueueWorker<T>.EnqueueRangeAsync(IAsyncEnumerable<T>, CancellationToken)
-  nameWithType.vb: ParallelItemQueueWorker(Of T).EnqueueRangeAsync(IAsyncEnumerable(Of T), CancellationToken)
-- uid: wan24.Core.ParallelItemQueueWorker`1.EnqueueRangeAsync(IEnumerable{`0},CancellationToken)
+  fullName: wan24.Core.ParallelItemQueueWorkerBase<T>.EnqueueRangeAsync(IAsyncEnumerable<T>, CancellationToken)
+  fullName.vb: wan24.Core.ParallelItemQueueWorkerBase(Of T).EnqueueRangeAsync(IAsyncEnumerable(Of T), CancellationToken)
+  nameWithType: ParallelItemQueueWorkerBase<T>.EnqueueRangeAsync(IAsyncEnumerable<T>, CancellationToken)
+  nameWithType.vb: ParallelItemQueueWorkerBase(Of T).EnqueueRangeAsync(IAsyncEnumerable(Of T), CancellationToken)
+- uid: wan24.Core.ParallelItemQueueWorkerBase`1.EnqueueRangeAsync(IEnumerable{`0},CancellationToken)
   name: EnqueueRangeAsync(IEnumerable<T>, CancellationToken)
-  href: api/wan24.Core.ParallelItemQueueWorker-1.html#wan24_Core_ParallelItemQueueWorker_1_EnqueueRangeAsync_IEnumerable__0__CancellationToken_
-  commentId: M:wan24.Core.ParallelItemQueueWorker`1.EnqueueRangeAsync(IEnumerable{`0},CancellationToken)
+  href: api/wan24.Core.ParallelItemQueueWorkerBase-1.html#wan24_Core_ParallelItemQueueWorkerBase_1_EnqueueRangeAsync_IEnumerable__0__CancellationToken_
+  commentId: M:wan24.Core.ParallelItemQueueWorkerBase`1.EnqueueRangeAsync(IEnumerable{`0},CancellationToken)
   name.vb: EnqueueRangeAsync(IEnumerable(Of T), CancellationToken)
-  fullName: wan24.Core.ParallelItemQueueWorker<T>.EnqueueRangeAsync(IEnumerable<T>, CancellationToken)
-  fullName.vb: wan24.Core.ParallelItemQueueWorker(Of T).EnqueueRangeAsync(IEnumerable(Of T), CancellationToken)
-  nameWithType: ParallelItemQueueWorker<T>.EnqueueRangeAsync(IEnumerable<T>, CancellationToken)
-  nameWithType.vb: ParallelItemQueueWorker(Of T).EnqueueRangeAsync(IEnumerable(Of T), CancellationToken)
-- uid: wan24.Core.ParallelItemQueueWorker`1.EnqueueRangeAsync*
+  fullName: wan24.Core.ParallelItemQueueWorkerBase<T>.EnqueueRangeAsync(IEnumerable<T>, CancellationToken)
+  fullName.vb: wan24.Core.ParallelItemQueueWorkerBase(Of T).EnqueueRangeAsync(IEnumerable(Of T), CancellationToken)
+  nameWithType: ParallelItemQueueWorkerBase<T>.EnqueueRangeAsync(IEnumerable<T>, CancellationToken)
+  nameWithType.vb: ParallelItemQueueWorkerBase(Of T).EnqueueRangeAsync(IEnumerable(Of T), CancellationToken)
+- uid: wan24.Core.ParallelItemQueueWorkerBase`1.EnqueueRangeAsync*
   name: EnqueueRangeAsync
-  href: api/wan24.Core.ParallelItemQueueWorker-1.html#wan24_Core_ParallelItemQueueWorker_1_EnqueueRangeAsync_
-  commentId: Overload:wan24.Core.ParallelItemQueueWorker`1.EnqueueRangeAsync
+  href: api/wan24.Core.ParallelItemQueueWorkerBase-1.html#wan24_Core_ParallelItemQueueWorkerBase_1_EnqueueRangeAsync_
+  commentId: Overload:wan24.Core.ParallelItemQueueWorkerBase`1.EnqueueRangeAsync
   isSpec: "True"
-  fullName: wan24.Core.ParallelItemQueueWorker<T>.EnqueueRangeAsync
-  fullName.vb: wan24.Core.ParallelItemQueueWorker(Of T).EnqueueRangeAsync
-  nameWithType: ParallelItemQueueWorker<T>.EnqueueRangeAsync
-  nameWithType.vb: ParallelItemQueueWorker(Of T).EnqueueRangeAsync
-- uid: wan24.Core.ParallelItemQueueWorker`1.ProcessItem(`0,CancellationToken)
+  fullName: wan24.Core.ParallelItemQueueWorkerBase<T>.EnqueueRangeAsync
+  fullName.vb: wan24.Core.ParallelItemQueueWorkerBase(Of T).EnqueueRangeAsync
+  nameWithType: ParallelItemQueueWorkerBase<T>.EnqueueRangeAsync
+  nameWithType.vb: ParallelItemQueueWorkerBase(Of T).EnqueueRangeAsync
+- uid: wan24.Core.ParallelItemQueueWorkerBase`1.ProcessItem(`0,CancellationToken)
   name: ProcessItem(T, CancellationToken)
-  href: api/wan24.Core.ParallelItemQueueWorker-1.html#wan24_Core_ParallelItemQueueWorker_1_ProcessItem__0_CancellationToken_
-  commentId: M:wan24.Core.ParallelItemQueueWorker`1.ProcessItem(`0,CancellationToken)
-  fullName: wan24.Core.ParallelItemQueueWorker<T>.ProcessItem(T, CancellationToken)
-  fullName.vb: wan24.Core.ParallelItemQueueWorker(Of T).ProcessItem(T, CancellationToken)
-  nameWithType: ParallelItemQueueWorker<T>.ProcessItem(T, CancellationToken)
-  nameWithType.vb: ParallelItemQueueWorker(Of T).ProcessItem(T, CancellationToken)
-- uid: wan24.Core.ParallelItemQueueWorker`1.ProcessItem*
+  href: api/wan24.Core.ParallelItemQueueWorkerBase-1.html#wan24_Core_ParallelItemQueueWorkerBase_1_ProcessItem__0_CancellationToken_
+  commentId: M:wan24.Core.ParallelItemQueueWorkerBase`1.ProcessItem(`0,CancellationToken)
+  fullName: wan24.Core.ParallelItemQueueWorkerBase<T>.ProcessItem(T, CancellationToken)
+  fullName.vb: wan24.Core.ParallelItemQueueWorkerBase(Of T).ProcessItem(T, CancellationToken)
+  nameWithType: ParallelItemQueueWorkerBase<T>.ProcessItem(T, CancellationToken)
+  nameWithType.vb: ParallelItemQueueWorkerBase(Of T).ProcessItem(T, CancellationToken)
+- uid: wan24.Core.ParallelItemQueueWorkerBase`1.ProcessItem*
   name: ProcessItem
-  href: api/wan24.Core.ParallelItemQueueWorker-1.html#wan24_Core_ParallelItemQueueWorker_1_ProcessItem_
-  commentId: Overload:wan24.Core.ParallelItemQueueWorker`1.ProcessItem
+  href: api/wan24.Core.ParallelItemQueueWorkerBase-1.html#wan24_Core_ParallelItemQueueWorkerBase_1_ProcessItem_
+  commentId: Overload:wan24.Core.ParallelItemQueueWorkerBase`1.ProcessItem
   isSpec: "True"
-  fullName: wan24.Core.ParallelItemQueueWorker<T>.ProcessItem
-  fullName.vb: wan24.Core.ParallelItemQueueWorker(Of T).ProcessItem
-  nameWithType: ParallelItemQueueWorker<T>.ProcessItem
-  nameWithType.vb: ParallelItemQueueWorker(Of T).ProcessItem
+  fullName: wan24.Core.ParallelItemQueueWorkerBase<T>.ProcessItem
+  fullName.vb: wan24.Core.ParallelItemQueueWorkerBase(Of T).ProcessItem
+  nameWithType: ParallelItemQueueWorkerBase<T>.ProcessItem
+  nameWithType.vb: ParallelItemQueueWorkerBase(Of T).ProcessItem
+- uid: wan24.Core.ParallelItemQueueWorkerBase`1.TryEnqueue(`0)
+  name: TryEnqueue(T)
+  href: api/wan24.Core.ParallelItemQueueWorkerBase-1.html#wan24_Core_ParallelItemQueueWorkerBase_1_TryEnqueue__0_
+  commentId: M:wan24.Core.ParallelItemQueueWorkerBase`1.TryEnqueue(`0)
+  fullName: wan24.Core.ParallelItemQueueWorkerBase<T>.TryEnqueue(T)
+  fullName.vb: wan24.Core.ParallelItemQueueWorkerBase(Of T).TryEnqueue(T)
+  nameWithType: ParallelItemQueueWorkerBase<T>.TryEnqueue(T)
+  nameWithType.vb: ParallelItemQueueWorkerBase(Of T).TryEnqueue(T)
+- uid: wan24.Core.ParallelItemQueueWorkerBase`1.TryEnqueue*
+  name: TryEnqueue
+  href: api/wan24.Core.ParallelItemQueueWorkerBase-1.html#wan24_Core_ParallelItemQueueWorkerBase_1_TryEnqueue_
+  commentId: Overload:wan24.Core.ParallelItemQueueWorkerBase`1.TryEnqueue
+  isSpec: "True"
+  fullName: wan24.Core.ParallelItemQueueWorkerBase<T>.TryEnqueue
+  fullName.vb: wan24.Core.ParallelItemQueueWorkerBase(Of T).TryEnqueue
+  nameWithType: ParallelItemQueueWorkerBase<T>.TryEnqueue
+  nameWithType.vb: ParallelItemQueueWorkerBase(Of T).TryEnqueue
 - uid: wan24.Core.ParallelQueueWorker
   name: ParallelQueueWorker
   href: api/wan24.Core.ParallelQueueWorker.html
@@ -10847,6 +10962,31 @@ references:
   isSpec: "True"
   fullName: wan24.Core.QueueWorker.EnqueueAsync
   nameWithType: QueueWorker.EnqueueAsync
+- uid: wan24.Core.QueueWorker.EnqueueRangeAsync(IAsyncEnumerable{wan24.Core.QueueWorker.Task_Delegate},CancellationToken)
+  name: EnqueueRangeAsync(IAsyncEnumerable<QueueWorker.Task_Delegate>, CancellationToken)
+  href: api/wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_EnqueueRangeAsync_IAsyncEnumerable_wan24_Core_QueueWorker_Task_Delegate__CancellationToken_
+  commentId: M:wan24.Core.QueueWorker.EnqueueRangeAsync(IAsyncEnumerable{wan24.Core.QueueWorker.Task_Delegate},CancellationToken)
+  name.vb: EnqueueRangeAsync(IAsyncEnumerable(Of QueueWorker.Task_Delegate), CancellationToken)
+  fullName: wan24.Core.QueueWorker.EnqueueRangeAsync(IAsyncEnumerable<wan24.Core.QueueWorker.Task_Delegate>, CancellationToken)
+  fullName.vb: wan24.Core.QueueWorker.EnqueueRangeAsync(IAsyncEnumerable(Of wan24.Core.QueueWorker.Task_Delegate), CancellationToken)
+  nameWithType: QueueWorker.EnqueueRangeAsync(IAsyncEnumerable<QueueWorker.Task_Delegate>, CancellationToken)
+  nameWithType.vb: QueueWorker.EnqueueRangeAsync(IAsyncEnumerable(Of QueueWorker.Task_Delegate), CancellationToken)
+- uid: wan24.Core.QueueWorker.EnqueueRangeAsync(IEnumerable{wan24.Core.QueueWorker.Task_Delegate},CancellationToken)
+  name: EnqueueRangeAsync(IEnumerable<QueueWorker.Task_Delegate>, CancellationToken)
+  href: api/wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_EnqueueRangeAsync_IEnumerable_wan24_Core_QueueWorker_Task_Delegate__CancellationToken_
+  commentId: M:wan24.Core.QueueWorker.EnqueueRangeAsync(IEnumerable{wan24.Core.QueueWorker.Task_Delegate},CancellationToken)
+  name.vb: EnqueueRangeAsync(IEnumerable(Of QueueWorker.Task_Delegate), CancellationToken)
+  fullName: wan24.Core.QueueWorker.EnqueueRangeAsync(IEnumerable<wan24.Core.QueueWorker.Task_Delegate>, CancellationToken)
+  fullName.vb: wan24.Core.QueueWorker.EnqueueRangeAsync(IEnumerable(Of wan24.Core.QueueWorker.Task_Delegate), CancellationToken)
+  nameWithType: QueueWorker.EnqueueRangeAsync(IEnumerable<QueueWorker.Task_Delegate>, CancellationToken)
+  nameWithType.vb: QueueWorker.EnqueueRangeAsync(IEnumerable(Of QueueWorker.Task_Delegate), CancellationToken)
+- uid: wan24.Core.QueueWorker.EnqueueRangeAsync*
+  name: EnqueueRangeAsync
+  href: api/wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_EnqueueRangeAsync_
+  commentId: Overload:wan24.Core.QueueWorker.EnqueueRangeAsync
+  isSpec: "True"
+  fullName: wan24.Core.QueueWorker.EnqueueRangeAsync
+  nameWithType: QueueWorker.EnqueueRangeAsync
 - uid: wan24.Core.QueueWorker.ExecuteAsync(CancellationToken)
   name: ExecuteAsync(CancellationToken)
   href: api/wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_ExecuteAsync_CancellationToken_
@@ -10923,6 +11063,19 @@ references:
   commentId: T:wan24.Core.QueueWorker.Task_Delegate
   fullName: wan24.Core.QueueWorker.Task_Delegate
   nameWithType: QueueWorker.Task_Delegate
+- uid: wan24.Core.QueueWorker.TryEnqueue(wan24.Core.QueueWorker.Task_Delegate)
+  name: TryEnqueue(QueueWorker.Task_Delegate)
+  href: api/wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_TryEnqueue_wan24_Core_QueueWorker_Task_Delegate_
+  commentId: M:wan24.Core.QueueWorker.TryEnqueue(wan24.Core.QueueWorker.Task_Delegate)
+  fullName: wan24.Core.QueueWorker.TryEnqueue(wan24.Core.QueueWorker.Task_Delegate)
+  nameWithType: QueueWorker.TryEnqueue(QueueWorker.Task_Delegate)
+- uid: wan24.Core.QueueWorker.TryEnqueue*
+  name: TryEnqueue
+  href: api/wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_TryEnqueue_
+  commentId: Overload:wan24.Core.QueueWorker.TryEnqueue
+  isSpec: "True"
+  fullName: wan24.Core.QueueWorker.TryEnqueue
+  nameWithType: QueueWorker.TryEnqueue
 - uid: wan24.Core.ReflectionExtensions
   name: ReflectionExtensions
   href: api/wan24.Core.ReflectionExtensions.html

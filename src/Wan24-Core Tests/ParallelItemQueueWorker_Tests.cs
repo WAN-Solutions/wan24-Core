@@ -32,7 +32,7 @@ namespace Wan24_Core_Tests
             }
         }
 
-        public sealed class TestObject : ParallelItemQueueWorker<ManualResetEventSlim>
+        public sealed class TestObject : ParallelItemQueueWorkerBase<ManualResetEventSlim>
         {
             public int Working = 0;
             public int Worked = 0;

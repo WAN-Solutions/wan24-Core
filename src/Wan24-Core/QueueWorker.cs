@@ -30,7 +30,35 @@ namespace wan24.Core
         public Exception? LastException { get; protected set; }
 
         /// <inheritdoc/>
-        public async ValueTask EnqueueAsync(Task_Delegate task, CancellationToken cancellationToken = default) => await Queue.Writer.WriteAsync(task, cancellationToken).DynamicContext();
+        public ValueTask EnqueueAsync(Task_Delegate task, CancellationToken cancellationToken = default)
+            => Queue.Writer.WriteAsync(task, cancellationToken);
+
+        /// <inheritdoc/>
+        public bool TryEnqueue(Task_Delegate task) => Queue.Writer.TryWrite(task);
+
+        /// <inheritdoc/>
+        public async ValueTask<int> EnqueueRangeAsync(IEnumerable<Task_Delegate> tasks, CancellationToken cancellationToken = default)
+        {
+            int enqueued = 0;
+            foreach (Task_Delegate task in tasks)
+            {
+                await EnqueueAsync(task, cancellationToken).DynamicContext();
+                enqueued++;
+            }
+            return enqueued;
+        }
+
+        /// <inheritdoc/>
+        public async ValueTask<int> EnqueueRangeAsync(IAsyncEnumerable<Task_Delegate> tasks, CancellationToken cancellationToken = default)
+        {
+            int enqueued = 0;
+            await foreach (Task_Delegate task in tasks.DynamicContext().WithCancellation(cancellationToken))
+            {
+                await EnqueueAsync(task, cancellationToken).DynamicContext();
+                enqueued++;
+            }
+            return enqueued;
+        }
 
         /// <inheritdoc/>
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
