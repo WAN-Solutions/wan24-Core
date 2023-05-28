@@ -9997,6 +9997,22 @@ references:
   commentId: T:wan24.Core.ParallelAsync
   fullName: wan24.Core.ParallelAsync
   nameWithType: ParallelAsync
+- uid: wan24.Core.ParallelAsync.Filter*
+  name: Filter
+  href: api/wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_Filter_
+  commentId: Overload:wan24.Core.ParallelAsync.Filter
+  isSpec: "True"
+  fullName: wan24.Core.ParallelAsync.Filter
+  nameWithType: ParallelAsync.Filter
+- uid: wan24.Core.ParallelAsync.Filter``2(IEnumerable{``0},Func{``0,ParallelLoopState,CancellationToken,System.ValueTuple{System.Boolean,``1}},System.Nullable{ParallelOptions},CancellationToken)
+  name: Filter<tInput, tOutput>(IEnumerable<tInput>, Func<tInput, ParallelLoopState, CancellationToken, (Boolean Yield, tOutput Output)>, Nullable<ParallelOptions>, CancellationToken)
+  href: api/wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_Filter__2_IEnumerable___0__Func___0_ParallelLoopState_CancellationToken_System_ValueTuple_System_Boolean___1___System_Nullable_ParallelOptions__CancellationToken_
+  commentId: M:wan24.Core.ParallelAsync.Filter``2(IEnumerable{``0},Func{``0,ParallelLoopState,CancellationToken,System.ValueTuple{System.Boolean,``1}},System.Nullable{ParallelOptions},CancellationToken)
+  name.vb: Filter(Of tInput, tOutput)(IEnumerable(Of tInput), Func(Of tInput, ParallelLoopState, CancellationToken, (Yield As Boolean, Output As tOutput)(Of Boolean, tOutput)), Nullable(Of ParallelOptions), CancellationToken)
+  fullName: wan24.Core.ParallelAsync.Filter<tInput, tOutput>(IEnumerable<tInput>, Func<tInput, ParallelLoopState, CancellationToken, System.ValueTuple<System.Boolean, tOutput>>, System.Nullable<ParallelOptions>, CancellationToken)
+  fullName.vb: wan24.Core.ParallelAsync.Filter(Of tInput, tOutput)(IEnumerable(Of tInput), Func(Of tInput, ParallelLoopState, CancellationToken, System.ValueTuple(Of System.Boolean, tOutput)), System.Nullable(Of ParallelOptions), CancellationToken)
+  nameWithType: ParallelAsync.Filter<tInput, tOutput>(IEnumerable<tInput>, Func<tInput, ParallelLoopState, CancellationToken, (Boolean Yield, tOutput Output)>, Nullable<ParallelOptions>, CancellationToken)
+  nameWithType.vb: ParallelAsync.Filter(Of tInput, tOutput)(IEnumerable(Of tInput), Func(Of tInput, ParallelLoopState, CancellationToken, (Yield As Boolean, Output As tOutput)(Of Boolean, tOutput)), Nullable(Of ParallelOptions), CancellationToken)
 - uid: wan24.Core.ParallelAsync.FilterAsync*
   name: FilterAsync
   href: api/wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_FilterAsync_

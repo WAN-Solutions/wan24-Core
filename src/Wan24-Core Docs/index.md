@@ -91,6 +91,7 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
     - `ForEachAsync` with an asynchronous or synchronous input source
     - `FilterAsync` with an asynchronous or synchronous input source and item 
     filter
+    - `Filter` for synchronous parallel filtering
 - Base class for a hosted worker, which implements the `IHostedService` 
 interface (timed or permanent running)
 - `EventThrottle` for throttling event handler calls
