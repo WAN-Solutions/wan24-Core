@@ -88,6 +88,10 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
 - Queue worker (for actions and/or items)
 - Parallel queue worker (for actions and/or items)
 - `ParallelAsync` implementation
+    - `ForEachAsync` with an asynchronous or synchronous input source
+    - `FilterAsync` with an asynchronous or synchronous input source and item 
+    filter
+    - `Filter` for synchronous parallel filtering
 - Base class for a hosted worker, which implements the `IHostedService` 
 interface (timed or permanent running)
 - `EventThrottle` for throttling event handler calls
@@ -105,6 +109,7 @@ types), and `BlockingObjectPool` for a strict pool capacity limit
 - `ResetEvent` for (a)synchronous event waiting
 - `LazyValue<T>`, `DisposableLazyValue<T>`, `AsyncDisposableLazyValue<T>` and 
 `TimeoutValue<T>` for lazy and timeout value serving
+- `ObjectLockManager` for asynchronous and awaitable object locking
 
 ## How to get it
 

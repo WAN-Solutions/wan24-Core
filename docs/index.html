@@ -209,7 +209,14 @@ per default)</li>
 </li>
 <li>Queue worker (for actions and/or items)</li>
 <li>Parallel queue worker (for actions and/or items)</li>
-<li><code>ParallelAsync</code> implementation</li>
+<li><code>ParallelAsync</code> implementation
+<ul>
+<li><code>ForEachAsync</code> with an asynchronous or synchronous input source</li>
+<li><code>FilterAsync</code> with an asynchronous or synchronous input source and item
+filter</li>
+<li><code>Filter</code> for synchronous parallel filtering</li>
+</ul>
+</li>
 <li>Base class for a hosted worker, which implements the <code>IHostedService</code>
 interface (timed or permanent running)</li>
 <li><code>EventThrottle</code> for throttling event handler calls</li>
@@ -227,6 +234,7 @@ types), and <code>BlockingObjectPool</code> for a strict pool capacity limit</li
 <li><code>ResetEvent</code> for (a)synchronous event waiting</li>
 <li><code>LazyValue&lt;T&gt;</code>, <code>DisposableLazyValue&lt;T&gt;</code>, <code>AsyncDisposableLazyValue&lt;T&gt;</code> and
 <code>TimeoutValue&lt;T&gt;</code> for lazy and timeout value serving</li>
+<li><code>ObjectLockManager</code> for asynchronous and awaitable object locking</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
