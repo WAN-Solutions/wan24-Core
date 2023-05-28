@@ -9997,6 +9997,49 @@ references:
   commentId: T:wan24.Core.ParallelAsync
   fullName: wan24.Core.ParallelAsync
   nameWithType: ParallelAsync
+- uid: wan24.Core.ParallelAsync.FilterAsync*
+  name: FilterAsync
+  href: api/wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_FilterAsync_
+  commentId: Overload:wan24.Core.ParallelAsync.FilterAsync
+  isSpec: "True"
+  fullName: wan24.Core.ParallelAsync.FilterAsync
+  nameWithType: ParallelAsync.FilterAsync
+- uid: wan24.Core.ParallelAsync.FilterAsync``2(IAsyncEnumerable{``0},Func{``0,CancellationToken,System.ValueTuple{System.Boolean,``1}},System.Nullable{System.Int32},CancellationToken)
+  name: FilterAsync<tInput, tOutput>(IAsyncEnumerable<tInput>, Func<tInput, CancellationToken, (Boolean Yield, tOutput Output)>, Nullable<Int32>, CancellationToken)
+  href: api/wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_FilterAsync__2_IAsyncEnumerable___0__Func___0_CancellationToken_System_ValueTuple_System_Boolean___1___System_Nullable_System_Int32__CancellationToken_
+  commentId: M:wan24.Core.ParallelAsync.FilterAsync``2(IAsyncEnumerable{``0},Func{``0,CancellationToken,System.ValueTuple{System.Boolean,``1}},System.Nullable{System.Int32},CancellationToken)
+  name.vb: FilterAsync(Of tInput, tOutput)(IAsyncEnumerable(Of tInput), Func(Of tInput, CancellationToken, (Yield As Boolean, Output As tOutput)(Of Boolean, tOutput)), Nullable(Of Int32), CancellationToken)
+  fullName: wan24.Core.ParallelAsync.FilterAsync<tInput, tOutput>(IAsyncEnumerable<tInput>, Func<tInput, CancellationToken, System.ValueTuple<System.Boolean, tOutput>>, System.Nullable<System.Int32>, CancellationToken)
+  fullName.vb: wan24.Core.ParallelAsync.FilterAsync(Of tInput, tOutput)(IAsyncEnumerable(Of tInput), Func(Of tInput, CancellationToken, System.ValueTuple(Of System.Boolean, tOutput)), System.Nullable(Of System.Int32), CancellationToken)
+  nameWithType: ParallelAsync.FilterAsync<tInput, tOutput>(IAsyncEnumerable<tInput>, Func<tInput, CancellationToken, (Boolean Yield, tOutput Output)>, Nullable<Int32>, CancellationToken)
+  nameWithType.vb: ParallelAsync.FilterAsync(Of tInput, tOutput)(IAsyncEnumerable(Of tInput), Func(Of tInput, CancellationToken, (Yield As Boolean, Output As tOutput)(Of Boolean, tOutput)), Nullable(Of Int32), CancellationToken)
+- uid: wan24.Core.ParallelAsync.FilterAsync``2(IAsyncEnumerable{``0},Func{``0,CancellationToken,Task{System.ValueTuple{System.Boolean,``1}}},System.Nullable{System.Int32},CancellationToken)
+  name: FilterAsync<tInput, tOutput>(IAsyncEnumerable<tInput>, Func<tInput, CancellationToken, Task<(Boolean Yield, tOutput Output)>>, Nullable<Int32>, CancellationToken)
+  href: api/wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_FilterAsync__2_IAsyncEnumerable___0__Func___0_CancellationToken_Task_System_ValueTuple_System_Boolean___1____System_Nullable_System_Int32__CancellationToken_
+  commentId: M:wan24.Core.ParallelAsync.FilterAsync``2(IAsyncEnumerable{``0},Func{``0,CancellationToken,Task{System.ValueTuple{System.Boolean,``1}}},System.Nullable{System.Int32},CancellationToken)
+  name.vb: FilterAsync(Of tInput, tOutput)(IAsyncEnumerable(Of tInput), Func(Of tInput, CancellationToken, Task(Of (Yield As Boolean, Output As tOutput)(Of Boolean, tOutput))), Nullable(Of Int32), CancellationToken)
+  fullName: wan24.Core.ParallelAsync.FilterAsync<tInput, tOutput>(IAsyncEnumerable<tInput>, Func<tInput, CancellationToken, Task<System.ValueTuple<System.Boolean, tOutput>>>, System.Nullable<System.Int32>, CancellationToken)
+  fullName.vb: wan24.Core.ParallelAsync.FilterAsync(Of tInput, tOutput)(IAsyncEnumerable(Of tInput), Func(Of tInput, CancellationToken, Task(Of System.ValueTuple(Of System.Boolean, tOutput))), System.Nullable(Of System.Int32), CancellationToken)
+  nameWithType: ParallelAsync.FilterAsync<tInput, tOutput>(IAsyncEnumerable<tInput>, Func<tInput, CancellationToken, Task<(Boolean Yield, tOutput Output)>>, Nullable<Int32>, CancellationToken)
+  nameWithType.vb: ParallelAsync.FilterAsync(Of tInput, tOutput)(IAsyncEnumerable(Of tInput), Func(Of tInput, CancellationToken, Task(Of (Yield As Boolean, Output As tOutput)(Of Boolean, tOutput))), Nullable(Of Int32), CancellationToken)
+- uid: wan24.Core.ParallelAsync.FilterAsync``2(IEnumerable{``0},Func{``0,CancellationToken,System.ValueTuple{System.Boolean,``1}},System.Nullable{System.Int32},CancellationToken)
+  name: FilterAsync<tInput, tOutput>(IEnumerable<tInput>, Func<tInput, CancellationToken, (Boolean Yield, tOutput Output)>, Nullable<Int32>, CancellationToken)
+  href: api/wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_FilterAsync__2_IEnumerable___0__Func___0_CancellationToken_System_ValueTuple_System_Boolean___1___System_Nullable_System_Int32__CancellationToken_
+  commentId: M:wan24.Core.ParallelAsync.FilterAsync``2(IEnumerable{``0},Func{``0,CancellationToken,System.ValueTuple{System.Boolean,``1}},System.Nullable{System.Int32},CancellationToken)
+  name.vb: FilterAsync(Of tInput, tOutput)(IEnumerable(Of tInput), Func(Of tInput, CancellationToken, (Yield As Boolean, Output As tOutput)(Of Boolean, tOutput)), Nullable(Of Int32), CancellationToken)
+  fullName: wan24.Core.ParallelAsync.FilterAsync<tInput, tOutput>(IEnumerable<tInput>, Func<tInput, CancellationToken, System.ValueTuple<System.Boolean, tOutput>>, System.Nullable<System.Int32>, CancellationToken)
+  fullName.vb: wan24.Core.ParallelAsync.FilterAsync(Of tInput, tOutput)(IEnumerable(Of tInput), Func(Of tInput, CancellationToken, System.ValueTuple(Of System.Boolean, tOutput)), System.Nullable(Of System.Int32), CancellationToken)
+  nameWithType: ParallelAsync.FilterAsync<tInput, tOutput>(IEnumerable<tInput>, Func<tInput, CancellationToken, (Boolean Yield, tOutput Output)>, Nullable<Int32>, CancellationToken)
+  nameWithType.vb: ParallelAsync.FilterAsync(Of tInput, tOutput)(IEnumerable(Of tInput), Func(Of tInput, CancellationToken, (Yield As Boolean, Output As tOutput)(Of Boolean, tOutput)), Nullable(Of Int32), CancellationToken)
+- uid: wan24.Core.ParallelAsync.FilterAsync``2(IEnumerable{``0},Func{``0,CancellationToken,Task{System.ValueTuple{System.Boolean,``1}}},System.Nullable{System.Int32},CancellationToken)
+  name: FilterAsync<tInput, tOutput>(IEnumerable<tInput>, Func<tInput, CancellationToken, Task<(Boolean Yield, tOutput Output)>>, Nullable<Int32>, CancellationToken)
+  href: api/wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_FilterAsync__2_IEnumerable___0__Func___0_CancellationToken_Task_System_ValueTuple_System_Boolean___1____System_Nullable_System_Int32__CancellationToken_
+  commentId: M:wan24.Core.ParallelAsync.FilterAsync``2(IEnumerable{``0},Func{``0,CancellationToken,Task{System.ValueTuple{System.Boolean,``1}}},System.Nullable{System.Int32},CancellationToken)
+  name.vb: FilterAsync(Of tInput, tOutput)(IEnumerable(Of tInput), Func(Of tInput, CancellationToken, Task(Of (Yield As Boolean, Output As tOutput)(Of Boolean, tOutput))), Nullable(Of Int32), CancellationToken)
+  fullName: wan24.Core.ParallelAsync.FilterAsync<tInput, tOutput>(IEnumerable<tInput>, Func<tInput, CancellationToken, Task<System.ValueTuple<System.Boolean, tOutput>>>, System.Nullable<System.Int32>, CancellationToken)
+  fullName.vb: wan24.Core.ParallelAsync.FilterAsync(Of tInput, tOutput)(IEnumerable(Of tInput), Func(Of tInput, CancellationToken, Task(Of System.ValueTuple(Of System.Boolean, tOutput))), System.Nullable(Of System.Int32), CancellationToken)
+  nameWithType: ParallelAsync.FilterAsync<tInput, tOutput>(IEnumerable<tInput>, Func<tInput, CancellationToken, Task<(Boolean Yield, tOutput Output)>>, Nullable<Int32>, CancellationToken)
+  nameWithType.vb: ParallelAsync.FilterAsync(Of tInput, tOutput)(IEnumerable(Of tInput), Func(Of tInput, CancellationToken, Task(Of (Yield As Boolean, Output As tOutput)(Of Boolean, tOutput))), Nullable(Of Int32), CancellationToken)
 - uid: wan24.Core.ParallelAsync.ForEachAsync*
   name: ForEachAsync
   href: api/wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_ForEachAsync_

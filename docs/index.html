@@ -209,7 +209,13 @@ per default)</li>
 </li>
 <li>Queue worker (for actions and/or items)</li>
 <li>Parallel queue worker (for actions and/or items)</li>
-<li><code>ParallelAsync</code> implementation</li>
+<li><code>ParallelAsync</code> implementation
+<ul>
+<li><code>ForEachAsync</code> with an asynchronous or synchronous input source</li>
+<li><code>FilterAsync</code> with an asynchronous or synchronous input source and item
+filter</li>
+</ul>
+</li>
 <li>Base class for a hosted worker, which implements the <code>IHostedService</code>
 interface (timed or permanent running)</li>
 <li><code>EventThrottle</code> for throttling event handler calls</li>

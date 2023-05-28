@@ -88,6 +88,9 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
 - Queue worker (for actions and/or items)
 - Parallel queue worker (for actions and/or items)
 - `ParallelAsync` implementation
+    - `ForEachAsync` with an asynchronous or synchronous input source
+    - `FilterAsync` with an asynchronous or synchronous input source and item 
+    filter
 - Base class for a hosted worker, which implements the `IHostedService` 
 interface (timed or permanent running)
 - `EventThrottle` for throttling event handler calls
