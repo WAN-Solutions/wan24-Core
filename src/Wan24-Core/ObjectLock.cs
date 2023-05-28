@@ -67,6 +67,7 @@
             }
             try
             {
+                EnsureUndisposed();
                 await task.DynamicContext();
                 await SetCompletedAsync().DynamicContext();
             }
