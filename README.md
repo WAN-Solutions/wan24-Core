@@ -603,14 +603,14 @@ The `ObjectLockManager<T>` helps locking any object during an asynchronous
 operation:
 
 ```cs
-ObjectLock ol = await ObjectLockManager<AnyType>.LockAsync(anyObjectKey);
-// A 2nd call to ObjectLockManager<AnyType>.LockAsync would block until the lock was released
+ObjectLock ol = await ObjectLockManager<AnyType>.Shared.LockAsync(anyObjectKey);
+// A 2nd call to ObjectLockManager<AnyType>.Shared.LockAsync would block until the lock was released
 await ol.RunTaskAsync(Task.Run(async () => 
 {
     // Perform the asynchronous operation here
 }));
 // ol is disposed already, 'cause the asynchronous operation source task was awaited
-// The next ObjectLockManager<AnyType>.LockAsync call will be processed now, if any
+// The next ObjectLockManager<AnyType>.Shared.LockAsync call will be processed now, if any
 await ol.Task;// To throw any exception during performing the asynchronous operation
 ```
 
