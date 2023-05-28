@@ -29,7 +29,7 @@
         /// <param name="threads">Number of threads</param>
         public ParallelQueueWorker(int capacity, int threads) : base(capacity)
         {
-            if (threads < 1) throw new ArgumentOutOfRangeException(nameof(threads));
+            if (threads < 1 || capacity < threads) throw new ArgumentOutOfRangeException(nameof(threads));
             Threads = threads;
         }
 

@@ -13,17 +13,22 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="items">Items</param>
         /// <param name="itemHandler">Item handler</param>
+        /// <param name="queueCapacity">Queue capacity</param>
         /// <param name="threads">Number of threads to use (<see langword="null"/> to use the number of available CPU cores)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         public static async Task ForEachAsync<T>(
             this IEnumerable<T> items,
             Func<T, CancellationToken, Task> itemHandler,
+            int queueCapacity = int.MaxValue,
             int? threads = null,
             CancellationToken cancellationToken = default
             )
         {
-            if (threads != null && threads < 1) throw new ArgumentOutOfRangeException(nameof(threads));
-            using ParallelAsyncProcessor<T> processor = new(itemHandler, threads ?? Environment.ProcessorCount);
+            if (queueCapacity < 1) throw new ArgumentOutOfRangeException(nameof(queueCapacity));
+            threads ??= Math.Min(queueCapacity, Environment.ProcessorCount);
+            if (threads < 1) throw new ArgumentOutOfRangeException(nameof(threads));
+            if (queueCapacity < threads) throw new ArgumentOutOfRangeException(nameof(queueCapacity));
+            using ParallelAsyncProcessor<T> processor = new(itemHandler, queueCapacity, threads.Value);
             await processor.StartAsync(cancellationToken).DynamicContext();
             await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
             await processor.WaitBoringAsync(cancellationToken).DynamicContext();
@@ -36,17 +41,22 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="items">Items</param>
         /// <param name="itemHandler">Item handler</param>
+        /// <param name="queueCapacity">Queue capacity</param>
         /// <param name="threads">Number of threads to use (<see langword="null"/> to use the number of available CPU cores)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         public static async Task ForEachAsync<T>(
             this IAsyncEnumerable<T> items,
             Func<T, CancellationToken, Task> itemHandler,
+            int queueCapacity = int.MaxValue,
             int? threads = null,
             CancellationToken cancellationToken = default
             )
         {
-            if (threads != null && threads < 1) throw new ArgumentOutOfRangeException(nameof(threads));
-            using ParallelAsyncProcessor<T> processor = new(itemHandler, threads ?? Environment.ProcessorCount);
+            if (queueCapacity < 1) throw new ArgumentOutOfRangeException(nameof(queueCapacity));
+            threads ??= Math.Min(queueCapacity, Environment.ProcessorCount);
+            if (threads < 1) throw new ArgumentOutOfRangeException(nameof(threads));
+            if (queueCapacity < threads) throw new ArgumentOutOfRangeException(nameof(queueCapacity));
+            using ParallelAsyncProcessor<T> processor = new(itemHandler, queueCapacity, threads.Value);
             await processor.StartAsync(cancellationToken).DynamicContext();
             await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
             await processor.WaitBoringAsync(cancellationToken).DynamicContext();
@@ -60,12 +70,14 @@ namespace wan24.Core
         /// <typeparam name="tOutput">Output type</typeparam>
         /// <param name="items">Items</param>
         /// <param name="itemFilter">Filter function (returns <see langword="false"/> and a default to skip output, or <see langword="true"/> to yield the output)</param>
+        /// <param name="queueCapacity">Queue capacity</param>
         /// <param name="threads">Number of threads to use (<see langword="null"/> to use the number of available CPU cores)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Filtered items</returns>
         public static async IAsyncEnumerable<tOutput> FilterAsync<tInput, tOutput>(
             this IEnumerable<tInput> items,
             Func<tInput, CancellationToken, Task<(bool Yield, tOutput Output)>> itemFilter,
+            int queueCapacity = int.MaxValue,
             int? threads = null,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
@@ -102,7 +114,7 @@ namespace wan24.Core
                         }
                         output = outItem;
                         syncOutput.Release();
-                    }, threads, cancellationToken).DynamicContext();
+                    }, queueCapacity, threads, cancellationToken).DynamicContext();
                 }
                 finally
                 {
@@ -144,12 +156,14 @@ namespace wan24.Core
         /// <typeparam name="tOutput">Output type</typeparam>
         /// <param name="items">Items</param>
         /// <param name="itemFilter">Filter function (returns <see langword="false"/> and a default to skip output, or <see langword="true"/> to yield the output)</param>
+        /// <param name="queueCapacity">Queue capacity</param>
         /// <param name="threads">Number of threads to use (<see langword="null"/> to use the number of available CPU cores)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Filtered items</returns>
         public static async IAsyncEnumerable<tOutput> FilterAsync<tInput, tOutput>(
             this IAsyncEnumerable<tInput> items,
             Func<tInput, CancellationToken, Task<(bool Yield, tOutput Output)>> itemFilter,
+            int queueCapacity = int.MaxValue,
             int? threads = null,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
@@ -186,7 +200,7 @@ namespace wan24.Core
                         }
                         output = outItem;
                         syncOutput.Release();
-                    }, threads, cancellationToken).DynamicContext();
+                    }, queueCapacity, threads, cancellationToken).DynamicContext();
                 }
                 finally
                 {
@@ -228,12 +242,14 @@ namespace wan24.Core
         /// <typeparam name="tOutput">Output type</typeparam>
         /// <param name="items">Items</param>
         /// <param name="itemFilter">Filter function (returns <see langword="false"/> and a default to skip output, or <see langword="true"/> to yield the output)</param>
+        /// <param name="queueCapacity">Queue capacity</param>
         /// <param name="threads">Number of threads to use (<see langword="null"/> to use the number of available CPU cores)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Filtered items</returns>
         public static async IAsyncEnumerable<tOutput> FilterAsync<tInput, tOutput>(
             this IEnumerable<tInput> items,
             Func<tInput, CancellationToken, (bool Yield, tOutput Output)> itemFilter,
+            int queueCapacity = int.MaxValue,
             int? threads = null,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
@@ -271,7 +287,7 @@ namespace wan24.Core
                         }
                         output = outItem;
                         syncOutput.Release();
-                    }, threads, cancellationToken).DynamicContext();
+                    }, queueCapacity, threads, cancellationToken).DynamicContext();
                 }
                 finally
                 {
@@ -313,12 +329,14 @@ namespace wan24.Core
         /// <typeparam name="tOutput">Output type</typeparam>
         /// <param name="items">Items</param>
         /// <param name="itemFilter">Filter function (returns <see langword="false"/> and a default to skip output, or <see langword="true"/> to yield the output)</param>
+        /// <param name="queueCapacity">Queue capacity</param>
         /// <param name="threads">Number of threads to use (<see langword="null"/> to use the number of available CPU cores)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Filtered items</returns>
         public static async IAsyncEnumerable<tOutput> FilterAsync<tInput, tOutput>(
             this IAsyncEnumerable<tInput> items,
             Func<tInput, CancellationToken, (bool Yield, tOutput Output)> itemFilter,
+            int queueCapacity = int.MaxValue,
             int? threads = null,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
@@ -356,7 +374,7 @@ namespace wan24.Core
                         }
                         output = outItem;
                         syncOutput.Release();
-                    }, threads, cancellationToken).DynamicContext();
+                    }, queueCapacity, threads, cancellationToken).DynamicContext();
                 }
                 finally
                 {
@@ -493,8 +511,9 @@ namespace wan24.Core
             /// Constructor
             /// </summary>
             /// <param name="itemHandler">Item handler</param>
+            /// <param name="queueCapacity">Queue capacity</param>
             /// <param name="threads">Number of threads to use</param>
-            internal ParallelAsyncProcessor(Func<T, CancellationToken, Task> itemHandler, int threads) : base(threads, threads) => ItemHandler = itemHandler;
+            internal ParallelAsyncProcessor(Func<T, CancellationToken, Task> itemHandler, int queueCapacity, int threads) : base(queueCapacity, threads) => ItemHandler = itemHandler;
 
             /// <inheritdoc/>
             protected override Task ProcessItem(T item, CancellationToken cancellationToken) => ItemHandler(item, cancellationToken);

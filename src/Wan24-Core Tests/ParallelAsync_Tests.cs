@@ -13,7 +13,7 @@ namespace Wan24_Core_Tests
             {
                 await Task.Yield();
                 processed++;
-            }, 2);
+            }, 3, 2);
             Assert.AreEqual(3, processed);
         }
 
@@ -24,7 +24,7 @@ namespace Wan24_Core_Tests
             {
                 await Task.Delay(Random.Shared.Next(10, 30), ct);
                 return (item.HasFlags(1), item);
-            }, 2).ToListAsync();
+            }, 3, 2).ToListAsync();
             Assert.AreEqual(2, filtered.Count);
             Assert.IsTrue(filtered.Contains(1));
             Assert.IsTrue(filtered.Contains(3));
