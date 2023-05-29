@@ -295,7 +295,6 @@ namespace wan24.Core
             lock (SyncObject)
             {
                 if (offset < 0 || offset >= BitCount) throw new ArgumentOutOfRangeException(nameof(offset));
-                if (BitCount + bits.Length > _Map.Length << 3) throw new OverflowException();
                 long byteOffset = offset >> 3;
                 for (int i = 0, bit; i < bits.Length; this[offset] = bits[i], offset++, byteOffset = offset >> 3, i++)
                 {
@@ -308,6 +307,37 @@ namespace wan24.Core
                     {
                         _Map[byteOffset] &= (byte)~bit;
                     }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Set bits
+        /// </summary>
+        /// <param name="bits">Bits to set</param>
+        /// <param name="offset">Start bit offset</param>
+        public virtual void SetBits(IEnumerable<bool> bits, long offset = 0)
+        {
+            lock (SyncObject)
+            {
+                long bitCount = BitCount;
+                if (offset < 0 || offset >= bitCount) throw new ArgumentOutOfRangeException(nameof(offset));
+                long byteOffset = offset >> 3;
+                int bit;
+                foreach(bool b in bits)
+                {
+                    if (offset >= bitCount) throw new OverflowException();
+                    bit = 1 << (int)(offset - (byteOffset << 3));
+                    if (b)
+                    {
+                        _Map[byteOffset] |= (byte)bit;
+                    }
+                    else
+                    {
+                        _Map[byteOffset] &= (byte)~bit;
+                    }
+                    offset++;
+                    byteOffset = offset >> 3;
                 }
             }
         }
