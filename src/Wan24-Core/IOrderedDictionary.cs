@@ -25,7 +25,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="index">Index</param>
         /// <returns>Key/value pair</returns>
-        KeyValuePair<tKey, tValue> Get(int index);
+        KeyValuePair<tKey, tValue> GetAt(int index);
         /// <summary>
         /// Insert
         /// </summary>
