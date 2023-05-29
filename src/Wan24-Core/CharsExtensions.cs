@@ -14,7 +14,7 @@ namespace wan24.Core
         public static void Clear(this char[] arr)
         {
             if (arr.Length == 0) return;
-            using RentedArray<byte> random = new(arr.Length);
+            using RentedArray<byte> random = new(arr.Length, clean: false);
             RandomNumberGenerator.Fill(random.Span);
             for (int i = 0, len = arr.Length; i < len; arr[i] = (char)random[i], i++) ;
             Array.Clear(arr);

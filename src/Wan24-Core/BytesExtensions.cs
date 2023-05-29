@@ -242,7 +242,7 @@ namespace wan24.Core
         public static decimal ToDecimal(this ReadOnlySpan<byte> bits)
         {
             if (bits.Length < sizeof(int) << 2) throw new ArgumentOutOfRangeException(nameof(bits));
-            using RentedArray<int> intBits = new(len: 4);
+            using RentedArray<int> intBits = new(len: 4, clean: false);
             for (int i = 0; i < 4; intBits[i] = bits.Slice(i << 2, sizeof(int)).ToInt(), i++) ;
             return new decimal(intBits.Span);
         }
@@ -262,7 +262,7 @@ namespace wan24.Core
         /// <returns>String</returns>
         public static string ToUtf8String(this ReadOnlySpan<byte> bytes, bool ignoreUsed = false)
         {
-            using RentedArray<char> chars = new(bytes.Length);
+            using RentedArray<char> chars = new(bytes.Length, clean: false);
             new UTF8Encoding(encoderShouldEmitUTF8Identifier: true, throwOnInvalidBytes: true)
                 .GetDecoder()
                 .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
@@ -306,7 +306,7 @@ namespace wan24.Core
         /// <returns>String</returns>
         public static char[] ToUtf8SChars(this ReadOnlySpan<byte> bytes, bool ignoreUsed = false)
         {
-            using RentedArray<char> chars = new(bytes.Length);
+            using RentedArray<char> chars = new(bytes.Length, clean: false);
             new UTF8Encoding(encoderShouldEmitUTF8Identifier: true, throwOnInvalidBytes: true)
                 .GetDecoder()
                 .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);

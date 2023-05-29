@@ -5,7 +5,7 @@ namespace Wan24_Core_Tests
     [TestClass]
     public class ParallelItemQueueWorker_Tests
     {
-        [TestMethod]
+        [TestMethod, Timeout(1000)]
         public async Task General_Tests()
         {
             using TestObject worker = new();
@@ -32,7 +32,7 @@ namespace Wan24_Core_Tests
             }
         }
 
-        public sealed class TestObject : ParallelItemQueueWorker<ManualResetEventSlim>
+        public sealed class TestObject : ParallelItemQueueWorkerBase<ManualResetEventSlim>
         {
             public int Working = 0;
             public int Worked = 0;

@@ -235,6 +235,7 @@ types), and <code>BlockingObjectPool</code> for a strict pool capacity limit</li
 <li><code>LazyValue&lt;T&gt;</code>, <code>DisposableLazyValue&lt;T&gt;</code>, <code>AsyncDisposableLazyValue&lt;T&gt;</code> and
 <code>TimeoutValue&lt;T&gt;</code> for lazy and timeout value serving</li>
 <li><code>ObjectLockManager</code> for asynchronous and awaitable object locking</li>
+<li><code>Bitmap</code> for working with bits</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
@@ -658,6 +659,23 @@ Assert.AreEqual(&quot;test&quot;, user.AnyValue.Value);
 <p>Using this hierarchy an administrator could also allow or deny overriding
 values at any time, for example.</p>
 <p>The hierarchy depth isn't limited.</p>
+<h2 id="object-locking">Object locking</h2>
+<p>The <code>ObjectLockManager&lt;T&gt;</code> helps locking any object during an asynchronous
+operation:</p>
+<pre><code class="lang-cs">ObjectLock ol = await ObjectLockManager&lt;AnyType&gt;.Shared.LockAsync(anyObjectKey);
+// A 2nd call to ObjectLockManager&lt;AnyType&gt;.Shared.LockAsync would block until the lock was released
+await ol.RunTaskAsync(Task.Run(async () =&gt; 
+{
+    // Perform the asynchronous operation here
+}));
+// ol is disposed already, 'cause the asynchronous operation source task was awaited
+// The next ObjectLockManager&lt;AnyType&gt;.Shared.LockAsync call will be processed now, if any
+await ol.Task;// To throw any exception during performing the asynchronous operation
+</code></pre>
+<p>If <code>AnyType</code> implements the <code>IObjectKey</code> interface, it can be given to the
+<code>ObjectLockManager&lt;T&gt;</code> methods as object argument.</p>
+<p><strong>NOTE</strong>: <code>ObjectLock</code> will dispose itself as soon as <code>RunTaskAsync</code> has been
+called, and the given task was completed.</p>
 </article>
           </div>
           

@@ -5,7 +5,7 @@ namespace Wan24_Core_Tests
     [TestClass]
     public class QueueWorker_Tests
     {
-        [TestMethod]
+        [TestMethod, Timeout(1000)]
         public async Task General_Tests()
         {
             using QueueWorker worker = new(1);
@@ -25,6 +25,12 @@ namespace Wan24_Core_Tests
                 task2Event.Wait(ct);
                 worked++;
             });
+            Assert.IsFalse(worker.TryEnqueue(async (ct) =>
+            {
+                await Task.Yield();
+                task2Event.Wait(ct);
+                worked++;
+            }));
             task1Event.Set();
             await Task.Delay(100);
             Assert.AreEqual(1, worked);

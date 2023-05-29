@@ -110,6 +110,7 @@ types), and `BlockingObjectPool` for a strict pool capacity limit
 - `LazyValue<T>`, `DisposableLazyValue<T>`, `AsyncDisposableLazyValue<T>` and 
 `TimeoutValue<T>` for lazy and timeout value serving
 - `ObjectLockManager` for asynchronous and awaitable object locking
+- `Bitmap` for working with bits
 
 ## How to get it
 
@@ -596,3 +597,26 @@ Using this hierarchy an administrator could also allow or deny overriding
 values at any time, for example.
 
 The hierarchy depth isn't limited.
+
+## Object locking
+
+The `ObjectLockManager<T>` helps locking any object during an asynchronous 
+operation:
+
+```cs
+ObjectLock ol = await ObjectLockManager<AnyType>.Shared.LockAsync(anyObjectKey);
+// A 2nd call to ObjectLockManager<AnyType>.Shared.LockAsync would block until the lock was released
+await ol.RunTaskAsync(Task.Run(async () => 
+{
+    // Perform the asynchronous operation here
+}));
+// ol is disposed already, 'cause the asynchronous operation source task was awaited
+// The next ObjectLockManager<AnyType>.Shared.LockAsync call will be processed now, if any
+await ol.Task;// To throw any exception during performing the asynchronous operation
+```
+
+If `AnyType` implements the `IObjectKey` interface, it can be given to the 
+`ObjectLockManager<T>` methods as object argument.
+
+**NOTE**: `ObjectLock` will dispose itself as soon as `RunTaskAsync` has been 
+called, and the given task was completed.

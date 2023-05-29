@@ -16,7 +16,8 @@ namespace wan24.Core
         /// <param name="queueCapacity">Queue capacity</param>
         /// <param name="threads">Number of threads to use (<see langword="null"/> to use the number of available CPU cores)</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        public static async Task ForEachAsync<T>(
+        /// <returns>Number of processed items</returns>
+        public static async Task<int> ForEachAsync<T>(
             this IEnumerable<T> items,
             Func<T, CancellationToken, Task> itemHandler,
             int queueCapacity = int.MaxValue,
@@ -30,9 +31,11 @@ namespace wan24.Core
             if (queueCapacity < threads) throw new ArgumentOutOfRangeException(nameof(queueCapacity));
             using ParallelAsyncProcessor<T> processor = new(itemHandler, queueCapacity, threads.Value);
             await processor.StartAsync(cancellationToken).DynamicContext();
-            await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
-            await processor.WaitBoringAsync(cancellationToken).DynamicContext();
+            int enqueued = await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
+            while (!cancellationToken.IsCancellationRequested && processor.Processed != enqueued)
+                await processor.WaitBoringAsync(cancellationToken).DynamicContext();
             await processor.StopAsync(cancellationToken).DynamicContext();
+            return processor.Processed;
         }
 
         /// <summary>
@@ -44,7 +47,8 @@ namespace wan24.Core
         /// <param name="queueCapacity">Queue capacity</param>
         /// <param name="threads">Number of threads to use (<see langword="null"/> to use the number of available CPU cores)</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        public static async Task ForEachAsync<T>(
+        /// <returns>Number of processed items</returns>
+        public static async Task<int> ForEachAsync<T>(
             this IAsyncEnumerable<T> items,
             Func<T, CancellationToken, Task> itemHandler,
             int queueCapacity = int.MaxValue,
@@ -58,9 +62,11 @@ namespace wan24.Core
             if (queueCapacity < threads) throw new ArgumentOutOfRangeException(nameof(queueCapacity));
             using ParallelAsyncProcessor<T> processor = new(itemHandler, queueCapacity, threads.Value);
             await processor.StartAsync(cancellationToken).DynamicContext();
-            await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
-            await processor.WaitBoringAsync(cancellationToken).DynamicContext();
+            int enqueued = await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
+            while (!cancellationToken.IsCancellationRequested && processor.Processed != enqueued)
+                await processor.WaitBoringAsync(cancellationToken).DynamicContext();
             await processor.StopAsync(cancellationToken).DynamicContext();
+            return processor.Processed;
         }
 
         /// <summary>
@@ -500,12 +506,16 @@ namespace wan24.Core
         /// Asynchronous parallel item processor
         /// </summary>
         /// <typeparam name="T">Item type</typeparam>
-        internal sealed class ParallelAsyncProcessor<T> : ParallelItemQueueWorker<T>
+        internal sealed class ParallelAsyncProcessor<T> : ParallelItemQueueWorkerBase<T>
         {
             /// <summary>
             /// Item handler
             /// </summary>
             private readonly Func<T, CancellationToken, Task> ItemHandler;
+            /// <summary>
+            /// Number of processed items
+            /// </summary>
+            private volatile int _Processed = 0;
 
             /// <summary>
             /// Constructor
@@ -515,8 +525,17 @@ namespace wan24.Core
             /// <param name="threads">Number of threads to use</param>
             internal ParallelAsyncProcessor(Func<T, CancellationToken, Task> itemHandler, int queueCapacity, int threads) : base(queueCapacity, threads) => ItemHandler = itemHandler;
 
+            /// <summary>
+            /// Number of processed items
+            /// </summary>
+            public int Processed => _Processed;
+
             /// <inheritdoc/>
-            protected override Task ProcessItem(T item, CancellationToken cancellationToken) => ItemHandler(item, cancellationToken);
+            protected override async Task ProcessItem(T item, CancellationToken cancellationToken)
+            {
+                await ItemHandler(item, cancellationToken).DynamicContext();
+                _Processed++;
+            }
         }
     }
 }
