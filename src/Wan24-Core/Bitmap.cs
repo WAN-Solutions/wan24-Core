@@ -676,6 +676,25 @@ namespace wan24.Core
         public static implicit operator Bitmap(long value) => new(value.GetBytes());
 
         /// <summary>
+        /// Cast from enumeration
+        /// </summary>
+        /// <param name="value">Value</param>
+        public static implicit operator Bitmap(Enum value)
+        {
+            Type type = value.GetType().GetEnumUnderlyingType();
+            object numeric = Convert.ChangeType(value, type);
+            if (numeric is byte b) return (Bitmap)b;
+            else if (numeric is sbyte sb) return (Bitmap)sb;
+            else if (numeric is ushort us) return (Bitmap)us;
+            else if (numeric is short s) return (Bitmap)s;
+            else if (numeric is uint ui) return (Bitmap)ui;
+            else if (numeric is int i) return (Bitmap)i;
+            else if (numeric is ulong ul) return (Bitmap)ul;
+            else if (numeric is long l) return (Bitmap)l;
+            throw new InvalidProgramException($"Unsupported enumeration {value.GetType()} underlying numeric type {type}");
+        }
+
+        /// <summary>
         /// Get the number of bytes required for covering a number of bits
         /// </summary>
         /// <param name="bitCount">Bit count</param>

@@ -37,6 +37,7 @@ namespace Wan24_Core_Tests
             Assert.AreEqual(123, bmp.ToInt());
             Assert.AreEqual((ulong)123, bmp.ToULong());
             Assert.AreEqual(123, bmp.ToLong());
+            Assert.AreEqual(1u, ((Bitmap)EnumExtensions_Tests.TestEnum.Value1).ToUInt());
         }
     }
 }
