@@ -87,7 +87,7 @@ namespace wan24.Core
         /// <param name="arr">Array</param>
         public static implicit operator SecureByteArray(SecureCharArray arr)
         {
-            using RentedArray<byte> buffer = new(arr.Length << 1);
+            using RentedArray<byte> buffer = new(arr.Length << 1, clean: false);
             return new(buffer.Span[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer)].ToArray());
         }
 
@@ -97,7 +97,7 @@ namespace wan24.Core
         /// <param name="arr">Array</param>
         public static implicit operator SecureByteArrayStruct(SecureCharArray arr)
         {
-            using RentedArray<byte> buffer = new(arr.Length << 1);
+            using RentedArray<byte> buffer = new(arr.Length << 1, clean: false);
             return new(buffer.Span[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer)].ToArray());
         }
 
