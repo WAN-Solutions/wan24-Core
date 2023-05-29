@@ -113,10 +113,13 @@ namespace wan24.Core
                 if (index == -1)
                 {
                     Items.Add(new(key, value));
+                    RaiseOnAdded(Count, key, value);
                 }
                 else
                 {
+                    tValue prev = Items[index].Value;
                     Items[index] = new(key, value);
+                    RaiseOnUpdated(index, key, prev);
                 }
             }
         }
@@ -125,7 +128,13 @@ namespace wan24.Core
         public tValue this[int index]
         {
             get => Items[EnsureValidIndex(index)].Value;
-            set => Items[EnsureValidIndex(index)] = new(Items[index].Key, value);
+            set
+            {
+                index = EnsureValidIndex(index);
+                KeyValuePair<tKey, tValue> prev = Items[index];
+                Items[index] = new(Items[index].Key, value);
+                RaiseOnUpdated(index, prev.Key, prev.Value);
+            }
         }
 
         /// <inheritdoc/>
@@ -155,6 +164,7 @@ namespace wan24.Core
         {
             EnsureWritable();
             Items.Add(new(EnsureFreshKey(key), value));
+            RaiseOnAdded(Count, key, value);
         }
 
         /// <inheritdoc/>
@@ -163,6 +173,7 @@ namespace wan24.Core
             EnsureWritable();
             EnsureFreshKey(item.Key);
             Items.Add(item);
+            RaiseOnAdded(Count, item.Key, item.Value);
         }
 
         /// <inheritdoc/>
@@ -172,6 +183,7 @@ namespace wan24.Core
             tKey k = (tKey)EnsureValidKey(key);
             EnsureFreshKey(k);
             Items.Add(new(k, (tValue)EnsureValidValue(value)!));
+            RaiseOnAdded(Count, k, (tValue)EnsureValidValue(value)!);
         }
 
         /// <inheritdoc/>
@@ -185,7 +197,10 @@ namespace wan24.Core
                 return;
             }
             EnsureFreshKey(key);
+            KeyValuePair<tKey, tValue> prev = Items[index];
             Items.Insert(index, new(key, value));
+            RaiseOnUpdated(index, prev.Key, prev.Value);
+            RaiseOnAdded(index, key, value);
         }
 
         /// <inheritdoc/>
@@ -199,7 +214,10 @@ namespace wan24.Core
         public void ReplaceAt(int index, tKey key, tValue value)
         {
             EnsureWritable();
+            KeyValuePair<tKey, tValue> prev = Items[index];
             Items[EnsureValidIndex(index)] = new(key, value);
+            RaiseOnRemoved(index, prev.Key, prev.Value);
+            RaiseOnAdded(index, key, value);
         }
 
         /// <inheritdoc/>
@@ -217,6 +235,13 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         public bool ContainsValue(tValue value) => IndexOfValue(value) != -1;
+
+        /// <inheritdoc/>
+        public KeyValuePair<tKey, tValue> GetAt(int index)
+        {
+            if (index < 0 || index >= Items.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            return Items[index];
+        }
 
         /// <inheritdoc/>
         public int IndexOfKey(tKey key)
@@ -267,14 +292,18 @@ namespace wan24.Core
         public virtual void RemoveAt(int index)
         {
             EnsureWritable();
+            KeyValuePair<tKey, tValue> prev = Items[index];
             Items.RemoveAt(EnsureValidIndex(index));
+            RaiseOnRemoved(index, prev.Key, prev.Value);
         }
 
         /// <inheritdoc/>
         public virtual void Clear()
         {
             EnsureWritable();
+            KeyValuePair<tKey, tValue>[] prev = Items.ToArray();
             Items.Clear();
+            for (int i = 0, len = prev.Length; i < len; i++) RaiseOnRemoved(i, prev[i].Key, prev[i].Value);
         }
 
         /// <inheritdoc/>
@@ -401,6 +430,51 @@ namespace wan24.Core
             if (index == -1) throw new KeyNotFoundException();
             return index;
         }
+
+        /// <summary>
+        /// Delegate for an <see cref="OrderedDictionary{tKey, tValue}"/> event
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="index">Key/value pair index</param>
+        /// <param name="key">Key</param>
+        /// <param name="value">Value</param>
+        public delegate void OrderedDictionary_Delegate(OrderedDictionary<tKey, tValue> sender, int index, tKey key, tValue value);
+
+        /// <summary>
+        /// Raised when added a key/value pair
+        /// </summary>
+        public event OrderedDictionary_Delegate? OnAdded;
+        /// <summary>
+        /// Raise the <see cref="OnAdded"/> event
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <param name="key">Key</param>
+        /// <param name="value">Value</param>
+        protected virtual void RaiseOnAdded(int index, tKey key, tValue value) => OnAdded?.Invoke(this, index, key, value);
+
+        /// <summary>
+        /// Raised when updated a value (the event handler will get the previous index, key and value)
+        /// </summary>
+        public event OrderedDictionary_Delegate? OnUpdated;
+        /// <summary>
+        /// Raise the <see cref="OnUpdated"/> event
+        /// </summary>
+        /// <param name="index">Previous index</param>
+        /// <param name="key">Previous key</param>
+        /// <param name="value">Previous value</param>
+        protected virtual void RaiseOnUpdated(int index, tKey key, tValue value) => OnUpdated?.Invoke(this, index, key, value);
+
+        /// <summary>
+        /// Raised when removed a key/value pair
+        /// </summary>
+        public event OrderedDictionary_Delegate? OnRemoved;
+        /// <summary>
+        /// Raise the <see cref="OnRemoved"/> event
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <param name="key">Key</param>
+        /// <param name="value">Value</param>
+        protected virtual void RaiseOnRemoved(int index, tKey key, tValue value) => OnRemoved?.Invoke(this, index, key, value);
 
         /// <summary>
         /// Dictionary enumerator

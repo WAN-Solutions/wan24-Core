@@ -622,6 +622,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.Bitmap.Map
   nameWithType: Bitmap.Map
+- uid: wan24.Core.Bitmap.op_Implicit(Enum)~wan24.Core.Bitmap
+  name: Implicit(Enum to Bitmap)
+  href: api/wan24.Core.Bitmap.html#wan24_Core_Bitmap_op_Implicit_Enum__wan24_Core_Bitmap
+  commentId: M:wan24.Core.Bitmap.op_Implicit(Enum)~wan24.Core.Bitmap
+  name.vb: Widening(Enum to Bitmap)
+  fullName: wan24.Core.Bitmap.Implicit(Enum to wan24.Core.Bitmap)
+  fullName.vb: wan24.Core.Bitmap.Widening(Enum to wan24.Core.Bitmap)
+  nameWithType: Bitmap.Implicit(Enum to Bitmap)
+  nameWithType.vb: Bitmap.Widening(Enum to Bitmap)
 - uid: wan24.Core.Bitmap.op_Implicit(System.Boolean[])~wan24.Core.Bitmap
   name: Implicit(Boolean[] to Bitmap)
   href: api/wan24.Core.Bitmap.html#wan24_Core_Bitmap_op_Implicit_System_Boolean____wan24_Core_Bitmap
@@ -780,6 +789,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.Bitmap.SetBitCount
   nameWithType: Bitmap.SetBitCount
+- uid: wan24.Core.Bitmap.SetBits(System.Collections.IEnumerable{System.Boolean},System.Int64)
+  name: SetBits(IEnumerable<Boolean>, Int64)
+  href: api/wan24.Core.Bitmap.html#wan24_Core_Bitmap_SetBits_System_Collections_IEnumerable_System_Boolean__System_Int64_
+  commentId: M:wan24.Core.Bitmap.SetBits(System.Collections.IEnumerable{System.Boolean},System.Int64)
+  name.vb: SetBits(IEnumerable(Of Boolean), Int64)
+  fullName: wan24.Core.Bitmap.SetBits(System.Collections.IEnumerable<System.Boolean>, System.Int64)
+  fullName.vb: wan24.Core.Bitmap.SetBits(System.Collections.IEnumerable(Of System.Boolean), System.Int64)
+  nameWithType: Bitmap.SetBits(IEnumerable<Boolean>, Int64)
+  nameWithType.vb: Bitmap.SetBits(IEnumerable(Of Boolean), Int64)
 - uid: wan24.Core.Bitmap.SetBits(System.Int64,System.Boolean[])
   name: SetBits(Int64, Boolean[])
   href: api/wan24.Core.Bitmap.html#wan24_Core_Bitmap_SetBits_System_Int64_System_Boolean___
@@ -7238,6 +7256,23 @@ references:
   fullName.vb: wan24.Core.IOrderedDictionary(Of tKey, tValue).ContainsValue
   nameWithType: IOrderedDictionary<tKey, tValue>.ContainsValue
   nameWithType.vb: IOrderedDictionary(Of tKey, tValue).ContainsValue
+- uid: wan24.Core.IOrderedDictionary`2.GetAt(System.Int32)
+  name: GetAt(Int32)
+  href: api/wan24.Core.IOrderedDictionary-2.html#wan24_Core_IOrderedDictionary_2_GetAt_System_Int32_
+  commentId: M:wan24.Core.IOrderedDictionary`2.GetAt(System.Int32)
+  fullName: wan24.Core.IOrderedDictionary<tKey, tValue>.GetAt(System.Int32)
+  fullName.vb: wan24.Core.IOrderedDictionary(Of tKey, tValue).GetAt(System.Int32)
+  nameWithType: IOrderedDictionary<tKey, tValue>.GetAt(Int32)
+  nameWithType.vb: IOrderedDictionary(Of tKey, tValue).GetAt(Int32)
+- uid: wan24.Core.IOrderedDictionary`2.GetAt*
+  name: GetAt
+  href: api/wan24.Core.IOrderedDictionary-2.html#wan24_Core_IOrderedDictionary_2_GetAt_
+  commentId: Overload:wan24.Core.IOrderedDictionary`2.GetAt
+  isSpec: "True"
+  fullName: wan24.Core.IOrderedDictionary<tKey, tValue>.GetAt
+  fullName.vb: wan24.Core.IOrderedDictionary(Of tKey, tValue).GetAt
+  nameWithType: IOrderedDictionary<tKey, tValue>.GetAt
+  nameWithType.vb: IOrderedDictionary(Of tKey, tValue).GetAt
 - uid: wan24.Core.IOrderedDictionary`2.IndexOfKey(`0)
   name: IndexOfKey(tKey)
   href: api/wan24.Core.IOrderedDictionary-2.html#wan24_Core_IOrderedDictionary_2_IndexOfKey__0_
@@ -9678,6 +9713,23 @@ references:
   fullName.vb: wan24.Core.OrderedDictionary(Of tKey, tValue).EnsureWritable
   nameWithType: OrderedDictionary<tKey, tValue>.EnsureWritable
   nameWithType.vb: OrderedDictionary(Of tKey, tValue).EnsureWritable
+- uid: wan24.Core.OrderedDictionary`2.GetAt(System.Int32)
+  name: GetAt(Int32)
+  href: api/wan24.Core.OrderedDictionary-2.html#wan24_Core_OrderedDictionary_2_GetAt_System_Int32_
+  commentId: M:wan24.Core.OrderedDictionary`2.GetAt(System.Int32)
+  fullName: wan24.Core.OrderedDictionary<tKey, tValue>.GetAt(System.Int32)
+  fullName.vb: wan24.Core.OrderedDictionary(Of tKey, tValue).GetAt(System.Int32)
+  nameWithType: OrderedDictionary<tKey, tValue>.GetAt(Int32)
+  nameWithType.vb: OrderedDictionary(Of tKey, tValue).GetAt(Int32)
+- uid: wan24.Core.OrderedDictionary`2.GetAt*
+  name: GetAt
+  href: api/wan24.Core.OrderedDictionary-2.html#wan24_Core_OrderedDictionary_2_GetAt_
+  commentId: Overload:wan24.Core.OrderedDictionary`2.GetAt
+  isSpec: "True"
+  fullName: wan24.Core.OrderedDictionary<tKey, tValue>.GetAt
+  fullName.vb: wan24.Core.OrderedDictionary(Of tKey, tValue).GetAt
+  nameWithType: OrderedDictionary<tKey, tValue>.GetAt
+  nameWithType.vb: OrderedDictionary(Of tKey, tValue).GetAt
 - uid: wan24.Core.OrderedDictionary`2.GetEnumerator
   name: GetEnumerator()
   href: api/wan24.Core.OrderedDictionary-2.html#wan24_Core_OrderedDictionary_2_GetEnumerator
@@ -9908,6 +9960,14 @@ references:
   fullName.vb: wan24.Core.OrderedDictionary(Of tKey, tValue).Keys
   nameWithType: OrderedDictionary<tKey, tValue>.Keys
   nameWithType.vb: OrderedDictionary(Of tKey, tValue).Keys
+- uid: wan24.Core.OrderedDictionary`2.OnAdded
+  name: OnAdded
+  href: api/wan24.Core.OrderedDictionary-2.html#wan24_Core_OrderedDictionary_2_OnAdded
+  commentId: E:wan24.Core.OrderedDictionary`2.OnAdded
+  fullName: wan24.Core.OrderedDictionary<tKey, tValue>.OnAdded
+  fullName.vb: wan24.Core.OrderedDictionary(Of tKey, tValue).OnAdded
+  nameWithType: OrderedDictionary<tKey, tValue>.OnAdded
+  nameWithType.vb: OrderedDictionary(Of tKey, tValue).OnAdded
 - uid: wan24.Core.OrderedDictionary`2.OnDeserialization(System.Object)
   name: OnDeserialization(Object)
   href: api/wan24.Core.OrderedDictionary-2.html#wan24_Core_OrderedDictionary_2_OnDeserialization_System_Object_
@@ -9925,6 +9985,82 @@ references:
   fullName.vb: wan24.Core.OrderedDictionary(Of tKey, tValue).OnDeserialization
   nameWithType: OrderedDictionary<tKey, tValue>.OnDeserialization
   nameWithType.vb: OrderedDictionary(Of tKey, tValue).OnDeserialization
+- uid: wan24.Core.OrderedDictionary`2.OnRemoved
+  name: OnRemoved
+  href: api/wan24.Core.OrderedDictionary-2.html#wan24_Core_OrderedDictionary_2_OnRemoved
+  commentId: E:wan24.Core.OrderedDictionary`2.OnRemoved
+  fullName: wan24.Core.OrderedDictionary<tKey, tValue>.OnRemoved
+  fullName.vb: wan24.Core.OrderedDictionary(Of tKey, tValue).OnRemoved
+  nameWithType: OrderedDictionary<tKey, tValue>.OnRemoved
+  nameWithType.vb: OrderedDictionary(Of tKey, tValue).OnRemoved
+- uid: wan24.Core.OrderedDictionary`2.OnUpdated
+  name: OnUpdated
+  href: api/wan24.Core.OrderedDictionary-2.html#wan24_Core_OrderedDictionary_2_OnUpdated
+  commentId: E:wan24.Core.OrderedDictionary`2.OnUpdated
+  fullName: wan24.Core.OrderedDictionary<tKey, tValue>.OnUpdated
+  fullName.vb: wan24.Core.OrderedDictionary(Of tKey, tValue).OnUpdated
+  nameWithType: OrderedDictionary<tKey, tValue>.OnUpdated
+  nameWithType.vb: OrderedDictionary(Of tKey, tValue).OnUpdated
+- uid: wan24.Core.OrderedDictionary`2.OrderedDictionary_Delegate
+  name: OrderedDictionary<tKey, tValue>.OrderedDictionary_Delegate
+  href: api/wan24.Core.OrderedDictionary-2.OrderedDictionary_Delegate.html
+  commentId: T:wan24.Core.OrderedDictionary`2.OrderedDictionary_Delegate
+  name.vb: OrderedDictionary(Of tKey, tValue).OrderedDictionary_Delegate
+  fullName: wan24.Core.OrderedDictionary<tKey, tValue>.OrderedDictionary_Delegate
+  fullName.vb: wan24.Core.OrderedDictionary(Of tKey, tValue).OrderedDictionary_Delegate
+  nameWithType: OrderedDictionary<tKey, tValue>.OrderedDictionary_Delegate
+  nameWithType.vb: OrderedDictionary(Of tKey, tValue).OrderedDictionary_Delegate
+- uid: wan24.Core.OrderedDictionary`2.RaiseOnAdded(System.Int32,`0,`1)
+  name: RaiseOnAdded(Int32, tKey, tValue)
+  href: api/wan24.Core.OrderedDictionary-2.html#wan24_Core_OrderedDictionary_2_RaiseOnAdded_System_Int32__0__1_
+  commentId: M:wan24.Core.OrderedDictionary`2.RaiseOnAdded(System.Int32,`0,`1)
+  fullName: wan24.Core.OrderedDictionary<tKey, tValue>.RaiseOnAdded(System.Int32, tKey, tValue)
+  fullName.vb: wan24.Core.OrderedDictionary(Of tKey, tValue).RaiseOnAdded(System.Int32, tKey, tValue)
+  nameWithType: OrderedDictionary<tKey, tValue>.RaiseOnAdded(Int32, tKey, tValue)
+  nameWithType.vb: OrderedDictionary(Of tKey, tValue).RaiseOnAdded(Int32, tKey, tValue)
+- uid: wan24.Core.OrderedDictionary`2.RaiseOnAdded*
+  name: RaiseOnAdded
+  href: api/wan24.Core.OrderedDictionary-2.html#wan24_Core_OrderedDictionary_2_RaiseOnAdded_
+  commentId: Overload:wan24.Core.OrderedDictionary`2.RaiseOnAdded
+  isSpec: "True"
+  fullName: wan24.Core.OrderedDictionary<tKey, tValue>.RaiseOnAdded
+  fullName.vb: wan24.Core.OrderedDictionary(Of tKey, tValue).RaiseOnAdded
+  nameWithType: OrderedDictionary<tKey, tValue>.RaiseOnAdded
+  nameWithType.vb: OrderedDictionary(Of tKey, tValue).RaiseOnAdded
+- uid: wan24.Core.OrderedDictionary`2.RaiseOnRemoved(System.Int32,`0,`1)
+  name: RaiseOnRemoved(Int32, tKey, tValue)
+  href: api/wan24.Core.OrderedDictionary-2.html#wan24_Core_OrderedDictionary_2_RaiseOnRemoved_System_Int32__0__1_
+  commentId: M:wan24.Core.OrderedDictionary`2.RaiseOnRemoved(System.Int32,`0,`1)
+  fullName: wan24.Core.OrderedDictionary<tKey, tValue>.RaiseOnRemoved(System.Int32, tKey, tValue)
+  fullName.vb: wan24.Core.OrderedDictionary(Of tKey, tValue).RaiseOnRemoved(System.Int32, tKey, tValue)
+  nameWithType: OrderedDictionary<tKey, tValue>.RaiseOnRemoved(Int32, tKey, tValue)
+  nameWithType.vb: OrderedDictionary(Of tKey, tValue).RaiseOnRemoved(Int32, tKey, tValue)
+- uid: wan24.Core.OrderedDictionary`2.RaiseOnRemoved*
+  name: RaiseOnRemoved
+  href: api/wan24.Core.OrderedDictionary-2.html#wan24_Core_OrderedDictionary_2_RaiseOnRemoved_
+  commentId: Overload:wan24.Core.OrderedDictionary`2.RaiseOnRemoved
+  isSpec: "True"
+  fullName: wan24.Core.OrderedDictionary<tKey, tValue>.RaiseOnRemoved
+  fullName.vb: wan24.Core.OrderedDictionary(Of tKey, tValue).RaiseOnRemoved
+  nameWithType: OrderedDictionary<tKey, tValue>.RaiseOnRemoved
+  nameWithType.vb: OrderedDictionary(Of tKey, tValue).RaiseOnRemoved
+- uid: wan24.Core.OrderedDictionary`2.RaiseOnUpdated(System.Int32,`0,`1)
+  name: RaiseOnUpdated(Int32, tKey, tValue)
+  href: api/wan24.Core.OrderedDictionary-2.html#wan24_Core_OrderedDictionary_2_RaiseOnUpdated_System_Int32__0__1_
+  commentId: M:wan24.Core.OrderedDictionary`2.RaiseOnUpdated(System.Int32,`0,`1)
+  fullName: wan24.Core.OrderedDictionary<tKey, tValue>.RaiseOnUpdated(System.Int32, tKey, tValue)
+  fullName.vb: wan24.Core.OrderedDictionary(Of tKey, tValue).RaiseOnUpdated(System.Int32, tKey, tValue)
+  nameWithType: OrderedDictionary<tKey, tValue>.RaiseOnUpdated(Int32, tKey, tValue)
+  nameWithType.vb: OrderedDictionary(Of tKey, tValue).RaiseOnUpdated(Int32, tKey, tValue)
+- uid: wan24.Core.OrderedDictionary`2.RaiseOnUpdated*
+  name: RaiseOnUpdated
+  href: api/wan24.Core.OrderedDictionary-2.html#wan24_Core_OrderedDictionary_2_RaiseOnUpdated_
+  commentId: Overload:wan24.Core.OrderedDictionary`2.RaiseOnUpdated
+  isSpec: "True"
+  fullName: wan24.Core.OrderedDictionary<tKey, tValue>.RaiseOnUpdated
+  fullName.vb: wan24.Core.OrderedDictionary(Of tKey, tValue).RaiseOnUpdated
+  nameWithType: OrderedDictionary<tKey, tValue>.RaiseOnUpdated
+  nameWithType.vb: OrderedDictionary(Of tKey, tValue).RaiseOnUpdated
 - uid: wan24.Core.OrderedDictionary`2.Remove(`0)
   name: Remove(tKey)
   href: api/wan24.Core.OrderedDictionary-2.html#wan24_Core_OrderedDictionary_2_Remove__0_

@@ -21,6 +21,12 @@ namespace wan24.Core
         where tKey : notnull
     {
         /// <summary>
+        /// Get a key/value pair from an index
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <returns>Key/value pair</returns>
+        KeyValuePair<tKey, tValue> GetAt(int index);
+        /// <summary>
         /// Insert
         /// </summary>
         /// <param name="index">Index</param>

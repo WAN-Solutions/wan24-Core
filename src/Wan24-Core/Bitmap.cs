@@ -295,7 +295,6 @@ namespace wan24.Core
             lock (SyncObject)
             {
                 if (offset < 0 || offset >= BitCount) throw new ArgumentOutOfRangeException(nameof(offset));
-                if (BitCount + bits.Length > _Map.Length << 3) throw new OverflowException();
                 long byteOffset = offset >> 3;
                 for (int i = 0, bit; i < bits.Length; this[offset] = bits[i], offset++, byteOffset = offset >> 3, i++)
                 {
@@ -308,6 +307,37 @@ namespace wan24.Core
                     {
                         _Map[byteOffset] &= (byte)~bit;
                     }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Set bits
+        /// </summary>
+        /// <param name="bits">Bits to set</param>
+        /// <param name="offset">Start bit offset</param>
+        public virtual void SetBits(IEnumerable<bool> bits, long offset = 0)
+        {
+            lock (SyncObject)
+            {
+                long bitCount = BitCount;
+                if (offset < 0 || offset >= bitCount) throw new ArgumentOutOfRangeException(nameof(offset));
+                long byteOffset = offset >> 3;
+                int bit;
+                foreach(bool b in bits)
+                {
+                    if (offset >= bitCount) throw new OverflowException();
+                    bit = 1 << (int)(offset - (byteOffset << 3));
+                    if (b)
+                    {
+                        _Map[byteOffset] |= (byte)bit;
+                    }
+                    else
+                    {
+                        _Map[byteOffset] &= (byte)~bit;
+                    }
+                    offset++;
+                    byteOffset = offset >> 3;
                 }
             }
         }
@@ -674,6 +704,25 @@ namespace wan24.Core
         /// </summary>
         /// <param name="value">Value</param>
         public static implicit operator Bitmap(long value) => new(value.GetBytes());
+
+        /// <summary>
+        /// Cast from enumeration
+        /// </summary>
+        /// <param name="value">Value</param>
+        public static implicit operator Bitmap(Enum value)
+        {
+            Type type = value.GetType().GetEnumUnderlyingType();
+            object numeric = Convert.ChangeType(value, type);
+            if (numeric is byte b) return (Bitmap)b;
+            else if (numeric is sbyte sb) return (Bitmap)sb;
+            else if (numeric is ushort us) return (Bitmap)us;
+            else if (numeric is short s) return (Bitmap)s;
+            else if (numeric is uint ui) return (Bitmap)ui;
+            else if (numeric is int i) return (Bitmap)i;
+            else if (numeric is ulong ul) return (Bitmap)ul;
+            else if (numeric is long l) return (Bitmap)l;
+            throw new InvalidProgramException($"Unsupported enumeration {value.GetType()} underlying numeric type {type}");
+        }
 
         /// <summary>
         /// Get the number of bytes required for covering a number of bits
