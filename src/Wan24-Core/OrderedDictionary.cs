@@ -237,6 +237,13 @@ namespace wan24.Core
         public bool ContainsValue(tValue value) => IndexOfValue(value) != -1;
 
         /// <inheritdoc/>
+        public KeyValuePair<tKey, tValue> Get(int index)
+        {
+            if (index < 0 || index >= Items.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            return Items[index];
+        }
+
+        /// <inheritdoc/>
         public int IndexOfKey(tKey key)
         {
             for (int i = 0; i < Items.Count; i++)
