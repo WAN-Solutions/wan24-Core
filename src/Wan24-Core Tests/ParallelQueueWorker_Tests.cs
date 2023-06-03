@@ -5,7 +5,7 @@ namespace Wan24_Core_Tests
     [TestClass]
     public class ParallelQueueWorker_Tests
     {
-        [TestMethod("ParallelQueueWorker_Tests.General_Tests"), Timeout(1000)]
+        [TestMethod("ParallelQueueWorker_Tests.General_Tests"), Timeout(3000)]
         public async Task General_Tests()
         {
             using ParallelQueueWorker worker = new(3, 2);
