@@ -5,7 +5,7 @@ namespace Wan24_Core_Tests
     [TestClass]
     public class ItemQueueWorker_Tests
     {
-        [TestMethod, Timeout(1000)]
+        [TestMethod("ItemQueueWorker_Tests.General_Tests"), Timeout(1000)]
         public async Task General_Tests()
         {
             using TestObject worker = new();

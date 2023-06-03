@@ -5,7 +5,7 @@ namespace Wan24_Core_Tests
     [TestClass]
     public class BlockingObjectPool_Tests
     {
-        [TestMethod, Timeout(1000)]
+        [TestMethod("BlockingObjectPool_Tests.General_Tests"), Timeout(1000)]
         public async Task General_Tests()
         {
             Logging.WriteInfo("BlockingObjectPool tests");
@@ -51,7 +51,7 @@ namespace Wan24_Core_Tests
             Assert.ThrowsException<OverflowException>(() => pool.Return(false));
         }
 
-        [TestMethod, Timeout(1000)]
+        [TestMethod("BlockingObjectPool_Tests.GeneralAsync_Tests"), Timeout(1000)]
         public async Task GeneralAsync_Tests()
         {
             Logging.WriteInfo("BlockingObjectPool async tests");
