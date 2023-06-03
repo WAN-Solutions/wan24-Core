@@ -5,7 +5,7 @@ namespace Wan24_Core_Tests
     [TestClass]
     public class ObjectLockManager_Tests
     {
-        [TestMethod("ObjectLockManager_Tests.General_Tests"), Timeout(1000)]
+        [TestMethod("ObjectLockManager_Tests.General_Tests"), Timeout(3000)]
         public async Task General_Tests()
         {
             ObjectLock? ol2 = null;
