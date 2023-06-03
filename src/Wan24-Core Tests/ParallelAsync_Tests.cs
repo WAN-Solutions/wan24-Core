@@ -5,7 +5,7 @@ namespace Wan24_Core_Tests
     [TestClass]
     public class ParallelAsync_Tests
     {
-        [TestMethod, Timeout(1000)]
+        [TestMethod("ParallelAsync_Tests.ForEach_Tests"), Timeout(1000)]
         public async Task ForEach_Tests()
         {
             int processed = 0;
@@ -17,7 +17,7 @@ namespace Wan24_Core_Tests
             Assert.AreEqual(3, processed);
         }
 
-        [TestMethod, Timeout(1000)]
+        [TestMethod("ParallelAsync_Tests.FilterAsync_Tests"), Timeout(1000)]
         public async Task FilterAsync_Tests()
         {
             List<int> filtered = await ParallelAsync.FilterAsync(Enumerable.Range(1, 3), async (item, ct) =>
@@ -30,7 +30,7 @@ namespace Wan24_Core_Tests
             Assert.IsTrue(filtered.Contains(3));
         }
 
-        [TestMethod, Timeout(1000)]
+        [TestMethod("ParallelAsync_Tests.Filter_Tests"), Timeout(1000)]
         public void Filter_Tests()
         {
             List<int> filtered = ParallelAsync.Filter(Enumerable.Range(1, 3), (item, state, ct) =>

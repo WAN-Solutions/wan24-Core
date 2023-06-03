@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -31,10 +32,25 @@ namespace wan24.Core
             if (queueCapacity < threads) throw new ArgumentOutOfRangeException(nameof(queueCapacity));
             using ParallelAsyncProcessor<T> processor = new(itemHandler, queueCapacity, threads.Value);
             await processor.StartAsync(cancellationToken).DynamicContext();
-            int enqueued = await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
-            while (!cancellationToken.IsCancellationRequested && processor.Processed != enqueued)
-                await processor.WaitBoringAsync(cancellationToken).DynamicContext();
-            await processor.StopAsync(cancellationToken).DynamicContext();
+            int enqueued;
+            try
+            {
+                enqueued = await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
+                while (!cancellationToken.IsCancellationRequested && processor.Processed != enqueued && processor.LastException == null)
+                    await processor.WaitBoringAsync(cancellationToken).DynamicContext();
+            }
+            finally
+            {
+#pragma warning disable CA2016 // Forward cancellation token
+                await processor.StopAsync().DynamicContext();
+#pragma warning restore CA2016 // Forward cancellation token
+            }
+            if (processor.Processed != enqueued)//FIXME Happens during running the tests on Linux from time to time!?
+            {
+                Debugger.Break();
+                Logging.WriteError($"{enqueued} items enqueued, but only {processor.Processed} processed");
+                throw new InvalidProgramException($"{enqueued} items enqueued, but only {processor.Processed} processed");
+            }
             return processor.Processed;
         }
 
@@ -62,10 +78,25 @@ namespace wan24.Core
             if (queueCapacity < threads) throw new ArgumentOutOfRangeException(nameof(queueCapacity));
             using ParallelAsyncProcessor<T> processor = new(itemHandler, queueCapacity, threads.Value);
             await processor.StartAsync(cancellationToken).DynamicContext();
-            int enqueued = await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
-            while (!cancellationToken.IsCancellationRequested && processor.Processed != enqueued)
-                await processor.WaitBoringAsync(cancellationToken).DynamicContext();
-            await processor.StopAsync(cancellationToken).DynamicContext();
+            int enqueued;
+            try
+            {
+                enqueued = await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
+                while (!cancellationToken.IsCancellationRequested && processor.Processed != enqueued && processor.LastException == null)
+                    await processor.WaitBoringAsync(cancellationToken).DynamicContext();
+            }
+            finally
+            {
+#pragma warning disable CA2016 // Forward cancellation token
+                await processor.StopAsync().DynamicContext();
+#pragma warning restore CA2016 // Forward cancellation token
+            }
+            if (processor.Processed != enqueued)//FIXME Happens during running the tests on Linux from time to time!?
+            {
+                Debugger.Break();
+                Logging.WriteError($"{enqueued} items enqueued, but only {processor.Processed} processed");
+                throw new InvalidProgramException($"{enqueued} items enqueued, but only {processor.Processed} processed");
+            }
             return processor.Processed;
         }
 
@@ -124,6 +155,7 @@ namespace wan24.Core
                 }
                 finally
                 {
+                    await syncYield.WaitAsync().DynamicContext();
                     done = true;
                     syncOutput.Release();
                 }
@@ -210,6 +242,7 @@ namespace wan24.Core
                 }
                 finally
                 {
+                    await syncYield.WaitAsync().DynamicContext();
                     done = true;
                     syncOutput.Release();
                 }
@@ -297,6 +330,7 @@ namespace wan24.Core
                 }
                 finally
                 {
+                    await syncYield.WaitAsync().DynamicContext();
                     done = true;
                     syncOutput.Release();
                 }
@@ -384,6 +418,7 @@ namespace wan24.Core
                 }
                 finally
                 {
+                    await syncYield.WaitAsync().DynamicContext();
                     done = true;
                     syncOutput.Release();
                 }
@@ -470,6 +505,7 @@ namespace wan24.Core
                 }
                 finally
                 {
+                    syncYield.Wait();
                     done = true;
                     syncOutput.Release();
                 }
@@ -533,8 +569,14 @@ namespace wan24.Core
             /// <inheritdoc/>
             protected override async Task ProcessItem(T item, CancellationToken cancellationToken)
             {
-                await ItemHandler(item, cancellationToken).DynamicContext();
-                _Processed++;
+                try
+                {
+                    await ItemHandler(item, cancellationToken).DynamicContext();
+                }
+                finally
+                {
+                    _Processed++;
+                }
             }
         }
     }

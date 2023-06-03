@@ -5,7 +5,7 @@ namespace Wan24_Core_Tests
     [TestClass]
     public class TimedHostedServicebase_Tests
     {
-        [TestMethod, Timeout(3000)]
+        [TestMethod("TimedHostedServicebase_Tests.Default_Tests"), Timeout(3000)]
         public async Task Default_Tests()
         {
             using TestObject worker = new(50, HostedServiceTimers.Default);
@@ -15,7 +15,7 @@ namespace Wan24_Core_Tests
             Assert.AreEqual(2, worker.Worked);
         }
 
-        [TestMethod, Timeout(3000)]
+        [TestMethod("TimedHostedServicebase_Tests.Exact_Tests"), Timeout(3000)]
         public async Task Exact_Tests()
         {
             using TestObject worker = new(20, HostedServiceTimers.Exact);
@@ -25,7 +25,7 @@ namespace Wan24_Core_Tests
             Assert.AreEqual(3, worker.Worked);
         }
 
-        [TestMethod, Timeout(3000)]
+        [TestMethod("TimedHostedServicebase_Tests.ExactCatchingUp_Tests"), Timeout(3000)]
         public async Task ExactCatchingUp_Tests()
         {
             using TestObject worker = new(20, HostedServiceTimers.ExactCatchingUp);
@@ -35,7 +35,7 @@ namespace Wan24_Core_Tests
             Assert.AreEqual(4, worker.Worked);
         }
 
-        [TestMethod, Timeout(3000)]
+        [TestMethod("TimedHostedServicebase_Tests.RunOnceAndNextRun_Tests"), Timeout(3000)]
         public async Task RunOnceAndNextRun_Tests()
         {
             using TestObject worker = new(20, HostedServiceTimers.ExactCatchingUp)

@@ -251,13 +251,13 @@ namespace wan24.Core
         /// Cast as <see cref="SecureCharArray"/> (using UTF-8 encoding)
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator SecureCharArray(SecureByteArrayStruct arr) => new(arr.Span.ToUtf8SChars());
+        public static implicit operator SecureCharArray(SecureByteArrayStruct arr) => new(arr.Span.ToUtf8Chars());
 
         /// <summary>
         /// Cast as <see cref="SecureCharArrayStruct"/> (using UTF-8 encoding)
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator SecureCharArrayStruct(SecureByteArrayStruct arr) => new(arr.Span.ToUtf8SChars());
+        public static implicit operator SecureCharArrayStruct(SecureByteArrayStruct arr) => new(arr.Span.ToUtf8Chars());
 
         /// <summary>
         /// Cast a byte array as secure byte array

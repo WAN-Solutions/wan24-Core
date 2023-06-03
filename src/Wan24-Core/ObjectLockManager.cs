@@ -29,13 +29,12 @@ namespace wan24.Core
         /// <param name="key">Object key</param>
         /// <param name="timeout">Timeout</param>
         /// <param name="tag">Tagged object</param>
+        /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Object lock</returns>
-        public async Task<ObjectLock> LockAsync(object key, TimeSpan timeout, object? tag = null)
+        public async Task<ObjectLock> LockAsync(object key, TimeSpan timeout, object? tag = null, CancellationToken cancellationToken = default)
         {
             await Task.Yield();
             EnsureUndisposed();
-            using CancellationTokenSource cts = new();
-            Task timeoutTask = Task.Delay(timeout, cts.Token);
             ObjectLock res = new(key, tag);
             try
             {
@@ -47,20 +46,28 @@ namespace wan24.Core
                     {
                         res.OnDisposed += RemoveLock;
                         res.IsConstructed = true;
+                        res.OnDisposed += (s, e) => RaiseOnUnlocked(key, res);
+                        RaiseOnLocked(key, res);
                         return res;
                     }
                     try
                     {
-                        if (await Task.WhenAny(ol.Task, timeoutTask).DynamicContext() != ol.Task)
+                        if (cancellationToken == default)
                         {
-                            TimeoutException ex = new();
-                            ex.Data[timeout] = timeout;
-                            throw ex;
+                            await ol.Task.WithTimeout(timeout).DynamicContext();
+                        }
+                        else
+                        {
+                            await ol.Task.WithTimeoutAndCancellation(timeout, cancellationToken).DynamicContext();
                         }
                     }
                     catch (TimeoutException ex)
                     {
                         if (ex.Data.Contains(timeout)) throw;
+                    }
+                    catch (TaskCanceledException ex)
+                    {
+                        if (cancellationToken == default || ex.CancellationToken == cancellationToken) throw;
                     }
                     catch
                     {
@@ -72,10 +79,6 @@ namespace wan24.Core
             {
                 await res.DisposeAsync().DynamicContext();
                 throw;
-            }
-            finally
-            {
-                cts.Cancel();
             }
         }
 
@@ -123,14 +126,16 @@ namespace wan24.Core
                     {
                         res.OnDisposed += RemoveLock;
                         res.IsConstructed = true;
+                        res.OnDisposed += (s, e) => RaiseOnUnlocked(key, res);
+                        RaiseOnLocked(key, res);
                         return res;
                     }
                     cancellationToken.ThrowIfCancellationRequested();
                     try
                     {
-                        await Task.Run(async () => await ol.Task.DynamicContext(), cancellationToken).DynamicContext();
+                        await ol.Task.WithCancellation(cancellationToken).DynamicContext();
                     }
-                    catch (OperationCanceledException ex)
+                    catch (TaskCanceledException ex)
                     {
                         if (ex.CancellationToken == cancellationToken) throw;
                     }
@@ -198,10 +203,7 @@ namespace wan24.Core
         protected override void Dispose(bool disposing) => ActiveLocks.Values.DisposeAll();
 
         /// <inheritdoc/>
-        protected override async Task DisposeCore()
-        {
-            await ActiveLocks.Values.DisposeAllAsync(parallel: true).DynamicContext();
-        }
+        protected override async Task DisposeCore() => await ActiveLocks.Values.DisposeAllAsync(parallel: true).DynamicContext();
 
         /// <summary>
         /// Remove an object lock
@@ -213,5 +215,35 @@ namespace wan24.Core
             ol.OnDisposed -= RemoveLock;
             ActiveLocks.TryRemove(((ObjectLock)ol).Key, out _);
         }
+
+        /// <summary>
+        /// Delegte for locking events
+        /// </summary>
+        /// <param name="manager">Manager</param>
+        /// <param name="key">Object key</param>
+        /// <param name="objectLock">Lock</param>
+        public delegate void Lock_Delegate(ObjectLockManager<T> manager, object key, ObjectLock objectLock);
+
+        /// <summary>
+        /// Raised when a lock was created
+        /// </summary>
+        public event Lock_Delegate? OnLocked;
+        /// <summary>
+        /// Raise the <see cref="OnLocked"/> event
+        /// </summary>
+        /// <param name="key">Object key</param>
+        /// <param name="objectLock">Lock</param>
+        private void RaiseOnLocked(object key, ObjectLock objectLock) => OnLocked?.Invoke(this, key, objectLock);
+
+        /// <summary>
+        /// Raised when a lock was disposed
+        /// </summary>
+        public event Lock_Delegate? OnUnlocked;
+        /// <summary>
+        /// Raise the <see cref="OnUnlocked"/> event
+        /// </summary>
+        /// <param name="key">Object key</param>
+        /// <param name="objectLock">Lock</param>
+        private void RaiseOnUnlocked(object key, ObjectLock objectLock) => OnUnlocked?.Invoke(this, key, objectLock);
     }
 }

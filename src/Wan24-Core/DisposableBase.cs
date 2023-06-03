@@ -43,7 +43,7 @@ namespace wan24.Core
         protected bool EnsureUndisposed(bool allowDisposing = false, bool throwException = true)
         {
             if (!IsDisposing) return true;
-            if (allowDisposing) return IsDisposed;
+            if (allowDisposing && !IsDisposed) return true;
             if (throwException) throw new ObjectDisposedException(ToString());
             return false;
         }
