@@ -153,6 +153,7 @@ namespace wan24.Core
                 }
                 finally
                 {
+                    await syncYield.WaitAsync().DynamicContext();
                     done = true;
                     syncOutput.Release();
                 }
@@ -239,6 +240,7 @@ namespace wan24.Core
                 }
                 finally
                 {
+                    await syncYield.WaitAsync().DynamicContext();
                     done = true;
                     syncOutput.Release();
                 }
@@ -326,6 +328,7 @@ namespace wan24.Core
                 }
                 finally
                 {
+                    await syncYield.WaitAsync().DynamicContext();
                     done = true;
                     syncOutput.Release();
                 }
@@ -413,6 +416,7 @@ namespace wan24.Core
                 }
                 finally
                 {
+                    await syncYield.WaitAsync().DynamicContext();
                     done = true;
                     syncOutput.Release();
                 }
@@ -499,6 +503,7 @@ namespace wan24.Core
                 }
                 finally
                 {
+                    syncYield.Wait();
                     done = true;
                     syncOutput.Release();
                 }
