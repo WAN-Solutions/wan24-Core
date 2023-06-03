@@ -9,6 +9,7 @@ namespace Wan24_Core_Tests
         public async Task General_Tests()
         {
             using ParallelQueueWorker worker = new(3, 2);
+            Logging.WriteInfo("Starting worker");
             await worker.StartAsync(default);
             int working = 0,
                 worked = 0;
@@ -19,6 +20,7 @@ namespace Wan24_Core_Tests
                 {
                     ManualResetEventSlim mres = new(initialState: false);
                     events[i] = mres;
+                    Logging.WriteInfo($"Enqueuing {i}");
                     await worker.EnqueueAsync(async (ct) =>
                     {
                         await Task.Yield();
@@ -27,6 +29,7 @@ namespace Wan24_Core_Tests
                         worked++;
                     });
                 }
+                Logging.WriteInfo("Waiting workers");
                 await Task.Delay(100);
                 Assert.AreEqual(2, working);
                 events[0]!.Set();
@@ -38,10 +41,13 @@ namespace Wan24_Core_Tests
                 events[2]!.Set();
                 await Task.Delay(100);
                 Assert.AreEqual(3, worked);
+                Logging.WriteInfo("All workers done");
             }
             finally
             {
+                Logging.WriteInfo("Disposing events");
                 foreach (ManualResetEventSlim? e in events) e?.Dispose();
+                Logging.WriteInfo("Tests done");
             }
         }
     }

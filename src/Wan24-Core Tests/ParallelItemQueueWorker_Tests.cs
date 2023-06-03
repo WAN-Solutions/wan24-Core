@@ -9,11 +9,13 @@ namespace Wan24_Core_Tests
         public async Task General_Tests()
         {
             using TestObject worker = new();
+            Logging.WriteInfo("Starting worker");
             await worker.StartAsync(default);
             ManualResetEventSlim?[] events = new ManualResetEventSlim?[3];
             try
             {
-                for (int i = 0; i < events.Length; await worker.EnqueueAsync(events[i] = new(initialState: false)), i++) ;
+                for (int i = 0; i < events.Length; await worker.EnqueueAsync(events[i] = new(initialState: false)), i++) Logging.WriteInfo($"Enqueuing {i}");
+                Logging.WriteInfo("Waiting workers");
                 await Task.Delay(100);
                 Assert.AreEqual(2, worker.Working);
                 events[0]!.Set();
@@ -25,10 +27,13 @@ namespace Wan24_Core_Tests
                 events[2]!.Set();
                 await Task.Delay(100);
                 Assert.AreEqual(3, worker.Worked);
+                Logging.WriteInfo("All workers done");
             }
             finally
             {
+                Logging.WriteInfo("Disposing events");
                 foreach (ManualResetEventSlim? e in events) e?.Dispose();
+                Logging.WriteInfo("Tests done");
             }
         }
 
