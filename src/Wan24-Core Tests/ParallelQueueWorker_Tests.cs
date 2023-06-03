@@ -13,6 +13,7 @@ namespace Wan24_Core_Tests
             await worker.StartAsync(default);
             int working = 0,
                 worked = 0;
+            DateTime start = DateTime.Now;
             ManualResetEventSlim?[] events = new ManualResetEventSlim?[3];
             try
             {
@@ -20,7 +21,7 @@ namespace Wan24_Core_Tests
                 {
                     ManualResetEventSlim mres = new(initialState: false);
                     events[i] = mres;
-                    Logging.WriteInfo($"Enqueuing {i}");
+                    Logging.WriteInfo($"Enqueuing {i} ({DateTime.Now - start})");
                     await worker.EnqueueAsync(async (ct) =>
                     {
                         await Task.Yield();
@@ -29,28 +30,28 @@ namespace Wan24_Core_Tests
                         worked++;
                     });
                 }
-                Logging.WriteInfo("Waiting workers");
+                Logging.WriteInfo($"Waiting workers ({DateTime.Now - start})");
                 await Task.Delay(100);
                 Assert.AreEqual(2, working);
-                Logging.WriteInfo("Setting event #0");
+                Logging.WriteInfo($"Setting event #0 ({DateTime.Now - start})");
                 events[0]!.Set();
-                Logging.WriteInfo("Setting event #1");
+                Logging.WriteInfo($"Setting event #1v");
                 events[1]!.Set();
                 await Task.Delay(100);
                 Assert.AreEqual(2, worked);
                 await Task.Delay(100);
                 Assert.AreEqual(3, working);
-                Logging.WriteInfo("Setting event #2");
+                Logging.WriteInfo($"Setting event #2 ({DateTime.Now - start})");
                 events[2]!.Set();
                 await Task.Delay(100);
                 Assert.AreEqual(3, worked);
-                Logging.WriteInfo("All workers done");
+                Logging.WriteInfo($"All workers done ({DateTime.Now - start})");
             }
             finally
             {
-                Logging.WriteInfo("Disposing events");
+                Logging.WriteInfo($"Disposing events ({DateTime.Now - start})");
                 foreach (ManualResetEventSlim? e in events) e?.Dispose();
-                Logging.WriteInfo("Tests done");
+                Logging.WriteInfo($"Tests done ({DateTime.Now - start})");
             }
         }
     }
