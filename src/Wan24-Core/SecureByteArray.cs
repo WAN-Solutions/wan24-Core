@@ -84,13 +84,13 @@
         /// Cast as <see cref="SecureCharArray"/> (using UTF-8 encoding)
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator SecureCharArray(SecureByteArray arr) => new(arr.Span.ToUtf8SChars());
+        public static implicit operator SecureCharArray(SecureByteArray arr) => new(arr.Span.ToUtf8Chars());
 
         /// <summary>
         /// Cast as <see cref="SecureCharArray"/> (using UTF-8 encoding)
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator SecureCharArrayStruct(SecureByteArray arr) => new(arr.Span.ToUtf8SChars());
+        public static implicit operator SecureCharArrayStruct(SecureByteArray arr) => new(arr.Span.ToUtf8Chars());
 
         /// <summary>
         /// Cast a byte array as secure byte array

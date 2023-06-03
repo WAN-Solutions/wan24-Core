@@ -47,6 +47,8 @@ namespace wan24.Core
                     {
                         res.OnDisposed += RemoveLock;
                         res.IsConstructed = true;
+                        res.OnDisposed += (s, e) => RaiseOnUnlocked(key, res);
+                        RaiseOnLocked(key, res);
                         return res;
                     }
                     try
@@ -123,6 +125,8 @@ namespace wan24.Core
                     {
                         res.OnDisposed += RemoveLock;
                         res.IsConstructed = true;
+                        res.OnDisposed += (s, e) => RaiseOnUnlocked(key, res);
+                        RaiseOnLocked(key, res);
                         return res;
                     }
                     cancellationToken.ThrowIfCancellationRequested();
@@ -198,10 +202,7 @@ namespace wan24.Core
         protected override void Dispose(bool disposing) => ActiveLocks.Values.DisposeAll();
 
         /// <inheritdoc/>
-        protected override async Task DisposeCore()
-        {
-            await ActiveLocks.Values.DisposeAllAsync(parallel: true).DynamicContext();
-        }
+        protected override async Task DisposeCore() => await ActiveLocks.Values.DisposeAllAsync(parallel: true).DynamicContext();
 
         /// <summary>
         /// Remove an object lock
@@ -213,5 +214,35 @@ namespace wan24.Core
             ol.OnDisposed -= RemoveLock;
             ActiveLocks.TryRemove(((ObjectLock)ol).Key, out _);
         }
+
+        /// <summary>
+        /// Delegte for locking events
+        /// </summary>
+        /// <param name="manager">Manager</param>
+        /// <param name="key">Object key</param>
+        /// <param name="objectLock">Lock</param>
+        public delegate void Lock_Delegate(ObjectLockManager<T> manager, object key, ObjectLock objectLock);
+
+        /// <summary>
+        /// Raised when a lock was created
+        /// </summary>
+        public event Lock_Delegate? OnLocked;
+        /// <summary>
+        /// Raise the <see cref="OnLocked"/> event
+        /// </summary>
+        /// <param name="key">Object key</param>
+        /// <param name="objectLock">Lock</param>
+        private void RaiseOnLocked(object key, ObjectLock objectLock) => OnLocked?.Invoke(this, key, objectLock);
+
+        /// <summary>
+        /// Raised when a lock was disposed
+        /// </summary>
+        public event Lock_Delegate? OnUnlocked;
+        /// <summary>
+        /// Raise the <see cref="OnUnlocked"/> event
+        /// </summary>
+        /// <param name="key">Object key</param>
+        /// <param name="objectLock">Lock</param>
+        private void RaiseOnUnlocked(object key, ObjectLock objectLock) => OnUnlocked?.Invoke(this, key, objectLock);
     }
 }

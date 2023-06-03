@@ -14,7 +14,7 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
 - Byte array extensions
     - Endian conversion
     - Bit-converter (endian-safe)
-    - UTF-8 string decoding
+    - UTF-8/16/32 (little endian) string decoding
     - Clearing
 - Char array extensions
     - Clearing
@@ -73,7 +73,7 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
     - Type conversion
     - Determine if a value is within a list of values
 - String extensions
-    - Get UTF-8 bytes
+    - Get UTF-8/16/32 bytes (little endian)
 - Generic helper
     - Determine if two generic values are equal
     - Determine if a value is `null`
@@ -109,8 +109,11 @@ types), and `BlockingObjectPool` for a strict pool capacity limit
 - `ResetEvent` for (a)synchronous event waiting
 - `LazyValue<T>`, `DisposableLazyValue<T>`, `AsyncDisposableLazyValue<T>` and 
 `TimeoutValue<T>` for lazy and timeout value serving
-- `ObjectLockManager` for asynchronous and awaitable object locking
+- `ObjectLockManager<T>` for asynchronous and awaitable object locking
 - `Bitmap` for working with bits
+- `DisposableWrapper<T>` for wrapping any (not disposable?) object with the 
+`IDisposable` and `IAsyncDisposable` interface using custom dispose actions 
+during runtime
 
 ## How to get it
 

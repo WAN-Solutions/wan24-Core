@@ -101,7 +101,7 @@
         }
 
         /// <inheritdoc/>
-        public override async Task StopAsync(CancellationToken cancellationToken)
+        public override async Task StopAsync(CancellationToken cancellationToken = default)
         {
             await base.StopAsync(cancellationToken).DynamicContext();
             await Busy.WaitAsync(cancellationToken).DynamicContext();
