@@ -155,7 +155,7 @@ namespace wan24.Core
                 {
                     await task.DynamicContext();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     exceptions.Add(ex);
                 }
@@ -177,7 +177,7 @@ namespace wan24.Core
                 {
                     res.Add(await task.DynamicContext());
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     exceptions.Add(ex);
                 }
@@ -359,8 +359,8 @@ namespace wan24.Core
         /// <param name="task">Task</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Task</returns>
-        public static Task WithCancellation(this Task task, CancellationToken cancellationToken)
-            => Task.Run(async () => await task.DynamicContext(), cancellationToken);
+        /// <exception cref="TaskCanceledException">If cancelled</exception>
+        public static Task WithCancellation(this Task task, CancellationToken cancellationToken) => task.WaitAsync(cancellationToken);
 
         /// <summary>
         /// Add a cancellation token to a task
@@ -369,8 +369,8 @@ namespace wan24.Core
         /// <param name="task">Task</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Task</returns>
-        public static Task<T> WithCancellation<T>(this Task<T> task, CancellationToken cancellationToken)
-            => Task.Run(async () => await task.DynamicContext(), cancellationToken);
+        /// <exception cref="TaskCanceledException">If cancelled</exception>
+        public static Task<T> WithCancellation<T>(this Task<T> task, CancellationToken cancellationToken) => task.WaitAsync(cancellationToken);
 
         /// <summary>
         /// Add a timeout to a task
@@ -378,22 +378,30 @@ namespace wan24.Core
         /// <param name="task">Task</param>
         /// <param name="timeout">Timeout</param>
         /// <returns>Task</returns>
+        /// <exception cref="TimeoutException">On timeout (<c>TimeoutException.Data[timeout]</c> is set)</exception>
         public static async Task WithTimeout(this Task task, TimeSpan timeout)
         {
-            using CancellationTokenSource cts = new();
+            using CancellationTokenSource cts = new(timeout);
             Task timeoutTask = Task.Delay(timeout, cts.Token);
             try
             {
-                if (await Task.WhenAny(task, timeoutTask).DynamicContext() == timeoutTask)
-                {
-                    TimeoutException ex = new();
-                    ex.Data[timeout] = true;
-                    throw ex;
-                }
-            }
-            finally
-            {
+                await await Task.WhenAny(task, timeoutTask).DynamicContext();
+                cts.Token.ThrowIfCancellationRequested();
                 cts.Cancel();
+            }
+            catch (TaskCanceledException ex)
+            {
+                if (ex.CancellationToken != cts.Token) throw;
+                TimeoutException timeoutException = new();
+                timeoutException.Data[timeout] = true;
+                throw timeoutException;
+            }
+            catch (OperationCanceledException ex)
+            {
+                if (ex.CancellationToken != cts.Token) throw;
+                TimeoutException timeoutException = new();
+                timeoutException.Data[timeout] = true;
+                throw timeoutException;
             }
         }
 
@@ -404,23 +412,39 @@ namespace wan24.Core
         /// <param name="task">Task</param>
         /// <param name="timeout">Timeout</param>
         /// <returns>Task</returns>
+        /// <exception cref="TimeoutException">On timeout (<c>TimeoutException.Data[timeout]</c> is set)</exception>
         public static async Task<T> WithTimeout<T>(this Task<T> task, TimeSpan timeout)
         {
-            using CancellationTokenSource cts = new();
+            using CancellationTokenSource cts = new(timeout);
             Task timeoutTask = Task.Delay(timeout, cts.Token);
             try
             {
-                if (await Task.WhenAny(task, timeoutTask).DynamicContext() == timeoutTask)
-                {
-                    TimeoutException ex = new();
-                    ex.Data[timeout] = true;
-                    throw ex;
-                }
-                return await task;
-            }
-            finally
-            {
+                Task finishedTask = await Task.WhenAny(task, timeoutTask).DynamicContext();
+                cts.Token.ThrowIfCancellationRequested();
                 cts.Cancel();
+                if (finishedTask == timeoutTask)
+                {
+                    await timeoutTask;
+                    throw new InvalidProgramException();
+                }
+                else
+                {
+                    return await task;
+                }
+            }
+            catch (TaskCanceledException ex)
+            {
+                if (ex.CancellationToken != cts.Token) throw;
+                TimeoutException timeoutException = new();
+                timeoutException.Data[timeout] = true;
+                throw timeoutException;
+            }
+            catch (OperationCanceledException ex)
+            {
+                if (ex.CancellationToken != cts.Token) throw;
+                TimeoutException timeoutException = new();
+                timeoutException.Data[timeout] = true;
+                throw timeoutException;
             }
         }
 
@@ -431,30 +455,32 @@ namespace wan24.Core
         /// <param name="timeout">Timeout</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Task</returns>
+        /// <exception cref="OperationCanceledException">If cancelled</exception>
+        /// <exception cref="TimeoutException">On timeout</exception>
         public static async Task WithTimeoutAndCancellation(this Task task, TimeSpan timeout, CancellationToken cancellationToken)
         {
-            using CancellationTokenSource cts = new();
-            Task timeoutTask = Task.Delay(timeout, cts.Token);
-            CancellationTokenRegistration registration = default;
+            using CancellationTokenSource cts = new(timeout);
+            bool canceled = false;
+            CancellationTokenRegistration registration = default!;
             void Canceled()
             {
+                canceled = true;
                 registration.Dispose();
                 cts.Cancel();
             }
             registration = cancellationToken.Register(Canceled);
             try
             {
-                if (await Task.WhenAny(task.WithCancellation(cancellationToken), timeoutTask).DynamicContext() == timeoutTask)
-                {
-                    TimeoutException ex = new();
-                    ex.Data[timeout] = true;
-                    throw ex;
-                }
+                await task.WithCancellation(cts.Token).DynamicContext();
+            }
+            catch (TaskCanceledException ex)
+            {
+                if (canceled || ex.CancellationToken != cts.Token) throw;
+                throw new TimeoutException(message: null, ex);
             }
             finally
             {
                 registration.Dispose();
-                cts.Cancel();
             }
         }
 
@@ -466,31 +492,32 @@ namespace wan24.Core
         /// <param name="timeout">Timeout</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Task</returns>
+        /// <exception cref="OperationCanceledException">If cancelled</exception>
+        /// <exception cref="TimeoutException">On timeout</exception>
         public static async Task<T> WithTimeoutAndCancellation<T>(this Task<T> task, TimeSpan timeout, CancellationToken cancellationToken)
         {
-            using CancellationTokenSource cts = new();
-            Task timeoutTask = Task.Delay(timeout, cts.Token);
-            CancellationTokenRegistration registration = default;
+            using CancellationTokenSource cts = new(timeout);
+            bool canceled = false;
+            CancellationTokenRegistration registration = default!;
             void Canceled()
             {
+                canceled = true;
                 registration.Dispose();
                 cts.Cancel();
             }
             registration = cancellationToken.Register(Canceled);
             try
             {
-                if (await Task.WhenAny(task.WithCancellation(cancellationToken), timeoutTask).DynamicContext() == timeoutTask)
-                {
-                    TimeoutException ex = new();
-                    ex.Data[timeout] = true;
-                    throw ex;
-                }
-                return await task;
+                return await task.WithCancellation(cts.Token).DynamicContext();
+            }
+            catch (TaskCanceledException ex)
+            {
+                if (canceled || ex.CancellationToken != cts.Token) throw;
+                throw new TimeoutException(message: null, ex);
             }
             finally
             {
                 registration.Dispose();
-                cts.Cancel();
             }
         }
     }

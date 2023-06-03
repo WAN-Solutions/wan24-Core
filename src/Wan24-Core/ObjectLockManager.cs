@@ -65,7 +65,7 @@ namespace wan24.Core
                     {
                         if (ex.Data.Contains(timeout)) throw;
                     }
-                    catch (OperationCanceledException ex)
+                    catch (TaskCanceledException ex)
                     {
                         if (cancellationToken == default || ex.CancellationToken == cancellationToken) throw;
                     }
@@ -135,7 +135,7 @@ namespace wan24.Core
                     {
                         await ol.Task.WithCancellation(cancellationToken).DynamicContext();
                     }
-                    catch (OperationCanceledException ex)
+                    catch (TaskCanceledException ex)
                     {
                         if (ex.CancellationToken == cancellationToken) throw;
                     }

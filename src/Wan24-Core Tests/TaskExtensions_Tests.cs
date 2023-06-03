@@ -41,13 +41,13 @@ namespace Wan24_Core_Tests
             await Task.Delay(50);
             Assert.IsFalse(task.IsCompleted);
             cts.Cancel();
-            await Assert.ThrowsExceptionAsync<OperationCanceledException>(async () => await task);
+            await Assert.ThrowsExceptionAsync<TaskCanceledException>(async () => await task);
         }
 
         [TestMethod("TaskExtensions_Tests.WithTimeout_Tests"), Timeout(1000)]
         public async Task WithTimeout_Tests()
         {
-            Task task = LongRunningTask().WithTimeout(TimeSpan.FromMilliseconds(70));
+            Task task = LongRunningTask().WithTimeout(TimeSpan.FromMilliseconds(100));
             await Task.Delay(50);
             Assert.IsFalse(task.IsCompleted);
             await Assert.ThrowsExceptionAsync<TimeoutException>(async () => await task);
@@ -57,15 +57,16 @@ namespace Wan24_Core_Tests
         public async Task WithTimeoutAndCancellation_Tests()
         {
             using CancellationTokenSource cts = new();
-            Task task = LongRunningTask().WithTimeoutAndCancellation(TimeSpan.FromMilliseconds(70), cts.Token);
+            Task task = LongRunningTask().WithTimeoutAndCancellation(TimeSpan.FromMilliseconds(100), cts.Token);
             await Task.Delay(50);
             Assert.IsFalse(task.IsCompleted);
             await Assert.ThrowsExceptionAsync<TimeoutException>(async () => await task);
-            task = LongRunningTask().WithTimeoutAndCancellation(TimeSpan.FromMilliseconds(70), cts.Token);
+            Assert.IsFalse(cts.IsCancellationRequested);
+            task = LongRunningTask().WithTimeoutAndCancellation(TimeSpan.FromMilliseconds(100), cts.Token);
             await Task.Delay(50);
             Assert.IsFalse(task.IsCompleted);
             cts.Cancel();
-            await Assert.ThrowsExceptionAsync<OperationCanceledException>(async () => await task);
+            await Assert.ThrowsExceptionAsync<TaskCanceledException>(async () => await task);
         }
 
         public static async Task VoidTask()

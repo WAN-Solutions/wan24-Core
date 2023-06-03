@@ -9408,14 +9408,14 @@ references:
   fullName.vb: wan24.Core.ObjectLockManager(Of T).LockAsync(System.Object, System.Object, CancellationToken)
   nameWithType: ObjectLockManager<T>.LockAsync(Object, Object, CancellationToken)
   nameWithType.vb: ObjectLockManager(Of T).LockAsync(Object, Object, CancellationToken)
-- uid: wan24.Core.ObjectLockManager`1.LockAsync(System.Object,TimeSpan,System.Object)
-  name: LockAsync(Object, TimeSpan, Object)
-  href: api/wan24.Core.ObjectLockManager-1.html#wan24_Core_ObjectLockManager_1_LockAsync_System_Object_TimeSpan_System_Object_
-  commentId: M:wan24.Core.ObjectLockManager`1.LockAsync(System.Object,TimeSpan,System.Object)
-  fullName: wan24.Core.ObjectLockManager<T>.LockAsync(System.Object, TimeSpan, System.Object)
-  fullName.vb: wan24.Core.ObjectLockManager(Of T).LockAsync(System.Object, TimeSpan, System.Object)
-  nameWithType: ObjectLockManager<T>.LockAsync(Object, TimeSpan, Object)
-  nameWithType.vb: ObjectLockManager(Of T).LockAsync(Object, TimeSpan, Object)
+- uid: wan24.Core.ObjectLockManager`1.LockAsync(System.Object,TimeSpan,System.Object,CancellationToken)
+  name: LockAsync(Object, TimeSpan, Object, CancellationToken)
+  href: api/wan24.Core.ObjectLockManager-1.html#wan24_Core_ObjectLockManager_1_LockAsync_System_Object_TimeSpan_System_Object_CancellationToken_
+  commentId: M:wan24.Core.ObjectLockManager`1.LockAsync(System.Object,TimeSpan,System.Object,CancellationToken)
+  fullName: wan24.Core.ObjectLockManager<T>.LockAsync(System.Object, TimeSpan, System.Object, CancellationToken)
+  fullName.vb: wan24.Core.ObjectLockManager(Of T).LockAsync(System.Object, TimeSpan, System.Object, CancellationToken)
+  nameWithType: ObjectLockManager<T>.LockAsync(Object, TimeSpan, Object, CancellationToken)
+  nameWithType.vb: ObjectLockManager(Of T).LockAsync(Object, TimeSpan, Object, CancellationToken)
 - uid: wan24.Core.ObjectLockManager`1.LockAsync(wan24.Core.IObjectKey,System.Object,CancellationToken)
   name: LockAsync(IObjectKey, Object, CancellationToken)
   href: api/wan24.Core.ObjectLockManager-1.html#wan24_Core_ObjectLockManager_1_LockAsync_wan24_Core_IObjectKey_System_Object_CancellationToken_
@@ -15243,6 +15243,72 @@ references:
   fullName.vb: wan24.Core.TaskExtensions.WaitAll(Of T)(IEnumerable(Of ValueTask(Of T)))
   nameWithType: TaskExtensions.WaitAll<T>(IEnumerable<ValueTask<T>>)
   nameWithType.vb: TaskExtensions.WaitAll(Of T)(IEnumerable(Of ValueTask(Of T)))
+- uid: wan24.Core.TaskExtensions.WithCancellation(Task,CancellationToken)
+  name: WithCancellation(Task, CancellationToken)
+  href: api/wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_WithCancellation_Task_CancellationToken_
+  commentId: M:wan24.Core.TaskExtensions.WithCancellation(Task,CancellationToken)
+  fullName: wan24.Core.TaskExtensions.WithCancellation(Task, CancellationToken)
+  nameWithType: TaskExtensions.WithCancellation(Task, CancellationToken)
+- uid: wan24.Core.TaskExtensions.WithCancellation*
+  name: WithCancellation
+  href: api/wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_WithCancellation_
+  commentId: Overload:wan24.Core.TaskExtensions.WithCancellation
+  isSpec: "True"
+  fullName: wan24.Core.TaskExtensions.WithCancellation
+  nameWithType: TaskExtensions.WithCancellation
+- uid: wan24.Core.TaskExtensions.WithCancellation``1(Task{``0},CancellationToken)
+  name: WithCancellation<T>(Task<T>, CancellationToken)
+  href: api/wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_WithCancellation__1_Task___0__CancellationToken_
+  commentId: M:wan24.Core.TaskExtensions.WithCancellation``1(Task{``0},CancellationToken)
+  name.vb: WithCancellation(Of T)(Task(Of T), CancellationToken)
+  fullName: wan24.Core.TaskExtensions.WithCancellation<T>(Task<T>, CancellationToken)
+  fullName.vb: wan24.Core.TaskExtensions.WithCancellation(Of T)(Task(Of T), CancellationToken)
+  nameWithType: TaskExtensions.WithCancellation<T>(Task<T>, CancellationToken)
+  nameWithType.vb: TaskExtensions.WithCancellation(Of T)(Task(Of T), CancellationToken)
+- uid: wan24.Core.TaskExtensions.WithTimeout(Task,TimeSpan)
+  name: WithTimeout(Task, TimeSpan)
+  href: api/wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_WithTimeout_Task_TimeSpan_
+  commentId: M:wan24.Core.TaskExtensions.WithTimeout(Task,TimeSpan)
+  fullName: wan24.Core.TaskExtensions.WithTimeout(Task, TimeSpan)
+  nameWithType: TaskExtensions.WithTimeout(Task, TimeSpan)
+- uid: wan24.Core.TaskExtensions.WithTimeout*
+  name: WithTimeout
+  href: api/wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_WithTimeout_
+  commentId: Overload:wan24.Core.TaskExtensions.WithTimeout
+  isSpec: "True"
+  fullName: wan24.Core.TaskExtensions.WithTimeout
+  nameWithType: TaskExtensions.WithTimeout
+- uid: wan24.Core.TaskExtensions.WithTimeout``1(Task{``0},TimeSpan)
+  name: WithTimeout<T>(Task<T>, TimeSpan)
+  href: api/wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_WithTimeout__1_Task___0__TimeSpan_
+  commentId: M:wan24.Core.TaskExtensions.WithTimeout``1(Task{``0},TimeSpan)
+  name.vb: WithTimeout(Of T)(Task(Of T), TimeSpan)
+  fullName: wan24.Core.TaskExtensions.WithTimeout<T>(Task<T>, TimeSpan)
+  fullName.vb: wan24.Core.TaskExtensions.WithTimeout(Of T)(Task(Of T), TimeSpan)
+  nameWithType: TaskExtensions.WithTimeout<T>(Task<T>, TimeSpan)
+  nameWithType.vb: TaskExtensions.WithTimeout(Of T)(Task(Of T), TimeSpan)
+- uid: wan24.Core.TaskExtensions.WithTimeoutAndCancellation(Task,TimeSpan,CancellationToken)
+  name: WithTimeoutAndCancellation(Task, TimeSpan, CancellationToken)
+  href: api/wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_WithTimeoutAndCancellation_Task_TimeSpan_CancellationToken_
+  commentId: M:wan24.Core.TaskExtensions.WithTimeoutAndCancellation(Task,TimeSpan,CancellationToken)
+  fullName: wan24.Core.TaskExtensions.WithTimeoutAndCancellation(Task, TimeSpan, CancellationToken)
+  nameWithType: TaskExtensions.WithTimeoutAndCancellation(Task, TimeSpan, CancellationToken)
+- uid: wan24.Core.TaskExtensions.WithTimeoutAndCancellation*
+  name: WithTimeoutAndCancellation
+  href: api/wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_WithTimeoutAndCancellation_
+  commentId: Overload:wan24.Core.TaskExtensions.WithTimeoutAndCancellation
+  isSpec: "True"
+  fullName: wan24.Core.TaskExtensions.WithTimeoutAndCancellation
+  nameWithType: TaskExtensions.WithTimeoutAndCancellation
+- uid: wan24.Core.TaskExtensions.WithTimeoutAndCancellation``1(Task{``0},TimeSpan,CancellationToken)
+  name: WithTimeoutAndCancellation<T>(Task<T>, TimeSpan, CancellationToken)
+  href: api/wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_WithTimeoutAndCancellation__1_Task___0__TimeSpan_CancellationToken_
+  commentId: M:wan24.Core.TaskExtensions.WithTimeoutAndCancellation``1(Task{``0},TimeSpan,CancellationToken)
+  name.vb: WithTimeoutAndCancellation(Of T)(Task(Of T), TimeSpan, CancellationToken)
+  fullName: wan24.Core.TaskExtensions.WithTimeoutAndCancellation<T>(Task<T>, TimeSpan, CancellationToken)
+  fullName.vb: wan24.Core.TaskExtensions.WithTimeoutAndCancellation(Of T)(Task(Of T), TimeSpan, CancellationToken)
+  nameWithType: TaskExtensions.WithTimeoutAndCancellation<T>(Task<T>, TimeSpan, CancellationToken)
+  nameWithType.vb: TaskExtensions.WithTimeoutAndCancellation(Of T)(Task(Of T), TimeSpan, CancellationToken)
 - uid: wan24.Core.TimedHostedServiceBase
   name: TimedHostedServiceBase
   href: api/wan24.Core.TimedHostedServiceBase.html

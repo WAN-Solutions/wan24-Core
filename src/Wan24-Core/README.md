@@ -42,6 +42,7 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
     - Shortcuts for starting a function as long running task
     - Shortcuts for starting a function as task with fair execution by the 
     scheduler
+    - Add a cancellation token to a task (which can cancel the task awaiter)
 - DI helper
     - Service provider adoption
     - DI object factory delegates
