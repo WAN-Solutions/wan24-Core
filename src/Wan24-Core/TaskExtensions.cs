@@ -385,9 +385,13 @@ namespace wan24.Core
             Task timeoutTask = Task.Delay(timeout, cts.Token);
             try
             {
-                await await Task.WhenAny(task, timeoutTask).DynamicContext();
-                cts.Token.ThrowIfCancellationRequested();
-                cts.Cancel();
+                if(await Task.WhenAny(task, timeoutTask).DynamicContext() == timeoutTask)
+                {
+                    TimeoutException ex = new();
+                    ex.Data[timeout] = true;
+                    throw ex;
+                }
+                await task;
             }
             catch (TaskCanceledException ex)
             {
@@ -419,18 +423,13 @@ namespace wan24.Core
             Task timeoutTask = Task.Delay(timeout, cts.Token);
             try
             {
-                Task finishedTask = await Task.WhenAny(task, timeoutTask).DynamicContext();
-                cts.Token.ThrowIfCancellationRequested();
-                cts.Cancel();
-                if (finishedTask == timeoutTask)
+                if(await Task.WhenAny(task, timeoutTask).DynamicContext() == timeoutTask)
                 {
-                    await timeoutTask;
-                    throw new InvalidProgramException();
+                    TimeoutException ex = new();
+                    ex.Data[timeout] = true;
+                    throw ex;
                 }
-                else
-                {
-                    return await task;
-                }
+                return await task;
             }
             catch (TaskCanceledException ex)
             {
