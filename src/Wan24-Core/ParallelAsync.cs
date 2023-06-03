@@ -48,6 +48,7 @@ namespace wan24.Core
             if (processor.Processed != enqueued)//FIXME Happens during running the tests on Linux from time to time!?
             {
                 Debugger.Break();
+                Logging.WriteError($"{enqueued} items enqueued, but only {processor.Processed} processed");
                 throw new InvalidProgramException($"{enqueued} items enqueued, but only {processor.Processed} processed");
             }
             return processor.Processed;
@@ -93,6 +94,7 @@ namespace wan24.Core
             if (processor.Processed != enqueued)//FIXME Happens during running the tests on Linux from time to time!?
             {
                 Debugger.Break();
+                Logging.WriteError($"{enqueued} items enqueued, but only {processor.Processed} processed");
                 throw new InvalidProgramException($"{enqueued} items enqueued, but only {processor.Processed} processed");
             }
             return processor.Processed;
