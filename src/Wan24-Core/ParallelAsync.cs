@@ -45,7 +45,11 @@ namespace wan24.Core
                 await processor.StopAsync().DynamicContext();
 #pragma warning restore CA2016 // Forward cancellation token
             }
-            if (processor.Processed != enqueued) Debugger.Break();
+            if (processor.Processed != enqueued)//FIXME Happens during running the tests on Linux from time to time!?
+            {
+                Debugger.Break();
+                throw new InvalidProgramException($"{enqueued} items enqueued, but only {processor.Processed} processed");
+            }
             return processor.Processed;
         }
 
@@ -86,7 +90,11 @@ namespace wan24.Core
                 await processor.StopAsync().DynamicContext();
 #pragma warning restore CA2016 // Forward cancellation token
             }
-            if (processor.Processed != enqueued) Debugger.Break();
+            if (processor.Processed != enqueued)//FIXME Happens during running the tests on Linux from time to time!?
+            {
+                Debugger.Break();
+                throw new InvalidProgramException($"{enqueued} items enqueued, but only {processor.Processed} processed");
+            }
             return processor.Processed;
         }
 
@@ -556,7 +564,6 @@ namespace wan24.Core
             {
                 try
                 {
-                    Logging.WriteInfo($"Processing item {item}");
                     await ItemHandler(item, cancellationToken).DynamicContext();
                 }
                 finally
