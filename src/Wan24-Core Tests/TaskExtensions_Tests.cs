@@ -5,7 +5,7 @@ namespace Wan24_Core_Tests
     [TestClass]
     public class TaskExtensions_Tests
     {
-        [TestMethod]
+        [TestMethod("TaskExtensions_Tests.GetResult_Tests"), Timeout(1000)]
         public async Task GetResult_Tests()
         {
             Task task = ResultTask(true);
@@ -26,14 +26,14 @@ namespace Wan24_Core_Tests
             }
         }
 
-        [TestMethod]
+        [TestMethod("TaskExtensions_Tests.Context_Tests"), Timeout(1000)]
         public async Task Context_Tests()
         {
             Assert.IsTrue(await ResultTask(true).DynamicContext());
             Assert.IsTrue(await ResultTask(true).FixedContext());
         }
 
-        [TestMethod]
+        [TestMethod("TaskExtensions_Tests.WithCancellation_Tests"), Timeout(1000)]
         public async Task WithCancellation_Tests()
         {
             using CancellationTokenSource cts = new();
@@ -44,7 +44,7 @@ namespace Wan24_Core_Tests
             await Assert.ThrowsExceptionAsync<OperationCanceledException>(async () => await task);
         }
 
-        [TestMethod]
+        [TestMethod("TaskExtensions_Tests.WithTimeout_Tests"), Timeout(1000)]
         public async Task WithTimeout_Tests()
         {
             Task task = LongRunningTask().WithTimeout(TimeSpan.FromMilliseconds(70));
@@ -53,7 +53,7 @@ namespace Wan24_Core_Tests
             await Assert.ThrowsExceptionAsync<TimeoutException>(async () => await task);
         }
 
-        [TestMethod]
+        [TestMethod("TaskExtensions_Tests.WithTimeoutAndCancellation_Tests"), Timeout(1000)]
         public async Task WithTimeoutAndCancellation_Tests()
         {
             using CancellationTokenSource cts = new();
