@@ -352,5 +352,146 @@ namespace wan24.Core
                 scheduler ?? TaskScheduler.Current
                 )
                 .Unwrap();
+
+        /// <summary>
+        /// Add a cancellation token to a task
+        /// </summary>
+        /// <param name="task">Task</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Task</returns>
+        public static Task WithCancellation(this Task task, CancellationToken cancellationToken)
+            => Task.Run(async () => await task.DynamicContext(), cancellationToken);
+
+        /// <summary>
+        /// Add a cancellation token to a task
+        /// </summary>
+        /// <typeparam name="T">Result type</typeparam>
+        /// <param name="task">Task</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Task</returns>
+        public static Task<T> WithCancellation<T>(this Task<T> task, CancellationToken cancellationToken)
+            => Task.Run(async () => await task.DynamicContext(), cancellationToken);
+
+        /// <summary>
+        /// Add a timeout to a task
+        /// </summary>
+        /// <param name="task">Task</param>
+        /// <param name="timeout">Timeout</param>
+        /// <returns>Task</returns>
+        public static async Task WithTimeout(this Task task, TimeSpan timeout)
+        {
+            using CancellationTokenSource cts = new();
+            Task timeoutTask = Task.Delay(timeout, cts.Token);
+            try
+            {
+                if (await Task.WhenAny(task, timeoutTask).DynamicContext() == timeoutTask)
+                {
+                    TimeoutException ex = new();
+                    ex.Data[timeout] = true;
+                    throw ex;
+                }
+            }
+            finally
+            {
+                cts.Cancel();
+            }
+        }
+
+        /// <summary>
+        /// Add a timeout to a task
+        /// </summary>
+        /// <typeparam name="T">Result type</typeparam>
+        /// <param name="task">Task</param>
+        /// <param name="timeout">Timeout</param>
+        /// <returns>Task</returns>
+        public static async Task<T> WithTimeout<T>(this Task<T> task, TimeSpan timeout)
+        {
+            using CancellationTokenSource cts = new();
+            Task timeoutTask = Task.Delay(timeout, cts.Token);
+            try
+            {
+                if (await Task.WhenAny(task, timeoutTask).DynamicContext() == timeoutTask)
+                {
+                    TimeoutException ex = new();
+                    ex.Data[timeout] = true;
+                    throw ex;
+                }
+                return await task;
+            }
+            finally
+            {
+                cts.Cancel();
+            }
+        }
+
+        /// <summary>
+        /// Add a timeout to a task
+        /// </summary>
+        /// <param name="task">Task</param>
+        /// <param name="timeout">Timeout</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Task</returns>
+        public static async Task WithTimeoutAndCancellation(this Task task, TimeSpan timeout, CancellationToken cancellationToken)
+        {
+            using CancellationTokenSource cts = new();
+            Task timeoutTask = Task.Delay(timeout, cts.Token);
+            CancellationTokenRegistration registration = default;
+            void Canceled()
+            {
+                registration.Dispose();
+                cts.Cancel();
+            }
+            registration = cancellationToken.Register(Canceled);
+            try
+            {
+                if (await Task.WhenAny(task.WithCancellation(cancellationToken), timeoutTask).DynamicContext() == timeoutTask)
+                {
+                    TimeoutException ex = new();
+                    ex.Data[timeout] = true;
+                    throw ex;
+                }
+            }
+            finally
+            {
+                registration.Dispose();
+                cts.Cancel();
+            }
+        }
+
+        /// <summary>
+        /// Add a timeout to a task
+        /// </summary>
+        /// <typeparam name="T">Result type</typeparam>
+        /// <param name="task">Task</param>
+        /// <param name="timeout">Timeout</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Task</returns>
+        public static async Task<T> WithTimeoutAndCancellation<T>(this Task<T> task, TimeSpan timeout, CancellationToken cancellationToken)
+        {
+            using CancellationTokenSource cts = new();
+            Task timeoutTask = Task.Delay(timeout, cts.Token);
+            CancellationTokenRegistration registration = default;
+            void Canceled()
+            {
+                registration.Dispose();
+                cts.Cancel();
+            }
+            registration = cancellationToken.Register(Canceled);
+            try
+            {
+                if (await Task.WhenAny(task.WithCancellation(cancellationToken), timeoutTask).DynamicContext() == timeoutTask)
+                {
+                    TimeoutException ex = new();
+                    ex.Data[timeout] = true;
+                    throw ex;
+                }
+                return await task;
+            }
+            finally
+            {
+                registration.Dispose();
+                cts.Cancel();
+            }
+        }
     }
 }

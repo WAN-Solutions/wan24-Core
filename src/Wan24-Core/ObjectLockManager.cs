@@ -29,13 +29,12 @@ namespace wan24.Core
         /// <param name="key">Object key</param>
         /// <param name="timeout">Timeout</param>
         /// <param name="tag">Tagged object</param>
+        /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Object lock</returns>
-        public async Task<ObjectLock> LockAsync(object key, TimeSpan timeout, object? tag = null)
+        public async Task<ObjectLock> LockAsync(object key, TimeSpan timeout, object? tag = null, CancellationToken cancellationToken = default)
         {
             await Task.Yield();
             EnsureUndisposed();
-            using CancellationTokenSource cts = new();
-            Task timeoutTask = Task.Delay(timeout, cts.Token);
             ObjectLock res = new(key, tag);
             try
             {
@@ -53,16 +52,22 @@ namespace wan24.Core
                     }
                     try
                     {
-                        if (await Task.WhenAny(ol.Task, timeoutTask).DynamicContext() != ol.Task)
+                        if (cancellationToken == default)
                         {
-                            TimeoutException ex = new();
-                            ex.Data[timeout] = timeout;
-                            throw ex;
+                            await ol.Task.WithTimeout(timeout).DynamicContext();
+                        }
+                        else
+                        {
+                            await ol.Task.WithTimeoutAndCancellation(timeout, cancellationToken).DynamicContext();
                         }
                     }
                     catch (TimeoutException ex)
                     {
                         if (ex.Data.Contains(timeout)) throw;
+                    }
+                    catch (OperationCanceledException ex)
+                    {
+                        if (cancellationToken == default || ex.CancellationToken == cancellationToken) throw;
                     }
                     catch
                     {
@@ -74,10 +79,6 @@ namespace wan24.Core
             {
                 await res.DisposeAsync().DynamicContext();
                 throw;
-            }
-            finally
-            {
-                cts.Cancel();
             }
         }
 
@@ -132,7 +133,7 @@ namespace wan24.Core
                     cancellationToken.ThrowIfCancellationRequested();
                     try
                     {
-                        await Task.Run(async () => await ol.Task.DynamicContext(), cancellationToken).DynamicContext();
+                        await ol.Task.WithCancellation(cancellationToken).DynamicContext();
                     }
                     catch (OperationCanceledException ex)
                     {

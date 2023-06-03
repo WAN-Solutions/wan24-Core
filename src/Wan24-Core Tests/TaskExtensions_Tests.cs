@@ -33,15 +33,55 @@ namespace Wan24_Core_Tests
             Assert.IsTrue(await ResultTask(true).FixedContext());
         }
 
-        public async Task VoidTask()
+        [TestMethod]
+        public async Task WithCancellation_Tests()
+        {
+            using CancellationTokenSource cts = new();
+            Task task = LongRunningTask().WithCancellation(cts.Token);
+            await Task.Delay(50);
+            Assert.IsFalse(task.IsCompleted);
+            cts.Cancel();
+            await Assert.ThrowsExceptionAsync<OperationCanceledException>(async () => await task);
+        }
+
+        [TestMethod]
+        public async Task WithTimeout_Tests()
+        {
+            Task task = LongRunningTask().WithTimeout(TimeSpan.FromMilliseconds(70));
+            await Task.Delay(50);
+            Assert.IsFalse(task.IsCompleted);
+            await Assert.ThrowsExceptionAsync<TimeoutException>(async () => await task);
+        }
+
+        [TestMethod]
+        public async Task WithTimeoutAndCancellation_Tests()
+        {
+            using CancellationTokenSource cts = new();
+            Task task = LongRunningTask().WithTimeoutAndCancellation(TimeSpan.FromMilliseconds(70), cts.Token);
+            await Task.Delay(50);
+            Assert.IsFalse(task.IsCompleted);
+            await Assert.ThrowsExceptionAsync<TimeoutException>(async () => await task);
+            task = LongRunningTask().WithTimeoutAndCancellation(TimeSpan.FromMilliseconds(70), cts.Token);
+            await Task.Delay(50);
+            Assert.IsFalse(task.IsCompleted);
+            cts.Cancel();
+            await Assert.ThrowsExceptionAsync<OperationCanceledException>(async () => await task);
+        }
+
+        public static async Task VoidTask()
         {
             await Task.Yield();
         }
 
-        public async Task<T> ResultTask<T>(T result)
+        public static async Task<T> ResultTask<T>(T result)
         {
             await Task.Yield();
             return result;
+        }
+
+        public static async Task LongRunningTask()
+        {
+            await Task.Delay(int.MaxValue);
         }
     }
 }
