@@ -32,12 +32,15 @@ namespace Wan24_Core_Tests
                 Logging.WriteInfo("Waiting workers");
                 await Task.Delay(100);
                 Assert.AreEqual(2, working);
+                Logging.WriteInfo("Setting event #0");
                 events[0]!.Set();
+                Logging.WriteInfo("Setting event #1");
                 events[1]!.Set();
                 await Task.Delay(100);
                 Assert.AreEqual(2, worked);
                 await Task.Delay(100);
                 Assert.AreEqual(3, working);
+                Logging.WriteInfo("Setting event #2");
                 events[2]!.Set();
                 await Task.Delay(100);
                 Assert.AreEqual(3, worked);
