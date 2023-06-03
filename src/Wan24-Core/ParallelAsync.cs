@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -31,9 +32,10 @@ namespace wan24.Core
             if (queueCapacity < threads) throw new ArgumentOutOfRangeException(nameof(queueCapacity));
             using ParallelAsyncProcessor<T> processor = new(itemHandler, queueCapacity, threads.Value);
             await processor.StartAsync(cancellationToken).DynamicContext();
+            int enqueued;
             try
             {
-                int enqueued = await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
+                enqueued = await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
                 while (!cancellationToken.IsCancellationRequested && processor.Processed != enqueued && processor.LastException == null)
                     await processor.WaitBoringAsync(cancellationToken).DynamicContext();
             }
@@ -43,6 +45,7 @@ namespace wan24.Core
                 await processor.StopAsync().DynamicContext();
 #pragma warning restore CA2016 // Forward cancellation token
             }
+            if (processor.Processed != enqueued) Debugger.Break();
             return processor.Processed;
         }
 
@@ -70,9 +73,10 @@ namespace wan24.Core
             if (queueCapacity < threads) throw new ArgumentOutOfRangeException(nameof(queueCapacity));
             using ParallelAsyncProcessor<T> processor = new(itemHandler, queueCapacity, threads.Value);
             await processor.StartAsync(cancellationToken).DynamicContext();
+            int enqueued;
             try
             {
-                int enqueued = await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
+                enqueued = await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
                 while (!cancellationToken.IsCancellationRequested && processor.Processed != enqueued && processor.LastException == null)
                     await processor.WaitBoringAsync(cancellationToken).DynamicContext();
             }
@@ -82,6 +86,7 @@ namespace wan24.Core
                 await processor.StopAsync().DynamicContext();
 #pragma warning restore CA2016 // Forward cancellation token
             }
+            if (processor.Processed != enqueued) Debugger.Break();
             return processor.Processed;
         }
 
@@ -551,6 +556,7 @@ namespace wan24.Core
             {
                 try
                 {
+                    Logging.WriteInfo($"Processing item {item}");
                     await ItemHandler(item, cancellationToken).DynamicContext();
                 }
                 finally
