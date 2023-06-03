@@ -392,14 +392,14 @@ namespace wan24.Core
             catch (TaskCanceledException ex)
             {
                 if (ex.CancellationToken != cts.Token) throw;
-                TimeoutException timeoutException = new();
+                TimeoutException timeoutException = new(message: null, ex);
                 timeoutException.Data[timeout] = true;
                 throw timeoutException;
             }
             catch (OperationCanceledException ex)
             {
                 if (ex.CancellationToken != cts.Token) throw;
-                TimeoutException timeoutException = new();
+                TimeoutException timeoutException = new(message: null, ex);
                 timeoutException.Data[timeout] = true;
                 throw timeoutException;
             }

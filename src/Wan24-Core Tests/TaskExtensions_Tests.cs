@@ -83,6 +83,8 @@ namespace Wan24_Core_Tests
         public static async Task LongRunningTask()
         {
             await Task.Delay(int.MaxValue);
+            Logging.WriteError("Long running task did finish");
+            throw new InvalidProgramException();
         }
     }
 }
