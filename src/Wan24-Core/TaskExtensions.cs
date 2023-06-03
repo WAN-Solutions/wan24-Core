@@ -391,7 +391,7 @@ namespace wan24.Core
                     ex.Data[timeout] = true;
                     throw ex;
                 }
-                await task;
+                await task.DynamicContext();
             }
             catch (TaskCanceledException ex)
             {
@@ -429,7 +429,7 @@ namespace wan24.Core
                     ex.Data[timeout] = true;
                     throw ex;
                 }
-                return await task;
+                return await task.DynamicContext();
             }
             catch (TaskCanceledException ex)
             {
