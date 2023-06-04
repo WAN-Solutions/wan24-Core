@@ -9,7 +9,7 @@ disposing
     automatic when disposing
 - `CancellationOnDispose` cancels a cancellation token when an object is being 
 disposed (or another given cancellation token ws canceled)
-- `Cancellations` combines multiplecancellation tokens into one
+- `Cancellations` combines multiple cancellation tokens into one
 - Type helper (type loading)
 - Secure byte and char array, which clears its contents when disposing
 - Pool rented array as disposable object (which optionally clears its contents 
