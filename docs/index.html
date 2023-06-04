@@ -72,6 +72,9 @@ disposing
 automatic when disposing</li>
 </ul>
 </li>
+<li><code>CancellationOnDispose</code> cancels a cancellation token when an object is being
+disposed (or another given cancellation token ws canceled)</li>
+<li><code>Cancellations</code> combines multiplecancellation tokens into one</li>
 <li>Type helper (type loading)</li>
 <li>Secure byte and char array, which clears its contents when disposing</li>
 <li>Pool rented array as disposable object (which optionally clears its contents
@@ -493,8 +496,8 @@ any event (which may not be a real event) using throttling logic.</p>
 second. Multiple threads may call <code>ProcessAsync</code> concurrent - processing will
 be organized thread-safe.</p>
 <p>The return value of <code>ProcessAsync</code> is the number of objects processed until
-timeout or cancelled.</p>
-<p>The processing delegate shouldn't care about the timeout or if cancelled and
+timeout or canceled.</p>
+<p>The processing delegate shouldn't care about the timeout or if canceled and
 just process the given number of objects.</p>
 <p><strong>NOTE</strong>: A usage gap will slide the throttling timer. Example:</p>
 <p>The timeout was set to 3 objects per 100ms. Now processing goes like this:</p>

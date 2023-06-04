@@ -359,7 +359,7 @@ namespace wan24.Core
         /// <param name="task">Task</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Task</returns>
-        /// <exception cref="TaskCanceledException">If cancelled</exception>
+        /// <exception cref="TaskCanceledException">If canceled</exception>
         public static Task WithCancellation(this Task task, CancellationToken cancellationToken) => task.WaitAsync(cancellationToken);
 
         /// <summary>
@@ -369,7 +369,7 @@ namespace wan24.Core
         /// <param name="task">Task</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Task</returns>
-        /// <exception cref="TaskCanceledException">If cancelled</exception>
+        /// <exception cref="TaskCanceledException">If canceled</exception>
         public static Task<T> WithCancellation<T>(this Task<T> task, CancellationToken cancellationToken) => task.WaitAsync(cancellationToken);
 
         /// <summary>
@@ -454,7 +454,7 @@ namespace wan24.Core
         /// <param name="timeout">Timeout</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Task</returns>
-        /// <exception cref="OperationCanceledException">If cancelled</exception>
+        /// <exception cref="OperationCanceledException">If canceled</exception>
         /// <exception cref="TimeoutException">On timeout</exception>
         public static async Task WithTimeoutAndCancellation(this Task task, TimeSpan timeout, CancellationToken cancellationToken)
         {
@@ -491,7 +491,7 @@ namespace wan24.Core
         /// <param name="timeout">Timeout</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Task</returns>
-        /// <exception cref="OperationCanceledException">If cancelled</exception>
+        /// <exception cref="OperationCanceledException">If canceled</exception>
         /// <exception cref="TimeoutException">On timeout</exception>
         public static async Task<T> WithTimeoutAndCancellation<T>(this Task<T> task, TimeSpan timeout, CancellationToken cancellationToken)
         {

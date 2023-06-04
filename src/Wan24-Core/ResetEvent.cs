@@ -132,7 +132,7 @@
         /// Wait for the state to be set
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <exception cref="OperationCanceledException">Cancelled</exception>
+        /// <exception cref="OperationCanceledException">Canceled</exception>
         public void Wait(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -144,7 +144,7 @@
         /// Wait for the state to be set
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <exception cref="OperationCanceledException">Cancelled</exception>
+        /// <exception cref="OperationCanceledException">Canceled</exception>
         public async Task WaitAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
