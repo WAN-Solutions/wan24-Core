@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 
 namespace wan24.Core
 {
@@ -129,6 +130,46 @@ namespace wan24.Core
             return res;
         }
 
+        /// <summary>
+        /// Try renting an item (non-blocking)
+        /// </summary>
+        /// <param name="item">Item (<see cref="IObjectPoolItem"/> will be reset before returning)</param>
+        /// <returns>Succeed?</returns>
+        public virtual bool TryRent([MaybeNullWhen(returnValue: false)] out T? item)
+        {
+            item = default;
+            EnsureUndisposed();
+            if (AsyncFactory != null) throw new InvalidOperationException("No synchronous object factory");
+            bool synced = false;
+            if (Factory != null)
+            {
+                Sync.Wait();
+                synced = true;
+            }
+            try
+            {
+                if (Factory == null || _Initialized >= Capacity)
+                {
+                    if (!Pool.TryTake(out item)) return false;
+                    if (ResetOnRent && item is IObjectPoolItem poolItem) poolItem.Reset();
+                }
+                else if (Pool.TryTake(out item))
+                {
+                    if (ResetOnRent && item is IObjectPoolItem poolItem) poolItem.Reset();
+                }
+                else
+                {
+                    item = Factory();
+                    if (++_Initialized >= Capacity) Factory = null;
+                }
+            }
+            finally
+            {
+                if (synced) Sync.Release();
+            }
+            return true;
+        }
+
         /// <inheritdoc/>
         public virtual async Task<T> RentAsync()
         {
@@ -166,6 +207,48 @@ namespace wan24.Core
                 if (synced) Sync.Release();
             }
             return res;
+        }
+
+        /// <summary>
+        /// Try renting an item
+        /// </summary>
+        /// <returns>If succeed, and the rented item</returns>
+        public virtual async Task<(bool Succeed, T? Item)> TryRentAsync()
+        {
+            EnsureUndisposed();
+            T? res;
+            bool synced = false;
+            if (AsyncFactory != null || Factory != null)
+            {
+                await Sync.WaitAsync().DynamicContext(); ;
+                synced = true;
+            }
+            try
+            {
+                if ((AsyncFactory == null && Factory == null) || _Initialized >= Capacity)
+                {
+                    if (!Pool.TryTake(out res)) return (Succeed: false, Item: default);
+                    if (ResetOnRent && res is IObjectPoolItem item) item.Reset();
+                }
+                else if (Pool.TryTake(out res))
+                {
+                    if (ResetOnRent && res is IObjectPoolItem item) item.Reset();
+                }
+                else
+                {
+                    res = AsyncFactory == null ? Factory!() : await AsyncFactory.Invoke().DynamicContext();
+                    if (++_Initialized >= Capacity)
+                    {
+                        Factory = null;
+                        AsyncFactory = null;
+                    }
+                }
+            }
+            finally
+            {
+                if (synced) Sync.Release();
+            }
+            return (Succeed: true, Item: res);
         }
 
         /// <inheritdoc/>
