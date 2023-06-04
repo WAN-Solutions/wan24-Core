@@ -19,7 +19,7 @@ namespace wan24.Core
         internal CancellationToken CancellationToken { get; }
 
         /// <summary>
-        /// Is completed (cancelled)?
+        /// Is completed (canceled)?
         /// </summary>
         public bool IsCompleted => CancellationToken.IsCancellationRequested;
 
@@ -32,8 +32,8 @@ namespace wan24.Core
         /// <summary>
         /// Get the result (will throw an exception!)
         /// </summary>
-        /// <exception cref="OperationCanceledException">Cancelled</exception>
-        /// <exception cref="InvalidOperationException">Not cancelled</exception>
+        /// <exception cref="OperationCanceledException">Canceled</exception>
+        /// <exception cref="InvalidOperationException">Not canceled</exception>
         public void GetResult()
         {
             CancellationToken.ThrowIfCancellationRequested();

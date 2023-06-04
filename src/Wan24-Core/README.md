@@ -7,6 +7,9 @@ This core library contains some .NET extensions:
 disposing
     - Dispose attribute for fields/properties which should be disposed 
     automatic when disposing
+- `CancellationOnDispose` cancels a cancellation token when an object is being 
+disposed (or another given cancellation token ws canceled)
+- `Cancellations` combines multiplecancellation tokens into one
 - Type helper (type loading)
 - Secure byte and char array, which clears its contents when disposing
 - Pool rented array as disposable object (which optionally clears its contents 
@@ -440,9 +443,9 @@ second. Multiple threads may call `ProcessAsync` concurrent - processing will
 be organized thread-safe.
 
 The return value of `ProcessAsync` is the number of objects processed until 
-timeout or cancelled.
+timeout or canceled.
 
-The processing delegate shouldn't care about the timeout or if cancelled and 
+The processing delegate shouldn't care about the timeout or if canceled and 
 just process the given number of objects.
 
 **NOTE**: A usage gap will slide the throttling timer. Example:
