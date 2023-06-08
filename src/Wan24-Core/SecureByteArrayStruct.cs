@@ -192,15 +192,13 @@ namespace wan24.Core
             }
             try
             {
-                if (Detached || _Array.Length < 1) return;
-                _Array.Clear();
+                if (!Detached && _Array.Length > 0) _Array.Clear();
             }
             finally
             {
                 if (Handle.IsAllocated) Handle.Free();
                 Detached = true;
             }
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>

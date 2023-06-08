@@ -118,7 +118,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ObjectExtensions_ConvertType__1_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectExtensions.ConvertType%60%601(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ObjectExtensions.cs/#L30">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ObjectExtensions.cs/#L32">View Source</a>
   </span>
   <a id="wan24_Core_ObjectExtensions_ConvertType_" data-uid="wan24.Core.ObjectExtensions.ConvertType*"></a>
   <h4 id="wan24_Core_ObjectExtensions_ConvertType__1_System_Object_" data-uid="wan24.Core.ObjectExtensions.ConvertType``1(System.Object)">ConvertType&lt;T&gt;(Object)</h4>
@@ -181,10 +181,138 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectExtensions.EnsureValidState%60%601(%60%600%2CSystem.Boolean%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ObjectExtensions.cs/#L43">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectExtensions_EnsureValidState_" data-uid="wan24.Core.ObjectExtensions.EnsureValidState*"></a>
+  <h4 id="wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean_System_String_" data-uid="wan24.Core.ObjectExtensions.EnsureValidState``1(``0,System.Boolean,System.String)">EnsureValidState&lt;T&gt;(T, Boolean, String)</h4>
+  <div class="markdown level1 summary"><p>Ensure a valid object state</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T EnsureValidState&lt;T&gt;(this T obj, bool state, string error = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>Object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">state</span></td>
+        <td><p>State (if <span class="xref">false</span>, the state is invalid)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">error</span></td>
+        <td><p>Error message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ObjectExtensions_GetDisplayText_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectExtensions.GetDisplayText(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ObjectExtensions.cs/#L54">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectExtensions_GetDisplayText_" data-uid="wan24.Core.ObjectExtensions.GetDisplayText*"></a>
+  <h4 id="wan24_Core_ObjectExtensions_GetDisplayText_System_Object_" data-uid="wan24.Core.ObjectExtensions.GetDisplayText(System.Object)">GetDisplayText(Object)</h4>
+  <div class="markdown level1 summary"><p>Get the display text</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetDisplayText(this object value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Display text</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ObjectExtensions_In_System_Object_System_Object___.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectExtensions.In(System.Object%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ObjectExtensions.cs/#L14">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ObjectExtensions.cs/#L16">View Source</a>
   </span>
   <a id="wan24_Core_ObjectExtensions_In_" data-uid="wan24.Core.ObjectExtensions.In*"></a>
   <h4 id="wan24_Core_ObjectExtensions_In_System_Object_System_Object___" data-uid="wan24.Core.ObjectExtensions.In(System.Object,System.Object[])">In(Object, Object[])</h4>
@@ -240,7 +368,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ObjectExtensions_In__1___0_IEnumerable___0__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectExtensions.In%60%601(%60%600%2CIEnumerable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ObjectExtensions.cs/#L22">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ObjectExtensions.cs/#L24">View Source</a>
   </span>
   <a id="wan24_Core_ObjectExtensions_In_" data-uid="wan24.Core.ObjectExtensions.In*"></a>
   <h4 id="wan24_Core_ObjectExtensions_In__1___0_IEnumerable___0__" data-uid="wan24.Core.ObjectExtensions.In``1(``0,IEnumerable{``0})">In&lt;T&gt;(T, IEnumerable&lt;T&gt;)</h4>
@@ -317,7 +445,7 @@
                     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ObjectExtensions.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectExtensions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ObjectExtensions.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ObjectExtensions.cs/#L8" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

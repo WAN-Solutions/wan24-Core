@@ -1,7 +1,7 @@
 ﻿namespace wan24.Core
 {
     /// <summary>
-    /// Timeout
+    /// Timeout (when comparing instances, and not the timeout time, you should use the <see cref="Timeout.Equals(object?)"/> method!)
     /// </summary>
     public class Timeout : DisposableBase
     {
@@ -22,7 +22,11 @@
             {
                 AutoReset = autoReset
             };
-            Timer.Elapsed += (s, e) => RaiseOnTimeout();
+            Timer.Elapsed += (s, e) =>
+            {
+                LastTimeout = DateTime.Now;
+                RaiseOnTimeout();
+            };
             Time = time;
             if (start) Start();
         }
@@ -57,9 +61,24 @@
         public bool IsRunning => Timer.Enabled;
 
         /// <summary>
+        /// Last timeout
+        /// </summary>
+        public DateTime LastTimeout { get; protected set; } = DateTime.MinValue;
+
+        /// <summary>
+        /// Remaining time until the next timeout
+        /// </summary>
+        public TimeSpan RemainingTime => Timer.Enabled ? Time - (DateTime.Now - LastTimeout) : TimeSpan.Zero;
+
+        /// <summary>
         /// Start
         /// </summary>
-        public virtual void Start() => Timer.Start();
+        public virtual void Start()
+        {
+            if (Timer.Enabled) return;
+            LastTimeout = DateTime.Now;
+            Timer.Start();
+        }
 
         /// <summary>
         /// Stop
@@ -74,6 +93,12 @@
             Stop();
             Start();
         }
+
+        /// <inheritdoc/>
+        public override int GetHashCode() => base.GetHashCode();
+
+        /// <inheritdoc/>
+        public override bool Equals(object? obj) => base.Equals(obj);
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing) => Timer.Dispose();
@@ -92,5 +117,186 @@
         /// Raise the <see cref="OnTimeout"/> event
         /// </summary>
         protected virtual void RaiseOnTimeout() => OnTimeout?.Invoke(this, new());
+
+        /// <summary>
+        /// Remaining time until the next timeout
+        /// </summary>
+        /// <param name="timeout">Timeout</param>
+        public static implicit operator TimeSpan(Timeout timeout) => timeout.RemainingTime;
+
+        /// <summary>
+        /// If running
+        /// </summary>
+        /// <param name="timeout">Timeout</param>
+        public static implicit operator bool(Timeout timeout) => timeout.Timer.Enabled;
+
+        /// <summary>
+        /// Last timeout
+        /// </summary>
+        /// <param name="timeout">Timeout</param>
+        public static implicit operator DateTime(Timeout timeout) => timeout.LastTimeout;
+
+        /// <summary>
+        /// Cast a <see cref="TimeSpan"/> (the timeout) as <see cref="Timeout"/>
+        /// </summary>
+        /// <param name="timeout">Timeout</param>
+        public static explicit operator Timeout(TimeSpan timeout) => new(timeout);
+
+        /// <summary>
+        /// Add more time (and restart, if running)
+        /// </summary>
+        /// <param name="timeout">Timeout</param>
+        /// <param name="time">Time to add</param>
+        /// <returns>Timeout</returns>
+        public static Timeout operator +(Timeout timeout, TimeSpan time)
+        {
+            timeout.Time += time;
+            return timeout;
+        }
+
+        /// <summary>
+        /// Remove time (and restart, if running)
+        /// </summary>
+        /// <param name="timeout">Timeout</param>
+        /// <param name="time">Time to remove</param>
+        /// <returns>Timeout</returns>
+        public static Timeout operator -(Timeout timeout, TimeSpan time)
+        {
+            timeout.Time -= time;
+            return timeout;
+        }
+
+        /// <summary>
+        /// Time equal
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Is equal?</returns>
+        public static bool operator ==(Timeout a, Timeout b) => a.Time == b.Time;
+
+        /// <summary>
+        /// Time equal
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Is equal?</returns>
+        public static bool operator ==(Timeout a, TimeSpan b) => a.Time == b;
+
+        /// <summary>
+        /// Time not equal
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Is not equal?</returns>
+        public static bool operator !=(Timeout a, Timeout b) => a.Time != b.Time;
+
+        /// <summary>
+        /// Time not equal
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Is not equal?</returns>
+        public static bool operator !=(Timeout a, TimeSpan b) => a.Time != b;
+
+        /// <summary>
+        /// Lower
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Is lower?</returns>
+        public static bool operator <(Timeout a, Timeout b) => a.Time < b.Time;
+
+        /// <summary>
+        /// Lower
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Is lower?</returns>
+        public static bool operator <(Timeout a, TimeSpan b) => a.Time < b;
+
+        /// <summary>
+        /// Greater
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Is greater?</returns>
+        public static bool operator >(Timeout a, Timeout b) => a.Time > b.Time;
+
+        /// <summary>
+        /// Greater
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Is greater?</returns>
+        public static bool operator >(Timeout a, TimeSpan b) => a.Time > b;
+
+        /// <summary>
+        /// Lower or equal
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Is lower or equal?</returns>
+        public static bool operator <=(Timeout a, Timeout b) => a.Time <= b.Time;
+
+        /// <summary>
+        /// Lower or equal
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Is lower or equal?</returns>
+        public static bool operator <=(Timeout a, TimeSpan b) => a.Time <= b;
+
+        /// <summary>
+        /// Greater or equal
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Is greater or equal?</returns>
+        public static bool operator >=(Timeout a, Timeout b) => a.Time >= b.Time;
+
+        /// <summary>
+        /// Greater or equal
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Is greater or equal?</returns>
+        public static bool operator >=(Timeout a, TimeSpan b) => a.Time >= b;
+
+        /// <summary>
+        /// Run an acion
+        /// </summary>
+        /// <param name="delay">Delay</param>
+        /// <param name="action">Action</param>
+        /// <returns>Timeout (will be disposed automatic when the action is being executed)</returns>
+        public static Timeout RunAction(TimeSpan delay, Action action)
+        {
+            Timeout res = new(delay);
+            res.OnTimeout += (s, e) =>
+            {
+                res.Dispose();
+                _ = Task.Run(action);
+            };
+            res.Start();
+            return res;
+        }
+
+        /// <summary>
+        /// Run an asynchronous acion
+        /// </summary>
+        /// <param name="delay">Delay</param>
+        /// <param name="action">Action</param>
+        /// <returns>Timeout (will be disposed automatic when the action is being executed)</returns>
+        public static Timeout RunAction(TimeSpan delay, Func<Task> action)
+        {
+            Timeout res = new(delay);
+            res.OnTimeout += async (s, e) =>
+            {
+                await Task.Yield();
+                res.Dispose();
+                await action().DynamicContext();
+            };
+            res.Start();
+            return res;
+        }
     }
 }

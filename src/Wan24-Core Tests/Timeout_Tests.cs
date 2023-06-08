@@ -34,5 +34,24 @@
             Assert.IsTrue(timeout.IsRunning);
             Assert.AreEqual(0, count);
         }
+
+        [TestMethod]
+        public async Task RunAction_Tests()
+        {
+            bool didRun = false;
+            wan24.Core.Timeout timeout = wan24.Core.Timeout.RunAction(TimeSpan.FromMilliseconds(20), () => didRun = true);
+            await Task.Delay(200);
+            Assert.IsTrue(didRun);
+            Assert.IsTrue(timeout.IsDisposed);
+            didRun = false;
+            timeout = wan24.Core.Timeout.RunAction(TimeSpan.FromMilliseconds(20), async () =>
+            {
+                await Task.Yield();
+                didRun = true;
+            });
+            await Task.Delay(200);
+            Assert.IsTrue(didRun);
+            Assert.IsTrue(timeout.IsDisposed);
+        }
     }
 }

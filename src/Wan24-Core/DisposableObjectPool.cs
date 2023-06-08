@@ -104,5 +104,11 @@ namespace wan24.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Cast as rented object
+        /// </summary>
+        /// <param name="pool">Pool</param>
+        public static implicit operator T(DisposableObjectPool<T> pool) => pool.Rent();
     }
 }

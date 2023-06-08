@@ -9,7 +9,7 @@ disposing
     automatic when disposing
 - `CancellationOnDispose` cancels a cancellation token when an object is being 
 disposed (or another given cancellation token ws canceled)
-- `Cancellations` combines multiplecancellation tokens into one
+- `Cancellations` combines multiple cancellation tokens into one
 - Type helper (type loading)
 - Secure byte and char array, which clears its contents when disposing
 - Pool rented array as disposable object (which optionally clears its contents 
@@ -118,6 +118,10 @@ types), and `BlockingObjectPool` for a strict pool capacity limit
 - `DisposableWrapper<T>` for wrapping any (not disposable?) object with the 
 `IDisposable` and `IAsyncDisposable` interface using custom dispose actions 
 during runtime
+- `DisposableAdapter` for adopting the `IDisposableObject` interface from a 
+type which can't extend the `DisposableBase` type
+- Generic object extenions for validating method arguments
+- CLI arguments interpreter
 
 ## How to get it
 
@@ -627,3 +631,54 @@ If `AnyType` implements the `IObjectKey` interface, it can be given to the
 
 **NOTE**: `ObjectLock` will dispose itself as soon as `RunTaskAsync` has been 
 called, and the given task was completed.
+
+## CLI arguments interpreter
+
+There a just a few rules:
+
+1. A flag starts with a single dash
+2. A key for a value (list) starts with a double dash
+3. Keys/values can be quoted using single or double quotes
+4. Escape character is the backslash (only applicable in quoted values)
+5. A quoted value must be escaped for JSON decoding, a backslash must be 
+double escaped
+6. Double quotes in a quoted value must be escaped always
+
+Example:
+
+`"-flag" --key 'value1' value2 --key -value3 '--key2' "value"`
+
+For appending the value `-value3` to the value list of `key`, the value needs 
+to be added with another `--key` key identifier, 'cause it starts with a dash 
+and could be misinterpreted as a flag (which would result in a parser error).
+
+A CLI app called with these arguments could interpret them easy using the 
+`CliArguments` class:
+
+```cs
+CliArguments cliArgs = new(args);
+Assert.IsTrue(cliArgs["flag"]);
+Assert.AreEqual(3, cliArgs.All("key").Count);
+Assert.AreEqual("value", cliArgs.Single("key2"));
+```
+
+A `--` (double dash) may be interpreted as an empty key name or a flag with 
+the name `-`, based on if a value, which doesn't start with a dash, is 
+following. Examples:
+
+- `--`: `-` flag
+- `-- -`: `-` flag (`--` and `-` are both interpreted as double `-` flag 
+(double flags will be combined))
+- `-- value`: Empty key with the value `value`
+- `-- -key`: `-` and `key` flags
+
+Keyless arguments will be stored in the `KeyLessArguments` list - example:
+
+```cs
+CliArguments ca = CliArguments.Parse("value1 -flag value2 --key value3");
+Assert.AreEqual(2, ca.KeyLessArguments.Count);
+Assert.AreEqual("value1", ca.KeyLessArguments[0]);
+Assert.AreEqual("value2", ca.KeyLessArguments[1]);
+Assert.IsTrue(ca["flag"]);
+Assert.IsTrue(ca["key", true]);
+```

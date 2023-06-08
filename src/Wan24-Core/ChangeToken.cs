@@ -60,5 +60,11 @@ namespace wan24.Core
             lock (SyncObject) callbacks = Callbacks.ToArray();
             callbacks.Invoke();
         }
+
+        /// <summary>
+        /// Cast as changed-flag
+        /// </summary>
+        /// <param name="token">Token</param>
+        public static implicit operator bool(ChangeToken token) => token.HasChanged;
     }
 }

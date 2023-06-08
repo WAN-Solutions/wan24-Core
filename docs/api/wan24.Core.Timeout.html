@@ -73,7 +73,7 @@
   
   <h1 id="wan24_Core_Timeout" data-uid="wan24.Core.Timeout" class="text-break">Class Timeout
   </h1>
-  <div class="markdown level0 summary"><p>Timeout</p>
+  <div class="markdown level0 summary"><p>Timeout (when comparing instances, and not the timeout time, you should use the <a class="xref" href="wan24.Core.Timeout.html#wan24_Core_Timeout_Equals_System_Object_">Equals(Object)</a> method!)</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -136,13 +136,7 @@
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposed">DisposableBase.OnDisposed</a>
     </div>
     <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
       <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
     </div>
     <div>
       <span class="xref">System.Object.GetType()</span>
@@ -250,7 +244,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_AutoReset.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.AutoReset%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L48">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L52">View Source</a>
   </span>
   <a id="wan24_Core_Timeout_AutoReset_" data-uid="wan24.Core.Timeout.AutoReset*"></a>
   <h4 id="wan24_Core_Timeout_AutoReset" data-uid="wan24.Core.Timeout.AutoReset">AutoReset</h4>
@@ -281,7 +275,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_IsRunning.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.IsRunning%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L57">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L61">View Source</a>
   </span>
   <a id="wan24_Core_Timeout_IsRunning_" data-uid="wan24.Core.Timeout.IsRunning*"></a>
   <h4 id="wan24_Core_Timeout_IsRunning" data-uid="wan24.Core.Timeout.IsRunning">IsRunning</h4>
@@ -309,10 +303,72 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_LastTimeout.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.LastTimeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L66">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_LastTimeout_" data-uid="wan24.Core.Timeout.LastTimeout*"></a>
+  <h4 id="wan24_Core_Timeout_LastTimeout" data-uid="wan24.Core.Timeout.LastTimeout">LastTimeout</h4>
+  <div class="markdown level1 summary"><p>Last timeout</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime LastTimeout { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DateTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_RemainingTime.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.RemainingTime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L71">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_RemainingTime_" data-uid="wan24.Core.Timeout.RemainingTime*"></a>
+  <h4 id="wan24_Core_Timeout_RemainingTime" data-uid="wan24.Core.Timeout.RemainingTime">RemainingTime</h4>
+  <div class="markdown level1 summary"><p>Remaining time until the next timeout</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeSpan RemainingTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_Time.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.Time%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L33">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L37">View Source</a>
   </span>
   <a id="wan24_Core_Timeout_Time_" data-uid="wan24.Core.Timeout.Time*"></a>
   <h4 id="wan24_Core_Timeout_Time" data-uid="wan24.Core.Timeout.Time">Time</h4>
@@ -345,7 +401,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L79">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L104">View Source</a>
   </span>
   <a id="wan24_Core_Timeout_Dispose_" data-uid="wan24.Core.Timeout.Dispose*"></a>
   <h4 id="wan24_Core_Timeout_Dispose_System_Boolean_" data-uid="wan24.Core.Timeout.Dispose(System.Boolean)">Dispose(Boolean)</h4>
@@ -378,10 +434,91 @@
   <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose_System_Boolean_">DisposableBase.Dispose(Boolean)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_Equals_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L101">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_Equals_" data-uid="wan24.Core.Timeout.Equals*"></a>
+  <h4 id="wan24_Core_Timeout_Equals_System_Object_" data-uid="wan24.Core.Timeout.Equals(System.Object)">Equals(Object)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.Object.Equals(System.Object)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_GetHashCode.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L98">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_GetHashCode_" data-uid="wan24.Core.Timeout.GetHashCode*"></a>
+  <h4 id="wan24_Core_Timeout_GetHashCode" data-uid="wan24.Core.Timeout.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.Object.GetHashCode()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_RaiseOnTimeout.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.RaiseOnTimeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L94">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L119">View Source</a>
   </span>
   <a id="wan24_Core_Timeout_RaiseOnTimeout_" data-uid="wan24.Core.Timeout.RaiseOnTimeout*"></a>
   <h4 id="wan24_Core_Timeout_RaiseOnTimeout" data-uid="wan24.Core.Timeout.RaiseOnTimeout">RaiseOnTimeout()</h4>
@@ -397,7 +534,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_Reset.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.Reset%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L72">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L91">View Source</a>
   </span>
   <a id="wan24_Core_Timeout_Reset_" data-uid="wan24.Core.Timeout.Reset*"></a>
   <h4 id="wan24_Core_Timeout_Reset" data-uid="wan24.Core.Timeout.Reset">Reset()</h4>
@@ -410,10 +547,122 @@
   </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_RunAction_TimeSpan_Action_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.RunAction(TimeSpan%2CAction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L271">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_RunAction_" data-uid="wan24.Core.Timeout.RunAction*"></a>
+  <h4 id="wan24_Core_Timeout_RunAction_TimeSpan_Action_" data-uid="wan24.Core.Timeout.RunAction(TimeSpan,Action)">RunAction(TimeSpan, Action)</h4>
+  <div class="markdown level1 summary"><p>Run an acion</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Timeout RunAction(TimeSpan delay, Action action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><span class="parametername">delay</span></td>
+        <td><p>Delay</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Action</span></td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><p>Timeout (will be disposed automatic when the action is being executed)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_RunAction_TimeSpan_Func_Task__.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.RunAction(TimeSpan%2CFunc%7BTask%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L289">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_RunAction_" data-uid="wan24.Core.Timeout.RunAction*"></a>
+  <h4 id="wan24_Core_Timeout_RunAction_TimeSpan_Func_Task__" data-uid="wan24.Core.Timeout.RunAction(TimeSpan,Func{Task})">RunAction(TimeSpan, Func&lt;Task&gt;)</h4>
+  <div class="markdown level1 summary"><p>Run an asynchronous acion</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Timeout RunAction(TimeSpan delay, Func&lt;Task&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><span class="parametername">delay</span></td>
+        <td><p>Delay</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">Task</span>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><p>Timeout (will be disposed automatic when the action is being executed)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_Start.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.Start%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L62">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L76">View Source</a>
   </span>
   <a id="wan24_Core_Timeout_Start_" data-uid="wan24.Core.Timeout.Start*"></a>
   <h4 id="wan24_Core_Timeout_Start" data-uid="wan24.Core.Timeout.Start">Start()</h4>
@@ -429,7 +678,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_Stop.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.Stop%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L67">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L86">View Source</a>
   </span>
   <a id="wan24_Core_Timeout_Stop_" data-uid="wan24.Core.Timeout.Stop*"></a>
   <h4 id="wan24_Core_Timeout_Stop" data-uid="wan24.Core.Timeout.Stop">Stop()</h4>
@@ -447,7 +696,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_OnTimeout.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.OnTimeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L90">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L115">View Source</a>
   </span>
   <h4 id="wan24_Core_Timeout_OnTimeout" data-uid="wan24.Core.Timeout.OnTimeout">OnTimeout</h4>
   <div class="markdown level1 summary"><p>Raised on timeout</p>
@@ -472,6 +721,988 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="operators">Operators
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_Addition_wan24_Core_Timeout_TimeSpan_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_Addition(wan24.Core.Timeout%2CTimeSpan)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L151">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_Addition_" data-uid="wan24.Core.Timeout.op_Addition*"></a>
+  <h4 id="wan24_Core_Timeout_op_Addition_wan24_Core_Timeout_TimeSpan_" data-uid="wan24.Core.Timeout.op_Addition(wan24.Core.Timeout,TimeSpan)">Addition(Timeout, TimeSpan)</h4>
+  <div class="markdown level1 summary"><p>Add more time (and restart, if running)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Timeout operator +(Timeout timeout, TimeSpan time)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>Time to add</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><p>Timeout</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_Equality_wan24_Core_Timeout_TimeSpan_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_Equality(wan24.Core.Timeout%2CTimeSpan)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L183">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_Equality_" data-uid="wan24.Core.Timeout.op_Equality*"></a>
+  <h4 id="wan24_Core_Timeout_op_Equality_wan24_Core_Timeout_TimeSpan_" data-uid="wan24.Core.Timeout.op_Equality(wan24.Core.Timeout,TimeSpan)">Equality(Timeout, TimeSpan)</h4>
+  <div class="markdown level1 summary"><p>Time equal</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(Timeout a, TimeSpan b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>A</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>B</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Is equal?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_Equality_wan24_Core_Timeout_wan24_Core_Timeout_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_Equality(wan24.Core.Timeout%2Cwan24.Core.Timeout)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L175">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_Equality_" data-uid="wan24.Core.Timeout.op_Equality*"></a>
+  <h4 id="wan24_Core_Timeout_op_Equality_wan24_Core_Timeout_wan24_Core_Timeout_" data-uid="wan24.Core.Timeout.op_Equality(wan24.Core.Timeout,wan24.Core.Timeout)">Equality(Timeout, Timeout)</h4>
+  <div class="markdown level1 summary"><p>Time equal</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(Timeout a, Timeout b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>A</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>B</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Is equal?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_Explicit_TimeSpan__wan24_Core_Timeout.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_Explicit(TimeSpan)~wan24.Core.Timeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L143">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_Explicit_" data-uid="wan24.Core.Timeout.op_Explicit*"></a>
+  <h4 id="wan24_Core_Timeout_op_Explicit_TimeSpan__wan24_Core_Timeout" data-uid="wan24.Core.Timeout.op_Explicit(TimeSpan)~wan24.Core.Timeout">Explicit(TimeSpan to Timeout)</h4>
+  <div class="markdown level1 summary"><p>Cast a <see cref="!:TimeSpan"></see> (the timeout) as <a class="xref" href="wan24.Core.Timeout.html">Timeout</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static explicit operator Timeout(TimeSpan timeout)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_GreaterThan_wan24_Core_Timeout_TimeSpan_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_GreaterThan(wan24.Core.Timeout%2CTimeSpan)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L231">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_GreaterThan_" data-uid="wan24.Core.Timeout.op_GreaterThan*"></a>
+  <h4 id="wan24_Core_Timeout_op_GreaterThan_wan24_Core_Timeout_TimeSpan_" data-uid="wan24.Core.Timeout.op_GreaterThan(wan24.Core.Timeout,TimeSpan)">GreaterThan(Timeout, TimeSpan)</h4>
+  <div class="markdown level1 summary"><p>Greater</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator&gt;(Timeout a, TimeSpan b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>A</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>B</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Is greater?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_GreaterThan_wan24_Core_Timeout_wan24_Core_Timeout_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_GreaterThan(wan24.Core.Timeout%2Cwan24.Core.Timeout)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L223">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_GreaterThan_" data-uid="wan24.Core.Timeout.op_GreaterThan*"></a>
+  <h4 id="wan24_Core_Timeout_op_GreaterThan_wan24_Core_Timeout_wan24_Core_Timeout_" data-uid="wan24.Core.Timeout.op_GreaterThan(wan24.Core.Timeout,wan24.Core.Timeout)">GreaterThan(Timeout, Timeout)</h4>
+  <div class="markdown level1 summary"><p>Greater</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator&gt;(Timeout a, Timeout b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>A</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>B</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Is greater?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_GreaterThanOrEqual_wan24_Core_Timeout_TimeSpan_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_GreaterThanOrEqual(wan24.Core.Timeout%2CTimeSpan)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L263">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_GreaterThanOrEqual_" data-uid="wan24.Core.Timeout.op_GreaterThanOrEqual*"></a>
+  <h4 id="wan24_Core_Timeout_op_GreaterThanOrEqual_wan24_Core_Timeout_TimeSpan_" data-uid="wan24.Core.Timeout.op_GreaterThanOrEqual(wan24.Core.Timeout,TimeSpan)">GreaterThanOrEqual(Timeout, TimeSpan)</h4>
+  <div class="markdown level1 summary"><p>Greater or equal</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;=(Timeout a, TimeSpan b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>A</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>B</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Is greater or equal?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_GreaterThanOrEqual_wan24_Core_Timeout_wan24_Core_Timeout_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_GreaterThanOrEqual(wan24.Core.Timeout%2Cwan24.Core.Timeout)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L255">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_GreaterThanOrEqual_" data-uid="wan24.Core.Timeout.op_GreaterThanOrEqual*"></a>
+  <h4 id="wan24_Core_Timeout_op_GreaterThanOrEqual_wan24_Core_Timeout_wan24_Core_Timeout_" data-uid="wan24.Core.Timeout.op_GreaterThanOrEqual(wan24.Core.Timeout,wan24.Core.Timeout)">GreaterThanOrEqual(Timeout, Timeout)</h4>
+  <div class="markdown level1 summary"><p>Greater or equal</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;=(Timeout a, Timeout b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>A</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>B</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Is greater or equal?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_Implicit_wan24_Core_Timeout__DateTime.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_Implicit(wan24.Core.Timeout)~DateTime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L137">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_Implicit_" data-uid="wan24.Core.Timeout.op_Implicit*"></a>
+  <h4 id="wan24_Core_Timeout_op_Implicit_wan24_Core_Timeout__DateTime" data-uid="wan24.Core.Timeout.op_Implicit(wan24.Core.Timeout)~DateTime">Implicit(Timeout to DateTime)</h4>
+  <div class="markdown level1 summary"><p>Last timeout</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator DateTime(Timeout timeout)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DateTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_Implicit_wan24_Core_Timeout__System_Boolean.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_Implicit(wan24.Core.Timeout)~System.Boolean%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L131">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_Implicit_" data-uid="wan24.Core.Timeout.op_Implicit*"></a>
+  <h4 id="wan24_Core_Timeout_op_Implicit_wan24_Core_Timeout__System_Boolean" data-uid="wan24.Core.Timeout.op_Implicit(wan24.Core.Timeout)~System.Boolean">Implicit(Timeout to Boolean)</h4>
+  <div class="markdown level1 summary"><p>If running</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator bool (Timeout timeout)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_Implicit_wan24_Core_Timeout__TimeSpan.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_Implicit(wan24.Core.Timeout)~TimeSpan%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L125">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_Implicit_" data-uid="wan24.Core.Timeout.op_Implicit*"></a>
+  <h4 id="wan24_Core_Timeout_op_Implicit_wan24_Core_Timeout__TimeSpan" data-uid="wan24.Core.Timeout.op_Implicit(wan24.Core.Timeout)~TimeSpan">Implicit(Timeout to TimeSpan)</h4>
+  <div class="markdown level1 summary"><p>Remaining time until the next timeout</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator TimeSpan(Timeout timeout)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_Inequality_wan24_Core_Timeout_TimeSpan_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_Inequality(wan24.Core.Timeout%2CTimeSpan)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L199">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_Inequality_" data-uid="wan24.Core.Timeout.op_Inequality*"></a>
+  <h4 id="wan24_Core_Timeout_op_Inequality_wan24_Core_Timeout_TimeSpan_" data-uid="wan24.Core.Timeout.op_Inequality(wan24.Core.Timeout,TimeSpan)">Inequality(Timeout, TimeSpan)</h4>
+  <div class="markdown level1 summary"><p>Time not equal</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(Timeout a, TimeSpan b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>A</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>B</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Is not equal?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_Inequality_wan24_Core_Timeout_wan24_Core_Timeout_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_Inequality(wan24.Core.Timeout%2Cwan24.Core.Timeout)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L191">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_Inequality_" data-uid="wan24.Core.Timeout.op_Inequality*"></a>
+  <h4 id="wan24_Core_Timeout_op_Inequality_wan24_Core_Timeout_wan24_Core_Timeout_" data-uid="wan24.Core.Timeout.op_Inequality(wan24.Core.Timeout,wan24.Core.Timeout)">Inequality(Timeout, Timeout)</h4>
+  <div class="markdown level1 summary"><p>Time not equal</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(Timeout a, Timeout b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>A</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>B</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Is not equal?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_LessThan_wan24_Core_Timeout_TimeSpan_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_LessThan(wan24.Core.Timeout%2CTimeSpan)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L215">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_LessThan_" data-uid="wan24.Core.Timeout.op_LessThan*"></a>
+  <h4 id="wan24_Core_Timeout_op_LessThan_wan24_Core_Timeout_TimeSpan_" data-uid="wan24.Core.Timeout.op_LessThan(wan24.Core.Timeout,TimeSpan)">LessThan(Timeout, TimeSpan)</h4>
+  <div class="markdown level1 summary"><p>Lower</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;(Timeout a, TimeSpan b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>A</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>B</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Is lower?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_LessThan_wan24_Core_Timeout_wan24_Core_Timeout_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_LessThan(wan24.Core.Timeout%2Cwan24.Core.Timeout)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L207">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_LessThan_" data-uid="wan24.Core.Timeout.op_LessThan*"></a>
+  <h4 id="wan24_Core_Timeout_op_LessThan_wan24_Core_Timeout_wan24_Core_Timeout_" data-uid="wan24.Core.Timeout.op_LessThan(wan24.Core.Timeout,wan24.Core.Timeout)">LessThan(Timeout, Timeout)</h4>
+  <div class="markdown level1 summary"><p>Lower</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;(Timeout a, Timeout b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>A</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>B</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Is lower?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_LessThanOrEqual_wan24_Core_Timeout_TimeSpan_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_LessThanOrEqual(wan24.Core.Timeout%2CTimeSpan)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L247">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_LessThanOrEqual_" data-uid="wan24.Core.Timeout.op_LessThanOrEqual*"></a>
+  <h4 id="wan24_Core_Timeout_op_LessThanOrEqual_wan24_Core_Timeout_TimeSpan_" data-uid="wan24.Core.Timeout.op_LessThanOrEqual(wan24.Core.Timeout,TimeSpan)">LessThanOrEqual(Timeout, TimeSpan)</h4>
+  <div class="markdown level1 summary"><p>Lower or equal</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;=(Timeout a, TimeSpan b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>A</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>B</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Is lower or equal?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_LessThanOrEqual_wan24_Core_Timeout_wan24_Core_Timeout_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_LessThanOrEqual(wan24.Core.Timeout%2Cwan24.Core.Timeout)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L239">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_LessThanOrEqual_" data-uid="wan24.Core.Timeout.op_LessThanOrEqual*"></a>
+  <h4 id="wan24_Core_Timeout_op_LessThanOrEqual_wan24_Core_Timeout_wan24_Core_Timeout_" data-uid="wan24.Core.Timeout.op_LessThanOrEqual(wan24.Core.Timeout,wan24.Core.Timeout)">LessThanOrEqual(Timeout, Timeout)</h4>
+  <div class="markdown level1 summary"><p>Lower or equal</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;=(Timeout a, Timeout b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>A</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>B</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Is lower or equal?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_op_Subtraction_wan24_Core_Timeout_TimeSpan_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.op_Subtraction(wan24.Core.Timeout%2CTimeSpan)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L163">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_op_Subtraction_" data-uid="wan24.Core.Timeout.op_Subtraction*"></a>
+  <h4 id="wan24_Core_Timeout_op_Subtraction_wan24_Core_Timeout_TimeSpan_" data-uid="wan24.Core.Timeout.op_Subtraction(wan24.Core.Timeout,TimeSpan)">Subtraction(Timeout, TimeSpan)</h4>
+  <div class="markdown level1 summary"><p>Remove time (and restart, if running)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Timeout operator -(Timeout timeout, TimeSpan time)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><span class="parametername">time</span></td>
+        <td><p>Time to remove</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
+        <td><p>Timeout</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
@@ -484,7 +1715,34 @@
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_GetEnumDisplayText_System_Object_">EnumExtensions.GetEnumDisplayText(Object)</a>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_Int32_System_Int32_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, Int32, Int32, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int64_System_Int64_System_Int64_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int64, Int64, Int64, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Double_System_Double_System_Double_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Double, Double, Double, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Boolean_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgumentRange__1___0_System_String_System_Boolean_System_String_">ArgumentValidationExtensions.EnsureValidArgumentRange&lt;T&gt;(T, String, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_String_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String___1_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tValue&gt;(tObj, String, tValue, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_String_System_Int32_System_Boolean_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, String, Int32, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32___1___System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, tItem[], String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32_Span___1__System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, Span&lt;tItem&gt;, String)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean_">JsonExtensions.ToJson(Object, Boolean)</a>
@@ -497,6 +1755,12 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean_System_String_">ObjectExtensions.EnsureValidState&lt;T&gt;(T, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText_System_Object_">ObjectExtensions.GetDisplayText(Object)</a>
   </div>
 </article>
           </div>

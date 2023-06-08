@@ -17,7 +17,28 @@
         /// <summary>
         /// Buffer size in bytes
         /// </summary>
-        public static int BufferSize { get; set; } = DEFAULT_BUFFER_SIZE;
+        private static int _BufferSize = DEFAULT_BUFFER_SIZE;
+        /// <summary>
+        /// Custom temporary folder
+        /// </summary>
+        private static string? _CustomTempFolder = null;
+        /// <summary>
+        /// Stack allocation border in bytes
+        /// </summary>
+        private static int _StackAllocBorder = DEFAULT_STACK_ALLOC_BORDER;
+
+        /// <summary>
+        /// Buffer size in bytes
+        /// </summary>
+        public static int BufferSize
+        {
+            get => _BufferSize;
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(value));
+                _BufferSize = value;
+            }
+        }
 
         /// <summary>
         /// Temporary folder (may be the customized value or the system users temporary folder)
@@ -27,11 +48,27 @@
         /// <summary>
         /// Custom temporary folder
         /// </summary>
-        public static string? CustomTempFolder { get; set; }
+        public static string? CustomTempFolder
+        {
+            get => _CustomTempFolder;
+            set
+            {
+                if (value != null && !Directory.Exists(value)) throw new DirectoryNotFoundException(value);
+                _CustomTempFolder = value;
+            }
+        }
 
         /// <summary>
         /// Stack allocation border in bytes
         /// </summary>
-        public static int StackAllocBorder { get; set; } = DEFAULT_STACK_ALLOC_BORDER;
+        public static int StackAllocBorder
+        {
+            get => _StackAllocBorder;
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
+                _StackAllocBorder = value;
+            }
+        }
     }
 }

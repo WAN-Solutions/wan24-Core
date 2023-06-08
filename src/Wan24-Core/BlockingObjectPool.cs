@@ -377,5 +377,23 @@ namespace wan24.Core
                 }
             Pool.Dispose();
         }
+
+        /// <summary>
+        /// Cast as rented object
+        /// </summary>
+        /// <param name="pool">Pool</param>
+        public static implicit operator T(BlockingObjectPool<T> pool) => pool.Rent();
+
+        /// <summary>
+        /// Cast as available item count
+        /// </summary>
+        /// <param name="pool">Pool</param>
+        public static implicit operator int(BlockingObjectPool<T> pool) => pool.Available;
+
+        /// <summary>
+        /// Cast as available-flag
+        /// </summary>
+        /// <param name="pool">Pool</param>
+        public static implicit operator bool(BlockingObjectPool<T> pool) => pool.Available != 0;
     }
 }

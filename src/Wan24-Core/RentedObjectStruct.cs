@@ -58,7 +58,6 @@
                 IsDisposed = true;
             }
             Pool.Return(_Object, Reset);
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>

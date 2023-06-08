@@ -1,9 +1,9 @@
 ﻿namespace wan24.Core
 {
     /// <summary>
-    /// Display text attribute for enumeration values
+    /// Display text
     /// </summary>
-    [AttributeUsage(AttributeTargets.Field)]
+    [AttributeUsage(AttributeTargets.All)]
     public sealed class DisplayTextAttribute : Attribute
     {
         /// <summary>

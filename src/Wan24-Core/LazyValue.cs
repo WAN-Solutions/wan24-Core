@@ -50,5 +50,11 @@
         /// </summary>
         /// <param name="lazyValue">Lazy value</param>
         public static implicit operator T(LazyValue<T> lazyValue) => lazyValue.Value;
+
+        /// <summary>
+        /// Cast as has-value-flag
+        /// </summary>
+        /// <param name="lazyValue">Lazy value</param>
+        public static implicit operator bool(LazyValue<T> lazyValue) => lazyValue.HasValue;
     }
 }

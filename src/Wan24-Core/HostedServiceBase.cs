@@ -168,5 +168,11 @@ namespace wan24.Core
         /// Raised on exception
         /// </summary>
         public event HostedService_Delegate? OnException;
+
+        /// <summary>
+        /// Cast as running-flag
+        /// </summary>
+        /// <param name="service">Service</param>
+        public static implicit operator bool(HostedServiceBase service) => service.IsRunning;
     }
 }
