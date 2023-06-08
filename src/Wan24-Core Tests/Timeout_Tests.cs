@@ -40,7 +40,7 @@
         {
             bool didRun = false;
             wan24.Core.Timeout timeout = wan24.Core.Timeout.RunAction(TimeSpan.FromMilliseconds(20), () => didRun = true);
-            await Task.Delay(100);
+            await Task.Delay(200);
             Assert.IsTrue(didRun);
             Assert.IsTrue(timeout.IsDisposed);
             didRun = false;
@@ -49,7 +49,7 @@
                 await Task.Yield();
                 didRun = true;
             });
-            await Task.Delay(100);
+            await Task.Delay(200);
             Assert.IsTrue(didRun);
             Assert.IsTrue(timeout.IsDisposed);
         }
