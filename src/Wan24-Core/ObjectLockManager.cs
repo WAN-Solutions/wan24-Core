@@ -83,6 +83,11 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Number of active locks
+        /// </summary>
+        public int Count => ActiveLocks.Count;
+
+        /// <summary>
         /// Create an object lock asynchronous
         /// </summary>
         /// <param name="obj">Object</param>
@@ -245,5 +250,11 @@ namespace wan24.Core
         /// <param name="key">Object key</param>
         /// <param name="objectLock">Lock</param>
         private void RaiseOnUnlocked(object key, ObjectLock objectLock) => OnUnlocked?.Invoke(this, key, objectLock);
+
+        /// <summary>
+        /// Cast as active locks count
+        /// </summary>
+        /// <param name="manager">Manager</param>
+        public static implicit operator int(ObjectLockManager<T> manager) => manager.Count;
     }
 }

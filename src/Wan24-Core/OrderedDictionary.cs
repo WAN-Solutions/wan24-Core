@@ -477,6 +477,12 @@ namespace wan24.Core
         protected virtual void RaiseOnRemoved(int index, tKey key, tValue value) => OnRemoved?.Invoke(this, index, key, value);
 
         /// <summary>
+        /// Cast as item count
+        /// </summary>
+        /// <param name="dict">Dictionary</param>
+        public static implicit operator int(OrderedDictionary<tKey, tValue> dict) => dict.Count;
+
+        /// <summary>
         /// Dictionary enumerator
         /// </summary>
         protected class DictionaryEnumerator : IDictionaryEnumerator

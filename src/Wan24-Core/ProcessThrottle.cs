@@ -300,5 +300,11 @@
         /// Raised when stopped throttling
         /// </summary>
         public event ProcessThrottleEvent_Delegate? OnThrottleEnd;
+
+        /// <summary>
+        /// Cast as throttling-flag
+        /// </summary>
+        /// <param name="throttle">Throttle</param>
+        public static implicit operator bool(ProcessThrottle throttle) => throttle.IsThrottling;
     }
 }

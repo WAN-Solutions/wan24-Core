@@ -80,5 +80,11 @@
         /// </summary>
         /// <param name="lazyValue">Lazy value</param>
         public static implicit operator T(AsyncDisposableLazyValue<T> lazyValue) => lazyValue.Value;
+
+        /// <summary>
+        /// Cast as has-value-flag
+        /// </summary>
+        /// <param name="lazyValue">Lazy value</param>
+        public static implicit operator bool(AsyncDisposableLazyValue<T> lazyValue) => lazyValue.HasValue;
     }
 }

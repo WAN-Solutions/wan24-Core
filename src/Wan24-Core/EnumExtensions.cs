@@ -39,18 +39,6 @@
             => EnumInfo<T>.DisplayTexts.ContainsKey(value.ToString()) ? EnumInfo<T>.DisplayTexts[value.ToString()] : value.ToString();
 
         /// <summary>
-        /// Get the display text for an enumeration value
-        /// </summary>
-        /// <param name="value">Value</param>
-        /// <returns>Display text</returns>
-        public static string GetEnumDisplayText(this object value)
-        {
-            IEnumInfo info = GetEnumInfo(value.GetType());
-            string str = value.ToString() ?? throw new ArgumentException("Not an enumeration value", nameof(value));
-            return info.ValueDisplayTexts.ContainsKey(str) ? info.ValueDisplayTexts[str] : str;
-        }
-
-        /// <summary>
         /// Determine if an enumeration value contains all of the given flags
         /// </summary>
         /// <typeparam name="T">Enumeration type</typeparam>

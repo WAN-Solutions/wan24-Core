@@ -192,7 +192,6 @@ namespace wan24.Core
             {
                 Pool.Return(arr, clearArray: false);
             }
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>

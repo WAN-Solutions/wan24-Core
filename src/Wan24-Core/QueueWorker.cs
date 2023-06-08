@@ -102,5 +102,11 @@ namespace wan24.Core
         /// Raise the <see cref="OnException"/> event
         /// </summary>
         protected void RaiseOnException() => OnException?.Invoke(this, new());
+
+        /// <summary>
+        /// Cast as queued item count
+        /// </summary>
+        /// <param name="worker">Worker</param>
+        public static implicit operator int(QueueWorker worker) => worker.Queued;
     }
 }

@@ -75,5 +75,11 @@ namespace wan24.Core
                 opItem.Reset();
             }
         }
+
+        /// <summary>
+        /// Cast as rented object
+        /// </summary>
+        /// <param name="pool">Pool</param>
+        public static implicit operator T(ObjectPool<T> pool) => pool.Rent();
     }
 }

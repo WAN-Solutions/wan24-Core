@@ -122,7 +122,13 @@
         /// <summary>
         /// Cast as value
         /// </summary>
-        /// <param name="lazyValue">Lazy value</param>
-        public static implicit operator T(TimeoutValue<T> lazyValue) => lazyValue.Value;
+        /// <param name="timeoutValue">Timeout value</param>
+        public static implicit operator T(TimeoutValue<T> timeoutValue) => timeoutValue.Value;
+
+        /// <summary>
+        /// Cast as has-value-flag
+        /// </summary>
+        /// <param name="timeoutValue">Timeout value</param>
+        public static implicit operator bool(TimeoutValue<T> timeoutValue) => timeoutValue.HasValue;
     }
 }

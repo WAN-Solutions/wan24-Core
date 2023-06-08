@@ -479,5 +479,17 @@ namespace wan24.Core
             await Task.Yield();
             OnRan?.Invoke(this, new());
         }
+
+        /// <summary>
+        /// Cast as running-flag
+        /// </summary>
+        /// <param name="service">Service</param>
+        public static implicit operator bool(TimedHostedServiceBase service) => service.IsRunning;
+
+        /// <summary>
+        /// Cast as time until next run
+        /// </summary>
+        /// <param name="service">Service</param>
+        public static implicit operator TimeSpan(TimedHostedServiceBase service) => service.IsRunning ? DateTime.Now - service.NextRun : TimeSpan.Zero;
     }
 }

@@ -98,6 +98,11 @@
         /// </summary>
         public DateTime FirstRaised { get; protected set; } = DateTime.MinValue;
 
+        /// <summary>
+        /// Is throttling?
+        /// </summary>
+        public bool IsThrottling => Timer.Enabled;
+
         /// <inheritdoc/>
         public bool Raise()
         {
@@ -134,5 +139,11 @@
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing) => Timer.Dispose();
+
+        /// <summary>
+        /// Cast as throttling-flag
+        /// </summary>
+        /// <param name="throttle">Throttle</param>
+        public static implicit operator bool(EventThrottle throttle) => throttle.IsThrottling;
     }
 }

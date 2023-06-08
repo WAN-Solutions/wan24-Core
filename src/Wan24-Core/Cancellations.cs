@@ -1,16 +1,16 @@
 ﻿namespace wan24.Core
 {
     /// <summary>
-    /// <see cref="Cancellations"/> combines multiple cancellation tokens into one
+    /// <see cref="Cancellations"/> combines multiple <see cref="CancellationToken"/> into one
     /// </summary>
     public sealed class Cancellations : DisposableBase
     {
         /// <summary>
-        /// Cancellation source
+        /// <see cref="CancellationTokenSource"/>
         /// </summary>
         private readonly CancellationTokenSource CancellationSource = new();
         /// <summary>
-        /// Cancellation registration
+        /// <see cref="CancellationTokenRegistration"/>
         /// </summary>
         private readonly CancellationTokenRegistration[] CancellationRegistrations;
         /// <summary>
@@ -21,31 +21,44 @@
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="cts">Cancellation tokens</param>
+        /// <param name="cts">Monitored <see cref="CancellationToken"/></param>
         public Cancellations(params CancellationToken[] cts) : base()
         {
             CancellationRegistrations = new CancellationTokenRegistration[cts.Length];
             Cancellation = CancellationSource.Token;
-            lock (CancellationSource)
-                for (int i = 0; i < cts.Length; i++)
-                {
-                    if (cts[i].IsCancellationRequested)
+            try
+            {
+                lock (CancellationSource)
+                    for (int i = 0; i < cts.Length; i++)
                     {
-                        WasInitialized = false;
-                        for (int j = 0; j < i; CancellationRegistrations[j].Dispose(), j++) ;
-                        CancellationSource.Cancel();
-                        CancellationSource.Dispose();
-                        Dispose();
-                        break;
+                        if (cts[i].IsCancellationRequested)
+                        {
+                            WasInitialized = false;
+                            for (int j = 0; j < i; CancellationRegistrations[j].Dispose(), j++) ;
+                            CancellationSource.Cancel();
+                            CancellationSource.Dispose();
+                            Dispose();
+                            break;
+                        }
+                        CancellationRegistrations[i] = cts[i].Register(Dispose);
                     }
-                    CancellationRegistrations[i] = cts[i].Register(Dispose);
-                }
+            }
+            catch
+            {
+                Dispose();
+                throw;
+            }
         }
 
         /// <summary>
-        /// The <see cref="CancellationToken"/> which will be canceled if any of the monitored cancellation tokens are canceled
+        /// The <see cref="CancellationToken"/> which will be canceled if any of the monitored cancellation tokens was canceled
         /// </summary>
         public CancellationToken Cancellation { get; }
+
+        /// <summary>
+        /// Determine if any <see cref="CancellationToken"/> was canceled
+        /// </summary>
+        public bool IsAnyCanceled => CancellationRegistrations.Any(r => r != default && r.Token.IsCancellationRequested);
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
@@ -53,8 +66,17 @@
             lock (CancellationSource)
             {
                 if (!WasInitialized) return;
-                for (int i = 0; i < CancellationRegistrations.Length; CancellationRegistrations[i].Dispose(), i++) ;
-                if (!CancellationSource.IsCancellationRequested) CancellationSource.Cancel();
+                for (int i = 0; i < CancellationRegistrations.Length; i++)
+                    if (CancellationRegistrations[i] != default)
+                        CancellationRegistrations[i].Dispose();
+                if (!CancellationSource.IsCancellationRequested)
+                    try
+                    {
+                        CancellationSource.Cancel();
+                    }
+                    catch
+                    {
+                    }
                 CancellationSource.Dispose();
             }
         }
@@ -69,6 +91,6 @@
         /// Cast as disposed flag
         /// </summary>
         /// <param name="cancellations"><see cref="Cancellations"/></param>
-        public static implicit operator bool(Cancellations cancellations) => !cancellations.IsDisposed;
+        public static implicit operator bool(Cancellations cancellations) => !cancellations.IsDisposing;
     }
 }

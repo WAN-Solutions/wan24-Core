@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Data.Common;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Object lock
@@ -144,5 +146,11 @@
             await SetCompletedAsync(new ObjectDisposedException(GetType().ToString())).DynamicContext();
             Sync.Dispose();
         }
+
+        /// <summary>
+        /// Cast as disposing-flag
+        /// </summary>
+        /// <param name="ol">Lock</param>
+        public static implicit operator bool(ObjectLock ol) => !ol.IsDisposing;
     }
 }

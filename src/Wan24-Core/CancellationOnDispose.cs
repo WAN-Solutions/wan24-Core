@@ -16,7 +16,7 @@
         /// <summary>
         /// Was initialized?
         /// </summary>
-        private readonly bool WasInitialized = true;
+        private readonly bool WasInitialized = false;
         /// <summary>
         /// Monitored object (won't be disposed)
         /// </summary>
@@ -37,19 +37,28 @@
             CancellationRegistration = null;
             Object = obj;
             Token = cancellationToken;
-            lock (CancellationSource)
-                if (obj.IsDisposing || (cancellationToken?.IsCancellationRequested ?? false))
-                {
-                    CancellationSource.Cancel();
-                    CancellationSource.Dispose();
-                    Dispose();
-                }
-                else
-                {
-                    obj.OnDisposing += HandleDispose;
-                    if (cancellationToken != null) CancellationRegistration = cancellationToken.Value.Register(Dispose);
-                    if (obj.IsDisposing || (cancellationToken?.IsCancellationRequested ?? false)) Dispose();
-                }
+            try
+            {
+                lock (CancellationSource)
+                    if (obj.IsDisposing || (cancellationToken?.IsCancellationRequested ?? false))
+                    {
+                        CancellationSource.Cancel();
+                        CancellationSource.Dispose();
+                        Dispose();
+                    }
+                    else
+                    {
+                        obj.OnDisposing += HandleDispose;
+                        if (cancellationToken != null) CancellationRegistration = cancellationToken.Value.Register(Dispose);
+                        WasInitialized = true;
+                        if (obj.IsDisposing || (cancellationToken?.IsCancellationRequested ?? false)) Dispose();
+                    }
+            }
+            catch
+            {
+                Dispose();
+                throw;
+            }
         }
 
         /// <summary>
@@ -57,6 +66,41 @@
         /// already; will be canceled when disposing)
         /// </summary>
         public CancellationToken Cancellation { get; }
+
+        /// <summary>
+        /// Throw an exception, if canceled
+        /// </summary>
+        /// <param name="throwIfCancellationRequested">Throw an exception, if the monitored <see cref="CancellationToken"/> was canceled or this instance was disposed?</param>
+        /// <returns><see langword="true"/>, if the monitored object wasn't disposed and the <see cref="CancellationToken"/> wasn't canceled, <see langword="false"/>, if the 
+        /// <see cref="CancellationToken"/> was canceled</returns>
+        /// <exception cref="OperationCanceledException">The monitored <see cref="CancellationToken"/> was canceled or this instance was disposed (and <c>throwIfCanceled</c> was 
+        /// <see langword="true"/>)</exception>
+        /// <exception cref="ObjectDisposedException">The monitored object was disposed (but the monitored <see cref="CancellationToken"/> wasn't canceled)</exception>
+        public bool ThrowIfCanceled(bool throwIfCancellationRequested = true)
+        {
+            lock (CancellationSource)
+                if (!(CancellationRegistration?.Token.IsCancellationRequested ?? false) && !Object.IsDisposing && !Cancellation.IsCancellationRequested)
+                    return true;
+            if (CancellationRegistration?.Token.IsCancellationRequested ?? false)
+            {
+                if (throwIfCancellationRequested) CancellationRegistration.Value.Token.ThrowIfCancellationRequested();
+                return false;
+            }
+            if (!Object.IsDisposing)
+            {
+                if (throwIfCancellationRequested) Cancellation.ThrowIfCancellationRequested();
+                return false;
+            }
+            throw new ObjectDisposedException(Object.GetType().ToString());
+        }
+
+        /// <summary>
+        /// Throw an exception, if the monitored object was disposed
+        /// </summary>
+        /// <returns><see langword="true"/>, if the monitored object wasn't disposed and the <see cref="CancellationToken"/> wasn't canceled, <see langword="false"/>, if the 
+        /// <see cref="CancellationToken"/> was canceled</returns>
+        /// <exception cref="ObjectDisposedException">The monitored object was disposed (but the monitored <see cref="CancellationToken"/> wasn't canceled)</exception>
+        public bool ThrowIfDisposed() => ThrowIfCanceled(throwIfCancellationRequested: false);
 
         /// <summary>
         /// Handle the monitored object disposing
@@ -73,7 +117,14 @@
                 if (!WasInitialized) return;
                 Object.OnDisposing -= HandleDispose;
                 CancellationRegistration?.Dispose();
-                if (!Cancellation.IsCancellationRequested) CancellationSource.Cancel();
+                if (!Cancellation.IsCancellationRequested)
+                    try
+                    {
+                        CancellationSource.Cancel();
+                    }
+                    catch
+                    {
+                    }
                 CancellationSource.Dispose();
             }
         }

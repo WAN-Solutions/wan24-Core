@@ -273,5 +273,11 @@
                 SyncSet?.Dispose();
             }
         }
+
+        /// <summary>
+        /// Cast as set-flag
+        /// </summary>
+        /// <param name="e">Event</param>
+        public static implicit operator bool(ResetEvent e) => e.IsSet;
     }
 }
