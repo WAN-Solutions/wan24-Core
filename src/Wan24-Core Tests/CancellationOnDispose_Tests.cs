@@ -52,6 +52,7 @@ namespace Wan24_Core_Tests
             cts.Cancel();
             Assert.AreEqual(1, canceled);
         }
+
         [TestMethod]
         public void Cancelled_Tests()
         {
