@@ -16,7 +16,11 @@
                 long len = GetByteCount(count);
                 if (len > int.MaxValue) throw new InternalBufferOverflowException();
                 byte[] map = len == 0 ? Array.Empty<byte>() : new byte[len];
-                if (len > 0) _Map.AsSpan().CopyTo(map.AsSpan(0, Math.Min(_Map.Length, map.Length)));
+                if (len > 0)
+                {
+                    int min = Math.Min(_Map.Length, map.Length);
+                    _Map.AsSpan(0, min).CopyTo(map.AsSpan(0, min));
+                }
                 _Map = map;
                 if (_Map.Length < GetByteCount(BitCount)) BitCount = _Map.Length << 3;
             }
@@ -55,14 +59,16 @@
         /// Add bits
         /// </summary>
         /// <param name="bits">Bits to add</param>
-        public virtual void AddBits(params bool[] bits)
+        /// <returns>First new bit offset</returns>
+        public virtual long AddBits(params bool[] bits)
         {
-            if (bits.Length == 0) return;
+            if (bits.Length == 0) return BitCount;
             lock (SyncObject)
             {
                 long offset = BitCount;
                 AddBits(bits.Length);
                 SetBits(offset, bits);
+                return offset;
             }
         }
 
@@ -70,13 +76,16 @@
         /// Add bits
         /// </summary>
         /// <param name="count">Number of bits to add</param>
-        public virtual void AddBits(int count)
+        /// <returns>First new bit offset</returns>
+        public virtual long AddBits(int count)
         {
-            if (count < 1) return;
+            if (count < 1) return BitCount;
             lock (SyncObject)
             {
+                long res = BitCount;
                 while (BitCount + count > _Map.LongLength << 3) SetSize((int)(_Map.LongLength + IncreaseSize));
                 BitCount += count;
+                return res;
             }
         }
     }
