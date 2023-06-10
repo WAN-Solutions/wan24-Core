@@ -67,5 +67,17 @@ namespace Wan24_Core_Tests
             Assert.IsFalse(bmp.IsAnyBitSet());
             Assert.IsFalse(bmp.AllBitsAreSet());
         }
+
+        [TestMethod]
+        public void AddBits_Tests()
+        {
+            Bitmap bmp = new(initialSize: 0, increaseSize: 1);
+            bmp.AddBits(8);
+            Assert.AreEqual(1, bmp.AsMemory.Length);
+            Assert.AreEqual(8, bmp.BitCount);
+            bmp.AddBits(1);
+            Assert.AreEqual(2, bmp.AsMemory.Length);
+            Assert.AreEqual(9, bmp.BitCount);
+        }
     }
 }

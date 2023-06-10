@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime.CompilerServices;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Change callback

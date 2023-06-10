@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.Runtime;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace wan24.Core
@@ -58,6 +60,7 @@ namespace wan24.Core
             string? lastKey = null;
             bool requireValue = false;
             int i = 0;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             void HandleDashFlag()
             {
                 if (a.ContainsKey("-"))
@@ -179,6 +182,7 @@ namespace wan24.Core
             int argsOffset = 0,// Result buffer offset
                 valueOffset = 0,// Value buffer offset
                 i = 0;// Current char index
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] 
             void AddValue()
             {
                 // Add the current value to the result
@@ -340,6 +344,7 @@ namespace wan24.Core
         /// <param name="quote">Quote character</param>
         /// <returns>Raw (if encoding isn't required) or encoded string (will be quoted, JSON encoded and properly escaped for use as a CLI command argument and with 
         /// <see cref="CliArguments"/>)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static string SanatizeValue(string str, char quote = '\'')
             => NeedsEncoding(str) ? $"{quote}{JsonHelper.Encode(str)[1..^1].Replace(BACKSLASH, ESCAPED_BACKSLASH)}{quote}" : str;
 
@@ -348,6 +353,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Needs encoding for use as a CLI command argument?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool NeedsEncoding(ReadOnlySpan<char> str)
         {
             for (int i = 0, len = str.Length; i < len; i++)

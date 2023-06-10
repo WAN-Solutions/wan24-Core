@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -39,36 +40,42 @@ namespace wan24.Core
         /// Write a message
         /// </summary>
         /// <param name="str">Message</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static void WriteTrace(this string str) => WriteLog(str, LogLevel.Trace);
 
         /// <summary>
         /// Write a message
         /// </summary>
         /// <param name="str">Message</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static void WriteDebug(this string str) => WriteLog(str, LogLevel.Debug);
 
         /// <summary>
         /// Write a message
         /// </summary>
         /// <param name="str">Message</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static void WriteInfo(this string str) => WriteLog(str);
 
         /// <summary>
         /// Write a message
         /// </summary>
         /// <param name="str">Message</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static void WriteWarning(this string str) => WriteLog(str, LogLevel.Warning);
 
         /// <summary>
         /// Write a message
         /// </summary>
         /// <param name="str">Message</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static void WriteError(this string str) => WriteLog(str, LogLevel.Error);
 
         /// <summary>
         /// Write a message
         /// </summary>
         /// <param name="str">Message</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static void WriteCritical(this string str) => WriteLog(str, LogLevel.Critical);
     }
 }

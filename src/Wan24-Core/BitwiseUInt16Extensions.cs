@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Bitwise UInt16 extensions
@@ -11,6 +13,7 @@
         /// <param name="value">Value</param>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static ushort ShiftLeft(this ushort value, int bits) => (ushort)(value << bits);
 
         /// <summary>
@@ -19,6 +22,7 @@
         /// <param name="value">Value</param>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static ushort ShiftRight(this ushort value, int bits) => (ushort)(value >> bits);
 
         /// <summary>
@@ -27,6 +31,7 @@
         /// <param name="value">Value</param>
         /// <param name="flags">Flags</param>
         /// <returns>Has the flags?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool HasFlags(this ushort value, ushort flags) => (value & flags) == flags;
 
         /// <summary>
@@ -35,6 +40,7 @@
         /// <param name="value">Value</param>
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static ushort AddFlags(this ushort value, ushort flags) => (ushort)(value | flags);
 
         /// <summary>
@@ -43,6 +49,7 @@
         /// <param name="value">Value</param>
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static ushort RemoveFlags(this ushort value, ushort flags) => (ushort)(value & ~flags);
 
         /// <summary>
@@ -50,6 +57,7 @@
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static sbyte ToSByte(this ushort value) => (sbyte)value;
 
         /// <summary>
@@ -57,6 +65,7 @@
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static byte ToByte(this ushort value) => (byte)value;
 
         /// <summary>
@@ -64,6 +73,7 @@
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static short ToShort(this ushort value) => (short)value;
 
         /// <summary>
@@ -71,6 +81,7 @@
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static int ToInt(this ushort value) => value;
 
         /// <summary>
@@ -78,6 +89,7 @@
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static uint ToUInt(this ushort value) => value;
 
         /// <summary>
@@ -85,6 +97,7 @@
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static long ToLong(this ushort value) => value;
 
         /// <summary>
@@ -92,6 +105,7 @@
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static ulong ToULong(this ushort value) => value;
     }
 }

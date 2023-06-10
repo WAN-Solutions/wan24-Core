@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -473,6 +474,7 @@ namespace wan24.Core
         /// <summary>
         /// Raise the <see cref="OnRan"/> event
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected async Task RaiseOnRan()
         {
             if (OnRan == null) return;

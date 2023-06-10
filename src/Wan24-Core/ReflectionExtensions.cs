@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -45,6 +46,7 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static T? InvokeAuto<T>(this MethodInfo mi, object? obj, params object?[] param) => (T?)InvokeAuto(mi, obj, param);
 
         /// <summary>
@@ -103,6 +105,7 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static async Task<T?> InvokeAutoAsync<T>(this MethodInfo mi, object? obj, params object?[] param)
             => (T?)await InvokeAutoAsync(mi, obj, param).DynamicContext();
 
@@ -147,6 +150,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="type">Type</param>
         /// <returns>Is nullable?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool IsNullable(this Type type) => Nullable.GetUnderlyingType(type) != null;
 
         /// <summary>
@@ -155,6 +159,7 @@ namespace wan24.Core
         /// <param name="mi">Method</param>
         /// <param name="nic">Nullability info context</param>
         /// <returns>Is nullable?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool IsNullable(this MethodInfo mi, NullabilityInfoContext? nic = null) => IsNullable(mi.ReturnParameter, nic);
 
         /// <summary>
@@ -163,6 +168,7 @@ namespace wan24.Core
         /// <param name="pi">Parameter</param>
         /// <param name="nic">Nullability info context</param>
         /// <returns>Is nullable?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool IsNullable(this ParameterInfo pi, NullabilityInfoContext? nic = null) => (nic ?? new NullabilityInfoContext()).Create(pi).IsNullable();
 
         /// <summary>
@@ -171,6 +177,7 @@ namespace wan24.Core
         /// <param name="pi">Property</param>
         /// <param name="nic">Nullability info context</param>
         /// <returns>Is nullable?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool IsNullable(this PropertyInfo pi, NullabilityInfoContext? nic = null) => (nic ?? new NullabilityInfoContext()).Create(pi).IsNullable();
 
         /// <summary>
@@ -179,6 +186,7 @@ namespace wan24.Core
         /// <param name="fi">Field</param>
         /// <param name="nic">Nullability info context</param>
         /// <returns>Is nullable?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool IsNullable(this FieldInfo fi, NullabilityInfoContext? nic = null) => (nic ?? new NullabilityInfoContext()).Create(fi).IsNullable();
 
         /// <summary>
@@ -186,6 +194,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="ni">Nullability info</param>
         /// <returns>Is nullable?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool IsNullable(this NullabilityInfo ni) => !(ni.ReadState == NullabilityState.NotNull || ni.WriteState == NullabilityState.NotNull);
 
         /// <summary>

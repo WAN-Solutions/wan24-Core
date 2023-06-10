@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime;
+using System.Text;
 
 namespace wan24.Core
 {
@@ -12,6 +13,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static byte[] GetBytes(this string str) => Encoding.UTF8.GetBytes(str);
 
         /// <summary>
@@ -20,6 +22,7 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static int GetBytes(this string str, Span<byte> buffer) => Encoding.UTF8.GetBytes(str, buffer);
 
         /// <summary>
@@ -27,6 +30,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static byte[] GetBytes16(this string str) => Encoding.Unicode.GetBytes(str);
 
         /// <summary>
@@ -35,6 +39,7 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static int GetBytes16(this string str, Span<byte> buffer) => Encoding.Unicode.GetBytes(str, buffer);
 
         /// <summary>
@@ -42,6 +47,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static byte[] GetBytes32(this string str) => Encoding.UTF32.GetBytes(str);
 
         /// <summary>
@@ -50,6 +56,7 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static int GetBytes32(this string str, Span<byte> buffer) => Encoding.UTF32.GetBytes(str, buffer);
 
         /// <summary>
@@ -57,6 +64,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static byte[] GetBytes(this char[] str) => Encoding.UTF8.GetBytes(str);
 
         /// <summary>
@@ -65,6 +73,7 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static int GetBytes(this char[] str, Span<byte> buffer) => Encoding.UTF8.GetBytes(str, buffer);
 
         /// <summary>
@@ -72,6 +81,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static byte[] GetBytes16(this char[] str) => Encoding.Unicode.GetBytes(str);
 
         /// <summary>
@@ -80,6 +90,7 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static int GetBytes16(this char[] str, Span<byte> buffer) => Encoding.Unicode.GetBytes(str, buffer);
 
         /// <summary>
@@ -87,6 +98,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static byte[] GetBytes32(this char[] str) => Encoding.UTF32.GetBytes(str);
 
         /// <summary>
@@ -95,6 +107,7 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static int GetBytes32(this char[] str, Span<byte> buffer) => Encoding.UTF32.GetBytes(str, buffer);
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime.CompilerServices;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Rented object (returns the rented object to the pool when diposing)
@@ -63,6 +65,7 @@
         /// <summary>
         /// Ensure an undisposed object state
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureUndisposed()
         {
             lock (SyncObject) if (!IsDisposed) return;
@@ -75,6 +78,7 @@
         /// <typeparam name="tValue">Value type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private readonly tValue IfUndisposed<tValue>(tValue value)
         {
             EnsureUndisposed();

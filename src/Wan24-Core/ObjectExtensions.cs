@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -13,6 +14,7 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="objs">Object list</param>
         /// <returns>Is within the object list?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool In(this object obj, params object?[] objs) => objs.Contains(obj);
 
         /// <summary>
@@ -21,6 +23,7 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="objs">Object list</param>
         /// <returns>Is within the object list?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool In<T>(this T obj, IEnumerable<T?> objs) => objs.Contains(obj);
 
         /// <summary>
@@ -29,6 +32,7 @@ namespace wan24.Core
         /// <typeparam name="T">Target type</typeparam>
         /// <param name="obj">Object</param>
         /// <returns>Converted object</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static T ConvertType<T>(this object obj) => (T)Convert.ChangeType(obj, typeof(T));
 
         /// <summary>
@@ -40,6 +44,7 @@ namespace wan24.Core
         /// <param name="error">Error message</param>
         /// <returns>Object</returns>
         /// <exception cref="InvalidOperationException">The object is not in a state which allows to perform the operation</exception>
+        [TargetedPatchingOptOut("Tiny method")]
         public static T EnsureValidState<T>(this T obj, bool state, string? error = null)
         {
             if (state) return obj;

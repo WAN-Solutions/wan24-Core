@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// <see cref="TimeSpan"/> helper
@@ -11,6 +13,7 @@
         /// <param name="start">Start time (will be set to <see cref="DateTime.Now"/>)</param>
         /// <param name="timeout">Timeout (will be decreased, if possible)</param>
         /// <returns>Can continue (no timeout)?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool UpdateTimeout(ref DateTime start, ref TimeSpan timeout)
         {
             DateTime now = DateTime.Now;

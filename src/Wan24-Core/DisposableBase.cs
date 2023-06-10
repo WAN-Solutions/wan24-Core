@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -40,6 +41,7 @@ namespace wan24.Core
         /// <param name="allowDisposing">Allow disposing state?</param>
         /// <param name="throwException">Throw an exception if disposing/disposed?</param>
         /// <returns>Is not disposing?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         protected bool EnsureUndisposed(bool allowDisposing = false, bool throwException = true)
         {
             if (!IsDisposing) return true;
@@ -55,6 +57,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="allowDisposing">Allow disposing state?</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         protected T IfUndisposed<T>(T value, bool allowDisposing = false)
         {
             EnsureUndisposed(allowDisposing);
@@ -66,6 +69,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="action">Action</param>
         /// <param name="allowDisposing">Allow disposing state?</param>
+        [TargetedPatchingOptOut("Tiny method")]
         protected void IfUndisposed(Action action, bool allowDisposing = false)
         {
             EnsureUndisposed(allowDisposing);
@@ -79,6 +83,7 @@ namespace wan24.Core
         /// <param name="action">Action</param>
         /// <param name="allowDisposing">Allow disposing state?</param>
         /// <returns>Return value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         protected T IfUndisposed<T>(Func<T> action, bool allowDisposing = false)
         {
             EnsureUndisposed(allowDisposing);
@@ -92,6 +97,7 @@ namespace wan24.Core
         /// <param name="action">Action</param>
         /// <param name="allowDisposing">Allow disposing state?</param>
         /// <returns>Return value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         protected T? IfUndisposedNullable<T>(Func<T?> action, bool allowDisposing = false)
         {
             EnsureUndisposed(allowDisposing);
