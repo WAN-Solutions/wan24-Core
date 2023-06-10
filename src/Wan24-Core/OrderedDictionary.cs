@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Specialized;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
 //TODO .NET 8: Get as frozen dictionary
@@ -231,9 +233,11 @@ namespace wan24.Core
         public bool Contains(object key) => key != null && typeof(tKey).IsAssignableFrom(key.GetType()) && ContainsKey((tKey)key);
 
         /// <inheritdoc/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool ContainsKey(tKey key) => IndexOfKey(key) != -1;
 
         /// <inheritdoc/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool ContainsValue(tValue value) => IndexOfValue(value) != -1;
 
         /// <inheritdoc/>
@@ -332,6 +336,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
         public OrderedDictionary<tKey, tValue> AsReadOnly() => new(this);
 
         /// <inheritdoc/>
@@ -357,6 +362,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
         public IEnumerator<KeyValuePair<tKey, tValue>> GetEnumerator() => Items.GetEnumerator();
 
         /// <inheritdoc/>
@@ -373,6 +379,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Are equal?</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected bool IsEqual(object? a, object? b) => (a == null && b == null) || (a != null && a.Equals(b)) || (b != null && b.Equals(a));
 
         /// <summary>
@@ -381,6 +388,7 @@ namespace wan24.Core
         /// <param name="key">Key</param>
         /// <returns>Key</returns>
         /// <exception cref="ArgumentException">If the key is invalid</exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected object EnsureValidKey(object key)
             => key == null || !typeof(tKey).IsAssignableFrom(key.GetType()) ? throw new ArgumentException("Invalid key", nameof(key)) : key;
 
@@ -390,6 +398,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         /// <exception cref="ArgumentException">If the value is invalid</exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected object? EnsureValidValue(object? value)
             => value != null && !typeof(tValue).IsAssignableFrom(value.GetType()) ? throw new ArgumentException("Invalid value", nameof(value)) : value;
 
@@ -399,12 +408,14 @@ namespace wan24.Core
         /// <param name="index">Index</param>
         /// <returns>Index</returns>
         /// <exception cref="IndexOutOfRangeException">If the index is invalid</exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected int EnsureValidIndex(int index) => index < 0 || index >= Items.Count ? throw new IndexOutOfRangeException() : index;
 
         /// <summary>
         /// Ensure writable
         /// </summary>
         /// <exception cref="NotSupportedException">If read-only</exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected void EnsureWritable()
         {
             if (IsReadOnly) throw new NotSupportedException();
@@ -416,6 +427,7 @@ namespace wan24.Core
         /// <param name="key">Key</param>
         /// <returns>Key</returns>
         /// <exception cref="ArgumentException">If the key exists</exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected tKey EnsureFreshKey(tKey key) => IndexOfKey(key) == -1 ? key : throw new ArgumentException("Key exists", nameof(key));
 
         /// <summary>
@@ -424,6 +436,7 @@ namespace wan24.Core
         /// <param name="key">Key</param>
         /// <returns>Index</returns>
         /// <exception cref="KeyNotFoundException">If the key doesn't exist</exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected int EnsureExistingKey(tKey key)
         {
             int index = IndexOfKey(key);

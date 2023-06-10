@@ -1,5 +1,7 @@
 ﻿using System.Buffers;
 using System.Collections;
+using System.Runtime;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
 namespace wan24.Core
@@ -129,12 +131,15 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public override readonly bool Equals(object? obj) => Memory.Equals(obj);
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public readonly bool Equals(Memory<T> other) => Memory.Equals(other);
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public override readonly int GetHashCode() => Memory.GetHashCode();
 
         /// <inheritdoc/>
@@ -146,6 +151,7 @@ namespace wan24.Core
         /// <summary>
         /// Ensure an undisposed object state
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureUndisposed()
         {
             lock (SyncObject) if (!IsDisposed) return;
@@ -158,6 +164,7 @@ namespace wan24.Core
         /// <typeparam name="tValue">Value type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private readonly tValue IfUndisposed<tValue>(tValue value)
         {
             EnsureUndisposed();

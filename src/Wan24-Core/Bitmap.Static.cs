@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime.CompilerServices;
+
+namespace wan24.Core
 {
     // Static
     public partial class Bitmap
@@ -121,6 +123,7 @@
         /// </summary>
         /// <param name="bitCount">Bit count</param>
         /// <returns>Byte count</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static long GetByteCount(long bitCount) => (bitCount & 7) == 0 ? bitCount >> 3 : (bitCount >> 3) + 1;
     }
 }

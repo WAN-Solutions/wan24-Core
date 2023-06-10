@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Array extensions
@@ -14,6 +16,7 @@
         /// <param name="length">Length</param>
         /// <returns>Span</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on offset/length error</exception>
+        [TargetedPatchingOptOut("Tiny method")]
         public static Span<T> EnsureValid<T>(this Span<T> span, int offset, int length)
         {
             long lastOffset = offset + length;
@@ -31,6 +34,7 @@
         /// <param name="length">Length</param>
         /// <returns>Span</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on offset/length error</exception>
+        [TargetedPatchingOptOut("Tiny method")]
         public static ReadOnlySpan<T> EnsureValid<T>(this ReadOnlySpan<T> span, int offset, int length)
         {
             long lastOffset = offset + length;
@@ -47,6 +51,7 @@
         /// <param name="offset">Offset</param>
         /// <param name="length">Length</param>
         /// <returns>Is valid?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool IsValid<T>(this Span<T> span, int offset, int length)
         {
             long lastOffset = offset + length;
@@ -61,6 +66,7 @@
         /// <param name="offset">Offset</param>
         /// <param name="length">Length</param>
         /// <returns>Is valid?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool IsValid<T>(this ReadOnlySpan<T> span, int offset, int length)
         {
             long lastOffset = offset + length;
@@ -76,6 +82,7 @@
         /// <param name="length">Length</param>
         /// <returns>Memory</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on offset/length error</exception>
+        [TargetedPatchingOptOut("Tiny method")]
         public static Memory<T> EnsureValid<T>(this Memory<T> memory, int offset, int length)
         {
             EnsureValid(memory.Span, offset, length);
@@ -91,6 +98,7 @@
         /// <param name="length">Length</param>
         /// <returns>Memory</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on offset/length error</exception>
+        [TargetedPatchingOptOut("Tiny method")]
         public static ReadOnlyMemory<T> EnsureValid<T>(this ReadOnlyMemory<T> memory, int offset, int length)
         {
             EnsureValid(memory.Span, offset, length);
@@ -105,6 +113,7 @@
         /// <param name="offset">Offset</param>
         /// <param name="length">Length</param>
         /// <returns>Is valid?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool IsValid<T>(this Memory<T> memory, int offset, int length) => IsValid(memory.Span, offset, length);
 
         /// <summary>
@@ -115,6 +124,7 @@
         /// <param name="offset">Offset</param>
         /// <param name="length">Length</param>
         /// <returns>Is valid?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool IsValid<T>(this ReadOnlyMemory<T> memory, int offset, int length) => IsValid(memory.Span, offset, length);
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// <see cref="DateTime"/> extensions
@@ -14,6 +16,7 @@
         /// <param name="endIncluding">End including?</param>
         /// <param name="beginIncluding">Begin including?</param>
         /// <returns>Is within the range?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool IsInRange(this DateTime time, DateTime begin, DateTime end, bool endIncluding = false, bool beginIncluding = true)
         {
             if (begin > end) throw new ArgumentException("End before begin", nameof(end));
@@ -31,6 +34,7 @@
         /// <param name="offset">Offset</param>
         /// <param name="reference">Reference time (will be <see cref="DateTime.Now"/>, if not given)</param>
         /// <returns>Matches the reference time plus/minus the offset?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool IsInRange(this DateTime time, TimeSpan offset, DateTime? reference = null)
         {
             DateTime rt = reference ?? DateTime.Now;
@@ -48,6 +52,7 @@
         /// <param name="offset">Offset</param>
         /// <param name="reference">Reference time</param>
         /// <returns>Time including offset</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static DateTime ApplyOffset(this DateTime time, TimeSpan offset, DateTime? reference = null)
         {
             DateTime rt = reference ?? DateTime.Now;

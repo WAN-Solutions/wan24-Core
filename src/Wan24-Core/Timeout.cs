@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime.CompilerServices;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Timeout (when comparing instances, and not the timeout time, you should use the <see cref="Timeout.Equals(object?)"/> method!)
@@ -73,6 +75,7 @@
         /// <summary>
         /// Start
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual void Start()
         {
             if (Timer.Enabled) return;
@@ -83,6 +86,7 @@
         /// <summary>
         /// Stop
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual void Stop() => Timer.Stop();
 
         /// <summary>

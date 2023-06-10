@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -12,6 +13,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="disposable">Disposable</param>
         /// <returns>Disposable</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static ConfiguredAsyncDisposable FixedContext(this IAsyncDisposable disposable) => disposable.ConfigureAwait(continueOnCapturedContext: true);
 
         /// <summary>
@@ -19,6 +21,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="disposable">Disposable</param>
         /// <returns>Disposable</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static ConfiguredAsyncDisposable DynamicContext(this IAsyncDisposable disposable) => disposable.ConfigureAwait(continueOnCapturedContext: false);
 
         /// <summary>

@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Generic helper
@@ -12,6 +14,7 @@
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Are equal?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool AreEqual<T>(T? a, T? b) => (a == null && b == null) || (a != null && a.Equals(b));
 
         /// <summary>
@@ -20,6 +23,7 @@
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Is <see langword="null"/>?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool IsNull<T>(T? value) => value == null;
 
         /// <summary>
@@ -28,6 +32,7 @@
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Is the default?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool IsDefault<T>(T? value) => AreEqual(value, default);
 
         /// <summary>
@@ -36,6 +41,7 @@
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Is <see langword="null"/> or the default?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool IsNullOrDefault<T>(T? value) => IsNull(value) || IsDefault(value);
     }
 }

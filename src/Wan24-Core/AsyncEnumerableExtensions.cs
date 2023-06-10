@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -61,6 +62,7 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="enumeration">Enumeration</param>
         /// <returns>Enumeration</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static ConfiguredCancelableAsyncEnumerable<T> FixedContext<T>(this IAsyncEnumerable<T> enumeration) => enumeration.ConfigureAwait(continueOnCapturedContext: true);
 
         /// <summary>
@@ -69,6 +71,7 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="enumeration">Enumeration</param>
         /// <returns>Enumeration</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static ConfiguredCancelableAsyncEnumerable<T> DynamicContext<T>(this IAsyncEnumerable<T> enumeration) => enumeration.ConfigureAwait(continueOnCapturedContext: false);
 
         /// <summary>

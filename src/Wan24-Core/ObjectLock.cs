@@ -1,6 +1,4 @@
-﻿using System.Data.Common;
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Object lock

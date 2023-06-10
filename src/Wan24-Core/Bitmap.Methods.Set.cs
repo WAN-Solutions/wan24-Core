@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime.CompilerServices;
+
+namespace wan24.Core
 {
     // Set methods
     public partial class Bitmap
@@ -8,6 +10,7 @@
         /// </summary>
         /// <param name="offset">Start bit offset</param>
         /// <param name="bits">Bits to set</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual void SetBits(long offset, params bool[] bits)
         {
             if (bits.Length == 0) return;

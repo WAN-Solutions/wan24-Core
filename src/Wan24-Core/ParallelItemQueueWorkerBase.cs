@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Base class for a parallel item queue worker
@@ -18,6 +20,7 @@
             => EnqueueAsync(async (ct) => await ProcessItem(item, ct).DynamicContext(), cancellationToken);
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
         public bool TryEnqueue(T item) => TryEnqueue(async (ct) => await ProcessItem(item, ct).DynamicContext());
 
         /// <inheritdoc/>

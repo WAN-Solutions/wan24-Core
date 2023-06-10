@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Object helper
@@ -11,6 +13,7 @@
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Are equal?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool AreEqual(object? a, object? b) => (a == null && b == null) || (a != null && a.Equals(b));
 
         /// <summary>
@@ -18,6 +21,7 @@
         /// </summary>
         /// <param name="obj">Object</param>
         /// <returns>Is <see langword="null"/>?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool IsNull(object? obj) => obj == null;
     }
 }

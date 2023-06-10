@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Enumeration extensions
@@ -12,6 +14,7 @@
         /// <param name="value">Value</param>
         /// <returns>Informations</returns>
 #pragma warning disable IDE0060 // Remove unused parameter
+        [TargetedPatchingOptOut("Tiny method")]
         public static EnumInfo<T> GetInfo<T>(this T value) where T : struct, Enum, IConvertible => new();
 #pragma warning restore IDE0060 // Remove unused parameter
 
@@ -20,6 +23,7 @@
         /// </summary>
         /// <typeparam name="T">Enumeration type</typeparam>
         /// <returns>Informations</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static EnumInfo<T> GetInfo<T>() where T : struct, Enum, IConvertible => new();
 
         /// <summary>
@@ -153,6 +157,7 @@
         /// <typeparam name="T">Enumeration type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Is a flag?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool IsFlag<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.FlagValues.Contains(value);
 
         /// <summary>
@@ -161,6 +166,7 @@
         /// <typeparam name="T">Enumeration type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Is a value (not a flag)?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool IsValue<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.Values.Contains(value);
 
         /// <summary>
@@ -169,6 +175,7 @@
         /// <typeparam name="T">Enumeration type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Is valid?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool IsValid<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.IsValid(value);
 
         /// <summary>
@@ -177,6 +184,7 @@
         /// <typeparam name="T">Numeric result type</typeparam>
         /// <param name="value">Enumeration value</param>
         /// <returns>Numeric value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static T CastType<T>(object value) where T : struct, IConvertible => typeof(T).IsEnum ? (T)Enum.ToObject(typeof(T), value) : (T)Convert.ChangeType(value, typeof(T));
     }
 }

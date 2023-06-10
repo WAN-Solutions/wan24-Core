@@ -1,5 +1,6 @@
 ﻿using System.Buffers;
 using System.Collections;
+using System.Runtime;
 using System.Security.Cryptography;
 
 namespace wan24.Core
@@ -94,12 +95,15 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public override bool Equals(object? obj) => Memory.Equals(obj);
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public bool Equals(Memory<T> other) => Memory.Equals(other);
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public override int GetHashCode() => Memory.GetHashCode();
 
         /// <inheritdoc/>

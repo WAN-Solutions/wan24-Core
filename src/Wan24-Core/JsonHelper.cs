@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Runtime;
+using System.Text.Json;
 
 namespace wan24.Core
 {
@@ -26,6 +27,7 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="prettify">Prettify?</param>
         /// <returns>JSON string</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static string Encode(object? obj, bool prettify = false) => Encoder(obj, prettify);
 
         /// <summary>
@@ -34,6 +36,7 @@ namespace wan24.Core
         /// <typeparam name="T">Result type</typeparam>
         /// <param name="json">JSON string</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static T? Decode<T>(string json) => (T?)DecodeObject(typeof(T), json);
 
         /// <summary>
@@ -42,6 +45,7 @@ namespace wan24.Core
         /// <param name="type">Expected type</param>
         /// <param name="json">JSON string</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static object? DecodeObject(Type type, string json) => Decoder(type, json);
 
         /// <summary>

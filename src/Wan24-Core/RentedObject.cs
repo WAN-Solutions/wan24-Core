@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Rented object (returns the rented object to the pool when diposing)
@@ -62,6 +64,7 @@
         /// </summary>
         /// <param name="pool">Object pool</param>
         /// <returns>Rented object</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static async Task<RentedObject<T>> CreateAsync(IAsyncObjectPool<T> pool) => new RentedObject<T>(pool, await pool.RentAsync().DynamicContext());
     }
 }

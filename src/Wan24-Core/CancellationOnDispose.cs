@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// <see cref="CancellationOnDispose"/> cancels a <see cref="CancellationTokenSource"/> when an object is disposing (or a <see cref="CancellationToken"/> was canceled)
@@ -100,6 +102,7 @@
         /// <returns><see langword="true"/>, if the monitored object wasn't disposed and the <see cref="CancellationToken"/> wasn't canceled, <see langword="false"/>, if the 
         /// <see cref="CancellationToken"/> was canceled</returns>
         /// <exception cref="ObjectDisposedException">The monitored object was disposed (but the monitored <see cref="CancellationToken"/> wasn't canceled)</exception>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public bool ThrowIfDisposed() => ThrowIfCanceled(throwIfCancellationRequested: false);
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 
 namespace wan24.Core
@@ -79,6 +80,7 @@ namespace wan24.Core
         /// <typeparam name="T">Result type</typeparam>
         /// <param name="task">Task</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static T GetResult<T>(this Task task) => ((Task<T>)task).Result;
 
         /// <summary>
@@ -87,6 +89,7 @@ namespace wan24.Core
         /// <typeparam name="T">Result type</typeparam>
         /// <param name="task">Task</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static T? GetResultNullable<T>(this Task task) => ((Task<T?>)task).Result;
 
         /// <summary>
@@ -95,6 +98,7 @@ namespace wan24.Core
         /// <param name="task">Task</param>
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static object GetResult(this Task task, Type type)
             => GetResultMethod.MakeGenericMethod(type).Invoke(obj: null, new object?[] { task })
                 ?? throw new ArgumentException("The task result is NULL", nameof(task));
@@ -105,6 +109,7 @@ namespace wan24.Core
         /// <param name="task">Task</param>
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static object? GetResultNullable(this Task task, Type type) => GetResultNullableMethod.MakeGenericMethod(type).Invoke(obj: null, new object?[] { task });
 
         /// <summary>
@@ -113,6 +118,7 @@ namespace wan24.Core
         /// <typeparam name="T">Result type</typeparam>
         /// <param name="task">Task</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static T GetResult<T>(this ValueTask task)
             => task is ValueTask<T> valueTask ? valueTask.Result : throw new ArgumentException($"{nameof(ValueTask)} is not a {nameof(ValueTask)}<T>", nameof(task));
 
@@ -122,6 +128,7 @@ namespace wan24.Core
         /// <typeparam name="T">Result type</typeparam>
         /// <param name="task">Task</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static T? GetResultNullable<T>(this ValueTask task)
             => task is ValueTask<T> valueTask ? valueTask.Result : throw new ArgumentException($"{nameof(ValueTask)} is not a {nameof(ValueTask)}<T>", nameof(task));
 
@@ -131,6 +138,7 @@ namespace wan24.Core
         /// <param name="task">Task</param>
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static object GetResult(this ValueTask task, Type type)
             => GetResultValueMethod.MakeGenericMethod(type).Invoke(obj: null, new object?[] { task })
                 ?? throw new ArgumentException("The task result is NULL", nameof(task));
@@ -141,6 +149,7 @@ namespace wan24.Core
         /// <param name="task">Task</param>
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static object? GetResultNullable(this ValueTask task, Type type) => GetResultNullableValueMethod.MakeGenericMethod(type).Invoke(obj: null, new object?[] { task });
 
         /// <summary>
@@ -232,6 +241,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="task">Task</param>
         /// <returns>Task</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static ConfiguredTaskAwaitable FixedContext(this Task task) => task.ConfigureAwait(continueOnCapturedContext: true);
 
         /// <summary>
@@ -240,6 +250,7 @@ namespace wan24.Core
         /// <typeparam name="T">Result type</typeparam>
         /// <param name="task">Task</param>
         /// <returns>Task</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static ConfiguredTaskAwaitable<T> FixedContext<T>(this Task<T> task) => task.ConfigureAwait(continueOnCapturedContext: true);
 
         /// <summary>
@@ -247,6 +258,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="task">Task</param>
         /// <returns>Task</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static ConfiguredValueTaskAwaitable FixedContext(this ValueTask task) => task.ConfigureAwait(continueOnCapturedContext: true);
 
         /// <summary>
@@ -255,6 +267,7 @@ namespace wan24.Core
         /// <typeparam name="T">Result type</typeparam>
         /// <param name="task">Task</param>
         /// <returns>Task</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static ConfiguredValueTaskAwaitable<T> FixedContext<T>(this ValueTask<T> task) => task.ConfigureAwait(continueOnCapturedContext: true);
 
         /// <summary>
@@ -262,6 +275,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="task">Task</param>
         /// <returns>Task</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static ConfiguredTaskAwaitable DynamicContext(this Task task) => task.ConfigureAwait(continueOnCapturedContext: false);
 
         /// <summary>
@@ -270,6 +284,7 @@ namespace wan24.Core
         /// <typeparam name="T">Result type</typeparam>
         /// <param name="task">Task</param>
         /// <returns>Task</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static ConfiguredTaskAwaitable<T> DynamicContext<T>(this Task<T> task) => task.ConfigureAwait(continueOnCapturedContext: false);
 
         /// <summary>
@@ -277,6 +292,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="task">Task</param>
         /// <returns>Task</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static ConfiguredValueTaskAwaitable DynamicContext(this ValueTask task) => task.ConfigureAwait(continueOnCapturedContext: false);
 
         /// <summary>
@@ -285,6 +301,7 @@ namespace wan24.Core
         /// <typeparam name="T">Result type</typeparam>
         /// <param name="task">Task</param>
         /// <returns>Task</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static ConfiguredValueTaskAwaitable<T> DynamicContext<T>(this ValueTask<T> task) => task.ConfigureAwait(continueOnCapturedContext: false);
 
         /// <summary>
@@ -294,6 +311,7 @@ namespace wan24.Core
         /// <param name="scheduler">Scheduler</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Long running task</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static Task StartLongRunningTask(this Func<Task> action, TaskScheduler? scheduler = null, CancellationToken cancellationToken = default)
             => Task.Factory.StartNew(
                 action,
@@ -311,6 +329,7 @@ namespace wan24.Core
         /// <param name="scheduler">Scheduler</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Long running task</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static Task<T> StartLongRunningTask<T>(this Func<Task<T>> action, TaskScheduler? scheduler = null, CancellationToken cancellationToken = default)
             => Task.Factory.StartNew(
                 action,
@@ -327,6 +346,7 @@ namespace wan24.Core
         /// <param name="scheduler">Scheduler</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Task</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static Task StartFairTask(this Func<Task> action, TaskScheduler? scheduler = null, CancellationToken cancellationToken = default)
             => Task.Factory.StartNew(
                 action,
@@ -344,6 +364,7 @@ namespace wan24.Core
         /// <param name="scheduler">Scheduler</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Task</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static Task<T> StartFairTask<T>(this Func<Task<T>> action, TaskScheduler? scheduler = null, CancellationToken cancellationToken = default)
             => Task.Factory.StartNew(
                 action,
@@ -360,6 +381,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Task</returns>
         /// <exception cref="TaskCanceledException">If canceled</exception>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static Task WithCancellation(this Task task, CancellationToken cancellationToken) => task.WaitAsync(cancellationToken);
 
         /// <summary>
@@ -370,6 +392,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Task</returns>
         /// <exception cref="TaskCanceledException">If canceled</exception>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static Task<T> WithCancellation<T>(this Task<T> task, CancellationToken cancellationToken) => task.WaitAsync(cancellationToken);
 
         /// <summary>

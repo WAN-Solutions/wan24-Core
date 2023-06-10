@@ -1,4 +1,5 @@
 ﻿using System.Buffers.Binary;
+using System.Runtime;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -14,6 +15,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>Converted bytes</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static byte[] ConvertEndian(this ReadOnlySpan<byte> bytes)
         {
             byte[] res = bytes.ToArray();
@@ -26,6 +28,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>Converted bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static byte[] ConvertEndian(this ReadOnlyMemory<byte> bytes) => bytes.Span.ConvertEndian();
 
         /// <summary>
@@ -33,6 +36,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>Converted bytes</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static Span<byte> ConvertEndian(this Span<byte> bytes)
         {
             if (!BitConverter.IsLittleEndian) bytes.Reverse();
@@ -44,6 +48,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>Converted bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static Memory<byte> ConvertEndian(this Memory<byte> bytes)
         {
             bytes.Span.ConvertEndian();
@@ -55,6 +60,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>Converted bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static byte[] ConvertEndian(this byte[] bytes)
         {
             bytes.AsSpan().ConvertEndian();
@@ -67,6 +73,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Equal?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool SlowCompare(this ReadOnlySpan<byte> a, ReadOnlySpan<byte> b)
         {
             int diff = a.Length ^ b.Length;
@@ -80,6 +87,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Equal?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool SlowCompare(this Span<byte> a, ReadOnlySpan<byte> b) => SlowCompare((ReadOnlySpan<byte>)a, b);
 
         /// <summary>
@@ -88,6 +96,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Equal?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool SlowCompare(this byte[] a, ReadOnlySpan<byte> b) => SlowCompare((ReadOnlySpan<byte>)a, b);
 
         /// <summary>
@@ -96,6 +105,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Equal?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool SlowCompare(this ReadOnlyMemory<byte> a, ReadOnlySpan<byte> b) => SlowCompare(a.Span, b);
 
         /// <summary>
@@ -104,6 +114,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Equal?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool SlowCompare(this Memory<byte> a, ReadOnlySpan<byte> b) => SlowCompare((ReadOnlySpan<byte>)a.Span, b);
 
         /// <summary>
@@ -112,6 +123,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Equal?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool SlowCompare(this ReadOnlyMemory<byte> a, ReadOnlyMemory<byte> b) => SlowCompare(a.Span, b.Span);
 
         /// <summary>
@@ -120,6 +132,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Equal?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool SlowCompare(this Memory<byte> a, Memory<byte> b) => SlowCompare((ReadOnlySpan<byte>)a.Span, b.Span);
 
         /// <summary>
@@ -127,6 +140,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static short ToShort(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadInt16LittleEndian(bits);
 
         /// <summary>
@@ -134,6 +148,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static short ToShort(this Span<byte> bits) => ToShort((ReadOnlySpan<byte>)bits);
 
         /// <summary>
@@ -141,6 +156,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static ushort ToUShort(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadUInt16LittleEndian(bits);
 
         /// <summary>
@@ -148,6 +164,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static ushort ToUShort(this Span<byte> bits) => ToUShort((ReadOnlySpan<byte>)bits);
 
         /// <summary>
@@ -155,6 +172,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static int ToInt(this ReadOnlySpan<byte> bits)  => BinaryPrimitives.ReadInt32LittleEndian(bits);
 
         /// <summary>
@@ -162,6 +180,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static int ToInt(this Span<byte> bits) => ToInt((ReadOnlySpan<byte>)bits);
 
         /// <summary>
@@ -169,6 +188,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static uint ToUInt(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadUInt32LittleEndian(bits);
 
         /// <summary>
@@ -176,6 +196,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static uint ToUInt(this Span<byte> bits) => ToUInt((ReadOnlySpan<byte>)bits);
 
         /// <summary>
@@ -183,6 +204,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static long ToLong(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadInt64LittleEndian(bits);
 
         /// <summary>
@@ -190,6 +212,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static long ToLong(this Span<byte> bits) => ToLong((ReadOnlySpan<byte>)bits);
 
         /// <summary>
@@ -197,6 +220,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static ulong ToULong(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadUInt64LittleEndian(bits);
 
         /// <summary>
@@ -204,6 +228,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static ulong ToULong(this Span<byte> bits) => ToULong((ReadOnlySpan<byte>)bits);
 
         /// <summary>
@@ -211,6 +236,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static float ToFloat(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadSingleLittleEndian(bits);
 
         /// <summary>
@@ -218,6 +244,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static float ToFloat(this Span<byte> bits) => ToFloat((ReadOnlySpan<byte>)bits);
 
         /// <summary>
@@ -225,6 +252,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static double ToDouble(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadDoubleLittleEndian(bits);
 
         /// <summary>
@@ -232,6 +260,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static double ToDouble(this Span<byte> bits) => ToDouble((ReadOnlySpan<byte>)bits);
 
         /// <summary>
@@ -239,6 +268,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static decimal ToDecimal(this ReadOnlySpan<byte> bits)
         {
             if (bits.Length < sizeof(int) << 2) throw new ArgumentOutOfRangeException(nameof(bits));
@@ -252,6 +282,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static decimal ToDecimal(this Span<byte> bits) => ToDecimal((ReadOnlySpan<byte>)bits);
 
         /// <summary>
@@ -260,6 +291,7 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <param name="ignoreUsed">Ignore the number of used bytes?</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static string ToUtf8String(this ReadOnlySpan<byte> bytes, bool ignoreUsed = false)
         {
             using RentedArray<char> chars = new(bytes.Length, clean: false);
@@ -277,6 +309,7 @@ namespace wan24.Core
         /// <param name="buffer">Output buffer</param>
         /// <param name="ignoreUsed">Ignore the number of used bytes?</param>
         /// <returns>Number of used bytes from the output buffer</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static int ToUtf8String(this ReadOnlySpan<byte> bytes, Span<char> buffer, bool ignoreUsed = false)
         {
             new UTF8Encoding(encoderShouldEmitUTF8Identifier: true, throwOnInvalidBytes: true)
@@ -291,6 +324,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static string ToUtf8String(this Span<byte> bytes) => ToUtf8String((ReadOnlySpan<byte>)bytes);
 
         /// <summary>
@@ -298,6 +332,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static string ToUtf8String(this ReadOnlyMemory<byte> bytes) => bytes.Span.ToUtf8String();
 
         /// <summary>
@@ -305,6 +340,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static string ToUtf8String(this Memory<byte> bytes) => ToUtf8String((ReadOnlySpan<byte>)bytes.Span);
 
         /// <summary>
@@ -312,6 +348,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static string ToUtf8String(this byte[] bytes) => bytes.AsSpan().ToUtf8String();
 
         /// <summary>
@@ -320,6 +357,7 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <param name="ignoreUsed">Ignore the number of used bytes?</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static char[] ToUtf8Chars(this ReadOnlySpan<byte> bytes, bool ignoreUsed = false)
         {
             using RentedArray<char> chars = new(bytes.Length, clean: false);
@@ -335,6 +373,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static char[] ToUtf8Chars(this Span<byte> bytes) => ToUtf8Chars((ReadOnlySpan<byte>)bytes);
 
         /// <summary>
@@ -342,6 +381,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static char[] ToUtf8Chars(this ReadOnlyMemory<byte> bytes) => bytes.Span.ToUtf8Chars();
 
         /// <summary>
@@ -349,6 +389,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static char[] ToUtf8Chars(this Memory<byte> bytes) => ToUtf8Chars((ReadOnlySpan<byte>)bytes.Span);
 
         /// <summary>
@@ -356,6 +397,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static char[] ToUtf8Chars(this byte[] bytes) => bytes.AsSpan().ToUtf8Chars();
 
         /// <summary>
@@ -365,6 +407,7 @@ namespace wan24.Core
         /// <param name="ignoreUsed">Ignore the number of used bytes?</param>
         /// <returns>Number of used bytes from the output buffer</returns>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static string ToUtf16String(this ReadOnlySpan<byte> bytes, bool ignoreUsed = false)
         {
             using RentedArray<char> chars = new(bytes.Length, clean: false);
@@ -382,6 +425,7 @@ namespace wan24.Core
         /// <param name="buffer">Output buffer</param>
         /// <param name="ignoreUsed">Ignore the number of used bytes?</param>
         /// <returns>Number of used bytes from the output buffer</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static int ToUtf16String(this ReadOnlySpan<byte> bytes, Span<char> buffer, bool ignoreUsed = false)
         {
             new UnicodeEncoding(bigEndian: false, byteOrderMark: false, throwOnInvalidBytes: true)
@@ -396,6 +440,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes (little endian)</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static string ToUtf16String(this Span<byte> bytes) => ToUtf16String((ReadOnlySpan<byte>)bytes);
 
         /// <summary>
@@ -403,6 +448,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes (little endian)</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static string ToUtf16String(this ReadOnlyMemory<byte> bytes) => bytes.Span.ToUtf16String();
 
         /// <summary>
@@ -410,6 +456,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes (little endian)</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static string ToUtf16String(this Memory<byte> bytes) => ToUtf16String((ReadOnlySpan<byte>)bytes.Span);
 
         /// <summary>
@@ -417,6 +464,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes (little endian)</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static string ToUtf16String(this byte[] bytes) => bytes.AsSpan().ToUtf16String();
 
         /// <summary>
@@ -425,6 +473,7 @@ namespace wan24.Core
         /// <param name="bytes">Bytes (little endian)</param>
         /// <param name="ignoreUsed">Ignore the number of used bytes?</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static char[] ToUtf16Chars(this ReadOnlySpan<byte> bytes, bool ignoreUsed = false)
         {
             using RentedArray<char> chars = new(bytes.Length, clean: false);
@@ -440,6 +489,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static char[] ToUtf16Chars(this Span<byte> bytes) => ToUtf16Chars((ReadOnlySpan<byte>)bytes);
 
         /// <summary>
@@ -447,6 +497,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static char[] ToUtf16Chars(this ReadOnlyMemory<byte> bytes) => bytes.Span.ToUtf16Chars();
 
         /// <summary>
@@ -454,6 +505,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static char[] ToUtf16Chars(this Memory<byte> bytes) => ToUtf16Chars((ReadOnlySpan<byte>)bytes.Span);
 
         /// <summary>
@@ -461,6 +513,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static char[] ToUtf16Chars(this byte[] bytes) => bytes.AsSpan().ToUtf16Chars();
 
         /// <summary>
@@ -469,6 +522,7 @@ namespace wan24.Core
         /// <param name="bytes">Bytes (little endian)</param>
         /// <param name="ignoreUsed">Ignore the number of used bytes?</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static string ToUtf32String(this ReadOnlySpan<byte> bytes, bool ignoreUsed = false)
         {
             using RentedArray<char> chars = new(bytes.Length, clean: false);
@@ -486,6 +540,7 @@ namespace wan24.Core
         /// <param name="buffer">Output buffer</param>
         /// <param name="ignoreUsed">Ignore the number of used bytes?</param>
         /// <returns>Number of used bytes from the output buffer</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static int ToUtf32String(this ReadOnlySpan<byte> bytes, Span<char> buffer, bool ignoreUsed = false)
         {
             new UTF32Encoding(bigEndian: false, byteOrderMark: false, throwOnInvalidCharacters: true)
@@ -500,6 +555,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes (little endian)</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static string ToUtf32String(this Span<byte> bytes) => ToUtf32String((ReadOnlySpan<byte>)bytes);
 
         /// <summary>
@@ -507,6 +563,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes (little endian)</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static string ToUtf32String(this ReadOnlyMemory<byte> bytes) => bytes.Span.ToUtf32String();
 
         /// <summary>
@@ -514,6 +571,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes (little endian)</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static string ToUtf32String(this Memory<byte> bytes) => ToUtf32String((ReadOnlySpan<byte>)bytes.Span);
 
         /// <summary>
@@ -521,6 +579,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes (little endian)</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static string ToUtf32String(this byte[] bytes) => bytes.AsSpan().ToUtf32String();
 
         /// <summary>
@@ -529,6 +588,7 @@ namespace wan24.Core
         /// <param name="bytes">Bytes (little endian)</param>
         /// <param name="ignoreUsed">Ignore the number of used bytes?</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static char[] ToUtf32Chars(this ReadOnlySpan<byte> bytes, bool ignoreUsed = false)
         {
             using RentedArray<char> chars = new(bytes.Length, clean: false);
@@ -544,6 +604,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static char[] ToUtf32Chars(this Span<byte> bytes) => ToUtf32Chars((ReadOnlySpan<byte>)bytes);
 
         /// <summary>
@@ -551,6 +612,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static char[] ToUtf32Chars(this ReadOnlyMemory<byte> bytes) => bytes.Span.ToUtf32Chars();
 
         /// <summary>
@@ -558,6 +620,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static char[] ToUtf32Chars(this Memory<byte> bytes) => ToUtf32Chars((ReadOnlySpan<byte>)bytes.Span);
 
         /// <summary>
@@ -565,6 +628,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static char[] ToUtf32Chars(this byte[] bytes) => bytes.AsSpan().ToUtf32Chars();
 
         /// <summary>

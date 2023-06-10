@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
+using System.Runtime.CompilerServices;
 using System.Threading.Channels;
 
 namespace wan24.Core
@@ -101,6 +102,7 @@ namespace wan24.Core
         /// <summary>
         /// Raise the <see cref="OnException"/> event
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected void RaiseOnException() => OnException?.Invoke(this, new());
 
         /// <summary>

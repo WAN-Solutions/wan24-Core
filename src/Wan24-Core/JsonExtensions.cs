@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// JSON extensions
@@ -11,6 +13,7 @@
         /// <param name="obj">Object</param>
         /// <param name="prettify">Prettify?</param>
         /// <returns>JSON string</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static string ToJson(this object obj, bool prettify = false) => JsonHelper.Encode(obj, prettify);
 
         /// <summary>
@@ -19,6 +22,7 @@
         /// <param name="type">Type</param>
         /// <param name="json">JSON string</param>
         /// <returns>Object</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static object? FromJson(this Type type, string json) => JsonHelper.DecodeObject(type, json);
 
         /// <summary>
@@ -27,6 +31,7 @@
         /// <typeparam name="T">Target type</typeparam>
         /// <param name="json">JSON string</param>
         /// <returns>Object</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static T? DecodeJson<T>(this string json) => JsonHelper.Decode<T>(json);
     }
 }

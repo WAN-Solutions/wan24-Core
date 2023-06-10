@@ -118,7 +118,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ArgumentValidationHelper_EnsureValidArgument_System_String_System_Boolean_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.ArgumentValidationHelper.EnsureValidArgument(System.String%2CSystem.Boolean%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L63">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L68">View Source</a>
   </span>
   <a id="wan24_Core_ArgumentValidationHelper_EnsureValidArgument_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgument*"></a>
   <h4 id="wan24_Core_ArgumentValidationHelper_EnsureValidArgument_System_String_System_Boolean_System_String_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgument(System.String,System.Boolean,System.String)">EnsureValidArgument(String, Boolean, String)</h4>
@@ -127,7 +127,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void EnsureValidArgument(string arg, bool condition, string error = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static void EnsureValidArgument(string arg, bool condition, string error = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -159,28 +160,12 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>The condition wasn't met</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ArgumentValidationHelper_EnsureValidArgument_System_String_System_Double_System_Double_System_Double_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.ArgumentValidationHelper.EnsureValidArgument(System.String%2CSystem.Double%2CSystem.Double%2CSystem.Double%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L51">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L54">View Source</a>
   </span>
   <a id="wan24_Core_ArgumentValidationHelper_EnsureValidArgument_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgument*"></a>
   <h4 id="wan24_Core_ArgumentValidationHelper_EnsureValidArgument_System_String_System_Double_System_Double_System_Double_System_String_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgument(System.String,System.Double,System.Double,System.Double,System.String)">EnsureValidArgument(String, Double, Double, Double, String)</h4>
@@ -189,7 +174,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void EnsureValidArgument(string arg, double min, double max, double value, string error = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static double EnsureValidArgument(string arg, double min, double max, double value, string error = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -233,18 +219,18 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Condition</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>The given value is not in the range</p>
+        <td><span class="xref">System.Double</span></td>
+        <td><p>Given value</p>
 </td>
       </tr>
     </tbody>
@@ -254,7 +240,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ArgumentValidationHelper_EnsureValidArgument_System_String_System_Int32_System_Int32_System_Int32_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.ArgumentValidationHelper.EnsureValidArgument(System.String%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L23">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L20">View Source</a>
   </span>
   <a id="wan24_Core_ArgumentValidationHelper_EnsureValidArgument_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgument*"></a>
   <h4 id="wan24_Core_ArgumentValidationHelper_EnsureValidArgument_System_String_System_Int32_System_Int32_System_Int32_System_String_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgument(System.String,System.Int32,System.Int32,System.Int32,System.String)">EnsureValidArgument(String, Int32, Int32, Int32, String)</h4>
@@ -263,7 +249,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void EnsureValidArgument(string arg, int min, int max, int value, string error = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static int EnsureValidArgument(string arg, int min, int max, int value, string error = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -307,18 +294,18 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Condition</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>The given value is not in the range</p>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Given value</p>
 </td>
       </tr>
     </tbody>
@@ -328,7 +315,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ArgumentValidationHelper_EnsureValidArgument_System_String_System_Int32_System_String_System_Int32_System_Boolean_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.ArgumentValidationHelper.EnsureValidArgument(System.String%2CSystem.Int32%2CSystem.String%2CSystem.Int32%2CSystem.Boolean%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L125">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L138">View Source</a>
   </span>
   <a id="wan24_Core_ArgumentValidationHelper_EnsureValidArgument_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgument*"></a>
   <h4 id="wan24_Core_ArgumentValidationHelper_EnsureValidArgument_System_String_System_Int32_System_String_System_Int32_System_Boolean_System_String_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgument(System.String,System.Int32,System.String,System.Int32,System.Boolean,System.String)">EnsureValidArgument(String, Int32, String, Int32, Boolean, String)</h4>
@@ -337,7 +324,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void EnsureValidArgument(string arg, int max, string value, int min = 0, bool allowWhiteSpace = true, string error = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static string EnsureValidArgument(string arg, int max, string value, int min = 0, bool allowWhiteSpace = true, string error = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -386,28 +374,18 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Condition</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The value is <span class="xref">null</span></p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>The value is whitespace(s)</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>The value length isn't within the allowed range</p>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Given value</p>
 </td>
       </tr>
     </tbody>
@@ -426,7 +404,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void EnsureValidArgument(string arg, long min, long max, long value, string error = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static long EnsureValidArgument(string arg, long min, long max, long value, string error = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -470,18 +449,18 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Condition</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>The given value is not in the range</p>
+        <td><span class="xref">System.Int64</span></td>
+        <td><p>Given value</p>
 </td>
       </tr>
     </tbody>
@@ -491,7 +470,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ArgumentValidationHelper_EnsureValidArgument_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.ArgumentValidationHelper.EnsureValidArgument(System.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L87">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L95">View Source</a>
   </span>
   <a id="wan24_Core_ArgumentValidationHelper_EnsureValidArgument_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgument*"></a>
   <h4 id="wan24_Core_ArgumentValidationHelper_EnsureValidArgument_System_String_System_String_System_String_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgument(System.String,System.String,System.String)">EnsureValidArgument(String, String, String)</h4>
@@ -500,7 +479,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void EnsureValidArgument(string arg, string value, string error = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static string EnsureValidArgument(string arg, string value, string error = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -532,23 +512,18 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Condition</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The value is <span class="xref">null</span></p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>The value contains only whitespace(s)</p>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Given value</p>
 </td>
       </tr>
     </tbody>
@@ -558,7 +533,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ArgumentValidationHelper_EnsureValidArgument__1_System_String___0_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.ArgumentValidationHelper.EnsureValidArgument%60%601(System.String%2C%60%600%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L108">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L118">View Source</a>
   </span>
   <a id="wan24_Core_ArgumentValidationHelper_EnsureValidArgument_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgument*"></a>
   <h4 id="wan24_Core_ArgumentValidationHelper_EnsureValidArgument__1_System_String___0_System_String_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgument``1(System.String,``0,System.String)">EnsureValidArgument&lt;T&gt;(String, T, String)</h4>
@@ -567,7 +542,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void EnsureValidArgument&lt;T&gt;(string arg, T value, string error = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static T EnsureValidArgument&lt;T&gt;(string arg, T value, string error = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -599,6 +575,22 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Given value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -615,28 +607,12 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The value is <span class="xref">null</span></p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ArgumentValidationHelper_EnsureValidArgument__1_System_String_System_Int32_System_Int32___0___System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.ArgumentValidationHelper.EnsureValidArgument%60%601(System.String%2CSystem.Int32%2CSystem.Int32%2C%60%600%5B%5D%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L143">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L159">View Source</a>
   </span>
   <a id="wan24_Core_ArgumentValidationHelper_EnsureValidArgument_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgument*"></a>
   <h4 id="wan24_Core_ArgumentValidationHelper_EnsureValidArgument__1_System_String_System_Int32_System_Int32___0___System_String_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgument``1(System.String,System.Int32,System.Int32,``0[],System.String)">EnsureValidArgument&lt;T&gt;(String, Int32, Int32, T[], String)</h4>
@@ -645,7 +621,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void EnsureValidArgument&lt;T&gt;(string arg, int min, int max, T[] value, string error = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static T[] EnsureValidArgument&lt;T&gt;(string arg, int min, int max, T[] value, string error = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -688,6 +665,22 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><p>Given value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -704,42 +697,22 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The value is <span class="xref">null</span></p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>The value length isn't within the allowed range</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ArgumentValidationHelper_EnsureValidArgument__1_System_String_System_Int32_System_Int32_System_Span___0__System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.ArgumentValidationHelper.EnsureValidArgument%60%601(System.String%2CSystem.Int32%2CSystem.Int32%2CSystem.Span%7B%60%600%7D%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ArgumentValidationHelper_EnsureValidArgument__1_System_String_System_Int32_System_Int32_Span___0__System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.ArgumentValidationHelper.EnsureValidArgument%60%601(System.String%2CSystem.Int32%2CSystem.Int32%2CSpan%7B%60%600%7D%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L159">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L178">View Source</a>
   </span>
   <a id="wan24_Core_ArgumentValidationHelper_EnsureValidArgument_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgument*"></a>
-  <h4 id="wan24_Core_ArgumentValidationHelper_EnsureValidArgument__1_System_String_System_Int32_System_Int32_System_Span___0__System_String_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgument``1(System.String,System.Int32,System.Int32,System.Span{``0},System.String)">EnsureValidArgument&lt;T&gt;(String, Int32, Int32, Span&lt;T&gt;, String)</h4>
+  <h4 id="wan24_Core_ArgumentValidationHelper_EnsureValidArgument__1_System_String_System_Int32_System_Int32_Span___0__System_String_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgument``1(System.String,System.Int32,System.Int32,Span{``0},System.String)">EnsureValidArgument&lt;T&gt;(String, Int32, Int32, Span&lt;T&gt;, String)</h4>
   <div class="markdown level1 summary"><p>Ensure a valid array argument</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void EnsureValidArgument&lt;T&gt;(string arg, int min, int max, Span&lt;T&gt; value, string error = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static Span&lt;T&gt; EnsureValidArgument&lt;T&gt;(string arg, int min, int max, Span&lt;T&gt; value, string error = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -770,7 +743,7 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Span</span>&lt;T&gt;</td>
+        <td><span class="xref">Span</span>&lt;T&gt;</td>
         <td><span class="parametername">value</span></td>
         <td></td>
       </tr>
@@ -778,6 +751,22 @@
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">error</span></td>
         <td><p>Error message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;T&gt;</td>
+        <td><p>Given value</p>
 </td>
       </tr>
     </tbody>
@@ -798,28 +787,12 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>The value length isn't within the allowed range</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ArgumentValidationHelper_EnsureValidArgumentRange_System_String_System_Boolean_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.ArgumentValidationHelper.EnsureValidArgumentRange(System.String%2CSystem.Boolean%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L74">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L80">View Source</a>
   </span>
   <a id="wan24_Core_ArgumentValidationHelper_EnsureValidArgumentRange_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgumentRange*"></a>
   <h4 id="wan24_Core_ArgumentValidationHelper_EnsureValidArgumentRange_System_String_System_Boolean_System_String_" data-uid="wan24.Core.ArgumentValidationHelper.EnsureValidArgumentRange(System.String,System.Boolean,System.String)">EnsureValidArgumentRange(String, Boolean, String)</h4>
@@ -828,7 +801,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void EnsureValidArgumentRange(string arg, bool inRange, string error = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static void EnsureValidArgumentRange(string arg, bool inRange, string error = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -871,7 +845,7 @@
                     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ArgumentValidationHelper.md&amp;value=---%0Auid%3A%20wan24.Core.ArgumentValidationHelper%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L12" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ArgumentValidationHelper.cs/#L8" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

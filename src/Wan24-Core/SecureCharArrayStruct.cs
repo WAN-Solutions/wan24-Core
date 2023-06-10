@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Runtime;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -157,6 +159,7 @@ namespace wan24.Core
         public override readonly bool Equals(object? obj) => _Array.Equals(obj);
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public readonly bool Equals(Memory<char> other) => Memory.Equals(other);
 
         /// <inheritdoc/>
@@ -165,6 +168,7 @@ namespace wan24.Core
         /// <summary>
         /// Ensure an undisposed object state
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private readonly void EnsureUndisposed()
         {
             lock (SyncObject) if (!IsDisposed) return;
@@ -177,6 +181,7 @@ namespace wan24.Core
         /// <typeparam name="tValue">Value type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private readonly tValue IfUndisposed<tValue>(tValue value)
         {
             EnsureUndisposed();

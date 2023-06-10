@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime.CompilerServices;
+
+namespace wan24.Core
 {
     // Methods
     public partial class Bitmap
@@ -8,6 +10,7 @@
         /// </summary>
         /// <param name="count">Number of bytes</param>
         /// <exception cref="InternalBufferOverflowException">New bitmap is larger than <see cref="int.MaxValue"/></exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual void SetSize(int count)
         {
             if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
@@ -16,11 +19,7 @@
                 long len = GetByteCount(count);
                 if (len > int.MaxValue) throw new InternalBufferOverflowException();
                 byte[] map = len == 0 ? Array.Empty<byte>() : new byte[len];
-                if (len > 0)
-                {
-                    int min = Math.Min(_Map.Length, map.Length);
-                    _Map.AsSpan(0, min).CopyTo(map.AsSpan(0, min));
-                }
+                if (len > 0) _Map.AsSpan(0, Math.Min(_Map.Length, map.Length)).CopyTo(map.AsSpan());
                 _Map = map;
                 if (_Map.Length < GetByteCount(BitCount)) BitCount = _Map.Length << 3;
             }
@@ -31,6 +30,7 @@
         /// </summary>
         /// <param name="map">New bitmap</param>
         /// <returns>Old bitmap</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual byte[] ExchangeBitmap(byte[] map)
         {
             lock (SyncObject)
@@ -46,6 +46,7 @@
         /// Set a new bit count (when shrinking and later expanding, old bits won't be cleared!)
         /// </summary>
         /// <param name="count">Number of bits (must not exceed the bitmap size)</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual void SetBitCount(long count)
         {
             lock (SyncObject)
@@ -60,6 +61,7 @@
         /// </summary>
         /// <param name="bits">Bits to add</param>
         /// <returns>First new bit offset</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual long AddBits(params bool[] bits)
         {
             if (bits.Length == 0) return BitCount;
@@ -77,12 +79,14 @@
         /// </summary>
         /// <param name="count">Number of bits to add</param>
         /// <returns>First new bit offset</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual long AddBits(int count)
         {
             if (count < 1) return BitCount;
             lock (SyncObject)
             {
                 long res = BitCount;
+                //FIXME Endless loop?
                 while (BitCount + count > _Map.LongLength << 3) SetSize((int)(_Map.LongLength + IncreaseSize));
                 BitCount += count;
                 return res;

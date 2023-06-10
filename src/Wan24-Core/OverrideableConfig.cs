@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -270,6 +271,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pi">Property</param>
         /// <returns>Option</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         protected IConfigOption GetOption(PropertyInfo pi) => (IConfigOption)(pi.GetValue(this) ?? throw new ArgumentException("No property value", nameof(pi)));
 
         /// <summary>
@@ -287,6 +289,7 @@ namespace wan24.Core
         /// <param name="pi">Property</param>
         /// <param name="final">Final value?</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         protected object? GetPropertyValue(PropertyInfo pi, bool final = false) => final ? GetOption(pi).FinalValue : GetOption(pi).Value;
 
         #region IOverrideableConfig methods
