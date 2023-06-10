@@ -14,12 +14,11 @@ namespace wan24.Core
         public virtual void SetSize(int count)
         {
             if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            if (count == _Map.LongLength) return;
             lock (SyncObject)
             {
-                long len = GetByteCount(count);
-                if (len > int.MaxValue) throw new InternalBufferOverflowException();
-                byte[] map = len == 0 ? Array.Empty<byte>() : new byte[len];
-                if (len > 0) _Map.AsSpan(0, Math.Min(_Map.Length, map.Length)).CopyTo(map.AsSpan());
+                byte[] map = count == 0 ? Array.Empty<byte>() : new byte[count];
+                if (count > 0) _Map.AsSpan(0, Math.Min(_Map.Length, map.Length)).CopyTo(map.AsSpan());
                 _Map = map;
                 if (_Map.Length < GetByteCount(BitCount)) BitCount = _Map.Length << 3;
             }
@@ -86,7 +85,6 @@ namespace wan24.Core
             lock (SyncObject)
             {
                 long res = BitCount;
-                //FIXME Endless loop?
                 while (BitCount + count > _Map.LongLength << 3) SetSize((int)(_Map.LongLength + IncreaseSize));
                 BitCount += count;
                 return res;
