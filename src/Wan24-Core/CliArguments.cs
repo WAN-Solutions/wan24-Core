@@ -217,5 +217,18 @@ namespace wan24.Core
         /// <param name="key">Key</param>
         /// <returns>Number of values or <c>-1</c>, if the argument wasn't given</returns>
         public int ValueCount(string key) => _Arguments.ContainsKey(key) ? _Arguments[key].Count : -1;
+
+        /// <summary>
+        /// Get an existing key
+        /// </summary>
+        /// <param name="key">Key (case insensitive handling)</param>
+        /// <returns>Existing case sensitive key or <see langword="null"/>, if the key wasn't found</returns>
+        public string? GetExistingKey(string key)
+        {
+            key = key.ToLower();
+            return (from k in _Arguments.Keys
+                    where k.ToLower() == key
+                    select k).FirstOrDefault();
+        }
     }
 }
