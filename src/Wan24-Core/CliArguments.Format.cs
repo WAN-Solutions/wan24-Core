@@ -164,12 +164,19 @@ namespace wan24.Core
         /// <summary>
         /// Parse arguments from a string (use <c>'</c> or <c>"</c> for a quoted value, <c>\</c> for escaping)
         /// </summary>
-        /// <param name="str">String  (use <c>'</c> or <c>"</c> for a quoted value, <c>\</c> for escaping within a quoted value)</param>
+        /// <param name="str">String  (use <c>'</c> or <c>"</c> for a quoted value, <c>\</c> for escaping within a quoted value, double escape <c>\</c>)</param>
         /// <returns>Arguments</returns>
-        public static CliArguments Parse(ReadOnlySpan<char> str)
+        public static CliArguments Parse(ReadOnlySpan<char> str) => new(Split(str));
+
+        /// <summary>
+        /// Split a CLI argument string into arguments (use <c>'</c> or <c>"</c> for a quoted value, <c>\</c> for escaping)
+        /// </summary>
+        /// <param name="str">String  (use <c>'</c> or <c>"</c> for a quoted value, <c>\</c> for escaping within a quoted value, double escape <c>\</c>)</param>
+        /// <returns>Arguments</returns>
+        public static string[] Split(ReadOnlySpan<char> str)
         {
             // Return early, if empty
-            if (str.Length == 0) return new();
+            if (str.Length == 0) return Array.Empty<string>();
             // Prepare parsing
             using RentedArray<string> argsBuffer = new(Math.Max(1, str.Length >> 1));// Arguments
             using RentedArray<char> valueBuffer = new(str.Length);// Current value
@@ -182,7 +189,7 @@ namespace wan24.Core
             int argsOffset = 0,// Result buffer offset
                 valueOffset = 0,// Value buffer offset
                 i = 0;// Current char index
-            [MethodImpl(MethodImplOptions.AggressiveInlining)] 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             void AddValue()
             {
                 // Add the current value to the result
@@ -334,7 +341,7 @@ namespace wan24.Core
                     );
                 AddValue();
             }
-            return argsOffset == 0 ? new() : new(argsBuffer.Span[..argsOffset]);
+            return argsOffset == 0 ? Array.Empty<string>() : argsBuffer.Span[..argsOffset].ToArray();
         }
 
         /// <summary>
