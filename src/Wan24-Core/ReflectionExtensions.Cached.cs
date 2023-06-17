@@ -1,0 +1,222 @@
+﻿using System.Collections.Concurrent;
+using System.Reflection;
+
+namespace wan24.Core
+{
+    // Cached
+    public static partial class ReflectionExtensions
+    {
+        /// <summary>
+        /// <see cref="FieldInfo"/> cache
+        /// </summary>
+        private static readonly ConcurrentDictionary<int, ConcurrentDictionary<BindingFlags, FieldInfo[]>> FieldInfoCache = new();
+        /// <summary>
+        /// <see cref="PropertyInfo"/> cache
+        /// </summary>
+        private static readonly ConcurrentDictionary<int, ConcurrentDictionary<BindingFlags, PropertyInfoExt[]>> PropertyInfoCache = new();
+        /// <summary>
+        /// <see cref="MethodInfo"/> cache
+        /// </summary>
+        private static readonly ConcurrentDictionary<int, ConcurrentDictionary<BindingFlags, MethodInfo[]>> MethodInfoCache = new();
+        /// <summary>
+        /// <see cref="ConstructorInfo"/> cache
+        /// </summary>
+        private static readonly ConcurrentDictionary<int, ConcurrentDictionary<BindingFlags, ConstructorInfo[]>> ConstructorInfoCache = new();
+        /// <summary>
+        /// <see cref="ParameterInfo"/> cache
+        /// </summary>
+        private static readonly ConcurrentDictionary<int, ParameterInfo[]> ParameterInfoCache = new();
+        /// <summary>
+        /// Generic <see cref="Type"/> arguments cache
+        /// </summary>
+        private static readonly ConcurrentDictionary<int, Type[]> GenericArgumentsCache = new();
+        /// <summary>
+        /// <see cref="Attribute"/> cache
+        /// </summary>
+        private static readonly ConcurrentDictionary<int, Attribute[]> AttributeCache = new();
+
+        /// <summary>
+        /// Get fields from the cache
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="bindingFlags">Binding flags</param>
+        /// <returns>Fields</returns>
+        public static FieldInfo[] GetFieldsCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance|BindingFlags.Static|BindingFlags.Public)
+            => FieldInfoCache.GetOrAdd(type.GetHashCode(), (key) => new()).GetOrAdd(bindingFlags, (key) => type.GetFields(bindingFlags));
+
+        /// <summary>
+        /// Get a field from the cache
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="name">Name</param>
+        /// <param name="bindingFlags">Binding flags</param>
+        /// <returns>Field</returns>
+        public static FieldInfo? GetFieldCached(this Type type, string name, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)
+            => GetFieldsCached(type, bindingFlags).FirstOrDefault(f => f.Name == name);
+
+        /// <summary>
+        /// Get properties from the cache
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="bindingFlags">Binding flags</param>
+        /// <returns>Properties</returns>
+        public static PropertyInfoExt[] GetPropertiesCached(
+            this Type type, 
+            BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public
+            )
+            => PropertyInfoCache.GetOrAdd(
+                type.GetHashCode(),
+                (key) => new()).GetOrAdd(bindingFlags, (key) => (from pi in type.GetProperties(bindingFlags)
+                                                                 select new PropertyInfoExt(pi, pi.CanRead ? pi.GetGetterDelegate() : null, pi.CanWrite ? pi.GetSetterDelegate() : null))
+                .ToArray());
+
+        /// <summary>
+        /// Get a property from the cache
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="name">Name</param>
+        /// <param name="bindingFlags">Binding flags</param>
+        /// <returns>Property</returns>
+        public static PropertyInfoExt? GetPropertyCached(
+            this Type type, 
+            string name, 
+            BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public
+            )
+            => GetPropertiesCached(type, bindingFlags).FirstOrDefault(p => p.Property.Name == name);
+
+        /// <summary>
+        /// Get methods from the cache
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="bindingFlags">Binding flags</param>
+        /// <returns>Methods</returns>
+        public static MethodInfo[] GetMethodsCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)
+            => MethodInfoCache.GetOrAdd(type.GetHashCode(), (key) => new()).GetOrAdd(bindingFlags, (key) => type.GetMethods(bindingFlags));
+
+        /// <summary>
+        /// Get a method from the cache
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="name">Name</param>
+        /// <param name="bindingFlags">Binding flags</param>
+        /// <returns>Method</returns>
+        public static MethodInfo? GetMethodCached(this Type type, string name, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)
+            => GetMethodsCached(type, bindingFlags).FirstOrDefault(m => m.Name == name);
+
+        /// <summary>
+        /// Get constructors from the cache
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="bindingFlags">Binding flags</param>
+        /// <returns>Constructors</returns>
+        public static ConstructorInfo[] GetConstructorsCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)
+            => ConstructorInfoCache.GetOrAdd(type.GetHashCode(), (key) => new()).GetOrAdd(bindingFlags, (key) => type.GetConstructors(bindingFlags));
+
+        /// <summary>
+        /// Get method parameters from the cache
+        /// </summary>
+        /// <param name="mi">Method</param>
+        /// <returns>Method parameters</returns>
+        public static ParameterInfo[] GetParametersCached(this MethodInfo mi)
+            => ParameterInfoCache.GetOrAdd(mi.GetHashCode(), (key) => mi.GetParameters());
+
+        /// <summary>
+        /// Get constructor parameters from the cache
+        /// </summary>
+        /// <param name="ci">Constructor</param>
+        /// <returns>Constructor parameters</returns>
+        public static ParameterInfo[] GetParametersCached(this ConstructorInfo ci)
+            => ParameterInfoCache.GetOrAdd(ci.GetHashCode(), (key) => ci.GetParameters());
+
+        /// <summary>
+        /// Get generic type arguments from the cache
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>Generic arguments</returns>
+        public static Type[] GetGenericArgumentsCached(this Type type)
+            => GenericArgumentsCache.GetOrAdd(type.GetHashCode(), (key) => type.IsGenericType ? type.GetGenericArguments() : Array.Empty<Type>());
+
+        /// <summary>
+        /// Get an attribute (inherited)
+        /// </summary>
+        /// <typeparam name="T">Attribute type</typeparam>
+        /// <param name="obj">Reflection object</param>
+        /// <returns>Attribute</returns>
+        public static T? GetCustomAttributeCached<T>(this ICustomAttributeProvider obj) where T : Attribute
+            => GetCustomAttributesCached<T>(obj).FirstOrDefault();
+
+        /// <summary>
+        /// Get attributes (inherited)
+        /// </summary>
+        /// <typeparam name="T">Attribute type</typeparam>
+        /// <param name="obj">Reflection object</param>
+        /// <returns>Attributes</returns>
+        public static T[] GetCustomAttributesCached<T>(this ICustomAttributeProvider obj) where T : Attribute
+            => AttributeCache.GetOrAdd(obj.GetHashCode(), (key) => obj.GetCustomAttributes(inherit: true).Cast<Attribute>().ToArray())
+                .Where(a => a is T)
+                .Cast<T>()
+                .ToArray();
+
+        /// <summary>
+        /// Faster <see cref="PropertyInfo.GetValue(object?)"/>
+        /// </summary>
+        /// <param name="pi">Property</param>
+        /// <param name="obj">Object</param>
+        /// <returns>Value</returns>
+        public static object? GetValueFast(this PropertyInfo pi, object? obj)
+        {
+            BindingFlags bindingFlags = (pi.GetMethod?.IsPublic ?? false) || pi.SetMethod!.IsPublic
+                ? BindingFlags.Public
+                : BindingFlags.NonPublic;
+            bindingFlags |= (pi.GetMethod?.IsStatic ?? false) || pi.SetMethod!.IsStatic
+                ? BindingFlags.Static
+                : BindingFlags.Instance;
+            PropertyInfoExt[] info =
+                PropertyInfoCache.GetOrAdd(pi.GetHashCode(), (key) => new()).GetOrAdd(
+                    bindingFlags,
+                    (key) => (from p in pi.DeclaringType!.GetProperties(bindingFlags)
+                              select new PropertyInfoExt(p, p.CanRead ? p.GetGetterDelegate() : null, p.CanWrite ? pi.GetSetterDelegate() : null)).ToArray());
+            PropertyInfoExt? prop = null;
+            for (int i = 0, len = info.Length; i < len; i++)
+            {
+                if (info[i].Property.Name != pi.Name) continue;
+                prop = info[i];
+                break;
+            }
+            if (prop == null) throw new InvalidProgramException();
+            if (prop.Getter == null) throw new InvalidOperationException("The property has no getter");
+            return prop.Getter(obj);
+        }
+
+        /// <summary>
+        /// Faster <see cref="PropertyInfo.SetValue(object?, object?)"/>
+        /// </summary>
+        /// <param name="pi">Property</param>
+        /// <param name="obj">Object</param>
+        /// <param name="value">Value</param>
+        public static void SetValueFast(this PropertyInfo pi, object? obj, object? value)
+        {
+            BindingFlags bindingFlags = (pi.GetMethod?.IsPublic ?? false) || pi.SetMethod!.IsPublic
+                ? BindingFlags.Public
+                : BindingFlags.NonPublic;
+            bindingFlags |= (pi.GetMethod?.IsStatic ?? false) || pi.SetMethod!.IsStatic
+                ? BindingFlags.Static
+                : BindingFlags.Instance;
+            PropertyInfoExt[] info =
+                PropertyInfoCache.GetOrAdd(pi.GetHashCode(), (key) => new()).GetOrAdd(
+                    bindingFlags,
+                    (key) => (from p in pi.DeclaringType!.GetProperties(bindingFlags)
+                              select new PropertyInfoExt(p, p.CanRead ? p.GetGetterDelegate() : null, p.CanWrite ? pi.GetSetterDelegate() : null)).ToArray());
+            PropertyInfoExt? prop = null;
+            for (int i = 0, len = info.Length; i < len; i++)
+            {
+                if (info[i].Property.Name != pi.Name) continue;
+                prop = info[i];
+                break;
+            }
+            if (prop == null) throw new InvalidProgramException();
+            if (prop.Setter == null) throw new InvalidOperationException("The property has no setter");
+            prop.Setter(obj, value);
+        }
+    }
+}

@@ -21,7 +21,7 @@ namespace wan24.Core
         /// <summary>
         /// Properties
         /// </summary>
-        protected Dictionary<string, PropertyInfo>? OptionProperties = null;
+        protected Dictionary<string, (PropertyInfo Property, Func<object, IConfigOption?> Getter)>? OptionProperties = null;
         /// <summary>
         /// Sub-configuration tree key
         /// </summary>
@@ -64,23 +64,23 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         public IEnumerable<string> Properties
-            => from pi in GetOptionProperties()
-               select pi.Name;
+            => from info in GetOptionProperties()
+               select info.Property.Name;
 
         /// <inheritdoc/>
         public Dictionary<string, object?> SetValues
-            => new(from pi in GetOptionProperties()
-                   where GetOption(pi).IsSet
-                   select new KeyValuePair<string, object?>(pi.Name, GetPropertyValue(pi)));
+            => new(from info in GetOptionProperties()
+                   where GetOption(info.Getter).IsSet
+                   select new KeyValuePair<string, object?>(info.Property.Name, GetPropertyValue(info.Getter)));
 
         /// <inheritdoc/>
         public Dictionary<string, dynamic?> DynamicSetValues => SetValues;
 
         /// <inheritdoc/>
         public Dictionary<string, object?> ChangedValues
-            => new(from pi in GetOptionProperties()
-                   where GetOption(pi).IsChanged
-                   select new KeyValuePair<string, object?>(pi.Name, GetPropertyValue(pi)));
+            => new(from info in GetOptionProperties()
+                   where GetOption(info.Getter).IsChanged
+                   select new KeyValuePair<string, object?>(info.Property.Name, GetPropertyValue(info.Getter)));
 
         /// <inheritdoc/>
         public Dictionary<string, dynamic?> DynamicChangedValues => ChangedValues;
@@ -91,9 +91,9 @@ namespace wan24.Core
             get
             {
                 bool isMaster = ParentConfig == null;
-                return new(from pi in GetOptionProperties()
-                           where isMaster || GetOption(pi).IsSet
-                           select new KeyValuePair<string, object?>(pi.Name, GetPropertyValue(pi)));
+                return new(from info in GetOptionProperties()
+                           where isMaster || GetOption(info.Getter).IsSet
+                           select new KeyValuePair<string, object?>(info.Property.Name, GetPropertyValue(info.Getter)));
             }
         }
 
@@ -106,9 +106,9 @@ namespace wan24.Core
             get
             {
                 if (ParentConfig == null) return LocalConfig;
-                return new(from pi in GetOptionProperties()
-                           where GetOption(pi).CanOverride && GetOption(pi).IsSet
-                           select new KeyValuePair<string, object?>(pi.Name, GetPropertyValue(pi)));
+                return new(from info in GetOptionProperties()
+                           where GetOption(info.Getter).CanOverride && GetOption(info.Getter).IsSet
+                           select new KeyValuePair<string, object?>(info.Property.Name, GetPropertyValue(info.Getter)));
             }
         }
 
@@ -118,8 +118,8 @@ namespace wan24.Core
         /// <inheritdoc/>
         public Dictionary<string, object?> FinalConfig
             => ParentConfig == null
-                ? new(from pi in GetOptionProperties()
-                      select new KeyValuePair<string, object?>(pi.Name, GetPropertyValue(pi, final: true)))
+                ? new(from info in GetOptionProperties()
+                      select new KeyValuePair<string, object?>(info.Property.Name, GetPropertyValue(info.Getter, final: true)))
                 : ParentConfig.FinalConfig;
 
         /// <inheritdoc/>
@@ -127,19 +127,19 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         public IEnumerable<IConfigOption> AllOptions
-            => from pi in GetOptionProperties()
-               select GetOption(pi);
+            => from info in GetOptionProperties()
+               select GetOption(info.Getter);
 
         /// <inheritdoc/>
         public IEnumerable<IConfigOption> SetOptions
-            => from pi in GetOptionProperties()
-               where GetOption(pi).IsSet || GetOption(pi).IsOverridden
-               select GetOption(pi);
+            => from info in GetOptionProperties()
+               where GetOption(info.Getter).IsSet || GetOption(info.Getter).IsOverridden
+               select GetOption(info.Getter);
 
         /// <inheritdoc/>
         public Dictionary<string, IConfigOption> AllOptionsDict
-            => new(from pi in GetOptionProperties()
-                   select new KeyValuePair<string, IConfigOption>(pi.Name, GetOption(pi)));
+            => new(from info in GetOptionProperties()
+                   select new KeyValuePair<string, IConfigOption?>(info.Property.Name, GetOption(info.Getter)));
 
         /// <inheritdoc/>
         public IEnumerable<IConfigOption> MissingValues
@@ -226,8 +226,8 @@ namespace wan24.Core
         public IConfigOption? GetOption(string propertyName)
         {
             if (OptionProperties == null) GetOptionProperties();
-            return OptionProperties!.TryGetValue(propertyName, out PropertyInfo? pi)
-                ? pi.GetValue(this) as IConfigOption
+            return OptionProperties!.TryGetValue(propertyName, out var info)
+                ? info.Getter(this)
                 : null;
         }
 
@@ -269,28 +269,31 @@ namespace wan24.Core
         /// <summary>
         /// Get the option
         /// </summary>
-        /// <param name="pi">Property</param>
+        /// <param name="getter">Property getter</param>
         /// <returns>Option</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        protected IConfigOption GetOption(PropertyInfo pi) => (IConfigOption)(pi.GetValue(this) ?? throw new ArgumentException("No property value", nameof(pi)));
+        protected IConfigOption GetOption(Func<object, IConfigOption?> getter) => getter(this) ?? throw new ArgumentException("No property value", nameof(getter));
 
         /// <summary>
         /// Get option properties
         /// </summary>
         /// <returns>Properties</returns>
-        protected IEnumerable<PropertyInfo> GetOptionProperties()
-            => (OptionProperties ??= new(from pi in GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public)
-                                         where typeof(IConfigOption).IsAssignableFrom(pi.PropertyType)
-                                         select new KeyValuePair<string, PropertyInfo>(pi.Name, pi))).Values;
+        protected IEnumerable<(PropertyInfo Property, Func<object, IConfigOption?> Getter)> GetOptionProperties()
+            => (OptionProperties ??= new(from pi in typeof(tFinal).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public)
+                                         where typeof(IConfigOption).IsAssignableFrom(pi.Property.PropertyType)
+                                         select new KeyValuePair<string, (PropertyInfo Property, Func<object, IConfigOption?> Getter)>(
+                                             pi.Property.Name,
+                                             (pi.Property, pi.Property.GetCastedGetterDelegate<IConfigOption>())
+                                             ))).Values;
 
         /// <summary>
         /// Get a property value
         /// </summary>
-        /// <param name="pi">Property</param>
+        /// <param name="getter">Property getter</param>
         /// <param name="final">Final value?</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        protected object? GetPropertyValue(PropertyInfo pi, bool final = false) => final ? GetOption(pi).FinalValue : GetOption(pi).Value;
+        protected object? GetPropertyValue(Func<object, IConfigOption?> getter, bool final = false) => final ? GetOption(getter).FinalValue : GetOption(getter).Value;
 
         #region IOverrideableConfig methods
         /// <inheritdoc/>

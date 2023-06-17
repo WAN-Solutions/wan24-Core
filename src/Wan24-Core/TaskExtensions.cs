@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using System.Runtime;
+﻿using System.Runtime;
 using System.Runtime.CompilerServices;
 
 namespace wan24.Core
@@ -10,68 +9,18 @@ namespace wan24.Core
     public static class TaskExtensions
     {
         /// <summary>
-        /// <see cref="GetResult{T}(Task)"/> method
+        /// Get the result from a task (the task should be completed already!)
         /// </summary>
-        private static readonly MethodInfo GetResultMethod;
-        /// <summary>
-        /// <see cref="GetResultNullable{T}(Task)"/> method
-        /// </summary>
-        private static readonly MethodInfo GetResultNullableMethod;
-        /// <summary>
-        /// <see cref="GetResult{T}(ValueTask)"/> method
-        /// </summary>
-        private static readonly MethodInfo GetResultValueMethod;
-        /// <summary>
-        /// <see cref="GetResultNullable{T}(ValueTask)"/> method
-        /// </summary>
-        private static readonly MethodInfo GetResultNullableValueMethod;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        static TaskExtensions()
+        /// <typeparam name="T">Result type</typeparam>
+        /// <param name="task">Task</param>
+        /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static T GetResult<T>(this Task task)
         {
-            Type type = typeof(TaskExtensions);
-            GetResultMethod = type.GetMethod(
-                nameof(GetResult),
-                BindingFlags.Public | BindingFlags.Static,
-                filter: null,
-                genericArgumentCount: 1,
-                exactTypes: true,
-                returnType: null,
-                typeof(Task)
-                )
-                ?? throw new InvalidProgramException($"Failed to reflect the {nameof(GetResult)} method");
-            GetResultNullableMethod = type.GetMethod(
-                nameof(GetResultNullable),
-                BindingFlags.Public | BindingFlags.Static,
-                filter: null,
-                genericArgumentCount: 1,
-                exactTypes: true,
-                returnType: null,
-                typeof(Task)
-                )
-                ?? throw new InvalidProgramException($"Failed to reflect the {nameof(GetResultNullable)} method");
-            GetResultValueMethod = type.GetMethod(
-                nameof(GetResult),
-                BindingFlags.Public | BindingFlags.Static,
-                filter: null,
-                genericArgumentCount: 1,
-                exactTypes: true,
-                returnType: null,
-                typeof(ValueTask)
-                )
-                ?? throw new InvalidProgramException($"Failed to reflect the {nameof(GetResult)} method");
-            GetResultNullableValueMethod = type.GetMethod(
-                nameof(GetResultNullable),
-                BindingFlags.Public | BindingFlags.Static,
-                filter: null,
-                genericArgumentCount: 1,
-                exactTypes: true,
-                returnType: null,
-                typeof(ValueTask)
-                )
-                ?? throw new InvalidProgramException($"Failed to reflect the {nameof(GetResultNullable)} method");
+            PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
+                ?? throw new ArgumentException("Not a result task", nameof(task));
+            if (pi.Getter == null) throw new ArgumentException("Result property has no getter", nameof(task));
+            return (T)(pi.Getter(task) ?? throw new InvalidDataException("Task result is NULL"));
         }
 
         /// <summary>
@@ -81,16 +30,13 @@ namespace wan24.Core
         /// <param name="task">Task</param>
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static T GetResult<T>(this Task task) => ((Task<T>)task).Result;
-
-        /// <summary>
-        /// Get the result from a task (the task should be completed already!)
-        /// </summary>
-        /// <typeparam name="T">Result type</typeparam>
-        /// <param name="task">Task</param>
-        /// <returns>Result</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static T? GetResultNullable<T>(this Task task) => ((Task<T?>)task).Result;
+        public static T? GetResultNullable<T>(this Task task)
+        {
+            PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
+                ?? throw new ArgumentException("Not a result task", nameof(task));
+            if (pi.Getter == null) throw new ArgumentException("Result property has no getter", nameof(task));
+            return (T?)pi.Getter(task);
+        }
 
         /// <summary>
         /// Get the result from a task (the task should be completed already!)
@@ -99,9 +45,15 @@ namespace wan24.Core
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#pragma warning disable IDE0060 // Remove unused parameter
         public static object GetResult(this Task task, Type type)
-            => GetResultMethod.MakeGenericMethod(type).Invoke(obj: null, new object?[] { task })
-                ?? throw new ArgumentException("The task result is NULL", nameof(task));
+#pragma warning restore IDE0060 // Remove unused parameter
+        {
+            PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
+                ?? throw new ArgumentException("Not a result task", nameof(task));
+            if (pi.Getter == null) throw new ArgumentException("Result property has no getter", nameof(task));
+            return pi.Getter(task) ?? throw new InvalidDataException("Task result is NULL");
+        }
 
         /// <summary>
         /// Get the result from a task (the task should be completed already!)
@@ -110,7 +62,15 @@ namespace wan24.Core
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static object? GetResultNullable(this Task task, Type type) => GetResultNullableMethod.MakeGenericMethod(type).Invoke(obj: null, new object?[] { task });
+#pragma warning disable IDE0060 // Remove unused parameter
+        public static object? GetResultNullable(this Task task, Type type)
+#pragma warning restore IDE0060 // Remove unused parameter
+        {
+            PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
+                ?? throw new ArgumentException("Not a result task", nameof(task));
+            if (pi.Getter == null) throw new ArgumentException("Result property has no getter", nameof(task));
+            return pi.Getter(task);
+        }
 
         /// <summary>
         /// Get the result from a task (the task should be completed already!)
@@ -120,7 +80,12 @@ namespace wan24.Core
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Tiny method")]
         public static T GetResult<T>(this ValueTask task)
-            => task is ValueTask<T> valueTask ? valueTask.Result : throw new ArgumentException($"{nameof(ValueTask)} is not a {nameof(ValueTask)}<T>", nameof(task));
+        {
+            PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
+                ?? throw new ArgumentException("Not a result task", nameof(task));
+            if (pi.Getter == null) throw new ArgumentException("Result property has no getter", nameof(task));
+            return (T)(pi.Getter(task) ?? throw new InvalidDataException("Task result is NULL"));
+        }
 
         /// <summary>
         /// Get the result from a task (the task should be completed already!)
@@ -130,7 +95,12 @@ namespace wan24.Core
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Tiny method")]
         public static T? GetResultNullable<T>(this ValueTask task)
-            => task is ValueTask<T> valueTask ? valueTask.Result : throw new ArgumentException($"{nameof(ValueTask)} is not a {nameof(ValueTask)}<T>", nameof(task));
+        {
+            PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
+                ?? throw new ArgumentException("Not a result task", nameof(task));
+            if (pi.Getter == null) throw new ArgumentException("Result property has no getter", nameof(task));
+            return (T?)pi.Getter(task);
+        }
 
         /// <summary>
         /// Get the result from a task (the task should be completed already!)
@@ -139,9 +109,15 @@ namespace wan24.Core
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#pragma warning disable IDE0060 // Remove unused parameter
         public static object GetResult(this ValueTask task, Type type)
-            => GetResultValueMethod.MakeGenericMethod(type).Invoke(obj: null, new object?[] { task })
-                ?? throw new ArgumentException("The task result is NULL", nameof(task));
+#pragma warning restore IDE0060 // Remove unused parameter
+        {
+            PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
+                ?? throw new ArgumentException("Not a result task", nameof(task));
+            if (pi.Getter == null) throw new ArgumentException("Result property has no getter", nameof(task));
+            return pi.Getter(task) ?? throw new InvalidDataException("Task result is NULL");
+        }
 
         /// <summary>
         /// Get the result from a task (the task should be completed already!)
@@ -150,7 +126,15 @@ namespace wan24.Core
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static object? GetResultNullable(this ValueTask task, Type type) => GetResultNullableValueMethod.MakeGenericMethod(type).Invoke(obj: null, new object?[] { task });
+#pragma warning disable IDE0060 // Remove unused parameter
+        public static object? GetResultNullable(this ValueTask task, Type type)
+#pragma warning restore IDE0060 // Remove unused parameter
+        {
+            PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
+                ?? throw new ArgumentException("Not a result task", nameof(task));
+            if (pi.Getter == null) throw new ArgumentException("Result property has no getter", nameof(task));
+            return pi.Getter(task);
+        }
 
         /// <summary>
         /// Wait for all tasks

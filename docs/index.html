@@ -62,7 +62,18 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="wan24-core">wan24-Core</h1>
 
-<p>This core library contains some .NET extensions:</p>
+<p>This core library contains some .NET extensions and boiler plate avoiding
+helpers. It's designed as core library for a long running process and
+optimized for that purpose. The code tries to cache agressive whereever it's
+possible. Types are designed to be thread-safe, if they're likely to be
+accessed reading/writing from multiple threads (if it's their nature).
+However, if it's not sure that a types nature is to manage multithreaded
+access, performance goes before thread safety.</p>
+<p>It started as a slender extension method collection and growed up to a larger
+core utility until today. It's possible that some specialized parts will be
+splitted into separate libraries in the future, if the core library is getting
+too big - but the namespace will stay the same.</p>
+<p>Some key features:</p>
 <ul>
 <li>Bootstrapping</li>
 <li>Disposable base class for disposable types, which supports asynchronous
@@ -115,8 +126,11 @@ when disposing; for byte/char arrays just like the <code>Secure*Array</code>)</l
 <li>Automatic constructor invokation using a given parameter set (with DI
 support)</li>
 <li>Nullability detection</li>
+<li>Get property getter/setter delegates</li>
+<li>Get cached field/property/method info</li>
 </ul>
 </li>
+<li>Cache for field/property/method info and custom attributes</li>
 <li>Delegate extensions
 <ul>
 <li>Delegate list invokation (with or without return values, with DI support)</li>
@@ -247,6 +261,11 @@ during runtime</li>
 type which can't extend the <code>DisposableBase</code> type</li>
 <li>Generic object extenions for validating method arguments</li>
 <li>CLI arguments interpreter</li>
+<li>Runtime configuration from CLI arguments</li>
+<li>Fast byte to string and string to byte encoding/decoding (using an URI
+friendly charset, faster and smaller results than base64 encoding; charset is
+customizable; encoded data integrity can be validated without decoding;
+including extensions for numeric type encoding/decoding)</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
@@ -355,6 +374,13 @@ protected method <code>DisposeAttributes</code> or <code>DisposeAttributesAsync<
 <p>The <code>IsDisposing</code> property value will be <code>true</code> as soon as the disposing
 process started, and it will never become <code>false</code> again. The <code>IsDisposed</code>
 property value will be <code>true</code> as soon as the disposing process did finish.</p>
+<p><strong>TIP</strong>: Use the <code>DisposableBase&lt;T&gt;</code> base type, if you plan to use the
+<code>DisposeAttribute</code>! This base class will cache the fields/properties once on
+initialization to get rid of the reflection overhead which <code>DisposableBase</code>
+requires for this feature.</p>
+<p><strong>NOTE</strong>: The <code>DisposeAttribute</code> can be applied to <code>byte[]</code> and <code>char[]</code>, too,
+which will simply call the <code>Clear</code> extension method on disposing. Another
+<code>IEnumerable</code> will be enumerated for disposable items (recursing!).</p>
 <h2 id="queue-worker">Queue worker</h2>
 <pre><code class="lang-cs">using QueueWorker worker = new();
 await worker.EnqueueAsync((ct) =&gt;
@@ -728,6 +754,30 @@ Assert.AreEqual(&quot;value2&quot;, ca.KeyLessArguments[1]);
 Assert.IsTrue(ca[&quot;flag&quot;]);
 Assert.IsTrue(ca[&quot;key&quot;, true]);
 </code></pre>
+<h2 id="fast-byte---string-encodingdecoding">Fast byte &lt;-&gt; string encoding/decoding</h2>
+<p>base64 is supported everywhere, but it's (relative) slow and produces too much
+overhead, and uses also URI unfriendly characters. In addition it's also not
+easy to validate base64, or to determine the encoded/decoded value length.</p>
+<p>To fix all of these problems, the <code>ByteEncoding</code> class implements a fast
+encoding, which uses only characters 0-9, a-z, A-Z, dash and underscore and
+produces less overhead than base64. The encoded/decoded value length can be
+calculated in advance, and it's fast and easy to detect errors in the encoded
+data without having to decode it, first.</p>
+<pre><code class="lang-cs">int encodedLen = anyByteArray.GetEncodedLength();
+char[] encoded = anyByteArray.Encode();
+
+int decodedLen = anyByteArray.GetDecodedlength();
+byte[] decoded = encoded.Decode();
+</code></pre>
+<p>Using extensions numeric values can be en-/decoded on the fly, too. The
+special <code>EncodeNumberCompact</code> extension methods determine the smallest value
+matching numeric type before encoding (use <code>DecodeCompactNumber</code> with the
+original numeric type as generic argument for decoding).</p>
+<p><strong>NOTE</strong>: Encoding an empty array results in an empty string. Encoding <code>0</code>
+results in an empty string, too. Nothing encodes to nothing and decodes to
+nothing, too.</p>
+<p>If required, the used encoding character map can be customized. You may use
+any 64 characters long map with unique items.</p>
 </article>
           </div>
           

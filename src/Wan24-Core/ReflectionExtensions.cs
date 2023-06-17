@@ -6,7 +6,7 @@ namespace wan24.Core
     /// <summary>
     /// Reflection extensions
     /// </summary>
-    public static class ReflectionExtensions
+    public static partial class ReflectionExtensions
     {
         /// <summary>
         /// Invoke a method and complete parameters with default values
@@ -18,7 +18,7 @@ namespace wan24.Core
         public static object? InvokeAuto(this MethodInfo mi, object? obj, params object?[] param)
         {
             List<object?> par = new(param);
-            ParameterInfo[] pis = mi.GetParameters();
+            ParameterInfo[] pis = mi.GetParametersCached();
 #pragma warning disable IDE0018 // Can declare inline
             object? di;
 #pragma warning restore IDE0018 // Can declare inline
@@ -63,7 +63,7 @@ namespace wan24.Core
             bool isTask = typeof(Task).IsAssignableFrom(retType);
             if (!isTask && !typeof(ValueTask).IsAssignableFrom(retType)) throw new ArgumentException("Task return type expected", nameof(mi));
             List<object?> par = new(param);
-            ParameterInfo[] pis = mi.GetParameters();
+            ParameterInfo[] pis = mi.GetParametersCached();
             object? di;
             bool use;
             for (int i = par.Count; i < pis.Length; i++)
@@ -128,10 +128,10 @@ namespace wan24.Core
             object? di;
 #pragma warning restore IDE0018 // Can declare inline
             bool use;
-            foreach (ConstructorInfo ci in type.GetConstructors(flags).OrderByDescending(c => c.GetParameters().Length))
+            foreach (ConstructorInfo ci in type.GetConstructors(flags).OrderByDescending(c => c.GetParametersCached().Length))
             {
                 par = new();
-                pis = ci.GetParameters();
+                pis = ci.GetParametersCached();
                 use = true;
                 for (int i = par.Count; use && i < pis.Length; i++)
                     if (param.FirstOrDefault(p => p != null && pis[i].ParameterType.IsAssignableFrom(p.GetType())) is object p) par.Add(p);
@@ -222,7 +222,7 @@ namespace wan24.Core
             )
         {
             Type[] pt;
-            foreach (MethodInfo mi in type.GetMethods(bindingFlags))
+            foreach (MethodInfo mi in type.GetMethodsCached(bindingFlags))
             {
                 // Check method name, return type and generic argument count
                 if (
@@ -234,7 +234,7 @@ namespace wan24.Core
                 // Check parameters
                 if (parameterTypes != null)
                 {
-                    pt = mi.GetParameters().Select(p => p.ParameterType).ToArray();
+                    pt = mi.GetParametersCached().Select(p => p.ParameterType).ToArray();
                     if (pt.Length != parameterTypes.Length) continue;
                     bool isMatch = true;
                     for (int i = 0; i < parameterTypes.Length; i++)

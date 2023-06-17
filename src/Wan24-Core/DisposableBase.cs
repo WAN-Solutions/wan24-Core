@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Collections;
+using System.Reflection;
 using System.Runtime;
 
 namespace wan24.Core
@@ -122,10 +123,11 @@ namespace wan24.Core
         /// <summary>
         /// Dispose fields/properties with the <see cref="DisposeAttribute"/>
         /// </summary>
-        protected void DisposeAttributes()
+        protected virtual void DisposeAttributes()
         {
-            foreach (FieldInfo fi in from fi in GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-                                     where fi.GetCustomAttribute<DisposeAttribute>() != null
+            Queue<IEnumerable> enumerables = new();
+            foreach (FieldInfo fi in from fi in GetType().GetFieldsCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                                     where fi.GetCustomAttributeCached<DisposeAttribute>() is not null
                                      select fi)
                 switch (fi.GetValue(this))
                 {
@@ -138,12 +140,21 @@ namespace wan24.Core
                     case IAsyncDisposable asyncDisposable:
                         asyncDisposable.DisposeAsync().AsTask().Wait();
                         break;
+                    case byte[] bytes:
+                        bytes.Clear();
+                        break;
+                    case char[] characters:
+                        characters.Clear();
+                        break;
+                    case IEnumerable enumerable:
+                        enumerables.Enqueue(enumerable);
+                        break;
                 }
-            foreach (PropertyInfo pi in from pi in GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-                                        where pi.GetCustomAttribute<DisposeAttribute>() != null &&
-                                            pi.GetMethod != null
-                                        select pi)
-                switch (pi.GetValue(this))
+            foreach (PropertyInfo pi in from pi in GetType().GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                                        where pi.Property.GetCustomAttributeCached<DisposeAttribute>() is not null &&
+                                            pi.Property.GetMethod is not null
+                                        select pi.Property)
+                switch (pi.GetValueFast(this))
                 {
                     case IDisposableObject dObj:
                         if (!dObj.IsDisposing) dObj.Dispose();
@@ -154,16 +165,49 @@ namespace wan24.Core
                     case IAsyncDisposable asyncDisposable:
                         asyncDisposable.DisposeAsync().AsTask().Wait();
                         break;
+                    case byte[] bytes:
+                        bytes.Clear();
+                        break;
+                    case char[] characters:
+                        characters.Clear();
+                        break;
+                    case IEnumerable enumerable:
+                        enumerables.Enqueue(enumerable);
+                        break;
                 }
+            while (enumerables.TryDequeue(out IEnumerable? enumerable))
+                foreach (object? item in enumerable)
+                    switch (item)
+                    {
+                        case IDisposableObject dObj:
+                            if (!dObj.IsDisposing) dObj.Dispose();
+                            break;
+                        case IDisposable disposable:
+                            disposable.Dispose();
+                            break;
+                        case IAsyncDisposable asyncDisposable:
+                            asyncDisposable.DisposeAsync().AsTask().Wait();
+                            break;
+                        case byte[] bytes:
+                            bytes.Clear();
+                            break;
+                        case char[] characters:
+                            characters.Clear();
+                            break;
+                        case IEnumerable e:
+                            enumerables.Enqueue(e);
+                            break;
+                    }
         }
 
         /// <summary>
         /// Dispose fields/properties with the <see cref="DisposeAttribute"/>
         /// </summary>
-        protected async Task DisposeAttributesAsync()
+        protected virtual async Task DisposeAttributesAsync()
         {
-            foreach (FieldInfo fi in from fi in GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-                                     where fi.GetCustomAttribute<DisposeAttribute>() != null
+            Queue<IEnumerable> enumerables = new();
+            foreach (FieldInfo fi in from fi in GetType().GetFieldsCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                                     where fi.GetCustomAttributeCached<DisposeAttribute>() is not null
                                      select fi)
                 switch (fi.GetValue(this))
                 {
@@ -176,12 +220,21 @@ namespace wan24.Core
                     case IDisposable disposable:
                         disposable.Dispose();
                         break;
+                    case byte[] bytes:
+                        bytes.Clear();
+                        break;
+                    case char[] characters:
+                        characters.Clear();
+                        break;
+                    case IEnumerable enumerable:
+                        enumerables.Enqueue(enumerable);
+                        break;
                 }
-            foreach (PropertyInfo pi in from pi in GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-                                        where pi.GetCustomAttribute<DisposeAttribute>() != null &&
-                                            pi.GetMethod != null
-                                        select pi)
-                switch (pi.GetValue(this))
+            foreach (PropertyInfo pi in from pi in GetType().GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                                        where pi.Property.GetCustomAttributeCached<DisposeAttribute>() is not null &&
+                                            pi.Property.GetMethod is not null
+                                        select pi.Property)
+                switch (pi.GetValueFast(this))
                 {
                     case IDisposableObject dObj:
                         if (!dObj.IsDisposing) await dObj.DisposeAsync().DynamicContext();
@@ -192,7 +245,39 @@ namespace wan24.Core
                     case IDisposable disposable:
                         disposable.Dispose();
                         break;
+                    case byte[] bytes:
+                        bytes.Clear();
+                        break;
+                    case char[] characters:
+                        characters.Clear();
+                        break;
+                    case IEnumerable enumerable:
+                        enumerables.Enqueue(enumerable);
+                        break;
                 }
+            while (enumerables.TryDequeue(out IEnumerable? enumerable))
+                foreach (object? item in enumerable)
+                    switch (item)
+                    {
+                        case IDisposableObject dObj:
+                            if (!dObj.IsDisposing) dObj.Dispose();
+                            break;
+                        case IAsyncDisposable asyncDisposable:
+                            await asyncDisposable.DisposeAsync().DynamicContext();
+                            break;
+                        case IDisposable disposable:
+                            disposable.Dispose();
+                            break;
+                        case byte[] bytes:
+                            bytes.Clear();
+                            break;
+                        case char[] characters:
+                            characters.Clear();
+                            break;
+                        case IEnumerable e:
+                            enumerables.Enqueue(e);
+                            break;
+                    }
         }
 
         /// <summary>

@@ -66,7 +66,7 @@
         {
             T? value = default;
             bool dispose = false;
-            lock(SyncObject)
+            lock (SyncObject)
                 if (HasValue)
                 {
                     value = _Value!;

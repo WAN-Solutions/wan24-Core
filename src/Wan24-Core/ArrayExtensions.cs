@@ -126,5 +126,15 @@ namespace wan24.Core
         /// <returns>Is valid?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static bool IsValid<T>(this ReadOnlyMemory<T> memory, int offset, int length) => IsValid(memory.Span, offset, length);
+
+        /// <summary>
+        /// Get the index of a value
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="value">Value</param>
+        /// <returns>Index or <c>-1</c>, if not found</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static int IndexOf<T>(this T[] arr, T value) => Array.IndexOf(arr, value);
     }
 }

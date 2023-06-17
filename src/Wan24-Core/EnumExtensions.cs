@@ -179,6 +179,14 @@ namespace wan24.Core
         public static bool IsValid<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.IsValid(value);
 
         /// <summary>
+        /// Determine if an enumeration value is valid
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Is valid?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static bool IsValidEnumerationValue(this object value) => value.GetType().GetEnumInfo().IsValidValue(value);
+
+        /// <summary>
         /// Cast a type
         /// </summary>
         /// <typeparam name="T">Numeric result type</typeparam>

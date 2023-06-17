@@ -58,18 +58,7 @@ namespace wan24.Core
         /// <returns>Display text</returns>
         public static string GetDisplayText(this object value)
         {
-            string? res = value switch
-            {
-                Type type => type.GetCustomAttribute<DisplayTextAttribute>()?.DisplayText,
-                MethodInfo mi => mi.GetCustomAttribute<DisplayTextAttribute>()?.DisplayText,
-                PropertyInfo pi => pi.GetCustomAttribute<DisplayTextAttribute>()?.DisplayText,
-                FieldInfo fi => fi.GetCustomAttribute<DisplayTextAttribute>()?.DisplayText,
-                ConstructorInfo ci => ci.GetCustomAttribute<DisplayTextAttribute>()?.DisplayText,
-                ParameterInfo ai => ai.GetCustomAttribute<DisplayTextAttribute>()?.DisplayText,
-                Module m => m.GetCustomAttribute<DisplayTextAttribute>()?.DisplayText,
-                Assembly ass => ass.GetCustomAttribute<DisplayTextAttribute>()?.DisplayText,
-                _ => null
-            };
+            string? res = (value as ICustomAttributeProvider)?.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText;
             if (res != null) return res;
             Type t = value.GetType();
             if (t.IsEnum)

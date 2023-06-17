@@ -35,6 +35,12 @@ namespace wan24.Core
         /// Value display texts
         /// </summary>
         IReadOnlyDictionary<string, string> ValueDisplayTexts { get; }
+        /// <summary>
+        /// Determine if the enumeration value is valid
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>If the value is value</returns>
+        bool IsValidValue(object value);
     }
 
     /// <summary>
@@ -55,5 +61,11 @@ namespace wan24.Core
         /// Flag values
         /// </summary>
         ReadOnlyCollection<T> EnumFlagValues { get; }
+        /// <summary>
+        /// Determine if the enumeration value is valid
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>If the value is value</returns>
+        bool IsValidValue(T value);
     }
 }

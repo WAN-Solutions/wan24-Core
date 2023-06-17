@@ -1,6 +1,19 @@
 # wan24-Core
 
-This core library contains some .NET extensions:
+This core library contains some .NET extensions and boiler plate avoiding 
+helpers. It's designed as core library for a long running process and 
+optimized for that purpose. The code tries to cache agressive whereever it's 
+possible. Types are designed to be thread-safe, if they're likely to be 
+accessed reading/writing from multiple threads (if it's their nature). 
+However, if it's not sure that a types nature is to manage multithreaded 
+access, performance goes before thread safety.
+
+It started as a slender extension method collection and growed up to a larger 
+core utility until today. It's possible that some specialized parts will be 
+splitted into separate libraries in the future, if the core library is getting 
+too big - but the namespace will stay the same.
+
+Some key features:
 
 - Bootstrapping
 - Disposable base class for disposable types, which supports asynchronous 
@@ -34,6 +47,9 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
     - Automatic constructor invokation using a given parameter set (with DI 
     support)
     - Nullability detection
+    - Get property getter/setter delegates
+    - Get cached field/property/method info
+- Cache for field/property/method info and custom attributes
 - Delegate extensions
     - Delegate list invokation (with or without return values, with DI support)
     - Asynchronous delegate list invokation (with or without return values, 
@@ -122,6 +138,11 @@ during runtime
 type which can't extend the `DisposableBase` type
 - Generic object extenions for validating method arguments
 - CLI arguments interpreter
+- Runtime configuration from CLI arguments
+- Fast byte to string and string to byte encoding/decoding (using an URI 
+friendly charset, faster and smaller results than base64 encoding; charset is 
+customizable; encoded data integrity can be validated without decoding; 
+including extensions for numeric type encoding/decoding)
 
 ## How to get it
 
@@ -269,6 +290,15 @@ protected method `DisposeAttributes` or `DisposeAttributesAsync`.
 The `IsDisposing` property value will be `true` as soon as the disposing 
 process started, and it will never become `false` again. The `IsDisposed` 
 property value will be `true` as soon as the disposing process did finish.
+
+**TIP**: Use the `DisposableBase<T>` base type, if you plan to use the 
+`DisposeAttribute`! This base class will cache the fields/properties once on 
+initialization to get rid of the reflection overhead which `DisposableBase` 
+requires for this feature.
+
+**NOTE**: The `DisposeAttribute` can be applied to `byte[]` and `char[]`, too, 
+which will simply call the `Clear` extension method on disposing. Another 
+`IEnumerable` will be enumerated for disposable items (recursing!).
 
 ## Queue worker
 
@@ -682,3 +712,35 @@ Assert.AreEqual("value2", ca.KeyLessArguments[1]);
 Assert.IsTrue(ca["flag"]);
 Assert.IsTrue(ca["key", true]);
 ```
+
+## Fast byte <-> string encoding/decoding
+
+base64 is supported everywhere, but it's (relative) slow and produces too much 
+overhead, and uses also URI unfriendly characters. In addition it's also not 
+easy to validate base64, or to determine the encoded/decoded value length.
+
+To fix all of these problems, the `ByteEncoding` class implements a fast 
+encoding, which uses only characters 0-9, a-z, A-Z, dash and underscore and 
+produces less overhead than base64. The encoded/decoded value length can be 
+calculated in advance, and it's fast and easy to detect errors in the encoded 
+data without having to decode it, first.
+
+```cs
+int encodedLen = anyByteArray.GetEncodedLength();
+char[] encoded = anyByteArray.Encode();
+
+int decodedLen = anyByteArray.GetDecodedlength();
+byte[] decoded = encoded.Decode();
+```
+
+Using extensions numeric values can be en-/decoded on the fly, too. The 
+special `EncodeNumberCompact` extension methods determine the smallest value 
+matching numeric type before encoding (use `DecodeCompactNumber` with the 
+original numeric type as generic argument for decoding).
+
+**NOTE**: Encoding an empty array results in an empty string. Encoding `0` 
+results in an empty string, too. Nothing encodes to nothing and decodes to 
+nothing, too.
+
+If required, the used encoding character map can be customized. You may use 
+any 64 characters long map with unique items.

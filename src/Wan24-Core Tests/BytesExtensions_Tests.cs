@@ -1,4 +1,6 @@
-﻿using wan24.Core;
+﻿using System.Diagnostics;
+using System.Security.Cryptography;
+using wan24.Core;
 
 namespace Wan24_Core_Tests
 {
