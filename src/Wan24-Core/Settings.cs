@@ -30,6 +30,7 @@
         /// <summary>
         /// Buffer size in bytes
         /// </summary>
+        [CliConfig]
         public static int BufferSize
         {
             get => _BufferSize;
@@ -48,6 +49,7 @@
         /// <summary>
         /// Custom temporary folder
         /// </summary>
+        [CliConfig]
         public static string? CustomTempFolder
         {
             get => _CustomTempFolder;

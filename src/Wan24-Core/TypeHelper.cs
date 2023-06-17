@@ -41,7 +41,7 @@ namespace wan24.Core
                 Logging.WriteDebug($"Scanning and booting late loaded assembly {e.LoadedAssembly.GetName().FullName}");
                 List<Task> tasks = new();
                 foreach (Assembly ass in Instance.ScanAssemblies(e.LoadedAssembly))
-                    if (ass.GetCustomAttribute<BootstrapperAttribute>() != null)
+                    if (ass.GetCustomAttributeCached<BootstrapperAttribute>() != null)
                         tasks.Add(Bootstrap.AssemblyAsync(ass, Bootstrap.FindClasses, Bootstrap.FindMethods));
                 await tasks.WaitAll().DynamicContext();
             };

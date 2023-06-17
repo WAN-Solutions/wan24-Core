@@ -194,7 +194,7 @@ namespace wan24.Core
                 }
                 else
                 {
-                    res = AsyncFactory == null ? Factory!() : await AsyncFactory.Invoke().DynamicContext();
+                    res = AsyncFactory == null ? Factory!() : await AsyncFactory().DynamicContext();
                     if (++_Initialized >= Capacity)
                     {
                         Factory = null;
@@ -236,7 +236,7 @@ namespace wan24.Core
                 }
                 else
                 {
-                    res = AsyncFactory == null ? Factory!() : await AsyncFactory.Invoke().DynamicContext();
+                    res = AsyncFactory == null ? Factory!() : await AsyncFactory().DynamicContext();
                     if (++_Initialized >= Capacity)
                     {
                         Factory = null;

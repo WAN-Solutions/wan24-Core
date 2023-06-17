@@ -183,6 +183,43 @@ namespace Wan24_Core_Tests
             Assert.IsNull(mi);
         }
 
+        [TestMethod]
+        public void GetterSetter_Tests()
+        {
+            {
+                Action<object?, object?> setter = typeof(ReflectionExtensions_Tests).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public)
+                    .First(p => p.Property.Name == nameof(TestProperty2)).Setter!;
+                setter(this, 123);
+                Func<object?, object?> getter = typeof(ReflectionExtensions_Tests).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public)
+                    .First(p => p.Property.Name == nameof(TestProperty2)).Getter!;
+                Assert.AreEqual(123, getter(this));
+            }
+            {
+                Action<object?, object?> setter = typeof(ReflectionExtensions_Tests).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public)
+                    .First(p => p.Property.Name == nameof(TestProperty2)).Setter!;
+                setter(this, 456);
+                Func<object?, int> getter = typeof(ReflectionExtensions_Tests).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public)
+                    .First(p => p.Property.Name == nameof(TestProperty2)).Property.GetGetterDelegate<int>()!;
+                Assert.AreEqual(456, getter(this));
+            }
+            {
+                Action<object?, object?> setter = typeof(ReflectionExtensions_Tests).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public)
+                    .First(p => p.Property.Name == nameof(TestProperty2)).Setter!;
+                setter(this, 789);
+                Func<object?, short> getter = typeof(ReflectionExtensions_Tests).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public)
+                    .First(p => p.Property.Name == nameof(TestProperty2)).Property.GetCastedGetterDelegate<short>();
+                Assert.AreEqual(789, getter(this));
+            }
+            {
+                Action<ReflectionExtensions_Tests, int> setter = typeof(ReflectionExtensions_Tests).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public)
+                    .First(p => p.Property.Name == nameof(TestProperty2)).Property.GetSetterDelegate< ReflectionExtensions_Tests, int>();
+                setter(this, 12);
+                Func<ReflectionExtensions_Tests, int> getter = typeof(ReflectionExtensions_Tests).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public)
+                    .First(p => p.Property.Name == nameof(TestProperty2)).Property.GetGetterDelegate<ReflectionExtensions_Tests, int>();
+                Assert.AreEqual(12, getter(this));
+            }
+        }
+
         public int? TestField = null;
 
         public int TestField2 = 0;

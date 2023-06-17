@@ -11,7 +11,7 @@ namespace wan24.Core
         /// <summary>
         /// Booted assemblies
         /// </summary>
-        private static readonly HashSet<Assembly> BootedAssemblies = new();
+        private static readonly HashSet<int> BootedAssemblies = new();
         /// <summary>
         /// Thread synchronization
         /// </summary>
@@ -73,43 +73,43 @@ namespace wan24.Core
                 if (startAssembly != null) TypeHelper.Instance.ScanAssemblies(startAssembly);
                 // Fixed type and method
                 IEnumerable<MethodInfo> methods = from ass in TypeHelper.Instance.Assemblies
-                                                  where ass.GetCustomAttribute<BootstrapperAttribute>() is BootstrapperAttribute attr &&
+                                                  where ass.GetCustomAttributeCached<BootstrapperAttribute>() is BootstrapperAttribute attr &&
                                                      attr.Type != null &&
                                                      attr.Method != null
-                                                  select ass.GetCustomAttribute<BootstrapperAttribute>()!.Type!.GetMethod(
-                                                      ass.GetCustomAttribute<BootstrapperAttribute>()!.Method!,
+                                                  select ass.GetCustomAttributeCached<BootstrapperAttribute>()!.Type!.GetMethodCached(
+                                                      ass.GetCustomAttributeCached<BootstrapperAttribute>()!.Method!,
                                                       BindingFlags.Static | BindingFlags.Public
                                                       )
-                    ?? throw new InvalidProgramException($"Bootstrapper method {ass.GetCustomAttribute<BootstrapperAttribute>()!.Type}.{ass.GetCustomAttribute<BootstrapperAttribute>()!.Method} not found");
+                    ?? throw new InvalidProgramException($"Bootstrapper method {ass.GetCustomAttributeCached<BootstrapperAttribute>()!.Type}.{ass.GetCustomAttributeCached<BootstrapperAttribute>()!.Method} not found");
                 // Fixed type
                 if (FindClasses)
                     methods = methods.Concat(from ass in TypeHelper.Instance.Assemblies
-                                             where ass.GetCustomAttribute<BootstrapperAttribute>() is BootstrapperAttribute attr &&
+                                             where ass.GetCustomAttributeCached<BootstrapperAttribute>() is BootstrapperAttribute attr &&
                                                 attr.Type != null &&
                                                 attr.Method == null &&
                                                 attr.ScanClasses
-                                             from mi in ass.GetCustomAttribute<BootstrapperAttribute>()!.Type!.GetMethods(BindingFlags.Public | BindingFlags.Static)
-                                             where !mi.IsGenericMethod && mi.GetCustomAttribute<BootstrapperAttribute>() != null
+                                             from mi in ass.GetCustomAttributeCached<BootstrapperAttribute>()!.Type!.GetMethodsCached(BindingFlags.Public | BindingFlags.Static)
+                                             where !mi.IsGenericMethod && mi.GetCustomAttributeCached<BootstrapperAttribute>() != null
                                              select mi);
                 // Find types and methods
                 if (FindMethods)
                     methods = methods.Concat(from ass in TypeHelper.Instance.Assemblies
-                                             where ass.GetCustomAttribute<BootstrapperAttribute>() is BootstrapperAttribute attr &&
+                                             where ass.GetCustomAttributeCached<BootstrapperAttribute>() is BootstrapperAttribute attr &&
                                                attr.Type == null &&
                                                attr.Method == null &&
                                                attr.ScanMethods
                                              from type in ass.GetTypes()
                                              where type.IsPublic &&
                                               !type.IsGenericTypeDefinition &&
-                                              type.GetCustomAttribute<BootstrapperAttribute>() != null
-                                             from mi in type.GetMethods(BindingFlags.Public | BindingFlags.Static)
+                                              type.GetCustomAttributeCached<BootstrapperAttribute>() != null
+                                             from mi in type.GetMethodsCached(BindingFlags.Public | BindingFlags.Static)
                                              where !mi.IsGenericMethod &&
-                                              mi.GetCustomAttribute<BootstrapperAttribute>() != null
+                                              mi.GetCustomAttributeCached<BootstrapperAttribute>() != null
                                              select mi);
                 // Run the bootstrapper methods
-                foreach (MethodInfo mi in methods.OrderByDescending(mi => mi.DeclaringType!.Assembly.GetCustomAttribute<BootstrapperAttribute>()!.Priority)
-                    .ThenByDescending(mi => mi.DeclaringType!.GetCustomAttribute<BootstrapperAttribute>()?.Priority ?? 0)
-                    .ThenByDescending(mi => mi.GetCustomAttribute<BootstrapperAttribute>()?.Priority ?? 0)
+                foreach (MethodInfo mi in methods.OrderByDescending(mi => mi.DeclaringType!.Assembly.GetCustomAttributeCached<BootstrapperAttribute>()!.Priority)
+                    .ThenByDescending(mi => mi.DeclaringType!.GetCustomAttributeCached<BootstrapperAttribute>()?.Priority ?? 0)
+                    .ThenByDescending(mi => mi.GetCustomAttributeCached<BootstrapperAttribute>()?.Priority ?? 0)
                     .ThenBy(mi => mi.Name))
                 {
                     Logging.WriteDebug($"Calling bootstrapper {mi.DeclaringType}.{mi.Name}");
@@ -118,7 +118,7 @@ namespace wan24.Core
                         await Sync.WaitAsync(cancellationToken).DynamicContext();
                         try
                         {
-                            BootedAssemblies.Add(mi.DeclaringType.Assembly);
+                            BootedAssemblies.Add(mi.DeclaringType.Assembly.GetHashCode());
                         }
                         finally
                         {
@@ -192,7 +192,7 @@ namespace wan24.Core
             await Sync.WaitAsync(cancellationToken).DynamicContext();
             try
             {
-                if (!BootedAssemblies.Add(assembly)) return;
+                if (!BootedAssemblies.Add(assembly.GetHashCode())) return;
             }
             finally
             {
@@ -202,47 +202,47 @@ namespace wan24.Core
             if (!DidBoot && !IsBooting) await Async(cancellationToken: cancellationToken).DynamicContext();
             TypeHelper.Instance.ScanAssemblies(assembly);
             // Fixed type and method
-            IEnumerable<MethodInfo> methods = assembly.GetCustomAttribute<BootstrapperAttribute>() is BootstrapperAttribute attr &&
+            IEnumerable<MethodInfo> methods = assembly.GetCustomAttributeCached<BootstrapperAttribute>() is BootstrapperAttribute attr &&
                 attr.Type != null &&
                 attr.Method != null
                 ? new MethodInfo[]
                 {
-                        assembly.GetCustomAttribute<BootstrapperAttribute>()!.Type!.GetMethod(
-                                                      assembly.GetCustomAttribute<BootstrapperAttribute>()!.Method!,
+                        assembly.GetCustomAttributeCached<BootstrapperAttribute>()!.Type!.GetMethodCached(
+                                                      assembly.GetCustomAttributeCached<BootstrapperAttribute>()!.Method!,
                                                       BindingFlags.Static | BindingFlags.Public
                                                       )
-                        ?? throw new InvalidProgramException($"Bootstrapper method {assembly.GetCustomAttribute<BootstrapperAttribute>()!.Type}.{assembly.GetCustomAttribute<BootstrapperAttribute>()!.Method} not found")
+                        ?? throw new InvalidProgramException($"Bootstrapper method {assembly.GetCustomAttributeCached<BootstrapperAttribute>()!.Type}.{assembly.GetCustomAttributeCached<BootstrapperAttribute>()!.Method} not found")
                 }
                 : Array.Empty<MethodInfo>();
             // Fixed type
             if (findClasses)
                 methods = methods.Concat(from ass in new Assembly[] { assembly }
-                                         where ass.GetCustomAttribute<BootstrapperAttribute>() is BootstrapperAttribute attr &&
+                                         where ass.GetCustomAttributeCached<BootstrapperAttribute>() is BootstrapperAttribute attr &&
                                             attr.Type != null &&
                                             attr.Method == null &&
                                             attr.ScanClasses
-                                         from mi in ass.GetCustomAttribute<BootstrapperAttribute>()!.Type!.GetMethods(BindingFlags.Public | BindingFlags.Static)
-                                         where !mi.IsGenericMethod && mi.GetCustomAttribute<BootstrapperAttribute>() != null
+                                         from mi in ass.GetCustomAttributeCached<BootstrapperAttribute>()!.Type!.GetMethodsCached(BindingFlags.Public | BindingFlags.Static)
+                                         where !mi.IsGenericMethod && mi.GetCustomAttributeCached<BootstrapperAttribute>() != null
                                          select mi);
             // Find types and methods
             if (findMethods)
                 methods = methods.Concat(from ass in new Assembly[] { assembly }
-                                         where ass.GetCustomAttribute<BootstrapperAttribute>() is BootstrapperAttribute attr &&
+                                         where ass.GetCustomAttributeCached<BootstrapperAttribute>() is BootstrapperAttribute attr &&
                                            attr.Type == null &&
                                            attr.Method == null &&
                                            attr.ScanMethods
                                          from type in ass.GetTypes()
                                          where type.IsPublic &&
                                           !type.IsGenericTypeDefinition &&
-                                          type.GetCustomAttribute<BootstrapperAttribute>() != null
-                                         from mi in type.GetMethods(BindingFlags.Public | BindingFlags.Static)
+                                          type.GetCustomAttributeCached<BootstrapperAttribute>() != null
+                                         from mi in type.GetMethodsCached(BindingFlags.Public | BindingFlags.Static)
                                          where !mi.IsGenericMethod &&
-                                          mi.GetCustomAttribute<BootstrapperAttribute>() != null
+                                          mi.GetCustomAttributeCached<BootstrapperAttribute>() != null
                                          select mi);
             // Run the bootstrapper methods
-            foreach (MethodInfo mi in methods.OrderByDescending(mi => mi.DeclaringType!.Assembly.GetCustomAttribute<BootstrapperAttribute>()!.Priority)
-                .ThenByDescending(mi => mi.DeclaringType!.GetCustomAttribute<BootstrapperAttribute>()?.Priority ?? 0)
-                .ThenByDescending(mi => mi.GetCustomAttribute<BootstrapperAttribute>()?.Priority ?? 0)
+            foreach (MethodInfo mi in methods.OrderByDescending(mi => mi.DeclaringType!.Assembly.GetCustomAttributeCached<BootstrapperAttribute>()!.Priority)
+                .ThenByDescending(mi => mi.DeclaringType!.GetCustomAttributeCached<BootstrapperAttribute>()?.Priority ?? 0)
+                .ThenByDescending(mi => mi.GetCustomAttributeCached<BootstrapperAttribute>()?.Priority ?? 0)
                 .ThenBy(mi => mi.Name))
             {
                 Logging.WriteDebug($"Calling bootstrapper {mi.DeclaringType}.{mi.Name}");

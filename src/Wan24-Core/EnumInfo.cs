@@ -22,7 +22,7 @@ namespace wan24.Core
             if (!typeof(T).IsEnum) throw new ArgumentException("Enumeration type required", nameof(T));
             string[] names = Enum.GetNames(typeof(T));
             T[] values = (T[])Enum.GetValues(typeof(T));
-            HasFlagsAttribute = typeof(T).GetCustomAttribute<FlagsAttribute>() != null;
+            HasFlagsAttribute = typeof(T).GetCustomAttributeCached<FlagsAttribute>() != null;
             IsUnsigned = typeof(T).IsUnsigned();
             IsMixedEnum = HasFlagsAttribute && names.Contains(FLAGS_NAME);
             Names = IsMixedEnum
@@ -42,13 +42,17 @@ namespace wan24.Core
                                                               orderby EnumExtensions.CastType<ulong>(value)
                                                               select new KeyValuePair<string, T>(value.ToString()!, value)
                           )).AsReadOnly();
-                DisplayTexts = (new OrderedDictionary<string, string>(from value in values
-                                                                      orderby EnumExtensions.CastType<ulong>(value)
-                                                                      select new KeyValuePair<string, string>(
-                                                                          value.ToString()!,
-                                                                          typeof(T).GetField(value.ToString())?.GetCustomAttribute<DisplayTextAttribute>()?.DisplayText ?? value.ToString()
-                                                                          )
-                          )).AsReadOnly();
+                DisplayTexts = new OrderedDictionary<string, string>(
+                    from value in values
+                    orderby EnumExtensions.CastType<ulong>(value)
+                    select new KeyValuePair<string, string>(
+                        value.ToString()!,
+                        typeof(T).GetFieldCached(
+                            value.ToString(),
+                            BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public
+                            )?.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ?? value.ToString()
+                        )
+                    ).AsReadOnly();
                 if (IsMixedEnum)
                 {
                     ulong flags = (ulong)Flags;
@@ -82,13 +86,17 @@ namespace wan24.Core
                                                               orderby EnumExtensions.CastType<long>(value)
                                                               select new KeyValuePair<string, T>(value.ToString()!, value)
                           )).AsReadOnly();
-                DisplayTexts = (new OrderedDictionary<string, string>(from value in values
-                                                                      orderby EnumExtensions.CastType<long>(value)
-                                                                      select new KeyValuePair<string, string>(
-                                                                          value.ToString()!,
-                                                                          typeof(T).GetField(value.ToString())?.GetCustomAttribute<DisplayTextAttribute>()?.DisplayText ?? value.ToString()
-                                                                          )
-                          )).AsReadOnly();
+                DisplayTexts = new OrderedDictionary<string, string>(
+                    from value in values
+                    orderby EnumExtensions.CastType<long>(value)
+                    select new KeyValuePair<string, string>(
+                        value.ToString()!,
+                        typeof(T).GetFieldCached(
+                            value.ToString(),
+                            BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public
+                            )?.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ?? value.ToString()
+                        )
+                    ).AsReadOnly();
                 if (IsMixedEnum)
                 {
                     long flags = (long)Flags;
@@ -214,6 +222,28 @@ namespace wan24.Core
                 long allValues = 0;
                 foreach (T v in KeyValues.Values) allValues |= EnumExtensions.CastType<long>(v);
                 if ((EnumExtensions.CastType<long>(value) & ~allValues) != 0) return false;
+            }
+            return true;
+        }
+
+        /// <inheritdoc/>
+        public bool IsValidValue(T value) => IsValid(value);
+
+        /// <inheritdoc/>
+        public bool IsValidValue(object value)
+        {
+            if (value.GetType() != typeof(T)) return false;
+            if (IsUnsigned)
+            {
+                ulong allValues = 0;
+                foreach (T v in KeyValues.Values) allValues |= EnumExtensions.CastType<ulong>(v);
+                if (((ulong)Convert.ChangeType(value, typeof(ulong)) & ~allValues) != 0) return false;
+            }
+            else
+            {
+                long allValues = 0;
+                foreach (T v in KeyValues.Values) allValues |= EnumExtensions.CastType<long>(v);
+                if (((long)Convert.ChangeType(value, typeof(long)) & ~allValues) != 0) return false;
             }
             return true;
         }

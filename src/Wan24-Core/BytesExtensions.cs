@@ -173,7 +173,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static int ToInt(this ReadOnlySpan<byte> bits)  => BinaryPrimitives.ReadInt32LittleEndian(bits);
+        public static int ToInt(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadInt32LittleEndian(bits);
 
         /// <summary>
         /// Get an Int32
@@ -635,6 +635,7 @@ namespace wan24.Core
         /// Clear the array
         /// </summary>
         /// <param name="bytes">Bytes</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static void Clear(this byte[] bytes)
         {
             if (bytes.Length == 0) return;
