@@ -157,6 +157,19 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+        public static byte[] GetBytes(this short value, byte[] target)
+        {
+            GetBytes(value, target.AsSpan());
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static Span<byte> GetBytes(this short value, Span<byte> target)
         {
             BinaryPrimitives.WriteInt16LittleEndian(target, value);
@@ -187,6 +200,19 @@ namespace wan24.Core
             byte[] res = new byte[sizeof(ushort)];
             BinaryPrimitives.WriteUInt16LittleEndian(res, value);
             return res;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static byte[] GetBytes(this ushort value, byte[] target)
+        {
+            GetBytes(value, target.AsSpan());
+            return target;
         }
 
         /// <summary>
@@ -235,6 +261,19 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+        public static byte[] GetBytes(this int value, byte[] target)
+        {
+            GetBytes(value, target.AsSpan());
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static Span<byte> GetBytes(this int value, Span<byte> target)
         {
             BinaryPrimitives.WriteInt32LittleEndian(target, value);
@@ -265,6 +304,19 @@ namespace wan24.Core
             byte[] res = new byte[sizeof(uint)];
             BinaryPrimitives.WriteUInt32LittleEndian(res, value);
             return res;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static byte[] GetBytes(this uint value, byte[] target)
+        {
+            GetBytes(value, target.AsSpan());
+            return target;
         }
 
         /// <summary>
@@ -313,6 +365,19 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+        public static byte[] GetBytes(this long value, byte[] target)
+        {
+            GetBytes(value, target.AsSpan());
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static Span<byte> GetBytes(this long value, Span<byte> target)
         {
             BinaryPrimitives.WriteInt64LittleEndian(target, value);
@@ -343,6 +408,19 @@ namespace wan24.Core
             byte[] res = new byte[sizeof(ulong)];
             BinaryPrimitives.WriteUInt64LittleEndian(res, value);
             return res;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static byte[] GetBytes(this ulong value, byte[] target)
+        {
+            GetBytes(value, target.AsSpan());
+            return target;
         }
 
         /// <summary>
@@ -391,6 +469,19 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+        public static byte[] GetBytes(this float value, byte[] target)
+        {
+            GetBytes(value, target.AsSpan());
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static Span<byte> GetBytes(this float value, Span<byte> target)
         {
             BinaryPrimitives.WriteSingleLittleEndian(target, value);
@@ -421,6 +512,19 @@ namespace wan24.Core
             byte[] res = new byte[sizeof(double)];
             BinaryPrimitives.WriteDoubleLittleEndian(res, value);
             return res;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static byte[] GetBytes(this double value, byte[] target)
+        {
+            GetBytes(value, target.AsSpan());
+            return target;
         }
 
         /// <summary>
@@ -461,6 +565,19 @@ namespace wan24.Core
             int[] bits = decimal.GetBits(value);
             for (int i = 0; i < bits.Length; Array.Copy(bits[i].GetBytes(), 0, res, i << 2, sizeof(int)), i++) ;
             return res;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static byte[] GetBytes(this decimal value, byte[] target)
+        {
+            GetBytes(value, target.AsSpan());
+            return target;
         }
 
         /// <summary>
