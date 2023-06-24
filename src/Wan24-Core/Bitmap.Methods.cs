@@ -10,7 +10,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="count">Number of bytes</param>
         /// <exception cref="InternalBufferOverflowException">New bitmap is larger than <see cref="int.MaxValue"/></exception>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public virtual void SetSize(int count)
         {
             if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
@@ -29,7 +31,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="map">New bitmap</param>
         /// <returns>Old bitmap</returns>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public virtual byte[] ExchangeBitmap(byte[] map)
         {
             lock (SyncObject)
@@ -45,7 +49,9 @@ namespace wan24.Core
         /// Set a new bit count (when shrinking and later expanding, old bits won't be cleared!)
         /// </summary>
         /// <param name="count">Number of bits (must not exceed the bitmap size)</param>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public virtual void SetBitCount(long count)
         {
             lock (SyncObject)
@@ -60,7 +66,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits to add</param>
         /// <returns>First new bit offset</returns>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public virtual long AddBits(params bool[] bits)
         {
             if (bits.Length == 0) return BitCount;
@@ -78,7 +86,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="count">Number of bits to add</param>
         /// <returns>First new bit offset</returns>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public virtual long AddBits(int count)
         {
             if (count < 1) return BitCount;

@@ -7925,22 +7925,6 @@ references:
   fullName.vb: wan24.Core.EnumExtensions.GetContainedFlags(Of T)(T, T())
   nameWithType: EnumExtensions.GetContainedFlags<T>(T, T[])
   nameWithType.vb: EnumExtensions.GetContainedFlags(Of T)(T, T())
-- uid: wan24.Core.EnumExtensions.GetDisplayText*
-  name: GetDisplayText
-  href: api/wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_GetDisplayText_
-  commentId: Overload:wan24.Core.EnumExtensions.GetDisplayText
-  isSpec: "True"
-  fullName: wan24.Core.EnumExtensions.GetDisplayText
-  nameWithType: EnumExtensions.GetDisplayText
-- uid: wan24.Core.EnumExtensions.GetDisplayText``1(``0)
-  name: GetDisplayText<T>(T)
-  href: api/wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_GetDisplayText__1___0_
-  commentId: M:wan24.Core.EnumExtensions.GetDisplayText``1(``0)
-  name.vb: GetDisplayText(Of T)(T)
-  fullName: wan24.Core.EnumExtensions.GetDisplayText<T>(T)
-  fullName.vb: wan24.Core.EnumExtensions.GetDisplayText(Of T)(T)
-  nameWithType: EnumExtensions.GetDisplayText<T>(T)
-  nameWithType.vb: EnumExtensions.GetDisplayText(Of T)(T)
 - uid: wan24.Core.EnumExtensions.GetEnumInfo(Type)
   name: GetEnumInfo(Type)
   href: api/wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_GetEnumInfo_Type_
@@ -11600,12 +11584,6 @@ references:
   fullName.vb: wan24.Core.ObjectExtensions.EnsureValidState(Of T)(T, System.Boolean, System.String)
   nameWithType: ObjectExtensions.EnsureValidState<T>(T, Boolean, String)
   nameWithType.vb: ObjectExtensions.EnsureValidState(Of T)(T, Boolean, String)
-- uid: wan24.Core.ObjectExtensions.GetDisplayText(System.Object)
-  name: GetDisplayText(Object)
-  href: api/wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText_System_Object_
-  commentId: M:wan24.Core.ObjectExtensions.GetDisplayText(System.Object)
-  fullName: wan24.Core.ObjectExtensions.GetDisplayText(System.Object)
-  nameWithType: ObjectExtensions.GetDisplayText(Object)
 - uid: wan24.Core.ObjectExtensions.GetDisplayText*
   name: GetDisplayText
   href: api/wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText_
@@ -11613,6 +11591,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ObjectExtensions.GetDisplayText
   nameWithType: ObjectExtensions.GetDisplayText
+- uid: wan24.Core.ObjectExtensions.GetDisplayText``1(``0)
+  name: GetDisplayText<T>(T)
+  href: api/wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText__1___0_
+  commentId: M:wan24.Core.ObjectExtensions.GetDisplayText``1(``0)
+  name.vb: GetDisplayText(Of T)(T)
+  fullName: wan24.Core.ObjectExtensions.GetDisplayText<T>(T)
+  fullName.vb: wan24.Core.ObjectExtensions.GetDisplayText(Of T)(T)
+  nameWithType: ObjectExtensions.GetDisplayText<T>(T)
+  nameWithType.vb: ObjectExtensions.GetDisplayText(Of T)(T)
 - uid: wan24.Core.ObjectExtensions.In(System.Object,System.Object[])
   name: In(Object, Object[])
   href: api/wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___
@@ -14662,6 +14649,64 @@ references:
   isSpec: "True"
   fullName: wan24.Core.PropertyInfoExt.PropertyInfoExt
   nameWithType: PropertyInfoExt.PropertyInfoExt
+- uid: wan24.Core.PropertyInfoExt.CanRead
+  name: CanRead
+  href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_CanRead
+  commentId: P:wan24.Core.PropertyInfoExt.CanRead
+  fullName: wan24.Core.PropertyInfoExt.CanRead
+  nameWithType: PropertyInfoExt.CanRead
+- uid: wan24.Core.PropertyInfoExt.CanRead*
+  name: CanRead
+  href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_CanRead_
+  commentId: Overload:wan24.Core.PropertyInfoExt.CanRead
+  isSpec: "True"
+  fullName: wan24.Core.PropertyInfoExt.CanRead
+  nameWithType: PropertyInfoExt.CanRead
+- uid: wan24.Core.PropertyInfoExt.CanWrite
+  name: CanWrite
+  href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_CanWrite
+  commentId: P:wan24.Core.PropertyInfoExt.CanWrite
+  fullName: wan24.Core.PropertyInfoExt.CanWrite
+  nameWithType: PropertyInfoExt.CanWrite
+- uid: wan24.Core.PropertyInfoExt.CanWrite*
+  name: CanWrite
+  href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_CanWrite_
+  commentId: Overload:wan24.Core.PropertyInfoExt.CanWrite
+  isSpec: "True"
+  fullName: wan24.Core.PropertyInfoExt.CanWrite
+  nameWithType: PropertyInfoExt.CanWrite
+- uid: wan24.Core.PropertyInfoExt.DeclaringType
+  name: DeclaringType
+  href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_DeclaringType
+  commentId: P:wan24.Core.PropertyInfoExt.DeclaringType
+  fullName: wan24.Core.PropertyInfoExt.DeclaringType
+  nameWithType: PropertyInfoExt.DeclaringType
+- uid: wan24.Core.PropertyInfoExt.DeclaringType*
+  name: DeclaringType
+  href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_DeclaringType_
+  commentId: Overload:wan24.Core.PropertyInfoExt.DeclaringType
+  isSpec: "True"
+  fullName: wan24.Core.PropertyInfoExt.DeclaringType
+  nameWithType: PropertyInfoExt.DeclaringType
+- uid: wan24.Core.PropertyInfoExt.GetCustomAttributes(System.Boolean)
+  name: GetCustomAttributes(Boolean)
+  href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_GetCustomAttributes_System_Boolean_
+  commentId: M:wan24.Core.PropertyInfoExt.GetCustomAttributes(System.Boolean)
+  fullName: wan24.Core.PropertyInfoExt.GetCustomAttributes(System.Boolean)
+  nameWithType: PropertyInfoExt.GetCustomAttributes(Boolean)
+- uid: wan24.Core.PropertyInfoExt.GetCustomAttributes(Type,System.Boolean)
+  name: GetCustomAttributes(Type, Boolean)
+  href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_GetCustomAttributes_Type_System_Boolean_
+  commentId: M:wan24.Core.PropertyInfoExt.GetCustomAttributes(Type,System.Boolean)
+  fullName: wan24.Core.PropertyInfoExt.GetCustomAttributes(Type, System.Boolean)
+  nameWithType: PropertyInfoExt.GetCustomAttributes(Type, Boolean)
+- uid: wan24.Core.PropertyInfoExt.GetCustomAttributes*
+  name: GetCustomAttributes
+  href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_GetCustomAttributes_
+  commentId: Overload:wan24.Core.PropertyInfoExt.GetCustomAttributes
+  isSpec: "True"
+  fullName: wan24.Core.PropertyInfoExt.GetCustomAttributes
+  nameWithType: PropertyInfoExt.GetCustomAttributes
 - uid: wan24.Core.PropertyInfoExt.Getter
   name: Getter
   href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_Getter
@@ -14675,6 +14720,32 @@ references:
   isSpec: "True"
   fullName: wan24.Core.PropertyInfoExt.Getter
   nameWithType: PropertyInfoExt.Getter
+- uid: wan24.Core.PropertyInfoExt.IsDefined(Type,System.Boolean)
+  name: IsDefined(Type, Boolean)
+  href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_IsDefined_Type_System_Boolean_
+  commentId: M:wan24.Core.PropertyInfoExt.IsDefined(Type,System.Boolean)
+  fullName: wan24.Core.PropertyInfoExt.IsDefined(Type, System.Boolean)
+  nameWithType: PropertyInfoExt.IsDefined(Type, Boolean)
+- uid: wan24.Core.PropertyInfoExt.IsDefined*
+  name: IsDefined
+  href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_IsDefined_
+  commentId: Overload:wan24.Core.PropertyInfoExt.IsDefined
+  isSpec: "True"
+  fullName: wan24.Core.PropertyInfoExt.IsDefined
+  nameWithType: PropertyInfoExt.IsDefined
+- uid: wan24.Core.PropertyInfoExt.Name
+  name: Name
+  href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_Name
+  commentId: P:wan24.Core.PropertyInfoExt.Name
+  fullName: wan24.Core.PropertyInfoExt.Name
+  nameWithType: PropertyInfoExt.Name
+- uid: wan24.Core.PropertyInfoExt.Name*
+  name: Name
+  href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_Name_
+  commentId: Overload:wan24.Core.PropertyInfoExt.Name
+  isSpec: "True"
+  fullName: wan24.Core.PropertyInfoExt.Name
+  nameWithType: PropertyInfoExt.Name
 - uid: wan24.Core.PropertyInfoExt.op_Implicit(wan24.Core.PropertyInfoExt)~System.Reflection.PropertyInfo
   name: Implicit(PropertyInfoExt to PropertyInfo)
   href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_op_Implicit_wan24_Core_PropertyInfoExt__System_Reflection_PropertyInfo
@@ -14707,6 +14778,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.PropertyInfoExt.Property
   nameWithType: PropertyInfoExt.Property
+- uid: wan24.Core.PropertyInfoExt.PropertyType
+  name: PropertyType
+  href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_PropertyType
+  commentId: P:wan24.Core.PropertyInfoExt.PropertyType
+  fullName: wan24.Core.PropertyInfoExt.PropertyType
+  nameWithType: PropertyInfoExt.PropertyType
+- uid: wan24.Core.PropertyInfoExt.PropertyType*
+  name: PropertyType
+  href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_PropertyType_
+  commentId: Overload:wan24.Core.PropertyInfoExt.PropertyType
+  isSpec: "True"
+  fullName: wan24.Core.PropertyInfoExt.PropertyType
+  nameWithType: PropertyInfoExt.PropertyType
 - uid: wan24.Core.PropertyInfoExt.Setter
   name: Setter
   href: api/wan24.Core.PropertyInfoExt.html#wan24_Core_PropertyInfoExt_Setter
@@ -15153,6 +15237,12 @@ references:
   commentId: M:wan24.Core.ReflectionExtensions.GetValueFast(System.Reflection.PropertyInfo,System.Object)
   fullName: wan24.Core.ReflectionExtensions.GetValueFast(System.Reflection.PropertyInfo, System.Object)
   nameWithType: ReflectionExtensions.GetValueFast(PropertyInfo, Object)
+- uid: wan24.Core.ReflectionExtensions.GetValueFast(wan24.Core.PropertyInfoExt,System.Object)
+  name: GetValueFast(PropertyInfoExt, Object)
+  href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetValueFast_wan24_Core_PropertyInfoExt_System_Object_
+  commentId: M:wan24.Core.ReflectionExtensions.GetValueFast(wan24.Core.PropertyInfoExt,System.Object)
+  fullName: wan24.Core.ReflectionExtensions.GetValueFast(wan24.Core.PropertyInfoExt, System.Object)
+  nameWithType: ReflectionExtensions.GetValueFast(PropertyInfoExt, Object)
 - uid: wan24.Core.ReflectionExtensions.GetValueFast*
   name: GetValueFast
   href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetValueFast_
@@ -15259,6 +15349,12 @@ references:
   commentId: M:wan24.Core.ReflectionExtensions.SetValueFast(System.Reflection.PropertyInfo,System.Object,System.Object)
   fullName: wan24.Core.ReflectionExtensions.SetValueFast(System.Reflection.PropertyInfo, System.Object, System.Object)
   nameWithType: ReflectionExtensions.SetValueFast(PropertyInfo, Object, Object)
+- uid: wan24.Core.ReflectionExtensions.SetValueFast(wan24.Core.PropertyInfoExt,System.Object,System.Object)
+  name: SetValueFast(PropertyInfoExt, Object, Object)
+  href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_SetValueFast_wan24_Core_PropertyInfoExt_System_Object_System_Object_
+  commentId: M:wan24.Core.ReflectionExtensions.SetValueFast(wan24.Core.PropertyInfoExt,System.Object,System.Object)
+  fullName: wan24.Core.ReflectionExtensions.SetValueFast(wan24.Core.PropertyInfoExt, System.Object, System.Object)
+  nameWithType: ReflectionExtensions.SetValueFast(PropertyInfoExt, Object, Object)
 - uid: wan24.Core.ReflectionExtensions.SetValueFast*
   name: SetValueFast
   href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_SetValueFast_
@@ -17833,6 +17929,15 @@ references:
   fullName.vb: wan24.Core.StringExtensions.GetBytes(System.Char(), Span(Of System.Byte))
   nameWithType: StringExtensions.GetBytes(Char[], Span<Byte>)
   nameWithType.vb: StringExtensions.GetBytes(Char(), Span(Of Byte))
+- uid: wan24.Core.StringExtensions.GetBytes(System.Char[],System.Byte[])
+  name: GetBytes(Char[], Byte[])
+  href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetBytes_System_Char___System_Byte___
+  commentId: M:wan24.Core.StringExtensions.GetBytes(System.Char[],System.Byte[])
+  name.vb: GetBytes(Char(), Byte())
+  fullName: wan24.Core.StringExtensions.GetBytes(System.Char[], System.Byte[])
+  fullName.vb: wan24.Core.StringExtensions.GetBytes(System.Char(), System.Byte())
+  nameWithType: StringExtensions.GetBytes(Char[], Byte[])
+  nameWithType.vb: StringExtensions.GetBytes(Char(), Byte())
 - uid: wan24.Core.StringExtensions.GetBytes(System.String)
   name: GetBytes(String)
   href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetBytes_System_String_
@@ -17848,6 +17953,15 @@ references:
   fullName.vb: wan24.Core.StringExtensions.GetBytes(System.String, Span(Of System.Byte))
   nameWithType: StringExtensions.GetBytes(String, Span<Byte>)
   nameWithType.vb: StringExtensions.GetBytes(String, Span(Of Byte))
+- uid: wan24.Core.StringExtensions.GetBytes(System.String,System.Byte[])
+  name: GetBytes(String, Byte[])
+  href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetBytes_System_String_System_Byte___
+  commentId: M:wan24.Core.StringExtensions.GetBytes(System.String,System.Byte[])
+  name.vb: GetBytes(String, Byte())
+  fullName: wan24.Core.StringExtensions.GetBytes(System.String, System.Byte[])
+  fullName.vb: wan24.Core.StringExtensions.GetBytes(System.String, System.Byte())
+  nameWithType: StringExtensions.GetBytes(String, Byte[])
+  nameWithType.vb: StringExtensions.GetBytes(String, Byte())
 - uid: wan24.Core.StringExtensions.GetBytes*
   name: GetBytes
   href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetBytes_
@@ -17873,6 +17987,15 @@ references:
   fullName.vb: wan24.Core.StringExtensions.GetBytes16(System.Char(), Span(Of System.Byte))
   nameWithType: StringExtensions.GetBytes16(Char[], Span<Byte>)
   nameWithType.vb: StringExtensions.GetBytes16(Char(), Span(Of Byte))
+- uid: wan24.Core.StringExtensions.GetBytes16(System.Char[],System.Byte[])
+  name: GetBytes16(Char[], Byte[])
+  href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetBytes16_System_Char___System_Byte___
+  commentId: M:wan24.Core.StringExtensions.GetBytes16(System.Char[],System.Byte[])
+  name.vb: GetBytes16(Char(), Byte())
+  fullName: wan24.Core.StringExtensions.GetBytes16(System.Char[], System.Byte[])
+  fullName.vb: wan24.Core.StringExtensions.GetBytes16(System.Char(), System.Byte())
+  nameWithType: StringExtensions.GetBytes16(Char[], Byte[])
+  nameWithType.vb: StringExtensions.GetBytes16(Char(), Byte())
 - uid: wan24.Core.StringExtensions.GetBytes16(System.String)
   name: GetBytes16(String)
   href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetBytes16_System_String_
@@ -17888,6 +18011,15 @@ references:
   fullName.vb: wan24.Core.StringExtensions.GetBytes16(System.String, Span(Of System.Byte))
   nameWithType: StringExtensions.GetBytes16(String, Span<Byte>)
   nameWithType.vb: StringExtensions.GetBytes16(String, Span(Of Byte))
+- uid: wan24.Core.StringExtensions.GetBytes16(System.String,System.Byte[])
+  name: GetBytes16(String, Byte[])
+  href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetBytes16_System_String_System_Byte___
+  commentId: M:wan24.Core.StringExtensions.GetBytes16(System.String,System.Byte[])
+  name.vb: GetBytes16(String, Byte())
+  fullName: wan24.Core.StringExtensions.GetBytes16(System.String, System.Byte[])
+  fullName.vb: wan24.Core.StringExtensions.GetBytes16(System.String, System.Byte())
+  nameWithType: StringExtensions.GetBytes16(String, Byte[])
+  nameWithType.vb: StringExtensions.GetBytes16(String, Byte())
 - uid: wan24.Core.StringExtensions.GetBytes16*
   name: GetBytes16
   href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetBytes16_
@@ -17913,6 +18045,15 @@ references:
   fullName.vb: wan24.Core.StringExtensions.GetBytes32(System.Char(), Span(Of System.Byte))
   nameWithType: StringExtensions.GetBytes32(Char[], Span<Byte>)
   nameWithType.vb: StringExtensions.GetBytes32(Char(), Span(Of Byte))
+- uid: wan24.Core.StringExtensions.GetBytes32(System.Char[],System.Byte[])
+  name: GetBytes32(Char[], Byte[])
+  href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetBytes32_System_Char___System_Byte___
+  commentId: M:wan24.Core.StringExtensions.GetBytes32(System.Char[],System.Byte[])
+  name.vb: GetBytes32(Char(), Byte())
+  fullName: wan24.Core.StringExtensions.GetBytes32(System.Char[], System.Byte[])
+  fullName.vb: wan24.Core.StringExtensions.GetBytes32(System.Char(), System.Byte())
+  nameWithType: StringExtensions.GetBytes32(Char[], Byte[])
+  nameWithType.vb: StringExtensions.GetBytes32(Char(), Byte())
 - uid: wan24.Core.StringExtensions.GetBytes32(System.String)
   name: GetBytes32(String)
   href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetBytes32_System_String_
@@ -17928,6 +18069,15 @@ references:
   fullName.vb: wan24.Core.StringExtensions.GetBytes32(System.String, Span(Of System.Byte))
   nameWithType: StringExtensions.GetBytes32(String, Span<Byte>)
   nameWithType.vb: StringExtensions.GetBytes32(String, Span(Of Byte))
+- uid: wan24.Core.StringExtensions.GetBytes32(System.String,System.Byte[])
+  name: GetBytes32(String, Byte[])
+  href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetBytes32_System_String_System_Byte___
+  commentId: M:wan24.Core.StringExtensions.GetBytes32(System.String,System.Byte[])
+  name.vb: GetBytes32(String, Byte())
+  fullName: wan24.Core.StringExtensions.GetBytes32(System.String, System.Byte[])
+  fullName.vb: wan24.Core.StringExtensions.GetBytes32(System.String, System.Byte())
+  nameWithType: StringExtensions.GetBytes32(String, Byte[])
+  nameWithType.vb: StringExtensions.GetBytes32(String, Byte())
 - uid: wan24.Core.StringExtensions.GetBytes32*
   name: GetBytes32
   href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetBytes32_

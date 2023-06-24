@@ -34,15 +34,6 @@ namespace wan24.Core
         public static IEnumInfo GetEnumInfo(this Type type) => (Activator.CreateInstance(typeof(EnumInfo<>).MakeGenericType(type)) as IEnumInfo)!;
 
         /// <summary>
-        /// Get the display text for an enumeration value
-        /// </summary>
-        /// <typeparam name="T">Enumeration type</typeparam>
-        /// <param name="value">Value</param>
-        /// <returns>Display text</returns>
-        public static string GetDisplayText<T>(this T value) where T : struct, Enum, IConvertible
-            => EnumInfo<T>.DisplayTexts.ContainsKey(value.ToString()) ? EnumInfo<T>.DisplayTexts[value.ToString()] : value.ToString();
-
-        /// <summary>
         /// Determine if an enumeration value contains all of the given flags
         /// </summary>
         /// <typeparam name="T">Enumeration type</typeparam>

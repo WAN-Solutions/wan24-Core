@@ -81,6 +81,10 @@
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">PropertyInfoExt</span></div>
   </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.Reflection.ICustomAttributeProvider</span></div>
+  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
@@ -109,7 +113,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_PropertyInfoExt_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class PropertyInfoExt</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class PropertyInfoExt : ICustomAttributeProvider</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -118,7 +122,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PropertyInfoExt__ctor_System_Reflection_PropertyInfo_System_Nullable_Func_System_Object_System_Object___System_Nullable_Action_System_Object_System_Object___.md&amp;value=---%0Auid%3A%20wan24.Core.PropertyInfoExt.%23ctor(System.Reflection.PropertyInfo%2CSystem.Nullable%7BFunc%7BSystem.Object%2CSystem.Object%7D%7D%2CSystem.Nullable%7BAction%7BSystem.Object%2CSystem.Object%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L16">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L17">View Source</a>
   </span>
   <a id="wan24_Core_PropertyInfoExt__ctor_" data-uid="wan24.Core.PropertyInfoExt.#ctor*"></a>
   <h4 id="wan24_Core_PropertyInfoExt__ctor_System_Reflection_PropertyInfo_System_Nullable_Func_System_Object_System_Object___System_Nullable_Action_System_Object_System_Object___" data-uid="wan24.Core.PropertyInfoExt.#ctor(System.Reflection.PropertyInfo,System.Nullable{Func{System.Object,System.Object}},System.Nullable{Action{System.Object,System.Object}})">PropertyInfoExt(PropertyInfo, Nullable&lt;Func&lt;Object, Object&gt;&gt;, Nullable&lt;Action&lt;Object, Object&gt;&gt;)</h4>
@@ -163,10 +167,103 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PropertyInfoExt_CanRead.md&amp;value=---%0Auid%3A%20wan24.Core.PropertyInfoExt.CanRead%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L52">View Source</a>
+  </span>
+  <a id="wan24_Core_PropertyInfoExt_CanRead_" data-uid="wan24.Core.PropertyInfoExt.CanRead*"></a>
+  <h4 id="wan24_Core_PropertyInfoExt_CanRead" data-uid="wan24.Core.PropertyInfoExt.CanRead">CanRead</h4>
+  <div class="markdown level1 summary"><p>Can read?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanRead { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PropertyInfoExt_CanWrite.md&amp;value=---%0Auid%3A%20wan24.Core.PropertyInfoExt.CanWrite%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L62">View Source</a>
+  </span>
+  <a id="wan24_Core_PropertyInfoExt_CanWrite_" data-uid="wan24.Core.PropertyInfoExt.CanWrite*"></a>
+  <h4 id="wan24_Core_PropertyInfoExt_CanWrite" data-uid="wan24.Core.PropertyInfoExt.CanWrite">CanWrite</h4>
+  <div class="markdown level1 summary"><p>Can write?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanWrite { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PropertyInfoExt_DeclaringType.md&amp;value=---%0Auid%3A%20wan24.Core.PropertyInfoExt.DeclaringType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L42">View Source</a>
+  </span>
+  <a id="wan24_Core_PropertyInfoExt_DeclaringType_" data-uid="wan24.Core.PropertyInfoExt.DeclaringType*"></a>
+  <h4 id="wan24_Core_PropertyInfoExt_DeclaringType" data-uid="wan24.Core.PropertyInfoExt.DeclaringType">DeclaringType</h4>
+  <div class="markdown level1 summary"><p>Property declaring type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Type? DeclaringType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Type</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PropertyInfoExt_Getter.md&amp;value=---%0Auid%3A%20wan24.Core.PropertyInfoExt.Getter%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L31">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L47">View Source</a>
   </span>
   <a id="wan24_Core_PropertyInfoExt_Getter_" data-uid="wan24.Core.PropertyInfoExt.Getter*"></a>
   <h4 id="wan24_Core_PropertyInfoExt_Getter" data-uid="wan24.Core.PropertyInfoExt.Getter">Getter</h4>
@@ -194,10 +291,41 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PropertyInfoExt_Name.md&amp;value=---%0Auid%3A%20wan24.Core.PropertyInfoExt.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L37">View Source</a>
+  </span>
+  <a id="wan24_Core_PropertyInfoExt_Name_" data-uid="wan24.Core.PropertyInfoExt.Name*"></a>
+  <h4 id="wan24_Core_PropertyInfoExt_Name" data-uid="wan24.Core.PropertyInfoExt.Name">Name</h4>
+  <div class="markdown level1 summary"><p>Property name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PropertyInfoExt_Property.md&amp;value=---%0Auid%3A%20wan24.Core.PropertyInfoExt.Property%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L26">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L27">View Source</a>
   </span>
   <a id="wan24_Core_PropertyInfoExt_Property_" data-uid="wan24.Core.PropertyInfoExt.Property*"></a>
   <h4 id="wan24_Core_PropertyInfoExt_Property" data-uid="wan24.Core.PropertyInfoExt.Property">Property</h4>
@@ -225,10 +353,41 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PropertyInfoExt_PropertyType.md&amp;value=---%0Auid%3A%20wan24.Core.PropertyInfoExt.PropertyType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L32">View Source</a>
+  </span>
+  <a id="wan24_Core_PropertyInfoExt_PropertyType_" data-uid="wan24.Core.PropertyInfoExt.PropertyType*"></a>
+  <h4 id="wan24_Core_PropertyInfoExt_PropertyType" data-uid="wan24.Core.PropertyInfoExt.PropertyType">PropertyType</h4>
+  <div class="markdown level1 summary"><p>Property type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Type PropertyType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PropertyInfoExt_Setter.md&amp;value=---%0Auid%3A%20wan24.Core.PropertyInfoExt.Setter%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L36">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L57">View Source</a>
   </span>
   <a id="wan24_Core_PropertyInfoExt_Setter_" data-uid="wan24.Core.PropertyInfoExt.Setter*"></a>
   <h4 id="wan24_Core_PropertyInfoExt_Setter" data-uid="wan24.Core.PropertyInfoExt.Setter">Setter</h4>
@@ -254,6 +413,162 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PropertyInfoExt_GetCustomAttributes_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.PropertyInfoExt.GetCustomAttributes(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L65">View Source</a>
+  </span>
+  <a id="wan24_Core_PropertyInfoExt_GetCustomAttributes_" data-uid="wan24.Core.PropertyInfoExt.GetCustomAttributes*"></a>
+  <h4 id="wan24_Core_PropertyInfoExt_GetCustomAttributes_System_Boolean_" data-uid="wan24.Core.PropertyInfoExt.GetCustomAttributes(System.Boolean)">GetCustomAttributes(Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public object[] GetCustomAttributes(bool inherit)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">inherit</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PropertyInfoExt_GetCustomAttributes_Type_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.PropertyInfoExt.GetCustomAttributes(Type%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L69">View Source</a>
+  </span>
+  <a id="wan24_Core_PropertyInfoExt_GetCustomAttributes_" data-uid="wan24.Core.PropertyInfoExt.GetCustomAttributes*"></a>
+  <h4 id="wan24_Core_PropertyInfoExt_GetCustomAttributes_Type_System_Boolean_" data-uid="wan24.Core.PropertyInfoExt.GetCustomAttributes(Type,System.Boolean)">GetCustomAttributes(Type, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public object[] GetCustomAttributes(Type attributeType, bool inherit)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Type</span></td>
+        <td><span class="parametername">attributeType</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">inherit</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PropertyInfoExt_IsDefined_Type_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.PropertyInfoExt.IsDefined(Type%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L73">View Source</a>
+  </span>
+  <a id="wan24_Core_PropertyInfoExt_IsDefined_" data-uid="wan24.Core.PropertyInfoExt.IsDefined*"></a>
+  <h4 id="wan24_Core_PropertyInfoExt_IsDefined_Type_System_Boolean_" data-uid="wan24.Core.PropertyInfoExt.IsDefined(Type,System.Boolean)">IsDefined(Type, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public bool IsDefined(Type attributeType, bool inherit)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Type</span></td>
+        <td><span class="parametername">attributeType</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">inherit</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="operators">Operators
   </h3>
   <span class="small pull-right mobile-hide">
@@ -261,7 +576,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PropertyInfoExt_op_Implicit_wan24_Core_PropertyInfoExt__System_Reflection_PropertyInfo.md&amp;value=---%0Auid%3A%20wan24.Core.PropertyInfoExt.op_Implicit(wan24.Core.PropertyInfoExt)~System.Reflection.PropertyInfo%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L42">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L80">View Source</a>
   </span>
   <a id="wan24_Core_PropertyInfoExt_op_Implicit_" data-uid="wan24.Core.PropertyInfoExt.op_Implicit*"></a>
   <h4 id="wan24_Core_PropertyInfoExt_op_Implicit_wan24_Core_PropertyInfoExt__System_Reflection_PropertyInfo" data-uid="wan24.Core.PropertyInfoExt.op_Implicit(wan24.Core.PropertyInfoExt)~System.Reflection.PropertyInfo">Implicit(PropertyInfoExt to PropertyInfo)</h4>
@@ -305,6 +620,10 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.Reflection.ICustomAttributeProvider</span>
+  </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_Int32_System_Int32_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, Int32, Int32, String)</a>
@@ -385,7 +704,19 @@
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean_System_String_">ObjectExtensions.EnsureValidState&lt;T&gt;(T, Boolean, String)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText_System_Object_">ObjectExtensions.GetDisplayText(Object)</a>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText__1___0_">ObjectExtensions.GetDisplayText&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetCustomAttributeCached__1_System_Reflection_ICustomAttributeProvider_">ReflectionExtensions.GetCustomAttributeCached&lt;T&gt;(ICustomAttributeProvider)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetCustomAttributesCached__1_System_Reflection_ICustomAttributeProvider_">ReflectionExtensions.GetCustomAttributesCached&lt;T&gt;(ICustomAttributeProvider)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetValueFast_wan24_Core_PropertyInfoExt_System_Object_">ReflectionExtensions.GetValueFast(PropertyInfoExt, Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_SetValueFast_wan24_Core_PropertyInfoExt_System_Object_System_Object_">ReflectionExtensions.SetValueFast(PropertyInfoExt, Object, Object)</a>
   </div>
 </article>
           </div>
@@ -398,7 +729,7 @@
                     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PropertyInfoExt.md&amp;value=---%0Auid%3A%20wan24.Core.PropertyInfoExt%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PropertyInfoExt.cs/#L9" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

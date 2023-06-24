@@ -223,7 +223,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="ol">Object lock</param>
         /// <param name="e">Event arguments</param>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         private void RemoveLock(IDisposableObject ol, EventArgs e)
         {
             ol.OnDisposed -= RemoveLock;

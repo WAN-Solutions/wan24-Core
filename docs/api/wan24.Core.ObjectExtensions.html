@@ -261,19 +261,19 @@ public static T EnsureValidState&lt;T&gt;(this T obj, bool state, string error =
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ObjectExtensions_GetDisplayText_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectExtensions.GetDisplayText(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ObjectExtensions_GetDisplayText__1___0_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectExtensions.GetDisplayText%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ObjectExtensions.cs/#L59">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ObjectExtensions.cs/#L60">View Source</a>
   </span>
   <a id="wan24_Core_ObjectExtensions_GetDisplayText_" data-uid="wan24.Core.ObjectExtensions.GetDisplayText*"></a>
-  <h4 id="wan24_Core_ObjectExtensions_GetDisplayText_System_Object_" data-uid="wan24.Core.ObjectExtensions.GetDisplayText(System.Object)">GetDisplayText(Object)</h4>
+  <h4 id="wan24_Core_ObjectExtensions_GetDisplayText__1___0_" data-uid="wan24.Core.ObjectExtensions.GetDisplayText``1(``0)">GetDisplayText&lt;T&gt;(T)</h4>
   <div class="markdown level1 summary"><p>Get the display text</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string GetDisplayText(this object value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static string GetDisplayText&lt;T&gt;(this T value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -286,7 +286,7 @@ public static T EnsureValidState&lt;T&gt;(this T obj, bool state, string error =
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Object</span></td>
+        <td><span class="xref">T</span></td>
         <td><span class="parametername">value</span></td>
         <td><p>Value</p>
 </td>
@@ -305,6 +305,22 @@ public static T EnsureValidState&lt;T&gt;(this T obj, bool state, string error =
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><p>Display text</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Value type</p>
 </td>
       </tr>
     </tbody>
