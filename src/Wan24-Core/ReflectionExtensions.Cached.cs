@@ -163,6 +163,18 @@ namespace wan24.Core
         /// <param name="pi">Property</param>
         /// <param name="obj">Object</param>
         /// <returns>Value</returns>
+        public static object? GetValueFast(this PropertyInfoExt pi, object? obj)
+        {
+            if (pi.Getter == null) throw new InvalidOperationException("The property has no getter");
+            return pi.Getter(obj);
+        }
+
+        /// <summary>
+        /// Faster <see cref="PropertyInfo.GetValue(object?)"/>
+        /// </summary>
+        /// <param name="pi">Property</param>
+        /// <param name="obj">Object</param>
+        /// <returns>Value</returns>
         public static object? GetValueFast(this PropertyInfo pi, object? obj)
         {
             BindingFlags bindingFlags = (pi.GetMethod?.IsPublic ?? false) || pi.SetMethod!.IsPublic
@@ -186,6 +198,18 @@ namespace wan24.Core
             if (prop == null) throw new InvalidProgramException();
             if (prop.Getter == null) throw new InvalidOperationException("The property has no getter");
             return prop.Getter(obj);
+        }
+
+        /// <summary>
+        /// Faster <see cref="PropertyInfo.SetValue(object?, object?)"/>
+        /// </summary>
+        /// <param name="pi">Property</param>
+        /// <param name="obj">Object</param>
+        /// <param name="value">Value</param>
+        public static void SetValueFast(this PropertyInfoExt pi, object? obj, object? value)
+        {
+            if (pi.Setter == null) throw new InvalidOperationException("The property has no setter");
+            pi.Setter(obj, value);
         }
 
         /// <summary>

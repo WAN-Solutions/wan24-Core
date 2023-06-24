@@ -60,7 +60,9 @@ namespace wan24.Core
             string? lastKey = null;
             bool requireValue = false;
             int i = 0;
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             void HandleDashFlag()
             {
                 if (a.ContainsKey("-"))
@@ -189,7 +191,9 @@ namespace wan24.Core
             int argsOffset = 0,// Result buffer offset
                 valueOffset = 0,// Value buffer offset
                 i = 0;// Current char index
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             void AddValue()
             {
                 // Add the current value to the result

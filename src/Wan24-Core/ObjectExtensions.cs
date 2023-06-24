@@ -54,22 +54,22 @@ namespace wan24.Core
         /// <summary>
         /// Get the display text
         /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Display text</returns>
-        public static string GetDisplayText(this object value)
+        public static string GetDisplayText<T>(this T value)
         {
-            string? res = (value as ICustomAttributeProvider)?.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText;
-            if (res != null) return res;
-            Type t = value.GetType();
+            if ((value as ICustomAttributeProvider)?.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText is string res) return res;
+            Type t = value!.GetType();
             if (t.IsEnum)
             {
-                IEnumInfo info = EnumExtensions.GetEnumInfo(value.GetType());
                 string str = value.ToString() ?? throw new ArgumentException("Not an enumeration value", nameof(value));
+                IEnumInfo info = EnumExtensions.GetEnumInfo(t);
                 return info.ValueDisplayTexts.ContainsKey(str) ? info.ValueDisplayTexts[str] : str;
             }
             else
             {
-                return value.ToString() ?? value.GetType().ToString();
+                return value.ToString() ?? t.ToString();
             }
         }
     }

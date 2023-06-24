@@ -10,7 +10,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="offset">Start bit offset</param>
         /// <param name="bits">Bits to set</param>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public virtual void SetBits(long offset, params bool[] bits)
         {
             if (bits.Length == 0) return;
