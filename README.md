@@ -27,6 +27,8 @@ disposed (or another given cancellation token ws canceled)
 - Secure byte and char array, which clears its contents when disposing
 - Pool rented array as disposable object (which optionally clears its contents 
 when disposing; for byte/char arrays just like the `Secure*Array`)
+- Asynchronous API helper
+    - Asynchronous fluent API helper
 - Byte array extensions
     - Endian conversion
     - Bit-converter (endian-safe)

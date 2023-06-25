@@ -72,5 +72,15 @@ namespace wan24.Core
                 return value.ToString() ?? t.ToString();
             }
         }
+
+        /// <summary>
+        /// Execute an action
+        /// </summary>
+        /// <typeparam name="tObject">Object type</typeparam>
+        /// <typeparam name="tReturn">Return type</typeparam>
+        /// <param name="obj">Object</param>
+        /// <param name="action">Action</param>
+        /// <returns>Return value</returns>
+        public static tReturn Do<tObject, tReturn>(this tObject obj, Func<tObject, tReturn> action) => action(obj);
     }
 }

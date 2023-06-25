@@ -136,5 +136,43 @@ namespace wan24.Core
         /// <returns>Index or <c>-1</c>, if not found</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static int IndexOf<T>(this T[] arr, T value) => Array.IndexOf(arr, value);
+
+        /// <summary>
+        /// Determine if all values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Required values</param>
+        /// <returns>All contained?</returns>
+        public static bool ContainsAll<T>(this T[] arr, params T[] values)
+        {
+            int vlen = values.Length;
+            if (vlen == 0) return true;
+            int len = arr.Length;
+            if (len < vlen) return false;
+            bool[] found = new bool[vlen];
+            for (int i = 0, index; i < len; i++)
+            {
+                index = values.IndexOf(arr[i]);
+                if (index != -1) found[index] = true;
+            }
+            for (int i = 0; i < vlen; i++) if (!found[i]) return false;
+            return true;
+        }
+
+        /// <summary>
+        /// Determine if any of the values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Values</param>
+        /// <returns>Any contained?</returns>
+        public static bool ContainsAny<T>(this T[] arr, params T[] values)
+        {
+            if (values.Length == 0) return false;
+            int len = arr.Length;
+            for (int i = 0; i < len; i++) if (values.IndexOf(arr[i]) != -1) return true;
+            return false;
+        }
     }
 }

@@ -110,6 +110,45 @@ namespace wan24.Core
             => (T?)await InvokeAutoAsync(mi, obj, param).DynamicContext();
 
         /// <summary>
+        /// Invoke a constructor and complete parameters with default values
+        /// </summary>
+        /// <param name="ci">Constructor</param>
+        /// <param name="param">Parameters</param>
+        /// <returns>Instance</returns>
+        public static object InvokeAuto(this ConstructorInfo ci, params object?[] param)
+        {
+            List<object?> par = new(param);
+            ParameterInfo[] pis = ci.GetParametersCached();
+#pragma warning disable IDE0018 // Can declare inline
+            object? di;
+#pragma warning restore IDE0018 // Can declare inline
+            for (int i = par.Count; i < pis.Length; i++)
+                if (DiHelper.GetDiObject(pis[i].ParameterType, out di))
+                {
+                    par.Add(di);
+                }
+                else if (!pis[i].HasDefaultValue)
+                {
+                    throw new ArgumentException($"Missing required parameter #{i} ({pis[i].Name}) for invoking constructor of {ci.DeclaringType}.{ci.Name}", nameof(param));
+                }
+                else
+                {
+                    par.Add(pis[i].DefaultValue);
+                }
+            return ci.Invoke(par.ToArray());
+        }
+
+        /// <summary>
+        /// Invoke a constructor and complete parameters with default values
+        /// </summary>
+        /// <typeparam name="T">Return type</typeparam>
+        /// <param name="ci">Constructor</param>
+        /// <param name="param">Parameters</param>
+        /// <returns>Instance</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static T InvokeAuto<T>(this ConstructorInfo ci, params object?[] param) => (T)InvokeAuto(ci, param);
+
+        /// <summary>
         /// Invoke a possible constructor and complete parameters with default values
         /// </summary>
         /// <param name="type">Type</param>
@@ -117,6 +156,17 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Instance or <see langword="null"/>, if no constructor could be found</returns>
         public static object? ConstructAuto(this Type type, bool usePrivate = false, params object?[] param)
+            => ConstructAuto(type, out _, usePrivate, param);
+
+        /// <summary>
+        /// Invoke a possible constructor and complete parameters with default values
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="usedConstructor">Used constructor</param>
+        /// <param name="usePrivate">Use private constructors, too?</param>
+        /// <param name="param">Parameters</param>
+        /// <returns>Instance or <see langword="null"/>, if no constructor could be found</returns>
+        public static object? ConstructAuto(this Type type, out ConstructorInfo? usedConstructor, bool usePrivate = false, params object?[] param)
         {
             NullabilityInfoContext nic = new();
             BindingFlags flags = usePrivate
@@ -140,6 +190,7 @@ namespace wan24.Core
                     else if (pis[i].IsNullable(nic)) par.Add(null);
                     else use = false;
                 if (!use) continue;
+                usedConstructor = ci;
                 return ci.Invoke(par.ToArray());
             }
             throw new InvalidOperationException($"{type} can't be instanced (private: {usePrivate}) with the given parameters");
@@ -253,7 +304,49 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Match a method return type agsinst an expected type
+        /// Get a constructor which matches the given filter parameters
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="bindingFlags">Binding flags (used to select methods of the type)</param>
+        /// <param name="filter">Additional filter function (needs to return <see langword="true"/> to accept the given method as return value)</param>
+        /// <param name="exactTypes">Require exact types?</param>
+        /// <param name="parameterTypes">Parameter types (or <see langword="null"/> to skip parameter type checks; a single <see langword="null"/> parameter type would allow any parameter 
+        /// type)</param>
+        /// <returns>Matching constructor</returns>
+        public static ConstructorInfo? GetConstructor(
+            this Type type,
+            BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic,
+            Func<ConstructorInfo, bool>? filter = null,
+            bool exactTypes = true,
+            params Type?[]? parameterTypes
+            )
+        {
+            Type[] pt;
+            foreach (ConstructorInfo ci in type.GetConstructorsCached(bindingFlags))
+            {
+                // Check parameters
+                if (parameterTypes != null)
+                {
+                    pt = ci.GetParametersCached().Select(p => p.ParameterType).ToArray();
+                    if (pt.Length != parameterTypes.Length) continue;
+                    bool isMatch = true;
+                    for (int i = 0; i < parameterTypes.Length; i++)
+                    {
+                        if (parameterTypes[i] == null || MatchParameterType(pt[i], parameterTypes[i]!, exactTypes)) continue;
+                        isMatch = false;
+                        break;
+                    }
+                    if (!isMatch) continue;
+                }
+                // Run additional filter
+                if (!(filter?.Invoke(ci) ?? true)) continue;
+                return ci;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Match a method return type against an expected type
         /// </summary>
         /// <param name="method">Method</param>
         /// <param name="expectedReturnType">Expected return type</param>
@@ -267,7 +360,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Match a method return type agsinst an expected type
+        /// Match a method parameter type against an expected type
         /// </summary>
         /// <param name="method">Method</param>
         /// <param name="parameterType">Parameter type</param>
@@ -280,5 +373,15 @@ namespace wan24.Core
                 return parameterType.GetGenericTypeDefinition().IsAssignableFrom(expectedType);
             return (exact && parameterType == expectedType) || (!exact && parameterType.IsAssignableFrom(expectedType));
         }
+
+        /// <summary>
+        /// Match a constructor parameter type against an expected type
+        /// </summary>
+        /// <param name="parameterType">Parameter type</param>
+        /// <param name="expectedType">Expected type</param>
+        /// <param name="exact">Exact type match?</param>
+        /// <returns>Is match?</returns>
+        private static bool MatchParameterType(Type parameterType, Type expectedType, bool exact)
+            => (exact && parameterType == expectedType) || (!exact && parameterType.IsAssignableFrom(expectedType));
     }
 }
