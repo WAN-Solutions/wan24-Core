@@ -20,6 +20,7 @@ namespace wan24.Core
         static EnumInfo()
         {
             if (!typeof(T).IsEnum) throw new ArgumentException("Enumeration type required", nameof(T));
+            Default = default;
             string[] names = Enum.GetNames(typeof(T));
             T[] values = (T[])Enum.GetValues(typeof(T));
             HasFlagsAttribute = typeof(T).GetCustomAttributeCached<FlagsAttribute>() != null;
@@ -123,6 +124,14 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         public EnumInfo() { }
+
+        /// <summary>
+        /// Default value
+        /// </summary>
+        public static T Default { get; }
+
+        /// <inheritdoc/>
+        public Enum DefaultValue => Default;
 
         /// <summary>
         /// Is the numeric value unsigned?

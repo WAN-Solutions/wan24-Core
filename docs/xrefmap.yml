@@ -397,6 +397,38 @@ references:
   commentId: T:wan24.Core.ArrayExtensions
   fullName: wan24.Core.ArrayExtensions
   nameWithType: ArrayExtensions
+- uid: wan24.Core.ArrayExtensions.ContainsAll*
+  name: ContainsAll
+  href: api/wan24.Core.ArrayExtensions.html#wan24_Core_ArrayExtensions_ContainsAll_
+  commentId: Overload:wan24.Core.ArrayExtensions.ContainsAll
+  isSpec: "True"
+  fullName: wan24.Core.ArrayExtensions.ContainsAll
+  nameWithType: ArrayExtensions.ContainsAll
+- uid: wan24.Core.ArrayExtensions.ContainsAll``1(``0[],``0[])
+  name: ContainsAll<T>(T[], T[])
+  href: api/wan24.Core.ArrayExtensions.html#wan24_Core_ArrayExtensions_ContainsAll__1___0_____0___
+  commentId: M:wan24.Core.ArrayExtensions.ContainsAll``1(``0[],``0[])
+  name.vb: ContainsAll(Of T)(T(), T())
+  fullName: wan24.Core.ArrayExtensions.ContainsAll<T>(T[], T[])
+  fullName.vb: wan24.Core.ArrayExtensions.ContainsAll(Of T)(T(), T())
+  nameWithType: ArrayExtensions.ContainsAll<T>(T[], T[])
+  nameWithType.vb: ArrayExtensions.ContainsAll(Of T)(T(), T())
+- uid: wan24.Core.ArrayExtensions.ContainsAny*
+  name: ContainsAny
+  href: api/wan24.Core.ArrayExtensions.html#wan24_Core_ArrayExtensions_ContainsAny_
+  commentId: Overload:wan24.Core.ArrayExtensions.ContainsAny
+  isSpec: "True"
+  fullName: wan24.Core.ArrayExtensions.ContainsAny
+  nameWithType: ArrayExtensions.ContainsAny
+- uid: wan24.Core.ArrayExtensions.ContainsAny``1(``0[],``0[])
+  name: ContainsAny<T>(T[], T[])
+  href: api/wan24.Core.ArrayExtensions.html#wan24_Core_ArrayExtensions_ContainsAny__1___0_____0___
+  commentId: M:wan24.Core.ArrayExtensions.ContainsAny``1(``0[],``0[])
+  name.vb: ContainsAny(Of T)(T(), T())
+  fullName: wan24.Core.ArrayExtensions.ContainsAny<T>(T[], T[])
+  fullName.vb: wan24.Core.ArrayExtensions.ContainsAny(Of T)(T(), T())
+  nameWithType: ArrayExtensions.ContainsAny<T>(T[], T[])
+  nameWithType.vb: ArrayExtensions.ContainsAny(Of T)(T(), T())
 - uid: wan24.Core.ArrayExtensions.EnsureValid*
   name: EnsureValid
   href: api/wan24.Core.ArrayExtensions.html#wan24_Core_ArrayExtensions_EnsureValid_
@@ -7855,6 +7887,38 @@ references:
   fullName.vb: wan24.Core.EnumerableExtensions.Combine(Of T)(IEnumerable(Of IEnumerable(Of T)))
   nameWithType: EnumerableExtensions.Combine<T>(IEnumerable<IEnumerable<T>>)
   nameWithType.vb: EnumerableExtensions.Combine(Of T)(IEnumerable(Of IEnumerable(Of T)))
+- uid: wan24.Core.EnumerableExtensions.ContainsAll*
+  name: ContainsAll
+  href: api/wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAll_
+  commentId: Overload:wan24.Core.EnumerableExtensions.ContainsAll
+  isSpec: "True"
+  fullName: wan24.Core.EnumerableExtensions.ContainsAll
+  nameWithType: EnumerableExtensions.ContainsAll
+- uid: wan24.Core.EnumerableExtensions.ContainsAll``1(IEnumerable{``0},``0[])
+  name: ContainsAll<T>(IEnumerable<T>, T[])
+  href: api/wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAll__1_IEnumerable___0____0___
+  commentId: M:wan24.Core.EnumerableExtensions.ContainsAll``1(IEnumerable{``0},``0[])
+  name.vb: ContainsAll(Of T)(IEnumerable(Of T), T())
+  fullName: wan24.Core.EnumerableExtensions.ContainsAll<T>(IEnumerable<T>, T[])
+  fullName.vb: wan24.Core.EnumerableExtensions.ContainsAll(Of T)(IEnumerable(Of T), T())
+  nameWithType: EnumerableExtensions.ContainsAll<T>(IEnumerable<T>, T[])
+  nameWithType.vb: EnumerableExtensions.ContainsAll(Of T)(IEnumerable(Of T), T())
+- uid: wan24.Core.EnumerableExtensions.ContainsAny*
+  name: ContainsAny
+  href: api/wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAny_
+  commentId: Overload:wan24.Core.EnumerableExtensions.ContainsAny
+  isSpec: "True"
+  fullName: wan24.Core.EnumerableExtensions.ContainsAny
+  nameWithType: EnumerableExtensions.ContainsAny
+- uid: wan24.Core.EnumerableExtensions.ContainsAny``1(IEnumerable{``0},``0[])
+  name: ContainsAny<T>(IEnumerable<T>, T[])
+  href: api/wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAny__1_IEnumerable___0____0___
+  commentId: M:wan24.Core.EnumerableExtensions.ContainsAny``1(IEnumerable{``0},``0[])
+  name.vb: ContainsAny(Of T)(IEnumerable(Of T), T())
+  fullName: wan24.Core.EnumerableExtensions.ContainsAny<T>(IEnumerable<T>, T[])
+  fullName.vb: wan24.Core.EnumerableExtensions.ContainsAny(Of T)(IEnumerable(Of T), T())
+  nameWithType: EnumerableExtensions.ContainsAny<T>(IEnumerable<T>, T[])
+  nameWithType.vb: EnumerableExtensions.ContainsAny(Of T)(IEnumerable(Of T), T())
 - uid: wan24.Core.EnumExtensions
   name: EnumExtensions
   href: api/wan24.Core.EnumExtensions.html
@@ -8008,6 +8072,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.EnumExtensions.IsValidEnumerationValue
   nameWithType: EnumExtensions.IsValidEnumerationValue
+- uid: wan24.Core.EnumExtensions.IsValidEnumerationValue``1(``0)
+  name: IsValidEnumerationValue<T>(T)
+  href: api/wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue__1___0_
+  commentId: M:wan24.Core.EnumExtensions.IsValidEnumerationValue``1(``0)
+  name.vb: IsValidEnumerationValue(Of T)(T)
+  fullName: wan24.Core.EnumExtensions.IsValidEnumerationValue<T>(T)
+  fullName.vb: wan24.Core.EnumExtensions.IsValidEnumerationValue(Of T)(T)
+  nameWithType: EnumExtensions.IsValidEnumerationValue<T>(T)
+  nameWithType.vb: EnumExtensions.IsValidEnumerationValue(Of T)(T)
 - uid: wan24.Core.EnumExtensions.IsValue*
   name: IsValue
   href: api/wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValue_
@@ -8082,6 +8155,40 @@ references:
   fullName.vb: wan24.Core.EnumInfo(Of T).EnumInfo
   nameWithType: EnumInfo<T>.EnumInfo
   nameWithType.vb: EnumInfo(Of T).EnumInfo
+- uid: wan24.Core.EnumInfo`1.Default
+  name: Default
+  href: api/wan24.Core.EnumInfo-1.html#wan24_Core_EnumInfo_1_Default
+  commentId: P:wan24.Core.EnumInfo`1.Default
+  fullName: wan24.Core.EnumInfo<T>.Default
+  fullName.vb: wan24.Core.EnumInfo(Of T).Default
+  nameWithType: EnumInfo<T>.Default
+  nameWithType.vb: EnumInfo(Of T).Default
+- uid: wan24.Core.EnumInfo`1.Default*
+  name: Default
+  href: api/wan24.Core.EnumInfo-1.html#wan24_Core_EnumInfo_1_Default_
+  commentId: Overload:wan24.Core.EnumInfo`1.Default
+  isSpec: "True"
+  fullName: wan24.Core.EnumInfo<T>.Default
+  fullName.vb: wan24.Core.EnumInfo(Of T).Default
+  nameWithType: EnumInfo<T>.Default
+  nameWithType.vb: EnumInfo(Of T).Default
+- uid: wan24.Core.EnumInfo`1.DefaultValue
+  name: DefaultValue
+  href: api/wan24.Core.EnumInfo-1.html#wan24_Core_EnumInfo_1_DefaultValue
+  commentId: P:wan24.Core.EnumInfo`1.DefaultValue
+  fullName: wan24.Core.EnumInfo<T>.DefaultValue
+  fullName.vb: wan24.Core.EnumInfo(Of T).DefaultValue
+  nameWithType: EnumInfo<T>.DefaultValue
+  nameWithType.vb: EnumInfo(Of T).DefaultValue
+- uid: wan24.Core.EnumInfo`1.DefaultValue*
+  name: DefaultValue
+  href: api/wan24.Core.EnumInfo-1.html#wan24_Core_EnumInfo_1_DefaultValue_
+  commentId: Overload:wan24.Core.EnumInfo`1.DefaultValue
+  isSpec: "True"
+  fullName: wan24.Core.EnumInfo<T>.DefaultValue
+  fullName.vb: wan24.Core.EnumInfo(Of T).DefaultValue
+  nameWithType: EnumInfo<T>.DefaultValue
+  nameWithType.vb: EnumInfo(Of T).DefaultValue
 - uid: wan24.Core.EnumInfo`1.DisplayTexts
   name: DisplayTexts
   href: api/wan24.Core.EnumInfo-1.html#wan24_Core_EnumInfo_1_DisplayTexts
@@ -9561,6 +9668,19 @@ references:
   commentId: T:wan24.Core.IEnumInfo
   fullName: wan24.Core.IEnumInfo
   nameWithType: IEnumInfo
+- uid: wan24.Core.IEnumInfo.DefaultValue
+  name: DefaultValue
+  href: api/wan24.Core.IEnumInfo.html#wan24_Core_IEnumInfo_DefaultValue
+  commentId: P:wan24.Core.IEnumInfo.DefaultValue
+  fullName: wan24.Core.IEnumInfo.DefaultValue
+  nameWithType: IEnumInfo.DefaultValue
+- uid: wan24.Core.IEnumInfo.DefaultValue*
+  name: DefaultValue
+  href: api/wan24.Core.IEnumInfo.html#wan24_Core_IEnumInfo_DefaultValue_
+  commentId: Overload:wan24.Core.IEnumInfo.DefaultValue
+  isSpec: "True"
+  fullName: wan24.Core.IEnumInfo.DefaultValue
+  nameWithType: IEnumInfo.DefaultValue
 - uid: wan24.Core.IEnumInfo.EnumNames
   name: EnumNames
   href: api/wan24.Core.IEnumInfo.html#wan24_Core_IEnumInfo_EnumNames
@@ -14984,6 +15104,15 @@ references:
   fullName.vb: wan24.Core.ReflectionExtensions.ConstructAuto(Type, System.Boolean, System.Object())
   nameWithType: ReflectionExtensions.ConstructAuto(Type, Boolean, Object[])
   nameWithType.vb: ReflectionExtensions.ConstructAuto(Type, Boolean, Object())
+- uid: wan24.Core.ReflectionExtensions.ConstructAuto(Type,System.Reflection.ConstructorInfo@,System.Boolean,System.Object[])
+  name: ConstructAuto(Type, out ConstructorInfo, Boolean, Object[])
+  href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_ConstructAuto_Type_System_Reflection_ConstructorInfo__System_Boolean_System_Object___
+  commentId: M:wan24.Core.ReflectionExtensions.ConstructAuto(Type,System.Reflection.ConstructorInfo@,System.Boolean,System.Object[])
+  name.vb: ConstructAuto(Type, ByRef ConstructorInfo, Boolean, Object())
+  fullName: wan24.Core.ReflectionExtensions.ConstructAuto(Type, out System.Reflection.ConstructorInfo, System.Boolean, System.Object[])
+  fullName.vb: wan24.Core.ReflectionExtensions.ConstructAuto(Type, ByRef System.Reflection.ConstructorInfo, System.Boolean, System.Object())
+  nameWithType: ReflectionExtensions.ConstructAuto(Type, out ConstructorInfo, Boolean, Object[])
+  nameWithType.vb: ReflectionExtensions.ConstructAuto(Type, ByRef ConstructorInfo, Boolean, Object())
 - uid: wan24.Core.ReflectionExtensions.ConstructAuto*
   name: ConstructAuto
   href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_ConstructAuto_
@@ -15007,6 +15136,22 @@ references:
   fullName.vb: wan24.Core.ReflectionExtensions.GetCastedGetterDelegate(Of T)(System.Reflection.PropertyInfo)
   nameWithType: ReflectionExtensions.GetCastedGetterDelegate<T>(PropertyInfo)
   nameWithType.vb: ReflectionExtensions.GetCastedGetterDelegate(Of T)(PropertyInfo)
+- uid: wan24.Core.ReflectionExtensions.GetConstructor(Type,System.Reflection.BindingFlags,System.Nullable{Func{System.Reflection.ConstructorInfo,System.Boolean}},System.Boolean,System.Nullable{Type}[])
+  name: GetConstructor(Type, BindingFlags, Nullable<Func<ConstructorInfo, Boolean>>, Boolean, Nullable<Type>[])
+  href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetConstructor_Type_System_Reflection_BindingFlags_System_Nullable_Func_System_Reflection_ConstructorInfo_System_Boolean___System_Boolean_System_Nullable_Type____
+  commentId: M:wan24.Core.ReflectionExtensions.GetConstructor(Type,System.Reflection.BindingFlags,System.Nullable{Func{System.Reflection.ConstructorInfo,System.Boolean}},System.Boolean,System.Nullable{Type}[])
+  name.vb: GetConstructor(Type, BindingFlags, Nullable(Of Func(Of ConstructorInfo, Boolean)), Boolean, Nullable(Of Type)())
+  fullName: wan24.Core.ReflectionExtensions.GetConstructor(Type, System.Reflection.BindingFlags, System.Nullable<Func<System.Reflection.ConstructorInfo, System.Boolean>>, System.Boolean, System.Nullable<Type>[])
+  fullName.vb: wan24.Core.ReflectionExtensions.GetConstructor(Type, System.Reflection.BindingFlags, System.Nullable(Of Func(Of System.Reflection.ConstructorInfo, System.Boolean)), System.Boolean, System.Nullable(Of Type)())
+  nameWithType: ReflectionExtensions.GetConstructor(Type, BindingFlags, Nullable<Func<ConstructorInfo, Boolean>>, Boolean, Nullable<Type>[])
+  nameWithType.vb: ReflectionExtensions.GetConstructor(Type, BindingFlags, Nullable(Of Func(Of ConstructorInfo, Boolean)), Boolean, Nullable(Of Type)())
+- uid: wan24.Core.ReflectionExtensions.GetConstructor*
+  name: GetConstructor
+  href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetConstructor_
+  commentId: Overload:wan24.Core.ReflectionExtensions.GetConstructor
+  isSpec: "True"
+  fullName: wan24.Core.ReflectionExtensions.GetConstructor
+  nameWithType: ReflectionExtensions.GetConstructor
 - uid: wan24.Core.ReflectionExtensions.GetConstructorsCached(Type,System.Reflection.BindingFlags)
   name: GetConstructorsCached(Type, BindingFlags)
   href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetConstructorsCached_Type_System_Reflection_BindingFlags_
@@ -15250,6 +15395,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ReflectionExtensions.GetValueFast
   nameWithType: ReflectionExtensions.GetValueFast
+- uid: wan24.Core.ReflectionExtensions.InvokeAuto(System.Reflection.ConstructorInfo,System.Object[])
+  name: InvokeAuto(ConstructorInfo, Object[])
+  href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeAuto_System_Reflection_ConstructorInfo_System_Object___
+  commentId: M:wan24.Core.ReflectionExtensions.InvokeAuto(System.Reflection.ConstructorInfo,System.Object[])
+  name.vb: InvokeAuto(ConstructorInfo, Object())
+  fullName: wan24.Core.ReflectionExtensions.InvokeAuto(System.Reflection.ConstructorInfo, System.Object[])
+  fullName.vb: wan24.Core.ReflectionExtensions.InvokeAuto(System.Reflection.ConstructorInfo, System.Object())
+  nameWithType: ReflectionExtensions.InvokeAuto(ConstructorInfo, Object[])
+  nameWithType.vb: ReflectionExtensions.InvokeAuto(ConstructorInfo, Object())
 - uid: wan24.Core.ReflectionExtensions.InvokeAuto(System.Reflection.MethodInfo,System.Object,System.Object[])
   name: InvokeAuto(MethodInfo, Object, Object[])
   href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeAuto_System_Reflection_MethodInfo_System_Object_System_Object___
@@ -15266,6 +15420,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ReflectionExtensions.InvokeAuto
   nameWithType: ReflectionExtensions.InvokeAuto
+- uid: wan24.Core.ReflectionExtensions.InvokeAuto``1(System.Reflection.ConstructorInfo,System.Object[])
+  name: InvokeAuto<T>(ConstructorInfo, Object[])
+  href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeAuto__1_System_Reflection_ConstructorInfo_System_Object___
+  commentId: M:wan24.Core.ReflectionExtensions.InvokeAuto``1(System.Reflection.ConstructorInfo,System.Object[])
+  name.vb: InvokeAuto(Of T)(ConstructorInfo, Object())
+  fullName: wan24.Core.ReflectionExtensions.InvokeAuto<T>(System.Reflection.ConstructorInfo, System.Object[])
+  fullName.vb: wan24.Core.ReflectionExtensions.InvokeAuto(Of T)(System.Reflection.ConstructorInfo, System.Object())
+  nameWithType: ReflectionExtensions.InvokeAuto<T>(ConstructorInfo, Object[])
+  nameWithType.vb: ReflectionExtensions.InvokeAuto(Of T)(ConstructorInfo, Object())
 - uid: wan24.Core.ReflectionExtensions.InvokeAuto``1(System.Reflection.MethodInfo,System.Object,System.Object[])
   name: InvokeAuto<T>(MethodInfo, Object, Object[])
   href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeAuto__1_System_Reflection_MethodInfo_System_Object_System_Object___

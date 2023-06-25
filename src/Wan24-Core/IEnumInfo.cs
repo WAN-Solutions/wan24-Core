@@ -8,6 +8,10 @@ namespace wan24.Core
     public interface IEnumInfo
     {
         /// <summary>
+        /// Default value
+        /// </summary>
+        Enum DefaultValue { get; }
+        /// <summary>
         /// Is the numeric value unsigned?
         /// </summary>
         bool IsUnsignedNumeric { get; }
