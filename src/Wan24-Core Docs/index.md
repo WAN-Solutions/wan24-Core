@@ -34,6 +34,9 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
     - Bit-converter (endian-safe)
     - UTF-8/16/32 (little endian) string decoding
     - Clearing
+- Dictionary extensions
+    - Merge with string key prefix
+    - Merge a list with the index as key (and an optional key prefix)
 - Char array extensions
     - Clearing
 - Array helper extensions
@@ -96,6 +99,7 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
     - Determine if a value is within a list of values
 - String extensions
     - Get UTF-8/16/32 bytes (little endian)
+    - Parsing
 - Generic helper
     - Determine if two generic values are equal
     - Determine if a value is `null`
@@ -746,3 +750,161 @@ nothing, too.
 
 If required, the used encoding character map can be customized. You may use 
 any 64 characters long map with unique items.
+
+## String parser
+
+Using the `Parse` extension method for a `string`, you can parse placeholders 
+into a string and modify the output using (customizable) parser functions:
+
+```cs
+Dictionary<string, string> data = new()
+{
+    {"name", "value"}
+};
+Assert.AreEqual("value", "%{name}".Parse(data));
+```
+
+You may setup the default parser data in `StringExtensions.ParserEnvironment`. 
+The given parser data will override defaults.
+
+You can execute as many parser functions on the output as required, separated 
+using `:`:
+
+`%{input:func1:func2(param1,param2,...):func3():...}`
+
+The first optional segment is always a parser data variable name (if not used, 
+the sequence starts with a `:` to indicate a function call). A function may or 
+may not have parameters. The result of a function will be provided for the 
+next function. Available functions:
+
+| Function | Syntax | Usage |
+| --- | --- | --- |
+| `sub` | `%{input:sub([offset/length](,[length]))}` | extracts a sub-string |
+| `left` | `%{input:left([length])}` | takes X characters from the left |
+| `right` | `%{input:right([length])}` | takes X characters from the right |
+| `trim` | `%{input:trim}` | removes white-spaces from the value |
+| `discard` | `%{input:discard}` | no parameters, discards the current output |
+| `escape_html` | `%{input:escape_html}` | escapes the value for use within HTML |
+| `escape_json` | `%{input:escape_json}` | escapes the value for use within double quotes (double quotes will be trimmed from the JSON result!) |
+| `escape_uri` | `%{input:escape_uri}` | escapes the value for use within an URI |
+| `set` | `%{input:set([name])}` sets the current output as parser variable with the given name |
+| `var` | `%{:var([name])}` gets a parser data variable value |
+| `item` | `%{:item([index],[item/name](,[item](,...)))}` gets an item from a list (if using a variable name, its value will be splitted using pipe (`|`)) |
+| `prepend` | `%{input:prepend([string])}` | prepends a string |
+| `append` | `%{input:append([string])}` | appends a string |
+| `insert` | `%{input:insert([index],[string])}` | inserts a string at an index |
+| `remove` | `%{input:remove([offset/length](,[length]))}` | removes a part (from the left) |
+| `concat` | `%{:concat([string],[string](,[string](...))}` | concatenates strings |
+| `join` | `%{:join([separator],[string],[string](,...))}` | joins strings |
+| `math` | `%{:math([operator],[value1],[value2](,...))}` | performs math |
+| `rx` | `%{:rx([group_index]],[name/pattern])}` | exchanges the parser regular expression and content group index for the next parser operations (the next round) |
+| `format` | `%{input:format([format])}` | to format a numeric value |
+| `str_format` | `%{input:str_format(([value1](,...))}` to format the string value |
+| `insert_item` | `%{input:insert_item([index],[items_name])}` | to insert an item (items will be splitted by pipe (`|`)) |
+| `remove_item` | `%{input:remove_item([index])}` | to remove an item (items will be splitted by pipe (`|`)) |
+| `sort` | `%{input:sort((desc))}` | to sort items |
+| `foreach` | `%{input:foreach([name])}` | to parse a parser data value for each item (will be stored in `_item`) |
+| `if` | `%{input:if([name](,[name]))}` | to parse a parser data value, if the value is `1` (else parse the second given parser data value) |
+| `split` | `%{input:split(prefix)}` | to split items by pipe (`|`) and set them as parser data using the prefix and appending the zero based item index |
+| `range` | `%{:range([start],[count])}` | to create a numeric range |
+| `dummy` | `%{:dummy(...)}` | does nothing (may be used as comment) |
+
+Available math operators:
+
+| Operator | Function |
+| --- | --- |
+| `+` | Summarize |
+| `-` | Substract |
+| `*` | Multiply |
+| `/` | Divide |
+| `%` | Modulo |
+| `a` | Average |
+| `i` | Minimum |
+| `x` | Maximum |
+| `r` | Round (2nd value is the number of decimals) |
+| `f` | Floor |
+| `c` | Ceiling |
+| `p` | Y power of X (`double` conversion will be applied) |
+| `=` | Equality (`0` is not equal, `1` if equal) |
+| `<` | Lower than (`0` is not lower, `1` if lower) |
+| `>` | Greater than (`0` is not greater, `1` if greater) |
+| `s` | Change the sign |
+
+Numbers are written in invariant culture `float` style. `decimal` will be used 
+as number format.
+
+To create a custom parser function:
+
+```cs
+StringExtensions["func_name"] = (context) => 
+{
+    // Work with the StringParserContext and return the value to use or set context.Error for error handling
+    return context.Value;
+};
+```
+
+Example:
+
+```cs
+StringExtensions["upper"] = (context) => context.Value.ToUpper();
+
+Dictionary<string, string> data = new()
+{
+    {"name", "value"}
+};
+Assert.AreEqual("VALUE", "%{name:upper}".Parse(data));
+```
+
+**CAUTION**: A placeholder must produce the same result, if it occurs 
+repeated! A repeated placeholder won't be parsed more than once, but being 
+replaced with the result of the first parsed placeholder.
+
+Example:
+
+```cs
+Dictionary<string, string> data = new()
+{
+    {"name", "value"}
+};
+string tmpl = "%{name}%{name:len:set(name):discard}%{name}";
+Assert.AreEqual("valuevalue", tmpl.Parse(data));
+```
+
+From the logic `value5` would be expected. To get `value5`, finally, you'll 
+have to modify the template:
+
+`%{name}%{name:len:set(name):discard}%{name:dummy}`
+
+**TIP**: Almost all function parameters may be parser data variable names, 
+too, if they have a `$` prefix. To support that, use the `TryGetData` method 
+of the `StringParserContext`, if a parameter value starts with `$`.
+
+**TIP**: To ensure having all required parameters, use the 
+`EnsureValidParameterCount` of the `StringParserContext`. The method allows 
+you to define a number of allowed parameter counts (including zero) and 
+produces a common error message, if the function call syntax is wrong.
+
+**TIP**: A custom parser function may change the parser regular expression and 
+content group by changing `Rx` and `RxGroup`.
+
+The string parser works recursive. To avoid an endless recursion, the default 
+parsing round count limit is 3. The current parsing round is accessable trough 
+the parser data `_round`. If a parser function parses a template, the called 
+parser will work in the current parsing round context and respect the limit, 
+too. Youmay set another default limit in `StringExtensions.ParserMaxRounds`.
+
+The default behavior for errors is to throw an exception. If error throwing 
+was disabled, in case of an error a placeholder will stay in clear text, and a 
+function will return the unaltered value.
+
+You may modify the placeholder declaration by setting another regular 
+expression to `StringExtensions.RxParser`. Group `$1` must contain the whole 
+placeholder, while group `$2` is required to contain the inner placeholder 
+contents (like variable name, function calls, parameters, etc.). There's no 
+way to customize the inner placeholder content syntax at present. You may also 
+give a custom regular expression to the `Parse` extension method, if you want 
+an isolated parsing. You can modify the inner content group index by setting 
+`StringExtensions.RxParserGroup` or giving `rxGroup` to the `Parse` methods.
+
+**CAUTION**: Be careful with customized parser functions: A mistake could let 
+a manipulated string harm your computer!
