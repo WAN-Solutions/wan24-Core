@@ -3332,6 +3332,59 @@ references:
   fullName.vb: wan24.Core.BlockingObjectPool(Of T).TryRentAsync
   nameWithType: BlockingObjectPool<T>.TryRentAsync
   nameWithType.vb: BlockingObjectPool(Of T).TryRentAsync
+- uid: wan24.Core.BlockingStreamPool`1
+  name: BlockingStreamPool<T>
+  href: api/wan24.Core.BlockingStreamPool-1.html
+  commentId: T:wan24.Core.BlockingStreamPool`1
+  name.vb: BlockingStreamPool(Of T)
+  fullName: wan24.Core.BlockingStreamPool<T>
+  fullName.vb: wan24.Core.BlockingStreamPool(Of T)
+  nameWithType: BlockingStreamPool<T>
+  nameWithType.vb: BlockingStreamPool(Of T)
+- uid: wan24.Core.BlockingStreamPool`1.#ctor(`0[])
+  name: BlockingStreamPool(T[])
+  href: api/wan24.Core.BlockingStreamPool-1.html#wan24_Core_BlockingStreamPool_1__ctor__0___
+  commentId: M:wan24.Core.BlockingStreamPool`1.#ctor(`0[])
+  name.vb: BlockingStreamPool(T())
+  fullName: wan24.Core.BlockingStreamPool<T>.BlockingStreamPool(T[])
+  fullName.vb: wan24.Core.BlockingStreamPool(Of T).BlockingStreamPool(T())
+  nameWithType: BlockingStreamPool<T>.BlockingStreamPool(T[])
+  nameWithType.vb: BlockingStreamPool(Of T).BlockingStreamPool(T())
+- uid: wan24.Core.BlockingStreamPool`1.#ctor(System.Int32)
+  name: BlockingStreamPool(Int32)
+  href: api/wan24.Core.BlockingStreamPool-1.html#wan24_Core_BlockingStreamPool_1__ctor_System_Int32_
+  commentId: M:wan24.Core.BlockingStreamPool`1.#ctor(System.Int32)
+  fullName: wan24.Core.BlockingStreamPool<T>.BlockingStreamPool(System.Int32)
+  fullName.vb: wan24.Core.BlockingStreamPool(Of T).BlockingStreamPool(System.Int32)
+  nameWithType: BlockingStreamPool<T>.BlockingStreamPool(Int32)
+  nameWithType.vb: BlockingStreamPool(Of T).BlockingStreamPool(Int32)
+- uid: wan24.Core.BlockingStreamPool`1.#ctor(System.Int32,Func{`0})
+  name: BlockingStreamPool(Int32, Func<T>)
+  href: api/wan24.Core.BlockingStreamPool-1.html#wan24_Core_BlockingStreamPool_1__ctor_System_Int32_Func__0__
+  commentId: M:wan24.Core.BlockingStreamPool`1.#ctor(System.Int32,Func{`0})
+  name.vb: BlockingStreamPool(Int32, Func(Of T))
+  fullName: wan24.Core.BlockingStreamPool<T>.BlockingStreamPool(System.Int32, Func<T>)
+  fullName.vb: wan24.Core.BlockingStreamPool(Of T).BlockingStreamPool(System.Int32, Func(Of T))
+  nameWithType: BlockingStreamPool<T>.BlockingStreamPool(Int32, Func<T>)
+  nameWithType.vb: BlockingStreamPool(Of T).BlockingStreamPool(Int32, Func(Of T))
+- uid: wan24.Core.BlockingStreamPool`1.#ctor(System.Int32,Func{Task{`0}})
+  name: BlockingStreamPool(Int32, Func<Task<T>>)
+  href: api/wan24.Core.BlockingStreamPool-1.html#wan24_Core_BlockingStreamPool_1__ctor_System_Int32_Func_Task__0___
+  commentId: M:wan24.Core.BlockingStreamPool`1.#ctor(System.Int32,Func{Task{`0}})
+  name.vb: BlockingStreamPool(Int32, Func(Of Task(Of T)))
+  fullName: wan24.Core.BlockingStreamPool<T>.BlockingStreamPool(System.Int32, Func<Task<T>>)
+  fullName.vb: wan24.Core.BlockingStreamPool(Of T).BlockingStreamPool(System.Int32, Func(Of Task(Of T)))
+  nameWithType: BlockingStreamPool<T>.BlockingStreamPool(Int32, Func<Task<T>>)
+  nameWithType.vb: BlockingStreamPool(Of T).BlockingStreamPool(Int32, Func(Of Task(Of T)))
+- uid: wan24.Core.BlockingStreamPool`1.#ctor*
+  name: BlockingStreamPool
+  href: api/wan24.Core.BlockingStreamPool-1.html#wan24_Core_BlockingStreamPool_1__ctor_
+  commentId: Overload:wan24.Core.BlockingStreamPool`1.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.BlockingStreamPool<T>.BlockingStreamPool
+  fullName.vb: wan24.Core.BlockingStreamPool(Of T).BlockingStreamPool
+  nameWithType: BlockingStreamPool<T>.BlockingStreamPool
+  nameWithType.vb: BlockingStreamPool(Of T).BlockingStreamPool
 - uid: wan24.Core.Bootstrap
   name: Bootstrap
   href: api/wan24.Core.Bootstrap.html
@@ -14736,6 +14789,95 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ParallelQueueWorker.WaitBoringAsync
   nameWithType: ParallelQueueWorker.WaitBoringAsync
+- uid: wan24.Core.PooledMemoryStream
+  name: PooledMemoryStream
+  href: api/wan24.Core.PooledMemoryStream.html
+  commentId: T:wan24.Core.PooledMemoryStream
+  fullName: wan24.Core.PooledMemoryStream
+  nameWithType: PooledMemoryStream
+- uid: wan24.Core.PooledMemoryStream.#ctor
+  name: PooledMemoryStream()
+  href: api/wan24.Core.PooledMemoryStream.html#wan24_Core_PooledMemoryStream__ctor
+  commentId: M:wan24.Core.PooledMemoryStream.#ctor
+  fullName: wan24.Core.PooledMemoryStream.PooledMemoryStream()
+  nameWithType: PooledMemoryStream.PooledMemoryStream()
+- uid: wan24.Core.PooledMemoryStream.#ctor*
+  name: PooledMemoryStream
+  href: api/wan24.Core.PooledMemoryStream.html#wan24_Core_PooledMemoryStream__ctor_
+  commentId: Overload:wan24.Core.PooledMemoryStream.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.PooledMemoryStream.PooledMemoryStream
+  nameWithType: PooledMemoryStream.PooledMemoryStream
+- uid: wan24.Core.PooledMemoryStream.Reset
+  name: Reset()
+  href: api/wan24.Core.PooledMemoryStream.html#wan24_Core_PooledMemoryStream_Reset
+  commentId: M:wan24.Core.PooledMemoryStream.Reset
+  fullName: wan24.Core.PooledMemoryStream.Reset()
+  nameWithType: PooledMemoryStream.Reset()
+- uid: wan24.Core.PooledMemoryStream.Reset*
+  name: Reset
+  href: api/wan24.Core.PooledMemoryStream.html#wan24_Core_PooledMemoryStream_Reset_
+  commentId: Overload:wan24.Core.PooledMemoryStream.Reset
+  isSpec: "True"
+  fullName: wan24.Core.PooledMemoryStream.Reset
+  nameWithType: PooledMemoryStream.Reset
+- uid: wan24.Core.PooledTempFileStream
+  name: PooledTempFileStream
+  href: api/wan24.Core.PooledTempFileStream.html
+  commentId: T:wan24.Core.PooledTempFileStream
+  fullName: wan24.Core.PooledTempFileStream
+  nameWithType: PooledTempFileStream
+- uid: wan24.Core.PooledTempFileStream.#ctor
+  name: PooledTempFileStream()
+  href: api/wan24.Core.PooledTempFileStream.html#wan24_Core_PooledTempFileStream__ctor
+  commentId: M:wan24.Core.PooledTempFileStream.#ctor
+  fullName: wan24.Core.PooledTempFileStream.PooledTempFileStream()
+  nameWithType: PooledTempFileStream.PooledTempFileStream()
+- uid: wan24.Core.PooledTempFileStream.#ctor(System.String)
+  name: PooledTempFileStream(String)
+  href: api/wan24.Core.PooledTempFileStream.html#wan24_Core_PooledTempFileStream__ctor_System_String_
+  commentId: M:wan24.Core.PooledTempFileStream.#ctor(System.String)
+  fullName: wan24.Core.PooledTempFileStream.PooledTempFileStream(System.String)
+  nameWithType: PooledTempFileStream.PooledTempFileStream(String)
+- uid: wan24.Core.PooledTempFileStream.#ctor*
+  name: PooledTempFileStream
+  href: api/wan24.Core.PooledTempFileStream.html#wan24_Core_PooledTempFileStream__ctor_
+  commentId: Overload:wan24.Core.PooledTempFileStream.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.PooledTempFileStream.PooledTempFileStream
+  nameWithType: PooledTempFileStream.PooledTempFileStream
+- uid: wan24.Core.PooledTempFileStream.BufferSize
+  name: BufferSize
+  href: api/wan24.Core.PooledTempFileStream.html#wan24_Core_PooledTempFileStream_BufferSize
+  commentId: P:wan24.Core.PooledTempFileStream.BufferSize
+  fullName: wan24.Core.PooledTempFileStream.BufferSize
+  nameWithType: PooledTempFileStream.BufferSize
+- uid: wan24.Core.PooledTempFileStream.BufferSize*
+  name: BufferSize
+  href: api/wan24.Core.PooledTempFileStream.html#wan24_Core_PooledTempFileStream_BufferSize_
+  commentId: Overload:wan24.Core.PooledTempFileStream.BufferSize
+  isSpec: "True"
+  fullName: wan24.Core.PooledTempFileStream.BufferSize
+  nameWithType: PooledTempFileStream.BufferSize
+- uid: wan24.Core.PooledTempFileStream.DEFAULT_BUFFER_SIZE
+  name: DEFAULT_BUFFER_SIZE
+  href: api/wan24.Core.PooledTempFileStream.html#wan24_Core_PooledTempFileStream_DEFAULT_BUFFER_SIZE
+  commentId: F:wan24.Core.PooledTempFileStream.DEFAULT_BUFFER_SIZE
+  fullName: wan24.Core.PooledTempFileStream.DEFAULT_BUFFER_SIZE
+  nameWithType: PooledTempFileStream.DEFAULT_BUFFER_SIZE
+- uid: wan24.Core.PooledTempFileStream.Reset
+  name: Reset()
+  href: api/wan24.Core.PooledTempFileStream.html#wan24_Core_PooledTempFileStream_Reset
+  commentId: M:wan24.Core.PooledTempFileStream.Reset
+  fullName: wan24.Core.PooledTempFileStream.Reset()
+  nameWithType: PooledTempFileStream.Reset()
+- uid: wan24.Core.PooledTempFileStream.Reset*
+  name: Reset
+  href: api/wan24.Core.PooledTempFileStream.html#wan24_Core_PooledTempFileStream_Reset_
+  commentId: Overload:wan24.Core.PooledTempFileStream.Reset
+  isSpec: "True"
+  fullName: wan24.Core.PooledTempFileStream.Reset
+  nameWithType: PooledTempFileStream.Reset
 - uid: wan24.Core.ProcessThrottle
   name: ProcessThrottle
   href: api/wan24.Core.ProcessThrottle.html
@@ -15459,6 +15601,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ReflectionExtensions.GetFieldsCached
   nameWithType: ReflectionExtensions.GetFieldsCached
+- uid: wan24.Core.ReflectionExtensions.GetFinalElementType(Type)
+  name: GetFinalElementType(Type)
+  href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetFinalElementType_Type_
+  commentId: M:wan24.Core.ReflectionExtensions.GetFinalElementType(Type)
+  fullName: wan24.Core.ReflectionExtensions.GetFinalElementType(Type)
+  nameWithType: ReflectionExtensions.GetFinalElementType(Type)
+- uid: wan24.Core.ReflectionExtensions.GetFinalElementType*
+  name: GetFinalElementType
+  href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetFinalElementType_
+  commentId: Overload:wan24.Core.ReflectionExtensions.GetFinalElementType
+  isSpec: "True"
+  fullName: wan24.Core.ReflectionExtensions.GetFinalElementType
+  nameWithType: ReflectionExtensions.GetFinalElementType
 - uid: wan24.Core.ReflectionExtensions.GetGenericArgumentsCached(Type)
   name: GetGenericArgumentsCached(Type)
   href: api/wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetGenericArgumentsCached_Type_
@@ -18304,6 +18459,41 @@ references:
   isSpec: "True"
   fullName: wan24.Core.Settings.TempFolder
   nameWithType: Settings.TempFolder
+- uid: wan24.Core.StreamPool`1
+  name: StreamPool<T>
+  href: api/wan24.Core.StreamPool-1.html
+  commentId: T:wan24.Core.StreamPool`1
+  name.vb: StreamPool(Of T)
+  fullName: wan24.Core.StreamPool<T>
+  fullName.vb: wan24.Core.StreamPool(Of T)
+  nameWithType: StreamPool<T>
+  nameWithType.vb: StreamPool(Of T)
+- uid: wan24.Core.StreamPool`1.#ctor(System.Int32)
+  name: StreamPool(Int32)
+  href: api/wan24.Core.StreamPool-1.html#wan24_Core_StreamPool_1__ctor_System_Int32_
+  commentId: M:wan24.Core.StreamPool`1.#ctor(System.Int32)
+  fullName: wan24.Core.StreamPool<T>.StreamPool(System.Int32)
+  fullName.vb: wan24.Core.StreamPool(Of T).StreamPool(System.Int32)
+  nameWithType: StreamPool<T>.StreamPool(Int32)
+  nameWithType.vb: StreamPool(Of T).StreamPool(Int32)
+- uid: wan24.Core.StreamPool`1.#ctor(System.Int32,Func{`0})
+  name: StreamPool(Int32, Func<T>)
+  href: api/wan24.Core.StreamPool-1.html#wan24_Core_StreamPool_1__ctor_System_Int32_Func__0__
+  commentId: M:wan24.Core.StreamPool`1.#ctor(System.Int32,Func{`0})
+  name.vb: StreamPool(Int32, Func(Of T))
+  fullName: wan24.Core.StreamPool<T>.StreamPool(System.Int32, Func<T>)
+  fullName.vb: wan24.Core.StreamPool(Of T).StreamPool(System.Int32, Func(Of T))
+  nameWithType: StreamPool<T>.StreamPool(Int32, Func<T>)
+  nameWithType.vb: StreamPool(Of T).StreamPool(Int32, Func(Of T))
+- uid: wan24.Core.StreamPool`1.#ctor*
+  name: StreamPool
+  href: api/wan24.Core.StreamPool-1.html#wan24_Core_StreamPool_1__ctor_
+  commentId: Overload:wan24.Core.StreamPool`1.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.StreamPool<T>.StreamPool
+  fullName.vb: wan24.Core.StreamPool(Of T).StreamPool
+  nameWithType: StreamPool<T>.StreamPool
+  nameWithType.vb: StreamPool(Of T).StreamPool
 - uid: wan24.Core.StringExtensions
   name: StringExtensions
   href: api/wan24.Core.StringExtensions.html
@@ -20446,6 +20636,18 @@ references:
   isSpec: "True"
   fullName: wan24.Core.TimeSpanHelper.UpdateTimeout
   nameWithType: TimeSpanHelper.UpdateTimeout
+- uid: wan24.Core.TypeCache
+  name: TypeCache
+  href: api/wan24.Core.TypeCache.html
+  commentId: T:wan24.Core.TypeCache
+  fullName: wan24.Core.TypeCache
+  nameWithType: TypeCache
+- uid: wan24.Core.TypeCache.Types
+  name: Types
+  href: api/wan24.Core.TypeCache.html#wan24_Core_TypeCache_Types
+  commentId: F:wan24.Core.TypeCache.Types
+  fullName: wan24.Core.TypeCache.Types
+  nameWithType: TypeCache.Types
 - uid: wan24.Core.TypeHelper
   name: TypeHelper
   href: api/wan24.Core.TypeHelper.html

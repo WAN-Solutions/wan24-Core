@@ -249,6 +249,20 @@ namespace wan24.Core
         public static bool IsNullable(this NullabilityInfo ni) => !(ni.ReadState == NullabilityState.NotNull || ni.WriteState == NullabilityState.NotNull);
 
         /// <summary>
+        /// Get the final array element type of a multi-dimensional array type
+        /// </summary>
+        /// <param name="type">Array type</param>
+        /// <returns>Final array element type</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static Type GetFinalElementType(this Type type)
+        {
+            ArgumentValidationHelper.EnsureValidArgument(nameof(type), type.IsArray, "Not an array type");
+            Type res = type.GetElementType()!;
+            while (res.IsArray) res = res.GetElementType()!;
+            return res;
+        }
+
+        /// <summary>
         /// Get a method which matches the given filter parameters
         /// </summary>
         /// <param name="type">Type</param>
