@@ -1,0 +1,1315 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class PooledTempStream
+   | wan24-Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class PooledTempStream
+   | wan24-Core ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.PooledTempStream">
+  
+  
+  <h1 id="wan24_Core_PooledTempStream" data-uid="wan24.Core.PooledTempStream" class="text-break">Class PooledTempStream
+  </h1>
+  <div class="markdown level0 summary"><p>Pooled temporary stream (hosts written data in memory first, then switches to a temporary file when exceeding the memory limit)</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">PooledTempStream</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_PooledTempStream_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class PooledTempStream : Stream</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream__ctor_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.%23ctor(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L36">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream__ctor_" data-uid="wan24.Core.PooledTempStream.#ctor*"></a>
+  <h4 id="wan24_Core_PooledTempStream__ctor_System_Int64_" data-uid="wan24.Core.PooledTempStream.#ctor(System.Int64)">PooledTempStream(Int64)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PooledTempStream(long estimatedLength = 0L)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">estimatedLength</span></td>
+        <td><p>Estimated length in bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_BaseStream.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.BaseStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L81">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_BaseStream_" data-uid="wan24.Core.PooledTempStream.BaseStream*"></a>
+  <h4 id="wan24_Core_PooledTempStream_BaseStream" data-uid="wan24.Core.PooledTempStream.BaseStream">BaseStream</h4>
+  <div class="markdown level1 summary"><p>Base stream (do not dispose!)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Stream BaseStream { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_CanRead.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.CanRead%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L99">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_CanRead_" data-uid="wan24.Core.PooledTempStream.CanRead*"></a>
+  <h4 id="wan24_Core_PooledTempStream_CanRead" data-uid="wan24.Core.PooledTempStream.CanRead">CanRead</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool CanRead { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_CanSeek.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.CanSeek%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L102">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_CanSeek_" data-uid="wan24.Core.PooledTempStream.CanSeek*"></a>
+  <h4 id="wan24_Core_PooledTempStream_CanSeek" data-uid="wan24.Core.PooledTempStream.CanSeek">CanSeek</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool CanSeek { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_CanWrite.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.CanWrite%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L105">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_CanWrite_" data-uid="wan24.Core.PooledTempStream.CanWrite*"></a>
+  <h4 id="wan24_Core_PooledTempStream_CanWrite" data-uid="wan24.Core.PooledTempStream.CanWrite">CanWrite</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool CanWrite { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_FileStream.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.FileStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L91">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_FileStream_" data-uid="wan24.Core.PooledTempStream.FileStream*"></a>
+  <h4 id="wan24_Core_PooledTempStream_FileStream" data-uid="wan24.Core.PooledTempStream.FileStream">FileStream</h4>
+  <div class="markdown level1 summary"><p><a class="xref" href="wan24.Core.PooledTempFileStream.html">PooledTempFileStream</a> (do not dispose!)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PooledTempFileStream FileStream { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.PooledTempFileStream.html">PooledTempFileStream</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_FileStreamCapacity.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.FileStreamCapacity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L52">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_FileStreamCapacity_" data-uid="wan24.Core.PooledTempStream.FileStreamCapacity*"></a>
+  <h4 id="wan24_Core_PooledTempStream_FileStreamCapacity" data-uid="wan24.Core.PooledTempStream.FileStreamCapacity">FileStreamCapacity</h4>
+  <div class="markdown level1 summary"><p>File stream pool capacity</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int FileStreamCapacity { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_FileStreamPool.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.FileStreamPool%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L69">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_FileStreamPool_" data-uid="wan24.Core.PooledTempStream.FileStreamPool*"></a>
+  <h4 id="wan24_Core_PooledTempStream_FileStreamPool" data-uid="wan24.Core.PooledTempStream.FileStreamPool">FileStreamPool</h4>
+  <div class="markdown level1 summary"><p>File stream pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static StreamPool&lt;PooledTempFileStream&gt; FileStreamPool { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StreamPool-1.html">StreamPool</a>&lt;<a class="xref" href="wan24.Core.PooledTempFileStream.html">PooledTempFileStream</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_IsInMemory.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.IsInMemory%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L96">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_IsInMemory_" data-uid="wan24.Core.PooledTempStream.IsInMemory*"></a>
+  <h4 id="wan24_Core_PooledTempStream_IsInMemory" data-uid="wan24.Core.PooledTempStream.IsInMemory">IsInMemory</h4>
+  <div class="markdown level1 summary"><p>Is the data stored in a <a class="xref" href="wan24.Core.PooledMemoryStream.html">PooledMemoryStream</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsInMemory { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_Length.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.Length%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L108">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_Length_" data-uid="wan24.Core.PooledTempStream.Length*"></a>
+  <h4 id="wan24_Core_PooledTempStream_Length" data-uid="wan24.Core.PooledTempStream.Length">Length</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override long Length { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_MaxLengthInMemory.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.MaxLengthInMemory%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L42">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_MaxLengthInMemory_" data-uid="wan24.Core.PooledTempStream.MaxLengthInMemory*"></a>
+  <h4 id="wan24_Core_PooledTempStream_MaxLengthInMemory" data-uid="wan24.Core.PooledTempStream.MaxLengthInMemory">MaxLengthInMemory</h4>
+  <div class="markdown level1 summary"><p>Maximum number of bytes to store in a <a class="xref" href="wan24.Core.PooledTempStream.html#wan24_Core_PooledTempStream_MemoryStream">MemoryStream</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int MaxLengthInMemory { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_MemoryPoolCapacity.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.MemoryPoolCapacity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L47">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_MemoryPoolCapacity_" data-uid="wan24.Core.PooledTempStream.MemoryPoolCapacity*"></a>
+  <h4 id="wan24_Core_PooledTempStream_MemoryPoolCapacity" data-uid="wan24.Core.PooledTempStream.MemoryPoolCapacity">MemoryPoolCapacity</h4>
+  <div class="markdown level1 summary"><p>Memory stream pool capacity</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int MemoryPoolCapacity { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_MemoryStream.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.MemoryStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L86">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_MemoryStream_" data-uid="wan24.Core.PooledTempStream.MemoryStream*"></a>
+  <h4 id="wan24_Core_PooledTempStream_MemoryStream" data-uid="wan24.Core.PooledTempStream.MemoryStream">MemoryStream</h4>
+  <div class="markdown level1 summary"><p><a class="xref" href="wan24.Core.PooledMemoryStream.html">PooledMemoryStream</a> (do not dispose!)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PooledMemoryStream MemoryStream { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.PooledMemoryStream.html">PooledMemoryStream</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_MemoryStreamPool.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.MemoryStreamPool%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L57">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_MemoryStreamPool_" data-uid="wan24.Core.PooledTempStream.MemoryStreamPool*"></a>
+  <h4 id="wan24_Core_PooledTempStream_MemoryStreamPool" data-uid="wan24.Core.PooledTempStream.MemoryStreamPool">MemoryStreamPool</h4>
+  <div class="markdown level1 summary"><p>Memory stream pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static StreamPool&lt;PooledMemoryStream&gt; MemoryStreamPool { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StreamPool-1.html">StreamPool</a>&lt;<a class="xref" href="wan24.Core.PooledMemoryStream.html">PooledMemoryStream</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_Position.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.Position%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L111">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_Position_" data-uid="wan24.Core.PooledTempStream.Position*"></a>
+  <h4 id="wan24_Core_PooledTempStream_Position" data-uid="wan24.Core.PooledTempStream.Position">Position</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override long Position { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_Close.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.Close%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L180">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_Close_" data-uid="wan24.Core.PooledTempStream.Close*"></a>
+  <h4 id="wan24_Core_PooledTempStream_Close" data-uid="wan24.Core.PooledTempStream.Close">Close()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Close()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_DisposeAsync.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.DisposeAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L192">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_DisposeAsync_" data-uid="wan24.Core.PooledTempStream.DisposeAsync*"></a>
+  <h4 id="wan24_Core_PooledTempStream_DisposeAsync" data-uid="wan24.Core.PooledTempStream.DisposeAsync">DisposeAsync()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override async ValueTask DisposeAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_Flush.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.Flush%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L114">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_Flush_" data-uid="wan24.Core.PooledTempStream.Flush*"></a>
+  <h4 id="wan24_Core_PooledTempStream_Flush" data-uid="wan24.Core.PooledTempStream.Flush">Flush()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Flush()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_FlushAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.FlushAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L117">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_FlushAsync_" data-uid="wan24.Core.PooledTempStream.FlushAsync*"></a>
+  <h4 id="wan24_Core_PooledTempStream_FlushAsync_CancellationToken_" data-uid="wan24.Core.PooledTempStream.FlushAsync(CancellationToken)">FlushAsync(CancellationToken)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Task FlushAsync(CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_Read_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.Read(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L123">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_Read_" data-uid="wan24.Core.PooledTempStream.Read*"></a>
+  <h4 id="wan24_Core_PooledTempStream_Read_Span_System_Byte__" data-uid="wan24.Core.PooledTempStream.Read(Span{System.Byte})">Read(Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int Read(Span&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_Read_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.Read(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L120">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_Read_" data-uid="wan24.Core.PooledTempStream.Read*"></a>
+  <h4 id="wan24_Core_PooledTempStream_Read_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.PooledTempStream.Read(System.Byte[],System.Int32,System.Int32)">Read(Byte[], Int32, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int Read(byte[] buffer, int offset, int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_ReadAsync_Memory_System_Byte__CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.ReadAsync(Memory%7BSystem.Byte%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L130">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_ReadAsync_" data-uid="wan24.Core.PooledTempStream.ReadAsync*"></a>
+  <h4 id="wan24_Core_PooledTempStream_ReadAsync_Memory_System_Byte__CancellationToken_" data-uid="wan24.Core.PooledTempStream.ReadAsync(Memory{System.Byte},CancellationToken)">ReadAsync(Memory&lt;Byte&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override ValueTask&lt;int&gt; ReadAsync(Memory&lt;byte&gt; buffer, CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.ReadAsync(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L126">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_ReadAsync_" data-uid="wan24.Core.PooledTempStream.ReadAsync*"></a>
+  <h4 id="wan24_Core_PooledTempStream_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_" data-uid="wan24.Core.PooledTempStream.ReadAsync(System.Byte[],System.Int32,System.Int32,CancellationToken)">ReadAsync(Byte[], Int32, Int32, CancellationToken)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Task&lt;int&gt; ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_Seek_System_Int64_SeekOrigin_.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.Seek(System.Int64%2CSeekOrigin)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L134">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_Seek_" data-uid="wan24.Core.PooledTempStream.Seek*"></a>
+  <h4 id="wan24_Core_PooledTempStream_Seek_System_Int64_SeekOrigin_" data-uid="wan24.Core.PooledTempStream.Seek(System.Int64,SeekOrigin)">Seek(Int64, SeekOrigin)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override long Seek(long offset, SeekOrigin origin)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">SeekOrigin</span></td>
+        <td><span class="parametername">origin</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_SetLength_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.SetLength(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L137">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_SetLength_" data-uid="wan24.Core.PooledTempStream.SetLength*"></a>
+  <h4 id="wan24_Core_PooledTempStream_SetLength_System_Int64_" data-uid="wan24.Core.PooledTempStream.SetLength(System.Int64)">SetLength(Int64)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void SetLength(long value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_Write_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.Write(ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L147">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_Write_" data-uid="wan24.Core.PooledTempStream.Write*"></a>
+  <h4 id="wan24_Core_PooledTempStream_Write_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.PooledTempStream.Write(ReadOnlySpan{System.Byte})">Write(ReadOnlySpan&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Write(ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_Write_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.Write(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L144">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_Write_" data-uid="wan24.Core.PooledTempStream.Write*"></a>
+  <h4 id="wan24_Core_PooledTempStream_Write_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.PooledTempStream.Write(System.Byte[],System.Int32,System.Int32)">Write(Byte[], Int32, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Write(byte[] buffer, int offset, int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.WriteAsync(ReadOnlyMemory%7BSystem.Byte%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L173">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_WriteAsync_" data-uid="wan24.Core.PooledTempStream.WriteAsync*"></a>
+  <h4 id="wan24_Core_PooledTempStream_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_" data-uid="wan24.Core.PooledTempStream.WriteAsync(ReadOnlyMemory{System.Byte},CancellationToken)">WriteAsync(ReadOnlyMemory&lt;Byte&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override async ValueTask WriteAsync(ReadOnlyMemory&lt;byte&gt; buffer, CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlyMemory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.WriteAsync(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L169">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_WriteAsync_" data-uid="wan24.Core.PooledTempStream.WriteAsync*"></a>
+  <h4 id="wan24_Core_PooledTempStream_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_" data-uid="wan24.Core.PooledTempStream.WriteAsync(System.Byte[],System.Int32,System.Int32,CancellationToken)">WriteAsync(Byte[], Int32, Int32, CancellationToken)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override async Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream_WriteByte_System_Byte_.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.WriteByte(System.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L154">View Source</a>
+  </span>
+  <a id="wan24_Core_PooledTempStream_WriteByte_" data-uid="wan24.Core.PooledTempStream.WriteByte*"></a>
+  <h4 id="wan24_Core_PooledTempStream_WriteByte_System_Byte_" data-uid="wan24.Core.PooledTempStream.WriteByte(System.Byte)">WriteByte(Byte)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void WriteByte(byte value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_Int32_System_Int32_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, Int32, Int32, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_Int32_System_Int32_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, Int32, Int32, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int64_System_Int64_System_Int64_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int64, Int64, Int64, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int64_System_Int64_System_Int64_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int64, Int64, Int64, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Double_System_Double_System_Double_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Double, Double, Double, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Double_System_Double_System_Double_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Double, Double, Double, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Boolean_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Boolean_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Boolean, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgumentRange__1___0_System_String_System_Boolean_System_String_">ArgumentValidationExtensions.EnsureValidArgumentRange&lt;T&gt;(T, String, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgumentRange__1___0_System_String_System_Boolean_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgumentRange&lt;T&gt;(T, String, Boolean, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_String_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_String_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, String, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String___1_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tValue&gt;(tObj, String, tValue, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String___1_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tValue&gt;(tObj, String, tValue, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_String_System_Int32_System_Boolean_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, String, Int32, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_String_Func_System_String__System_Int32_System_Boolean_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, String, Func&lt;String&gt;, Int32, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32___1___System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, tItem[], String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32___1___Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, tItem[], Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32_Span___1__System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, Span&lt;tItem&gt;, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32_Span___1__Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, Span&lt;tItem&gt;, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean_">JsonExtensions.ToJson(Object, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_IEnumerable___0__">ObjectExtensions.In&lt;T&gt;(T, IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean_System_String_">ObjectExtensions.EnsureValidState&lt;T&gt;(T, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText__1___0_">ObjectExtensions.GetDisplayText&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_Func___0___1__">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, Func&lt;tObject, tReturn&gt;)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PooledTempStream.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PooledTempStream.cs/#L8" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            (c) 2023 Andreas Zimmermann, wan24.de
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

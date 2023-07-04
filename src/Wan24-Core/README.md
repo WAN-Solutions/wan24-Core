@@ -132,6 +132,8 @@ the timeout
 - Cancellation token awaiter
 - `ObjectPool` for pooling objects (`DisposableObjectPool` for disposable 
 types), and `BlockingObjectPool` for a strict pool capacity limit
+- `(Blocking)StreamPool`, `PooledMemoryStream`, `PooledTempFileStream` and 
+`PooledTempStream` (hosts written data in memory first)
 - `ResetEvent` for (a)synchronous event waiting
 - `LazyValue<T>`, `DisposableLazyValue<T>`, `AsyncDisposableLazyValue<T>` and 
 `TimeoutValue<T>` for lazy and timeout value serving
