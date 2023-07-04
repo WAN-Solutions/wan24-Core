@@ -14884,12 +14884,15 @@ references:
   commentId: T:wan24.Core.PooledTempStream
   fullName: wan24.Core.PooledTempStream
   nameWithType: PooledTempStream
-- uid: wan24.Core.PooledTempStream.#ctor(System.Int64)
-  name: PooledTempStream(Int64)
-  href: api/wan24.Core.PooledTempStream.html#wan24_Core_PooledTempStream__ctor_System_Int64_
-  commentId: M:wan24.Core.PooledTempStream.#ctor(System.Int64)
-  fullName: wan24.Core.PooledTempStream.PooledTempStream(System.Int64)
-  nameWithType: PooledTempStream.PooledTempStream(Int64)
+- uid: wan24.Core.PooledTempStream.#ctor(System.Int64,wan24.Core.StreamPool{wan24.Core.PooledMemoryStream},wan24.Core.StreamPool{wan24.Core.PooledTempFileStream})
+  name: PooledTempStream(Int64, StreamPool<PooledMemoryStream>, StreamPool<PooledTempFileStream>)
+  href: api/wan24.Core.PooledTempStream.html#wan24_Core_PooledTempStream__ctor_System_Int64_wan24_Core_StreamPool_wan24_Core_PooledMemoryStream__wan24_Core_StreamPool_wan24_Core_PooledTempFileStream__
+  commentId: M:wan24.Core.PooledTempStream.#ctor(System.Int64,wan24.Core.StreamPool{wan24.Core.PooledMemoryStream},wan24.Core.StreamPool{wan24.Core.PooledTempFileStream})
+  name.vb: PooledTempStream(Int64, StreamPool(Of PooledMemoryStream), StreamPool(Of PooledTempFileStream))
+  fullName: wan24.Core.PooledTempStream.PooledTempStream(System.Int64, wan24.Core.StreamPool<wan24.Core.PooledMemoryStream>, wan24.Core.StreamPool<wan24.Core.PooledTempFileStream>)
+  fullName.vb: wan24.Core.PooledTempStream.PooledTempStream(System.Int64, wan24.Core.StreamPool(Of wan24.Core.PooledMemoryStream), wan24.Core.StreamPool(Of wan24.Core.PooledTempFileStream))
+  nameWithType: PooledTempStream.PooledTempStream(Int64, StreamPool<PooledMemoryStream>, StreamPool<PooledTempFileStream>)
+  nameWithType.vb: PooledTempStream.PooledTempStream(Int64, StreamPool(Of PooledMemoryStream), StreamPool(Of PooledTempFileStream))
 - uid: wan24.Core.PooledTempStream.#ctor*
   name: PooledTempStream
   href: api/wan24.Core.PooledTempStream.html#wan24_Core_PooledTempStream__ctor_

@@ -25,6 +25,14 @@ namespace wan24.Core
         /// </summary>
         private readonly object SyncObject = new();
         /// <summary>
+        /// Used memory stream pool
+        /// </summary>
+        private readonly StreamPool<PooledMemoryStream> UsedMemoryStreamPool;
+        /// <summary>
+        /// Used file stream pool
+        /// </summary>
+        private readonly StreamPool<PooledTempFileStream> UsedFileStreamPool;
+        /// <summary>
         /// Is disposed?
         /// </summary>
         private bool IsDisposed = false;
@@ -33,8 +41,14 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="estimatedLength">Estimated length in bytes</param>
-        public PooledTempStream(long estimatedLength = 0) : base()
-            => BaseStream = estimatedLength > MaxLengthInMemory ? FileStreamPool.Rent() : MemoryStreamPool.Rent();
+        /// <param name="memoryStreamPool">Memory stream pool to use</param>
+        /// <param name="fileStreamPool">File stream pool to use</param>
+        public PooledTempStream(long estimatedLength = 0, StreamPool<PooledMemoryStream>? memoryStreamPool = null, StreamPool<PooledTempFileStream>? fileStreamPool = null) : base()
+        {
+            UsedMemoryStreamPool = memoryStreamPool ?? MemoryStreamPool;
+            UsedFileStreamPool = fileStreamPool ?? FileStreamPool;
+            BaseStream = estimatedLength > MaxLengthInMemory ? UsedFileStreamPool.Rent() : UsedMemoryStreamPool.Rent();
+        }
 
         /// <summary>
         /// Maximum number of bytes to store in a <see cref="MemoryStream"/>
@@ -208,17 +222,17 @@ namespace wan24.Core
         {
             long offset = Position;
             Position = 0;
-            PooledTempFileStream fs = FileStreamPool.Rent();
+            PooledTempFileStream fs = UsedFileStreamPool.Rent();
             try
             {
                 CopyTo(fs);
                 fs.Position = offset;
-                MemoryStreamPool.Return(MemoryStream!);
+                UsedMemoryStreamPool.Return(MemoryStream!);
                 BaseStream = fs;
             }
             catch
             {
-                FileStreamPool.Return(fs);
+                UsedFileStreamPool.Return(fs);
                 throw;
             }
         }
@@ -231,17 +245,17 @@ namespace wan24.Core
         {
             long offset = Position;
             Position = 0;
-            PooledTempFileStream fs = FileStreamPool.Rent();
+            PooledTempFileStream fs = UsedFileStreamPool.Rent();
             try
             {
                 await CopyToAsync(fs, cancellationToken).DynamicContext();
                 fs.Position = offset;
-                MemoryStreamPool.Return(MemoryStream!);
+                UsedMemoryStreamPool.Return(MemoryStream!);
                 BaseStream = fs;
             }
             catch
             {
-                FileStreamPool.Return(fs);
+                UsedFileStreamPool.Return(fs);
                 throw;
             }
         }
@@ -253,11 +267,11 @@ namespace wan24.Core
         {
             if (MemoryStream != null)
             {
-                MemoryStreamPool.Return(MemoryStream);
+                UsedMemoryStreamPool.Return(MemoryStream);
             }
             else
             {
-                FileStreamPool.Return(FileStream!);
+                UsedFileStreamPool.Return(FileStream!);
             }
         }
     }
