@@ -13,9 +13,9 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static byte DecodeByte(this ReadOnlySpan<char> str, char[]? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static byte DecodeByte(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            int encodedLen = GetEncodedLength(1);
+            long encodedLen = GetEncodedLength(1);
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
             bool returnBuffer = buffer == null;
             if (buffer == null)
@@ -41,9 +41,9 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static sbyte DecodeSByte(this ReadOnlySpan<char> str, char[]? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static sbyte DecodeSByte(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            int encodedLen = GetEncodedLength(1);
+            long encodedLen = GetEncodedLength(1);
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
             bool returnBuffer = buffer == null;
             if (buffer == null)
@@ -69,9 +69,9 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static ushort DecodeUShort(this ReadOnlySpan<char> str, char[]? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static ushort DecodeUShort(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            int encodedLen = GetEncodedLength(sizeof(ushort));
+            long encodedLen = GetEncodedLength(sizeof(ushort));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
             bool returnBuffer = buffer == null;
             if (buffer == null)
@@ -97,9 +97,9 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static short DecodeShort(this ReadOnlySpan<char> str, char[]? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static short DecodeShort(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            int encodedLen = GetEncodedLength(sizeof(short));
+            long encodedLen = GetEncodedLength(sizeof(short));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
             bool returnBuffer = buffer == null;
             if (buffer == null)
@@ -125,9 +125,9 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static uint DecodeUInt(this ReadOnlySpan<char> str, char[]? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static uint DecodeUInt(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            int encodedLen = GetEncodedLength(sizeof(uint));
+            long encodedLen = GetEncodedLength(sizeof(uint));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
             bool returnBuffer = buffer == null;
             if (buffer == null)
@@ -153,9 +153,9 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static int DecodeInt(this ReadOnlySpan<char> str, char[]? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static int DecodeInt(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            int encodedLen = GetEncodedLength(sizeof(int));
+            long encodedLen = GetEncodedLength(sizeof(int));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
             bool returnBuffer = buffer == null;
             if (buffer == null)
@@ -181,9 +181,9 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static ulong DecodeULong(this ReadOnlySpan<char> str, char[]? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static ulong DecodeULong(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            int encodedLen = GetEncodedLength(sizeof(ulong));
+            long encodedLen = GetEncodedLength(sizeof(ulong));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
             bool returnBuffer = buffer == null;
             if (buffer == null)
@@ -209,9 +209,9 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static long DecodeLong(this ReadOnlySpan<char> str, char[]? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static long DecodeLong(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            int encodedLen = GetEncodedLength(sizeof(long));
+            long encodedLen = GetEncodedLength(sizeof(long));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
             bool returnBuffer = buffer == null;
             if (buffer == null)
@@ -237,9 +237,9 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static float DecodeFloat(this ReadOnlySpan<char> str, char[]? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static float DecodeFloat(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            int encodedLen = GetEncodedLength(sizeof(float));
+            long encodedLen = GetEncodedLength(sizeof(float));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
             bool returnBuffer = buffer == null;
             if (buffer == null)
@@ -265,9 +265,9 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static double DecodeDouble(this ReadOnlySpan<char> str, char[]? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static double DecodeDouble(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            int encodedLen = GetEncodedLength(sizeof(double));
+            long encodedLen = GetEncodedLength(sizeof(double));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
             bool returnBuffer = buffer == null;
             if (buffer == null)
@@ -293,9 +293,9 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static decimal DecodeDecimal(this ReadOnlySpan<char> str, char[]? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static decimal DecodeDecimal(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            int encodedLen = GetEncodedLength(sizeof(decimal));
+            long encodedLen = GetEncodedLength(sizeof(decimal));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
             bool returnBuffer = buffer == null;
             if (buffer == null)

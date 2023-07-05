@@ -173,8 +173,7 @@ namespace wan24.Core
             }
             else
             {
-                int hc = value.GetHashCode();
-                for (int i = 0, len = arr.Length; i < len; i++) if (arr[i]?.GetHashCode() == hc) return i;
+                for (int i = 0, len = arr.Length; i < len; i++) if (arr[i]?.Equals(value) ?? false) return i;
             }
             return -1;
         }
@@ -184,7 +183,7 @@ namespace wan24.Core
         /// </summary>
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="arr">Array</param>
-        /// <param name="values">Required values</param>
+        /// <param name="values">Required values (each value should be unique!)</param>
         /// <returns>All contained?</returns>
         [TargetedPatchingOptOut("Tiny method")]
         public static bool ContainsAll<T>(this T[] arr, params T[] values)
@@ -194,9 +193,10 @@ namespace wan24.Core
             int len = arr.Length;
             if (len < vlen) return false;
             bool[] found = new bool[vlen];
+            ReadOnlySpan<T> valuesSpan = values;
             for (int i = 0, index; i < len; i++)
             {
-                index = values.IndexOf(arr[i]);
+                index = valuesSpan.IndexOf(arr[i]);
                 if (index != -1) found[index] = true;
             }
             for (int i = 0; i < vlen; i++) if (!found[i]) return false;
@@ -214,8 +214,8 @@ namespace wan24.Core
         public static bool ContainsAny<T>(this T[] arr, params T[] values)
         {
             if (values.Length == 0) return false;
-            int len = arr.Length;
-            for (int i = 0; i < len; i++) if (values.IndexOf(arr[i]) != -1) return true;
+            ReadOnlySpan<T> valuesSpan = values;
+            for (int i = 0, len = arr.Length; i < len; i++) if (valuesSpan.IndexOf(arr[i]) != -1) return true;
             return false;
         }
 

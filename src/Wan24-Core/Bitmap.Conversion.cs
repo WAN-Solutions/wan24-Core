@@ -10,13 +10,13 @@ namespace wan24.Core
         /// </summary>
         /// <param name="buffer">Target buffer</param>
         /// <returns>Bitmap</returns>
-        /// <exception cref="InternalBufferOverflowException">Bitmap is larger than <see cref="int.MaxValue"/></exception>
+        /// <exception cref="OutOfMemoryException">Bitmap is larger than <see cref="int.MaxValue"/></exception>
         public byte[] ToArray(byte[]? buffer = null)
         {
             lock (SyncObject)
             {
                 if (_Map.LongLength == 0) return _Map;
-                if (_Map.LongLength > int.MaxValue) throw new InternalBufferOverflowException();
+                if (_Map.LongLength > int.MaxValue) throw new OutOfMemoryException();
                 long len = GetByteCount(BitCount);
                 byte[] res = buffer ?? new byte[len];
                 _Map.AsSpan(0, (int)Math.Min(len, res.LongLength)).CopyTo(res.AsSpan());
@@ -29,13 +29,13 @@ namespace wan24.Core
         /// </summary>
         /// <param name="buffer">Target buffer</param>
         /// <returns>Bitmap</returns>
-        /// <exception cref="InternalBufferOverflowException">Bitmap is larger than <see cref="int.MaxValue"/></exception>
+        /// <exception cref="OutOfMemoryException">Bitmap is larger than <see cref="int.MaxValue"/></exception>
         public Span<byte> ToSpan(Span<byte> buffer)
         {
             lock (SyncObject)
             {
                 if (_Map.LongLength == 0) return _Map;
-                if (_Map.LongLength > int.MaxValue) throw new InternalBufferOverflowException();
+                if (_Map.LongLength > int.MaxValue) throw new OutOfMemoryException();
                 _Map.AsSpan(0, (int)Math.Min(GetByteCount(BitCount), buffer.Length)).CopyTo(buffer);
                 return buffer;
             }
@@ -120,14 +120,14 @@ namespace wan24.Core
                     }
                     else
                     {
-                        using RentedArray<byte> buffer = new(count);
+                        using RentedArrayStruct<byte> buffer = new(count);
                         _Map.AsSpan(offset, (int)(byteCount - offset)).CopyTo(buffer.Span);
                         return function(buffer.Memory);
                     }
                 }
                 else
                 {
-                    using RentedArray<byte> buffer = new(count);
+                    using RentedArrayStruct<byte> buffer = new(count);
                     return function(buffer.Memory);
                 }
             }

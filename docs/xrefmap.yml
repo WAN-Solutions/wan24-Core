@@ -3643,42 +3643,69 @@ references:
   commentId: T:wan24.Core.ByteEncoding
   fullName: wan24.Core.ByteEncoding
   nameWithType: ByteEncoding
-- uid: wan24.Core.ByteEncoding.Decode(ReadOnlySpan{System.Char},System.Char[],System.Byte[])
-  name: Decode(ReadOnlySpan<Char>, Char[], Byte[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Decode_ReadOnlySpan_System_Char__System_Char___System_Byte___
-  commentId: M:wan24.Core.ByteEncoding.Decode(ReadOnlySpan{System.Char},System.Char[],System.Byte[])
-  name.vb: Decode(ReadOnlySpan(Of Char), Char(), Byte())
-  fullName: wan24.Core.ByteEncoding.Decode(ReadOnlySpan<System.Char>, System.Char[], System.Byte[])
-  fullName.vb: wan24.Core.ByteEncoding.Decode(ReadOnlySpan(Of System.Char), System.Char(), System.Byte())
-  nameWithType: ByteEncoding.Decode(ReadOnlySpan<Char>, Char[], Byte[])
-  nameWithType.vb: ByteEncoding.Decode(ReadOnlySpan(Of Char), Char(), Byte())
-- uid: wan24.Core.ByteEncoding.Decode(Span{System.Char},System.Char[],System.Byte[])
-  name: Decode(Span<Char>, Char[], Byte[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Decode_Span_System_Char__System_Char___System_Byte___
-  commentId: M:wan24.Core.ByteEncoding.Decode(Span{System.Char},System.Char[],System.Byte[])
-  name.vb: Decode(Span(Of Char), Char(), Byte())
-  fullName: wan24.Core.ByteEncoding.Decode(Span<System.Char>, System.Char[], System.Byte[])
-  fullName.vb: wan24.Core.ByteEncoding.Decode(Span(Of System.Char), System.Char(), System.Byte())
-  nameWithType: ByteEncoding.Decode(Span<Char>, Char[], Byte[])
-  nameWithType.vb: ByteEncoding.Decode(Span(Of Char), Char(), Byte())
-- uid: wan24.Core.ByteEncoding.Decode(System.Char[],System.Char[],System.Byte[])
-  name: Decode(Char[], Char[], Byte[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Decode_System_Char___System_Char___System_Byte___
-  commentId: M:wan24.Core.ByteEncoding.Decode(System.Char[],System.Char[],System.Byte[])
-  name.vb: Decode(Char(), Char(), Byte())
-  fullName: wan24.Core.ByteEncoding.Decode(System.Char[], System.Char[], System.Byte[])
-  fullName.vb: wan24.Core.ByteEncoding.Decode(System.Char(), System.Char(), System.Byte())
-  nameWithType: ByteEncoding.Decode(Char[], Char[], Byte[])
-  nameWithType.vb: ByteEncoding.Decode(Char(), Char(), Byte())
-- uid: wan24.Core.ByteEncoding.Decode(System.String,System.Char[],System.Byte[])
-  name: Decode(String, Char[], Byte[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Decode_System_String_System_Char___System_Byte___
-  commentId: M:wan24.Core.ByteEncoding.Decode(System.String,System.Char[],System.Byte[])
-  name.vb: Decode(String, Char(), Byte())
-  fullName: wan24.Core.ByteEncoding.Decode(System.String, System.Char[], System.Byte[])
-  fullName.vb: wan24.Core.ByteEncoding.Decode(System.String, System.Char(), System.Byte())
-  nameWithType: ByteEncoding.Decode(String, Char[], Byte[])
-  nameWithType.vb: ByteEncoding.Decode(String, Char(), Byte())
+- uid: wan24.Core.ByteEncoding.Decode(ReadOnlySpan{System.Char},ReadOnlySpan{System.Char},System.Byte[])
+  name: Decode(ReadOnlySpan<Char>, ReadOnlySpan<Char>, Byte[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Decode_ReadOnlySpan_System_Char__ReadOnlySpan_System_Char__System_Byte___
+  commentId: M:wan24.Core.ByteEncoding.Decode(ReadOnlySpan{System.Char},ReadOnlySpan{System.Char},System.Byte[])
+  name.vb: Decode(ReadOnlySpan(Of Char), ReadOnlySpan(Of Char), Byte())
+  fullName: wan24.Core.ByteEncoding.Decode(ReadOnlySpan<System.Char>, ReadOnlySpan<System.Char>, System.Byte[])
+  fullName.vb: wan24.Core.ByteEncoding.Decode(ReadOnlySpan(Of System.Char), ReadOnlySpan(Of System.Char), System.Byte())
+  nameWithType: ByteEncoding.Decode(ReadOnlySpan<Char>, ReadOnlySpan<Char>, Byte[])
+  nameWithType.vb: ByteEncoding.Decode(ReadOnlySpan(Of Char), ReadOnlySpan(Of Char), Byte())
+- uid: wan24.Core.ByteEncoding.Decode(ReadOnlySpan{System.Char},Span{System.Byte},ReadOnlySpan{System.Char})
+  name: Decode(ReadOnlySpan<Char>, Span<Byte>, ReadOnlySpan<Char>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Decode_ReadOnlySpan_System_Char__Span_System_Byte__ReadOnlySpan_System_Char__
+  commentId: M:wan24.Core.ByteEncoding.Decode(ReadOnlySpan{System.Char},Span{System.Byte},ReadOnlySpan{System.Char})
+  name.vb: Decode(ReadOnlySpan(Of Char), Span(Of Byte), ReadOnlySpan(Of Char))
+  fullName: wan24.Core.ByteEncoding.Decode(ReadOnlySpan<System.Char>, Span<System.Byte>, ReadOnlySpan<System.Char>)
+  fullName.vb: wan24.Core.ByteEncoding.Decode(ReadOnlySpan(Of System.Char), Span(Of System.Byte), ReadOnlySpan(Of System.Char))
+  nameWithType: ByteEncoding.Decode(ReadOnlySpan<Char>, Span<Byte>, ReadOnlySpan<Char>)
+  nameWithType.vb: ByteEncoding.Decode(ReadOnlySpan(Of Char), Span(Of Byte), ReadOnlySpan(Of Char))
+- uid: wan24.Core.ByteEncoding.Decode(ReadOnlySpan{System.Char},Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}})
+  name: Decode(ReadOnlySpan<Char>, Span<Byte>, Nullable<ReadOnlyMemory<Char>>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Decode_ReadOnlySpan_System_Char__Span_System_Byte__System_Nullable_ReadOnlyMemory_System_Char___
+  commentId: M:wan24.Core.ByteEncoding.Decode(ReadOnlySpan{System.Char},Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}})
+  name.vb: Decode(ReadOnlySpan(Of Char), Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)))
+  fullName: wan24.Core.ByteEncoding.Decode(ReadOnlySpan<System.Char>, Span<System.Byte>, System.Nullable<ReadOnlyMemory<System.Char>>)
+  fullName.vb: wan24.Core.ByteEncoding.Decode(ReadOnlySpan(Of System.Char), Span(Of System.Byte), System.Nullable(Of ReadOnlyMemory(Of System.Char)))
+  nameWithType: ByteEncoding.Decode(ReadOnlySpan<Char>, Span<Byte>, Nullable<ReadOnlyMemory<Char>>)
+  nameWithType.vb: ByteEncoding.Decode(ReadOnlySpan(Of Char), Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)))
+- uid: wan24.Core.ByteEncoding.Decode(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[])
+  name: Decode(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Decode_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Byte___
+  commentId: M:wan24.Core.ByteEncoding.Decode(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[])
+  name.vb: Decode(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte())
+  fullName: wan24.Core.ByteEncoding.Decode(ReadOnlySpan<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[])
+  fullName.vb: wan24.Core.ByteEncoding.Decode(ReadOnlySpan(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte())
+  nameWithType: ByteEncoding.Decode(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[])
+  nameWithType.vb: ByteEncoding.Decode(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte())
+- uid: wan24.Core.ByteEncoding.Decode(Span{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[])
+  name: Decode(Span<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Decode_Span_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Byte___
+  commentId: M:wan24.Core.ByteEncoding.Decode(Span{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[])
+  name.vb: Decode(Span(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte())
+  fullName: wan24.Core.ByteEncoding.Decode(Span<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[])
+  fullName.vb: wan24.Core.ByteEncoding.Decode(Span(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte())
+  nameWithType: ByteEncoding.Decode(Span<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[])
+  nameWithType.vb: ByteEncoding.Decode(Span(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte())
+- uid: wan24.Core.ByteEncoding.Decode(System.Char[],System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[])
+  name: Decode(Char[], Nullable<ReadOnlyMemory<Char>>, Byte[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Decode_System_Char___System_Nullable_ReadOnlyMemory_System_Char___System_Byte___
+  commentId: M:wan24.Core.ByteEncoding.Decode(System.Char[],System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[])
+  name.vb: Decode(Char(), Nullable(Of ReadOnlyMemory(Of Char)), Byte())
+  fullName: wan24.Core.ByteEncoding.Decode(System.Char[], System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[])
+  fullName.vb: wan24.Core.ByteEncoding.Decode(System.Char(), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte())
+  nameWithType: ByteEncoding.Decode(Char[], Nullable<ReadOnlyMemory<Char>>, Byte[])
+  nameWithType.vb: ByteEncoding.Decode(Char(), Nullable(Of ReadOnlyMemory(Of Char)), Byte())
+- uid: wan24.Core.ByteEncoding.Decode(System.String,System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[])
+  name: Decode(String, Nullable<ReadOnlyMemory<Char>>, Byte[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Decode_System_String_System_Nullable_ReadOnlyMemory_System_Char___System_Byte___
+  commentId: M:wan24.Core.ByteEncoding.Decode(System.String,System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[])
+  name.vb: Decode(String, Nullable(Of ReadOnlyMemory(Of Char)), Byte())
+  fullName: wan24.Core.ByteEncoding.Decode(System.String, System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[])
+  fullName.vb: wan24.Core.ByteEncoding.Decode(System.String, System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte())
+  nameWithType: ByteEncoding.Decode(String, Nullable<ReadOnlyMemory<Char>>, Byte[])
+  nameWithType.vb: ByteEncoding.Decode(String, Nullable(Of ReadOnlyMemory(Of Char)), Byte())
 - uid: wan24.Core.ByteEncoding.Decode*
   name: Decode
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Decode_
@@ -3686,15 +3713,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ByteEncoding.Decode
   nameWithType: ByteEncoding.Decode
-- uid: wan24.Core.ByteEncoding.DecodeByte(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name: DecodeByte(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeByte_ReadOnlySpan_System_Char__System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.DecodeByte(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: DecodeByte(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.DecodeByte(ReadOnlySpan<System.Char>, System.Char[], System.Byte[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.DecodeByte(ReadOnlySpan(Of System.Char), System.Char(), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.DecodeByte(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.DecodeByte(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.DecodeByte(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name: DecodeByte(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeByte_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.DecodeByte(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: DecodeByte(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.DecodeByte(ReadOnlySpan<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.DecodeByte(ReadOnlySpan(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.DecodeByte(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.DecodeByte(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
 - uid: wan24.Core.ByteEncoding.DecodeByte*
   name: DecodeByte
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeByte_
@@ -3709,51 +3736,51 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ByteEncoding.DecodeCompactNumber
   nameWithType: ByteEncoding.DecodeCompactNumber
-- uid: wan24.Core.ByteEncoding.DecodeCompactNumber``1(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name: DecodeCompactNumber<T>(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeCompactNumber__1_ReadOnlySpan_System_Char__System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.DecodeCompactNumber``1(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: DecodeCompactNumber(Of T)(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.DecodeCompactNumber<T>(ReadOnlySpan<System.Char>, System.Char[], System.Byte[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.DecodeCompactNumber(Of T)(ReadOnlySpan(Of System.Char), System.Char(), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.DecodeCompactNumber<T>(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.DecodeCompactNumber(Of T)(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
-- uid: wan24.Core.ByteEncoding.DecodeCompactNumber``1(Span{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name: DecodeCompactNumber<T>(Span<Char>, Char[], Byte[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeCompactNumber__1_Span_System_Char__System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.DecodeCompactNumber``1(Span{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: DecodeCompactNumber(Of T)(Span(Of Char), Char(), Byte(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.DecodeCompactNumber<T>(Span<System.Char>, System.Char[], System.Byte[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.DecodeCompactNumber(Of T)(Span(Of System.Char), System.Char(), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.DecodeCompactNumber<T>(Span<Char>, Char[], Byte[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.DecodeCompactNumber(Of T)(Span(Of Char), Char(), Byte(), ArrayPool(Of Byte))
-- uid: wan24.Core.ByteEncoding.DecodeCompactNumber``1(System.Char[],System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name: DecodeCompactNumber<T>(Char[], Char[], Byte[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeCompactNumber__1_System_Char___System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.DecodeCompactNumber``1(System.Char[],System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: DecodeCompactNumber(Of T)(Char(), Char(), Byte(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.DecodeCompactNumber<T>(System.Char[], System.Char[], System.Byte[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.DecodeCompactNumber(Of T)(System.Char(), System.Char(), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.DecodeCompactNumber<T>(Char[], Char[], Byte[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.DecodeCompactNumber(Of T)(Char(), Char(), Byte(), ArrayPool(Of Byte))
-- uid: wan24.Core.ByteEncoding.DecodeCompactNumber``1(System.String,System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name: DecodeCompactNumber<T>(String, Char[], Byte[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeCompactNumber__1_System_String_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.DecodeCompactNumber``1(System.String,System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: DecodeCompactNumber(Of T)(String, Char(), Byte(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.DecodeCompactNumber<T>(System.String, System.Char[], System.Byte[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.DecodeCompactNumber(Of T)(System.String, System.Char(), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.DecodeCompactNumber<T>(String, Char[], Byte[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.DecodeCompactNumber(Of T)(String, Char(), Byte(), ArrayPool(Of Byte))
-- uid: wan24.Core.ByteEncoding.DecodeDecimal(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name: DecodeDecimal(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeDecimal_ReadOnlySpan_System_Char__System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.DecodeDecimal(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: DecodeDecimal(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.DecodeDecimal(ReadOnlySpan<System.Char>, System.Char[], System.Byte[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.DecodeDecimal(ReadOnlySpan(Of System.Char), System.Char(), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.DecodeDecimal(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.DecodeDecimal(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.DecodeCompactNumber``1(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name: DecodeCompactNumber<T>(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeCompactNumber__1_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.DecodeCompactNumber``1(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: DecodeCompactNumber(Of T)(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.DecodeCompactNumber<T>(ReadOnlySpan<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.DecodeCompactNumber(Of T)(ReadOnlySpan(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.DecodeCompactNumber<T>(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.DecodeCompactNumber(Of T)(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.DecodeCompactNumber``1(Span{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name: DecodeCompactNumber<T>(Span<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeCompactNumber__1_Span_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.DecodeCompactNumber``1(Span{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: DecodeCompactNumber(Of T)(Span(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.DecodeCompactNumber<T>(Span<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.DecodeCompactNumber(Of T)(Span(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.DecodeCompactNumber<T>(Span<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.DecodeCompactNumber(Of T)(Span(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.DecodeCompactNumber``1(System.Char[],System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name: DecodeCompactNumber<T>(Char[], Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeCompactNumber__1_System_Char___System_Nullable_ReadOnlyMemory_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.DecodeCompactNumber``1(System.Char[],System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: DecodeCompactNumber(Of T)(Char(), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.DecodeCompactNumber<T>(System.Char[], System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.DecodeCompactNumber(Of T)(System.Char(), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.DecodeCompactNumber<T>(Char[], Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.DecodeCompactNumber(Of T)(Char(), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.DecodeCompactNumber``1(System.String,System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name: DecodeCompactNumber<T>(String, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeCompactNumber__1_System_String_System_Nullable_ReadOnlyMemory_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.DecodeCompactNumber``1(System.String,System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: DecodeCompactNumber(Of T)(String, Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.DecodeCompactNumber<T>(System.String, System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.DecodeCompactNumber(Of T)(System.String, System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.DecodeCompactNumber<T>(String, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.DecodeCompactNumber(Of T)(String, Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.DecodeDecimal(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name: DecodeDecimal(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeDecimal_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.DecodeDecimal(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: DecodeDecimal(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.DecodeDecimal(ReadOnlySpan<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.DecodeDecimal(ReadOnlySpan(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.DecodeDecimal(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.DecodeDecimal(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
 - uid: wan24.Core.ByteEncoding.DecodeDecimal*
   name: DecodeDecimal
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeDecimal_
@@ -3761,15 +3788,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ByteEncoding.DecodeDecimal
   nameWithType: ByteEncoding.DecodeDecimal
-- uid: wan24.Core.ByteEncoding.DecodeDouble(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name: DecodeDouble(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeDouble_ReadOnlySpan_System_Char__System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.DecodeDouble(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: DecodeDouble(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.DecodeDouble(ReadOnlySpan<System.Char>, System.Char[], System.Byte[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.DecodeDouble(ReadOnlySpan(Of System.Char), System.Char(), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.DecodeDouble(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.DecodeDouble(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.DecodeDouble(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name: DecodeDouble(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeDouble_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.DecodeDouble(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: DecodeDouble(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.DecodeDouble(ReadOnlySpan<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.DecodeDouble(ReadOnlySpan(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.DecodeDouble(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.DecodeDouble(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
 - uid: wan24.Core.ByteEncoding.DecodeDouble*
   name: DecodeDouble
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeDouble_
@@ -3777,15 +3804,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ByteEncoding.DecodeDouble
   nameWithType: ByteEncoding.DecodeDouble
-- uid: wan24.Core.ByteEncoding.DecodeFloat(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name: DecodeFloat(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeFloat_ReadOnlySpan_System_Char__System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.DecodeFloat(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: DecodeFloat(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.DecodeFloat(ReadOnlySpan<System.Char>, System.Char[], System.Byte[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.DecodeFloat(ReadOnlySpan(Of System.Char), System.Char(), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.DecodeFloat(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.DecodeFloat(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.DecodeFloat(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name: DecodeFloat(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeFloat_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.DecodeFloat(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: DecodeFloat(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.DecodeFloat(ReadOnlySpan<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.DecodeFloat(ReadOnlySpan(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.DecodeFloat(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.DecodeFloat(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
 - uid: wan24.Core.ByteEncoding.DecodeFloat*
   name: DecodeFloat
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeFloat_
@@ -3793,15 +3820,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ByteEncoding.DecodeFloat
   nameWithType: ByteEncoding.DecodeFloat
-- uid: wan24.Core.ByteEncoding.DecodeInt(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name: DecodeInt(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeInt_ReadOnlySpan_System_Char__System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.DecodeInt(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: DecodeInt(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.DecodeInt(ReadOnlySpan<System.Char>, System.Char[], System.Byte[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.DecodeInt(ReadOnlySpan(Of System.Char), System.Char(), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.DecodeInt(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.DecodeInt(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.DecodeInt(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name: DecodeInt(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeInt_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.DecodeInt(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: DecodeInt(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.DecodeInt(ReadOnlySpan<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.DecodeInt(ReadOnlySpan(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.DecodeInt(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.DecodeInt(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
 - uid: wan24.Core.ByteEncoding.DecodeInt*
   name: DecodeInt
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeInt_
@@ -3809,15 +3836,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ByteEncoding.DecodeInt
   nameWithType: ByteEncoding.DecodeInt
-- uid: wan24.Core.ByteEncoding.DecodeLong(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name: DecodeLong(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeLong_ReadOnlySpan_System_Char__System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.DecodeLong(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: DecodeLong(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.DecodeLong(ReadOnlySpan<System.Char>, System.Char[], System.Byte[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.DecodeLong(ReadOnlySpan(Of System.Char), System.Char(), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.DecodeLong(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.DecodeLong(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.DecodeLong(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name: DecodeLong(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeLong_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.DecodeLong(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: DecodeLong(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.DecodeLong(ReadOnlySpan<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.DecodeLong(ReadOnlySpan(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.DecodeLong(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.DecodeLong(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
 - uid: wan24.Core.ByteEncoding.DecodeLong*
   name: DecodeLong
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeLong_
@@ -3825,15 +3852,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ByteEncoding.DecodeLong
   nameWithType: ByteEncoding.DecodeLong
-- uid: wan24.Core.ByteEncoding.DecodeSByte(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name: DecodeSByte(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeSByte_ReadOnlySpan_System_Char__System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.DecodeSByte(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: DecodeSByte(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.DecodeSByte(ReadOnlySpan<System.Char>, System.Char[], System.Byte[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.DecodeSByte(ReadOnlySpan(Of System.Char), System.Char(), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.DecodeSByte(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.DecodeSByte(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.DecodeSByte(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name: DecodeSByte(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeSByte_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.DecodeSByte(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: DecodeSByte(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.DecodeSByte(ReadOnlySpan<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.DecodeSByte(ReadOnlySpan(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.DecodeSByte(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.DecodeSByte(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
 - uid: wan24.Core.ByteEncoding.DecodeSByte*
   name: DecodeSByte
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeSByte_
@@ -3841,15 +3868,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ByteEncoding.DecodeSByte
   nameWithType: ByteEncoding.DecodeSByte
-- uid: wan24.Core.ByteEncoding.DecodeShort(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name: DecodeShort(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeShort_ReadOnlySpan_System_Char__System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.DecodeShort(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: DecodeShort(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.DecodeShort(ReadOnlySpan<System.Char>, System.Char[], System.Byte[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.DecodeShort(ReadOnlySpan(Of System.Char), System.Char(), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.DecodeShort(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.DecodeShort(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.DecodeShort(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name: DecodeShort(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeShort_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.DecodeShort(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: DecodeShort(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.DecodeShort(ReadOnlySpan<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.DecodeShort(ReadOnlySpan(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.DecodeShort(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.DecodeShort(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
 - uid: wan24.Core.ByteEncoding.DecodeShort*
   name: DecodeShort
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeShort_
@@ -3857,15 +3884,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ByteEncoding.DecodeShort
   nameWithType: ByteEncoding.DecodeShort
-- uid: wan24.Core.ByteEncoding.DecodeUInt(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name: DecodeUInt(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeUInt_ReadOnlySpan_System_Char__System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.DecodeUInt(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: DecodeUInt(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.DecodeUInt(ReadOnlySpan<System.Char>, System.Char[], System.Byte[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.DecodeUInt(ReadOnlySpan(Of System.Char), System.Char(), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.DecodeUInt(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.DecodeUInt(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.DecodeUInt(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name: DecodeUInt(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeUInt_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.DecodeUInt(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: DecodeUInt(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.DecodeUInt(ReadOnlySpan<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.DecodeUInt(ReadOnlySpan(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.DecodeUInt(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.DecodeUInt(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
 - uid: wan24.Core.ByteEncoding.DecodeUInt*
   name: DecodeUInt
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeUInt_
@@ -3873,15 +3900,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ByteEncoding.DecodeUInt
   nameWithType: ByteEncoding.DecodeUInt
-- uid: wan24.Core.ByteEncoding.DecodeULong(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name: DecodeULong(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeULong_ReadOnlySpan_System_Char__System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.DecodeULong(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: DecodeULong(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.DecodeULong(ReadOnlySpan<System.Char>, System.Char[], System.Byte[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.DecodeULong(ReadOnlySpan(Of System.Char), System.Char(), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.DecodeULong(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.DecodeULong(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.DecodeULong(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name: DecodeULong(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeULong_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.DecodeULong(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: DecodeULong(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.DecodeULong(ReadOnlySpan<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.DecodeULong(ReadOnlySpan(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.DecodeULong(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.DecodeULong(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
 - uid: wan24.Core.ByteEncoding.DecodeULong*
   name: DecodeULong
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeULong_
@@ -3889,15 +3916,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ByteEncoding.DecodeULong
   nameWithType: ByteEncoding.DecodeULong
-- uid: wan24.Core.ByteEncoding.DecodeUShort(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name: DecodeUShort(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeUShort_ReadOnlySpan_System_Char__System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.DecodeUShort(ReadOnlySpan{System.Char},System.Char[],System.Byte[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: DecodeUShort(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.DecodeUShort(ReadOnlySpan<System.Char>, System.Char[], System.Byte[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.DecodeUShort(ReadOnlySpan(Of System.Char), System.Char(), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.DecodeUShort(ReadOnlySpan<Char>, Char[], Byte[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.DecodeUShort(ReadOnlySpan(Of Char), Char(), Byte(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.DecodeUShort(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name: DecodeUShort(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeUShort_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.DecodeUShort(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: DecodeUShort(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.DecodeUShort(ReadOnlySpan<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Byte[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.DecodeUShort(ReadOnlySpan(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Byte(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.DecodeUShort(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Byte[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.DecodeUShort(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Byte(), ArrayPool(Of Byte))
 - uid: wan24.Core.ByteEncoding.DecodeUShort*
   name: DecodeUShort
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DecodeUShort_
@@ -3905,231 +3932,264 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ByteEncoding.DecodeUShort
   nameWithType: ByteEncoding.DecodeUShort
-- uid: wan24.Core.ByteEncoding.Encode(ReadOnlySpan{System.Byte},System.Char[],System.Char[])
-  name: Encode(ReadOnlySpan<Byte>, Char[], Char[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_ReadOnlySpan_System_Byte__System_Char___System_Char___
-  commentId: M:wan24.Core.ByteEncoding.Encode(ReadOnlySpan{System.Byte},System.Char[],System.Char[])
-  name.vb: Encode(ReadOnlySpan(Of Byte), Char(), Char())
-  fullName: wan24.Core.ByteEncoding.Encode(ReadOnlySpan<System.Byte>, System.Char[], System.Char[])
-  fullName.vb: wan24.Core.ByteEncoding.Encode(ReadOnlySpan(Of System.Byte), System.Char(), System.Char())
-  nameWithType: ByteEncoding.Encode(ReadOnlySpan<Byte>, Char[], Char[])
-  nameWithType.vb: ByteEncoding.Encode(ReadOnlySpan(Of Byte), Char(), Char())
-- uid: wan24.Core.ByteEncoding.Encode(Span{System.Byte},System.Char[],System.Char[])
-  name: Encode(Span<Byte>, Char[], Char[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_Span_System_Byte__System_Char___System_Char___
-  commentId: M:wan24.Core.ByteEncoding.Encode(Span{System.Byte},System.Char[],System.Char[])
-  name.vb: Encode(Span(Of Byte), Char(), Char())
-  fullName: wan24.Core.ByteEncoding.Encode(Span<System.Byte>, System.Char[], System.Char[])
-  fullName.vb: wan24.Core.ByteEncoding.Encode(Span(Of System.Byte), System.Char(), System.Char())
-  nameWithType: ByteEncoding.Encode(Span<Byte>, Char[], Char[])
-  nameWithType.vb: ByteEncoding.Encode(Span(Of Byte), Char(), Char())
-- uid: wan24.Core.ByteEncoding.Encode(System.Byte,Span{System.Byte},System.Char[],System.Char[])
-  name: Encode(Byte, Span<Byte>, Char[], Char[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Byte_Span_System_Byte__System_Char___System_Char___
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.Byte,Span{System.Byte},System.Char[],System.Char[])
-  name.vb: Encode(Byte, Span(Of Byte), Char(), Char())
-  fullName: wan24.Core.ByteEncoding.Encode(System.Byte, Span<System.Byte>, System.Char[], System.Char[])
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Byte, Span(Of System.Byte), System.Char(), System.Char())
-  nameWithType: ByteEncoding.Encode(Byte, Span<Byte>, Char[], Char[])
-  nameWithType.vb: ByteEncoding.Encode(Byte, Span(Of Byte), Char(), Char())
-- uid: wan24.Core.ByteEncoding.Encode(System.Byte,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name: Encode(Byte, Char[], Char[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Byte_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.Byte,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: Encode(Byte, Char(), Char(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.Encode(System.Byte, System.Char[], System.Char[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Byte, System.Char(), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.Encode(Byte, Char[], Char[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.Encode(Byte, Char(), Char(), ArrayPool(Of Byte))
-- uid: wan24.Core.ByteEncoding.Encode(System.Byte[],System.Char[],System.Char[])
-  name: Encode(Byte[], Char[], Char[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Byte___System_Char___System_Char___
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.Byte[],System.Char[],System.Char[])
-  name.vb: Encode(Byte(), Char(), Char())
-  fullName: wan24.Core.ByteEncoding.Encode(System.Byte[], System.Char[], System.Char[])
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Byte(), System.Char(), System.Char())
-  nameWithType: ByteEncoding.Encode(Byte[], Char[], Char[])
-  nameWithType.vb: ByteEncoding.Encode(Byte(), Char(), Char())
-- uid: wan24.Core.ByteEncoding.Encode(System.Decimal,Span{System.Byte},System.Char[],System.Char[])
-  name: Encode(Decimal, Span<Byte>, Char[], Char[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Decimal_Span_System_Byte__System_Char___System_Char___
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.Decimal,Span{System.Byte},System.Char[],System.Char[])
-  name.vb: Encode(Decimal, Span(Of Byte), Char(), Char())
-  fullName: wan24.Core.ByteEncoding.Encode(System.Decimal, Span<System.Byte>, System.Char[], System.Char[])
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Decimal, Span(Of System.Byte), System.Char(), System.Char())
-  nameWithType: ByteEncoding.Encode(Decimal, Span<Byte>, Char[], Char[])
-  nameWithType.vb: ByteEncoding.Encode(Decimal, Span(Of Byte), Char(), Char())
-- uid: wan24.Core.ByteEncoding.Encode(System.Decimal,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name: Encode(Decimal, Char[], Char[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Decimal_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.Decimal,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: Encode(Decimal, Char(), Char(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.Encode(System.Decimal, System.Char[], System.Char[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Decimal, System.Char(), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.Encode(Decimal, Char[], Char[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.Encode(Decimal, Char(), Char(), ArrayPool(Of Byte))
-- uid: wan24.Core.ByteEncoding.Encode(System.Double,Span{System.Byte},System.Char[],System.Char[])
-  name: Encode(Double, Span<Byte>, Char[], Char[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Double_Span_System_Byte__System_Char___System_Char___
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.Double,Span{System.Byte},System.Char[],System.Char[])
-  name.vb: Encode(Double, Span(Of Byte), Char(), Char())
-  fullName: wan24.Core.ByteEncoding.Encode(System.Double, Span<System.Byte>, System.Char[], System.Char[])
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Double, Span(Of System.Byte), System.Char(), System.Char())
-  nameWithType: ByteEncoding.Encode(Double, Span<Byte>, Char[], Char[])
-  nameWithType.vb: ByteEncoding.Encode(Double, Span(Of Byte), Char(), Char())
-- uid: wan24.Core.ByteEncoding.Encode(System.Double,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name: Encode(Double, Char[], Char[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Double_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.Double,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: Encode(Double, Char(), Char(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.Encode(System.Double, System.Char[], System.Char[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Double, System.Char(), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.Encode(Double, Char[], Char[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.Encode(Double, Char(), Char(), ArrayPool(Of Byte))
-- uid: wan24.Core.ByteEncoding.Encode(System.Int16,Span{System.Byte},System.Char[],System.Char[])
-  name: Encode(Int16, Span<Byte>, Char[], Char[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Int16_Span_System_Byte__System_Char___System_Char___
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.Int16,Span{System.Byte},System.Char[],System.Char[])
-  name.vb: Encode(Int16, Span(Of Byte), Char(), Char())
-  fullName: wan24.Core.ByteEncoding.Encode(System.Int16, Span<System.Byte>, System.Char[], System.Char[])
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Int16, Span(Of System.Byte), System.Char(), System.Char())
-  nameWithType: ByteEncoding.Encode(Int16, Span<Byte>, Char[], Char[])
-  nameWithType.vb: ByteEncoding.Encode(Int16, Span(Of Byte), Char(), Char())
-- uid: wan24.Core.ByteEncoding.Encode(System.Int16,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name: Encode(Int16, Char[], Char[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Int16_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.Int16,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: Encode(Int16, Char(), Char(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.Encode(System.Int16, System.Char[], System.Char[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Int16, System.Char(), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.Encode(Int16, Char[], Char[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.Encode(Int16, Char(), Char(), ArrayPool(Of Byte))
-- uid: wan24.Core.ByteEncoding.Encode(System.Int32,Span{System.Byte},System.Char[],System.Char[])
-  name: Encode(Int32, Span<Byte>, Char[], Char[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Int32_Span_System_Byte__System_Char___System_Char___
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.Int32,Span{System.Byte},System.Char[],System.Char[])
-  name.vb: Encode(Int32, Span(Of Byte), Char(), Char())
-  fullName: wan24.Core.ByteEncoding.Encode(System.Int32, Span<System.Byte>, System.Char[], System.Char[])
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Int32, Span(Of System.Byte), System.Char(), System.Char())
-  nameWithType: ByteEncoding.Encode(Int32, Span<Byte>, Char[], Char[])
-  nameWithType.vb: ByteEncoding.Encode(Int32, Span(Of Byte), Char(), Char())
-- uid: wan24.Core.ByteEncoding.Encode(System.Int32,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name: Encode(Int32, Char[], Char[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Int32_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.Int32,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: Encode(Int32, Char(), Char(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.Encode(System.Int32, System.Char[], System.Char[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Int32, System.Char(), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.Encode(Int32, Char[], Char[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.Encode(Int32, Char(), Char(), ArrayPool(Of Byte))
-- uid: wan24.Core.ByteEncoding.Encode(System.Int64,Span{System.Byte},System.Char[],System.Char[])
-  name: Encode(Int64, Span<Byte>, Char[], Char[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Int64_Span_System_Byte__System_Char___System_Char___
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.Int64,Span{System.Byte},System.Char[],System.Char[])
-  name.vb: Encode(Int64, Span(Of Byte), Char(), Char())
-  fullName: wan24.Core.ByteEncoding.Encode(System.Int64, Span<System.Byte>, System.Char[], System.Char[])
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Int64, Span(Of System.Byte), System.Char(), System.Char())
-  nameWithType: ByteEncoding.Encode(Int64, Span<Byte>, Char[], Char[])
-  nameWithType.vb: ByteEncoding.Encode(Int64, Span(Of Byte), Char(), Char())
-- uid: wan24.Core.ByteEncoding.Encode(System.Int64,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name: Encode(Int64, Char[], Char[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Int64_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.Int64,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: Encode(Int64, Char(), Char(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.Encode(System.Int64, System.Char[], System.Char[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Int64, System.Char(), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.Encode(Int64, Char[], Char[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.Encode(Int64, Char(), Char(), ArrayPool(Of Byte))
-- uid: wan24.Core.ByteEncoding.Encode(System.SByte,Span{System.Byte},System.Char[],System.Char[])
-  name: Encode(SByte, Span<Byte>, Char[], Char[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_SByte_Span_System_Byte__System_Char___System_Char___
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.SByte,Span{System.Byte},System.Char[],System.Char[])
-  name.vb: Encode(SByte, Span(Of Byte), Char(), Char())
-  fullName: wan24.Core.ByteEncoding.Encode(System.SByte, Span<System.Byte>, System.Char[], System.Char[])
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.SByte, Span(Of System.Byte), System.Char(), System.Char())
-  nameWithType: ByteEncoding.Encode(SByte, Span<Byte>, Char[], Char[])
-  nameWithType.vb: ByteEncoding.Encode(SByte, Span(Of Byte), Char(), Char())
-- uid: wan24.Core.ByteEncoding.Encode(System.SByte,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name: Encode(SByte, Char[], Char[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_SByte_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.SByte,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: Encode(SByte, Char(), Char(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.Encode(System.SByte, System.Char[], System.Char[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.SByte, System.Char(), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.Encode(SByte, Char[], Char[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.Encode(SByte, Char(), Char(), ArrayPool(Of Byte))
-- uid: wan24.Core.ByteEncoding.Encode(System.Single,Span{System.Byte},System.Char[],System.Char[])
-  name: Encode(Single, Span<Byte>, Char[], Char[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Single_Span_System_Byte__System_Char___System_Char___
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.Single,Span{System.Byte},System.Char[],System.Char[])
-  name.vb: Encode(Single, Span(Of Byte), Char(), Char())
-  fullName: wan24.Core.ByteEncoding.Encode(System.Single, Span<System.Byte>, System.Char[], System.Char[])
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Single, Span(Of System.Byte), System.Char(), System.Char())
-  nameWithType: ByteEncoding.Encode(Single, Span<Byte>, Char[], Char[])
-  nameWithType.vb: ByteEncoding.Encode(Single, Span(Of Byte), Char(), Char())
-- uid: wan24.Core.ByteEncoding.Encode(System.Single,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name: Encode(Single, Char[], Char[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Single_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.Single,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: Encode(Single, Char(), Char(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.Encode(System.Single, System.Char[], System.Char[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Single, System.Char(), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.Encode(Single, Char[], Char[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.Encode(Single, Char(), Char(), ArrayPool(Of Byte))
-- uid: wan24.Core.ByteEncoding.Encode(System.UInt16,Span{System.Byte},System.Char[],System.Char[])
-  name: Encode(UInt16, Span<Byte>, Char[], Char[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_UInt16_Span_System_Byte__System_Char___System_Char___
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.UInt16,Span{System.Byte},System.Char[],System.Char[])
-  name.vb: Encode(UInt16, Span(Of Byte), Char(), Char())
-  fullName: wan24.Core.ByteEncoding.Encode(System.UInt16, Span<System.Byte>, System.Char[], System.Char[])
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.UInt16, Span(Of System.Byte), System.Char(), System.Char())
-  nameWithType: ByteEncoding.Encode(UInt16, Span<Byte>, Char[], Char[])
-  nameWithType.vb: ByteEncoding.Encode(UInt16, Span(Of Byte), Char(), Char())
-- uid: wan24.Core.ByteEncoding.Encode(System.UInt16,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name: Encode(UInt16, Char[], Char[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_UInt16_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.UInt16,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: Encode(UInt16, Char(), Char(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.Encode(System.UInt16, System.Char[], System.Char[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.UInt16, System.Char(), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.Encode(UInt16, Char[], Char[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.Encode(UInt16, Char(), Char(), ArrayPool(Of Byte))
-- uid: wan24.Core.ByteEncoding.Encode(System.UInt32,Span{System.Byte},System.Char[],System.Char[])
-  name: Encode(UInt32, Span<Byte>, Char[], Char[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_UInt32_Span_System_Byte__System_Char___System_Char___
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.UInt32,Span{System.Byte},System.Char[],System.Char[])
-  name.vb: Encode(UInt32, Span(Of Byte), Char(), Char())
-  fullName: wan24.Core.ByteEncoding.Encode(System.UInt32, Span<System.Byte>, System.Char[], System.Char[])
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.UInt32, Span(Of System.Byte), System.Char(), System.Char())
-  nameWithType: ByteEncoding.Encode(UInt32, Span<Byte>, Char[], Char[])
-  nameWithType.vb: ByteEncoding.Encode(UInt32, Span(Of Byte), Char(), Char())
-- uid: wan24.Core.ByteEncoding.Encode(System.UInt32,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name: Encode(UInt32, Char[], Char[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_UInt32_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.UInt32,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: Encode(UInt32, Char(), Char(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.Encode(System.UInt32, System.Char[], System.Char[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.UInt32, System.Char(), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.Encode(UInt32, Char[], Char[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.Encode(UInt32, Char(), Char(), ArrayPool(Of Byte))
-- uid: wan24.Core.ByteEncoding.Encode(System.UInt64,Span{System.Byte},System.Char[],System.Char[])
-  name: Encode(UInt64, Span<Byte>, Char[], Char[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_UInt64_Span_System_Byte__System_Char___System_Char___
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.UInt64,Span{System.Byte},System.Char[],System.Char[])
-  name.vb: Encode(UInt64, Span(Of Byte), Char(), Char())
-  fullName: wan24.Core.ByteEncoding.Encode(System.UInt64, Span<System.Byte>, System.Char[], System.Char[])
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.UInt64, Span(Of System.Byte), System.Char(), System.Char())
-  nameWithType: ByteEncoding.Encode(UInt64, Span<Byte>, Char[], Char[])
-  nameWithType.vb: ByteEncoding.Encode(UInt64, Span(Of Byte), Char(), Char())
-- uid: wan24.Core.ByteEncoding.Encode(System.UInt64,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name: Encode(UInt64, Char[], Char[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_UInt64_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.Encode(System.UInt64,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: Encode(UInt64, Char(), Char(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.Encode(System.UInt64, System.Char[], System.Char[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.Encode(System.UInt64, System.Char(), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.Encode(UInt64, Char[], Char[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.Encode(UInt64, Char(), Char(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.DefaultCharMap
+  name: DefaultCharMap
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_DefaultCharMap
+  commentId: F:wan24.Core.ByteEncoding.DefaultCharMap
+  fullName: wan24.Core.ByteEncoding.DefaultCharMap
+  nameWithType: ByteEncoding.DefaultCharMap
+- uid: wan24.Core.ByteEncoding.Encode(ReadOnlySpan{System.Byte},ReadOnlySpan{System.Char},System.Char[])
+  name: Encode(ReadOnlySpan<Byte>, ReadOnlySpan<Char>, Char[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_ReadOnlySpan_System_Byte__ReadOnlySpan_System_Char__System_Char___
+  commentId: M:wan24.Core.ByteEncoding.Encode(ReadOnlySpan{System.Byte},ReadOnlySpan{System.Char},System.Char[])
+  name.vb: Encode(ReadOnlySpan(Of Byte), ReadOnlySpan(Of Char), Char())
+  fullName: wan24.Core.ByteEncoding.Encode(ReadOnlySpan<System.Byte>, ReadOnlySpan<System.Char>, System.Char[])
+  fullName.vb: wan24.Core.ByteEncoding.Encode(ReadOnlySpan(Of System.Byte), ReadOnlySpan(Of System.Char), System.Char())
+  nameWithType: ByteEncoding.Encode(ReadOnlySpan<Byte>, ReadOnlySpan<Char>, Char[])
+  nameWithType.vb: ByteEncoding.Encode(ReadOnlySpan(Of Byte), ReadOnlySpan(Of Char), Char())
+- uid: wan24.Core.ByteEncoding.Encode(ReadOnlySpan{System.Byte},Span{System.Char},ReadOnlySpan{System.Char})
+  name: Encode(ReadOnlySpan<Byte>, Span<Char>, ReadOnlySpan<Char>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_ReadOnlySpan_System_Byte__Span_System_Char__ReadOnlySpan_System_Char__
+  commentId: M:wan24.Core.ByteEncoding.Encode(ReadOnlySpan{System.Byte},Span{System.Char},ReadOnlySpan{System.Char})
+  name.vb: Encode(ReadOnlySpan(Of Byte), Span(Of Char), ReadOnlySpan(Of Char))
+  fullName: wan24.Core.ByteEncoding.Encode(ReadOnlySpan<System.Byte>, Span<System.Char>, ReadOnlySpan<System.Char>)
+  fullName.vb: wan24.Core.ByteEncoding.Encode(ReadOnlySpan(Of System.Byte), Span(Of System.Char), ReadOnlySpan(Of System.Char))
+  nameWithType: ByteEncoding.Encode(ReadOnlySpan<Byte>, Span<Char>, ReadOnlySpan<Char>)
+  nameWithType.vb: ByteEncoding.Encode(ReadOnlySpan(Of Byte), Span(Of Char), ReadOnlySpan(Of Char))
+- uid: wan24.Core.ByteEncoding.Encode(ReadOnlySpan{System.Byte},Span{System.Char},System.Nullable{ReadOnlyMemory{System.Char}})
+  name: Encode(ReadOnlySpan<Byte>, Span<Char>, Nullable<ReadOnlyMemory<Char>>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_ReadOnlySpan_System_Byte__Span_System_Char__System_Nullable_ReadOnlyMemory_System_Char___
+  commentId: M:wan24.Core.ByteEncoding.Encode(ReadOnlySpan{System.Byte},Span{System.Char},System.Nullable{ReadOnlyMemory{System.Char}})
+  name.vb: Encode(ReadOnlySpan(Of Byte), Span(Of Char), Nullable(Of ReadOnlyMemory(Of Char)))
+  fullName: wan24.Core.ByteEncoding.Encode(ReadOnlySpan<System.Byte>, Span<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>)
+  fullName.vb: wan24.Core.ByteEncoding.Encode(ReadOnlySpan(Of System.Byte), Span(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)))
+  nameWithType: ByteEncoding.Encode(ReadOnlySpan<Byte>, Span<Char>, Nullable<ReadOnlyMemory<Char>>)
+  nameWithType.vb: ByteEncoding.Encode(ReadOnlySpan(Of Byte), Span(Of Char), Nullable(Of ReadOnlyMemory(Of Char)))
+- uid: wan24.Core.ByteEncoding.Encode(ReadOnlySpan{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name: Encode(ReadOnlySpan<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_ReadOnlySpan_System_Byte__System_Nullable_ReadOnlyMemory_System_Char___System_Char___
+  commentId: M:wan24.Core.ByteEncoding.Encode(ReadOnlySpan{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name.vb: Encode(ReadOnlySpan(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+  fullName: wan24.Core.ByteEncoding.Encode(ReadOnlySpan<System.Byte>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[])
+  fullName.vb: wan24.Core.ByteEncoding.Encode(ReadOnlySpan(Of System.Byte), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char())
+  nameWithType: ByteEncoding.Encode(ReadOnlySpan<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  nameWithType.vb: ByteEncoding.Encode(ReadOnlySpan(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+- uid: wan24.Core.ByteEncoding.Encode(Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name: Encode(Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_Span_System_Byte__System_Nullable_ReadOnlyMemory_System_Char___System_Char___
+  commentId: M:wan24.Core.ByteEncoding.Encode(Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name.vb: Encode(Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+  fullName: wan24.Core.ByteEncoding.Encode(Span<System.Byte>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[])
+  fullName.vb: wan24.Core.ByteEncoding.Encode(Span(Of System.Byte), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char())
+  nameWithType: ByteEncoding.Encode(Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  nameWithType.vb: ByteEncoding.Encode(Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+- uid: wan24.Core.ByteEncoding.Encode(System.Byte,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name: Encode(Byte, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Byte_Span_System_Byte__System_Nullable_ReadOnlyMemory_System_Char___System_Char___
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.Byte,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name.vb: Encode(Byte, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+  fullName: wan24.Core.ByteEncoding.Encode(System.Byte, Span<System.Byte>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[])
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Byte, Span(Of System.Byte), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char())
+  nameWithType: ByteEncoding.Encode(Byte, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  nameWithType.vb: ByteEncoding.Encode(Byte, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+- uid: wan24.Core.ByteEncoding.Encode(System.Byte,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name: Encode(Byte, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Byte_System_Nullable_ReadOnlyMemory_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.Byte,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: Encode(Byte, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.Encode(System.Byte, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Byte, System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.Encode(Byte, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.Encode(Byte, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.Encode(System.Byte[],System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name: Encode(Byte[], Nullable<ReadOnlyMemory<Char>>, Char[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Byte___System_Nullable_ReadOnlyMemory_System_Char___System_Char___
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.Byte[],System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name.vb: Encode(Byte(), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+  fullName: wan24.Core.ByteEncoding.Encode(System.Byte[], System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[])
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Byte(), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char())
+  nameWithType: ByteEncoding.Encode(Byte[], Nullable<ReadOnlyMemory<Char>>, Char[])
+  nameWithType.vb: ByteEncoding.Encode(Byte(), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+- uid: wan24.Core.ByteEncoding.Encode(System.Decimal,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name: Encode(Decimal, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Decimal_Span_System_Byte__System_Nullable_ReadOnlyMemory_System_Char___System_Char___
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.Decimal,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name.vb: Encode(Decimal, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+  fullName: wan24.Core.ByteEncoding.Encode(System.Decimal, Span<System.Byte>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[])
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Decimal, Span(Of System.Byte), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char())
+  nameWithType: ByteEncoding.Encode(Decimal, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  nameWithType.vb: ByteEncoding.Encode(Decimal, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+- uid: wan24.Core.ByteEncoding.Encode(System.Decimal,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name: Encode(Decimal, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Decimal_System_Nullable_ReadOnlyMemory_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.Decimal,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: Encode(Decimal, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.Encode(System.Decimal, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Decimal, System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.Encode(Decimal, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.Encode(Decimal, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.Encode(System.Double,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name: Encode(Double, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Double_Span_System_Byte__System_Nullable_ReadOnlyMemory_System_Char___System_Char___
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.Double,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name.vb: Encode(Double, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+  fullName: wan24.Core.ByteEncoding.Encode(System.Double, Span<System.Byte>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[])
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Double, Span(Of System.Byte), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char())
+  nameWithType: ByteEncoding.Encode(Double, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  nameWithType.vb: ByteEncoding.Encode(Double, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+- uid: wan24.Core.ByteEncoding.Encode(System.Double,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name: Encode(Double, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Double_System_Nullable_ReadOnlyMemory_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.Double,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: Encode(Double, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.Encode(System.Double, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Double, System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.Encode(Double, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.Encode(Double, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.Encode(System.Int16,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name: Encode(Int16, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Int16_Span_System_Byte__System_Nullable_ReadOnlyMemory_System_Char___System_Char___
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.Int16,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name.vb: Encode(Int16, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+  fullName: wan24.Core.ByteEncoding.Encode(System.Int16, Span<System.Byte>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[])
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Int16, Span(Of System.Byte), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char())
+  nameWithType: ByteEncoding.Encode(Int16, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  nameWithType.vb: ByteEncoding.Encode(Int16, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+- uid: wan24.Core.ByteEncoding.Encode(System.Int16,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name: Encode(Int16, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Int16_System_Nullable_ReadOnlyMemory_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.Int16,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: Encode(Int16, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.Encode(System.Int16, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Int16, System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.Encode(Int16, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.Encode(Int16, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.Encode(System.Int32,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name: Encode(Int32, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Int32_Span_System_Byte__System_Nullable_ReadOnlyMemory_System_Char___System_Char___
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.Int32,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name.vb: Encode(Int32, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+  fullName: wan24.Core.ByteEncoding.Encode(System.Int32, Span<System.Byte>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[])
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Int32, Span(Of System.Byte), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char())
+  nameWithType: ByteEncoding.Encode(Int32, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  nameWithType.vb: ByteEncoding.Encode(Int32, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+- uid: wan24.Core.ByteEncoding.Encode(System.Int32,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name: Encode(Int32, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Int32_System_Nullable_ReadOnlyMemory_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.Int32,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: Encode(Int32, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.Encode(System.Int32, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Int32, System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.Encode(Int32, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.Encode(Int32, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.Encode(System.Int64,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name: Encode(Int64, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Int64_Span_System_Byte__System_Nullable_ReadOnlyMemory_System_Char___System_Char___
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.Int64,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name.vb: Encode(Int64, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+  fullName: wan24.Core.ByteEncoding.Encode(System.Int64, Span<System.Byte>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[])
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Int64, Span(Of System.Byte), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char())
+  nameWithType: ByteEncoding.Encode(Int64, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  nameWithType.vb: ByteEncoding.Encode(Int64, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+- uid: wan24.Core.ByteEncoding.Encode(System.Int64,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name: Encode(Int64, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Int64_System_Nullable_ReadOnlyMemory_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.Int64,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: Encode(Int64, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.Encode(System.Int64, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Int64, System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.Encode(Int64, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.Encode(Int64, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.Encode(System.SByte,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name: Encode(SByte, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_SByte_Span_System_Byte__System_Nullable_ReadOnlyMemory_System_Char___System_Char___
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.SByte,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name.vb: Encode(SByte, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+  fullName: wan24.Core.ByteEncoding.Encode(System.SByte, Span<System.Byte>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[])
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.SByte, Span(Of System.Byte), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char())
+  nameWithType: ByteEncoding.Encode(SByte, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  nameWithType.vb: ByteEncoding.Encode(SByte, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+- uid: wan24.Core.ByteEncoding.Encode(System.SByte,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name: Encode(SByte, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_SByte_System_Nullable_ReadOnlyMemory_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.SByte,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: Encode(SByte, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.Encode(System.SByte, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.SByte, System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.Encode(SByte, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.Encode(SByte, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.Encode(System.Single,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name: Encode(Single, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Single_Span_System_Byte__System_Nullable_ReadOnlyMemory_System_Char___System_Char___
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.Single,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name.vb: Encode(Single, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+  fullName: wan24.Core.ByteEncoding.Encode(System.Single, Span<System.Byte>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[])
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Single, Span(Of System.Byte), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char())
+  nameWithType: ByteEncoding.Encode(Single, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  nameWithType.vb: ByteEncoding.Encode(Single, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+- uid: wan24.Core.ByteEncoding.Encode(System.Single,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name: Encode(Single, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_Single_System_Nullable_ReadOnlyMemory_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.Single,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: Encode(Single, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.Encode(System.Single, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.Single, System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.Encode(Single, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.Encode(Single, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.Encode(System.UInt16,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name: Encode(UInt16, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_UInt16_Span_System_Byte__System_Nullable_ReadOnlyMemory_System_Char___System_Char___
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.UInt16,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name.vb: Encode(UInt16, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+  fullName: wan24.Core.ByteEncoding.Encode(System.UInt16, Span<System.Byte>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[])
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.UInt16, Span(Of System.Byte), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char())
+  nameWithType: ByteEncoding.Encode(UInt16, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  nameWithType.vb: ByteEncoding.Encode(UInt16, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+- uid: wan24.Core.ByteEncoding.Encode(System.UInt16,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name: Encode(UInt16, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_UInt16_System_Nullable_ReadOnlyMemory_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.UInt16,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: Encode(UInt16, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.Encode(System.UInt16, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.UInt16, System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.Encode(UInt16, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.Encode(UInt16, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.Encode(System.UInt32,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name: Encode(UInt32, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_UInt32_Span_System_Byte__System_Nullable_ReadOnlyMemory_System_Char___System_Char___
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.UInt32,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name.vb: Encode(UInt32, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+  fullName: wan24.Core.ByteEncoding.Encode(System.UInt32, Span<System.Byte>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[])
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.UInt32, Span(Of System.Byte), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char())
+  nameWithType: ByteEncoding.Encode(UInt32, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  nameWithType.vb: ByteEncoding.Encode(UInt32, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+- uid: wan24.Core.ByteEncoding.Encode(System.UInt32,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name: Encode(UInt32, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_UInt32_System_Nullable_ReadOnlyMemory_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.UInt32,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: Encode(UInt32, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.Encode(System.UInt32, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.UInt32, System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.Encode(UInt32, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.Encode(UInt32, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.Encode(System.UInt64,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name: Encode(UInt64, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_UInt64_Span_System_Byte__System_Nullable_ReadOnlyMemory_System_Char___System_Char___
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.UInt64,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name.vb: Encode(UInt64, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+  fullName: wan24.Core.ByteEncoding.Encode(System.UInt64, Span<System.Byte>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[])
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.UInt64, Span(Of System.Byte), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char())
+  nameWithType: ByteEncoding.Encode(UInt64, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  nameWithType.vb: ByteEncoding.Encode(UInt64, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+- uid: wan24.Core.ByteEncoding.Encode(System.UInt64,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name: Encode(UInt64, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_System_UInt64_System_Nullable_ReadOnlyMemory_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.Encode(System.UInt64,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: Encode(UInt64, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.Encode(System.UInt64, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.Encode(System.UInt64, System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.Encode(UInt64, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.Encode(UInt64, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
 - uid: wan24.Core.ByteEncoding.Encode*
   name: Encode
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_Encode_
@@ -4144,24 +4204,24 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ByteEncoding.EncodeNumberCompact
   nameWithType: ByteEncoding.EncodeNumberCompact
-- uid: wan24.Core.ByteEncoding.EncodeNumberCompact``1(``0,Span{System.Byte},System.Char[],System.Char[])
-  name: EncodeNumberCompact<T>(T, Span<Byte>, Char[], Char[])
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_EncodeNumberCompact__1___0_Span_System_Byte__System_Char___System_Char___
-  commentId: M:wan24.Core.ByteEncoding.EncodeNumberCompact``1(``0,Span{System.Byte},System.Char[],System.Char[])
-  name.vb: EncodeNumberCompact(Of T)(T, Span(Of Byte), Char(), Char())
-  fullName: wan24.Core.ByteEncoding.EncodeNumberCompact<T>(T, Span<System.Byte>, System.Char[], System.Char[])
-  fullName.vb: wan24.Core.ByteEncoding.EncodeNumberCompact(Of T)(T, Span(Of System.Byte), System.Char(), System.Char())
-  nameWithType: ByteEncoding.EncodeNumberCompact<T>(T, Span<Byte>, Char[], Char[])
-  nameWithType.vb: ByteEncoding.EncodeNumberCompact(Of T)(T, Span(Of Byte), Char(), Char())
-- uid: wan24.Core.ByteEncoding.EncodeNumberCompact``1(``0,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name: EncodeNumberCompact<T>(T, Char[], Char[], ArrayPool<Byte>)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_EncodeNumberCompact__1___0_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
-  commentId: M:wan24.Core.ByteEncoding.EncodeNumberCompact``1(``0,System.Char[],System.Char[],System.Buffers.ArrayPool{System.Byte})
-  name.vb: EncodeNumberCompact(Of T)(T, Char(), Char(), ArrayPool(Of Byte))
-  fullName: wan24.Core.ByteEncoding.EncodeNumberCompact<T>(T, System.Char[], System.Char[], System.Buffers.ArrayPool<System.Byte>)
-  fullName.vb: wan24.Core.ByteEncoding.EncodeNumberCompact(Of T)(T, System.Char(), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
-  nameWithType: ByteEncoding.EncodeNumberCompact<T>(T, Char[], Char[], ArrayPool<Byte>)
-  nameWithType.vb: ByteEncoding.EncodeNumberCompact(Of T)(T, Char(), Char(), ArrayPool(Of Byte))
+- uid: wan24.Core.ByteEncoding.EncodeNumberCompact``1(``0,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name: EncodeNumberCompact<T>(T, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_EncodeNumberCompact__1___0_Span_System_Byte__System_Nullable_ReadOnlyMemory_System_Char___System_Char___
+  commentId: M:wan24.Core.ByteEncoding.EncodeNumberCompact``1(``0,Span{System.Byte},System.Nullable{ReadOnlyMemory{System.Char}},System.Char[])
+  name.vb: EncodeNumberCompact(Of T)(T, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+  fullName: wan24.Core.ByteEncoding.EncodeNumberCompact<T>(T, Span<System.Byte>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[])
+  fullName.vb: wan24.Core.ByteEncoding.EncodeNumberCompact(Of T)(T, Span(Of System.Byte), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char())
+  nameWithType: ByteEncoding.EncodeNumberCompact<T>(T, Span<Byte>, Nullable<ReadOnlyMemory<Char>>, Char[])
+  nameWithType.vb: ByteEncoding.EncodeNumberCompact(Of T)(T, Span(Of Byte), Nullable(Of ReadOnlyMemory(Of Char)), Char())
+- uid: wan24.Core.ByteEncoding.EncodeNumberCompact``1(``0,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name: EncodeNumberCompact<T>(T, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_EncodeNumberCompact__1___0_System_Nullable_ReadOnlyMemory_System_Char___System_Char___System_Buffers_ArrayPool_System_Byte__
+  commentId: M:wan24.Core.ByteEncoding.EncodeNumberCompact``1(``0,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[],System.Buffers.ArrayPool{System.Byte})
+  name.vb: EncodeNumberCompact(Of T)(T, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
+  fullName: wan24.Core.ByteEncoding.EncodeNumberCompact<T>(T, System.Nullable<ReadOnlyMemory<System.Char>>, System.Char[], System.Buffers.ArrayPool<System.Byte>)
+  fullName.vb: wan24.Core.ByteEncoding.EncodeNumberCompact(Of T)(T, System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Char(), System.Buffers.ArrayPool(Of System.Byte))
+  nameWithType: ByteEncoding.EncodeNumberCompact<T>(T, Nullable<ReadOnlyMemory<Char>>, Char[], ArrayPool<Byte>)
+  nameWithType.vb: ByteEncoding.EncodeNumberCompact(Of T)(T, Nullable(Of ReadOnlyMemory(Of Char)), Char(), ArrayPool(Of Byte))
 - uid: wan24.Core.ByteEncoding.GetDecodedLength(ReadOnlySpan{System.Char})
   name: GetDecodedLength(ReadOnlySpan<Char>)
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_GetDecodedLength_ReadOnlySpan_System_Char__
@@ -4180,12 +4240,12 @@ references:
   fullName.vb: wan24.Core.ByteEncoding.GetDecodedLength(Span(Of System.Char))
   nameWithType: ByteEncoding.GetDecodedLength(Span<Char>)
   nameWithType.vb: ByteEncoding.GetDecodedLength(Span(Of Char))
-- uid: wan24.Core.ByteEncoding.GetDecodedLength(System.Int32)
-  name: GetDecodedLength(Int32)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_GetDecodedLength_System_Int32_
-  commentId: M:wan24.Core.ByteEncoding.GetDecodedLength(System.Int32)
-  fullName: wan24.Core.ByteEncoding.GetDecodedLength(System.Int32)
-  nameWithType: ByteEncoding.GetDecodedLength(Int32)
+- uid: wan24.Core.ByteEncoding.GetDecodedLength(System.Int64)
+  name: GetDecodedLength(Int64)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_GetDecodedLength_System_Int64_
+  commentId: M:wan24.Core.ByteEncoding.GetDecodedLength(System.Int64)
+  fullName: wan24.Core.ByteEncoding.GetDecodedLength(System.Int64)
+  nameWithType: ByteEncoding.GetDecodedLength(Int64)
 - uid: wan24.Core.ByteEncoding.GetDecodedLength(System.String)
   name: GetDecodedLength(String)
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_GetDecodedLength_System_String_
@@ -4226,12 +4286,12 @@ references:
   fullName.vb: wan24.Core.ByteEncoding.GetEncodedLength(System.Byte())
   nameWithType: ByteEncoding.GetEncodedLength(Byte[])
   nameWithType.vb: ByteEncoding.GetEncodedLength(Byte())
-- uid: wan24.Core.ByteEncoding.GetEncodedLength(System.Int32)
-  name: GetEncodedLength(Int32)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_GetEncodedLength_System_Int32_
-  commentId: M:wan24.Core.ByteEncoding.GetEncodedLength(System.Int32)
-  fullName: wan24.Core.ByteEncoding.GetEncodedLength(System.Int32)
-  nameWithType: ByteEncoding.GetEncodedLength(Int32)
+- uid: wan24.Core.ByteEncoding.GetEncodedLength(System.Int64)
+  name: GetEncodedLength(Int64)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_GetEncodedLength_System_Int64_
+  commentId: M:wan24.Core.ByteEncoding.GetEncodedLength(System.Int64)
+  fullName: wan24.Core.ByteEncoding.GetEncodedLength(System.Int64)
+  nameWithType: ByteEncoding.GetEncodedLength(Int64)
 - uid: wan24.Core.ByteEncoding.GetEncodedLength*
   name: GetEncodedLength
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_GetEncodedLength_
@@ -4276,33 +4336,42 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ByteEncoding.IsEncodedLengthValid
   nameWithType: ByteEncoding.IsEncodedLengthValid
-- uid: wan24.Core.ByteEncoding.IsEncodingValid(ReadOnlySpan{System.Char},System.Char[],System.Boolean)
-  name: IsEncodingValid(ReadOnlySpan<Char>, Char[], Boolean)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_IsEncodingValid_ReadOnlySpan_System_Char__System_Char___System_Boolean_
-  commentId: M:wan24.Core.ByteEncoding.IsEncodingValid(ReadOnlySpan{System.Char},System.Char[],System.Boolean)
-  name.vb: IsEncodingValid(ReadOnlySpan(Of Char), Char(), Boolean)
-  fullName: wan24.Core.ByteEncoding.IsEncodingValid(ReadOnlySpan<System.Char>, System.Char[], System.Boolean)
-  fullName.vb: wan24.Core.ByteEncoding.IsEncodingValid(ReadOnlySpan(Of System.Char), System.Char(), System.Boolean)
-  nameWithType: ByteEncoding.IsEncodingValid(ReadOnlySpan<Char>, Char[], Boolean)
-  nameWithType.vb: ByteEncoding.IsEncodingValid(ReadOnlySpan(Of Char), Char(), Boolean)
-- uid: wan24.Core.ByteEncoding.IsEncodingValid(Span{System.Char},System.Char[],System.Boolean)
-  name: IsEncodingValid(Span<Char>, Char[], Boolean)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_IsEncodingValid_Span_System_Char__System_Char___System_Boolean_
-  commentId: M:wan24.Core.ByteEncoding.IsEncodingValid(Span{System.Char},System.Char[],System.Boolean)
-  name.vb: IsEncodingValid(Span(Of Char), Char(), Boolean)
-  fullName: wan24.Core.ByteEncoding.IsEncodingValid(Span<System.Char>, System.Char[], System.Boolean)
-  fullName.vb: wan24.Core.ByteEncoding.IsEncodingValid(Span(Of System.Char), System.Char(), System.Boolean)
-  nameWithType: ByteEncoding.IsEncodingValid(Span<Char>, Char[], Boolean)
-  nameWithType.vb: ByteEncoding.IsEncodingValid(Span(Of Char), Char(), Boolean)
-- uid: wan24.Core.ByteEncoding.IsEncodingValid(System.String,System.Char[],System.Boolean)
-  name: IsEncodingValid(String, Char[], Boolean)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_IsEncodingValid_System_String_System_Char___System_Boolean_
-  commentId: M:wan24.Core.ByteEncoding.IsEncodingValid(System.String,System.Char[],System.Boolean)
-  name.vb: IsEncodingValid(String, Char(), Boolean)
-  fullName: wan24.Core.ByteEncoding.IsEncodingValid(System.String, System.Char[], System.Boolean)
-  fullName.vb: wan24.Core.ByteEncoding.IsEncodingValid(System.String, System.Char(), System.Boolean)
-  nameWithType: ByteEncoding.IsEncodingValid(String, Char[], Boolean)
-  nameWithType.vb: ByteEncoding.IsEncodingValid(String, Char(), Boolean)
+- uid: wan24.Core.ByteEncoding.IsEncodingValid(ReadOnlySpan{System.Char},ReadOnlySpan{System.Char},System.Boolean)
+  name: IsEncodingValid(ReadOnlySpan<Char>, ReadOnlySpan<Char>, Boolean)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_IsEncodingValid_ReadOnlySpan_System_Char__ReadOnlySpan_System_Char__System_Boolean_
+  commentId: M:wan24.Core.ByteEncoding.IsEncodingValid(ReadOnlySpan{System.Char},ReadOnlySpan{System.Char},System.Boolean)
+  name.vb: IsEncodingValid(ReadOnlySpan(Of Char), ReadOnlySpan(Of Char), Boolean)
+  fullName: wan24.Core.ByteEncoding.IsEncodingValid(ReadOnlySpan<System.Char>, ReadOnlySpan<System.Char>, System.Boolean)
+  fullName.vb: wan24.Core.ByteEncoding.IsEncodingValid(ReadOnlySpan(Of System.Char), ReadOnlySpan(Of System.Char), System.Boolean)
+  nameWithType: ByteEncoding.IsEncodingValid(ReadOnlySpan<Char>, ReadOnlySpan<Char>, Boolean)
+  nameWithType.vb: ByteEncoding.IsEncodingValid(ReadOnlySpan(Of Char), ReadOnlySpan(Of Char), Boolean)
+- uid: wan24.Core.ByteEncoding.IsEncodingValid(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Boolean)
+  name: IsEncodingValid(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Boolean)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_IsEncodingValid_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Boolean_
+  commentId: M:wan24.Core.ByteEncoding.IsEncodingValid(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Boolean)
+  name.vb: IsEncodingValid(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Boolean)
+  fullName: wan24.Core.ByteEncoding.IsEncodingValid(ReadOnlySpan<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Boolean)
+  fullName.vb: wan24.Core.ByteEncoding.IsEncodingValid(ReadOnlySpan(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Boolean)
+  nameWithType: ByteEncoding.IsEncodingValid(ReadOnlySpan<Char>, Nullable<ReadOnlyMemory<Char>>, Boolean)
+  nameWithType.vb: ByteEncoding.IsEncodingValid(ReadOnlySpan(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Boolean)
+- uid: wan24.Core.ByteEncoding.IsEncodingValid(Span{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Boolean)
+  name: IsEncodingValid(Span<Char>, Nullable<ReadOnlyMemory<Char>>, Boolean)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_IsEncodingValid_Span_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Boolean_
+  commentId: M:wan24.Core.ByteEncoding.IsEncodingValid(Span{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Boolean)
+  name.vb: IsEncodingValid(Span(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Boolean)
+  fullName: wan24.Core.ByteEncoding.IsEncodingValid(Span<System.Char>, System.Nullable<ReadOnlyMemory<System.Char>>, System.Boolean)
+  fullName.vb: wan24.Core.ByteEncoding.IsEncodingValid(Span(Of System.Char), System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Boolean)
+  nameWithType: ByteEncoding.IsEncodingValid(Span<Char>, Nullable<ReadOnlyMemory<Char>>, Boolean)
+  nameWithType.vb: ByteEncoding.IsEncodingValid(Span(Of Char), Nullable(Of ReadOnlyMemory(Of Char)), Boolean)
+- uid: wan24.Core.ByteEncoding.IsEncodingValid(System.String,System.Nullable{ReadOnlyMemory{System.Char}},System.Boolean)
+  name: IsEncodingValid(String, Nullable<ReadOnlyMemory<Char>>, Boolean)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_IsEncodingValid_System_String_System_Nullable_ReadOnlyMemory_System_Char___System_Boolean_
+  commentId: M:wan24.Core.ByteEncoding.IsEncodingValid(System.String,System.Nullable{ReadOnlyMemory{System.Char}},System.Boolean)
+  name.vb: IsEncodingValid(String, Nullable(Of ReadOnlyMemory(Of Char)), Boolean)
+  fullName: wan24.Core.ByteEncoding.IsEncodingValid(System.String, System.Nullable<ReadOnlyMemory<System.Char>>, System.Boolean)
+  fullName.vb: wan24.Core.ByteEncoding.IsEncodingValid(System.String, System.Nullable(Of ReadOnlyMemory(Of System.Char)), System.Boolean)
+  nameWithType: ByteEncoding.IsEncodingValid(String, Nullable<ReadOnlyMemory<Char>>, Boolean)
+  nameWithType.vb: ByteEncoding.IsEncodingValid(String, Nullable(Of ReadOnlyMemory(Of Char)), Boolean)
 - uid: wan24.Core.ByteEncoding.IsEncodingValid*
   name: IsEncodingValid
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_IsEncodingValid_
@@ -18313,33 +18382,6 @@ references:
   fullName.vb: wan24.Core.SecureCharArray.Narrowing
   nameWithType: SecureCharArray.Explicit
   nameWithType.vb: SecureCharArray.Narrowing
-- uid: wan24.Core.SecureCharArray.op_Implicit(wan24.Core.SecureCharArray)~IntPtr
-  name: Implicit(SecureCharArray to IntPtr)
-  href: api/wan24.Core.SecureCharArray.html#wan24_Core_SecureCharArray_op_Implicit_wan24_Core_SecureCharArray__IntPtr
-  commentId: M:wan24.Core.SecureCharArray.op_Implicit(wan24.Core.SecureCharArray)~IntPtr
-  name.vb: Widening(SecureCharArray to IntPtr)
-  fullName: wan24.Core.SecureCharArray.Implicit(wan24.Core.SecureCharArray to IntPtr)
-  fullName.vb: wan24.Core.SecureCharArray.Widening(wan24.Core.SecureCharArray to IntPtr)
-  nameWithType: SecureCharArray.Implicit(SecureCharArray to IntPtr)
-  nameWithType.vb: SecureCharArray.Widening(SecureCharArray to IntPtr)
-- uid: wan24.Core.SecureCharArray.op_Implicit(wan24.Core.SecureCharArray)~Memory{System.Char}
-  name: Implicit(SecureCharArray to Memory<Char>)
-  href: api/wan24.Core.SecureCharArray.html#wan24_Core_SecureCharArray_op_Implicit_wan24_Core_SecureCharArray__Memory_System_Char_
-  commentId: M:wan24.Core.SecureCharArray.op_Implicit(wan24.Core.SecureCharArray)~Memory{System.Char}
-  name.vb: Widening(SecureCharArray to Memory(Of Char))
-  fullName: wan24.Core.SecureCharArray.Implicit(wan24.Core.SecureCharArray to Memory<System.Char>)
-  fullName.vb: wan24.Core.SecureCharArray.Widening(wan24.Core.SecureCharArray to Memory(Of System.Char))
-  nameWithType: SecureCharArray.Implicit(SecureCharArray to Memory<Char>)
-  nameWithType.vb: SecureCharArray.Widening(SecureCharArray to Memory(Of Char))
-- uid: wan24.Core.SecureCharArray.op_Implicit(wan24.Core.SecureCharArray)~Span{System.Char}
-  name: Implicit(SecureCharArray to Span<Char>)
-  href: api/wan24.Core.SecureCharArray.html#wan24_Core_SecureCharArray_op_Implicit_wan24_Core_SecureCharArray__Span_System_Char_
-  commentId: M:wan24.Core.SecureCharArray.op_Implicit(wan24.Core.SecureCharArray)~Span{System.Char}
-  name.vb: Widening(SecureCharArray to Span(Of Char))
-  fullName: wan24.Core.SecureCharArray.Implicit(wan24.Core.SecureCharArray to Span<System.Char>)
-  fullName.vb: wan24.Core.SecureCharArray.Widening(wan24.Core.SecureCharArray to Span(Of System.Char))
-  nameWithType: SecureCharArray.Implicit(SecureCharArray to Span<Char>)
-  nameWithType.vb: SecureCharArray.Widening(SecureCharArray to Span(Of Char))
 - uid: wan24.Core.SecureCharArray.op_Implicit(wan24.Core.SecureCharArray)~System.Char*
   name: Implicit(SecureCharArray to Char*)
   href: api/wan24.Core.SecureCharArray.html#wan24_Core_SecureCharArray_op_Implicit_wan24_Core_SecureCharArray__System_Char_
@@ -18376,6 +18418,33 @@ references:
   fullName.vb: wan24.Core.SecureCharArray.Widening(wan24.Core.SecureCharArray to System.Int64)
   nameWithType: SecureCharArray.Implicit(SecureCharArray to Int64)
   nameWithType.vb: SecureCharArray.Widening(SecureCharArray to Int64)
+- uid: wan24.Core.SecureCharArray.op_Implicit(wan24.Core.SecureCharArray)~System.IntPtr
+  name: Implicit(SecureCharArray to IntPtr)
+  href: api/wan24.Core.SecureCharArray.html#wan24_Core_SecureCharArray_op_Implicit_wan24_Core_SecureCharArray__System_IntPtr
+  commentId: M:wan24.Core.SecureCharArray.op_Implicit(wan24.Core.SecureCharArray)~System.IntPtr
+  name.vb: Widening(SecureCharArray to IntPtr)
+  fullName: wan24.Core.SecureCharArray.Implicit(wan24.Core.SecureCharArray to System.IntPtr)
+  fullName.vb: wan24.Core.SecureCharArray.Widening(wan24.Core.SecureCharArray to System.IntPtr)
+  nameWithType: SecureCharArray.Implicit(SecureCharArray to IntPtr)
+  nameWithType.vb: SecureCharArray.Widening(SecureCharArray to IntPtr)
+- uid: wan24.Core.SecureCharArray.op_Implicit(wan24.Core.SecureCharArray)~System.Memory{System.Char}
+  name: Implicit(SecureCharArray to Memory<Char>)
+  href: api/wan24.Core.SecureCharArray.html#wan24_Core_SecureCharArray_op_Implicit_wan24_Core_SecureCharArray__System_Memory_System_Char_
+  commentId: M:wan24.Core.SecureCharArray.op_Implicit(wan24.Core.SecureCharArray)~System.Memory{System.Char}
+  name.vb: Widening(SecureCharArray to Memory(Of Char))
+  fullName: wan24.Core.SecureCharArray.Implicit(wan24.Core.SecureCharArray to System.Memory<System.Char>)
+  fullName.vb: wan24.Core.SecureCharArray.Widening(wan24.Core.SecureCharArray to System.Memory(Of System.Char))
+  nameWithType: SecureCharArray.Implicit(SecureCharArray to Memory<Char>)
+  nameWithType.vb: SecureCharArray.Widening(SecureCharArray to Memory(Of Char))
+- uid: wan24.Core.SecureCharArray.op_Implicit(wan24.Core.SecureCharArray)~System.Span{System.Char}
+  name: Implicit(SecureCharArray to Span<Char>)
+  href: api/wan24.Core.SecureCharArray.html#wan24_Core_SecureCharArray_op_Implicit_wan24_Core_SecureCharArray__System_Span_System_Char_
+  commentId: M:wan24.Core.SecureCharArray.op_Implicit(wan24.Core.SecureCharArray)~System.Span{System.Char}
+  name.vb: Widening(SecureCharArray to Span(Of Char))
+  fullName: wan24.Core.SecureCharArray.Implicit(wan24.Core.SecureCharArray to System.Span<System.Char>)
+  fullName.vb: wan24.Core.SecureCharArray.Widening(wan24.Core.SecureCharArray to System.Span(Of System.Char))
+  nameWithType: SecureCharArray.Implicit(SecureCharArray to Span<Char>)
+  nameWithType.vb: SecureCharArray.Widening(SecureCharArray to Span(Of Char))
 - uid: wan24.Core.SecureCharArray.op_Implicit(wan24.Core.SecureCharArray)~wan24.Core.SecureByteArray
   name: Implicit(SecureCharArray to SecureByteArray)
   href: api/wan24.Core.SecureCharArray.html#wan24_Core_SecureCharArray_op_Implicit_wan24_Core_SecureCharArray__wan24_Core_SecureByteArray

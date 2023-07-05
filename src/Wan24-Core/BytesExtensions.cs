@@ -1,5 +1,6 @@
 ﻿using System.Buffers.Binary;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -263,6 +264,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Just a method adapter")]
         public static double ToDouble(this Span<byte> bits) => ToDouble((ReadOnlySpan<byte>)bits);
 
+#if NO_UNSAFE
         /// <summary>
         /// Get a decimal
         /// </summary>
@@ -272,10 +274,26 @@ namespace wan24.Core
         public static decimal ToDecimal(this ReadOnlySpan<byte> bits)
         {
             if (bits.Length < sizeof(int) << 2) throw new ArgumentOutOfRangeException(nameof(bits));
-            using RentedArray<int> intBits = new(len: 4, clean: false);
+            RentedArray<int> intBits = new(4, clean: false);
             for (int i = 0; i < 4; intBits[i] = bits.Slice(i << 2, sizeof(int)).ToInt(), i++) ;
             return new decimal(intBits.Span);
         }
+#else
+        /// <summary>
+        /// Get a decimal
+        /// </summary>
+        /// <param name="bits">Bits</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        [SkipLocalsInit]
+        public static decimal ToDecimal(this ReadOnlySpan<byte> bits)
+        {
+            if (bits.Length < sizeof(int) << 2) throw new ArgumentOutOfRangeException(nameof(bits));
+            Span<int> intBits = stackalloc int[4];
+            for (int i = 0; i < 4; intBits[i] = bits.Slice(i << 2, sizeof(int)).ToInt(), i++) ;
+            return new decimal(intBits);
+        }
+#endif
 
         /// <summary>
         /// Get a decimal
@@ -292,14 +310,33 @@ namespace wan24.Core
         /// <param name="ignoreUsed">Ignore the number of used bytes?</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_UNSAFE
+        [SkipLocalsInit]
+#endif
         public static string ToUtf8String(this ReadOnlySpan<byte> bytes, bool ignoreUsed = false)
         {
-            using RentedArray<char> chars = new(bytes.Length, clean: false);
-            new UTF8Encoding(encoderShouldEmitUTF8Identifier: true, throwOnInvalidBytes: true)
-                .GetDecoder()
-                .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
-            if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-8 decoding failed (completed: {completed}, {used}/{bytes.Length})");
-            return new string(chars, 0, count);
+#if !NO_UNSAFE
+            if (bytes.Length > Settings.StackAllocBorder)
+            {
+#endif
+                using RentedArrayStruct<char> chars = new(bytes.Length, clean: false);
+                new UTF8Encoding(encoderShouldEmitUTF8Identifier: true, throwOnInvalidBytes: true)
+                    .GetDecoder()
+                    .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
+                if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-8 decoding failed (completed: {completed}, {used}/{bytes.Length})");
+                return new string(chars, 0, count);
+#if !NO_UNSAFE
+            }
+            else
+            {
+                Span<char> chars = stackalloc char[bytes.Length];
+                new UTF8Encoding(encoderShouldEmitUTF8Identifier: true, throwOnInvalidBytes: true)
+                    .GetDecoder()
+                    .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
+                if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-8 decoding failed (completed: {completed}, {used}/{bytes.Length})");
+                return new string(chars[..count]);
+            }
+#endif
         }
 
         /// <summary>
@@ -358,14 +395,33 @@ namespace wan24.Core
         /// <param name="ignoreUsed">Ignore the number of used bytes?</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_UNSAFE
+        [SkipLocalsInit]
+#endif
         public static char[] ToUtf8Chars(this ReadOnlySpan<byte> bytes, bool ignoreUsed = false)
         {
-            using RentedArray<char> chars = new(bytes.Length, clean: false);
-            new UTF8Encoding(encoderShouldEmitUTF8Identifier: true, throwOnInvalidBytes: true)
-                .GetDecoder()
-                .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
-            if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-8 decoding failed (completed: {completed}, {used}/{bytes.Length})");
-            return chars.Span[..count].ToArray();
+#if !NO_UNSAFE
+            if (bytes.Length > Settings.StackAllocBorder)
+            {
+#endif
+                using RentedArrayStruct<char> chars = new(bytes.Length, clean: false);
+                new UTF8Encoding(encoderShouldEmitUTF8Identifier: true, throwOnInvalidBytes: true)
+                    .GetDecoder()
+                    .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
+                if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-8 decoding failed (completed: {completed}, {used}/{bytes.Length})");
+                return chars.Span[..count].ToArray();
+#if !NO_UNSAFE
+            }
+            else
+            {
+                Span<char> chars = stackalloc char[bytes.Length];
+                new UTF8Encoding(encoderShouldEmitUTF8Identifier: true, throwOnInvalidBytes: true)
+                    .GetDecoder()
+                    .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
+                if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-8 decoding failed (completed: {completed}, {used}/{bytes.Length})");
+                return chars[..count].ToArray();
+            }
+#endif
         }
 
         /// <summary>
@@ -408,14 +464,33 @@ namespace wan24.Core
         /// <returns>Number of used bytes from the output buffer</returns>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_UNSAFE
+        [SkipLocalsInit]
+#endif
         public static string ToUtf16String(this ReadOnlySpan<byte> bytes, bool ignoreUsed = false)
         {
-            using RentedArray<char> chars = new(bytes.Length, clean: false);
-            new UnicodeEncoding(bigEndian: false, byteOrderMark: false, throwOnInvalidBytes: true)
-                .GetDecoder()
-                .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
-            if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-16 decoding failed (completed: {completed}, {used}/{bytes.Length})");
-            return new string(chars, 0, count);
+#if !NO_UNSAFE
+            if (bytes.Length > Settings.StackAllocBorder)
+            {
+#endif
+                using RentedArrayStruct<char> chars = new(bytes.Length, clean: false);
+                new UnicodeEncoding(bigEndian: false, byteOrderMark: false, throwOnInvalidBytes: true)
+                    .GetDecoder()
+                    .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
+                if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-16 decoding failed (completed: {completed}, {used}/{bytes.Length})");
+                return new string(chars, 0, count);
+#if !NO_UNSAFE
+            }
+            else
+            {
+                Span<char> chars = stackalloc char[bytes.Length];
+                new UnicodeEncoding(bigEndian: false, byteOrderMark: false, throwOnInvalidBytes: true)
+                    .GetDecoder()
+                    .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
+                if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-16 decoding failed (completed: {completed}, {used}/{bytes.Length})");
+                return new string(chars[..count]);
+            }
+#endif
         }
 
         /// <summary>
@@ -476,12 +551,28 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static char[] ToUtf16Chars(this ReadOnlySpan<byte> bytes, bool ignoreUsed = false)
         {
-            using RentedArray<char> chars = new(bytes.Length, clean: false);
-            new UnicodeEncoding(bigEndian: false, byteOrderMark: false, throwOnInvalidBytes: true)
-                .GetDecoder()
-                .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
-            if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-16 decoding failed (completed: {completed}, {used}/{bytes.Length})");
-            return chars.Span[..count].ToArray();
+#if !NO_UNSAFE
+            if (bytes.Length > Settings.StackAllocBorder)
+            {
+#endif
+                using RentedArrayStruct<char> chars = new(bytes.Length, clean: false);
+                new UnicodeEncoding(bigEndian: false, byteOrderMark: false, throwOnInvalidBytes: true)
+                    .GetDecoder()
+                    .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
+                if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-16 decoding failed (completed: {completed}, {used}/{bytes.Length})");
+                return chars.Span[..count].ToArray();
+#if !NO_UNSAFE
+            }
+            else
+            {
+                Span<char> chars = stackalloc char[bytes.Length];
+                new UnicodeEncoding(bigEndian: false, byteOrderMark: false, throwOnInvalidBytes: true)
+                    .GetDecoder()
+                    .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
+                if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-16 decoding failed (completed: {completed}, {used}/{bytes.Length})");
+                return chars[..count].ToArray();
+            }
+#endif
         }
 
         /// <summary>
@@ -523,14 +614,33 @@ namespace wan24.Core
         /// <param name="ignoreUsed">Ignore the number of used bytes?</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_UNSAFE
+        [SkipLocalsInit]
+#endif
         public static string ToUtf32String(this ReadOnlySpan<byte> bytes, bool ignoreUsed = false)
         {
-            using RentedArray<char> chars = new(bytes.Length, clean: false);
-            new UTF32Encoding(bigEndian: false, byteOrderMark: false, throwOnInvalidCharacters: true)
-                .GetDecoder()
-                .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
-            if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-32 decoding failed (completed: {completed}, {used}/{bytes.Length})");
-            return new string(chars, 0, count);
+#if !NO_UNSAFE
+            if (bytes.Length > Settings.StackAllocBorder)
+            {
+#endif
+                using RentedArrayStruct<char> chars = new(bytes.Length, clean: false);
+                new UTF32Encoding(bigEndian: false, byteOrderMark: false, throwOnInvalidCharacters: true)
+                    .GetDecoder()
+                    .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
+                if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-32 decoding failed (completed: {completed}, {used}/{bytes.Length})");
+                return new string(chars, 0, count);
+#if !NO_UNSAFE
+            }
+            else
+            {
+                Span<char> chars = stackalloc char[bytes.Length];
+                new UTF32Encoding(bigEndian: false, byteOrderMark: false, throwOnInvalidCharacters: true)
+                    .GetDecoder()
+                    .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
+                if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-32 decoding failed (completed: {completed}, {used}/{bytes.Length})");
+                return new string(chars[..count]);
+            }
+#endif
         }
 
         /// <summary>
@@ -591,12 +701,28 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static char[] ToUtf32Chars(this ReadOnlySpan<byte> bytes, bool ignoreUsed = false)
         {
-            using RentedArray<char> chars = new(bytes.Length, clean: false);
-            new UTF32Encoding(bigEndian: false, byteOrderMark: false, throwOnInvalidCharacters: true)
-                .GetDecoder()
-                .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
-            if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-32 decoding failed (completed: {completed}, {used}/{bytes.Length})");
-            return chars.Span[..count].ToArray();
+#if !NO_UNSAFE
+            if (bytes.Length > Settings.StackAllocBorder)
+            {
+#endif
+                using RentedArrayStruct<char> chars = new(bytes.Length, clean: false);
+                new UTF32Encoding(bigEndian: false, byteOrderMark: false, throwOnInvalidCharacters: true)
+                    .GetDecoder()
+                    .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
+                if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-32 decoding failed (completed: {completed}, {used}/{bytes.Length})");
+                return chars.Span[..count].ToArray();
+#if !NO_UNSAFE
+            }
+            else
+            {
+                Span<char> chars = stackalloc char[bytes.Length];
+                new UTF32Encoding(bigEndian: false, byteOrderMark: false, throwOnInvalidCharacters: true)
+                    .GetDecoder()
+                    .Convert(bytes, chars, flush: true, out int used, out int count, out bool completed);
+                if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-32 decoding failed (completed: {completed}, {used}/{bytes.Length})");
+                return chars[..count].ToArray();
+            }
+#endif
         }
 
         /// <summary>
