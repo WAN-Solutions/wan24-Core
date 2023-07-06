@@ -6,7 +6,7 @@ namespace wan24.Core
     /// <summary>
     /// Base class for a timed hosted service
     /// </summary>
-    public abstract class TimedHostedServiceBase : DisposableBase, IHostedService
+    public abstract class TimedHostedServiceBase : DisposableBase, IHostedService, ITimer, IServiceWorkerStatus
     {
         /// <summary>
         /// Timer
@@ -52,11 +52,48 @@ namespace wan24.Core
         /// <param name="nextRun">Fixed next run time</param>
         protected TimedHostedServiceBase(double interval, HostedServiceTimers timer = HostedServiceTimers.Default, DateTime? nextRun = null) : base()
         {
+            TimerTable.Timers[GUID] = this;
+            ServiceWorkerTable.ServiceWorkers[GUID] = this;
             if (nextRun != null && nextRun <= DateTime.Now) throw new ArgumentException("Next run is in the past", nameof(nextRun));
             Timer.Elapsed += (s, e) => RunEvent.Set();
             Interval = interval;
             TimerType = timer;
             NextRun = (nextRun ?? DateTime.Now) - TimeSpan.FromMilliseconds(interval);
+        }
+
+        /// <summary>
+        /// GUID
+        /// </summary>
+        public string GUID { get; } = Guid.NewGuid().ToString();
+
+        /// <inheritdoc/>
+        public virtual string? Name { get; set; }
+
+        /// <inheritdoc/>
+        TimeSpan ITimer.Interval => TimeSpan.FromMilliseconds(Interval);
+
+        /// <inheritdoc/>
+        DateTime ITimer.LastElapsed => LastRun;
+
+        /// <inheritdoc/>
+        DateTime ITimer.Sheduled => NextRun;
+
+        /// <inheritdoc/>
+        bool ITimer.AutoReset => true;
+
+        /// <inheritdoc/>
+        public virtual IEnumerable<Status> State
+        {
+            get
+            {
+                yield return new("GUID", GUID, "Unique ID of the service object");
+                yield return new("Last exception", LastException?.Message, "Last exception message");
+                yield return new("Timer type", TimerType, "Type of the timer");
+                yield return new("Interval", TimeSpan.FromMilliseconds(Interval), "Timer interval");
+                yield return new("Last duration", LastDuration, "Last run duration");
+                yield return new("Sheduled next run", NextRun, "Next sheduled run time");
+                yield return new("Run once", RunOnce, "Run once, then stop and wait for the next start?");
+            }
         }
 
         /// <summary>
@@ -208,6 +245,12 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        Task ITimer.StartAsync() => StartAsync(default);
+
+        /// <inheritdoc/>
+        Task IServiceWorker.StartAsync() => StartAsync(default);
+
+        /// <inheritdoc/>
         public async Task StopAsync(CancellationToken cancellationToken = default)
         {
             await SyncControl.WaitAsync(cancellationToken).DynamicContext();
@@ -219,6 +262,26 @@ namespace wan24.Core
             {
                 SyncControl.Release();
             }
+        }
+
+        /// <inheritdoc/>
+        Task ITimer.StopAsync() => StopAsync(default);
+
+        /// <inheritdoc/>
+        Task IServiceWorker.StopAsync() => StopAsync(default);
+
+        /// <inheritdoc/>
+        async Task ITimer.RestartAsync()
+        {
+            await StopAsync(default).DynamicContext();
+            await StartAsync(default).DynamicContext();
+        }
+
+        /// <inheritdoc/>
+        async Task IServiceWorker.RestartAsync()
+        {
+            await StopAsync(default).DynamicContext();
+            await StartAsync(default).DynamicContext();
         }
 
         /// <inheritdoc/>
@@ -439,6 +502,8 @@ namespace wan24.Core
         protected override void Dispose(bool disposing)
         {
             StopAsync().Wait();
+            TimerTable.Timers.Remove(GUID, out _);
+            ServiceWorkerTable.ServiceWorkers.Remove(GUID, out _);
             Timer.Dispose();
             RunEvent.Dispose();
             Sync.Dispose();
@@ -449,6 +514,8 @@ namespace wan24.Core
         protected override async Task DisposeCore()
         {
             await StopAsync().DynamicContext();
+            TimerTable.Timers.Remove(GUID, out _);
+            ServiceWorkerTable.ServiceWorkers.Remove(GUID, out _);
             Timer.Dispose();
             RunEvent.Dispose();
             Sync.Dispose();

@@ -280,6 +280,7 @@ type which can't extend the <code>DisposableBase</code> type</li>
 friendly charset, faster and smaller results than base64 encoding; charset is
 customizable; encoded data integrity can be validated without decoding;
 including extensions for numeric type encoding/decoding)</li>
+<li>Collecting periodical statistical values</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
@@ -871,7 +872,7 @@ next function. Available functions:</p>
 </tr>
 <tr>
 <td><code>item</code></td>
-<td><code>%{:item([index],[item/name](,[item](,...)))}</code> gets an item from a list (if using a variable name, its value will be splitted using pipe (<code>|</code>))</td>
+<td><code>%{:item([index],[item/name](,[item](,...)))}</code> gets an item from a list (if using a variable name, its value will be splitted using pipe)</td>
 <td></td>
 </tr>
 <tr>
@@ -927,12 +928,12 @@ next function. Available functions:</p>
 <tr>
 <td><code>insert_item</code></td>
 <td><code>%{input:insert_item([index],[items_name])}</code></td>
-<td>to insert an item (items will be splitted by pipe (<code>|</code>))</td>
+<td>to insert an item (items will be splitted by pipe)</td>
 </tr>
 <tr>
 <td><code>remove_item</code></td>
 <td><code>%{input:remove_item([index])}</code></td>
-<td>to remove an item (items will be splitted by pipe (<code>|</code>))</td>
+<td>to remove an item (items will be splitted by pipe)</td>
 </tr>
 <tr>
 <td><code>sort</code></td>
@@ -952,7 +953,7 @@ next function. Available functions:</p>
 <tr>
 <td><code>split</code></td>
 <td><code>%{input:split(prefix)}</code></td>
-<td>to split items by pipe (<code>|</code>) and set them as parser data using the prefix and appending the zero based item index</td>
+<td>to split items by pipe and set them as parser data using the prefix and appending the zero based item index</td>
 </tr>
 <tr>
 <td><code>range</code></td>

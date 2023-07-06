@@ -11,9 +11,30 @@
         public const int DEFAULT_BUFFER_SIZE = 4096;
 
         /// <summary>
+        /// Static constructor
+        /// </summary>
+        static PooledTempFileStream()
+        {
+            foreach (string file in Directory.GetFiles(
+                Settings.TempFolder,
+                $"*{(Settings.AppId == null ? string.Empty : $"-{Settings.AppId}")}{(Settings.ProcessId == null ? string.Empty : $"-{Settings.ProcessId}")}.pooled",
+                SearchOption.TopDirectoryOnly
+                ))
+                try
+                {
+                    Logging.WriteDebug($"Deleting previously pooled temporary file \"{file}\"");
+                    File.Delete(file);
+                }
+                catch (Exception ex)
+                {
+                    Logging.WriteWarning($"Failed to delete \"{file}\": {ex.Message}");
+                }
+        }
+
+        /// <summary>
         /// Constructor
         /// </summary>
-        public PooledTempFileStream():this(folder: null) { }
+        public PooledTempFileStream() : this(folder: null) { }
 
         /// <summary>
         /// Constructor
@@ -21,7 +42,10 @@
         /// <param name="folder">Temporary folder</param>
         public PooledTempFileStream(string? folder)
             : base(
-                  Path.Combine(folder ?? Settings.TempFolder, Guid.NewGuid().ToString()),
+                  Path.Combine(
+                      folder ?? Settings.TempFolder,
+                      $"{Guid.NewGuid()}{(Settings.AppId == null ? string.Empty : $"-{Settings.AppId}")}{(Settings.ProcessId == null ? string.Empty : $"-{Settings.ProcessId}")}.pooled"
+                      ),
                   FileMode.CreateNew,
                   FileAccess.ReadWrite,
                   FileShare.None,

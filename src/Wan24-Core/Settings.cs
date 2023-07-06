@@ -72,5 +72,15 @@
                 _StackAllocBorder = value;
             }
         }
+
+        /// <summary>
+        /// An unique app ID ("myapp" f.e.; will be used in filenames!)
+        /// </summary>
+        public static string? AppId { get; set; }
+
+        /// <summary>
+        /// An unique process ID ("service" f.e.; only one process with this ID should run at once and have a specific order; will be used in filenames!)
+        /// </summary>
+        public static string? ProcessId { get; set; }
     }
 }

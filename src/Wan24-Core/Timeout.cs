@@ -3,9 +3,9 @@
 namespace wan24.Core
 {
     /// <summary>
-    /// Timeout (when comparing instances, and not the timeout time, you should use the <see cref="Timeout.Equals(object?)"/> method!)
+    /// Timeout (when comparing instances, and not the timeout time, you should use the <see cref="Equals(object?)"/> method!)
     /// </summary>
-    public class Timeout : DisposableBase
+    public class Timeout : DisposableBase, ITimer
     {
         /// <summary>
         /// Timer
@@ -20,6 +20,7 @@ namespace wan24.Core
         /// <param name="start">Start?</param>
         public Timeout(TimeSpan time, bool autoReset = false, bool start = false) : base()
         {
+            TimerTable.Timers[GUID] = this;
             Timer = new()
             {
                 AutoReset = autoReset
@@ -32,6 +33,23 @@ namespace wan24.Core
             Time = time;
             if (start) Start();
         }
+
+        /// <summary>
+        /// GUID
+        /// </summary>
+        public string GUID { get; } = Guid.NewGuid().ToString();
+
+        /// <inheritdoc/>
+        public string? Name { get; set; }
+
+        /// <inheritdoc/>
+        TimeSpan ITimer.Interval => Time;
+
+        /// <inheritdoc/>
+        DateTime ITimer.LastElapsed => LastTimeout;
+
+        /// <inheritdoc/>
+        DateTime ITimer.Sheduled => DateTime.Now + RemainingTime;
 
         /// <summary>
         /// Timeout time (setting will reset the timeout)
@@ -83,11 +101,25 @@ namespace wan24.Core
             Timer.Start();
         }
 
+        /// <inheritdoc/>
+        Task ITimer.StartAsync()
+        {
+            Start();
+            return Task.CompletedTask;
+        }
+
         /// <summary>
         /// Stop
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual void Stop() => Timer.Stop();
+
+        /// <inheritdoc/>
+        Task ITimer.StopAsync()
+        {
+            Stop();
+            return Task.CompletedTask;
+        }
 
         /// <summary>
         /// Reset
@@ -99,13 +131,24 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        Task ITimer.RestartAsync()
+        {
+            Reset();
+            return Task.CompletedTask;
+        }
+
+        /// <inheritdoc/>
         public override int GetHashCode() => base.GetHashCode();
 
         /// <inheritdoc/>
         public override bool Equals(object? obj) => base.Equals(obj);
 
         /// <inheritdoc/>
-        protected override void Dispose(bool disposing) => Timer.Dispose();
+        protected override void Dispose(bool disposing)
+        {
+            TimerTable.Timers.Remove(GUID, out _);
+            Timer.Dispose();
+        }
 
         /// <summary>
         /// Delegate for timeout events
@@ -274,7 +317,10 @@ namespace wan24.Core
         /// <returns>Timeout (will be disposed automatic when the action is being executed)</returns>
         public static Timeout RunAction(TimeSpan delay, Action action)
         {
-            Timeout res = new(delay);
+            Timeout res = new(delay)
+            {
+                Name = "Delayed action execution"
+            };
             res.OnTimeout += (s, e) =>
             {
                 res.Dispose();
@@ -292,7 +338,10 @@ namespace wan24.Core
         /// <returns>Timeout (will be disposed automatic when the action is being executed)</returns>
         public static Timeout RunAction(TimeSpan delay, Func<Task> action)
         {
-            Timeout res = new(delay);
+            Timeout res = new(delay)
+            {
+                Name = "Delayed action execution"
+            };
             res.OnTimeout += async (s, e) =>
             {
                 await Task.Yield();

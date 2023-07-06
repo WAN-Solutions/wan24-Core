@@ -24,9 +24,21 @@ namespace wan24.Core
         /// <param name="factory">Item factory</param>
         public DisposableObjectPool(int capacity, Func<T> factory) : base()
         {
+            PoolTable.Pools[GUID] = this;
             Capacity = capacity;
             Factory = factory;
         }
+
+        /// <summary>
+        /// GUID
+        /// </summary>
+        public string GUID { get; } = Guid.NewGuid().ToString();
+
+        /// <inheritdoc/>
+        public virtual string? Name { get; set; }
+
+        /// <inheritdoc/>
+        public Type ItemType => typeof(T);
 
         /// <summary>
         /// Capacity
@@ -86,6 +98,7 @@ namespace wan24.Core
                 if (item is IObjectPoolItem opItem) opItem.Reset();
                 item.Dispose();
             }
+            PoolTable.Pools.Remove(GUID, out _);
         }
 
         /// <inheritdoc/>
@@ -103,6 +116,7 @@ namespace wan24.Core
                     item.Dispose();
                 }
             }
+            PoolTable.Pools.Remove(GUID, out _);
         }
 
         /// <summary>

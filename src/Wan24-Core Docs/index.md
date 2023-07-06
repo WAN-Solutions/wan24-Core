@@ -151,6 +151,7 @@ type which can't extend the `DisposableBase` type
 friendly charset, faster and smaller results than base64 encoding; charset is 
 customizable; encoded data integrity can be validated without decoding; 
 including extensions for numeric type encoding/decoding)
+- Collecting periodical statistical values
 
 ## How to get it
 
@@ -791,7 +792,7 @@ next function. Available functions:
 | `escape_uri` | `%{input:escape_uri}` | escapes the value for use within an URI |
 | `set` | `%{input:set([name])}` sets the current output as parser variable with the given name |
 | `var` | `%{:var([name])}` gets a parser data variable value |
-| `item` | `%{:item([index],[item/name](,[item](,...)))}` gets an item from a list (if using a variable name, its value will be splitted using pipe (`|`)) |
+| `item` | `%{:item([index],[item/name](,[item](,...)))}` gets an item from a list (if using a variable name, its value will be splitted using pipe) |
 | `prepend` | `%{input:prepend([string])}` | prepends a string |
 | `append` | `%{input:append([string])}` | appends a string |
 | `insert` | `%{input:insert([index],[string])}` | inserts a string at an index |
@@ -802,12 +803,12 @@ next function. Available functions:
 | `rx` | `%{:rx([group_index]],[name/pattern])}` | exchanges the parser regular expression and content group index for the next parser operations (the next round) |
 | `format` | `%{input:format([format])}` | to format a numeric value |
 | `str_format` | `%{input:str_format(([value1](,...))}` to format the string value |
-| `insert_item` | `%{input:insert_item([index],[items_name])}` | to insert an item (items will be splitted by pipe (`|`)) |
-| `remove_item` | `%{input:remove_item([index])}` | to remove an item (items will be splitted by pipe (`|`)) |
+| `insert_item` | `%{input:insert_item([index],[items_name])}` | to insert an item (items will be splitted by pipe) |
+| `remove_item` | `%{input:remove_item([index])}` | to remove an item (items will be splitted by pipe) |
 | `sort` | `%{input:sort((desc))}` | to sort items |
 | `foreach` | `%{input:foreach([name])}` | to parse a parser data value for each item (will be stored in `_item`) |
 | `if` | `%{input:if([name](,[name]))}` | to parse a parser data value, if the value is `1` (else parse the second given parser data value) |
-| `split` | `%{input:split(prefix)}` | to split items by pipe (`|`) and set them as parser data using the prefix and appending the zero based item index |
+| `split` | `%{input:split(prefix)}` | to split items by pipe and set them as parser data using the prefix and appending the zero based item index |
 | `range` | `%{:range([start],[count])}` | to create a numeric range |
 | `dummy` | `%{:dummy(...)}` | does nothing (may be used as comment) |
 

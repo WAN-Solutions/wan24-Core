@@ -70,6 +70,14 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Display name
+        /// </summary>
+        public virtual string? Name { get; set; }
+
+        /// <inheritdoc/>
+        Type IPool.ItemType => typeof(T);
+
+        /// <summary>
         /// Capacity
         /// </summary>
         public int Capacity => Pool.BoundedCapacity;

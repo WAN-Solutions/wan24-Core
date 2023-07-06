@@ -89,6 +89,7 @@
     <div><span class="xref">IDisposable</span></div>
     <div><span class="xref">IAsyncDisposable</span></div>
     <div><a class="xref" href="wan24.Core.IObjectPool-1.html">IObjectPool</a>&lt;T&gt;</div>
+    <div><a class="xref" href="wan24.Core.IPool.html">IPool</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -97,6 +98,15 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_Factory">DisposableObjectPool&lt;T&gt;.Factory</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_GUID">DisposableObjectPool&lt;T&gt;.GUID</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_Name">DisposableObjectPool&lt;T&gt;.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_ItemType">DisposableObjectPool&lt;T&gt;.ItemType</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_Capacity">DisposableObjectPool&lt;T&gt;.Capacity</a>
@@ -190,7 +200,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_StreamPool_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class StreamPool&lt;T&gt; : DisposableObjectPool&lt;T&gt;, IDisposableObject, IObjectPool&lt;T&gt; where T : Stream, IObjectPoolItem, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public class StreamPool&lt;T&gt; : DisposableObjectPool&lt;T&gt;, IDisposableObject, IObjectPool&lt;T&gt;, IPool where T : Stream, IObjectPoolItem, new()</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -296,6 +306,9 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.IObjectPool-1.html">IObjectPool&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IPool.html">IPool</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>

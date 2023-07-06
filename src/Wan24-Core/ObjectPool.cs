@@ -24,9 +24,26 @@ namespace wan24.Core
         /// <param name="factory">Item factory</param>
         public ObjectPool(int capacity, Func<T> factory)
         {
+            PoolTable.Pools[GUID] = this;
             Capacity = capacity;
             Factory = factory;
         }
+
+        /// <summary>
+        /// Destructor
+        /// </summary>
+        ~ObjectPool() => PoolTable.Pools.Remove(GUID, out _);
+
+        /// <summary>
+        /// GUID
+        /// </summary>
+        public string GUID { get; } = Guid.NewGuid().ToString();
+
+        /// <inheritdoc/>
+        public virtual string? Name { get; set; }
+
+        /// <inheritdoc/>
+        public Type ItemType => typeof(T);
 
         /// <summary>
         /// Capacity

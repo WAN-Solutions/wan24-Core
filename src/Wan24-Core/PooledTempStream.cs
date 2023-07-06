@@ -1,6 +1,4 @@
-﻿using System.Buffers;
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Pooled temporary stream (hosts written data in memory first, then switches to a temporary file when exceeding the memory limit)
@@ -8,7 +6,7 @@ namespace wan24.Core
     public sealed class PooledTempStream : Stream
     {
         /// <summary>
-        /// An object for thread synchronization
+        /// An object for static thread synchronization
         /// </summary>
         private static readonly object StaticSyncObject = new();
         /// <summary>
@@ -73,7 +71,10 @@ namespace wan24.Core
             get
             {
                 if (_MemoryStreamPool != null) return _MemoryStreamPool;
-                lock (StaticSyncObject) return _MemoryStreamPool ??= new(MemoryPoolCapacity);
+                lock (StaticSyncObject) return _MemoryStreamPool ??= new(MemoryPoolCapacity)
+                {
+                    Name = "Temporary memory streams"
+                };
             }
         }
 
@@ -85,7 +86,10 @@ namespace wan24.Core
             get
             {
                 if (_FileStreamPool != null) return _FileStreamPool;
-                lock (StaticSyncObject) return _FileStreamPool ??= new(FileStreamCapacity);
+                lock (StaticSyncObject) return _FileStreamPool ??= new(FileStreamCapacity)
+                {
+                    Name = "Temporary file streams"
+                };
             }
         }
 
@@ -110,13 +114,13 @@ namespace wan24.Core
         public bool IsInMemory => BaseStream is PooledMemoryStream;
 
         /// <inheritdoc/>
-        public override bool CanRead => BaseStream.CanRead;
+        public override bool CanRead => true;
 
         /// <inheritdoc/>
-        public override bool CanSeek => BaseStream.CanSeek;
+        public override bool CanSeek => true;
 
         /// <inheritdoc/>
-        public override bool CanWrite => BaseStream.CanWrite;
+        public override bool CanWrite => true;
 
         /// <inheritdoc/>
         public override long Length => BaseStream.Length;
@@ -150,6 +154,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override void SetLength(long value)
         {
+            EnsureUndisposed();
             if (IsInMemory && value > MaxLengthInMemory) CreateTempFile();
             BaseStream.SetLength(value);
         }
@@ -160,6 +165,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override void Write(ReadOnlySpan<byte> buffer)
         {
+            EnsureUndisposed();
             if (IsInMemory && Position + buffer.Length > MaxLengthInMemory) CreateTempFile();
             BaseStream.Write(buffer);
         }
@@ -167,16 +173,9 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override void WriteByte(byte value)
         {
-            byte[] buffer = ArrayPool<byte>.Shared.Rent(1);
-            try
-            {
-                buffer[0] = value;
-                Write(buffer.AsSpan(0, 1));
-            }
-            finally
-            {
-                ArrayPool<byte>.Shared.Return(buffer);
-            }
+            EnsureUndisposed();
+            if (IsInMemory && Position + 1 > MaxLengthInMemory) CreateTempFile();
+            BaseStream.WriteByte(value);
         }
 
         /// <inheritdoc/>
@@ -186,6 +185,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override async ValueTask WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
         {
+            EnsureUndisposed();
             if (IsInMemory && Position + buffer.Length > MaxLengthInMemory) await CreateTempFileAsync(cancellationToken).DynamicContext();
             await BaseStream.WriteAsync(buffer, cancellationToken).DynamicContext(); ;
         }
@@ -220,20 +220,28 @@ namespace wan24.Core
         /// </summary>
         private void CreateTempFile()
         {
+            EnsureUndisposed();
             long offset = Position;
-            Position = 0;
-            PooledTempFileStream fs = UsedFileStreamPool.Rent();
             try
             {
-                CopyTo(fs);
-                fs.Position = offset;
-                UsedMemoryStreamPool.Return(MemoryStream!);
-                BaseStream = fs;
+                Position = 0;
+                PooledMemoryStream ms = MemoryStream!;
+                PooledTempFileStream fs = UsedFileStreamPool.Rent();
+                try
+                {
+                    CopyTo(fs);
+                    BaseStream = fs;
+                    UsedMemoryStreamPool.Return(ms);
+                }
+                catch
+                {
+                    UsedFileStreamPool.Return(fs);
+                    throw;
+                }
             }
-            catch
+            finally
             {
-                UsedFileStreamPool.Return(fs);
-                throw;
+                Position = offset;
             }
         }
 
@@ -243,20 +251,28 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         private async Task CreateTempFileAsync(CancellationToken cancellationToken)
         {
+            EnsureUndisposed();
             long offset = Position;
-            Position = 0;
-            PooledTempFileStream fs = UsedFileStreamPool.Rent();
             try
             {
-                await CopyToAsync(fs, cancellationToken).DynamicContext();
-                fs.Position = offset;
-                UsedMemoryStreamPool.Return(MemoryStream!);
-                BaseStream = fs;
+                Position = 0;
+                PooledMemoryStream ms = MemoryStream!;
+                PooledTempFileStream fs = UsedFileStreamPool.Rent();
+                try
+                {
+                    await CopyToAsync(fs, cancellationToken).DynamicContext();
+                    BaseStream = fs;
+                    UsedMemoryStreamPool.Return(ms);
+                }
+                catch
+                {
+                    UsedFileStreamPool.Return(fs);
+                    throw;
+                }
             }
-            catch
+            finally
             {
-                UsedFileStreamPool.Return(fs);
-                throw;
+                Position = offset;
             }
         }
 
@@ -273,6 +289,16 @@ namespace wan24.Core
             {
                 UsedFileStreamPool.Return(FileStream!);
             }
+            BaseStream = null!;
+        }
+
+        /// <summary>
+        /// Ensure undisposed state
+        /// </summary>
+        private void EnsureUndisposed()
+        {
+            if (!IsDisposed) return;
+            throw new ObjectDisposedException(GetType().ToString());
         }
     }
 }
