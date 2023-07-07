@@ -44,6 +44,9 @@ namespace wan24.Core
         /// <inheritdoc/>
         public object SyncObject { get; } = new();
 
+        /// <inheritdoc/>
+        public Guid GUID { get; } = Guid.NewGuid();
+
         /// <summary>
         /// Master configuration
         /// </summary>
