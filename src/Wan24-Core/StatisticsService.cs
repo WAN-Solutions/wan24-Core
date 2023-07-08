@@ -13,13 +13,13 @@ namespace wan24.Core
         /// <param name="interval">Interval in ms</param>
         /// <param name="timer">Timer type</param>
         /// <param name="nextRun">Fixed next run time</param>
-        public StatisticsService(double interval, HostedServiceTimers timer = HostedServiceTimers.Default, DateTime? nextRun = null) : base(interval, timer, nextRun)
+        public StatisticsService(double interval, HostedServiceTimers timer = HostedServiceTimers.ExactCatchingUp, DateTime? nextRun = null) : base(interval, timer, nextRun)
             => Name = "Periodical statistics";
 
         /// <summary>
-        /// Statitical values
+        /// Statistical values
         /// </summary>
-        public ConcurrentDictionary<string, Statistics> Values { get; } = new();
+        public ConcurrentDictionary<string, Statistics> Statistics { get; } = new();
 
         /// <inheritdoc/>
         public override IEnumerable<Status> State
@@ -27,12 +27,12 @@ namespace wan24.Core
             get
             {
                 foreach (Status state in base.State) yield return state;
-                foreach (Statistics stats in Values.Values) yield return stats.State;
+                foreach (Statistics statistics in Statistics.Values) yield return statistics.State;
             }
         }
 
         /// <inheritdoc/>
         protected override async Task WorkerAsync()
-            => await Values.Values.Select(s => s.GenerateValue(Cancellation?.Token ?? default)).ToArray().WaitAll().DynamicContext();
+            => await Statistics.Values.Select(s => s.GenerateValue(Cancellation?.Token ?? default)).ToList().WaitAll().DynamicContext();
     }
 }

@@ -10,7 +10,7 @@ namespace wan24.Core
         /// <summary>
         /// Update a timeout
         /// </summary>
-        /// <param name="start">Start time (will be set to <see cref="DateTime.Now"/>)</param>
+        /// <param name="start">Start time (will be set to <see cref="DateTime.Now"/>, if not timeout)</param>
         /// <param name="timeout">Timeout (will be decreased, if possible)</param>
         /// <returns>Can continue (no timeout)?</returns>
         [TargetedPatchingOptOut("Tiny method")]

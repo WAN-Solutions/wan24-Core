@@ -78,6 +78,11 @@
         /// </summary>
         public long QueuedItems { get; protected set; } = ServiceWorkerTable.ServiceWorkers.Values.Sum(s => s is IQueueWorker qw ? qw.Queued : 0);
 
+        /// <summary>
+        /// Running timers count average
+        /// </summary>
+        public long LockedObjects { get; protected set; } = ObjectLockTable.ObjectLocks.Values.Sum(l => l.ActiveLocks);
+
         /// <inheritdoc/>
         protected override Task WorkerAsync()
         {
@@ -87,6 +92,7 @@
             Timers = (long)Math.Ceiling((double)(Timers + TimerTable.Timers.Count) / 2);
             RunningTimers = (long)Math.Ceiling((double)(RunningTimers + TimerTable.Timers.Values.Count(t => t.IsRunning)) / 2);
             QueuedItems = (long)Math.Ceiling((double)(QueuedItems + ServiceWorkerTable.ServiceWorkers.Values.Sum(s => s is IQueueWorker qw ? qw.Queued : 0)) / 2);
+            LockedObjects = (long)Math.Ceiling((double)(LockedObjects + ObjectLockTable.ObjectLocks.Values.Sum(l => l.ActiveLocks)) / 2);
             return Task.CompletedTask;
         }
     }
