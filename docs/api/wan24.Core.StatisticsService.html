@@ -308,7 +308,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public StatisticsService(double interval, HostedServiceTimers timer = HostedServiceTimers.Default, DateTime? nextRun = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public StatisticsService(double interval, HostedServiceTimers timer = HostedServiceTimers.ExactCatchingUp, DateTime? nextRun = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -377,19 +377,19 @@
   <div><a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_State">TimedHostedServiceBase.State</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StatisticsService_Values.md&amp;value=---%0Auid%3A%20wan24.Core.StatisticsService.Values%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StatisticsService_Statistics.md&amp;value=---%0Auid%3A%20wan24.Core.StatisticsService.Statistics%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StatisticsService.cs/#L22">View Source</a>
   </span>
-  <a id="wan24_Core_StatisticsService_Values_" data-uid="wan24.Core.StatisticsService.Values*"></a>
-  <h4 id="wan24_Core_StatisticsService_Values" data-uid="wan24.Core.StatisticsService.Values">Values</h4>
-  <div class="markdown level1 summary"><p>Statitical values</p>
+  <a id="wan24_Core_StatisticsService_Statistics_" data-uid="wan24.Core.StatisticsService.Statistics*"></a>
+  <h4 id="wan24_Core_StatisticsService_Statistics" data-uid="wan24.Core.StatisticsService.Statistics">Statistics</h4>
+  <div class="markdown level1 summary"><p>Statistical values</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ConcurrentDictionary&lt;string, Statistics&gt; Values { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ConcurrentDictionary&lt;string, Statistics&gt; Statistics { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">

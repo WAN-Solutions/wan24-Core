@@ -152,6 +152,9 @@ friendly charset, faster and smaller results than base64 encoding; charset is
 customizable; encoded data integrity can be validated without decoding; 
 including extensions for numeric type encoding/decoding)
 - Collecting periodical statistical values
+- Streams
+    - `LengthLimitedStream` ensures a maximum stream length
+    - `MemoryPoolStream` uses an `ArrayPool<byte>` for storing written data
 
 ## How to get it
 

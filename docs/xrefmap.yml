@@ -9047,6 +9047,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.EnvironmentService.EnvironmentService
   nameWithType: EnvironmentService.EnvironmentService
+- uid: wan24.Core.EnvironmentService.LockedObjects
+  name: LockedObjects
+  href: api/wan24.Core.EnvironmentService.html#wan24_Core_EnvironmentService_LockedObjects
+  commentId: P:wan24.Core.EnvironmentService.LockedObjects
+  fullName: wan24.Core.EnvironmentService.LockedObjects
+  nameWithType: EnvironmentService.LockedObjects
+- uid: wan24.Core.EnvironmentService.LockedObjects*
+  name: LockedObjects
+  href: api/wan24.Core.EnvironmentService.html#wan24_Core_EnvironmentService_LockedObjects_
+  commentId: Overload:wan24.Core.EnvironmentService.LockedObjects
+  isSpec: "True"
+  fullName: wan24.Core.EnvironmentService.LockedObjects
+  nameWithType: EnvironmentService.LockedObjects
 - uid: wan24.Core.EnvironmentService.QueuedItems
   name: QueuedItems
   href: api/wan24.Core.EnvironmentService.html#wan24_Core_EnvironmentService_QueuedItems
@@ -12309,6 +12322,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.LimitedLengthStream.ReadAsync
   nameWithType: LimitedLengthStream.ReadAsync
+- uid: wan24.Core.LimitedLengthStream.ReadByte
+  name: ReadByte()
+  href: api/wan24.Core.LimitedLengthStream.html#wan24_Core_LimitedLengthStream_ReadByte
+  commentId: M:wan24.Core.LimitedLengthStream.ReadByte
+  fullName: wan24.Core.LimitedLengthStream.ReadByte()
+  nameWithType: LimitedLengthStream.ReadByte()
+- uid: wan24.Core.LimitedLengthStream.ReadByte*
+  name: ReadByte
+  href: api/wan24.Core.LimitedLengthStream.html#wan24_Core_LimitedLengthStream_ReadByte_
+  commentId: Overload:wan24.Core.LimitedLengthStream.ReadByte
+  isSpec: "True"
+  fullName: wan24.Core.LimitedLengthStream.ReadByte
+  nameWithType: LimitedLengthStream.ReadByte
 - uid: wan24.Core.LimitedLengthStream.Seek(System.Int64,SeekOrigin)
   name: Seek(Int64, SeekOrigin)
   href: api/wan24.Core.LimitedLengthStream.html#wan24_Core_LimitedLengthStream_Seek_System_Int64_SeekOrigin_
@@ -12559,6 +12585,488 @@ references:
   isSpec: "True"
   fullName: wan24.Core.Logging.WriteWarning
   nameWithType: Logging.WriteWarning
+- uid: wan24.Core.MemoryPoolStream
+  name: MemoryPoolStream
+  href: api/wan24.Core.MemoryPoolStream.html
+  commentId: T:wan24.Core.MemoryPoolStream
+  fullName: wan24.Core.MemoryPoolStream
+  nameWithType: MemoryPoolStream
+- uid: wan24.Core.MemoryPoolStream.#ctor(System.Buffers.ArrayPool{System.Byte},System.Nullable{System.Int32})
+  name: MemoryPoolStream(ArrayPool<Byte>, Nullable<Int32>)
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream__ctor_System_Buffers_ArrayPool_System_Byte__System_Nullable_System_Int32__
+  commentId: M:wan24.Core.MemoryPoolStream.#ctor(System.Buffers.ArrayPool{System.Byte},System.Nullable{System.Int32})
+  name.vb: MemoryPoolStream(ArrayPool(Of Byte), Nullable(Of Int32))
+  fullName: wan24.Core.MemoryPoolStream.MemoryPoolStream(System.Buffers.ArrayPool<System.Byte>, System.Nullable<System.Int32>)
+  fullName.vb: wan24.Core.MemoryPoolStream.MemoryPoolStream(System.Buffers.ArrayPool(Of System.Byte), System.Nullable(Of System.Int32))
+  nameWithType: MemoryPoolStream.MemoryPoolStream(ArrayPool<Byte>, Nullable<Int32>)
+  nameWithType.vb: MemoryPoolStream.MemoryPoolStream(ArrayPool(Of Byte), Nullable(Of Int32))
+- uid: wan24.Core.MemoryPoolStream.#ctor*
+  name: MemoryPoolStream
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream__ctor_
+  commentId: Overload:wan24.Core.MemoryPoolStream.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.MemoryPoolStream
+  nameWithType: MemoryPoolStream.MemoryPoolStream
+- uid: wan24.Core.MemoryPoolStream._BufferSize
+  name: _BufferSize
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream__BufferSize
+  commentId: F:wan24.Core.MemoryPoolStream._BufferSize
+  fullName: wan24.Core.MemoryPoolStream._BufferSize
+  nameWithType: MemoryPoolStream._BufferSize
+- uid: wan24.Core.MemoryPoolStream._Length
+  name: _Length
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream__Length
+  commentId: F:wan24.Core.MemoryPoolStream._Length
+  fullName: wan24.Core.MemoryPoolStream._Length
+  nameWithType: MemoryPoolStream._Length
+- uid: wan24.Core.MemoryPoolStream._Position
+  name: _Position
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream__Position
+  commentId: F:wan24.Core.MemoryPoolStream._Position
+  fullName: wan24.Core.MemoryPoolStream._Position
+  nameWithType: MemoryPoolStream._Position
+- uid: wan24.Core.MemoryPoolStream.BufferCount
+  name: BufferCount
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_BufferCount
+  commentId: P:wan24.Core.MemoryPoolStream.BufferCount
+  fullName: wan24.Core.MemoryPoolStream.BufferCount
+  nameWithType: MemoryPoolStream.BufferCount
+- uid: wan24.Core.MemoryPoolStream.BufferCount*
+  name: BufferCount
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_BufferCount_
+  commentId: Overload:wan24.Core.MemoryPoolStream.BufferCount
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.BufferCount
+  nameWithType: MemoryPoolStream.BufferCount
+- uid: wan24.Core.MemoryPoolStream.BufferIndex
+  name: BufferIndex
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_BufferIndex
+  commentId: F:wan24.Core.MemoryPoolStream.BufferIndex
+  fullName: wan24.Core.MemoryPoolStream.BufferIndex
+  nameWithType: MemoryPoolStream.BufferIndex
+- uid: wan24.Core.MemoryPoolStream.BufferLength
+  name: BufferLength
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_BufferLength
+  commentId: P:wan24.Core.MemoryPoolStream.BufferLength
+  fullName: wan24.Core.MemoryPoolStream.BufferLength
+  nameWithType: MemoryPoolStream.BufferLength
+- uid: wan24.Core.MemoryPoolStream.BufferLength*
+  name: BufferLength
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_BufferLength_
+  commentId: Overload:wan24.Core.MemoryPoolStream.BufferLength
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.BufferLength
+  nameWithType: MemoryPoolStream.BufferLength
+- uid: wan24.Core.MemoryPoolStream.BufferOffset
+  name: BufferOffset
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_BufferOffset
+  commentId: F:wan24.Core.MemoryPoolStream.BufferOffset
+  fullName: wan24.Core.MemoryPoolStream.BufferOffset
+  nameWithType: MemoryPoolStream.BufferOffset
+- uid: wan24.Core.MemoryPoolStream.Buffers
+  name: Buffers
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Buffers
+  commentId: F:wan24.Core.MemoryPoolStream.Buffers
+  fullName: wan24.Core.MemoryPoolStream.Buffers
+  nameWithType: MemoryPoolStream.Buffers
+- uid: wan24.Core.MemoryPoolStream.BufferSize
+  name: BufferSize
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_BufferSize
+  commentId: P:wan24.Core.MemoryPoolStream.BufferSize
+  fullName: wan24.Core.MemoryPoolStream.BufferSize
+  nameWithType: MemoryPoolStream.BufferSize
+- uid: wan24.Core.MemoryPoolStream.BufferSize*
+  name: BufferSize
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_BufferSize_
+  commentId: Overload:wan24.Core.MemoryPoolStream.BufferSize
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.BufferSize
+  nameWithType: MemoryPoolStream.BufferSize
+- uid: wan24.Core.MemoryPoolStream.CanRead
+  name: CanRead
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_CanRead
+  commentId: P:wan24.Core.MemoryPoolStream.CanRead
+  fullName: wan24.Core.MemoryPoolStream.CanRead
+  nameWithType: MemoryPoolStream.CanRead
+- uid: wan24.Core.MemoryPoolStream.CanRead*
+  name: CanRead
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_CanRead_
+  commentId: Overload:wan24.Core.MemoryPoolStream.CanRead
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.CanRead
+  nameWithType: MemoryPoolStream.CanRead
+- uid: wan24.Core.MemoryPoolStream.CanSeek
+  name: CanSeek
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_CanSeek
+  commentId: P:wan24.Core.MemoryPoolStream.CanSeek
+  fullName: wan24.Core.MemoryPoolStream.CanSeek
+  nameWithType: MemoryPoolStream.CanSeek
+- uid: wan24.Core.MemoryPoolStream.CanSeek*
+  name: CanSeek
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_CanSeek_
+  commentId: Overload:wan24.Core.MemoryPoolStream.CanSeek
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.CanSeek
+  nameWithType: MemoryPoolStream.CanSeek
+- uid: wan24.Core.MemoryPoolStream.CanWrite
+  name: CanWrite
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_CanWrite
+  commentId: P:wan24.Core.MemoryPoolStream.CanWrite
+  fullName: wan24.Core.MemoryPoolStream.CanWrite
+  nameWithType: MemoryPoolStream.CanWrite
+- uid: wan24.Core.MemoryPoolStream.CanWrite*
+  name: CanWrite
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_CanWrite_
+  commentId: Overload:wan24.Core.MemoryPoolStream.CanWrite
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.CanWrite
+  nameWithType: MemoryPoolStream.CanWrite
+- uid: wan24.Core.MemoryPoolStream.CleanReturned
+  name: CleanReturned
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_CleanReturned
+  commentId: P:wan24.Core.MemoryPoolStream.CleanReturned
+  fullName: wan24.Core.MemoryPoolStream.CleanReturned
+  nameWithType: MemoryPoolStream.CleanReturned
+- uid: wan24.Core.MemoryPoolStream.CleanReturned*
+  name: CleanReturned
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_CleanReturned_
+  commentId: Overload:wan24.Core.MemoryPoolStream.CleanReturned
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.CleanReturned
+  nameWithType: MemoryPoolStream.CleanReturned
+- uid: wan24.Core.MemoryPoolStream.Close
+  name: Close()
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Close
+  commentId: M:wan24.Core.MemoryPoolStream.Close
+  fullName: wan24.Core.MemoryPoolStream.Close()
+  nameWithType: MemoryPoolStream.Close()
+- uid: wan24.Core.MemoryPoolStream.Close*
+  name: Close
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Close_
+  commentId: Overload:wan24.Core.MemoryPoolStream.Close
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.Close
+  nameWithType: MemoryPoolStream.Close
+- uid: wan24.Core.MemoryPoolStream.DefaultBufferSize
+  name: DefaultBufferSize
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_DefaultBufferSize
+  commentId: P:wan24.Core.MemoryPoolStream.DefaultBufferSize
+  fullName: wan24.Core.MemoryPoolStream.DefaultBufferSize
+  nameWithType: MemoryPoolStream.DefaultBufferSize
+- uid: wan24.Core.MemoryPoolStream.DefaultBufferSize*
+  name: DefaultBufferSize
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_DefaultBufferSize_
+  commentId: Overload:wan24.Core.MemoryPoolStream.DefaultBufferSize
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.DefaultBufferSize
+  nameWithType: MemoryPoolStream.DefaultBufferSize
+- uid: wan24.Core.MemoryPoolStream.DisposeAsync
+  name: DisposeAsync()
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_DisposeAsync
+  commentId: M:wan24.Core.MemoryPoolStream.DisposeAsync
+  fullName: wan24.Core.MemoryPoolStream.DisposeAsync()
+  nameWithType: MemoryPoolStream.DisposeAsync()
+- uid: wan24.Core.MemoryPoolStream.DisposeAsync*
+  name: DisposeAsync
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_DisposeAsync_
+  commentId: Overload:wan24.Core.MemoryPoolStream.DisposeAsync
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.DisposeAsync
+  nameWithType: MemoryPoolStream.DisposeAsync
+- uid: wan24.Core.MemoryPoolStream.EnsureUndisposed
+  name: EnsureUndisposed()
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_EnsureUndisposed
+  commentId: M:wan24.Core.MemoryPoolStream.EnsureUndisposed
+  fullName: wan24.Core.MemoryPoolStream.EnsureUndisposed()
+  nameWithType: MemoryPoolStream.EnsureUndisposed()
+- uid: wan24.Core.MemoryPoolStream.EnsureUndisposed*
+  name: EnsureUndisposed
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_EnsureUndisposed_
+  commentId: Overload:wan24.Core.MemoryPoolStream.EnsureUndisposed
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.EnsureUndisposed
+  nameWithType: MemoryPoolStream.EnsureUndisposed
+- uid: wan24.Core.MemoryPoolStream.Flush
+  name: Flush()
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Flush
+  commentId: M:wan24.Core.MemoryPoolStream.Flush
+  fullName: wan24.Core.MemoryPoolStream.Flush()
+  nameWithType: MemoryPoolStream.Flush()
+- uid: wan24.Core.MemoryPoolStream.Flush*
+  name: Flush
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Flush_
+  commentId: Overload:wan24.Core.MemoryPoolStream.Flush
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.Flush
+  nameWithType: MemoryPoolStream.Flush
+- uid: wan24.Core.MemoryPoolStream.FlushAsync(CancellationToken)
+  name: FlushAsync(CancellationToken)
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_FlushAsync_CancellationToken_
+  commentId: M:wan24.Core.MemoryPoolStream.FlushAsync(CancellationToken)
+  fullName: wan24.Core.MemoryPoolStream.FlushAsync(CancellationToken)
+  nameWithType: MemoryPoolStream.FlushAsync(CancellationToken)
+- uid: wan24.Core.MemoryPoolStream.FlushAsync*
+  name: FlushAsync
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_FlushAsync_
+  commentId: Overload:wan24.Core.MemoryPoolStream.FlushAsync
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.FlushAsync
+  nameWithType: MemoryPoolStream.FlushAsync
+- uid: wan24.Core.MemoryPoolStream.IsDisposed
+  name: IsDisposed
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_IsDisposed
+  commentId: F:wan24.Core.MemoryPoolStream.IsDisposed
+  fullName: wan24.Core.MemoryPoolStream.IsDisposed
+  nameWithType: MemoryPoolStream.IsDisposed
+- uid: wan24.Core.MemoryPoolStream.LastBufferOffset
+  name: LastBufferOffset
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_LastBufferOffset
+  commentId: F:wan24.Core.MemoryPoolStream.LastBufferOffset
+  fullName: wan24.Core.MemoryPoolStream.LastBufferOffset
+  nameWithType: MemoryPoolStream.LastBufferOffset
+- uid: wan24.Core.MemoryPoolStream.Length
+  name: Length
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Length
+  commentId: P:wan24.Core.MemoryPoolStream.Length
+  fullName: wan24.Core.MemoryPoolStream.Length
+  nameWithType: MemoryPoolStream.Length
+- uid: wan24.Core.MemoryPoolStream.Length*
+  name: Length
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Length_
+  commentId: Overload:wan24.Core.MemoryPoolStream.Length
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.Length
+  nameWithType: MemoryPoolStream.Length
+- uid: wan24.Core.MemoryPoolStream.op_Implicit(wan24.Core.MemoryPoolStream)~System.Byte[]
+  name: Implicit(MemoryPoolStream to Byte[])
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_op_Implicit_wan24_Core_MemoryPoolStream__System_Byte__
+  commentId: M:wan24.Core.MemoryPoolStream.op_Implicit(wan24.Core.MemoryPoolStream)~System.Byte[]
+  name.vb: Widening(MemoryPoolStream to Byte())
+  fullName: wan24.Core.MemoryPoolStream.Implicit(wan24.Core.MemoryPoolStream to System.Byte[])
+  fullName.vb: wan24.Core.MemoryPoolStream.Widening(wan24.Core.MemoryPoolStream to System.Byte())
+  nameWithType: MemoryPoolStream.Implicit(MemoryPoolStream to Byte[])
+  nameWithType.vb: MemoryPoolStream.Widening(MemoryPoolStream to Byte())
+- uid: wan24.Core.MemoryPoolStream.op_Implicit(wan24.Core.MemoryPoolStream)~System.Int64
+  name: Implicit(MemoryPoolStream to Int64)
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_op_Implicit_wan24_Core_MemoryPoolStream__System_Int64
+  commentId: M:wan24.Core.MemoryPoolStream.op_Implicit(wan24.Core.MemoryPoolStream)~System.Int64
+  name.vb: Widening(MemoryPoolStream to Int64)
+  fullName: wan24.Core.MemoryPoolStream.Implicit(wan24.Core.MemoryPoolStream to System.Int64)
+  fullName.vb: wan24.Core.MemoryPoolStream.Widening(wan24.Core.MemoryPoolStream to System.Int64)
+  nameWithType: MemoryPoolStream.Implicit(MemoryPoolStream to Int64)
+  nameWithType.vb: MemoryPoolStream.Widening(MemoryPoolStream to Int64)
+- uid: wan24.Core.MemoryPoolStream.op_Implicit*
+  name: Implicit
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_op_Implicit_
+  commentId: Overload:wan24.Core.MemoryPoolStream.op_Implicit
+  isSpec: "True"
+  name.vb: Widening
+  fullName: wan24.Core.MemoryPoolStream.Implicit
+  fullName.vb: wan24.Core.MemoryPoolStream.Widening
+  nameWithType: MemoryPoolStream.Implicit
+  nameWithType.vb: MemoryPoolStream.Widening
+- uid: wan24.Core.MemoryPoolStream.Pool
+  name: Pool
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Pool
+  commentId: F:wan24.Core.MemoryPoolStream.Pool
+  fullName: wan24.Core.MemoryPoolStream.Pool
+  nameWithType: MemoryPoolStream.Pool
+- uid: wan24.Core.MemoryPoolStream.Position
+  name: Position
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Position
+  commentId: P:wan24.Core.MemoryPoolStream.Position
+  fullName: wan24.Core.MemoryPoolStream.Position
+  nameWithType: MemoryPoolStream.Position
+- uid: wan24.Core.MemoryPoolStream.Position*
+  name: Position
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Position_
+  commentId: Overload:wan24.Core.MemoryPoolStream.Position
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.Position
+  nameWithType: MemoryPoolStream.Position
+- uid: wan24.Core.MemoryPoolStream.Read(Span{System.Byte})
+  name: Read(Span<Byte>)
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Read_Span_System_Byte__
+  commentId: M:wan24.Core.MemoryPoolStream.Read(Span{System.Byte})
+  name.vb: Read(Span(Of Byte))
+  fullName: wan24.Core.MemoryPoolStream.Read(Span<System.Byte>)
+  fullName.vb: wan24.Core.MemoryPoolStream.Read(Span(Of System.Byte))
+  nameWithType: MemoryPoolStream.Read(Span<Byte>)
+  nameWithType.vb: MemoryPoolStream.Read(Span(Of Byte))
+- uid: wan24.Core.MemoryPoolStream.Read(System.Byte[],System.Int32,System.Int32)
+  name: Read(Byte[], Int32, Int32)
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Read_System_Byte___System_Int32_System_Int32_
+  commentId: M:wan24.Core.MemoryPoolStream.Read(System.Byte[],System.Int32,System.Int32)
+  name.vb: Read(Byte(), Int32, Int32)
+  fullName: wan24.Core.MemoryPoolStream.Read(System.Byte[], System.Int32, System.Int32)
+  fullName.vb: wan24.Core.MemoryPoolStream.Read(System.Byte(), System.Int32, System.Int32)
+  nameWithType: MemoryPoolStream.Read(Byte[], Int32, Int32)
+  nameWithType.vb: MemoryPoolStream.Read(Byte(), Int32, Int32)
+- uid: wan24.Core.MemoryPoolStream.Read*
+  name: Read
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Read_
+  commentId: Overload:wan24.Core.MemoryPoolStream.Read
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.Read
+  nameWithType: MemoryPoolStream.Read
+- uid: wan24.Core.MemoryPoolStream.ReadAsync(Memory{System.Byte},CancellationToken)
+  name: ReadAsync(Memory<Byte>, CancellationToken)
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_ReadAsync_Memory_System_Byte__CancellationToken_
+  commentId: M:wan24.Core.MemoryPoolStream.ReadAsync(Memory{System.Byte},CancellationToken)
+  name.vb: ReadAsync(Memory(Of Byte), CancellationToken)
+  fullName: wan24.Core.MemoryPoolStream.ReadAsync(Memory<System.Byte>, CancellationToken)
+  fullName.vb: wan24.Core.MemoryPoolStream.ReadAsync(Memory(Of System.Byte), CancellationToken)
+  nameWithType: MemoryPoolStream.ReadAsync(Memory<Byte>, CancellationToken)
+  nameWithType.vb: MemoryPoolStream.ReadAsync(Memory(Of Byte), CancellationToken)
+- uid: wan24.Core.MemoryPoolStream.ReadAsync(System.Byte[],System.Int32,System.Int32,CancellationToken)
+  name: ReadAsync(Byte[], Int32, Int32, CancellationToken)
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_
+  commentId: M:wan24.Core.MemoryPoolStream.ReadAsync(System.Byte[],System.Int32,System.Int32,CancellationToken)
+  name.vb: ReadAsync(Byte(), Int32, Int32, CancellationToken)
+  fullName: wan24.Core.MemoryPoolStream.ReadAsync(System.Byte[], System.Int32, System.Int32, CancellationToken)
+  fullName.vb: wan24.Core.MemoryPoolStream.ReadAsync(System.Byte(), System.Int32, System.Int32, CancellationToken)
+  nameWithType: MemoryPoolStream.ReadAsync(Byte[], Int32, Int32, CancellationToken)
+  nameWithType.vb: MemoryPoolStream.ReadAsync(Byte(), Int32, Int32, CancellationToken)
+- uid: wan24.Core.MemoryPoolStream.ReadAsync*
+  name: ReadAsync
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_ReadAsync_
+  commentId: Overload:wan24.Core.MemoryPoolStream.ReadAsync
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.ReadAsync
+  nameWithType: MemoryPoolStream.ReadAsync
+- uid: wan24.Core.MemoryPoolStream.ReadByte
+  name: ReadByte()
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_ReadByte
+  commentId: M:wan24.Core.MemoryPoolStream.ReadByte
+  fullName: wan24.Core.MemoryPoolStream.ReadByte()
+  nameWithType: MemoryPoolStream.ReadByte()
+- uid: wan24.Core.MemoryPoolStream.ReadByte*
+  name: ReadByte
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_ReadByte_
+  commentId: Overload:wan24.Core.MemoryPoolStream.ReadByte
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.ReadByte
+  nameWithType: MemoryPoolStream.ReadByte
+- uid: wan24.Core.MemoryPoolStream.Seek(System.Int64,SeekOrigin)
+  name: Seek(Int64, SeekOrigin)
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Seek_System_Int64_SeekOrigin_
+  commentId: M:wan24.Core.MemoryPoolStream.Seek(System.Int64,SeekOrigin)
+  fullName: wan24.Core.MemoryPoolStream.Seek(System.Int64, SeekOrigin)
+  nameWithType: MemoryPoolStream.Seek(Int64, SeekOrigin)
+- uid: wan24.Core.MemoryPoolStream.Seek*
+  name: Seek
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Seek_
+  commentId: Overload:wan24.Core.MemoryPoolStream.Seek
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.Seek
+  nameWithType: MemoryPoolStream.Seek
+- uid: wan24.Core.MemoryPoolStream.SetLength(System.Int64)
+  name: SetLength(Int64)
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_SetLength_System_Int64_
+  commentId: M:wan24.Core.MemoryPoolStream.SetLength(System.Int64)
+  fullName: wan24.Core.MemoryPoolStream.SetLength(System.Int64)
+  nameWithType: MemoryPoolStream.SetLength(Int64)
+- uid: wan24.Core.MemoryPoolStream.SetLength(System.Int64,System.Boolean)
+  name: SetLength(Int64, Boolean)
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_SetLength_System_Int64_System_Boolean_
+  commentId: M:wan24.Core.MemoryPoolStream.SetLength(System.Int64,System.Boolean)
+  fullName: wan24.Core.MemoryPoolStream.SetLength(System.Int64, System.Boolean)
+  nameWithType: MemoryPoolStream.SetLength(Int64, Boolean)
+- uid: wan24.Core.MemoryPoolStream.SetLength*
+  name: SetLength
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_SetLength_
+  commentId: Overload:wan24.Core.MemoryPoolStream.SetLength
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.SetLength
+  nameWithType: MemoryPoolStream.SetLength
+- uid: wan24.Core.MemoryPoolStream.StaticSyncObject
+  name: StaticSyncObject
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_StaticSyncObject
+  commentId: F:wan24.Core.MemoryPoolStream.StaticSyncObject
+  fullName: wan24.Core.MemoryPoolStream.StaticSyncObject
+  nameWithType: MemoryPoolStream.StaticSyncObject
+- uid: wan24.Core.MemoryPoolStream.SyncObject
+  name: SyncObject
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_SyncObject
+  commentId: F:wan24.Core.MemoryPoolStream.SyncObject
+  fullName: wan24.Core.MemoryPoolStream.SyncObject
+  nameWithType: MemoryPoolStream.SyncObject
+- uid: wan24.Core.MemoryPoolStream.ToArray
+  name: ToArray()
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_ToArray
+  commentId: M:wan24.Core.MemoryPoolStream.ToArray
+  fullName: wan24.Core.MemoryPoolStream.ToArray()
+  nameWithType: MemoryPoolStream.ToArray()
+- uid: wan24.Core.MemoryPoolStream.ToArray*
+  name: ToArray
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_ToArray_
+  commentId: Overload:wan24.Core.MemoryPoolStream.ToArray
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.ToArray
+  nameWithType: MemoryPoolStream.ToArray
+- uid: wan24.Core.MemoryPoolStream.Write(ReadOnlySpan{System.Byte})
+  name: Write(ReadOnlySpan<Byte>)
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Write_ReadOnlySpan_System_Byte__
+  commentId: M:wan24.Core.MemoryPoolStream.Write(ReadOnlySpan{System.Byte})
+  name.vb: Write(ReadOnlySpan(Of Byte))
+  fullName: wan24.Core.MemoryPoolStream.Write(ReadOnlySpan<System.Byte>)
+  fullName.vb: wan24.Core.MemoryPoolStream.Write(ReadOnlySpan(Of System.Byte))
+  nameWithType: MemoryPoolStream.Write(ReadOnlySpan<Byte>)
+  nameWithType.vb: MemoryPoolStream.Write(ReadOnlySpan(Of Byte))
+- uid: wan24.Core.MemoryPoolStream.Write(System.Byte[],System.Int32,System.Int32)
+  name: Write(Byte[], Int32, Int32)
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Write_System_Byte___System_Int32_System_Int32_
+  commentId: M:wan24.Core.MemoryPoolStream.Write(System.Byte[],System.Int32,System.Int32)
+  name.vb: Write(Byte(), Int32, Int32)
+  fullName: wan24.Core.MemoryPoolStream.Write(System.Byte[], System.Int32, System.Int32)
+  fullName.vb: wan24.Core.MemoryPoolStream.Write(System.Byte(), System.Int32, System.Int32)
+  nameWithType: MemoryPoolStream.Write(Byte[], Int32, Int32)
+  nameWithType.vb: MemoryPoolStream.Write(Byte(), Int32, Int32)
+- uid: wan24.Core.MemoryPoolStream.Write*
+  name: Write
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Write_
+  commentId: Overload:wan24.Core.MemoryPoolStream.Write
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.Write
+  nameWithType: MemoryPoolStream.Write
+- uid: wan24.Core.MemoryPoolStream.WriteAsync(ReadOnlyMemory{System.Byte},CancellationToken)
+  name: WriteAsync(ReadOnlyMemory<Byte>, CancellationToken)
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_
+  commentId: M:wan24.Core.MemoryPoolStream.WriteAsync(ReadOnlyMemory{System.Byte},CancellationToken)
+  name.vb: WriteAsync(ReadOnlyMemory(Of Byte), CancellationToken)
+  fullName: wan24.Core.MemoryPoolStream.WriteAsync(ReadOnlyMemory<System.Byte>, CancellationToken)
+  fullName.vb: wan24.Core.MemoryPoolStream.WriteAsync(ReadOnlyMemory(Of System.Byte), CancellationToken)
+  nameWithType: MemoryPoolStream.WriteAsync(ReadOnlyMemory<Byte>, CancellationToken)
+  nameWithType.vb: MemoryPoolStream.WriteAsync(ReadOnlyMemory(Of Byte), CancellationToken)
+- uid: wan24.Core.MemoryPoolStream.WriteAsync(System.Byte[],System.Int32,System.Int32,CancellationToken)
+  name: WriteAsync(Byte[], Int32, Int32, CancellationToken)
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_
+  commentId: M:wan24.Core.MemoryPoolStream.WriteAsync(System.Byte[],System.Int32,System.Int32,CancellationToken)
+  name.vb: WriteAsync(Byte(), Int32, Int32, CancellationToken)
+  fullName: wan24.Core.MemoryPoolStream.WriteAsync(System.Byte[], System.Int32, System.Int32, CancellationToken)
+  fullName.vb: wan24.Core.MemoryPoolStream.WriteAsync(System.Byte(), System.Int32, System.Int32, CancellationToken)
+  nameWithType: MemoryPoolStream.WriteAsync(Byte[], Int32, Int32, CancellationToken)
+  nameWithType.vb: MemoryPoolStream.WriteAsync(Byte(), Int32, Int32, CancellationToken)
+- uid: wan24.Core.MemoryPoolStream.WriteAsync*
+  name: WriteAsync
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_WriteAsync_
+  commentId: Overload:wan24.Core.MemoryPoolStream.WriteAsync
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.WriteAsync
+  nameWithType: MemoryPoolStream.WriteAsync
+- uid: wan24.Core.MemoryPoolStream.WriteByte(System.Byte)
+  name: WriteByte(Byte)
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_WriteByte_System_Byte_
+  commentId: M:wan24.Core.MemoryPoolStream.WriteByte(System.Byte)
+  fullName: wan24.Core.MemoryPoolStream.WriteByte(System.Byte)
+  nameWithType: MemoryPoolStream.WriteByte(Byte)
+- uid: wan24.Core.MemoryPoolStream.WriteByte*
+  name: WriteByte
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_WriteByte_
+  commentId: Overload:wan24.Core.MemoryPoolStream.WriteByte
+  isSpec: "True"
+  fullName: wan24.Core.MemoryPoolStream.WriteByte
+  nameWithType: MemoryPoolStream.WriteByte
 - uid: wan24.Core.NumberExtensions
   name: NumberExtensions
   href: api/wan24.Core.NumberExtensions.html
@@ -20436,19 +20944,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.StatisticsService.State
   nameWithType: StatisticsService.State
-- uid: wan24.Core.StatisticsService.Values
-  name: Values
-  href: api/wan24.Core.StatisticsService.html#wan24_Core_StatisticsService_Values
-  commentId: P:wan24.Core.StatisticsService.Values
-  fullName: wan24.Core.StatisticsService.Values
-  nameWithType: StatisticsService.Values
-- uid: wan24.Core.StatisticsService.Values*
-  name: Values
-  href: api/wan24.Core.StatisticsService.html#wan24_Core_StatisticsService_Values_
-  commentId: Overload:wan24.Core.StatisticsService.Values
+- uid: wan24.Core.StatisticsService.Statistics
+  name: Statistics
+  href: api/wan24.Core.StatisticsService.html#wan24_Core_StatisticsService_Statistics
+  commentId: P:wan24.Core.StatisticsService.Statistics
+  fullName: wan24.Core.StatisticsService.Statistics
+  nameWithType: StatisticsService.Statistics
+- uid: wan24.Core.StatisticsService.Statistics*
+  name: Statistics
+  href: api/wan24.Core.StatisticsService.html#wan24_Core_StatisticsService_Statistics_
+  commentId: Overload:wan24.Core.StatisticsService.Statistics
   isSpec: "True"
-  fullName: wan24.Core.StatisticsService.Values
-  nameWithType: StatisticsService.Values
+  fullName: wan24.Core.StatisticsService.Statistics
+  nameWithType: StatisticsService.Statistics
 - uid: wan24.Core.StatisticsService.WorkerAsync
   name: WorkerAsync()
   href: api/wan24.Core.StatisticsService.html#wan24_Core_StatisticsService_WorkerAsync

@@ -92,6 +92,9 @@
         public override int Read(Span<byte> buffer) => BaseStream.Read(buffer);
 
         /// <inheritdoc/>
+        public override int ReadByte() => BaseStream.ReadByte();
+
+        /// <inheritdoc/>
         public override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
             => BaseStream.ReadAsync(buffer, offset, count, cancellationToken);
 

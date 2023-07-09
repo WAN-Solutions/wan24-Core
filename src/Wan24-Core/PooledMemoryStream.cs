@@ -3,7 +3,7 @@
     /// <summary>
     /// Pooled memory stream
     /// </summary>
-    public sealed class PooledMemoryStream : MemoryStream, IObjectPoolItem
+    public sealed class PooledMemoryStream : MemoryPoolStream, IObjectPoolItem
     {
         /// <summary>
         /// Constructor

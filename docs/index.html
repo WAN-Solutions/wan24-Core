@@ -281,6 +281,12 @@ friendly charset, faster and smaller results than base64 encoding; charset is
 customizable; encoded data integrity can be validated without decoding;
 including extensions for numeric type encoding/decoding)</li>
 <li>Collecting periodical statistical values</li>
+<li>Streams
+<ul>
+<li><code>LengthLimitedStream</code> ensures a maximum stream length</li>
+<li><code>MemoryPoolStream</code> uses an <code>ArrayPool&lt;byte&gt;</code> for storing written data</li>
+</ul>
+</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
