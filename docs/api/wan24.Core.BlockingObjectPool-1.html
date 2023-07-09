@@ -81,6 +81,7 @@
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><a class="xref" href="wan24.Core.DisposableBase.html">DisposableBase</a></div>
     <div class="level2"><span class="xref">BlockingObjectPool&lt;T&gt;</span></div>
+      <div class="level3"><a class="xref" href="wan24.Core.BlockingStreamPool-1.html">BlockingStreamPool&lt;T&gt;</a></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
@@ -89,6 +90,7 @@
     <div><span class="xref">IAsyncDisposable</span></div>
     <div><a class="xref" href="wan24.Core.IAsyncObjectPool-1.html">IAsyncObjectPool</a>&lt;T&gt;</div>
     <div><a class="xref" href="wan24.Core.IObjectPool-1.html">IObjectPool</a>&lt;T&gt;</div>
+    <div><a class="xref" href="wan24.Core.IPool.html">IPool</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -160,7 +162,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_BlockingObjectPool_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class BlockingObjectPool&lt;T&gt; : DisposableBase, IDisposableObject, IAsyncObjectPool&lt;T&gt;, IObjectPool&lt;T&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class BlockingObjectPool&lt;T&gt; : DisposableBase, IDisposableObject, IAsyncObjectPool&lt;T&gt;, IObjectPool&lt;T&gt;, IPool</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -453,7 +455,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_Available.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.Available%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L80">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L88">View Source</a>
   </span>
   <a id="wan24_Core_BlockingObjectPool_1_Available_" data-uid="wan24.Core.BlockingObjectPool`1.Available*"></a>
   <h4 id="wan24_Core_BlockingObjectPool_1_Available" data-uid="wan24.Core.BlockingObjectPool`1.Available">Available</h4>
@@ -484,7 +486,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_Capacity.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.Capacity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L75">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L83">View Source</a>
   </span>
   <a id="wan24_Core_BlockingObjectPool_1_Capacity_" data-uid="wan24.Core.BlockingObjectPool`1.Capacity*"></a>
   <h4 id="wan24_Core_BlockingObjectPool_1_Capacity" data-uid="wan24.Core.BlockingObjectPool`1.Capacity">Capacity</h4>
@@ -515,7 +517,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_ForceResetOnReturn.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.ForceResetOnReturn%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L95">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L103">View Source</a>
   </span>
   <a id="wan24_Core_BlockingObjectPool_1_ForceResetOnReturn_" data-uid="wan24.Core.BlockingObjectPool`1.ForceResetOnReturn*"></a>
   <h4 id="wan24_Core_BlockingObjectPool_1_ForceResetOnReturn" data-uid="wan24.Core.BlockingObjectPool`1.ForceResetOnReturn">ForceResetOnReturn</h4>
@@ -546,7 +548,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_Initialized.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.Initialized%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L85">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L93">View Source</a>
   </span>
   <a id="wan24_Core_BlockingObjectPool_1_Initialized_" data-uid="wan24.Core.BlockingObjectPool`1.Initialized*"></a>
   <h4 id="wan24_Core_BlockingObjectPool_1_Initialized" data-uid="wan24.Core.BlockingObjectPool`1.Initialized">Initialized</h4>
@@ -574,10 +576,41 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_Name.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L75">View Source</a>
+  </span>
+  <a id="wan24_Core_BlockingObjectPool_1_Name_" data-uid="wan24.Core.BlockingObjectPool`1.Name*"></a>
+  <h4 id="wan24_Core_BlockingObjectPool_1_Name" data-uid="wan24.Core.BlockingObjectPool`1.Name">Name</h4>
+  <div class="markdown level1 summary"><p>Display name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual string Name { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_ResetOnRent.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.ResetOnRent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L90">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L98">View Source</a>
   </span>
   <a id="wan24_Core_BlockingObjectPool_1_ResetOnRent_" data-uid="wan24.Core.BlockingObjectPool`1.ResetOnRent*"></a>
   <h4 id="wan24_Core_BlockingObjectPool_1_ResetOnRent" data-uid="wan24.Core.BlockingObjectPool`1.ResetOnRent">ResetOnRent</h4>
@@ -610,7 +643,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L350">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L358">View Source</a>
   </span>
   <a id="wan24_Core_BlockingObjectPool_1_Dispose_" data-uid="wan24.Core.BlockingObjectPool`1.Dispose*"></a>
   <h4 id="wan24_Core_BlockingObjectPool_1_Dispose_System_Boolean_" data-uid="wan24.Core.BlockingObjectPool`1.Dispose(System.Boolean)">Dispose(Boolean)</h4>
@@ -646,7 +679,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.DisposeCore%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L362">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L370">View Source</a>
   </span>
   <a id="wan24_Core_BlockingObjectPool_1_DisposeCore_" data-uid="wan24.Core.BlockingObjectPool`1.DisposeCore*"></a>
   <h4 id="wan24_Core_BlockingObjectPool_1_DisposeCore" data-uid="wan24.Core.BlockingObjectPool`1.DisposeCore">DisposeCore()</h4>
@@ -679,7 +712,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_Rent.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.Rent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L98">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L106">View Source</a>
   </span>
   <a id="wan24_Core_BlockingObjectPool_1_Rent_" data-uid="wan24.Core.BlockingObjectPool`1.Rent*"></a>
   <h4 id="wan24_Core_BlockingObjectPool_1_Rent" data-uid="wan24.Core.BlockingObjectPool`1.Rent">Rent()</h4>
@@ -711,7 +744,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_RentAsync.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.RentAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L174">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L182">View Source</a>
   </span>
   <a id="wan24_Core_BlockingObjectPool_1_RentAsync_" data-uid="wan24.Core.BlockingObjectPool`1.RentAsync*"></a>
   <h4 id="wan24_Core_BlockingObjectPool_1_RentAsync" data-uid="wan24.Core.BlockingObjectPool`1.RentAsync">RentAsync()</h4>
@@ -743,7 +776,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_Return__0_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.Return(%600%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L255">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L263">View Source</a>
   </span>
   <a id="wan24_Core_BlockingObjectPool_1_Return_" data-uid="wan24.Core.BlockingObjectPool`1.Return*"></a>
   <h4 id="wan24_Core_BlockingObjectPool_1_Return__0_System_Boolean_" data-uid="wan24.Core.BlockingObjectPool`1.Return(`0,System.Boolean)">Return(T, Boolean)</h4>
@@ -783,7 +816,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_ReturnAsync__0_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.ReturnAsync(%600%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L299">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L307">View Source</a>
   </span>
   <a id="wan24_Core_BlockingObjectPool_1_ReturnAsync_" data-uid="wan24.Core.BlockingObjectPool`1.ReturnAsync*"></a>
   <h4 id="wan24_Core_BlockingObjectPool_1_ReturnAsync__0_System_Boolean_" data-uid="wan24.Core.BlockingObjectPool`1.ReturnAsync(`0,System.Boolean)">ReturnAsync(T, Boolean)</h4>
@@ -838,7 +871,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_TryRent__0__.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.TryRent(%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L138">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L146">View Source</a>
   </span>
   <a id="wan24_Core_BlockingObjectPool_1_TryRent_" data-uid="wan24.Core.BlockingObjectPool`1.TryRent*"></a>
   <h4 id="wan24_Core_BlockingObjectPool_1_TryRent__0__" data-uid="wan24.Core.BlockingObjectPool`1.TryRent(`0@)">TryRent(out T)</h4>
@@ -888,7 +921,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_TryRentAsync.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.TryRentAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L216">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L224">View Source</a>
   </span>
   <a id="wan24_Core_BlockingObjectPool_1_TryRentAsync_" data-uid="wan24.Core.BlockingObjectPool`1.TryRentAsync*"></a>
   <h4 id="wan24_Core_BlockingObjectPool_1_TryRentAsync" data-uid="wan24.Core.BlockingObjectPool`1.TryRentAsync">TryRentAsync()</h4>
@@ -922,7 +955,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_op_Implicit_wan24_Core_BlockingObjectPool__0____0.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.op_Implicit(wan24.Core.BlockingObjectPool%7B%600%7D)~%600%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L385">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L393">View Source</a>
   </span>
   <a id="wan24_Core_BlockingObjectPool_1_op_Implicit_" data-uid="wan24.Core.BlockingObjectPool`1.op_Implicit*"></a>
   <h4 id="wan24_Core_BlockingObjectPool_1_op_Implicit_wan24_Core_BlockingObjectPool__0____0" data-uid="wan24.Core.BlockingObjectPool`1.op_Implicit(wan24.Core.BlockingObjectPool{`0})~`0">Implicit(BlockingObjectPool&lt;T&gt; to T)</h4>
@@ -971,7 +1004,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_op_Implicit_wan24_Core_BlockingObjectPool__0___System_Boolean.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.op_Implicit(wan24.Core.BlockingObjectPool%7B%600%7D)~System.Boolean%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L397">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L405">View Source</a>
   </span>
   <a id="wan24_Core_BlockingObjectPool_1_op_Implicit_" data-uid="wan24.Core.BlockingObjectPool`1.op_Implicit*"></a>
   <h4 id="wan24_Core_BlockingObjectPool_1_op_Implicit_wan24_Core_BlockingObjectPool__0___System_Boolean" data-uid="wan24.Core.BlockingObjectPool`1.op_Implicit(wan24.Core.BlockingObjectPool{`0})~System.Boolean">Implicit(BlockingObjectPool&lt;T&gt; to Boolean)</h4>
@@ -1020,7 +1053,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_op_Implicit_wan24_Core_BlockingObjectPool__0___System_Int32.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.op_Implicit(wan24.Core.BlockingObjectPool%7B%600%7D)~System.Int32%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L391">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L399">View Source</a>
   </span>
   <a id="wan24_Core_BlockingObjectPool_1_op_Implicit_" data-uid="wan24.Core.BlockingObjectPool`1.op_Implicit*"></a>
   <h4 id="wan24_Core_BlockingObjectPool_1_op_Implicit_wan24_Core_BlockingObjectPool__0___System_Int32" data-uid="wan24.Core.BlockingObjectPool`1.op_Implicit(wan24.Core.BlockingObjectPool{`0})~System.Int32">Implicit(BlockingObjectPool&lt;T&gt; to Int32)</h4>
@@ -1064,6 +1097,39 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_BlockingObjectPool_1_wan24_Core_IPool_ItemType.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingObjectPool%601.wan24%23Core%23IPool%23ItemType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/BlockingObjectPool.cs/#L78">View Source</a>
+  </span>
+  <a id="wan24_Core_BlockingObjectPool_1_wan24_Core_IPool_ItemType_" data-uid="wan24.Core.BlockingObjectPool`1.wan24#Core#IPool#ItemType*"></a>
+  <h4 id="wan24_Core_BlockingObjectPool_1_wan24_Core_IPool_ItemType" data-uid="wan24.Core.BlockingObjectPool`1.wan24#Core#IPool#ItemType">IPool.ItemType</h4>
+  <div class="markdown level1 summary"><p>Item type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Type IPool.ItemType { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
@@ -1079,6 +1145,9 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.IObjectPool-1.html">IObjectPool&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IPool.html">IPool</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>

@@ -37,6 +37,17 @@
         public int Threads { get; }
 
         /// <inheritdoc/>
+        public override IEnumerable<Status> State
+        {
+            get
+            {
+                foreach (Status state in base.State) yield return state;
+                yield return new("Threads", Threads, "Number of threads");
+                yield return new("Active threads", ProcessCount, "Number of currently active threads");
+            }
+        }
+
+        /// <inheritdoc/>
         public bool WaitBoring(TimeSpan timeout)
         {
             DateTime started = DateTime.Now;

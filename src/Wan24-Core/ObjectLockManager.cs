@@ -8,7 +8,7 @@ namespace wan24.Core
     /// Object lock manager
     /// </summary>
     /// <typeparam name="T">Object type</typeparam>
-    public sealed class ObjectLockManager<T> : DisposableBase
+    public sealed class ObjectLockManager<T> : DisposableBase, IObjectLockManager, IStatusProvider
     {
         /// <summary>
         /// Active locks
@@ -18,12 +18,38 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        public ObjectLockManager() : base() { }
+        public ObjectLockManager() : base() => ObjectLockTable.ObjectLocks[GUID] = this;
 
         /// <summary>
         /// Shared singleton instance
         /// </summary>
         public static ObjectLockManager<T> Shared { get; } = new();
+
+        /// <summary>
+        /// GUID
+        /// </summary>
+        public string GUID { get; } = Guid.NewGuid().ToString();
+
+        /// <inheritdoc/>
+        public string? Name { get; set; }
+
+        /// <inheritdoc/>
+        Type IObjectLockManager.ObjectType => typeof(T);
+
+        /// <inheritdoc/>
+        int IObjectLockManager.ActiveLocks => ActiveLocks.Count;
+
+        /// <inheritdoc/>
+        IEnumerable<Status> IStatusProvider.State
+        {
+            get
+            {
+                yield return new("GUID", GUID, "Unique ID of the service object");
+                yield return new("Name", Name, "Object lock manager name");
+                yield return new("Object type", typeof(T), "Managing object type");
+                yield return new("Active locks", ActiveLocks.Count, "Number of active locks");
+            }
+        }
 
         /// <summary>
         /// Create an object lock asynchronous
@@ -213,10 +239,18 @@ namespace wan24.Core
         public ObjectLock? GetActiveLock<tObject>(tObject obj) where tObject : T, IObjectKey => GetActiveLock(obj.Key);
 
         /// <inheritdoc/>
-        protected override void Dispose(bool disposing) => ActiveLocks.Values.DisposeAll();
+        protected override void Dispose(bool disposing)
+        {
+            ActiveLocks.Values.DisposeAll();
+            ObjectLockTable.ObjectLocks.Remove(GUID, out _);
+        }
 
         /// <inheritdoc/>
-        protected override async Task DisposeCore() => await ActiveLocks.Values.DisposeAllAsync(parallel: true).DynamicContext();
+        protected override async Task DisposeCore()
+        {
+            await ActiveLocks.Values.DisposeAllAsync(parallel: true).DynamicContext();
+            ObjectLockTable.ObjectLocks.Remove(GUID, out _);
+        }
 
         /// <summary>
         /// Remove an object lock

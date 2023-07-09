@@ -76,11 +76,35 @@
   <div class="markdown level0 summary"><p>Interface for a queue worker</p>
 </div>
   <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_Name">IServiceWorker.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_IsRunning">IServiceWorker.IsRunning</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_Started">IServiceWorker.Started</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_StartAsync">IServiceWorker.StartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_StopAsync">IServiceWorker.StopAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_RestartAsync">IServiceWorker.RestartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html#wan24_Core_IStatusProvider_State">IStatusProvider.State</a>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_IQueueWorker_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IQueueWorker</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IQueueWorker : IServiceWorkerStatus, IServiceWorker, IStatusProvider</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>

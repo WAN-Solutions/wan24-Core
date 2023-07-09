@@ -103,6 +103,12 @@ when disposing; for byte/char arrays just like the <code>Secure*Array</code>)</l
 <li>Clearing</li>
 </ul>
 </li>
+<li>Dictionary extensions
+<ul>
+<li>Merge with string key prefix</li>
+<li>Merge a list with the index as key (and an optional key prefix)</li>
+</ul>
+</li>
 <li>Char array extensions
 <ul>
 <li>Clearing</li>
@@ -208,6 +214,7 @@ per default)</li>
 <li>String extensions
 <ul>
 <li>Get UTF-8/16/32 bytes (little endian)</li>
+<li>Parsing</li>
 </ul>
 </li>
 <li>Generic helper
@@ -254,6 +261,8 @@ the timeout</li>
 <li>Cancellation token awaiter</li>
 <li><code>ObjectPool</code> for pooling objects (<code>DisposableObjectPool</code> for disposable
 types), and <code>BlockingObjectPool</code> for a strict pool capacity limit</li>
+<li><code>(Blocking)StreamPool</code>, <code>PooledMemoryStream</code>, <code>PooledTempFileStream</code> and
+<code>PooledTempStream</code> (hosts written data in memory first)</li>
 <li><code>ResetEvent</code> for (a)synchronous event waiting</li>
 <li><code>LazyValue&lt;T&gt;</code>, <code>DisposableLazyValue&lt;T&gt;</code>, <code>AsyncDisposableLazyValue&lt;T&gt;</code> and
 <code>TimeoutValue&lt;T&gt;</code> for lazy and timeout value serving</li>
@@ -271,6 +280,13 @@ type which can't extend the <code>DisposableBase</code> type</li>
 friendly charset, faster and smaller results than base64 encoding; charset is
 customizable; encoded data integrity can be validated without decoding;
 including extensions for numeric type encoding/decoding)</li>
+<li>Collecting periodical statistical values</li>
+<li>Streams
+<ul>
+<li><code>LengthLimitedStream</code> ensures a maximum stream length</li>
+<li><code>MemoryPoolStream</code> uses an <code>ArrayPool&lt;byte&gt;</code> for storing written data</li>
+</ul>
+</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
@@ -783,6 +799,314 @@ results in an empty string, too. Nothing encodes to nothing and decodes to
 nothing, too.</p>
 <p>If required, the used encoding character map can be customized. You may use
 any 64 characters long map with unique items.</p>
+<h2 id="string-parser">String parser</h2>
+<p>Using the <code>Parse</code> extension method for a <code>string</code>, you can parse placeholders
+into a string and modify the output using (customizable) parser functions:</p>
+<pre><code class="lang-cs">Dictionary&lt;string, string&gt; data = new()
+{
+    {&quot;name&quot;, &quot;value&quot;}
+};
+Assert.AreEqual(&quot;value&quot;, &quot;%{name}&quot;.Parse(data));
+</code></pre>
+<p>You may setup the default parser data in <code>StringExtensions.ParserEnvironment</code>.
+The given parser data will override defaults.</p>
+<p>You can execute as many parser functions on the output as required, separated
+using <code>:</code>:</p>
+<p><code>%{input:func1:func2(param1,param2,...):func3():...}</code></p>
+<p>The first optional segment is always a parser data variable name (if not used,
+the sequence starts with a <code>:</code> to indicate a function call). A function may or
+may not have parameters. The result of a function will be provided for the
+next function. Available functions:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Syntax</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sub</code></td>
+<td><code>%{input:sub([offset/length](,[length]))}</code></td>
+<td>extracts a sub-string</td>
+</tr>
+<tr>
+<td><code>left</code></td>
+<td><code>%{input:left([length])}</code></td>
+<td>takes X characters from the left</td>
+</tr>
+<tr>
+<td><code>right</code></td>
+<td><code>%{input:right([length])}</code></td>
+<td>takes X characters from the right</td>
+</tr>
+<tr>
+<td><code>trim</code></td>
+<td><code>%{input:trim}</code></td>
+<td>removes white-spaces from the value</td>
+</tr>
+<tr>
+<td><code>discard</code></td>
+<td><code>%{input:discard}</code></td>
+<td>no parameters, discards the current output</td>
+</tr>
+<tr>
+<td><code>escape_html</code></td>
+<td><code>%{input:escape_html}</code></td>
+<td>escapes the value for use within HTML</td>
+</tr>
+<tr>
+<td><code>escape_json</code></td>
+<td><code>%{input:escape_json}</code></td>
+<td>escapes the value for use within double quotes (double quotes will be trimmed from the JSON result!)</td>
+</tr>
+<tr>
+<td><code>escape_uri</code></td>
+<td><code>%{input:escape_uri}</code></td>
+<td>escapes the value for use within an URI</td>
+</tr>
+<tr>
+<td><code>set</code></td>
+<td><code>%{input:set([name])}</code> sets the current output as parser variable with the given name</td>
+<td></td>
+</tr>
+<tr>
+<td><code>var</code></td>
+<td><code>%{:var([name])}</code> gets a parser data variable value</td>
+<td></td>
+</tr>
+<tr>
+<td><code>item</code></td>
+<td><code>%{:item([index],[item/name](,[item](,...)))}</code> gets an item from a list (if using a variable name, its value will be splitted using pipe)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>prepend</code></td>
+<td><code>%{input:prepend([string])}</code></td>
+<td>prepends a string</td>
+</tr>
+<tr>
+<td><code>append</code></td>
+<td><code>%{input:append([string])}</code></td>
+<td>appends a string</td>
+</tr>
+<tr>
+<td><code>insert</code></td>
+<td><code>%{input:insert([index],[string])}</code></td>
+<td>inserts a string at an index</td>
+</tr>
+<tr>
+<td><code>remove</code></td>
+<td><code>%{input:remove([offset/length](,[length]))}</code></td>
+<td>removes a part (from the left)</td>
+</tr>
+<tr>
+<td><code>concat</code></td>
+<td><code>%{:concat([string],[string](,[string](...))}</code></td>
+<td>concatenates strings</td>
+</tr>
+<tr>
+<td><code>join</code></td>
+<td><code>%{:join([separator],[string],[string](,...))}</code></td>
+<td>joins strings</td>
+</tr>
+<tr>
+<td><code>math</code></td>
+<td><code>%{:math([operator],[value1],[value2](,...))}</code></td>
+<td>performs math</td>
+</tr>
+<tr>
+<td><code>rx</code></td>
+<td><code>%{:rx([group_index]],[name/pattern])}</code></td>
+<td>exchanges the parser regular expression and content group index for the next parser operations (the next round)</td>
+</tr>
+<tr>
+<td><code>format</code></td>
+<td><code>%{input:format([format])}</code></td>
+<td>to format a numeric value</td>
+</tr>
+<tr>
+<td><code>str_format</code></td>
+<td><code>%{input:str_format(([value1](,...))}</code> to format the string value</td>
+<td></td>
+</tr>
+<tr>
+<td><code>insert_item</code></td>
+<td><code>%{input:insert_item([index],[items_name])}</code></td>
+<td>to insert an item (items will be splitted by pipe)</td>
+</tr>
+<tr>
+<td><code>remove_item</code></td>
+<td><code>%{input:remove_item([index])}</code></td>
+<td>to remove an item (items will be splitted by pipe)</td>
+</tr>
+<tr>
+<td><code>sort</code></td>
+<td><code>%{input:sort((desc))}</code></td>
+<td>to sort items</td>
+</tr>
+<tr>
+<td><code>foreach</code></td>
+<td><code>%{input:foreach([name])}</code></td>
+<td>to parse a parser data value for each item (will be stored in <code>_item</code>)</td>
+</tr>
+<tr>
+<td><code>if</code></td>
+<td><code>%{input:if([name](,[name]))}</code></td>
+<td>to parse a parser data value, if the value is <code>1</code> (else parse the second given parser data value)</td>
+</tr>
+<tr>
+<td><code>split</code></td>
+<td><code>%{input:split(prefix)}</code></td>
+<td>to split items by pipe and set them as parser data using the prefix and appending the zero based item index</td>
+</tr>
+<tr>
+<td><code>range</code></td>
+<td><code>%{:range([start],[count])}</code></td>
+<td>to create a numeric range</td>
+</tr>
+<tr>
+<td><code>dummy</code></td>
+<td><code>%{:dummy(...)}</code></td>
+<td>does nothing (may be used as comment)</td>
+</tr>
+</tbody>
+</table>
+<p>Available math operators:</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>+</code></td>
+<td>Summarize</td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>Substract</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>Multiply</td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td>Divide</td>
+</tr>
+<tr>
+<td><code>%</code></td>
+<td>Modulo</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>Average</td>
+</tr>
+<tr>
+<td><code>i</code></td>
+<td>Minimum</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>Maximum</td>
+</tr>
+<tr>
+<td><code>r</code></td>
+<td>Round (2nd value is the number of decimals)</td>
+</tr>
+<tr>
+<td><code>f</code></td>
+<td>Floor</td>
+</tr>
+<tr>
+<td><code>c</code></td>
+<td>Ceiling</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>Y power of X (<code>double</code> conversion will be applied)</td>
+</tr>
+<tr>
+<td><code>=</code></td>
+<td>Equality (<code>0</code> is not equal, <code>1</code> if equal)</td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>Lower than (<code>0</code> is not lower, <code>1</code> if lower)</td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td>Greater than (<code>0</code> is not greater, <code>1</code> if greater)</td>
+</tr>
+<tr>
+<td><code>s</code></td>
+<td>Change the sign</td>
+</tr>
+</tbody>
+</table>
+<p>Numbers are written in invariant culture <code>float</code> style. <code>decimal</code> will be used
+as number format.</p>
+<p>To create a custom parser function:</p>
+<pre><code class="lang-cs">StringExtensions[&quot;func_name&quot;] = (context) =&gt; 
+{
+    // Work with the StringParserContext and return the value to use or set context.Error for error handling
+    return context.Value;
+};
+</code></pre>
+<p>Example:</p>
+<pre><code class="lang-cs">StringExtensions[&quot;upper&quot;] = (context) =&gt; context.Value.ToUpper();
+
+Dictionary&lt;string, string&gt; data = new()
+{
+    {&quot;name&quot;, &quot;value&quot;}
+};
+Assert.AreEqual(&quot;VALUE&quot;, &quot;%{name:upper}&quot;.Parse(data));
+</code></pre>
+<p><strong>CAUTION</strong>: A placeholder must produce the same result, if it occurs
+repeated! A repeated placeholder won't be parsed more than once, but being
+replaced with the result of the first parsed placeholder.</p>
+<p>Example:</p>
+<pre><code class="lang-cs">Dictionary&lt;string, string&gt; data = new()
+{
+    {&quot;name&quot;, &quot;value&quot;}
+};
+string tmpl = &quot;%{name}%{name:len:set(name):discard}%{name}&quot;;
+Assert.AreEqual(&quot;valuevalue&quot;, tmpl.Parse(data));
+</code></pre>
+<p>From the logic <code>value5</code> would be expected. To get <code>value5</code>, finally, you'll
+have to modify the template:</p>
+<p><code>%{name}%{name:len:set(name):discard}%{name:dummy}</code></p>
+<p><strong>TIP</strong>: Almost all function parameters may be parser data variable names,
+too, if they have a <code>$</code> prefix. To support that, use the <code>TryGetData</code> method
+of the <code>StringParserContext</code>, if a parameter value starts with <code>$</code>.</p>
+<p><strong>TIP</strong>: To ensure having all required parameters, use the
+<code>EnsureValidParameterCount</code> of the <code>StringParserContext</code>. The method allows
+you to define a number of allowed parameter counts (including zero) and
+produces a common error message, if the function call syntax is wrong.</p>
+<p><strong>TIP</strong>: A custom parser function may change the parser regular expression and
+content group by changing <code>Rx</code> and <code>RxGroup</code>.</p>
+<p>The string parser works recursive. To avoid an endless recursion, the default
+parsing round count limit is 3. The current parsing round is accessable trough
+the parser data <code>_round</code>. If a parser function parses a template, the called
+parser will work in the current parsing round context and respect the limit,
+too. Youmay set another default limit in <code>StringExtensions.ParserMaxRounds</code>.</p>
+<p>The default behavior for errors is to throw an exception. If error throwing
+was disabled, in case of an error a placeholder will stay in clear text, and a
+function will return the unaltered value.</p>
+<p>You may modify the placeholder declaration by setting another regular
+expression to <code>StringExtensions.RxParser</code>. Group <code>$1</code> must contain the whole
+placeholder, while group <code>$2</code> is required to contain the inner placeholder
+contents (like variable name, function calls, parameters, etc.). There's no
+way to customize the inner placeholder content syntax at present. You may also
+give a custom regular expression to the <code>Parse</code> extension method, if you want
+an isolated parsing. You can modify the inner content group index by setting
+<code>StringExtensions.RxParserGroup</code> or giving <code>rxGroup</code> to the <code>Parse</code> methods.</p>
+<p><strong>CAUTION</strong>: Be careful with customized parser functions: A mistake could let
+a manipulated string harm your computer!</p>
 </article>
           </div>
           

@@ -90,6 +90,9 @@
     <div><span class="xref">System.IDisposable</span></div>
     <div><a class="xref" href="wan24.Core.IParallelQueueWorker.html">IParallelQueueWorker</a></div>
     <div><a class="xref" href="wan24.Core.IQueueWorker.html">IQueueWorker</a></div>
+    <div><a class="xref" href="wan24.Core.IServiceWorkerStatus.html">IServiceWorkerStatus</a></div>
+    <div><a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a></div>
+    <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
     <div><span class="xref">IDisposable</span></div>
   </div>
   <div class="inheritedMembers">
@@ -98,10 +101,34 @@
       <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_Queue">QueueWorker.Queue</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_GUID">QueueWorker.GUID</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_Name">QueueWorker.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_IsRunning">QueueWorker.IsRunning</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_Started">QueueWorker.Started</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_Queued">QueueWorker.Queued</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_LastException">QueueWorker.LastException</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_wan24_Core_IServiceWorker_StartAsync">QueueWorker.IServiceWorker.StartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_StartAsync_CancellationToken_">QueueWorker.StartAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_wan24_Core_IServiceWorker_StopAsync">QueueWorker.IServiceWorker.StopAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_wan24_Core_IServiceWorker_RestartAsync">QueueWorker.IServiceWorker.RestartAsync()</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_EnqueueAsync_wan24_Core_QueueWorker_Task_Delegate_CancellationToken_">QueueWorker.EnqueueAsync(QueueWorker.Task_Delegate, CancellationToken)</a>
@@ -159,7 +186,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_ParallelQueueWorker_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ParallelQueueWorker : QueueWorker, IHostedService, IDisposable, IParallelQueueWorker, IQueueWorker</code></pre>
+    <pre><code class="lang-csharp hljs">public class ParallelQueueWorker : QueueWorker, IHostedService, IDisposable, IParallelQueueWorker, IQueueWorker, IServiceWorkerStatus, IServiceWorker, IStatusProvider</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -329,6 +356,39 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_State.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.State%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L40">View Source</a>
+  </span>
+  <a id="wan24_Core_ParallelQueueWorker_State_" data-uid="wan24.Core.ParallelQueueWorker.State*"></a>
+  <h4 id="wan24_Core_ParallelQueueWorker_State" data-uid="wan24.Core.ParallelQueueWorker.State">State</h4>
+  <div class="markdown level1 summary"><p>Status informations</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;Status&gt; State { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="wan24.Core.Status.html">Status</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_State">QueueWorker.State</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_Threads.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.Threads%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -365,7 +425,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_Dispose.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L186">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L197">View Source</a>
   </span>
   <a id="wan24_Core_ParallelQueueWorker_Dispose_" data-uid="wan24.Core.ParallelQueueWorker.Dispose*"></a>
   <h4 id="wan24_Core_ParallelQueueWorker_Dispose" data-uid="wan24.Core.ParallelQueueWorker.Dispose">Dispose()</h4>
@@ -376,13 +436,13 @@
     <pre><code class="lang-csharp hljs">public override void Dispose()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Microsoft.Extensions.Hosting.BackgroundService.Dispose()</span></div>
+  <div><a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_Dispose">QueueWorker.Dispose()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_ExecuteAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.ExecuteAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L111">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L122">View Source</a>
   </span>
   <a id="wan24_Core_ParallelQueueWorker_ExecuteAsync_" data-uid="wan24.Core.ParallelQueueWorker.ExecuteAsync*"></a>
   <h4 id="wan24_Core_ParallelQueueWorker_ExecuteAsync_CancellationToken_" data-uid="wan24.Core.ParallelQueueWorker.ExecuteAsync(CancellationToken)">ExecuteAsync(CancellationToken)</h4>
@@ -431,7 +491,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_Process_wan24_Core_QueueWorker_Task_Delegate_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.Process(wan24.Core.QueueWorker.Task_Delegate%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L149">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L160">View Source</a>
   </span>
   <a id="wan24_Core_ParallelQueueWorker_Process_" data-uid="wan24.Core.ParallelQueueWorker.Process*"></a>
   <h4 id="wan24_Core_ParallelQueueWorker_Process_wan24_Core_QueueWorker_Task_Delegate_CancellationToken_" data-uid="wan24.Core.ParallelQueueWorker.Process(wan24.Core.QueueWorker.Task_Delegate,CancellationToken)">Process(QueueWorker.Task_Delegate, CancellationToken)</h4>
@@ -486,7 +546,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_StopAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.StopAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L104">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L115">View Source</a>
   </span>
   <a id="wan24_Core_ParallelQueueWorker_StopAsync_" data-uid="wan24.Core.ParallelQueueWorker.StopAsync*"></a>
   <h4 id="wan24_Core_ParallelQueueWorker_StopAsync_CancellationToken_" data-uid="wan24.Core.ParallelQueueWorker.StopAsync(CancellationToken)">StopAsync(CancellationToken)</h4>
@@ -528,12 +588,14 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_StopAsync_CancellationToken_">QueueWorker.StopAsync(CancellationToken)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_WaitBoring_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.WaitBoring(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L74">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L85">View Source</a>
   </span>
   <a id="wan24_Core_ParallelQueueWorker_WaitBoring_" data-uid="wan24.Core.ParallelQueueWorker.WaitBoring*"></a>
   <h4 id="wan24_Core_ParallelQueueWorker_WaitBoring_CancellationToken_" data-uid="wan24.Core.ParallelQueueWorker.WaitBoring(CancellationToken)">WaitBoring(CancellationToken)</h4>
@@ -583,7 +645,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_WaitBoring_TimeSpan_.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.WaitBoring(TimeSpan)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L40">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L51">View Source</a>
   </span>
   <a id="wan24_Core_ParallelQueueWorker_WaitBoring_" data-uid="wan24.Core.ParallelQueueWorker.WaitBoring*"></a>
   <h4 id="wan24_Core_ParallelQueueWorker_WaitBoring_TimeSpan_" data-uid="wan24.Core.ParallelQueueWorker.WaitBoring(TimeSpan)">WaitBoring(TimeSpan)</h4>
@@ -633,7 +695,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_WaitBoringAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.WaitBoringAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L89">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L100">View Source</a>
   </span>
   <a id="wan24_Core_ParallelQueueWorker_WaitBoringAsync_" data-uid="wan24.Core.ParallelQueueWorker.WaitBoringAsync*"></a>
   <h4 id="wan24_Core_ParallelQueueWorker_WaitBoringAsync_CancellationToken_" data-uid="wan24.Core.ParallelQueueWorker.WaitBoringAsync(CancellationToken)">WaitBoringAsync(CancellationToken)</h4>
@@ -683,7 +745,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_WaitBoringAsync_TimeSpan_.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.WaitBoringAsync(TimeSpan)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L57">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L68">View Source</a>
   </span>
   <a id="wan24_Core_ParallelQueueWorker_WaitBoringAsync_" data-uid="wan24.Core.ParallelQueueWorker.WaitBoringAsync*"></a>
   <h4 id="wan24_Core_ParallelQueueWorker_WaitBoringAsync_TimeSpan_" data-uid="wan24.Core.ParallelQueueWorker.WaitBoringAsync(TimeSpan)">WaitBoringAsync(TimeSpan)</h4>
@@ -740,6 +802,15 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.IQueueWorker.html">IQueueWorker</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IServiceWorkerStatus.html">IServiceWorkerStatus</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
   </div>
   <div>
       <span class="xref">IDisposable</span>

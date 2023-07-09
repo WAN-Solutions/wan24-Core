@@ -92,6 +92,9 @@
     <div><a class="xref" href="wan24.Core.IParallelQueueWorker.html">IParallelQueueWorker</a></div>
     <div><a class="xref" href="wan24.Core.IItemQueueWorker-1.html">IItemQueueWorker</a>&lt;T&gt;</div>
     <div><a class="xref" href="wan24.Core.IQueueWorker.html">IQueueWorker</a></div>
+    <div><a class="xref" href="wan24.Core.IServiceWorkerStatus.html">IServiceWorkerStatus</a></div>
+    <div><a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a></div>
+    <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
     <div><span class="xref">IDisposable</span></div>
   </div>
   <div class="inheritedMembers">
@@ -127,6 +130,9 @@
       <a class="xref" href="wan24.Core.ParallelQueueWorker.html#wan24_Core_ParallelQueueWorker_Threads">ParallelQueueWorker.Threads</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.ParallelQueueWorker.html#wan24_Core_ParallelQueueWorker_State">ParallelQueueWorker.State</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.ParallelQueueWorker.html#wan24_Core_ParallelQueueWorker_WaitBoring_TimeSpan_">ParallelQueueWorker.WaitBoring(TimeSpan)</a>
     </div>
     <div>
@@ -154,10 +160,34 @@
       <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_Queue">QueueWorker.Queue</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_GUID">QueueWorker.GUID</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_Name">QueueWorker.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_IsRunning">QueueWorker.IsRunning</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_Started">QueueWorker.Started</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_Queued">QueueWorker.Queued</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_LastException">QueueWorker.LastException</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_wan24_Core_IServiceWorker_StartAsync">QueueWorker.IServiceWorker.StartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_StartAsync_CancellationToken_">QueueWorker.StartAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_wan24_Core_IServiceWorker_StopAsync">QueueWorker.IServiceWorker.StopAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_wan24_Core_IServiceWorker_RestartAsync">QueueWorker.IServiceWorker.RestartAsync()</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_EnqueueAsync_wan24_Core_QueueWorker_Task_Delegate_CancellationToken_">QueueWorker.EnqueueAsync(QueueWorker.Task_Delegate, CancellationToken)</a>
@@ -215,7 +245,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_ParallelItemQueueWorker_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class ParallelItemQueueWorker&lt;T&gt; : ParallelItemQueueWorkerBase&lt;T&gt;, IHostedService, IDisposable, IParallelQueueWorker, IItemQueueWorker&lt;T&gt;, IQueueWorker</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class ParallelItemQueueWorker&lt;T&gt; : ParallelItemQueueWorkerBase&lt;T&gt;, IHostedService, IDisposable, IParallelQueueWorker, IItemQueueWorker&lt;T&gt;, IQueueWorker, IServiceWorkerStatus, IServiceWorker, IStatusProvider</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -290,6 +320,15 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.IQueueWorker.html">IQueueWorker</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IServiceWorkerStatus.html">IServiceWorkerStatus</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
   </div>
   <div>
       <span class="xref">IDisposable</span>

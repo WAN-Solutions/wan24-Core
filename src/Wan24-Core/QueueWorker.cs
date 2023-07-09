@@ -17,10 +17,28 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        public QueueWorker(int capacity) : base() => Queue = Channel.CreateBounded<Task_Delegate>(new BoundedChannelOptions(capacity)
+        public QueueWorker(int capacity) : base()
         {
-            FullMode = BoundedChannelFullMode.Wait
-        });
+            ServiceWorkerTable.ServiceWorkers[GUID] = this;
+            Queue = Channel.CreateBounded<Task_Delegate>(new BoundedChannelOptions(capacity)
+            {
+                FullMode = BoundedChannelFullMode.Wait
+            });
+        }
+
+        /// <summary>
+        /// GUID
+        /// </summary>
+        public string GUID { get; } = Guid.NewGuid().ToString();
+
+        /// <inheritdoc/>
+        public virtual string? Name { get; set; }
+
+        /// <inheritdoc/>
+        public bool IsRunning { get; protected set; }
+
+        /// <inheritdoc/>
+        public DateTime Started { get; protected set; }
 
         /// <inheritdoc/>
         public int Queued => Queue.Reader.Count;
@@ -29,6 +47,53 @@ namespace wan24.Core
         /// Last exception
         /// </summary>
         public Exception? LastException { get; protected set; }
+
+        /// <inheritdoc/>
+        public virtual IEnumerable<Status> State
+        {
+            get
+            {
+                yield return new("GUID", GUID, "Unique ID of the service object");
+                yield return new("Last exception", LastException?.Message, "Last exception message");
+                yield return new("Queued", Queued, "Number of queued items");
+            }
+        }
+
+        /// <inheritdoc/>
+        Task IServiceWorker.StartAsync() => StartAsync(default);
+
+        /// <inheritdoc/>
+        public override async Task StartAsync(CancellationToken cancellationToken)
+        {
+            IsRunning = true;
+            try
+            {
+                await base.StartAsync(cancellationToken).DynamicContext();
+                Started = DateTime.Now;
+            }
+            catch
+            {
+                IsRunning = false;
+                throw;
+            }
+        }
+
+        /// <inheritdoc/>
+        Task IServiceWorker.StopAsync() => StopAsync(default);
+
+        /// <inheritdoc/>
+        public override async Task StopAsync(CancellationToken cancellationToken)
+        {
+            await base.StopAsync(cancellationToken).DynamicContext();
+            IsRunning = false;
+        }
+
+        /// <inheritdoc/>
+        async Task IServiceWorker.RestartAsync()
+        {
+            await StopAsync(default).DynamicContext();
+            await StartAsync(default).DynamicContext();
+        }
 
         /// <inheritdoc/>
         public ValueTask EnqueueAsync(Task_Delegate task, CancellationToken cancellationToken = default)
@@ -81,6 +146,15 @@ namespace wan24.Core
                     RaiseOnException();
                 }
         }
+
+        /// <inheritdoc/>
+#pragma warning disable CA1816 // Call CG (willbe called from the parent)
+        public override void Dispose()
+        {
+            ServiceWorkerTable.ServiceWorkers.Remove(GUID, out _);
+            base.Dispose();
+        }
+#pragma warning restore CA1816 // Call CG (willbe called from the parent)
 
         /// <summary>
         /// Delegate for a task

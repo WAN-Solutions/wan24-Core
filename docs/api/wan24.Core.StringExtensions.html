@@ -111,6 +111,163 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static class StringExtensions</code></pre>
   </div>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_ParserEnvironment.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.ParserEnvironment%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.cs/#L17">View Source</a>
+  </span>
+  <h4 id="wan24_Core_StringExtensions_ParserEnvironment" data-uid="wan24.Core.StringExtensions.ParserEnvironment">ParserEnvironment</h4>
+  <div class="markdown level1 summary"><p>String parser environment variables</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly ConcurrentDictionary&lt;string, string&gt; ParserEnvironment</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Concurrent.ConcurrentDictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_ParserFunctionHandlers.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.ParserFunctionHandlers%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.cs/#L13">View Source</a>
+  </span>
+  <h4 id="wan24_Core_StringExtensions_ParserFunctionHandlers" data-uid="wan24.Core.StringExtensions.ParserFunctionHandlers">ParserFunctionHandlers</h4>
+  <div class="markdown level1 summary"><p>String parser function handlers (key is the lower case function name)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly ConcurrentDictionary&lt;string, StringExtensions.Parser_Delegate&gt; ParserFunctionHandlers</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Concurrent.ConcurrentDictionary</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="wan24.Core.StringExtensions.Parser_Delegate.html">StringExtensions.Parser_Delegate</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_ParserMaxRounds.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.ParserMaxRounds%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.cs/#L32">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_ParserMaxRounds_" data-uid="wan24.Core.StringExtensions.ParserMaxRounds*"></a>
+  <h4 id="wan24_Core_StringExtensions_ParserMaxRounds" data-uid="wan24.Core.StringExtensions.ParserMaxRounds">ParserMaxRounds</h4>
+  <div class="markdown level1 summary"><p>Default parsing rounds limit</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int ParserMaxRounds { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_RxParser.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.RxParser%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.cs/#L22">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_RxParser_" data-uid="wan24.Core.StringExtensions.RxParser*"></a>
+  <h4 id="wan24_Core_StringExtensions_RxParser" data-uid="wan24.Core.StringExtensions.RxParser">RxParser</h4>
+  <div class="markdown level1 summary"><p>Regular expression to parse a string (<code>$1</code> is the whole placeholder, <code>$2</code> the inner variable declaration)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Regex RxParser { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Text.RegularExpressions.Regex</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_RxParserGroup.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.RxParserGroup%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.cs/#L27">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_RxParserGroup_" data-uid="wan24.Core.StringExtensions.RxParserGroup*"></a>
+  <h4 id="wan24_Core_StringExtensions_RxParserGroup" data-uid="wan24.Core.StringExtensions.RxParserGroup">RxParserGroup</h4>
+  <div class="markdown level1 summary"><p>Regular expression content group (2 per default)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int RxParserGroup { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
@@ -118,7 +275,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes(System.Char%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L94">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L135">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes_" data-uid="wan24.Core.StringExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes_System_Char___" data-uid="wan24.Core.StringExtensions.GetBytes(System.Char[])">GetBytes(Char[])</h4>
@@ -169,7 +326,7 @@ public static byte[] GetBytes(this char[] str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes_System_Char___Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes(System.Char%5B%5D%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L112">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L153">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes_" data-uid="wan24.Core.StringExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes_System_Char___Span_System_Byte__" data-uid="wan24.Core.StringExtensions.GetBytes(System.Char[],Span{System.Byte})">GetBytes(Char[], Span&lt;Byte&gt;)</h4>
@@ -226,7 +383,7 @@ public static int GetBytes(this char[] str, Span&lt;byte&gt; buffer)</code></pre
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes_System_Char___System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes(System.Char%5B%5D%2CSystem.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L103">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L144">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes_" data-uid="wan24.Core.StringExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes_System_Char___System_Byte___" data-uid="wan24.Core.StringExtensions.GetBytes(System.Char[],System.Byte[])">GetBytes(Char[], Byte[])</h4>
@@ -283,7 +440,7 @@ public static int GetBytes(this char[] str, byte[] buffer)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L16">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L57">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes_" data-uid="wan24.Core.StringExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes_System_String_" data-uid="wan24.Core.StringExtensions.GetBytes(System.String)">GetBytes(String)</h4>
@@ -334,7 +491,7 @@ public static byte[] GetBytes(this string str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes_System_String_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes(System.String%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L34">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L75">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes_" data-uid="wan24.Core.StringExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes_System_String_Span_System_Byte__" data-uid="wan24.Core.StringExtensions.GetBytes(System.String,Span{System.Byte})">GetBytes(String, Span&lt;Byte&gt;)</h4>
@@ -391,7 +548,7 @@ public static int GetBytes(this string str, Span&lt;byte&gt; buffer)</code></pre
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes_System_String_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes(System.String%2CSystem.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L25">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L66">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes_" data-uid="wan24.Core.StringExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes_System_String_System_Byte___" data-uid="wan24.Core.StringExtensions.GetBytes(System.String,System.Byte[])">GetBytes(String, Byte[])</h4>
@@ -448,7 +605,7 @@ public static int GetBytes(this string str, byte[] buffer)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes16_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes16(System.Char%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L120">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L161">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes16_" data-uid="wan24.Core.StringExtensions.GetBytes16*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes16_System_Char___" data-uid="wan24.Core.StringExtensions.GetBytes16(System.Char[])">GetBytes16(Char[])</h4>
@@ -499,7 +656,7 @@ public static byte[] GetBytes16(this char[] str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes16_System_Char___Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes16(System.Char%5B%5D%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L138">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L179">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes16_" data-uid="wan24.Core.StringExtensions.GetBytes16*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes16_System_Char___Span_System_Byte__" data-uid="wan24.Core.StringExtensions.GetBytes16(System.Char[],Span{System.Byte})">GetBytes16(Char[], Span&lt;Byte&gt;)</h4>
@@ -556,7 +713,7 @@ public static int GetBytes16(this char[] str, Span&lt;byte&gt; buffer)</code></p
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes16_System_Char___System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes16(System.Char%5B%5D%2CSystem.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L129">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L170">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes16_" data-uid="wan24.Core.StringExtensions.GetBytes16*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes16_System_Char___System_Byte___" data-uid="wan24.Core.StringExtensions.GetBytes16(System.Char[],System.Byte[])">GetBytes16(Char[], Byte[])</h4>
@@ -613,7 +770,7 @@ public static int GetBytes16(this char[] str, byte[] buffer)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes16_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes16(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L42">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L83">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes16_" data-uid="wan24.Core.StringExtensions.GetBytes16*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes16_System_String_" data-uid="wan24.Core.StringExtensions.GetBytes16(System.String)">GetBytes16(String)</h4>
@@ -664,7 +821,7 @@ public static byte[] GetBytes16(this string str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes16_System_String_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes16(System.String%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L60">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L101">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes16_" data-uid="wan24.Core.StringExtensions.GetBytes16*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes16_System_String_Span_System_Byte__" data-uid="wan24.Core.StringExtensions.GetBytes16(System.String,Span{System.Byte})">GetBytes16(String, Span&lt;Byte&gt;)</h4>
@@ -721,7 +878,7 @@ public static int GetBytes16(this string str, Span&lt;byte&gt; buffer)</code></p
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes16_System_String_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes16(System.String%2CSystem.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L51">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L92">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes16_" data-uid="wan24.Core.StringExtensions.GetBytes16*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes16_System_String_System_Byte___" data-uid="wan24.Core.StringExtensions.GetBytes16(System.String,System.Byte[])">GetBytes16(String, Byte[])</h4>
@@ -778,7 +935,7 @@ public static int GetBytes16(this string str, byte[] buffer)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes32_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes32(System.Char%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L146">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L187">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes32_" data-uid="wan24.Core.StringExtensions.GetBytes32*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes32_System_Char___" data-uid="wan24.Core.StringExtensions.GetBytes32(System.Char[])">GetBytes32(Char[])</h4>
@@ -829,7 +986,7 @@ public static byte[] GetBytes32(this char[] str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes32_System_Char___Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes32(System.Char%5B%5D%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L164">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L205">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes32_" data-uid="wan24.Core.StringExtensions.GetBytes32*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes32_System_Char___Span_System_Byte__" data-uid="wan24.Core.StringExtensions.GetBytes32(System.Char[],Span{System.Byte})">GetBytes32(Char[], Span&lt;Byte&gt;)</h4>
@@ -886,7 +1043,7 @@ public static int GetBytes32(this char[] str, Span&lt;byte&gt; buffer)</code></p
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes32_System_Char___System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes32(System.Char%5B%5D%2CSystem.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L155">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L196">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes32_" data-uid="wan24.Core.StringExtensions.GetBytes32*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes32_System_Char___System_Byte___" data-uid="wan24.Core.StringExtensions.GetBytes32(System.Char[],System.Byte[])">GetBytes32(Char[], Byte[])</h4>
@@ -943,7 +1100,7 @@ public static int GetBytes32(this char[] str, byte[] buffer)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes32_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes32(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L68">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L109">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes32_" data-uid="wan24.Core.StringExtensions.GetBytes32*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes32_System_String_" data-uid="wan24.Core.StringExtensions.GetBytes32(System.String)">GetBytes32(String)</h4>
@@ -994,7 +1151,7 @@ public static byte[] GetBytes32(this string str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes32_System_String_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes32(System.String%2CSpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L86">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L127">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes32_" data-uid="wan24.Core.StringExtensions.GetBytes32*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes32_System_String_Span_System_Byte__" data-uid="wan24.Core.StringExtensions.GetBytes32(System.String,Span{System.Byte})">GetBytes32(String, Span&lt;Byte&gt;)</h4>
@@ -1051,7 +1208,7 @@ public static int GetBytes32(this string str, Span&lt;byte&gt; buffer)</code></p
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes32_System_String_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes32(System.String%2CSystem.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L77">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L118">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes32_" data-uid="wan24.Core.StringExtensions.GetBytes32*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes32_System_String_System_Byte___" data-uid="wan24.Core.StringExtensions.GetBytes32(System.String,System.Byte[])">GetBytes32(String, Byte[])</h4>
@@ -1103,6 +1260,1704 @@ public static int GetBytes32(this string str, byte[] buffer)</code></pre>
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parse_System_String_Dictionary_System_String_System_String__System_Nullable_System_Int32__System_Boolean_System_Text_RegularExpressions_Regex_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parse(System.String%2CDictionary%7BSystem.String%2CSystem.String%7D%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean%2CSystem.Text.RegularExpressions.Regex%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.cs/#L58">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parse_" data-uid="wan24.Core.StringExtensions.Parse*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parse_System_String_Dictionary_System_String_System_String__System_Nullable_System_Int32__System_Boolean_System_Text_RegularExpressions_Regex_System_Nullable_System_Int32__" data-uid="wan24.Core.StringExtensions.Parse(System.String,Dictionary{System.String,System.String},System.Nullable{System.Int32},System.Boolean,System.Text.RegularExpressions.Regex,System.Nullable{System.Int32})">Parse(String, Dictionary&lt;String, String&gt;, Nullable&lt;Int32&gt;, Boolean, Regex, Nullable&lt;Int32&gt;)</h4>
+  <div class="markdown level1 summary"><p>Parse a string (the current round is available as <code>_round</code>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parse(this string str, Dictionary&lt;string, string&gt; data, int? maxRounds = null, bool throwOnError = true, Regex rx = null, int? rxGroup = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">str</span></td>
+        <td><p>String</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">data</span></td>
+        <td><p>Parser data</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">maxRounds</span></td>
+        <td><p>Maximum recursive parser rounds</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">throwOnError</span></td>
+        <td><p>Throw an exception on error?</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Text.RegularExpressions.Regex</span></td>
+        <td><span class="parametername">rx</span></td>
+        <td><p>Placeholder regular expression</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">rxGroup</span></td>
+        <td><p>Regular expression group to use</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed string</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parse_System_String_System_String___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parse(System.String%2CSystem.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.cs/#L40">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parse_" data-uid="wan24.Core.StringExtensions.Parse*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parse_System_String_System_String___" data-uid="wan24.Core.StringExtensions.Parse(System.String,System.String[])">Parse(String, String[])</h4>
+  <div class="markdown level1 summary"><p>Parse a string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parse(this string str, params string[] data)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">str</span></td>
+        <td><p>String</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">data</span></td>
+        <td><p>Parser data (accessable with the zero based index)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed string</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Append_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Append(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L176">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Append_" data-uid="wan24.Core.StringExtensions.Parser_Append*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Append_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Append(wan24.Core.StringParserContext)">Parser_Append(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Value appending function <code>append</code> (Syntax: <code>%{input:append(string)}</code> (to append <code>string</code>) or <code>%{input:append($name)}</code> (to append
+variable <code>name</code>))</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Append(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Concat_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Concat(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L231">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Concat_" data-uid="wan24.Core.StringExtensions.Parser_Concat*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Concat_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Concat(wan24.Core.StringParserContext)">Parser_Concat(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Value concatenation function <code>concat</code> (Syntax: <code>%{:concat(string,$name,...)}</code>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Concat(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Count_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Count(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L404">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Count_" data-uid="wan24.Core.StringExtensions.Parser_Count*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Count_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Count(wan24.Core.StringParserContext)">Parser_Count(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Item count function <code>count</code> (Syntax: <code>%{input:count}</code>; items will be splitted by pipe <code>|</code>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Count(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Discard_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Discard(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L80">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Discard_" data-uid="wan24.Core.StringExtensions.Parser_Discard*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Discard_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Discard(wan24.Core.StringParserContext)">Parser_Discard(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Discard output function <code>discard</code> (Syntax: <code>%{input:discard}</code>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Discard(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Empty string</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Dummy_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Dummy(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L589">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Dummy_" data-uid="wan24.Core.StringExtensions.Parser_Dummy*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Dummy_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Dummy(wan24.Core.StringParserContext)">Parser_Dummy(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Dummy function <code>dummy</code> (Syntax: <code>%{:dummy(...)}</code> (does nothing))</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Dummy(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Escape_Html_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Escape_Html(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L88">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Escape_Html_" data-uid="wan24.Core.StringExtensions.Parser_Escape_Html*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Escape_Html_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Escape_Html(wan24.Core.StringParserContext)">Parser_Escape_Html(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>HTML escaping function <code>escape_html</code> (Syntax: <code>%{input:escape_html}</code>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Escape_Html(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Escape_Json_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Escape_Json(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L96">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Escape_Json_" data-uid="wan24.Core.StringExtensions.Parser_Escape_Json*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Escape_Json_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Escape_Json(wan24.Core.StringParserContext)">Parser_Escape_Json(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>JSON escaping function <code>escape_json</code> (will trim double quotes!) (Syntax: <code>%{input:escape_json}</code>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Escape_Json(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Escape_URI_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Escape_URI(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L104">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Escape_URI_" data-uid="wan24.Core.StringExtensions.Parser_Escape_URI*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Escape_URI_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Escape_URI(wan24.Core.StringParserContext)">Parser_Escape_URI(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>URI escaping function <code>escape_uri</code> (Syntax: <code>%{input:escape_uri}</code>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Escape_URI(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_ForEach_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_ForEach(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L495">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_ForEach_" data-uid="wan24.Core.StringExtensions.Parser_ForEach*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_ForEach_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_ForEach(wan24.Core.StringParserContext)">Parser_ForEach(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>For-each loop function <code>foreach</code> (Syntax: <code>%{input:foreach($name)}</code>; current item will be stored in <code>_item</code>; items will be splitted by pipe <code>|</code>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_ForEach(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Format_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Format(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L368">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Format_" data-uid="wan24.Core.StringExtensions.Parser_Format*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Format_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Format(wan24.Core.StringParserContext)">Parser_Format(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Numeric value formatter function <code>format</code> (Syntax: <code>%{input:format(format)}</code>; the format may be a variable name; <span class="xref">System.Decimal</span> is
+being used as numeric format; numbers can be written in invariant culture <span class="xref">System.Single</span> style (so the result will be written))</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Format(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_If_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_If(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L521">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_If_" data-uid="wan24.Core.StringExtensions.Parser_If*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_If_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_If(wan24.Core.StringParserContext)">Parser_If(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Conditional function <code>if</code> (Syntax: <code>%{input:if($name)}</code> (to parse <code>name</code>, if <code>input</code> is <code>1</code>) or <code>%{input:if($name,$name2)}</code>
+(to parse <code>name</code>, if <code>input</code> is <code>1</code>, else parse <code>name2</code>))</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_If(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Insert_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Insert(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L185">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Insert_" data-uid="wan24.Core.StringExtensions.Parser_Insert*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Insert_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Insert(wan24.Core.StringParserContext)">Parser_Insert(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Value inserting function <code>insert</code> (Syntax: <code>%{input:insert(1,string)}</code> (to insert <code>string</code> at index #1) or <code>%{name:input(1,$name)}</code> (to insert
+variable <code>name</code> at index #1); the offset parameter may be a variable name with a <code>$</code> prefix)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Insert(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_InsertItem_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_InsertItem(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L411">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_InsertItem_" data-uid="wan24.Core.StringExtensions.Parser_InsertItem*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_InsertItem_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_InsertItem(wan24.Core.StringParserContext)">Parser_InsertItem(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Insert item function <code>insert_item</code> (Syntax: <code>%{input:insert_item(1,$items)}</code>; items will be splitted by pipe <code>|</code>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_InsertItem(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Item_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Item(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L129">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Item_" data-uid="wan24.Core.StringExtensions.Parser_Item*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Item_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Item(wan24.Core.StringParserContext)">Parser_Item(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Parser item selector function <code>item</code> (Syntax: <code>%{input:item(0,item0,item1,...)}</code> (returns item #0) or <code>%{input:item($name,item0,item1,...)}</code> or
+<code>%{input:item(0,$name)}</code> (to split parser data <code>name</code> by pipe (<code>|</code>) as items))</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Item(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Join_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Join(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L250">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Join_" data-uid="wan24.Core.StringExtensions.Parser_Join*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Join_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Join(wan24.Core.StringParserContext)">Parser_Join(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Value joining function <code>join</code> (Syntax: <code>%{:join(separator,string,$name,...)}</code>; the separator parameter may be a variable name, too)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Join(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Left_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Left(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L49">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Left_" data-uid="wan24.Core.StringExtensions.Parser_Left*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Left_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Left(wan24.Core.StringParserContext)">Parser_Left(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Left-sub-string function <code>left</code> (Syntax: <code>%{input:left(3)}</code>; the length parameter may be a variable name with a <code>$</code> prefix)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Left(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Len_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Len(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L397">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Len_" data-uid="wan24.Core.StringExtensions.Parser_Len*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Len_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Len(wan24.Core.StringParserContext)">Parser_Len(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>String length function <code>len</code> (Syntax: <code>%{input:len}</code>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Len(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Math_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Math(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L290">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Math_" data-uid="wan24.Core.StringExtensions.Parser_Math*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Math_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Math(wan24.Core.StringParserContext)">Parser_Math(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Math function <code>math</code> (Syntax: <code>%{:math([operator],value1,$name2,...)}</code>; all parameters may be variable names with a <code>$</code> prefix; <span class="xref">System.Decimal</span> is
+being used as numeric format; numbers can be written in invariant culture <span class="xref">System.Single</span> style (so the result will be written)) - supported operators are:</p>
+<ul><li><code>+</code> summarize</li><li><code>-</code> substract</li><li><code>*</code> multiply</li><li><code>/</code> divide</li><li><code>%</code> modulo</li><li><code>a</code> average</li><li><code>i</code> minimum</li><li><code>x</code> maximum</li><li><code>r</code> round (second value is the number of decimals, other values are ignored)</li><li><code>f</code> floor (second values will be ignored)</li><li><code>c</code> ceiling (second values will be ignored)</li><li><code>p</code> Y power of X (second value is Y, other values are ignored; conversion to <span class="xref">System.Double</span> is required)</li><li><code>=</code> equality (result is <code>0</code> for <span class="xref">false</span> or <code>1</code> for <span class="xref">true</span>)</li><li><code>&lt;</code> lower than (result is <code>0</code> for <span class="xref">false</span> or <code>1</code> for <span class="xref">true</span>)</li><li><code>></code> greater than (result is <code>0</code> for <span class="xref">false</span> or <code>1</code> for <span class="xref">true</span>)</li><li><code>s</code> to change the sign (second values will be ignored)</li></ul>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Math(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Prepend_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Prepend(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L167">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Prepend_" data-uid="wan24.Core.StringExtensions.Parser_Prepend*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Prepend_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Prepend(wan24.Core.StringParserContext)">Parser_Prepend(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Value prepending function <code>prepend</code> (Syntax: <code>%{input:prepend(string)}</code> (to prepend <code>string</code>) or <code>%{input:prepend($name)}</code> (to prepend
+variable <code>name</code>))</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Prepend(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Range_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Range(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L572">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Range_" data-uid="wan24.Core.StringExtensions.Parser_Range*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Range_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Range(wan24.Core.StringParserContext)">Parser_Range(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Numeric range function <code>range</code> (Syntax: <code>%{:range(0,10)}</code> (to create a numeric range from <code>0</code>, having <code>10</code> items))</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Range(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Remove_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Remove(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L200">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Remove_" data-uid="wan24.Core.StringExtensions.Parser_Remove*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Remove_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Remove(wan24.Core.StringParserContext)">Parser_Remove(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Value removing function <code>remove</code> (Syntax: <code>%{input:remove(1)}</code> (to remove the first character) or <code>%{v:remove(1,2)}</code> (remove two characters from index #1);
+the parameters may be a variable name with a <code>$</code> prefix)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Remove(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_RemoveItem_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_RemoveItem(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L452">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_RemoveItem_" data-uid="wan24.Core.StringExtensions.Parser_RemoveItem*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_RemoveItem_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_RemoveItem(wan24.Core.StringParserContext)">Parser_RemoveItem(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Remove item function <code>remove_item</code> (Syntax: <code>%{input:remove_item(1)}</code>; items will be splitted by pipe <code>|</code>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_RemoveItem(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Right_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Right(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L61">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Right_" data-uid="wan24.Core.StringExtensions.Parser_Right*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Right_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Right(wan24.Core.StringParserContext)">Parser_Right(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Right-sub-string function <code>right</code> (Syntax: <code>%{input:right(3)}</code>; the length parameter may be a variable name with a <code>$</code> prefix)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Right(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Rx_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Rx(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L351">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Rx_" data-uid="wan24.Core.StringExtensions.Parser_Rx*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Rx_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Rx(wan24.Core.StringParserContext)">Parser_Rx(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Parser regular expression setting function <code>rx</code> (Syntax: <code>%{:rx(2,$name)}</code>; the regular expression content group index may be a variable name, too)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Rx(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Set_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Set(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L112">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Set_" data-uid="wan24.Core.StringExtensions.Parser_Set*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Set_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Set(wan24.Core.StringParserContext)">Parser_Set(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Parser data setter function <code>set</code> (Syntax: <code>%{input:set(targetName)}</code>; the variable name parameter may be a variable name with a <code>$</code> prefix)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Set(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Sort_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Sort(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L481">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Sort_" data-uid="wan24.Core.StringExtensions.Parser_Sort*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Sort_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Sort(wan24.Core.StringParserContext)">Parser_Sort(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Sort items function <code>sort</code> (Syntax: <code>%{input:sort}</code> (to sort ascending) or <code>%{name:sort(desc)}</code> (to sort descending); items will be splitted by
+pipe <code>|</code>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Sort(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Split_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Split(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L554">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Split_" data-uid="wan24.Core.StringExtensions.Parser_Split*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Split_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Split(wan24.Core.StringParserContext)">Parser_Split(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Split function <code>split</code> (Syntax: <code>%{input:split(prefix)}</code> (to split the value by pipe (<code>|</code>) and set it as parser data using <code>prefix</code> as key appended
+with the item index))</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Split(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_StrFormat_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_StrFormat(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L378">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_StrFormat_" data-uid="wan24.Core.StringExtensions.Parser_StrFormat*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_StrFormat_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_StrFormat(wan24.Core.StringParserContext)">Parser_StrFormat(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>String value formatter function <code>str_format</code> (Syntax: <code>%{input:str_format(value1,value2,...)}</code>; the values may be variable names)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_StrFormat(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_SubString_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_SubString(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L16">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_SubString_" data-uid="wan24.Core.StringExtensions.Parser_SubString*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_SubString_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_SubString(wan24.Core.StringParserContext)">Parser_SubString(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Sub-string function <code>sub</code> (Syntax: <code>%{input:sub(3)}</code> (like <code>%{input:left(3)}</code>) or <code>%{input:sub(3,2)}</code> (2 characters from start index 3); parameters may be
+variable names with a <code>$</code> prefix)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_SubString(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Trim_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Trim(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L73">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Trim_" data-uid="wan24.Core.StringExtensions.Parser_Trim*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Trim_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Trim(wan24.Core.StringParserContext)">Parser_Trim(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Trim value function <code>trim</code> (Syntax: <code>%{input:trim}</code>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Trim(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Parsed value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions_Parser_Var_wan24_Core_StringParserContext_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.Parser_Var(wan24.Core.StringParserContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L120">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_Parser_Var_" data-uid="wan24.Core.StringExtensions.Parser_Var*"></a>
+  <h4 id="wan24_Core_StringExtensions_Parser_Var_wan24_Core_StringParserContext_" data-uid="wan24.Core.StringExtensions.Parser_Var(wan24.Core.StringParserContext)">Parser_Var(StringParserContext)</h4>
+  <div class="markdown level1 summary"><p>Parser data getter function <code>var</code> (Syntax: <code>%{:var(name)}</code>; the variable name parameter may be a variable name with a <code>$</code> prefix)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Parser_Var(StringParserContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td><p>Context</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           
@@ -1114,7 +2969,7 @@ public static int GetBytes32(this string str, byte[] buffer)</code></pre>
                     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StringExtensions.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StringExtensions.Parser.Functions.cs/#L8" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

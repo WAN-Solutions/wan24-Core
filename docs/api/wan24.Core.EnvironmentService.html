@@ -1,0 +1,782 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class EnvironmentService
+   | wan24-Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class EnvironmentService
+   | wan24-Core ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.EnvironmentService">
+  
+  
+  <h1 id="wan24_Core_EnvironmentService" data-uid="wan24.Core.EnvironmentService" class="text-break">Class EnvironmentService
+  </h1>
+  <div class="markdown level0 summary"><p>Environment metrics measuring service</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="wan24.Core.DisposableBase.html">DisposableBase</a></div>
+    <div class="level2"><a class="xref" href="wan24.Core.TimedHostedServiceBase.html">TimedHostedServiceBase</a></div>
+    <div class="level3"><span class="xref">EnvironmentService</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><span class="xref">IDisposable</span></div>
+    <div><span class="xref">IAsyncDisposable</span></div>
+    <div><span class="xref">Microsoft.Extensions.Hosting.IHostedService</span></div>
+    <div><a class="xref" href="wan24.Core.ITimer.html">ITimer</a></div>
+    <div><a class="xref" href="wan24.Core.IServiceWorkerStatus.html">IServiceWorkerStatus</a></div>
+    <div><a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a></div>
+    <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_Timer">TimedHostedServiceBase.Timer</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_RunEvent">TimedHostedServiceBase.RunEvent</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_Sync">TimedHostedServiceBase.Sync</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_SyncControl">TimedHostedServiceBase.SyncControl</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_StopTask">TimedHostedServiceBase.StopTask</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_Cancellation">TimedHostedServiceBase.Cancellation</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_ServiceTask">TimedHostedServiceBase.ServiceTask</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase__Interval">TimedHostedServiceBase._Interval</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_GUID">TimedHostedServiceBase.GUID</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_Name">TimedHostedServiceBase.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_Interval">TimedHostedServiceBase.ITimer.Interval</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_LastElapsed">TimedHostedServiceBase.ITimer.LastElapsed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_Sheduled">TimedHostedServiceBase.ITimer.Sheduled</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_AutoReset">TimedHostedServiceBase.ITimer.AutoReset</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_IsRunning">TimedHostedServiceBase.IsRunning</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_IsStopping">TimedHostedServiceBase.IsStopping</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_LastException">TimedHostedServiceBase.LastException</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_Interval">TimedHostedServiceBase.Interval</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_TimerType">TimedHostedServiceBase.TimerType</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_Started">TimedHostedServiceBase.Started</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_LastRun">TimedHostedServiceBase.LastRun</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_LastDuration">TimedHostedServiceBase.LastDuration</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_NextRun">TimedHostedServiceBase.NextRun</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_RunOnce">TimedHostedServiceBase.RunOnce</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_SetTimerAsync_System_Double_System_Nullable_wan24_Core_HostedServiceTimers__System_Nullable_DateTime__CancellationToken_">TimedHostedServiceBase.SetTimerAsync(Double, Nullable&lt;HostedServiceTimers&gt;, Nullable&lt;DateTime&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_StartAsync_CancellationToken_">TimedHostedServiceBase.StartAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_StartAsync">TimedHostedServiceBase.ITimer.StartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_IServiceWorker_StartAsync">TimedHostedServiceBase.IServiceWorker.StartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_StopAsync_CancellationToken_">TimedHostedServiceBase.StopAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_StopAsync">TimedHostedServiceBase.ITimer.StopAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_IServiceWorker_StopAsync">TimedHostedServiceBase.IServiceWorker.StopAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_RestartAsync">TimedHostedServiceBase.ITimer.RestartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_IServiceWorker_RestartAsync">TimedHostedServiceBase.IServiceWorker.RestartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_StartAsyncInt_CancellationToken_">TimedHostedServiceBase.StartAsyncInt(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_StopAsyncInt_CancellationToken_">TimedHostedServiceBase.StopAsyncInt(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_RunServiceAsync">TimedHostedServiceBase.RunServiceAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_EnableTimerAsync">TimedHostedServiceBase.EnableTimerAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_Dispose_System_Boolean_">TimedHostedServiceBase.Dispose(Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_DisposeCore">TimedHostedServiceBase.DisposeCore()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_OnException">TimedHostedServiceBase.OnException</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_OnRan">TimedHostedServiceBase.OnRan</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_RaiseOnRan">TimedHostedServiceBase.RaiseOnRan()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeSyncObject">DisposableBase.DisposeSyncObject</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposing">DisposableBase.IsDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposed">DisposableBase.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_EnsureUndisposed_System_Boolean_System_Boolean_">DisposableBase.EnsureUndisposed(Boolean, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed__1___0_System_Boolean_">DisposableBase.IfUndisposed&lt;T&gt;(T, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed_Action_System_Boolean_">DisposableBase.IfUndisposed(Action, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed__1_Func___0__System_Boolean_">DisposableBase.IfUndisposed&lt;T&gt;(Func&lt;T&gt;, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposedNullable__1_Func___0__System_Boolean_">DisposableBase.IfUndisposedNullable&lt;T&gt;(Func&lt;T&gt;, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributes">DisposableBase.DisposeAttributes()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributesAsync">DisposableBase.DisposeAttributesAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose">DisposableBase.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAsync">DisposableBase.DisposeAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposing">DisposableBase.OnDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposed">DisposableBase.OnDisposed</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_EnvironmentService_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class EnvironmentService : TimedHostedServiceBase, IDisposableObject, IHostedService, ITimer, IServiceWorkerStatus, IServiceWorker, IStatusProvider</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnvironmentService__ctor_System_Double_wan24_Core_HostedServiceTimers_System_Nullable_DateTime__.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.%23ctor(System.Double%2Cwan24.Core.HostedServiceTimers%2CSystem.Nullable%7BDateTime%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnvironmentService.cs/#L14">View Source</a>
+  </span>
+  <a id="wan24_Core_EnvironmentService__ctor_" data-uid="wan24.Core.EnvironmentService.#ctor*"></a>
+  <h4 id="wan24_Core_EnvironmentService__ctor_System_Double_wan24_Core_HostedServiceTimers_System_Nullable_DateTime__" data-uid="wan24.Core.EnvironmentService.#ctor(System.Double,wan24.Core.HostedServiceTimers,System.Nullable{DateTime})">EnvironmentService(Double, HostedServiceTimers, Nullable&lt;DateTime&gt;)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EnvironmentService(double interval, HostedServiceTimers timer = HostedServiceTimers.Default, DateTime? nextRun = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">interval</span></td>
+        <td><p>Interval in ms</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.HostedServiceTimers.html">HostedServiceTimers</a></td>
+        <td><span class="parametername">timer</span></td>
+        <td><p>Timer type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">DateTime</span>&gt;</td>
+        <td><span class="parametername">nextRun</span></td>
+        <td><p>Fixed next run time</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnvironmentService_LockedObjects.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.LockedObjects%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnvironmentService.cs/#L84">View Source</a>
+  </span>
+  <a id="wan24_Core_EnvironmentService_LockedObjects_" data-uid="wan24.Core.EnvironmentService.LockedObjects*"></a>
+  <h4 id="wan24_Core_EnvironmentService_LockedObjects" data-uid="wan24.Core.EnvironmentService.LockedObjects">LockedObjects</h4>
+  <div class="markdown level1 summary"><p>Running timers count average</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long LockedObjects { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnvironmentService_QueuedItems.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.QueuedItems%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnvironmentService.cs/#L79">View Source</a>
+  </span>
+  <a id="wan24_Core_EnvironmentService_QueuedItems_" data-uid="wan24.Core.EnvironmentService.QueuedItems*"></a>
+  <h4 id="wan24_Core_EnvironmentService_QueuedItems" data-uid="wan24.Core.EnvironmentService.QueuedItems">QueuedItems</h4>
+  <div class="markdown level1 summary"><p>Number of enqueued items to be processed by service workers</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long QueuedItems { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnvironmentService_RunningServices.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.RunningServices%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnvironmentService.cs/#L64">View Source</a>
+  </span>
+  <a id="wan24_Core_EnvironmentService_RunningServices_" data-uid="wan24.Core.EnvironmentService.RunningServices*"></a>
+  <h4 id="wan24_Core_EnvironmentService_RunningServices" data-uid="wan24.Core.EnvironmentService.RunningServices">RunningServices</h4>
+  <div class="markdown level1 summary"><p>Running service count average</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long RunningServices { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnvironmentService_RunningTimers.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.RunningTimers%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnvironmentService.cs/#L74">View Source</a>
+  </span>
+  <a id="wan24_Core_EnvironmentService_RunningTimers_" data-uid="wan24.Core.EnvironmentService.RunningTimers*"></a>
+  <h4 id="wan24_Core_EnvironmentService_RunningTimers" data-uid="wan24.Core.EnvironmentService.RunningTimers">RunningTimers</h4>
+  <div class="markdown level1 summary"><p>Running timers count average</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long RunningTimers { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnvironmentService_Services.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.Services%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnvironmentService.cs/#L59">View Source</a>
+  </span>
+  <a id="wan24_Core_EnvironmentService_Services_" data-uid="wan24.Core.EnvironmentService.Services*"></a>
+  <h4 id="wan24_Core_EnvironmentService_Services" data-uid="wan24.Core.EnvironmentService.Services">Services</h4>
+  <div class="markdown level1 summary"><p>Service count average</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long Services { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnvironmentService_State.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.State%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnvironmentService.cs/#L18">View Source</a>
+  </span>
+  <a id="wan24_Core_EnvironmentService_State_" data-uid="wan24.Core.EnvironmentService.State*"></a>
+  <h4 id="wan24_Core_EnvironmentService_State" data-uid="wan24.Core.EnvironmentService.State">State</h4>
+  <div class="markdown level1 summary"><p>Status informations</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;Status&gt; State { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="wan24.Core.Status.html">Status</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_State">TimedHostedServiceBase.State</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnvironmentService_Timers.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.Timers%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnvironmentService.cs/#L69">View Source</a>
+  </span>
+  <a id="wan24_Core_EnvironmentService_Timers_" data-uid="wan24.Core.EnvironmentService.Timers*"></a>
+  <h4 id="wan24_Core_EnvironmentService_Timers" data-uid="wan24.Core.EnvironmentService.Timers">Timers</h4>
+  <div class="markdown level1 summary"><p>Timers count average</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long Timers { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnvironmentService_WorkingSet.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.WorkingSet%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnvironmentService.cs/#L54">View Source</a>
+  </span>
+  <a id="wan24_Core_EnvironmentService_WorkingSet_" data-uid="wan24.Core.EnvironmentService.WorkingSet*"></a>
+  <h4 id="wan24_Core_EnvironmentService_WorkingSet" data-uid="wan24.Core.EnvironmentService.WorkingSet">WorkingSet</h4>
+  <div class="markdown level1 summary"><p>Working set average in bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long WorkingSet { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnvironmentService_WorkerAsync.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.WorkerAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnvironmentService.cs/#L87">View Source</a>
+  </span>
+  <a id="wan24_Core_EnvironmentService_WorkerAsync_" data-uid="wan24.Core.EnvironmentService.WorkerAsync*"></a>
+  <h4 id="wan24_Core_EnvironmentService_WorkerAsync" data-uid="wan24.Core.EnvironmentService.WorkerAsync">WorkerAsync()</h4>
+  <div class="markdown level1 summary"><p>Service worker</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task WorkerAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_WorkerAsync">TimedHostedServiceBase.WorkerAsync()</a></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
+      <span class="xref">IDisposable</span>
+  </div>
+  <div>
+      <span class="xref">IAsyncDisposable</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.Extensions.Hosting.IHostedService</span>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ITimer.html">ITimer</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IServiceWorkerStatus.html">IServiceWorkerStatus</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_Int32_System_Int32_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, Int32, Int32, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_Int32_System_Int32_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, Int32, Int32, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int64_System_Int64_System_Int64_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int64, Int64, Int64, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int64_System_Int64_System_Int64_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int64, Int64, Int64, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Double_System_Double_System_Double_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Double, Double, Double, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Double_System_Double_System_Double_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Double, Double, Double, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Boolean_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Boolean_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Boolean, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgumentRange__1___0_System_String_System_Boolean_System_String_">ArgumentValidationExtensions.EnsureValidArgumentRange&lt;T&gt;(T, String, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgumentRange__1___0_System_String_System_Boolean_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgumentRange&lt;T&gt;(T, String, Boolean, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_String_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_String_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, String, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String___1_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tValue&gt;(tObj, String, tValue, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String___1_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tValue&gt;(tObj, String, tValue, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_String_System_Int32_System_Boolean_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, String, Int32, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_String_Func_System_String__System_Int32_System_Boolean_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, String, Func&lt;String&gt;, Int32, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32___1___System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, tItem[], String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32___1___Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, tItem[], Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32_Span___1__System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, Span&lt;tItem&gt;, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32_Span___1__Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, Span&lt;tItem&gt;, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean_">JsonExtensions.ToJson(Object, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_IEnumerable___0__">ObjectExtensions.In&lt;T&gt;(T, IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean_System_String_">ObjectExtensions.EnsureValidState&lt;T&gt;(T, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText__1___0_">ObjectExtensions.GetDisplayText&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_Func___0___1__">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, Func&lt;tObject, tReturn&gt;)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnvironmentService.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnvironmentService.cs/#L6" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            (c) 2023 Andreas Zimmermann, wan24.de
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

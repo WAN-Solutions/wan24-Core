@@ -563,7 +563,7 @@ namespace wan24.Core
         {
             byte[] res = new byte[sizeof(int) << 2];
             int[] bits = decimal.GetBits(value);
-            for (int i = 0; i < bits.Length; Array.Copy(bits[i].GetBytes(), 0, res, i << 2, sizeof(int)), i++) ;
+            for (int i = 0; i < 4; Array.Copy(bits[i].GetBytes(), 0, res, i << 2, sizeof(int)), i++) ;
             return res;
         }
 
@@ -591,7 +591,7 @@ namespace wan24.Core
         {
             if (target.Length < sizeof(int) << 2) throw new ArgumentOutOfRangeException(nameof(target));
             int[] bits = decimal.GetBits(value);
-            for (int i = 0; i < bits.Length; bits[i].GetBytes().CopyTo(target.Slice(i << 2, sizeof(int))), i++) ;
+            for (int i = 0; i < 4; bits[i].GetBytes().CopyTo(target.Slice(i << 2, sizeof(int))), i++) ;
             return target;
         }
 
@@ -606,7 +606,7 @@ namespace wan24.Core
         {
             if (target.Length < sizeof(int) << 2) throw new ArgumentOutOfRangeException(nameof(target));
             int[] bits = decimal.GetBits(value);
-            for (int i = 0; i < bits.Length; bits[i].GetBytes().CopyTo(target.Slice(i << 2, sizeof(int))), i++) ;
+            for (int i = 0; i < 4; bits[i].GetBytes().CopyTo(target.Slice(i << 2, sizeof(int))), i++) ;
             return target;
         }
 

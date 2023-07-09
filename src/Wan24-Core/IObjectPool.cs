@@ -4,7 +4,7 @@
     /// Interface for an object pool
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
-    public interface IObjectPool<T>
+    public interface IObjectPool<T> : IPool
     {
         /// <summary>
         /// Rent an item

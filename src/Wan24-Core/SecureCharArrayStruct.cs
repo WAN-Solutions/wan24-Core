@@ -254,20 +254,50 @@ namespace wan24.Core
         /// Cast as <see cref="SecureByteArray"/> (using UTF-8 encoding)
         /// </summary>
         /// <param name="arr">Array</param>
+#if !NO_UNSAFE
+        [SkipLocalsInit]
+#endif
         public static implicit operator SecureByteArray(SecureCharArrayStruct arr)
         {
-            using RentedArray<byte> buffer = new(arr.Length << 1, clean: false);
-            return new(buffer.Span[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer)].ToArray());
+#if !NO_UNSAFE
+            if (arr.Length << 1 > Settings.StackAllocBorder)
+            {
+#endif
+                using RentedArrayStruct<byte> buffer = new(arr.Length << 1, clean: false);
+                return new(buffer.Span[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer)].ToArray());
+#if !NO_UNSAFE
+            }
+            else
+            {
+                Span<byte> buffer = stackalloc byte[arr.Length << 1];
+                return new(buffer[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer)].ToArray());
+            }
+#endif
         }
 
         /// <summary>
         /// Cast as <see cref="SecureByteArray"/> (using UTF-8 encoding)
         /// </summary>
         /// <param name="arr">Array</param>
+#if !NO_UNSAFE
+        [SkipLocalsInit]
+#endif
         public static implicit operator SecureByteArrayStruct(SecureCharArrayStruct arr)
         {
-            using RentedArray<byte> buffer = new(arr.Length << 1, clean: false);
-            return new(buffer.Span[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer)].ToArray());
+#if !NO_UNSAFE
+            if (arr.Length << 1 > Settings.StackAllocBorder)
+            {
+#endif
+                using RentedArrayStruct<byte> buffer = new(arr.Length << 1, clean: false);
+                return new(buffer.Span[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer)].ToArray());
+#if !NO_UNSAFE
+            }
+            else
+            {
+                Span<byte> buffer = stackalloc byte[arr.Length << 1];
+                return new(buffer[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer)].ToArray());
+            }
+#endif
         }
 
         /// <summary>

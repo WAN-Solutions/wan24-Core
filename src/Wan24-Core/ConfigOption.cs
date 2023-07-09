@@ -80,6 +80,11 @@
         public object SyncObject { get; } = new();
 
         /// <summary>
+        /// GUID
+        /// </summary>
+        public Guid GUID { get; } = Guid.NewGuid();
+
+        /// <summary>
         /// Configuration
         /// </summary>
         public tConfig Configuration { get; }
@@ -120,6 +125,8 @@
                     IsSet = true;
                     IsChanged = true;
                 }
+                if (oldValue is IOverrideableConfig oldConfig) oldConfig.OnChange -= HandleConfigValueChange;
+                if (value is IOverrideableConfig newConfig) newConfig.OnChange += HandleConfigValueChange;
                 RaiseOnChange(oldValue);
                 Configuration.RaiseOnChangeInt(this, oldValue);
             }
@@ -239,6 +246,7 @@
                 _Value = default;
                 IsChanged = true;
             }
+            if (oldValue is IOverrideableConfig oldConfig) oldConfig.OnChange -= HandleConfigValueChange;
             RaiseOnChange(oldValue);
             Configuration.RaiseOnChangeInt(this, oldValue);
             if (recursive) UnsetOverrides();
@@ -250,7 +258,11 @@
         /// <inheritdoc/>
         public void ResetChanged(bool recursive = true)
         {
-            lock (SyncObject) IsChanged = false;
+            lock (SyncObject)
+            {
+                if (_Value is IOverrideableConfig config) config.ResetChanged();
+                IsChanged = false;
+            }
             if (recursive) SubOption?.ResetChanged(recursive);
         }
 
@@ -269,6 +281,17 @@
             if (changed) ChangeToken.InvokeCallbacks();
             OnChange?.Invoke(this, oldValue);
             ParentOption?.RaiseOnChange(oldValue, changed: false);
+        }
+
+        /// <summary>
+        /// Handle a value change of a overrideable configuration value
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">EventArguments</param>
+        private void HandleConfigValueChange(IOverrideableConfig sender, ConfigEventArgs e)
+        {
+            lock (SyncObject) IsChanged = true;
+            Configuration.RaiseOnChangeInt(this, e.OldValue);
         }
 
         /// <summary>

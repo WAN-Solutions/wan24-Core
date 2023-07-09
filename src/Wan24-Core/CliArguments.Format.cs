@@ -180,8 +180,8 @@ namespace wan24.Core
             // Return early, if empty
             if (str.Length == 0) return Array.Empty<string>();
             // Prepare parsing
-            using RentedArray<string> argsBuffer = new(Math.Max(1, str.Length >> 1));// Arguments
-            using RentedArray<char> valueBuffer = new(str.Length);// Current value
+            using RentedArrayStruct<string> argsBuffer = new(Math.Max(1, str.Length >> 1));// Arguments
+            using RentedArrayStruct<char> valueBuffer = new(str.Length);// Current value
             bool inValue = false,// Is within a value at present?
                 isQuoted = false,// Is within a quoted value at present?
                 isEscaped = false,// Was the previous character a backslash?

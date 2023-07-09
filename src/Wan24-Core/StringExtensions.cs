@@ -6,8 +6,49 @@ namespace wan24.Core
     /// <summary>
     /// String extensions
     /// </summary>
-    public static class StringExtensions
+    public static partial class StringExtensions
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        static StringExtensions()
+        {
+            ParserFunctionHandlers = new(new KeyValuePair<string, Parser_Delegate>[]
+            {
+                new("sub", Parser_SubString),
+                new("left", Parser_Left),
+                new("right", Parser_Right),
+                new("trim", Parser_Trim),
+                new("discard", Parser_Discard),
+                new("escape_html", Parser_Escape_Html),
+                new("escape_json", Parser_Escape_Json),
+                new("escape_uri", Parser_Escape_URI),
+                new("set", Parser_Set),
+                new("var", Parser_Var),
+                new("item", Parser_Item),
+                new("prepend", Parser_Prepend),
+                new("append", Parser_Append),
+                new("insert", Parser_Insert),
+                new("remove", Parser_Remove),
+                new("concat", Parser_Concat),
+                new("join", Parser_Join),
+                new("math", Parser_Math),
+                new("rx", Parser_Rx),
+                new("format", Parser_Format),
+                new("str_format", Parser_StrFormat),
+                new("len", Parser_Len),
+                new("count", Parser_Count),
+                new("insert_item", Parser_InsertItem),
+                new("remove_item", Parser_RemoveItem),
+                new("sort", Parser_Sort),
+                new("foreach", Parser_ForEach),
+                new("if", Parser_If),
+                new("split", Parser_Split),
+                new("range", Parser_Range),
+                new("dummy", Parser_Dummy)
+            });
+        }
+
         /// <summary>
         /// Get UTF-8 bytes
         /// </summary>

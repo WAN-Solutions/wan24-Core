@@ -12,6 +12,10 @@ namespace wan24.Core
         /// </summary>
         object SyncObject { get; }
         /// <summary>
+        /// GUID
+        /// </summary>
+        Guid GUID { get; }
+        /// <summary>
         /// Master configuration
         /// </summary>
         IOverrideableConfig MasterConfig { get; }
