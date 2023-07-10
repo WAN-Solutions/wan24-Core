@@ -155,6 +155,9 @@ including extensions for numeric type encoding/decoding)
 - Streams
     - `LengthLimitedStream` ensures a maximum stream length
     - `MemoryPoolStream` uses an `ArrayPool<byte>` for storing written data
+- Named mutex helper
+    - `GlobalLock` for a synchronous context
+    - `GlobalLockAsync` for an asynchronous context
 
 ## How to get it
 

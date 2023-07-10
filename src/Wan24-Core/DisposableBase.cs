@@ -12,7 +12,7 @@ namespace wan24.Core
         /// <summary>
         /// An object for thread synchronization during disposing
         /// </summary>
-        protected readonly object DisposeSyncObject = new();
+        protected readonly SemaphoreSlim DisposeSyncObject = new(1, 1);
 
         /// <summary>
         /// Constructor
@@ -25,7 +25,8 @@ namespace wan24.Core
         ~DisposableBase()
         {
             if (!DoDispose()) return;
-            Dispose(disposing: true);
+            Dispose(disposing: false);
+            DisposeSyncObject.Dispose();
             IsDisposed = true;
             OnDisposed?.Invoke(this, new());
         }
@@ -286,10 +287,51 @@ namespace wan24.Core
         /// <returns>Do dispose?</returns>
         private bool DoDispose()
         {
-            lock (DisposeSyncObject)
+            if (IsDisposing) return false;
+            try
+            {
+                DisposeSyncObject.Wait();
+            }
+            catch (ObjectDisposedException)
+            {
+                return false;
+            }
+            try
             {
                 if (IsDisposing) return false;
                 IsDisposing = true;
+            }
+            finally
+            {
+                DisposeSyncObject.Release();
+            }
+            OnDisposing?.Invoke(this, new());
+            return true;
+        }
+
+        /// <summary>
+        /// Determine if to dispose
+        /// </summary>
+        /// <returns>Do dispose?</returns>
+        private async Task<bool> DoDisposeAsync()
+        {
+            if (IsDisposing) return false;
+            try
+            {
+                await DisposeSyncObject.WaitAsync().DynamicContext();
+            }
+            catch (ObjectDisposedException)
+            {
+                return false;
+            }
+            try
+            {
+                if (IsDisposing) return false;
+                IsDisposing = true;
+            }
+            finally
+            {
+                DisposeSyncObject.Release();
             }
             OnDisposing?.Invoke(this, new());
             return true;
@@ -300,6 +342,7 @@ namespace wan24.Core
         {
             if (!DoDispose()) return;
             Dispose(disposing: true);
+            DisposeSyncObject.Dispose();
             IsDisposed = true;
             GC.SuppressFinalize(this);
             OnDisposed?.Invoke(this, new());
@@ -308,9 +351,9 @@ namespace wan24.Core
         /// <inheritdoc/>
         public async ValueTask DisposeAsync()
         {
-            await Task.Yield();
-            if (!DoDispose()) return;
+            if (!await DoDisposeAsync().DynamicContext()) return;
             await DisposeCore().ConfigureAwait(continueOnCapturedContext: false);
+            DisposeSyncObject.Dispose();
             IsDisposed = true;
             GC.SuppressFinalize(this);
             OnDisposed?.Invoke(this, new());
