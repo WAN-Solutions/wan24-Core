@@ -14,16 +14,16 @@
         /// Constructor
         /// </summary>
         /// <param name="guid">GUID</param>
-        /// <param name="timeout">Timeout in ms (<c>-1</c> to wait for <see cref="int.MaxValue"/><c>-1</c>ms)</param>
+        /// <param name="timeout">Timeout in ms (<c>-n</c> to wait for <see cref="int.MaxValue"/><c>+timeout</c>ms)</param>
         /// <exception cref="TimeoutException">Couldn't lock within the timeout</exception>
-        public GlobalLock(Guid guid, int timeout = -1) : base()
+        public GlobalLock(Guid guid, int timeout = -1) : base(asyncDisposing: false)
         {
             GUID = guid;
             Mutex mutex = new(initiallyOwned: false, ID, out bool createdNew);
             try
             {
                 CreatedNew = createdNew;
-                if (!mutex.WaitOne(TimeSpan.FromMilliseconds(timeout < 0 ? int.MaxValue - 1 : timeout), exitContext: false))
+                if (!mutex.WaitOne(TimeSpan.FromMilliseconds(timeout < 0 ? int.MaxValue + timeout : timeout), exitContext: false))
                     throw new TimeoutException();
             }
             catch (AbandonedMutexException)
@@ -49,8 +49,18 @@
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            Mutex.ReleaseMutex();
-            Mutex.Dispose();
+            try
+            {
+                Mutex.ReleaseMutex();
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError($"Failed to release the mutex {ID}, finally: {ex.Message}");
+            }
+            finally
+            {
+                Mutex.Dispose();
+            }
         }
     }
 }

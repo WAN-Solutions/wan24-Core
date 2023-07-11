@@ -13,11 +13,16 @@ namespace wan24.Core
         /// An object for thread synchronization during disposing
         /// </summary>
         protected readonly SemaphoreSlim DisposeSyncObject = new(1, 1);
+        /// <summary>
+        /// Asynchronous disposing?
+        /// </summary>
+        protected readonly bool AsyncDisposing;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        protected DisposableBase() { }
+        /// <param name="asyncDisposing">Asynchronous disposing?</param>
+        protected DisposableBase(bool asyncDisposing = true) => AsyncDisposing = asyncDisposing;
 
         /// <summary>
         /// Destructor
@@ -351,6 +356,11 @@ namespace wan24.Core
         /// <inheritdoc/>
         public async ValueTask DisposeAsync()
         {
+            if (!AsyncDisposing)
+            {
+                Dispose();
+                return;
+            }
             if (!await DoDisposeAsync().DynamicContext()) return;
             await DisposeCore().ConfigureAwait(continueOnCapturedContext: false);
             DisposeSyncObject.Dispose();

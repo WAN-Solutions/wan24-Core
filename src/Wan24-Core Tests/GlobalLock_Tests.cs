@@ -43,9 +43,10 @@ namespace Wan24_Core_Tests
             thread.Join();
             Assert.IsNull(ex);
 
-            // Asynchronous disposer
+            // Asynchronous action execution and disposer
             GlobalLockAsync lock3 = await GlobalLockAsync.CreateAsync(guid).DynamicContext();
-            await using (lock3.DynamicContext()) { }
+            await using (lock3.DynamicContext())
+                Assert.IsTrue((bool?)await lock3.ExecuteAsync(() => true));
         }
     }
 }
