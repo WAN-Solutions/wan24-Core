@@ -21,8 +21,13 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
+        protected DisposableBase() : this(asyncDisposing: false) { }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         /// <param name="asyncDisposing">Asynchronous disposing?</param>
-        protected DisposableBase(bool asyncDisposing = true) => AsyncDisposing = asyncDisposing;
+        protected DisposableBase(bool asyncDisposing) => AsyncDisposing = asyncDisposing;
 
         /// <summary>
         /// Destructor

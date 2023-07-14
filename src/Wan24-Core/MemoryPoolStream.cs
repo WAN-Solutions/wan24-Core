@@ -75,6 +75,18 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="data">Initial data (will be copied; stream is writable; initial position will be <c>0</c>)</param>
+        /// <param name="pool">Pool</param>
+        /// <param name="bufferSize">Buffer size in bytes</param>
+        public MemoryPoolStream(byte[] data, ArrayPool<byte>? pool = null, int? bufferSize = null) : this(pool, bufferSize)
+        {
+            Write(data);
+            Position = 0;
+        }
+
+        /// <summary>
         /// Default buffer size in bytes
         /// </summary>
         public static int DefaultBufferSize

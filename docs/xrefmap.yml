@@ -7414,6 +7414,12 @@ references:
   commentId: M:wan24.Core.DisposableBase.#ctor
   fullName: wan24.Core.DisposableBase.DisposableBase()
   nameWithType: DisposableBase.DisposableBase()
+- uid: wan24.Core.DisposableBase.#ctor(System.Boolean)
+  name: DisposableBase(Boolean)
+  href: api/wan24.Core.DisposableBase.html#wan24_Core_DisposableBase__ctor_System_Boolean_
+  commentId: M:wan24.Core.DisposableBase.#ctor(System.Boolean)
+  fullName: wan24.Core.DisposableBase.DisposableBase(System.Boolean)
+  nameWithType: DisposableBase.DisposableBase(Boolean)
 - uid: wan24.Core.DisposableBase.#ctor*
   name: DisposableBase
   href: api/wan24.Core.DisposableBase.html#wan24_Core_DisposableBase__ctor_
@@ -7421,6 +7427,12 @@ references:
   isSpec: "True"
   fullName: wan24.Core.DisposableBase.DisposableBase
   nameWithType: DisposableBase.DisposableBase
+- uid: wan24.Core.DisposableBase.AsyncDisposing
+  name: AsyncDisposing
+  href: api/wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AsyncDisposing
+  commentId: F:wan24.Core.DisposableBase.AsyncDisposing
+  fullName: wan24.Core.DisposableBase.AsyncDisposing
+  nameWithType: DisposableBase.AsyncDisposing
 - uid: wan24.Core.DisposableBase.Dispose
   name: Dispose()
   href: api/wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose
@@ -9517,12 +9529,12 @@ references:
   commentId: T:wan24.Core.GlobalLockAsync
   fullName: wan24.Core.GlobalLockAsync
   nameWithType: GlobalLockAsync
-- uid: wan24.Core.GlobalLockAsync.CreateAsync(Guid,System.Int32)
-  name: CreateAsync(Guid, Int32)
-  href: api/wan24.Core.GlobalLockAsync.html#wan24_Core_GlobalLockAsync_CreateAsync_Guid_System_Int32_
-  commentId: M:wan24.Core.GlobalLockAsync.CreateAsync(Guid,System.Int32)
-  fullName: wan24.Core.GlobalLockAsync.CreateAsync(Guid, System.Int32)
-  nameWithType: GlobalLockAsync.CreateAsync(Guid, Int32)
+- uid: wan24.Core.GlobalLockAsync.CreateAsync(Guid,System.Int32,System.Boolean)
+  name: CreateAsync(Guid, Int32, Boolean)
+  href: api/wan24.Core.GlobalLockAsync.html#wan24_Core_GlobalLockAsync_CreateAsync_Guid_System_Int32_System_Boolean_
+  commentId: M:wan24.Core.GlobalLockAsync.CreateAsync(Guid,System.Int32,System.Boolean)
+  fullName: wan24.Core.GlobalLockAsync.CreateAsync(Guid, System.Int32, System.Boolean)
+  nameWithType: GlobalLockAsync.CreateAsync(Guid, Int32, Boolean)
 - uid: wan24.Core.GlobalLockAsync.CreateAsync*
   name: CreateAsync
   href: api/wan24.Core.GlobalLockAsync.html#wan24_Core_GlobalLockAsync_CreateAsync_
@@ -9569,6 +9581,22 @@ references:
   isSpec: "True"
   fullName: wan24.Core.GlobalLockAsync.DisposeCore
   nameWithType: GlobalLockAsync.DisposeCore
+- uid: wan24.Core.GlobalLockAsync.ExecuteAsync(Func{System.Object})
+  name: ExecuteAsync(Func<Object>)
+  href: api/wan24.Core.GlobalLockAsync.html#wan24_Core_GlobalLockAsync_ExecuteAsync_Func_System_Object__
+  commentId: M:wan24.Core.GlobalLockAsync.ExecuteAsync(Func{System.Object})
+  name.vb: ExecuteAsync(Func(Of Object))
+  fullName: wan24.Core.GlobalLockAsync.ExecuteAsync(Func<System.Object>)
+  fullName.vb: wan24.Core.GlobalLockAsync.ExecuteAsync(Func(Of System.Object))
+  nameWithType: GlobalLockAsync.ExecuteAsync(Func<Object>)
+  nameWithType.vb: GlobalLockAsync.ExecuteAsync(Func(Of Object))
+- uid: wan24.Core.GlobalLockAsync.ExecuteAsync*
+  name: ExecuteAsync
+  href: api/wan24.Core.GlobalLockAsync.html#wan24_Core_GlobalLockAsync_ExecuteAsync_
+  commentId: Overload:wan24.Core.GlobalLockAsync.ExecuteAsync
+  isSpec: "True"
+  fullName: wan24.Core.GlobalLockAsync.ExecuteAsync
+  nameWithType: GlobalLockAsync.ExecuteAsync
 - uid: wan24.Core.GlobalLockAsync.GUID
   name: GUID
   href: api/wan24.Core.GlobalLockAsync.html#wan24_Core_GlobalLockAsync_GUID
@@ -12800,6 +12828,15 @@ references:
   fullName.vb: wan24.Core.MemoryPoolStream.MemoryPoolStream(System.Buffers.ArrayPool(Of System.Byte), System.Nullable(Of System.Int32))
   nameWithType: MemoryPoolStream.MemoryPoolStream(ArrayPool<Byte>, Nullable<Int32>)
   nameWithType.vb: MemoryPoolStream.MemoryPoolStream(ArrayPool(Of Byte), Nullable(Of Int32))
+- uid: wan24.Core.MemoryPoolStream.#ctor(System.Byte[],System.Buffers.ArrayPool{System.Byte},System.Nullable{System.Int32})
+  name: MemoryPoolStream(Byte[], ArrayPool<Byte>, Nullable<Int32>)
+  href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream__ctor_System_Byte___System_Buffers_ArrayPool_System_Byte__System_Nullable_System_Int32__
+  commentId: M:wan24.Core.MemoryPoolStream.#ctor(System.Byte[],System.Buffers.ArrayPool{System.Byte},System.Nullable{System.Int32})
+  name.vb: MemoryPoolStream(Byte(), ArrayPool(Of Byte), Nullable(Of Int32))
+  fullName: wan24.Core.MemoryPoolStream.MemoryPoolStream(System.Byte[], System.Buffers.ArrayPool<System.Byte>, System.Nullable<System.Int32>)
+  fullName.vb: wan24.Core.MemoryPoolStream.MemoryPoolStream(System.Byte(), System.Buffers.ArrayPool(Of System.Byte), System.Nullable(Of System.Int32))
+  nameWithType: MemoryPoolStream.MemoryPoolStream(Byte[], ArrayPool<Byte>, Nullable<Int32>)
+  nameWithType.vb: MemoryPoolStream.MemoryPoolStream(Byte(), ArrayPool(Of Byte), Nullable(Of Int32))
 - uid: wan24.Core.MemoryPoolStream.#ctor*
   name: MemoryPoolStream
   href: api/wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream__ctor_

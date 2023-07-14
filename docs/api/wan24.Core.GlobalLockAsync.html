@@ -73,7 +73,7 @@
   
   <h1 id="wan24_Core_GlobalLockAsync" data-uid="wan24.Core.GlobalLockAsync" class="text-break">Class GlobalLockAsync
   </h1>
-  <div class="markdown level0 summary"><p>Global lock using <see cref="!:Mutex"></see> for use with an asynchronous context (does have to reserve a thread during the mutex exists :( )</p>
+  <div class="markdown level0 summary"><p>Global lock using <see cref="!:Mutex"></see> for use with an asynchronous context (does have to reserve a thread during the mutex exists :( but it's possible to inject actions)</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -93,6 +93,9 @@
     <h5>Inherited Members</h5>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeSyncObject">DisposableBase.DisposeSyncObject</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AsyncDisposing">DisposableBase.AsyncDisposing</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposing">DisposableBase.IsDisposing</a>
@@ -168,7 +171,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_GlobalLockAsync_CreatedNew.md&amp;value=---%0Auid%3A%20wan24.Core.GlobalLockAsync.CreatedNew%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/GlobalLockAsync.cs/#L39">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/GlobalLockAsync.cs/#L44">View Source</a>
   </span>
   <a id="wan24_Core_GlobalLockAsync_CreatedNew_" data-uid="wan24.Core.GlobalLockAsync.CreatedNew*"></a>
   <h4 id="wan24_Core_GlobalLockAsync_CreatedNew" data-uid="wan24.Core.GlobalLockAsync.CreatedNew">CreatedNew</h4>
@@ -199,7 +202,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_GlobalLockAsync_GUID.md&amp;value=---%0Auid%3A%20wan24.Core.GlobalLockAsync.GUID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/GlobalLockAsync.cs/#L33">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/GlobalLockAsync.cs/#L38">View Source</a>
   </span>
   <a id="wan24_Core_GlobalLockAsync_GUID_" data-uid="wan24.Core.GlobalLockAsync.GUID*"></a>
   <h4 id="wan24_Core_GlobalLockAsync_GUID" data-uid="wan24.Core.GlobalLockAsync.GUID">GUID</h4>
@@ -230,7 +233,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_GlobalLockAsync_ID.md&amp;value=---%0Auid%3A%20wan24.Core.GlobalLockAsync.ID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/GlobalLockAsync.cs/#L36">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/GlobalLockAsync.cs/#L41">View Source</a>
   </span>
   <a id="wan24_Core_GlobalLockAsync_ID_" data-uid="wan24.Core.GlobalLockAsync.ID*"></a>
   <h4 id="wan24_Core_GlobalLockAsync_ID" data-uid="wan24.Core.GlobalLockAsync.ID">ID</h4>
@@ -260,19 +263,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_GlobalLockAsync_CreateAsync_Guid_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.GlobalLockAsync.CreateAsync(Guid%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_GlobalLockAsync_CreateAsync_Guid_System_Int32_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.GlobalLockAsync.CreateAsync(Guid%2CSystem.Int32%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/GlobalLockAsync.cs/#L76">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/GlobalLockAsync.cs/#L112">View Source</a>
   </span>
   <a id="wan24_Core_GlobalLockAsync_CreateAsync_" data-uid="wan24.Core.GlobalLockAsync.CreateAsync*"></a>
-  <h4 id="wan24_Core_GlobalLockAsync_CreateAsync_Guid_System_Int32_" data-uid="wan24.Core.GlobalLockAsync.CreateAsync(Guid,System.Int32)">CreateAsync(Guid, Int32)</h4>
+  <h4 id="wan24_Core_GlobalLockAsync_CreateAsync_Guid_System_Int32_System_Boolean_" data-uid="wan24.Core.GlobalLockAsync.CreateAsync(Guid,System.Int32,System.Boolean)">CreateAsync(Guid, Int32, Boolean)</h4>
   <div class="markdown level1 summary"><p>Create an instance</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static async Task&lt;GlobalLockAsync&gt; CreateAsync(Guid guid, int timeout = -1)</code></pre>
+    <pre><code class="lang-csharp hljs">public static async Task&lt;GlobalLockAsync&gt; CreateAsync(Guid guid, int timeout = -1, bool longRunning = true)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -293,7 +296,13 @@
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">timeout</span></td>
-        <td><p>Timeout in ms (<code>-1</code> to wait for <span class="xref">System.Int32.MaxValue</span><code>-1</code>ms)</p>
+        <td><p>Timeout in ms (<code>-n</code> to wait for <span class="xref">System.Int32.MaxValue</span><code>+timeout</code>ms)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">longRunning</span></td>
+        <td><p>Create a long running task?</p>
 </td>
       </tr>
     </tbody>
@@ -319,7 +328,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_GlobalLockAsync_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.GlobalLockAsync.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/GlobalLockAsync.cs/#L42">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/GlobalLockAsync.cs/#L61">View Source</a>
   </span>
   <a id="wan24_Core_GlobalLockAsync_Dispose_" data-uid="wan24.Core.GlobalLockAsync.Dispose*"></a>
   <h4 id="wan24_Core_GlobalLockAsync_Dispose_System_Boolean_" data-uid="wan24.Core.GlobalLockAsync.Dispose(System.Boolean)">Dispose(Boolean)</h4>
@@ -355,7 +364,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_GlobalLockAsync_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.GlobalLockAsync.DisposeCore%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/GlobalLockAsync.cs/#L56">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/GlobalLockAsync.cs/#L83">View Source</a>
   </span>
   <a id="wan24_Core_GlobalLockAsync_DisposeCore_" data-uid="wan24.Core.GlobalLockAsync.DisposeCore*"></a>
   <h4 id="wan24_Core_GlobalLockAsync_DisposeCore" data-uid="wan24.Core.GlobalLockAsync.DisposeCore">DisposeCore()</h4>
@@ -383,6 +392,56 @@
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeCore">DisposableBase.DisposeCore()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_GlobalLockAsync_ExecuteAsync_Func_System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.GlobalLockAsync.ExecuteAsync(Func%7BSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/GlobalLockAsync.cs/#L51">View Source</a>
+  </span>
+  <a id="wan24_Core_GlobalLockAsync_ExecuteAsync_" data-uid="wan24.Core.GlobalLockAsync.ExecuteAsync*"></a>
+  <h4 id="wan24_Core_GlobalLockAsync_ExecuteAsync_Func_System_Object__" data-uid="wan24.Core.GlobalLockAsync.ExecuteAsync(Func{System.Object})">ExecuteAsync(Func&lt;Object&gt;)</h4>
+  <div class="markdown level1 summary"><p>Execute an action asynchronous in the global lock thread</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;object&gt; ExecuteAsync(Func&lt;object&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Object</span>&gt;</td>
+        <td><p>Action return value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="wan24.Core.IGlobalLock.html">IGlobalLock</a>
@@ -492,7 +551,7 @@
                     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_GlobalLockAsync.md&amp;value=---%0Auid%3A%20wan24.Core.GlobalLockAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/GlobalLockAsync.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/GlobalLockAsync.cs/#L8" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
