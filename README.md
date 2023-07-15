@@ -741,10 +741,16 @@ calculated in advance, and it's fast and easy to detect errors in the encoded
 data without having to decode it, first.
 
 ```cs
+// In case you want to use a prepared output buffer
 int encodedLen = anyByteArray.GetEncodedLength();
+
+// Encoding
 char[] encoded = anyByteArray.Encode();
 
-int decodedLen = anyByteArray.GetDecodedlength();
+// In case you want to use a prepared output buffer
+int decodedLen = encoded.GetDecodedlength();
+
+// Decoding
 byte[] decoded = encoded.Decode();
 ```
 

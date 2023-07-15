@@ -82,9 +82,7 @@ namespace wan24.Core
             {
                 ArgumentValidationHelper.EnsureValidArgument(
                     nameof(res),
-                    resLen,
-                    int.MaxValue,
-                    res.Length,
+                    resLen <= res.Length,
                     () => $"Result buffer is too small (required {resLen} characters)"
                     );
             }
@@ -97,6 +95,7 @@ namespace wan24.Core
             unsafe
             {
                 fixed (char* cm = charMap)
+                fixed (int* br = BitRotation)
                 fixed (byte* d = data)
                 fixed (char* r = res)
 #endif
@@ -110,7 +109,7 @@ namespace wan24.Core
                             res[++resOffset] = charMap[bits & 63];
 #else
                             b = d[i];
-                            bits = bitOffset == 0 ? b : (b << BitRotation[bitOffset]) | (d[i - 1] >> bitOffset);
+                            bits = bitOffset == 0 ? b : (b << br[bitOffset]) | (d[i - 1] >> bitOffset);
                             r[++resOffset] = cm[bits & 63];
 #endif
                             switch (bitOffset)
@@ -169,9 +168,7 @@ namespace wan24.Core
                 resOffset = -1;
             ArgumentValidationHelper.EnsureValidArgument(
                 nameof(res),
-                resLen,
-                int.MaxValue,
-                res.Length,
+                resLen <= res.Length,
                 () => $"Result buffer is too small (required {resLen} characters)"
                 );
             byte b;
@@ -179,6 +176,7 @@ namespace wan24.Core
             unsafe
             {
                 fixed (char* cm = charMap)
+                fixed (int* br = BitRotation)
                 fixed (byte* d = data)
                 fixed (char* r = res)
 #endif
@@ -192,7 +190,7 @@ namespace wan24.Core
                             res[++resOffset] = charMap[bits & 63];
 #else
                             b = d[i];
-                            bits = bitOffset == 0 ? b : (b << BitRotation[bitOffset]) | (d[i - 1] >> bitOffset);
+                            bits = bitOffset == 0 ? b : (b << br[bitOffset]) | (d[i - 1] >> bitOffset);
                             r[++resOffset] = cm[bits & 63];
 #endif
                             switch (bitOffset)
@@ -320,9 +318,7 @@ namespace wan24.Core
             {
                 ArgumentValidationHelper.EnsureValidArgument(
                     nameof(res),
-                    resLen,
-                    int.MaxValue,
-                    res.Length,
+                    resLen <= res.Length,
                     () => $"Result buffer is too small (required {resLen} bytes)"
                     );
             }
@@ -432,9 +428,7 @@ namespace wan24.Core
             if (bits < resLen << 3) throw new InvalidDataException($"Invalid encoded string length (missing {(resLen << 3) - bits} bits)");
             ArgumentValidationHelper.EnsureValidArgument(
                 nameof(res),
-                resLen,
-                int.MaxValue,
-                res.Length,
+                resLen <= res.Length,
                 () => $"Result buffer is too small (required {resLen} bytes)"
                 );
 #if !NO_UNSAFE
