@@ -25,16 +25,11 @@ namespace Wan24_Core_Tests
             Assert.AreNotEqual(b, c);
         }
 
-        private sealed class TestObject : ValueObjectBase<TestObject>
+        private sealed class TestObject : AutoValueObjectBase<TestObject>
         {
             public TestObject(string value) : base() => Value = value;
 
             public string Value { get; }
-
-            protected override IEnumerable<object?> EqualsObjects()
-            {
-                yield return Value;
-            }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace wan24.Core
         protected ValueObjectBase() { }
 
         /// <inheritdoc/>
-        bool IEquatable<T>.Equals(T? other) => other is not null && EqualOperator(this, other);
+        bool IEquatable<T>.Equals(T? other) => other is not null && GetHashCode() == other.GetHashCode();
 
         /// <inheritdoc/>
         public sealed override bool Equals(object? obj) => obj is T other && GetHashCode() == other.GetHashCode();
@@ -45,7 +45,7 @@ namespace wan24.Core
         /// <param name="right">Right</param>
         /// <returns>If equal</returns>
         protected static bool EqualOperator(ValueObjectBase<T>? left, ValueObjectBase<T>? right)
-            => ReferenceEquals(left, right) || (left?.Equals(right) ?? false);
+            => (left is null && right is null) || ReferenceEquals(left, right) || (left?.Equals(right) ?? false);
 
         /// <summary>
         /// Equals
