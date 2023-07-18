@@ -118,7 +118,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FinallyAsync__1_Task___0__Action___0__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FinallyAsync%60%601(Task%7B%60%600%7D%2CAction%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L186">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L356">View Source</a>
   </span>
   <a id="wan24_Core_AsyncHelper_FinallyAsync_" data-uid="wan24.Core.AsyncHelper.FinallyAsync*"></a>
   <h4 id="wan24_Core_AsyncHelper_FinallyAsync__1_Task___0__Action___0__" data-uid="wan24.Core.AsyncHelper.FinallyAsync``1(Task{``0},Action{``0})">FinallyAsync&lt;T&gt;(Task&lt;T&gt;, Action&lt;T&gt;)</h4>
@@ -190,7 +190,7 @@ public static async Task FinallyAsync&lt;T&gt;(this Task&lt;T&gt; task, Action&l
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FinallyAsync__1_Task___0__Func___0_Task__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FinallyAsync%60%601(Task%7B%60%600%7D%2CFunc%7B%60%600%2CTask%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L195">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L374">View Source</a>
   </span>
   <a id="wan24_Core_AsyncHelper_FinallyAsync_" data-uid="wan24.Core.AsyncHelper.FinallyAsync*"></a>
   <h4 id="wan24_Core_AsyncHelper_FinallyAsync__1_Task___0__Func___0_Task__" data-uid="wan24.Core.AsyncHelper.FinallyAsync``1(Task{``0},Func{``0,Task})">FinallyAsync&lt;T&gt;(Task&lt;T&gt;, Func&lt;T, Task&gt;)</h4>
@@ -259,10 +259,154 @@ public static async Task FinallyAsync&lt;T&gt;(this Task&lt;T&gt; task, Func&lt;
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FinallyAsync__1_ValueTask___0__Action___0__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FinallyAsync%60%601(ValueTask%7B%60%600%7D%2CAction%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L365">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncHelper_FinallyAsync_" data-uid="wan24.Core.AsyncHelper.FinallyAsync*"></a>
+  <h4 id="wan24_Core_AsyncHelper_FinallyAsync__1_ValueTask___0__Action___0__" data-uid="wan24.Core.AsyncHelper.FinallyAsync``1(ValueTask{``0},Action{``0})">FinallyAsync&lt;T&gt;(ValueTask&lt;T&gt;, Action&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Final fluent asynchronous API result action</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static async ValueTask FinallyAsync&lt;T&gt;(this ValueTask&lt;T&gt; task, Action&lt;T&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><span class="parametername">task</span></td>
+        <td><p>Task</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Action</span>&lt;T&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Result type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FinallyAsync__1_ValueTask___0__Func___0_ValueTask__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FinallyAsync%60%601(ValueTask%7B%60%600%7D%2CFunc%7B%60%600%2CValueTask%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L383">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncHelper_FinallyAsync_" data-uid="wan24.Core.AsyncHelper.FinallyAsync*"></a>
+  <h4 id="wan24_Core_AsyncHelper_FinallyAsync__1_ValueTask___0__Func___0_ValueTask__" data-uid="wan24.Core.AsyncHelper.FinallyAsync``1(ValueTask{``0},Func{``0,ValueTask})">FinallyAsync&lt;T&gt;(ValueTask&lt;T&gt;, Func&lt;T, ValueTask&gt;)</h4>
+  <div class="markdown level1 summary"><p>Final fluent asynchronous API result action</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static async ValueTask FinallyAsync&lt;T&gt;(this ValueTask&lt;T&gt; task, Func&lt;T, ValueTask&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><span class="parametername">task</span></td>
+        <td><p>Task</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, <span class="xref">ValueTask</span>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Result type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FinallyAsync__2_Task___0__Func___0___1__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FinallyAsync%60%602(Task%7B%60%600%7D%2CFunc%7B%60%600%2C%60%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L205">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L393">View Source</a>
   </span>
   <a id="wan24_Core_AsyncHelper_FinallyAsync_" data-uid="wan24.Core.AsyncHelper.FinallyAsync*"></a>
   <h4 id="wan24_Core_AsyncHelper_FinallyAsync__2_Task___0__Func___0___1__" data-uid="wan24.Core.AsyncHelper.FinallyAsync``2(Task{``0},Func{``0,``1})">FinallyAsync&lt;tResult, tReturn&gt;(Task&lt;tResult&gt;, Func&lt;tResult, tReturn&gt;)</h4>
@@ -339,7 +483,7 @@ public static async Task&lt;tReturn&gt; FinallyAsync&lt;tResult, tReturn&gt;(thi
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FinallyAsync__2_Task___0__Func___0_Task___1___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FinallyAsync%60%602(Task%7B%60%600%7D%2CFunc%7B%60%600%2CTask%7B%60%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L215">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L413">View Source</a>
   </span>
   <a id="wan24_Core_AsyncHelper_FinallyAsync_" data-uid="wan24.Core.AsyncHelper.FinallyAsync*"></a>
   <h4 id="wan24_Core_AsyncHelper_FinallyAsync__2_Task___0__Func___0_Task___1___" data-uid="wan24.Core.AsyncHelper.FinallyAsync``2(Task{``0},Func{``0,Task{``1}})">FinallyAsync&lt;tResult, tReturn&gt;(Task&lt;tResult&gt;, Func&lt;tResult, Task&lt;tReturn&gt;&gt;)</h4>
@@ -386,6 +530,160 @@ public static async Task&lt;tReturn&gt; FinallyAsync&lt;tResult, tReturn&gt;(thi
     <tbody>
       <tr>
         <td><span class="xref">Task</span>&lt;tReturn&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tResult</span></td>
+        <td><p>Result type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tReturn</span></td>
+        <td><p>Return type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FinallyAsync__2_ValueTask___0__Func___0___1__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FinallyAsync%60%602(ValueTask%7B%60%600%7D%2CFunc%7B%60%600%2C%60%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L403">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncHelper_FinallyAsync_" data-uid="wan24.Core.AsyncHelper.FinallyAsync*"></a>
+  <h4 id="wan24_Core_AsyncHelper_FinallyAsync__2_ValueTask___0__Func___0___1__" data-uid="wan24.Core.AsyncHelper.FinallyAsync``2(ValueTask{``0},Func{``0,``1})">FinallyAsync&lt;tResult, tReturn&gt;(ValueTask&lt;tResult&gt;, Func&lt;tResult, tReturn&gt;)</h4>
+  <div class="markdown level1 summary"><p>Final fluent asynchronous API result action</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static async ValueTask&lt;tReturn&gt; FinallyAsync&lt;tResult, tReturn&gt;(this ValueTask&lt;tResult&gt; task, Func&lt;tResult, tReturn&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;tResult&gt;</td>
+        <td><span class="parametername">task</span></td>
+        <td><p>Task</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;tResult, tReturn&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;tReturn&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tResult</span></td>
+        <td><p>Result type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tReturn</span></td>
+        <td><p>Return type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FinallyAsync__2_ValueTask___0__Func___0_ValueTask___1___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FinallyAsync%60%602(ValueTask%7B%60%600%7D%2CFunc%7B%60%600%2CValueTask%7B%60%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L424">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncHelper_FinallyAsync_" data-uid="wan24.Core.AsyncHelper.FinallyAsync*"></a>
+  <h4 id="wan24_Core_AsyncHelper_FinallyAsync__2_ValueTask___0__Func___0_ValueTask___1___" data-uid="wan24.Core.AsyncHelper.FinallyAsync``2(ValueTask{``0},Func{``0,ValueTask{``1}})">FinallyAsync&lt;tResult, tReturn&gt;(ValueTask&lt;tResult&gt;, Func&lt;tResult, ValueTask&lt;tReturn&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Final fluent asynchronous API result action</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static async ValueTask&lt;tReturn&gt; FinallyAsync&lt;tResult, tReturn&gt;(this ValueTask&lt;tResult&gt; task, Func&lt;tResult, ValueTask&lt;tReturn&gt;&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;tResult&gt;</td>
+        <td><span class="parametername">task</span></td>
+        <td><p>Task</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;tResult, <span class="xref">ValueTask</span>&lt;tReturn&gt;&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;tReturn&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -486,10 +784,83 @@ public static async Task&lt;T&gt; FluentAsync&lt;T&gt;(Task&lt;T&gt; task, Func&
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FluentAsync__1_ValueTask___0__Func___0_ValueTask___0___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FluentAsync%60%601(ValueTask%7B%60%600%7D%2CFunc%7B%60%600%2CValueTask%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L27">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncHelper_FluentAsync_" data-uid="wan24.Core.AsyncHelper.FluentAsync*"></a>
+  <h4 id="wan24_Core_AsyncHelper_FluentAsync__1_ValueTask___0__Func___0_ValueTask___0___" data-uid="wan24.Core.AsyncHelper.FluentAsync``1(ValueTask{``0},Func{``0,ValueTask{``0}})">FluentAsync&lt;T&gt;(ValueTask&lt;T&gt;, Func&lt;T, ValueTask&lt;T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Fluent asynchronous API helper</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static async ValueTask&lt;T&gt; FluentAsync&lt;T&gt;(ValueTask&lt;T&gt; task, Func&lt;T, ValueTask&lt;T&gt;&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><span class="parametername">task</span></td>
+        <td><p>Task</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, <span class="xref">ValueTask</span>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FluentAsync__2_Task___0____1_Func___0___1_Task___0___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FluentAsync%60%602(Task%7B%60%600%7D%2C%60%601%2CFunc%7B%60%600%2C%60%601%2CTask%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L29">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L39">View Source</a>
   </span>
   <a id="wan24_Core_AsyncHelper_FluentAsync_" data-uid="wan24.Core.AsyncHelper.FluentAsync*"></a>
   <h4 id="wan24_Core_AsyncHelper_FluentAsync__2_Task___0____1_Func___0___1_Task___0___" data-uid="wan24.Core.AsyncHelper.FluentAsync``2(Task{``0},``1,Func{``0,``1,Task{``0}})">FluentAsync&lt;T, T1&gt;(Task&lt;T&gt;, T1, Func&lt;T, T1, Task&lt;T&gt;&gt;)</h4>
@@ -570,10 +941,94 @@ public static async Task&lt;T&gt; FluentAsync&lt;T, T1&gt;(Task&lt;T&gt; task, T
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FluentAsync__2_ValueTask___0____1_Func___0___1_ValueTask___0___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FluentAsync%60%602(ValueTask%7B%60%600%7D%2C%60%601%2CFunc%7B%60%600%2C%60%601%2CValueTask%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L52">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncHelper_FluentAsync_" data-uid="wan24.Core.AsyncHelper.FluentAsync*"></a>
+  <h4 id="wan24_Core_AsyncHelper_FluentAsync__2_ValueTask___0____1_Func___0___1_ValueTask___0___" data-uid="wan24.Core.AsyncHelper.FluentAsync``2(ValueTask{``0},``1,Func{``0,``1,ValueTask{``0}})">FluentAsync&lt;T, T1&gt;(ValueTask&lt;T&gt;, T1, Func&lt;T, T1, ValueTask&lt;T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Fluent asynchronous API helper</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static async ValueTask&lt;T&gt; FluentAsync&lt;T, T1&gt;(ValueTask&lt;T&gt; task, T1 p1, Func&lt;T, T1, ValueTask&lt;T&gt;&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><span class="parametername">task</span></td>
+        <td><p>Task</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T1</span></td>
+        <td><span class="parametername">p1</span></td>
+        <td><p>Parameter 1</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, T1, <span class="xref">ValueTask</span>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T1</span></td>
+        <td><p>Parameter 1 type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FluentAsync__3_Task___0____1___2_Func___0___1___2_Task___0___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FluentAsync%60%603(Task%7B%60%600%7D%2C%60%601%2C%60%602%2CFunc%7B%60%600%2C%60%601%2C%60%602%2CTask%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L44">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L67">View Source</a>
   </span>
   <a id="wan24_Core_AsyncHelper_FluentAsync_" data-uid="wan24.Core.AsyncHelper.FluentAsync*"></a>
   <h4 id="wan24_Core_AsyncHelper_FluentAsync__3_Task___0____1___2_Func___0___1___2_Task___0___" data-uid="wan24.Core.AsyncHelper.FluentAsync``3(Task{``0},``1,``2,Func{``0,``1,``2,Task{``0}})">FluentAsync&lt;T, T1, T2&gt;(Task&lt;T&gt;, T1, T2, Func&lt;T, T1, T2, Task&lt;T&gt;&gt;)</h4>
@@ -665,10 +1120,105 @@ public static async Task&lt;T&gt; FluentAsync&lt;T, T1, T2&gt;(Task&lt;T&gt; tas
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FluentAsync__3_ValueTask___0____1___2_Func___0___1___2_ValueTask___0___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FluentAsync%60%603(ValueTask%7B%60%600%7D%2C%60%601%2C%60%602%2CFunc%7B%60%600%2C%60%601%2C%60%602%2CValueTask%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L82">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncHelper_FluentAsync_" data-uid="wan24.Core.AsyncHelper.FluentAsync*"></a>
+  <h4 id="wan24_Core_AsyncHelper_FluentAsync__3_ValueTask___0____1___2_Func___0___1___2_ValueTask___0___" data-uid="wan24.Core.AsyncHelper.FluentAsync``3(ValueTask{``0},``1,``2,Func{``0,``1,``2,ValueTask{``0}})">FluentAsync&lt;T, T1, T2&gt;(ValueTask&lt;T&gt;, T1, T2, Func&lt;T, T1, T2, ValueTask&lt;T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Fluent asynchronous API helper</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static async ValueTask&lt;T&gt; FluentAsync&lt;T, T1, T2&gt;(ValueTask&lt;T&gt; task, T1 p1, T2 p2, Func&lt;T, T1, T2, ValueTask&lt;T&gt;&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><span class="parametername">task</span></td>
+        <td><p>Task</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T1</span></td>
+        <td><span class="parametername">p1</span></td>
+        <td><p>Parameter 1</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T2</span></td>
+        <td><span class="parametername">p2</span></td>
+        <td><p>Parameter 2</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, T1, T2, <span class="xref">ValueTask</span>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T1</span></td>
+        <td><p>Parameter 1 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T2</span></td>
+        <td><p>Parameter 2 type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FluentAsync__4_Task___0____1___2___3_Func___0___1___2___3_Task___0___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FluentAsync%60%604(Task%7B%60%600%7D%2C%60%601%2C%60%602%2C%60%603%2CFunc%7B%60%600%2C%60%601%2C%60%602%2C%60%603%2CTask%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L61">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L99">View Source</a>
   </span>
   <a id="wan24_Core_AsyncHelper_FluentAsync_" data-uid="wan24.Core.AsyncHelper.FluentAsync*"></a>
   <h4 id="wan24_Core_AsyncHelper_FluentAsync__4_Task___0____1___2___3_Func___0___1___2___3_Task___0___" data-uid="wan24.Core.AsyncHelper.FluentAsync``4(Task{``0},``1,``2,``3,Func{``0,``1,``2,``3,Task{``0}})">FluentAsync&lt;T, T1, T2, T3&gt;(Task&lt;T&gt;, T1, T2, T3, Func&lt;T, T1, T2, T3, Task&lt;T&gt;&gt;)</h4>
@@ -771,10 +1321,116 @@ public static async Task&lt;T&gt; FluentAsync&lt;T, T1, T2, T3&gt;(Task&lt;T&gt;
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FluentAsync__4_ValueTask___0____1___2___3_Func___0___1___2___3_ValueTask___0___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FluentAsync%60%604(ValueTask%7B%60%600%7D%2C%60%601%2C%60%602%2C%60%603%2CFunc%7B%60%600%2C%60%601%2C%60%602%2C%60%603%2CValueTask%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L116">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncHelper_FluentAsync_" data-uid="wan24.Core.AsyncHelper.FluentAsync*"></a>
+  <h4 id="wan24_Core_AsyncHelper_FluentAsync__4_ValueTask___0____1___2___3_Func___0___1___2___3_ValueTask___0___" data-uid="wan24.Core.AsyncHelper.FluentAsync``4(ValueTask{``0},``1,``2,``3,Func{``0,``1,``2,``3,ValueTask{``0}})">FluentAsync&lt;T, T1, T2, T3&gt;(ValueTask&lt;T&gt;, T1, T2, T3, Func&lt;T, T1, T2, T3, ValueTask&lt;T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Fluent asynchronous API helper</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static async ValueTask&lt;T&gt; FluentAsync&lt;T, T1, T2, T3&gt;(ValueTask&lt;T&gt; task, T1 p1, T2 p2, T3 p3, Func&lt;T, T1, T2, T3, ValueTask&lt;T&gt;&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><span class="parametername">task</span></td>
+        <td><p>Task</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T1</span></td>
+        <td><span class="parametername">p1</span></td>
+        <td><p>Parameter 1</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T2</span></td>
+        <td><span class="parametername">p2</span></td>
+        <td><p>Parameter 2</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T3</span></td>
+        <td><span class="parametername">p3</span></td>
+        <td><p>Parameter 3</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, T1, T2, T3, <span class="xref">ValueTask</span>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T1</span></td>
+        <td><p>Parameter 1 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T2</span></td>
+        <td><p>Parameter 2 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T3</span></td>
+        <td><p>Parameter 3 type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FluentAsync__5_Task___0____1___2___3___4_Func___0___1___2___3___4_Task___0___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FluentAsync%60%605(Task%7B%60%600%7D%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2CFunc%7B%60%600%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2CTask%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L80">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L135">View Source</a>
   </span>
   <a id="wan24_Core_AsyncHelper_FluentAsync_" data-uid="wan24.Core.AsyncHelper.FluentAsync*"></a>
   <h4 id="wan24_Core_AsyncHelper_FluentAsync__5_Task___0____1___2___3___4_Func___0___1___2___3___4_Task___0___" data-uid="wan24.Core.AsyncHelper.FluentAsync``5(Task{``0},``1,``2,``3,``4,Func{``0,``1,``2,``3,``4,Task{``0}})">FluentAsync&lt;T, T1, T2, T3, T4&gt;(Task&lt;T&gt;, T1, T2, T3, T4, Func&lt;T, T1, T2, T3, T4, Task&lt;T&gt;&gt;)</h4>
@@ -888,10 +1544,127 @@ public static async Task&lt;T&gt; FluentAsync&lt;T, T1, T2, T3, T4&gt;(Task&lt;T
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FluentAsync__5_ValueTask___0____1___2___3___4_Func___0___1___2___3___4_ValueTask___0___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FluentAsync%60%605(ValueTask%7B%60%600%7D%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2CFunc%7B%60%600%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2CValueTask%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L154">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncHelper_FluentAsync_" data-uid="wan24.Core.AsyncHelper.FluentAsync*"></a>
+  <h4 id="wan24_Core_AsyncHelper_FluentAsync__5_ValueTask___0____1___2___3___4_Func___0___1___2___3___4_ValueTask___0___" data-uid="wan24.Core.AsyncHelper.FluentAsync``5(ValueTask{``0},``1,``2,``3,``4,Func{``0,``1,``2,``3,``4,ValueTask{``0}})">FluentAsync&lt;T, T1, T2, T3, T4&gt;(ValueTask&lt;T&gt;, T1, T2, T3, T4, Func&lt;T, T1, T2, T3, T4, ValueTask&lt;T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Fluent asynchronous API helper</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static async ValueTask&lt;T&gt; FluentAsync&lt;T, T1, T2, T3, T4&gt;(ValueTask&lt;T&gt; task, T1 p1, T2 p2, T3 p3, T4 p4, Func&lt;T, T1, T2, T3, T4, ValueTask&lt;T&gt;&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><span class="parametername">task</span></td>
+        <td><p>Task</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T1</span></td>
+        <td><span class="parametername">p1</span></td>
+        <td><p>Parameter 1</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T2</span></td>
+        <td><span class="parametername">p2</span></td>
+        <td><p>Parameter 2</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T3</span></td>
+        <td><span class="parametername">p3</span></td>
+        <td><p>Parameter 3</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T4</span></td>
+        <td><span class="parametername">p4</span></td>
+        <td><p>Parameter 4</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, T1, T2, T3, T4, <span class="xref">ValueTask</span>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T1</span></td>
+        <td><p>Parameter 1 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T2</span></td>
+        <td><p>Parameter 2 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T3</span></td>
+        <td><p>Parameter 3 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T4</span></td>
+        <td><p>Parameter 4 type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FluentAsync__6_Task___0____1___2___3___4___5_Func___0___1___2___3___4___5_Task___0___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FluentAsync%60%606(Task%7B%60%600%7D%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2C%60%605%2CFunc%7B%60%600%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2C%60%605%2CTask%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L101">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L175">View Source</a>
   </span>
   <a id="wan24_Core_AsyncHelper_FluentAsync_" data-uid="wan24.Core.AsyncHelper.FluentAsync*"></a>
   <h4 id="wan24_Core_AsyncHelper_FluentAsync__6_Task___0____1___2___3___4___5_Func___0___1___2___3___4___5_Task___0___" data-uid="wan24.Core.AsyncHelper.FluentAsync``6(Task{``0},``1,``2,``3,``4,``5,Func{``0,``1,``2,``3,``4,``5,Task{``0}})">FluentAsync&lt;T, T1, T2, T3, T4, T5&gt;(Task&lt;T&gt;, T1, T2, T3, T4, T5, Func&lt;T, T1, T2, T3, T4, T5, Task&lt;T&gt;&gt;)</h4>
@@ -1016,10 +1789,138 @@ public static async Task&lt;T&gt; FluentAsync&lt;T, T1, T2, T3, T4, T5&gt;(Task&
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FluentAsync__6_ValueTask___0____1___2___3___4___5_Func___0___1___2___3___4___5_ValueTask___0___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FluentAsync%60%606(ValueTask%7B%60%600%7D%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2C%60%605%2CFunc%7B%60%600%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2C%60%605%2CValueTask%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L196">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncHelper_FluentAsync_" data-uid="wan24.Core.AsyncHelper.FluentAsync*"></a>
+  <h4 id="wan24_Core_AsyncHelper_FluentAsync__6_ValueTask___0____1___2___3___4___5_Func___0___1___2___3___4___5_ValueTask___0___" data-uid="wan24.Core.AsyncHelper.FluentAsync``6(ValueTask{``0},``1,``2,``3,``4,``5,Func{``0,``1,``2,``3,``4,``5,ValueTask{``0}})">FluentAsync&lt;T, T1, T2, T3, T4, T5&gt;(ValueTask&lt;T&gt;, T1, T2, T3, T4, T5, Func&lt;T, T1, T2, T3, T4, T5, ValueTask&lt;T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Fluent asynchronous API helper</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static async ValueTask&lt;T&gt; FluentAsync&lt;T, T1, T2, T3, T4, T5&gt;(ValueTask&lt;T&gt; task, T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, Func&lt;T, T1, T2, T3, T4, T5, ValueTask&lt;T&gt;&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><span class="parametername">task</span></td>
+        <td><p>Task</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T1</span></td>
+        <td><span class="parametername">p1</span></td>
+        <td><p>Parameter 1</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T2</span></td>
+        <td><span class="parametername">p2</span></td>
+        <td><p>Parameter 2</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T3</span></td>
+        <td><span class="parametername">p3</span></td>
+        <td><p>Parameter 3</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T4</span></td>
+        <td><span class="parametername">p4</span></td>
+        <td><p>Parameter 4</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T5</span></td>
+        <td><span class="parametername">p5</span></td>
+        <td><p>Parameter 5</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, T1, T2, T3, T4, T5, <span class="xref">ValueTask</span>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T1</span></td>
+        <td><p>Parameter 1 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T2</span></td>
+        <td><p>Parameter 2 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T3</span></td>
+        <td><p>Parameter 3 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T4</span></td>
+        <td><p>Parameter 4 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T5</span></td>
+        <td><p>Parameter 5 type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FluentAsync__7_Task___0____1___2___3___4___5___6_Func___0___1___2___3___4___5___6_Task___0___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FluentAsync%60%607(Task%7B%60%600%7D%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2C%60%605%2C%60%606%2CFunc%7B%60%600%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2C%60%605%2C%60%606%2CTask%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L124">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L219">View Source</a>
   </span>
   <a id="wan24_Core_AsyncHelper_FluentAsync_" data-uid="wan24.Core.AsyncHelper.FluentAsync*"></a>
   <h4 id="wan24_Core_AsyncHelper_FluentAsync__7_Task___0____1___2___3___4___5___6_Func___0___1___2___3___4___5___6_Task___0___" data-uid="wan24.Core.AsyncHelper.FluentAsync``7(Task{``0},``1,``2,``3,``4,``5,``6,Func{``0,``1,``2,``3,``4,``5,``6,Task{``0}})">FluentAsync&lt;T, T1, T2, T3, T4, T5, T6&gt;(Task&lt;T&gt;, T1, T2, T3, T4, T5, T6, Func&lt;T, T1, T2, T3, T4, T5, T6, Task&lt;T&gt;&gt;)</h4>
@@ -1155,10 +2056,149 @@ public static async Task&lt;T&gt; FluentAsync&lt;T, T1, T2, T3, T4, T5, T6&gt;(T
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FluentAsync__7_ValueTask___0____1___2___3___4___5___6_Func___0___1___2___3___4___5___6_ValueTask___0___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FluentAsync%60%607(ValueTask%7B%60%600%7D%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2C%60%605%2C%60%606%2CFunc%7B%60%600%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2C%60%605%2C%60%606%2CValueTask%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L242">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncHelper_FluentAsync_" data-uid="wan24.Core.AsyncHelper.FluentAsync*"></a>
+  <h4 id="wan24_Core_AsyncHelper_FluentAsync__7_ValueTask___0____1___2___3___4___5___6_Func___0___1___2___3___4___5___6_ValueTask___0___" data-uid="wan24.Core.AsyncHelper.FluentAsync``7(ValueTask{``0},``1,``2,``3,``4,``5,``6,Func{``0,``1,``2,``3,``4,``5,``6,ValueTask{``0}})">FluentAsync&lt;T, T1, T2, T3, T4, T5, T6&gt;(ValueTask&lt;T&gt;, T1, T2, T3, T4, T5, T6, Func&lt;T, T1, T2, T3, T4, T5, T6, ValueTask&lt;T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Fluent asynchronous API helper</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static async ValueTask&lt;T&gt; FluentAsync&lt;T, T1, T2, T3, T4, T5, T6&gt;(ValueTask&lt;T&gt; task, T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, Func&lt;T, T1, T2, T3, T4, T5, T6, ValueTask&lt;T&gt;&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><span class="parametername">task</span></td>
+        <td><p>Task</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T1</span></td>
+        <td><span class="parametername">p1</span></td>
+        <td><p>Parameter 1</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T2</span></td>
+        <td><span class="parametername">p2</span></td>
+        <td><p>Parameter 2</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T3</span></td>
+        <td><span class="parametername">p3</span></td>
+        <td><p>Parameter 3</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T4</span></td>
+        <td><span class="parametername">p4</span></td>
+        <td><p>Parameter 4</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T5</span></td>
+        <td><span class="parametername">p5</span></td>
+        <td><p>Parameter 5</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T6</span></td>
+        <td><span class="parametername">p6</span></td>
+        <td><p>Parameter 6</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, T1, T2, T3, T4, T5, T6, <span class="xref">ValueTask</span>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T1</span></td>
+        <td><p>Parameter 1 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T2</span></td>
+        <td><p>Parameter 2 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T3</span></td>
+        <td><p>Parameter 3 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T4</span></td>
+        <td><p>Parameter 4 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T5</span></td>
+        <td><p>Parameter 5 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T6</span></td>
+        <td><p>Parameter 6 type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FluentAsync__8_Task___0____1___2___3___4___5___6___7_Func___0___1___2___3___4___5___6___7_Task___0___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FluentAsync%60%608(Task%7B%60%600%7D%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2C%60%605%2C%60%606%2C%60%607%2CFunc%7B%60%600%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2C%60%605%2C%60%606%2C%60%607%2CTask%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L149">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L267">View Source</a>
   </span>
   <a id="wan24_Core_AsyncHelper_FluentAsync_" data-uid="wan24.Core.AsyncHelper.FluentAsync*"></a>
   <h4 id="wan24_Core_AsyncHelper_FluentAsync__8_Task___0____1___2___3___4___5___6___7_Func___0___1___2___3___4___5___6___7_Task___0___" data-uid="wan24.Core.AsyncHelper.FluentAsync``8(Task{``0},``1,``2,``3,``4,``5,``6,``7,Func{``0,``1,``2,``3,``4,``5,``6,``7,Task{``0}})">FluentAsync&lt;T, T1, T2, T3, T4, T5, T6, T7&gt;(Task&lt;T&gt;, T1, T2, T3, T4, T5, T6, T7, Func&lt;T, T1, T2, T3, T4, T5, T6, T7, Task&lt;T&gt;&gt;)</h4>
@@ -1305,10 +2345,160 @@ public static async Task&lt;T&gt; FluentAsync&lt;T, T1, T2, T3, T4, T5, T6, T7&g
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FluentAsync__8_ValueTask___0____1___2___3___4___5___6___7_Func___0___1___2___3___4___5___6___7_ValueTask___0___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FluentAsync%60%608(ValueTask%7B%60%600%7D%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2C%60%605%2C%60%606%2C%60%607%2CFunc%7B%60%600%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2C%60%605%2C%60%606%2C%60%607%2CValueTask%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L292">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncHelper_FluentAsync_" data-uid="wan24.Core.AsyncHelper.FluentAsync*"></a>
+  <h4 id="wan24_Core_AsyncHelper_FluentAsync__8_ValueTask___0____1___2___3___4___5___6___7_Func___0___1___2___3___4___5___6___7_ValueTask___0___" data-uid="wan24.Core.AsyncHelper.FluentAsync``8(ValueTask{``0},``1,``2,``3,``4,``5,``6,``7,Func{``0,``1,``2,``3,``4,``5,``6,``7,ValueTask{``0}})">FluentAsync&lt;T, T1, T2, T3, T4, T5, T6, T7&gt;(ValueTask&lt;T&gt;, T1, T2, T3, T4, T5, T6, T7, Func&lt;T, T1, T2, T3, T4, T5, T6, T7, ValueTask&lt;T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Fluent asynchronous API helper</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static async ValueTask&lt;T&gt; FluentAsync&lt;T, T1, T2, T3, T4, T5, T6, T7&gt;(ValueTask&lt;T&gt; task, T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, Func&lt;T, T1, T2, T3, T4, T5, T6, T7, ValueTask&lt;T&gt;&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><span class="parametername">task</span></td>
+        <td><p>Task</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T1</span></td>
+        <td><span class="parametername">p1</span></td>
+        <td><p>Parameter 1</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T2</span></td>
+        <td><span class="parametername">p2</span></td>
+        <td><p>Parameter 2</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T3</span></td>
+        <td><span class="parametername">p3</span></td>
+        <td><p>Parameter 3</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T4</span></td>
+        <td><span class="parametername">p4</span></td>
+        <td><p>Parameter 4</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T5</span></td>
+        <td><span class="parametername">p5</span></td>
+        <td><p>Parameter 5</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T6</span></td>
+        <td><span class="parametername">p6</span></td>
+        <td><p>Parameter 6</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T7</span></td>
+        <td><span class="parametername">p7</span></td>
+        <td><p>Parameter 7</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, T1, T2, T3, T4, T5, T6, T7, <span class="xref">ValueTask</span>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T1</span></td>
+        <td><p>Parameter 1 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T2</span></td>
+        <td><p>Parameter 2 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T3</span></td>
+        <td><p>Parameter 3 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T4</span></td>
+        <td><p>Parameter 4 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T5</span></td>
+        <td><p>Parameter 5 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T6</span></td>
+        <td><p>Parameter 6 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T7</span></td>
+        <td><p>Parameter 7 type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FluentAsync__9_Task___0____1___2___3___4___5___6___7___8_Func___0___1___2___3___4___5___6___7___8_Task___0___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FluentAsync%60%609(Task%7B%60%600%7D%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2C%60%605%2C%60%606%2C%60%607%2C%60%608%2CFunc%7B%60%600%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2C%60%605%2C%60%606%2C%60%607%2C%60%608%2CTask%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L176">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L319">View Source</a>
   </span>
   <a id="wan24_Core_AsyncHelper_FluentAsync_" data-uid="wan24.Core.AsyncHelper.FluentAsync*"></a>
   <h4 id="wan24_Core_AsyncHelper_FluentAsync__9_Task___0____1___2___3___4___5___6___7___8_Func___0___1___2___3___4___5___6___7___8_Task___0___" data-uid="wan24.Core.AsyncHelper.FluentAsync``9(Task{``0},``1,``2,``3,``4,``5,``6,``7,``8,Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,Task{``0}})">FluentAsync&lt;T, T1, T2, T3, T4, T5, T6, T7, T8&gt;(Task&lt;T&gt;, T1, T2, T3, T4, T5, T6, T7, T8, Func&lt;T, T1, T2, T3, T4, T5, T6, T7, T8, Task&lt;T&gt;&gt;)</h4>
@@ -1403,6 +2593,167 @@ public static async Task&lt;T&gt; FluentAsync&lt;T, T1, T2, T3, T4, T5, T6, T7, 
     <tbody>
       <tr>
         <td><span class="xref">Task</span>&lt;T&gt;</td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T1</span></td>
+        <td><p>Parameter 1 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T2</span></td>
+        <td><p>Parameter 2 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T3</span></td>
+        <td><p>Parameter 3 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T4</span></td>
+        <td><p>Parameter 4 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T5</span></td>
+        <td><p>Parameter 5 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T6</span></td>
+        <td><p>Parameter 6 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T7</span></td>
+        <td><p>Parameter 7 type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T8</span></td>
+        <td><p>Parameter 8 type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncHelper_FluentAsync__9_ValueTask___0____1___2___3___4___5___6___7___8_Func___0___1___2___3___4___5___6___7___8_ValueTask___0___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncHelper.FluentAsync%60%609(ValueTask%7B%60%600%7D%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2C%60%605%2C%60%606%2C%60%607%2C%60%608%2CFunc%7B%60%600%2C%60%601%2C%60%602%2C%60%603%2C%60%604%2C%60%605%2C%60%606%2C%60%607%2C%60%608%2CValueTask%7B%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncHelper.cs/#L346">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncHelper_FluentAsync_" data-uid="wan24.Core.AsyncHelper.FluentAsync*"></a>
+  <h4 id="wan24_Core_AsyncHelper_FluentAsync__9_ValueTask___0____1___2___3___4___5___6___7___8_Func___0___1___2___3___4___5___6___7___8_ValueTask___0___" data-uid="wan24.Core.AsyncHelper.FluentAsync``9(ValueTask{``0},``1,``2,``3,``4,``5,``6,``7,``8,Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,ValueTask{``0}})">FluentAsync&lt;T, T1, T2, T3, T4, T5, T6, T7, T8&gt;(ValueTask&lt;T&gt;, T1, T2, T3, T4, T5, T6, T7, T8, Func&lt;T, T1, T2, T3, T4, T5, T6, T7, T8, ValueTask&lt;T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Fluent asynchronous API helper</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static async ValueTask&lt;T&gt; FluentAsync&lt;T, T1, T2, T3, T4, T5, T6, T7, T8&gt;(ValueTask&lt;T&gt; task, T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, Func&lt;T, T1, T2, T3, T4, T5, T6, T7, T8, ValueTask&lt;T&gt;&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
+        <td><span class="parametername">task</span></td>
+        <td><p>Task</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T1</span></td>
+        <td><span class="parametername">p1</span></td>
+        <td><p>Parameter 1</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T2</span></td>
+        <td><span class="parametername">p2</span></td>
+        <td><p>Parameter 2</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T3</span></td>
+        <td><span class="parametername">p3</span></td>
+        <td><p>Parameter 3</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T4</span></td>
+        <td><span class="parametername">p4</span></td>
+        <td><p>Parameter 4</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T5</span></td>
+        <td><span class="parametername">p5</span></td>
+        <td><p>Parameter 5</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T6</span></td>
+        <td><span class="parametername">p6</span></td>
+        <td><p>Parameter 6</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T7</span></td>
+        <td><span class="parametername">p7</span></td>
+        <td><p>Parameter 7</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T8</span></td>
+        <td><span class="parametername">p8</span></td>
+        <td><p>Parameter 8</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, T1, T2, T3, T4, T5, T6, T7, T8, <span class="xref">ValueTask</span>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;T&gt;</td>
         <td><p>Object</p>
 </td>
       </tr>

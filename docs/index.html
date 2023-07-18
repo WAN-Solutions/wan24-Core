@@ -790,10 +790,16 @@ encoding, which uses only characters 0-9, a-z, A-Z, dash and underscore and
 produces less overhead than base64. The encoded/decoded value length can be
 calculated in advance, and it's fast and easy to detect errors in the encoded
 data without having to decode it, first.</p>
-<pre><code class="lang-cs">int encodedLen = anyByteArray.GetEncodedLength();
+<pre><code class="lang-cs">// In case you want to use a prepared output buffer
+int encodedLen = anyByteArray.GetEncodedLength();
+
+// Encoding
 char[] encoded = anyByteArray.Encode();
 
-int decodedLen = anyByteArray.GetDecodedlength();
+// In case you want to use a prepared output buffer
+int decodedLen = encoded.GetDecodedlength();
+
+// Decoding
 byte[] decoded = encoded.Decode();
 </code></pre>
 <p>Using extensions numeric values can be en-/decoded on the fly, too. The

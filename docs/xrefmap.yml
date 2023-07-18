@@ -919,6 +919,24 @@ references:
   fullName.vb: wan24.Core.AsyncHelper.FinallyAsync(Of T)(Task(Of T), Func(Of T, Task))
   nameWithType: AsyncHelper.FinallyAsync<T>(Task<T>, Func<T, Task>)
   nameWithType.vb: AsyncHelper.FinallyAsync(Of T)(Task(Of T), Func(Of T, Task))
+- uid: wan24.Core.AsyncHelper.FinallyAsync``1(ValueTask{``0},Action{``0})
+  name: FinallyAsync<T>(ValueTask<T>, Action<T>)
+  href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FinallyAsync__1_ValueTask___0__Action___0__
+  commentId: M:wan24.Core.AsyncHelper.FinallyAsync``1(ValueTask{``0},Action{``0})
+  name.vb: FinallyAsync(Of T)(ValueTask(Of T), Action(Of T))
+  fullName: wan24.Core.AsyncHelper.FinallyAsync<T>(ValueTask<T>, Action<T>)
+  fullName.vb: wan24.Core.AsyncHelper.FinallyAsync(Of T)(ValueTask(Of T), Action(Of T))
+  nameWithType: AsyncHelper.FinallyAsync<T>(ValueTask<T>, Action<T>)
+  nameWithType.vb: AsyncHelper.FinallyAsync(Of T)(ValueTask(Of T), Action(Of T))
+- uid: wan24.Core.AsyncHelper.FinallyAsync``1(ValueTask{``0},Func{``0,ValueTask})
+  name: FinallyAsync<T>(ValueTask<T>, Func<T, ValueTask>)
+  href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FinallyAsync__1_ValueTask___0__Func___0_ValueTask__
+  commentId: M:wan24.Core.AsyncHelper.FinallyAsync``1(ValueTask{``0},Func{``0,ValueTask})
+  name.vb: FinallyAsync(Of T)(ValueTask(Of T), Func(Of T, ValueTask))
+  fullName: wan24.Core.AsyncHelper.FinallyAsync<T>(ValueTask<T>, Func<T, ValueTask>)
+  fullName.vb: wan24.Core.AsyncHelper.FinallyAsync(Of T)(ValueTask(Of T), Func(Of T, ValueTask))
+  nameWithType: AsyncHelper.FinallyAsync<T>(ValueTask<T>, Func<T, ValueTask>)
+  nameWithType.vb: AsyncHelper.FinallyAsync(Of T)(ValueTask(Of T), Func(Of T, ValueTask))
 - uid: wan24.Core.AsyncHelper.FinallyAsync``2(Task{``0},Func{``0,``1})
   name: FinallyAsync<tResult, tReturn>(Task<tResult>, Func<tResult, tReturn>)
   href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FinallyAsync__2_Task___0__Func___0___1__
@@ -937,6 +955,24 @@ references:
   fullName.vb: wan24.Core.AsyncHelper.FinallyAsync(Of tResult, tReturn)(Task(Of tResult), Func(Of tResult, Task(Of tReturn)))
   nameWithType: AsyncHelper.FinallyAsync<tResult, tReturn>(Task<tResult>, Func<tResult, Task<tReturn>>)
   nameWithType.vb: AsyncHelper.FinallyAsync(Of tResult, tReturn)(Task(Of tResult), Func(Of tResult, Task(Of tReturn)))
+- uid: wan24.Core.AsyncHelper.FinallyAsync``2(ValueTask{``0},Func{``0,``1})
+  name: FinallyAsync<tResult, tReturn>(ValueTask<tResult>, Func<tResult, tReturn>)
+  href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FinallyAsync__2_ValueTask___0__Func___0___1__
+  commentId: M:wan24.Core.AsyncHelper.FinallyAsync``2(ValueTask{``0},Func{``0,``1})
+  name.vb: FinallyAsync(Of tResult, tReturn)(ValueTask(Of tResult), Func(Of tResult, tReturn))
+  fullName: wan24.Core.AsyncHelper.FinallyAsync<tResult, tReturn>(ValueTask<tResult>, Func<tResult, tReturn>)
+  fullName.vb: wan24.Core.AsyncHelper.FinallyAsync(Of tResult, tReturn)(ValueTask(Of tResult), Func(Of tResult, tReturn))
+  nameWithType: AsyncHelper.FinallyAsync<tResult, tReturn>(ValueTask<tResult>, Func<tResult, tReturn>)
+  nameWithType.vb: AsyncHelper.FinallyAsync(Of tResult, tReturn)(ValueTask(Of tResult), Func(Of tResult, tReturn))
+- uid: wan24.Core.AsyncHelper.FinallyAsync``2(ValueTask{``0},Func{``0,ValueTask{``1}})
+  name: FinallyAsync<tResult, tReturn>(ValueTask<tResult>, Func<tResult, ValueTask<tReturn>>)
+  href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FinallyAsync__2_ValueTask___0__Func___0_ValueTask___1___
+  commentId: M:wan24.Core.AsyncHelper.FinallyAsync``2(ValueTask{``0},Func{``0,ValueTask{``1}})
+  name.vb: FinallyAsync(Of tResult, tReturn)(ValueTask(Of tResult), Func(Of tResult, ValueTask(Of tReturn)))
+  fullName: wan24.Core.AsyncHelper.FinallyAsync<tResult, tReturn>(ValueTask<tResult>, Func<tResult, ValueTask<tReturn>>)
+  fullName.vb: wan24.Core.AsyncHelper.FinallyAsync(Of tResult, tReturn)(ValueTask(Of tResult), Func(Of tResult, ValueTask(Of tReturn)))
+  nameWithType: AsyncHelper.FinallyAsync<tResult, tReturn>(ValueTask<tResult>, Func<tResult, ValueTask<tReturn>>)
+  nameWithType.vb: AsyncHelper.FinallyAsync(Of tResult, tReturn)(ValueTask(Of tResult), Func(Of tResult, ValueTask(Of tReturn)))
 - uid: wan24.Core.AsyncHelper.FluentAsync*
   name: FluentAsync
   href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync_
@@ -953,6 +989,15 @@ references:
   fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T)(Task(Of T), Func(Of T, Task(Of T)))
   nameWithType: AsyncHelper.FluentAsync<T>(Task<T>, Func<T, Task<T>>)
   nameWithType.vb: AsyncHelper.FluentAsync(Of T)(Task(Of T), Func(Of T, Task(Of T)))
+- uid: wan24.Core.AsyncHelper.FluentAsync``1(ValueTask{``0},Func{``0,ValueTask{``0}})
+  name: FluentAsync<T>(ValueTask<T>, Func<T, ValueTask<T>>)
+  href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync__1_ValueTask___0__Func___0_ValueTask___0___
+  commentId: M:wan24.Core.AsyncHelper.FluentAsync``1(ValueTask{``0},Func{``0,ValueTask{``0}})
+  name.vb: FluentAsync(Of T)(ValueTask(Of T), Func(Of T, ValueTask(Of T)))
+  fullName: wan24.Core.AsyncHelper.FluentAsync<T>(ValueTask<T>, Func<T, ValueTask<T>>)
+  fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T)(ValueTask(Of T), Func(Of T, ValueTask(Of T)))
+  nameWithType: AsyncHelper.FluentAsync<T>(ValueTask<T>, Func<T, ValueTask<T>>)
+  nameWithType.vb: AsyncHelper.FluentAsync(Of T)(ValueTask(Of T), Func(Of T, ValueTask(Of T)))
 - uid: wan24.Core.AsyncHelper.FluentAsync``2(Task{``0},``1,Func{``0,``1,Task{``0}})
   name: FluentAsync<T, T1>(Task<T>, T1, Func<T, T1, Task<T>>)
   href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync__2_Task___0____1_Func___0___1_Task___0___
@@ -962,6 +1007,15 @@ references:
   fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T, T1)(Task(Of T), T1, Func(Of T, T1, Task(Of T)))
   nameWithType: AsyncHelper.FluentAsync<T, T1>(Task<T>, T1, Func<T, T1, Task<T>>)
   nameWithType.vb: AsyncHelper.FluentAsync(Of T, T1)(Task(Of T), T1, Func(Of T, T1, Task(Of T)))
+- uid: wan24.Core.AsyncHelper.FluentAsync``2(ValueTask{``0},``1,Func{``0,``1,ValueTask{``0}})
+  name: FluentAsync<T, T1>(ValueTask<T>, T1, Func<T, T1, ValueTask<T>>)
+  href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync__2_ValueTask___0____1_Func___0___1_ValueTask___0___
+  commentId: M:wan24.Core.AsyncHelper.FluentAsync``2(ValueTask{``0},``1,Func{``0,``1,ValueTask{``0}})
+  name.vb: FluentAsync(Of T, T1)(ValueTask(Of T), T1, Func(Of T, T1, ValueTask(Of T)))
+  fullName: wan24.Core.AsyncHelper.FluentAsync<T, T1>(ValueTask<T>, T1, Func<T, T1, ValueTask<T>>)
+  fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T, T1)(ValueTask(Of T), T1, Func(Of T, T1, ValueTask(Of T)))
+  nameWithType: AsyncHelper.FluentAsync<T, T1>(ValueTask<T>, T1, Func<T, T1, ValueTask<T>>)
+  nameWithType.vb: AsyncHelper.FluentAsync(Of T, T1)(ValueTask(Of T), T1, Func(Of T, T1, ValueTask(Of T)))
 - uid: wan24.Core.AsyncHelper.FluentAsync``3(Task{``0},``1,``2,Func{``0,``1,``2,Task{``0}})
   name: FluentAsync<T, T1, T2>(Task<T>, T1, T2, Func<T, T1, T2, Task<T>>)
   href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync__3_Task___0____1___2_Func___0___1___2_Task___0___
@@ -971,6 +1025,15 @@ references:
   fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T, T1, T2)(Task(Of T), T1, T2, Func(Of T, T1, T2, Task(Of T)))
   nameWithType: AsyncHelper.FluentAsync<T, T1, T2>(Task<T>, T1, T2, Func<T, T1, T2, Task<T>>)
   nameWithType.vb: AsyncHelper.FluentAsync(Of T, T1, T2)(Task(Of T), T1, T2, Func(Of T, T1, T2, Task(Of T)))
+- uid: wan24.Core.AsyncHelper.FluentAsync``3(ValueTask{``0},``1,``2,Func{``0,``1,``2,ValueTask{``0}})
+  name: FluentAsync<T, T1, T2>(ValueTask<T>, T1, T2, Func<T, T1, T2, ValueTask<T>>)
+  href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync__3_ValueTask___0____1___2_Func___0___1___2_ValueTask___0___
+  commentId: M:wan24.Core.AsyncHelper.FluentAsync``3(ValueTask{``0},``1,``2,Func{``0,``1,``2,ValueTask{``0}})
+  name.vb: FluentAsync(Of T, T1, T2)(ValueTask(Of T), T1, T2, Func(Of T, T1, T2, ValueTask(Of T)))
+  fullName: wan24.Core.AsyncHelper.FluentAsync<T, T1, T2>(ValueTask<T>, T1, T2, Func<T, T1, T2, ValueTask<T>>)
+  fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T, T1, T2)(ValueTask(Of T), T1, T2, Func(Of T, T1, T2, ValueTask(Of T)))
+  nameWithType: AsyncHelper.FluentAsync<T, T1, T2>(ValueTask<T>, T1, T2, Func<T, T1, T2, ValueTask<T>>)
+  nameWithType.vb: AsyncHelper.FluentAsync(Of T, T1, T2)(ValueTask(Of T), T1, T2, Func(Of T, T1, T2, ValueTask(Of T)))
 - uid: wan24.Core.AsyncHelper.FluentAsync``4(Task{``0},``1,``2,``3,Func{``0,``1,``2,``3,Task{``0}})
   name: FluentAsync<T, T1, T2, T3>(Task<T>, T1, T2, T3, Func<T, T1, T2, T3, Task<T>>)
   href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync__4_Task___0____1___2___3_Func___0___1___2___3_Task___0___
@@ -980,6 +1043,15 @@ references:
   fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T, T1, T2, T3)(Task(Of T), T1, T2, T3, Func(Of T, T1, T2, T3, Task(Of T)))
   nameWithType: AsyncHelper.FluentAsync<T, T1, T2, T3>(Task<T>, T1, T2, T3, Func<T, T1, T2, T3, Task<T>>)
   nameWithType.vb: AsyncHelper.FluentAsync(Of T, T1, T2, T3)(Task(Of T), T1, T2, T3, Func(Of T, T1, T2, T3, Task(Of T)))
+- uid: wan24.Core.AsyncHelper.FluentAsync``4(ValueTask{``0},``1,``2,``3,Func{``0,``1,``2,``3,ValueTask{``0}})
+  name: FluentAsync<T, T1, T2, T3>(ValueTask<T>, T1, T2, T3, Func<T, T1, T2, T3, ValueTask<T>>)
+  href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync__4_ValueTask___0____1___2___3_Func___0___1___2___3_ValueTask___0___
+  commentId: M:wan24.Core.AsyncHelper.FluentAsync``4(ValueTask{``0},``1,``2,``3,Func{``0,``1,``2,``3,ValueTask{``0}})
+  name.vb: FluentAsync(Of T, T1, T2, T3)(ValueTask(Of T), T1, T2, T3, Func(Of T, T1, T2, T3, ValueTask(Of T)))
+  fullName: wan24.Core.AsyncHelper.FluentAsync<T, T1, T2, T3>(ValueTask<T>, T1, T2, T3, Func<T, T1, T2, T3, ValueTask<T>>)
+  fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T, T1, T2, T3)(ValueTask(Of T), T1, T2, T3, Func(Of T, T1, T2, T3, ValueTask(Of T)))
+  nameWithType: AsyncHelper.FluentAsync<T, T1, T2, T3>(ValueTask<T>, T1, T2, T3, Func<T, T1, T2, T3, ValueTask<T>>)
+  nameWithType.vb: AsyncHelper.FluentAsync(Of T, T1, T2, T3)(ValueTask(Of T), T1, T2, T3, Func(Of T, T1, T2, T3, ValueTask(Of T)))
 - uid: wan24.Core.AsyncHelper.FluentAsync``5(Task{``0},``1,``2,``3,``4,Func{``0,``1,``2,``3,``4,Task{``0}})
   name: FluentAsync<T, T1, T2, T3, T4>(Task<T>, T1, T2, T3, T4, Func<T, T1, T2, T3, T4, Task<T>>)
   href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync__5_Task___0____1___2___3___4_Func___0___1___2___3___4_Task___0___
@@ -989,6 +1061,15 @@ references:
   fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4)(Task(Of T), T1, T2, T3, T4, Func(Of T, T1, T2, T3, T4, Task(Of T)))
   nameWithType: AsyncHelper.FluentAsync<T, T1, T2, T3, T4>(Task<T>, T1, T2, T3, T4, Func<T, T1, T2, T3, T4, Task<T>>)
   nameWithType.vb: AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4)(Task(Of T), T1, T2, T3, T4, Func(Of T, T1, T2, T3, T4, Task(Of T)))
+- uid: wan24.Core.AsyncHelper.FluentAsync``5(ValueTask{``0},``1,``2,``3,``4,Func{``0,``1,``2,``3,``4,ValueTask{``0}})
+  name: FluentAsync<T, T1, T2, T3, T4>(ValueTask<T>, T1, T2, T3, T4, Func<T, T1, T2, T3, T4, ValueTask<T>>)
+  href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync__5_ValueTask___0____1___2___3___4_Func___0___1___2___3___4_ValueTask___0___
+  commentId: M:wan24.Core.AsyncHelper.FluentAsync``5(ValueTask{``0},``1,``2,``3,``4,Func{``0,``1,``2,``3,``4,ValueTask{``0}})
+  name.vb: FluentAsync(Of T, T1, T2, T3, T4)(ValueTask(Of T), T1, T2, T3, T4, Func(Of T, T1, T2, T3, T4, ValueTask(Of T)))
+  fullName: wan24.Core.AsyncHelper.FluentAsync<T, T1, T2, T3, T4>(ValueTask<T>, T1, T2, T3, T4, Func<T, T1, T2, T3, T4, ValueTask<T>>)
+  fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4)(ValueTask(Of T), T1, T2, T3, T4, Func(Of T, T1, T2, T3, T4, ValueTask(Of T)))
+  nameWithType: AsyncHelper.FluentAsync<T, T1, T2, T3, T4>(ValueTask<T>, T1, T2, T3, T4, Func<T, T1, T2, T3, T4, ValueTask<T>>)
+  nameWithType.vb: AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4)(ValueTask(Of T), T1, T2, T3, T4, Func(Of T, T1, T2, T3, T4, ValueTask(Of T)))
 - uid: wan24.Core.AsyncHelper.FluentAsync``6(Task{``0},``1,``2,``3,``4,``5,Func{``0,``1,``2,``3,``4,``5,Task{``0}})
   name: FluentAsync<T, T1, T2, T3, T4, T5>(Task<T>, T1, T2, T3, T4, T5, Func<T, T1, T2, T3, T4, T5, Task<T>>)
   href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync__6_Task___0____1___2___3___4___5_Func___0___1___2___3___4___5_Task___0___
@@ -998,6 +1079,15 @@ references:
   fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5)(Task(Of T), T1, T2, T3, T4, T5, Func(Of T, T1, T2, T3, T4, T5, Task(Of T)))
   nameWithType: AsyncHelper.FluentAsync<T, T1, T2, T3, T4, T5>(Task<T>, T1, T2, T3, T4, T5, Func<T, T1, T2, T3, T4, T5, Task<T>>)
   nameWithType.vb: AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5)(Task(Of T), T1, T2, T3, T4, T5, Func(Of T, T1, T2, T3, T4, T5, Task(Of T)))
+- uid: wan24.Core.AsyncHelper.FluentAsync``6(ValueTask{``0},``1,``2,``3,``4,``5,Func{``0,``1,``2,``3,``4,``5,ValueTask{``0}})
+  name: FluentAsync<T, T1, T2, T3, T4, T5>(ValueTask<T>, T1, T2, T3, T4, T5, Func<T, T1, T2, T3, T4, T5, ValueTask<T>>)
+  href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync__6_ValueTask___0____1___2___3___4___5_Func___0___1___2___3___4___5_ValueTask___0___
+  commentId: M:wan24.Core.AsyncHelper.FluentAsync``6(ValueTask{``0},``1,``2,``3,``4,``5,Func{``0,``1,``2,``3,``4,``5,ValueTask{``0}})
+  name.vb: FluentAsync(Of T, T1, T2, T3, T4, T5)(ValueTask(Of T), T1, T2, T3, T4, T5, Func(Of T, T1, T2, T3, T4, T5, ValueTask(Of T)))
+  fullName: wan24.Core.AsyncHelper.FluentAsync<T, T1, T2, T3, T4, T5>(ValueTask<T>, T1, T2, T3, T4, T5, Func<T, T1, T2, T3, T4, T5, ValueTask<T>>)
+  fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5)(ValueTask(Of T), T1, T2, T3, T4, T5, Func(Of T, T1, T2, T3, T4, T5, ValueTask(Of T)))
+  nameWithType: AsyncHelper.FluentAsync<T, T1, T2, T3, T4, T5>(ValueTask<T>, T1, T2, T3, T4, T5, Func<T, T1, T2, T3, T4, T5, ValueTask<T>>)
+  nameWithType.vb: AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5)(ValueTask(Of T), T1, T2, T3, T4, T5, Func(Of T, T1, T2, T3, T4, T5, ValueTask(Of T)))
 - uid: wan24.Core.AsyncHelper.FluentAsync``7(Task{``0},``1,``2,``3,``4,``5,``6,Func{``0,``1,``2,``3,``4,``5,``6,Task{``0}})
   name: FluentAsync<T, T1, T2, T3, T4, T5, T6>(Task<T>, T1, T2, T3, T4, T5, T6, Func<T, T1, T2, T3, T4, T5, T6, Task<T>>)
   href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync__7_Task___0____1___2___3___4___5___6_Func___0___1___2___3___4___5___6_Task___0___
@@ -1007,6 +1097,15 @@ references:
   fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5, T6)(Task(Of T), T1, T2, T3, T4, T5, T6, Func(Of T, T1, T2, T3, T4, T5, T6, Task(Of T)))
   nameWithType: AsyncHelper.FluentAsync<T, T1, T2, T3, T4, T5, T6>(Task<T>, T1, T2, T3, T4, T5, T6, Func<T, T1, T2, T3, T4, T5, T6, Task<T>>)
   nameWithType.vb: AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5, T6)(Task(Of T), T1, T2, T3, T4, T5, T6, Func(Of T, T1, T2, T3, T4, T5, T6, Task(Of T)))
+- uid: wan24.Core.AsyncHelper.FluentAsync``7(ValueTask{``0},``1,``2,``3,``4,``5,``6,Func{``0,``1,``2,``3,``4,``5,``6,ValueTask{``0}})
+  name: FluentAsync<T, T1, T2, T3, T4, T5, T6>(ValueTask<T>, T1, T2, T3, T4, T5, T6, Func<T, T1, T2, T3, T4, T5, T6, ValueTask<T>>)
+  href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync__7_ValueTask___0____1___2___3___4___5___6_Func___0___1___2___3___4___5___6_ValueTask___0___
+  commentId: M:wan24.Core.AsyncHelper.FluentAsync``7(ValueTask{``0},``1,``2,``3,``4,``5,``6,Func{``0,``1,``2,``3,``4,``5,``6,ValueTask{``0}})
+  name.vb: FluentAsync(Of T, T1, T2, T3, T4, T5, T6)(ValueTask(Of T), T1, T2, T3, T4, T5, T6, Func(Of T, T1, T2, T3, T4, T5, T6, ValueTask(Of T)))
+  fullName: wan24.Core.AsyncHelper.FluentAsync<T, T1, T2, T3, T4, T5, T6>(ValueTask<T>, T1, T2, T3, T4, T5, T6, Func<T, T1, T2, T3, T4, T5, T6, ValueTask<T>>)
+  fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5, T6)(ValueTask(Of T), T1, T2, T3, T4, T5, T6, Func(Of T, T1, T2, T3, T4, T5, T6, ValueTask(Of T)))
+  nameWithType: AsyncHelper.FluentAsync<T, T1, T2, T3, T4, T5, T6>(ValueTask<T>, T1, T2, T3, T4, T5, T6, Func<T, T1, T2, T3, T4, T5, T6, ValueTask<T>>)
+  nameWithType.vb: AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5, T6)(ValueTask(Of T), T1, T2, T3, T4, T5, T6, Func(Of T, T1, T2, T3, T4, T5, T6, ValueTask(Of T)))
 - uid: wan24.Core.AsyncHelper.FluentAsync``8(Task{``0},``1,``2,``3,``4,``5,``6,``7,Func{``0,``1,``2,``3,``4,``5,``6,``7,Task{``0}})
   name: FluentAsync<T, T1, T2, T3, T4, T5, T6, T7>(Task<T>, T1, T2, T3, T4, T5, T6, T7, Func<T, T1, T2, T3, T4, T5, T6, T7, Task<T>>)
   href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync__8_Task___0____1___2___3___4___5___6___7_Func___0___1___2___3___4___5___6___7_Task___0___
@@ -1016,6 +1115,15 @@ references:
   fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5, T6, T7)(Task(Of T), T1, T2, T3, T4, T5, T6, T7, Func(Of T, T1, T2, T3, T4, T5, T6, T7, Task(Of T)))
   nameWithType: AsyncHelper.FluentAsync<T, T1, T2, T3, T4, T5, T6, T7>(Task<T>, T1, T2, T3, T4, T5, T6, T7, Func<T, T1, T2, T3, T4, T5, T6, T7, Task<T>>)
   nameWithType.vb: AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5, T6, T7)(Task(Of T), T1, T2, T3, T4, T5, T6, T7, Func(Of T, T1, T2, T3, T4, T5, T6, T7, Task(Of T)))
+- uid: wan24.Core.AsyncHelper.FluentAsync``8(ValueTask{``0},``1,``2,``3,``4,``5,``6,``7,Func{``0,``1,``2,``3,``4,``5,``6,``7,ValueTask{``0}})
+  name: FluentAsync<T, T1, T2, T3, T4, T5, T6, T7>(ValueTask<T>, T1, T2, T3, T4, T5, T6, T7, Func<T, T1, T2, T3, T4, T5, T6, T7, ValueTask<T>>)
+  href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync__8_ValueTask___0____1___2___3___4___5___6___7_Func___0___1___2___3___4___5___6___7_ValueTask___0___
+  commentId: M:wan24.Core.AsyncHelper.FluentAsync``8(ValueTask{``0},``1,``2,``3,``4,``5,``6,``7,Func{``0,``1,``2,``3,``4,``5,``6,``7,ValueTask{``0}})
+  name.vb: FluentAsync(Of T, T1, T2, T3, T4, T5, T6, T7)(ValueTask(Of T), T1, T2, T3, T4, T5, T6, T7, Func(Of T, T1, T2, T3, T4, T5, T6, T7, ValueTask(Of T)))
+  fullName: wan24.Core.AsyncHelper.FluentAsync<T, T1, T2, T3, T4, T5, T6, T7>(ValueTask<T>, T1, T2, T3, T4, T5, T6, T7, Func<T, T1, T2, T3, T4, T5, T6, T7, ValueTask<T>>)
+  fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5, T6, T7)(ValueTask(Of T), T1, T2, T3, T4, T5, T6, T7, Func(Of T, T1, T2, T3, T4, T5, T6, T7, ValueTask(Of T)))
+  nameWithType: AsyncHelper.FluentAsync<T, T1, T2, T3, T4, T5, T6, T7>(ValueTask<T>, T1, T2, T3, T4, T5, T6, T7, Func<T, T1, T2, T3, T4, T5, T6, T7, ValueTask<T>>)
+  nameWithType.vb: AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5, T6, T7)(ValueTask(Of T), T1, T2, T3, T4, T5, T6, T7, Func(Of T, T1, T2, T3, T4, T5, T6, T7, ValueTask(Of T)))
 - uid: wan24.Core.AsyncHelper.FluentAsync``9(Task{``0},``1,``2,``3,``4,``5,``6,``7,``8,Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,Task{``0}})
   name: FluentAsync<T, T1, T2, T3, T4, T5, T6, T7, T8>(Task<T>, T1, T2, T3, T4, T5, T6, T7, T8, Func<T, T1, T2, T3, T4, T5, T6, T7, T8, Task<T>>)
   href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync__9_Task___0____1___2___3___4___5___6___7___8_Func___0___1___2___3___4___5___6___7___8_Task___0___
@@ -1025,6 +1133,15 @@ references:
   fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5, T6, T7, T8)(Task(Of T), T1, T2, T3, T4, T5, T6, T7, T8, Func(Of T, T1, T2, T3, T4, T5, T6, T7, T8, Task(Of T)))
   nameWithType: AsyncHelper.FluentAsync<T, T1, T2, T3, T4, T5, T6, T7, T8>(Task<T>, T1, T2, T3, T4, T5, T6, T7, T8, Func<T, T1, T2, T3, T4, T5, T6, T7, T8, Task<T>>)
   nameWithType.vb: AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5, T6, T7, T8)(Task(Of T), T1, T2, T3, T4, T5, T6, T7, T8, Func(Of T, T1, T2, T3, T4, T5, T6, T7, T8, Task(Of T)))
+- uid: wan24.Core.AsyncHelper.FluentAsync``9(ValueTask{``0},``1,``2,``3,``4,``5,``6,``7,``8,Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,ValueTask{``0}})
+  name: FluentAsync<T, T1, T2, T3, T4, T5, T6, T7, T8>(ValueTask<T>, T1, T2, T3, T4, T5, T6, T7, T8, Func<T, T1, T2, T3, T4, T5, T6, T7, T8, ValueTask<T>>)
+  href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_FluentAsync__9_ValueTask___0____1___2___3___4___5___6___7___8_Func___0___1___2___3___4___5___6___7___8_ValueTask___0___
+  commentId: M:wan24.Core.AsyncHelper.FluentAsync``9(ValueTask{``0},``1,``2,``3,``4,``5,``6,``7,``8,Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,ValueTask{``0}})
+  name.vb: FluentAsync(Of T, T1, T2, T3, T4, T5, T6, T7, T8)(ValueTask(Of T), T1, T2, T3, T4, T5, T6, T7, T8, Func(Of T, T1, T2, T3, T4, T5, T6, T7, T8, ValueTask(Of T)))
+  fullName: wan24.Core.AsyncHelper.FluentAsync<T, T1, T2, T3, T4, T5, T6, T7, T8>(ValueTask<T>, T1, T2, T3, T4, T5, T6, T7, T8, Func<T, T1, T2, T3, T4, T5, T6, T7, T8, ValueTask<T>>)
+  fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5, T6, T7, T8)(ValueTask(Of T), T1, T2, T3, T4, T5, T6, T7, T8, Func(Of T, T1, T2, T3, T4, T5, T6, T7, T8, ValueTask(Of T)))
+  nameWithType: AsyncHelper.FluentAsync<T, T1, T2, T3, T4, T5, T6, T7, T8>(ValueTask<T>, T1, T2, T3, T4, T5, T6, T7, T8, Func<T, T1, T2, T3, T4, T5, T6, T7, T8, ValueTask<T>>)
+  nameWithType.vb: AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5, T6, T7, T8)(ValueTask(Of T), T1, T2, T3, T4, T5, T6, T7, T8, Func(Of T, T1, T2, T3, T4, T5, T6, T7, T8, ValueTask(Of T)))
 - uid: wan24.Core.Bitmap
   name: Bitmap
   href: api/wan24.Core.Bitmap.html
@@ -23931,3 +24048,134 @@ references:
   isSpec: "True"
   fullName: wan24.Core.TypeHelper.ScanAssemblies
   nameWithType: TypeHelper.ScanAssemblies
+- uid: wan24.Core.ValueObjectBase`1
+  name: ValueObjectBase<T>
+  href: api/wan24.Core.ValueObjectBase-1.html
+  commentId: T:wan24.Core.ValueObjectBase`1
+  name.vb: ValueObjectBase(Of T)
+  fullName: wan24.Core.ValueObjectBase<T>
+  fullName.vb: wan24.Core.ValueObjectBase(Of T)
+  nameWithType: ValueObjectBase<T>
+  nameWithType.vb: ValueObjectBase(Of T)
+- uid: wan24.Core.ValueObjectBase`1.#ctor
+  name: ValueObjectBase()
+  href: api/wan24.Core.ValueObjectBase-1.html#wan24_Core_ValueObjectBase_1__ctor
+  commentId: M:wan24.Core.ValueObjectBase`1.#ctor
+  fullName: wan24.Core.ValueObjectBase<T>.ValueObjectBase()
+  fullName.vb: wan24.Core.ValueObjectBase(Of T).ValueObjectBase()
+  nameWithType: ValueObjectBase<T>.ValueObjectBase()
+  nameWithType.vb: ValueObjectBase(Of T).ValueObjectBase()
+- uid: wan24.Core.ValueObjectBase`1.#ctor*
+  name: ValueObjectBase
+  href: api/wan24.Core.ValueObjectBase-1.html#wan24_Core_ValueObjectBase_1__ctor_
+  commentId: Overload:wan24.Core.ValueObjectBase`1.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.ValueObjectBase<T>.ValueObjectBase
+  fullName.vb: wan24.Core.ValueObjectBase(Of T).ValueObjectBase
+  nameWithType: ValueObjectBase<T>.ValueObjectBase
+  nameWithType.vb: ValueObjectBase(Of T).ValueObjectBase
+- uid: wan24.Core.ValueObjectBase`1.EqualOperator(wan24.Core.ValueObjectBase{`0},wan24.Core.ValueObjectBase{`0})
+  name: EqualOperator(ValueObjectBase<T>, ValueObjectBase<T>)
+  href: api/wan24.Core.ValueObjectBase-1.html#wan24_Core_ValueObjectBase_1_EqualOperator_wan24_Core_ValueObjectBase__0__wan24_Core_ValueObjectBase__0__
+  commentId: M:wan24.Core.ValueObjectBase`1.EqualOperator(wan24.Core.ValueObjectBase{`0},wan24.Core.ValueObjectBase{`0})
+  name.vb: EqualOperator(ValueObjectBase(Of T), ValueObjectBase(Of T))
+  fullName: wan24.Core.ValueObjectBase<T>.EqualOperator(wan24.Core.ValueObjectBase<T>, wan24.Core.ValueObjectBase<T>)
+  fullName.vb: wan24.Core.ValueObjectBase(Of T).EqualOperator(wan24.Core.ValueObjectBase(Of T), wan24.Core.ValueObjectBase(Of T))
+  nameWithType: ValueObjectBase<T>.EqualOperator(ValueObjectBase<T>, ValueObjectBase<T>)
+  nameWithType.vb: ValueObjectBase(Of T).EqualOperator(ValueObjectBase(Of T), ValueObjectBase(Of T))
+- uid: wan24.Core.ValueObjectBase`1.EqualOperator*
+  name: EqualOperator
+  href: api/wan24.Core.ValueObjectBase-1.html#wan24_Core_ValueObjectBase_1_EqualOperator_
+  commentId: Overload:wan24.Core.ValueObjectBase`1.EqualOperator
+  isSpec: "True"
+  fullName: wan24.Core.ValueObjectBase<T>.EqualOperator
+  fullName.vb: wan24.Core.ValueObjectBase(Of T).EqualOperator
+  nameWithType: ValueObjectBase<T>.EqualOperator
+  nameWithType.vb: ValueObjectBase(Of T).EqualOperator
+- uid: wan24.Core.ValueObjectBase`1.Equals(System.Object)
+  name: Equals(Object)
+  href: api/wan24.Core.ValueObjectBase-1.html#wan24_Core_ValueObjectBase_1_Equals_System_Object_
+  commentId: M:wan24.Core.ValueObjectBase`1.Equals(System.Object)
+  fullName: wan24.Core.ValueObjectBase<T>.Equals(System.Object)
+  fullName.vb: wan24.Core.ValueObjectBase(Of T).Equals(System.Object)
+  nameWithType: ValueObjectBase<T>.Equals(Object)
+  nameWithType.vb: ValueObjectBase(Of T).Equals(Object)
+- uid: wan24.Core.ValueObjectBase`1.Equals*
+  name: Equals
+  href: api/wan24.Core.ValueObjectBase-1.html#wan24_Core_ValueObjectBase_1_Equals_
+  commentId: Overload:wan24.Core.ValueObjectBase`1.Equals
+  isSpec: "True"
+  fullName: wan24.Core.ValueObjectBase<T>.Equals
+  fullName.vb: wan24.Core.ValueObjectBase(Of T).Equals
+  nameWithType: ValueObjectBase<T>.Equals
+  nameWithType.vb: ValueObjectBase(Of T).Equals
+- uid: wan24.Core.ValueObjectBase`1.EqualsObjects
+  name: EqualsObjects()
+  href: api/wan24.Core.ValueObjectBase-1.html#wan24_Core_ValueObjectBase_1_EqualsObjects
+  commentId: M:wan24.Core.ValueObjectBase`1.EqualsObjects
+  fullName: wan24.Core.ValueObjectBase<T>.EqualsObjects()
+  fullName.vb: wan24.Core.ValueObjectBase(Of T).EqualsObjects()
+  nameWithType: ValueObjectBase<T>.EqualsObjects()
+  nameWithType.vb: ValueObjectBase(Of T).EqualsObjects()
+- uid: wan24.Core.ValueObjectBase`1.EqualsObjects*
+  name: EqualsObjects
+  href: api/wan24.Core.ValueObjectBase-1.html#wan24_Core_ValueObjectBase_1_EqualsObjects_
+  commentId: Overload:wan24.Core.ValueObjectBase`1.EqualsObjects
+  isSpec: "True"
+  fullName: wan24.Core.ValueObjectBase<T>.EqualsObjects
+  fullName.vb: wan24.Core.ValueObjectBase(Of T).EqualsObjects
+  nameWithType: ValueObjectBase<T>.EqualsObjects
+  nameWithType.vb: ValueObjectBase(Of T).EqualsObjects
+- uid: wan24.Core.ValueObjectBase`1.GetHashCode
+  name: GetHashCode()
+  href: api/wan24.Core.ValueObjectBase-1.html#wan24_Core_ValueObjectBase_1_GetHashCode
+  commentId: M:wan24.Core.ValueObjectBase`1.GetHashCode
+  fullName: wan24.Core.ValueObjectBase<T>.GetHashCode()
+  fullName.vb: wan24.Core.ValueObjectBase(Of T).GetHashCode()
+  nameWithType: ValueObjectBase<T>.GetHashCode()
+  nameWithType.vb: ValueObjectBase(Of T).GetHashCode()
+- uid: wan24.Core.ValueObjectBase`1.GetHashCode*
+  name: GetHashCode
+  href: api/wan24.Core.ValueObjectBase-1.html#wan24_Core_ValueObjectBase_1_GetHashCode_
+  commentId: Overload:wan24.Core.ValueObjectBase`1.GetHashCode
+  isSpec: "True"
+  fullName: wan24.Core.ValueObjectBase<T>.GetHashCode
+  fullName.vb: wan24.Core.ValueObjectBase(Of T).GetHashCode
+  nameWithType: ValueObjectBase<T>.GetHashCode
+  nameWithType.vb: ValueObjectBase(Of T).GetHashCode
+- uid: wan24.Core.ValueObjectBase`1.op_Equality(wan24.Core.ValueObjectBase{`0},wan24.Core.ValueObjectBase{`0})
+  name: Equality(ValueObjectBase<T>, ValueObjectBase<T>)
+  href: api/wan24.Core.ValueObjectBase-1.html#wan24_Core_ValueObjectBase_1_op_Equality_wan24_Core_ValueObjectBase__0__wan24_Core_ValueObjectBase__0__
+  commentId: M:wan24.Core.ValueObjectBase`1.op_Equality(wan24.Core.ValueObjectBase{`0},wan24.Core.ValueObjectBase{`0})
+  name.vb: Equality(ValueObjectBase(Of T), ValueObjectBase(Of T))
+  fullName: wan24.Core.ValueObjectBase<T>.Equality(wan24.Core.ValueObjectBase<T>, wan24.Core.ValueObjectBase<T>)
+  fullName.vb: wan24.Core.ValueObjectBase(Of T).Equality(wan24.Core.ValueObjectBase(Of T), wan24.Core.ValueObjectBase(Of T))
+  nameWithType: ValueObjectBase<T>.Equality(ValueObjectBase<T>, ValueObjectBase<T>)
+  nameWithType.vb: ValueObjectBase(Of T).Equality(ValueObjectBase(Of T), ValueObjectBase(Of T))
+- uid: wan24.Core.ValueObjectBase`1.op_Equality*
+  name: Equality
+  href: api/wan24.Core.ValueObjectBase-1.html#wan24_Core_ValueObjectBase_1_op_Equality_
+  commentId: Overload:wan24.Core.ValueObjectBase`1.op_Equality
+  isSpec: "True"
+  fullName: wan24.Core.ValueObjectBase<T>.Equality
+  fullName.vb: wan24.Core.ValueObjectBase(Of T).Equality
+  nameWithType: ValueObjectBase<T>.Equality
+  nameWithType.vb: ValueObjectBase(Of T).Equality
+- uid: wan24.Core.ValueObjectBase`1.op_Inequality(wan24.Core.ValueObjectBase{`0},wan24.Core.ValueObjectBase{`0})
+  name: Inequality(ValueObjectBase<T>, ValueObjectBase<T>)
+  href: api/wan24.Core.ValueObjectBase-1.html#wan24_Core_ValueObjectBase_1_op_Inequality_wan24_Core_ValueObjectBase__0__wan24_Core_ValueObjectBase__0__
+  commentId: M:wan24.Core.ValueObjectBase`1.op_Inequality(wan24.Core.ValueObjectBase{`0},wan24.Core.ValueObjectBase{`0})
+  name.vb: Inequality(ValueObjectBase(Of T), ValueObjectBase(Of T))
+  fullName: wan24.Core.ValueObjectBase<T>.Inequality(wan24.Core.ValueObjectBase<T>, wan24.Core.ValueObjectBase<T>)
+  fullName.vb: wan24.Core.ValueObjectBase(Of T).Inequality(wan24.Core.ValueObjectBase(Of T), wan24.Core.ValueObjectBase(Of T))
+  nameWithType: ValueObjectBase<T>.Inequality(ValueObjectBase<T>, ValueObjectBase<T>)
+  nameWithType.vb: ValueObjectBase(Of T).Inequality(ValueObjectBase(Of T), ValueObjectBase(Of T))
+- uid: wan24.Core.ValueObjectBase`1.op_Inequality*
+  name: Inequality
+  href: api/wan24.Core.ValueObjectBase-1.html#wan24_Core_ValueObjectBase_1_op_Inequality_
+  commentId: Overload:wan24.Core.ValueObjectBase`1.op_Inequality
+  isSpec: "True"
+  fullName: wan24.Core.ValueObjectBase<T>.Inequality
+  fullName.vb: wan24.Core.ValueObjectBase(Of T).Inequality
+  nameWithType: ValueObjectBase<T>.Inequality
+  nameWithType.vb: ValueObjectBase(Of T).Inequality

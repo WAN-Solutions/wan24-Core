@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class ChangeCallback
+    <title>Class ValueObjectBase&lt;T&gt;
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class ChangeCallback
+    <meta name="title" content="Class ValueObjectBase&lt;T&gt;
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,227 +68,76 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.ChangeCallback">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.ValueObjectBase`1">
   
   
-  <h1 id="wan24_Core_ChangeCallback" data-uid="wan24.Core.ChangeCallback" class="text-break">Class ChangeCallback
+  <h1 id="wan24_Core_ValueObjectBase_1" data-uid="wan24.Core.ValueObjectBase`1" class="text-break">Class ValueObjectBase&lt;T&gt;
   </h1>
-  <div class="markdown level0 summary"><p>Change callback</p>
+  <div class="markdown level0 summary"><p>A base class for a value object</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><a class="xref" href="wan24.Core.DisposableBase.html">DisposableBase</a></div>
-    <div class="level2"><span class="xref">ChangeCallback</span></div>
-  </div>
-  <div class="implements">
-    <h5>Implements</h5>
-    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
-    <div><span class="xref">IDisposable</span></div>
-    <div><span class="xref">IAsyncDisposable</span></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeSyncObject">DisposableBase.DisposeSyncObject</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AsyncDisposing">DisposableBase.AsyncDisposing</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposing">DisposableBase.IsDisposing</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposed">DisposableBase.IsDisposed</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_EnsureUndisposed_System_Boolean_System_Boolean_">DisposableBase.EnsureUndisposed(Boolean, Boolean)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed__1___0_System_Boolean_">DisposableBase.IfUndisposed&lt;T&gt;(T, Boolean)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed_Action_System_Boolean_">DisposableBase.IfUndisposed(Action, Boolean)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed__1_Func___0__System_Boolean_">DisposableBase.IfUndisposed&lt;T&gt;(Func&lt;T&gt;, Boolean)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposedNullable__1_Func___0__System_Boolean_">DisposableBase.IfUndisposedNullable&lt;T&gt;(Func&lt;T&gt;, Boolean)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeCore">DisposableBase.DisposeCore()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributes">DisposableBase.DisposeAttributes()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributesAsync">DisposableBase.DisposeAttributesAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose">DisposableBase.Dispose()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAsync">DisposableBase.DisposeAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposing">DisposableBase.OnDisposing</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposed">DisposableBase.OnDisposed</a>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ToString()</span>
-    </div>
+    <div class="level1"><span class="xref">ValueObjectBase&lt;T&gt;</span></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_ChangeCallback_syntax">Syntax</h5>
+  <h5 id="wan24_Core_ValueObjectBase_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ChangeCallback : DisposableBase, IDisposableObject</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class ValueObjectBase&lt;T&gt; : IEquatable&lt;T&gt; where T : ValueObjectBase&lt;T&gt;</code></pre>
   </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Final type (should be immutable using private property setters (for serialization purposes))</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ChangeCallback__ctor_Action_System_Object__System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeCallback.%23ctor(Action%7BSystem.Object%7D%2CSystem.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ValueObjectBase_1__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.ValueObjectBase%601.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ChangeCallback.cs/#L13">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ValueObjectBase.cs/#L20">View Source</a>
   </span>
-  <a id="wan24_Core_ChangeCallback__ctor_" data-uid="wan24.Core.ChangeCallback.#ctor*"></a>
-  <h4 id="wan24_Core_ChangeCallback__ctor_Action_System_Object__System_Object_" data-uid="wan24.Core.ChangeCallback.#ctor(Action{System.Object},System.Object)">ChangeCallback(Action&lt;Object&gt;, Object)</h4>
+  <a id="wan24_Core_ValueObjectBase_1__ctor_" data-uid="wan24.Core.ValueObjectBase`1.#ctor*"></a>
+  <h4 id="wan24_Core_ValueObjectBase_1__ctor" data-uid="wan24.Core.ValueObjectBase`1.#ctor">ValueObjectBase()</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ChangeCallback(Action&lt;object&gt; callback, object state)</code></pre>
+    <pre><code class="lang-csharp hljs">protected ValueObjectBase()</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Action</span>&lt;<span class="xref">System.Object</span>&gt;</td>
-        <td><span class="parametername">callback</span></td>
-        <td><p>Callback</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Object</span></td>
-        <td><span class="parametername">state</span></td>
-        <td><p>State</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="properties">Properties
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ChangeCallback_Callback.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeCallback.Callback%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ChangeCallback.cs/#L22">View Source</a>
-  </span>
-  <a id="wan24_Core_ChangeCallback_Callback_" data-uid="wan24.Core.ChangeCallback.Callback*"></a>
-  <h4 id="wan24_Core_ChangeCallback_Callback" data-uid="wan24.Core.ChangeCallback.Callback">Callback</h4>
-  <div class="markdown level1 summary"><p>Callback</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Action&lt;object&gt; Callback { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Action</span>&lt;<span class="xref">System.Object</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ChangeCallback_State.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeCallback.State%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ChangeCallback.cs/#L27">View Source</a>
-  </span>
-  <a id="wan24_Core_ChangeCallback_State_" data-uid="wan24.Core.ChangeCallback.State*"></a>
-  <h4 id="wan24_Core_ChangeCallback_State" data-uid="wan24.Core.ChangeCallback.State">State</h4>
-  <div class="markdown level1 summary"><p>State</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public object State { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Object</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ChangeCallback_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeCallback.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ValueObjectBase_1_EqualOperator_wan24_Core_ValueObjectBase__0__wan24_Core_ValueObjectBase__0__.md&amp;value=---%0Auid%3A%20wan24.Core.ValueObjectBase%601.EqualOperator(wan24.Core.ValueObjectBase%7B%600%7D%2Cwan24.Core.ValueObjectBase%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ChangeCallback.cs/#L35">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ValueObjectBase.cs/#L47">View Source</a>
   </span>
-  <a id="wan24_Core_ChangeCallback_Dispose_" data-uid="wan24.Core.ChangeCallback.Dispose*"></a>
-  <h4 id="wan24_Core_ChangeCallback_Dispose_System_Boolean_" data-uid="wan24.Core.ChangeCallback.Dispose(System.Boolean)">Dispose(Boolean)</h4>
-  <div class="markdown level1 summary"><p>Dispose</p>
+  <a id="wan24_Core_ValueObjectBase_1_EqualOperator_" data-uid="wan24.Core.ValueObjectBase`1.EqualOperator*"></a>
+  <h4 id="wan24_Core_ValueObjectBase_1_EqualOperator_wan24_Core_ValueObjectBase__0__wan24_Core_ValueObjectBase__0__" data-uid="wan24.Core.ValueObjectBase`1.EqualOperator(wan24.Core.ValueObjectBase{`0},wan24.Core.ValueObjectBase{`0})">EqualOperator(ValueObjectBase&lt;T&gt;, ValueObjectBase&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Equal operator</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void Dispose(bool disposing)</code></pre>
+    <pre><code class="lang-csharp hljs">protected static bool EqualOperator(ValueObjectBase&lt;T&gt; left, ValueObjectBase&lt;T&gt; right)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -296,46 +145,263 @@
       <tr>
         <th>Type</th>
         <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ValueObjectBase-1.html">ValueObjectBase</a>&lt;T&gt;</td>
+        <td><span class="parametername">left</span></td>
+        <td><p>Left</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ValueObjectBase-1.html">ValueObjectBase</a>&lt;T&gt;</td>
+        <td><span class="parametername">right</span></td>
+        <td><p>Right</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><span class="parametername">disposing</span></td>
-        <td><p>Disposing? (may be <span class="xref">false</span>, if called from the destructor)</p>
+        <td><p>If equal</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose_System_Boolean_">DisposableBase.Dispose(Boolean)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ChangeCallback_Invoke.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeCallback.Invoke%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ValueObjectBase_1_Equals_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ValueObjectBase%601.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ChangeCallback.cs/#L32">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ValueObjectBase.cs/#L26">View Source</a>
   </span>
-  <a id="wan24_Core_ChangeCallback_Invoke_" data-uid="wan24.Core.ChangeCallback.Invoke*"></a>
-  <h4 id="wan24_Core_ChangeCallback_Invoke" data-uid="wan24.Core.ChangeCallback.Invoke">Invoke()</h4>
-  <div class="markdown level1 summary"><p>Invoke the callback</p>
+  <a id="wan24_Core_ValueObjectBase_1_Equals_" data-uid="wan24.Core.ValueObjectBase`1.Equals*"></a>
+  <h4 id="wan24_Core_ValueObjectBase_1_Equals_System_Object_" data-uid="wan24.Core.ValueObjectBase`1.Equals(System.Object)">Equals(Object)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ValueObjectBase_1_EqualsObjects.md&amp;value=---%0Auid%3A%20wan24.Core.ValueObjectBase%601.EqualsObjects%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ValueObjectBase.cs/#L39">View Source</a>
+  </span>
+  <a id="wan24_Core_ValueObjectBase_1_EqualsObjects_" data-uid="wan24.Core.ValueObjectBase`1.EqualsObjects*"></a>
+  <h4 id="wan24_Core_ValueObjectBase_1_EqualsObjects" data-uid="wan24.Core.ValueObjectBase`1.EqualsObjects">EqualsObjects()</h4>
+  <div class="markdown level1 summary"><p>Get the objects for comparing instance values</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual void Invoke()</code></pre>
+    <pre><code class="lang-csharp hljs">protected abstract IEnumerable&lt;object&gt; EqualsObjects()</code></pre>
   </div>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<span class="xref">System.Object</span>&gt;</td>
+        <td><p>Objects</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ValueObjectBase_1_GetHashCode.md&amp;value=---%0Auid%3A%20wan24.Core.ValueObjectBase%601.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ValueObjectBase.cs/#L29">View Source</a>
+  </span>
+  <a id="wan24_Core_ValueObjectBase_1_GetHashCode_" data-uid="wan24.Core.ValueObjectBase`1.GetHashCode*"></a>
+  <h4 id="wan24_Core_ValueObjectBase_1_GetHashCode" data-uid="wan24.Core.ValueObjectBase`1.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed override int GetHashCode()</code></pre>
   </div>
-  <div>
-      <span class="xref">IDisposable</span>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="operators">Operators
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ValueObjectBase_1_op_Equality_wan24_Core_ValueObjectBase__0__wan24_Core_ValueObjectBase__0__.md&amp;value=---%0Auid%3A%20wan24.Core.ValueObjectBase%601.op_Equality(wan24.Core.ValueObjectBase%7B%600%7D%2Cwan24.Core.ValueObjectBase%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ValueObjectBase.cs/#L56">View Source</a>
+  </span>
+  <a id="wan24_Core_ValueObjectBase_1_op_Equality_" data-uid="wan24.Core.ValueObjectBase`1.op_Equality*"></a>
+  <h4 id="wan24_Core_ValueObjectBase_1_op_Equality_wan24_Core_ValueObjectBase__0__wan24_Core_ValueObjectBase__0__" data-uid="wan24.Core.ValueObjectBase`1.op_Equality(wan24.Core.ValueObjectBase{`0},wan24.Core.ValueObjectBase{`0})">Equality(ValueObjectBase&lt;T&gt;, ValueObjectBase&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Equals</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(ValueObjectBase&lt;T&gt; left, ValueObjectBase&lt;T&gt; right)</code></pre>
   </div>
-  <div>
-      <span class="xref">IAsyncDisposable</span>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ValueObjectBase-1.html">ValueObjectBase</a>&lt;T&gt;</td>
+        <td><span class="parametername">left</span></td>
+        <td><p>Left</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ValueObjectBase-1.html">ValueObjectBase</a>&lt;T&gt;</td>
+        <td><span class="parametername">right</span></td>
+        <td><p>Right</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>If equal</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ValueObjectBase_1_op_Inequality_wan24_Core_ValueObjectBase__0__wan24_Core_ValueObjectBase__0__.md&amp;value=---%0Auid%3A%20wan24.Core.ValueObjectBase%601.op_Inequality(wan24.Core.ValueObjectBase%7B%600%7D%2Cwan24.Core.ValueObjectBase%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ValueObjectBase.cs/#L64">View Source</a>
+  </span>
+  <a id="wan24_Core_ValueObjectBase_1_op_Inequality_" data-uid="wan24.Core.ValueObjectBase`1.op_Inequality*"></a>
+  <h4 id="wan24_Core_ValueObjectBase_1_op_Inequality_wan24_Core_ValueObjectBase__0__wan24_Core_ValueObjectBase__0__" data-uid="wan24.Core.ValueObjectBase`1.op_Inequality(wan24.Core.ValueObjectBase{`0},wan24.Core.ValueObjectBase{`0})">Inequality(ValueObjectBase&lt;T&gt;, ValueObjectBase&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Not equals</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(ValueObjectBase&lt;T&gt; left, ValueObjectBase&lt;T&gt; right)</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ValueObjectBase-1.html">ValueObjectBase</a>&lt;T&gt;</td>
+        <td><span class="parametername">left</span></td>
+        <td><p>Left</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ValueObjectBase-1.html">ValueObjectBase</a>&lt;T&gt;</td>
+        <td><span class="parametername">right</span></td>
+        <td><p>Right</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>If not equal</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_Int32_System_Int32_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, Int32, Int32, String)</a>
@@ -429,10 +495,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ChangeCallback.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeCallback%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ValueObjectBase_1.md&amp;value=---%0Auid%3A%20wan24.Core.ValueObjectBase%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ChangeCallback.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ValueObjectBase.cs/#L9" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
