@@ -12,15 +12,17 @@ namespace wan24.Core
         /// <summary>
         /// Hash code
         /// </summary>
-        private int? HashCode = null;
+        internal int? HashCode = null;
 
         /// <summary>
         /// Constructor
         /// </summary>
         protected ValueObjectBase() { }
 
-        /// <inheritdoc/>
-        bool IEquatable<T>.Equals(T? other) => other is not null && GetHashCode() == other.GetHashCode();
+        /// <summary>
+        /// Has the hash code been calculated already?
+        /// </summary>
+        protected bool HasHashCode => HashCode is not null;
 
         /// <inheritdoc/>
         public sealed override bool Equals(object? obj) => obj is T other && GetHashCode() == other.GetHashCode();
@@ -31,6 +33,9 @@ namespace wan24.Core
                              where o is not null
                              select o.GetHashCode())
                 .Aggregate((x, y) => x ^ y);
+
+        /// <inheritdoc/>
+        bool IEquatable<T>.Equals(T? other) => other is not null && GetHashCode() == other.GetHashCode();
 
         /// <summary>
         /// Get the objects for comparing instance values

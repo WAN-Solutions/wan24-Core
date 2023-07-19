@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Collections.ObjectModel;
+using System.Reflection;
 
 namespace wan24.Core
 {
@@ -9,19 +10,36 @@ namespace wan24.Core
     public abstract class AutoValueObjectBase<T> : ValueObjectBase<T> where T : AutoValueObjectBase<T>
     {
         /// <summary>
-        /// Property infos
+        /// Value property infos
         /// </summary>
-        private static readonly PropertyInfoExt[] PropertyInfos = typeof(T).GetPropertiesCached(BindingFlags.Public | BindingFlags.Instance);
+        internal static readonly ReadOnlyCollection<PropertyInfoExt> ValuePropertyInfos =
+            (from pi in typeof(T).GetPropertiesCached(BindingFlags.Public | BindingFlags.Instance)
+             where (pi.Property.GetMethod?.IsPublic ?? false) &&
+                pi.GetCustomAttributeCached<ExcludeValueAttribute>() is null
+             orderby pi.Name
+             select pi)
+            .ToList()
+            .AsReadOnly();
+
+        /// <summary>
+        /// Include property names in the objects hash code calculation?
+        /// </summary>
+        protected readonly bool IncludePropertyNames;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        protected AutoValueObjectBase() : base() { }
+        /// <param name="includePropertyNames">Include property names in the objects hash code calculation?</param>
+        protected AutoValueObjectBase(bool includePropertyNames = true) : base() => IncludePropertyNames = includePropertyNames;
 
         /// <inheritdoc/>
         protected sealed override IEnumerable<object?> EqualsObjects()
-            => from pi in PropertyInfos
-               where pi.Getter is not null
-               select pi.GetValueFast(this);
+        {
+            foreach (PropertyInfoExt pi in ValuePropertyInfos)
+            {
+                if (IncludePropertyNames) yield return pi.Name;
+                yield return pi.GetValueFast(this);
+            }
+        }
     }
 }
