@@ -283,8 +283,11 @@ including extensions for numeric type encoding/decoding)</li>
 <li>Collecting periodical statistical values</li>
 <li>Streams
 <ul>
+<li><code>WrapperStream</code> wraps a base stream and provides <code>LeaveOpen</code></li>
+<li><code>PartialStream</code> wraps a part of a base stream (read-only)</li>
 <li><code>LengthLimitedStream</code> ensures a maximum stream length</li>
 <li><code>MemoryPoolStream</code> uses an <code>ArrayPool&lt;byte&gt;</code> for storing written data</li>
+<li><code>ThrottledStream</code> throttles reading/writing troughput</li>
 </ul>
 </li>
 <li>Named mutex helper

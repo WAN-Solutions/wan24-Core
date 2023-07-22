@@ -3,7 +3,7 @@
     /// <summary>
     /// Limited length stream wrapper
     /// </summary>
-    public class LimitedLengthStream : Stream
+    public class LimitedLengthStream : WrapperStream
     {
         /// <summary>
         /// An object for thread synchronization
@@ -20,42 +20,13 @@
         /// <param name="baseStream">Base stream</param>
         /// <param name="maxLength">Maximum length in bytes</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public LimitedLengthStream(Stream baseStream, long maxLength, bool leaveOpen = false) : base()
-        {
-            BaseStream = baseStream;
-            MaxLength = maxLength;
-            LeaveOpen = leaveOpen;
-        }
-
-        /// <summary>
-        /// Base stream
-        /// </summary>
-        public Stream BaseStream { get; }
+        public LimitedLengthStream(Stream baseStream, long maxLength, bool leaveOpen = false) : base(baseStream, leaveOpen)
+            => MaxLength = maxLength;
 
         /// <summary>
         /// Maximum length in bytes
         /// </summary>
         public long MaxLength { get; set; }
-
-        /// <summary>
-        /// Leave the base stream open when disposing?
-        /// </summary>
-        public bool LeaveOpen { get; set; }
-
-        /// <inheritdoc/>
-        public override bool CanRead => BaseStream.CanRead;
-
-        /// <inheritdoc/>
-        public override bool CanSeek => BaseStream.CanSeek;
-
-        /// <inheritdoc/>
-        public override bool CanWrite => BaseStream.CanWrite;
-
-        /// <inheritdoc/>
-        public override long Length => BaseStream.Length;
-
-        /// <inheritdoc/>
-        public override long Position { get => BaseStream.Position; set => BaseStream.Position = value; }
 
         /// <summary>
         /// Detach the base stream and dispose
@@ -78,32 +49,6 @@
             await DisposeAsync().DynamicContext();
             return BaseStream;
         }
-
-        /// <inheritdoc/>
-        public override void Flush() => BaseStream.Flush();
-
-        /// <inheritdoc/>
-        public override Task FlushAsync(CancellationToken cancellationToken) => BaseStream.FlushAsync(cancellationToken);
-
-        /// <inheritdoc/>
-        public override int Read(byte[] buffer, int offset, int count) => BaseStream.Read(buffer, offset, count);
-
-        /// <inheritdoc/>
-        public override int Read(Span<byte> buffer) => BaseStream.Read(buffer);
-
-        /// <inheritdoc/>
-        public override int ReadByte() => BaseStream.ReadByte();
-
-        /// <inheritdoc/>
-        public override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
-            => BaseStream.ReadAsync(buffer, offset, count, cancellationToken);
-
-        /// <inheritdoc/>
-        public override ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
-            => BaseStream.ReadAsync(buffer, cancellationToken);
-
-        /// <inheritdoc/>
-        public override long Seek(long offset, SeekOrigin origin) => BaseStream.Seek(offset, origin);
 
         /// <inheritdoc/>
         public override void SetLength(long value)
@@ -153,7 +98,6 @@
                 IsDisposed = true;
             }
             base.Close();
-            if (!LeaveOpen) BaseStream.Dispose();
         }
 
         /// <inheritdoc/>
@@ -167,7 +111,6 @@
                 IsDisposed = true;
             }
             await base.DisposeAsync().DynamicContext();
-            if (!LeaveOpen) await BaseStream.DisposeAsync().DynamicContext();
         }
 #pragma warning restore CA1816 // Suppress GC (will be supressed from the parent)
 

@@ -128,6 +128,16 @@ namespace wan24.Core
         /// </summary>
         public bool CleanReturned { get; set; }
 
+        /// <summary>
+        /// Save the data on close?
+        /// </summary>
+        public bool SaveOnClose { get; set; }
+
+        /// <summary>
+        /// Saved data
+        /// </summary>
+        public byte[]? SavedData { get; protected set; }
+
         /// <inheritdoc/>
         public override bool CanRead => true;
 
@@ -367,6 +377,7 @@ namespace wan24.Core
                 if (IsDisposed) return;
                 IsDisposed = true;
             }
+            if (SaveOnClose) SavedData ??= ToArray();
             base.Close();
             foreach (byte[] buffer in Buffers)
             {
@@ -386,6 +397,7 @@ namespace wan24.Core
                 if (IsDisposed) return;
                 IsDisposed = true;
             }
+            if (SaveOnClose) SavedData ??= ToArray();
             await base.DisposeAsync().DynamicContext();
             foreach (byte[] buffer in Buffers)
             {

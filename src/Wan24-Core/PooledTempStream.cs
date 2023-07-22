@@ -3,7 +3,7 @@
     /// <summary>
     /// Pooled temporary stream (hosts written data in memory first, then switches to a temporary file when exceeding the memory limit)
     /// </summary>
-    public sealed class PooledTempStream : Stream
+    public sealed class PooledTempStream : WrapperStream
     {
         /// <summary>
         /// An object for static thread synchronization
@@ -41,7 +41,8 @@
         /// <param name="estimatedLength">Estimated length in bytes</param>
         /// <param name="memoryStreamPool">Memory stream pool to use</param>
         /// <param name="fileStreamPool">File stream pool to use</param>
-        public PooledTempStream(long estimatedLength = 0, StreamPool<PooledMemoryStream>? memoryStreamPool = null, StreamPool<PooledTempFileStream>? fileStreamPool = null) : base()
+        public PooledTempStream(long estimatedLength = 0, StreamPool<PooledMemoryStream>? memoryStreamPool = null, StreamPool<PooledTempFileStream>? fileStreamPool = null)
+            : base(leaveOpen: true)
         {
             UsedMemoryStreamPool = memoryStreamPool ?? MemoryStreamPool;
             UsedFileStreamPool = fileStreamPool ?? FileStreamPool;
@@ -94,11 +95,6 @@
         }
 
         /// <summary>
-        /// Base stream (do not dispose!)
-        /// </summary>
-        public Stream BaseStream { get; private set; }
-
-        /// <summary>
         /// <see cref="PooledMemoryStream"/> (do not dispose!)
         /// </summary>
         public PooledMemoryStream? MemoryStream => BaseStream as PooledMemoryStream;
@@ -114,6 +110,13 @@
         public bool IsInMemory => BaseStream is PooledMemoryStream;
 
         /// <inheritdoc/>
+        public override bool LeaveOpen
+        {
+            get => true;
+            set => throw new NotSupportedException();
+        }
+
+        /// <inheritdoc/>
         public override bool CanRead => true;
 
         /// <inheritdoc/>
@@ -121,35 +124,6 @@
 
         /// <inheritdoc/>
         public override bool CanWrite => true;
-
-        /// <inheritdoc/>
-        public override long Length => BaseStream.Length;
-
-        /// <inheritdoc/>
-        public override long Position { get => BaseStream.Position; set => BaseStream.Position = value; }
-
-        /// <inheritdoc/>
-        public override void Flush() => BaseStream.Flush();
-
-        /// <inheritdoc/>
-        public override Task FlushAsync(CancellationToken cancellationToken) => BaseStream.FlushAsync(cancellationToken);
-
-        /// <inheritdoc/>
-        public override int Read(byte[] buffer, int offset, int count) => BaseStream.Read(buffer, offset, count);
-
-        /// <inheritdoc/>
-        public override int Read(Span<byte> buffer) => BaseStream.Read(buffer);
-
-        /// <inheritdoc/>
-        public override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
-            => BaseStream.ReadAsync(buffer, offset, count, cancellationToken);
-
-        /// <inheritdoc/>
-        public override ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
-            => BaseStream.ReadAsync(buffer, cancellationToken);
-
-        /// <inheritdoc/>
-        public override long Seek(long offset, SeekOrigin origin) => BaseStream.Seek(offset, origin);
 
         /// <inheritdoc/>
         public override void SetLength(long value)

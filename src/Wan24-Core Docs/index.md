@@ -153,8 +153,11 @@ customizable; encoded data integrity can be validated without decoding;
 including extensions for numeric type encoding/decoding)
 - Collecting periodical statistical values
 - Streams
+    - `WrapperStream` wraps a base stream and provides `LeaveOpen`
+    - `PartialStream` wraps a part of a base stream (read-only)
     - `LengthLimitedStream` ensures a maximum stream length
     - `MemoryPoolStream` uses an `ArrayPool<byte>` for storing written data
+    - `ThrottledStream` throttles reading/writing troughput
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context
