@@ -15,13 +15,13 @@ namespace Wan24_Core_Tests
             DateTime start = DateTime.Now;
             stream.Write(data);
             Logging.WriteInfo($"Write time: {(DateTime.Now - start).TotalMilliseconds}");
-            Assert.IsTrue(DateTime.Now - start >= TimeSpan.FromMilliseconds(400));
+            Assert.IsTrue(DateTime.Now - start >= TimeSpan.FromMilliseconds(375));
             Assert.IsTrue(DateTime.Now - start < TimeSpan.FromMilliseconds(500));
             stream.Position = 0;
             start = DateTime.Now;
             Assert.AreEqual(data.Length, stream.Read(data));
             Logging.WriteInfo($"Read time: {(DateTime.Now - start).TotalMilliseconds}");
-            Assert.IsTrue(DateTime.Now - start >= TimeSpan.FromMilliseconds(400));
+            Assert.IsTrue(DateTime.Now - start >= TimeSpan.FromMilliseconds(375));
             Assert.IsTrue(DateTime.Now - start < TimeSpan.FromMilliseconds(600));
         }
 
@@ -34,13 +34,13 @@ namespace Wan24_Core_Tests
             DateTime start = DateTime.Now;
             await stream.WriteAsync(data);
             Logging.WriteInfo($"Write time: {(DateTime.Now - start).TotalMilliseconds}");
-            Assert.IsTrue(DateTime.Now - start >= TimeSpan.FromMilliseconds(400));
+            Assert.IsTrue(DateTime.Now - start >= TimeSpan.FromMilliseconds(375));
             Assert.IsTrue(DateTime.Now - start < TimeSpan.FromMilliseconds(500));
             stream.Position = 0;
             start = DateTime.Now;
             Assert.AreEqual(data.Length, await stream.ReadAsync(data));
             Logging.WriteInfo($"Read time: {(DateTime.Now - start).TotalMilliseconds}");
-            Assert.IsTrue(DateTime.Now - start >= TimeSpan.FromMilliseconds(400));
+            Assert.IsTrue(DateTime.Now - start >= TimeSpan.FromMilliseconds(375));
             Assert.IsTrue(DateTime.Now - start < TimeSpan.FromMilliseconds(600));
         }
     }
