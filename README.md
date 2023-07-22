@@ -163,6 +163,9 @@ including extensions for numeric type encoding/decoding)
     - `GlobalLockAsync` for an asynchronous context
 - Retry helper which supports timeout, delay and cancellation
 - Asynchronous event
+- Stream extensions
+    - Get the number of remaining bytes until the streams end
+    - Copy a part of a stream to another stream
 
 ## How to get it
 
