@@ -1,0 +1,1322 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AsyncEvent&lt;tSender, tArgs&gt;
+   | wan24-Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AsyncEvent&lt;tSender, tArgs&gt;
+   | wan24-Core ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.AsyncEvent`2">
+  
+  
+  <h1 id="wan24_Core_AsyncEvent_2" data-uid="wan24.Core.AsyncEvent`2" class="text-break">Class AsyncEvent&lt;tSender, tArgs&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>Asynchronous event</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">AsyncEvent&lt;tSender, tArgs&gt;</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IAsyncEvent-2.html">IAsyncEvent</a>&lt;tSender, tArgs&gt;</div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_AsyncEvent_2_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class AsyncEvent&lt;tSender, tArgs&gt; : IAsyncEvent&lt;tSender, tArgs&gt; where tSender : class where tArgs : EventArgs, new()</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tSender</span></td>
+        <td><p>Sender type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tArgs</span></td>
+        <td><p>Arguments type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2__ctor__0__System_Nullable_TimeSpan___System_Nullable_CancellationToken___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.%23ctor(%600%40%2CSystem.Nullable%7BTimeSpan%7D%40%2CSystem.Nullable%7BCancellationToken%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L47">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2__ctor_" data-uid="wan24.Core.AsyncEvent`2.#ctor*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2__ctor__0__System_Nullable_TimeSpan___System_Nullable_CancellationToken___" data-uid="wan24.Core.AsyncEvent`2.#ctor(`0@,System.Nullable{TimeSpan}@,System.Nullable{CancellationToken}@)">AsyncEvent(in tSender, in Nullable&lt;TimeSpan&gt;, in Nullable&lt;CancellationToken&gt;)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AsyncEvent(in tSender sender = null, in TimeSpan? timeout = null, in CancellationToken? cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tSender</span></td>
+        <td><span class="parametername">sender</span></td>
+        <td><p>Sender</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Event handler timeout</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">CancellationToken</span>&gt;</td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_FirstRaised.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.FirstRaised%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L57">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_FirstRaised_" data-uid="wan24.Core.AsyncEvent`2.FirstRaised*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_FirstRaised" data-uid="wan24.Core.AsyncEvent`2.FirstRaised">FirstRaised</h4>
+  <div class="markdown level1 summary"><p>First raised</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime FirstRaised { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DateTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_HasHandlers.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.HasHandlers%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L72">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_HasHandlers_" data-uid="wan24.Core.AsyncEvent`2.HasHandlers*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_HasHandlers" data-uid="wan24.Core.AsyncEvent`2.HasHandlers">HasHandlers</h4>
+  <div class="markdown level1 summary"><p>Has event handlers?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasHandlers { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_LastRaised.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.LastRaised%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L62">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_LastRaised_" data-uid="wan24.Core.AsyncEvent`2.LastRaised*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_LastRaised" data-uid="wan24.Core.AsyncEvent`2.LastRaised">LastRaised</h4>
+  <div class="markdown level1 summary"><p>Last raised</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime LastRaised { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DateTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_RaiseCount.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.RaiseCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L67">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_RaiseCount_" data-uid="wan24.Core.AsyncEvent`2.RaiseCount*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_RaiseCount" data-uid="wan24.Core.AsyncEvent`2.RaiseCount">RaiseCount</h4>
+  <div class="markdown level1 summary"><p>Number of times the event was raised</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int RaiseCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_Detach_wan24_Core_IAsyncEvent__0__1__EventHandler_Delegate_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.Detach(wan24.Core.IAsyncEvent%7B%600%2C%601%7D.EventHandler_Delegate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L114">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_Detach_" data-uid="wan24.Core.AsyncEvent`2.Detach*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_Detach_wan24_Core_IAsyncEvent__0__1__EventHandler_Delegate_" data-uid="wan24.Core.AsyncEvent`2.Detach(wan24.Core.IAsyncEvent{`0,`1}.EventHandler_Delegate)">Detach(IAsyncEvent&lt;tSender, tArgs&gt;.EventHandler_Delegate)</h4>
+  <div class="markdown level1 summary"><p>Detach an event handler</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Detach(IAsyncEvent&lt;tSender, tArgs&gt;.EventHandler_Delegate handler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IAsyncEvent-2.EventHandler_Delegate.html">IAsyncEvent.EventHandler_Delegate</a>&lt;&gt;</td>
+        <td><span class="parametername">handler</span></td>
+        <td><p>Handler</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Detached?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_Detach_wan24_Core_IAsyncEvent__0__1__EventHandlerAsync_Delegate_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.Detach(wan24.Core.IAsyncEvent%7B%600%2C%601%7D.EventHandlerAsync_Delegate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L124">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_Detach_" data-uid="wan24.Core.AsyncEvent`2.Detach*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_Detach_wan24_Core_IAsyncEvent__0__1__EventHandlerAsync_Delegate_" data-uid="wan24.Core.AsyncEvent`2.Detach(wan24.Core.IAsyncEvent{`0,`1}.EventHandlerAsync_Delegate)">Detach(IAsyncEvent&lt;tSender, tArgs&gt;.EventHandlerAsync_Delegate)</h4>
+  <div class="markdown level1 summary"><p>Detach an event handler</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Detach(IAsyncEvent&lt;tSender, tArgs&gt;.EventHandlerAsync_Delegate handler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IAsyncEvent-2.EventHandlerAsync_Delegate.html">IAsyncEvent.EventHandlerAsync_Delegate</a>&lt;&gt;</td>
+        <td><span class="parametername">handler</span></td>
+        <td><p>Handler</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Detached?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_Listen_wan24_Core_IAsyncEvent__0__1__EventHandler_Delegate_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.Listen(wan24.Core.IAsyncEvent%7B%600%2C%601%7D.EventHandler_Delegate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L94">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_Listen_" data-uid="wan24.Core.AsyncEvent`2.Listen*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_Listen_wan24_Core_IAsyncEvent__0__1__EventHandler_Delegate_" data-uid="wan24.Core.AsyncEvent`2.Listen(wan24.Core.IAsyncEvent{`0,`1}.EventHandler_Delegate)">Listen(IAsyncEvent&lt;tSender, tArgs&gt;.EventHandler_Delegate)</h4>
+  <div class="markdown level1 summary"><p>Add an event handler</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Listen(IAsyncEvent&lt;tSender, tArgs&gt;.EventHandler_Delegate handler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IAsyncEvent-2.EventHandler_Delegate.html">IAsyncEvent.EventHandler_Delegate</a>&lt;&gt;</td>
+        <td><span class="parametername">handler</span></td>
+        <td><p>Handler</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Added?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_Listen_wan24_Core_IAsyncEvent__0__1__EventHandlerAsync_Delegate_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.Listen(wan24.Core.IAsyncEvent%7B%600%2C%601%7D.EventHandlerAsync_Delegate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L104">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_Listen_" data-uid="wan24.Core.AsyncEvent`2.Listen*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_Listen_wan24_Core_IAsyncEvent__0__1__EventHandlerAsync_Delegate_" data-uid="wan24.Core.AsyncEvent`2.Listen(wan24.Core.IAsyncEvent{`0,`1}.EventHandlerAsync_Delegate)">Listen(IAsyncEvent&lt;tSender, tArgs&gt;.EventHandlerAsync_Delegate)</h4>
+  <div class="markdown level1 summary"><p>Add an event handler</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Listen(IAsyncEvent&lt;tSender, tArgs&gt;.EventHandlerAsync_Delegate handler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IAsyncEvent-2.EventHandlerAsync_Delegate.html">IAsyncEvent.EventHandlerAsync_Delegate</a>&lt;&gt;</td>
+        <td><span class="parametername">handler</span></td>
+        <td><p>Handler</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Added?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="operators">Operators
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_op_Addition_wan24_Core_AsyncEvent__0__1___wan24_Core_IAsyncEvent__0__1__EventHandler_Delegate__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.op_Addition(wan24.Core.AsyncEvent%7B%600%2C%601%7D%40%2Cwan24.Core.IAsyncEvent%7B%600%2C%601%7D.EventHandler_Delegate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L247">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_op_Addition_" data-uid="wan24.Core.AsyncEvent`2.op_Addition*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_op_Addition_wan24_Core_AsyncEvent__0__1___wan24_Core_IAsyncEvent__0__1__EventHandler_Delegate__" data-uid="wan24.Core.AsyncEvent`2.op_Addition(wan24.Core.AsyncEvent{`0,`1}@,wan24.Core.IAsyncEvent{`0,`1}.EventHandler_Delegate@)">Addition(in AsyncEvent&lt;tSender, tArgs&gt;, in IAsyncEvent&lt;tSender, tArgs&gt;.EventHandler_Delegate)</h4>
+  <div class="markdown level1 summary"><p>Add an event handler</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AsyncEvent&lt;tSender, tArgs&gt; operator +(in AsyncEvent&lt;tSender, tArgs&gt; e, in IAsyncEvent&lt;tSender, tArgs&gt;.EventHandler_Delegate handler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.AsyncEvent-2.html">AsyncEvent</a>&lt;tSender, tArgs&gt;</td>
+        <td><span class="parametername">e</span></td>
+        <td><p>Event</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IAsyncEvent-2.EventHandler_Delegate.html">IAsyncEvent.EventHandler_Delegate</a>&lt;&gt;</td>
+        <td><span class="parametername">handler</span></td>
+        <td><p>Handler</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.AsyncEvent-2.html">AsyncEvent</a>&lt;tSender, tArgs&gt;</td>
+        <td><p>Event</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_op_Addition_wan24_Core_AsyncEvent__0__1___wan24_Core_IAsyncEvent__0__1__EventHandlerAsync_Delegate__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.op_Addition(wan24.Core.AsyncEvent%7B%600%2C%601%7D%40%2Cwan24.Core.IAsyncEvent%7B%600%2C%601%7D.EventHandlerAsync_Delegate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L271">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_op_Addition_" data-uid="wan24.Core.AsyncEvent`2.op_Addition*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_op_Addition_wan24_Core_AsyncEvent__0__1___wan24_Core_IAsyncEvent__0__1__EventHandlerAsync_Delegate__" data-uid="wan24.Core.AsyncEvent`2.op_Addition(wan24.Core.AsyncEvent{`0,`1}@,wan24.Core.IAsyncEvent{`0,`1}.EventHandlerAsync_Delegate@)">Addition(in AsyncEvent&lt;tSender, tArgs&gt;, in IAsyncEvent&lt;tSender, tArgs&gt;.EventHandlerAsync_Delegate)</h4>
+  <div class="markdown level1 summary"><p>Add an event handler</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AsyncEvent&lt;tSender, tArgs&gt; operator +(in AsyncEvent&lt;tSender, tArgs&gt; e, in IAsyncEvent&lt;tSender, tArgs&gt;.EventHandlerAsync_Delegate handler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.AsyncEvent-2.html">AsyncEvent</a>&lt;tSender, tArgs&gt;</td>
+        <td><span class="parametername">e</span></td>
+        <td><p>Event</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IAsyncEvent-2.EventHandlerAsync_Delegate.html">IAsyncEvent.EventHandlerAsync_Delegate</a>&lt;&gt;</td>
+        <td><span class="parametername">handler</span></td>
+        <td><p>Handler</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.AsyncEvent-2.html">AsyncEvent</a>&lt;tSender, tArgs&gt;</td>
+        <td><p>Event</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_op_Implicit_wan24_Core_AsyncEvent__0__1____System_Boolean.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.op_Implicit(wan24.Core.AsyncEvent%7B%600%2C%601%7D%40)~System.Boolean%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L239">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_op_Implicit_" data-uid="wan24.Core.AsyncEvent`2.op_Implicit*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_op_Implicit_wan24_Core_AsyncEvent__0__1____System_Boolean" data-uid="wan24.Core.AsyncEvent`2.op_Implicit(wan24.Core.AsyncEvent{`0,`1}@)~System.Boolean">Implicit(in AsyncEvent&lt;tSender, tArgs&gt; to Boolean)</h4>
+  <div class="markdown level1 summary"><p>Cast as <a class="xref" href="wan24.Core.AsyncEvent-2.html#wan24_Core_AsyncEvent_2_HasHandlers">HasHandlers</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator bool (in AsyncEvent&lt;tSender, tArgs&gt; e)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.AsyncEvent-2.html">AsyncEvent</a>&lt;tSender, tArgs&gt;</td>
+        <td><span class="parametername">e</span></td>
+        <td><p>Event</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_op_Subtraction_wan24_Core_AsyncEvent__0__1___wan24_Core_IAsyncEvent__0__1__EventHandler_Delegate__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.op_Subtraction(wan24.Core.AsyncEvent%7B%600%2C%601%7D%40%2Cwan24.Core.IAsyncEvent%7B%600%2C%601%7D.EventHandler_Delegate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L259">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_op_Subtraction_" data-uid="wan24.Core.AsyncEvent`2.op_Subtraction*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_op_Subtraction_wan24_Core_AsyncEvent__0__1___wan24_Core_IAsyncEvent__0__1__EventHandler_Delegate__" data-uid="wan24.Core.AsyncEvent`2.op_Subtraction(wan24.Core.AsyncEvent{`0,`1}@,wan24.Core.IAsyncEvent{`0,`1}.EventHandler_Delegate@)">Subtraction(in AsyncEvent&lt;tSender, tArgs&gt;, in IAsyncEvent&lt;tSender, tArgs&gt;.EventHandler_Delegate)</h4>
+  <div class="markdown level1 summary"><p>Remove an event handler</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AsyncEvent&lt;tSender, tArgs&gt; operator -(in AsyncEvent&lt;tSender, tArgs&gt; e, in IAsyncEvent&lt;tSender, tArgs&gt;.EventHandler_Delegate handler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.AsyncEvent-2.html">AsyncEvent</a>&lt;tSender, tArgs&gt;</td>
+        <td><span class="parametername">e</span></td>
+        <td><p>Event</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IAsyncEvent-2.EventHandler_Delegate.html">IAsyncEvent.EventHandler_Delegate</a>&lt;&gt;</td>
+        <td><span class="parametername">handler</span></td>
+        <td><p>Handler</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.AsyncEvent-2.html">AsyncEvent</a>&lt;tSender, tArgs&gt;</td>
+        <td><p>Event</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_op_Subtraction_wan24_Core_AsyncEvent__0__1___wan24_Core_IAsyncEvent__0__1__EventHandlerAsync_Delegate__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.op_Subtraction(wan24.Core.AsyncEvent%7B%600%2C%601%7D%40%2Cwan24.Core.IAsyncEvent%7B%600%2C%601%7D.EventHandlerAsync_Delegate%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L283">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_op_Subtraction_" data-uid="wan24.Core.AsyncEvent`2.op_Subtraction*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_op_Subtraction_wan24_Core_AsyncEvent__0__1___wan24_Core_IAsyncEvent__0__1__EventHandlerAsync_Delegate__" data-uid="wan24.Core.AsyncEvent`2.op_Subtraction(wan24.Core.AsyncEvent{`0,`1}@,wan24.Core.IAsyncEvent{`0,`1}.EventHandlerAsync_Delegate@)">Subtraction(in AsyncEvent&lt;tSender, tArgs&gt;, in IAsyncEvent&lt;tSender, tArgs&gt;.EventHandlerAsync_Delegate)</h4>
+  <div class="markdown level1 summary"><p>Remove an event handler</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AsyncEvent&lt;tSender, tArgs&gt; operator -(in AsyncEvent&lt;tSender, tArgs&gt; e, in IAsyncEvent&lt;tSender, tArgs&gt;.EventHandlerAsync_Delegate handler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.AsyncEvent-2.html">AsyncEvent</a>&lt;tSender, tArgs&gt;</td>
+        <td><span class="parametername">e</span></td>
+        <td><p>Event</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IAsyncEvent-2.EventHandlerAsync_Delegate.html">IAsyncEvent.EventHandlerAsync_Delegate</a>&lt;&gt;</td>
+        <td><span class="parametername">handler</span></td>
+        <td><p>Handler</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.AsyncEvent-2.html">AsyncEvent</a>&lt;tSender, tArgs&gt;</td>
+        <td><p>Event</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__AsyncEventHandlers.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.wan24%23Core%23IAsyncEvent%7BtSender%2CtArgs%7D%23AsyncEventHandlers%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L87">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__AsyncEventHandlers_" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#AsyncEventHandlers*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__AsyncEventHandlers" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#AsyncEventHandlers">IAsyncEvent&lt;tSender, tArgs&gt;.AsyncEventHandlers</h4>
+  <div class="markdown level1 summary"><p>Event handlers</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">HashSet&lt;IAsyncEvent&lt;tSender, tArgs&gt;.EventHandlerAsync_Delegate&gt; IAsyncEvent&lt;tSender, tArgs&gt;.AsyncEventHandlers { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">HashSet</span>&lt;<a class="xref" href="wan24.Core.IAsyncEvent-2.EventHandlerAsync_Delegate.html">IAsyncEvent.EventHandlerAsync_Delegate</a>&lt;&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__Cancellation.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.wan24%23Core%23IAsyncEvent%7BtSender%2CtArgs%7D%23Cancellation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L81">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__Cancellation_" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#Cancellation*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__Cancellation" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#Cancellation">IAsyncEvent&lt;tSender, tArgs&gt;.Cancellation</h4>
+  <div class="markdown level1 summary"><p>Cancellation</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">CancellationToken? IAsyncEvent&lt;tSender, tArgs&gt;.Cancellation { get; set; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">CancellationToken</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__EventHandlers.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.wan24%23Core%23IAsyncEvent%7BtSender%2CtArgs%7D%23EventHandlers%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L84">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__EventHandlers_" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#EventHandlers*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__EventHandlers" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#EventHandlers">IAsyncEvent&lt;tSender, tArgs&gt;.EventHandlers</h4>
+  <div class="markdown level1 summary"><p>Event handlers</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">HashSet&lt;IAsyncEvent&lt;tSender, tArgs&gt;.EventHandler_Delegate&gt; IAsyncEvent&lt;tSender, tArgs&gt;.EventHandlers { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">HashSet</span>&lt;<a class="xref" href="wan24.Core.IAsyncEvent-2.EventHandler_Delegate.html">IAsyncEvent.EventHandler_Delegate</a>&lt;&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__RaiseEventAsync__0__1_System_Nullable_TimeSpan__CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.wan24%23Core%23IAsyncEvent%7BtSender%2CtArgs%7D%23RaiseEventAsync(%600%2C%601%2CSystem.Nullable%7BTimeSpan%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L232">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__RaiseEventAsync_" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#RaiseEventAsync*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__RaiseEventAsync__0__1_System_Nullable_TimeSpan__CancellationToken_" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#RaiseEventAsync(`0,`1,System.Nullable{TimeSpan},CancellationToken)">IAsyncEvent&lt;tSender, tArgs&gt;.RaiseEventAsync(tSender, tArgs, Nullable&lt;TimeSpan&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Raise the event</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task IAsyncEvent&lt;tSender, tArgs&gt;.RaiseEventAsync(tSender sender, tArgs args, TimeSpan? timeout, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tSender</span></td>
+        <td><span class="parametername">sender</span></td>
+        <td><p>Sender</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">tArgs</span></td>
+        <td><span class="parametername">args</span></td>
+        <td><p>Arguments</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__RaiseEventAsync__0_System_Nullable_TimeSpan__CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.wan24%23Core%23IAsyncEvent%7BtSender%2CtArgs%7D%23RaiseEventAsync(%600%2CSystem.Nullable%7BTimeSpan%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L224">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__RaiseEventAsync_" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#RaiseEventAsync*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__RaiseEventAsync__0_System_Nullable_TimeSpan__CancellationToken_" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#RaiseEventAsync(`0,System.Nullable{TimeSpan},CancellationToken)">IAsyncEvent&lt;tSender, tArgs&gt;.RaiseEventAsync(tSender, Nullable&lt;TimeSpan&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Raise the event</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task IAsyncEvent&lt;tSender, tArgs&gt;.RaiseEventAsync(tSender sender, TimeSpan? timeout, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tSender</span></td>
+        <td><span class="parametername">sender</span></td>
+        <td><p>Sender</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__RaiseEventAsync__1_System_Nullable_TimeSpan__CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.wan24%23Core%23IAsyncEvent%7BtSender%2CtArgs%7D%23RaiseEventAsync(%601%2CSystem.Nullable%7BTimeSpan%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L228">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__RaiseEventAsync_" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#RaiseEventAsync*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__RaiseEventAsync__1_System_Nullable_TimeSpan__CancellationToken_" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#RaiseEventAsync(`1,System.Nullable{TimeSpan},CancellationToken)">IAsyncEvent&lt;tSender, tArgs&gt;.RaiseEventAsync(tArgs, Nullable&lt;TimeSpan&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Raise the event</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task IAsyncEvent&lt;tSender, tArgs&gt;.RaiseEventAsync(tArgs args, TimeSpan? timeout, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tArgs</span></td>
+        <td><span class="parametername">args</span></td>
+        <td><p>Arguments</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__RaiseEventAsync_System_Nullable_TimeSpan__CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.wan24%23Core%23IAsyncEvent%7BtSender%2CtArgs%7D%23RaiseEventAsync(System.Nullable%7BTimeSpan%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L220">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__RaiseEventAsync_" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#RaiseEventAsync*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__RaiseEventAsync_System_Nullable_TimeSpan__CancellationToken_" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#RaiseEventAsync(System.Nullable{TimeSpan},CancellationToken)">IAsyncEvent&lt;tSender, tArgs&gt;.RaiseEventAsync(Nullable&lt;TimeSpan&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Raise the event</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task IAsyncEvent&lt;tSender, tArgs&gt;.RaiseEventAsync(TimeSpan? timeout, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__Sender.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.wan24%23Core%23IAsyncEvent%7BtSender%2CtArgs%7D%23Sender%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L75">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__Sender_" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#Sender*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__Sender" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#Sender">IAsyncEvent&lt;tSender, tArgs&gt;.Sender</h4>
+  <div class="markdown level1 summary"><p>Sender</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">tSender IAsyncEvent&lt;tSender, tArgs&gt;.Sender { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tSender</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__Timeout.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602.wan24%23Core%23IAsyncEvent%7BtSender%2CtArgs%7D%23Timeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L78">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__Timeout_" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#Timeout*"></a>
+  <h4 id="wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__Timeout" data-uid="wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#Timeout">IAsyncEvent&lt;tSender, tArgs&gt;.Timeout</h4>
+  <div class="markdown level1 summary"><p>Event handler timeout</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TimeSpan? IAsyncEvent&lt;tSender, tArgs&gt;.Timeout { get; set; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IAsyncEvent-2.html">IAsyncEvent&lt;tSender, tArgs&gt;</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_Int32_System_Int32_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, Int32, Int32, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_Int32_System_Int32_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, Int32, Int32, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int64_System_Int64_System_Int64_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int64, Int64, Int64, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int64_System_Int64_System_Int64_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int64, Int64, Int64, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Double_System_Double_System_Double_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Double, Double, Double, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Double_System_Double_System_Double_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Double, Double, Double, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Boolean_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Boolean_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Boolean, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgumentRange__1___0_System_String_System_Boolean_System_String_">ArgumentValidationExtensions.EnsureValidArgumentRange&lt;T&gt;(T, String, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgumentRange__1___0_System_String_System_Boolean_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgumentRange&lt;T&gt;(T, String, Boolean, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_String_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_String_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, String, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String___1_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tValue&gt;(tObj, String, tValue, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String___1_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tValue&gt;(tObj, String, tValue, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_String_System_Int32_System_Boolean_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, String, Int32, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_String_Func_System_String__System_Int32_System_Boolean_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, String, Func&lt;String&gt;, Int32, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32___1___System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, tItem[], String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32___1___Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, tItem[], Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32_Span___1__System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, Span&lt;tItem&gt;, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32_Span___1__Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, Span&lt;tItem&gt;, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean_">JsonExtensions.ToJson(Object, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_IEnumerable___0__">ObjectExtensions.In&lt;T&gt;(T, IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean_System_String_">ObjectExtensions.EnsureValidState&lt;T&gt;(T, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText__1___0_">ObjectExtensions.GetDisplayText&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_Func___0___1__">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, Func&lt;tObject, tReturn&gt;)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_AsyncEvent_2.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEvent%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/AsyncEvent.cs/#L8" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            (c) 2023 Andreas Zimmermann, wan24.de
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

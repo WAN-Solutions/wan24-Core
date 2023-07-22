@@ -21,7 +21,7 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        protected DisposableBase() : this(asyncDisposing: false) { }
+        protected DisposableBase() : this(asyncDisposing: true) { }
 
         /// <summary>
         /// Constructor
@@ -125,10 +125,10 @@ namespace wan24.Core
         /// <summary>
         /// Dispose
         /// </summary>
-        protected virtual async Task DisposeCore()
+        protected virtual Task DisposeCore()
         {
-            await Task.Yield();
             Dispose(disposing: true);
+            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -367,7 +367,7 @@ namespace wan24.Core
                 return;
             }
             if (!await DoDisposeAsync().DynamicContext()) return;
-            await DisposeCore().ConfigureAwait(continueOnCapturedContext: false);
+            await DisposeCore().DynamicContext();
             DisposeSyncObject.Dispose();
             IsDisposed = true;
             GC.SuppressFinalize(this);

@@ -293,6 +293,8 @@ including extensions for numeric type encoding/decoding)</li>
 <li><code>GlobalLockAsync</code> for an asynchronous context</li>
 </ul>
 </li>
+<li>Retry helper which supports timeout, delay and cancellation</li>
+<li>Asynchronous event</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
@@ -1119,6 +1121,72 @@ an isolated parsing. You can modify the inner content group index by setting
 <code>StringExtensions.RxParserGroup</code> or giving <code>rxGroup</code> to the <code>Parse</code> methods.</p>
 <p><strong>CAUTION</strong>: Be careful with customized parser functions: A mistake could let
 a manipulated string harm your computer!</p>
+<h2 id="retry-helper">Retry helper</h2>
+<pre><code class="lang-cs">RetryInfo&lt;object&gt; result = await RetryHelper.TryActionAsync(
+    async (currentTry, cancellation) =&gt; 
+    {
+        // Perform any critical action which may throw or timeout and return a value (or not)
+    },
+    maxNumberOfTries: 3,
+    timeout: TimeSpan.FromSeconds(30),
+    delay: TimeSpan.FromSeconds(3)
+    );
+
+// This will throw an exception, if failed, or return the action delegate return value, if succeed
+object returnValue = result.ThrowIfFailed();
+</code></pre>
+<p><code>TryAction*</code> will try to execute an action for a maximum of N times, optional
+having a total timeout, and optional performing a delay after a failed try.
+The given action delegate may also return a value, which you can then find in
+the <code>RetryInfo&lt;T&gt;.Result</code> property, if <code>Succeed</code> is <code>true</code>.</p>
+<p>The <code>RetryInfo&lt;T&gt;</code> object contains some runtime informations:</p>
+<ul>
+<li>Start, done time and total runtime</li>
+<li>Number of tries processed (a timeout or cancellation may throw before the
+action is being called)</li>
+<li>Catched exceptions during tries</li>
+<li>If succeed, cancelled or timeout</li>
+<li>The action delegate return value (if any)</li>
+</ul>
+<p><strong>NOTE</strong>: There's also a synchronous <code>TryAction</code> method, which supports
+timeout and cancellation also.</p>
+<h2 id="asynchronous-events">Asynchronous events</h2>
+<pre><code class="lang-cs">// Example type using an asynchronous event
+public class YourType
+{
+    public readonly AsyncEvent&lt;YourType, EventArgs&gt; OnYourEvent;
+
+    public YourType() =&gt; OnYourEvent = new(this);
+
+    public async Task RaiseOnYourEventAsync()
+        =&gt; await ((IAsyncEvent&lt;YourType, EventArgs&gt;)OnYourEvent).RaiseEventAsync();
+}
+
+// An example asynchronous event listener
+async Task eventListener(YourType sender, EventArgs e, CancellationToken ct)
+{
+    ...
+}
+
+// Attach to the event and raise it
+YourType obj = new();
+Assert.IsFalse(obj.OnYourEvent);
+obj.OnYourEvent.Listen(eventListener);
+Assert.IsTrue(obj.OnYourEvent);
+await obj.RaiseOnYourEventAsync();
+
+// Detach the event listener
+obj.OnYourEvent.Detach(eventListener);
+Assert.IsFalse(obj.OnYourEvent);
+</code></pre>
+<p>An <code>AsyncEvent&lt;tSender, tArgs&gt;</code> instance will only export public event
+informations and functions like adding/removing event handlers, and if event
+handlers are present. For raising the event, you need to use the
+<code>RaiseEventAsync</code> methods which are available from the
+<code>IAsyncEvent&lt;tSender, tArgs&gt;</code> interface.</p>
+<p>Timeout, cancellation, synchronous and asynchronous event handlers are
+supported. The <code>AsyncEvent&lt;tSender, tArgs&gt;</code> is designed to be thread-safe,
+while multiple threads are allowed to raise the event in parallel.</p>
 </article>
           </div>
           
