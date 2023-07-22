@@ -29,7 +29,7 @@
         /// <param name="obj">Wrapped object</param>
         /// <param name="disposeAction">Dispose action</param>
         /// <param name="allowDisposingObjectAccess">Allow disposing wrapped object access?</param>
-        public DisposableWrapper(T obj, Dispose_Delegate disposeAction, bool allowDisposingObjectAccess = true) : base()
+        public DisposableWrapper(T obj, Dispose_Delegate disposeAction, bool allowDisposingObjectAccess = true) : base(asyncDisposing: false)
         {
             _Object = obj;
             AllowDisposingObjectAccess = allowDisposingObjectAccess;
@@ -74,7 +74,7 @@
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            if (DisposeAction == null)
+            if (DisposeAction is null)
             {
                 DisposeAsyncAction!().Wait();
             }
@@ -87,7 +87,7 @@
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            if (DisposeAsyncAction == null)
+            if (DisposeAsyncAction is null)
             {
                 DisposeAction!(disposing: true);
             }

@@ -1,0 +1,510 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class RetryHelper
+   | wan24-Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class RetryHelper
+   | wan24-Core ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.RetryHelper">
+  
+  
+  <h1 id="wan24_Core_RetryHelper" data-uid="wan24.Core.RetryHelper" class="text-break">Class RetryHelper
+  </h1>
+  <div class="markdown level0 summary"><p>Retry helper</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">RetryHelper</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_RetryHelper_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class RetryHelper</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RetryHelper_TryAction_wan24_Core_RetryHelper_Try_Delegate__System_Int32__System_Nullable_TimeSpan___System_Nullable_TimeSpan___wan24_Core_RetryHelper_RetryOnError_Delegate__CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.RetryHelper.TryAction(wan24.Core.RetryHelper.Try_Delegate%40%2CSystem.Int32%40%2CSystem.Nullable%7BTimeSpan%7D%40%2CSystem.Nullable%7BTimeSpan%7D%40%2Cwan24.Core.RetryHelper.RetryOnError_Delegate%40%2CCancellationToken%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RetryHelper.cs/#L88">View Source</a>
+  </span>
+  <a id="wan24_Core_RetryHelper_TryAction_" data-uid="wan24.Core.RetryHelper.TryAction*"></a>
+  <h4 id="wan24_Core_RetryHelper_TryAction_wan24_Core_RetryHelper_Try_Delegate__System_Int32__System_Nullable_TimeSpan___System_Nullable_TimeSpan___wan24_Core_RetryHelper_RetryOnError_Delegate__CancellationToken__" data-uid="wan24.Core.RetryHelper.TryAction(wan24.Core.RetryHelper.Try_Delegate@,System.Int32@,System.Nullable{TimeSpan}@,System.Nullable{TimeSpan}@,wan24.Core.RetryHelper.RetryOnError_Delegate@,CancellationToken@)">TryAction(in RetryHelper.Try_Delegate, in Int32, in Nullable&lt;TimeSpan&gt;, in Nullable&lt;TimeSpan&gt;, in RetryHelper.RetryOnError_Delegate, in CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Try to execute an action</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RetryInfo&lt;object&gt; TryAction(in RetryHelper.Try_Delegate action, in int maxNumberOfTries, in TimeSpan? timeout = null, in TimeSpan? delay = null, in RetryHelper.RetryOnError_Delegate retryOnError = null, in CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RetryHelper.Try_Delegate.html">RetryHelper.Try_Delegate</a></td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action to execute</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">maxNumberOfTries</span></td>
+        <td><p>Max. number of retries</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Total timeout</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">delay</span></td>
+        <td><p>Delay between retries</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RetryHelper.RetryOnError_Delegate.html">RetryHelper.RetryOnError_Delegate</a></td>
+        <td><span class="parametername">retryOnError</span></td>
+        <td><p>Delegate to determine if to retry after an error</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RetryInfo-1.html">RetryInfo</a>&lt;<span class="xref">System.Object</span>&gt;</td>
+        <td><p>Retry informations, which include the result</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RetryHelper_TryAction__1_wan24_Core_RetryHelper_Try_Delegate___0___System_Int32__System_Nullable_TimeSpan___System_Nullable_TimeSpan___wan24_Core_RetryHelper_RetryOnError_Delegate__CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.RetryHelper.TryAction%60%601(wan24.Core.RetryHelper.Try_Delegate%7B%60%600%7D%40%2CSystem.Int32%40%2CSystem.Nullable%7BTimeSpan%7D%40%2CSystem.Nullable%7BTimeSpan%7D%40%2Cwan24.Core.RetryHelper.RetryOnError_Delegate%40%2CCancellationToken%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RetryHelper.cs/#L19">View Source</a>
+  </span>
+  <a id="wan24_Core_RetryHelper_TryAction_" data-uid="wan24.Core.RetryHelper.TryAction*"></a>
+  <h4 id="wan24_Core_RetryHelper_TryAction__1_wan24_Core_RetryHelper_Try_Delegate___0___System_Int32__System_Nullable_TimeSpan___System_Nullable_TimeSpan___wan24_Core_RetryHelper_RetryOnError_Delegate__CancellationToken__" data-uid="wan24.Core.RetryHelper.TryAction``1(wan24.Core.RetryHelper.Try_Delegate{``0}@,System.Int32@,System.Nullable{TimeSpan}@,System.Nullable{TimeSpan}@,wan24.Core.RetryHelper.RetryOnError_Delegate@,CancellationToken@)">TryAction&lt;T&gt;(in RetryHelper.Try_Delegate&lt;T&gt;, in Int32, in Nullable&lt;TimeSpan&gt;, in Nullable&lt;TimeSpan&gt;, in RetryHelper.RetryOnError_Delegate, in CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Try to execute an action</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RetryInfo&lt;T&gt; TryAction&lt;T&gt;(in RetryHelper.Try_Delegate&lt;T&gt; action, in int maxNumberOfTries, in TimeSpan? timeout = null, in TimeSpan? delay = null, in RetryHelper.RetryOnError_Delegate retryOnError = null, in CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RetryHelper.Try_Delegate-1.html">RetryHelper.Try_Delegate</a>&lt;T&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action to execute</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">maxNumberOfTries</span></td>
+        <td><p>Max. number of tries</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Total timeout</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">delay</span></td>
+        <td><p>Delay between retries</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RetryHelper.RetryOnError_Delegate.html">RetryHelper.RetryOnError_Delegate</a></td>
+        <td><span class="parametername">retryOnError</span></td>
+        <td><p>Delegate to determine if to retry after an error</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RetryInfo-1.html">RetryInfo</a>&lt;T&gt;</td>
+        <td><p>Retry informations, which include the result</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Result type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RetryHelper_TryActionAsync_wan24_Core_RetryHelper_TryAsync_Delegate_System_Int32_System_Nullable_TimeSpan__System_Nullable_TimeSpan__wan24_Core_RetryHelper_RetryOnError_Delegate_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.RetryHelper.TryActionAsync(wan24.Core.RetryHelper.TryAsync_Delegate%2CSystem.Int32%2CSystem.Nullable%7BTimeSpan%7D%2CSystem.Nullable%7BTimeSpan%7D%2Cwan24.Core.RetryHelper.RetryOnError_Delegate%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RetryHelper.cs/#L229">View Source</a>
+  </span>
+  <a id="wan24_Core_RetryHelper_TryActionAsync_" data-uid="wan24.Core.RetryHelper.TryActionAsync*"></a>
+  <h4 id="wan24_Core_RetryHelper_TryActionAsync_wan24_Core_RetryHelper_TryAsync_Delegate_System_Int32_System_Nullable_TimeSpan__System_Nullable_TimeSpan__wan24_Core_RetryHelper_RetryOnError_Delegate_CancellationToken_" data-uid="wan24.Core.RetryHelper.TryActionAsync(wan24.Core.RetryHelper.TryAsync_Delegate,System.Int32,System.Nullable{TimeSpan},System.Nullable{TimeSpan},wan24.Core.RetryHelper.RetryOnError_Delegate,CancellationToken)">TryActionAsync(RetryHelper.TryAsync_Delegate, Int32, Nullable&lt;TimeSpan&gt;, Nullable&lt;TimeSpan&gt;, RetryHelper.RetryOnError_Delegate, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Try to execute an action</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static async Task&lt;RetryInfo&lt;object&gt;&gt; TryActionAsync(RetryHelper.TryAsync_Delegate action, int maxNumberOfTries, TimeSpan? timeout = null, TimeSpan? delay = null, RetryHelper.RetryOnError_Delegate retryOnError = null, CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RetryHelper.TryAsync_Delegate.html">RetryHelper.TryAsync_Delegate</a></td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action to execute</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">maxNumberOfTries</span></td>
+        <td><p>Max. number of retries</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Total timeout</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">delay</span></td>
+        <td><p>Delay between retries</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RetryHelper.RetryOnError_Delegate.html">RetryHelper.RetryOnError_Delegate</a></td>
+        <td><span class="parametername">retryOnError</span></td>
+        <td><p>Delegate to determine if to retry after an error</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="wan24.Core.RetryInfo-1.html">RetryInfo</a>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><p>Retry informations, which include the result</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RetryHelper_TryActionAsync__1_wan24_Core_RetryHelper_TryAsync_Delegate___0__System_Int32_System_Nullable_TimeSpan__System_Nullable_TimeSpan__wan24_Core_RetryHelper_RetryOnError_Delegate_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.RetryHelper.TryActionAsync%60%601(wan24.Core.RetryHelper.TryAsync_Delegate%7B%60%600%7D%2CSystem.Int32%2CSystem.Nullable%7BTimeSpan%7D%2CSystem.Nullable%7BTimeSpan%7D%2Cwan24.Core.RetryHelper.RetryOnError_Delegate%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RetryHelper.cs/#L158">View Source</a>
+  </span>
+  <a id="wan24_Core_RetryHelper_TryActionAsync_" data-uid="wan24.Core.RetryHelper.TryActionAsync*"></a>
+  <h4 id="wan24_Core_RetryHelper_TryActionAsync__1_wan24_Core_RetryHelper_TryAsync_Delegate___0__System_Int32_System_Nullable_TimeSpan__System_Nullable_TimeSpan__wan24_Core_RetryHelper_RetryOnError_Delegate_CancellationToken_" data-uid="wan24.Core.RetryHelper.TryActionAsync``1(wan24.Core.RetryHelper.TryAsync_Delegate{``0},System.Int32,System.Nullable{TimeSpan},System.Nullable{TimeSpan},wan24.Core.RetryHelper.RetryOnError_Delegate,CancellationToken)">TryActionAsync&lt;T&gt;(RetryHelper.TryAsync_Delegate&lt;T&gt;, Int32, Nullable&lt;TimeSpan&gt;, Nullable&lt;TimeSpan&gt;, RetryHelper.RetryOnError_Delegate, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Try to execute an action</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static async Task&lt;RetryInfo&lt;T&gt;&gt; TryActionAsync&lt;T&gt;(RetryHelper.TryAsync_Delegate&lt;T&gt; action, int maxNumberOfTries, TimeSpan? timeout = null, TimeSpan? delay = null, RetryHelper.RetryOnError_Delegate retryOnError = null, CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RetryHelper.TryAsync_Delegate-1.html">RetryHelper.TryAsync_Delegate</a>&lt;T&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action to execute</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">maxNumberOfTries</span></td>
+        <td><p>Max. number of tries</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Total timeout</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">delay</span></td>
+        <td><p>Delay between retries</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RetryHelper.RetryOnError_Delegate.html">RetryHelper.RetryOnError_Delegate</a></td>
+        <td><span class="parametername">retryOnError</span></td>
+        <td><p>Delegate to determine if to retry after an error</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="wan24.Core.RetryInfo-1.html">RetryInfo</a>&lt;T&gt;&gt;</td>
+        <td><p>Retry informations, which include the result</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Result type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_RetryHelper.md&amp;value=---%0Auid%3A%20wan24.Core.RetryHelper%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/RetryHelper.cs/#L6" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            (c) 2023 Andreas Zimmermann, wan24.de
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1204 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class WrapperStream
+   | wan24-Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class WrapperStream
+   | wan24-Core ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.WrapperStream">
+  
+  
+  <h1 id="wan24_Core_WrapperStream" data-uid="wan24.Core.WrapperStream" class="text-break">Class WrapperStream
+  </h1>
+  <div class="markdown level0 summary"><p>Stream wrapper</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">WrapperStream</span></div>
+      <div class="level2"><a class="xref" href="wan24.Core.LimitedLengthStream.html">LimitedLengthStream</a></div>
+      <div class="level2"><a class="xref" href="wan24.Core.PartialStream.html">PartialStream</a></div>
+      <div class="level2"><a class="xref" href="wan24.Core.PooledTempStream.html">PooledTempStream</a></div>
+      <div class="level2"><a class="xref" href="wan24.Core.ThrottledStream.html">ThrottledStream</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_WrapperStream_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class WrapperStream : Stream</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream__ctor_Stream_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.%23ctor(Stream%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L24">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream__ctor_" data-uid="wan24.Core.WrapperStream.#ctor*"></a>
+  <h4 id="wan24_Core_WrapperStream__ctor_Stream_System_Boolean_" data-uid="wan24.Core.WrapperStream.#ctor(Stream,System.Boolean)">WrapperStream(Stream, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WrapperStream(Stream baseStream, bool leaveOpen = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">baseStream</span></td>
+        <td><p>Base stream</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">leaveOpen</span></td>
+        <td><p>Leave the base stream open when disposing?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream__ctor_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.%23ctor(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L17">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream__ctor_" data-uid="wan24.Core.WrapperStream.#ctor*"></a>
+  <h4 id="wan24_Core_WrapperStream__ctor_System_Boolean_" data-uid="wan24.Core.WrapperStream.#ctor(System.Boolean)">WrapperStream(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WrapperStream(bool leaveOpen = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">leaveOpen</span></td>
+        <td><p>Leave the base stream open when disposing?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream__LeaveOpen.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream._LeaveOpen%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L11">View Source</a>
+  </span>
+  <h4 id="wan24_Core_WrapperStream__LeaveOpen" data-uid="wan24.Core.WrapperStream._LeaveOpen">_LeaveOpen</h4>
+  <div class="markdown level1 summary"><p>Leave the base stream open when disposing?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _LeaveOpen</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_BaseStream.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.BaseStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L33">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_BaseStream_" data-uid="wan24.Core.WrapperStream.BaseStream*"></a>
+  <h4 id="wan24_Core_WrapperStream_BaseStream" data-uid="wan24.Core.WrapperStream.BaseStream">BaseStream</h4>
+  <div class="markdown level1 summary"><p>Base stream</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Stream BaseStream { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_CanRead.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.CanRead%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L45">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_CanRead_" data-uid="wan24.Core.WrapperStream.CanRead*"></a>
+  <h4 id="wan24_Core_WrapperStream_CanRead" data-uid="wan24.Core.WrapperStream.CanRead">CanRead</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool CanRead { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_CanSeek.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.CanSeek%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L48">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_CanSeek_" data-uid="wan24.Core.WrapperStream.CanSeek*"></a>
+  <h4 id="wan24_Core_WrapperStream_CanSeek" data-uid="wan24.Core.WrapperStream.CanSeek">CanSeek</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool CanSeek { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_CanWrite.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.CanWrite%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L51">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_CanWrite_" data-uid="wan24.Core.WrapperStream.CanWrite*"></a>
+  <h4 id="wan24_Core_WrapperStream_CanWrite" data-uid="wan24.Core.WrapperStream.CanWrite">CanWrite</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool CanWrite { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_LeaveOpen.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.LeaveOpen%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L38">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_LeaveOpen_" data-uid="wan24.Core.WrapperStream.LeaveOpen*"></a>
+  <h4 id="wan24_Core_WrapperStream_LeaveOpen" data-uid="wan24.Core.WrapperStream.LeaveOpen">LeaveOpen</h4>
+  <div class="markdown level1 summary"><p>Leave the base stream open when disposing?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool LeaveOpen { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_Length.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.Length%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L54">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_Length_" data-uid="wan24.Core.WrapperStream.Length*"></a>
+  <h4 id="wan24_Core_WrapperStream_Length" data-uid="wan24.Core.WrapperStream.Length">Length</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override long Length { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_Position.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.Position%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L57">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_Position_" data-uid="wan24.Core.WrapperStream.Position*"></a>
+  <h4 id="wan24_Core_WrapperStream_Position" data-uid="wan24.Core.WrapperStream.Position">Position</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override long Position { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_Close.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.Close%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L110">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_Close_" data-uid="wan24.Core.WrapperStream.Close*"></a>
+  <h4 id="wan24_Core_WrapperStream_Close" data-uid="wan24.Core.WrapperStream.Close">Close()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Close()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_DisposeAsync.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.DisposeAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L118">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_DisposeAsync_" data-uid="wan24.Core.WrapperStream.DisposeAsync*"></a>
+  <h4 id="wan24_Core_WrapperStream_DisposeAsync" data-uid="wan24.Core.WrapperStream.DisposeAsync">DisposeAsync()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override async ValueTask DisposeAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_Flush.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.Flush%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L64">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_Flush_" data-uid="wan24.Core.WrapperStream.Flush*"></a>
+  <h4 id="wan24_Core_WrapperStream_Flush" data-uid="wan24.Core.WrapperStream.Flush">Flush()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Flush()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_FlushAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.FlushAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L67">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_FlushAsync_" data-uid="wan24.Core.WrapperStream.FlushAsync*"></a>
+  <h4 id="wan24_Core_WrapperStream_FlushAsync_CancellationToken_" data-uid="wan24.Core.WrapperStream.FlushAsync(CancellationToken)">FlushAsync(CancellationToken)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Task FlushAsync(CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_Read_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.Read(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L73">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_Read_" data-uid="wan24.Core.WrapperStream.Read*"></a>
+  <h4 id="wan24_Core_WrapperStream_Read_Span_System_Byte__" data-uid="wan24.Core.WrapperStream.Read(Span{System.Byte})">Read(Span&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int Read(Span&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_Read_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.Read(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L70">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_Read_" data-uid="wan24.Core.WrapperStream.Read*"></a>
+  <h4 id="wan24_Core_WrapperStream_Read_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.WrapperStream.Read(System.Byte[],System.Int32,System.Int32)">Read(Byte[], Int32, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int Read(byte[] buffer, int offset, int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_ReadAsync_Memory_System_Byte__CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.ReadAsync(Memory%7BSystem.Byte%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L83">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_ReadAsync_" data-uid="wan24.Core.WrapperStream.ReadAsync*"></a>
+  <h4 id="wan24_Core_WrapperStream_ReadAsync_Memory_System_Byte__CancellationToken_" data-uid="wan24.Core.WrapperStream.ReadAsync(Memory{System.Byte},CancellationToken)">ReadAsync(Memory&lt;Byte&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override ValueTask&lt;int&gt; ReadAsync(Memory&lt;byte&gt; buffer, CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.ReadAsync(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L79">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_ReadAsync_" data-uid="wan24.Core.WrapperStream.ReadAsync*"></a>
+  <h4 id="wan24_Core_WrapperStream_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_" data-uid="wan24.Core.WrapperStream.ReadAsync(System.Byte[],System.Int32,System.Int32,CancellationToken)">ReadAsync(Byte[], Int32, Int32, CancellationToken)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Task&lt;int&gt; ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_ReadByte.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.ReadByte%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L76">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_ReadByte_" data-uid="wan24.Core.WrapperStream.ReadByte*"></a>
+  <h4 id="wan24_Core_WrapperStream_ReadByte" data-uid="wan24.Core.WrapperStream.ReadByte">ReadByte()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int ReadByte()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_Seek_System_Int64_SeekOrigin_.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.Seek(System.Int64%2CSeekOrigin)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L87">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_Seek_" data-uid="wan24.Core.WrapperStream.Seek*"></a>
+  <h4 id="wan24_Core_WrapperStream_Seek_System_Int64_SeekOrigin_" data-uid="wan24.Core.WrapperStream.Seek(System.Int64,SeekOrigin)">Seek(Int64, SeekOrigin)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override long Seek(long offset, SeekOrigin origin)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">SeekOrigin</span></td>
+        <td><span class="parametername">origin</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_SetLength_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.SetLength(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L90">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_SetLength_" data-uid="wan24.Core.WrapperStream.SetLength*"></a>
+  <h4 id="wan24_Core_WrapperStream_SetLength_System_Int64_" data-uid="wan24.Core.WrapperStream.SetLength(System.Int64)">SetLength(Int64)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void SetLength(long value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_Write_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.Write(ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L96">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_Write_" data-uid="wan24.Core.WrapperStream.Write*"></a>
+  <h4 id="wan24_Core_WrapperStream_Write_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.WrapperStream.Write(ReadOnlySpan{System.Byte})">Write(ReadOnlySpan&lt;Byte&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Write(ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_Write_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.Write(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L93">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_Write_" data-uid="wan24.Core.WrapperStream.Write*"></a>
+  <h4 id="wan24_Core_WrapperStream_Write_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.WrapperStream.Write(System.Byte[],System.Int32,System.Int32)">Write(Byte[], Int32, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Write(byte[] buffer, int offset, int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.WriteAsync(ReadOnlyMemory%7BSystem.Byte%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L106">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_WriteAsync_" data-uid="wan24.Core.WrapperStream.WriteAsync*"></a>
+  <h4 id="wan24_Core_WrapperStream_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_" data-uid="wan24.Core.WrapperStream.WriteAsync(ReadOnlyMemory{System.Byte},CancellationToken)">WriteAsync(ReadOnlyMemory&lt;Byte&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override ValueTask WriteAsync(ReadOnlyMemory&lt;byte&gt; buffer, CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlyMemory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ValueTask</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.WriteAsync(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L102">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_WriteAsync_" data-uid="wan24.Core.WrapperStream.WriteAsync*"></a>
+  <h4 id="wan24_Core_WrapperStream_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_" data-uid="wan24.Core.WrapperStream.WriteAsync(System.Byte[],System.Int32,System.Int32,CancellationToken)">WriteAsync(Byte[], Int32, Int32, CancellationToken)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream_WriteByte_System_Byte_.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream.WriteByte(System.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L99">View Source</a>
+  </span>
+  <a id="wan24_Core_WrapperStream_WriteByte_" data-uid="wan24.Core.WrapperStream.WriteByte*"></a>
+  <h4 id="wan24_Core_WrapperStream_WriteByte_System_Byte_" data-uid="wan24.Core.WrapperStream.WriteByte(System.Byte)">WriteByte(Byte)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void WriteByte(byte value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_Int32_System_Int32_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, Int32, Int32, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_Int32_System_Int32_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, Int32, Int32, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int64_System_Int64_System_Int64_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int64, Int64, Int64, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int64_System_Int64_System_Int64_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int64, Int64, Int64, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Double_System_Double_System_Double_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Double, Double, Double, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Double_System_Double_System_Double_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Double, Double, Double, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Boolean_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Boolean_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Boolean, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgumentRange__1___0_System_String_System_Boolean_System_String_">ArgumentValidationExtensions.EnsureValidArgumentRange&lt;T&gt;(T, String, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgumentRange__1___0_System_String_System_Boolean_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgumentRange&lt;T&gt;(T, String, Boolean, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_String_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_String_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, String, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String___1_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tValue&gt;(tObj, String, tValue, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String___1_Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tValue&gt;(tObj, String, tValue, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_String_System_Int32_System_Boolean_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, String, Int32, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_String_Func_System_String__System_Int32_System_Boolean_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, String, Func&lt;String&gt;, Int32, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32___1___System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, tItem[], String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32___1___Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, tItem[], Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32_Span___1__System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, Span&lt;tItem&gt;, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__2___0_System_String_System_Int32_System_Int32_Span___1__Func_System_String__">ArgumentValidationExtensions.EnsureValidArgument&lt;tObj, tItem&gt;(tObj, String, Int32, Int32, Span&lt;tItem&gt;, Func&lt;String&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean_">JsonExtensions.ToJson(Object, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_IEnumerable___0__">ObjectExtensions.In&lt;T&gt;(T, IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean_System_String_">ObjectExtensions.EnsureValidState&lt;T&gt;(T, Boolean, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText__1___0_">ObjectExtensions.GetDisplayText&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_Func___0___1__">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, Func&lt;tObject, tReturn&gt;)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_WrapperStream.md&amp;value=---%0Auid%3A%20wan24.Core.WrapperStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/WrapperStream.cs/#L6" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            (c) 2023 Andreas Zimmermann, wan24.de
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

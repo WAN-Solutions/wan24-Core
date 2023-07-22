@@ -153,8 +153,16 @@ customizable; encoded data integrity can be validated without decoding;
 including extensions for numeric type encoding/decoding)
 - Collecting periodical statistical values
 - Streams
+    - `WrapperStream` wraps a base stream and provides `LeaveOpen`
+    - `PartialStream` wraps a part of a base stream (read-only)
     - `LengthLimitedStream` ensures a maximum stream length
     - `MemoryPoolStream` uses an `ArrayPool<byte>` for storing written data
+    - `ThrottledStream` throttles reading/writing troughput
+- Named mutex helper
+    - `GlobalLock` for a synchronous context
+    - `GlobalLockAsync` for an asynchronous context
+- Retry helper which supports timeout, delay and cancellation
+- Asynchronous event
 
 ## How to get it
 
@@ -738,10 +746,16 @@ calculated in advance, and it's fast and easy to detect errors in the encoded
 data without having to decode it, first.
 
 ```cs
+// In case you want to use a prepared output buffer
 int encodedLen = anyByteArray.GetEncodedLength();
+
+// Encoding
 char[] encoded = anyByteArray.Encode();
 
-int decodedLen = anyByteArray.GetDecodedlength();
+// In case you want to use a prepared output buffer
+int decodedLen = encoded.GetDecodedlength();
+
+// Decoding
 byte[] decoded = encoded.Decode();
 ```
 
@@ -914,3 +928,79 @@ an isolated parsing. You can modify the inner content group index by setting
 
 **CAUTION**: Be careful with customized parser functions: A mistake could let 
 a manipulated string harm your computer!
+
+## Retry helper
+
+```cs
+RetryInfo<object> result = await RetryHelper.TryActionAsync(
+    async (currentTry, cancellation) => 
+    {
+        // Perform any critical action which may throw or timeout and return a value (or not)
+    },
+    maxNumberOfTries: 3,
+    timeout: TimeSpan.FromSeconds(30),
+    delay: TimeSpan.FromSeconds(3)
+    );
+
+// This will throw an exception, if failed, or return the action delegate return value, if succeed
+object returnValue = result.ThrowIfFailed();
+```
+
+`TryAction*` will try to execute an action for a maximum of N times, optional 
+having a total timeout, and optional performing a delay after a failed try. 
+The given action delegate may also return a value, which you can then find in 
+the `RetryInfo<T>.Result` property, if `Succeed` is `true`.
+
+The `RetryInfo<T>` object contains some runtime informations:
+
+- Start, done time and total runtime
+- Number of tries processed (a timeout or cancellation may throw before the 
+action is being called)
+- Catched exceptions during tries
+- If succeed, cancelled or timeout
+- The action delegate return value (if any)
+
+**NOTE**: There's also a synchronous `TryAction` method, which supports 
+timeout and cancellation also.
+
+## Asynchronous events
+
+```cs
+// Example type using an asynchronous event
+public class YourType
+{
+    public readonly AsyncEvent<YourType, EventArgs> OnYourEvent;
+
+    public YourType() => OnYourEvent = new(this);
+
+    public async Task RaiseOnYourEventAsync()
+        => await ((IAsyncEvent<YourType, EventArgs>)OnYourEvent).RaiseEventAsync();
+}
+
+// An example asynchronous event listener
+async Task eventListener(YourType sender, EventArgs e, CancellationToken ct)
+{
+    ...
+}
+
+// Attach to the event and raise it
+YourType obj = new();
+Assert.IsFalse(obj.OnYourEvent);
+obj.OnYourEvent.Listen(eventListener);
+Assert.IsTrue(obj.OnYourEvent);
+await obj.RaiseOnYourEventAsync();
+
+// Detach the event listener
+obj.OnYourEvent.Detach(eventListener);
+Assert.IsFalse(obj.OnYourEvent);
+```
+
+An `AsyncEvent<tSender, tArgs>` instance will only export public event 
+informations and functions like adding/removing event handlers, and if event 
+handlers are present. For raising the event, you need to use the 
+`RaiseEventAsync` methods which are available from the 
+`IAsyncEvent<tSender, tArgs>` interface.
+
+Timeout, cancellation, synchronous and asynchronous event handlers are 
+supported. The `AsyncEvent<tSender, tArgs>` is designed to be thread-safe, 
+while multiple threads are allowed to raise the event in parallel.
