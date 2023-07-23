@@ -90,17 +90,17 @@
         /// <summary>
         /// <see cref="PooledMemoryStream"/> (do not dispose!)
         /// </summary>
-        public PooledMemoryStream? MemoryStream => BaseStream as PooledMemoryStream;
+        public PooledMemoryStream? MemoryStream => _BaseStream as PooledMemoryStream;
 
         /// <summary>
         /// <see cref="PooledTempFileStream"/> (do not dispose!)
         /// </summary>
-        public PooledTempFileStream? FileStream => BaseStream as PooledTempFileStream;
+        public PooledTempFileStream? FileStream => _BaseStream as PooledTempFileStream;
 
         /// <summary>
         /// Is the data stored in a <see cref="PooledMemoryStream"/>
         /// </summary>
-        public bool IsInMemory => BaseStream is PooledMemoryStream;
+        public bool IsInMemory => _BaseStream is PooledMemoryStream;
 
         /// <inheritdoc/>
         public override IEnumerable<Status> State
@@ -133,7 +133,7 @@
         {
             EnsureUndisposed();
             if (IsInMemory && value > MaxLengthInMemory) CreateTempFile();
-            BaseStream.SetLength(value);
+            _BaseStream.SetLength(value);
         }
 
         /// <inheritdoc/>
@@ -144,7 +144,7 @@
         {
             EnsureUndisposed();
             if (IsInMemory && Position + buffer.Length > MaxLengthInMemory) CreateTempFile();
-            BaseStream.Write(buffer);
+            _BaseStream.Write(buffer);
         }
 
         /// <inheritdoc/>
@@ -152,7 +152,7 @@
         {
             EnsureUndisposed();
             if (IsInMemory && Position + 1 > MaxLengthInMemory) CreateTempFile();
-            BaseStream.WriteByte(value);
+            _BaseStream.WriteByte(value);
         }
 
         /// <inheritdoc/>
@@ -164,7 +164,7 @@
         {
             EnsureUndisposed();
             if (IsInMemory && Position + buffer.Length > MaxLengthInMemory) await CreateTempFileAsync(cancellationToken).DynamicContext();
-            await BaseStream.WriteAsync(buffer, cancellationToken).DynamicContext(); ;
+            await _BaseStream.WriteAsync(buffer, cancellationToken).DynamicContext(); ;
         }
 
         /// <inheritdoc/>
@@ -248,7 +248,7 @@
         /// </summary>
         private void ReturnBaseStream()
         {
-            if (BaseStream is null) return;
+            if (_BaseStream is null) return;
             if (MemoryStream != null)
             {
                 UsedMemoryStreamPool.Return(MemoryStream);
@@ -257,7 +257,7 @@
             {
                 UsedFileStreamPool.Return(FileStream!);
             }
-            BaseStream = null!;
+            _BaseStream = null!;
         }
     }
 }

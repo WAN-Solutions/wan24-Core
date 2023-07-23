@@ -3,7 +3,7 @@
 namespace wan24.Core
 {
     /// <summary>
-    /// Stream wrapper
+    /// Stream wrapper (will dispose, if the base stream is a <see cref="IDisposableObject"/> and has been disposed)
     /// </summary>
     public class WrapperStream : WrapperStream<Stream>
     {
@@ -22,11 +22,15 @@ namespace wan24.Core
     }
 
     /// <summary>
-    /// Stream wrapper
+    /// Stream wrapper (will dispose, if the base stream is a <see cref="IDisposableObject"/> and has been disposed)
     /// </summary>
     /// <typeparam name="T">Wrapped stream type</typeparam>
     public class WrapperStream<T> : StreamBase, IStatusProvider where T : Stream
     {
+        /// <summary>
+        /// Base stream
+        /// </summary>
+        protected T _BaseStream;
         /// <summary>
         /// Leave the base stream open when disposing?
         /// </summary>
@@ -53,11 +57,13 @@ namespace wan24.Core
         /// </summary>
         /// <param name="baseStream">Base stream</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
+#pragma warning disable CS8618 // _BaseStream must have a value - will be set by BaseStream setter
         public WrapperStream(T baseStream, bool leaveOpen = false) : base()
         {
             BaseStream = baseStream;
             _LeaveOpen = leaveOpen;
         }
+#pragma warning restore CS8618 // _BaseStream must have a value - will be set by BaseStream setter
 
         /// <summary>
         /// Constructor
@@ -65,19 +71,31 @@ namespace wan24.Core
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
         protected WrapperStream(bool leaveOpen = false)
         {
-            BaseStream = null!;
+            _BaseStream = null!;
             _LeaveOpen = leaveOpen;
         }
 
         /// <summary>
         /// Target stream for higher level operations
         /// </summary>
-        protected virtual Stream Target => UseBaseStream ? BaseStream : this;
+        protected virtual Stream Target => IfUndisposed(UseBaseStream ? (Stream)_BaseStream : this);
 
         /// <summary>
         /// Base stream
         /// </summary>
-        public T BaseStream { get; protected set; }
+        public T BaseStream
+        {
+            get => IfUndisposed(_BaseStream, allowDisposing: true);
+            set
+            {
+                EnsureUndisposed();
+                if (value == this) throw new InvalidOperationException();
+                if (value == _BaseStream) return;
+                if (_BaseStream is IDisposableObject oldDisposable) oldDisposable.OnDisposed -= HandlebaseStreamDisposed;
+                _BaseStream = value;
+                if (value is IDisposableObject newDisposable) newDisposable.OnDisposed += HandlebaseStreamDisposed;
+            }
+        }
 
         /// <summary>
         /// Leave the base stream open when disposing?
@@ -95,23 +113,23 @@ namespace wan24.Core
             {
                 yield return new("Name", Name, "Name of the stream");
                 yield return new("Type", GetType().ToString(), "Stream type");
-                if (BaseStream is IStatusProvider sp)
+                if (_BaseStream is IStatusProvider sp)
                     foreach (Status status in sp.State)
                         yield return status;
             }
         }
 
         /// <inheritdoc/>
-        public override bool CanRead => BaseStream.CanRead;
+        public override bool CanRead => _BaseStream.CanRead;
 
         /// <inheritdoc/>
-        public override bool CanSeek => BaseStream.CanSeek;
+        public override bool CanSeek => _BaseStream.CanSeek;
 
         /// <inheritdoc/>
-        public override bool CanWrite => BaseStream.CanWrite;
+        public override bool CanWrite => _BaseStream.CanWrite;
 
         /// <inheritdoc/>
-        public override bool CanTimeout => BaseStream.CanTimeout;
+        public override bool CanTimeout => _BaseStream.CanTimeout;
 
         /// <inheritdoc/>
         public override long Length
@@ -120,7 +138,7 @@ namespace wan24.Core
             {
                 EnsureUndisposed();
                 EnsureSeekable();
-                return BaseStream.Length;
+                return _BaseStream.Length;
             }
         }
 
@@ -131,13 +149,13 @@ namespace wan24.Core
             {
                 EnsureUndisposed();
                 EnsureSeekable();
-                return BaseStream.Position;
+                return _BaseStream.Position;
             }
             set
             {
                 EnsureUndisposed();
                 EnsureSeekable();
-                BaseStream.Position = value;
+                _BaseStream.Position = value;
             }
         }
 
@@ -148,13 +166,13 @@ namespace wan24.Core
             {
                 EnsureUndisposed();
                 EnsureReadable();
-                return BaseStream.ReadTimeout;
+                return _BaseStream.ReadTimeout;
             }
             set
             {
                 EnsureUndisposed();
                 EnsureReadable();
-                BaseStream.ReadTimeout = value;
+                _BaseStream.ReadTimeout = value;
             }
         }
 
@@ -165,13 +183,13 @@ namespace wan24.Core
             {
                 EnsureUndisposed();
                 EnsureWritable();
-                return BaseStream.WriteTimeout;
+                return _BaseStream.WriteTimeout;
             }
             set
             {
                 EnsureUndisposed();
                 EnsureWritable();
-                BaseStream.WriteTimeout = value;
+                _BaseStream.WriteTimeout = value;
             }
         }
 
@@ -179,14 +197,14 @@ namespace wan24.Core
         public override void Flush()
         {
             EnsureUndisposed();
-            BaseStream.Flush();
+            _BaseStream.Flush();
         }
 
         /// <inheritdoc/>
         public override Task FlushAsync(CancellationToken cancellationToken)
         {
             EnsureUndisposed();
-            return BaseStream.FlushAsync(cancellationToken);
+            return _BaseStream.FlushAsync(cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -194,7 +212,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureReadable();
-            return BaseStream.Read(buffer, offset, count);
+            return _BaseStream.Read(buffer, offset, count);
         }
 
         /// <inheritdoc/>
@@ -202,7 +220,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureReadable();
-            return BaseStream.Read(buffer);
+            return _BaseStream.Read(buffer);
         }
 
         /// <inheritdoc/>
@@ -210,7 +228,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureReadable();
-            return BaseStream.ReadByte();
+            return _BaseStream.ReadByte();
         }
 
         /// <inheritdoc/>
@@ -218,7 +236,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureReadable();
-            return BaseStream.ReadAsync(buffer, offset, count, cancellationToken);
+            return _BaseStream.ReadAsync(buffer, offset, count, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -226,7 +244,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureReadable();
-            return BaseStream.ReadAsync(buffer, cancellationToken);
+            return _BaseStream.ReadAsync(buffer, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -234,7 +252,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureSeekable();
-            return BaseStream.Seek(offset, origin);
+            return _BaseStream.Seek(offset, origin);
         }
 
         /// <inheritdoc/>
@@ -242,7 +260,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureWritable();
-            BaseStream.SetLength(value);
+            _BaseStream.SetLength(value);
         }
 
         /// <inheritdoc/>
@@ -250,7 +268,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureWritable();
-            BaseStream.Write(buffer, offset, count);
+            _BaseStream.Write(buffer, offset, count);
         }
 
         /// <inheritdoc/>
@@ -258,7 +276,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureWritable();
-            BaseStream.Write(buffer);
+            _BaseStream.Write(buffer);
         }
 
         /// <inheritdoc/>
@@ -266,7 +284,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureWritable();
-            BaseStream.WriteByte(value);
+            _BaseStream.WriteByte(value);
         }
 
         /// <inheritdoc/>
@@ -274,7 +292,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureWritable();
-            return BaseStream.WriteAsync(buffer, offset, count, cancellationToken);
+            return _BaseStream.WriteAsync(buffer, offset, count, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -282,7 +300,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureWritable();
-            return BaseStream.WriteAsync(buffer, cancellationToken);
+            return _BaseStream.WriteAsync(buffer, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -296,7 +314,7 @@ namespace wan24.Core
             }
             else
             {
-                BaseStream.CopyTo(destination, bufferSize);
+                _BaseStream.CopyTo(destination, bufferSize);
             }
         }
 
@@ -307,7 +325,7 @@ namespace wan24.Core
             EnsureReadable();
             return UseOriginalCopyTo
                 ? BaseCopyToAsync(destination, bufferSize, cancellationToken)
-                : BaseStream.CopyToAsync(destination, bufferSize, cancellationToken);
+                : _BaseStream.CopyToAsync(destination, bufferSize, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -317,7 +335,7 @@ namespace wan24.Core
             EnsureReadable();
             return UseOriginalBeginRead
                 ? BaseBeginRead(buffer, offset, count, callback, state)
-                : BaseStream.BeginRead(buffer, offset, count, callback, state);
+                : _BaseStream.BeginRead(buffer, offset, count, callback, state);
         }
 
         /// <inheritdoc/>
@@ -327,7 +345,7 @@ namespace wan24.Core
             EnsureReadable();
             return UseOriginalBeginRead
                 ? BaseEndRead(asyncResult)
-                : BaseStream.EndRead(asyncResult);
+                : _BaseStream.EndRead(asyncResult);
         }
 
         /// <inheritdoc/>
@@ -337,7 +355,7 @@ namespace wan24.Core
             EnsureWritable();
             return UseOriginalBeginWrite
                 ? BaseBeginWrite(buffer, offset, count, callback, state)
-                : BaseStream.BeginWrite(buffer, offset, count, callback, state);
+                : _BaseStream.BeginWrite(buffer, offset, count, callback, state);
         }
 
         /// <inheritdoc/>
@@ -351,28 +369,28 @@ namespace wan24.Core
             }
             else
             {
-                BaseStream.EndWrite(asyncResult);
+                _BaseStream.EndWrite(asyncResult);
             }
         }
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public override bool Equals(object? obj) => BaseStream.Equals(obj);
+        public override bool Equals(object? obj) => _BaseStream.Equals(obj);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public override int GetHashCode() => BaseStream.GetHashCode();
+        public override int GetHashCode() => _BaseStream.GetHashCode();
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public override string? ToString() => BaseStream.ToString();
+        public override string? ToString() => _BaseStream.ToString();
 
         /// <inheritdoc/>
         public override void Close()
         {
             if (IsClosed) return;
             base.Close();
-            if (!LeaveOpen) BaseStream.Close();
+            if (!LeaveOpen) _BaseStream.Close();
         }
 
         /// <inheritdoc/>
@@ -380,14 +398,16 @@ namespace wan24.Core
         {
             if (IsDisposing) return;
             base.Dispose(disposing);
-            if (!LeaveOpen) BaseStream.Dispose();
+            if (_BaseStream is IDisposableObject disposable) disposable.OnDisposed -= HandlebaseStreamDisposed;
+            if (!LeaveOpen) _BaseStream.Dispose();
         }
 
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
             await base.DisposeCore().DynamicContext();
-            if (!LeaveOpen) await BaseStream.DisposeAsync().DynamicContext();
+            if (_BaseStream is IDisposableObject disposable) disposable.OnDisposed -= HandlebaseStreamDisposed;
+            if (!LeaveOpen) await _BaseStream.DisposeAsync().DynamicContext();
         }
 
         /// <summary>
@@ -442,5 +462,12 @@ namespace wan24.Core
         /// </summary>
         /// <param name="asyncResult">Result</param>
         protected void BaseEndWrite(IAsyncResult asyncResult) => base.EndWrite(asyncResult);
+
+        /// <summary>
+        /// Handle a disposed base stream
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event arguments</param>
+        protected async void HandlebaseStreamDisposed(IDisposableObject sender, EventArgs e) => await DisposeAsync().DynamicContext();
     }
 }

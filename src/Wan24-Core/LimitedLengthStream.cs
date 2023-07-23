@@ -47,7 +47,7 @@
             EnsureUndisposed();
             LeaveOpen = true;
             Dispose();
-            return BaseStream;
+            return _BaseStream;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@
             EnsureUndisposed();
             LeaveOpen = true;
             await DisposeAsync().DynamicContext();
-            return BaseStream;
+            return _BaseStream;
         }
 
         /// <inheritdoc/>
@@ -67,7 +67,7 @@
         {
             EnsureUndisposed();
             if (value > MaxLength) throw new OutOfMemoryException("Maximum length exceeded");
-            BaseStream.SetLength(value);
+            _BaseStream.SetLength(value);
         }
 
         /// <inheritdoc/>
@@ -82,7 +82,7 @@
         {
             EnsureUndisposed();
             if (Position + buffer.Length > MaxLength) throw new OutOfMemoryException("Maximum length exceeded");
-            BaseStream.Write(buffer);
+            _BaseStream.Write(buffer);
         }
 
         /// <inheritdoc/>
@@ -90,7 +90,7 @@
         {
             EnsureUndisposed();
             if (Position + 1 > MaxLength) throw new OutOfMemoryException("Maximum length exceeded");
-            BaseStream.WriteByte(value);
+            _BaseStream.WriteByte(value);
         }
 
         /// <inheritdoc/>
@@ -105,7 +105,7 @@
         {
             EnsureUndisposed();
             if (Position + buffer.Length > MaxLength) throw new OutOfMemoryException("Maximum length exceeded");
-            return BaseStream.WriteAsync(buffer, cancellationToken);
+            return _BaseStream.WriteAsync(buffer, cancellationToken);
         }
     }
 }

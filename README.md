@@ -167,7 +167,7 @@ including extensions for numeric type encoding/decoding)
     - `CountingStream` counts red/written bytes
     - `PauseableStream` is a stream which can temporary pause reading/writing
     - `EnumerableStream` streams an enumerable/enumerator
-    - `CombinedStream` combined multiple streams into one stream (read-only)
+    - `CombinedStream` combines multiple streams into one stream (read-only)
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context

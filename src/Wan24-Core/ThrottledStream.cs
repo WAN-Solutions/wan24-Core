@@ -176,7 +176,7 @@
             EnsureUndisposed();
             EnsureWritable();
             ThrottleWriting(count: 1);
-            BaseStream.WriteByte(value);
+            Target.WriteByte(value);
         }
 
         /// <inheritdoc/>

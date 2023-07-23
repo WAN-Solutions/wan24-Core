@@ -64,7 +64,7 @@
             get
             {
                 EnsureUndisposed();
-                long res = BaseStream.Position - Offset;
+                long res = _BaseStream.Position - Offset;
                 if (res < 0 || res > _Length) throw new InvalidOperationException();
                 return res;
             }
@@ -72,26 +72,26 @@
             {
                 EnsureUndisposed();
                 if (value < 0 || Offset > _Length) throw new ArgumentOutOfRangeException(nameof(value));
-                BaseStream.Position = Offset + value;
+                _BaseStream.Position = Offset + value;
             }
         }
 
         /// <inheritdoc/>
-        public override int Read(byte[] buffer, int offset, int count) => base.Read(buffer, offset, (int)Math.Min(Offset + _Length - BaseStream.Position, count));
+        public override int Read(byte[] buffer, int offset, int count) => base.Read(buffer, offset, (int)Math.Min(Offset + _Length - _BaseStream.Position, count));
 
         /// <inheritdoc/>
-        public override int Read(Span<byte> buffer) => base.Read(buffer[..(int)Math.Min(Offset + _Length - BaseStream.Position, buffer.Length)]);
+        public override int Read(Span<byte> buffer) => base.Read(buffer[..(int)Math.Min(Offset + _Length - _BaseStream.Position, buffer.Length)]);
 
         /// <inheritdoc/>
         public override int ReadByte() => Position == _Length ? -1 : base.ReadByte();
 
         /// <inheritdoc/>
         public override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
-            => base.ReadAsync(buffer, offset, (int)Math.Min(Offset + _Length - BaseStream.Position, count), cancellationToken);
+            => base.ReadAsync(buffer, offset, (int)Math.Min(Offset + _Length - _BaseStream.Position, count), cancellationToken);
 
         /// <inheritdoc/>
         public override ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
-            => base.ReadAsync(buffer[..(int)Math.Min(Offset + _Length - BaseStream.Position, buffer.Length)], cancellationToken);
+            => base.ReadAsync(buffer[..(int)Math.Min(Offset + _Length - _BaseStream.Position, buffer.Length)], cancellationToken);
 
         /// <inheritdoc/>
         public override long Seek(long offset, SeekOrigin origin) => this.GenericSeek(offset, origin);
