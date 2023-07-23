@@ -168,6 +168,7 @@ including extensions for numeric type encoding/decoding)
     - `PauseableStream` is a stream which can temporary pause reading/writing
     - `EnumerableStream` streams an enumerable/enumerator
     - `CombinedStream` combines multiple streams into one stream (read-only)
+    - `SynchronizedStream` synchronizes IO and seeking
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context
