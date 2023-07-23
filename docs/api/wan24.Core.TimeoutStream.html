@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class PartialStream
+    <title>Class TimeoutStream
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class PartialStream
+    <meta name="title" content="Class TimeoutStream
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,79 +68,52 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.PartialStream">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.TimeoutStream">
   
   
-  <h1 id="wan24_Core_PartialStream" data-uid="wan24.Core.PartialStream" class="text-break">Class PartialStream
+  <h1 id="wan24_Core_TimeoutStream" data-uid="wan24.Core.TimeoutStream" class="text-break">Class TimeoutStream
   </h1>
-  <div class="markdown level0 summary"><p>Partial stream</p>
+  <div class="markdown level0 summary"><p>Timeout stream (async reading/writing methods can timeout)</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><a class="xref" href="wan24.Core.WrapperStream-1.html">WrapperStream</a>&lt;<span class="xref">Stream</span>&gt;</div>
-    <div class="level2"><a class="xref" href="wan24.Core.PartialStream-1.html">PartialStream</a>&lt;<span class="xref">Stream</span>&gt;</div>
-    <div class="level3"><span class="xref">PartialStream</span></div>
+    <div class="level2"><a class="xref" href="wan24.Core.TimeoutStream-1.html">TimeoutStream</a>&lt;<span class="xref">Stream</span>&gt;</div>
+    <div class="level3"><span class="xref">TimeoutStream</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1__Length">PartialStream&lt;Stream&gt;._Length</a>
+      <a class="xref" href="wan24.Core.TimeoutStream-1.html#wan24_Core_TimeoutStream_1__ReadTimeout">TimeoutStream&lt;Stream&gt;._ReadTimeout</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_Offset">PartialStream&lt;Stream&gt;.Offset</a>
+      <a class="xref" href="wan24.Core.TimeoutStream-1.html#wan24_Core_TimeoutStream_1__WriteTimeout">TimeoutStream&lt;Stream&gt;._WriteTimeout</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_CanRead">PartialStream&lt;Stream&gt;.CanRead</a>
+      <a class="xref" href="wan24.Core.TimeoutStream-1.html#wan24_Core_TimeoutStream_1_CanTimeout">TimeoutStream&lt;Stream&gt;.CanTimeout</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_CanSeek">PartialStream&lt;Stream&gt;.CanSeek</a>
+      <a class="xref" href="wan24.Core.TimeoutStream-1.html#wan24_Core_TimeoutStream_1_ReadTimeout">TimeoutStream&lt;Stream&gt;.ReadTimeout</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_CanWrite">PartialStream&lt;Stream&gt;.CanWrite</a>
+      <a class="xref" href="wan24.Core.TimeoutStream-1.html#wan24_Core_TimeoutStream_1_WriteTimeout">TimeoutStream&lt;Stream&gt;.WriteTimeout</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_Length">PartialStream&lt;Stream&gt;.Length</a>
+      <a class="xref" href="wan24.Core.TimeoutStream-1.html#wan24_Core_TimeoutStream_1_FlushAsync_CancellationToken_">TimeoutStream&lt;Stream&gt;.FlushAsync(CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_Position">PartialStream&lt;Stream&gt;.Position</a>
+      <a class="xref" href="wan24.Core.TimeoutStream-1.html#wan24_Core_TimeoutStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_">TimeoutStream&lt;Stream&gt;.ReadAsync(Byte[], Int32, Int32, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_Read_System_Byte___System_Int32_System_Int32_">PartialStream&lt;Stream&gt;.Read(Byte[], Int32, Int32)</a>
+      <a class="xref" href="wan24.Core.TimeoutStream-1.html#wan24_Core_TimeoutStream_1_ReadAsync_Memory_System_Byte__CancellationToken_">TimeoutStream&lt;Stream&gt;.ReadAsync(Memory&lt;Byte&gt;, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_Read_Span_System_Byte__">PartialStream&lt;Stream&gt;.Read(Span&lt;Byte&gt;)</a>
+      <a class="xref" href="wan24.Core.TimeoutStream-1.html#wan24_Core_TimeoutStream_1_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_">TimeoutStream&lt;Stream&gt;.WriteAsync(Byte[], Int32, Int32, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_ReadByte">PartialStream&lt;Stream&gt;.ReadByte()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_">PartialStream&lt;Stream&gt;.ReadAsync(Byte[], Int32, Int32, CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_ReadAsync_Memory_System_Byte__CancellationToken_">PartialStream&lt;Stream&gt;.ReadAsync(Memory&lt;Byte&gt;, CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_Seek_System_Int64_SeekOrigin_">PartialStream&lt;Stream&gt;.Seek(Int64, SeekOrigin)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_SetLength_System_Int64_">PartialStream&lt;Stream&gt;.SetLength(Int64)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_Write_System_Byte___System_Int32_System_Int32_">PartialStream&lt;Stream&gt;.Write(Byte[], Int32, Int32)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_Write_ReadOnlySpan_System_Byte__">PartialStream&lt;Stream&gt;.Write(ReadOnlySpan&lt;Byte&gt;)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_WriteByte_System_Byte_">PartialStream&lt;Stream&gt;.WriteByte(Byte)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_">PartialStream&lt;Stream&gt;.WriteAsync(Byte[], Int32, Int32, CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.PartialStream-1.html#wan24_Core_PartialStream_1_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_">PartialStream&lt;Stream&gt;.WriteAsync(ReadOnlyMemory&lt;Byte&gt;, CancellationToken)</a>
+      <a class="xref" href="wan24.Core.TimeoutStream-1.html#wan24_Core_TimeoutStream_1_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_">TimeoutStream&lt;Stream&gt;.WriteAsync(ReadOnlyMemory&lt;Byte&gt;, CancellationToken)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_SyncObject">WrapperStream&lt;Stream&gt;.SyncObject</a>
@@ -173,19 +146,46 @@
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_IsDisposed">WrapperStream&lt;Stream&gt;.IsDisposed</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanTimeout">WrapperStream&lt;Stream&gt;.CanTimeout</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanRead">WrapperStream&lt;Stream&gt;.CanRead</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_ReadTimeout">WrapperStream&lt;Stream&gt;.ReadTimeout</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanSeek">WrapperStream&lt;Stream&gt;.CanSeek</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_WriteTimeout">WrapperStream&lt;Stream&gt;.WriteTimeout</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanWrite">WrapperStream&lt;Stream&gt;.CanWrite</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Length">WrapperStream&lt;Stream&gt;.Length</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Position">WrapperStream&lt;Stream&gt;.Position</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Flush">WrapperStream&lt;Stream&gt;.Flush()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_FlushAsync_CancellationToken_">WrapperStream&lt;Stream&gt;.FlushAsync(CancellationToken)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Read_System_Byte___System_Int32_System_Int32_">WrapperStream&lt;Stream&gt;.Read(Byte[], Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Read_Span_System_Byte__">WrapperStream&lt;Stream&gt;.Read(Span&lt;Byte&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_ReadByte">WrapperStream&lt;Stream&gt;.ReadByte()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Seek_System_Int64_SeekOrigin_">WrapperStream&lt;Stream&gt;.Seek(Int64, SeekOrigin)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_SetLength_System_Int64_">WrapperStream&lt;Stream&gt;.SetLength(Int64)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Write_System_Byte___System_Int32_System_Int32_">WrapperStream&lt;Stream&gt;.Write(Byte[], Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Write_ReadOnlySpan_System_Byte__">WrapperStream&lt;Stream&gt;.Write(ReadOnlySpan&lt;Byte&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_WriteByte_System_Byte_">WrapperStream&lt;Stream&gt;.WriteByte(Byte)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CopyTo_Stream_System_Int32_">WrapperStream&lt;Stream&gt;.CopyTo(Stream, Int32)</a>
@@ -259,27 +259,27 @@
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_PartialStream_syntax">Syntax</h5>
+  <h5 id="wan24_Core_TimeoutStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PartialStream : PartialStream&lt;Stream&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class TimeoutStream : TimeoutStream&lt;Stream&gt;</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PartialStream__ctor_Stream_System_Int64_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.PartialStream.%23ctor(Stream%2CSystem.Int64%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimeoutStream__ctor_Stream_TimeSpan_System_Nullable_TimeSpan__System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.TimeoutStream.%23ctor(Stream%2CTimeSpan%2CSystem.Nullable%7BTimeSpan%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PartialStream.cs/#L14">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimeoutStream.cs/#L15">View Source</a>
   </span>
-  <a id="wan24_Core_PartialStream__ctor_" data-uid="wan24.Core.PartialStream.#ctor*"></a>
-  <h4 id="wan24_Core_PartialStream__ctor_Stream_System_Int64_System_Boolean_" data-uid="wan24.Core.PartialStream.#ctor(Stream,System.Int64,System.Boolean)">PartialStream(Stream, Int64, Boolean)</h4>
+  <a id="wan24_Core_TimeoutStream__ctor_" data-uid="wan24.Core.TimeoutStream.#ctor*"></a>
+  <h4 id="wan24_Core_TimeoutStream__ctor_Stream_TimeSpan_System_Nullable_TimeSpan__System_Boolean_" data-uid="wan24.Core.TimeoutStream.#ctor(Stream,TimeSpan,System.Nullable{TimeSpan},System.Boolean)">TimeoutStream(Stream, TimeSpan, Nullable&lt;TimeSpan&gt;, Boolean)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PartialStream(Stream baseStream, long length, bool leaveOpen = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public TimeoutStream(Stream baseStream, TimeSpan readTimeout, TimeSpan? writeTimeout = null, bool leaveOpen = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -298,9 +298,15 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int64</span></td>
-        <td><span class="parametername">length</span></td>
-        <td><p>Length in bytes</p>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><span class="parametername">readTimeout</span></td>
+        <td><p>Read timeout (<see cref="!:TimeSpan.Zero"></see> to disable)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
+        <td><span class="parametername">writeTimeout</span></td>
+        <td><p>Write timeout (<see cref="!:TimeSpan.Zero"></see> to disable)</p>
 </td>
       </tr>
       <tr>
@@ -404,10 +410,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_PartialStream.md&amp;value=---%0Auid%3A%20wan24.Core.PartialStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimeoutStream.md&amp;value=---%0Auid%3A%20wan24.Core.TimeoutStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/PartialStream.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimeoutStream.cs/#L6" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

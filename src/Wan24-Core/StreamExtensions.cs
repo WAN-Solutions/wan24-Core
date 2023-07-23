@@ -26,19 +26,17 @@ namespace wan24.Core
         /// <returns>Number of left bytes ('cause the source stream didn't deliver enough data)</returns>
         public static long CopyPartialTo(this Stream stream, Stream target, long count, int? bufferSize = null)
         {
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            if (count == 0) return 0;
             bufferSize ??= Settings.BufferSize;
+            bufferSize = (int)Math.Min(count, bufferSize.Value);
             byte[] buffer = ArrayPool<byte>.Shared.Rent(bufferSize.Value);
             try
             {
-                int read,
-                    red;
-                while (count != 0)
+                for (int red = 1; count != 0 && red != 0; count -= red)
                 {
-                    read = (int)Math.Min(count, bufferSize.Value);
-                    red = stream.Read(buffer.AsSpan(0, read));
+                    red = stream.Read(buffer.AsSpan(0, (int)Math.Min(count, bufferSize.Value)));
                     if (red != 0) target.Write(buffer.AsSpan(0, red));
-                    count -= red;
-                    if (red < read) break;
                 }
                 return count;
             }
@@ -59,19 +57,17 @@ namespace wan24.Core
         /// <returns>Number of left bytes ('cause the source stream didn't deliver enough data)</returns>
         public static async Task<long> CopyPartialToAsync(this Stream stream, Stream target, long count, int? bufferSize = null, CancellationToken cancellationToken = default)
         {
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            if (count == 0) return 0;
             bufferSize ??= Settings.BufferSize;
+            bufferSize = (int)Math.Min(count, bufferSize.Value);
             byte[] buffer = ArrayPool<byte>.Shared.Rent(bufferSize.Value);
             try
             {
-                int read,
-                    red;
-                while (count != 0)
+                for (int red = 1; count != 0 && red != 0; count -= red)
                 {
-                    read = (int)Math.Min(count, bufferSize.Value);
-                    red = await stream.ReadAsync(buffer.AsMemory(0, read), cancellationToken).DynamicContext();
+                    red = await stream.ReadAsync(buffer.AsMemory(0, (int)Math.Min(count, bufferSize.Value)), cancellationToken).DynamicContext();
                     if (red != 0) await target.WriteAsync(buffer.AsMemory(0, red), cancellationToken).DynamicContext();
-                    count -= red;
-                    if (red < read) break;
                 }
                 return count;
             }

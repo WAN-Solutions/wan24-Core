@@ -155,9 +155,10 @@ including extensions for numeric type encoding/decoding)
 - Streams
     - `WrapperStream` wraps a base stream and provides `LeaveOpen`
     - `PartialStream` wraps a part of a base stream (read-only)
-    - `LengthLimitedStream` ensures a maximum stream length
+    - `LengthLimitedStream` ensures a maximum stream length (only writing)
     - `MemoryPoolStream` uses an `ArrayPool<byte>` for storing written data
     - `ThrottledStream` throttles reading/writing troughput
+    - `TimeoutStream` can timeout async reading/writing methods
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context

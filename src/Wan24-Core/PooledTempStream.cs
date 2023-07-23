@@ -3,7 +3,7 @@
     /// <summary>
     /// Pooled temporary stream (hosts written data in memory first, then switches to a temporary file when exceeding the memory limit)
     /// </summary>
-    public sealed class PooledTempStream : WrapperStream
+    public sealed class PooledTempStream : WrapperStream<Stream>
     {
         /// <summary>
         /// An object for static thread synchronization
@@ -19,10 +19,6 @@
         private static StreamPool<PooledTempFileStream>? _FileStreamPool = null;
 
         /// <summary>
-        /// An object for thread synchronization
-        /// </summary>
-        private readonly object SyncObject = new();
-        /// <summary>
         /// Used memory stream pool
         /// </summary>
         private readonly StreamPool<PooledMemoryStream> UsedMemoryStreamPool;
@@ -30,10 +26,6 @@
         /// Used file stream pool
         /// </summary>
         private readonly StreamPool<PooledTempFileStream> UsedFileStreamPool;
-        /// <summary>
-        /// Is disposed?
-        /// </summary>
-        private bool IsDisposed = false;
 
         /// <summary>
         /// Constructor
@@ -47,6 +39,7 @@
             UsedMemoryStreamPool = memoryStreamPool ?? MemoryStreamPool;
             UsedFileStreamPool = fileStreamPool ?? FileStreamPool;
             BaseStream = estimatedLength > MaxLengthInMemory ? UsedFileStreamPool.Rent() : UsedMemoryStreamPool.Rent();
+            UseOriginalBeginWrite = true;
         }
 
         /// <summary>
@@ -167,11 +160,7 @@
         /// <inheritdoc/>
         public override void Close()
         {
-            lock (SyncObject)
-            {
-                if (IsDisposed) return;
-                IsDisposed = true;
-            }
+            if (IsDisposed) return;
             base.Close();
             ReturnBaseStream();
         }
@@ -180,11 +169,7 @@
         public override async ValueTask DisposeAsync()
         {
             await Task.Yield();
-            lock (SyncObject)
-            {
-                if (IsDisposed) return;
-                IsDisposed = true;
-            }
+            if (IsDisposed) return;
             await base.DisposeAsync().DynamicContext();
             ReturnBaseStream();
         }
@@ -255,6 +240,7 @@
         /// </summary>
         private void ReturnBaseStream()
         {
+            if (BaseStream is null) return;
             if (MemoryStream != null)
             {
                 UsedMemoryStreamPool.Return(MemoryStream);
@@ -264,15 +250,6 @@
                 UsedFileStreamPool.Return(FileStream!);
             }
             BaseStream = null!;
-        }
-
-        /// <summary>
-        /// Ensure undisposed state
-        /// </summary>
-        private void EnsureUndisposed()
-        {
-            if (!IsDisposed) return;
-            throw new ObjectDisposedException(GetType().ToString());
         }
     }
 }
