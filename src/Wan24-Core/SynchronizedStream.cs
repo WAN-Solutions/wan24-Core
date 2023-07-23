@@ -6,6 +6,20 @@ namespace wan24.Core
     /// Synchronized stream (synchronizes reading/writing/seeking operations; the base stream should implement each single asynchronous reading/writing method! Any asynchronous 
     /// reading/writing method which adopts or calls to another asynchronous reading/writing or any seeking method will cause a dead-lock!)
     /// </summary>
+    public class SynchronizedStream : SynchronizedStream<Stream>
+    {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="baseStream">Base stream</param>
+        /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
+        public SynchronizedStream(Stream baseStream, bool leaveOpen = false) : base(baseStream, leaveOpen) { }
+    }
+
+    /// <summary>
+    /// Synchronized stream (synchronizes reading/writing/seeking operations; the base stream should implement each single asynchronous reading/writing method! Any asynchronous 
+    /// reading/writing method which adopts or calls to another asynchronous reading/writing or any seeking method will cause a dead-lock!)
+    /// </summary>
     /// <typeparam name="T">Wrapped stream type</typeparam>
     public class SynchronizedStream<T> : WrapperStream<T> where T:Stream
     {
@@ -58,6 +72,29 @@ namespace wan24.Core
             }
             finally
             {
+                SyncIO.Release();
+            }
+        }
+
+        /// <inheritdoc/>
+        public override long Seek(long offset, SeekOrigin origin)
+        {
+            EnsureUndisposed();
+            SyncIO.Wait();
+            SyncSeek.Wait();
+            try
+            {
+                return base.Position = origin switch
+                {
+                    SeekOrigin.Begin => offset,
+                    SeekOrigin.Current => base.Position + offset,
+                    SeekOrigin.End => base.Length + offset,
+                    _ => throw new ArgumentException("Invalid seek origin", nameof(origin))
+                };
+            }
+            finally
+            {
+                SyncSeek.Release();
                 SyncIO.Release();
             }
         }
