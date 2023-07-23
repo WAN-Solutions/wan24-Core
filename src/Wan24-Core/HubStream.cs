@@ -18,6 +18,12 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
+        /// <param name="targets">Target streams</param>
+        public HubStream(params Stream[] targets) : this(leaveOpen: false, targets) { }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         /// <param name="leaveOpen">Leave the target streams open when disposing?</param>
         /// <param name="targets">Target streams</param>
         public HubStream(bool leaveOpen, params Stream[] targets) : base()

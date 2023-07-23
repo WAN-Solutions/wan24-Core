@@ -115,10 +115,66 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_Chunk_Stream_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.Chunk(Stream%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L132">View Source</a>
+  </span>
+  <a id="wan24_Core_StreamExtensions_Chunk_" data-uid="wan24.Core.StreamExtensions.Chunk*"></a>
+  <h4 id="wan24_Core_StreamExtensions_Chunk_Stream_System_Int64_" data-uid="wan24.Core.StreamExtensions.Chunk(Stream,System.Int64)">Chunk(Stream, Int64)</h4>
+  <div class="markdown level1 summary"><p>Create stream chunks</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;StreamBase&gt; Chunk(this Stream stream, long chunkSize)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>Stream (will be chunked from position <code>0</code>)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">chunkSize</span></td>
+        <td><p>Chunk size in bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.IEnumerable</span>&lt;<a class="xref" href="wan24.Core.StreamBase.html">StreamBase</a>&gt;</td>
+        <td><p>Chunks (should be used directly, and the yielded partial chunk streams, too (their position will change as soon as a new stream was yielded)!)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_CopyPartialTo_Stream_Stream_System_Int64_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.CopyPartialTo(Stream%2CStream%2CSystem.Int64%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L27">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L28">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_CopyPartialTo_" data-uid="wan24.Core.StreamExtensions.CopyPartialTo*"></a>
   <h4 id="wan24_Core_StreamExtensions_CopyPartialTo_Stream_Stream_System_Int64_System_Nullable_System_Int32__" data-uid="wan24.Core.StreamExtensions.CopyPartialTo(Stream,Stream,System.Int64,System.Nullable{System.Int32})">CopyPartialTo(Stream, Stream, Int64, Nullable&lt;Int32&gt;)</h4>
@@ -186,7 +242,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_CopyPartialToAsync_Stream_Stream_System_Int64_System_Nullable_System_Int32__CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.CopyPartialToAsync(Stream%2CStream%2CSystem.Int64%2CSystem.Nullable%7BSystem.Int32%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L58">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L59">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_CopyPartialToAsync_" data-uid="wan24.Core.StreamExtensions.CopyPartialToAsync*"></a>
   <h4 id="wan24_Core_StreamExtensions_CopyPartialToAsync_Stream_Stream_System_Int64_System_Nullable_System_Int32__CancellationToken_" data-uid="wan24.Core.StreamExtensions.CopyPartialToAsync(Stream,Stream,System.Int64,System.Nullable{System.Int32},CancellationToken)">CopyPartialToAsync(Stream, Stream, Int64, Nullable&lt;Int32&gt;, CancellationToken)</h4>
@@ -260,7 +316,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_GenericSeek_Stream_System_Int64_SeekOrigin_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.GenericSeek(Stream%2CSystem.Int64%2CSeekOrigin)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L87">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L88">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_GenericSeek_" data-uid="wan24.Core.StreamExtensions.GenericSeek*"></a>
   <h4 id="wan24_Core_StreamExtensions_GenericSeek_Stream_System_Int64_SeekOrigin_" data-uid="wan24.Core.StreamExtensions.GenericSeek(Stream,System.Int64,SeekOrigin)">GenericSeek(Stream, Int64, SeekOrigin)</h4>
@@ -323,7 +379,7 @@ public static long GenericSeek(this Stream stream, long offset, SeekOrigin origi
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_GetRemainingBytes_Stream_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.GetRemainingBytes(Stream)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L16">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L17">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_GetRemainingBytes_" data-uid="wan24.Core.StreamExtensions.GetRemainingBytes*"></a>
   <h4 id="wan24_Core_StreamExtensions_GetRemainingBytes_Stream_" data-uid="wan24.Core.StreamExtensions.GetRemainingBytes(Stream)">GetRemainingBytes(Stream)</h4>
@@ -374,7 +430,7 @@ public static long GetRemainingBytes(this Stream stream)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_WriteZero_Stream_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.WriteZero(Stream%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L101">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L102">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_WriteZero_" data-uid="wan24.Core.StreamExtensions.WriteZero*"></a>
   <h4 id="wan24_Core_StreamExtensions_WriteZero_Stream_System_Int64_" data-uid="wan24.Core.StreamExtensions.WriteZero(Stream,System.Int64)">WriteZero(Stream, Int64)</h4>
@@ -414,7 +470,7 @@ public static long GetRemainingBytes(this Stream stream)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_WriteZeroAsync_Stream_System_Int64_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.WriteZeroAsync(Stream%2CSystem.Int64%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L116">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L117">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_WriteZeroAsync_" data-uid="wan24.Core.StreamExtensions.WriteZeroAsync*"></a>
   <h4 id="wan24_Core_StreamExtensions_WriteZeroAsync_Stream_System_Int64_CancellationToken_" data-uid="wan24.Core.StreamExtensions.WriteZeroAsync(Stream,System.Int64,CancellationToken)">WriteZeroAsync(Stream, Int64, CancellationToken)</h4>
@@ -481,7 +537,7 @@ public static long GetRemainingBytes(this Stream stream)</code></pre>
                     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L10" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
