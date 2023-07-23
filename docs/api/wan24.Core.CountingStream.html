@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class ThrottledStream
+    <title>Class CountingStream
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class ThrottledStream
+    <meta name="title" content="Class CountingStream
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,12 +68,12 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.ThrottledStream">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.CountingStream">
   
   
-  <h1 id="wan24_Core_ThrottledStream" data-uid="wan24.Core.ThrottledStream" class="text-break">Class ThrottledStream
+  <h1 id="wan24_Core_CountingStream" data-uid="wan24.Core.CountingStream" class="text-break">Class CountingStream
   </h1>
-  <div class="markdown level0 summary"><p>Throttled stream</p>
+  <div class="markdown level0 summary"><p>Counting stream counts red/written bytes</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -81,8 +81,8 @@
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><a class="xref" href="wan24.Core.StreamBase.html">StreamBase</a></div>
     <div class="level2"><a class="xref" href="wan24.Core.WrapperStream-1.html">WrapperStream</a>&lt;<span class="xref">Stream</span>&gt;</div>
-    <div class="level3"><a class="xref" href="wan24.Core.ThrottledStream-1.html">ThrottledStream</a>&lt;<span class="xref">Stream</span>&gt;</div>
-    <div class="level4"><span class="xref">ThrottledStream</span></div>
+    <div class="level3"><a class="xref" href="wan24.Core.CountingStream-1.html">CountingStream</a>&lt;<span class="xref">Stream</span>&gt;</div>
+    <div class="level4"><span class="xref">CountingStream</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
@@ -94,79 +94,52 @@
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ReadCount">ThrottledStream&lt;Stream&gt;.ReadCount</a>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_Red">CountingStream&lt;Stream&gt;.Red</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ReadTime">ThrottledStream&lt;Stream&gt;.ReadTime</a>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_Written">CountingStream&lt;Stream&gt;.Written</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_LastReadTimeStart">ThrottledStream&lt;Stream&gt;.LastReadTimeStart</a>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_State">CountingStream&lt;Stream&gt;.State</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_RedCount">ThrottledStream&lt;Stream&gt;.RedCount</a>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_ResetRed">CountingStream&lt;Stream&gt;.ResetRed()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_WriteCount">ThrottledStream&lt;Stream&gt;.WriteCount</a>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_ResetWritten">CountingStream&lt;Stream&gt;.ResetWritten()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_WriteTime">ThrottledStream&lt;Stream&gt;.WriteTime</a>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_ResetCounter">CountingStream&lt;Stream&gt;.ResetCounter()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_LastWriteTimeStart">ThrottledStream&lt;Stream&gt;.LastWriteTimeStart</a>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_Write_System_Byte___System_Int32_System_Int32_">CountingStream&lt;Stream&gt;.Write(Byte[], Int32, Int32)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_WroteCount">ThrottledStream&lt;Stream&gt;.WroteCount</a>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_Write_ReadOnlySpan_System_Byte__">CountingStream&lt;Stream&gt;.Write(ReadOnlySpan&lt;Byte&gt;)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ResetWriteThrottle">ThrottledStream&lt;Stream&gt;.ResetWriteThrottle()</a>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_">CountingStream&lt;Stream&gt;.WriteAsync(Byte[], Int32, Int32, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ResetReadThrottle">ThrottledStream&lt;Stream&gt;.ResetReadThrottle()</a>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_">CountingStream&lt;Stream&gt;.WriteAsync(ReadOnlyMemory&lt;Byte&gt;, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ReadByte">ThrottledStream&lt;Stream&gt;.ReadByte()</a>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_WriteByte_System_Byte_">CountingStream&lt;Stream&gt;.WriteByte(Byte)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_Read_System_Byte___System_Int32_System_Int32_">ThrottledStream&lt;Stream&gt;.Read(Byte[], Int32, Int32)</a>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_Read_System_Byte___System_Int32_System_Int32_">CountingStream&lt;Stream&gt;.Read(Byte[], Int32, Int32)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_Read_Span_System_Byte__">ThrottledStream&lt;Stream&gt;.Read(Span&lt;Byte&gt;)</a>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_Read_Span_System_Byte__">CountingStream&lt;Stream&gt;.Read(Span&lt;Byte&gt;)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_">ThrottledStream&lt;Stream&gt;.ReadAsync(Byte[], Int32, Int32, CancellationToken)</a>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_">CountingStream&lt;Stream&gt;.ReadAsync(Byte[], Int32, Int32, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ReadAsync_Memory_System_Byte__CancellationToken_">ThrottledStream&lt;Stream&gt;.ReadAsync(Memory&lt;Byte&gt;, CancellationToken)</a>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_ReadAsync_Memory_System_Byte__CancellationToken_">CountingStream&lt;Stream&gt;.ReadAsync(Memory&lt;Byte&gt;, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_WriteByte_System_Byte_">ThrottledStream&lt;Stream&gt;.WriteByte(Byte)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_Write_System_Byte___System_Int32_System_Int32_">ThrottledStream&lt;Stream&gt;.Write(Byte[], Int32, Int32)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_Write_ReadOnlySpan_System_Byte__">ThrottledStream&lt;Stream&gt;.Write(ReadOnlySpan&lt;Byte&gt;)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_">ThrottledStream&lt;Stream&gt;.WriteAsync(Byte[], Int32, Int32, CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_">ThrottledStream&lt;Stream&gt;.WriteAsync(ReadOnlyMemory&lt;Byte&gt;, CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ThrottleWriting_System_Int32_">ThrottledStream&lt;Stream&gt;.ThrottleWriting(Int32)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ThrottleWritingAsync_System_Int32_CancellationToken_">ThrottledStream&lt;Stream&gt;.ThrottleWritingAsync(Int32, CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_GetReadCount_System_Int32_">ThrottledStream&lt;Stream&gt;.GetReadCount(Int32)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ThrottleReading">ThrottledStream&lt;Stream&gt;.ThrottleReading()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ThrottleReadingAsync_CancellationToken_">ThrottledStream&lt;Stream&gt;.ThrottleReadingAsync(CancellationToken)</a>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_ReadByte">CountingStream&lt;Stream&gt;.ReadByte()</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1__LeaveOpen">WrapperStream&lt;Stream&gt;._LeaveOpen</a>
@@ -191,9 +164,6 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_LeaveOpen">WrapperStream&lt;Stream&gt;.LeaveOpen</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_State">WrapperStream&lt;Stream&gt;.State</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanRead">WrapperStream&lt;Stream&gt;.CanRead</a>
@@ -336,27 +306,27 @@
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_ThrottledStream_syntax">Syntax</h5>
+  <h5 id="wan24_Core_CountingStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ThrottledStream : ThrottledStream&lt;Stream&gt;, IDisposableObject, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class CountingStream : CountingStream&lt;Stream&gt;, IDisposableObject, IStatusProvider</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream__ctor_Stream_System_Int32_System_Nullable_TimeSpan__System_Int32_System_Nullable_TimeSpan__System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.%23ctor(Stream%2CSystem.Int32%2CSystem.Nullable%7BTimeSpan%7D%2CSystem.Int32%2CSystem.Nullable%7BTimeSpan%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_CountingStream__ctor_Stream_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream.%23ctor(Stream%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L17">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/CountingStream.cs/#L15">View Source</a>
   </span>
-  <a id="wan24_Core_ThrottledStream__ctor_" data-uid="wan24.Core.ThrottledStream.#ctor*"></a>
-  <h4 id="wan24_Core_ThrottledStream__ctor_Stream_System_Int32_System_Nullable_TimeSpan__System_Int32_System_Nullable_TimeSpan__System_Boolean_" data-uid="wan24.Core.ThrottledStream.#ctor(Stream,System.Int32,System.Nullable{TimeSpan},System.Int32,System.Nullable{TimeSpan},System.Boolean)">ThrottledStream(Stream, Int32, Nullable&lt;TimeSpan&gt;, Int32, Nullable&lt;TimeSpan&gt;, Boolean)</h4>
+  <a id="wan24_Core_CountingStream__ctor_" data-uid="wan24.Core.CountingStream.#ctor*"></a>
+  <h4 id="wan24_Core_CountingStream__ctor_Stream_System_Boolean_" data-uid="wan24.Core.CountingStream.#ctor(Stream,System.Boolean)">CountingStream(Stream, Boolean)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ThrottledStream(Stream baseStream, int readCount = 0, TimeSpan? readTime = null, int writeCount = 0, TimeSpan? writeTime = null, bool leaveOpen = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public CountingStream(Stream baseStream, bool leaveOpen = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -372,30 +342,6 @@
         <td><span class="xref">Stream</span></td>
         <td><span class="parametername">baseStream</span></td>
         <td><p>Base stream</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">readCount</span></td>
-        <td><p>Read count (zero to disable read throttling)</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
-        <td><span class="parametername">readTime</span></td>
-        <td><p>Read time</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">writeCount</span></td>
-        <td><p>Write count (zero to disable write throttling)</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TimeSpan</span>&gt;</td>
-        <td><span class="parametername">writeTime</span></td>
-        <td><p>Write time</p>
 </td>
       </tr>
       <tr>
@@ -512,10 +458,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_CountingStream.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/CountingStream.cs/#L8" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

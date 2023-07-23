@@ -94,13 +94,7 @@
             => base.ReadAsync(buffer[..(int)Math.Min(Offset + _Length - BaseStream.Position, buffer.Length)], cancellationToken);
 
         /// <inheritdoc/>
-        public override long Seek(long offset, SeekOrigin origin) => Position = origin switch
-        {
-            SeekOrigin.Begin => offset,
-            SeekOrigin.Current => Position + offset,
-            SeekOrigin.End => _Length + offset,
-            _ => throw new ArgumentException("Invalid seek origin", nameof(origin))
-        };
+        public override long Seek(long offset, SeekOrigin origin) => this.GenericSeek(offset, origin);
 
         /// <inheritdoc/>
         public sealed override void SetLength(long value) => throw new NotSupportedException();

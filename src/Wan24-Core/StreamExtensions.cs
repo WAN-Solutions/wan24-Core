@@ -76,5 +76,50 @@ namespace wan24.Core
                 ArrayPool<byte>.Shared.Return(buffer);
             }
         }
+
+        /// <summary>
+        /// Seek
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="origin">Origin</param>
+        /// <returns>Position</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static long GenericSeek(this Stream stream, long offset, SeekOrigin origin) => stream.Position = origin switch
+        {
+            SeekOrigin.Begin => offset,
+            SeekOrigin.Current => stream.Position + offset,
+            SeekOrigin.End => stream.Length + offset,
+            _ => throw new ArgumentException("Invalid seek origin", nameof(origin))
+        };
+
+        /// <summary>
+        /// Write zero
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="count">Number of bytes</param>
+        public static void WriteZero(this Stream stream, long count)
+        {
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            if (count == 0) return;
+            using ZeroStream zero = new();
+            zero.SetLength(count);
+            zero.CopyTo(stream);
+        }
+
+        /// <summary>
+        /// Write zero
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="count">Number of bytes</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public static async Task WriteZeroAsync(this Stream stream, long count, CancellationToken cancellationToken = default)
+        {
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            if (count == 0) return;
+            using ZeroStream zero = new();
+            zero.SetLength(count);
+            await zero.CopyToAsync(stream, cancellationToken).DynamicContext();
+        }
     }
 }

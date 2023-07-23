@@ -95,7 +95,7 @@ namespace wan24.Core
         /// <param name="dict">Dictionary</param>
         public static explicit operator CliArguments(Dictionary<string, IEnumerable<string>> dict)
             => new(from kvp in dict
-                   select new KeyValuePair<string, ReadOnlyCollection<string>>(kvp.Key, kvp.Value.ToList().AsReadOnly()));
+                   select new KeyValuePair<string, ReadOnlyCollection<string>>(kvp.Key, kvp.Value.AsReadOnly()));
 
         /// <summary>
         /// Cast from dictionary
@@ -103,7 +103,7 @@ namespace wan24.Core
         /// <param name="dict">Dictionary</param>
         public static explicit operator CliArguments(Dictionary<string, string[]> dict)
             => new(from kvp in dict
-                   select new KeyValuePair<string, ReadOnlyCollection<string>>(kvp.Key, kvp.Value.ToList().AsReadOnly()));
+                   select new KeyValuePair<string, ReadOnlyCollection<string>>(kvp.Key, kvp.Value.AsReadOnly()));
 
         /// <summary>
         /// Cast from dictionary
@@ -125,7 +125,7 @@ namespace wan24.Core
         /// <param name="dict">Dictionary</param>
         public static explicit operator CliArguments(OrderedDictionary<string, IEnumerable<string>> dict)
             => new(from kvp in dict
-                   select new KeyValuePair<string, ReadOnlyCollection<string>>(kvp.Key, kvp.Value.ToList().AsReadOnly()));
+                   select new KeyValuePair<string, ReadOnlyCollection<string>>(kvp.Key, kvp.Value.AsReadOnly()));
 
         /// <summary>
         /// Cast from dictionary
@@ -133,7 +133,7 @@ namespace wan24.Core
         /// <param name="dict">Dictionary</param>
         public static explicit operator CliArguments(OrderedDictionary<string, string[]> dict)
             => new(from kvp in dict
-                   select new KeyValuePair<string, ReadOnlyCollection<string>>(kvp.Key, kvp.Value.ToList().AsReadOnly()));
+                   select new KeyValuePair<string, ReadOnlyCollection<string>>(kvp.Key, kvp.Value.AsReadOnly()));
 
         /// <summary>
         /// Cast from dictionary

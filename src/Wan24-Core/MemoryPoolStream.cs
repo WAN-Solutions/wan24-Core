@@ -6,7 +6,7 @@ namespace wan24.Core
     /// <summary>
     /// Memory pool stream (stores in arrays from an <see cref="ArrayPool{T}"/>)
     /// </summary>
-    public class MemoryPoolStream : Stream
+    public class MemoryPoolStream : StreamBase, IStatusProvider
     {
         /// <summary>
         /// Default buffer size in bytes
@@ -18,10 +18,6 @@ namespace wan24.Core
         /// </summary>
         protected static readonly object StaticSyncObject = new();
 
-        /// <summary>
-        /// An object for thread synchronization
-        /// </summary>
-        protected readonly object SyncObject = new();
         /// <summary>
         /// Buffers
         /// </summary>
@@ -54,10 +50,6 @@ namespace wan24.Core
         /// Byte offset
         /// </summary>
         protected long _Position = 0;
-        /// <summary>
-        /// Is disposed?
-        /// </summary>
-        protected bool IsDisposed = false;
 
         /// <summary>
         /// Constructor
@@ -137,6 +129,17 @@ namespace wan24.Core
         /// Saved data
         /// </summary>
         public byte[]? SavedData { get; protected set; }
+
+        /// <inheritdoc/>
+        public virtual IEnumerable<Status> State
+        {
+            get
+            {
+                yield return new("Name", Name, "Name of the stream");
+                yield return new("Type", GetType().ToString(), "Stream type");
+                yield return new("Size", Length, "Length in bytes");
+            }
+        }
 
         /// <inheritdoc/>
         public override bool CanRead => true;
@@ -281,13 +284,7 @@ namespace wan24.Core
         public override long Seek(long offset, SeekOrigin origin)
         {
             EnsureUndisposed();
-            return Position = origin switch
-            {
-                SeekOrigin.Begin => offset,
-                SeekOrigin.Current => _Position + offset,
-                SeekOrigin.End => _Length + offset,
-                _ => throw new ArgumentException($"Invalid origin {origin}", nameof(origin))
-            };
+            return this.GenericSeek(offset, origin);
         }
 
         /// <inheritdoc/>
@@ -372,13 +369,17 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override void Close()
         {
-            lock (SyncObject)
-            {
-                if (IsDisposed) return;
-                IsDisposed = true;
-            }
+            if (IsClosed) return;
             if (SaveOnClose) SavedData ??= ToArray();
             base.Close();
+        }
+
+        /// <inheritdoc/>
+        protected override void Dispose(bool disposing)
+        {
+            if (IsDisposing) return;
+            if (SaveOnClose) SavedData ??= ToArray();
+            base.Dispose(disposing);
             foreach (byte[] buffer in Buffers)
             {
                 if (CleanReturned) buffer.Clear();
@@ -388,33 +389,16 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-#pragma warning disable CA1816 // Suppress GC (will be supressed from the parent)
-        public override async ValueTask DisposeAsync()
+        protected override async Task DisposeCore()
         {
-            await Task.Yield();
-            lock (SyncObject)
-            {
-                if (IsDisposed) return;
-                IsDisposed = true;
-            }
             if (SaveOnClose) SavedData ??= ToArray();
-            await base.DisposeAsync().DynamicContext();
+            await DisposeCore().DynamicContext();
             foreach (byte[] buffer in Buffers)
             {
                 if (CleanReturned) buffer.Clear();
                 Pool.Return(buffer);
             }
             Buffers.Clear();
-        }
-#pragma warning restore CA1816 // Suppress GC (will be supressed from the parent)
-
-        /// <summary>
-        /// Ensure undisposed state
-        /// </summary>
-        protected void EnsureUndisposed()
-        {
-            if (!IsDisposed) return;
-            throw new ObjectDisposedException(GetType().ToString());
         }
 
         /// <summary>

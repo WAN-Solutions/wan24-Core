@@ -103,6 +103,16 @@
         public bool IsInMemory => BaseStream is PooledMemoryStream;
 
         /// <inheritdoc/>
+        public override IEnumerable<Status> State
+        {
+            get
+            {
+                foreach (Status status in base.State) yield return status;
+                yield return new("In memory", IsInMemory, "Is the data hosted in memory?");
+            }
+        }
+
+        /// <inheritdoc/>
         public override bool LeaveOpen
         {
             get => true;
@@ -158,19 +168,17 @@
         }
 
         /// <inheritdoc/>
-        public override void Close()
+        protected override void Dispose(bool disposing)
         {
-            if (IsDisposed) return;
-            base.Close();
+            if (IsDisposing) return;
+            base.Dispose(disposing);
             ReturnBaseStream();
         }
 
         /// <inheritdoc/>
-        public override async ValueTask DisposeAsync()
+        protected override async Task DisposeCore()
         {
-            await Task.Yield();
-            if (IsDisposed) return;
-            await base.DisposeAsync().DynamicContext();
+            await base.DisposeCore().DynamicContext();
             ReturnBaseStream();
         }
 

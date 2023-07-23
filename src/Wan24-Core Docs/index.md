@@ -153,12 +153,20 @@ customizable; encoded data integrity can be validated without decoding;
 including extensions for numeric type encoding/decoding)
 - Collecting periodical statistical values
 - Streams
+    - `StreamBase` as base class which implements some disposing logic
     - `WrapperStream` wraps a base stream and provides `LeaveOpen`
     - `PartialStream` wraps a part of a base stream (read-only)
     - `LengthLimitedStream` ensures a maximum stream length (only writing)
     - `MemoryPoolStream` uses an `ArrayPool<byte>` for storing written data
     - `ThrottledStream` throttles reading/writing troughput
     - `TimeoutStream` can timeout async reading/writing methods
+    - `BlockingBufferStream` for writing to / reading from a buffer blocked
+    - `HubStream` for forwarding writing operations to multiple target streams
+    - `LimitedStream` limits reading/writing/seeking capabilities of a stream
+    - `ZeroStream` reads zero bytes and writes to nowhere
+    - `CountingStream` counts red/written bytes
+    - `PauseableStream` is a stream which can temporary pause reading/writing
+    - `EnumerableStream` streams an enumerable/enumerator
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context
@@ -167,6 +175,8 @@ including extensions for numeric type encoding/decoding)
 - Stream extensions
     - Get the number of remaining bytes until the streams end
     - Copy a part of a stream to another stream
+    - Generic seek
+    - Write N zero bytes
 
 ## How to get it
 

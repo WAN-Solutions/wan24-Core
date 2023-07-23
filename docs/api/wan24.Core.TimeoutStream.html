@@ -79,9 +79,17 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><a class="xref" href="wan24.Core.WrapperStream-1.html">WrapperStream</a>&lt;<span class="xref">Stream</span>&gt;</div>
-    <div class="level2"><a class="xref" href="wan24.Core.TimeoutStream-1.html">TimeoutStream</a>&lt;<span class="xref">Stream</span>&gt;</div>
-    <div class="level3"><span class="xref">TimeoutStream</span></div>
+    <div class="level1"><a class="xref" href="wan24.Core.StreamBase.html">StreamBase</a></div>
+    <div class="level2"><a class="xref" href="wan24.Core.WrapperStream-1.html">WrapperStream</a>&lt;<span class="xref">Stream</span>&gt;</div>
+    <div class="level3"><a class="xref" href="wan24.Core.TimeoutStream-1.html">TimeoutStream</a>&lt;<span class="xref">Stream</span>&gt;</div>
+    <div class="level4"><span class="xref">TimeoutStream</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><span class="xref">IDisposable</span></div>
+    <div><span class="xref">IAsyncDisposable</span></div>
+    <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -116,9 +124,6 @@
       <a class="xref" href="wan24.Core.TimeoutStream-1.html#wan24_Core_TimeoutStream_1_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_">TimeoutStream&lt;Stream&gt;.WriteAsync(ReadOnlyMemory&lt;Byte&gt;, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_SyncObject">WrapperStream&lt;Stream&gt;.SyncObject</a>
-    </div>
-    <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1__LeaveOpen">WrapperStream&lt;Stream&gt;._LeaveOpen</a>
     </div>
     <div>
@@ -143,7 +148,7 @@
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_LeaveOpen">WrapperStream&lt;Stream&gt;.LeaveOpen</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_IsDisposed">WrapperStream&lt;Stream&gt;.IsDisposed</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_State">WrapperStream&lt;Stream&gt;.State</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanRead">WrapperStream&lt;Stream&gt;.CanRead</a>
@@ -218,25 +223,10 @@
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Close">WrapperStream&lt;Stream&gt;.Close()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_DisposeAsync">WrapperStream&lt;Stream&gt;.DisposeAsync()</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Dispose_System_Boolean_">WrapperStream&lt;Stream&gt;.Dispose(Boolean)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_EnsureUndisposed">WrapperStream&lt;Stream&gt;.EnsureUndisposed()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_IfUndisposed__1_Func___0__">WrapperStream&lt;Stream&gt;.IfUndisposed&lt;tReturn&gt;(Func&lt;tReturn&gt;)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_IfUndisposed__1___0_">WrapperStream&lt;Stream&gt;.IfUndisposed&lt;tReturn&gt;(tReturn)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_EnsureSeekable">WrapperStream&lt;Stream&gt;.EnsureSeekable()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_EnsureWritable">WrapperStream&lt;Stream&gt;.EnsureWritable()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_EnsureReadable">WrapperStream&lt;Stream&gt;.EnsureReadable()</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_DisposeCore">WrapperStream&lt;Stream&gt;.DisposeCore()</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseCopyTo_Stream_System_Int32_">WrapperStream&lt;Stream&gt;.BaseCopyTo(Stream, Int32)</a>
@@ -256,12 +246,60 @@
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseEndWrite_IAsyncResult_">WrapperStream&lt;Stream&gt;.BaseEndWrite(IAsyncResult)</a>
     </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_SyncObject">StreamBase.SyncObject</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_Name">StreamBase.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsClosed">StreamBase.IsClosed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsDisposed">StreamBase.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsDisposing">StreamBase.IsDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_DisposeAsync">StreamBase.DisposeAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureUndisposed_System_Boolean_System_Boolean_">StreamBase.EnsureUndisposed(Boolean, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed__1___0_System_Boolean_">StreamBase.IfUndisposed&lt;T&gt;(T, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed_Action_System_Boolean_">StreamBase.IfUndisposed(Action, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed__1_Func___0__System_Boolean_">StreamBase.IfUndisposed&lt;T&gt;(Func&lt;T&gt;, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposedNullable__1_Func___0__System_Boolean_">StreamBase.IfUndisposedNullable&lt;T&gt;(Func&lt;T&gt;, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureSeekable">StreamBase.EnsureSeekable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureWritable">StreamBase.EnsureWritable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureReadable">StreamBase.EnsureReadable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_OnDisposing">StreamBase.OnDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_OnDisposed">StreamBase.OnDisposed</a>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_TimeoutStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class TimeoutStream : TimeoutStream&lt;Stream&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class TimeoutStream : TimeoutStream&lt;Stream&gt;, IDisposableObject, IStatusProvider</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -317,6 +355,19 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
+      <span class="xref">IDisposable</span>
+  </div>
+  <div>
+      <span class="xref">IAsyncDisposable</span>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
+  </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_Int32_System_Int32_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, Int32, Int32, String)</a>

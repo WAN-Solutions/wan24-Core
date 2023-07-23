@@ -79,20 +79,22 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><a class="xref" href="wan24.Core.MemoryPoolStream.html">MemoryPoolStream</a></div>
-    <div class="level2"><span class="xref">PooledMemoryStream</span></div>
+    <div class="level1"><a class="xref" href="wan24.Core.StreamBase.html">StreamBase</a></div>
+    <div class="level2"><a class="xref" href="wan24.Core.MemoryPoolStream.html">MemoryPoolStream</a></div>
+    <div class="level3"><span class="xref">PooledMemoryStream</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><span class="xref">IDisposable</span></div>
+    <div><span class="xref">IAsyncDisposable</span></div>
+    <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
     <div><a class="xref" href="wan24.Core.IObjectPoolItem.html">IObjectPoolItem</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
       <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_StaticSyncObject">MemoryPoolStream.StaticSyncObject</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_SyncObject">MemoryPoolStream.SyncObject</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Buffers">MemoryPoolStream.Buffers</a>
@@ -119,9 +121,6 @@
       <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream__Position">MemoryPoolStream._Position</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_IsDisposed">MemoryPoolStream.IsDisposed</a>
-    </div>
-    <div>
       <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_DefaultBufferSize">MemoryPoolStream.DefaultBufferSize</a>
     </div>
     <div>
@@ -141,6 +140,9 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_SavedData">MemoryPoolStream.SavedData</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_State">MemoryPoolStream.State</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_CanRead">MemoryPoolStream.CanRead</a>
@@ -206,20 +208,68 @@
       <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Close">MemoryPoolStream.Close()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_DisposeAsync">MemoryPoolStream.DisposeAsync()</a>
+      <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_Dispose_System_Boolean_">MemoryPoolStream.Dispose(Boolean)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_EnsureUndisposed">MemoryPoolStream.EnsureUndisposed()</a>
+      <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_DisposeCore">MemoryPoolStream.DisposeCore()</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_SetLength_System_Int64_System_Boolean_">MemoryPoolStream.SetLength(Int64, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_SyncObject">StreamBase.SyncObject</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_Name">StreamBase.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsClosed">StreamBase.IsClosed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsDisposed">StreamBase.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsDisposing">StreamBase.IsDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_DisposeAsync">StreamBase.DisposeAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureUndisposed_System_Boolean_System_Boolean_">StreamBase.EnsureUndisposed(Boolean, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed__1___0_System_Boolean_">StreamBase.IfUndisposed&lt;T&gt;(T, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed_Action_System_Boolean_">StreamBase.IfUndisposed(Action, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed__1_Func___0__System_Boolean_">StreamBase.IfUndisposed&lt;T&gt;(Func&lt;T&gt;, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposedNullable__1_Func___0__System_Boolean_">StreamBase.IfUndisposedNullable&lt;T&gt;(Func&lt;T&gt;, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureSeekable">StreamBase.EnsureSeekable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureWritable">StreamBase.EnsureWritable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureReadable">StreamBase.EnsureReadable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_OnDisposing">StreamBase.OnDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_OnDisposed">StreamBase.OnDisposed</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_PooledMemoryStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class PooledMemoryStream : MemoryPoolStream, IObjectPoolItem</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class PooledMemoryStream : MemoryPoolStream, IDisposableObject, IStatusProvider, IObjectPoolItem</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -258,6 +308,18 @@
     <pre><code class="lang-csharp hljs">public void Reset()</code></pre>
   </div>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
+      <span class="xref">IDisposable</span>
+  </div>
+  <div>
+      <span class="xref">IAsyncDisposable</span>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
+  </div>
   <div>
       <a class="xref" href="wan24.Core.IObjectPoolItem.html">IObjectPoolItem</a>
   </div>

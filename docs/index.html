@@ -283,12 +283,20 @@ including extensions for numeric type encoding/decoding)</li>
 <li>Collecting periodical statistical values</li>
 <li>Streams
 <ul>
+<li><code>StreamBase</code> as base class which implements some disposing logic</li>
 <li><code>WrapperStream</code> wraps a base stream and provides <code>LeaveOpen</code></li>
 <li><code>PartialStream</code> wraps a part of a base stream (read-only)</li>
 <li><code>LengthLimitedStream</code> ensures a maximum stream length (only writing)</li>
 <li><code>MemoryPoolStream</code> uses an <code>ArrayPool&lt;byte&gt;</code> for storing written data</li>
 <li><code>ThrottledStream</code> throttles reading/writing troughput</li>
 <li><code>TimeoutStream</code> can timeout async reading/writing methods</li>
+<li><code>BlockingBufferStream</code> for writing to / reading from a buffer blocked</li>
+<li><code>HubStream</code> for forwarding writing operations to multiple target streams</li>
+<li><code>LimitedStream</code> limits reading/writing/seeking capabilities of a stream</li>
+<li><code>ZeroStream</code> reads zero bytes and writes to nowhere</li>
+<li><code>CountingStream</code> counts red/written bytes</li>
+<li><code>PauseableStream</code> is a stream which can temporary pause reading/writing</li>
+<li><code>EnumerableStream</code> streams an enumerable/enumerator</li>
 </ul>
 </li>
 <li>Named mutex helper
@@ -303,6 +311,8 @@ including extensions for numeric type encoding/decoding)</li>
 <ul>
 <li>Get the number of remaining bytes until the streams end</li>
 <li>Copy a part of a stream to another stream</li>
+<li>Generic seek</li>
+<li>Write N zero bytes</li>
 </ul>
 </li>
 </ul>

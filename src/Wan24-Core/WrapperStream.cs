@@ -25,12 +25,8 @@ namespace wan24.Core
     /// Stream wrapper
     /// </summary>
     /// <typeparam name="T">Wrapped stream type</typeparam>
-    public class WrapperStream<T> : Stream where T : Stream
+    public class WrapperStream<T> : StreamBase, IStatusProvider where T : Stream
     {
-        /// <summary>
-        /// An object for thread synchronization
-        /// </summary>
-        protected readonly object SyncObject = new();
         /// <summary>
         /// Leave the base stream open when disposing?
         /// </summary>
@@ -92,10 +88,18 @@ namespace wan24.Core
             set => _LeaveOpen = value;
         }
 
-        /// <summary>
-        /// Is disposed?
-        /// </summary>
-        public bool IsDisposed { get; protected set; }
+        /// <inheritdoc/>
+        public virtual IEnumerable<Status> State
+        {
+            get
+            {
+                yield return new("Name", Name, "Name of the stream");
+                yield return new("Type", GetType().ToString(), "Stream type");
+                if (BaseStream is IStatusProvider sp)
+                    foreach (Status status in sp.State)
+                        yield return status;
+            }
+        }
 
         /// <inheritdoc/>
         public override bool CanRead => BaseStream.CanRead;
@@ -366,95 +370,24 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override void Close()
         {
-            if (IsDisposed) return;
-            lock (SyncObject)
-            {
-                if (IsDisposed) return;
-                IsDisposed = true;
-            }
+            if (IsClosed) return;
             base.Close();
+            if (!LeaveOpen) BaseStream.Close();
+        }
+
+        /// <inheritdoc/>
+        protected override void Dispose(bool disposing)
+        {
+            if (IsDisposing) return;
+            base.Dispose(disposing);
             if (!LeaveOpen) BaseStream.Dispose();
         }
 
         /// <inheritdoc/>
-#pragma warning disable CA1816 // Suppress GC (will be supressed from the parent)
-        public override async ValueTask DisposeAsync()
+        protected override async Task DisposeCore()
         {
-            if (IsDisposed) return;
-            lock (SyncObject)
-            {
-                if (IsDisposed) return;
-                IsDisposed = true;
-            }
-            await base.DisposeAsync().DynamicContext();
+            await base.DisposeCore().DynamicContext();
             if (!LeaveOpen) await BaseStream.DisposeAsync().DynamicContext();
-        }
-#pragma warning restore CA1816 // Suppress GC (will be supressed from the parent)
-
-        /// <summary>
-        /// Ensure undisposed state
-        /// </summary>
-        /// <exception cref="ObjectDisposedException">Disposed already</exception>
-        [TargetedPatchingOptOut("Tiny method")]
-        protected void EnsureUndisposed()
-        {
-            if (IsDisposed) throw new ObjectDisposedException(GetType().ToString());
-        }
-
-        /// <summary>
-        /// Execute an action if undisposed
-        /// </summary>
-        /// <typeparam name="tReturn">Return type</typeparam>
-        /// <param name="action">Action</param>
-        /// <returns>Return value</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        protected tReturn IfUndisposed<tReturn>(Func<tReturn> action)
-        {
-            EnsureUndisposed();
-            return action();
-        }
-
-        /// <summary>
-        /// Return a value if undisposed
-        /// </summary>
-        /// <typeparam name="tReturn">Return type</typeparam>
-        /// <param name="value">Value</param>
-        /// <returns>Return value</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        protected tReturn IfUndisposed<tReturn>(tReturn value)
-        {
-            EnsureUndisposed();
-            return value;
-        }
-
-        /// <summary>
-        /// Ensure seekability
-        /// </summary>
-        /// <exception cref="NotSupportedException">Not seekable</exception>
-        [TargetedPatchingOptOut("Tiny method")]
-        protected void EnsureSeekable()
-        {
-            if (!CanSeek) throw new NotSupportedException("Not seekable");
-        }
-
-        /// <summary>
-        /// Ensure writability
-        /// </summary>
-        /// <exception cref="NotSupportedException">Not writable</exception>
-        [TargetedPatchingOptOut("Tiny method")]
-        protected void EnsureWritable()
-        {
-            if (!CanWrite) throw new NotSupportedException("Not writable");
-        }
-
-        /// <summary>
-        /// Ensure readability
-        /// </summary>
-        /// <exception cref="NotSupportedException">Not readable</exception>
-        [TargetedPatchingOptOut("Tiny method")]
-        protected void EnsureReadable()
-        {
-            if (!CanRead) throw new NotSupportedException("Not readable");
         }
 
         /// <summary>
