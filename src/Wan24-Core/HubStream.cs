@@ -1,7 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 
-//TODO Write tests
-
 namespace wan24.Core
 {
     /// <summary>

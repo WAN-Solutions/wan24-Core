@@ -53,7 +53,18 @@
             count = (int)Math.Min(count, _Length - _Position);
             if (count == 0) return 0;
             Array.Clear(buffer, offset, count);
-            _Position -= count;
+            _Position += count;
+            return count;
+        }
+
+        /// <inheritdoc/>
+        public override int Read(Span<byte> buffer)
+        {
+            EnsureUndisposed();
+            int count = (int)Math.Min(buffer.Length, _Length - _Position);
+            if (count == 0) return 0;
+            buffer[..count].Clear();
+            _Position += count;
             return count;
         }
 
@@ -77,6 +88,14 @@
         {
             EnsureUndisposed();
             _Position += count;
+            if (_Position > _Length) _Length = _Position;
+        }
+
+        /// <inheritdoc/>
+        public override void Write(ReadOnlySpan<byte> buffer)
+        {
+            EnsureUndisposed();
+            _Position += buffer.Length;
             if (_Position > _Length) _Length = _Position;
         }
     }

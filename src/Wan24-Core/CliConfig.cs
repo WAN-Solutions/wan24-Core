@@ -32,7 +32,6 @@ namespace wan24.Core
                 typeName = string.Join('.', temp[0..^1]);
                 type = TypeHelper.Instance.GetType(typeName);
                 if (type == null) continue;
-
                 prop = type.GetPropertyCached(propertyName, BindingFlags.Static | BindingFlags.Public);
                 if (prop == null) continue;
                 (setter, pi) = (prop.Setter ?? throw new InvalidProgramException($"{prop.Property.DeclaringType}.{prop.Property.Name} has no setter"), prop.Property);

@@ -5,7 +5,7 @@ namespace wan24.Core
     /// <summary>
     /// Base class for streams
     /// </summary>
-    public abstract class StreamBase : Stream, IDisposableObject
+    public abstract class StreamBase : Stream, IStream
     {
         /// <summary>
         /// An object for thread synchronization during disposing
@@ -21,19 +21,13 @@ namespace wan24.Core
         /// </summary>
         public StreamBase() : base() { }
 
-        /// <summary>
-        /// Name
-        /// </summary>
+        /// <inheritdoc/>
         public string? Name { get; set; }
 
-        /// <summary>
-        /// Is closed?
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsClosed { get; protected set; }
 
-        /// <summary>
-        /// Is disposed?
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsDisposed { get; protected set; }
 
         /// <inheritdoc/>
@@ -42,6 +36,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override void Close()
         {
+            if (IsClosed) return;
             DisposeSyncObject.Wait();
             try
             {
@@ -149,7 +144,7 @@ namespace wan24.Core
         {
             if (!IsDisposing && !IsClosed) return true;
             if (allowDisposing && !IsDisposed) return true;
-            if (throwException) throw new ObjectDisposedException(ToString());
+            if (throwException) throw new ObjectDisposedException(GetType().ToString());
             return false;
         }
 

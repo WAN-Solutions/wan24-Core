@@ -1,6 +1,4 @@
-﻿//TODO Write tests
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Enumerable source stream

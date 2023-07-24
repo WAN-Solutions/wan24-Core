@@ -19,5 +19,21 @@ namespace Wan24_Core_Tests
             Assert.IsTrue(list.First());
             Assert.IsFalse(list.Last());
         }
+
+        [TestMethod]
+        public async Task AddRangeAsync_Tests()
+        {
+            ICollection<bool> list = new List<bool>();
+            await list.AddRangeAsync(EnumerateAsync(true, false));
+            Assert.IsTrue(list.Count == 2);
+            Assert.IsTrue(list.First());
+            Assert.IsFalse(list.Last());
+        }
+
+        private static async IAsyncEnumerable<bool> EnumerateAsync(params bool[] values)
+        {
+            await Task.Yield();
+            foreach (bool value in values) yield return value;
+        }
     }
 }

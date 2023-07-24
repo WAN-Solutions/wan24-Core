@@ -31,38 +31,31 @@ namespace wan24.Core
         public SynchronizedStream(T baseStream, bool leaveOpen = false) : base(baseStream, leaveOpen) { }
 
         /// <summary>
-        /// IO synchronization
+        /// I/O synchronization
         /// </summary>
         public SemaphoreSlim SyncIO { get; } = new(1, 1);
 
-        /// <summary>
-        /// Seeking synchronization
-        /// </summary>
-        public SemaphoreSlim SyncSeek { get; } = new(1, 1);
-
         /// <inheritdoc/>
-        public override long Position
+        public sealed override long Position
         {
             get => base.Position;
             set
             {
                 EnsureUndisposed();
                 SyncIO.Wait();
-                SyncSeek.Wait();
                 try
                 {
                     base.Position = value;
                 }
                 finally
                 {
-                    SyncSeek.Release();
                     SyncIO.Release();
                 }
             }
         }
 
         /// <inheritdoc/>
-        public override void SetLength(long value)
+        public sealed override void SetLength(long value)
         {
             EnsureUndisposed();
             SyncIO.Wait();
@@ -77,30 +70,52 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public override long Seek(long offset, SeekOrigin origin)
+        public sealed override long Seek(long offset, SeekOrigin origin)
         {
             EnsureUndisposed();
             SyncIO.Wait();
-            SyncSeek.Wait();
             try
             {
-                return base.Position = origin switch
-                {
-                    SeekOrigin.Begin => offset,
-                    SeekOrigin.Current => base.Position + offset,
-                    SeekOrigin.End => base.Length + offset,
-                    _ => throw new ArgumentException("Invalid seek origin", nameof(origin))
-                };
+                return BaseStream.GenericSeek(offset, origin);
             }
             finally
             {
-                SyncSeek.Release();
                 SyncIO.Release();
             }
         }
 
         /// <inheritdoc/>
-        public override int Read(byte[] buffer, int offset, int count)
+        public sealed override void Flush()
+        {
+            EnsureUndisposed();
+            SyncIO.Wait();
+            try
+            {
+                base.Flush();
+            }
+            finally
+            {
+                SyncIO.Release();
+            }
+        }
+
+        /// <inheritdoc/>
+        public sealed override async Task FlushAsync(CancellationToken cancellationToken)
+        {
+            EnsureUndisposed();
+            await SyncIO.WaitAsync(cancellationToken).DynamicContext();
+            try
+            {
+                await base.FlushAsync(cancellationToken).DynamicContext();
+            }
+            finally
+            {
+                SyncIO.Release();
+            }
+        }
+
+        /// <inheritdoc/>
+        public sealed override int Read(byte[] buffer, int offset, int count)
         {
             EnsureUndisposed();
             SyncIO.Wait();
@@ -115,7 +130,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public override int Read(Span<byte> buffer)
+        public sealed override int Read(Span<byte> buffer)
         {
             EnsureUndisposed();
             SyncIO.Wait();
@@ -130,7 +145,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        public sealed override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             EnsureUndisposed();
             await SyncIO.WaitAsync(cancellationToken).DynamicContext();
@@ -145,7 +160,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public override async ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
+        public sealed override async ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
             await SyncIO.WaitAsync(cancellationToken).DynamicContext();
@@ -160,7 +175,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public override int ReadByte()
+        public sealed override int ReadByte()
         {
             EnsureUndisposed();
             SyncIO.Wait();
@@ -175,7 +190,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public override void Write(byte[] buffer, int offset, int count)
+        public sealed override void Write(byte[] buffer, int offset, int count)
         {
             EnsureUndisposed();
             SyncIO.Wait();
@@ -190,7 +205,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public override void Write(ReadOnlySpan<byte> buffer)
+        public sealed override void Write(ReadOnlySpan<byte> buffer)
         {
             EnsureUndisposed();
             SyncIO.Wait();
@@ -205,7 +220,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public override async Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        public sealed override async Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             EnsureUndisposed();
             await SyncIO.WaitAsync(cancellationToken).DynamicContext();
@@ -220,7 +235,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public override async ValueTask WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
+        public sealed override async ValueTask WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
             await SyncIO.WaitAsync(cancellationToken).DynamicContext();
@@ -235,7 +250,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public override void WriteByte(byte value)
+        public sealed override void WriteByte(byte value)
         {
             EnsureUndisposed();
             SyncIO.Wait();
@@ -250,51 +265,133 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public override void Close()
+        public sealed override void CopyTo(Stream destination, int bufferSize)
+        {
+            EnsureUndisposed();
+            SyncIO.Wait();
+            try
+            {
+                BaseStream.CopyTo(destination, bufferSize);
+            }
+            finally
+            {
+                SyncIO.Release();
+            }
+        }
+
+        /// <inheritdoc/>
+        public sealed override async Task CopyToAsync(Stream destination, int bufferSize, CancellationToken cancellationToken)
+        {
+            EnsureUndisposed();
+            await SyncIO.WaitAsync(cancellationToken).DynamicContext();
+            try
+            {
+                await BaseStream.CopyToAsync(destination, bufferSize, cancellationToken).DynamicContext();
+            }
+            finally
+            {
+                SyncIO.Release();
+            }
+        }
+
+        /// <inheritdoc/>
+        public sealed override IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback? callback, object? state)
+        {
+            EnsureUndisposed();
+            SyncIO.Wait();
+            try
+            {
+                return BaseStream.BeginRead(buffer, offset, count, callback, state);
+            }
+            catch
+            {
+                SyncIO.Release();
+                throw;
+            }
+        }
+
+        /// <inheritdoc/>
+        public sealed override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback? callback, object? state)
+        {
+            EnsureUndisposed();
+            SyncIO.Wait();
+            try
+            {
+                return BaseStream.BeginWrite(buffer, offset, count, callback, state);
+            }
+            catch
+            {
+                SyncIO.Release();
+                throw;
+            }
+        }
+
+        /// <inheritdoc/>
+        public sealed override int EndRead(IAsyncResult asyncResult)
+        {
+            try
+            {
+                return BaseStream.EndRead(asyncResult);
+            }
+            finally
+            {
+                SyncIO.Release();
+            }
+        }
+
+        /// <inheritdoc/>
+        public sealed override void EndWrite(IAsyncResult asyncResult)
+        {
+            try
+            {
+                BaseStream.EndWrite(asyncResult);
+            }
+            finally
+            {
+                SyncIO.Release();
+            }
+        }
+
+        /// <inheritdoc/>
+        public sealed override void Close()
         {
             if (IsClosed) return;
             SyncIO.Wait();
-            SyncSeek.Wait();
             try
             {
                 base.Close();
             }
             finally
             {
-                SyncSeek.Release();
                 SyncIO.Release();
             }
         }
 
         /// <inheritdoc/>
-        protected override void Dispose(bool disposing)
+        protected sealed override void Dispose(bool disposing)
         {
             if (IsDisposed) return;
             SyncIO.Wait();
-            SyncSeek.Wait();
             try
             {
                 base.Dispose(disposing);
             }
             finally
             {
-                SyncSeek.Dispose();
                 SyncIO.Dispose();
             }
         }
 
         /// <inheritdoc/>
-        protected override async Task DisposeCore()
+        protected sealed override async Task DisposeCore()
         {
             await SyncIO.WaitAsync().DynamicContext();
-            await SyncSeek.WaitAsync().DynamicContext();
             try
             {
                 await base.DisposeCore().DynamicContext();
             }
             finally
             {
-                SyncSeek.Dispose();
                 SyncIO.Dispose();
             }
         }

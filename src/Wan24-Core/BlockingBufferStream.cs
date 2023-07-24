@@ -12,7 +12,7 @@ namespace wan24.Core
         /// <summary>
         /// Buffer
         /// </summary>
-        protected readonly byte[] Buffer;
+        protected readonly RentedArray<byte> Buffer;
         /// <summary>
         /// Thread synchronization
         /// </summary>
@@ -50,7 +50,7 @@ namespace wan24.Core
         {
             if (bufferSize < 1) throw new ArgumentOutOfRangeException(nameof(bufferSize));
             BufferSize = bufferSize;
-            Buffer = ArrayPool<byte>.Shared.Rent(bufferSize);
+            Buffer = new(bufferSize, clean: false);
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace wan24.Core
                     read = 1;
                     continue;
                 }
-                Buffer.AsSpan(ReadOffset, read).CopyTo(buffer);
+                Buffer.Span.Slice(ReadOffset, read).CopyTo(buffer);
                 buffer = buffer[read..];
                 res += read;
                 ReadOffset += read;
@@ -262,7 +262,7 @@ namespace wan24.Core
                     read = 1;
                     continue;
                 }
-                Buffer.AsSpan(ReadOffset, read).CopyTo(buffer.Span);
+                Buffer.Span.Slice(ReadOffset, read).CopyTo(buffer.Span);
                 buffer = buffer[read..];
                 res += read;
                 ReadOffset += read;
@@ -306,7 +306,7 @@ namespace wan24.Core
                 WriteSync.Wait();
                 EnsureUndisposed();
                 write = Math.Min(SpaceLeft, buffer.Length);
-                buffer[..write].CopyTo(Buffer.AsSpan(WriteOffset));
+                buffer[..write].CopyTo(Buffer.Span[WriteOffset..]);
                 buffer = buffer[write..];
                 Sync.Wait();
                 EnsureUndisposed();
@@ -354,7 +354,7 @@ namespace wan24.Core
                 await WriteSync.WaitAsync(cancellationToken).DynamicContext();
                 EnsureUndisposed();
                 write = Math.Min(SpaceLeft, buffer.Length);
-                buffer.Span[..write].CopyTo(Buffer.AsSpan(WriteOffset));
+                buffer.Span[..write].CopyTo(Buffer.Span[WriteOffset..]);
                 buffer = buffer[write..];
                 await Sync.WaitAsync(cancellationToken).DynamicContext();
                 EnsureUndisposed();
@@ -403,7 +403,7 @@ namespace wan24.Core
                 Sync.Release();
                 Sync.Dispose();
             }
-            ArrayPool<byte>.Shared.Return(Buffer);
+            Buffer.Dispose();
         }
 
         /// <inheritdoc/>
@@ -421,7 +421,7 @@ namespace wan24.Core
                 Sync.Release();
                 Sync.Dispose();
             }
-            ArrayPool<byte>.Shared.Return(Buffer);
+            Buffer.Dispose();
         }
 
         /// <summary>

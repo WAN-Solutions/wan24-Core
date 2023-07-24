@@ -1,6 +1,4 @@
-﻿//TODO Write tests
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Counting stream counts red/written bytes
@@ -151,6 +149,22 @@ namespace wan24.Core
             int res = base.ReadByte();
             if (res != -1) Red++;
             return res;
+        }
+
+        /// <inheritdoc/>
+        public override void CopyTo(Stream destination, int bufferSize)
+        {
+            EnsureUndisposed();
+            EnsureReadable();
+            this.GenericCopyTo(destination, bufferSize);
+        }
+
+        /// <inheritdoc/>
+        public override async Task CopyToAsync(Stream destination, int bufferSize, CancellationToken cancellationToken)
+        {
+            EnsureUndisposed();
+            EnsureReadable();
+            await this.GenericCopyToAsync(destination, bufferSize, cancellationToken).DynamicContext();
         }
     }
 }

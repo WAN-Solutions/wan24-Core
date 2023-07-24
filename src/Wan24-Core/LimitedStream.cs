@@ -1,6 +1,4 @@
-﻿//TODO Write tests
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Limited stream limits reading/writing/seeking (which can't be overridden from an iheriting or wrapped stream)

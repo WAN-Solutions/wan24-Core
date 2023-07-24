@@ -169,6 +169,7 @@ including extensions for numeric type encoding/decoding)
     - `EnumerableStream` streams an enumerable/enumerator
     - `CombinedStream` combines multiple streams into one stream (read-only)
     - `SynchronizedStream` synchronizes IO and seeking
+    - `RandomStream` reads random bytes into the given buffers
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context
@@ -179,6 +180,7 @@ including extensions for numeric type encoding/decoding)
     - Copy a part of a stream to another stream
     - Generic seek
     - Write N zero bytes
+    - Write N random bytes
     - Create stream chunks
 
 ## How to get it

@@ -31,20 +31,13 @@ namespace wan24.Core
             if (count == 0) return 0;
             bufferSize ??= Settings.BufferSize;
             bufferSize = (int)Math.Min(count, bufferSize.Value);
-            byte[] buffer = ArrayPool<byte>.Shared.Rent(bufferSize.Value);
-            try
+            using RentedArray<byte> buffer = new(bufferSize.Value, clean: false);
+            for (int red = 1; count != 0 && red != 0; count -= red)
             {
-                for (int red = 1; count != 0 && red != 0; count -= red)
-                {
-                    red = stream.Read(buffer.AsSpan(0, (int)Math.Min(count, bufferSize.Value)));
-                    if (red != 0) target.Write(buffer.AsSpan(0, red));
-                }
-                return count;
+                red = stream.Read(buffer.Span[..(int)Math.Min(count, bufferSize.Value)]);
+                if (red != 0) target.Write(buffer.Span[..red]);
             }
-            finally
-            {
-                ArrayPool<byte>.Shared.Return(buffer);
-            }
+            return count;
         }
 
         /// <summary>
@@ -62,20 +55,13 @@ namespace wan24.Core
             if (count == 0) return 0;
             bufferSize ??= Settings.BufferSize;
             bufferSize = (int)Math.Min(count, bufferSize.Value);
-            byte[] buffer = ArrayPool<byte>.Shared.Rent(bufferSize.Value);
-            try
+            using RentedArray<byte> buffer = new(bufferSize.Value, clean: false);
+            for (int red = 1; count != 0 && red != 0; count -= red)
             {
-                for (int red = 1; count != 0 && red != 0; count -= red)
-                {
-                    red = await stream.ReadAsync(buffer.AsMemory(0, (int)Math.Min(count, bufferSize.Value)), cancellationToken).DynamicContext();
-                    if (red != 0) await target.WriteAsync(buffer.AsMemory(0, red), cancellationToken).DynamicContext();
-                }
-                return count;
+                red = await stream.ReadAsync(buffer.Memory[..(int)Math.Min(count, bufferSize.Value)], cancellationToken).DynamicContext();
+                if (red != 0) await target.WriteAsync(buffer.Memory[..red], cancellationToken).DynamicContext();
             }
-            finally
-            {
-                ArrayPool<byte>.Shared.Return(buffer);
-            }
+            return count;
         }
 
         /// <summary>
@@ -121,6 +107,66 @@ namespace wan24.Core
             using ZeroStream zero = new();
             zero.SetLength(count);
             await zero.CopyToAsync(stream, cancellationToken).DynamicContext();
+        }
+
+        /// <summary>
+        /// Write random bytes
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="count">Number of bytes</param>
+        public static void WriteRandom(this Stream stream, long count)
+        {
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            if (count == 0) return;
+            RandomStream.Instance.CopyPartialTo(stream, count);
+        }
+
+        /// <summary>
+        /// Write random bytes
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="count">Number of bytes</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public static async Task WriteRandomAsync(this Stream stream, long count, CancellationToken cancellationToken = default)
+        {
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            if (count == 0) return;
+            await RandomStream.Instance.CopyPartialToAsync(stream, count, cancellationToken: cancellationToken).DynamicContext();
+        }
+
+        /// <summary>
+        /// Generic copy to another stream
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="destination">Target</param>
+        /// <param name="bufferSize">Buffer size in bytes</param>
+        public static void GenericCopyTo(this Stream stream, Stream destination, int bufferSize = 81_920)
+        {
+            if (bufferSize < 1) throw new ArgumentOutOfRangeException(nameof(bufferSize));
+            using RentedArray<byte> buffer = new(bufferSize, clean: false);
+            for (int red = bufferSize; red == bufferSize;)
+            {
+                red = stream.Read(buffer.Span);
+                if (red != 0) destination.Write(buffer.Span[..red]);
+            }
+        }
+
+        /// <summary>
+        /// Generic copy to another stream
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="destination">Target</param>
+        /// <param name="bufferSize">Buffer size in bytes</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public static async Task GenericCopyToAsync(this Stream stream, Stream destination, int bufferSize = 81_920, CancellationToken cancellationToken = default)
+        {
+            if (bufferSize < 1) throw new ArgumentOutOfRangeException(nameof(bufferSize));
+            using RentedArray<byte> buffer = new(bufferSize, clean: false);
+            for (int red = bufferSize; red == bufferSize;)
+            {
+                red = await stream.ReadAsync(buffer.Memory, cancellationToken).DynamicContext();
+                if (red != 0) await destination.WriteAsync(buffer.Memory[..red], cancellationToken).DynamicContext();
+            }
         }
 
         /// <summary>

@@ -25,7 +25,7 @@ namespace wan24.Core
     /// Stream wrapper (will dispose, if the base stream is a <see cref="IDisposableObject"/> and has been disposed)
     /// </summary>
     /// <typeparam name="T">Wrapped stream type</typeparam>
-    public class WrapperStream<T> : StreamBase, IStatusProvider where T : Stream
+    public class WrapperStream<T> : StreamBase, IStreamWrapper where T : Stream
     {
         /// <summary>
         /// Base stream
@@ -35,6 +35,10 @@ namespace wan24.Core
         /// Leave the base stream open when disposing?
         /// </summary>
         protected bool _LeaveOpen;
+        /// <summary>
+        /// Use the original <see cref="ReadByte"/> and <see cref="WriteByte(byte)"/> methods?
+        /// </summary>
+        protected bool UseOriginalByteIO = false;
         /// <summary>
         /// Use the original <see cref="Stream.CopyTo(Stream)"/> method?
         /// </summary>
@@ -80,9 +84,7 @@ namespace wan24.Core
         /// </summary>
         protected virtual Stream Target => IfUndisposed(UseBaseStream ? (Stream)_BaseStream : this);
 
-        /// <summary>
-        /// Base stream
-        /// </summary>
+        /// <inheritdoc/>
         public T BaseStream
         {
             get => IfUndisposed(_BaseStream, allowDisposing: true);
@@ -97,9 +99,7 @@ namespace wan24.Core
             }
         }
 
-        /// <summary>
-        /// Leave the base stream open when disposing?
-        /// </summary>
+        /// <inheritdoc/>
         public virtual bool LeaveOpen
         {
             get => _LeaveOpen;
@@ -194,6 +194,9 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        Stream IStreamWrapper.BaseStream => BaseStream;
+
+        /// <inheritdoc/>
         public override void Flush()
         {
             EnsureUndisposed();
@@ -228,7 +231,20 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureReadable();
-            return _BaseStream.ReadByte();
+            if (UseOriginalByteIO)
+            {
+                return _BaseStream.ReadByte();
+            }
+            else
+            {
+#if NO_UNSAFE
+                using RentedArray<byte> buffer = new(len: 1, clean: false);
+                return _BaseStream.Read(buffer.Span) == 0 ? -1 : buffer.Span[0];
+#else
+                Span<byte> buffer = stackalloc byte[1];
+                return _BaseStream.Read(buffer) == 0 ? -1 : buffer[0];
+#endif
+            }
         }
 
         /// <inheritdoc/>

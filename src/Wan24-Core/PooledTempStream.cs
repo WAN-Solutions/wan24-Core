@@ -3,7 +3,7 @@
     /// <summary>
     /// Pooled temporary stream (hosts written data in memory first, then switches to a temporary file when exceeding the memory limit)
     /// </summary>
-    public sealed class PooledTempStream : WrapperStream<Stream>
+    public sealed class PooledTempStream : WrapperStream
     {
         /// <summary>
         /// An object for static thread synchronization
