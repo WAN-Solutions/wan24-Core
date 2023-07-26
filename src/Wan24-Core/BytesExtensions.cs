@@ -768,5 +768,17 @@ namespace wan24.Core
             RandomNumberGenerator.Fill(bytes);
             Array.Clear(bytes);
         }
+
+        /// <summary>
+        /// Clear the array
+        /// </summary>
+        /// <param name="bytes">Bytes</param>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static void Clean(this Span<byte> bytes)
+        {
+            if (bytes.Length == 0) return;
+            RandomNumberGenerator.Fill(bytes);
+            bytes.Clear();
+        }
     }
 }

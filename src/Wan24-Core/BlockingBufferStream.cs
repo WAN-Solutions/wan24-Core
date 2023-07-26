@@ -1,11 +1,7 @@
-﻿using System.Buffers;
-
-//TODO Write tests
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
-    /// Blocking buffer stream (reading blocks until (all, if aggressive) data is available, writing until the buffer was red completely)
+    /// Blocking buffer stream (reading blocks until (all, if aggressive) data is available, writing until the buffer was red completely; reading/writing is synchronized)
     /// </summary>
     public class BlockingBufferStream : StreamBase, IStatusProvider
     {
@@ -102,6 +98,25 @@ namespace wan24.Core
             }
         }
 
+        /// <inheritdoc/>
+        public sealed override bool CanRead => true;
+
+        /// <inheritdoc/>
+        public sealed override bool CanSeek => false;
+
+        /// <inheritdoc/>
+        public sealed override bool CanWrite => true;
+
+        /// <inheritdoc/>
+        public sealed override long Length => IfUndisposed(_Length);
+
+        /// <inheritdoc/>
+        public sealed override long Position
+        {
+            get => IfUndisposed(_Position);
+            set => throw new NotSupportedException();
+        }
+
         /// <summary>
         /// Reorganize the buffer (may give more space for writing and unblock)
         /// </summary>
@@ -134,23 +149,37 @@ namespace wan24.Core
             return true;
         }
 
-        /// <inheritdoc/>
-        public sealed override bool CanRead => true;
-
-        /// <inheritdoc/>
-        public sealed override bool CanSeek => false;
-
-        /// <inheritdoc/>
-        public sealed override bool CanWrite => true;
-
-        /// <inheritdoc/>
-        public sealed override long Length => IfUndisposed(_Length);
-
-        /// <inheritdoc/>
-        public sealed override long Position
+        /// <summary>
+        /// Reorganize the buffer (may give more space for writing and unblock)
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>If more space for writing is available now</returns>
+        public async Task<bool> ReorganizeBufferAsync(CancellationToken cancellationToken = default)
         {
-            get => IfUndisposed(_Position);
-            set => throw new NotSupportedException();
+            EnsureUndisposed();
+            await Sync.WaitAsync(cancellationToken).DynamicContext();
+            EnsureUndisposed();
+            bool readBlocked = IsReadBlocked,
+                writeBlocked = IsWriteBlocked,
+                hasSpace = writeBlocked;
+            if (!readBlocked) ReadSync.Reset();
+            if (!writeBlocked) WriteSync.Reset();
+            try
+            {
+                if (ReadOffset == 0) return false;
+                Array.Copy(Buffer, ReadOffset, Buffer, 0, WriteOffset - ReadOffset);
+                WriteOffset -= ReadOffset;
+                ReadOffset = 0;
+                writeBlocked = false;
+            }
+            finally
+            {
+                if (!readBlocked) ReadSync.Set();
+                if (!writeBlocked) WriteSync.Set();
+                Sync.Release();
+            }
+            if (hasSpace) RaiseOnSpaceAvailable();
+            return true;
         }
 
         /// <inheritdoc/>
@@ -162,8 +191,6 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override int Read(Span<byte> buffer)
         {
-            EnsureUndisposed();
-            ReadSync.Wait();
             EnsureUndisposed();
             int res = 0;
             bool blocking = false;
@@ -196,26 +223,29 @@ namespace wan24.Core
                     read = 1;
                     continue;
                 }
-                Buffer.Span.Slice(ReadOffset, read).CopyTo(buffer);
-                buffer = buffer[read..];
-                res += read;
-                ReadOffset += read;
-                _Position += read;
-                ResetBuffer();
-            }
-            Sync.Wait();
-            EnsureUndisposed();
-            try
-            {
-                if (Available == 0)
+                ReadSync.Wait();
+                EnsureUndisposed();
+                try
                 {
-                    blocking = true;
-                    ReadSync.Reset();
+                    Buffer.Span.Slice(ReadOffset, read).CopyTo(buffer);
+                    buffer = buffer[read..];
+                    res += read;
+                    ReadOffset += read;
+                    _Position += read;
+                    ResetBuffer();
                 }
-            }
-            finally
-            {
-                Sync.Release();
+                finally
+                {
+                    if (Available == 0)
+                    {
+                        blocking = true;
+                        ReadSync.Reset();
+                    }
+                    else
+                    {
+                        blocking = false;
+                    }
+                }
             }
             if (blocking) RaiseOnNeedData();
             return res;
@@ -228,8 +258,6 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override async ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
         {
-            EnsureUndisposed();
-            await ReadSync.WaitAsync(cancellationToken).DynamicContext();
             EnsureUndisposed();
             int res = 0;
             bool blocking = false;
@@ -262,26 +290,29 @@ namespace wan24.Core
                     read = 1;
                     continue;
                 }
-                Buffer.Span.Slice(ReadOffset, read).CopyTo(buffer.Span);
-                buffer = buffer[read..];
-                res += read;
-                ReadOffset += read;
-                _Position += read;
-                ResetBuffer();
-            }
-            await Sync.WaitAsync(cancellationToken).DynamicContext();
-            EnsureUndisposed();
-            try
-            {
-                if (Available == 0)
+                await ReadSync.WaitAsync(cancellationToken).DynamicContext();
+                EnsureUndisposed();
+                try
                 {
-                    blocking = true;
-                    ReadSync.Reset();
+                    Buffer.Span.Slice(ReadOffset, read).CopyTo(buffer.Span);
+                    buffer = buffer[read..];
+                    res += read;
+                    ReadOffset += read;
+                    _Position += read;
+                    ResetBuffer();
                 }
-            }
-            finally
-            {
-                Sync.Release();
+                finally
+                {
+                    if (Available == 0)
+                    {
+                        blocking = true;
+                        ReadSync.Reset();
+                    }
+                    else
+                    {
+                        blocking = false;
+                    }
+                }
             }
             if (blocking) RaiseOnNeedData();
             return res;
@@ -383,7 +414,7 @@ namespace wan24.Core
                     RaiseOnNeedSpace();
                     blocking = false;
                 }
-                if (AutoReorg && SpaceLeft == 0) ReorganizeBuffer();
+                if (AutoReorg && SpaceLeft == 0) await ReorganizeBufferAsync(cancellationToken).DynamicContext();
             }
         }
 
@@ -400,7 +431,6 @@ namespace wan24.Core
             }
             finally
             {
-                Sync.Release();
                 Sync.Dispose();
             }
             Buffer.Dispose();
