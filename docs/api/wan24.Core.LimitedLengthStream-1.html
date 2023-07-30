@@ -86,6 +86,8 @@
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a></div>
+    <div><a class="xref" href="wan24.Core.IStream.html">IStream</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><span class="xref">IDisposable</span></div>
     <div><span class="xref">IAsyncDisposable</span></div>
@@ -98,6 +100,9 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1__LeaveOpen">WrapperStream&lt;T&gt;._LeaveOpen</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseOriginalByteIO">WrapperStream&lt;T&gt;.UseOriginalByteIO</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseOriginalCopyTo">WrapperStream&lt;T&gt;.UseOriginalCopyTo</a>
@@ -146,6 +151,9 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_WriteTimeout">WrapperStream&lt;T&gt;.WriteTimeout</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_wan24_Core_IStreamWrapper_BaseStream">WrapperStream&lt;T&gt;.IStreamWrapper.BaseStream</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Flush">WrapperStream&lt;T&gt;.Flush()</a>
@@ -281,7 +289,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_LimitedLengthStream_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class LimitedLengthStream&lt;T&gt; : WrapperStream&lt;T&gt;, IDisposableObject, IStatusProvider where T : Stream</code></pre>
+    <pre><code class="lang-csharp hljs">public class LimitedLengthStream&lt;T&gt; : WrapperStream&lt;T&gt;, IStreamWrapper, IStream, IDisposableObject, IStatusProvider where T : Stream</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -455,7 +463,8 @@
   </span>
   <a id="wan24_Core_LimitedLengthStream_1_SetLength_" data-uid="wan24.Core.LimitedLengthStream`1.SetLength*"></a>
   <h4 id="wan24_Core_LimitedLengthStream_1_SetLength_System_Int64_" data-uid="wan24.Core.LimitedLengthStream`1.SetLength(System.Int64)">SetLength(Int64)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Set the stream length</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -474,7 +483,8 @@
       <tr>
         <td><span class="xref">System.Int64</span></td>
         <td><span class="parametername">value</span></td>
-        <td></td>
+        <td><p>Length in bytes</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -489,7 +499,8 @@
   </span>
   <a id="wan24_Core_LimitedLengthStream_1_Write_" data-uid="wan24.Core.LimitedLengthStream`1.Write*"></a>
   <h4 id="wan24_Core_LimitedLengthStream_1_Write_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.LimitedLengthStream`1.Write(ReadOnlySpan{System.Byte})">Write(ReadOnlySpan&lt;Byte&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Write</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -508,7 +519,8 @@
       <tr>
         <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td><span class="parametername">buffer</span></td>
-        <td></td>
+        <td><p>Buffer</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -523,7 +535,8 @@
   </span>
   <a id="wan24_Core_LimitedLengthStream_1_Write_" data-uid="wan24.Core.LimitedLengthStream`1.Write*"></a>
   <h4 id="wan24_Core_LimitedLengthStream_1_Write_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.LimitedLengthStream`1.Write(System.Byte[],System.Int32,System.Int32)">Write(Byte[], Int32, Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Write</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -542,17 +555,20 @@
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
         <td><span class="parametername">buffer</span></td>
-        <td></td>
+        <td><p>Buffer</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Byte offset</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">count</span></td>
-        <td></td>
+        <td><p>Byte count</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -567,7 +583,8 @@
   </span>
   <a id="wan24_Core_LimitedLengthStream_1_WriteAsync_" data-uid="wan24.Core.LimitedLengthStream`1.WriteAsync*"></a>
   <h4 id="wan24_Core_LimitedLengthStream_1_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_" data-uid="wan24.Core.LimitedLengthStream`1.WriteAsync(ReadOnlyMemory{System.Byte},CancellationToken)">WriteAsync(ReadOnlyMemory&lt;Byte&gt;, CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Write</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -586,12 +603,14 @@
       <tr>
         <td><span class="xref">ReadOnlyMemory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td><span class="parametername">buffer</span></td>
-        <td></td>
+        <td><p>Buffer</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
+        <td><p>Cancellation token</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -621,7 +640,8 @@
   </span>
   <a id="wan24_Core_LimitedLengthStream_1_WriteAsync_" data-uid="wan24.Core.LimitedLengthStream`1.WriteAsync*"></a>
   <h4 id="wan24_Core_LimitedLengthStream_1_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_" data-uid="wan24.Core.LimitedLengthStream`1.WriteAsync(System.Byte[],System.Int32,System.Int32,CancellationToken)">WriteAsync(Byte[], Int32, Int32, CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Write</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -640,22 +660,26 @@
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
         <td><span class="parametername">buffer</span></td>
-        <td></td>
+        <td><p>Buffer</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Byte offset</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">count</span></td>
-        <td></td>
+        <td><p>Byte count</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
+        <td><p>Cancellation token</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -685,7 +709,8 @@
   </span>
   <a id="wan24_Core_LimitedLengthStream_1_WriteByte_" data-uid="wan24.Core.LimitedLengthStream`1.WriteByte*"></a>
   <h4 id="wan24_Core_LimitedLengthStream_1_WriteByte_System_Byte_" data-uid="wan24.Core.LimitedLengthStream`1.WriteByte(System.Byte)">WriteByte(Byte)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Write one byte</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -704,13 +729,20 @@
       <tr>
         <td><span class="xref">System.Byte</span></td>
         <td><span class="parametername">value</span></td>
-        <td></td>
+        <td><p>Byte</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><span class="xref">wan24.Core.WrapperStream&lt;T&gt;.WriteByte(System.Byte)</span></div>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IStream.html">IStream</a>
+  </div>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
   </div>

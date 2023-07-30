@@ -86,6 +86,8 @@
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a></div>
+    <div><a class="xref" href="wan24.Core.IStream.html">IStream</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><span class="xref">IDisposable</span></div>
     <div><span class="xref">IAsyncDisposable</span></div>
@@ -98,6 +100,9 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1__LeaveOpen">WrapperStream&lt;T&gt;._LeaveOpen</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseOriginalByteIO">WrapperStream&lt;T&gt;.UseOriginalByteIO</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseOriginalCopyTo">WrapperStream&lt;T&gt;.UseOriginalCopyTo</a>
@@ -131,6 +136,9 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_WriteTimeout">WrapperStream&lt;T&gt;.WriteTimeout</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_wan24_Core_IStreamWrapper_BaseStream">WrapperStream&lt;T&gt;.IStreamWrapper.BaseStream</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Flush">WrapperStream&lt;T&gt;.Flush()</a>
@@ -248,7 +256,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_LimitedStream_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class LimitedStream&lt;T&gt; : WrapperStream&lt;T&gt;, IDisposableObject, IStatusProvider where T : Stream</code></pre>
+    <pre><code class="lang-csharp hljs">public class LimitedStream&lt;T&gt; : WrapperStream&lt;T&gt;, IStreamWrapper, IStream, IDisposableObject, IStatusProvider where T : Stream</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -273,7 +281,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1__ctor__0_System_Boolean_System_Boolean_System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.%23ctor(%600%2CSystem.Boolean%2CSystem.Boolean%2CSystem.Boolean%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L48">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L46">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1__ctor_" data-uid="wan24.Core.LimitedStream`1.#ctor*"></a>
   <h4 id="wan24_Core_LimitedStream_1__ctor__0_System_Boolean_System_Boolean_System_Boolean_System_Boolean_" data-uid="wan24.Core.LimitedStream`1.#ctor(`0,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">LimitedStream(T, Boolean, Boolean, Boolean, Boolean)</h4>
@@ -333,7 +341,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1__CanRead.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601._CanRead%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L30">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L28">View Source</a>
   </span>
   <h4 id="wan24_Core_LimitedStream_1__CanRead" data-uid="wan24.Core.LimitedStream`1._CanRead">_CanRead</h4>
   <div class="markdown level1 summary"><p>Can read?</p>
@@ -363,7 +371,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1__CanSeek.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601._CanSeek%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L38">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L36">View Source</a>
   </span>
   <h4 id="wan24_Core_LimitedStream_1__CanSeek" data-uid="wan24.Core.LimitedStream`1._CanSeek">_CanSeek</h4>
   <div class="markdown level1 summary"><p>Can seek?</p>
@@ -393,7 +401,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1__CanWrite.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601._CanWrite%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L34">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L32">View Source</a>
   </span>
   <h4 id="wan24_Core_LimitedStream_1__CanWrite" data-uid="wan24.Core.LimitedStream`1._CanWrite">_CanWrite</h4>
   <div class="markdown level1 summary"><p>Can write?</p>
@@ -425,11 +433,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1_CanRead.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.CanRead%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L56">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L54">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1_CanRead_" data-uid="wan24.Core.LimitedStream`1.CanRead*"></a>
   <h4 id="wan24_Core_LimitedStream_1_CanRead" data-uid="wan24.Core.LimitedStream`1.CanRead">CanRead</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Can read?</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -457,11 +466,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1_CanSeek.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.CanSeek%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L62">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L60">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1_CanSeek_" data-uid="wan24.Core.LimitedStream`1.CanSeek*"></a>
   <h4 id="wan24_Core_LimitedStream_1_CanSeek" data-uid="wan24.Core.LimitedStream`1.CanSeek">CanSeek</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Can seek?</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -489,11 +499,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1_CanWrite.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.CanWrite%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L59">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L57">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1_CanWrite_" data-uid="wan24.Core.LimitedStream`1.CanWrite*"></a>
   <h4 id="wan24_Core_LimitedStream_1_CanWrite" data-uid="wan24.Core.LimitedStream`1.CanWrite">CanWrite</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Can write?</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -521,11 +532,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1_Length.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.Length%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L65">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L63">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1_Length_" data-uid="wan24.Core.LimitedStream`1.Length*"></a>
   <h4 id="wan24_Core_LimitedStream_1_Length" data-uid="wan24.Core.LimitedStream`1.Length">Length</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Length in bytes</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -553,11 +565,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1_Position.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.Position%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L68">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L66">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1_Position_" data-uid="wan24.Core.LimitedStream`1.Position*"></a>
   <h4 id="wan24_Core_LimitedStream_1_Position" data-uid="wan24.Core.LimitedStream`1.Position">Position</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Position byte offset</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -587,11 +600,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1_Read_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.Read(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L74">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L72">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1_Read_" data-uid="wan24.Core.LimitedStream`1.Read*"></a>
   <h4 id="wan24_Core_LimitedStream_1_Read_Span_System_Byte__" data-uid="wan24.Core.LimitedStream`1.Read(Span{System.Byte})">Read(Span&lt;Byte&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Read</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -610,7 +624,8 @@
       <tr>
         <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td><span class="parametername">buffer</span></td>
-        <td></td>
+        <td><p>Buffer</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -625,7 +640,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>Number of bytes red</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -636,11 +652,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1_Read_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.Read(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L71">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L69">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1_Read_" data-uid="wan24.Core.LimitedStream`1.Read*"></a>
   <h4 id="wan24_Core_LimitedStream_1_Read_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.LimitedStream`1.Read(System.Byte[],System.Int32,System.Int32)">Read(Byte[], Int32, Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Read</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -659,17 +676,20 @@
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
         <td><span class="parametername">buffer</span></td>
-        <td></td>
+        <td><p>Buffer</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Byte offset</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">count</span></td>
-        <td></td>
+        <td><p>Byte count</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -684,7 +704,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>Number of bytes red</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -695,11 +716,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1_ReadAsync_Memory_System_Byte__CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.ReadAsync(Memory%7BSystem.Byte%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L84">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L82">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1_ReadAsync_" data-uid="wan24.Core.LimitedStream`1.ReadAsync*"></a>
   <h4 id="wan24_Core_LimitedStream_1_ReadAsync_Memory_System_Byte__CancellationToken_" data-uid="wan24.Core.LimitedStream`1.ReadAsync(Memory{System.Byte},CancellationToken)">ReadAsync(Memory&lt;Byte&gt;, CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Read</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -718,12 +740,14 @@
       <tr>
         <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td><span class="parametername">buffer</span></td>
-        <td></td>
+        <td><p>Buffer</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
+        <td><p>Cancellation token</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -738,7 +762,8 @@
     <tbody>
       <tr>
         <td><span class="xref">ValueTask</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
-        <td></td>
+        <td><p>Number of bytes red</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -749,11 +774,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.ReadAsync(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L80">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L78">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1_ReadAsync_" data-uid="wan24.Core.LimitedStream`1.ReadAsync*"></a>
   <h4 id="wan24_Core_LimitedStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_" data-uid="wan24.Core.LimitedStream`1.ReadAsync(System.Byte[],System.Int32,System.Int32,CancellationToken)">ReadAsync(Byte[], Int32, Int32, CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Read</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -772,22 +798,26 @@
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
         <td><span class="parametername">buffer</span></td>
-        <td></td>
+        <td><p>Buffer</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Byte offset</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">count</span></td>
-        <td></td>
+        <td><p>Byte count</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
+        <td><p>Cancellation token</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -802,7 +832,8 @@
     <tbody>
       <tr>
         <td><span class="xref">Task</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
-        <td></td>
+        <td><p>Number of bytes red</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -813,11 +844,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1_ReadByte.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.ReadByte%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L77">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L75">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1_ReadByte_" data-uid="wan24.Core.LimitedStream`1.ReadByte*"></a>
   <h4 id="wan24_Core_LimitedStream_1_ReadByte" data-uid="wan24.Core.LimitedStream`1.ReadByte">ReadByte()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Read one byte</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -834,7 +866,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
+        <td><p>The red byte or <code>-1</code>, if failed (end of stream)</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -845,11 +878,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1_Seek_System_Int64_SeekOrigin_.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.Seek(System.Int64%2CSeekOrigin)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L103">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L101">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1_Seek_" data-uid="wan24.Core.LimitedStream`1.Seek*"></a>
   <h4 id="wan24_Core_LimitedStream_1_Seek_System_Int64_SeekOrigin_" data-uid="wan24.Core.LimitedStream`1.Seek(System.Int64,SeekOrigin)">Seek(Int64, SeekOrigin)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Seek</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -868,12 +902,14 @@
       <tr>
         <td><span class="xref">System.Int64</span></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Byte offset</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">SeekOrigin</span></td>
         <td><span class="parametername">origin</span></td>
-        <td></td>
+        <td><p>Seek origin</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -888,7 +924,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Int64</span></td>
-        <td></td>
+        <td><p>New position byte offset</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -899,11 +936,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1_SetLength_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.SetLength(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L106">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L104">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1_SetLength_" data-uid="wan24.Core.LimitedStream`1.SetLength*"></a>
   <h4 id="wan24_Core_LimitedStream_1_SetLength_System_Int64_" data-uid="wan24.Core.LimitedStream`1.SetLength(System.Int64)">SetLength(Int64)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Set the stream length</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -922,7 +960,8 @@
       <tr>
         <td><span class="xref">System.Int64</span></td>
         <td><span class="parametername">value</span></td>
-        <td></td>
+        <td><p>Length in bytes</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -933,11 +972,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1_Write_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.Write(ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L90">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L88">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1_Write_" data-uid="wan24.Core.LimitedStream`1.Write*"></a>
   <h4 id="wan24_Core_LimitedStream_1_Write_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.LimitedStream`1.Write(ReadOnlySpan{System.Byte})">Write(ReadOnlySpan&lt;Byte&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Write</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -956,7 +996,8 @@
       <tr>
         <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td><span class="parametername">buffer</span></td>
-        <td></td>
+        <td><p>Buffer</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -967,11 +1008,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1_Write_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.Write(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L87">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L85">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1_Write_" data-uid="wan24.Core.LimitedStream`1.Write*"></a>
   <h4 id="wan24_Core_LimitedStream_1_Write_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.LimitedStream`1.Write(System.Byte[],System.Int32,System.Int32)">Write(Byte[], Int32, Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Write</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -990,17 +1032,20 @@
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
         <td><span class="parametername">buffer</span></td>
-        <td></td>
+        <td><p>Buffer</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Byte offset</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">count</span></td>
-        <td></td>
+        <td><p>Byte count</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1011,11 +1056,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.WriteAsync(ReadOnlyMemory%7BSystem.Byte%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L100">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L98">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1_WriteAsync_" data-uid="wan24.Core.LimitedStream`1.WriteAsync*"></a>
   <h4 id="wan24_Core_LimitedStream_1_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_" data-uid="wan24.Core.LimitedStream`1.WriteAsync(ReadOnlyMemory{System.Byte},CancellationToken)">WriteAsync(ReadOnlyMemory&lt;Byte&gt;, CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Write</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1034,12 +1080,14 @@
       <tr>
         <td><span class="xref">ReadOnlyMemory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
         <td><span class="parametername">buffer</span></td>
-        <td></td>
+        <td><p>Buffer</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
+        <td><p>Cancellation token</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1065,11 +1113,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.WriteAsync(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L96">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L94">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1_WriteAsync_" data-uid="wan24.Core.LimitedStream`1.WriteAsync*"></a>
   <h4 id="wan24_Core_LimitedStream_1_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_" data-uid="wan24.Core.LimitedStream`1.WriteAsync(System.Byte[],System.Int32,System.Int32,CancellationToken)">WriteAsync(Byte[], Int32, Int32, CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Write</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1088,22 +1137,26 @@
       <tr>
         <td><span class="xref">System.Byte</span>[]</td>
         <td><span class="parametername">buffer</span></td>
-        <td></td>
+        <td><p>Buffer</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Byte offset</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
         <td><span class="parametername">count</span></td>
-        <td></td>
+        <td><p>Byte count</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
+        <td><p>Cancellation token</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1129,11 +1182,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1_WriteByte_System_Byte_.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601.WriteByte(System.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L93">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L91">View Source</a>
   </span>
   <a id="wan24_Core_LimitedStream_1_WriteByte_" data-uid="wan24.Core.LimitedStream`1.WriteByte*"></a>
   <h4 id="wan24_Core_LimitedStream_1_WriteByte_System_Byte_" data-uid="wan24.Core.LimitedStream`1.WriteByte(System.Byte)">WriteByte(Byte)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Write one byte</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1152,13 +1206,20 @@
       <tr>
         <td><span class="xref">System.Byte</span></td>
         <td><span class="parametername">value</span></td>
-        <td></td>
+        <td><p>Byte</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><span class="xref">wan24.Core.WrapperStream&lt;T&gt;.WriteByte(System.Byte)</span></div>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IStream.html">IStream</a>
+  </div>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
   </div>
@@ -1267,7 +1328,7 @@
                     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_LimitedStream_1.md&amp;value=---%0Auid%3A%20wan24.Core.LimitedStream%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L25" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/LimitedStream.cs/#L23" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -1,5 +1,6 @@
 ﻿#if !NO_UNSAFE
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 namespace wan24.Core
@@ -8,7 +9,7 @@ namespace wan24.Core
     /// Pinned array
     /// </summary>
     /// <typeparam name="T">Pointer type</typeparam>
-    public unsafe readonly record struct PinnedArray<T> : IDisposable, IList<T> where T : struct
+    public unsafe readonly struct PinnedArray<T> : IDisposable, IList<T> where T : struct
     {
         /// <summary>
         /// Array pin
@@ -109,6 +110,12 @@ namespace wan24.Core
             if (ArrayPin.IsAllocated) ArrayPin.Free();
         }
 
+        /// <inheritdoc/>
+        public override int GetHashCode() => Array.GetHashCode();
+
+        /// <inheritdoc/>
+        public override bool Equals([NotNullWhen(true)] object? obj) => Array.Equals(obj);
+
         /// <summary>
         /// Cast as pointer
         /// </summary>
@@ -140,6 +147,22 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pin">Pin</param>
         public static implicit operator long(PinnedArray<T> pin) => pin.Array.LongLength;
+
+        /// <summary>
+        /// Equals
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Are equal?</returns>
+        public static bool operator ==(PinnedArray<T> a, PinnedArray<T> b) => a.Equals(b);
+
+        /// <summary>
+        /// Not equals
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Are not equal?</returns>
+        public static bool operator !=(PinnedArray<T> a, PinnedArray<T> b) => !(a == b);
     }
 }
 #endif

@@ -87,6 +87,8 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a></div>
+    <div><a class="xref" href="wan24.Core.IStream.html">IStream</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><span class="xref">IDisposable</span></div>
     <div><span class="xref">IAsyncDisposable</span></div>
@@ -98,9 +100,6 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
       <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_SyncIO">SynchronizedStream&lt;Stream&gt;.SyncIO</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_SyncSeek">SynchronizedStream&lt;Stream&gt;.SyncSeek</a>
-    </div>
-    <div>
       <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_Position">SynchronizedStream&lt;Stream&gt;.Position</a>
     </div>
     <div>
@@ -108,6 +107,12 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
     </div>
     <div>
       <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_Seek_System_Int64_SeekOrigin_">SynchronizedStream&lt;Stream&gt;.Seek(Int64, SeekOrigin)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_Flush">SynchronizedStream&lt;Stream&gt;.Flush()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_FlushAsync_CancellationToken_">SynchronizedStream&lt;Stream&gt;.FlushAsync(CancellationToken)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_Read_System_Byte___System_Int32_System_Int32_">SynchronizedStream&lt;Stream&gt;.Read(Byte[], Int32, Int32)</a>
@@ -140,6 +145,24 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
       <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_WriteByte_System_Byte_">SynchronizedStream&lt;Stream&gt;.WriteByte(Byte)</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_CopyTo_Stream_System_Int32_">SynchronizedStream&lt;Stream&gt;.CopyTo(Stream, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_CopyToAsync_Stream_System_Int32_CancellationToken_">SynchronizedStream&lt;Stream&gt;.CopyToAsync(Stream, Int32, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_BeginRead_System_Byte___System_Int32_System_Int32_System_Nullable_AsyncCallback__System_Object_">SynchronizedStream&lt;Stream&gt;.BeginRead(Byte[], Int32, Int32, Nullable&lt;AsyncCallback&gt;, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_BeginWrite_System_Byte___System_Int32_System_Int32_System_Nullable_AsyncCallback__System_Object_">SynchronizedStream&lt;Stream&gt;.BeginWrite(Byte[], Int32, Int32, Nullable&lt;AsyncCallback&gt;, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_EndRead_IAsyncResult_">SynchronizedStream&lt;Stream&gt;.EndRead(IAsyncResult)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_EndWrite_IAsyncResult_">SynchronizedStream&lt;Stream&gt;.EndWrite(IAsyncResult)</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_Close">SynchronizedStream&lt;Stream&gt;.Close()</a>
     </div>
     <div>
@@ -153,6 +176,9 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1__LeaveOpen">WrapperStream&lt;Stream&gt;._LeaveOpen</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseOriginalByteIO">WrapperStream&lt;Stream&gt;.UseOriginalByteIO</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseOriginalCopyTo">WrapperStream&lt;Stream&gt;.UseOriginalCopyTo</a>
@@ -200,28 +226,7 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_WriteTimeout">WrapperStream&lt;Stream&gt;.WriteTimeout</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Flush">WrapperStream&lt;Stream&gt;.Flush()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_FlushAsync_CancellationToken_">WrapperStream&lt;Stream&gt;.FlushAsync(CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CopyTo_Stream_System_Int32_">WrapperStream&lt;Stream&gt;.CopyTo(Stream, Int32)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CopyToAsync_Stream_System_Int32_CancellationToken_">WrapperStream&lt;Stream&gt;.CopyToAsync(Stream, Int32, CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BeginRead_System_Byte___System_Int32_System_Int32_System_Nullable_AsyncCallback__System_Object_">WrapperStream&lt;Stream&gt;.BeginRead(Byte[], Int32, Int32, Nullable&lt;AsyncCallback&gt;, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_EndRead_IAsyncResult_">WrapperStream&lt;Stream&gt;.EndRead(IAsyncResult)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BeginWrite_System_Byte___System_Int32_System_Int32_System_Nullable_AsyncCallback__System_Object_">WrapperStream&lt;Stream&gt;.BeginWrite(Byte[], Int32, Int32, Nullable&lt;AsyncCallback&gt;, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_EndWrite_IAsyncResult_">WrapperStream&lt;Stream&gt;.EndWrite(IAsyncResult)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_wan24_Core_IStreamWrapper_BaseStream">WrapperStream&lt;Stream&gt;.IStreamWrapper.BaseStream</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Equals_System_Object_">WrapperStream&lt;Stream&gt;.Equals(Object)</a>
@@ -306,7 +311,7 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_SynchronizedStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SynchronizedStream : SynchronizedStream&lt;Stream&gt;, IDisposableObject, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class SynchronizedStream : SynchronizedStream&lt;Stream&gt;, IStreamWrapper, IStream, IDisposableObject, IStatusProvider</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -351,6 +356,12 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
     </tbody>
   </table>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IStream.html">IStream</a>
+  </div>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
   </div>

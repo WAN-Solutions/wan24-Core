@@ -229,17 +229,18 @@ namespace wan24.Core
             int len = buffer.Length;
             if (len == 0) return 0;
             int res = 0,
-                red;
+                red,
+                lastBuffer = Buffers.Count - 1;
             byte[] data;
             while (res != len && _Position < _Length)
             {
                 data = Buffers[BufferIndex];
-                red = Math.Min((BufferIndex == Buffers.Count - 1 ? LastBufferOffset : data.Length) - BufferOffset, len - res);
+                red = Math.Min((BufferIndex == lastBuffer ? LastBufferOffset : data.Length) - BufferOffset, len - res);
                 data.AsSpan(BufferOffset, red).CopyTo(buffer[res..]);
                 _Position += red;
                 BufferOffset += red;
                 res += red;
-                if (BufferOffset != data.Length) break;
+                if (BufferIndex == lastBuffer || BufferOffset != data.Length) break;
                 BufferIndex++;
                 BufferOffset = 0;
             }
@@ -458,7 +459,7 @@ namespace wan24.Core
                 long len = value - _Length;
                 byte[] data = Buffers[^1];
                 len -= (int)Math.Min(data.Length - LastBufferOffset, len);
-                if (clear) data.AsSpan(BufferOffset).Clear();
+                if (clear) data.AsSpan(LastBufferOffset).Clear();
                 if (len == 0)
                 {
                     LastBufferOffset += (int)(value - _Length);

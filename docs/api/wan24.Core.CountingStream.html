@@ -86,6 +86,8 @@
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a></div>
+    <div><a class="xref" href="wan24.Core.IStream.html">IStream</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><span class="xref">IDisposable</span></div>
     <div><span class="xref">IAsyncDisposable</span></div>
@@ -142,10 +144,19 @@
       <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_ReadByte">CountingStream&lt;Stream&gt;.ReadByte()</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_CopyTo_Stream_System_Int32_">CountingStream&lt;Stream&gt;.CopyTo(Stream, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.CountingStream-1.html#wan24_Core_CountingStream_1_CopyToAsync_Stream_System_Int32_CancellationToken_">CountingStream&lt;Stream&gt;.CopyToAsync(Stream, Int32, CancellationToken)</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1__BaseStream">WrapperStream&lt;Stream&gt;._BaseStream</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1__LeaveOpen">WrapperStream&lt;Stream&gt;._LeaveOpen</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseOriginalByteIO">WrapperStream&lt;Stream&gt;.UseOriginalByteIO</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseOriginalCopyTo">WrapperStream&lt;Stream&gt;.UseOriginalCopyTo</a>
@@ -193,6 +204,9 @@
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_WriteTimeout">WrapperStream&lt;Stream&gt;.WriteTimeout</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_wan24_Core_IStreamWrapper_BaseStream">WrapperStream&lt;Stream&gt;.IStreamWrapper.BaseStream</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Flush">WrapperStream&lt;Stream&gt;.Flush()</a>
     </div>
     <div>
@@ -203,12 +217,6 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_SetLength_System_Int64_">WrapperStream&lt;Stream&gt;.SetLength(Int64)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CopyTo_Stream_System_Int32_">WrapperStream&lt;Stream&gt;.CopyTo(Stream, Int32)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CopyToAsync_Stream_System_Int32_CancellationToken_">WrapperStream&lt;Stream&gt;.CopyToAsync(Stream, Int32, CancellationToken)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BeginRead_System_Byte___System_Int32_System_Int32_System_Nullable_AsyncCallback__System_Object_">WrapperStream&lt;Stream&gt;.BeginRead(Byte[], Int32, Int32, Nullable&lt;AsyncCallback&gt;, Object)</a>
@@ -314,7 +322,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_CountingStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class CountingStream : CountingStream&lt;Stream&gt;, IDisposableObject, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class CountingStream : CountingStream&lt;Stream&gt;, IStreamWrapper, IStream, IDisposableObject, IStatusProvider</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -323,7 +331,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_CountingStream__ctor_Stream_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream.%23ctor(Stream%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/CountingStream.cs/#L15">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/CountingStream.cs/#L13">View Source</a>
   </span>
   <a id="wan24_Core_CountingStream__ctor_" data-uid="wan24.Core.CountingStream.#ctor*"></a>
   <h4 id="wan24_Core_CountingStream__ctor_Stream_System_Boolean_" data-uid="wan24.Core.CountingStream.#ctor(Stream,System.Boolean)">CountingStream(Stream, Boolean)</h4>
@@ -359,6 +367,12 @@
     </tbody>
   </table>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IStream.html">IStream</a>
+  </div>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
   </div>
@@ -467,7 +481,7 @@
                     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_CountingStream.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/CountingStream.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/CountingStream.cs/#L6" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

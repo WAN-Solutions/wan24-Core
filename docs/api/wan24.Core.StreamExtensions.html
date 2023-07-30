@@ -118,7 +118,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_Chunk_Stream_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.Chunk(Stream%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L132">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L178">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_Chunk_" data-uid="wan24.Core.StreamExtensions.Chunk*"></a>
   <h4 id="wan24_Core_StreamExtensions_Chunk_Stream_System_Int64_" data-uid="wan24.Core.StreamExtensions.Chunk(Stream,System.Int64)">Chunk(Stream, Int64)</h4>
@@ -242,7 +242,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_CopyPartialToAsync_Stream_Stream_System_Int64_System_Nullable_System_Int32__CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.CopyPartialToAsync(Stream%2CStream%2CSystem.Int64%2CSystem.Nullable%7BSystem.Int32%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L59">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L52">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_CopyPartialToAsync_" data-uid="wan24.Core.StreamExtensions.CopyPartialToAsync*"></a>
   <h4 id="wan24_Core_StreamExtensions_CopyPartialToAsync_Stream_Stream_System_Int64_System_Nullable_System_Int32__CancellationToken_" data-uid="wan24.Core.StreamExtensions.CopyPartialToAsync(Stream,Stream,System.Int64,System.Nullable{System.Int32},CancellationToken)">CopyPartialToAsync(Stream, Stream, Int64, Nullable&lt;Int32&gt;, CancellationToken)</h4>
@@ -313,10 +313,123 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_GenericCopyTo_Stream_Stream_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.GenericCopyTo(Stream%2CStream%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L143">View Source</a>
+  </span>
+  <a id="wan24_Core_StreamExtensions_GenericCopyTo_" data-uid="wan24.Core.StreamExtensions.GenericCopyTo*"></a>
+  <h4 id="wan24_Core_StreamExtensions_GenericCopyTo_Stream_Stream_System_Int32_" data-uid="wan24.Core.StreamExtensions.GenericCopyTo(Stream,Stream,System.Int32)">GenericCopyTo(Stream, Stream, Int32)</h4>
+  <div class="markdown level1 summary"><p>Generic copy to another stream</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void GenericCopyTo(this Stream stream, Stream destination, int bufferSize = 81920)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>Stream</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">destination</span></td>
+        <td><p>Target</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">bufferSize</span></td>
+        <td><p>Buffer size in bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_GenericCopyToAsync_Stream_Stream_System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.GenericCopyToAsync(Stream%2CStream%2CSystem.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L161">View Source</a>
+  </span>
+  <a id="wan24_Core_StreamExtensions_GenericCopyToAsync_" data-uid="wan24.Core.StreamExtensions.GenericCopyToAsync*"></a>
+  <h4 id="wan24_Core_StreamExtensions_GenericCopyToAsync_Stream_Stream_System_Int32_CancellationToken_" data-uid="wan24.Core.StreamExtensions.GenericCopyToAsync(Stream,Stream,System.Int32,CancellationToken)">GenericCopyToAsync(Stream, Stream, Int32, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Generic copy to another stream</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static async Task GenericCopyToAsync(this Stream stream, Stream destination, int bufferSize = 81920, CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>Stream</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">destination</span></td>
+        <td><p>Target</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">bufferSize</span></td>
+        <td><p>Buffer size in bytes</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_GenericSeek_Stream_System_Int64_SeekOrigin_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.GenericSeek(Stream%2CSystem.Int64%2CSeekOrigin)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L88">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L74">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_GenericSeek_" data-uid="wan24.Core.StreamExtensions.GenericSeek*"></a>
   <h4 id="wan24_Core_StreamExtensions_GenericSeek_Stream_System_Int64_SeekOrigin_" data-uid="wan24.Core.StreamExtensions.GenericSeek(Stream,System.Int64,SeekOrigin)">GenericSeek(Stream, Int64, SeekOrigin)</h4>
@@ -427,10 +540,111 @@ public static long GetRemainingBytes(this Stream stream)</code></pre>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_WriteRandom_Stream_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.WriteRandom(Stream%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L117">View Source</a>
+  </span>
+  <a id="wan24_Core_StreamExtensions_WriteRandom_" data-uid="wan24.Core.StreamExtensions.WriteRandom*"></a>
+  <h4 id="wan24_Core_StreamExtensions_WriteRandom_Stream_System_Int64_" data-uid="wan24.Core.StreamExtensions.WriteRandom(Stream,System.Int64)">WriteRandom(Stream, Int64)</h4>
+  <div class="markdown level1 summary"><p>Write random bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteRandom(this Stream stream, long count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>Stream</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>Number of bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_WriteRandomAsync_Stream_System_Int64_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.WriteRandomAsync(Stream%2CSystem.Int64%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L130">View Source</a>
+  </span>
+  <a id="wan24_Core_StreamExtensions_WriteRandomAsync_" data-uid="wan24.Core.StreamExtensions.WriteRandomAsync*"></a>
+  <h4 id="wan24_Core_StreamExtensions_WriteRandomAsync_Stream_System_Int64_CancellationToken_" data-uid="wan24.Core.StreamExtensions.WriteRandomAsync(Stream,System.Int64,CancellationToken)">WriteRandomAsync(Stream, Int64, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Write random bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static async Task WriteRandomAsync(this Stream stream, long count, CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>Stream</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>Number of bytes</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_WriteZero_Stream_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.WriteZero(Stream%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L102">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L88">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_WriteZero_" data-uid="wan24.Core.StreamExtensions.WriteZero*"></a>
   <h4 id="wan24_Core_StreamExtensions_WriteZero_Stream_System_Int64_" data-uid="wan24.Core.StreamExtensions.WriteZero(Stream,System.Int64)">WriteZero(Stream, Int64)</h4>
@@ -470,7 +684,7 @@ public static long GetRemainingBytes(this Stream stream)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_WriteZeroAsync_Stream_System_Int64_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.WriteZeroAsync(Stream%2CSystem.Int64%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L117">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L103">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_WriteZeroAsync_" data-uid="wan24.Core.StreamExtensions.WriteZeroAsync*"></a>
   <h4 id="wan24_Core_StreamExtensions_WriteZeroAsync_Stream_System_Int64_CancellationToken_" data-uid="wan24.Core.StreamExtensions.WriteZeroAsync(Stream,System.Int64,CancellationToken)">WriteZeroAsync(Stream, Int64, CancellationToken)</h4>

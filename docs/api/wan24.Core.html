@@ -137,9 +137,6 @@
       <h4><a class="xref" href="wan24.Core.BitwiseUInt8Extensions.html">BitwiseUInt8Extensions</a></h4>
       <section><p>Bitwise UInt8 extensions</p>
 </section>
-      <h4><a class="xref" href="wan24.Core.BlockingBufferStream.html">BlockingBufferStream</a></h4>
-      <section><p>Blocking buffer stream (reading blocks until (all, if aggressive) data is available, writing until the buffer was red completely)</p>
-</section>
       <h4><a class="xref" href="wan24.Core.BlockingObjectPool-1.html">BlockingObjectPool&lt;T&gt;</a></h4>
       <section><p>Disposable blocking object pool (disposes items when disposing, if <see cref="!:IDisposable"></see>/<see cref="!:IAsyncDisposable"></see>)</p>
 </section>
@@ -181,6 +178,12 @@
 </section>
       <h4><a class="xref" href="wan24.Core.CharsExtensions.html">CharsExtensions</a></h4>
       <section><p><span class="xref">System.Char</span> array extensions</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ChecksumExtensions.html">ChecksumExtensions</a></h4>
+      <section><p>Checksum extensions</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ChecksumTransform.html">ChecksumTransform</a></h4>
+      <section><p>Checksum hash algorithm</p>
 </section>
       <h4><a class="xref" href="wan24.Core.CliArguments.html">CliArguments</a></h4>
       <section><p>CLI arguments (an argument key for a following value starts with <code>--</code> (double dashes), a flag argument with <code>-</code> (single dash))</p>
@@ -399,6 +402,9 @@ the first stream per default)</p>
       <h4><a class="xref" href="wan24.Core.QueueWorker.html">QueueWorker</a></h4>
       <section><p>Queue worker</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.RandomStream.html">RandomStream</a></h4>
+      <section><p>Random stream (uses <span class="xref">System.Security.Cryptography.RandomNumberGenerator</span> for reading random bytes into the given buffers)</p>
+</section>
       <h4><a class="xref" href="wan24.Core.ReflectionExtensions.html">ReflectionExtensions</a></h4>
       <section><p>Reflection extensions</p>
 </section>
@@ -514,6 +520,9 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
 </section>
     <h3 id="structs">Structs
   </h3>
+      <h4><a class="xref" href="wan24.Core.PinnedArray-1.html">PinnedArray&lt;T&gt;</a></h4>
+      <section><p>Pinned array</p>
+</section>
       <h4><a class="xref" href="wan24.Core.RentedArrayStruct-1.html">RentedArrayStruct&lt;T&gt;</a></h4>
       <section><p>Pool rented array (returns the array to the pool, when disposed)</p>
 </section>
@@ -600,6 +609,12 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
       <h4><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></h4>
       <section><p>Interface for a status provider</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.IStream.html">IStream</a></h4>
+      <section><p>Interface for a stream</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a></h4>
+      <section><p>Interface for a stream wrapper</p>
+</section>
       <h4><a class="xref" href="wan24.Core.ITimer.html">ITimer</a></h4>
       <section><p>Interface for a timer object</p>
 </section>
@@ -610,9 +625,6 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
 </section>
     <h3 id="delegates">Delegates
   </h3>
-      <h4><a class="xref" href="wan24.Core.BlockingBufferStream.Event_Delegate.html">BlockingBufferStream.Event_Delegate</a></h4>
-      <section><p>Delegate for an event handler</p>
-</section>
       <h4><a class="xref" href="wan24.Core.Bootstrap.Bootstrap_Delegate.html">Bootstrap.Bootstrap_Delegate</a></h4>
       <section><p>Delegate for the <a class="xref" href="wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_OnBootstrap">OnBootstrap</a> event</p>
 </section>

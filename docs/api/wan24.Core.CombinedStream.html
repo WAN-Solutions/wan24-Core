@@ -84,6 +84,7 @@
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IStream.html">IStream</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><span class="xref">IDisposable</span></div>
     <div><span class="xref">IAsyncDisposable</span></div>
@@ -143,7 +144,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_CombinedStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class CombinedStream : StreamBase, IDisposableObject</code></pre>
+    <pre><code class="lang-csharp hljs">public class CombinedStream : StreamBase, IStream, IDisposableObject</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -600,7 +601,8 @@
   </span>
   <a id="wan24_Core_CombinedStream_Close_" data-uid="wan24.Core.CombinedStream.Close*"></a>
   <h4 id="wan24_Core_CombinedStream_Close" data-uid="wan24.Core.CombinedStream.Close">Close()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Close</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1309,6 +1311,9 @@
     </tbody>
   </table>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IStream.html">IStream</a>
+  </div>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
   </div>

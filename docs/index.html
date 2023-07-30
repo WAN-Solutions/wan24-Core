@@ -299,6 +299,7 @@ including extensions for numeric type encoding/decoding)</li>
 <li><code>EnumerableStream</code> streams an enumerable/enumerator</li>
 <li><code>CombinedStream</code> combines multiple streams into one stream (read-only)</li>
 <li><code>SynchronizedStream</code> synchronizes IO and seeking</li>
+<li><code>RandomStream</code> reads random bytes into the given buffers</li>
 </ul>
 </li>
 <li>Named mutex helper
@@ -315,9 +316,11 @@ including extensions for numeric type encoding/decoding)</li>
 <li>Copy a part of a stream to another stream</li>
 <li>Generic seek</li>
 <li>Write N zero bytes</li>
+<li>Write N random bytes</li>
 <li>Create stream chunks</li>
 </ul>
 </li>
+<li>Checksum implementation in <code>ChecksumExtensions</code> and <code>ChecksumTransform</code></li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
@@ -1210,6 +1213,29 @@ handlers are present. For raising the event, you need to use the
 <p>Timeout, cancellation, synchronous and asynchronous event handlers are
 supported. The <code>AsyncEvent&lt;tSender, tArgs&gt;</code> is designed to be thread-safe,
 while multiple threads are allowed to raise the event in parallel.</p>
+<h2 id="checksum">Checksum</h2>
+<p><code>ChecksumExtensions</code> and <code>ChecksumTransform</code> allow generating a checksum:</p>
+<pre><code class="lang-cs">byte[] data = ...,
+    moreData = ...,
+    checksum = data.CreateChecksum();
+moreData.UpdateChecksum(checksum);
+</code></pre>
+<p>The default checksum length is 8 bytes and needs to be a power of two, if
+being customized. If you need a numeric value from the checksum bytes:</p>
+<pre><code class="lang-cs">ulong numericChecksum = checksum.AsSpan().ToULong();
+</code></pre>
+<p>The algorithm uses XOR to modify the checksum bytes, which are zero by
+default. If the input data is only zero, the checksum will stay at zero. If
+you use the same input data for a 2nd time, the checksum will be equal to the
+one from the 1st time.</p>
+<p>The <code>ChecksumTransform</code> is a <code>HashAlgorithm</code> and can be used as every .NET
+implemented hash algorithm (even it's not a hash, but only a checksum!):</p>
+<pre><code class="lang-cs">byte[] checksum = ChecksumTransform.HashData(data);
+</code></pre>
+<p>You may register the checksum algorithm as &quot;Checksum&quot; using the <code>Register</code>
+method:</p>
+<pre><code class="lang-cs">ChecksumTransform.Register();
+</code></pre>
 </article>
           </div>
           
