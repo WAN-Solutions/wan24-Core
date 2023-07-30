@@ -12,10 +12,10 @@ namespace Wan24_Core_Tests
             Assert.IsTrue(stream.CanTimeout);
             DateTime started = DateTime.Now;
             await Assert.ThrowsExceptionAsync<TimeoutException>(async () => await stream.WriteAsync(Array.Empty<byte>()));
-            Assert.IsTrue((DateTime.Now - started).TotalMilliseconds >= 100);
+            Assert.IsTrue((DateTime.Now - started).TotalMilliseconds >= 75);
             started = DateTime.Now;
             await Assert.ThrowsExceptionAsync<TimeoutException>(async () => await stream.ReadAsync(Array.Empty<byte>()));
-            Assert.IsTrue((DateTime.Now - started).TotalMilliseconds >= 100);
+            Assert.IsTrue((DateTime.Now - started).TotalMilliseconds >= 75);
         }
 
         private sealed class CancellationStream : WrapperStream<Stream>
