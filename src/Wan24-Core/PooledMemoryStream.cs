@@ -15,6 +15,7 @@
         {
             SetLength(0);
             Position = 0;
+            Name = null;
         }
     }
 }

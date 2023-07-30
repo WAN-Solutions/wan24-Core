@@ -79,59 +79,280 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><a class="xref" href="wan24.Core.WrapperStream.html">WrapperStream</a></div>
-    <div class="level2"><span class="xref">ThrottledStream</span></div>
+    <div class="level1"><a class="xref" href="wan24.Core.StreamBase.html">StreamBase</a></div>
+    <div class="level2"><a class="xref" href="wan24.Core.WrapperStream-1.html">WrapperStream</a>&lt;<span class="xref">Stream</span>&gt;</div>
+    <div class="level3"><a class="xref" href="wan24.Core.ThrottledStream-1.html">ThrottledStream</a>&lt;<span class="xref">Stream</span>&gt;</div>
+    <div class="level4"><span class="xref">ThrottledStream</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a></div>
+    <div><a class="xref" href="wan24.Core.IStream.html">IStream</a></div>
+    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><span class="xref">IDisposable</span></div>
+    <div><span class="xref">IAsyncDisposable</span></div>
+    <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream__LeaveOpen">WrapperStream._LeaveOpen</a>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ReadCount">ThrottledStream&lt;Stream&gt;.ReadCount</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_BaseStream">WrapperStream.BaseStream</a>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ReadTime">ThrottledStream&lt;Stream&gt;.ReadTime</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_LeaveOpen">WrapperStream.LeaveOpen</a>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_LastReadTimeStart">ThrottledStream&lt;Stream&gt;.LastReadTimeStart</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_CanRead">WrapperStream.CanRead</a>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_RedCount">ThrottledStream&lt;Stream&gt;.RedCount</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_CanSeek">WrapperStream.CanSeek</a>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_WriteCount">ThrottledStream&lt;Stream&gt;.WriteCount</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_CanWrite">WrapperStream.CanWrite</a>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_WriteTime">ThrottledStream&lt;Stream&gt;.WriteTime</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_Length">WrapperStream.Length</a>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_LastWriteTimeStart">ThrottledStream&lt;Stream&gt;.LastWriteTimeStart</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_Position">WrapperStream.Position</a>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_WroteCount">ThrottledStream&lt;Stream&gt;.WroteCount</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_Flush">WrapperStream.Flush()</a>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ResetWriteThrottle">ThrottledStream&lt;Stream&gt;.ResetWriteThrottle()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_FlushAsync_CancellationToken_">WrapperStream.FlushAsync(CancellationToken)</a>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ResetReadThrottle">ThrottledStream&lt;Stream&gt;.ResetReadThrottle()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_Seek_System_Int64_SeekOrigin_">WrapperStream.Seek(Int64, SeekOrigin)</a>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ReadByte">ThrottledStream&lt;Stream&gt;.ReadByte()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_SetLength_System_Int64_">WrapperStream.SetLength(Int64)</a>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_Read_System_Byte___System_Int32_System_Int32_">ThrottledStream&lt;Stream&gt;.Read(Byte[], Int32, Int32)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_Close">WrapperStream.Close()</a>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_Read_Span_System_Byte__">ThrottledStream&lt;Stream&gt;.Read(Span&lt;Byte&gt;)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_DisposeAsync">WrapperStream.DisposeAsync()</a>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_">ThrottledStream&lt;Stream&gt;.ReadAsync(Byte[], Int32, Int32, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ReadAsync_Memory_System_Byte__CancellationToken_">ThrottledStream&lt;Stream&gt;.ReadAsync(Memory&lt;Byte&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_WriteByte_System_Byte_">ThrottledStream&lt;Stream&gt;.WriteByte(Byte)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_Write_System_Byte___System_Int32_System_Int32_">ThrottledStream&lt;Stream&gt;.Write(Byte[], Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_Write_ReadOnlySpan_System_Byte__">ThrottledStream&lt;Stream&gt;.Write(ReadOnlySpan&lt;Byte&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_">ThrottledStream&lt;Stream&gt;.WriteAsync(Byte[], Int32, Int32, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_">ThrottledStream&lt;Stream&gt;.WriteAsync(ReadOnlyMemory&lt;Byte&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ThrottleWriting_System_Int32_">ThrottledStream&lt;Stream&gt;.ThrottleWriting(Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ThrottleWritingAsync_System_Int32_CancellationToken_">ThrottledStream&lt;Stream&gt;.ThrottleWritingAsync(Int32, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_GetReadCount_System_Int32_">ThrottledStream&lt;Stream&gt;.GetReadCount(Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ThrottleReading">ThrottledStream&lt;Stream&gt;.ThrottleReading()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ThrottleReadingAsync_CancellationToken_">ThrottledStream&lt;Stream&gt;.ThrottleReadingAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1__BaseStream">WrapperStream&lt;Stream&gt;._BaseStream</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1__LeaveOpen">WrapperStream&lt;Stream&gt;._LeaveOpen</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseOriginalByteIO">WrapperStream&lt;Stream&gt;.UseOriginalByteIO</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseOriginalCopyTo">WrapperStream&lt;Stream&gt;.UseOriginalCopyTo</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseOriginalBeginRead">WrapperStream&lt;Stream&gt;.UseOriginalBeginRead</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseOriginalBeginWrite">WrapperStream&lt;Stream&gt;.UseOriginalBeginWrite</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseBaseStream">WrapperStream&lt;Stream&gt;.UseBaseStream</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Target">WrapperStream&lt;Stream&gt;.Target</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseStream">WrapperStream&lt;Stream&gt;.BaseStream</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_LeaveOpen">WrapperStream&lt;Stream&gt;.LeaveOpen</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_State">WrapperStream&lt;Stream&gt;.State</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanRead">WrapperStream&lt;Stream&gt;.CanRead</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanSeek">WrapperStream&lt;Stream&gt;.CanSeek</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanWrite">WrapperStream&lt;Stream&gt;.CanWrite</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanTimeout">WrapperStream&lt;Stream&gt;.CanTimeout</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Length">WrapperStream&lt;Stream&gt;.Length</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Position">WrapperStream&lt;Stream&gt;.Position</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_ReadTimeout">WrapperStream&lt;Stream&gt;.ReadTimeout</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_WriteTimeout">WrapperStream&lt;Stream&gt;.WriteTimeout</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_wan24_Core_IStreamWrapper_BaseStream">WrapperStream&lt;Stream&gt;.IStreamWrapper.BaseStream</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Flush">WrapperStream&lt;Stream&gt;.Flush()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_FlushAsync_CancellationToken_">WrapperStream&lt;Stream&gt;.FlushAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Seek_System_Int64_SeekOrigin_">WrapperStream&lt;Stream&gt;.Seek(Int64, SeekOrigin)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_SetLength_System_Int64_">WrapperStream&lt;Stream&gt;.SetLength(Int64)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CopyTo_Stream_System_Int32_">WrapperStream&lt;Stream&gt;.CopyTo(Stream, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CopyToAsync_Stream_System_Int32_CancellationToken_">WrapperStream&lt;Stream&gt;.CopyToAsync(Stream, Int32, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BeginRead_System_Byte___System_Int32_System_Int32_System_Nullable_AsyncCallback__System_Object_">WrapperStream&lt;Stream&gt;.BeginRead(Byte[], Int32, Int32, Nullable&lt;AsyncCallback&gt;, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_EndRead_IAsyncResult_">WrapperStream&lt;Stream&gt;.EndRead(IAsyncResult)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BeginWrite_System_Byte___System_Int32_System_Int32_System_Nullable_AsyncCallback__System_Object_">WrapperStream&lt;Stream&gt;.BeginWrite(Byte[], Int32, Int32, Nullable&lt;AsyncCallback&gt;, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_EndWrite_IAsyncResult_">WrapperStream&lt;Stream&gt;.EndWrite(IAsyncResult)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Equals_System_Object_">WrapperStream&lt;Stream&gt;.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_GetHashCode">WrapperStream&lt;Stream&gt;.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_ToString">WrapperStream&lt;Stream&gt;.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Close">WrapperStream&lt;Stream&gt;.Close()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Dispose_System_Boolean_">WrapperStream&lt;Stream&gt;.Dispose(Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_DisposeCore">WrapperStream&lt;Stream&gt;.DisposeCore()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseCopyTo_Stream_System_Int32_">WrapperStream&lt;Stream&gt;.BaseCopyTo(Stream, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseCopyToAsync_Stream_System_Int32_CancellationToken_">WrapperStream&lt;Stream&gt;.BaseCopyToAsync(Stream, Int32, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseBeginRead_System_Byte___System_Int32_System_Int32_System_Nullable_AsyncCallback__System_Object_">WrapperStream&lt;Stream&gt;.BaseBeginRead(Byte[], Int32, Int32, Nullable&lt;AsyncCallback&gt;, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseEndRead_IAsyncResult_">WrapperStream&lt;Stream&gt;.BaseEndRead(IAsyncResult)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseBeginWrite_System_Byte___System_Int32_System_Int32_System_Nullable_AsyncCallback__System_Object_">WrapperStream&lt;Stream&gt;.BaseBeginWrite(Byte[], Int32, Int32, Nullable&lt;AsyncCallback&gt;, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseEndWrite_IAsyncResult_">WrapperStream&lt;Stream&gt;.BaseEndWrite(IAsyncResult)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_HandlebaseStreamDisposed_wan24_Core_IDisposableObject_EventArgs_">WrapperStream&lt;Stream&gt;.HandlebaseStreamDisposed(IDisposableObject, EventArgs)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_SyncObject">StreamBase.SyncObject</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_Name">StreamBase.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsClosed">StreamBase.IsClosed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsDisposed">StreamBase.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsDisposing">StreamBase.IsDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_DisposeAsync">StreamBase.DisposeAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureUndisposed_System_Boolean_System_Boolean_">StreamBase.EnsureUndisposed(Boolean, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed__1___0_System_Boolean_">StreamBase.IfUndisposed&lt;T&gt;(T, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed_Action_System_Boolean_">StreamBase.IfUndisposed(Action, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed__1_Func___0__System_Boolean_">StreamBase.IfUndisposed&lt;T&gt;(Func&lt;T&gt;, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposedNullable__1_Func___0__System_Boolean_">StreamBase.IfUndisposedNullable&lt;T&gt;(Func&lt;T&gt;, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureSeekable">StreamBase.EnsureSeekable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureWritable">StreamBase.EnsureWritable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureReadable">StreamBase.EnsureReadable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_OnDisposing">StreamBase.OnDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_OnDisposed">StreamBase.OnDisposed</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_ThrottledStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ThrottledStream : WrapperStream</code></pre>
+    <pre><code class="lang-csharp hljs">public class ThrottledStream : ThrottledStream&lt;Stream&gt;, IStreamWrapper, IStream, IDisposableObject, IStatusProvider</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -199,999 +420,25 @@
       </tr>
     </tbody>
   </table>
-  <h3 id="properties">Properties
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_LastReadTimeStart.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.LastReadTimeStart%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L39">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_LastReadTimeStart_" data-uid="wan24.Core.ThrottledStream.LastReadTimeStart*"></a>
-  <h4 id="wan24_Core_ThrottledStream_LastReadTimeStart" data-uid="wan24.Core.ThrottledStream.LastReadTimeStart">LastReadTimeStart</h4>
-  <div class="markdown level1 summary"><p>Last read time start</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DateTime LastReadTimeStart { get; protected set; }</code></pre>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">DateTime</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_LastWriteTimeStart.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.LastWriteTimeStart%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L59">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_LastWriteTimeStart_" data-uid="wan24.Core.ThrottledStream.LastWriteTimeStart*"></a>
-  <h4 id="wan24_Core_ThrottledStream_LastWriteTimeStart" data-uid="wan24.Core.ThrottledStream.LastWriteTimeStart">LastWriteTimeStart</h4>
-  <div class="markdown level1 summary"><p>Last write time start</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DateTime LastWriteTimeStart { get; protected set; }</code></pre>
+  <div>
+      <a class="xref" href="wan24.Core.IStream.html">IStream</a>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">DateTime</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_ReadCount.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.ReadCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L29">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_ReadCount_" data-uid="wan24.Core.ThrottledStream.ReadCount*"></a>
-  <h4 id="wan24_Core_ThrottledStream_ReadCount" data-uid="wan24.Core.ThrottledStream.ReadCount">ReadCount</h4>
-  <div class="markdown level1 summary"><p>Read count (zero to disable read throttling)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int ReadCount { get; set; }</code></pre>
+  <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_ReadTime.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.ReadTime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L34">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_ReadTime_" data-uid="wan24.Core.ThrottledStream.ReadTime*"></a>
-  <h4 id="wan24_Core_ThrottledStream_ReadTime" data-uid="wan24.Core.ThrottledStream.ReadTime">ReadTime</h4>
-  <div class="markdown level1 summary"><p>Read time</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TimeSpan ReadTime { get; set; }</code></pre>
+  <div>
+      <span class="xref">IDisposable</span>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">TimeSpan</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_RedCount.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.RedCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L44">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_RedCount_" data-uid="wan24.Core.ThrottledStream.RedCount*"></a>
-  <h4 id="wan24_Core_ThrottledStream_RedCount" data-uid="wan24.Core.ThrottledStream.RedCount">RedCount</h4>
-  <div class="markdown level1 summary"><p>Red count since the last read time start</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int RedCount { get; protected set; }</code></pre>
+  <div>
+      <span class="xref">IAsyncDisposable</span>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_WriteCount.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.WriteCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L49">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_WriteCount_" data-uid="wan24.Core.ThrottledStream.WriteCount*"></a>
-  <h4 id="wan24_Core_ThrottledStream_WriteCount" data-uid="wan24.Core.ThrottledStream.WriteCount">WriteCount</h4>
-  <div class="markdown level1 summary"><p>Write count (zero to disable write throttling)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int WriteCount { get; set; }</code></pre>
+  <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_WriteTime.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.WriteTime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L54">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_WriteTime_" data-uid="wan24.Core.ThrottledStream.WriteTime*"></a>
-  <h4 id="wan24_Core_ThrottledStream_WriteTime" data-uid="wan24.Core.ThrottledStream.WriteTime">WriteTime</h4>
-  <div class="markdown level1 summary"><p>Write time</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TimeSpan WriteTime { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">TimeSpan</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_WroteCount.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.WroteCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L64">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_WroteCount_" data-uid="wan24.Core.ThrottledStream.WroteCount*"></a>
-  <h4 id="wan24_Core_ThrottledStream_WroteCount" data-uid="wan24.Core.ThrottledStream.WroteCount">WroteCount</h4>
-  <div class="markdown level1 summary"><p>Wrote count since last write time start</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int WroteCount { get; protected set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_GetReadCount_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.GetReadCount(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L234">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_GetReadCount_" data-uid="wan24.Core.ThrottledStream.GetReadCount*"></a>
-  <h4 id="wan24_Core_ThrottledStream_GetReadCount_System_Int32_" data-uid="wan24.Core.ThrottledStream.GetReadCount(System.Int32)">GetReadCount(Int32)</h4>
-  <div class="markdown level1 summary"><p>Get the number of bytes to read without throttling</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected int GetReadCount(int count)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">count</span></td>
-        <td><p>Count</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><p>Number of bytes to read without throttling</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_Read_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.Read(Span%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L97">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_Read_" data-uid="wan24.Core.ThrottledStream.Read*"></a>
-  <h4 id="wan24_Core_ThrottledStream_Read_Span_System_Byte__" data-uid="wan24.Core.ThrottledStream.Read(Span{System.Byte})">Read(Span&lt;Byte&gt;)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override int Read(Span&lt;byte&gt; buffer)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
-        <td><span class="parametername">buffer</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_Read_Span_System_Byte__">WrapperStream.Read(Span&lt;Byte&gt;)</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_Read_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.Read(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L94">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_Read_" data-uid="wan24.Core.ThrottledStream.Read*"></a>
-  <h4 id="wan24_Core_ThrottledStream_Read_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.ThrottledStream.Read(System.Byte[],System.Int32,System.Int32)">Read(Byte[], Int32, Int32)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override int Read(byte[] buffer, int offset, int count)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Byte</span>[]</td>
-        <td><span class="parametername">buffer</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">offset</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">count</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_Read_System_Byte___System_Int32_System_Int32_">WrapperStream.Read(Byte[], Int32, Int32)</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_ReadAsync_Memory_System_Byte__CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.ReadAsync(Memory%7BSystem.Byte%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L122">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_ReadAsync_" data-uid="wan24.Core.ThrottledStream.ReadAsync*"></a>
-  <h4 id="wan24_Core_ThrottledStream_ReadAsync_Memory_System_Byte__CancellationToken_" data-uid="wan24.Core.ThrottledStream.ReadAsync(Memory{System.Byte},CancellationToken)">ReadAsync(Memory&lt;Byte&gt;, CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override async ValueTask&lt;int&gt; ReadAsync(Memory&lt;byte&gt; buffer, CancellationToken cancellationToken = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Memory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
-        <td><span class="parametername">buffer</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">CancellationToken</span></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">ValueTask</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_ReadAsync_Memory_System_Byte__CancellationToken_">WrapperStream.ReadAsync(Memory&lt;Byte&gt;, CancellationToken)</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.ReadAsync(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L118">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_ReadAsync_" data-uid="wan24.Core.ThrottledStream.ReadAsync*"></a>
-  <h4 id="wan24_Core_ThrottledStream_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_" data-uid="wan24.Core.ThrottledStream.ReadAsync(System.Byte[],System.Int32,System.Int32,CancellationToken)">ReadAsync(Byte[], Int32, Int32, CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override async Task&lt;int&gt; ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Byte</span>[]</td>
-        <td><span class="parametername">buffer</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">offset</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">count</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">CancellationToken</span></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_">WrapperStream.ReadAsync(Byte[], Int32, Int32, CancellationToken)</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_ReadByte.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.ReadByte%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L85">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_ReadByte_" data-uid="wan24.Core.ThrottledStream.ReadByte*"></a>
-  <h4 id="wan24_Core_ThrottledStream_ReadByte" data-uid="wan24.Core.ThrottledStream.ReadByte">ReadByte()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override int ReadByte()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_ReadByte">WrapperStream.ReadByte()</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_ResetReadThrottle.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.ResetReadThrottle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L78">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_ResetReadThrottle_" data-uid="wan24.Core.ThrottledStream.ResetReadThrottle*"></a>
-  <h4 id="wan24_Core_ThrottledStream_ResetReadThrottle" data-uid="wan24.Core.ThrottledStream.ResetReadThrottle">ResetReadThrottle()</h4>
-  <div class="markdown level1 summary"><p>Reset the read throttle</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ResetReadThrottle()</code></pre>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_ResetWriteThrottle.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.ResetWriteThrottle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L69">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_ResetWriteThrottle_" data-uid="wan24.Core.ThrottledStream.ResetWriteThrottle*"></a>
-  <h4 id="wan24_Core_ThrottledStream_ResetWriteThrottle" data-uid="wan24.Core.ThrottledStream.ResetWriteThrottle">ResetWriteThrottle()</h4>
-  <div class="markdown level1 summary"><p>Reset the write throttle</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ResetWriteThrottle()</code></pre>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_ThrottleReading.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.ThrottleReading%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L248">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_ThrottleReading_" data-uid="wan24.Core.ThrottledStream.ThrottleReading*"></a>
-  <h4 id="wan24_Core_ThrottledStream_ThrottleReading" data-uid="wan24.Core.ThrottledStream.ThrottleReading">ThrottleReading()</h4>
-  <div class="markdown level1 summary"><p>Throttle reading</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void ThrottleReading()</code></pre>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_ThrottleReadingAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.ThrottleReadingAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L261">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_ThrottleReadingAsync_" data-uid="wan24.Core.ThrottledStream.ThrottleReadingAsync*"></a>
-  <h4 id="wan24_Core_ThrottledStream_ThrottleReadingAsync_CancellationToken_" data-uid="wan24.Core.ThrottledStream.ThrottleReadingAsync(CancellationToken)">ThrottleReadingAsync(CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Throttle reading</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected async Task ThrottleReadingAsync(CancellationToken cancellationToken)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">CancellationToken</span></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>Cancellation token</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_ThrottleWriting_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.ThrottleWriting(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L183">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_ThrottleWriting_" data-uid="wan24.Core.ThrottledStream.ThrottleWriting*"></a>
-  <h4 id="wan24_Core_ThrottledStream_ThrottleWriting_System_Int32_" data-uid="wan24.Core.ThrottledStream.ThrottleWriting(System.Int32)">ThrottleWriting(Int32)</h4>
-  <div class="markdown level1 summary"><p>Throttle writing</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected int ThrottleWriting(int count)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">count</span></td>
-        <td><p>Count</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><p>Write count</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_ThrottleWritingAsync_System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.ThrottleWritingAsync(System.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L209">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_ThrottleWritingAsync_" data-uid="wan24.Core.ThrottledStream.ThrottleWritingAsync*"></a>
-  <h4 id="wan24_Core_ThrottledStream_ThrottleWritingAsync_System_Int32_CancellationToken_" data-uid="wan24.Core.ThrottledStream.ThrottleWritingAsync(System.Int32,CancellationToken)">ThrottleWritingAsync(Int32, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Throttle writing</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected async Task&lt;int&gt; ThrottleWritingAsync(int count, CancellationToken cancellationToken)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">count</span></td>
-        <td><p>Count</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">CancellationToken</span></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>Cancellation token</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
-        <td><p>Write count</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_Write_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.Write(ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L153">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_Write_" data-uid="wan24.Core.ThrottledStream.Write*"></a>
-  <h4 id="wan24_Core_ThrottledStream_Write_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.ThrottledStream.Write(ReadOnlySpan{System.Byte})">Write(ReadOnlySpan&lt;Byte&gt;)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Write(ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
-        <td><span class="parametername">buffer</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_Write_ReadOnlySpan_System_Byte__">WrapperStream.Write(ReadOnlySpan&lt;Byte&gt;)</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_Write_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.Write(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L150">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_Write_" data-uid="wan24.Core.ThrottledStream.Write*"></a>
-  <h4 id="wan24_Core_ThrottledStream_Write_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.ThrottledStream.Write(System.Byte[],System.Int32,System.Int32)">Write(Byte[], Int32, Int32)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Write(byte[] buffer, int offset, int count)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Byte</span>[]</td>
-        <td><span class="parametername">buffer</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">offset</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">count</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_Write_System_Byte___System_Int32_System_Int32_">WrapperStream.Write(Byte[], Int32, Int32)</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.WriteAsync(ReadOnlyMemory%7BSystem.Byte%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L168">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_WriteAsync_" data-uid="wan24.Core.ThrottledStream.WriteAsync*"></a>
-  <h4 id="wan24_Core_ThrottledStream_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_" data-uid="wan24.Core.ThrottledStream.WriteAsync(ReadOnlyMemory{System.Byte},CancellationToken)">WriteAsync(ReadOnlyMemory&lt;Byte&gt;, CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override async ValueTask WriteAsync(ReadOnlyMemory&lt;byte&gt; buffer, CancellationToken cancellationToken = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">ReadOnlyMemory</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
-        <td><span class="parametername">buffer</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">CancellationToken</span></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">ValueTask</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_">WrapperStream.WriteAsync(ReadOnlyMemory&lt;Byte&gt;, CancellationToken)</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.WriteAsync(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L164">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_WriteAsync_" data-uid="wan24.Core.ThrottledStream.WriteAsync*"></a>
-  <h4 id="wan24_Core_ThrottledStream_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_" data-uid="wan24.Core.ThrottledStream.WriteAsync(System.Byte[],System.Int32,System.Int32,CancellationToken)">WriteAsync(Byte[], Int32, Int32, CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override async Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Byte</span>[]</td>
-        <td><span class="parametername">buffer</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">offset</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">count</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">CancellationToken</span></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_">WrapperStream.WriteAsync(Byte[], Int32, Int32, CancellationToken)</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ThrottledStream_WriteByte_System_Byte_.md&amp;value=---%0Auid%3A%20wan24.Core.ThrottledStream.WriteByte(System.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ThrottledStream.cs/#L143">View Source</a>
-  </span>
-  <a id="wan24_Core_ThrottledStream_WriteByte_" data-uid="wan24.Core.ThrottledStream.WriteByte*"></a>
-  <h4 id="wan24_Core_ThrottledStream_WriteByte_System_Byte_" data-uid="wan24.Core.ThrottledStream.WriteByte(System.Byte)">WriteByte(Byte)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void WriteByte(byte value)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Byte</span></td>
-        <td><span class="parametername">value</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.WrapperStream.html#wan24_Core_WrapperStream_WriteByte_System_Byte_">WrapperStream.WriteByte(Byte)</a></div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_Int32_System_Int32_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, Int32, Int32, String)</a>

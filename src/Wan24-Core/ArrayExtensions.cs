@@ -1,4 +1,5 @@
-﻿using System.Runtime;
+﻿using System.Collections.ObjectModel;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -236,5 +237,14 @@ namespace wan24.Core
         /// <returns>Memory</returns>
         [TargetedPatchingOptOut("Tiny method")]
         public static ReadOnlyMemory<T> AsReadOnly<T>(this Memory<T> mem) => (ReadOnlyMemory<T>)mem;
+
+        /// <summary>
+        /// Get as read-only
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <returns>Read-only collection</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static ReadOnlyCollection<T> AsReadOnly<T>(this IEnumerable<T> enumerable) => new List<T>(enumerable).AsReadOnly();
     }
 }

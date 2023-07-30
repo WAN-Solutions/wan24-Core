@@ -179,6 +179,12 @@
       <h4><a class="xref" href="wan24.Core.CharsExtensions.html">CharsExtensions</a></h4>
       <section><p><span class="xref">System.Char</span> array extensions</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.ChecksumExtensions.html">ChecksumExtensions</a></h4>
+      <section><p>Checksum extensions</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ChecksumTransform.html">ChecksumTransform</a></h4>
+      <section><p>Checksum hash algorithm</p>
+</section>
       <h4><a class="xref" href="wan24.Core.CliArguments.html">CliArguments</a></h4>
       <section><p>CLI arguments (an argument key for a following value starts with <code>--</code> (double dashes), a flag argument with <code>-</code> (single dash))</p>
 </section>
@@ -191,11 +197,20 @@
       <h4><a class="xref" href="wan24.Core.CollectionExtensions.html">CollectionExtensions</a></h4>
       <section><p>Collection extensions</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.CombinedStream.html">CombinedStream</a></h4>
+      <section><p>Combined streams (read-only)</p>
+</section>
       <h4><a class="xref" href="wan24.Core.ConfigEventArgs.html">ConfigEventArgs</a></h4>
       <section><p>Configuration event arguments</p>
 </section>
       <h4><a class="xref" href="wan24.Core.ConfigOption-2.html">ConfigOption&lt;tValue, tConfig&gt;</a></h4>
       <section><p>Configuration option</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.CountingStream.html">CountingStream</a></h4>
+      <section><p>Counting stream counts red/written bytes</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.CountingStream-1.html">CountingStream&lt;T&gt;</a></h4>
+      <section><p>Counting stream counts red/written bytes</p>
 </section>
       <h4><a class="xref" href="wan24.Core.DateTimeExtensions.html">DateTimeExtensions</a></h4>
       <section><p><see cref="!:DateTime"></see> extensions</p>
@@ -245,6 +260,9 @@
       <h4><a class="xref" href="wan24.Core.EnumerableExtensions.html">EnumerableExtensions</a></h4>
       <section><p>Enumerable extensions</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.EnumerableStream.html">EnumerableStream</a></h4>
+      <section><p>Enumerable source stream</p>
+</section>
       <h4><a class="xref" href="wan24.Core.EnumExtensions.html">EnumExtensions</a></h4>
       <section><p>Enumeration extensions</p>
 </section>
@@ -272,6 +290,10 @@
       <h4><a class="xref" href="wan24.Core.HostedServiceBase.html">HostedServiceBase</a></h4>
       <section><p>Base class for a hosted service</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.HubStream.html">HubStream</a></h4>
+      <section><p>Hub stream (write-only, all writing operations go to all target streams - in parallel, when using asynchronous methods; length/position targets
+the first stream per default)</p>
+</section>
       <h4><a class="xref" href="wan24.Core.ItemQueueWorkerBase-1.html">ItemQueueWorkerBase&lt;T&gt;</a></h4>
       <section><p>Base class for an item queue worker</p>
 </section>
@@ -285,7 +307,16 @@
       <section><p>Lazy value</p>
 </section>
       <h4><a class="xref" href="wan24.Core.LimitedLengthStream.html">LimitedLengthStream</a></h4>
-      <section><p>Limited length stream wrapper</p>
+      <section><p>Limited length stream wrapper (limits writing only!)</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.LimitedLengthStream-1.html">LimitedLengthStream&lt;T&gt;</a></h4>
+      <section><p>Limited length stream wrapper (limits writing only!)</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.LimitedStream.html">LimitedStream</a></h4>
+      <section><p>Limited stream limits reading/writing/seeking (which can't be overridden from an iheriting or wrapped stream)</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.LimitedStream-1.html">LimitedStream&lt;T&gt;</a></h4>
+      <section><p>Limited stream limits reading/writing/seeking (which can't be overridden from an iheriting or wrapped stream)</p>
 </section>
       <h4><a class="xref" href="wan24.Core.LoadTypeEventArgs.html">LoadTypeEventArgs</a></h4>
       <section><p>Type loader event arguments</p>
@@ -341,6 +372,15 @@
       <h4><a class="xref" href="wan24.Core.PartialStream.html">PartialStream</a></h4>
       <section><p>Partial stream</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.PartialStream-1.html">PartialStream&lt;T&gt;</a></h4>
+      <section><p>Partial stream</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.PauseableStream.html">PauseableStream</a></h4>
+      <section><p>Pauseable stream wrapper (will pause reading/writing)</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.PauseableStream-1.html">PauseableStream&lt;T&gt;</a></h4>
+      <section><p>Pauseable stream wrapper (will pause reading/writing)</p>
+</section>
       <h4><a class="xref" href="wan24.Core.PooledMemoryStream.html">PooledMemoryStream</a></h4>
       <section><p>Pooled memory stream</p>
 </section>
@@ -361,6 +401,9 @@
 </section>
       <h4><a class="xref" href="wan24.Core.QueueWorker.html">QueueWorker</a></h4>
       <section><p>Queue worker</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.RandomStream.html">RandomStream</a></h4>
+      <section><p>Random stream (uses <span class="xref">System.Security.Cryptography.RandomNumberGenerator</span> for reading random bytes into the given buffers)</p>
 </section>
       <h4><a class="xref" href="wan24.Core.ReflectionExtensions.html">ReflectionExtensions</a></h4>
       <section><p>Reflection extensions</p>
@@ -404,6 +447,12 @@
       <h4><a class="xref" href="wan24.Core.Status.html">Status</a></h4>
       <section><p>Status</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.StreamBase.html">StreamBase</a></h4>
+      <section><p>Base class for streams</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.StreamExtensions.html">StreamExtensions</a></h4>
+      <section><p><see cref="!:Stream"></see> extensions</p>
+</section>
       <h4><a class="xref" href="wan24.Core.StreamPool-1.html">StreamPool&lt;T&gt;</a></h4>
       <section><p>Stream pool</p>
 </section>
@@ -413,10 +462,21 @@
       <h4><a class="xref" href="wan24.Core.StringParserContext.html">StringParserContext</a></h4>
       <section><p>String parser context informations</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.SynchronizedStream.html">SynchronizedStream</a></h4>
+      <section><p>Synchronized stream (synchronizes reading/writing/seeking operations; the base stream should implement each single asynchronous reading/writing method! Any asynchronous
+reading/writing method which adopts or calls to another asynchronous reading/writing or any seeking method will cause a dead-lock!)</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.SynchronizedStream-1.html">SynchronizedStream&lt;T&gt;</a></h4>
+      <section><p>Synchronized stream (synchronizes reading/writing/seeking operations; the base stream should implement each single asynchronous reading/writing method! Any asynchronous
+reading/writing method which adopts or calls to another asynchronous reading/writing or any seeking method will cause a dead-lock!)</p>
+</section>
       <h4><a class="xref" href="wan24.Core.TaskExtensions.html">TaskExtensions</a></h4>
       <section><p>Task extensions</p>
 </section>
       <h4><a class="xref" href="wan24.Core.ThrottledStream.html">ThrottledStream</a></h4>
+      <section><p>Throttled stream</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ThrottledStream-1.html">ThrottledStream&lt;T&gt;</a></h4>
       <section><p>Throttled stream</p>
 </section>
       <h4><a class="xref" href="wan24.Core.TimedHostedServiceBase.html">TimedHostedServiceBase</a></h4>
@@ -424,6 +484,12 @@
 </section>
       <h4><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></h4>
       <section><p>Timeout (when comparing instances, and not the timeout time, you should use the <a class="xref" href="wan24.Core.Timeout.html#wan24_Core_Timeout_Equals_System_Object_">Equals(Object)</a> method!)</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.TimeoutStream.html">TimeoutStream</a></h4>
+      <section><p>Timeout stream (async reading/writing methods can timeout)</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.TimeoutStream-1.html">TimeoutStream&lt;T&gt;</a></h4>
+      <section><p>Timeout stream (async reading/writing methods can timeout)</p>
 </section>
       <h4><a class="xref" href="wan24.Core.TimeoutValue-1.html">TimeoutValue&lt;T&gt;</a></h4>
       <section><p>Timeout value (disposable value will be disposed on timeout or when disposing)</p>
@@ -444,10 +510,19 @@
       <section><p>A base class for a value object</p>
 </section>
       <h4><a class="xref" href="wan24.Core.WrapperStream.html">WrapperStream</a></h4>
-      <section><p>Stream wrapper</p>
+      <section><p>Stream wrapper (will dispose, if the base stream is a <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a> and has been disposed)</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.WrapperStream-1.html">WrapperStream&lt;T&gt;</a></h4>
+      <section><p>Stream wrapper (will dispose, if the base stream is a <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a> and has been disposed)</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ZeroStream.html">ZeroStream</a></h4>
+      <section><p>A zero stream, which will read zero bytes and write nothing</p>
 </section>
     <h3 id="structs">Structs
   </h3>
+      <h4><a class="xref" href="wan24.Core.PinnedArray-1.html">PinnedArray&lt;T&gt;</a></h4>
+      <section><p>Pinned array</p>
+</section>
       <h4><a class="xref" href="wan24.Core.RentedArrayStruct-1.html">RentedArrayStruct&lt;T&gt;</a></h4>
       <section><p>Pool rented array (returns the array to the pool, when disposed)</p>
 </section>
@@ -533,6 +608,12 @@
 </section>
       <h4><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></h4>
       <section><p>Interface for a status provider</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.IStream.html">IStream</a></h4>
+      <section><p>Interface for a stream</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a></h4>
+      <section><p>Interface for a stream wrapper</p>
 </section>
       <h4><a class="xref" href="wan24.Core.ITimer.html">ITimer</a></h4>
       <section><p>Interface for a timer object</p>

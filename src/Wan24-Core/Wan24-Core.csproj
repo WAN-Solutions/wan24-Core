@@ -10,7 +10,7 @@
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <PackageId>wan24-Core</PackageId>
     <Title>wan24-Core</Title>
-    <Version>1.24.0</Version>
+    <Version>1.25.0</Version>
     <Authors>nd1012</Authors>
     <Company>Andreas Zimmermann, wan24.de</Company>
     <Product>wan24-Core</Product>
@@ -30,6 +30,14 @@
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(OS)' == 'Windows_NT'">
     <Exec Command="copy /Y &quot;$(ProjectDir)..\..\README.md&quot; &quot;$(ProjectDir)README.md&quot;&#xD;&#xA;" />
   </Target>
+
+  <ItemGroup>
+    <Compile Remove="BlockingBufferStream.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="BlockingBufferStream.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />

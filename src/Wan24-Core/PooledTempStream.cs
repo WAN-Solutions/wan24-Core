@@ -19,10 +19,6 @@
         private static StreamPool<PooledTempFileStream>? _FileStreamPool = null;
 
         /// <summary>
-        /// An object for thread synchronization
-        /// </summary>
-        private readonly object SyncObject = new();
-        /// <summary>
         /// Used memory stream pool
         /// </summary>
         private readonly StreamPool<PooledMemoryStream> UsedMemoryStreamPool;
@@ -30,10 +26,6 @@
         /// Used file stream pool
         /// </summary>
         private readonly StreamPool<PooledTempFileStream> UsedFileStreamPool;
-        /// <summary>
-        /// Is disposed?
-        /// </summary>
-        private bool IsDisposed = false;
 
         /// <summary>
         /// Constructor
@@ -47,6 +39,7 @@
             UsedMemoryStreamPool = memoryStreamPool ?? MemoryStreamPool;
             UsedFileStreamPool = fileStreamPool ?? FileStreamPool;
             BaseStream = estimatedLength > MaxLengthInMemory ? UsedFileStreamPool.Rent() : UsedMemoryStreamPool.Rent();
+            UseOriginalBeginWrite = true;
         }
 
         /// <summary>
@@ -97,17 +90,27 @@
         /// <summary>
         /// <see cref="PooledMemoryStream"/> (do not dispose!)
         /// </summary>
-        public PooledMemoryStream? MemoryStream => BaseStream as PooledMemoryStream;
+        public PooledMemoryStream? MemoryStream => _BaseStream as PooledMemoryStream;
 
         /// <summary>
         /// <see cref="PooledTempFileStream"/> (do not dispose!)
         /// </summary>
-        public PooledTempFileStream? FileStream => BaseStream as PooledTempFileStream;
+        public PooledTempFileStream? FileStream => _BaseStream as PooledTempFileStream;
 
         /// <summary>
         /// Is the data stored in a <see cref="PooledMemoryStream"/>
         /// </summary>
-        public bool IsInMemory => BaseStream is PooledMemoryStream;
+        public bool IsInMemory => _BaseStream is PooledMemoryStream;
+
+        /// <inheritdoc/>
+        public override IEnumerable<Status> State
+        {
+            get
+            {
+                foreach (Status status in base.State) yield return status;
+                yield return new("In memory", IsInMemory, "Is the data hosted in memory?");
+            }
+        }
 
         /// <inheritdoc/>
         public override bool LeaveOpen
@@ -130,7 +133,7 @@
         {
             EnsureUndisposed();
             if (IsInMemory && value > MaxLengthInMemory) CreateTempFile();
-            BaseStream.SetLength(value);
+            _BaseStream.SetLength(value);
         }
 
         /// <inheritdoc/>
@@ -141,7 +144,7 @@
         {
             EnsureUndisposed();
             if (IsInMemory && Position + buffer.Length > MaxLengthInMemory) CreateTempFile();
-            BaseStream.Write(buffer);
+            _BaseStream.Write(buffer);
         }
 
         /// <inheritdoc/>
@@ -149,7 +152,7 @@
         {
             EnsureUndisposed();
             if (IsInMemory && Position + 1 > MaxLengthInMemory) CreateTempFile();
-            BaseStream.WriteByte(value);
+            _BaseStream.WriteByte(value);
         }
 
         /// <inheritdoc/>
@@ -161,31 +164,21 @@
         {
             EnsureUndisposed();
             if (IsInMemory && Position + buffer.Length > MaxLengthInMemory) await CreateTempFileAsync(cancellationToken).DynamicContext();
-            await BaseStream.WriteAsync(buffer, cancellationToken).DynamicContext(); ;
+            await _BaseStream.WriteAsync(buffer, cancellationToken).DynamicContext(); ;
         }
 
         /// <inheritdoc/>
-        public override void Close()
+        protected override void Dispose(bool disposing)
         {
-            lock (SyncObject)
-            {
-                if (IsDisposed) return;
-                IsDisposed = true;
-            }
-            base.Close();
+            if (IsDisposing) return;
+            base.Dispose(disposing);
             ReturnBaseStream();
         }
 
         /// <inheritdoc/>
-        public override async ValueTask DisposeAsync()
+        protected override async Task DisposeCore()
         {
-            await Task.Yield();
-            lock (SyncObject)
-            {
-                if (IsDisposed) return;
-                IsDisposed = true;
-            }
-            await base.DisposeAsync().DynamicContext();
+            await base.DisposeCore().DynamicContext();
             ReturnBaseStream();
         }
 
@@ -255,6 +248,7 @@
         /// </summary>
         private void ReturnBaseStream()
         {
+            if (_BaseStream is null) return;
             if (MemoryStream != null)
             {
                 UsedMemoryStreamPool.Return(MemoryStream);
@@ -263,16 +257,7 @@
             {
                 UsedFileStreamPool.Return(FileStream!);
             }
-            BaseStream = null!;
-        }
-
-        /// <summary>
-        /// Ensure undisposed state
-        /// </summary>
-        private void EnsureUndisposed()
-        {
-            if (!IsDisposed) return;
-            throw new ObjectDisposedException(GetType().ToString());
+            _BaseStream = null!;
         }
     }
 }

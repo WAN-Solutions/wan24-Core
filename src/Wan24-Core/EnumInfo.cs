@@ -27,22 +27,22 @@ namespace wan24.Core
             IsUnsigned = typeof(T).IsUnsigned();
             IsMixedEnum = HasFlagsAttribute && names.Contains(FLAGS_NAME);
             Names = IsMixedEnum
-                ? new List<string>(from name in names
-                                   where name != FLAGS_NAME
-                                   orderby name
-                                   select name).AsReadOnly()
-                : new List<string>(names).AsReadOnly();
+                ? (from name in names
+                   where name != FLAGS_NAME
+                   orderby name
+                   select name).AsReadOnly()
+                : names.AsReadOnly();
             if (IsUnsigned)
             {
                 Flags = IsMixedEnum ? EnumExtensions.CastType<ulong>(Enum.Parse<T>(FLAGS_NAME)) : 0;
-                NumericValues = (new OrderedDictionary<string, object>(from value in values.Cast<object>()
-                                                                       orderby EnumExtensions.CastType<ulong>(value)
-                                                                       select new KeyValuePair<string, object>(value.ToString()!, value)
-                          )).AsReadOnly();
-                KeyValues = (new OrderedDictionary<string, T>(from value in values
+                NumericValues = new OrderedDictionary<string, object>(from value in values.Cast<object>()
+                                                                      orderby EnumExtensions.CastType<ulong>(value)
+                                                                      select new KeyValuePair<string, object>(value.ToString()!, value)
+                          ).AsReadOnly();
+                KeyValues = new OrderedDictionary<string, T>(from value in values
                                                               orderby EnumExtensions.CastType<ulong>(value)
                                                               select new KeyValuePair<string, T>(value.ToString()!, value)
-                          )).AsReadOnly();
+                          ).AsReadOnly();
                 DisplayTexts = new OrderedDictionary<string, string>(
                     from value in values
                     orderby EnumExtensions.CastType<ulong>(value)
@@ -57,36 +57,36 @@ namespace wan24.Core
                 if (IsMixedEnum)
                 {
                     ulong flags = (ulong)Flags;
-                    Values = new List<T>(from value in values
-                                         where value.ToString() != FLAGS_NAME &&
-                                         (EnumExtensions.CastType<ulong>(value) & flags) == 0
-                                         orderby EnumExtensions.CastType<ulong>(value)
-                                         select value).AsReadOnly();
-                    FlagValues = new List<T>(from value in values
-                                             where value.ToString() != FLAGS_NAME &&
-                                             (EnumExtensions.CastType<ulong>(value) & flags) != 0
-                                             orderby EnumExtensions.CastType<ulong>(value)
-                                             select value).AsReadOnly();
+                    Values = (from value in values
+                              where value.ToString() != FLAGS_NAME &&
+                              (EnumExtensions.CastType<ulong>(value) & flags) == 0
+                              orderby EnumExtensions.CastType<ulong>(value)
+                              select value).AsReadOnly();
+                    FlagValues = (from value in values
+                                  where value.ToString() != FLAGS_NAME &&
+                                  (EnumExtensions.CastType<ulong>(value) & flags) != 0
+                                  orderby EnumExtensions.CastType<ulong>(value)
+                                  select value).AsReadOnly();
                 }
                 else
                 {
-                    Values = new List<T>(from value in values
-                                         orderby EnumExtensions.CastType<ulong>(value)
-                                         select value).AsReadOnly();
+                    Values = (from value in values
+                              orderby EnumExtensions.CastType<ulong>(value)
+                              select value).AsReadOnly();
                     FlagValues = new ReadOnlyCollection<T>(Array.Empty<T>());
                 }
             }
             else
             {
                 Flags = IsMixedEnum ? EnumExtensions.CastType<long>(Enum.Parse<T>(FLAGS_NAME)) : 0;
-                NumericValues = (new OrderedDictionary<string, object>(from value in values.Cast<object>()
+                NumericValues = new OrderedDictionary<string, object>(from value in values.Cast<object>()
                                                                        orderby EnumExtensions.CastType<long>(value)
                                                                        select new KeyValuePair<string, object>(value.ToString()!, value)
-                          )).AsReadOnly();
-                KeyValues = (new OrderedDictionary<string, T>(from value in values
+                          ).AsReadOnly();
+                KeyValues = new OrderedDictionary<string, T>(from value in values
                                                               orderby EnumExtensions.CastType<long>(value)
                                                               select new KeyValuePair<string, T>(value.ToString()!, value)
-                          )).AsReadOnly();
+                          ).AsReadOnly();
                 DisplayTexts = new OrderedDictionary<string, string>(
                     from value in values
                     orderby EnumExtensions.CastType<long>(value)
@@ -101,20 +101,20 @@ namespace wan24.Core
                 if (IsMixedEnum)
                 {
                     long flags = (long)Flags;
-                    Values = new List<T>(from value in values
-                                         where (EnumExtensions.CastType<long>(value) & flags) == 0
-                                         orderby EnumExtensions.CastType<long>(value)
-                                         select value).AsReadOnly();
-                    FlagValues = new List<T>(from value in values
-                                             where (EnumExtensions.CastType<long>(value) & flags) != 0
-                                             orderby EnumExtensions.CastType<long>(value)
-                                             select value).AsReadOnly();
+                    Values = (from value in values
+                              where (EnumExtensions.CastType<long>(value) & flags) == 0
+                              orderby EnumExtensions.CastType<long>(value)
+                              select value).AsReadOnly();
+                    FlagValues = (from value in values
+                                  where (EnumExtensions.CastType<long>(value) & flags) != 0
+                                  orderby EnumExtensions.CastType<long>(value)
+                                  select value).AsReadOnly();
                 }
                 else
                 {
-                    Values = new List<T>(from value in values
-                                         orderby EnumExtensions.CastType<long>(value)
-                                         select value).AsReadOnly();
+                    Values = (from value in values
+                              orderby EnumExtensions.CastType<long>(value)
+                              select value).AsReadOnly();
                     FlagValues = new ReadOnlyCollection<T>(Array.Empty<T>());
                 }
             }

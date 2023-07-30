@@ -8,11 +8,11 @@
         /// <summary>
         /// Default buffer size in bytes
         /// </summary>
-        public const int DEFAULT_BUFFER_SIZE = 81920;
+        public const int DEFAULT_BUFFER_SIZE = 81_920;
         /// <summary>
         /// Default stack allocation border
         /// </summary>
-        public const int DEFAULT_STACK_ALLOC_BORDER = 1024;
+        public const int DEFAULT_STACK_ALLOC_BORDER = 1_024;
 
         /// <summary>
         /// Buffer size in bytes

@@ -18,7 +18,6 @@ namespace wan24.Core
                 pi.GetCustomAttributeCached<ExcludeValueAttribute>() is null
              orderby pi.Name
              select pi)
-            .ToList()
             .AsReadOnly();
 
         /// <summary>

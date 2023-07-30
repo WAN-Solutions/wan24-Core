@@ -153,16 +153,36 @@ customizable; encoded data integrity can be validated without decoding;
 including extensions for numeric type encoding/decoding)
 - Collecting periodical statistical values
 - Streams
+    - `StreamBase` as base class which implements some disposing logic
     - `WrapperStream` wraps a base stream and provides `LeaveOpen`
     - `PartialStream` wraps a part of a base stream (read-only)
-    - `LengthLimitedStream` ensures a maximum stream length
+    - `LengthLimitedStream` ensures a maximum stream length (only writing)
     - `MemoryPoolStream` uses an `ArrayPool<byte>` for storing written data
     - `ThrottledStream` throttles reading/writing troughput
+    - `TimeoutStream` can timeout async reading/writing methods
+    - `BlockingBufferStream` for writing to / reading from a buffer blocked
+    - `HubStream` for forwarding writing operations to multiple target streams
+    - `LimitedStream` limits reading/writing/seeking capabilities of a stream
+    - `ZeroStream` reads zero bytes and writes to nowhere
+    - `CountingStream` counts red/written bytes
+    - `PauseableStream` is a stream which can temporary pause reading/writing
+    - `EnumerableStream` streams an enumerable/enumerator
+    - `CombinedStream` combines multiple streams into one stream (read-only)
+    - `SynchronizedStream` synchronizes IO and seeking
+    - `RandomStream` reads random bytes into the given buffers
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context
 - Retry helper which supports timeout, delay and cancellation
 - Asynchronous event
+- Stream extensions
+    - Get the number of remaining bytes until the streams end
+    - Copy a part of a stream to another stream
+    - Generic seek
+    - Write N zero bytes
+    - Write N random bytes
+    - Create stream chunks
+- Checksum implementation in `ChecksumExtensions` and `ChecksumTransform`
 
 ## How to get it
 
@@ -1004,3 +1024,40 @@ handlers are present. For raising the event, you need to use the
 Timeout, cancellation, synchronous and asynchronous event handlers are 
 supported. The `AsyncEvent<tSender, tArgs>` is designed to be thread-safe, 
 while multiple threads are allowed to raise the event in parallel.
+
+## Checksum
+
+`ChecksumExtensions` and `ChecksumTransform` allow generating a checksum:
+
+```cs
+byte[] data = ...,
+    moreData = ...,
+    checksum = data.CreateChecksum();
+moreData.UpdateChecksum(checksum);
+```
+
+The default checksum length is 8 bytes and needs to be a power of two, if 
+being customized. If you need a numeric value from the checksum bytes:
+
+```cs
+ulong numericChecksum = checksum.AsSpan().ToULong();
+```
+
+The algorithm uses XOR to modify the checksum bytes, which are zero by 
+default. If the input data is only zero, the checksum will stay at zero. If 
+you use the same input data for a 2nd time, the checksum will be equal to the 
+one from the 1st time.
+
+The `ChecksumTransform` is a `HashAlgorithm` and can be used as every .NET 
+implemented hash algorithm (even it's not a hash, but only a checksum!):
+
+```cs
+byte[] checksum = ChecksumTransform.HashData(data);
+```
+
+You may register the checksum algorithm as "Checksum" using the `Register` 
+method:
+
+```cs
+ChecksumTransform.Register();
+```
