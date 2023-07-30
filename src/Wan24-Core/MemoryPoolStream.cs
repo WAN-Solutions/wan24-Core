@@ -199,7 +199,7 @@ namespace wan24.Core
             try
             {
                 Position = 0;
-                Debug.Assert(Read(res) == res.Length);
+                Read(res);
             }
             finally
             {
@@ -232,7 +232,7 @@ namespace wan24.Core
                 red,
                 lastBuffer = Buffers.Count - 1;
             byte[] data;
-            while (res != len && _Position < _Length)
+            while (res != len && _Position != _Length)
             {
                 data = Buffers[BufferIndex];
                 red = Math.Min((BufferIndex == lastBuffer ? LastBufferOffset : data.Length) - BufferOffset, len - res);
@@ -305,7 +305,7 @@ namespace wan24.Core
             int written = 0,
                 chunk;
             byte[] data;
-            while (written < len)
+            while (written != len)
             {
                 data = Buffers[BufferIndex];
                 chunk = Math.Min(data.Length - BufferOffset, len - written);
@@ -317,7 +317,6 @@ namespace wan24.Core
                 BufferIndex++;
                 BufferOffset = 0;
             }
-            Debug.Assert(written == len);
         }
 
         /// <inheritdoc/>
