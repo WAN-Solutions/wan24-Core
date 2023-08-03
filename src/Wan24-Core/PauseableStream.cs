@@ -1,11 +1,9 @@
-﻿//TODO Write tests
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Pauseable stream wrapper (will pause reading/writing)
     /// </summary>
-    public class PauseableStream : WrapperStream<Stream>
+    public class PauseableStream : PauseableStream<Stream>
     {
         /// <summary>
         /// Constructor
@@ -42,7 +40,7 @@ namespace wan24.Core
             set
             {
                 EnsureUndisposed();
-                if (_Pause.IsSet)
+                if (value)
                 {
                     _Pause.Reset();
                 }

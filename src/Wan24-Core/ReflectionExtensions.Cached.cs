@@ -7,31 +7,31 @@ namespace wan24.Core
     public static partial class ReflectionExtensions
     {
         /// <summary>
-        /// <see cref="FieldInfo"/> cache
+        /// <see cref="FieldInfo"/> cache (key is the type hash code)
         /// </summary>
         private static readonly ConcurrentDictionary<int, ConcurrentDictionary<BindingFlags, FieldInfo[]>> FieldInfoCache = new();
         /// <summary>
-        /// <see cref="PropertyInfo"/> cache
+        /// <see cref="PropertyInfo"/> cache (key is the type hash code)
         /// </summary>
         private static readonly ConcurrentDictionary<int, ConcurrentDictionary<BindingFlags, PropertyInfoExt[]>> PropertyInfoCache = new();
         /// <summary>
-        /// <see cref="MethodInfo"/> cache
+        /// <see cref="MethodInfo"/> cache (key is the type hash code)
         /// </summary>
         private static readonly ConcurrentDictionary<int, ConcurrentDictionary<BindingFlags, MethodInfo[]>> MethodInfoCache = new();
         /// <summary>
-        /// <see cref="ConstructorInfo"/> cache
+        /// <see cref="ConstructorInfo"/> cache (key is the type hash code)
         /// </summary>
         private static readonly ConcurrentDictionary<int, ConcurrentDictionary<BindingFlags, ConstructorInfo[]>> ConstructorInfoCache = new();
         /// <summary>
-        /// <see cref="ParameterInfo"/> cache
+        /// <see cref="ParameterInfo"/> cache (key is the method/constructor hash code)
         /// </summary>
         private static readonly ConcurrentDictionary<int, ParameterInfo[]> ParameterInfoCache = new();
         /// <summary>
-        /// Generic <see cref="Type"/> arguments cache
+        /// Generic <see cref="Type"/> arguments cache (key is the type hash code)
         /// </summary>
         private static readonly ConcurrentDictionary<int, Type[]> GenericArgumentsCache = new();
         /// <summary>
-        /// <see cref="Attribute"/> cache
+        /// <see cref="Attribute"/> cache (key is the provider hash code)
         /// </summary>
         private static readonly ConcurrentDictionary<int, Attribute[]> AttributeCache = new();
 

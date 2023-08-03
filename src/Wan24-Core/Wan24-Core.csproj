@@ -32,14 +32,6 @@
   </Target>
 
   <ItemGroup>
-    <Compile Remove="BlockingBufferStream.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="BlockingBufferStream.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
   </ItemGroup>

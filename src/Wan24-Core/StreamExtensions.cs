@@ -170,6 +170,40 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Generic read byte
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <returns>Byte or <c>-1</c>, if read failed</returns>
+        public static int GenericReadByte(this Stream stream)
+        {
+#if NO_UNSAFE
+            using RentedArray<byte> buffer = new(len: 1, clean: false);
+            return stream.Read(buffer.Span) == 0 ? -1 : buffer.Span[0];
+#else
+            Span<byte> buffer = stackalloc byte[1];
+            return stream.Read(buffer) == 0 ? -1 : buffer[0];
+#endif
+        }
+
+        /// <summary>
+        /// Generic write byte
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="value">Value</param>
+        public static void GenericWriteByte(this Stream stream, byte value)
+        {
+#if NO_UNSAFE
+            using RentedArray<byte> buffer = new(len: 1);
+            buffer[0] = value;
+            stream.Write(buffer.Span);
+#else
+            Span<byte> buffer = stackalloc byte[1];
+            buffer[0] = value;
+            stream.Write(buffer);
+#endif
+        }
+
+        /// <summary>
         /// Create stream chunks
         /// </summary>
         /// <param name="stream">Stream (will be chunked from position <c>0</c>)</param>

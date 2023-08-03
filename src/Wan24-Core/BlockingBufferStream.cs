@@ -10,17 +10,17 @@
         /// </summary>
         protected readonly RentedArray<byte> Buffer;
         /// <summary>
-        /// Thread synchronization
+        /// Thread synchronization for buffer access
         /// </summary>
-        protected readonly SemaphoreSlim Sync = new(1, 1);
+        protected readonly SemaphoreSlim BufferSync = new(1, 1);
         /// <summary>
-        /// Write synchronization
+        /// Space event (raised when having space for writing)
         /// </summary>
-        protected readonly ResetEvent WriteSync = new(initialState: true);
+        protected readonly ResetEvent SpaceEvent = new(initialState: true);
         /// <summary>
-        /// Read synchronization
+        /// Data event (raised when having data for reading)
         /// </summary>
-        protected readonly ResetEvent ReadSync = new(initialState: false);
+        protected readonly ResetEvent DataEvent = new(initialState: false);
         /// <summary>
         /// Write byte offset
         /// </summary>
@@ -37,6 +37,10 @@
         /// Byte offset
         /// </summary>
         protected long _Position = 0;
+        /// <summary>
+        /// Is at the end of the file?
+        /// </summary>
+        protected bool _IsEndOfFile = false;
 
         /// <summary>
         /// Constructor
@@ -55,14 +59,14 @@
         public int BufferSize { get; }
 
         /// <summary>
-        /// Number of bytes available for reading unblocked
+        /// Data in bytes available for reading unblocked
         /// </summary>
-        public int Available => WriteOffset - ReadOffset;
+        public int Available => IfUndisposed(WriteOffset - ReadOffset);
 
         /// <summary>
-        /// Number of bytes left in the buffer for writing unblocked
+        /// Space in bytes left in the buffer for writing unblocked
         /// </summary>
-        public int SpaceLeft => BufferSize - WriteOffset;
+        public int SpaceLeft => IfUndisposed(BufferSize - WriteOffset);
 
         /// <summary>
         /// Block until the requested amount of data was red?
@@ -72,17 +76,31 @@
         /// <summary>
         /// Is reading blocked?
         /// </summary>
-        public bool IsReadBlocked => IfUndisposed(() => !ReadSync.IsSet);
+        public bool IsReadBlocked => IfUndisposed(() => !DataEvent.IsSet);
 
         /// <summary>
         /// Is writing blocked?
         /// </summary>
-        public bool IsWriteBlocked => IfUndisposed(() => !WriteSync.IsSet);
+        public bool IsWriteBlocked => IfUndisposed(() => !SpaceEvent.IsSet);
 
         /// <summary>
-        /// Automatic reorganize the buffer during writing?
+        /// Automatic reorganize the buffer?
         /// </summary>
         public bool AutoReorg { get; set; } = true;
+
+        /// <summary>
+        /// Is at the end of the file?
+        /// </summary>
+        public bool IsEndOfFile
+        {
+            get => IfUndisposed(_IsEndOfFile);
+            set
+            {
+                EnsureUndisposed();
+                if (_IsEndOfFile && !value) throw new InvalidOperationException();
+                _IsEndOfFile = value;
+            }
+        }
 
         /// <inheritdoc/>
         public virtual IEnumerable<Status> State
@@ -124,28 +142,25 @@
         public bool ReorganizeBuffer()
         {
             EnsureUndisposed();
-            Sync.Wait();
+            BufferSync.Wait();
             EnsureUndisposed();
-            bool readBlocked = IsReadBlocked,
-                writeBlocked = IsWriteBlocked,
-                hasSpace = writeBlocked;
-            if (!readBlocked) ReadSync.Reset();
-            if (!writeBlocked) WriteSync.Reset();
+            bool hadSpace = !IsWriteBlocked;
             try
             {
                 if (ReadOffset == 0) return false;
                 Array.Copy(Buffer, ReadOffset, Buffer, 0, WriteOffset - ReadOffset);
                 WriteOffset -= ReadOffset;
                 ReadOffset = 0;
-                writeBlocked = false;
             }
             finally
             {
-                if (!readBlocked) ReadSync.Set();
-                if (!writeBlocked) WriteSync.Set();
-                Sync.Release();
+                BufferSync.Release();
             }
-            if (hasSpace) RaiseOnSpaceAvailable();
+            if (!hadSpace)
+            {
+                SpaceEvent.Set();
+                RaiseOnSpaceAvailable();
+            }
             return true;
         }
 
@@ -157,33 +172,33 @@
         public async Task<bool> ReorganizeBufferAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            await Sync.WaitAsync(cancellationToken).DynamicContext();
+            await BufferSync.WaitAsync(cancellationToken).DynamicContext();
             EnsureUndisposed();
-            bool readBlocked = IsReadBlocked,
-                writeBlocked = IsWriteBlocked,
-                hasSpace = writeBlocked;
-            if (!readBlocked) ReadSync.Reset();
-            if (!writeBlocked) WriteSync.Reset();
+            bool hadSpace = !IsWriteBlocked;
             try
             {
                 if (ReadOffset == 0) return false;
                 Array.Copy(Buffer, ReadOffset, Buffer, 0, WriteOffset - ReadOffset);
                 WriteOffset -= ReadOffset;
                 ReadOffset = 0;
-                writeBlocked = false;
             }
             finally
             {
-                if (!readBlocked) ReadSync.Set();
-                if (!writeBlocked) WriteSync.Set();
-                Sync.Release();
+                BufferSync.Release();
             }
-            if (hasSpace) RaiseOnSpaceAvailable();
+            if (!hadSpace)
+            {
+                SpaceEvent.Set();
+                RaiseOnSpaceAvailable();
+            }
             return true;
         }
 
         /// <inheritdoc/>
         public sealed override void Flush() => EnsureUndisposed();
+
+        /// <inheritdoc/>
+        public override int ReadByte() => this.GenericReadByte();
 
         /// <inheritdoc/>
         public sealed override int Read(byte[] buffer, int offset, int count) => Read(buffer.AsSpan(offset, count));
@@ -192,39 +207,38 @@
         public override int Read(Span<byte> buffer)
         {
             EnsureUndisposed();
+            if (_IsEndOfFile && Available == 0) return 0;
             int res = 0;
             bool blocking = false;
             for (int read = 1; buffer.Length != 0 && read != 0 && EnsureUndisposed();)
             {
-                Sync.Wait();
+                DataEvent.Wait();
+                EnsureUndisposed();
+                BufferSync.Wait();
                 EnsureUndisposed();
                 try
                 {
                     read = Math.Min(buffer.Length, Available);
                     if (read == 0)
                     {
-                        if (!AggressiveReadBlocking)
+                        if (!AggressiveReadBlocking || _IsEndOfFile)
                         {
                             blocking = true;
                             break;
                         }
-                        ReadSync.Reset();
+                        DataEvent.Reset();
                     }
                 }
                 finally
                 {
-                    Sync.Release();
+                    if (read == 0) BufferSync.Release();
                 }
                 if (read == 0)
                 {
                     RaiseOnNeedData();
-                    ReadSync.Wait();
-                    EnsureUndisposed();
                     read = 1;
                     continue;
                 }
-                ReadSync.Wait();
-                EnsureUndisposed();
                 try
                 {
                     Buffer.Span.Slice(ReadOffset, read).CopyTo(buffer);
@@ -239,15 +253,17 @@
                     if (Available == 0)
                     {
                         blocking = true;
-                        ReadSync.Reset();
+                        DataEvent.Reset();
                     }
                     else
                     {
                         blocking = false;
                     }
+                    BufferSync.Release();
                 }
             }
             if (blocking) RaiseOnNeedData();
+            if (Available == 0 && AutoReorg) ReorganizeBuffer();
             return res;
         }
 
@@ -259,39 +275,38 @@
         public override async ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
+            if (_IsEndOfFile && Available == 0) return 0;
             int res = 0;
             bool blocking = false;
             for (int read = 1; buffer.Length != 0 && read != 0 && EnsureUndisposed();)
             {
-                await Sync.WaitAsync(cancellationToken);
+                await DataEvent.WaitAsync(cancellationToken).DynamicContext();
+                EnsureUndisposed();
+                await BufferSync.WaitAsync(cancellationToken);
                 EnsureUndisposed();
                 try
                 {
                     read = Math.Min(buffer.Length, Available);
                     if (read == 0)
                     {
-                        if (!AggressiveReadBlocking)
+                        if (!AggressiveReadBlocking || _IsEndOfFile)
                         {
                             blocking = true;
                             break;
                         }
-                        ReadSync.Reset();
+                        DataEvent.Reset();
                     }
                 }
                 finally
                 {
-                    Sync.Release();
+                    if (read == 0) BufferSync.Release();
                 }
                 if (read == 0)
                 {
                     RaiseOnNeedData();
-                    await ReadSync.WaitAsync(cancellationToken).DynamicContext();
-                    EnsureUndisposed();
                     read = 1;
                     continue;
                 }
-                await ReadSync.WaitAsync(cancellationToken).DynamicContext();
-                EnsureUndisposed();
                 try
                 {
                     Buffer.Span.Slice(ReadOffset, read).CopyTo(buffer.Span);
@@ -306,15 +321,17 @@
                     if (Available == 0)
                     {
                         blocking = true;
-                        ReadSync.Reset();
+                        DataEvent.Reset();
                     }
                     else
                     {
                         blocking = false;
                     }
+                    BufferSync.Release();
                 }
             }
             if (blocking) RaiseOnNeedData();
+            if (Available == 0 && AutoReorg) await ReorganizeBufferAsync(cancellationToken).DynamicContext();
             return res;
         }
 
@@ -325,37 +342,42 @@
         public sealed override void SetLength(long value) => throw new NotSupportedException();
 
         /// <inheritdoc/>
+        public override void WriteByte(byte value) => this.GenericWriteByte(value);
+
+        /// <inheritdoc/>
         public sealed override void Write(byte[] buffer, int offset, int count) => Write(buffer.AsSpan(offset, count));
 
         /// <inheritdoc/>
         public override void Write(ReadOnlySpan<byte> buffer)
         {
+            EnsureUndisposed();
+            if (_IsEndOfFile) throw new InvalidOperationException();
             bool blocking = false,
                 haveData = false;
             for (int write; buffer.Length != 0 && EnsureUndisposed();)
             {
-                WriteSync.Wait();
+                SpaceEvent.Wait();
                 EnsureUndisposed();
-                write = Math.Min(SpaceLeft, buffer.Length);
-                buffer[..write].CopyTo(Buffer.Span[WriteOffset..]);
-                buffer = buffer[write..];
-                Sync.Wait();
+                BufferSync.Wait();
                 EnsureUndisposed();
                 try
                 {
+                    write = Math.Min(SpaceLeft, buffer.Length);
+                    buffer[..write].CopyTo(Buffer.Span[WriteOffset..]);
+                    buffer = buffer[write..];
                     WriteOffset += write;
                     _Length += write;
                     if (SpaceLeft == 0)
                     {
                         blocking = true;
-                        WriteSync.Reset();
+                        SpaceEvent.Reset();
                     }
-                    haveData = !ReadSync.IsSet;
-                    ReadSync.Set();
+                    haveData = !DataEvent.IsSet;
+                    DataEvent.Set();
                 }
                 finally
                 {
-                    Sync.Release();
+                    BufferSync.Release();
                 }
                 if (haveData)
                 {
@@ -378,31 +400,33 @@
         /// <inheritdoc/>
         public override async ValueTask WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
         {
+            EnsureUndisposed();
+            if (_IsEndOfFile) throw new InvalidOperationException();
             bool blocking = false,
                 haveData = false;
             for (int write; buffer.Length != 0 && EnsureUndisposed();)
             {
-                await WriteSync.WaitAsync(cancellationToken).DynamicContext();
+                await SpaceEvent.WaitAsync(cancellationToken).DynamicContext();
                 EnsureUndisposed();
-                write = Math.Min(SpaceLeft, buffer.Length);
-                buffer.Span[..write].CopyTo(Buffer.Span[WriteOffset..]);
-                buffer = buffer[write..];
-                await Sync.WaitAsync(cancellationToken).DynamicContext();
+                await BufferSync.WaitAsync(cancellationToken).DynamicContext();
                 EnsureUndisposed();
                 try
                 {
+                    write = Math.Min(SpaceLeft, buffer.Length);
+                    buffer.Span[..write].CopyTo(Buffer.Span[WriteOffset..]);
+                    buffer = buffer[write..];
                     WriteOffset += write;
                     _Length += write;
                     if (SpaceLeft == 0)
                     {
                         blocking = true;
-                        WriteSync.Reset();
+                        SpaceEvent.Reset();
                     }
-                    ReadSync.Set();
+                    DataEvent.Set();
                 }
                 finally
                 {
-                    Sync.Release();
+                    BufferSync.Release();
                 }
                 if (haveData)
                 {
@@ -422,16 +446,16 @@
         protected override void Dispose(bool disposing)
         {
             if (IsDisposing) return;
-            Sync.Wait();
+            BufferSync.Wait();
             try
             {
                 base.Dispose(disposing);
-                ReadSync.Dispose();
-                WriteSync.Dispose();
+                DataEvent.Dispose();
+                SpaceEvent.Dispose();
             }
             finally
             {
-                Sync.Dispose();
+                BufferSync.Dispose();
             }
             Buffer.Dispose();
         }
@@ -439,17 +463,17 @@
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            await Sync.WaitAsync().DynamicContext();
+            await BufferSync.WaitAsync().DynamicContext();
             try
             {
                 await base.DisposeCore().DynamicContext();
-                await ReadSync.DisposeAsync().DynamicContext();
-                await WriteSync.DisposeAsync().DynamicContext();
+                await DataEvent.DisposeAsync().DynamicContext();
+                await SpaceEvent.DisposeAsync().DynamicContext();
             }
             finally
             {
-                Sync.Release();
-                Sync.Dispose();
+                BufferSync.Release();
+                BufferSync.Dispose();
             }
             Buffer.Dispose();
         }
@@ -463,8 +487,8 @@
             if (SpaceLeft != 0 || Available != 0) return;
             ReadOffset = 0;
             WriteOffset = 0;
-            ReadSync.Reset();
-            WriteSync.Set();
+            DataEvent.Reset();
+            SpaceEvent.Set();
             RaiseOnSpaceAvailable();
         }
 

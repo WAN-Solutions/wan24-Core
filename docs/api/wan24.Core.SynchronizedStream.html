@@ -121,13 +121,22 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
       <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_Read_Span_System_Byte__">SynchronizedStream&lt;Stream&gt;.Read(Span&lt;Byte&gt;)</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_ReadAt_System_Int64_Span_System_Byte__">SynchronizedStream&lt;Stream&gt;.ReadAt(Int64, Span&lt;Byte&gt;)</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_">SynchronizedStream&lt;Stream&gt;.ReadAsync(Byte[], Int32, Int32, CancellationToken)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_ReadAsync_Memory_System_Byte__CancellationToken_">SynchronizedStream&lt;Stream&gt;.ReadAsync(Memory&lt;Byte&gt;, CancellationToken)</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_ReadAtAsync_System_Int64_Memory_System_Byte__CancellationToken_">SynchronizedStream&lt;Stream&gt;.ReadAtAsync(Int64, Memory&lt;Byte&gt;, CancellationToken)</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_ReadByte">SynchronizedStream&lt;Stream&gt;.ReadByte()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_ReadByteAt_System_Int64_">SynchronizedStream&lt;Stream&gt;.ReadByteAt(Int64)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_Write_System_Byte___System_Int32_System_Int32_">SynchronizedStream&lt;Stream&gt;.Write(Byte[], Int32, Int32)</a>
@@ -136,13 +145,22 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
       <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_Write_ReadOnlySpan_System_Byte__">SynchronizedStream&lt;Stream&gt;.Write(ReadOnlySpan&lt;Byte&gt;)</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_WriteAt_System_Int64_ReadOnlySpan_System_Byte__">SynchronizedStream&lt;Stream&gt;.WriteAt(Int64, ReadOnlySpan&lt;Byte&gt;)</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_">SynchronizedStream&lt;Stream&gt;.WriteAsync(Byte[], Int32, Int32, CancellationToken)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_">SynchronizedStream&lt;Stream&gt;.WriteAsync(ReadOnlyMemory&lt;Byte&gt;, CancellationToken)</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_WriteAtAsync_System_Int64_ReadOnlyMemory_System_Byte__CancellationToken_">SynchronizedStream&lt;Stream&gt;.WriteAtAsync(Int64, ReadOnlyMemory&lt;Byte&gt;, CancellationToken)</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_WriteByte_System_Byte_">SynchronizedStream&lt;Stream&gt;.WriteByte(Byte)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_WriteByteAt_System_Int64_System_Byte_">SynchronizedStream&lt;Stream&gt;.WriteByteAt(Int64, Byte)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.SynchronizedStream-1.html#wan24_Core_SynchronizedStream_1_CopyTo_Stream_System_Int32_">SynchronizedStream&lt;Stream&gt;.CopyTo(Stream, Int32)</a>
@@ -320,7 +338,7 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_SynchronizedStream__ctor_Stream_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.SynchronizedStream.%23ctor(Stream%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/SynchronizedStream.cs/#L16">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/SynchronizedStream.cs/#L14">View Source</a>
   </span>
   <a id="wan24_Core_SynchronizedStream__ctor_" data-uid="wan24.Core.SynchronizedStream.#ctor*"></a>
   <h4 id="wan24_Core_SynchronizedStream__ctor_Stream_System_Boolean_" data-uid="wan24.Core.SynchronizedStream.#ctor(Stream,System.Boolean)">SynchronizedStream(Stream, Boolean)</h4>
@@ -470,7 +488,7 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
                     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_SynchronizedStream.md&amp;value=---%0Auid%3A%20wan24.Core.SynchronizedStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/SynchronizedStream.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/SynchronizedStream.cs/#L7" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -170,6 +170,7 @@ including extensions for numeric type encoding/decoding)
     - `CombinedStream` combines multiple streams into one stream (read-only)
     - `SynchronizedStream` synchronizes IO and seeking
     - `RandomStream` reads random bytes into the given buffers
+    - `ChunkedStream` for reading/writing stream chunks
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context
@@ -179,6 +180,7 @@ including extensions for numeric type encoding/decoding)
     - Get the number of remaining bytes until the streams end
     - Copy a part of a stream to another stream
     - Generic seek
+    - Generic read/write byte
     - Write N zero bytes
     - Write N random bytes
     - Create stream chunks

@@ -137,6 +137,9 @@
       <h4><a class="xref" href="wan24.Core.BitwiseUInt8Extensions.html">BitwiseUInt8Extensions</a></h4>
       <section><p>Bitwise UInt8 extensions</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.BlockingBufferStream.html">BlockingBufferStream</a></h4>
+      <section><p>Blocking buffer stream (reading blocks until (all, if aggressive) data is available, writing until the buffer was red completely; reading/writing is synchronized)</p>
+</section>
       <h4><a class="xref" href="wan24.Core.BlockingObjectPool-1.html">BlockingObjectPool&lt;T&gt;</a></h4>
       <section><p>Disposable blocking object pool (disposes items when disposing, if <see cref="!:IDisposable"></see>/<see cref="!:IAsyncDisposable"></see>)</p>
 </section>
@@ -184,6 +187,12 @@
 </section>
       <h4><a class="xref" href="wan24.Core.ChecksumTransform.html">ChecksumTransform</a></h4>
       <section><p>Checksum hash algorithm</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ChunkedFileStream.html">ChunkedFileStream</a></h4>
+      <section><p>Chunked file stream helper</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ChunkedStream.html">ChunkedStream</a></h4>
+      <section><p>Chunked stream</p>
 </section>
       <h4><a class="xref" href="wan24.Core.CliArguments.html">CliArguments</a></h4>
       <section><p>CLI arguments (an argument key for a following value starts with <code>--</code> (double dashes), a flag argument with <code>-</code> (single dash))</p>
@@ -247,6 +256,9 @@
 </section>
       <h4><a class="xref" href="wan24.Core.DisposableObjectPool-1.html">DisposableObjectPool&lt;T&gt;</a></h4>
       <section><p>Disposable object pool (disposes trashed items)</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.DisposableThreadSafeValue-1.html">DisposableThreadSafeValue&lt;T&gt;</a></h4>
+      <section><p>Disposable thread-safe value</p>
 </section>
       <h4><a class="xref" href="wan24.Core.DisposableWrapper-1.html">DisposableWrapper&lt;T&gt;</a></h4>
       <section><p>Disposable wrapper</p>
@@ -473,6 +485,9 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
       <h4><a class="xref" href="wan24.Core.TaskExtensions.html">TaskExtensions</a></h4>
       <section><p>Task extensions</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.ThreadSafeValue-1.html">ThreadSafeValue&lt;T&gt;</a></h4>
+      <section><p>Thread-safe value</p>
+</section>
       <h4><a class="xref" href="wan24.Core.ThrottledStream.html">ThrottledStream</a></h4>
       <section><p>Throttled stream</p>
 </section>
@@ -625,11 +640,26 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
 </section>
     <h3 id="delegates">Delegates
   </h3>
+      <h4><a class="xref" href="wan24.Core.BlockingBufferStream.Event_Delegate.html">BlockingBufferStream.Event_Delegate</a></h4>
+      <section><p>Delegate for an event handler</p>
+</section>
       <h4><a class="xref" href="wan24.Core.Bootstrap.Bootstrap_Delegate.html">Bootstrap.Bootstrap_Delegate</a></h4>
       <section><p>Delegate for the <a class="xref" href="wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_OnBootstrap">OnBootstrap</a> event</p>
 </section>
       <h4><a class="xref" href="wan24.Core.Bootstrap.BootStrapAsync_Delegate.html">Bootstrap.BootStrapAsync_Delegate</a></h4>
       <section><p>Delegate for asynchronous bootstrapper</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ChunkedStream.AsyncDeleteChunk_Delegate.html">ChunkedStream.AsyncDeleteChunk_Delegate</a></h4>
+      <section><p>Delegate for deleting a chunk</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ChunkedStream.AsyncStreamactory_Delegate.html">ChunkedStream.AsyncStreamactory_Delegate</a></h4>
+      <section><p>Delegate for an asynchronous chunk stream factory</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ChunkedStream.DeleteChunk_Delegate.html">ChunkedStream.DeleteChunk_Delegate</a></h4>
+      <section><p>Delegate for deleting a chunk</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ChunkedStream.StreamFactory_Delegate.html">ChunkedStream.StreamFactory_Delegate</a></h4>
+      <section><p>Delegate for a chunk stream factory</p>
 </section>
       <h4><a class="xref" href="wan24.Core.DiHelper.Di_Delegate.html">DiHelper.Di_Delegate</a></h4>
       <section><p>DI delegate</p>
@@ -705,6 +735,12 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
 </section>
       <h4><a class="xref" href="wan24.Core.StringExtensions.Parser_Delegate.html">StringExtensions.Parser_Delegate</a></h4>
       <section><p>Delegate for a string parser function handler</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ThreadSafeValue-1.Action_Delegate.html">ThreadSafeValue&lt;T&gt;.Action_Delegate</a></h4>
+      <section><p>Delegate for an action</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ThreadSafeValue-1.AsyncAction_Delegate.html">ThreadSafeValue&lt;T&gt;.AsyncAction_Delegate</a></h4>
+      <section><p>Delegate for an action</p>
 </section>
       <h4><a class="xref" href="wan24.Core.TimedHostedServiceBase.TimedHostedService_Delegate.html">TimedHostedServiceBase.TimedHostedService_Delegate</a></h4>
       <section><p>Delegate for a hosted service event</p>
