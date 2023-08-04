@@ -26,6 +26,33 @@ namespace wan24.Core
         public static sbyte ShiftRight(this sbyte value, int bits) => (sbyte)(value >> bits);
 
         /// <summary>
+        /// Logical OR
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="other">Other value</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static sbyte Or(this sbyte value, sbyte other) => (sbyte)(value | other);
+
+        /// <summary>
+        /// Logical AND
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="other">Other value</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static sbyte And(this sbyte value, sbyte other) => (sbyte)(value & other);
+
+        /// <summary>
+        /// Logical XOR
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="other">Other value</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static sbyte Xor(this sbyte value, sbyte other) => (sbyte)(value ^ other);
+
+        /// <summary>
         /// Has flags?
         /// </summary>
         /// <param name="value">Value</param>
