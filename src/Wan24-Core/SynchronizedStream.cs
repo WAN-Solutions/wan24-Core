@@ -1,6 +1,4 @@
-﻿//TODO Write tests
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Synchronized stream (synchronizes reading/writing/seeking operations; the base stream should implement each single asynchronous reading/writing method! Any asynchronous 
@@ -21,7 +19,7 @@ namespace wan24.Core
     /// reading/writing method which adopts or calls to another asynchronous reading/writing or any seeking method will cause a dead-lock!)
     /// </summary>
     /// <typeparam name="T">Wrapped stream type</typeparam>
-    public class SynchronizedStream<T> : WrapperStream<T> where T:Stream
+    public class SynchronizedStream<T> : WrapperStream<T> where T : Stream
     {
         /// <summary>
         /// Constructor
@@ -61,7 +59,7 @@ namespace wan24.Core
             SyncIO.Wait();
             try
             {
-                base.SetLength(value);
+                BaseStream.SetLength(value);
             }
             finally
             {
@@ -87,11 +85,11 @@ namespace wan24.Core
         /// <inheritdoc/>
         public sealed override void Flush()
         {
-            EnsureUndisposed();
+            EnsureUndisposed(allowDisposing: true);
             SyncIO.Wait();
             try
             {
-                base.Flush();
+                BaseStream.Flush();
             }
             finally
             {
@@ -102,11 +100,11 @@ namespace wan24.Core
         /// <inheritdoc/>
         public sealed override async Task FlushAsync(CancellationToken cancellationToken)
         {
-            EnsureUndisposed();
+            EnsureUndisposed(allowDisposing: true);
             await SyncIO.WaitAsync(cancellationToken).DynamicContext();
             try
             {
-                await base.FlushAsync(cancellationToken).DynamicContext();
+                await BaseStream.FlushAsync(cancellationToken).DynamicContext();
             }
             finally
             {
@@ -121,7 +119,7 @@ namespace wan24.Core
             SyncIO.Wait();
             try
             {
-                return base.Read(buffer, offset, count);
+                return BaseStream.Read(buffer, offset, count);
             }
             finally
             {
@@ -136,7 +134,27 @@ namespace wan24.Core
             SyncIO.Wait();
             try
             {
-                return base.Read(buffer);
+                return BaseStream.Read(buffer);
+            }
+            finally
+            {
+                SyncIO.Release();
+            }
+        }
+        /// <summary>
+        /// Read from a byte offset
+        /// </summary>
+        /// <param name="offset">Byte offset</param>
+        /// <param name="buffer">Buffer</param>
+        /// <returns>Number of bytes red</returns>
+        public int ReadAt(long offset, Span<byte> buffer)
+        {
+            EnsureUndisposed();
+            SyncIO.Wait();
+            try
+            {
+                BaseStream.Position = offset;
+                return BaseStream.Read(buffer);
             }
             finally
             {
@@ -151,7 +169,7 @@ namespace wan24.Core
             await SyncIO.WaitAsync(cancellationToken).DynamicContext();
             try
             {
-                return await base.ReadAsync(buffer, offset, count, cancellationToken).DynamicContext();
+                return await BaseStream.ReadAsync(buffer, offset, count, cancellationToken).DynamicContext();
             }
             finally
             {
@@ -166,7 +184,29 @@ namespace wan24.Core
             await SyncIO.WaitAsync(cancellationToken).DynamicContext();
             try
             {
-                return await base.ReadAsync(buffer, cancellationToken).DynamicContext();
+                return await BaseStream.ReadAsync(buffer, cancellationToken).DynamicContext();
+            }
+            finally
+            {
+                SyncIO.Release();
+            }
+        }
+
+        /// <summary>
+        /// Read from a byte offset
+        /// </summary>
+        /// <param name="offset">Byte offset</param>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Number of bytes red</returns>
+        public async Task<int> ReadAtAsync(long offset, Memory<byte> buffer, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            await SyncIO.WaitAsync(cancellationToken).DynamicContext();
+            try
+            {
+                base.Position = offset;
+                return await BaseStream.ReadAsync(buffer, cancellationToken).DynamicContext();
             }
             finally
             {
@@ -181,7 +221,27 @@ namespace wan24.Core
             SyncIO.Wait();
             try
             {
-                return base.ReadByte();
+                return BaseStream.ReadByte();
+            }
+            finally
+            {
+                SyncIO.Release();
+            }
+        }
+
+        /// <summary>
+        /// Read a byte from a byte offset
+        /// </summary>
+        /// <param name="offset">Byte offset</param>
+        /// <returns>Byte or <c>-1</c>, if reading failed</returns>
+        public int ReadByteAt(long offset)
+        {
+            EnsureUndisposed();
+            SyncIO.Wait();
+            try
+            {
+                base.Position = offset;
+                return BaseStream.ReadByte();
             }
             finally
             {
@@ -196,7 +256,7 @@ namespace wan24.Core
             SyncIO.Wait();
             try
             {
-                base.Write(buffer, offset, count);
+                BaseStream.Write(buffer, offset, count);
             }
             finally
             {
@@ -211,7 +271,27 @@ namespace wan24.Core
             SyncIO.Wait();
             try
             {
-                base.Write(buffer);
+                BaseStream.Write(buffer);
+            }
+            finally
+            {
+                SyncIO.Release();
+            }
+        }
+
+        /// <summary>
+        /// Write at a byte offset
+        /// </summary>
+        /// <param name="offset">Byte offset</param>
+        /// <param name="buffer">Buffer</param>
+        public void WriteAt(long offset, ReadOnlySpan<byte> buffer)
+        {
+            EnsureUndisposed();
+            SyncIO.Wait();
+            try
+            {
+                base.Position = offset;
+                BaseStream.Write(buffer);
             }
             finally
             {
@@ -226,7 +306,7 @@ namespace wan24.Core
             await SyncIO.WaitAsync(cancellationToken).DynamicContext();
             try
             {
-                await base.WriteAsync(buffer, offset, count, cancellationToken).DynamicContext();
+                await BaseStream.WriteAsync(buffer, offset, count, cancellationToken).DynamicContext();
             }
             finally
             {
@@ -241,7 +321,28 @@ namespace wan24.Core
             await SyncIO.WaitAsync(cancellationToken).DynamicContext();
             try
             {
-                await base.WriteAsync(buffer, cancellationToken).DynamicContext();
+                await BaseStream.WriteAsync(buffer, cancellationToken).DynamicContext();
+            }
+            finally
+            {
+                SyncIO.Release();
+            }
+        }
+
+        /// <summary>
+        /// Write at a byte offset
+        /// </summary>
+        /// <param name="offset">Byte offset</param>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public async Task WriteAtAsync(long offset, ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            await SyncIO.WaitAsync(cancellationToken).DynamicContext();
+            try
+            {
+                base.Position = offset;
+                await BaseStream.WriteAsync(buffer, cancellationToken).DynamicContext();
             }
             finally
             {
@@ -256,7 +357,27 @@ namespace wan24.Core
             SyncIO.Wait();
             try
             {
-                base.WriteByte(value);
+                BaseStream.WriteByte(value);
+            }
+            finally
+            {
+                SyncIO.Release();
+            }
+        }
+
+        /// <summary>
+        /// Write a byte at a byte offset
+        /// </summary>
+        /// <param name="offset">Byte offset</param>
+        /// <param name="value">Value</param>
+        public void WriteByteAt(long offset, byte value)
+        {
+            EnsureUndisposed();
+            SyncIO.Wait();
+            try
+            {
+                base.Position = offset;
+                BaseStream.WriteByte(value);
             }
             finally
             {
@@ -356,14 +477,30 @@ namespace wan24.Core
         public sealed override void Close()
         {
             if (IsClosed) return;
-            SyncIO.Wait();
             try
             {
-                base.Close();
+                SyncIO.Wait();
+                try
+                {
+                    base.Close();
+                }
+                finally
+                {
+                    SyncIO.Release();
+                }
+            }
+            catch
+            {
             }
             finally
             {
-                SyncIO.Release();
+                try
+                {
+                    SyncIO.Release();
+                }
+                catch
+                {
+                }
             }
         }
 
@@ -371,29 +508,14 @@ namespace wan24.Core
         protected sealed override void Dispose(bool disposing)
         {
             if (IsDisposed) return;
-            SyncIO.Wait();
-            try
-            {
-                base.Dispose(disposing);
-            }
-            finally
-            {
-                SyncIO.Dispose();
-            }
+            SyncIO.Dispose();
         }
 
         /// <inheritdoc/>
-        protected sealed override async Task DisposeCore()
+        protected sealed override Task DisposeCore()
         {
-            await SyncIO.WaitAsync().DynamicContext();
-            try
-            {
-                await base.DisposeCore().DynamicContext();
-            }
-            finally
-            {
-                SyncIO.Dispose();
-            }
+            SyncIO.Dispose();
+            return Task.CompletedTask;
         }
     }
 }

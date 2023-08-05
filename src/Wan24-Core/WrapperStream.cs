@@ -231,20 +231,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureReadable();
-            if (UseOriginalByteIO)
-            {
-                return _BaseStream.ReadByte();
-            }
-            else
-            {
-#if NO_UNSAFE
-                using RentedArray<byte> buffer = new(len: 1, clean: false);
-                return _BaseStream.Read(buffer.Span) == 0 ? -1 : buffer.Span[0];
-#else
-                Span<byte> buffer = stackalloc byte[1];
-                return _BaseStream.Read(buffer) == 0 ? -1 : buffer[0];
-#endif
-            }
+            return UseOriginalByteIO ? _BaseStream.ReadByte() : this.GenericReadByte();
         }
 
         /// <inheritdoc/>
@@ -300,7 +287,14 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureWritable();
-            _BaseStream.WriteByte(value);
+            if (UseOriginalByteIO)
+            {
+                _BaseStream.WriteByte(value);
+            }
+            else
+            {
+                this.GenericWriteByte(value);
+            }
         }
 
         /// <inheritdoc/>

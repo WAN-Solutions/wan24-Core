@@ -1,4 +1,5 @@
-﻿using System.Runtime;
+﻿using System.Numerics;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -7,6 +8,52 @@ namespace wan24.Core
     /// </summary>
     public static class BitwiseUInt32Extensions
     {
+
+        /// <summary>
+        /// Rotate bits left
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="bits">Bits</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static uint RotateLeft(this uint value, int bits) => BitOperations.RotateLeft(value, bits);
+
+        /// <summary>
+        /// Rotate bits right
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="bits">Bits</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static uint RotateRight(this uint value, int bits) => BitOperations.RotateRight(value, bits);
+
+        /// <summary>
+        /// Logical OR
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="other">Other value</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static uint Or(this uint value, uint other) => value | other;
+
+        /// <summary>
+        /// Logical AND
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="other">Other value</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static uint And(this uint value, uint other) => value & other;
+
+        /// <summary>
+        /// Logical XOR
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="other">Other value</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static uint Xor(this uint value, uint other) => value ^ other;
+
         /// <summary>
         /// Shift left
         /// </summary>

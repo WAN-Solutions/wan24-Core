@@ -1,12 +1,44 @@
 ﻿using System.Runtime;
+using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
     /// <summary>
     /// Bitwise UInt8 extensions
     /// </summary>
+#if NO_UNSAFE
     public static class BitwiseUInt8Extensions
+#else
+    public static unsafe class BitwiseUInt8Extensions
+#endif
     {
+        /// <summary>
+        /// Bit rotation offsets
+        /// </summary>
+        private static readonly int[] BitRotation = new int[]
+        {
+            0, 7, 6, 5, 4, 3, 2, 1
+        };
+#if !NO_UNSAFE
+        /// <summary>
+        /// Bit rotation pointer
+        /// </summary>
+        private static readonly int* BitRotationPtr;
+        /// <summary>
+        /// Bit rotation pin
+        /// </summary>
+        private static readonly GCHandle BitRotationPin;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        static BitwiseUInt8Extensions()
+        {
+            BitRotationPin = GCHandle.Alloc(BitRotation, GCHandleType.Pinned);
+            BitRotationPtr = (int*)BitRotationPin.AddrOfPinnedObject();
+        }
+#endif
+
         /// <summary>
         /// Shift left
         /// </summary>
@@ -24,6 +56,67 @@ namespace wan24.Core
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
         public static byte ShiftRight(this byte value, int bits) => (byte)(value >> bits);
+
+        /// <summary>
+        /// Rotate bits left
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="bits">Bits</param>
+        /// <returns>Value</returns>
+        public static byte RotateLeft(this byte value, int bits)
+        {
+            if (bits < 0 || bits > 8) throw new ArgumentOutOfRangeException(nameof(bits));
+            if (bits == 0 || bits == 8 || value == 0 || value == byte.MaxValue) return value;
+#if NO_UNSAFE
+            return (byte)((value << bits) | (value >> BitRotation[bits]));
+#else
+            return (byte)((value << bits) | (value >> BitRotationPtr[bits]));
+#endif
+        }
+
+        /// <summary>
+        /// Rotate bits right
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="bits">Bits</param>
+        /// <returns>Value</returns>
+        public static byte RotateRight(this byte value, int bits)
+        {
+            if (bits < 0 || bits > 8) throw new ArgumentOutOfRangeException(nameof(bits));
+            if (bits == 0 || bits == 8 || value == 0 || value == byte.MaxValue) return value;
+#if NO_UNSAFE
+            return (byte)((value >> bits) | (value << BitRotation[bits]));
+#else
+            return (byte)((value >> bits) | (value << BitRotationPtr[bits]));
+#endif
+        }
+
+        /// <summary>
+        /// Logical OR
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="other">Other value</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static byte Or(this byte value, byte other) => (byte)(value | other);
+
+        /// <summary>
+        /// Logical AND
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="other">Other value</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static byte And(this byte value, byte other) => (byte)(value & other);
+
+        /// <summary>
+        /// Logical XOR
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="other">Other value</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static byte Xor(this byte value, byte other) => (byte)(value ^ other);
 
         /// <summary>
         /// Has flags?

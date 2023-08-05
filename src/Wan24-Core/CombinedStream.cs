@@ -1,8 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 
-//TODO Write tests
-//TODO ChunkedStream
-
 namespace wan24.Core
 {
     /// <summary>
@@ -122,6 +119,9 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        public override int ReadByte() => this.GenericReadByte();
+
+        /// <inheritdoc/>
         public override int Read(byte[] buffer, int offset, int count) => Read(buffer.AsSpan(offset, count));
 
         /// <inheritdoc/>
@@ -189,6 +189,9 @@ namespace wan24.Core
         public override void SetLength(long value) => throw new NotSupportedException();
 
         /// <inheritdoc/>
+        public override void WriteByte(byte value) => throw new NotSupportedException();
+
+        /// <inheritdoc/>
         public override void Write(byte[] buffer, int offset, int count) => throw new NotSupportedException();
 
         /// <inheritdoc/>
@@ -199,9 +202,6 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         public override ValueTask WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default) => throw new NotSupportedException();
-
-        /// <inheritdoc/>
-        public override void WriteByte(byte value) => throw new NotSupportedException();
 
         /// <inheritdoc/>
         public override void Close()

@@ -118,7 +118,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_Chunk_Stream_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.Chunk(Stream%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L178">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L212">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_Chunk_" data-uid="wan24.Core.StreamExtensions.Chunk*"></a>
   <h4 id="wan24_Core_StreamExtensions_Chunk_Stream_System_Int64_" data-uid="wan24.Core.StreamExtensions.Chunk(Stream,System.Int64)">Chunk(Stream, Int64)</h4>
@@ -426,6 +426,56 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_GenericReadByte_Stream_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.GenericReadByte(Stream)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L177">View Source</a>
+  </span>
+  <a id="wan24_Core_StreamExtensions_GenericReadByte_" data-uid="wan24.Core.StreamExtensions.GenericReadByte*"></a>
+  <h4 id="wan24_Core_StreamExtensions_GenericReadByte_Stream_" data-uid="wan24.Core.StreamExtensions.GenericReadByte(Stream)">GenericReadByte(Stream)</h4>
+  <div class="markdown level1 summary"><p>Generic read byte</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int GenericReadByte(this Stream stream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>Stream</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Byte or <code>-1</code>, if read failed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_GenericSeek_Stream_System_Int64_SeekOrigin_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.GenericSeek(Stream%2CSystem.Int64%2CSeekOrigin)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -483,6 +533,46 @@ public static long GenericSeek(this Stream stream, long offset, SeekOrigin origi
       <tr>
         <td><span class="xref">System.Int64</span></td>
         <td><p>Position</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_GenericWriteByte_Stream_System_Byte_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.GenericWriteByte(Stream%2CSystem.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L193">View Source</a>
+  </span>
+  <a id="wan24_Core_StreamExtensions_GenericWriteByte_" data-uid="wan24.Core.StreamExtensions.GenericWriteByte*"></a>
+  <h4 id="wan24_Core_StreamExtensions_GenericWriteByte_Stream_System_Byte_" data-uid="wan24.Core.StreamExtensions.GenericWriteByte(Stream,System.Byte)">GenericWriteByte(Stream, Byte)</h4>
+  <div class="markdown level1 summary"><p>Generic write byte</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void GenericWriteByte(this Stream stream, byte value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>Stream</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value</p>
 </td>
       </tr>
     </tbody>

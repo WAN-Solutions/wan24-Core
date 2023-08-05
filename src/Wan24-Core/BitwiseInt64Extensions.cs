@@ -26,6 +26,33 @@ namespace wan24.Core
         public static long ShiftRight(this long value, int bits) => value >> bits;
 
         /// <summary>
+        /// Logical OR
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="other">Other value</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static long Or(this long value, long other) => value | other;
+
+        /// <summary>
+        /// Logical AND
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="other">Other value</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static long And(this long value, long other) => value & other;
+
+        /// <summary>
+        /// Logical XOR
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="other">Other value</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static long Xor(this long value, long other) => value ^ other;
+
+        /// <summary>
         /// Has flags?
         /// </summary>
         /// <param name="value">Value</param>
