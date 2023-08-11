@@ -8,7 +8,7 @@
         /// <summary>
         /// Thread synchronization object
         /// </summary>
-        private readonly SemaphoreSlim Sync = new(1, 1);
+        private readonly SemaphoreSync Sync = new();
         /// <summary>
         /// Thread synchronization for the synchronous set event
         /// </summary>
@@ -47,19 +47,12 @@
         public bool Set()
         {
             EnsureUndisposed();
-            Sync.Wait();
-            try
-            {
-                EnsureUndisposed();
-                if (IsSet) return false;
-                TaskCompletion.SetResult();
-                SyncSet?.Set();
-                return true;
-            }
-            finally
-            {
-                Sync.Release();
-            }
+            using SemaphoreSyncContext ssc = Sync.Sync();
+            EnsureUndisposed();
+            if (IsSet) return false;
+            TaskCompletion.SetResult();
+            SyncSet?.Set();
+            return true;
         }
 
         /// <summary>
@@ -69,19 +62,12 @@
         public async Task<bool> SetAsync()
         {
             EnsureUndisposed();
-            await Sync.WaitAsync().DynamicContext();
-            try
-            {
-                EnsureUndisposed();
-                if (IsSet) return false;
-                TaskCompletion.SetResult();
-                SyncSet?.Set();
-                return true;
-            }
-            finally
-            {
-                Sync.Release();
-            }
+            using SemaphoreSyncContext ssc = await Sync.SyncAsync();
+            EnsureUndisposed();
+            if (IsSet) return false;
+            TaskCompletion.SetResult();
+            SyncSet?.Set();
+            return true;
         }
 
         /// <summary>
@@ -91,19 +77,12 @@
         public bool Reset()
         {
             EnsureUndisposed();
-            Sync.Wait();
-            try
-            {
-                EnsureUndisposed();
-                if (!IsSet) return false;
-                TaskCompletion = new(TaskCreationOptions.RunContinuationsAsynchronously);
-                SyncSet?.Reset();
-                return true;
-            }
-            finally
-            {
-                Sync.Release();
-            }
+            using SemaphoreSyncContext ssc = Sync.Sync();
+            EnsureUndisposed();
+            if (!IsSet) return false;
+            TaskCompletion = new(TaskCreationOptions.RunContinuationsAsynchronously);
+            SyncSet?.Reset();
+            return true;
         }
 
         /// <summary>
@@ -113,19 +92,12 @@
         public async Task<bool> ResetAsync()
         {
             EnsureUndisposed();
-            await Sync.WaitAsync().DynamicContext();
-            try
-            {
-                EnsureUndisposed();
-                if (!IsSet) return false;
-                TaskCompletion = new(TaskCreationOptions.RunContinuationsAsynchronously);
-                SyncSet?.Reset();
-                return true;
-            }
-            finally
-            {
-                Sync.Release();
-            }
+            using SemaphoreSyncContext ssc = await Sync.SyncAsync();
+            EnsureUndisposed();
+            if (!IsSet) return false;
+            TaskCompletion = new(TaskCreationOptions.RunContinuationsAsynchronously);
+            SyncSet?.Reset();
+            return true;
         }
 
         /// <summary>
@@ -243,35 +215,21 @@
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            Sync.Wait();
-            try
-            {
-                if (IsSet) TaskCompletion = new();
-                TaskCompletion.SetException(new ObjectDisposedException(GetType().ToString()));
-                SyncSet?.Set();
-            }
-            finally
-            {
-                Sync.Dispose();
-                SyncSet?.Dispose();
-            }
+            using SemaphoreSyncContext ssc = Sync.Sync();
+            using ManualResetEventSlim? syncSet = SyncSet;
+            if (IsSet) TaskCompletion = new();
+            TaskCompletion.SetException(new ObjectDisposedException(GetType().ToString()));
+            syncSet?.Set();
         }
 
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            await Sync.WaitAsync().DynamicContext();
-            try
-            {
-                if (IsSet) TaskCompletion = new();
-                TaskCompletion.SetException(new ObjectDisposedException(GetType().ToString()));
-                SyncSet?.Set();
-            }
-            finally
-            {
-                Sync.Dispose();
-                SyncSet?.Dispose();
-            }
+            using SemaphoreSyncContext ssc = await Sync.SyncAsync();
+            using ManualResetEventSlim? syncSet = SyncSet;
+            if (IsSet) TaskCompletion = new();
+            TaskCompletion.SetException(new ObjectDisposedException(GetType().ToString()));
+            syncSet?.Set();
         }
 
         /// <summary>

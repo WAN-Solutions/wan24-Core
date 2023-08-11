@@ -12,7 +12,7 @@
         /// <summary>
         /// Thread synchronization
         /// </summary>
-        private readonly SemaphoreSlim Sync = new(1, 1);
+        private readonly SemaphoreSync Sync = new();
         /// <summary>
         /// Has a task?
         /// </summary>
@@ -55,15 +55,10 @@
         public async Task RunTaskAsync(Task task)
         {
             EnsureUndisposed();
-            await Sync.WaitAsync().DynamicContext();
-            try
+            using (SemaphoreSyncContext ssc = await Sync.SyncAsync().DynamicContext())
             {
                 if (HasTask) throw new InvalidOperationException("Has a task already");
                 HasTask = true;
-            }
-            finally
-            {
-                Sync.Release();
             }
             try
             {
@@ -87,22 +82,15 @@
         /// <param name="ex">Exception</param>
         private void SetCompleted(Exception? ex = null)
         {
-            Sync.Wait();
-            try
+            using SemaphoreSyncContext ssc = Sync.Sync();
+            if (!IsConstructed || TaskCompletion.Task.IsCompleted) return;
+            if (ex == null)
             {
-                if (!IsConstructed || TaskCompletion.Task.IsCompleted) return;
-                if (ex == null)
-                {
-                    TaskCompletion.SetResult();
-                }
-                else
-                {
-                    TaskCompletion.SetException(ex);
-                }
+                TaskCompletion.SetResult();
             }
-            finally
+            else
             {
-                Sync.Release();
+                TaskCompletion.SetException(ex);
             }
         }
 
@@ -112,22 +100,15 @@
         /// <param name="ex">Exception</param>
         private async Task SetCompletedAsync(Exception? ex = null)
         {
-            await Sync.WaitAsync().DynamicContext();
-            try
+            using SemaphoreSyncContext ssc = await Sync.SyncAsync().DynamicContext();
+            if (!IsConstructed || TaskCompletion.Task.IsCompleted) return;
+            if (ex == null)
             {
-                if (!IsConstructed || TaskCompletion.Task.IsCompleted) return;
-                if (ex == null)
-                {
-                    TaskCompletion.SetResult();
-                }
-                else
-                {
-                    TaskCompletion.SetException(ex);
-                }
+                TaskCompletion.SetResult();
             }
-            finally
+            else
             {
-                Sync.Release();
+                TaskCompletion.SetException(ex);
             }
         }
 

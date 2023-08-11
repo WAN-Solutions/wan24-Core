@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Hosting;
 using System.Runtime.CompilerServices;
+using System.Threading;
 
 namespace wan24.Core
 {
@@ -22,11 +23,11 @@ namespace wan24.Core
         /// <summary>
         /// Thread synchronization
         /// </summary>
-        protected readonly SemaphoreSlim Sync = new(1, 1);
+        protected readonly SemaphoreSync Sync = new();
         /// <summary>
         /// Thread synchronization for the start/stop control
         /// </summary>
-        protected readonly SemaphoreSlim SyncControl = new(1, 1);
+        protected readonly SemaphoreSync SyncControl = new();
         /// <summary>
         /// Stop task
         /// </summary>
@@ -160,25 +161,19 @@ namespace wan24.Core
             // Handle fixed next run time
             if (nextRun != null)
             {
-                await SyncControl.WaitAsync(cancellationToken).DynamicContext();
+                using SemaphoreSyncContext sscControl = await SyncControl.SyncAsync(cancellationToken).DynamicContext();
                 try
                 {
                     // Stop the timer and set a one second interval to start the timer temporary
                     await StopAsyncInt(cancellationToken).DynamicContext();
-                    await Sync.WaitAsync(cancellationToken).DynamicContext();
-                    try
+                    using (SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext())
                     {
                         Interval = 30000;
                         TimerType = timer.Value;
                     }
-                    finally
-                    {
-                        Sync.Release();
-                    }
                     await StartAsyncInt(cancellationToken).DynamicContext();
                     // Reset the timer to elapse on the desired time
-                    await Sync.WaitAsync(cancellationToken).DynamicContext();
-                    try
+                    using (SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext())
                     {
                         Timer.Stop();
                         Interval = interval;
@@ -190,24 +185,15 @@ namespace wan24.Core
                         Timer.Start();
                         return;
                     }
-                    finally
-                    {
-                        Sync.Release();
-                    }
                 }
                 catch
                 {
                     await StopAsyncInt(default).DynamicContext();
                     throw;
                 }
-                finally
-                {
-                    SyncControl.Release();
-                }
             }
             // Setup the timer
-            await Sync.WaitAsync(cancellationToken).DynamicContext();
-            try
+            using (SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext())
             {
                 Interval = interval;
                 TimerType = timer.Value;
@@ -224,24 +210,13 @@ namespace wan24.Core
                 Timer.Interval = (nextRun - DateTime.Now).Value.TotalMilliseconds;
                 Timer.Start();
             }
-            finally
-            {
-                Sync.Release();
-            }
         }
 
         /// <inheritdoc/>
         public async Task StartAsync(CancellationToken cancellationToken = default)
         {
-            await SyncControl.WaitAsync(cancellationToken).DynamicContext();
-            try
-            {
-                await StartAsyncInt(cancellationToken).DynamicContext();
-            }
-            finally
-            {
-                SyncControl.Release();
-            }
+            using SemaphoreSyncContext ssc = await SyncControl.SyncAsync(cancellationToken).DynamicContext();
+            await StartAsyncInt(cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
@@ -253,15 +228,8 @@ namespace wan24.Core
         /// <inheritdoc/>
         public async Task StopAsync(CancellationToken cancellationToken = default)
         {
-            await SyncControl.WaitAsync(cancellationToken).DynamicContext();
-            try
-            {
-                await StopAsyncInt(cancellationToken).DynamicContext();
-            }
-            finally
-            {
-                SyncControl.Release();
-            }
+            using SemaphoreSyncContext ssc = await SyncControl.SyncAsync(cancellationToken).DynamicContext();
+            await StopAsyncInt(cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
@@ -287,8 +255,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public async Task StartAsyncInt(CancellationToken cancellationToken)
         {
-            await Sync.WaitAsync(cancellationToken).DynamicContext();
-            try
+            using (SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext())
             {
                 if (IsRunning) return;
                 Started = DateTime.Now;
@@ -299,10 +266,6 @@ namespace wan24.Core
                 await RunEvent.ResetAsync().DynamicContext();
                 _ = RunServiceAsync();
             }
-            finally
-            {
-                Sync.Release();
-            }
             await EnableTimerAsync().DynamicContext();
         }
 
@@ -310,8 +273,7 @@ namespace wan24.Core
         public async Task StopAsyncInt(CancellationToken cancellationToken)
         {
             Task? stopTask = null;
-            await Sync.WaitAsync(cancellationToken).DynamicContext();
-            try
+            using (SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext())
             {
                 if (!IsRunning) return;
                 if (StopTask == null)
@@ -326,10 +288,6 @@ namespace wan24.Core
                 {
                     stopTask = StopTask?.Task;
                 }
-            }
-            finally
-            {
-                Sync.Release();
             }
             if (stopTask != null) await stopTask.DynamicContext();
         }
@@ -406,8 +364,7 @@ namespace wan24.Core
             finally
             {
                 if (hadException) OnException?.Invoke(this, new());
-                await Sync.WaitAsync().DynamicContext();
-                try
+                using (SemaphoreSyncContext ssc = await Sync.SyncAsync().DynamicContext())
                 {
                     Cancellation!.Cancel();
                     Cancellation.Dispose();
@@ -418,10 +375,6 @@ namespace wan24.Core
                         StopTask.SetResult();
                         StopTask = null;
                     }
-                }
-                finally
-                {
-                    Sync.Release();
                 }
                 if (RunOnce) _ = RaiseOnRan();
             }
@@ -438,64 +391,57 @@ namespace wan24.Core
         /// <returns>Enabled?</returns>
         protected async Task<bool> EnableTimerAsync()
         {
-            await Sync.WaitAsync().DynamicContext();
-            try
+            using SemaphoreSyncContext ssc = await Sync.SyncAsync().DynamicContext();
+            // Find the interval for restarting the timer
+            DateTime now = DateTime.Now;
+            switch (TimerType)
             {
-                // Find the interval for restarting the timer
-                DateTime now = DateTime.Now;
-                switch (TimerType)
-                {
-                    case HostedServiceTimers.Default:
-                        NextRun = now.AddMilliseconds(Interval);
-                        break;
-                    case HostedServiceTimers.Exact:
-                        if (LastRun == DateTime.MinValue)
+                case HostedServiceTimers.Default:
+                    NextRun = now.AddMilliseconds(Interval);
+                    break;
+                case HostedServiceTimers.Exact:
+                    if (LastRun == DateTime.MinValue)
+                    {
+                        NextRun = DateTime.Now;
+                        await RunEvent.SetAsync().DynamicContext();
+                        return false;
+                    }
+                    else
+                    {
+                        NextRun = (LastRun + LastDuration).AddMilliseconds(Interval - LastDuration.TotalMilliseconds);
+                        while (NextRun < now) NextRun = NextRun.AddMilliseconds(Interval);
+                        if (NextRun == now)
                         {
-                            NextRun = DateTime.Now;
                             await RunEvent.SetAsync().DynamicContext();
                             return false;
                         }
-                        else
+                    }
+                    break;
+                case HostedServiceTimers.ExactCatchingUp:
+                    if (NextRun == DateTime.MinValue)
+                    {
+                        NextRun = DateTime.Now;
+                        await RunEvent.SetAsync().DynamicContext();
+                        return false;
+                    }
+                    else
+                    {
+                        NextRun = (NextRun + LastDuration).AddMilliseconds(Interval - LastDuration.TotalMilliseconds);
+                        if (NextRun <= now)
                         {
-                            NextRun = (LastRun + LastDuration).AddMilliseconds(Interval - LastDuration.TotalMilliseconds);
-                            while (NextRun < now) NextRun = NextRun.AddMilliseconds(Interval);
-                            if (NextRun == now)
-                            {
-                                await RunEvent.SetAsync().DynamicContext();
-                                return false;
-                            }
-                        }
-                        break;
-                    case HostedServiceTimers.ExactCatchingUp:
-                        if (NextRun == DateTime.MinValue)
-                        {
-                            NextRun = DateTime.Now;
+                            // Catch up on a missing processing run
                             await RunEvent.SetAsync().DynamicContext();
                             return false;
                         }
-                        else
-                        {
-                            NextRun = (NextRun + LastDuration).AddMilliseconds(Interval - LastDuration.TotalMilliseconds);
-                            if (NextRun <= now)
-                            {
-                                // Catch up on a missing processing run
-                                await RunEvent.SetAsync().DynamicContext();
-                                return false;
-                            }
-                        }
-                        break;
-                    default:
-                        throw new InvalidProgramException($"Timer type {TimerType} isn't implemented");
-                }
-                // Start the timer
-                Timer.Interval = (NextRun - now).TotalMilliseconds;
-                Timer.Start();
-                return true;
+                    }
+                    break;
+                default:
+                    throw new InvalidProgramException($"Timer type {TimerType} isn't implemented");
             }
-            finally
-            {
-                Sync.Release();
-            }
+            // Start the timer
+            Timer.Interval = (NextRun - now).TotalMilliseconds;
+            Timer.Start();
+            return true;
         }
 
         /// <inheritdoc/>

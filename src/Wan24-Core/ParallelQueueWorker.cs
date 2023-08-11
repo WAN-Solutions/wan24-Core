@@ -16,7 +16,7 @@
         /// <summary>
         /// Thread synchronization
         /// </summary>
-        protected readonly SemaphoreSlim Sync = new(1, 1);
+        protected readonly SemaphoreSync Sync = new();
         /// <summary>
         /// Processing workers
         /// </summary>
@@ -126,16 +126,11 @@
                 {
                     await Processing.WaitAsync(stoppingToken).DynamicContext();
                     Task_Delegate task = await Queue.Reader.ReadAsync(stoppingToken).DynamicContext();
-                    await Sync.WaitAsync(stoppingToken).DynamicContext();
-                    try
+                    using (SemaphoreSyncContext ssc = await Sync.SyncAsync(stoppingToken).DynamicContext())
                     {
                         ProcessCount++;
                         if (ProcessCount >= Threads) await Processing.ResetAsync().DynamicContext();
                         await Busy.ResetAsync().DynamicContext();
-                    }
-                    finally
-                    {
-                        Sync.Release();
                     }
                     _ = Process(task, stoppingToken);
                 }
@@ -178,17 +173,10 @@
             }
             finally
             {
-                await Sync.WaitAsync(CancellationToken.None).DynamicContext();
-                try
-                {
-                    ProcessCount--;
-                    if (ProcessCount == Threads - 1) await Processing.SetAsync().DynamicContext();
-                    if (ProcessCount == 0) await Busy.SetAsync().DynamicContext();
-                }
-                finally
-                {
-                    Sync.Release();
-                }
+                using SemaphoreSyncContext ssc = await Sync.SyncAsync().DynamicContext();
+                ProcessCount--;
+                if (ProcessCount == Threads - 1) await Processing.SetAsync().DynamicContext();
+                if (ProcessCount == 0) await Busy.SetAsync().DynamicContext();
             }
         }
 

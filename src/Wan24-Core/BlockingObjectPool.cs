@@ -16,7 +16,7 @@ namespace wan24.Core
         /// <summary>
         /// Thread synchronization
         /// </summary>
-        protected readonly SemaphoreSlim Sync = new(1, 1);
+        protected readonly SemaphoreSync Sync = new();
         /// <summary>
         /// Factory
         /// </summary>
@@ -111,7 +111,7 @@ namespace wan24.Core
             bool synced = false;
             if (Factory != null)
             {
-                Sync.Wait();
+                Sync.Semaphore.Wait();
                 synced = true;
             }
             try
@@ -133,7 +133,7 @@ namespace wan24.Core
             }
             finally
             {
-                if (synced) Sync.Release();
+                if (synced) Sync.Semaphore.Release();
             }
             return res;
         }
@@ -151,7 +151,7 @@ namespace wan24.Core
             bool synced = false;
             if (Factory != null)
             {
-                Sync.Wait();
+                Sync.Semaphore.Wait();
                 synced = true;
             }
             try
@@ -173,7 +173,7 @@ namespace wan24.Core
             }
             finally
             {
-                if (synced) Sync.Release();
+                if (synced) Sync.Semaphore.Release();
             }
             return true;
         }
@@ -186,7 +186,7 @@ namespace wan24.Core
             bool synced = false;
             if (AsyncFactory != null || Factory != null)
             {
-                await Sync.WaitAsync().DynamicContext(); ;
+                await Sync.Semaphore.WaitAsync().DynamicContext(); ;
                 synced = true;
             }
             try
@@ -212,7 +212,7 @@ namespace wan24.Core
             }
             finally
             {
-                if (synced) Sync.Release();
+                if (synced) Sync.Semaphore.Release();
             }
             return res;
         }
@@ -228,7 +228,7 @@ namespace wan24.Core
             bool synced = false;
             if (AsyncFactory != null || Factory != null)
             {
-                await Sync.WaitAsync().DynamicContext(); ;
+                await Sync.Semaphore.WaitAsync().DynamicContext(); ;
                 synced = true;
             }
             try
@@ -254,7 +254,7 @@ namespace wan24.Core
             }
             finally
             {
-                if (synced) Sync.Release();
+                if (synced) Sync.Semaphore.Release();
             }
             return (Succeed: true, Item: res);
         }
@@ -272,34 +272,17 @@ namespace wan24.Core
             {
                 opItem.Reset();
             }
-            Sync.Wait();
-            try
+            using SemaphoreSyncContext ssc = Sync.Sync();
+            if (Pool.Count >= Capacity) throw new OverflowException();
+            Pool.Add(item);
+            if ((Factory != null || AsyncFactory != null) && _Initialized < Capacity && Pool.Count > _Initialized)
             {
-                if (Pool.Count >= Capacity)
+                _Initialized = Pool.Count;
+                if (_Initialized >= Capacity)
                 {
-                    Sync.Release();
-                    throw new OverflowException();
+                    Factory = null;
+                    AsyncFactory = null;
                 }
-                Pool.Add(item);
-                if ((Factory != null || AsyncFactory != null) && _Initialized < Capacity && Pool.Count > _Initialized)
-                {
-                    _Initialized = Pool.Count;
-                    if (_Initialized >= Capacity)
-                    {
-                        Factory = null;
-                        AsyncFactory = null;
-                    }
-                }
-                Sync.Release();
-            }
-            catch (OverflowException)
-            {
-                throw;
-            }
-            catch
-            {
-                Sync.Release();
-                throw;
             }
         }
 
@@ -323,34 +306,17 @@ namespace wan24.Core
             {
                 opItem.Reset();
             }
-            await Sync.WaitAsync().DynamicContext();
-            try
+            using SemaphoreSyncContext ssc = await Sync.SyncAsync().DynamicContext();
+            if (Pool.Count >= Capacity) throw new OverflowException();
+            Pool.Add(item);
+            if ((AsyncFactory != null || Factory != null) && _Initialized < Capacity && Pool.Count > _Initialized)
             {
-                if (Pool.Count >= Capacity)
+                _Initialized = Pool.Count;
+                if (_Initialized >= Capacity)
                 {
-                    Sync.Release();
-                    throw new OverflowException();
+                    Factory = null;
+                    AsyncFactory = null;
                 }
-                Pool.Add(item);
-                if ((AsyncFactory != null || Factory != null) && _Initialized < Capacity && Pool.Count > _Initialized)
-                {
-                    _Initialized = Pool.Count;
-                    if (_Initialized >= Capacity)
-                    {
-                        Factory = null;
-                        AsyncFactory = null;
-                    }
-                }
-                Sync.Release();
-            }
-            catch (OverflowException)
-            {
-                throw;
-            }
-            catch
-            {
-                Sync.Release();
-                throw;
             }
         }
 

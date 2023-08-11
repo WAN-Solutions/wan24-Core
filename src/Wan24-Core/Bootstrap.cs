@@ -15,7 +15,7 @@ namespace wan24.Core
         /// <summary>
         /// Thread synchronization
         /// </summary>
-        private static readonly SemaphoreSlim Sync = new(1, 1);
+        private static readonly SemaphoreSync Sync = new();
 
         /// <summary>
         /// Asynchronous bootstrapper (after running bootstrapper methods)
@@ -51,18 +51,12 @@ namespace wan24.Core
         /// <exception cref="InvalidProgramException">A bootstrapper wasn't found</exception>
         public static async Task Async(Assembly? startAssembly = null, CancellationToken cancellationToken = default)
         {
-            await Sync.WaitAsync(cancellationToken).DynamicContext();
-            try
+            using (SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext())
             {
                 if (DidBoot) throw new BootstrapperException("Did boot already");
                 if (IsBooting) throw new BootstrapperException("Booting recursion");
                 IsBooting = true;
             }
-            finally
-            {
-                Sync.Release();
-            }
-            await Task.Yield();
             DiHelper.ObjectFactories[typeof(CancellationToken)] = delegate (Type t, out object? obj)
             {
                 obj = cancellationToken;
@@ -115,15 +109,8 @@ namespace wan24.Core
                     Logging.WriteDebug($"Calling bootstrapper {mi.DeclaringType}.{mi.Name}");
                     if (mi.DeclaringType != null)
                     {
-                        await Sync.WaitAsync(cancellationToken).DynamicContext();
-                        try
-                        {
-                            BootedAssemblies.Add(mi.DeclaringType.Assembly.GetHashCode());
-                        }
-                        finally
-                        {
-                            Sync.Release();
-                        }
+                        using SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext();
+                        BootedAssemblies.Add(mi.DeclaringType.Assembly.GetHashCode());
                     }
                     cancellationToken.ThrowIfCancellationRequested();
                     if (mi.ReturnType != typeof(void) && (typeof(Task).IsAssignableFrom(mi.ReturnType) || typeof(ValueTask).IsAssignableFrom(mi.ReturnType)))
@@ -160,15 +147,8 @@ namespace wan24.Core
         /// <returns>Did bootstrap?</returns>
         public static async Task<bool> TryAsync(Assembly? startAssembly = null, CancellationToken cancellationToken = default)
         {
-            await Sync.WaitAsync(cancellationToken).DynamicContext();
-            try
-            {
+            using (SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext())
                 if (IsBooting || DidBoot) return false;
-            }
-            finally
-            {
-                Sync.Release();
-            }
             try
             {
                 await Async(startAssembly, cancellationToken).DynamicContext();
@@ -189,15 +169,8 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token (won't be available with DI)</param>
         public static async Task AssemblyAsync(Assembly assembly, bool findClasses = true, bool findMethods = true, CancellationToken cancellationToken = default)
         {
-            await Sync.WaitAsync(cancellationToken).DynamicContext();
-            try
-            {
+            using (SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext())
                 if (!BootedAssemblies.Add(assembly.GetHashCode())) return;
-            }
-            finally
-            {
-                Sync.Release();
-            }
             Logging.WriteDebug($"Single bootstrapping of assembly {assembly.GetName().FullName}");
             if (!DidBoot && !IsBooting) await Async(cancellationToken: cancellationToken).DynamicContext();
             TypeHelper.Instance.ScanAssemblies(assembly);
