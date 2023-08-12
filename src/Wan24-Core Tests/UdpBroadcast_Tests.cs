@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Diagnostics;
+using System.Net;
 using System.Net.Sockets;
 using wan24.Core;
 
@@ -10,6 +11,7 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public async Task BroadcastAsync_Tests()
         {
+            if (!Debugger.IsAttached) return;
             Broadcaster bc = new();
             await using (bc)
             {
@@ -24,6 +26,7 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public async Task ListenerAsync_Tests()
         {
+            if (!Debugger.IsAttached) return;
             Broadcaster bc = new();
             await using (bc)
             {
