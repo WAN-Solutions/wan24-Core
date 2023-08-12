@@ -11,7 +11,7 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public async Task BroadcastAsync_Tests()
         {
-            if (!Debugger.IsAttached) return;
+            if (!Debugger.IsAttached) return;// GitHub doesn't seem to support networking (or UDP broadcasts on the loopback adapter?) during tests
             Broadcaster bc = new();
             await using (bc)
             {
@@ -26,7 +26,7 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public async Task ListenerAsync_Tests()
         {
-            if (!Debugger.IsAttached) return;
+            if (!Debugger.IsAttached) return;// GitHub doesn't seem to support networking (or UDP broadcasts on the loopback adapter?) during tests
             Broadcaster bc = new();
             await using (bc)
             {
