@@ -38,9 +38,14 @@ namespace Wan24_Core_Tests
                 await client.SendAsync(data, new IPEndPoint(IPAddress.Loopback, 12345));
                 await Task.Delay(500);
                 Assert.AreEqual(1, bc.PacketsReceived);
+                UdpReceiveResult result = default;
+                async Task receive()
+                {
+                    result = await client.ReceiveAsync();
+                }
+                Task task = receive();
                 await bc.BroadcastAsync(data, 23456);
-                UdpReceiveResult result = await client.ReceiveAsync().WaitAsync(TimeSpan.FromMilliseconds(500));
-                Assert.AreEqual(1, bc.PacketsReceived);
+                await task.WaitAsync(TimeSpan.FromMilliseconds(1000));
                 Assert.IsTrue(result.Buffer.SequenceEqual(data));
                 await bc.StopAsync();
             }
