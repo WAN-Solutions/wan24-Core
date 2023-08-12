@@ -65,14 +65,10 @@ namespace wan24.Core
                 {
                     StopTask = new(TaskCreationOptions.RunContinuationsAsynchronously);
                     Cancellation!.Cancel();
-                    stopTask = StopTask.Task;
                 }
-                else
-                {
-                    stopTask = StopTask.Task;
-                }
+                stopTask = StopTask.Task;
             }
-            await stopTask.DynamicContext();
+            await stopTask.WaitAsync(cancellationToken).DynamicContext();
         }
 
         /// <summary>
@@ -86,7 +82,7 @@ namespace wan24.Core
             }
             catch (OperationCanceledException ex)
             {
-                if (!Cancellation!.IsCancellationRequested)
+                if (ex.CancellationToken != Cancellation!.Token)
                 {
                     LastException = ex;
                     OnException?.Invoke(this, new());
