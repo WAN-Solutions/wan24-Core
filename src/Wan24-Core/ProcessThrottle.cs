@@ -35,7 +35,7 @@
             };
             Timer.Elapsed += (s, e) =>
             {
-                using (SemaphoreSyncContext ssc = Sync.Sync())
+                using (SemaphoreSyncContext ssc = Sync.SyncContext())
                 {
                     ThrottleStart = DateTime.MinValue;
                     CurrentCount = 0;
@@ -188,7 +188,7 @@
         {
             bool throttling = false;
             int canProcess;
-            using (SemaphoreSyncContext ssc = Sync.Sync())
+            using (SemaphoreSyncContext ssc = Sync.SyncContext())
             {
                 (canProcess, throttling) = GetProcessChunkSizeLocked(count, process);
                 if (throttling)
@@ -212,7 +212,7 @@
         {
             bool throttling = false;
             int canProcess;
-            using (SemaphoreSyncContext ssc = await Sync.SyncAsync())
+            using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync())
             {
                 (canProcess, throttling) = GetProcessChunkSizeLocked(count, process);
                 if (throttling)

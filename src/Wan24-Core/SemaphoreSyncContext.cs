@@ -1,9 +1,11 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Runtime;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
     /// <summary>
-    /// Semaphore synchronization context
+    /// Semaphore synchronization context (should be consumed within a method, not giving the structure away as a parameter, nor returning it to somewhere!)
     /// </summary>
     [StructLayout(LayoutKind.Auto)]
     public record struct SemaphoreSyncContext : IDisposable
@@ -15,7 +17,7 @@ namespace wan24.Core
         /// <summary>
         /// Semaphore
         /// </summary>
-        private readonly SemaphoreSlim Semaphore;
+        public readonly SemaphoreSlim Semaphore;
 
         /// <summary>
         /// Constructor
@@ -28,6 +30,66 @@ namespace wan24.Core
         /// </summary>
         public bool IsDisposed { get; private set; } = false;
 
+        /// <summary>
+        /// Is synchronized?
+        /// </summary>
+        public readonly bool IsSynchronized => Semaphore.CurrentCount == 0;
+
+        /// <summary>
+        /// Synchronize
+        /// </summary>
+        /// <param name="timeout">Timeout</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public readonly void Sync(TimeSpan timeout, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            Semaphore.Wait(timeout, cancellationToken);
+        }
+
+        /// <summary>
+        /// Synchronize
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public readonly void Sync(CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            Semaphore.Wait(cancellationToken);
+        }
+
+        /// <summary>
+        /// Synchronize
+        /// </summary>
+        /// <param name="timeout">Timeout</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public readonly async Task SyncAsync(TimeSpan timeout, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            await Semaphore.WaitAsync(timeout, cancellationToken).DynamicContext();
+        }
+
+        /// <summary>
+        /// Synchronize
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public readonly async Task SyncAsync(CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            await Semaphore.WaitAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Release the synchronization lock
+        /// </summary>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public readonly void Release()
+        {
+            lock (Semaphore) if (IsSynchronized) Semaphore.Release();
+        }
+
         /// <inheritdoc/>
         public void Dispose()
         {
@@ -36,7 +98,18 @@ namespace wan24.Core
                 if (IsDisposed) return;
                 IsDisposed = true;
             }
-            Semaphore.Release();
+            lock (Semaphore) if (IsSynchronized) Semaphore.Release();
+        }
+
+        /// <summary>
+        /// Ensure undisposed state
+        /// </summary>
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        private readonly void EnsureUndisposed()
+        {
+            if (IsDisposed) throw new ObjectDisposedException(GetType().ToString());
         }
 
         /// <summary>
@@ -65,6 +138,7 @@ namespace wan24.Core
         /// <param name="semaphore">Semaphore</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Synchronization context</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static Task<SemaphoreSyncContext> CreateAsync(SemaphoreSlim semaphore, CancellationToken cancellationToken)
             => CreateAsync(semaphore, cancellationToken: cancellationToken);
 
@@ -75,7 +149,7 @@ namespace wan24.Core
         /// <param name="timeout">Timeout</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Synchronization context</returns>
-        public static SemaphoreSyncContext Create(SemaphoreSlim semaphore, TimeSpan? timeout = null, CancellationToken cancellationToken = default)
+        public static SemaphoreSyncContext Create(in SemaphoreSlim semaphore, in TimeSpan? timeout = null, in CancellationToken cancellationToken = default)
         {
             if (timeout is null)
             {
@@ -94,6 +168,7 @@ namespace wan24.Core
         /// <param name="semaphore">Semaphore</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Synchronization context</returns>
-        public static SemaphoreSyncContext Create(SemaphoreSlim semaphore, CancellationToken cancellationToken) => Create(semaphore, cancellationToken: cancellationToken);
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static SemaphoreSyncContext Create(in SemaphoreSlim semaphore, in CancellationToken cancellationToken) => Create(semaphore, cancellationToken: cancellationToken);
     }
 }

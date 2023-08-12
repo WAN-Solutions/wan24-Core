@@ -161,19 +161,19 @@ namespace wan24.Core
             // Handle fixed next run time
             if (nextRun != null)
             {
-                using SemaphoreSyncContext sscControl = await SyncControl.SyncAsync(cancellationToken).DynamicContext();
+                using SemaphoreSyncContext sscControl = await SyncControl.SyncContextAsync(cancellationToken).DynamicContext();
                 try
                 {
                     // Stop the timer and set a one second interval to start the timer temporary
                     await StopAsyncInt(cancellationToken).DynamicContext();
-                    using (SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext())
+                    using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext())
                     {
                         Interval = 30000;
                         TimerType = timer.Value;
                     }
                     await StartAsyncInt(cancellationToken).DynamicContext();
                     // Reset the timer to elapse on the desired time
-                    using (SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext())
+                    using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext())
                     {
                         Timer.Stop();
                         Interval = interval;
@@ -193,7 +193,7 @@ namespace wan24.Core
                 }
             }
             // Setup the timer
-            using (SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext())
+            using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext())
             {
                 Interval = interval;
                 TimerType = timer.Value;
@@ -215,7 +215,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public async Task StartAsync(CancellationToken cancellationToken = default)
         {
-            using SemaphoreSyncContext ssc = await SyncControl.SyncAsync(cancellationToken).DynamicContext();
+            using SemaphoreSyncContext ssc = await SyncControl.SyncContextAsync(cancellationToken).DynamicContext();
             await StartAsyncInt(cancellationToken).DynamicContext();
         }
 
@@ -228,7 +228,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public async Task StopAsync(CancellationToken cancellationToken = default)
         {
-            using SemaphoreSyncContext ssc = await SyncControl.SyncAsync(cancellationToken).DynamicContext();
+            using SemaphoreSyncContext ssc = await SyncControl.SyncContextAsync(cancellationToken).DynamicContext();
             await StopAsyncInt(cancellationToken).DynamicContext();
         }
 
@@ -255,7 +255,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public async Task StartAsyncInt(CancellationToken cancellationToken)
         {
-            using (SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext())
+            using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext())
             {
                 if (IsRunning) return;
                 Started = DateTime.Now;
@@ -273,7 +273,7 @@ namespace wan24.Core
         public async Task StopAsyncInt(CancellationToken cancellationToken)
         {
             Task? stopTask = null;
-            using (SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext())
+            using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext())
             {
                 if (!IsRunning) return;
                 if (StopTask == null)
@@ -364,7 +364,7 @@ namespace wan24.Core
             finally
             {
                 if (hadException) OnException?.Invoke(this, new());
-                using (SemaphoreSyncContext ssc = await Sync.SyncAsync().DynamicContext())
+                using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync().DynamicContext())
                 {
                     Cancellation!.Cancel();
                     Cancellation.Dispose();
@@ -391,7 +391,7 @@ namespace wan24.Core
         /// <returns>Enabled?</returns>
         protected async Task<bool> EnableTimerAsync()
         {
-            using SemaphoreSyncContext ssc = await Sync.SyncAsync().DynamicContext();
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync().DynamicContext();
             // Find the interval for restarting the timer
             DateTime now = DateTime.Now;
             switch (TimerType)

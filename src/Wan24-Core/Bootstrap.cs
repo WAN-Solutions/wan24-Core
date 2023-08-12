@@ -51,7 +51,7 @@ namespace wan24.Core
         /// <exception cref="InvalidProgramException">A bootstrapper wasn't found</exception>
         public static async Task Async(Assembly? startAssembly = null, CancellationToken cancellationToken = default)
         {
-            using (SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext())
+            using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext())
             {
                 if (DidBoot) throw new BootstrapperException("Did boot already");
                 if (IsBooting) throw new BootstrapperException("Booting recursion");
@@ -109,7 +109,7 @@ namespace wan24.Core
                     Logging.WriteDebug($"Calling bootstrapper {mi.DeclaringType}.{mi.Name}");
                     if (mi.DeclaringType != null)
                     {
-                        using SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext();
+                        using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
                         BootedAssemblies.Add(mi.DeclaringType.Assembly.GetHashCode());
                     }
                     cancellationToken.ThrowIfCancellationRequested();
@@ -147,7 +147,7 @@ namespace wan24.Core
         /// <returns>Did bootstrap?</returns>
         public static async Task<bool> TryAsync(Assembly? startAssembly = null, CancellationToken cancellationToken = default)
         {
-            using (SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext())
+            using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext())
                 if (IsBooting || DidBoot) return false;
             try
             {
@@ -169,7 +169,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token (won't be available with DI)</param>
         public static async Task AssemblyAsync(Assembly assembly, bool findClasses = true, bool findMethods = true, CancellationToken cancellationToken = default)
         {
-            using (SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext())
+            using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext())
                 if (!BootedAssemblies.Add(assembly.GetHashCode())) return;
             Logging.WriteDebug($"Single bootstrapping of assembly {assembly.GetName().FullName}");
             if (!DidBoot && !IsBooting) await Async(cancellationToken: cancellationToken).DynamicContext();

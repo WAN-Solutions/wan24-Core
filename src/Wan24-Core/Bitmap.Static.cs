@@ -24,10 +24,22 @@ namespace wan24.Core
         public static implicit operator Span<byte>(Bitmap bitmap) => bitmap._Map.AsSpan();
 
         /// <summary>
+        /// Cast as span
+        /// </summary>
+        /// <param name="bitmap">Bitmap</param>
+        public static implicit operator ReadOnlySpan<byte>(Bitmap bitmap) => bitmap._Map.AsSpan();
+
+        /// <summary>
         /// Cast as memory
         /// </summary>
         /// <param name="bitmap">Bitmap</param>
         public static implicit operator Memory<byte>(Bitmap bitmap) => bitmap._Map.AsMemory();
+
+        /// <summary>
+        /// Cast as memory
+        /// </summary>
+        /// <param name="bitmap">Bitmap</param>
+        public static implicit operator ReadOnlyMemory<byte>(Bitmap bitmap) => bitmap._Map.AsMemory();
 
         /// <summary>
         /// Cast as bit count

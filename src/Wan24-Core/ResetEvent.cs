@@ -47,7 +47,7 @@
         public bool Set()
         {
             EnsureUndisposed();
-            using SemaphoreSyncContext ssc = Sync.Sync();
+            using SemaphoreSyncContext ssc = Sync.SyncContext();
             EnsureUndisposed();
             if (IsSet) return false;
             TaskCompletion.SetResult();
@@ -62,7 +62,7 @@
         public async Task<bool> SetAsync()
         {
             EnsureUndisposed();
-            using SemaphoreSyncContext ssc = await Sync.SyncAsync();
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync();
             EnsureUndisposed();
             if (IsSet) return false;
             TaskCompletion.SetResult();
@@ -77,7 +77,7 @@
         public bool Reset()
         {
             EnsureUndisposed();
-            using SemaphoreSyncContext ssc = Sync.Sync();
+            using SemaphoreSyncContext ssc = Sync.SyncContext();
             EnsureUndisposed();
             if (!IsSet) return false;
             TaskCompletion = new(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -92,7 +92,7 @@
         public async Task<bool> ResetAsync()
         {
             EnsureUndisposed();
-            using SemaphoreSyncContext ssc = await Sync.SyncAsync();
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync();
             EnsureUndisposed();
             if (!IsSet) return false;
             TaskCompletion = new(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -215,7 +215,7 @@
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            using SemaphoreSyncContext ssc = Sync.Sync();
+            using SemaphoreSyncContext ssc = Sync.SyncContext();
             using ManualResetEventSlim? syncSet = SyncSet;
             if (IsSet) TaskCompletion = new();
             TaskCompletion.SetException(new ObjectDisposedException(GetType().ToString()));
@@ -225,7 +225,7 @@
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            using SemaphoreSyncContext ssc = await Sync.SyncAsync();
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync();
             using ManualResetEventSlim? syncSet = SyncSet;
             if (IsSet) TaskCompletion = new();
             TaskCompletion.SetException(new ObjectDisposedException(GetType().ToString()));

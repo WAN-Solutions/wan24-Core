@@ -143,7 +143,7 @@
         {
             EnsureUndisposed();
             bool hadSpace;
-            using (SemaphoreSyncContext ssc = BufferSync.Sync())
+            using (SemaphoreSyncContext ssc = BufferSync.SyncContext())
             {
                 EnsureUndisposed();
                 hadSpace = !IsWriteBlocked;
@@ -169,7 +169,7 @@
         {
             EnsureUndisposed();
             bool hadSpace;
-            using (SemaphoreSyncContext ssc = await BufferSync.SyncAsync(cancellationToken).DynamicContext())
+            using (SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext())
             {
                 EnsureUndisposed();
                 hadSpace = !IsWriteBlocked;
@@ -206,7 +206,7 @@
             {
                 DataEvent.Wait();
                 EnsureUndisposed();
-                using SemaphoreSyncContext ssc = BufferSync.Sync();
+                using SemaphoreSyncContext ssc = BufferSync.SyncContext();
                 EnsureUndisposed();
                 read = Math.Min(buffer.Length, Available);
                 if (read == 0)
@@ -264,7 +264,7 @@
             {
                 await DataEvent.WaitAsync(cancellationToken).DynamicContext();
                 EnsureUndisposed();
-                using SemaphoreSyncContext ssc = await BufferSync.SyncAsync(cancellationToken).DynamicContext();
+                using SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext();
                 EnsureUndisposed();
                 read = Math.Min(buffer.Length, Available);
                 if (read == 0)
@@ -330,7 +330,7 @@
             {
                 SpaceEvent.Wait();
                 EnsureUndisposed();
-                using (SemaphoreSyncContext ssc = BufferSync.Sync())
+                using (SemaphoreSyncContext ssc = BufferSync.SyncContext())
                 {
                     EnsureUndisposed();
                     write = Math.Min(SpaceLeft, buffer.Length);
@@ -375,7 +375,7 @@
             {
                 await SpaceEvent.WaitAsync(cancellationToken).DynamicContext();
                 EnsureUndisposed();
-                using (SemaphoreSyncContext ssc = await BufferSync.SyncAsync(cancellationToken).DynamicContext())
+                using (SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext())
                 {
                     EnsureUndisposed();
                     write = Math.Min(SpaceLeft, buffer.Length);
@@ -409,7 +409,7 @@
         {
             if (IsDisposing) return;
             using SemaphoreSync bufferSync = BufferSync;
-            using (SemaphoreSyncContext ssc = bufferSync.Sync())
+            using (SemaphoreSyncContext ssc = bufferSync.SyncContext())
             {
                 base.Dispose(disposing);
                 DataEvent.Dispose();
@@ -422,7 +422,7 @@
         protected override async Task DisposeCore()
         {
             using SemaphoreSync bufferSync = BufferSync;
-            using (SemaphoreSyncContext ssc = await bufferSync.SyncAsync().DynamicContext())
+            using (SemaphoreSyncContext ssc = await bufferSync.SyncContextAsync().DynamicContext())
             {
                 await base.DisposeCore().DynamicContext();
                 await DataEvent.DisposeAsync().DynamicContext();

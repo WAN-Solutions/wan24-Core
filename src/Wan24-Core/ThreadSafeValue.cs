@@ -32,7 +32,7 @@
             get => _Value;
             set
             {
-                using SemaphoreSyncContext ssc = Sync.Sync();
+                using SemaphoreSyncContext ssc = Sync.SyncContext();
                 _Value = value;
             }
         }
@@ -45,7 +45,7 @@
         /// <returns>Old value</returns>
         public virtual async Task<T?> SetValueAsync(T? value, CancellationToken cancellationToken = default)
         {
-            using SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext();
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             T? res = _Value;
             _Value = value;
             return res;
@@ -58,7 +58,7 @@
         /// <returns>Current value</returns>
         public virtual T? Execute(Action_Delegate action)
         {
-            using SemaphoreSyncContext ssc = Sync.Sync();
+            using SemaphoreSyncContext ssc = Sync.SyncContext();
             return _Value = action(_Value);
         }
 
@@ -70,21 +70,21 @@
         /// <returns>Current value</returns>
         public virtual async Task<T?> ExecuteAsync(AsyncAction_Delegate action, CancellationToken cancellationToken = default)
         {
-            using SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext();
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             return await action(_Value).DynamicContext();
         }
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            Sync.Semaphore.Wait();
+            Sync.Sync();
             Sync.Dispose();
         }
 
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            await Sync.Semaphore.WaitAsync().DynamicContext();
+            await Sync.SyncAsync().DynamicContext();
             Sync.Dispose();
         }
 

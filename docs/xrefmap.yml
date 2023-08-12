@@ -1977,6 +1977,24 @@ references:
   fullName.vb: wan24.Core.Bitmap.Widening(wan24.Core.Bitmap to Memory(Of System.Byte))
   nameWithType: Bitmap.Implicit(Bitmap to Memory<Byte>)
   nameWithType.vb: Bitmap.Widening(Bitmap to Memory(Of Byte))
+- uid: wan24.Core.Bitmap.op_Implicit(wan24.Core.Bitmap)~ReadOnlyMemory{System.Byte}
+  name: Implicit(Bitmap to ReadOnlyMemory<Byte>)
+  href: api/wan24.Core.Bitmap.html#wan24_Core_Bitmap_op_Implicit_wan24_Core_Bitmap__ReadOnlyMemory_System_Byte_
+  commentId: M:wan24.Core.Bitmap.op_Implicit(wan24.Core.Bitmap)~ReadOnlyMemory{System.Byte}
+  name.vb: Widening(Bitmap to ReadOnlyMemory(Of Byte))
+  fullName: wan24.Core.Bitmap.Implicit(wan24.Core.Bitmap to ReadOnlyMemory<System.Byte>)
+  fullName.vb: wan24.Core.Bitmap.Widening(wan24.Core.Bitmap to ReadOnlyMemory(Of System.Byte))
+  nameWithType: Bitmap.Implicit(Bitmap to ReadOnlyMemory<Byte>)
+  nameWithType.vb: Bitmap.Widening(Bitmap to ReadOnlyMemory(Of Byte))
+- uid: wan24.Core.Bitmap.op_Implicit(wan24.Core.Bitmap)~ReadOnlySpan{System.Byte}
+  name: Implicit(Bitmap to ReadOnlySpan<Byte>)
+  href: api/wan24.Core.Bitmap.html#wan24_Core_Bitmap_op_Implicit_wan24_Core_Bitmap__ReadOnlySpan_System_Byte_
+  commentId: M:wan24.Core.Bitmap.op_Implicit(wan24.Core.Bitmap)~ReadOnlySpan{System.Byte}
+  name.vb: Widening(Bitmap to ReadOnlySpan(Of Byte))
+  fullName: wan24.Core.Bitmap.Implicit(wan24.Core.Bitmap to ReadOnlySpan<System.Byte>)
+  fullName.vb: wan24.Core.Bitmap.Widening(wan24.Core.Bitmap to ReadOnlySpan(Of System.Byte))
+  nameWithType: Bitmap.Implicit(Bitmap to ReadOnlySpan<Byte>)
+  nameWithType.vb: Bitmap.Widening(Bitmap to ReadOnlySpan(Of Byte))
 - uid: wan24.Core.Bitmap.op_Implicit(wan24.Core.Bitmap)~Span{System.Byte}
   name: Implicit(Bitmap to Span<Byte>)
   href: api/wan24.Core.Bitmap.html#wan24_Core_Bitmap_op_Implicit_wan24_Core_Bitmap__Span_System_Byte_
@@ -17605,12 +17623,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.Logging.WriteInfo
   nameWithType: Logging.WriteInfo
-- uid: wan24.Core.Logging.WriteLog(System.String,Microsoft.Extensions.Logging.LogLevel)
-  name: WriteLog(String, LogLevel)
-  href: api/wan24.Core.Logging.html#wan24_Core_Logging_WriteLog_System_String_Microsoft_Extensions_Logging_LogLevel_
-  commentId: M:wan24.Core.Logging.WriteLog(System.String,Microsoft.Extensions.Logging.LogLevel)
-  fullName: wan24.Core.Logging.WriteLog(System.String, Microsoft.Extensions.Logging.LogLevel)
-  nameWithType: Logging.WriteLog(String, LogLevel)
+- uid: wan24.Core.Logging.WriteLog(System.String,Microsoft.Extensions.Logging.LogLevel@)
+  name: WriteLog(String, in LogLevel)
+  href: api/wan24.Core.Logging.html#wan24_Core_Logging_WriteLog_System_String_Microsoft_Extensions_Logging_LogLevel__
+  commentId: M:wan24.Core.Logging.WriteLog(System.String,Microsoft.Extensions.Logging.LogLevel@)
+  name.vb: WriteLog(String, ByRef LogLevel)
+  fullName: wan24.Core.Logging.WriteLog(System.String, in Microsoft.Extensions.Logging.LogLevel)
+  fullName.vb: wan24.Core.Logging.WriteLog(System.String, ByRef Microsoft.Extensions.Logging.LogLevel)
+  nameWithType: Logging.WriteLog(String, in LogLevel)
+  nameWithType.vb: Logging.WriteLog(String, ByRef LogLevel)
 - uid: wan24.Core.Logging.WriteLog*
   name: WriteLog
   href: api/wan24.Core.Logging.html#wan24_Core_Logging_WriteLog_
@@ -27218,6 +27239,252 @@ references:
   fullName: wan24.Core.SecureCharArrayStruct.System.Collections.IEnumerable.GetEnumerator
   nameWithType: SecureCharArrayStruct.IEnumerable.GetEnumerator
   nameWithType.vb: SecureCharArrayStruct.System.Collections.IEnumerable.GetEnumerator
+- uid: wan24.Core.SemaphoreSync
+  name: SemaphoreSync
+  href: api/wan24.Core.SemaphoreSync.html
+  commentId: T:wan24.Core.SemaphoreSync
+  fullName: wan24.Core.SemaphoreSync
+  nameWithType: SemaphoreSync
+- uid: wan24.Core.SemaphoreSync.#ctor
+  name: SemaphoreSync()
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync__ctor
+  commentId: M:wan24.Core.SemaphoreSync.#ctor
+  fullName: wan24.Core.SemaphoreSync.SemaphoreSync()
+  nameWithType: SemaphoreSync.SemaphoreSync()
+- uid: wan24.Core.SemaphoreSync.#ctor*
+  name: SemaphoreSync
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync__ctor_
+  commentId: Overload:wan24.Core.SemaphoreSync.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.SemaphoreSync.SemaphoreSync
+  nameWithType: SemaphoreSync.SemaphoreSync
+- uid: wan24.Core.SemaphoreSync.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_Dispose_System_Boolean_
+  commentId: M:wan24.Core.SemaphoreSync.Dispose(System.Boolean)
+  fullName: wan24.Core.SemaphoreSync.Dispose(System.Boolean)
+  nameWithType: SemaphoreSync.Dispose(Boolean)
+- uid: wan24.Core.SemaphoreSync.Dispose*
+  name: Dispose
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_Dispose_
+  commentId: Overload:wan24.Core.SemaphoreSync.Dispose
+  isSpec: "True"
+  fullName: wan24.Core.SemaphoreSync.Dispose
+  nameWithType: SemaphoreSync.Dispose
+- uid: wan24.Core.SemaphoreSync.Execute(Action,CancellationToken)
+  name: Execute(Action, CancellationToken)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_Execute_Action_CancellationToken_
+  commentId: M:wan24.Core.SemaphoreSync.Execute(Action,CancellationToken)
+  fullName: wan24.Core.SemaphoreSync.Execute(Action, CancellationToken)
+  nameWithType: SemaphoreSync.Execute(Action, CancellationToken)
+- uid: wan24.Core.SemaphoreSync.Execute(Action,TimeSpan,CancellationToken)
+  name: Execute(Action, TimeSpan, CancellationToken)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_Execute_Action_TimeSpan_CancellationToken_
+  commentId: M:wan24.Core.SemaphoreSync.Execute(Action,TimeSpan,CancellationToken)
+  fullName: wan24.Core.SemaphoreSync.Execute(Action, TimeSpan, CancellationToken)
+  nameWithType: SemaphoreSync.Execute(Action, TimeSpan, CancellationToken)
+- uid: wan24.Core.SemaphoreSync.Execute*
+  name: Execute
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_Execute_
+  commentId: Overload:wan24.Core.SemaphoreSync.Execute
+  isSpec: "True"
+  fullName: wan24.Core.SemaphoreSync.Execute
+  nameWithType: SemaphoreSync.Execute
+- uid: wan24.Core.SemaphoreSync.Execute``1(Func{``0},CancellationToken)
+  name: Execute<T>(Func<T>, CancellationToken)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_Execute__1_Func___0__CancellationToken_
+  commentId: M:wan24.Core.SemaphoreSync.Execute``1(Func{``0},CancellationToken)
+  name.vb: Execute(Of T)(Func(Of T), CancellationToken)
+  fullName: wan24.Core.SemaphoreSync.Execute<T>(Func<T>, CancellationToken)
+  fullName.vb: wan24.Core.SemaphoreSync.Execute(Of T)(Func(Of T), CancellationToken)
+  nameWithType: SemaphoreSync.Execute<T>(Func<T>, CancellationToken)
+  nameWithType.vb: SemaphoreSync.Execute(Of T)(Func(Of T), CancellationToken)
+- uid: wan24.Core.SemaphoreSync.Execute``1(Func{``0},TimeSpan,CancellationToken)
+  name: Execute<T>(Func<T>, TimeSpan, CancellationToken)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_Execute__1_Func___0__TimeSpan_CancellationToken_
+  commentId: M:wan24.Core.SemaphoreSync.Execute``1(Func{``0},TimeSpan,CancellationToken)
+  name.vb: Execute(Of T)(Func(Of T), TimeSpan, CancellationToken)
+  fullName: wan24.Core.SemaphoreSync.Execute<T>(Func<T>, TimeSpan, CancellationToken)
+  fullName.vb: wan24.Core.SemaphoreSync.Execute(Of T)(Func(Of T), TimeSpan, CancellationToken)
+  nameWithType: SemaphoreSync.Execute<T>(Func<T>, TimeSpan, CancellationToken)
+  nameWithType.vb: SemaphoreSync.Execute(Of T)(Func(Of T), TimeSpan, CancellationToken)
+- uid: wan24.Core.SemaphoreSync.ExecuteAsync(Func{Task},CancellationToken)
+  name: ExecuteAsync(Func<Task>, CancellationToken)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_ExecuteAsync_Func_Task__CancellationToken_
+  commentId: M:wan24.Core.SemaphoreSync.ExecuteAsync(Func{Task},CancellationToken)
+  name.vb: ExecuteAsync(Func(Of Task), CancellationToken)
+  fullName: wan24.Core.SemaphoreSync.ExecuteAsync(Func<Task>, CancellationToken)
+  fullName.vb: wan24.Core.SemaphoreSync.ExecuteAsync(Func(Of Task), CancellationToken)
+  nameWithType: SemaphoreSync.ExecuteAsync(Func<Task>, CancellationToken)
+  nameWithType.vb: SemaphoreSync.ExecuteAsync(Func(Of Task), CancellationToken)
+- uid: wan24.Core.SemaphoreSync.ExecuteAsync(Func{Task},TimeSpan,CancellationToken)
+  name: ExecuteAsync(Func<Task>, TimeSpan, CancellationToken)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_ExecuteAsync_Func_Task__TimeSpan_CancellationToken_
+  commentId: M:wan24.Core.SemaphoreSync.ExecuteAsync(Func{Task},TimeSpan,CancellationToken)
+  name.vb: ExecuteAsync(Func(Of Task), TimeSpan, CancellationToken)
+  fullName: wan24.Core.SemaphoreSync.ExecuteAsync(Func<Task>, TimeSpan, CancellationToken)
+  fullName.vb: wan24.Core.SemaphoreSync.ExecuteAsync(Func(Of Task), TimeSpan, CancellationToken)
+  nameWithType: SemaphoreSync.ExecuteAsync(Func<Task>, TimeSpan, CancellationToken)
+  nameWithType.vb: SemaphoreSync.ExecuteAsync(Func(Of Task), TimeSpan, CancellationToken)
+- uid: wan24.Core.SemaphoreSync.ExecuteAsync*
+  name: ExecuteAsync
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_ExecuteAsync_
+  commentId: Overload:wan24.Core.SemaphoreSync.ExecuteAsync
+  isSpec: "True"
+  fullName: wan24.Core.SemaphoreSync.ExecuteAsync
+  nameWithType: SemaphoreSync.ExecuteAsync
+- uid: wan24.Core.SemaphoreSync.ExecuteAsync``1(Func{Task{``0}},CancellationToken)
+  name: ExecuteAsync<T>(Func<Task<T>>, CancellationToken)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_ExecuteAsync__1_Func_Task___0___CancellationToken_
+  commentId: M:wan24.Core.SemaphoreSync.ExecuteAsync``1(Func{Task{``0}},CancellationToken)
+  name.vb: ExecuteAsync(Of T)(Func(Of Task(Of T)), CancellationToken)
+  fullName: wan24.Core.SemaphoreSync.ExecuteAsync<T>(Func<Task<T>>, CancellationToken)
+  fullName.vb: wan24.Core.SemaphoreSync.ExecuteAsync(Of T)(Func(Of Task(Of T)), CancellationToken)
+  nameWithType: SemaphoreSync.ExecuteAsync<T>(Func<Task<T>>, CancellationToken)
+  nameWithType.vb: SemaphoreSync.ExecuteAsync(Of T)(Func(Of Task(Of T)), CancellationToken)
+- uid: wan24.Core.SemaphoreSync.ExecuteAsync``1(Func{Task{``0}},TimeSpan,CancellationToken)
+  name: ExecuteAsync<T>(Func<Task<T>>, TimeSpan, CancellationToken)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_ExecuteAsync__1_Func_Task___0___TimeSpan_CancellationToken_
+  commentId: M:wan24.Core.SemaphoreSync.ExecuteAsync``1(Func{Task{``0}},TimeSpan,CancellationToken)
+  name.vb: ExecuteAsync(Of T)(Func(Of Task(Of T)), TimeSpan, CancellationToken)
+  fullName: wan24.Core.SemaphoreSync.ExecuteAsync<T>(Func<Task<T>>, TimeSpan, CancellationToken)
+  fullName.vb: wan24.Core.SemaphoreSync.ExecuteAsync(Of T)(Func(Of Task(Of T)), TimeSpan, CancellationToken)
+  nameWithType: SemaphoreSync.ExecuteAsync<T>(Func<Task<T>>, TimeSpan, CancellationToken)
+  nameWithType.vb: SemaphoreSync.ExecuteAsync(Of T)(Func(Of Task(Of T)), TimeSpan, CancellationToken)
+- uid: wan24.Core.SemaphoreSync.IsSynchronized
+  name: IsSynchronized
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_IsSynchronized
+  commentId: P:wan24.Core.SemaphoreSync.IsSynchronized
+  fullName: wan24.Core.SemaphoreSync.IsSynchronized
+  nameWithType: SemaphoreSync.IsSynchronized
+- uid: wan24.Core.SemaphoreSync.IsSynchronized*
+  name: IsSynchronized
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_IsSynchronized_
+  commentId: Overload:wan24.Core.SemaphoreSync.IsSynchronized
+  isSpec: "True"
+  fullName: wan24.Core.SemaphoreSync.IsSynchronized
+  nameWithType: SemaphoreSync.IsSynchronized
+- uid: wan24.Core.SemaphoreSync.op_Implicit(wan24.Core.SemaphoreSync)~wan24.Core.SemaphoreSyncContext
+  name: Implicit(SemaphoreSync to SemaphoreSyncContext)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_op_Implicit_wan24_Core_SemaphoreSync__wan24_Core_SemaphoreSyncContext
+  commentId: M:wan24.Core.SemaphoreSync.op_Implicit(wan24.Core.SemaphoreSync)~wan24.Core.SemaphoreSyncContext
+  name.vb: Widening(SemaphoreSync to SemaphoreSyncContext)
+  fullName: wan24.Core.SemaphoreSync.Implicit(wan24.Core.SemaphoreSync to wan24.Core.SemaphoreSyncContext)
+  fullName.vb: wan24.Core.SemaphoreSync.Widening(wan24.Core.SemaphoreSync to wan24.Core.SemaphoreSyncContext)
+  nameWithType: SemaphoreSync.Implicit(SemaphoreSync to SemaphoreSyncContext)
+  nameWithType.vb: SemaphoreSync.Widening(SemaphoreSync to SemaphoreSyncContext)
+- uid: wan24.Core.SemaphoreSync.op_Implicit*
+  name: Implicit
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_op_Implicit_
+  commentId: Overload:wan24.Core.SemaphoreSync.op_Implicit
+  isSpec: "True"
+  name.vb: Widening
+  fullName: wan24.Core.SemaphoreSync.Implicit
+  fullName.vb: wan24.Core.SemaphoreSync.Widening
+  nameWithType: SemaphoreSync.Implicit
+  nameWithType.vb: SemaphoreSync.Widening
+- uid: wan24.Core.SemaphoreSync.Release
+  name: Release()
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_Release
+  commentId: M:wan24.Core.SemaphoreSync.Release
+  fullName: wan24.Core.SemaphoreSync.Release()
+  nameWithType: SemaphoreSync.Release()
+- uid: wan24.Core.SemaphoreSync.Release*
+  name: Release
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_Release_
+  commentId: Overload:wan24.Core.SemaphoreSync.Release
+  isSpec: "True"
+  fullName: wan24.Core.SemaphoreSync.Release
+  nameWithType: SemaphoreSync.Release
+- uid: wan24.Core.SemaphoreSync.Semaphore
+  name: Semaphore
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_Semaphore
+  commentId: P:wan24.Core.SemaphoreSync.Semaphore
+  fullName: wan24.Core.SemaphoreSync.Semaphore
+  nameWithType: SemaphoreSync.Semaphore
+- uid: wan24.Core.SemaphoreSync.Semaphore*
+  name: Semaphore
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_Semaphore_
+  commentId: Overload:wan24.Core.SemaphoreSync.Semaphore
+  isSpec: "True"
+  fullName: wan24.Core.SemaphoreSync.Semaphore
+  nameWithType: SemaphoreSync.Semaphore
+- uid: wan24.Core.SemaphoreSync.Sync(CancellationToken)
+  name: Sync(CancellationToken)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_Sync_CancellationToken_
+  commentId: M:wan24.Core.SemaphoreSync.Sync(CancellationToken)
+  fullName: wan24.Core.SemaphoreSync.Sync(CancellationToken)
+  nameWithType: SemaphoreSync.Sync(CancellationToken)
+- uid: wan24.Core.SemaphoreSync.Sync(TimeSpan,CancellationToken)
+  name: Sync(TimeSpan, CancellationToken)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_Sync_TimeSpan_CancellationToken_
+  commentId: M:wan24.Core.SemaphoreSync.Sync(TimeSpan,CancellationToken)
+  fullName: wan24.Core.SemaphoreSync.Sync(TimeSpan, CancellationToken)
+  nameWithType: SemaphoreSync.Sync(TimeSpan, CancellationToken)
+- uid: wan24.Core.SemaphoreSync.Sync*
+  name: Sync
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_Sync_
+  commentId: Overload:wan24.Core.SemaphoreSync.Sync
+  isSpec: "True"
+  fullName: wan24.Core.SemaphoreSync.Sync
+  nameWithType: SemaphoreSync.Sync
+- uid: wan24.Core.SemaphoreSync.SyncAsync(CancellationToken)
+  name: SyncAsync(CancellationToken)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_SyncAsync_CancellationToken_
+  commentId: M:wan24.Core.SemaphoreSync.SyncAsync(CancellationToken)
+  fullName: wan24.Core.SemaphoreSync.SyncAsync(CancellationToken)
+  nameWithType: SemaphoreSync.SyncAsync(CancellationToken)
+- uid: wan24.Core.SemaphoreSync.SyncAsync(TimeSpan,CancellationToken)
+  name: SyncAsync(TimeSpan, CancellationToken)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_SyncAsync_TimeSpan_CancellationToken_
+  commentId: M:wan24.Core.SemaphoreSync.SyncAsync(TimeSpan,CancellationToken)
+  fullName: wan24.Core.SemaphoreSync.SyncAsync(TimeSpan, CancellationToken)
+  nameWithType: SemaphoreSync.SyncAsync(TimeSpan, CancellationToken)
+- uid: wan24.Core.SemaphoreSync.SyncAsync*
+  name: SyncAsync
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_SyncAsync_
+  commentId: Overload:wan24.Core.SemaphoreSync.SyncAsync
+  isSpec: "True"
+  fullName: wan24.Core.SemaphoreSync.SyncAsync
+  nameWithType: SemaphoreSync.SyncAsync
+- uid: wan24.Core.SemaphoreSync.SyncContext(CancellationToken)
+  name: SyncContext(CancellationToken)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_SyncContext_CancellationToken_
+  commentId: M:wan24.Core.SemaphoreSync.SyncContext(CancellationToken)
+  fullName: wan24.Core.SemaphoreSync.SyncContext(CancellationToken)
+  nameWithType: SemaphoreSync.SyncContext(CancellationToken)
+- uid: wan24.Core.SemaphoreSync.SyncContext(TimeSpan,CancellationToken)
+  name: SyncContext(TimeSpan, CancellationToken)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_SyncContext_TimeSpan_CancellationToken_
+  commentId: M:wan24.Core.SemaphoreSync.SyncContext(TimeSpan,CancellationToken)
+  fullName: wan24.Core.SemaphoreSync.SyncContext(TimeSpan, CancellationToken)
+  nameWithType: SemaphoreSync.SyncContext(TimeSpan, CancellationToken)
+- uid: wan24.Core.SemaphoreSync.SyncContext*
+  name: SyncContext
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_SyncContext_
+  commentId: Overload:wan24.Core.SemaphoreSync.SyncContext
+  isSpec: "True"
+  fullName: wan24.Core.SemaphoreSync.SyncContext
+  nameWithType: SemaphoreSync.SyncContext
+- uid: wan24.Core.SemaphoreSync.SyncContextAsync(CancellationToken)
+  name: SyncContextAsync(CancellationToken)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_SyncContextAsync_CancellationToken_
+  commentId: M:wan24.Core.SemaphoreSync.SyncContextAsync(CancellationToken)
+  fullName: wan24.Core.SemaphoreSync.SyncContextAsync(CancellationToken)
+  nameWithType: SemaphoreSync.SyncContextAsync(CancellationToken)
+- uid: wan24.Core.SemaphoreSync.SyncContextAsync(TimeSpan,CancellationToken)
+  name: SyncContextAsync(TimeSpan, CancellationToken)
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_SyncContextAsync_TimeSpan_CancellationToken_
+  commentId: M:wan24.Core.SemaphoreSync.SyncContextAsync(TimeSpan,CancellationToken)
+  fullName: wan24.Core.SemaphoreSync.SyncContextAsync(TimeSpan, CancellationToken)
+  nameWithType: SemaphoreSync.SyncContextAsync(TimeSpan, CancellationToken)
+- uid: wan24.Core.SemaphoreSync.SyncContextAsync*
+  name: SyncContextAsync
+  href: api/wan24.Core.SemaphoreSync.html#wan24_Core_SemaphoreSync_SyncContextAsync_
+  commentId: Overload:wan24.Core.SemaphoreSync.SyncContextAsync
+  isSpec: "True"
+  fullName: wan24.Core.SemaphoreSync.SyncContextAsync
+  nameWithType: SemaphoreSync.SyncContextAsync
 - uid: wan24.Core.ServiceWorkerTable
   name: ServiceWorkerTable
   href: api/wan24.Core.ServiceWorkerTable.html
@@ -31909,6 +32176,246 @@ references:
   isSpec: "True"
   fullName: wan24.Core.TimeSpanHelper.UpdateTimeout
   nameWithType: TimeSpanHelper.UpdateTimeout
+- uid: wan24.Core.Tracer
+  name: Tracer
+  href: api/wan24.Core.Tracer.html
+  commentId: T:wan24.Core.Tracer
+  fullName: wan24.Core.Tracer
+  nameWithType: Tracer
+- uid: wan24.Core.Tracer.
+  name: Tracer.
+  href: api/wan24.Core.Tracer..html
+  commentId: T:wan24.Core.Tracer.
+  fullName: wan24.Core.Tracer.
+  nameWithType: Tracer.
+- uid: wan24.Core.Tracer.#ctor(Microsoft.Extensions.Logging.LogLevel@,System.String@,System.Int32@,System.Boolean@,Microsoft.Extensions.Logging.ILogger)
+  name: Tracer(in LogLevel, in String, in Int32, in Boolean, ILogger)
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer__ctor_Microsoft_Extensions_Logging_LogLevel__System_String__System_Int32__System_Boolean__Microsoft_Extensions_Logging_ILogger_
+  commentId: M:wan24.Core.Tracer.#ctor(Microsoft.Extensions.Logging.LogLevel@,System.String@,System.Int32@,System.Boolean@,Microsoft.Extensions.Logging.ILogger)
+  name.vb: Tracer(ByRef LogLevel, ByRef String, ByRef Int32, ByRef Boolean, ILogger)
+  fullName: wan24.Core.Tracer.Tracer(in Microsoft.Extensions.Logging.LogLevel, in System.String, in System.Int32, in System.Boolean, Microsoft.Extensions.Logging.ILogger)
+  fullName.vb: wan24.Core.Tracer.Tracer(ByRef Microsoft.Extensions.Logging.LogLevel, ByRef System.String, ByRef System.Int32, ByRef System.Boolean, Microsoft.Extensions.Logging.ILogger)
+  nameWithType: Tracer.Tracer(in LogLevel, in String, in Int32, in Boolean, ILogger)
+  nameWithType.vb: Tracer.Tracer(ByRef LogLevel, ByRef String, ByRef Int32, ByRef Boolean, ILogger)
+- uid: wan24.Core.Tracer.#ctor*
+  name: Tracer
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer__ctor_
+  commentId: Overload:wan24.Core.Tracer.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.Tracer.Tracer
+  nameWithType: Tracer.Tracer
+- uid: wan24.Core.Tracer.Clear
+  name: Clear()
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_Clear
+  commentId: M:wan24.Core.Tracer.Clear
+  fullName: wan24.Core.Tracer.Clear()
+  nameWithType: Tracer.Clear()
+- uid: wan24.Core.Tracer.Clear*
+  name: Clear
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_Clear_
+  commentId: Overload:wan24.Core.Tracer.Clear
+  isSpec: "True"
+  fullName: wan24.Core.Tracer.Clear
+  nameWithType: Tracer.Clear
+- uid: wan24.Core.Tracer.Count
+  name: Count
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_Count
+  commentId: P:wan24.Core.Tracer.Count
+  fullName: wan24.Core.Tracer.Count
+  nameWithType: Tracer.Count
+- uid: wan24.Core.Tracer.Count*
+  name: Count
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_Count_
+  commentId: Overload:wan24.Core.Tracer.Count
+  isSpec: "True"
+  fullName: wan24.Core.Tracer.Count
+  nameWithType: Tracer.Count
+- uid: wan24.Core.Tracer.EntryCountLimit
+  name: EntryCountLimit
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_EntryCountLimit
+  commentId: P:wan24.Core.Tracer.EntryCountLimit
+  fullName: wan24.Core.Tracer.EntryCountLimit
+  nameWithType: Tracer.EntryCountLimit
+- uid: wan24.Core.Tracer.EntryCountLimit*
+  name: EntryCountLimit
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_EntryCountLimit_
+  commentId: Overload:wan24.Core.Tracer.EntryCountLimit
+  isSpec: "True"
+  fullName: wan24.Core.Tracer.EntryCountLimit
+  nameWithType: Tracer.EntryCountLimit
+- uid: wan24.Core.Tracer.Flush(Microsoft.Extensions.Logging.LogLevel@)
+  name: Flush(in LogLevel)
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_Flush_Microsoft_Extensions_Logging_LogLevel__
+  commentId: M:wan24.Core.Tracer.Flush(Microsoft.Extensions.Logging.LogLevel@)
+  name.vb: Flush(ByRef LogLevel)
+  fullName: wan24.Core.Tracer.Flush(in Microsoft.Extensions.Logging.LogLevel)
+  fullName.vb: wan24.Core.Tracer.Flush(ByRef Microsoft.Extensions.Logging.LogLevel)
+  nameWithType: Tracer.Flush(in LogLevel)
+  nameWithType.vb: Tracer.Flush(ByRef LogLevel)
+- uid: wan24.Core.Tracer.Flush*
+  name: Flush
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_Flush_
+  commentId: Overload:wan24.Core.Tracer.Flush
+  isSpec: "True"
+  fullName: wan24.Core.Tracer.Flush
+  nameWithType: Tracer.Flush
+- uid: wan24.Core.Tracer.Level
+  name: Level
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_Level
+  commentId: P:wan24.Core.Tracer.Level
+  fullName: wan24.Core.Tracer.Level
+  nameWithType: Tracer.Level
+- uid: wan24.Core.Tracer.Level*
+  name: Level
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_Level_
+  commentId: Overload:wan24.Core.Tracer.Level
+  isSpec: "True"
+  fullName: wan24.Core.Tracer.Level
+  nameWithType: Tracer.Level
+- uid: wan24.Core.Tracer.Logger
+  name: Logger
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_Logger
+  commentId: P:wan24.Core.Tracer.Logger
+  fullName: wan24.Core.Tracer.Logger
+  nameWithType: Tracer.Logger
+- uid: wan24.Core.Tracer.Logger*
+  name: Logger
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_Logger_
+  commentId: Overload:wan24.Core.Tracer.Logger
+  isSpec: "True"
+  fullName: wan24.Core.Tracer.Logger
+  nameWithType: Tracer.Logger
+- uid: wan24.Core.Tracer.Prefix
+  name: Prefix
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_Prefix
+  commentId: P:wan24.Core.Tracer.Prefix
+  fullName: wan24.Core.Tracer.Prefix
+  nameWithType: Tracer.Prefix
+- uid: wan24.Core.Tracer.Prefix*
+  name: Prefix
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_Prefix_
+  commentId: Overload:wan24.Core.Tracer.Prefix
+  isSpec: "True"
+  fullName: wan24.Core.Tracer.Prefix
+  nameWithType: Tracer.Prefix
+- uid: wan24.Core.Tracer.SkipLogger
+  name: SkipLogger
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_SkipLogger
+  commentId: P:wan24.Core.Tracer.SkipLogger
+  fullName: wan24.Core.Tracer.SkipLogger
+  nameWithType: Tracer.SkipLogger
+- uid: wan24.Core.Tracer.SkipLogger*
+  name: SkipLogger
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_SkipLogger_
+  commentId: Overload:wan24.Core.Tracer.SkipLogger
+  isSpec: "True"
+  fullName: wan24.Core.Tracer.SkipLogger
+  nameWithType: Tracer.SkipLogger
+- uid: wan24.Core.Tracer.WriteCritical(System.String@)
+  name: WriteCritical(in String)
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_WriteCritical_System_String__
+  commentId: M:wan24.Core.Tracer.WriteCritical(System.String@)
+  name.vb: WriteCritical(ByRef String)
+  fullName: wan24.Core.Tracer.WriteCritical(in System.String)
+  fullName.vb: wan24.Core.Tracer.WriteCritical(ByRef System.String)
+  nameWithType: Tracer.WriteCritical(in String)
+  nameWithType.vb: Tracer.WriteCritical(ByRef String)
+- uid: wan24.Core.Tracer.WriteCritical*
+  name: WriteCritical
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_WriteCritical_
+  commentId: Overload:wan24.Core.Tracer.WriteCritical
+  isSpec: "True"
+  fullName: wan24.Core.Tracer.WriteCritical
+  nameWithType: Tracer.WriteCritical
+- uid: wan24.Core.Tracer.WriteDebug(System.String@)
+  name: WriteDebug(in String)
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_WriteDebug_System_String__
+  commentId: M:wan24.Core.Tracer.WriteDebug(System.String@)
+  name.vb: WriteDebug(ByRef String)
+  fullName: wan24.Core.Tracer.WriteDebug(in System.String)
+  fullName.vb: wan24.Core.Tracer.WriteDebug(ByRef System.String)
+  nameWithType: Tracer.WriteDebug(in String)
+  nameWithType.vb: Tracer.WriteDebug(ByRef String)
+- uid: wan24.Core.Tracer.WriteDebug*
+  name: WriteDebug
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_WriteDebug_
+  commentId: Overload:wan24.Core.Tracer.WriteDebug
+  isSpec: "True"
+  fullName: wan24.Core.Tracer.WriteDebug
+  nameWithType: Tracer.WriteDebug
+- uid: wan24.Core.Tracer.WriteError(System.String@)
+  name: WriteError(in String)
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_WriteError_System_String__
+  commentId: M:wan24.Core.Tracer.WriteError(System.String@)
+  name.vb: WriteError(ByRef String)
+  fullName: wan24.Core.Tracer.WriteError(in System.String)
+  fullName.vb: wan24.Core.Tracer.WriteError(ByRef System.String)
+  nameWithType: Tracer.WriteError(in String)
+  nameWithType.vb: Tracer.WriteError(ByRef String)
+- uid: wan24.Core.Tracer.WriteError*
+  name: WriteError
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_WriteError_
+  commentId: Overload:wan24.Core.Tracer.WriteError
+  isSpec: "True"
+  fullName: wan24.Core.Tracer.WriteError
+  nameWithType: Tracer.WriteError
+- uid: wan24.Core.Tracer.WriteInfo(System.String@)
+  name: WriteInfo(in String)
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_WriteInfo_System_String__
+  commentId: M:wan24.Core.Tracer.WriteInfo(System.String@)
+  name.vb: WriteInfo(ByRef String)
+  fullName: wan24.Core.Tracer.WriteInfo(in System.String)
+  fullName.vb: wan24.Core.Tracer.WriteInfo(ByRef System.String)
+  nameWithType: Tracer.WriteInfo(in String)
+  nameWithType.vb: Tracer.WriteInfo(ByRef String)
+- uid: wan24.Core.Tracer.WriteInfo(System.String@,Microsoft.Extensions.Logging.LogLevel@)
+  name: WriteInfo(in String, in LogLevel)
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_WriteInfo_System_String__Microsoft_Extensions_Logging_LogLevel__
+  commentId: M:wan24.Core.Tracer.WriteInfo(System.String@,Microsoft.Extensions.Logging.LogLevel@)
+  name.vb: WriteInfo(ByRef String, ByRef LogLevel)
+  fullName: wan24.Core.Tracer.WriteInfo(in System.String, in Microsoft.Extensions.Logging.LogLevel)
+  fullName.vb: wan24.Core.Tracer.WriteInfo(ByRef System.String, ByRef Microsoft.Extensions.Logging.LogLevel)
+  nameWithType: Tracer.WriteInfo(in String, in LogLevel)
+  nameWithType.vb: Tracer.WriteInfo(ByRef String, ByRef LogLevel)
+- uid: wan24.Core.Tracer.WriteInfo*
+  name: WriteInfo
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_WriteInfo_
+  commentId: Overload:wan24.Core.Tracer.WriteInfo
+  isSpec: "True"
+  fullName: wan24.Core.Tracer.WriteInfo
+  nameWithType: Tracer.WriteInfo
+- uid: wan24.Core.Tracer.WriteTrace(System.String@)
+  name: WriteTrace(in String)
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_WriteTrace_System_String__
+  commentId: M:wan24.Core.Tracer.WriteTrace(System.String@)
+  name.vb: WriteTrace(ByRef String)
+  fullName: wan24.Core.Tracer.WriteTrace(in System.String)
+  fullName.vb: wan24.Core.Tracer.WriteTrace(ByRef System.String)
+  nameWithType: Tracer.WriteTrace(in String)
+  nameWithType.vb: Tracer.WriteTrace(ByRef String)
+- uid: wan24.Core.Tracer.WriteTrace*
+  name: WriteTrace
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_WriteTrace_
+  commentId: Overload:wan24.Core.Tracer.WriteTrace
+  isSpec: "True"
+  fullName: wan24.Core.Tracer.WriteTrace
+  nameWithType: Tracer.WriteTrace
+- uid: wan24.Core.Tracer.WriteWarning(System.String@)
+  name: WriteWarning(in String)
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_WriteWarning_System_String__
+  commentId: M:wan24.Core.Tracer.WriteWarning(System.String@)
+  name.vb: WriteWarning(ByRef String)
+  fullName: wan24.Core.Tracer.WriteWarning(in System.String)
+  fullName.vb: wan24.Core.Tracer.WriteWarning(ByRef System.String)
+  nameWithType: Tracer.WriteWarning(in String)
+  nameWithType.vb: Tracer.WriteWarning(ByRef String)
+- uid: wan24.Core.Tracer.WriteWarning*
+  name: WriteWarning
+  href: api/wan24.Core.Tracer.html#wan24_Core_Tracer_WriteWarning_
+  commentId: Overload:wan24.Core.Tracer.WriteWarning
+  isSpec: "True"
+  fullName: wan24.Core.Tracer.WriteWarning
+  nameWithType: Tracer.WriteWarning
 - uid: wan24.Core.TypeCache
   name: TypeCache
   href: api/wan24.Core.TypeCache.html

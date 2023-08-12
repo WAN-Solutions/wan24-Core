@@ -126,7 +126,7 @@
                 {
                     await Processing.WaitAsync(stoppingToken).DynamicContext();
                     Task_Delegate task = await Queue.Reader.ReadAsync(stoppingToken).DynamicContext();
-                    using (SemaphoreSyncContext ssc = await Sync.SyncAsync(stoppingToken).DynamicContext())
+                    using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(stoppingToken).DynamicContext())
                     {
                         ProcessCount++;
                         if (ProcessCount >= Threads) await Processing.ResetAsync().DynamicContext();
@@ -173,7 +173,7 @@
             }
             finally
             {
-                using SemaphoreSyncContext ssc = await Sync.SyncAsync().DynamicContext();
+                using SemaphoreSyncContext ssc = await Sync.SyncContextAsync().DynamicContext();
                 ProcessCount--;
                 if (ProcessCount == Threads - 1) await Processing.SetAsync().DynamicContext();
                 if (ProcessCount == 0) await Busy.SetAsync().DynamicContext();

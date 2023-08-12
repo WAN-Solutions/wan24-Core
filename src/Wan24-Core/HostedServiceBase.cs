@@ -47,7 +47,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public async Task StartAsync(CancellationToken cancellationToken = default)
         {
-            using SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext();
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             if (IsRunning) return;
             IsRunning = true;
             Cancellation = new();
@@ -58,7 +58,7 @@ namespace wan24.Core
         public async Task StopAsync(CancellationToken cancellationToken = default)
         {
             Task stopTask;
-            using (SemaphoreSyncContext ssc = await Sync.SyncAsync(cancellationToken).DynamicContext())
+            using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext())
             {
                 if (!IsRunning) return;
                 if (StopTask == null)
@@ -100,13 +100,13 @@ namespace wan24.Core
             }
             finally
             {
-                using (SemaphoreSyncContext ssc = await Sync.SyncAsync().DynamicContext())
+                using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync().DynamicContext())
                     StopTask ??= new(TaskCreationOptions.RunContinuationsAsynchronously);
                 Cancellation!.Dispose();
                 Cancellation = null;
                 ServiceTask = null;
                 IsRunning = false;
-                using SemaphoreSyncContext ssc2 = await Sync.SyncAsync().DynamicContext();
+                using SemaphoreSyncContext ssc2 = await Sync.SyncContextAsync().DynamicContext();
                 StopTask.SetResult();
                 StopTask = null;
             }

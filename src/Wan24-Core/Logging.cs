@@ -20,7 +20,7 @@ namespace wan24.Core
         /// <param name="str">Message</param>
         /// <param name="level">Level</param>
 #pragma warning disable CA2254 // Logger call shouldn't be different from the template
-        public static void WriteLog(this string str, LogLevel level = LogLevel.Information)
+        public static void WriteLog(this string str, in LogLevel level = LogLevel.Information)
         {
             if (Logger == null)
             {

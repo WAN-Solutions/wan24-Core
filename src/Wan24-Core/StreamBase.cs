@@ -37,7 +37,7 @@ namespace wan24.Core
         public override void Close()
         {
             if (IsClosed) return;
-            using (SemaphoreSyncContext ssc = DisposeSyncObject.Sync())
+            using (SemaphoreSyncContext ssc = DisposeSyncObject.SyncContext())
             {
                 if (IsClosed) return;
                 IsClosed = true;
@@ -81,7 +81,7 @@ namespace wan24.Core
             if (IsDisposing) return false;
             try
             {
-                DisposeSyncObject.Semaphore.Wait();
+                DisposeSyncObject.Sync();
             }
             catch (ObjectDisposedException)
             {
@@ -94,7 +94,7 @@ namespace wan24.Core
             }
             finally
             {
-                DisposeSyncObject.Semaphore.Release();
+                DisposeSyncObject.Release();
             }
             OnDisposing?.Invoke(this, new());
             return true;
@@ -109,7 +109,7 @@ namespace wan24.Core
             if (IsDisposing) return false;
             try
             {
-                await DisposeSyncObject.Semaphore.WaitAsync().DynamicContext();
+                await DisposeSyncObject.SyncAsync().DynamicContext();
             }
             catch (ObjectDisposedException)
             {
@@ -122,7 +122,7 @@ namespace wan24.Core
             }
             finally
             {
-                DisposeSyncObject.Semaphore.Release();
+                DisposeSyncObject.Release();
             }
             OnDisposing?.Invoke(this, new());
             return true;

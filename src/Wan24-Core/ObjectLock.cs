@@ -55,7 +55,7 @@
         public async Task RunTaskAsync(Task task)
         {
             EnsureUndisposed();
-            using (SemaphoreSyncContext ssc = await Sync.SyncAsync().DynamicContext())
+            using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync().DynamicContext())
             {
                 if (HasTask) throw new InvalidOperationException("Has a task already");
                 HasTask = true;
@@ -82,7 +82,7 @@
         /// <param name="ex">Exception</param>
         private void SetCompleted(Exception? ex = null)
         {
-            using SemaphoreSyncContext ssc = Sync.Sync();
+            using SemaphoreSyncContext ssc = Sync.SyncContext();
             if (!IsConstructed || TaskCompletion.Task.IsCompleted) return;
             if (ex == null)
             {
@@ -100,7 +100,7 @@
         /// <param name="ex">Exception</param>
         private async Task SetCompletedAsync(Exception? ex = null)
         {
-            using SemaphoreSyncContext ssc = await Sync.SyncAsync().DynamicContext();
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync().DynamicContext();
             if (!IsConstructed || TaskCompletion.Task.IsCompleted) return;
             if (ex == null)
             {
