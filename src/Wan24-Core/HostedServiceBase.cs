@@ -37,7 +37,7 @@ namespace wan24.Core
         /// <summary>
         /// Is stopping?
         /// </summary>
-        public bool IsStopping => StopTask != null;
+        public bool IsStopping => StopTask is not null;
 
         /// <summary>
         /// Last exception
@@ -61,7 +61,7 @@ namespace wan24.Core
             using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext())
             {
                 if (!IsRunning) return;
-                if (StopTask == null)
+                if (StopTask is null)
                 {
                     StopTask = new(TaskCreationOptions.RunContinuationsAsynchronously);
                     Cancellation!.Cancel();

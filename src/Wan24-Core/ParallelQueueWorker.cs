@@ -51,7 +51,7 @@
         public bool WaitBoring(TimeSpan timeout)
         {
             DateTime started = DateTime.Now;
-            while (ExecuteTask != null && (Queued != 0 || !Busy.IsSet))
+            while (ExecuteTask is not null && (Queued != 0 || !Busy.IsSet))
                 try
                 {
                     Busy.Wait(timeout);
@@ -68,7 +68,7 @@
         public async Task<bool> WaitBoringAsync(TimeSpan timeout)
         {
             DateTime started = DateTime.Now;
-            while (ExecuteTask != null && (Queued != 0 || !Busy.IsSet))
+            while (ExecuteTask is not null && (Queued != 0 || !Busy.IsSet))
                 try
                 {
                     await Busy.WaitAsync(timeout).DynamicContext();
@@ -84,7 +84,7 @@
         /// <inheritdoc/>
         public bool WaitBoring(CancellationToken cancellationToken = default)
         {
-            while (ExecuteTask != null && (Queued != 0 || !Busy.IsSet))
+            while (ExecuteTask is not null && (Queued != 0 || !Busy.IsSet))
                 try
                 {
                     Busy.Wait(cancellationToken);
@@ -99,7 +99,7 @@
         /// <inheritdoc/>
         public async Task<bool> WaitBoringAsync(CancellationToken cancellationToken = default)
         {
-            while (ExecuteTask != null && (Queued != 0 || !Busy.IsSet))
+            while (ExecuteTask is not null && (Queued != 0 || !Busy.IsSet))
                 try
                 {
                     await Busy.WaitAsync(cancellationToken).DynamicContext();
@@ -173,7 +173,7 @@
             }
             finally
             {
-                using SemaphoreSyncContext ssc = await Sync.SyncContextAsync().DynamicContext();
+                using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(CancellationToken.None).DynamicContext();
                 ProcessCount--;
                 if (ProcessCount == Threads - 1) await Processing.SetAsync().DynamicContext();
                 if (ProcessCount == 0) await Busy.SetAsync().DynamicContext();

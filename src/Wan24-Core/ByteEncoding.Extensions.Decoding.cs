@@ -17,8 +17,8 @@ namespace wan24.Core
         {
             long encodedLen = GetEncodedLength(1);
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
-            bool returnBuffer = buffer == null;
-            if (buffer == null)
+            bool returnBuffer = buffer is null;
+            if (buffer is null)
             {
                 pool ??= ArrayPool<byte>.Shared;
                 buffer = pool.Rent(1);
@@ -45,8 +45,8 @@ namespace wan24.Core
         {
             long encodedLen = GetEncodedLength(1);
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
-            bool returnBuffer = buffer == null;
-            if (buffer == null)
+            bool returnBuffer = buffer is null;
+            if (buffer is null)
             {
                 pool ??= ArrayPool<byte>.Shared;
                 buffer = pool.Rent(1);
@@ -73,8 +73,8 @@ namespace wan24.Core
         {
             long encodedLen = GetEncodedLength(sizeof(ushort));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
-            bool returnBuffer = buffer == null;
-            if (buffer == null)
+            bool returnBuffer = buffer is null;
+            if (buffer is null)
             {
                 pool ??= ArrayPool<byte>.Shared;
                 buffer = pool.Rent(sizeof(ushort));
@@ -101,8 +101,8 @@ namespace wan24.Core
         {
             long encodedLen = GetEncodedLength(sizeof(short));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
-            bool returnBuffer = buffer == null;
-            if (buffer == null)
+            bool returnBuffer = buffer is null;
+            if (buffer is null)
             {
                 pool ??= ArrayPool<byte>.Shared;
                 buffer = pool.Rent(sizeof(short));
@@ -129,8 +129,8 @@ namespace wan24.Core
         {
             long encodedLen = GetEncodedLength(sizeof(uint));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
-            bool returnBuffer = buffer == null;
-            if (buffer == null)
+            bool returnBuffer = buffer is null;
+            if (buffer is null)
             {
                 pool ??= ArrayPool<byte>.Shared;
                 buffer = pool.Rent(sizeof(uint));
@@ -157,8 +157,8 @@ namespace wan24.Core
         {
             long encodedLen = GetEncodedLength(sizeof(int));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
-            bool returnBuffer = buffer == null;
-            if (buffer == null)
+            bool returnBuffer = buffer is null;
+            if (buffer is null)
             {
                 pool ??= ArrayPool<byte>.Shared;
                 buffer = pool.Rent(sizeof(int));
@@ -185,8 +185,8 @@ namespace wan24.Core
         {
             long encodedLen = GetEncodedLength(sizeof(ulong));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
-            bool returnBuffer = buffer == null;
-            if (buffer == null)
+            bool returnBuffer = buffer is null;
+            if (buffer is null)
             {
                 pool ??= ArrayPool<byte>.Shared;
                 buffer = pool.Rent(sizeof(ulong));
@@ -213,8 +213,8 @@ namespace wan24.Core
         {
             long encodedLen = GetEncodedLength(sizeof(long));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
-            bool returnBuffer = buffer == null;
-            if (buffer == null)
+            bool returnBuffer = buffer is null;
+            if (buffer is null)
             {
                 pool ??= ArrayPool<byte>.Shared;
                 buffer = pool.Rent(sizeof(long));
@@ -241,8 +241,8 @@ namespace wan24.Core
         {
             long encodedLen = GetEncodedLength(sizeof(float));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
-            bool returnBuffer = buffer == null;
-            if (buffer == null)
+            bool returnBuffer = buffer is null;
+            if (buffer is null)
             {
                 pool ??= ArrayPool<byte>.Shared;
                 buffer = pool.Rent(sizeof(float));
@@ -269,8 +269,8 @@ namespace wan24.Core
         {
             long encodedLen = GetEncodedLength(sizeof(double));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
-            bool returnBuffer = buffer == null;
-            if (buffer == null)
+            bool returnBuffer = buffer is null;
+            if (buffer is null)
             {
                 pool ??= ArrayPool<byte>.Shared;
                 buffer = pool.Rent(sizeof(double));
@@ -297,8 +297,8 @@ namespace wan24.Core
         {
             long encodedLen = GetEncodedLength(sizeof(decimal));
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
-            bool returnBuffer = buffer == null;
-            if (buffer == null)
+            bool returnBuffer = buffer is null;
+            if (buffer is null)
             {
                 pool ??= ArrayPool<byte>.Shared;
                 buffer = pool.Rent(sizeof(decimal));

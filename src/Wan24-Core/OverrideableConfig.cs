@@ -50,7 +50,7 @@ namespace wan24.Core
         /// <summary>
         /// Master configuration
         /// </summary>
-        public tFinal MasterConfig => ParentConfig == null ? (tFinal)this : ParentConfig.MasterConfig;
+        public tFinal MasterConfig => ParentConfig is null ? (tFinal)this : ParentConfig.MasterConfig;
 
         /// <summary>
         /// Parent configuration
@@ -58,7 +58,7 @@ namespace wan24.Core
         public tFinal? ParentConfig { get; protected set; }
 
         /// <inheritdoc/>
-        public int ConfigLevel => ParentConfig == null ? 1 : ParentConfig.ConfigLevel + 1;
+        public int ConfigLevel => ParentConfig is null ? 1 : ParentConfig.ConfigLevel + 1;
 
         /// <summary>
         /// Overriding sub-configuration
@@ -93,7 +93,7 @@ namespace wan24.Core
         {
             get
             {
-                bool isMaster = ParentConfig == null;
+                bool isMaster = ParentConfig is null;
                 return new(from info in GetOptionProperties()
                            where isMaster || GetOption(info.Getter).IsSet
                            select new KeyValuePair<string, object?>(info.Property.Name, GetPropertyValue(info.Getter)));
@@ -108,7 +108,7 @@ namespace wan24.Core
         {
             get
             {
-                if (ParentConfig == null) return LocalConfig;
+                if (ParentConfig is null) return LocalConfig;
                 return new(from info in GetOptionProperties()
                            where GetOption(info.Getter).CanOverride && GetOption(info.Getter).IsSet
                            select new KeyValuePair<string, object?>(info.Property.Name, GetPropertyValue(info.Getter)));
@@ -120,7 +120,7 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         public Dictionary<string, object?> FinalConfig
-            => ParentConfig == null
+            => ParentConfig is null
                 ? new(from info in GetOptionProperties()
                       select new KeyValuePair<string, object?>(info.Property.Name, GetPropertyValue(info.Getter, final: true)))
                 : ParentConfig.FinalConfig;
@@ -156,7 +156,7 @@ namespace wan24.Core
             get
             {
                 Dictionary<string, dynamic?> res = DynamicSetValues;
-                if (SubConfig != null) res[SubKey] = SubConfig.ConfigTree;
+                if (SubConfig is not null) res[SubKey] = SubConfig.ConfigTree;
                 return res;
             }
             set
@@ -167,7 +167,7 @@ namespace wan24.Core
                     if (!OptionProperties!.ContainsKey(kvp.Key)) continue;
                     GetOption(kvp.Value)!.SetDynamicValue(kvp.Value);
                 }
-                if (SubConfig != null && value.ContainsKey(SubKey) && value[SubKey] != null)
+                if (SubConfig is not null && value.ContainsKey(SubKey) && value[SubKey] != null)
                     SubConfig!.ConfigTree = value[SubKey]!;
             }
         }
@@ -203,7 +203,7 @@ namespace wan24.Core
             foreach (KeyValuePair<string, object?> kvp in config)
             {
                 option = GetOption(kvp.Key);
-                if (option != null) option.Value = kvp.Value;
+                if (option is not null) option.Value = kvp.Value;
             }
             return (tFinal)this;
         }
@@ -221,14 +221,14 @@ namespace wan24.Core
                 foreach (IConfigOption option in AllOptions)
                     GetOption(option.PropertyName)!.CanBeOverridden = option.CanBeOverridden;
             foreach (IConfigOption option in SetValues.Cast<IConfigOption>()) GetOption(option.PropertyName)!.Value = option.Value;
-            if (recursive && SubConfig != null && config.SubConfig != null) SubConfig.MergeTo(config.SubConfig, recursive);
+            if (recursive && SubConfig is not null && config.SubConfig is not null) SubConfig.MergeTo(config.SubConfig, recursive);
             return (tFinal)this;
         }
 
         /// <inheritdoc/>
         public IConfigOption? GetOption(string propertyName)
         {
-            if (OptionProperties == null) GetOptionProperties();
+            if (OptionProperties is null) GetOptionProperties();
             return OptionProperties!.TryGetValue(propertyName, out var info)
                 ? info.Getter(this)
                 : null;

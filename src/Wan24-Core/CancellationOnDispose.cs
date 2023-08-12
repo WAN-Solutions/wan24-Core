@@ -51,7 +51,7 @@ namespace wan24.Core
                     else
                     {
                         obj.OnDisposing += HandleDispose;
-                        if (cancellationToken != null) CancellationRegistration = cancellationToken.Value.Register(Dispose);
+                        if (cancellationToken is not null) CancellationRegistration = cancellationToken.Value.Register(Dispose);
                         WasInitialized = true;
                         if (obj.IsDisposing || (cancellationToken?.IsCancellationRequested ?? false)) Dispose();
                     }

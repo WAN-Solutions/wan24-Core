@@ -168,9 +168,9 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static int IndexOf<T>(this ReadOnlySpan<T> arr, T value)
         {
-            if (value == null)
+            if (value is null)
             {
-                for (int i = 0, len = arr.Length; i < len; i++) if (arr[i] == null) return i;
+                for (int i = 0, len = arr.Length; i < len; i++) if (arr[i] is null) return i;
             }
             else
             {

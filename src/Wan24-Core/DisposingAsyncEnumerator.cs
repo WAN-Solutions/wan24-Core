@@ -123,7 +123,7 @@
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            if (Enumerator != null) await Enumerator.DisposeAsync().DynamicContext();
+            if (Enumerator is not null) await Enumerator.DisposeAsync().DynamicContext();
             foreach (object? obj in Disposables)
                 if (obj is not null)
                     if (obj is IAsyncDisposable asyncDisposable)

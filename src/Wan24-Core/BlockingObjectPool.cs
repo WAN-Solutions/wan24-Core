@@ -106,17 +106,17 @@ namespace wan24.Core
         public virtual T Rent()
         {
             EnsureUndisposed();
-            if (AsyncFactory != null) throw new InvalidOperationException("No synchronous object factory");
+            if (AsyncFactory is not null) throw new InvalidOperationException("No synchronous object factory");
             T? res;
             bool synced = false;
-            if (Factory != null)
+            if (Factory is not null)
             {
                 Sync.Sync();
                 synced = true;
             }
             try
             {
-                if (Factory == null || _Initialized >= Capacity)
+                if (Factory is null || _Initialized >= Capacity)
                 {
                     res = Pool.Take();
                     if (ResetOnRent && res is IObjectPoolItem item) item.Reset();
@@ -147,16 +147,16 @@ namespace wan24.Core
         {
             item = default;
             EnsureUndisposed();
-            if (AsyncFactory != null) throw new InvalidOperationException("No synchronous object factory");
+            if (AsyncFactory is not null) throw new InvalidOperationException("No synchronous object factory");
             bool synced = false;
-            if (Factory != null)
+            if (Factory is not null)
             {
                 Sync.Sync();
                 synced = true;
             }
             try
             {
-                if (Factory == null || _Initialized >= Capacity)
+                if (Factory is null || _Initialized >= Capacity)
                 {
                     if (!Pool.TryTake(out item)) return false;
                     if (ResetOnRent && item is IObjectPoolItem poolItem) poolItem.Reset();
@@ -184,14 +184,14 @@ namespace wan24.Core
             EnsureUndisposed();
             T? res;
             bool synced = false;
-            if (AsyncFactory != null || Factory != null)
+            if (AsyncFactory is not null || Factory is not null)
             {
                 await Sync.SyncAsync().DynamicContext(); ;
                 synced = true;
             }
             try
             {
-                if ((AsyncFactory == null && Factory == null) || _Initialized >= Capacity)
+                if ((AsyncFactory is null && Factory is null) || _Initialized >= Capacity)
                 {
                     res = Pool.Take();
                     if (ResetOnRent && res is IObjectPoolItem item) item.Reset();
@@ -202,7 +202,7 @@ namespace wan24.Core
                 }
                 else
                 {
-                    res = AsyncFactory == null ? Factory!() : await AsyncFactory().DynamicContext();
+                    res = AsyncFactory is null ? Factory!() : await AsyncFactory().DynamicContext();
                     if (++_Initialized >= Capacity)
                     {
                         Factory = null;
@@ -226,14 +226,14 @@ namespace wan24.Core
             EnsureUndisposed();
             T? res;
             bool synced = false;
-            if (AsyncFactory != null || Factory != null)
+            if (AsyncFactory is not null || Factory is not null)
             {
                 await Sync.SyncAsync().DynamicContext(); ;
                 synced = true;
             }
             try
             {
-                if ((AsyncFactory == null && Factory == null) || _Initialized >= Capacity)
+                if ((AsyncFactory is null && Factory is null) || _Initialized >= Capacity)
                 {
                     if (!Pool.TryTake(out res)) return (Succeed: false, Item: default);
                     if (ResetOnRent && res is IObjectPoolItem item) item.Reset();
@@ -244,7 +244,7 @@ namespace wan24.Core
                 }
                 else
                 {
-                    res = AsyncFactory == null ? Factory!() : await AsyncFactory().DynamicContext();
+                    res = AsyncFactory is null ? Factory!() : await AsyncFactory().DynamicContext();
                     if (++_Initialized >= Capacity)
                     {
                         Factory = null;
@@ -275,7 +275,7 @@ namespace wan24.Core
             using SemaphoreSyncContext ssc = Sync.SyncContext();
             if (Pool.Count >= Capacity) throw new OverflowException();
             Pool.Add(item);
-            if ((Factory != null || AsyncFactory != null) && _Initialized < Capacity && Pool.Count > _Initialized)
+            if ((Factory is not null || AsyncFactory is not null) && _Initialized < Capacity && Pool.Count > _Initialized)
             {
                 _Initialized = Pool.Count;
                 if (_Initialized >= Capacity)
@@ -309,7 +309,7 @@ namespace wan24.Core
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync().DynamicContext();
             if (Pool.Count >= Capacity) throw new OverflowException();
             Pool.Add(item);
-            if ((AsyncFactory != null || Factory != null) && _Initialized < Capacity && Pool.Count > _Initialized)
+            if ((AsyncFactory is not null || Factory is not null) && _Initialized < Capacity && Pool.Count > _Initialized)
             {
                 _Initialized = Pool.Count;
                 if (_Initialized >= Capacity)

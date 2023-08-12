@@ -55,7 +55,7 @@ namespace wan24.Core
         {
             TimerTable.Timers[GUID] = this;
             ServiceWorkerTable.ServiceWorkers[GUID] = this;
-            if (nextRun != null && nextRun <= DateTime.Now) throw new ArgumentException("Next run is in the past", nameof(nextRun));
+            if (nextRun is not null && nextRun <= DateTime.Now) throw new ArgumentException("Next run is in the past", nameof(nextRun));
             Timer.Elapsed += (s, e) => RunEvent.Set();
             Interval = interval;
             TimerType = timer;
@@ -105,7 +105,7 @@ namespace wan24.Core
         /// <summary>
         /// Is stopping?
         /// </summary>
-        public bool IsStopping => StopTask != null;
+        public bool IsStopping => StopTask is not null;
 
         /// <summary>
         /// Last exception
@@ -159,7 +159,7 @@ namespace wan24.Core
             if (interval <= 0) throw new ArgumentOutOfRangeException(nameof(interval));
             timer ??= TimerType;
             // Handle fixed next run time
-            if (nextRun != null)
+            if (nextRun is not null)
             {
                 using SemaphoreSyncContext sscControl = await SyncControl.SyncContextAsync(cancellationToken).DynamicContext();
                 try
@@ -276,7 +276,7 @@ namespace wan24.Core
             using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext())
             {
                 if (!IsRunning) return;
-                if (StopTask == null)
+                if (StopTask is null)
                 {
                     stopTask = (StopTask = new(TaskCreationOptions.RunContinuationsAsynchronously)).Task;
                     Cancellation?.Cancel();
@@ -289,7 +289,7 @@ namespace wan24.Core
                     stopTask = StopTask?.Task;
                 }
             }
-            if (stopTask != null) await stopTask.DynamicContext();
+            if (stopTask is not null) await stopTask.DynamicContext();
         }
 
         /// <summary>
@@ -329,7 +329,7 @@ namespace wan24.Core
                     {
                         LastDuration = DateTime.Now - LastRun;
                         ServiceTask = null;
-                        if (StopTask != null || hadException || RunOnce || Cancellation.IsCancellationRequested)
+                        if (StopTask is not null || hadException || RunOnce || Cancellation.IsCancellationRequested)
                         {
                             Cancellation.Cancel();
                         }
@@ -370,7 +370,7 @@ namespace wan24.Core
                     Cancellation.Dispose();
                     Cancellation = null;
                     IsRunning = false;
-                    if (StopTask != null)
+                    if (StopTask is not null)
                     {
                         StopTask.SetResult();
                         StopTask = null;
@@ -490,7 +490,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected async Task RaiseOnRan()
         {
-            if (OnRan == null) return;
+            if (OnRan is null) return;
             await Task.Yield();
             OnRan?.Invoke(this, new());
         }

@@ -230,7 +230,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public bool Contains(object key) => key != null && typeof(tKey).IsAssignableFrom(key.GetType()) && ContainsKey((tKey)key);
+        public bool Contains(object key) => key is not null && typeof(tKey).IsAssignableFrom(key.GetType()) && ContainsKey((tKey)key);
 
         /// <inheritdoc/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -352,7 +352,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public void OnDeserialization(object? sender)
         {
-            if (Info == null) throw new SerializationException("No serialization info");
+            if (Info is null) throw new SerializationException("No serialization info");
             Items.Capacity = (int)(Info.GetValue(nameof(Items.Capacity), typeof(int)) ?? throw new SerializationException($"Failed to deserialize {nameof(Items.Capacity)} ({typeof(int)})"));
             tKey[] keys = (tKey[])(Info.GetValue(nameof(Keys), typeof(tKey[])) ?? throw new SerializationException($"Failed to deserialize {nameof(Keys)} ({typeof(tKey[])})"));
             tValue[] values = (tValue[])(Info.GetValue(nameof(Values), typeof(tValue[])) ?? throw new SerializationException($"Failed to deserialize {nameof(Values)} ({typeof(tValue[])})"));
@@ -380,7 +380,7 @@ namespace wan24.Core
         /// <param name="b">B</param>
         /// <returns>Are equal?</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected bool IsEqual(object? a, object? b) => (a == null && b == null) || (a != null && a.Equals(b)) || (b != null && b.Equals(a));
+        protected bool IsEqual(object? a, object? b) => (a is null && b is null) || (a is not null && a.Equals(b)) || (b is not null && b.Equals(a));
 
         /// <summary>
         /// Ensure a valid key
@@ -390,7 +390,7 @@ namespace wan24.Core
         /// <exception cref="ArgumentException">If the key is invalid</exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected object EnsureValidKey(object key)
-            => key == null || !typeof(tKey).IsAssignableFrom(key.GetType()) ? throw new ArgumentException("Invalid key", nameof(key)) : key;
+            => key is null || !typeof(tKey).IsAssignableFrom(key.GetType()) ? throw new ArgumentException("Invalid key", nameof(key)) : key;
 
         /// <summary>
         /// Ensure a valid value
@@ -400,7 +400,7 @@ namespace wan24.Core
         /// <exception cref="ArgumentException">If the value is invalid</exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected object? EnsureValidValue(object? value)
-            => value != null && !typeof(tValue).IsAssignableFrom(value.GetType()) ? throw new ArgumentException("Invalid value", nameof(value)) : value;
+            => value is not null && !typeof(tValue).IsAssignableFrom(value.GetType()) ? throw new ArgumentException("Invalid value", nameof(value)) : value;
 
         /// <summary>
         /// Ensure a valid index

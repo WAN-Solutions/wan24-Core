@@ -165,7 +165,7 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static object? GetValueFast(this PropertyInfoExt pi, object? obj)
         {
-            if (pi.Getter == null) throw new InvalidOperationException("The property has no getter");
+            if (pi.Getter is null) throw new InvalidOperationException("The property has no getter");
             return pi.Getter(obj);
         }
 
@@ -195,8 +195,8 @@ namespace wan24.Core
                 prop = info[i];
                 break;
             }
-            if (prop == null) throw new InvalidProgramException();
-            if (prop.Getter == null) throw new InvalidOperationException("The property has no getter");
+            if (prop is null) throw new InvalidProgramException();
+            if (prop.Getter is null) throw new InvalidOperationException("The property has no getter");
             return prop.Getter(obj);
         }
 
@@ -208,7 +208,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         public static void SetValueFast(this PropertyInfoExt pi, object? obj, object? value)
         {
-            if (pi.Setter == null) throw new InvalidOperationException("The property has no setter");
+            if (pi.Setter is null) throw new InvalidOperationException("The property has no setter");
             pi.Setter(obj, value);
         }
 
@@ -238,8 +238,8 @@ namespace wan24.Core
                 prop = info[i];
                 break;
             }
-            if (prop == null) throw new InvalidProgramException();
-            if (prop.Setter == null) throw new InvalidOperationException("The property has no setter");
+            if (prop is null) throw new InvalidProgramException();
+            if (prop.Setter is null) throw new InvalidOperationException("The property has no setter");
             prop.Setter(obj, value);
         }
     }

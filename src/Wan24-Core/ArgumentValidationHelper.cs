@@ -173,7 +173,7 @@ namespace wan24.Core
         public static string EnsureValidArgument(string arg, string? value, string? error = null)
         {
             if (!string.IsNullOrWhiteSpace(value)) return value;
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(arg, error ?? "Non-null or whitespace value required");
             }
@@ -196,7 +196,7 @@ namespace wan24.Core
         public static string EnsureValidArgument(string arg, string? value, Func<string> error)
         {
             if (!string.IsNullOrWhiteSpace(value)) return value;
-            if (value == null)
+            if (value is null)
             {
                 throw new ArgumentNullException(arg, error());
             }
@@ -218,7 +218,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static T EnsureValidArgument<T>(string arg, T? value, string? error = null)
         {
-            if (value == null) throw new ArgumentNullException(arg, error);
+            if (value is null) throw new ArgumentNullException(arg, error);
             return value;
         }
 
@@ -234,7 +234,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static T EnsureValidArgument<T>(string arg, T? value, Func<string> error)
         {
-            if (value == null) throw new ArgumentNullException(arg, error());
+            if (value is null) throw new ArgumentNullException(arg, error());
             return value;
         }
 
@@ -254,7 +254,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static string EnsureValidArgument(string arg, int max, string? value, int min = 0, bool allowWhiteSpace = true, string? error = null)
         {
-            if (value == null) throw new ArgumentNullException(arg, error);
+            if (value is null) throw new ArgumentNullException(arg, error);
             if (!allowWhiteSpace && string.IsNullOrWhiteSpace(value)) throw new ArgumentException(error ?? "Non-whitespace value required", arg);
             if (value.Length < min || value.Length > max) throw new ArgumentOutOfRangeException(arg, error ?? $"Value length isn't in the allowed range of {min}-{max}");
             return value;
@@ -276,7 +276,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static string EnsureValidArgument(string arg, int max, string? value, Func<string> error, int min = 0, bool allowWhiteSpace = true)
         {
-            if (value == null) throw new ArgumentNullException(arg, error());
+            if (value is null) throw new ArgumentNullException(arg, error());
             if (!allowWhiteSpace && string.IsNullOrWhiteSpace(value)) throw new ArgumentException(error(), arg);
             if (value.Length < min || value.Length > max) throw new ArgumentOutOfRangeException(arg, error());
             return value;
@@ -297,7 +297,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static T[] EnsureValidArgument<T>(string arg, int min, int max, T[]? value, string? error = null)
         {
-            if (value == null) throw new ArgumentNullException(arg, error);
+            if (value is null) throw new ArgumentNullException(arg, error);
             if (value.Length < min || value.Length > max) throw new ArgumentOutOfRangeException(arg, error ?? $"Value length isn't in the allowed range of {min}-{max}");
             return value;
         }
@@ -317,7 +317,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static T[] EnsureValidArgument<T>(string arg, int min, int max, T[]? value, Func<string> error)
         {
-            if (value == null) throw new ArgumentNullException(arg, error());
+            if (value is null) throw new ArgumentNullException(arg, error());
             if (value.Length < min || value.Length > max) throw new ArgumentOutOfRangeException(arg, error());
             return value;
         }

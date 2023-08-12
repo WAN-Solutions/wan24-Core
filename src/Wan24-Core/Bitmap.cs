@@ -35,7 +35,7 @@
         public Bitmap(byte[] bitmap, int increaseSize = ushort.MaxValue, int? bitCount = null)
         {
             if (increaseSize < 1) throw new ArgumentOutOfRangeException(nameof(increaseSize));
-            if (bitCount != null && GetByteCount(bitCount.Value) > bitmap.LongLength) throw new ArgumentOutOfRangeException(nameof(bitCount));
+            if (bitCount is not null && GetByteCount(bitCount.Value) > bitmap.LongLength) throw new ArgumentOutOfRangeException(nameof(bitCount));
             _Map = bitmap;
             IncreaseSize = increaseSize;
             BitCount = bitCount ?? bitmap.LongLength << 3;

@@ -64,12 +64,12 @@ namespace wan24.Core
             };
             try
             {
-                if (startAssembly != null) TypeHelper.Instance.ScanAssemblies(startAssembly);
+                if (startAssembly is not null) TypeHelper.Instance.ScanAssemblies(startAssembly);
                 // Fixed type and method
                 IEnumerable<MethodInfo> methods = from ass in TypeHelper.Instance.Assemblies
                                                   where ass.GetCustomAttributeCached<BootstrapperAttribute>() is BootstrapperAttribute attr &&
-                                                     attr.Type != null &&
-                                                     attr.Method != null
+                                                     attr.Type is not null &&
+                                                     attr.Method is not null
                                                   select ass.GetCustomAttributeCached<BootstrapperAttribute>()!.Type!.GetMethodCached(
                                                       ass.GetCustomAttributeCached<BootstrapperAttribute>()!.Method!,
                                                       BindingFlags.Static | BindingFlags.Public
@@ -79,26 +79,26 @@ namespace wan24.Core
                 if (FindClasses)
                     methods = methods.Concat(from ass in TypeHelper.Instance.Assemblies
                                              where ass.GetCustomAttributeCached<BootstrapperAttribute>() is BootstrapperAttribute attr &&
-                                                attr.Type != null &&
-                                                attr.Method == null &&
+                                                attr.Type is not null &&
+                                                attr.Method is null &&
                                                 attr.ScanClasses
                                              from mi in ass.GetCustomAttributeCached<BootstrapperAttribute>()!.Type!.GetMethodsCached(BindingFlags.Public | BindingFlags.Static)
-                                             where !mi.IsGenericMethod && mi.GetCustomAttributeCached<BootstrapperAttribute>() != null
+                                             where !mi.IsGenericMethod && mi.GetCustomAttributeCached<BootstrapperAttribute>() is not null
                                              select mi);
                 // Find types and methods
                 if (FindMethods)
                     methods = methods.Concat(from ass in TypeHelper.Instance.Assemblies
                                              where ass.GetCustomAttributeCached<BootstrapperAttribute>() is BootstrapperAttribute attr &&
-                                               attr.Type == null &&
-                                               attr.Method == null &&
+                                               attr.Type is null &&
+                                               attr.Method is null &&
                                                attr.ScanMethods
                                              from type in ass.GetTypes()
                                              where type.IsPublic &&
                                               !type.IsGenericTypeDefinition &&
-                                              type.GetCustomAttributeCached<BootstrapperAttribute>() != null
+                                              type.GetCustomAttributeCached<BootstrapperAttribute>() is not null
                                              from mi in type.GetMethodsCached(BindingFlags.Public | BindingFlags.Static)
                                              where !mi.IsGenericMethod &&
-                                              mi.GetCustomAttributeCached<BootstrapperAttribute>() != null
+                                              mi.GetCustomAttributeCached<BootstrapperAttribute>() is not null
                                              select mi);
                 // Run the bootstrapper methods
                 foreach (MethodInfo mi in methods.OrderByDescending(mi => mi.DeclaringType!.Assembly.GetCustomAttributeCached<BootstrapperAttribute>()!.Priority)
@@ -107,7 +107,7 @@ namespace wan24.Core
                     .ThenBy(mi => mi.Name))
                 {
                     Logging.WriteDebug($"Calling bootstrapper {mi.DeclaringType}.{mi.Name}");
-                    if (mi.DeclaringType != null)
+                    if (mi.DeclaringType is not null)
                     {
                         using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
                         BootedAssemblies.Add(mi.DeclaringType.Assembly.GetHashCode());
@@ -176,8 +176,8 @@ namespace wan24.Core
             TypeHelper.Instance.ScanAssemblies(assembly);
             // Fixed type and method
             IEnumerable<MethodInfo> methods = assembly.GetCustomAttributeCached<BootstrapperAttribute>() is BootstrapperAttribute attr &&
-                attr.Type != null &&
-                attr.Method != null
+                attr.Type is not null &&
+                attr.Method is not null
                 ? new MethodInfo[]
                 {
                         assembly.GetCustomAttributeCached<BootstrapperAttribute>()!.Type!.GetMethodCached(
@@ -191,26 +191,26 @@ namespace wan24.Core
             if (findClasses)
                 methods = methods.Concat(from ass in new Assembly[] { assembly }
                                          where ass.GetCustomAttributeCached<BootstrapperAttribute>() is BootstrapperAttribute attr &&
-                                            attr.Type != null &&
-                                            attr.Method == null &&
+                                            attr.Type is not null &&
+                                            attr.Method is null &&
                                             attr.ScanClasses
                                          from mi in ass.GetCustomAttributeCached<BootstrapperAttribute>()!.Type!.GetMethodsCached(BindingFlags.Public | BindingFlags.Static)
-                                         where !mi.IsGenericMethod && mi.GetCustomAttributeCached<BootstrapperAttribute>() != null
+                                         where !mi.IsGenericMethod && mi.GetCustomAttributeCached<BootstrapperAttribute>() is not null
                                          select mi);
             // Find types and methods
             if (findMethods)
                 methods = methods.Concat(from ass in new Assembly[] { assembly }
                                          where ass.GetCustomAttributeCached<BootstrapperAttribute>() is BootstrapperAttribute attr &&
-                                           attr.Type == null &&
-                                           attr.Method == null &&
+                                           attr.Type is null &&
+                                           attr.Method is null &&
                                            attr.ScanMethods
                                          from type in ass.GetTypes()
                                          where type.IsPublic &&
                                           !type.IsGenericTypeDefinition &&
-                                          type.GetCustomAttributeCached<BootstrapperAttribute>() != null
+                                          type.GetCustomAttributeCached<BootstrapperAttribute>() is not null
                                          from mi in type.GetMethodsCached(BindingFlags.Public | BindingFlags.Static)
                                          where !mi.IsGenericMethod &&
-                                          mi.GetCustomAttributeCached<BootstrapperAttribute>() != null
+                                          mi.GetCustomAttributeCached<BootstrapperAttribute>() is not null
                                          select mi);
             // Run the bootstrapper methods
             foreach (MethodInfo mi in methods.OrderByDescending(mi => mi.DeclaringType!.Assembly.GetCustomAttributeCached<BootstrapperAttribute>()!.Priority)

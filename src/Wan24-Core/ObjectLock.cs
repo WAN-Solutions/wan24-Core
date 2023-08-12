@@ -84,7 +84,7 @@
         {
             using SemaphoreSyncContext ssc = Sync.SyncContext();
             if (!IsConstructed || TaskCompletion.Task.IsCompleted) return;
-            if (ex == null)
+            if (ex is null)
             {
                 TaskCompletion.SetResult();
             }
@@ -102,7 +102,7 @@
         {
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync().DynamicContext();
             if (!IsConstructed || TaskCompletion.Task.IsCompleted) return;
-            if (ex == null)
+            if (ex is null)
             {
                 TaskCompletion.SetResult();
             }

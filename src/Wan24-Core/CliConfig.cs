@@ -31,9 +31,9 @@ namespace wan24.Core
                 propertyName = temp[^1];
                 typeName = string.Join('.', temp[0..^1]);
                 type = TypeHelper.Instance.GetType(typeName);
-                if (type == null) continue;
+                if (type is null) continue;
                 prop = type.GetPropertyCached(propertyName, BindingFlags.Static | BindingFlags.Public);
-                if (prop == null) continue;
+                if (prop is null) continue;
                 (setter, pi) = (prop.Setter ?? throw new InvalidProgramException($"{prop.Property.DeclaringType}.{prop.Property.Name} has no setter"), prop.Property);
                 if (pi.GetCustomAttributeCached<CliConfigAttribute>() is null)
                     throw new ArgumentException($"{type}.{pi.Name} is missing the {typeof(CliConfigAttribute)}", key);

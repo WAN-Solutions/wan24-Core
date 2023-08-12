@@ -19,7 +19,7 @@ namespace wan24.Core
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
                 ?? throw new ArgumentException("Not a result task", nameof(task));
-            if (pi.Getter == null) throw new ArgumentException("Result property has no getter", nameof(task));
+            if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
             return (T)(pi.Getter(task) ?? throw new InvalidDataException("Task result is NULL"));
         }
 
@@ -34,7 +34,7 @@ namespace wan24.Core
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
                 ?? throw new ArgumentException("Not a result task", nameof(task));
-            if (pi.Getter == null) throw new ArgumentException("Result property has no getter", nameof(task));
+            if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
             return (T?)pi.Getter(task);
         }
 
@@ -51,7 +51,7 @@ namespace wan24.Core
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
                 ?? throw new ArgumentException("Not a result task", nameof(task));
-            if (pi.Getter == null) throw new ArgumentException("Result property has no getter", nameof(task));
+            if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
             return pi.Getter(task) ?? throw new InvalidDataException("Task result is NULL");
         }
 
@@ -68,7 +68,7 @@ namespace wan24.Core
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
                 ?? throw new ArgumentException("Not a result task", nameof(task));
-            if (pi.Getter == null) throw new ArgumentException("Result property has no getter", nameof(task));
+            if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
             return pi.Getter(task);
         }
 
@@ -83,7 +83,7 @@ namespace wan24.Core
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
                 ?? throw new ArgumentException("Not a result task", nameof(task));
-            if (pi.Getter == null) throw new ArgumentException("Result property has no getter", nameof(task));
+            if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
             return (T)(pi.Getter(task) ?? throw new InvalidDataException("Task result is NULL"));
         }
 
@@ -98,7 +98,7 @@ namespace wan24.Core
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
                 ?? throw new ArgumentException("Not a result task", nameof(task));
-            if (pi.Getter == null) throw new ArgumentException("Result property has no getter", nameof(task));
+            if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
             return (T?)pi.Getter(task);
         }
 
@@ -115,7 +115,7 @@ namespace wan24.Core
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
                 ?? throw new ArgumentException("Not a result task", nameof(task));
-            if (pi.Getter == null) throw new ArgumentException("Result property has no getter", nameof(task));
+            if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
             return pi.Getter(task) ?? throw new InvalidDataException("Task result is NULL");
         }
 
@@ -132,7 +132,7 @@ namespace wan24.Core
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
                 ?? throw new ArgumentException("Not a result task", nameof(task));
-            if (pi.Getter == null) throw new ArgumentException("Result property has no getter", nameof(task));
+            if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
             return pi.Getter(task);
         }
 

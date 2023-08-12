@@ -34,7 +34,7 @@
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            if (AsyncDisposer != null)
+            if (AsyncDisposer is not null)
             {
                 await AsyncDisposer().DynamicContext();
             }

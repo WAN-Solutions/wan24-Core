@@ -49,7 +49,7 @@ namespace wan24.Core
         /// <summary>
         /// Can read?
         /// </summary>
-        public bool CanRead => Getter != null;
+        public bool CanRead => Getter is not null;
 
         /// <summary>
         /// Setter
@@ -59,7 +59,7 @@ namespace wan24.Core
         /// <summary>
         /// Can write?
         /// </summary>
-        public bool CanWrite => Setter != null;
+        public bool CanWrite => Setter is not null;
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]

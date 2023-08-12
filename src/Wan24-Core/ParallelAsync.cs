@@ -36,7 +36,7 @@ namespace wan24.Core
             try
             {
                 enqueued = await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
-                while (!cancellationToken.IsCancellationRequested && processor.Processed != enqueued && processor.LastException == null)
+                while (!cancellationToken.IsCancellationRequested && processor.Processed != enqueued && processor.LastException is null)
                     await processor.WaitBoringAsync(cancellationToken).DynamicContext();
             }
             finally
@@ -82,7 +82,7 @@ namespace wan24.Core
             try
             {
                 enqueued = await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
-                while (!cancellationToken.IsCancellationRequested && processor.Processed != enqueued && processor.LastException == null)
+                while (!cancellationToken.IsCancellationRequested && processor.Processed != enqueued && processor.LastException is null)
                     await processor.WaitBoringAsync(cancellationToken).DynamicContext();
             }
             finally

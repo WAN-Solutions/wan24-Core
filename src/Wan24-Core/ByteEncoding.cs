@@ -78,7 +78,7 @@ namespace wan24.Core
             long resLen = GetEncodedLength(len),
                 resOffset = -1;
             if (resLen > int.MaxValue) throw new OutOfMemoryException($"Encoded string length exceeds the maximum of {int.MaxValue}");
-            if (res != null)
+            if (res is not null)
             {
                 ArgumentValidationHelper.EnsureValidArgument(
                     nameof(res),
@@ -314,7 +314,7 @@ namespace wan24.Core
                 resLen = bits >> 3,
                 resOffset = 0;
             if (bits < resLen << 3) throw new InvalidDataException($"Invalid encoded string length (missing {(resLen << 3) - bits} bits)");
-            if (res != null)
+            if (res is not null)
             {
                 ArgumentValidationHelper.EnsureValidArgument(
                     nameof(res),

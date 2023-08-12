@@ -38,7 +38,7 @@
         /// <summary>
         /// Is synchronous waiting enabled?
         /// </summary>
-        public bool SynchronousWaiting => SyncSet != null;
+        public bool SynchronousWaiting => SyncSet is not null;
 
         /// <summary>
         /// Set the state

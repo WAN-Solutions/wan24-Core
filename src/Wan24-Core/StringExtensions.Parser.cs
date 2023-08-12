@@ -218,7 +218,7 @@ namespace wan24.Core
                             try
                             {
                                 value = handler(context);
-                                if (context.Error != null)
+                                if (context.Error is not null)
                                     if (throwOnError)
                                     {
                                         throw new InvalidDataException($"Failed to execute function \"{match[index]}\" in \"{m.Groups[rxGroup.Value].Value}\" in round {round}: {context.Error}");

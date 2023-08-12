@@ -59,7 +59,7 @@ namespace wan24.Core
         public MemoryPoolStream(ArrayPool<byte>? pool = null, int? bufferSize = null) : base()
         {
             Pool = pool ?? ArrayPool<byte>.Shared;
-            if (bufferSize != null) BufferSize = bufferSize.Value;
+            if (bufferSize is not null) BufferSize = bufferSize.Value;
             Buffers = new()
             {
                 Pool.Rent(BufferSize)
