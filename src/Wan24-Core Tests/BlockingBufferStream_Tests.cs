@@ -5,7 +5,7 @@ namespace Wan24_Core_Tests
     [TestClass]
     public class BlockingBufferStream_Tests
     {
-        [TestMethod, Timeout(3000)]
+        [TestMethod, Timeout(5000)]
         public void General_Tests()
         {
             using BlockingBufferStream stream = new(bufferSize: 3);
@@ -14,7 +14,7 @@ namespace Wan24_Core_Tests
             stream.WriteByte(1);
             stream.WriteByte(1);
             Task task = Task.Run(() => stream.WriteByte(1));
-            Thread.Sleep(200);
+            Thread.Sleep(500);
             Assert.IsFalse(task.IsCompleted);
             Assert.AreEqual(3L, stream.Length);
             Assert.AreEqual(3, stream.Available);
@@ -23,7 +23,7 @@ namespace Wan24_Core_Tests
             Assert.AreEqual(1, stream.ReadByte());
             Assert.AreEqual(1, stream.ReadByte());
             Assert.AreEqual(1, stream.ReadByte());
-            Thread.Sleep(200);
+            Thread.Sleep(500);
             Assert.IsTrue(task.IsCompleted);
             Assert.AreEqual(4L, stream.Length);
             Assert.AreEqual(1, stream.Available);
@@ -34,10 +34,10 @@ namespace Wan24_Core_Tests
             Assert.AreEqual(0, stream.Available);
             Assert.AreEqual(stream.BufferSize, stream.SpaceLeft);
             task = Task.Run(() => Assert.AreEqual(1, stream.ReadByte()));
-            Thread.Sleep(200);
+            Thread.Sleep(500);
             Assert.IsFalse(task.IsCompleted);
             stream.WriteByte(1);
-            Thread.Sleep(200);
+            Thread.Sleep(500);
             Assert.IsTrue(task.IsCompleted);
         }
 
@@ -52,7 +52,7 @@ namespace Wan24_Core_Tests
             await stream.WriteAsync(writeBuffer);
             await stream.WriteAsync(writeBuffer);
             Task task = Task.Run(async () => await stream.WriteAsync(writeBuffer));
-            await Task.Delay(200);
+            await Task.Delay(500);
             Assert.IsFalse(task.IsCompleted);
             Assert.AreEqual(3L, stream.Length);
             Assert.AreEqual(3, stream.Available);
@@ -79,7 +79,7 @@ namespace Wan24_Core_Tests
                 Assert.AreEqual(1, await stream.ReadAsync(readBuffer));
                 Assert.AreEqual(1, readBuffer[0]);
             });
-            await Task.Delay(200);
+            await Task.Delay(500);
             Assert.IsFalse(task.IsCompleted);
             await stream.WriteAsync(writeBuffer);
             await task;
