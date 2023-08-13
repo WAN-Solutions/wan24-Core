@@ -30,6 +30,7 @@ namespace wan24.Core
         /// <param name="backgroundPacketHandler">Run the packet handler in background (asynchronous, without waiting for a call to finish)?</param>
         protected UdpBroadcast(IPEndPoint udpEndPoint, int broadcastPort = 0, bool backgroundPacketHandler = false) : base()
         {
+            if (udpEndPoint.Address.AddressFamily != AddressFamily.InterNetwork) throw new ArgumentException("IPv6 doesn't support broadcast", nameof(udpEndPoint));
             if (broadcastPort < 1) broadcastPort = udpEndPoint.Port;
             if (broadcastPort < 1 || broadcastPort > ushort.MaxValue) throw new ArgumentOutOfRangeException(nameof(broadcastPort));
             BackgroundPacketHandler = backgroundPacketHandler;
