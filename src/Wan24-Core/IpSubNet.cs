@@ -33,7 +33,7 @@ namespace wan24.Core
         /// <param name="isIPv4">Is an IPv4 network?</param>
         public IpSubNet(in BigInteger network, in int bits, in bool isIPv4)
         {
-            if (network < 0 || network > IPv6Max || (isIPv4 && network > uint.MaxValue)) throw new ArgumentOutOfRangeException(nameof(network));
+            if (network < BigInteger.Zero || network > MaxIPv6 || (isIPv4 && network > MaxIPv4)) throw new ArgumentOutOfRangeException(nameof(network));
             if (bits < 0 || bits > (isIPv4 ? IPV4_BITS : IPV6_BITS)) throw new ArgumentOutOfRangeException(nameof(bits));
             Network = network;
             MaskBits = (byte)bits;
@@ -54,17 +54,16 @@ namespace wan24.Core
             {
                 case AddressFamily.InterNetworkV6:
                     if (bits < 0 || bits > IPV6_BITS) throw new ArgumentOutOfRangeException(nameof(subNet));
-                    Network = new(networkIp.GetAddressBytes(), isUnsigned: true, isBigEndian: true);
                     IsIPv4 = false;
                     break;
                 case AddressFamily.InterNetwork:
                     if (bits < 0 || bits > IPV4_BITS) throw new ArgumentOutOfRangeException(nameof(subNet));
-                    Network = BinaryPrimitives.ReadUInt32BigEndian(networkIp.GetAddressBytes());
                     IsIPv4 = true;
                     break;
                 default:
                     throw new ArgumentException("Sub-net supports only IPv4/6 address masks", nameof(subNet));
             }
+            Network = new(networkIp.GetAddressBytes(), isUnsigned: true, isBigEndian: true);
             MaskBits = (byte)bits;
         }
 
@@ -75,26 +74,29 @@ namespace wan24.Core
         /// <param name="mask">Network mask IP</param>
         public IpSubNet(in IPAddress network, in IPAddress mask)
         {
+            Network = new(network.GetAddressBytes(), isUnsigned: true, isBigEndian: true);
             switch (network.AddressFamily)
             {
                 case AddressFamily.InterNetworkV6:
                     {
-                        Network = new(network.GetAddressBytes(), isUnsigned: true, isBigEndian: true);
-                        BigInteger maskBits = new(mask.GetAddressBytes(), isUnsigned: true, isBigEndian: true);
-                        byte[] maskBytes = maskBits.ToByteArray(isUnsigned: true, isBigEndian: true);
-                        int popCount = 0;
-                        for (int i = 0, len = maskBytes.Length; i < len; popCount += BitOperations.PopCount(maskBytes[i]), i++) ;
+                        byte[] maskBytes = mask.GetAddressBytes();
+                        int popCount = 0;//TODO .NET 7: Use BigInteger.PopCount
+                        for (
+                            int i = 0, len = maskBytes.Length;
+                            i < len;
+                            popCount += BitOperations.PopCount(maskBytes[i]), i++
+                            ) ;
                         MaskBits = (byte)popCount;
-                        if (maskBits != BigInteger.Abs(BigInteger.Negate(IPv6Max >> MaskBits))) throw new ArgumentException("Invalid mask", nameof(mask));
+                        if (new BigInteger(maskBytes, isUnsigned: true, isBigEndian: true) != ((MaxIPv6 << (IPV6_BITS - popCount)) & MaxIPv6))
+                            throw new ArgumentException($"Invalid mask", nameof(mask));
                         IsIPv4 = false;
                     }
                     break;
                 case AddressFamily.InterNetwork:
                     {
-                        Network = BinaryPrimitives.ReadUInt32BigEndian(network.GetAddressBytes());
                         uint maskBits = BinaryPrimitives.ReadUInt32BigEndian(mask.GetAddressBytes());
                         MaskBits = (byte)BitOperations.PopCount(maskBits);//TODO .NET 7: Use int.PopCount
-                        if (maskBits != ~(uint.MaxValue >> MaskBits)) throw new ArgumentException("Invalid mask", nameof(mask));
+                        if (maskBits != (MaskBits == 0 ? 0 : uint.MaxValue << (IPV4_BITS - MaskBits))) throw new ArgumentException($"Invalid mask", nameof(mask));
                         IsIPv4 = true;
                     }
                     break;
@@ -120,7 +122,7 @@ namespace wan24.Core
                     break;
                 case AddressFamily.InterNetwork:
                     if (bits < 0 || bits > IPV4_BITS) throw new ArgumentOutOfRangeException(nameof(bits));
-                    Network = BinaryPrimitives.ReadUInt32BigEndian(network.GetAddressBytes());
+                    Network = new(BinaryPrimitives.ReadUInt32BigEndian(network.GetAddressBytes()));
                     IsIPv4 = true;
                     break;
                 default:
@@ -136,7 +138,7 @@ namespace wan24.Core
         /// <param name="bits">Sub-net bits length</param>
         public IpSubNet(in BigInteger network, in int bits)
         {
-            if (network < 0 || network > IPv6Max) throw new ArgumentOutOfRangeException(nameof(network));
+            if (network < BigInteger.Zero || network > MaxIPv6) throw new ArgumentOutOfRangeException(nameof(network));
             if (bits < 0 || bits > IPV6_BITS) throw new ArgumentOutOfRangeException(nameof(bits));
             Network = network;
             MaskBits = (byte)bits;
@@ -162,13 +164,13 @@ namespace wan24.Core
         /// <param name="buffer">Buffer (<see cref="IPV6_STRUCTURE_SIZE"/> or <see cref="IPV4_STRUCTURE_SIZE"/> required)</param>
         public IpSubNet(in ReadOnlySpan<byte> buffer)
         {
-            if(buffer.Length<IPV4_STRUCTURE_SIZE) throw new ArgumentOutOfRangeException(nameof(buffer));
+            if (buffer.Length < IPV4_STRUCTURE_SIZE) throw new ArgumentOutOfRangeException(nameof(buffer));
             IsIPv4 = buffer[0] == 1;
             if (!IsIPv4 && buffer.Length < IPV6_STRUCTURE_SIZE) throw new ArgumentOutOfRangeException(nameof(buffer));
             MaskBits = buffer[1];
             if (MaskBits > (IsIPv4 ? IPV4_BITS : IPV6_BITS)) throw new InvalidDataException("Invalid sub-net bits length");
-            Network = IsIPv4 ? BinaryPrimitives.ReadUInt32BigEndian(buffer[2..]) : new BigInteger(buffer.Slice(2, IPV6_BYTES), isUnsigned: true, isBigEndian: true);
-            if (IsIPv4 && Network > uint.MaxValue) throw new InvalidDataException("Invalid IPv4 network");
+            Network = new(buffer.Slice(2, IsIPv4 ? IPV4_BYTES : IPV6_BYTES), isUnsigned: true, isBigEndian: true);
+            if (IsIPv4 && Network > MaxIPv4) throw new InvalidDataException("Invalid IPv4 network");
         }
     }
 }

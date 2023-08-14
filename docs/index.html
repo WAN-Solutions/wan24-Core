@@ -323,6 +323,19 @@ including extensions for numeric type encoding/decoding)</li>
 </ul>
 </li>
 <li>Checksum implementation in <code>ChecksumExtensions</code> and <code>ChecksumTransform</code></li>
+<li>Thread synchronization helper (synchronous / asynchronous)
+<ul>
+<li><code>SemaphoreSync</code> uses a <code>SemaphoreSlim</code> for thread synchronization</li>
+<li><code>SemaphoreSyncContext</code> is a disposable thread synchronization context</li>
+</ul>
+</li>
+<li>Networking helper
+<ul>
+<li>Browsing ethernet adapters filtered</li>
+<li>Classify LAN, WAN and loopback IP addresses and ethernet adapters</li>
+<li><code>IpSubNet</code> implementation for managing IPv4/6 sub-nets (CIDR)</li>
+</ul>
+</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as

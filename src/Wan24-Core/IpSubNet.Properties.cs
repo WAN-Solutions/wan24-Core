@@ -12,12 +12,38 @@ namespace wan24.Core
         /// </summary>
         /// <param name="index">Index</param>
         /// <returns>IP address</returns>
-        public IPAddress this[in BigInteger index] => index < IPAddressCount ? GetIPAddress(Network + index) : throw new ArgumentOutOfRangeException(nameof(index));
+        public IPAddress this[in BigInteger index]
+            => index < IPAddressCount
+                ? GetIPAddress(BigInteger.Add(MaskedNetwork, index))
+                : throw new ArgumentOutOfRangeException(nameof(index));
+
+        /// <summary>
+        /// Get an IP address range within this sub-net
+        /// </summary>
+        /// <param name="startIndex">Start index</param>
+        /// <param name="count">Count</param>
+        /// <returns>IP addresses</returns>
+        public IEnumerable<IPAddress> this[BigInteger startIndex, BigInteger count]
+        {
+            get
+            {
+                BigInteger ipc = IPAddressCount;
+                if (startIndex >= ipc) throw new ArgumentOutOfRangeException(nameof(startIndex));
+                BigInteger stop = BigInteger.Add(startIndex, count);
+                if (stop >= ipc) throw new ArgumentOutOfRangeException(nameof(count));
+                for (
+                    BigInteger i = startIndex;
+                    i <= stop;
+                    i = BigInteger.Add(i, BigInteger.One)
+                    )
+                    yield return GetIPAddress(BigInteger.Add(MaskedNetwork, i));
+            }
+        }
 
         /// <summary>
         /// Number of bits of the network IP address family
         /// </summary>
-        public int BitCount => ByteCount << 3;
+        public int BitCount => IsIPv4 ? IPV4_BITS : IPV6_BITS;
 
         /// <summary>
         /// Number of bytes of the network IP address family
@@ -25,19 +51,25 @@ namespace wan24.Core
         public int ByteCount => IsIPv4 ? IPV4_BYTES : IPV6_BYTES;
 
         /// <summary>
+        /// Structure size in bytes when calling <see cref="GetBytes()"/>
+        /// </summary>
+        public int StructureSize => IsIPv4 ? IPV4_STRUCTURE_SIZE : IPV6_STRUCTURE_SIZE;
+
+        /// <summary>
         /// All bits of the network IP address family as full covering mask
         /// </summary>
-        public BigInteger FullMask => IsIPv4 ? uint.MaxValue : IPv6Max;
+        public BigInteger FullMask => IsIPv4 ? MaxIPv4 : MaxIPv6;
 
         /// <summary>
         /// Number of IP addresses in the sub-net
         /// </summary>
-        public BigInteger IPAddressCount => BigInteger.Pow(2, BitCount - MaskBits);
+        public BigInteger IPAddressCount => BigInteger.Pow(new(2u), BitCount - MaskBits);
 
         /// <summary>
         /// Number of usable IP addresses in the sub-net
         /// </summary>
-        public BigInteger UsableIPAddressCount => BigInteger.Max(1, IsIPv4 ? IPAddressCount - 2 : IPAddressCount - 1);
+        public BigInteger UsableIPAddressCount
+            => BigInteger.Max(BigInteger.One, IsIPv4 ? BigInteger.Subtract(IPAddressCount, new(2u)) : BigInteger.Subtract(IPAddressCount, BigInteger.One));
 
         /// <summary>
         /// Network IP address family
@@ -47,17 +79,17 @@ namespace wan24.Core
         /// <summary>
         /// Network mask
         /// </summary>
-        public BigInteger Mask => IsIPv4 ? BigInteger.Abs(~(uint.MaxValue >> MaskBits)) : BigInteger.Abs(BigInteger.Negate(IPv6Max >> MaskBits));
+        public BigInteger Mask => IsIPv4 ? (MaxIPv4 << (IPV4_BITS - MaskBits)) & MaxIPv4 : (MaxIPv6 << (IPV6_BITS - MaskBits)) & MaxIPv6;
 
         /// <summary>
         /// Broadcast
         /// </summary>
-        public BigInteger Broadcast => IsIPv4 ? Network | BigInteger.Abs(~Mask) : throw new InvalidOperationException();
+        public BigInteger Broadcast => IsIPv4 ? Network | ((IsIPv4 ? MaxIPv4 : MaxIPv6) >> MaskBits) : throw new InvalidOperationException();
 
         /// <summary>
-        /// Gateway
+        /// Masked network address
         /// </summary>
-        public BigInteger Gateway => Network & Mask;
+        public BigInteger MaskedNetwork => Network & Mask;
 
         /// <summary>
         /// Get the network as IP address
@@ -72,22 +104,22 @@ namespace wan24.Core
         /// <summary>
         /// Get the broadcast IP address
         /// </summary>
-        public IPAddress BroadcastIPAddress => IsIPv4 ? GetIPAddress(Broadcast) : throw new InvalidOperationException();
+        public IPAddress BroadcastIPAddress => GetIPAddress(Broadcast);
 
         /// <summary>
-        /// Get the gateway IP address
+        /// Get the masked network IP address
         /// </summary>
-        public IPAddress GatewayIPAddress => GetIPAddress(Gateway);
+        public IPAddress MaskedNetworkIPAddress => GetIPAddress(MaskedNetwork);
 
         /// <summary>
         /// First usable IP address
         /// </summary>
-        public IPAddress FirstUsable => UsableIPAddressCount == 1 ? NetworkIPAddress : this[1];
+        public IPAddress FirstUsable => UsableIPAddressCount == BigInteger.One ? NetworkIPAddress : this[BigInteger.One];
 
         /// <summary>
         /// Last usable IP address
         /// </summary>
-        public IPAddress LastUsable => this[UsableIPAddressCount - 1];
+        public IPAddress LastUsable => this[IsIPv4 ? UsableIPAddressCount : BigInteger.Subtract(IPAddressCount, BigInteger.One)];
 
         /// <summary>
         /// All IP addresses of this sub-net
@@ -96,7 +128,12 @@ namespace wan24.Core
         {
             get
             {
-                for (BigInteger i = 0, len = IPAddressCount; i < len; i++) yield return GetIPAddress(Network + i);
+                for (
+                    BigInteger i = BigInteger.Zero, len = IPAddressCount;
+                    i < len;
+                    i = BigInteger.Add(i, BigInteger.One)
+                    )
+                    yield return GetIPAddress(BigInteger.Add(MaskedNetwork, i));
             }
         }
 
@@ -107,7 +144,54 @@ namespace wan24.Core
         {
             get
             {
-                for (BigInteger len = UsableIPAddressCount, i = !IsIPv4 || len == 1 ? 0U : 1; i < len; i++) yield return GetIPAddress(Network + i);
+                for (
+                    BigInteger len = UsableIPAddressCount, i = !IsIPv4 || len == BigInteger.One ? BigInteger.Zero : BigInteger.One;
+                    i < len;
+                    i = BigInteger.Add(i, BigInteger.One)
+                    )
+                    yield return GetIPAddress(BigInteger.Add(MaskedNetwork, i));
+            }
+        }
+
+        /// <summary>
+        /// Is a LAN sub-net?
+        /// </summary>
+        public bool IsLan
+        {
+            get
+            {
+                foreach (IpSubNet net in NetworkHelper.LAN)
+                    if (IsWithin(net))
+                        return true;
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Is a loopback sub-net?
+        /// </summary>
+        public bool IsLoopback
+        {
+            get
+            {
+                foreach (IpSubNet net in NetworkHelper.LoopBack)
+                    if (IsWithin(net))
+                        return true;
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Is a WAN sub-net?
+        /// </summary>
+        public bool IsWan
+        {
+            get
+            {
+                foreach (IpSubNet net in NetworkHelper.LAN.Concat(NetworkHelper.LoopBack))
+                    if (IsWithin(net))
+                        return false;
+                return true;
             }
         }
     }

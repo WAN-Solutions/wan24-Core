@@ -1,14 +1,12 @@
 ﻿using System.Net;
 using wan24.Core;
 
-//TODO Write more tests
-
 namespace Wan24_Core_Tests
 {
     [TestClass]
     public class IpSubNet_Tests
     {
-        private static readonly Dictionary<string, string[]> ValidTestData = new Dictionary<string, string[]>()
+        private static readonly Dictionary<string, string[]> ValidTestData = new()
             {
                 {"192.168.5.85/24", new string[] {"192.168.5.1", "192.168.5.254" } },
                 {"10.128.240.50/30", new string[] {"10.128.240.48", "10.128.240.49", "10.128.240.50", "10.128.240.51" } },
@@ -18,7 +16,7 @@ namespace Wan24_Core_Tests
                 {"2001:db8:abcd:5678::0/53", new string[] {"2001:0db8:abcd:5000:0000:0000:0000:0000", "2001:0db8:abcd:57ff:ffff:ffff:ffff:ffff" } },
                 {"2001:db8:abcd:0012::0/0", new string[] {"::", "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff" } }
             };
-        private static readonly Dictionary<string, string[]> InvalidTestData = new Dictionary<string, string[]>()
+        private static readonly Dictionary<string, string[]> InvalidTestData = new()
             {
                 {"192.168.5.85/24", new string[] {"192.168.4.254", "191.168.5.254" } },
                 {"10.128.240.50/30", new string[] {"10.128.240.47", "10.128.240.52", "10.128.239.50", "10.127.240.51" } },
@@ -34,21 +32,21 @@ namespace Wan24_Core_Tests
             foreach (KeyValuePair<string, string[]> nets in ValidTestData)
             {
                 net = new(nets.Key);
-                Logging.WriteInfo($"Valid test {nets.Key}");
+                Logging.WriteInfo($"Valid test {nets.Key} (mask {net.MaskIPAddress}, {(net.IsIPv4 ? $"broadcast {net.BroadcastIPAddress}" : "IPv6")}, gateway {net.MaskedNetworkIPAddress}, addresses {net.UsableIPAddressCount}/{net.IPAddressCount}, first {net.FirstUsable}, last {net.LastUsable})");
                 foreach (string ip in nets.Value)
                 {
                     Logging.WriteInfo($"\tIP {ip}");
-                    Assert.IsTrue(net.DoesMatch(IPAddress.Parse(ip)));
+                    Assert.IsTrue(net.Includes(IPAddress.Parse(ip)));
                 }
             }
             foreach (KeyValuePair<string, string[]> nets in InvalidTestData)
             {
                 net = new(nets.Key);
-                Logging.WriteInfo($"Invalid test {nets.Key}");
+                Logging.WriteInfo($"Invalid test {nets.Key} (mask {net.MaskIPAddress}, {(net.IsIPv4 ? $"broadcast {net.BroadcastIPAddress}" : "IPv6")}, gateway {net.MaskedNetworkIPAddress}, addresses {net.UsableIPAddressCount}/{net.IPAddressCount}, first {net.FirstUsable}, last {net.LastUsable})");
                 foreach (string ip in nets.Value)
                 {
                     Logging.WriteInfo($"\tIP {ip}");
-                    Assert.IsFalse(net.DoesMatch(IPAddress.Parse(ip)));
+                    Assert.IsFalse(net.Includes(IPAddress.Parse(ip)));
                 }
             }
         }
@@ -56,11 +54,10 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public void TryParse_Tests()
         {
-            IpSubNet net;
             foreach (string key in ValidTestData.Keys)
             {
                 Logging.WriteInfo($"Sub-net {key}");
-                Assert.IsTrue(IpSubNet.TryParse(key, out net));
+                Assert.IsTrue(IpSubNet.TryParse(key, out IpSubNet net));
                 Assert.AreEqual(new IpSubNet(key), net);
             }
             Assert.IsFalse(IpSubNet.TryParse("test", out _));
@@ -126,6 +123,64 @@ namespace Wan24_Core_Tests
                 Assert.AreEqual(net.IsIPv4 ? IpSubNet.IPV4_STRUCTURE_SIZE : IpSubNet.IPV6_STRUCTURE_SIZE, data.Length);
                 net2 = new(data);
                 Assert.AreEqual(net, net2);
+            }
+        }
+
+        [TestMethod]
+        public void RangeBorders_Tests()
+        {
+            IpSubNet net;
+            foreach (string key in ValidTestData.Keys)
+            {
+                Logging.WriteInfo($"Sub-net {key}");
+                net = new(key);
+                Assert.IsTrue(net == net.MaskedNetworkIPAddress);
+                if (net.IsIPv4) Assert.IsTrue(net == net.BroadcastIPAddress);
+                Assert.IsTrue(net == net.FirstUsable);
+                Assert.IsTrue(net == net.LastUsable);
+            }
+        }
+
+        [TestMethod]
+        public void LanWanLoopback_Tests()
+        {
+            // Loopback
+            Assert.IsTrue(IpSubNet.LoopbackIPv4.IsLoopback);
+            Assert.IsTrue(IpSubNet.LoopbackIPv6.IsLoopback);
+            Assert.IsFalse(IpSubNet.LoopbackIPv4.IsLan);
+            Assert.IsFalse(IpSubNet.LoopbackIPv6.IsLan);
+            Assert.IsFalse(IpSubNet.LoopbackIPv4.IsWan);
+            Assert.IsFalse(IpSubNet.LoopbackIPv6.IsWan);
+
+            // LAN / WAN
+            IpSubNet lan = new("192.168.0.1/24"),
+                wan = new("8.8.8.8/32");
+            Assert.IsFalse(lan.IsLoopback);
+            Assert.IsTrue(lan.IsLan);
+            Assert.IsFalse(lan.IsWan);
+            Assert.IsFalse(wan.IsLoopback);
+            Assert.IsFalse(wan.IsLan);
+            Assert.IsTrue(wan.IsWan);
+        }
+
+        [TestMethod]
+        public void Combine_Tests()
+        {
+            {
+                IpSubNet a = new("10.1.2.0/8"),
+                    b = new("192.168.0.0/16"),
+                    c = a.CombineWith(b);
+                Logging.WriteInfo($"Sub-net {a} + {b} = {c}");
+                //Assert.AreEqual(19, c.MaskBits);
+                //Assert.AreEqual(a.MaskedNetwork, c.Network);
+            }
+            {
+                IpSubNet a = new("192.168.128.0/8"),
+                    b = new("192.168.254.0/16"),
+                    c = a.CombineWith(b);
+                Logging.WriteInfo($"Sub-net {a} + {b} = {c}");
+                //Assert.AreEqual(16, c.MaskBits);
+                //Assert.AreEqual(b.MaskedNetwork, c.Network);
             }
         }
     }

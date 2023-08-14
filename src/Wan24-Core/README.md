@@ -185,6 +185,13 @@ including extensions for numeric type encoding/decoding)
     - Write N random bytes
     - Create stream chunks
 - Checksum implementation in `ChecksumExtensions` and `ChecksumTransform`
+- Thread synchronization helper (synchronous / asynchronous)
+    - `SemaphoreSync` uses a `SemaphoreSlim` for thread synchronization
+    - `SemaphoreSyncContext` is a disposable thread synchronization context
+- Networking helper
+    - Browsing ethernet adapters filtered
+    - Classify LAN, WAN and loopback IP addresses and ethernet adapters
+    - `IpSubNet` implementation for managing IPv4/6 sub-nets (CIDR)
 
 ## How to get it
 

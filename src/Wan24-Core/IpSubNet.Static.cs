@@ -36,7 +36,27 @@ namespace wan24.Core
         /// <summary>
         /// Max. IPv6 value
         /// </summary>
-        public static readonly BigInteger IPv6Max = BigInteger.Pow(2, IPV6_BITS);
+        public static readonly BigInteger MaxIPv6 = BigInteger.Subtract(BigInteger.Pow(new(2u), IPV6_BITS), BigInteger.One);
+        /// <summary>
+        /// Max. IPv4 value
+        /// </summary>
+        public static readonly BigInteger MaxIPv4 = new(uint.MaxValue);
+        /// <summary>
+        /// IPv6 loopback sub-net
+        /// </summary>
+        public static readonly IpSubNet LoopbackIPv6 = new(IPAddress.IPv6Loopback, bits: IPV6_BITS);
+        /// <summary>
+        /// IPv4 loopback sub-net
+        /// </summary>
+        public static readonly IpSubNet LoopbackIPv4 = new(IPAddress.Loopback, bits: sizeof(byte) << 3);
+        /// <summary>
+        /// IPv4 zero sub-net
+        /// </summary>
+        public static readonly IpSubNet ZeroV4 = new(IPAddress.Parse("0.0.0.0"), IPV4_BITS);
+        /// <summary>
+        /// IPv6 zero sub-net
+        /// </summary>
+        public static readonly IpSubNet ZeroV6 = new(IPAddress.Parse("::"), IPV6_BITS);
 
         /// <summary>
         /// Cast as IP address list
@@ -45,9 +65,13 @@ namespace wan24.Core
         public static implicit operator IPAddress[](in IpSubNet net)
         {
             BigInteger count = net.IPAddressCount;
-            if (count > long.MaxValue) throw new InvalidOperationException("IP address range is too large!");
+            if (count > long.MaxValue) throw new OutOfMemoryException("IP address range is too large!");
             IPAddress[] res = new IPAddress[(long)count];
-            for (long i = 0; i < count; res[i] = net.GetIPAddress(net.Network + i), i++) ;
+            for (
+                long i = 0;
+                i < count;
+                res[i] = net.GetIPAddress(BigInteger.Add(net.MaskedNetwork, new(i))), i++
+                ) ;
             return res;
         }
 
@@ -93,7 +117,7 @@ namespace wan24.Core
         /// <param name="net">Sub-net</param>
         /// <param name="ip">IP address</param>
         /// <returns>Does match?</returns>
-        public static bool operator ==(in IpSubNet net, in IPAddress ip) => net.DoesMatch(ip, throwOnError: false);
+        public static bool operator ==(in IpSubNet net, in IPAddress ip) => net.Includes(ip, throwOnError: false);
 
         /// <summary>
         /// Does not match an IP address?
@@ -109,7 +133,7 @@ namespace wan24.Core
         /// <param name="ip">IP address</param>
         /// <param name="net">Sub-net</param>
         /// <returns>Does match?</returns>
-        public static bool operator ==(in IPAddress ip, in IpSubNet net) => net.DoesMatch(ip, throwOnError: false);
+        public static bool operator ==(in IPAddress ip, in IpSubNet net) => net.Includes(ip, throwOnError: false);
 
         /// <summary>
         /// Does not match an IP address?
@@ -118,6 +142,99 @@ namespace wan24.Core
         /// <param name="net">Sub-net</param>
         /// <returns>Does not match?</returns>
         public static bool operator !=(in IPAddress ip, in IpSubNet net) => !(ip == net);
+
+        /// <summary>
+        /// Lower than
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Is A lower than B?</returns>
+        public static bool operator <(in IpSubNet a, in IpSubNet b) => a.MaskBits < b.MaskBits;
+
+        /// <summary>
+        /// Greater than
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Is A greater than B?</returns>
+        public static bool operator >(in IpSubNet a, in IpSubNet b) => a.MaskBits > b.MaskBits;
+
+        /// <summary>
+        /// Lower or equal to
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Is A lower or equal to B?</returns>
+        public static bool operator <=(in IpSubNet a, in IpSubNet b) => a.MaskBits <= b.MaskBits;
+
+        /// <summary>
+        /// Greater or equal to
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Is A greater or equal to B?</returns>
+        public static bool operator >=(in IpSubNet a, in IpSubNet b) => a.MaskBits >= b.MaskBits;
+
+        /// <summary>
+        /// Combine two sub-nets
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Combined sub-net</returns>
+        public static IpSubNet operator +(in IpSubNet a, in IpSubNet b) => a.CombineWith(b);
+
+        /// <summary>
+        /// Merge two sub-nets
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>Merged sub-net</returns>
+        public static IpSubNet operator |(in IpSubNet a, in IpSubNet b)
+            => a.IsCompatibleWith(b) ? new(a.MaskedNetworkIPAddress, Math.Max(a.MaskBits, b.MaskBits)) : throw new InvalidOperationException("Incompatible sub-nets");
+
+        /// <summary>
+        /// Determine if two sub-nets intersect, or if A fits into B
+        /// </summary>
+        /// <param name="a">A</param>
+        /// <param name="b">B</param>
+        /// <returns>A, if A fits into B, or B, if A intersects B, or <see cref="ZeroV4"/>, if not intersecting at all</returns>
+        public static IpSubNet operator &(in IpSubNet a, in IpSubNet b)
+        {
+            if (a.IsIPv4 == b.IsIPv4)
+            {
+                if (a.IsWithin(b)) return a;
+                if (a.Intersects(b)) return b;
+            }
+            return ZeroV4;
+        }
+
+        /// <summary>
+        /// Increase a sub-net size
+        /// </summary>
+        /// <param name="net">Sub-net</param>
+        /// <param name="bits">Bits</param>
+        /// <returns>Resized sub-net</returns>
+        public static IpSubNet operator <<(in IpSubNet net, in int bits)
+        {
+            int newBits = net.MaskBits + bits;
+            if (newBits < 0) newBits = 0;
+            else if (newBits > net.BitCount) newBits = net.BitCount;
+            return new(net.MaskedNetwork, newBits);
+        }
+
+        /// <summary>
+        /// Decrease a sub-net size
+        /// </summary>
+        /// <param name="net">Sub-net</param>
+        /// <param name="bits">Bits</param>
+        /// <returns>Resized sub-net</returns>
+        public static IpSubNet operator >>(in IpSubNet net, in int bits)
+        {
+            int newBits = net.MaskBits - bits;
+            if (newBits < 0) newBits = 0;
+            else if (newBits > net.BitCount) newBits = net.BitCount;
+            return new(net.MaskedNetwork, newBits);
+        }
 
         /// <summary>
         /// Parse from a string

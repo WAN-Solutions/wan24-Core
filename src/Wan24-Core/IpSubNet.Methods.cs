@@ -1,22 +1,21 @@
-﻿using System.Buffers.Binary;
-using System.Collections;
+﻿using System.Collections;
 using System.Net;
-using System.Net.Sockets;
 using System.Numerics;
+using System.Threading.Tasks;
 
 namespace wan24.Core
 {
     // Methods
-    public readonly partial record struct IpSubNet : IEnumerable<IPAddress>, IComparable<IpSubNet>
+    public readonly partial record struct IpSubNet : IEnumerable<IPAddress>, IComparable<IpSubNet>, IComparable, IEquatable<IpSubNet>
     {
         /// <summary>
-        /// Determine if this sub-net matches an IP address
+        /// Determine if this sub-net includes an IP address (won't do IPv4/6 conversions!)
         /// </summary>
-        /// <param name="ip">IP address</param>
+        /// <param name="ip">IP address (address family needs to be matching!)</param>
         /// <param name="throwOnError">Throw an exception on IP address family mismatch?</param>
-        /// <returns>Sub-net matches the given IP address?</returns>
+        /// <returns>Sub-net includes the given IP address?</returns>
         /// <exception cref="ArgumentException">IP address family mismatch</exception>
-        public bool DoesMatch(in IPAddress ip, in bool throwOnError = true)
+        public bool Includes(in IPAddress ip, in bool throwOnError = true)
         {
             if (ip.AddressFamily != AddressFamily)
             {
@@ -24,27 +23,67 @@ namespace wan24.Core
                 throw new ArgumentException("IP address family mismatch", nameof(ip));
             }
             BigInteger mask = Mask,
-                bits = ip.AddressFamily switch
-                {
-                    AddressFamily.InterNetworkV6 => new BigInteger(ip.GetAddressBytes(), isUnsigned: true, isBigEndian: true),
-                    AddressFamily.InterNetwork => BinaryPrimitives.ReadUInt32BigEndian(ip.GetAddressBytes()),
-                    _ => throw new InvalidProgramException()
-                } & mask;
-            return bits == (Network & mask);
+                bits = new BigInteger(ip.GetAddressBytes(), isUnsigned: true, isBigEndian: true) & mask;
+            return bits == (Network & mask /* <- MaskedNetwork */);
         }
 
         /// <summary>
-        /// Get a range of IP addresses from this sub-net
+        /// Determine if this sub-net is compatible with another sub-net (same address family and network, but maybe a different size)
         /// </summary>
-        /// <param name="startIndex">Start index</param>
-        /// <param name="count">Count</param>
-        /// <returns>IP addresses</returns>
-        public IEnumerable<IPAddress> GetRange(BigInteger startIndex, BigInteger count)
+        /// <param name="net">Sub-net</param>
+        /// <returns>Is compatible?</returns>
+        public bool IsCompatibleWith(in IpSubNet net) => IsIPv4 == net.IsIPv4 && MaskedNetwork == net.MaskedNetwork;
+
+        /// <summary>
+        /// Determine if this sub-net intersects with another sub-net (won't do IPv4/6 conversions!)
+        /// </summary>
+        /// <param name="net">Sub-net (address family needs to be matching)</param>
+        /// <returns>If this sub-net intersects</returns>
+        public bool Intersects(in IpSubNet net)
+            => net.AddressFamily == AddressFamily && (net == this[BigInteger.Zero] || net == this[BigInteger.Subtract(IPAddressCount, BigInteger.One)]);
+
+        /// <summary>
+        /// Determine if this sub-net is within another sub-net (won't do IPv4/6 conversions!)
+        /// </summary>
+        /// <param name="net">Sub-net (address family needs to be matching)</param>
+        /// <returns>If this sub-net is within</returns>
+        public bool IsWithin(in IpSubNet net)
+            => net.AddressFamily == AddressFamily && net == this[BigInteger.Zero] && net == this[BigInteger.Subtract(IPAddressCount, BigInteger.One)];
+
+        /// <summary>
+        /// Combine this sub-net with another sub-net
+        /// </summary>
+        /// <param name="net">Sub-net (address family needs to be matching)</param>
+        /// <returns>Combined sub-net</returns>
+        public IpSubNet CombineWith(in IpSubNet net)
         {
-            BigInteger ipc = IPAddressCount;
-            if (startIndex >= ipc) throw new ArgumentOutOfRangeException(nameof(startIndex));
-            if (startIndex + count >= ipc) throw new ArgumentOutOfRangeException(nameof(count));
-            for (BigInteger i = startIndex, stop = startIndex + count; i <= stop; i++) yield return GetIPAddress(Network + i);
+            if (IsIPv4 != net.IsIPv4) throw new InvalidOperationException("Incompatible sub-net address family");
+            BigInteger masked = MaskedNetwork,
+                netMasked = net.MaskedNetwork,
+                minNet = BigInteger.Min(masked, netMasked);
+            int bits = 0;
+            BigInteger mask;
+            if (IsIPv4)
+            {
+                for (; bits <= IPV4_BITS; bits++)
+                {
+                    if (BigInteger.Compare(((masked >> bits) & MaxIPv4), ((netMasked >> bits) & MaxIPv4)) == 0) break;
+                }
+                Logging.WriteInfo($"{bits}");
+                bits = Math.Min(IPV4_BITS, Math.Max(Math.Max(MaskBits, net.MaskBits), IPV4_BITS - bits));
+                Logging.WriteInfo($"{bits}");
+                mask = (MaxIPv4 >> bits) & MaxIPv4;
+            }
+            else
+            {
+                for (bits = IPV4_BITS; bits <= IPV6_BITS; bits++)
+                {
+                    mask = MaxIPv6 >> bits;
+                    if ((masked & mask) != (netMasked & mask)) break;
+                }
+                mask = MaxIPv6 << (BitCount - bits);
+            }
+            return new(minNet & mask, bits, IsIPv4);
         }
 
         /// <summary>
@@ -67,14 +106,9 @@ namespace wan24.Core
             if (buffer.Length < (IsIPv4 ? IPV4_STRUCTURE_SIZE : IPV6_STRUCTURE_SIZE)) throw new OutOfMemoryException();
             buffer[0] = (byte)(IsIPv4 ? 1 : 0);
             buffer[1] = MaskBits;
-            if (IsIPv4)
-            {
-                BinaryPrimitives.WriteUInt32BigEndian(buffer[2..], (uint)Network);
-            }
-            else
-            {
-                Network.ToByteArray(isUnsigned: true, isBigEndian: true).AsSpan().CopyTo(buffer[2..]);
-            }
+            byte[] bytes = Network.ToByteArray(isUnsigned: true, isBigEndian: true);
+            bytes.AsSpan(0, Math.Min(bytes.Length, IsIPv4 ? IPV4_BYTES : IPV6_BYTES)).CopyTo(buffer.Slice(2, IsIPv4 ? IPV4_BYTES : IPV6_BYTES));
+            if (bytes.Length != (IsIPv4 ? IPV4_BYTES : IPV6_BYTES)) buffer.Slice(2 + bytes.Length, (IsIPv4 ? IPV4_BYTES : IPV6_BYTES) - bytes.Length).Clear();
         }
 
         /// <inheritdoc/>
@@ -96,6 +130,13 @@ namespace wan24.Core
         /// <returns>Result</returns>
         public int CompareTo(IpSubNet other) => MaskBits.CompareTo(other.MaskBits);
 
+        /// <inheritdoc/>
+        int IComparable.CompareTo(object? obj)
+        {
+            if (obj is null) return 1;
+            return obj is IpSubNet net ? MaskBits.CompareTo(net.MaskBits) : throw new ArgumentException("Not an IP sub-net", nameof(obj));
+        }
+
         /// <summary>
         /// Get IP bits as IP address
         /// </summary>
@@ -103,16 +144,11 @@ namespace wan24.Core
         /// <returns>IP address</returns>
         private IPAddress GetIPAddress(BigInteger bits)
         {
-            using RentedArrayStruct<byte> buffer = new(len: ByteCount);
-            if (IsIPv4)
-            {
-                BinaryPrimitives.WriteUInt32BigEndian(buffer.Span, (uint)bits);
-            }
-            else
-            {
-                byte[] bytes = bits.ToByteArray(isUnsigned: true, isBigEndian: true);
-                bytes.AsSpan(0, Math.Min(bytes.Length, 16)).CopyTo(buffer.Span);
-            }
+            int byteCount = ByteCount;
+            using RentedArrayStruct<byte> buffer = new(byteCount);
+            byte[] bytes = bits.ToByteArray(isUnsigned: true, isBigEndian: true);
+            int len = Math.Min(bytes.Length, byteCount);
+            bytes.AsSpan(0, len).CopyTo(buffer.Span[(byteCount - len)..]);
             return new(buffer.Span);
         }
     }
