@@ -1,6 +1,7 @@
 ﻿using System.Buffers;
 using System.Collections;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -174,6 +175,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <returns>Byte or <c>-1</c>, if read failed</returns>
+#if !NO_UNSAFE
+        [SkipLocalsInit]
+#endif
         public static int GenericReadByte(this Stream stream)
         {
 #if NO_UNSAFE
@@ -190,6 +194,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <param name="value">Value</param>
+#if !NO_UNSAFE
+        [SkipLocalsInit]
+#endif
         public static void GenericWriteByte(this Stream stream, byte value)
         {
 #if NO_UNSAFE

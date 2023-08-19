@@ -780,5 +780,13 @@ namespace wan24.Core
             RandomNumberGenerator.Fill(bytes);
             bytes.Clear();
         }
+
+        /// <summary>
+        /// Just a method adapter
+        /// </summary>
+        /// <param name="b">Byte</param>
+        /// <returns>Bits as string</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static string ToBitString(this byte b) => Convert.ToString(b, 2).PadLeft(8, '0');
     }
 }

@@ -1110,6 +1110,12 @@ Some basic examples:
 // Create from CIDR notation
 IpSubNet net = new("192.168.0.0/24");
 
+// Validate CIDR notation
+if(IpSubNet.TryParse("::/128", out IpSubNet subNet))
+{
+    // Valid CIDR notated sub-net
+}
+
 // Determine the network kind
 Assert.IsTrue(net.IsLan);
 Assert.IsFalse(net.IsWan);
@@ -1125,31 +1131,25 @@ Assert.AreEqual(IPAddress.Parse("192.168.0.255"), net.BroadcastIPAddress);
 Assert.IsTrue(IPAddress.Parse("192.168.0.1") == net);
 Assert.IsTrue(IPAddress.Parse("192.168.1.1") != net);
 
-// Combine two sub-nets
-IpSubNet combined = net + new IpSubNet("192.168.254.0/24");
-Assert.AreEqual("192.168.0.0/16", combined.ToString());
-
-// Merge to compatible (!) subnets
-IpSubNet merged = net | new IpSubNet("192.168.0.0/8");
-Assert.AreEqual("192.0.0.0/8", combined.ToString());
-
-// Determine if two sub-nets intersect, or one fits into another
-IpSubNet largerNet = new IpSubNet("192.168.0.0/16"),
-    smallerNet = new IpSubNet("192.168.0.0/30"),
-    otherNet = new IpSubNet("10.0.0.0/8");
-Assert.AreEqual(net & largetNet, net);// net fits into largetNet
-Assert.AreEqual(net & smallerNet, smallerNet);// net intersects smallerNet
-Assert.AreEqual(net & otherNet, IpSubNet.ZeroV4);// no intersection between net and otherNet
-
 // Extend/shrink a sub-net
 Assert.AreEqual("192.168.0.0/23", (net << 1).ToString());// Expand by one bit
 Assert.AreEqual("192.168.0.0/25", (net >> 1).ToString());// Shrink by one bit
 
-// Validate CIDR notation
-if(IpSubNet.TryParse("::/128", out IPSubNet subNet))
-{
-    // Valid CIDR notated sub-net
-}
+// Combine two sub-nets
+IpSubNet combined = net + new IpSubNet("192.168.254.0/24");
+Assert.AreEqual("192.168.0.0/16", combined.ToString());
+
+// Merge two compatible (!) sub-nets
+IpSubNet merged = net | new IpSubNet("192.168.0.0/8");
+Assert.AreEqual("192.168.0.0/8", merged.ToString());
+
+// Determine if two sub-nets intersect, or one fits into another
+IpSubNet largerNet = new("192.168.0.0/16"),
+    smallerNet = new("192.168.0.0/30"),
+    otherNet = new("10.0.0.0/8");
+Assert.AreEqual(net & largetNet, net);// net fits into largerNet
+Assert.AreEqual(net & smallerNet, smallerNet);// net intersects smallerNet
+Assert.AreEqual(net & otherNet, IpSubNet.ZeroV4);// no intersection between net and otherNet
 
 // Serialization
 byte[] serialized = net;// Serialize

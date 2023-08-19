@@ -1,6 +1,8 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System.Numerics;
+using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -13,9 +15,16 @@ namespace wan24.Core
         /// <param name="index">Index</param>
         /// <returns>IP address</returns>
         public IPAddress this[in BigInteger index]
-            => index < IPAddressCount
-                ? GetIPAddress(BigInteger.Add(MaskedNetwork, index))
-                : throw new ArgumentOutOfRangeException(nameof(index));
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return index < IPAddressCount
+                    ? GetIPAddress(BigInteger.Add(MaskedNetwork, index))
+                    : throw new ArgumentOutOfRangeException(nameof(index));
+            }
+        }
 
         /// <summary>
         /// Get an IP address range within this sub-net
@@ -29,11 +38,11 @@ namespace wan24.Core
             {
                 BigInteger ipc = IPAddressCount;
                 if (startIndex >= ipc) throw new ArgumentOutOfRangeException(nameof(startIndex));
-                BigInteger stop = BigInteger.Add(startIndex, count);
-                if (stop >= ipc) throw new ArgumentOutOfRangeException(nameof(count));
+                BigInteger stop = BigInteger.Add(BigInteger.Add(startIndex, count), BigInteger.One);
+                if (stop > ipc) throw new ArgumentOutOfRangeException(nameof(count));
                 for (
                     BigInteger i = startIndex;
-                    i <= stop;
+                    i != stop;
                     i = BigInteger.Add(i, BigInteger.One)
                     )
                     yield return GetIPAddress(BigInteger.Add(MaskedNetwork, i));
@@ -43,83 +52,204 @@ namespace wan24.Core
         /// <summary>
         /// Number of bits of the network IP address family
         /// </summary>
-        public int BitCount => IsIPv4 ? IPV4_BITS : IPV6_BITS;
+        public int BitCount
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return IsIPv4 ? IPV4_BITS : IPV6_BITS;
+            }
+        }
 
         /// <summary>
         /// Number of bytes of the network IP address family
         /// </summary>
-        public int ByteCount => IsIPv4 ? IPV4_BYTES : IPV6_BYTES;
+        public int ByteCount
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return IsIPv4 ? IPV4_BYTES : IPV6_BYTES;
+            }
+        }
 
         /// <summary>
         /// Structure size in bytes when calling <see cref="GetBytes()"/>
         /// </summary>
-        public int StructureSize => IsIPv4 ? IPV4_STRUCTURE_SIZE : IPV6_STRUCTURE_SIZE;
+        public int StructureSize
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return IsIPv4 ? IPV4_STRUCTURE_SIZE : IPV6_STRUCTURE_SIZE;
+            }
+        }
 
         /// <summary>
         /// All bits of the network IP address family as full covering mask
         /// </summary>
-        public BigInteger FullMask => IsIPv4 ? MaxIPv4 : MaxIPv6;
+        public BigInteger FullMask
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return IsIPv4 ? MaxIPv4 : MaxIPv6;
+            }
+        }
 
         /// <summary>
         /// Number of IP addresses in the sub-net
         /// </summary>
-        public BigInteger IPAddressCount => BigInteger.Pow(new(2u), BitCount - MaskBits);
+        public BigInteger IPAddressCount
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return BigInteger.Pow(new(2u), BitCount - MaskBits);
+            }
+        }
 
         /// <summary>
         /// Number of usable IP addresses in the sub-net
         /// </summary>
         public BigInteger UsableIPAddressCount
-            => BigInteger.Max(BigInteger.One, IsIPv4 ? BigInteger.Subtract(IPAddressCount, new(2u)) : BigInteger.Subtract(IPAddressCount, BigInteger.One));
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return BigInteger.Max(BigInteger.One, IsIPv4 ? BigInteger.Subtract(IPAddressCount, new(2u)) : BigInteger.Subtract(IPAddressCount, BigInteger.One));
+            }
+        }
 
         /// <summary>
         /// Network IP address family
         /// </summary>
-        public AddressFamily AddressFamily => IsIPv4 ? AddressFamily.InterNetwork : AddressFamily.InterNetworkV6;
+        public AddressFamily AddressFamily
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return IsIPv4 ? AddressFamily.InterNetwork : AddressFamily.InterNetworkV6;
+            }
+        }
 
         /// <summary>
         /// Network mask
         /// </summary>
-        public BigInteger Mask => IsIPv4 ? (MaxIPv4 << (IPV4_BITS - MaskBits)) & MaxIPv4 : (MaxIPv6 << (IPV6_BITS - MaskBits)) & MaxIPv6;
+        public BigInteger Mask
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return IsIPv4 ? (MaxIPv4 << (IPV4_BITS - MaskBits)) & MaxIPv4 : (MaxIPv6 << (IPV6_BITS - MaskBits)) & MaxIPv6;
+            }
+        }
 
         /// <summary>
         /// Broadcast
         /// </summary>
-        public BigInteger Broadcast => IsIPv4 ? Network | ((IsIPv4 ? MaxIPv4 : MaxIPv6) >> MaskBits) : throw new InvalidOperationException();
+        public BigInteger Broadcast
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return IsIPv4 ? Network | ((IsIPv4 ? MaxIPv4 : MaxIPv6) >> MaskBits) : throw new InvalidOperationException();
+            }
+        }
 
         /// <summary>
         /// Masked network address
         /// </summary>
-        public BigInteger MaskedNetwork => Network & Mask;
+        public BigInteger MaskedNetwork
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return Network & Mask;
+            }
+        }
 
         /// <summary>
         /// Get the network as IP address
         /// </summary>
-        public IPAddress NetworkIPAddress => GetIPAddress(Network);
+        public IPAddress NetworkIPAddress
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return GetIPAddress(Network);
+            }
+        }
 
         /// <summary>
         /// Get the network mask as IP address
         /// </summary>
-        public IPAddress MaskIPAddress => GetIPAddress(Mask);
+        public IPAddress MaskIPAddress
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return GetIPAddress(Mask);
+            }
+        }
 
         /// <summary>
         /// Get the broadcast IP address
         /// </summary>
-        public IPAddress BroadcastIPAddress => GetIPAddress(Broadcast);
+        public IPAddress BroadcastIPAddress
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return GetIPAddress(Broadcast);
+            }
+        }
 
         /// <summary>
         /// Get the masked network IP address
         /// </summary>
-        public IPAddress MaskedNetworkIPAddress => GetIPAddress(MaskedNetwork);
+        public IPAddress MaskedNetworkIPAddress
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return GetIPAddress(MaskedNetwork);
+            }
+        }
 
         /// <summary>
         /// First usable IP address
         /// </summary>
-        public IPAddress FirstUsable => UsableIPAddressCount == BigInteger.One ? NetworkIPAddress : this[BigInteger.One];
+        public IPAddress FirstUsable
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            get
+            {
+                return UsableIPAddressCount == BigInteger.One ? NetworkIPAddress : this[BigInteger.One];
+            }
+        }
 
         /// <summary>
         /// Last usable IP address
         /// </summary>
-        public IPAddress LastUsable => this[IsIPv4 ? UsableIPAddressCount : BigInteger.Subtract(IPAddressCount, BigInteger.One)];
+        public IPAddress LastUsable
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            get
+            {
+                return this[IsIPv4 ? UsableIPAddressCount : BigInteger.Subtract(IPAddressCount, BigInteger.One)];
+            }
+        }
 
         /// <summary>
         /// All IP addresses of this sub-net
@@ -130,7 +260,7 @@ namespace wan24.Core
             {
                 for (
                     BigInteger i = BigInteger.Zero, len = IPAddressCount;
-                    i < len;
+                    i != len;
                     i = BigInteger.Add(i, BigInteger.One)
                     )
                     yield return GetIPAddress(BigInteger.Add(MaskedNetwork, i));
@@ -146,7 +276,7 @@ namespace wan24.Core
             {
                 for (
                     BigInteger len = UsableIPAddressCount, i = !IsIPv4 || len == BigInteger.One ? BigInteger.Zero : BigInteger.One;
-                    i < len;
+                    i != len;
                     i = BigInteger.Add(i, BigInteger.One)
                     )
                     yield return GetIPAddress(BigInteger.Add(MaskedNetwork, i));
@@ -158,10 +288,11 @@ namespace wan24.Core
         /// </summary>
         public bool IsLan
         {
+            [TargetedPatchingOptOut("Tiny method")]
             get
             {
-                foreach (IpSubNet net in NetworkHelper.LAN)
-                    if (IsWithin(net))
+                for (int i = 0, len = NetworkHelper.LAN.Count; i != len; i++)
+                    if (IsWithin(NetworkHelper.LAN[i]))
                         return true;
                 return false;
             }
@@ -172,10 +303,11 @@ namespace wan24.Core
         /// </summary>
         public bool IsLoopback
         {
+            [TargetedPatchingOptOut("Tiny method")]
             get
             {
-                foreach (IpSubNet net in NetworkHelper.LoopBack)
-                    if (IsWithin(net))
+                for (int i = 0, len = NetworkHelper.LoopBack.Count; i != len; i++)
+                    if (IsWithin(NetworkHelper.LoopBack[i]))
                         return true;
                 return false;
             }
@@ -186,10 +318,14 @@ namespace wan24.Core
         /// </summary>
         public bool IsWan
         {
+            [TargetedPatchingOptOut("Tiny method")]
             get
             {
-                foreach (IpSubNet net in NetworkHelper.LoopBack.Concat(NetworkHelper.LAN))
-                    if (IsWithin(net))
+                for (int i = 0, len = NetworkHelper.LoopBack.Count; i != len; i++)
+                    if (IsWithin(NetworkHelper.LoopBack[i]))
+                        return false;
+                for (int i = 0, len = NetworkHelper.LAN.Count; i != len; i++)
+                    if (IsWithin(NetworkHelper.LAN[i]))
                         return false;
                 return true;
             }
@@ -200,6 +336,7 @@ namespace wan24.Core
         /// </summary>
         public IpNetworkKind NetworkKind
         {
+            [TargetedPatchingOptOut("Tiny method")]
             get
             {
                 if (IsLoopback) return IpNetworkKind.Loopback;
@@ -213,11 +350,15 @@ namespace wan24.Core
         /// </summary>
         public IpSubNet ParentSubNet
         {
+            [TargetedPatchingOptOut("Tiny method")]
             get
             {
-                foreach (IpSubNet net in NetworkHelper.LoopBack.Concat(NetworkHelper.LAN))
-                    if (IsWithin(net))
-                        return net;
+                for (int i = 0, len = NetworkHelper.LoopBack.Count; i != len; i++)
+                    if (IsWithin(NetworkHelper.LoopBack[i]))
+                        return NetworkHelper.LoopBack[i];
+                for (int i = 0, len = NetworkHelper.LAN.Count; i != len; i++)
+                    if (IsWithin(NetworkHelper.LAN[i]))
+                        return NetworkHelper.LAN[i];
                 return this;
             }
         }
