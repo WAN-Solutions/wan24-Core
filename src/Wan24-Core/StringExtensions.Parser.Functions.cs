@@ -535,7 +535,7 @@ namespace wan24.Core
             {
                 return trueValue.Parse(context.Data, context.MaxRounds - context.Round, throwOnError: true, context.Rx, context.RxGroup);
             }
-            else if (falseValue != null)
+            else if (falseValue is not null)
             {
                 return falseValue.Parse(context.Data, context.MaxRounds - context.Round, throwOnError: true, context.Rx, context.RxGroup);
             }

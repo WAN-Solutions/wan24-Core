@@ -36,7 +36,7 @@ namespace wan24.Core
             try
             {
                 enqueued = await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
-                while (!cancellationToken.IsCancellationRequested && processor.Processed != enqueued && processor.LastException == null)
+                while (!cancellationToken.IsCancellationRequested && processor.Processed != enqueued && processor.LastException is null)
                     await processor.WaitBoringAsync(cancellationToken).DynamicContext();
             }
             finally
@@ -82,7 +82,7 @@ namespace wan24.Core
             try
             {
                 enqueued = await processor.EnqueueRangeAsync(items, cancellationToken).DynamicContext();
-                while (!cancellationToken.IsCancellationRequested && processor.Processed != enqueued && processor.LastException == null)
+                while (!cancellationToken.IsCancellationRequested && processor.Processed != enqueued && processor.LastException is null)
                     await processor.WaitBoringAsync(cancellationToken).DynamicContext();
             }
             finally
@@ -157,7 +157,7 @@ namespace wan24.Core
                 {
                     await syncYield.WaitAsync().DynamicContext();
                     done = true;
-                    syncOutput.Release();
+                    if (syncOutput.CurrentCount == 0) syncOutput.Release();
                 }
             }, cancellationToken, TaskCreationOptions.LongRunning | TaskCreationOptions.RunContinuationsAsynchronously, TaskScheduler.Current)
                 .Unwrap()
@@ -244,7 +244,7 @@ namespace wan24.Core
                 {
                     await syncYield.WaitAsync().DynamicContext();
                     done = true;
-                    syncOutput.Release();
+                    if (syncOutput.CurrentCount == 0) syncOutput.Release();
                 }
             }, cancellationToken, TaskCreationOptions.LongRunning | TaskCreationOptions.RunContinuationsAsynchronously, TaskScheduler.Current)
                 .Unwrap()
@@ -332,7 +332,7 @@ namespace wan24.Core
                 {
                     await syncYield.WaitAsync().DynamicContext();
                     done = true;
-                    syncOutput.Release();
+                    if (syncOutput.CurrentCount == 0) syncOutput.Release();
                 }
             }, cancellationToken, TaskCreationOptions.LongRunning | TaskCreationOptions.RunContinuationsAsynchronously, TaskScheduler.Current)
                 .Unwrap()
@@ -420,7 +420,7 @@ namespace wan24.Core
                 {
                     await syncYield.WaitAsync().DynamicContext();
                     done = true;
-                    syncOutput.Release();
+                    if (syncOutput.CurrentCount == 0) syncOutput.Release();
                 }
             }, cancellationToken, TaskCreationOptions.LongRunning | TaskCreationOptions.RunContinuationsAsynchronously, TaskScheduler.Current)
                 .Unwrap()
@@ -507,7 +507,7 @@ namespace wan24.Core
                 {
                     syncYield.Wait();
                     done = true;
-                    syncOutput.Release();
+                    if (syncOutput.CurrentCount == 0) syncOutput.Release();
                 }
             }, cancellationToken, TaskCreationOptions.LongRunning, TaskScheduler.Default)
                 .Unwrap();

@@ -10,7 +10,7 @@ namespace wan24.Core
         /// <summary>
         /// Thread synchronization
         /// </summary>
-        protected readonly SemaphoreSlim Sync = new(1, 1);
+        protected readonly SemaphoreSync Sync = new();
         /// <summary>
         /// Stop task
         /// </summary>
@@ -37,7 +37,7 @@ namespace wan24.Core
         /// <summary>
         /// Is stopping?
         /// </summary>
-        public bool IsStopping => StopTask != null;
+        public bool IsStopping => StopTask is not null;
 
         /// <summary>
         /// Last exception
@@ -47,44 +47,28 @@ namespace wan24.Core
         /// <inheritdoc/>
         public async Task StartAsync(CancellationToken cancellationToken = default)
         {
-            await Sync.WaitAsync(cancellationToken).DynamicContext();
-            try
-            {
-                if (IsRunning) return;
-                IsRunning = true;
-                Cancellation = new();
-                ServiceTask = ((Func<Task>)RunServiceAsync).StartLongRunningTask(cancellationToken: CancellationToken.None);
-            }
-            finally
-            {
-                Sync.Release();
-            }
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
+            if (IsRunning) return;
+            IsRunning = true;
+            Cancellation = new();
+            ServiceTask = ((Func<Task>)RunServiceAsync).StartLongRunningTask(cancellationToken: CancellationToken.None);
         }
 
         /// <inheritdoc/>
         public async Task StopAsync(CancellationToken cancellationToken = default)
         {
             Task stopTask;
-            await Sync.WaitAsync(cancellationToken).DynamicContext();
-            try
+            using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext())
             {
                 if (!IsRunning) return;
-                if (StopTask == null)
+                if (StopTask is null)
                 {
                     StopTask = new(TaskCreationOptions.RunContinuationsAsynchronously);
                     Cancellation!.Cancel();
-                    stopTask = StopTask.Task;
                 }
-                else
-                {
-                    stopTask = StopTask.Task;
-                }
+                stopTask = StopTask.Task;
             }
-            finally
-            {
-                Sync.Release();
-            }
-            await stopTask.DynamicContext();
+            await stopTask.WaitAsync(cancellationToken).DynamicContext();
         }
 
         /// <summary>
@@ -98,7 +82,7 @@ namespace wan24.Core
             }
             catch (OperationCanceledException ex)
             {
-                if (!Cancellation!.IsCancellationRequested)
+                if (ex.CancellationToken != Cancellation!.Token)
                 {
                     LastException = ex;
                     OnException?.Invoke(this, new());
@@ -112,29 +96,15 @@ namespace wan24.Core
             }
             finally
             {
-                await Sync.WaitAsync().DynamicContext();
-                try
-                {
+                using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync().DynamicContext())
                     StopTask ??= new(TaskCreationOptions.RunContinuationsAsynchronously);
-                }
-                finally
-                {
-                    Sync.Release();
-                }
                 Cancellation!.Dispose();
                 Cancellation = null;
                 ServiceTask = null;
                 IsRunning = false;
-                await Sync.WaitAsync(Cancellation?.Token ?? default).DynamicContext();
-                try
-                {
-                    StopTask.SetResult();
-                    StopTask = null;
-                }
-                finally
-                {
-                    Sync.Release();
-                }
+                using SemaphoreSyncContext ssc2 = await Sync.SyncContextAsync().DynamicContext();
+                StopTask.SetResult();
+                StopTask = null;
             }
         }
 

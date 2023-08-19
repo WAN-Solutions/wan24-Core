@@ -146,8 +146,8 @@ namespace wan24.Core
             if (len == 0) return (T)Convert.ChangeType(0, EnsureValidNumericType<T>());
             int decodedLen = (int)GetDecodedLength(len);
             ArgumentValidationHelper.EnsureValidArgument(nameof(str), decodedLen.In(1, 2, 4, 8), () => "Invalid encoded data length for decoding a compacted numeric value");
-            bool returnBuffer = buffer == null;
-            if (buffer == null)
+            bool returnBuffer = buffer is null;
+            if (buffer is null)
             {
                 pool ??= ArrayPool<byte>.Shared;
                 buffer = pool.Rent(decodedLen);

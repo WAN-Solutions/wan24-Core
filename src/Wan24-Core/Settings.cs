@@ -55,7 +55,7 @@
             get => _CustomTempFolder;
             set
             {
-                if (value != null && !Directory.Exists(value)) throw new DirectoryNotFoundException(value);
+                if (value is not null && !Directory.Exists(value)) throw new DirectoryNotFoundException(value);
                 _CustomTempFolder = value;
             }
         }

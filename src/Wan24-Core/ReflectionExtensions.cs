@@ -184,7 +184,7 @@ namespace wan24.Core
                 pis = ci.GetParametersCached();
                 use = true;
                 for (int i = par.Count; use && i < pis.Length; i++)
-                    if (param.FirstOrDefault(p => p != null && pis[i].ParameterType.IsAssignableFrom(p.GetType())) is object p) par.Add(p);
+                    if (param.FirstOrDefault(p => p is not null && pis[i].ParameterType.IsAssignableFrom(p.GetType())) is object p) par.Add(p);
                     else if (DiHelper.GetDiObject(pis[i].ParameterType, out di)) par.Add(di);
                     else if (pis[i].HasDefaultValue) par.Add(pis[i].DefaultValue);
                     else if (pis[i].IsNullable(nic)) par.Add(null);
@@ -202,7 +202,7 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <returns>Is nullable?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool IsNullable(this Type type) => Nullable.GetUnderlyingType(type) != null;
+        public static bool IsNullable(this Type type) => Nullable.GetUnderlyingType(type) is not null;
 
         /// <summary>
         /// Determine if a method return value is nullable
@@ -291,20 +291,20 @@ namespace wan24.Core
             {
                 // Check method name, return type and generic argument count
                 if (
-                    (name != null && mi.Name != name) ||
-                    (returnType != null && !MatchReturnType(mi, returnType, exactTypes)) ||
-                    (genericArgumentCount != null && (genericArgumentCount.Value != 0 != mi.IsGenericMethodDefinition || mi.GetGenericArguments().Length != genericArgumentCount.Value))
+                    (name is not null && mi.Name != name) ||
+                    (returnType is not null && !MatchReturnType(mi, returnType, exactTypes)) ||
+                    (genericArgumentCount is not null && (genericArgumentCount.Value != 0 != mi.IsGenericMethodDefinition || mi.GetGenericArguments().Length != genericArgumentCount.Value))
                     )
                     continue;
                 // Check parameters
-                if (parameterTypes != null)
+                if (parameterTypes is not null)
                 {
                     pt = mi.GetParametersCached().Select(p => p.ParameterType).ToArray();
                     if (pt.Length != parameterTypes.Length) continue;
                     bool isMatch = true;
                     for (int i = 0; i < parameterTypes.Length; i++)
                     {
-                        if (parameterTypes[i] == null || MatchParameterType(mi, pt[i], parameterTypes[i]!, exactTypes)) continue;
+                        if (parameterTypes[i] is null || MatchParameterType(mi, pt[i], parameterTypes[i]!, exactTypes)) continue;
                         isMatch = false;
                         break;
                     }
@@ -339,14 +339,14 @@ namespace wan24.Core
             foreach (ConstructorInfo ci in type.GetConstructorsCached(bindingFlags))
             {
                 // Check parameters
-                if (parameterTypes != null)
+                if (parameterTypes is not null)
                 {
                     pt = ci.GetParametersCached().Select(p => p.ParameterType).ToArray();
                     if (pt.Length != parameterTypes.Length) continue;
                     bool isMatch = true;
                     for (int i = 0; i < parameterTypes.Length; i++)
                     {
-                        if (parameterTypes[i] == null || MatchParameterType(pt[i], parameterTypes[i]!, exactTypes)) continue;
+                        if (parameterTypes[i] is null || MatchParameterType(pt[i], parameterTypes[i]!, exactTypes)) continue;
                         isMatch = false;
                         break;
                     }

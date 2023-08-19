@@ -95,7 +95,7 @@
         /// <summary>
         /// Master configuration option
         /// </summary>
-        public ConfigOption<tValue, tConfig> MasterOption => ParentOption == null ? this : ParentOption.MasterOption;
+        public ConfigOption<tValue, tConfig> MasterOption => ParentOption?.MasterOption ?? this;
 
         /// <summary>
         /// Parent configuration option
@@ -169,7 +169,7 @@
         /// <inheritdoc/>
         public bool CanBeOverridden
         {
-            get => _CanBeOverridden && (ParentOption?.CanBeOverridden ?? true) && SubOption != null;
+            get => _CanBeOverridden && (ParentOption?.CanBeOverridden ?? true) && SubOption is not null;
             set => _CanBeOverridden = value;
         }
 
@@ -234,7 +234,7 @@
         #endregion
 
         /// <inheritdoc/>
-        public void SetDynamicValue(dynamic? value) => Value = DynamicValueConverter == null ? value : DynamicValueConverter(value);
+        public void SetDynamicValue(dynamic? value) => Value = DynamicValueConverter?.Invoke(value);
 
         /// <inheritdoc/>
         public void Unset(bool recursive = false)

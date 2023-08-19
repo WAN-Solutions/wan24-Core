@@ -75,7 +75,7 @@ namespace wan24.Core
             if (ActionQueue.IsEmpty) return;
             ObjectDisposedException exception = new(GetType().ToString());
             foreach (var info in ActionQueue)
-                info.Task.SetException(exception);
+                info.Task.TrySetException(exception);
             ActionQueue.Clear();
         }
 
@@ -97,7 +97,7 @@ namespace wan24.Core
             if (ActionQueue.IsEmpty) return;
             ObjectDisposedException exception = new(GetType().ToString());
             foreach (var info in ActionQueue)
-                info.Task.SetException(exception);
+                info.Task.TrySetException(exception);
             ActionQueue.Clear();
         }
 
@@ -174,11 +174,11 @@ namespace wan24.Core
                                 while (res.ActionQueue.TryDequeue(out var info))
                                     try
                                     {
-                                        info.Task.SetResult(info.Action());
+                                        info.Task.TrySetResult(info.Action());
                                     }
                                     catch (Exception ex)
                                     {
-                                        info.Task.SetException(ex);
+                                        info.Task.TrySetException(ex);
                                     }
                         }
                     }

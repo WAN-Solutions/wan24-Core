@@ -424,5 +424,56 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static async ValueTask<tReturn> FinallyAsync<tResult, tReturn>(this ValueTask<tResult> task, Func<tResult, ValueTask<tReturn>> action)
             => await action(await task.DynamicContext()).DynamicContext();
+
+        /// <summary>
+        /// Wait one
+        /// </summary>
+        /// <param name="waitHandle">Wait handle</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public static async Task WaitAsync(this WaitHandle waitHandle, CancellationToken cancellationToken = default)
+        {
+            TaskCompletionSource tcs = new(TaskCreationOptions.RunContinuationsAsynchronously);
+            using CancellationTokenRegistration ctr = cancellationToken.Register(() => tcs.TrySetCanceled());
+            RegisteredWaitHandle registeredWaitHandle = ThreadPool.RegisterWaitForSingleObject(
+                waitHandle, 
+                (state, timedOut) => tcs.TrySetResult(), 
+                tcs, 
+                millisecondsTimeOutInterval: -1, 
+                executeOnlyOnce: true
+                );
+            try
+            {
+                await tcs.Task.WaitAsync(cancellationToken).DynamicContext();
+            }
+            finally
+            {
+                registeredWaitHandle.Unregister(waitHandle);
+            }
+        }
+
+        /// <summary>
+        /// Wait one
+        /// </summary>
+        /// <param name="waitHandle">Wait handle</param>
+        /// <param name="timeout">Timeout</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public static async Task WaitAsync(this WaitHandle waitHandle, TimeSpan timeout, CancellationToken cancellationToken = default)
+        {
+            TaskCompletionSource tcs = new(TaskCreationOptions.RunContinuationsAsynchronously);
+            using CancellationTokenRegistration ctr = cancellationToken.Register(() => tcs.TrySetCanceled());
+            RegisteredWaitHandle registeredWaitHandle = ThreadPool.RegisterWaitForSingleObject(waitHandle, (state, timedOut) =>
+            {
+                if (timedOut) tcs.TrySetException(new TimeoutException());
+                else tcs.TrySetResult();
+            }, tcs, timeout, executeOnlyOnce: true);
+            try
+            {
+                await tcs.Task.DynamicContext();
+}
+            finally
+            {
+                registeredWaitHandle.Unregister(waitHandle);
+            }
+        }
     }
 }

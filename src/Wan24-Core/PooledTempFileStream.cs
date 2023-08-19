@@ -17,7 +17,7 @@
         {
             foreach (string file in Directory.GetFiles(
                 Settings.TempFolder,
-                $"*{(Settings.AppId == null ? string.Empty : $"-{Settings.AppId}")}{(Settings.ProcessId == null ? string.Empty : $"-{Settings.ProcessId}")}.pooled",
+                $"*{(Settings.AppId is null ? string.Empty : $"-{Settings.AppId}")}{(Settings.ProcessId is null ? string.Empty : $"-{Settings.ProcessId}")}.pooled",
                 SearchOption.TopDirectoryOnly
                 ))
                 try
@@ -44,7 +44,7 @@
             : base(
                   Path.Combine(
                       folder ?? Settings.TempFolder,
-                      $"{Guid.NewGuid()}{(Settings.AppId == null ? string.Empty : $"-{Settings.AppId}")}{(Settings.ProcessId == null ? string.Empty : $"-{Settings.ProcessId}")}.pooled"
+                      $"{Guid.NewGuid()}{(Settings.AppId is null ? string.Empty : $"-{Settings.AppId}")}{(Settings.ProcessId is null ? string.Empty : $"-{Settings.ProcessId}")}.pooled"
                       ),
                   FileMode.CreateNew,
                   FileAccess.ReadWrite,

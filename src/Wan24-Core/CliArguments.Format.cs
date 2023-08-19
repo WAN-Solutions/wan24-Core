@@ -54,7 +54,7 @@ namespace wan24.Core
         /// <param name="args">Arguments</param>
         protected void Initialize(ReadOnlySpan<string> args)
         {
-            this.EnsureValidState(KeyLessArguments == null, "Initialized already");
+            this.EnsureValidState(KeyLessArguments is null, "Initialized already");
             Dictionary<string, List<string>> a = new();
             List<string> keyLess = new();
             string? lastKey = null;
@@ -127,7 +127,7 @@ namespace wan24.Core
                         }
                     }
                 }
-                else if (lastKey != null)
+                else if (lastKey is not null)
                 {
                     if (a[lastKey].Count == 0)
                     {
@@ -157,7 +157,7 @@ namespace wan24.Core
                     // Handle a "dash-flag"
                     HandleDashFlag();
                 }
-            if (lastKey != null)
+            if (lastKey is not null)
                 _Arguments.AddRange(from kvp in a
                                     select new KeyValuePair<string, ReadOnlyCollection<string>>(kvp.Key, kvp.Value.AsReadOnly()));
             KeyLessArguments = keyLess.AsReadOnly();

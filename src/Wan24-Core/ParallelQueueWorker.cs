@@ -16,7 +16,7 @@
         /// <summary>
         /// Thread synchronization
         /// </summary>
-        protected readonly SemaphoreSlim Sync = new(1, 1);
+        protected readonly SemaphoreSync Sync = new();
         /// <summary>
         /// Processing workers
         /// </summary>
@@ -51,7 +51,7 @@
         public bool WaitBoring(TimeSpan timeout)
         {
             DateTime started = DateTime.Now;
-            while (ExecuteTask != null && (Queued != 0 || !Busy.IsSet))
+            while (ExecuteTask is not null && (Queued != 0 || !Busy.IsSet))
                 try
                 {
                     Busy.Wait(timeout);
@@ -68,7 +68,7 @@
         public async Task<bool> WaitBoringAsync(TimeSpan timeout)
         {
             DateTime started = DateTime.Now;
-            while (ExecuteTask != null && (Queued != 0 || !Busy.IsSet))
+            while (ExecuteTask is not null && (Queued != 0 || !Busy.IsSet))
                 try
                 {
                     await Busy.WaitAsync(timeout).DynamicContext();
@@ -84,7 +84,7 @@
         /// <inheritdoc/>
         public bool WaitBoring(CancellationToken cancellationToken = default)
         {
-            while (ExecuteTask != null && (Queued != 0 || !Busy.IsSet))
+            while (ExecuteTask is not null && (Queued != 0 || !Busy.IsSet))
                 try
                 {
                     Busy.Wait(cancellationToken);
@@ -99,7 +99,7 @@
         /// <inheritdoc/>
         public async Task<bool> WaitBoringAsync(CancellationToken cancellationToken = default)
         {
-            while (ExecuteTask != null && (Queued != 0 || !Busy.IsSet))
+            while (ExecuteTask is not null && (Queued != 0 || !Busy.IsSet))
                 try
                 {
                     await Busy.WaitAsync(cancellationToken).DynamicContext();
@@ -126,16 +126,11 @@
                 {
                     await Processing.WaitAsync(stoppingToken).DynamicContext();
                     Task_Delegate task = await Queue.Reader.ReadAsync(stoppingToken).DynamicContext();
-                    await Sync.WaitAsync(stoppingToken).DynamicContext();
-                    try
+                    using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(stoppingToken).DynamicContext())
                     {
                         ProcessCount++;
                         if (ProcessCount >= Threads) await Processing.ResetAsync().DynamicContext();
                         await Busy.ResetAsync().DynamicContext();
-                    }
-                    finally
-                    {
-                        Sync.Release();
                     }
                     _ = Process(task, stoppingToken);
                 }
@@ -178,17 +173,10 @@
             }
             finally
             {
-                await Sync.WaitAsync(CancellationToken.None).DynamicContext();
-                try
-                {
-                    ProcessCount--;
-                    if (ProcessCount == Threads - 1) await Processing.SetAsync().DynamicContext();
-                    if (ProcessCount == 0) await Busy.SetAsync().DynamicContext();
-                }
-                finally
-                {
-                    Sync.Release();
-                }
+                using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(CancellationToken.None).DynamicContext();
+                ProcessCount--;
+                if (ProcessCount == Threads - 1) await Processing.SetAsync().DynamicContext();
+                if (ProcessCount == 0) await Busy.SetAsync().DynamicContext();
             }
         }
 

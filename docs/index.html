@@ -323,6 +323,19 @@ including extensions for numeric type encoding/decoding)</li>
 </ul>
 </li>
 <li>Checksum implementation in <code>ChecksumExtensions</code> and <code>ChecksumTransform</code></li>
+<li>Thread synchronization helper (synchronous / asynchronous)
+<ul>
+<li><code>SemaphoreSync</code> uses a <code>SemaphoreSlim</code> for thread synchronization</li>
+<li><code>SemaphoreSyncContext</code> is a disposable thread synchronization context</li>
+</ul>
+</li>
+<li>Networking helper
+<ul>
+<li>Browsing ethernet adapters filtered</li>
+<li>Classify LAN, WAN and loopback IP addresses and ethernet adapters</li>
+<li><code>IpSubNet</code> implementation for managing IPv4/6 sub-nets (CIDR)</li>
+</ul>
+</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
@@ -1237,6 +1250,87 @@ implemented hash algorithm (even it's not a hash, but only a checksum!):</p>
 <p>You may register the checksum algorithm as &quot;Checksum&quot; using the <code>Register</code>
 method:</p>
 <pre><code class="lang-cs">ChecksumTransform.Register();
+</code></pre>
+<h2 id="ip-sub-nets">IP sub-nets</h2>
+<p>The <code>IpSubNet</code> structure helps working with IPv4/6 sub-nets. It stores the
+network address and the bit-mask, for being able to provide</p>
+<ul>
+<li>the broadcast address or</li>
+<li>any IP address within the sub-net IP range and</li>
+<li>the number of usable IP addresses in the sub-net</li>
+</ul>
+<p>and being able to</p>
+<ul>
+<li>determine if an IP address is within a sub-net</li>
+<li>determine if two sub-nets intersect</li>
+<li>a sub-net matches within another sub-net</li>
+<li>enumerate sub-net IP addresses</li>
+<li>compare sub-net lengths</li>
+<li>extend or shrink sub-nets</li>
+<li>combine two sub-nets</li>
+<li>serialize sub-net information platform independent</li>
+<li>determine if a sub-net is LAN (private), WAN (public) or loopback</li>
+<li>validate the correctness of a sub-net</li>
+</ul>
+<p>on the fly, and many things more.</p>
+<p>To construct the structure, you'll need one of these informations:</p>
+<ul>
+<li>Network CIDR notated (&quot;192.168.0.0/24&quot; for example)</li>
+<li>Network as <code>IPAddress</code> (all zero bytes will count the mask bits)</li>
+<li>Network as integer and the number of mask bits</li>
+<li>Network as <code>IPAddress</code> and the number of mask bits</li>
+<li>Network and mask as <code>IPAddress</code></li>
+<li>Serialized sub-net data</li>
+</ul>
+<p>Some basic examples:</p>
+<pre><code class="lang-cs">// Create from CIDR notation
+IpSubNet net = new(&quot;192.168.0.0/24&quot;);
+
+// Determine the network kind
+Assert.IsTrue(net.IsLan);
+Assert.IsFalse(net.IsWan);
+Assert.IsFalse(net.IsLoopback);
+
+// Get any IP address within a sub-net
+Assert.AreEqual(IPAddress.Parse(&quot;192.168.0.1&quot;), net[1]);
+
+// Get the broadcast IP address
+Assert.AreEqual(IPAddress.Parse(&quot;192.168.0.255&quot;), net.BroadcastIPAddress);
+
+// Determine if an IP address is within a sub-net
+Assert.IsTrue(IPAddress.Parse(&quot;192.168.0.1&quot;) == net);
+Assert.IsTrue(IPAddress.Parse(&quot;192.168.1.1&quot;) != net);
+
+// Combine two sub-nets
+IpSubNet combined = net + new IpSubNet(&quot;192.168.254.0/24&quot;);
+Assert.AreEqual(&quot;192.168.0.0/16&quot;, combined.ToString());
+
+// Merge to compatible (!) subnets
+IpSubNet merged = net | new IpSubNet(&quot;192.168.0.0/8&quot;);
+Assert.AreEqual(&quot;192.0.0.0/8&quot;, combined.ToString());
+
+// Determine if two sub-nets intersect, or one fits into another
+IpSubNet largerNet = new IpSubNet(&quot;192.168.0.0/16&quot;),
+    smallerNet = new IpSubNet(&quot;192.168.0.0/30&quot;),
+    otherNet = new IpSubNet(&quot;10.0.0.0/8&quot;);
+Assert.AreEqual(net &amp; largetNet, net);// net fits into largetNet
+Assert.AreEqual(net &amp; smallerNet, smallerNet);// net intersects smallerNet
+Assert.AreEqual(net &amp; otherNet, IpSubNet.ZeroV4);// no intersection between net and otherNet
+
+// Extend/shrink a sub-net
+Assert.AreEqual(&quot;192.168.0.0/23&quot;, (net &lt;&lt; 1).ToString());// Expand by one bit
+Assert.AreEqual(&quot;192.168.0.0/25&quot;, (net &gt;&gt; 1).ToString());// Shrink by one bit
+
+// Validate CIDR notation
+if(IpSubNet.TryParse(&quot;::/128&quot;, out IPSubNet subNet))
+{
+    // Valid CIDR notated sub-net
+}
+
+// Serialization
+byte[] serialized = net;// Serialize
+IpSubNet net2 = serialized;// Deserialize
+Assert.AreEqual(net, net2);
 </code></pre>
 </article>
           </div>

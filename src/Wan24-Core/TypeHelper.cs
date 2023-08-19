@@ -41,7 +41,7 @@ namespace wan24.Core
                 Logging.WriteDebug($"Scanning and booting late loaded assembly {e.LoadedAssembly.GetName().FullName}");
                 List<Task> tasks = new();
                 foreach (Assembly ass in Instance.ScanAssemblies(e.LoadedAssembly))
-                    if (ass.GetCustomAttributeCached<BootstrapperAttribute>() != null)
+                    if (ass.GetCustomAttributeCached<BootstrapperAttribute>() is not null)
                         tasks.Add(Bootstrap.AssemblyAsync(ass, Bootstrap.FindClasses, Bootstrap.FindMethods));
                 await tasks.WaitAll().DynamicContext();
             };
@@ -71,7 +71,7 @@ namespace wan24.Core
         {
             // Ensure having a reference assembly where we're starting at
             reference ??= Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly();
-            if (reference == null)
+            if (reference is null)
             {
                 Logging.WriteWarning("No reference assembly for scanning");
                 return Array.Empty<Assembly>();
@@ -135,21 +135,21 @@ namespace wan24.Core
         public Type? GetType(string name, bool throwOnError = false)
         {
             if (Types.TryGetValue(name, out Type? res)) return res;
-            if ((res = Type.GetType(name, throwOnError)) != null)
+            if ((res = Type.GetType(name, throwOnError)) is not null)
             {
                 Types[name] = res;
                 return res;
             }
             res = (from a in Assemblies
-                   where (res = a.GetType(name, throwOnError)) != null
+                   where (res = a.GetType(name, throwOnError)) is not null
                    select res).FirstOrDefault();
-            if (res == null)
+            if (res is null)
             {
                 LoadTypeEventArgs e = new(name);
                 OnLoadType?.Invoke(e);
                 res = e.Type;
             }
-            if (res != null) Types[name] = res;
+            if (res is not null) Types[name] = res;
             return res;
         }
 

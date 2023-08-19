@@ -1,6 +1,4 @@
-﻿using System.Threading;
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Thread-safe value
@@ -11,7 +9,7 @@ namespace wan24.Core
         /// <summary>
         /// Thread synchronization
         /// </summary>
-        protected readonly SemaphoreSlim Sync = new(1, 1);
+        protected readonly SemaphoreSync Sync = new();
         /// <summary>
         /// Value
         /// </summary>
@@ -34,15 +32,8 @@ namespace wan24.Core
             get => _Value;
             set
             {
-                Sync.Wait();
-                try
-                {
-                    _Value = value;
-                }
-                finally
-                {
-                    Sync.Release();
-                }
+                using SemaphoreSyncContext ssc = Sync.SyncContext();
+                _Value = value;
             }
         }
 
@@ -54,17 +45,10 @@ namespace wan24.Core
         /// <returns>Old value</returns>
         public virtual async Task<T?> SetValueAsync(T? value, CancellationToken cancellationToken = default)
         {
-            await Sync.WaitAsync(cancellationToken).DynamicContext();
-            try
-            {
-                T? res = _Value;
-                _Value = value;
-                return res;
-            }
-            finally
-            {
-                Sync.Release();
-            }
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
+            T? res = _Value;
+            _Value = value;
+            return res;
         }
 
         /// <summary>
@@ -74,15 +58,8 @@ namespace wan24.Core
         /// <returns>Current value</returns>
         public virtual T? Execute(Action_Delegate action)
         {
-            Sync.Wait();
-            try
-            {
-                return _Value = action(_Value);
-            }
-            finally
-            {
-                Sync.Release();
-            }
+            using SemaphoreSyncContext ssc = Sync.SyncContext();
+            return _Value = action(_Value);
         }
 
         /// <summary>
@@ -93,28 +70,21 @@ namespace wan24.Core
         /// <returns>Current value</returns>
         public virtual async Task<T?> ExecuteAsync(AsyncAction_Delegate action, CancellationToken cancellationToken = default)
         {
-            await Sync.WaitAsync(cancellationToken).DynamicContext();
-            try
-            {
-                return await action(_Value).DynamicContext();
-            }
-            finally
-            {
-                Sync.Release();
-            }
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
+            return await action(_Value).DynamicContext();
         }
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            Sync.Wait();
+            Sync.Sync();
             Sync.Dispose();
         }
 
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            await Sync.WaitAsync().DynamicContext();
+            await Sync.SyncAsync().DynamicContext();
             Sync.Dispose();
         }
 

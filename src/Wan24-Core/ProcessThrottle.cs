@@ -20,7 +20,7 @@
         /// <summary>
         /// Thread synchronization
         /// </summary>
-        protected readonly SemaphoreSlim Sync = new(1, 1);
+        protected readonly SemaphoreSync Sync = new();
 
         /// <summary>
         /// Constructor
@@ -35,15 +35,10 @@
             };
             Timer.Elapsed += (s, e) =>
             {
-                Sync.Wait();
-                try
+                using (SemaphoreSyncContext ssc = Sync.SyncContext())
                 {
                     ThrottleStart = DateTime.MinValue;
                     CurrentCount = 0;
-                }
-                finally
-                {
-                    Sync.Release();
                 }
                 Throttle.Set();
                 OnThrottleEnd?.Invoke(this, new());
@@ -192,23 +187,19 @@
         protected int GetProcessChunkSize(int count, bool process)
         {
             bool throttling = false;
-            Sync.Wait();
-            try
+            int canProcess;
+            using (SemaphoreSyncContext ssc = Sync.SyncContext())
             {
-                (int canProcess, throttling) = GetProcessChunkSizeLocked(count, process);
+                (canProcess, throttling) = GetProcessChunkSizeLocked(count, process);
                 if (throttling)
                 {
                     Throttle.Reset();
                     Timer.Interval = Timeout - (DateTime.Now - ThrottleStart).TotalMilliseconds;
                     Timer.Start();
                 }
-                return canProcess;
             }
-            finally
-            {
-                Sync.Release();
-                if (throttling) OnThrottleStart?.Invoke(this, new());
-            }
+            if (throttling) OnThrottleStart?.Invoke(this, new());
+            return canProcess;
         }
 
         /// <summary>
@@ -220,23 +211,19 @@
         protected async Task<int> GetProcessChunkSizeAsync(int count, bool process)
         {
             bool throttling = false;
-            await Sync.WaitAsync().DynamicContext();
-            try
+            int canProcess;
+            using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync())
             {
-                (int canProcess, throttling) = GetProcessChunkSizeLocked(count, process);
+                (canProcess, throttling) = GetProcessChunkSizeLocked(count, process);
                 if (throttling)
                 {
                     await Throttle.ResetAsync().DynamicContext();
                     Timer.Interval = Timeout - (DateTime.Now - ThrottleStart).TotalMilliseconds;
                     Timer.Start();
                 }
-                return canProcess;
             }
-            finally
-            {
-                Sync.Release();
-                if (throttling) OnThrottleStart?.Invoke(this, new());
-            }
+            if (throttling) OnThrottleStart?.Invoke(this, new());
+            return canProcess;
         }
 
         /// <summary>

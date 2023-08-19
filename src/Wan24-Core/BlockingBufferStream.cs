@@ -12,7 +12,7 @@
         /// <summary>
         /// Thread synchronization for buffer access
         /// </summary>
-        protected readonly SemaphoreSlim BufferSync = new(1, 1);
+        protected readonly SemaphoreSync BufferSync = new();
         /// <summary>
         /// Space event (raised when having space for writing)
         /// </summary>
@@ -142,19 +142,15 @@
         public bool ReorganizeBuffer()
         {
             EnsureUndisposed();
-            BufferSync.Wait();
-            EnsureUndisposed();
-            bool hadSpace = !IsWriteBlocked;
-            try
+            bool hadSpace;
+            using (SemaphoreSyncContext ssc = BufferSync.SyncContext())
             {
+                EnsureUndisposed();
+                hadSpace = !IsWriteBlocked;
                 if (ReadOffset == 0) return false;
                 Array.Copy(Buffer, ReadOffset, Buffer, 0, WriteOffset - ReadOffset);
                 WriteOffset -= ReadOffset;
                 ReadOffset = 0;
-            }
-            finally
-            {
-                BufferSync.Release();
             }
             if (!hadSpace)
             {
@@ -172,19 +168,15 @@
         public async Task<bool> ReorganizeBufferAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            await BufferSync.WaitAsync(cancellationToken).DynamicContext();
-            EnsureUndisposed();
-            bool hadSpace = !IsWriteBlocked;
-            try
+            bool hadSpace;
+            using (SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext())
             {
+                EnsureUndisposed();
+                hadSpace = !IsWriteBlocked;
                 if (ReadOffset == 0) return false;
                 Array.Copy(Buffer, ReadOffset, Buffer, 0, WriteOffset - ReadOffset);
                 WriteOffset -= ReadOffset;
                 ReadOffset = 0;
-            }
-            finally
-            {
-                BufferSync.Release();
             }
             if (!hadSpace)
             {
@@ -214,27 +206,18 @@
             {
                 DataEvent.Wait();
                 EnsureUndisposed();
-                BufferSync.Wait();
+                using SemaphoreSyncContext ssc = BufferSync.SyncContext();
                 EnsureUndisposed();
-                try
-                {
-                    read = Math.Min(buffer.Length, Available);
-                    if (read == 0)
-                    {
-                        if (!AggressiveReadBlocking || _IsEndOfFile)
-                        {
-                            blocking = true;
-                            break;
-                        }
-                        DataEvent.Reset();
-                    }
-                }
-                finally
-                {
-                    if (read == 0) BufferSync.Release();
-                }
+                read = Math.Min(buffer.Length, Available);
                 if (read == 0)
                 {
+                    if (!AggressiveReadBlocking || _IsEndOfFile)
+                    {
+                        blocking = true;
+                        break;
+                    }
+                    DataEvent.Reset();
+                    ssc.Dispose();
                     RaiseOnNeedData();
                     read = 1;
                     continue;
@@ -259,7 +242,6 @@
                     {
                         blocking = false;
                     }
-                    BufferSync.Release();
                 }
             }
             if (blocking) RaiseOnNeedData();
@@ -282,27 +264,18 @@
             {
                 await DataEvent.WaitAsync(cancellationToken).DynamicContext();
                 EnsureUndisposed();
-                await BufferSync.WaitAsync(cancellationToken);
+                using SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext();
                 EnsureUndisposed();
-                try
-                {
-                    read = Math.Min(buffer.Length, Available);
-                    if (read == 0)
-                    {
-                        if (!AggressiveReadBlocking || _IsEndOfFile)
-                        {
-                            blocking = true;
-                            break;
-                        }
-                        DataEvent.Reset();
-                    }
-                }
-                finally
-                {
-                    if (read == 0) BufferSync.Release();
-                }
+                read = Math.Min(buffer.Length, Available);
                 if (read == 0)
                 {
+                    if (!AggressiveReadBlocking || _IsEndOfFile)
+                    {
+                        blocking = true;
+                        break;
+                    }
+                    DataEvent.Reset();
+                    ssc.Dispose();
                     RaiseOnNeedData();
                     read = 1;
                     continue;
@@ -327,7 +300,6 @@
                     {
                         blocking = false;
                     }
-                    BufferSync.Release();
                 }
             }
             if (blocking) RaiseOnNeedData();
@@ -358,10 +330,9 @@
             {
                 SpaceEvent.Wait();
                 EnsureUndisposed();
-                BufferSync.Wait();
-                EnsureUndisposed();
-                try
+                using (SemaphoreSyncContext ssc = BufferSync.SyncContext())
                 {
+                    EnsureUndisposed();
                     write = Math.Min(SpaceLeft, buffer.Length);
                     buffer[..write].CopyTo(Buffer.Span[WriteOffset..]);
                     buffer = buffer[write..];
@@ -374,10 +345,6 @@
                     }
                     haveData = !DataEvent.IsSet;
                     DataEvent.Set();
-                }
-                finally
-                {
-                    BufferSync.Release();
                 }
                 if (haveData)
                 {
@@ -408,10 +375,9 @@
             {
                 await SpaceEvent.WaitAsync(cancellationToken).DynamicContext();
                 EnsureUndisposed();
-                await BufferSync.WaitAsync(cancellationToken).DynamicContext();
-                EnsureUndisposed();
-                try
+                using (SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext())
                 {
+                    EnsureUndisposed();
                     write = Math.Min(SpaceLeft, buffer.Length);
                     buffer.Span[..write].CopyTo(Buffer.Span[WriteOffset..]);
                     buffer = buffer[write..];
@@ -423,10 +389,6 @@
                         SpaceEvent.Reset();
                     }
                     DataEvent.Set();
-                }
-                finally
-                {
-                    BufferSync.Release();
                 }
                 if (haveData)
                 {
@@ -446,16 +408,12 @@
         protected override void Dispose(bool disposing)
         {
             if (IsDisposing) return;
-            BufferSync.Wait();
-            try
+            using SemaphoreSync bufferSync = BufferSync;
+            using (SemaphoreSyncContext ssc = bufferSync.SyncContext())
             {
                 base.Dispose(disposing);
                 DataEvent.Dispose();
                 SpaceEvent.Dispose();
-            }
-            finally
-            {
-                BufferSync.Dispose();
             }
             Buffer.Dispose();
         }
@@ -463,17 +421,12 @@
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            await BufferSync.WaitAsync().DynamicContext();
-            try
+            using SemaphoreSync bufferSync = BufferSync;
+            using (SemaphoreSyncContext ssc = await bufferSync.SyncContextAsync().DynamicContext())
             {
                 await base.DisposeCore().DynamicContext();
                 await DataEvent.DisposeAsync().DynamicContext();
                 await SpaceEvent.DisposeAsync().DynamicContext();
-            }
-            finally
-            {
-                BufferSync.Release();
-                BufferSync.Dispose();
             }
             Buffer.Dispose();
         }

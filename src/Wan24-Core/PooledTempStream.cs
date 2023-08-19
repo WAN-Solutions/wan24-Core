@@ -64,7 +64,7 @@
         {
             get
             {
-                if (_MemoryStreamPool != null) return _MemoryStreamPool;
+                if (_MemoryStreamPool is not null) return _MemoryStreamPool;
                 lock (StaticSyncObject) return _MemoryStreamPool ??= new(MemoryPoolCapacity)
                 {
                     Name = "Temporary memory streams"
@@ -79,7 +79,7 @@
         {
             get
             {
-                if (_FileStreamPool != null) return _FileStreamPool;
+                if (_FileStreamPool is not null) return _FileStreamPool;
                 lock (StaticSyncObject) return _FileStreamPool ??= new(FileStreamCapacity)
                 {
                     Name = "Temporary file streams"
@@ -249,7 +249,7 @@
         private void ReturnBaseStream()
         {
             if (_BaseStream is null) return;
-            if (MemoryStream != null)
+            if (MemoryStream is not null)
             {
                 UsedMemoryStreamPool.Return(MemoryStream);
             }

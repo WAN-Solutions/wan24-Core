@@ -23,7 +23,7 @@ namespace wan24.Core
             Default = default;
             string[] names = Enum.GetNames(typeof(T));
             T[] values = (T[])Enum.GetValues(typeof(T));
-            HasFlagsAttribute = typeof(T).GetCustomAttributeCached<FlagsAttribute>() != null;
+            HasFlagsAttribute = typeof(T).GetCustomAttributeCached<FlagsAttribute>() is not null;
             IsUnsigned = typeof(T).IsUnsigned();
             IsMixedEnum = HasFlagsAttribute && names.Contains(FLAGS_NAME);
             Names = IsMixedEnum

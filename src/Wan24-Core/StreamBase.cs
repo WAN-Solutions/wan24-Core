@@ -10,7 +10,7 @@ namespace wan24.Core
         /// <summary>
         /// An object for thread synchronization during disposing
         /// </summary>
-        private readonly SemaphoreSlim DisposeSyncObject = new(1, 1);
+        private readonly SemaphoreSync DisposeSyncObject = new();
         /// <summary>
         /// An object for thread synchronization
         /// </summary>
@@ -37,15 +37,10 @@ namespace wan24.Core
         public override void Close()
         {
             if (IsClosed) return;
-            DisposeSyncObject.Wait();
-            try
+            using (SemaphoreSyncContext ssc = DisposeSyncObject.SyncContext())
             {
                 if (IsClosed) return;
                 IsClosed = true;
-            }
-            finally
-            {
-                DisposeSyncObject.Release();
             }
             base.Close();
         }
@@ -86,7 +81,7 @@ namespace wan24.Core
             if (IsDisposing) return false;
             try
             {
-                DisposeSyncObject.Wait();
+                DisposeSyncObject.Sync();
             }
             catch (ObjectDisposedException)
             {
@@ -114,7 +109,7 @@ namespace wan24.Core
             if (IsDisposing) return false;
             try
             {
-                await DisposeSyncObject.WaitAsync().DynamicContext();
+                await DisposeSyncObject.SyncAsync().DynamicContext();
             }
             catch (ObjectDisposedException)
             {
