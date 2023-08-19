@@ -71,6 +71,22 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="network">Network IP</param>
+        public IpSubNet(in IPAddress network)
+        {
+            if (network.AddressFamily != AddressFamily.InterNetwork && network.AddressFamily != AddressFamily.InterNetworkV6)
+                throw new ArgumentException("Only IPv4/6 are supported", nameof(network));
+            byte[] bytes = network.GetAddressBytes();
+            Network = new(bytes, isUnsigned: true, isBigEndian: true);
+            int i = bytes.Length - 1;
+            for (; i >= 0 && bytes[i] == 0; i--) ;
+            MaskBits = (byte)(++i << 3);
+            IsIPv4 = network.AddressFamily == AddressFamily.InterNetwork;
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="network">Network IP</param>
         /// <param name="mask">Network mask IP</param>
         public IpSubNet(in IPAddress network, in IPAddress mask)
         {
@@ -96,7 +112,8 @@ namespace wan24.Core
                     {
                         uint maskBits = BinaryPrimitives.ReadUInt32BigEndian(mask.GetAddressBytes());
                         MaskBits = (byte)BitOperations.PopCount(maskBits);//TODO .NET 7: Use int.PopCount
-                        if (maskBits != (MaskBits == 0 ? 0 : uint.MaxValue << (IPV4_BITS - MaskBits))) throw new ArgumentException($"Invalid mask", nameof(mask));
+                        if (maskBits != (MaskBits == 0 ? 0 : uint.MaxValue << (IPV4_BITS - MaskBits)))
+                            throw new ArgumentException($"Invalid mask", nameof(mask));
                         IsIPv4 = true;
                     }
                     break;

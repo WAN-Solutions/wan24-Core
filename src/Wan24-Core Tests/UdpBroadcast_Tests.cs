@@ -56,7 +56,7 @@ namespace Wan24_Core_Tests
 
         private sealed class Broadcaster : UdpBroadcast<byte[]>
         {
-            public Broadcaster() : base(new(IPAddress.Loopback, 12345)) { }
+            public Broadcaster() : base(new(IPAddress.Loopback, 12345), IPAddress.Broadcast) { }
 
             public int PacketsReceived { get; private set; }
 

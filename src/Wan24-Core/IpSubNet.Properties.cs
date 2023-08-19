@@ -188,10 +188,37 @@ namespace wan24.Core
         {
             get
             {
-                foreach (IpSubNet net in NetworkHelper.LAN.Concat(NetworkHelper.LoopBack))
+                foreach (IpSubNet net in NetworkHelper.LoopBack.Concat(NetworkHelper.LAN))
                     if (IsWithin(net))
                         return false;
                 return true;
+            }
+        }
+
+        /// <summary>
+        /// IP network kind
+        /// </summary>
+        public IpNetworkKind NetworkKind
+        {
+            get
+            {
+                if (IsLoopback) return IpNetworkKind.Loopback;
+                if (IsLan) return IpNetworkKind.LAN;
+                return IpNetworkKind.WAN;
+            }
+        }
+
+        /// <summary>
+        /// Get the pre-defined parent sub-net of this loopback or LAN sub-net (returns this, if this is a WAN sub-net)
+        /// </summary>
+        public IpSubNet ParentSubNet
+        {
+            get
+            {
+                foreach (IpSubNet net in NetworkHelper.LoopBack.Concat(NetworkHelper.LAN))
+                    if (IsWithin(net))
+                        return net;
+                return this;
             }
         }
     }

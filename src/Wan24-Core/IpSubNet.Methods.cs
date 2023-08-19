@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Net;
 using System.Numerics;
-using System.Threading.Tasks;
 
 namespace wan24.Core
 {
@@ -59,31 +58,15 @@ namespace wan24.Core
         {
             if (IsIPv4 != net.IsIPv4) throw new InvalidOperationException("Incompatible sub-net address family");
             BigInteger masked = MaskedNetwork,
-                netMasked = net.MaskedNetwork,
-                minNet = BigInteger.Min(masked, netMasked);
-            int bits = 0;
-            BigInteger mask;
-            if (IsIPv4)
-            {
-                for (; bits <= IPV4_BITS; bits++)
-                {
-                    if (BigInteger.Compare(((masked >> bits) & MaxIPv4), ((netMasked >> bits) & MaxIPv4)) == 0) break;
-                }
-                Logging.WriteInfo($"{bits}");
-                bits = Math.Min(IPV4_BITS, Math.Max(Math.Max(MaskBits, net.MaskBits), IPV4_BITS - bits));
-                Logging.WriteInfo($"{bits}");
-                mask = (MaxIPv4 >> bits) & MaxIPv4;
-            }
-            else
-            {
-                for (bits = IPV4_BITS; bits <= IPV6_BITS; bits++)
-                {
-                    mask = MaxIPv6 >> bits;
-                    if ((masked & mask) != (netMasked & mask)) break;
-                }
-                mask = MaxIPv6 << (BitCount - bits);
-            }
-            return new(minNet & mask, bits, IsIPv4);
+                netMasked = net.MaskedNetwork;
+            int bits = 0,
+                allBits = BitCount;
+            for (; bits <= allBits && BigInteger.Compare(masked >> bits, netMasked >> bits) != 0; bits++) ;
+            return new(
+                BigInteger.Min(masked, netMasked) & (FullMask << bits),
+                Math.Max(0, Math.Min(Math.Min(MaskBits, net.MaskBits), allBits - bits)),
+                IsIPv4
+                );
         }
 
         /// <summary>
@@ -107,8 +90,9 @@ namespace wan24.Core
             buffer[0] = (byte)(IsIPv4 ? 1 : 0);
             buffer[1] = MaskBits;
             byte[] bytes = Network.ToByteArray(isUnsigned: true, isBigEndian: true);
-            bytes.AsSpan(0, Math.Min(bytes.Length, IsIPv4 ? IPV4_BYTES : IPV6_BYTES)).CopyTo(buffer.Slice(2, IsIPv4 ? IPV4_BYTES : IPV6_BYTES));
-            if (bytes.Length != (IsIPv4 ? IPV4_BYTES : IPV6_BYTES)) buffer.Slice(2 + bytes.Length, (IsIPv4 ? IPV4_BYTES : IPV6_BYTES) - bytes.Length).Clear();
+            int byteCount = ByteCount;
+            bytes.AsSpan(0, Math.Min(bytes.Length, byteCount)).CopyTo(buffer.Slice(2, byteCount));
+            if (bytes.Length != byteCount) buffer.Slice(2 + bytes.Length, byteCount - bytes.Length).Clear();
         }
 
         /// <inheritdoc/>
@@ -142,14 +126,23 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>IP address</returns>
-        private IPAddress GetIPAddress(BigInteger bits)
+        private IPAddress GetIPAddress(in BigInteger bits)
         {
             int byteCount = ByteCount;
+#if NO__UNSAFE
             using RentedArrayStruct<byte> buffer = new(byteCount);
+#else
+            Span<byte> buffer = stackalloc byte[byteCount];
+#endif
             byte[] bytes = bits.ToByteArray(isUnsigned: true, isBigEndian: true);
             int len = Math.Min(bytes.Length, byteCount);
+#if NO_UNSAFE
             bytes.AsSpan(0, len).CopyTo(buffer.Span[(byteCount - len)..]);
             return new(buffer.Span);
+#else
+            bytes.AsSpan(0, len).CopyTo(buffer[(byteCount - len)..]);
+            return new(buffer);
+#endif
         }
     }
 }

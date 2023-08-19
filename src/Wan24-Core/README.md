@@ -1070,3 +1070,89 @@ method:
 ```cs
 ChecksumTransform.Register();
 ```
+
+## IP sub-nets
+
+The `IpSubNet` structure helps working with IPv4/6 sub-nets. It stores the 
+network address and the bit-mask, for being able to provide 
+
+- the broadcast address or 
+- any IP address within the sub-net IP range and 
+- the number of usable IP addresses in the sub-net 
+
+and being able to 
+
+- determine if an IP address is within a sub-net 
+- determine if two sub-nets intersect 
+- a sub-net matches within another sub-net 
+- enumerate sub-net IP addresses 
+- compare sub-net lengths 
+- extend or shrink sub-nets 
+- combine two sub-nets 
+- serialize sub-net information platform independent 
+- determine if a sub-net is LAN (private), WAN (public) or loopback 
+- validate the correctness of a sub-net 
+
+on the fly, and many things more.
+
+To construct the structure, you'll need one of these informations:
+
+- Network CIDR notated ("192.168.0.0/24" for example)
+- Network as `IPAddress` (all zero bytes will count the mask bits)
+- Network as integer and the number of mask bits
+- Network as `IPAddress` and the number of mask bits
+- Network and mask as `IPAddress`
+- Serialized sub-net data
+
+Some basic examples:
+
+```cs
+// Create from CIDR notation
+IpSubNet net = new("192.168.0.0/24");
+
+// Determine the network kind
+Assert.IsTrue(net.IsLan);
+Assert.IsFalse(net.IsWan);
+Assert.IsFalse(net.IsLoopback);
+
+// Get any IP address within a sub-net
+Assert.AreEqual(IPAddress.Parse("192.168.0.1"), net[1]);
+
+// Get the broadcast IP address
+Assert.AreEqual(IPAddress.Parse("192.168.0.255"), net.BroadcastIPAddress);
+
+// Determine if an IP address is within a sub-net
+Assert.IsTrue(IPAddress.Parse("192.168.0.1") == net);
+Assert.IsTrue(IPAddress.Parse("192.168.1.1") != net);
+
+// Combine two sub-nets
+IpSubNet combined = net + new IpSubNet("192.168.254.0/24");
+Assert.AreEqual("192.168.0.0/16", combined.ToString());
+
+// Merge to compatible (!) subnets
+IpSubNet merged = net | new IpSubNet("192.168.0.0/8");
+Assert.AreEqual("192.0.0.0/8", combined.ToString());
+
+// Determine if two sub-nets intersect, or one fits into another
+IpSubNet largerNet = new IpSubNet("192.168.0.0/16"),
+    smallerNet = new IpSubNet("192.168.0.0/30"),
+    otherNet = new IpSubNet("10.0.0.0/8");
+Assert.AreEqual(net & largetNet, net);// net fits into largetNet
+Assert.AreEqual(net & smallerNet, smallerNet);// net intersects smallerNet
+Assert.AreEqual(net & otherNet, IpSubNet.ZeroV4);// no intersection between net and otherNet
+
+// Extend/shrink a sub-net
+Assert.AreEqual("192.168.0.0/23", (net << 1).ToString());// Expand by one bit
+Assert.AreEqual("192.168.0.0/25", (net >> 1).ToString());// Shrink by one bit
+
+// Validate CIDR notation
+if(IpSubNet.TryParse("::/128", out IPSubNet subNet))
+{
+    // Valid CIDR notated sub-net
+}
+
+// Serialization
+byte[] serialized = net;// Serialize
+IpSubNet net2 = serialized;// Deserialize
+Assert.AreEqual(net, net2);
+```

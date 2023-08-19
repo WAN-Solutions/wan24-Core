@@ -1,5 +1,6 @@
 ﻿using System.Buffers.Binary;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
@@ -388,5 +389,53 @@ namespace wan24.Core
                     IsWan(ip.Address)
                 select GetSubNet(ip))
                 .Distinct();
+
+        /// <summary>
+        /// Get the broadcast IP address
+        /// </summary>
+        /// <param name="ip">IP address (IPv4 required)</param>
+        /// <param name="mask">Network mask</param>
+        /// <returns>Broadcast IP address</returns>
+        public static IPAddress GetBroadcastAddress(this IPAddress ip, IPAddress mask)
+        {
+            if (ip.AddressFamily != AddressFamily.InterNetwork) throw new ArgumentException("An IPv4 IP address is required", nameof(ip));
+            if (mask.AddressFamily != AddressFamily.InterNetwork) throw new ArgumentException("An IPv4 IP address is required", nameof(mask));
+            uint ipAddr = BinaryPrimitives.ReadUInt32BigEndian(ip.GetAddressBytes()),
+                maskAddr = BinaryPrimitives.ReadUInt32BigEndian(mask.GetAddressBytes());
+            RentedArrayStruct<byte> buffer = new(len: sizeof(uint));
+            BinaryPrimitives.WriteUInt32BigEndian(buffer.Span, (ipAddr & maskAddr) | ~maskAddr);
+            return new(buffer.Span);
+        }
+
+        /// <summary>
+        /// Get the broadcast address
+        /// </summary>
+        /// <param name="ip">IP address (IPv4 required)</param>
+        /// <returns>Broadcast IP address</returns>
+        public static IPAddress GetBroadcastAddress(this UnicastIPAddressInformation ip) => GetBroadcastAddress(ip.Address, ip.IPv4Mask);
+
+        /// <summary>
+        /// Get the unicast IP addres informations
+        /// </summary>
+        /// <param name="ip">IP address</param>
+        /// <returns>Unicast IP address information</returns>
+        public static UnicastIPAddressInformation? GetUnicastIP(this IPAddress ip)
+            => (from adapter in NetworkInterface.GetAllNetworkInterfaces()
+                from addr in adapter.GetIPProperties().UnicastAddresses
+                where addr.Address == ip
+                select addr)
+                .FirstOrDefault();
+
+        /// <summary>
+        /// Get the network interface of an IP address
+        /// </summary>
+        /// <param name="ip">IP address</param>
+        /// <returns>Network interface</returns>
+        public static NetworkInterface? GetInterface(this IPAddress ip)
+            => (from adapter in NetworkInterface.GetAllNetworkInterfaces()
+                from addr in adapter.GetIPProperties().UnicastAddresses
+                where addr.Address == ip
+                select adapter)
+                .FirstOrDefault();
     }
 }

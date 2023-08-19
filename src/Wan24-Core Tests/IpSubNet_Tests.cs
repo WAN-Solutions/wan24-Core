@@ -171,17 +171,26 @@ namespace Wan24_Core_Tests
                     b = new("192.168.0.0/16"),
                     c = a.CombineWith(b);
                 Logging.WriteInfo($"Sub-net {a} + {b} = {c}");
-                //Assert.AreEqual(19, c.MaskBits);
-                //Assert.AreEqual(a.MaskedNetwork, c.Network);
+                Assert.AreEqual(0, c.MaskBits);
+                Assert.AreEqual(IPAddress.Parse("0.0.0.0"), c.NetworkIPAddress);
             }
             {
-                IpSubNet a = new("192.168.128.0/8"),
+                IpSubNet a = new("192.168.128.0/24"),
                     b = new("192.168.254.0/16"),
                     c = a.CombineWith(b);
                 Logging.WriteInfo($"Sub-net {a} + {b} = {c}");
-                //Assert.AreEqual(16, c.MaskBits);
-                //Assert.AreEqual(b.MaskedNetwork, c.Network);
+                Assert.AreEqual(16, c.MaskBits);
+                Assert.AreEqual(IPAddress.Parse("192.168.0.0"), c.NetworkIPAddress);
             }
+        }
+
+        [TestMethod]
+        public void Network_Constructor_Tests()
+        {
+            IPAddress network = IPAddress.Parse("192.168.0.0");
+            IpSubNet net = new(network);
+            Assert.AreEqual(network, net.NetworkIPAddress);
+            Assert.AreEqual(16, net.MaskBits);
         }
     }
 }

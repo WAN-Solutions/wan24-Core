@@ -26,15 +26,17 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="udpEndPoint">UDP endpoint</param>
+        /// <param name="mask">Network mask</param>
         /// <param name="broadcastPort">Broadcast UDP port</param>
         /// <param name="backgroundPacketHandler">Run the packet handler in background (asynchronous, without waiting for a call to finish)?</param>
-        protected UdpBroadcast(IPEndPoint udpEndPoint, int broadcastPort = 0, bool backgroundPacketHandler = false) : base()
+        protected UdpBroadcast(IPEndPoint udpEndPoint, IPAddress mask, int broadcastPort = 0, bool backgroundPacketHandler = false) : base()
         {
             if (udpEndPoint.Address.AddressFamily != AddressFamily.InterNetwork) throw new ArgumentException("IPv6 doesn't support broadcast", nameof(udpEndPoint));
             if (broadcastPort < 1) broadcastPort = udpEndPoint.Port;
             if (broadcastPort < 1 || broadcastPort > ushort.MaxValue) throw new ArgumentOutOfRangeException(nameof(broadcastPort));
             BackgroundPacketHandler = backgroundPacketHandler;
             UdpEndPoint = udpEndPoint;
+            NetworkMask = mask;
             BroadcastPort = broadcastPort;
         }
 
@@ -42,6 +44,11 @@ namespace wan24.Core
         /// UDP endpoint
         /// </summary>
         public IPEndPoint UdpEndPoint { get; }
+
+        /// <summary>
+        /// Network mask
+        /// </summary>
+        public IPAddress NetworkMask { get; }
 
         /// <summary>
         /// Broadcast UDP port

@@ -1564,6 +1564,25 @@ references:
   fullName.vb: wan24.Core.AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5, T6, T7, T8)(ValueTask(Of T), T1, T2, T3, T4, T5, T6, T7, T8, Func(Of T, T1, T2, T3, T4, T5, T6, T7, T8, ValueTask(Of T)))
   nameWithType: AsyncHelper.FluentAsync<T, T1, T2, T3, T4, T5, T6, T7, T8>(ValueTask<T>, T1, T2, T3, T4, T5, T6, T7, T8, Func<T, T1, T2, T3, T4, T5, T6, T7, T8, ValueTask<T>>)
   nameWithType.vb: AsyncHelper.FluentAsync(Of T, T1, T2, T3, T4, T5, T6, T7, T8)(ValueTask(Of T), T1, T2, T3, T4, T5, T6, T7, T8, Func(Of T, T1, T2, T3, T4, T5, T6, T7, T8, ValueTask(Of T)))
+- uid: wan24.Core.AsyncHelper.WaitAsync(WaitHandle,CancellationToken)
+  name: WaitAsync(WaitHandle, CancellationToken)
+  href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_WaitAsync_WaitHandle_CancellationToken_
+  commentId: M:wan24.Core.AsyncHelper.WaitAsync(WaitHandle,CancellationToken)
+  fullName: wan24.Core.AsyncHelper.WaitAsync(WaitHandle, CancellationToken)
+  nameWithType: AsyncHelper.WaitAsync(WaitHandle, CancellationToken)
+- uid: wan24.Core.AsyncHelper.WaitAsync(WaitHandle,TimeSpan,CancellationToken)
+  name: WaitAsync(WaitHandle, TimeSpan, CancellationToken)
+  href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_WaitAsync_WaitHandle_TimeSpan_CancellationToken_
+  commentId: M:wan24.Core.AsyncHelper.WaitAsync(WaitHandle,TimeSpan,CancellationToken)
+  fullName: wan24.Core.AsyncHelper.WaitAsync(WaitHandle, TimeSpan, CancellationToken)
+  nameWithType: AsyncHelper.WaitAsync(WaitHandle, TimeSpan, CancellationToken)
+- uid: wan24.Core.AsyncHelper.WaitAsync*
+  name: WaitAsync
+  href: api/wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_WaitAsync_
+  commentId: Overload:wan24.Core.AsyncHelper.WaitAsync
+  isSpec: "True"
+  fullName: wan24.Core.AsyncHelper.WaitAsync
+  nameWithType: AsyncHelper.WaitAsync
 - uid: wan24.Core.AutoValueObjectBase`1
   name: AutoValueObjectBase<T>
   href: api/wan24.Core.AutoValueObjectBase-1.html
@@ -15717,6 +15736,36 @@ references:
   isSpec: "True"
   fullName: wan24.Core.IParallelQueueWorker.WaitBoringAsync
   nameWithType: IParallelQueueWorker.WaitBoringAsync
+- uid: wan24.Core.IpNetworkKind
+  name: IpNetworkKind
+  href: api/wan24.Core.IpNetworkKind.html
+  commentId: T:wan24.Core.IpNetworkKind
+  fullName: wan24.Core.IpNetworkKind
+  nameWithType: IpNetworkKind
+- uid: wan24.Core.IpNetworkKind.LAN
+  name: LAN
+  href: api/wan24.Core.IpNetworkKind.html#wan24_Core_IpNetworkKind_LAN
+  commentId: F:wan24.Core.IpNetworkKind.LAN
+  fullName: wan24.Core.IpNetworkKind.LAN
+  nameWithType: IpNetworkKind.LAN
+- uid: wan24.Core.IpNetworkKind.Loopback
+  name: Loopback
+  href: api/wan24.Core.IpNetworkKind.html#wan24_Core_IpNetworkKind_Loopback
+  commentId: F:wan24.Core.IpNetworkKind.Loopback
+  fullName: wan24.Core.IpNetworkKind.Loopback
+  nameWithType: IpNetworkKind.Loopback
+- uid: wan24.Core.IpNetworkKind.None
+  name: None
+  href: api/wan24.Core.IpNetworkKind.html#wan24_Core_IpNetworkKind_None
+  commentId: F:wan24.Core.IpNetworkKind.None
+  fullName: wan24.Core.IpNetworkKind.None
+  nameWithType: IpNetworkKind.None
+- uid: wan24.Core.IpNetworkKind.WAN
+  name: WAN
+  href: api/wan24.Core.IpNetworkKind.html#wan24_Core_IpNetworkKind_WAN
+  commentId: F:wan24.Core.IpNetworkKind.WAN
+  fullName: wan24.Core.IpNetworkKind.WAN
+  nameWithType: IpNetworkKind.WAN
 - uid: wan24.Core.IPool
   name: IPool
   href: api/wan24.Core.IPool.html
@@ -18189,6 +18238,38 @@ references:
   commentId: T:wan24.Core.NetworkHelper
   fullName: wan24.Core.NetworkHelper
   nameWithType: NetworkHelper
+- uid: wan24.Core.NetworkHelper.GetBroadcastAddress(System.Net.IPAddress,System.Net.IPAddress)
+  name: GetBroadcastAddress(IPAddress, IPAddress)
+  href: api/wan24.Core.NetworkHelper.html#wan24_Core_NetworkHelper_GetBroadcastAddress_System_Net_IPAddress_System_Net_IPAddress_
+  commentId: M:wan24.Core.NetworkHelper.GetBroadcastAddress(System.Net.IPAddress,System.Net.IPAddress)
+  fullName: wan24.Core.NetworkHelper.GetBroadcastAddress(System.Net.IPAddress, System.Net.IPAddress)
+  nameWithType: NetworkHelper.GetBroadcastAddress(IPAddress, IPAddress)
+- uid: wan24.Core.NetworkHelper.GetBroadcastAddress(System.Net.NetworkInformation.UnicastIPAddressInformation)
+  name: GetBroadcastAddress(UnicastIPAddressInformation)
+  href: api/wan24.Core.NetworkHelper.html#wan24_Core_NetworkHelper_GetBroadcastAddress_System_Net_NetworkInformation_UnicastIPAddressInformation_
+  commentId: M:wan24.Core.NetworkHelper.GetBroadcastAddress(System.Net.NetworkInformation.UnicastIPAddressInformation)
+  fullName: wan24.Core.NetworkHelper.GetBroadcastAddress(System.Net.NetworkInformation.UnicastIPAddressInformation)
+  nameWithType: NetworkHelper.GetBroadcastAddress(UnicastIPAddressInformation)
+- uid: wan24.Core.NetworkHelper.GetBroadcastAddress*
+  name: GetBroadcastAddress
+  href: api/wan24.Core.NetworkHelper.html#wan24_Core_NetworkHelper_GetBroadcastAddress_
+  commentId: Overload:wan24.Core.NetworkHelper.GetBroadcastAddress
+  isSpec: "True"
+  fullName: wan24.Core.NetworkHelper.GetBroadcastAddress
+  nameWithType: NetworkHelper.GetBroadcastAddress
+- uid: wan24.Core.NetworkHelper.GetInterface(System.Net.IPAddress)
+  name: GetInterface(IPAddress)
+  href: api/wan24.Core.NetworkHelper.html#wan24_Core_NetworkHelper_GetInterface_System_Net_IPAddress_
+  commentId: M:wan24.Core.NetworkHelper.GetInterface(System.Net.IPAddress)
+  fullName: wan24.Core.NetworkHelper.GetInterface(System.Net.IPAddress)
+  nameWithType: NetworkHelper.GetInterface(IPAddress)
+- uid: wan24.Core.NetworkHelper.GetInterface*
+  name: GetInterface
+  href: api/wan24.Core.NetworkHelper.html#wan24_Core_NetworkHelper_GetInterface_
+  commentId: Overload:wan24.Core.NetworkHelper.GetInterface
+  isSpec: "True"
+  fullName: wan24.Core.NetworkHelper.GetInterface
+  nameWithType: NetworkHelper.GetInterface
 - uid: wan24.Core.NetworkHelper.GetIPAddresses(System.Net.NetworkInformation.NetworkInterface)
   name: GetIPAddresses(NetworkInterface)
   href: api/wan24.Core.NetworkHelper.html#wan24_Core_NetworkHelper_GetIPAddresses_System_Net_NetworkInformation_NetworkInterface_
@@ -18553,6 +18634,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.NetworkHelper.GetSubNets
   nameWithType: NetworkHelper.GetSubNets
+- uid: wan24.Core.NetworkHelper.GetUnicastIP(System.Net.IPAddress)
+  name: GetUnicastIP(IPAddress)
+  href: api/wan24.Core.NetworkHelper.html#wan24_Core_NetworkHelper_GetUnicastIP_System_Net_IPAddress_
+  commentId: M:wan24.Core.NetworkHelper.GetUnicastIP(System.Net.IPAddress)
+  fullName: wan24.Core.NetworkHelper.GetUnicastIP(System.Net.IPAddress)
+  nameWithType: NetworkHelper.GetUnicastIP(IPAddress)
+- uid: wan24.Core.NetworkHelper.GetUnicastIP*
+  name: GetUnicastIP
+  href: api/wan24.Core.NetworkHelper.html#wan24_Core_NetworkHelper_GetUnicastIP_
+  commentId: Overload:wan24.Core.NetworkHelper.GetUnicastIP
+  isSpec: "True"
+  fullName: wan24.Core.NetworkHelper.GetUnicastIP
+  nameWithType: NetworkHelper.GetUnicastIP
 - uid: wan24.Core.NetworkHelper.GetWanIPAddresses(System.Net.NetworkInformation.NetworkInterface)
   name: GetWanIPAddresses(NetworkInterface)
   href: api/wan24.Core.NetworkHelper.html#wan24_Core_NetworkHelper_GetWanIPAddresses_System_Net_NetworkInformation_NetworkInterface_
@@ -28066,6 +28160,25 @@ references:
   isSpec: "True"
   fullName: wan24.Core.Settings.TempFolder
   nameWithType: Settings.TempFolder
+- uid: wan24.Core.SocketExtensions
+  name: SocketExtensions
+  href: api/wan24.Core.SocketExtensions.html
+  commentId: T:wan24.Core.SocketExtensions
+  fullName: wan24.Core.SocketExtensions
+  nameWithType: SocketExtensions
+- uid: wan24.Core.SocketExtensions.IsConnected(System.Net.Sockets.Socket)
+  name: IsConnected(Socket)
+  href: api/wan24.Core.SocketExtensions.html#wan24_Core_SocketExtensions_IsConnected_System_Net_Sockets_Socket_
+  commentId: M:wan24.Core.SocketExtensions.IsConnected(System.Net.Sockets.Socket)
+  fullName: wan24.Core.SocketExtensions.IsConnected(System.Net.Sockets.Socket)
+  nameWithType: SocketExtensions.IsConnected(Socket)
+- uid: wan24.Core.SocketExtensions.IsConnected*
+  name: IsConnected
+  href: api/wan24.Core.SocketExtensions.html#wan24_Core_SocketExtensions_IsConnected_
+  commentId: Overload:wan24.Core.SocketExtensions.IsConnected
+  isSpec: "True"
+  fullName: wan24.Core.SocketExtensions.IsConnected
+  nameWithType: SocketExtensions.IsConnected
 - uid: wan24.Core.Statistics
   name: Statistics
   href: api/wan24.Core.Statistics.html
@@ -33025,14 +33138,14 @@ references:
   fullName.vb: wan24.Core.UdpBroadcast(Of T)
   nameWithType: UdpBroadcast<T>
   nameWithType.vb: UdpBroadcast(Of T)
-- uid: wan24.Core.UdpBroadcast`1.#ctor(System.Net.IPEndPoint,System.Int32,System.Boolean)
-  name: UdpBroadcast(IPEndPoint, Int32, Boolean)
-  href: api/wan24.Core.UdpBroadcast-1.html#wan24_Core_UdpBroadcast_1__ctor_System_Net_IPEndPoint_System_Int32_System_Boolean_
-  commentId: M:wan24.Core.UdpBroadcast`1.#ctor(System.Net.IPEndPoint,System.Int32,System.Boolean)
-  fullName: wan24.Core.UdpBroadcast<T>.UdpBroadcast(System.Net.IPEndPoint, System.Int32, System.Boolean)
-  fullName.vb: wan24.Core.UdpBroadcast(Of T).UdpBroadcast(System.Net.IPEndPoint, System.Int32, System.Boolean)
-  nameWithType: UdpBroadcast<T>.UdpBroadcast(IPEndPoint, Int32, Boolean)
-  nameWithType.vb: UdpBroadcast(Of T).UdpBroadcast(IPEndPoint, Int32, Boolean)
+- uid: wan24.Core.UdpBroadcast`1.#ctor(System.Net.IPEndPoint,System.Net.IPAddress,System.Int32,System.Boolean)
+  name: UdpBroadcast(IPEndPoint, IPAddress, Int32, Boolean)
+  href: api/wan24.Core.UdpBroadcast-1.html#wan24_Core_UdpBroadcast_1__ctor_System_Net_IPEndPoint_System_Net_IPAddress_System_Int32_System_Boolean_
+  commentId: M:wan24.Core.UdpBroadcast`1.#ctor(System.Net.IPEndPoint,System.Net.IPAddress,System.Int32,System.Boolean)
+  fullName: wan24.Core.UdpBroadcast<T>.UdpBroadcast(System.Net.IPEndPoint, System.Net.IPAddress, System.Int32, System.Boolean)
+  fullName.vb: wan24.Core.UdpBroadcast(Of T).UdpBroadcast(System.Net.IPEndPoint, System.Net.IPAddress, System.Int32, System.Boolean)
+  nameWithType: UdpBroadcast<T>.UdpBroadcast(IPEndPoint, IPAddress, Int32, Boolean)
+  nameWithType.vb: UdpBroadcast(Of T).UdpBroadcast(IPEndPoint, IPAddress, Int32, Boolean)
 - uid: wan24.Core.UdpBroadcast`1.#ctor*
   name: UdpBroadcast
   href: api/wan24.Core.UdpBroadcast-1.html#wan24_Core_UdpBroadcast_1__ctor_
@@ -33230,6 +33343,23 @@ references:
   fullName.vb: wan24.Core.UdpBroadcast(Of T).Listener
   nameWithType: UdpBroadcast<T>.Listener
   nameWithType.vb: UdpBroadcast(Of T).Listener
+- uid: wan24.Core.UdpBroadcast`1.NetworkMask
+  name: NetworkMask
+  href: api/wan24.Core.UdpBroadcast-1.html#wan24_Core_UdpBroadcast_1_NetworkMask
+  commentId: P:wan24.Core.UdpBroadcast`1.NetworkMask
+  fullName: wan24.Core.UdpBroadcast<T>.NetworkMask
+  fullName.vb: wan24.Core.UdpBroadcast(Of T).NetworkMask
+  nameWithType: UdpBroadcast<T>.NetworkMask
+  nameWithType.vb: UdpBroadcast(Of T).NetworkMask
+- uid: wan24.Core.UdpBroadcast`1.NetworkMask*
+  name: NetworkMask
+  href: api/wan24.Core.UdpBroadcast-1.html#wan24_Core_UdpBroadcast_1_NetworkMask_
+  commentId: Overload:wan24.Core.UdpBroadcast`1.NetworkMask
+  isSpec: "True"
+  fullName: wan24.Core.UdpBroadcast<T>.NetworkMask
+  fullName.vb: wan24.Core.UdpBroadcast(Of T).NetworkMask
+  nameWithType: UdpBroadcast<T>.NetworkMask
+  nameWithType.vb: UdpBroadcast(Of T).NetworkMask
 - uid: wan24.Core.UdpBroadcast`1.UdpEndPoint
   name: UdpEndPoint
   href: api/wan24.Core.UdpBroadcast-1.html#wan24_Core_UdpBroadcast_1_UdpEndPoint
