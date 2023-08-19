@@ -20,7 +20,7 @@ namespace wan24.Core
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
             {
-                return index < IPAddressCount
+                return index >= BigInteger.Zero && index < IPAddressCount
                     ? GetIPAddress(BigInteger.Add(MaskedNetwork, index))
                     : throw new ArgumentOutOfRangeException(nameof(index));
             }
@@ -37,15 +37,16 @@ namespace wan24.Core
             get
             {
                 BigInteger ipc = IPAddressCount;
-                if (startIndex >= ipc) throw new ArgumentOutOfRangeException(nameof(startIndex));
+                if (startIndex <= BigInteger.Zero || startIndex >= ipc) throw new ArgumentOutOfRangeException(nameof(startIndex));
+                if (count == BigInteger.Zero) yield break;
                 BigInteger stop = BigInteger.Add(BigInteger.Add(startIndex, count), BigInteger.One);
                 if (stop > ipc) throw new ArgumentOutOfRangeException(nameof(count));
                 for (
-                    BigInteger i = startIndex;
+                    BigInteger i = startIndex, network = MaskedNetwork;
                     i != stop;
                     i = BigInteger.Add(i, BigInteger.One)
                     )
-                    yield return GetIPAddress(BigInteger.Add(MaskedNetwork, i));
+                    yield return GetIPAddress(BigInteger.Add(network, i));
             }
         }
 
@@ -259,11 +260,11 @@ namespace wan24.Core
             get
             {
                 for (
-                    BigInteger i = BigInteger.Zero, len = IPAddressCount;
+                    BigInteger i = BigInteger.Zero, len = IPAddressCount, network = MaskedNetwork;
                     i != len;
                     i = BigInteger.Add(i, BigInteger.One)
                     )
-                    yield return GetIPAddress(BigInteger.Add(MaskedNetwork, i));
+                    yield return GetIPAddress(BigInteger.Add(network, i));
             }
         }
 
@@ -275,11 +276,11 @@ namespace wan24.Core
             get
             {
                 for (
-                    BigInteger len = UsableIPAddressCount, i = !IsIPv4 || len == BigInteger.One ? BigInteger.Zero : BigInteger.One;
+                    BigInteger len = UsableIPAddressCount, i = !IsIPv4 || len == BigInteger.One ? BigInteger.Zero : BigInteger.One, network = MaskedNetwork;
                     i != len;
                     i = BigInteger.Add(i, BigInteger.One)
                     )
-                    yield return GetIPAddress(BigInteger.Add(MaskedNetwork, i));
+                    yield return GetIPAddress(BigInteger.Add(network, i));
             }
         }
 

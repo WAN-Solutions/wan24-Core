@@ -143,7 +143,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private IPAddress GetIPAddress(in BigInteger bits)
         {
-#if NO__UNSAFE
+#if NO_UNSAFE
             using RentedArrayStruct<byte> buffer = new(ByteCount);
             if (!bits.TryWriteBytes(buffer, out int written, isUnsigned: true, isBigEndian: true))
                 throw new ArgumentOutOfRangeException(nameof(bits), $"{written} bytes written");
@@ -168,7 +168,7 @@ namespace wan24.Core
         private static BigInteger GetBigInteger(in IPAddress ip)
         {
 #if NO_UNSAFE
-            using RentedArrayStruct<byte> buffer = GetBytes(ip);
+            using RentedArray<byte> buffer = GetBytes(ip);
             return new(buffer.Span, isUnsigned: true, isBigEndian: true);
 #else
             Span<byte> buffer = stackalloc byte[ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork ? IPV4_BYTES : IPV6_BYTES];
@@ -187,9 +187,16 @@ namespace wan24.Core
         {
             int len = ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork ? IPV4_BYTES : IPV6_BYTES;
             RentedArray<byte> res = new(len, clean: false);
-            if (ip.TryWriteBytes(res.Span, out int written) && len == written) return res;
-            res.Dispose();
-            throw new ArgumentException("Invalid IP address", nameof(ip));
+            try
+            {
+                if (ip.TryWriteBytes(res.Span, out int written) && len == written) return res;
+                throw new ArgumentException("Invalid IP address", nameof(ip));
+            }
+            catch
+            {
+                res.Dispose();
+                throw;
+            }
         }
     }
 }
