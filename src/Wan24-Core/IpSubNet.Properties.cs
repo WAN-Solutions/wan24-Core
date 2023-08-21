@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Numerics;
 using System.Runtime;
@@ -361,6 +362,45 @@ namespace wan24.Core
                     if (IsWithin(NetworkHelper.LAN[i]))
                         return NetworkHelper.LAN[i];
                 return this;
+            }
+        }
+
+        /// <summary>
+        /// Get all network interfaces which have a matching unicast IP address configured
+        /// </summary>
+        public IEnumerable<NetworkInterface> NetworkInterfaces
+        {
+            get
+            {
+                AddressFamily addressFamily = AddressFamily;
+                BigInteger mask = Mask,
+                    maskedNetwork = Network & mask /* <- MaskedNetwork */;
+                foreach (NetworkInterface adapter in NetworkInterface.GetAllNetworkInterfaces())
+                    foreach (UnicastIPAddressInformation unicast in adapter.GetIPProperties().UnicastAddresses)
+                    {
+                        if (unicast.Address.AddressFamily != addressFamily || (GetBigInteger(unicast.Address) & mask) != maskedNetwork) continue;
+                        yield return adapter;
+                        break;
+                    }
+            }
+        }
+
+        /// <summary>
+        /// Get all matching unicast IP address configuration informations
+        /// </summary>
+        public IEnumerable<UnicastIPAddressInformation> UnicastAddresses
+        {
+            get
+            {
+                AddressFamily addressFamily = AddressFamily;
+                BigInteger mask = Mask,
+                    maskedNetwork = Network & mask /* <- MaskedNetwork */;
+                foreach (NetworkInterface adapter in NetworkInterface.GetAllNetworkInterfaces())
+                    foreach (UnicastIPAddressInformation unicast in adapter.GetIPProperties().UnicastAddresses)
+                    {
+                        if (unicast.Address.AddressFamily != addressFamily || (GetBigInteger(unicast.Address) & mask) != maskedNetwork) continue;
+                        yield return unicast;
+                    }
             }
         }
     }

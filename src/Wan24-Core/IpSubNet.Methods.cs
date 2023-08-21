@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Numerics;
 using System.Runtime;
 using System.Runtime.CompilerServices;
@@ -72,6 +74,23 @@ namespace wan24.Core
                 Math.Max(0, Math.Min(Math.Min(MaskBits, net.MaskBits), allBits - bits)),
                 IsIPv4
                 );
+        }
+
+        /// <summary>
+        /// Get all matching unicast IP address configuration informations
+        /// </summary>
+        /// <param name="adapter">Ethernet adapter</param>
+        /// <returns>Unicast IP address configuration informations</returns>
+        public IEnumerable<UnicastIPAddressInformation> GetUnicastAddresses(NetworkInterface adapter)
+        {
+            AddressFamily addressFamily = AddressFamily;
+            BigInteger mask = Mask,
+                maskedNetwork = Network & mask /* <- MaskedNetwork */;
+            foreach (UnicastIPAddressInformation unicast in adapter.GetIPProperties().UnicastAddresses)
+            {
+                if (unicast.Address.AddressFamily != addressFamily || (GetBigInteger(unicast.Address) & mask) != maskedNetwork) continue;
+                yield return unicast;
+            }
         }
 
         /// <summary>
@@ -171,7 +190,7 @@ namespace wan24.Core
             using RentedArray<byte> buffer = GetBytes(ip);
             return new(buffer.Span, isUnsigned: true, isBigEndian: true);
 #else
-            Span<byte> buffer = stackalloc byte[ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork ? IPV4_BYTES : IPV6_BYTES];
+            Span<byte> buffer = stackalloc byte[ip.AddressFamily == AddressFamily.InterNetwork ? IPV4_BYTES : IPV6_BYTES];
             if (!ip.TryWriteBytes(buffer, out int written)) throw new ArgumentException("Invalid IP address", nameof(ip));
             return new(buffer[..written], isUnsigned: true, isBigEndian: true);
 #endif
@@ -185,7 +204,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static RentedArray<byte> GetBytes(in IPAddress ip)
         {
-            int len = ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork ? IPV4_BYTES : IPV6_BYTES;
+            int len = ip.AddressFamily == AddressFamily.InterNetwork ? IPV4_BYTES : IPV6_BYTES;
             RentedArray<byte> res = new(len, clean: false);
             try
             {
