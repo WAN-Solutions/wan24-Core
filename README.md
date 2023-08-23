@@ -127,6 +127,9 @@ pairs
 - `Timeout` will count down and raise an event, if not reset before reaching 
 the timeout
 - `ILogger` support
+    - `Logging` as global logging helper
+    - `Logger` as `ILogger` for writing to `Logging`
+    - `FileLogger` as `ILogger` for writing to a file
 - `IChangeToken` support using `ChangeCallback`
 - Hierarchic configuration using `OverrideableConfig`
 - Cancellation token awaiter
@@ -271,6 +274,27 @@ In order to make DI (dependency injection) working, you need to
 The `DiHelper.GetDiObjectAsync` method will try to resolve the request 
 synchronous, first. But the `DiHelper.GetDiObject` won't try asynchronous 
 object factories.
+
+## Logging
+
+For a global logging, use `Logging` and set a `Logging.Logger` - for example 
+the `FileLogger`:
+
+```cs
+Logging.Logger = await FileLogger.CreateAsync("/path/to/file.log");
+Logging.WriteDebug("Hello world!");
+```
+
+If you need an `ILogger` instance, you can use `Logger`:
+
+```cs
+anyObject.Logger = new Logger();
+```
+
+The `Logger` will use `Logging` and allows to define a minimum log level.
+
+**WARNING**: Never set a `Logger` instance as `Logging.Logger`! This will 
+cause an endless loop.
 
 ## Mixed enumeration value
 
