@@ -18,7 +18,9 @@ namespace wan24.Core
         /// <param name="throwOnError">Throw an exception on IP address family mismatch?</param>
         /// <returns>Sub-net includes the given IP address?</returns>
         /// <exception cref="ArgumentException">IP address family mismatch</exception>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public bool Includes(in IPAddress ip, in bool throwOnError = true)
         {
             if (ip.AddressFamily != AddressFamily) return throwOnError ? throw new ArgumentException("IP address family mismatch", nameof(ip)) : false;
@@ -32,7 +34,9 @@ namespace wan24.Core
         /// <param name="net">Sub-net</param>
         /// <returns>Is compatible?</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public bool IsCompatibleWith(in IpSubNet net) => IsIPv4 == net.IsIPv4 && MaskedNetwork == net.MaskedNetwork;
 
         /// <summary>
@@ -41,7 +45,9 @@ namespace wan24.Core
         /// <param name="net">Sub-net (address family needs to be matching)</param>
         /// <returns>If this sub-net intersects</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public bool Intersects(in IpSubNet net)
             => net.AddressFamily == AddressFamily && (net == this[BigInteger.Zero] || net == this[BigInteger.Subtract(IPAddressCount, BigInteger.One)]);
 
@@ -51,7 +57,9 @@ namespace wan24.Core
         /// <param name="net">Sub-net (address family needs to be matching)</param>
         /// <returns>If this sub-net is within</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public bool IsWithin(in IpSubNet net)
             => net.AddressFamily == AddressFamily && net == this[BigInteger.Zero] && net == this[BigInteger.Subtract(IPAddressCount, BigInteger.One)];
 
@@ -60,7 +68,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="net">Sub-net (address family needs to be matching)</param>
         /// <returns>Combined sub-net</returns>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public IpSubNet CombineWith(in IpSubNet net)
         {
             if (IsIPv4 != net.IsIPv4) throw new InvalidOperationException("Incompatible sub-net address family");
@@ -98,7 +108,9 @@ namespace wan24.Core
         /// </summary>
         /// <returns>Bytes (<see cref="IPV6_STRUCTURE_SIZE"/> or <see cref="IPV4_STRUCTURE_SIZE"/>)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public byte[] GetBytes()
         {
             byte[] res = new byte[IsIPv4 ? IPV4_STRUCTURE_SIZE : IPV6_STRUCTURE_SIZE];
@@ -110,7 +122,9 @@ namespace wan24.Core
         /// Get bytes
         /// </summary>
         /// <param name="buffer">Buffer (<see cref="IPV6_STRUCTURE_SIZE"/> or <see cref="IPV4_STRUCTURE_SIZE"/> required)</param>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public void GetBytes(in Span<byte> buffer)
         {
             if (buffer.Length < (IsIPv4 ? IPV4_STRUCTURE_SIZE : IPV6_STRUCTURE_SIZE)) throw new OutOfMemoryException();
@@ -123,7 +137,9 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public override string ToString() => $"{NetworkIPAddress}/{MaskBits}";
 
         /// <summary>
@@ -131,7 +147,9 @@ namespace wan24.Core
         /// </summary>
         /// <returns>Enumerator</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public IEnumerator<IPAddress> GetEnumerator() => IPAddresses.GetEnumerator();
 
         /// <inheritdoc/>
@@ -144,7 +162,9 @@ namespace wan24.Core
         /// <param name="other">Other</param>
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public int CompareTo(IpSubNet other) => MaskBits.CompareTo(other.MaskBits);
 
         /// <inheritdoc/>
@@ -159,7 +179,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits</param>
         /// <returns>IP address</returns>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public IPAddress GetIPAddress(in BigInteger bits)
         {
             if (bits < BigInteger.Zero || bits > MaxIPv6) throw new ArgumentOutOfRangeException(nameof(bits));
@@ -191,7 +213,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="ip"><see cref="IPAddress"/></param>
         /// <returns><see cref="BigInteger"/></returns>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
@@ -214,7 +238,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="ip"><see cref="IPAddress"/></param>
         /// <returns>Bytes</returns>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         private static RentedArray<byte> GetBytes(in IPAddress ip)
         {
             int len = ip.AddressFamily == AddressFamily.InterNetwork ? IPV4_BYTES : IPV6_BYTES;

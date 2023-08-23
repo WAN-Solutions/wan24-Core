@@ -18,7 +18,9 @@ namespace wan24.Core
         public IPAddress this[in BigInteger index]
         {
             [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => index >= BigInteger.Zero && index < IPAddressCount
                 ? GetIPAddress(BigInteger.Add(MaskedNetwork, index))
                 : throw new ArgumentOutOfRangeException(nameof(index));
@@ -54,7 +56,9 @@ namespace wan24.Core
         public int BitCount
         {
             [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => IsIPv4 ? IPV4_BITS : IPV6_BITS;
         }
 
@@ -64,7 +68,9 @@ namespace wan24.Core
         public int ByteCount
         {
             [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => IsIPv4 ? IPV4_BYTES : IPV6_BYTES;
         }
 
@@ -74,7 +80,9 @@ namespace wan24.Core
         public int StructureSize
         {
             [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => IsIPv4 ? IPV4_STRUCTURE_SIZE : IPV6_STRUCTURE_SIZE;
         }
 
@@ -84,7 +92,9 @@ namespace wan24.Core
         public BigInteger FullMask
         {
             [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => IsIPv4 ? MaxIPv4 : MaxIPv6;
         }
 
@@ -94,7 +104,9 @@ namespace wan24.Core
         public BigInteger IPAddressCount
         {
             [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => BigInteger.Pow(new(2u), BitCount - MaskBits);
         }
 
@@ -104,7 +116,9 @@ namespace wan24.Core
         public BigInteger UsableIPAddressCount
         {
             [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => BigInteger.Max(BigInteger.One, IsIPv4 ? BigInteger.Subtract(IPAddressCount, new(2u)) : BigInteger.Subtract(IPAddressCount, BigInteger.One));
         }
 
@@ -114,7 +128,9 @@ namespace wan24.Core
         public AddressFamily AddressFamily
         {
             [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => IsIPv4 ? AddressFamily.InterNetwork : AddressFamily.InterNetworkV6;
         }
 
@@ -124,7 +140,9 @@ namespace wan24.Core
         public BigInteger Mask
         {
             [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => IsIPv4 ? (MaxIPv4 << (IPV4_BITS - MaskBits)) & MaxIPv4 : (MaxIPv6 << (IPV6_BITS - MaskBits)) & MaxIPv6;
         }
 
@@ -134,7 +152,9 @@ namespace wan24.Core
         public BigInteger Broadcast
         {
             [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => IsIPv4 ? Network | ((IsIPv4 ? MaxIPv4 : MaxIPv6) >> MaskBits) : throw new InvalidOperationException();
         }
 
@@ -144,7 +164,9 @@ namespace wan24.Core
         public BigInteger MaskedNetwork
         {
             [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => Network & Mask;
         }
 
@@ -153,7 +175,9 @@ namespace wan24.Core
         /// </summary>
         public IPAddress NetworkIPAddress
         {
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => GetIPAddress(Network);
         }
 
@@ -162,7 +186,9 @@ namespace wan24.Core
         /// </summary>
         public IPAddress MaskIPAddress
         {
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => GetIPAddress(Mask);
         }
 
@@ -171,7 +197,9 @@ namespace wan24.Core
         /// </summary>
         public IPAddress BroadcastIPAddress
         {
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => GetIPAddress(Broadcast);
         }
 
@@ -180,7 +208,9 @@ namespace wan24.Core
         /// </summary>
         public IPAddress MaskedNetworkIPAddress
         {
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => GetIPAddress(MaskedNetwork);
         }
 
