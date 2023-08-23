@@ -1,6 +1,4 @@
 ﻿using System.Buffers.Binary;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
@@ -16,22 +14,22 @@ namespace wan24.Core
         /// <summary>
         /// LAN sub-nets
         /// </summary>
-        public static readonly ReadOnlyCollection<IpSubNet> LAN = new List<IpSubNet>(4)
+        public static readonly IpSubNets LAN = new(new IpSubNet[]
         {
             new("10.0.0.0/8"),
             new("172.16.0.0/12"),
             new("192.168.0.0/16"),
             new("fd00::/8")
-        }.AsReadOnly();
+        }, isLoopBack: false, isLan: true);
 
         /// <summary>
         /// Loopback sub-nets
         /// </summary>
-        public static readonly ReadOnlyCollection<IpSubNet> LoopBack = new List<IpSubNet>(2)
+        public static readonly IpSubNets LoopBack = new(new IpSubNet[]
         {
             IpSubNet.LoopbackIPv4,
             IpSubNet.LoopbackIPv6
-        }.AsReadOnly();
+        }, isLoopBack: true, isLan: false);
 
         /// <summary>
         /// Get all (real) online ethernet adapters
@@ -50,7 +48,7 @@ namespace wan24.Core
         /// <returns>Ethernet adapters which are online</returns>
         public static IEnumerable<NetworkInterface> GetOnlineWanEthernetAdapters()
             => from adapter in GetOnlineEthernetAdapters()
-               where adapter.GetIPProperties().UnicastAddresses.Any(ip => IsWan(ip.Address))
+               where adapter.GetIPProperties().UnicastAddresses.Any(ip => LoopBack != ip.Address && LAN != ip.Address)
                select adapter;
 
         /// <summary>
@@ -59,7 +57,7 @@ namespace wan24.Core
         /// <returns>Ethernet adapters which are online</returns>
         public static IEnumerable<NetworkInterface> GetOnlineLanEthernetAdapters()
             => from adapter in GetOnlineEthernetAdapters()
-               where adapter.GetIPProperties().UnicastAddresses.Any(ip => !IsWan(ip.Address))
+               where adapter.GetIPProperties().UnicastAddresses.Any(ip => LoopBack == ip.Address || LAN == ip.Address)
                select adapter;
 
         /// <summary>
@@ -67,21 +65,21 @@ namespace wan24.Core
         /// </summary>
         /// <param name="ip">IP address</param>
         /// <returns>If the IP address is a LAN IP address</returns>
-        public static bool IsLan(this IPAddress ip) => LAN.Any(net => net == ip);
+        public static bool IsLan(this IPAddress ip) => LAN == ip;
 
         /// <summary>
         /// Determine if an IP address is a loopback IP address
         /// </summary>
         /// <param name="ip">IP address</param>
         /// <returns>If the IP address is a loopback IP address</returns>
-        public static bool IsLoopBack(this IPAddress ip) => LoopBack.Any(net => net == ip);
+        public static bool IsLoopBack(this IPAddress ip) => LoopBack == ip;
 
         /// <summary>
         /// Determine if an IP address is a WAN IP address
         /// </summary>
         /// <param name="ip">IP address</param>
         /// <returns>If the IP address is a WAN IP address</returns>
-        public static bool IsWan(this IPAddress ip) => !LAN.Concat(LoopBack).Any(net => net == ip);
+        public static bool IsWan(this IPAddress ip) => LoopBack != ip && LAN != ip;
 
         /// <summary>
         /// Get all IP addresses from an ethernet adapter
@@ -121,7 +119,7 @@ namespace wan24.Core
         /// <returns>IP addresses</returns>
         public static IEnumerable<IPAddress> GetLanIPAddresses(this NetworkInterface adapter)
             => from ip in GetIPAddresses(adapter)
-               where IsLan(ip)
+               where LAN == ip
                select ip;
 
         /// <summary>
@@ -131,7 +129,7 @@ namespace wan24.Core
         /// <returns>IP addresses</returns>
         public static IEnumerable<IPAddress> GetLanIPv4Addresses(this NetworkInterface adapter)
             => from ip in GetIPV4Addresses(adapter)
-               where IsLan(ip)
+               where LAN == ip
                select ip;
 
         /// <summary>
@@ -141,7 +139,7 @@ namespace wan24.Core
         /// <returns>IP addresses</returns>
         public static IEnumerable<IPAddress> GetLanIPv6Addresses(this NetworkInterface adapter)
             => from ip in GetIPV6Addresses(adapter)
-               where IsLan(ip)
+               where LAN == ip
                select ip;
 
         /// <summary>
@@ -151,7 +149,7 @@ namespace wan24.Core
         /// <returns>IP addresses</returns>
         public static IEnumerable<IPAddress> GetWanIPAddresses(this NetworkInterface adapter)
             => from ip in GetIPAddresses(adapter)
-               where IsWan(ip)
+               where LoopBack != ip && LAN != ip
                select ip;
 
         /// <summary>
@@ -161,7 +159,7 @@ namespace wan24.Core
         /// <returns>IP addresses</returns>
         public static IEnumerable<IPAddress> GetWanIPv4Addresses(this NetworkInterface adapter)
             => from ip in GetIPV4Addresses(adapter)
-               where IsWan(ip)
+               where LoopBack != ip && LAN != ip
                select ip;
 
         /// <summary>
@@ -171,7 +169,7 @@ namespace wan24.Core
         /// <returns>IP addresses</returns>
         public static IEnumerable<IPAddress> GetWanIPv6Addresses(this NetworkInterface adapter)
             => from ip in GetIPV6Addresses(adapter)
-               where IsWan(ip)
+               where LoopBack != ip && LAN != ip
                select ip;
 
         /// <summary>
@@ -211,7 +209,7 @@ namespace wan24.Core
         /// <returns>IP addresses</returns>
         public static IEnumerable<IPAddress> GetOnlineLanIPAddresses()
             => from ip in GetOnlineIPAddresses()
-               where IsLan(ip)
+               where LAN == ip
                select ip;
 
         /// <summary>
@@ -221,7 +219,7 @@ namespace wan24.Core
         public static IEnumerable<IPAddress> GetOnlineLanIPv4Addresses()
             => from ip in GetOnlineIPv4Addresses()
                where ip.AddressFamily == AddressFamily.InterNetwork &&
-                IsLan(ip)
+                LAN == ip
                select ip;
 
         /// <summary>
@@ -231,7 +229,7 @@ namespace wan24.Core
         public static IEnumerable<IPAddress> GetOnlineLanIPv6Addresses()
             => from ip in GetOnlineIPv6Addresses()
                where ip.AddressFamily == AddressFamily.InterNetworkV6 &&
-                IsLan(ip)
+                LAN == ip
                select ip;
 
         /// <summary>
@@ -240,7 +238,7 @@ namespace wan24.Core
         /// <returns>IP addresses</returns>
         public static IEnumerable<IPAddress> GetOnlineWanIPAddresses()
             => from ip in GetOnlineIPAddresses()
-               where IsWan(ip)
+               where LoopBack != ip && LAN != ip
                select ip;
 
         /// <summary>
@@ -249,7 +247,7 @@ namespace wan24.Core
         /// <returns>IP addresses</returns>
         public static IEnumerable<IPAddress> GetOnlineWanIPv4Addresses()
             => from ip in GetOnlineIPv4Addresses()
-               where IsWan(ip)
+               where LoopBack != ip && LAN != ip
                select ip;
 
         /// <summary>
@@ -258,7 +256,7 @@ namespace wan24.Core
         /// <returns>IP addresses</returns>
         public static IEnumerable<IPAddress> GetOnlineWanIPv6Addresses()
             => from ip in GetOnlineIPv6Addresses()
-               where IsWan(ip)
+               where LoopBack != ip && LAN != ip
                select ip;
 
         /// <summary>
@@ -266,11 +264,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="ip">Private IP address (may be a loopback address)</param>
         /// <returns>Sub-net or <see langword="null"/>, if the IP address isn't private</returns>
-        public static IpSubNet? GetLocalSubNet(this IPAddress ip)
-            => (from net in LAN.Concat(LoopBack)
-                where net == ip
-                select net)
-                .FirstOrDefault();
+        public static IpSubNet? GetLocalSubNet(this IPAddress ip) => LoopBack.Including(ip) ?? LAN.Including(ip);
 
         /// <summary>
         /// Get the sub-net of an IP address
@@ -325,7 +319,7 @@ namespace wan24.Core
             => (from ip in adapter.GetIPProperties().UnicastAddresses
                 where (ip.Address.AddressFamily == AddressFamily.InterNetwork ||
                     ip.Address.AddressFamily == AddressFamily.InterNetworkV6) &&
-                    IsLan(ip.Address)
+                    LAN == ip.Address
                 select GetSubNet(ip))
                 .Distinct();
 
@@ -337,7 +331,7 @@ namespace wan24.Core
         public static IEnumerable<IpSubNet> GetIPv4LanSubNets(this NetworkInterface adapter)
             => (from ip in adapter.GetIPProperties().UnicastAddresses
                 where ip.Address.AddressFamily == AddressFamily.InterNetwork &&
-                    IsLan(ip.Address)
+                    LAN == ip.Address
                 select GetSubNet(ip))
                 .Distinct();
 
@@ -349,7 +343,7 @@ namespace wan24.Core
         public static IEnumerable<IpSubNet> GetIPv6LanSubNets(this NetworkInterface adapter)
             => (from ip in adapter.GetIPProperties().UnicastAddresses
                 where ip.Address.AddressFamily == AddressFamily.InterNetworkV6 &&
-                    IsLan(ip.Address)
+                    LAN == ip.Address
                 select GetSubNet(ip))
                 .Distinct();
 
@@ -362,7 +356,8 @@ namespace wan24.Core
             => (from ip in adapter.GetIPProperties().UnicastAddresses
                 where (ip.Address.AddressFamily == AddressFamily.InterNetwork ||
                     ip.Address.AddressFamily == AddressFamily.InterNetworkV6) &&
-                    IsWan(ip.Address)
+                    LoopBack != ip.Address &&
+                    LAN != ip.Address
                 select GetSubNet(ip))
                 .Distinct();
 
@@ -374,7 +369,8 @@ namespace wan24.Core
         public static IEnumerable<IpSubNet> GetIPv4WanSubNets(this NetworkInterface adapter)
             => (from ip in adapter.GetIPProperties().UnicastAddresses
                 where ip.Address.AddressFamily == AddressFamily.InterNetwork &&
-                    IsWan(ip.Address)
+                    LoopBack != ip.Address &&
+                    LAN != ip.Address
                 select GetSubNet(ip))
                 .Distinct();
 
@@ -386,7 +382,8 @@ namespace wan24.Core
         public static IEnumerable<IpSubNet> GetIPv6WanSubNets(this NetworkInterface adapter)
             => (from ip in adapter.GetIPProperties().UnicastAddresses
                 where ip.Address.AddressFamily == AddressFamily.InterNetworkV6 &&
-                    IsWan(ip.Address)
+                    LoopBack != ip.Address &&
+                    LAN != ip.Address
                 select GetSubNet(ip))
                 .Distinct();
 

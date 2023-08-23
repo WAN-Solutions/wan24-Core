@@ -160,17 +160,28 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>IP address</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private IPAddress GetIPAddress(in BigInteger bits)
+        public IPAddress GetIPAddress(in BigInteger bits)
         {
+            if (bits < BigInteger.Zero || bits > MaxIPv6) throw new ArgumentOutOfRangeException(nameof(bits));
 #if NO_UNSAFE
             using RentedArrayStruct<byte> buffer = new(ByteCount);
             if (!bits.TryWriteBytes(buffer, out int written, isUnsigned: true, isBigEndian: true))
                 throw new ArgumentOutOfRangeException(nameof(bits), $"{written} bytes written");
+            if (written != buffer.Length)
+            {
+                buffer.Span[..written].CopyTo(buffer.Span[(buffer.Length - written)..]);
+                buffer.Span[..written].Clear();
+            }
             return new(buffer.Span);
 #else
             Span<byte> buffer = stackalloc byte[ByteCount];
             if (!bits.TryWriteBytes(buffer, out int written, isUnsigned: true, isBigEndian: true))
                 throw new ArgumentOutOfRangeException(nameof(bits), $"{written} bytes written");
+            if (written != buffer.Length)
+            {
+                buffer[..written].CopyTo(buffer[(buffer.Length - written)..]);
+                buffer[..written].Clear();
+            }
             return new(buffer);
 #endif
         }
@@ -184,15 +195,17 @@ namespace wan24.Core
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        private static BigInteger GetBigInteger(in IPAddress ip)
+        public static BigInteger GetBigInteger(in IPAddress ip)
         {
+            if (ip.AddressFamily != AddressFamily.InterNetwork && ip.AddressFamily != AddressFamily.InterNetworkV6)
+                throw new ArgumentException("Sub-net supports only IPv4/6 addresses", nameof(ip));
 #if NO_UNSAFE
             using RentedArray<byte> buffer = GetBytes(ip);
             return new(buffer.Span, isUnsigned: true, isBigEndian: true);
 #else
             Span<byte> buffer = stackalloc byte[ip.AddressFamily == AddressFamily.InterNetwork ? IPV4_BYTES : IPV6_BYTES];
-            if (!ip.TryWriteBytes(buffer, out int written)) throw new ArgumentException("Invalid IP address", nameof(ip));
-            return new(buffer[..written], isUnsigned: true, isBigEndian: true);
+            if (!ip.TryWriteBytes(buffer, out int written) || written != buffer.Length) throw new ArgumentException("Invalid IP address", nameof(ip));
+            return new(buffer, isUnsigned: true, isBigEndian: true);
 #endif
         }
 

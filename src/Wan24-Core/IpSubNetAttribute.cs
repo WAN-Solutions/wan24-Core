@@ -16,7 +16,7 @@ namespace wan24.Core
         /// <summary>
         /// Allowed IP sub-nets (CIDR notation; the value needs to fit into one of these; if none are given, the value only needs to be a valid sub-net)
         /// </summary>
-        public IpSubNet[] AllowedIpSubnets { get; }
+        public ReadOnlyMemory<IpSubNet> AllowedIpSubnets { get; }
 
         /// <summary>
         /// Allow an IPv4 sub-net?
@@ -64,7 +64,12 @@ namespace wan24.Core
                     validationContext.MemberName is null ? null : new string[] { validationContext.MemberName }
                     );
             if (AllowedIpSubnets.Length == 0) return null;
-            if (AllowedIpSubnets.Any(allowed => (net & allowed) != net))
+            ReadOnlySpan<IpSubNet> subNets = AllowedIpSubnets.Span;
+            int denied = 0;
+            for (int i = 0, len = AllowedIpSubnets.Length; i < len; i++)
+                if ((net & subNets[i]) != net)
+                    denied++;
+            if (denied == subNets.Length)
                 return new(
                     ErrorMessage ?? (validationContext.MemberName is null ? $"Denied IP sub-net value" : $"{validationContext.MemberName}: Denied IP sub-net value"),
                     validationContext.MemberName is null ? null : new string[] { validationContext.MemberName }

@@ -21,6 +21,10 @@
         /// <summary>
         /// Wide Area Network (public internet)
         /// </summary>
-        WAN = 4
+        WAN = 4,
+        /// <summary>
+        /// All kinds
+        /// </summary>
+        ALL = Loopback | LAN | WAN
     }
 }

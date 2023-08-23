@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -141,7 +142,7 @@ namespace wan24.Core
         public override int GetHashCode() => base.GetHashCode();
 
         /// <inheritdoc/>
-        public override bool Equals(object? obj) => base.Equals(obj);
+        public override bool Equals([NotNullWhen(true)] object? obj) => base.Equals(obj);
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)

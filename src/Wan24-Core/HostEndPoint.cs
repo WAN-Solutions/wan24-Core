@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -156,15 +155,34 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="result">Host endpoint</param>
         /// <returns>If succeeded</returns>
-        public static bool TryParse(in string str, [NotNullWhen(returnValue: true)] out HostEndPoint? result)
+        public static bool TryParse(in string str, out HostEndPoint result)
         {
-            result = null;
-            if (!str.Contains(':')) return false;
+            if (!str.Contains(':'))
+            {
+                result = default;
+                return false;
+            }
             string[] info = str.Split(':');
-            if (info.Length != 2) return false;
-            if (!int.TryParse(info[1], out int port)) return false;
-            if (port < 0 || port > ushort.MaxValue) return false;
-            if (Uri.CheckHostName(info[0]) != UriHostNameType.Dns) return false;
+            if (info.Length != 2)
+            {
+                result = default;
+                return false;
+            }
+            if (!int.TryParse(info[1], out int port))
+            {
+                result = default;
+                return false;
+            }
+            if (port < 0 || port > ushort.MaxValue)
+            {
+                result = default;
+                return false;
+            }
+            if (Uri.CheckHostName(info[0]) != UriHostNameType.Dns)
+            {
+                result = default;
+                return false;
+            }
             result = new(info[0], port);
             return true;
         }

@@ -45,7 +45,7 @@ namespace wan24.Core
         public Exception? LastException { get; protected set; }
 
         /// <inheritdoc/>
-        public async Task StartAsync(CancellationToken cancellationToken = default)
+        public virtual async Task StartAsync(CancellationToken cancellationToken = default)
         {
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             if (IsRunning) return;
@@ -55,7 +55,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public async Task StopAsync(CancellationToken cancellationToken = default)
+        public virtual async Task StopAsync(CancellationToken cancellationToken = default)
         {
             Task stopTask;
             using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext())

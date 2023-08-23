@@ -44,7 +44,7 @@ namespace wan24.Core
         /// <summary>
         /// IPv6 loopback sub-net
         /// </summary>
-        public static readonly IpSubNet LoopbackIPv6 = new(BigInteger.Zero, IPV6_BITS);
+        public static readonly IpSubNet LoopbackIPv6 = new(IPAddress.IPv6Loopback, IPV6_BITS);
         /// <summary>
         /// IPv4 loopback sub-net
         /// </summary>
