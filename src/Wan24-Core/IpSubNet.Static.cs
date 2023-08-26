@@ -1,7 +1,7 @@
-﻿using System.Buffers.Binary;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
 using System.Numerics;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -17,14 +17,6 @@ namespace wan24.Core
         /// </summary>
         public const int IPV4_STRUCTURE_SIZE = sizeof(bool) + sizeof(byte) + IPV4_BYTES;
         /// <summary>
-        /// IPv4 bits
-        /// </summary>
-        public const int IPV4_BITS = sizeof(uint) << 3;
-        /// <summary>
-        /// IPv4 bits
-        /// </summary>
-        public const int IPV4_BYTES = sizeof(uint);
-        /// <summary>
         /// IPv6 bits
         /// </summary>
         public const int IPV6_BITS = sizeof(long) << 4;
@@ -32,6 +24,14 @@ namespace wan24.Core
         /// IPv6 bits
         /// </summary>
         public const int IPV6_BYTES = sizeof(long) << 1;
+        /// <summary>
+        /// IPv4 bits
+        /// </summary>
+        public const int IPV4_BITS = sizeof(uint) << 3;
+        /// <summary>
+        /// IPv4 bits
+        /// </summary>
+        public const int IPV4_BYTES = sizeof(uint);
 
         /// <summary>
         /// Max. IPv6 value
@@ -50,13 +50,13 @@ namespace wan24.Core
         /// </summary>
         public static readonly IpSubNet LoopbackIPv4 = new(IPAddress.Loopback, IPV4_BITS);
         /// <summary>
-        /// IPv4 zero sub-net
-        /// </summary>
-        public static readonly IpSubNet ZeroV4 = new(0u, IPV4_BITS);
-        /// <summary>
         /// IPv6 zero sub-net
         /// </summary>
         public static readonly IpSubNet ZeroV6 = new(BigInteger.Zero, IPV6_BITS);
+        /// <summary>
+        /// IPv4 zero sub-net
+        /// </summary>
+        public static readonly IpSubNet ZeroV4 = new(0u, IPV4_BITS);
 
         /// <summary>
         /// Cast as IP address list
@@ -67,13 +67,21 @@ namespace wan24.Core
             BigInteger count = net.IPAddressCount;
             if (count > long.MaxValue) throw new OutOfMemoryException("IP address range is too large!");
             IPAddress[] res = new IPAddress[(long)count];
-            for (
-                long i = 0;
-                i < count;
-                res[i] = net.GetIPAddress(BigInteger.Add(net.MaskedNetwork, new(i))), i++
-                ) ;
+            for (long i = 0; i != count; res[i] = net.GetIPAddress(BigInteger.Add(net.MaskedNetwork, new(i))), i++) ;
             return res;
         }
+
+        /// <summary>
+        /// Cast from <see cref="IPAddress"/> (should be a network address; zero bytes count)
+        /// </summary>
+        /// <param name="network"><see cref="IPAddress"/></param>
+        public static implicit operator IpSubNet(in IPAddress network) => new(network);
+
+        /// <summary>
+        /// Cast as <see cref="IPAddress"/> (network address)
+        /// </summary>
+        /// <param name="network"><see cref="IpSubNet"/></param>
+        public static implicit operator IPAddress(in IpSubNet network) => network.MaskedNetworkIPAddress;
 
         /// <summary>
         /// Cast as bytes
@@ -112,7 +120,7 @@ namespace wan24.Core
         public static implicit operator IpSubNet(in ReadOnlyMemory<byte> data) => new(data.Span);
 
         /// <summary>
-        /// Does match an IP address?
+        /// Does match an IP address (not a network address!)?
         /// </summary>
         /// <param name="net">Sub-net</param>
         /// <param name="ip">IP address</param>
@@ -120,7 +128,7 @@ namespace wan24.Core
         public static bool operator ==(in IpSubNet net, in IPAddress ip) => net.Includes(ip, throwOnError: false);
 
         /// <summary>
-        /// Does not match an IP address?
+        /// Does not match an IP address (not a network address!)?
         /// </summary>
         /// <param name="net">Sub-net</param>
         /// <param name="ip">IP address</param>
@@ -128,7 +136,7 @@ namespace wan24.Core
         public static bool operator !=(in IpSubNet net, in IPAddress ip) => !net.Includes(ip, throwOnError: false);
 
         /// <summary>
-        /// Does match an IP address?
+        /// Does match an IP address (not a network address!)?
         /// </summary>
         /// <param name="ip">IP address</param>
         /// <param name="net">Sub-net</param>
@@ -136,7 +144,7 @@ namespace wan24.Core
         public static bool operator ==(in IPAddress ip, in IpSubNet net) => net.Includes(ip, throwOnError: false);
 
         /// <summary>
-        /// Does not match an IP address?
+        /// Does not match an IP address (not a network address!)?
         /// </summary>
         /// <param name="ip">IP address</param>
         /// <param name="net">Sub-net</param>
@@ -190,7 +198,7 @@ namespace wan24.Core
         /// <param name="b">B</param>
         /// <returns>Merged sub-net</returns>
         public static IpSubNet operator |(in IpSubNet a, in IpSubNet b)
-            => a.IsCompatibleWith(b) ? new(a.MaskedNetworkIPAddress, Math.Min(a.MaskBits, b.MaskBits)) : throw new InvalidOperationException("Incompatible sub-nets");
+            => a.IsCompatibleWith(b) ? new(a.Network, Math.Min(a.MaskBits, b.MaskBits), a.IsIPv4) : throw new InvalidOperationException("Incompatible sub-nets");
 
         /// <summary>
         /// Determine if two sub-nets intersect, or if A fits into B
@@ -219,7 +227,7 @@ namespace wan24.Core
             int newBits = net.MaskBits + bits;
             if (newBits < 0) newBits = 0;
             else if (newBits > net.BitCount) newBits = net.BitCount;
-            return new(net.MaskedNetwork, newBits);
+            return new(net.Network, newBits, net.IsIPv4);
         }
 
         /// <summary>
@@ -233,7 +241,7 @@ namespace wan24.Core
             int newBits = net.MaskBits - bits;
             if (newBits < 0) newBits = 0;
             else if (newBits > net.BitCount) newBits = net.BitCount;
-            return new(net.MaskedNetwork, newBits);
+            return new(net.Network, newBits, net.IsIPv4);
         }
 
         /// <summary>
@@ -241,6 +249,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="subNet">Sub-net in IP/n CIDR notation</param>
         /// <returns>Sub-net</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static IpSubNet Parse(in ReadOnlySpan<char> subNet) => new(subNet);
 
         /// <summary>
@@ -254,45 +263,34 @@ namespace wan24.Core
             try
             {
                 int netIndex = subNet.IndexOf('/');
-                if (netIndex == -1 || !IPAddress.TryParse(subNet[..netIndex], out IPAddress? networkIp) || !int.TryParse(subNet[(netIndex + 1)..], out int bits))
+                if (netIndex != -1 && IPAddress.TryParse(subNet[..netIndex], out IPAddress? networkIp) && int.TryParse(subNet[(netIndex + 1)..], out int bits))
+                {
+                    bool isIPv4 = networkIp.AddressFamily == AddressFamily.InterNetwork;
+                    if (!isIPv4 && networkIp.AddressFamily != AddressFamily.InterNetworkV6)
+                    {
+                        Logging.WriteTrace($"Sub-net \"{subNet}\" has an unsupported IP address family");
+                    }
+                    else if (bits < 0 || bits > (isIPv4 ? IPV4_BITS : IPV6_BITS))
+                    {
+                        Logging.WriteTrace($"Sub-net \"{subNet}\" bit component exceeds the allowed range of the IP address family");
+                    }
+                    else
+                    {
+                        result = new(GetBigInteger(networkIp), bits, isIPv4);
+                        return true;
+                    }
+                }
+                else
                 {
                     Logging.WriteTrace($"Sub-net \"{subNet}\" component parsing failed");
-                    result = default;
-                    return false;
                 }
-                switch (networkIp.AddressFamily)
-                {
-                    case AddressFamily.InterNetworkV6:
-                        if (bits < 0 || bits > IPV6_BITS)
-                        {
-                            Logging.WriteTrace($"Sub-net \"{subNet}\" bit component exceeds the allowed range");
-                            result = default;
-                            return false;
-                        }
-                        result = new(new BigInteger(networkIp.GetAddressBytes(), isUnsigned: true, isBigEndian: true), bits);
-                        break;
-                    case AddressFamily.InterNetwork:
-                        if (bits < 0 || bits > IPV4_BITS)
-                        {
-                            Logging.WriteTrace($"Sub-net \"{subNet}\" bit component exceeds the allowed range");
-                            result = default;
-                            return false;
-                        }
-                        result = new(BinaryPrimitives.ReadUInt32BigEndian(networkIp.GetAddressBytes()), bits);
-                        break;
-                    default:
-                        Logging.WriteTrace($"Sub-net \"{subNet}\" has an unsupported IP address family");
-                        result = default;
-                        return false;
-                }
-                return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Logging.WriteDebug($"IP sub-net parsing failed with an exception: {ex}");
-                result = default;
-                return false;
             }
+            result = default;
+            return false;
         }
     }
 }

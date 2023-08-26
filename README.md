@@ -41,6 +41,10 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
     - Clearing
 - Array helper extensions
     - Offset/length validation
+    - Item index finding
+    - Contained items finding
+    - `AsReadOnly` extensions
+    - Generic cloning extension
 - Array pool extensions
     - Renting a cleared array
 - Enumerable extensions
@@ -127,6 +131,9 @@ pairs
 - `Timeout` will count down and raise an event, if not reset before reaching 
 the timeout
 - `ILogger` support
+    - `Logging` as global logging helper
+    - `Logger` as `ILogger` for writing to `Logging`
+    - `FileLogger` as `ILogger` for writing to a file
 - `IChangeToken` support using `ChangeCallback`
 - Hierarchic configuration using `OverrideableConfig`
 - Cancellation token awaiter
@@ -271,6 +278,27 @@ In order to make DI (dependency injection) working, you need to
 The `DiHelper.GetDiObjectAsync` method will try to resolve the request 
 synchronous, first. But the `DiHelper.GetDiObject` won't try asynchronous 
 object factories.
+
+## Logging
+
+For a global logging, use `Logging` and set a `Logging.Logger` - for example 
+the `FileLogger`:
+
+```cs
+Logging.Logger = await FileLogger.CreateAsync("/path/to/file.log");
+Logging.WriteDebug("Hello world!");
+```
+
+If you need an `ILogger` instance, you can use `Logger`:
+
+```cs
+anyObject.Logger = new Logger();
+```
+
+The `Logger` will use `Logging` and allows to define a minimum log level.
+
+**WARNING**: Never set a `Logger` instance as `Logging.Logger`! This will 
+cause an endless loop.
 
 ## Mixed enumeration value
 
@@ -1110,6 +1138,12 @@ Some basic examples:
 // Create from CIDR notation
 IpSubNet net = new("192.168.0.0/24");
 
+// Validate CIDR notation
+if(IpSubNet.TryParse("::/128", out IpSubNet subNet))
+{
+    // Valid CIDR notated sub-net
+}
+
 // Determine the network kind
 Assert.IsTrue(net.IsLan);
 Assert.IsFalse(net.IsWan);
@@ -1125,31 +1159,25 @@ Assert.AreEqual(IPAddress.Parse("192.168.0.255"), net.BroadcastIPAddress);
 Assert.IsTrue(IPAddress.Parse("192.168.0.1") == net);
 Assert.IsTrue(IPAddress.Parse("192.168.1.1") != net);
 
-// Combine two sub-nets
-IpSubNet combined = net + new IpSubNet("192.168.254.0/24");
-Assert.AreEqual("192.168.0.0/16", combined.ToString());
-
-// Merge to compatible (!) subnets
-IpSubNet merged = net | new IpSubNet("192.168.0.0/8");
-Assert.AreEqual("192.0.0.0/8", combined.ToString());
-
-// Determine if two sub-nets intersect, or one fits into another
-IpSubNet largerNet = new IpSubNet("192.168.0.0/16"),
-    smallerNet = new IpSubNet("192.168.0.0/30"),
-    otherNet = new IpSubNet("10.0.0.0/8");
-Assert.AreEqual(net & largetNet, net);// net fits into largetNet
-Assert.AreEqual(net & smallerNet, smallerNet);// net intersects smallerNet
-Assert.AreEqual(net & otherNet, IpSubNet.ZeroV4);// no intersection between net and otherNet
-
 // Extend/shrink a sub-net
 Assert.AreEqual("192.168.0.0/23", (net << 1).ToString());// Expand by one bit
 Assert.AreEqual("192.168.0.0/25", (net >> 1).ToString());// Shrink by one bit
 
-// Validate CIDR notation
-if(IpSubNet.TryParse("::/128", out IPSubNet subNet))
-{
-    // Valid CIDR notated sub-net
-}
+// Combine two sub-nets
+IpSubNet combined = net + new IpSubNet("192.168.254.0/24");
+Assert.AreEqual("192.168.0.0/16", combined.ToString());
+
+// Merge two compatible (!) sub-nets
+IpSubNet merged = net | new IpSubNet("192.168.0.0/8");
+Assert.AreEqual("192.168.0.0/8", merged.ToString());
+
+// Determine if two sub-nets intersect, or one fits into another
+IpSubNet largerNet = new("192.168.0.0/16"),
+    smallerNet = new("192.168.0.0/30"),
+    otherNet = new("10.0.0.0/8");
+Assert.AreEqual(net & largetNet, net);// net fits into largerNet
+Assert.AreEqual(net & smallerNet, smallerNet);// net intersects smallerNet
+Assert.AreEqual(net & otherNet, IpSubNet.ZeroV4);// no intersection between net and otherNet
 
 // Serialization
 byte[] serialized = net;// Serialize

@@ -1,5 +1,6 @@
 ﻿using System.Buffers;
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime;
 using System.Security.Cryptography;
 
@@ -96,7 +97,7 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public override bool Equals(object? obj) => Memory.Equals(obj);
+        public override bool Equals([NotNullWhen(true)] object? obj) => Memory.Equals(obj);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]

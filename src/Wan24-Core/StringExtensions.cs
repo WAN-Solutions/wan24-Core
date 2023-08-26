@@ -204,5 +204,43 @@ namespace wan24.Core
         /// <returns>Used buffer length in bytes</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static int GetBytes32(this char[] str, Span<byte> buffer) => Encoding.UTF32.GetBytes(str, buffer);
+
+        /// <summary>
+        /// Get a byte from bits
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <returns>Byte</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static byte GetByteFromBits(this string str) => GetByteFromBits((ReadOnlySpan<char>)str);
+
+        /// <summary>
+        /// Get a byte from bits
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <returns>Byte</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static byte GetByteFromBits(this ReadOnlySpan<char> str)
+        {
+            if (str.Length != 8) throw new ArgumentOutOfRangeException(nameof(str));
+            int res = 0;
+            for (int i = 0; i != 8; res |= str[i] == '1' ? 1 << i : 0, i++) ;
+            return (byte)res;
+        }
+
+        /// <summary>
+        /// Get a byte array from a hex string
+        /// </summary>
+        /// <param name="str">Hex string</param>
+        /// <returns>Byte array</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static byte[] GetBytesFromHex(this string str) => Convert.FromHexString(str);
+
+        /// <summary>
+        /// Get a byte array from a hex string
+        /// </summary>
+        /// <param name="str">Hex string</param>
+        /// <returns>Byte array</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static byte[] GetBytesFromHex(this ReadOnlySpan<char> str) => Convert.FromHexString(str);
     }
 }

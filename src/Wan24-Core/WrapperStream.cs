@@ -1,4 +1,5 @@
-﻿using System.Runtime;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -385,7 +386,7 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public override bool Equals(object? obj) => _BaseStream.Equals(obj);
+        public override bool Equals([NotNullWhen(true)] object? obj) => _BaseStream.Equals(obj);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]

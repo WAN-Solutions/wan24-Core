@@ -431,6 +431,22 @@ references:
   fullName.vb: wan24.Core.ArrayExtensions.AsReadOnly(Of T)(Span(Of T))
   nameWithType: ArrayExtensions.AsReadOnly<T>(Span<T>)
   nameWithType.vb: ArrayExtensions.AsReadOnly(Of T)(Span(Of T))
+- uid: wan24.Core.ArrayExtensions.CloneArray*
+  name: CloneArray
+  href: api/wan24.Core.ArrayExtensions.html#wan24_Core_ArrayExtensions_CloneArray_
+  commentId: Overload:wan24.Core.ArrayExtensions.CloneArray
+  isSpec: "True"
+  fullName: wan24.Core.ArrayExtensions.CloneArray
+  nameWithType: ArrayExtensions.CloneArray
+- uid: wan24.Core.ArrayExtensions.CloneArray``1(``0[])
+  name: CloneArray<T>(T[])
+  href: api/wan24.Core.ArrayExtensions.html#wan24_Core_ArrayExtensions_CloneArray__1___0___
+  commentId: M:wan24.Core.ArrayExtensions.CloneArray``1(``0[])
+  name.vb: CloneArray(Of T)(T())
+  fullName: wan24.Core.ArrayExtensions.CloneArray<T>(T[])
+  fullName.vb: wan24.Core.ArrayExtensions.CloneArray(Of T)(T())
+  nameWithType: ArrayExtensions.CloneArray<T>(T[])
+  nameWithType.vb: ArrayExtensions.CloneArray(Of T)(T())
 - uid: wan24.Core.ArrayExtensions.ContainsAll*
   name: ContainsAll
   href: api/wan24.Core.ArrayExtensions.html#wan24_Core_ArrayExtensions_ContainsAll_
@@ -6185,6 +6201,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.BytesExtensions.SlowCompare
   nameWithType: BytesExtensions.SlowCompare
+- uid: wan24.Core.BytesExtensions.ToBitString(System.Byte)
+  name: ToBitString(Byte)
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToBitString_System_Byte_
+  commentId: M:wan24.Core.BytesExtensions.ToBitString(System.Byte)
+  fullName: wan24.Core.BytesExtensions.ToBitString(System.Byte)
+  nameWithType: BytesExtensions.ToBitString(Byte)
+- uid: wan24.Core.BytesExtensions.ToBitString*
+  name: ToBitString
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToBitString_
+  commentId: Overload:wan24.Core.BytesExtensions.ToBitString
+  isSpec: "True"
+  fullName: wan24.Core.BytesExtensions.ToBitString
+  nameWithType: BytesExtensions.ToBitString
 - uid: wan24.Core.BytesExtensions.ToDecimal(ReadOnlySpan{System.Byte})
   name: ToDecimal(ReadOnlySpan<Byte>)
   href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToDecimal_ReadOnlySpan_System_Byte__
@@ -6260,6 +6289,22 @@ references:
   isSpec: "True"
   fullName: wan24.Core.BytesExtensions.ToFloat
   nameWithType: BytesExtensions.ToFloat
+- uid: wan24.Core.BytesExtensions.ToHexString(ReadOnlySpan{System.Byte})
+  name: ToHexString(ReadOnlySpan<Byte>)
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToHexString_ReadOnlySpan_System_Byte__
+  commentId: M:wan24.Core.BytesExtensions.ToHexString(ReadOnlySpan{System.Byte})
+  name.vb: ToHexString(ReadOnlySpan(Of Byte))
+  fullName: wan24.Core.BytesExtensions.ToHexString(ReadOnlySpan<System.Byte>)
+  fullName.vb: wan24.Core.BytesExtensions.ToHexString(ReadOnlySpan(Of System.Byte))
+  nameWithType: BytesExtensions.ToHexString(ReadOnlySpan<Byte>)
+  nameWithType.vb: BytesExtensions.ToHexString(ReadOnlySpan(Of Byte))
+- uid: wan24.Core.BytesExtensions.ToHexString*
+  name: ToHexString
+  href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToHexString_
+  commentId: Overload:wan24.Core.BytesExtensions.ToHexString
+  isSpec: "True"
+  fullName: wan24.Core.BytesExtensions.ToHexString
+  nameWithType: BytesExtensions.ToHexString
 - uid: wan24.Core.BytesExtensions.ToInt(ReadOnlySpan{System.Byte})
   name: ToInt(ReadOnlySpan<Byte>)
   href: api/wan24.Core.BytesExtensions.html#wan24_Core_BytesExtensions_ToInt_ReadOnlySpan_System_Byte__
@@ -11861,6 +11906,80 @@ references:
   fullName.vb: wan24.Core.DisposingAsyncEnumerator(Of T).MoveNextAsync
   nameWithType: DisposingAsyncEnumerator<T>.MoveNextAsync
   nameWithType.vb: DisposingAsyncEnumerator(Of T).MoveNextAsync
+- uid: wan24.Core.EndPointAttribute
+  name: EndPointAttribute
+  href: api/wan24.Core.EndPointAttribute.html
+  commentId: T:wan24.Core.EndPointAttribute
+  fullName: wan24.Core.EndPointAttribute
+  nameWithType: EndPointAttribute
+- uid: wan24.Core.EndPointAttribute.#ctor(System.String[])
+  name: EndPointAttribute(String[])
+  href: api/wan24.Core.EndPointAttribute.html#wan24_Core_EndPointAttribute__ctor_System_String___
+  commentId: M:wan24.Core.EndPointAttribute.#ctor(System.String[])
+  name.vb: EndPointAttribute(String())
+  fullName: wan24.Core.EndPointAttribute.EndPointAttribute(System.String[])
+  fullName.vb: wan24.Core.EndPointAttribute.EndPointAttribute(System.String())
+  nameWithType: EndPointAttribute.EndPointAttribute(String[])
+  nameWithType.vb: EndPointAttribute.EndPointAttribute(String())
+- uid: wan24.Core.EndPointAttribute.#ctor*
+  name: EndPointAttribute
+  href: api/wan24.Core.EndPointAttribute.html#wan24_Core_EndPointAttribute__ctor_
+  commentId: Overload:wan24.Core.EndPointAttribute.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.EndPointAttribute.EndPointAttribute
+  nameWithType: EndPointAttribute.EndPointAttribute
+- uid: wan24.Core.EndPointAttribute.AllowedIpSubnets
+  name: AllowedIpSubnets
+  href: api/wan24.Core.EndPointAttribute.html#wan24_Core_EndPointAttribute_AllowedIpSubnets
+  commentId: P:wan24.Core.EndPointAttribute.AllowedIpSubnets
+  fullName: wan24.Core.EndPointAttribute.AllowedIpSubnets
+  nameWithType: EndPointAttribute.AllowedIpSubnets
+- uid: wan24.Core.EndPointAttribute.AllowedIpSubnets*
+  name: AllowedIpSubnets
+  href: api/wan24.Core.EndPointAttribute.html#wan24_Core_EndPointAttribute_AllowedIpSubnets_
+  commentId: Overload:wan24.Core.EndPointAttribute.AllowedIpSubnets
+  isSpec: "True"
+  fullName: wan24.Core.EndPointAttribute.AllowedIpSubnets
+  nameWithType: EndPointAttribute.AllowedIpSubnets
+- uid: wan24.Core.EndPointAttribute.AllowIPv4
+  name: AllowIPv4
+  href: api/wan24.Core.EndPointAttribute.html#wan24_Core_EndPointAttribute_AllowIPv4
+  commentId: P:wan24.Core.EndPointAttribute.AllowIPv4
+  fullName: wan24.Core.EndPointAttribute.AllowIPv4
+  nameWithType: EndPointAttribute.AllowIPv4
+- uid: wan24.Core.EndPointAttribute.AllowIPv4*
+  name: AllowIPv4
+  href: api/wan24.Core.EndPointAttribute.html#wan24_Core_EndPointAttribute_AllowIPv4_
+  commentId: Overload:wan24.Core.EndPointAttribute.AllowIPv4
+  isSpec: "True"
+  fullName: wan24.Core.EndPointAttribute.AllowIPv4
+  nameWithType: EndPointAttribute.AllowIPv4
+- uid: wan24.Core.EndPointAttribute.AllowIPv6
+  name: AllowIPv6
+  href: api/wan24.Core.EndPointAttribute.html#wan24_Core_EndPointAttribute_AllowIPv6
+  commentId: P:wan24.Core.EndPointAttribute.AllowIPv6
+  fullName: wan24.Core.EndPointAttribute.AllowIPv6
+  nameWithType: EndPointAttribute.AllowIPv6
+- uid: wan24.Core.EndPointAttribute.AllowIPv6*
+  name: AllowIPv6
+  href: api/wan24.Core.EndPointAttribute.html#wan24_Core_EndPointAttribute_AllowIPv6_
+  commentId: Overload:wan24.Core.EndPointAttribute.AllowIPv6
+  isSpec: "True"
+  fullName: wan24.Core.EndPointAttribute.AllowIPv6
+  nameWithType: EndPointAttribute.AllowIPv6
+- uid: wan24.Core.EndPointAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)
+  name: IsValid(Object, ValidationContext)
+  href: api/wan24.Core.EndPointAttribute.html#wan24_Core_EndPointAttribute_IsValid_System_Object_System_ComponentModel_DataAnnotations_ValidationContext_
+  commentId: M:wan24.Core.EndPointAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)
+  fullName: wan24.Core.EndPointAttribute.IsValid(System.Object, System.ComponentModel.DataAnnotations.ValidationContext)
+  nameWithType: EndPointAttribute.IsValid(Object, ValidationContext)
+- uid: wan24.Core.EndPointAttribute.IsValid*
+  name: IsValid
+  href: api/wan24.Core.EndPointAttribute.html#wan24_Core_EndPointAttribute_IsValid_
+  commentId: Overload:wan24.Core.EndPointAttribute.IsValid
+  isSpec: "True"
+  fullName: wan24.Core.EndPointAttribute.IsValid
+  nameWithType: EndPointAttribute.IsValid
 - uid: wan24.Core.EnumerableExtensions
   name: EnumerableExtensions
   href: api/wan24.Core.EnumerableExtensions.html
@@ -13182,6 +13301,179 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ExcludeValueAttribute.ExcludeValueAttribute
   nameWithType: ExcludeValueAttribute.ExcludeValueAttribute
+- uid: wan24.Core.FileLogger
+  name: FileLogger
+  href: api/wan24.Core.FileLogger.html
+  commentId: T:wan24.Core.FileLogger
+  fullName: wan24.Core.FileLogger
+  nameWithType: FileLogger
+- uid: wan24.Core.FileLogger.#ctor(System.String,Microsoft.Extensions.Logging.LogLevel)
+  name: FileLogger(String, LogLevel)
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger__ctor_System_String_Microsoft_Extensions_Logging_LogLevel_
+  commentId: M:wan24.Core.FileLogger.#ctor(System.String,Microsoft.Extensions.Logging.LogLevel)
+  fullName: wan24.Core.FileLogger.FileLogger(System.String, Microsoft.Extensions.Logging.LogLevel)
+  nameWithType: FileLogger.FileLogger(String, LogLevel)
+- uid: wan24.Core.FileLogger.#ctor*
+  name: FileLogger
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger__ctor_
+  commentId: Overload:wan24.Core.FileLogger.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.FileLogger.FileLogger
+  nameWithType: FileLogger.FileLogger
+- uid: wan24.Core.FileLogger.BeginScope*
+  name: BeginScope
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_BeginScope_
+  commentId: Overload:wan24.Core.FileLogger.BeginScope
+  isSpec: "True"
+  fullName: wan24.Core.FileLogger.BeginScope
+  nameWithType: FileLogger.BeginScope
+- uid: wan24.Core.FileLogger.BeginScope``1(``0)
+  name: BeginScope<TState>(TState)
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_BeginScope__1___0_
+  commentId: M:wan24.Core.FileLogger.BeginScope``1(``0)
+  name.vb: BeginScope(Of TState)(TState)
+  fullName: wan24.Core.FileLogger.BeginScope<TState>(TState)
+  fullName.vb: wan24.Core.FileLogger.BeginScope(Of TState)(TState)
+  nameWithType: FileLogger.BeginScope<TState>(TState)
+  nameWithType.vb: FileLogger.BeginScope(Of TState)(TState)
+- uid: wan24.Core.FileLogger.CreateAsync(System.String,Microsoft.Extensions.Logging.LogLevel,CancellationToken)
+  name: CreateAsync(String, LogLevel, CancellationToken)
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_CreateAsync_System_String_Microsoft_Extensions_Logging_LogLevel_CancellationToken_
+  commentId: M:wan24.Core.FileLogger.CreateAsync(System.String,Microsoft.Extensions.Logging.LogLevel,CancellationToken)
+  fullName: wan24.Core.FileLogger.CreateAsync(System.String, Microsoft.Extensions.Logging.LogLevel, CancellationToken)
+  nameWithType: FileLogger.CreateAsync(String, LogLevel, CancellationToken)
+- uid: wan24.Core.FileLogger.CreateAsync*
+  name: CreateAsync
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_CreateAsync_
+  commentId: Overload:wan24.Core.FileLogger.CreateAsync
+  isSpec: "True"
+  fullName: wan24.Core.FileLogger.CreateAsync
+  nameWithType: FileLogger.CreateAsync
+- uid: wan24.Core.FileLogger.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_Dispose_System_Boolean_
+  commentId: M:wan24.Core.FileLogger.Dispose(System.Boolean)
+  fullName: wan24.Core.FileLogger.Dispose(System.Boolean)
+  nameWithType: FileLogger.Dispose(Boolean)
+- uid: wan24.Core.FileLogger.Dispose*
+  name: Dispose
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_Dispose_
+  commentId: Overload:wan24.Core.FileLogger.Dispose
+  isSpec: "True"
+  fullName: wan24.Core.FileLogger.Dispose
+  nameWithType: FileLogger.Dispose
+- uid: wan24.Core.FileLogger.DisposeCore
+  name: DisposeCore()
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_DisposeCore
+  commentId: M:wan24.Core.FileLogger.DisposeCore
+  fullName: wan24.Core.FileLogger.DisposeCore()
+  nameWithType: FileLogger.DisposeCore()
+- uid: wan24.Core.FileLogger.DisposeCore*
+  name: DisposeCore
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_DisposeCore_
+  commentId: Overload:wan24.Core.FileLogger.DisposeCore
+  isSpec: "True"
+  fullName: wan24.Core.FileLogger.DisposeCore
+  nameWithType: FileLogger.DisposeCore
+- uid: wan24.Core.FileLogger.FileName
+  name: FileName
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_FileName
+  commentId: P:wan24.Core.FileLogger.FileName
+  fullName: wan24.Core.FileLogger.FileName
+  nameWithType: FileLogger.FileName
+- uid: wan24.Core.FileLogger.FileName*
+  name: FileName
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_FileName_
+  commentId: Overload:wan24.Core.FileLogger.FileName
+  isSpec: "True"
+  fullName: wan24.Core.FileLogger.FileName
+  nameWithType: FileLogger.FileName
+- uid: wan24.Core.FileLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)
+  name: IsEnabled(LogLevel)
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_IsEnabled_Microsoft_Extensions_Logging_LogLevel_
+  commentId: M:wan24.Core.FileLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)
+  fullName: wan24.Core.FileLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)
+  nameWithType: FileLogger.IsEnabled(LogLevel)
+- uid: wan24.Core.FileLogger.IsEnabled*
+  name: IsEnabled
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_IsEnabled_
+  commentId: Overload:wan24.Core.FileLogger.IsEnabled
+  isSpec: "True"
+  fullName: wan24.Core.FileLogger.IsEnabled
+  nameWithType: FileLogger.IsEnabled
+- uid: wan24.Core.FileLogger.Level
+  name: Level
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_Level
+  commentId: P:wan24.Core.FileLogger.Level
+  fullName: wan24.Core.FileLogger.Level
+  nameWithType: FileLogger.Level
+- uid: wan24.Core.FileLogger.Level*
+  name: Level
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_Level_
+  commentId: Overload:wan24.Core.FileLogger.Level
+  isSpec: "True"
+  fullName: wan24.Core.FileLogger.Level
+  nameWithType: FileLogger.Level
+- uid: wan24.Core.FileLogger.Log*
+  name: Log
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_Log_
+  commentId: Overload:wan24.Core.FileLogger.Log
+  isSpec: "True"
+  fullName: wan24.Core.FileLogger.Log
+  nameWithType: FileLogger.Log
+- uid: wan24.Core.FileLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Nullable{Exception},Func{``0,System.Nullable{Exception},System.String})
+  name: Log<TState>(LogLevel, EventId, TState, Nullable<Exception>, Func<TState, Nullable<Exception>, String>)
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_Log__1_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_EventId___0_System_Nullable_Exception__Func___0_System_Nullable_Exception__System_String__
+  commentId: M:wan24.Core.FileLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Nullable{Exception},Func{``0,System.Nullable{Exception},System.String})
+  name.vb: Log(Of TState)(LogLevel, EventId, TState, Nullable(Of Exception), Func(Of TState, Nullable(Of Exception), String))
+  fullName: wan24.Core.FileLogger.Log<TState>(Microsoft.Extensions.Logging.LogLevel, Microsoft.Extensions.Logging.EventId, TState, System.Nullable<Exception>, Func<TState, System.Nullable<Exception>, System.String>)
+  fullName.vb: wan24.Core.FileLogger.Log(Of TState)(Microsoft.Extensions.Logging.LogLevel, Microsoft.Extensions.Logging.EventId, TState, System.Nullable(Of Exception), Func(Of TState, System.Nullable(Of Exception), System.String))
+  nameWithType: FileLogger.Log<TState>(LogLevel, EventId, TState, Nullable<Exception>, Func<TState, Nullable<Exception>, String>)
+  nameWithType.vb: FileLogger.Log(Of TState)(LogLevel, EventId, TState, Nullable(Of Exception), Func(Of TState, Nullable(Of Exception), String))
+- uid: wan24.Core.FileLogger.LogQueueWorker
+  name: FileLogger.LogQueueWorker
+  href: api/wan24.Core.FileLogger.LogQueueWorker.html
+  commentId: T:wan24.Core.FileLogger.LogQueueWorker
+  fullName: wan24.Core.FileLogger.LogQueueWorker
+  nameWithType: FileLogger.LogQueueWorker
+- uid: wan24.Core.FileLogger.LogQueueWorker.#ctor(Stream)
+  name: LogQueueWorker(Stream)
+  href: api/wan24.Core.FileLogger.LogQueueWorker.html#wan24_Core_FileLogger_LogQueueWorker__ctor_Stream_
+  commentId: M:wan24.Core.FileLogger.LogQueueWorker.#ctor(Stream)
+  fullName: wan24.Core.FileLogger.LogQueueWorker.LogQueueWorker(Stream)
+  nameWithType: FileLogger.LogQueueWorker.LogQueueWorker(Stream)
+- uid: wan24.Core.FileLogger.LogQueueWorker.#ctor*
+  name: LogQueueWorker
+  href: api/wan24.Core.FileLogger.LogQueueWorker.html#wan24_Core_FileLogger_LogQueueWorker__ctor_
+  commentId: Overload:wan24.Core.FileLogger.LogQueueWorker.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.FileLogger.LogQueueWorker.LogQueueWorker
+  nameWithType: FileLogger.LogQueueWorker.LogQueueWorker
+- uid: wan24.Core.FileLogger.LogQueueWorker.ProcessItem(System.String,CancellationToken)
+  name: ProcessItem(String, CancellationToken)
+  href: api/wan24.Core.FileLogger.LogQueueWorker.html#wan24_Core_FileLogger_LogQueueWorker_ProcessItem_System_String_CancellationToken_
+  commentId: M:wan24.Core.FileLogger.LogQueueWorker.ProcessItem(System.String,CancellationToken)
+  fullName: wan24.Core.FileLogger.LogQueueWorker.ProcessItem(System.String, CancellationToken)
+  nameWithType: FileLogger.LogQueueWorker.ProcessItem(String, CancellationToken)
+- uid: wan24.Core.FileLogger.LogQueueWorker.ProcessItem*
+  name: ProcessItem
+  href: api/wan24.Core.FileLogger.LogQueueWorker.html#wan24_Core_FileLogger_LogQueueWorker_ProcessItem_
+  commentId: Overload:wan24.Core.FileLogger.LogQueueWorker.ProcessItem
+  isSpec: "True"
+  fullName: wan24.Core.FileLogger.LogQueueWorker.ProcessItem
+  nameWithType: FileLogger.LogQueueWorker.ProcessItem
+- uid: wan24.Core.FileLogger.Stream
+  name: Stream
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_Stream
+  commentId: F:wan24.Core.FileLogger.Stream
+  fullName: wan24.Core.FileLogger.Stream
+  nameWithType: FileLogger.Stream
+- uid: wan24.Core.FileLogger.Worker
+  name: Worker
+  href: api/wan24.Core.FileLogger.html#wan24_Core_FileLogger_Worker
+  commentId: F:wan24.Core.FileLogger.Worker
+  fullName: wan24.Core.FileLogger.Worker
+  nameWithType: FileLogger.Worker
 - uid: wan24.Core.GenericHelper
   name: GenericHelper
   href: api/wan24.Core.GenericHelper.html
@@ -13638,6 +13930,38 @@ references:
   commentId: F:wan24.Core.HostedServiceTimers.ExactCatchingUp
   fullName: wan24.Core.HostedServiceTimers.ExactCatchingUp
   nameWithType: HostedServiceTimers.ExactCatchingUp
+- uid: wan24.Core.HostEndPointAttribute
+  name: HostEndPointAttribute
+  href: api/wan24.Core.HostEndPointAttribute.html
+  commentId: T:wan24.Core.HostEndPointAttribute
+  fullName: wan24.Core.HostEndPointAttribute
+  nameWithType: HostEndPointAttribute
+- uid: wan24.Core.HostEndPointAttribute.#ctor
+  name: HostEndPointAttribute()
+  href: api/wan24.Core.HostEndPointAttribute.html#wan24_Core_HostEndPointAttribute__ctor
+  commentId: M:wan24.Core.HostEndPointAttribute.#ctor
+  fullName: wan24.Core.HostEndPointAttribute.HostEndPointAttribute()
+  nameWithType: HostEndPointAttribute.HostEndPointAttribute()
+- uid: wan24.Core.HostEndPointAttribute.#ctor*
+  name: HostEndPointAttribute
+  href: api/wan24.Core.HostEndPointAttribute.html#wan24_Core_HostEndPointAttribute__ctor_
+  commentId: Overload:wan24.Core.HostEndPointAttribute.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.HostEndPointAttribute.HostEndPointAttribute
+  nameWithType: HostEndPointAttribute.HostEndPointAttribute
+- uid: wan24.Core.HostEndPointAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)
+  name: IsValid(Object, ValidationContext)
+  href: api/wan24.Core.HostEndPointAttribute.html#wan24_Core_HostEndPointAttribute_IsValid_System_Object_System_ComponentModel_DataAnnotations_ValidationContext_
+  commentId: M:wan24.Core.HostEndPointAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)
+  fullName: wan24.Core.HostEndPointAttribute.IsValid(System.Object, System.ComponentModel.DataAnnotations.ValidationContext)
+  nameWithType: HostEndPointAttribute.IsValid(Object, ValidationContext)
+- uid: wan24.Core.HostEndPointAttribute.IsValid*
+  name: IsValid
+  href: api/wan24.Core.HostEndPointAttribute.html#wan24_Core_HostEndPointAttribute_IsValid_
+  commentId: Overload:wan24.Core.HostEndPointAttribute.IsValid
+  isSpec: "True"
+  fullName: wan24.Core.HostEndPointAttribute.IsValid
+  nameWithType: HostEndPointAttribute.IsValid
 - uid: wan24.Core.HubStream
   name: HubStream
   href: api/wan24.Core.HubStream.html
@@ -15742,6 +16066,12 @@ references:
   commentId: T:wan24.Core.IpNetworkKind
   fullName: wan24.Core.IpNetworkKind
   nameWithType: IpNetworkKind
+- uid: wan24.Core.IpNetworkKind.ALL
+  name: ALL
+  href: api/wan24.Core.IpNetworkKind.html#wan24_Core_IpNetworkKind_ALL
+  commentId: F:wan24.Core.IpNetworkKind.ALL
+  fullName: wan24.Core.IpNetworkKind.ALL
+  nameWithType: IpNetworkKind.ALL
 - uid: wan24.Core.IpNetworkKind.LAN
   name: LAN
   href: api/wan24.Core.IpNetworkKind.html#wan24_Core_IpNetworkKind_LAN
@@ -15824,6 +16154,80 @@ references:
   isSpec: "True"
   fullName: wan24.Core.IPool.Name
   nameWithType: IPool.Name
+- uid: wan24.Core.IpSubNetAttribute
+  name: IpSubNetAttribute
+  href: api/wan24.Core.IpSubNetAttribute.html
+  commentId: T:wan24.Core.IpSubNetAttribute
+  fullName: wan24.Core.IpSubNetAttribute
+  nameWithType: IpSubNetAttribute
+- uid: wan24.Core.IpSubNetAttribute.#ctor(System.String[])
+  name: IpSubNetAttribute(String[])
+  href: api/wan24.Core.IpSubNetAttribute.html#wan24_Core_IpSubNetAttribute__ctor_System_String___
+  commentId: M:wan24.Core.IpSubNetAttribute.#ctor(System.String[])
+  name.vb: IpSubNetAttribute(String())
+  fullName: wan24.Core.IpSubNetAttribute.IpSubNetAttribute(System.String[])
+  fullName.vb: wan24.Core.IpSubNetAttribute.IpSubNetAttribute(System.String())
+  nameWithType: IpSubNetAttribute.IpSubNetAttribute(String[])
+  nameWithType.vb: IpSubNetAttribute.IpSubNetAttribute(String())
+- uid: wan24.Core.IpSubNetAttribute.#ctor*
+  name: IpSubNetAttribute
+  href: api/wan24.Core.IpSubNetAttribute.html#wan24_Core_IpSubNetAttribute__ctor_
+  commentId: Overload:wan24.Core.IpSubNetAttribute.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.IpSubNetAttribute.IpSubNetAttribute
+  nameWithType: IpSubNetAttribute.IpSubNetAttribute
+- uid: wan24.Core.IpSubNetAttribute.AllowedIpSubnets
+  name: AllowedIpSubnets
+  href: api/wan24.Core.IpSubNetAttribute.html#wan24_Core_IpSubNetAttribute_AllowedIpSubnets
+  commentId: P:wan24.Core.IpSubNetAttribute.AllowedIpSubnets
+  fullName: wan24.Core.IpSubNetAttribute.AllowedIpSubnets
+  nameWithType: IpSubNetAttribute.AllowedIpSubnets
+- uid: wan24.Core.IpSubNetAttribute.AllowedIpSubnets*
+  name: AllowedIpSubnets
+  href: api/wan24.Core.IpSubNetAttribute.html#wan24_Core_IpSubNetAttribute_AllowedIpSubnets_
+  commentId: Overload:wan24.Core.IpSubNetAttribute.AllowedIpSubnets
+  isSpec: "True"
+  fullName: wan24.Core.IpSubNetAttribute.AllowedIpSubnets
+  nameWithType: IpSubNetAttribute.AllowedIpSubnets
+- uid: wan24.Core.IpSubNetAttribute.AllowIPv4
+  name: AllowIPv4
+  href: api/wan24.Core.IpSubNetAttribute.html#wan24_Core_IpSubNetAttribute_AllowIPv4
+  commentId: P:wan24.Core.IpSubNetAttribute.AllowIPv4
+  fullName: wan24.Core.IpSubNetAttribute.AllowIPv4
+  nameWithType: IpSubNetAttribute.AllowIPv4
+- uid: wan24.Core.IpSubNetAttribute.AllowIPv4*
+  name: AllowIPv4
+  href: api/wan24.Core.IpSubNetAttribute.html#wan24_Core_IpSubNetAttribute_AllowIPv4_
+  commentId: Overload:wan24.Core.IpSubNetAttribute.AllowIPv4
+  isSpec: "True"
+  fullName: wan24.Core.IpSubNetAttribute.AllowIPv4
+  nameWithType: IpSubNetAttribute.AllowIPv4
+- uid: wan24.Core.IpSubNetAttribute.AllowIPv6
+  name: AllowIPv6
+  href: api/wan24.Core.IpSubNetAttribute.html#wan24_Core_IpSubNetAttribute_AllowIPv6
+  commentId: P:wan24.Core.IpSubNetAttribute.AllowIPv6
+  fullName: wan24.Core.IpSubNetAttribute.AllowIPv6
+  nameWithType: IpSubNetAttribute.AllowIPv6
+- uid: wan24.Core.IpSubNetAttribute.AllowIPv6*
+  name: AllowIPv6
+  href: api/wan24.Core.IpSubNetAttribute.html#wan24_Core_IpSubNetAttribute_AllowIPv6_
+  commentId: Overload:wan24.Core.IpSubNetAttribute.AllowIPv6
+  isSpec: "True"
+  fullName: wan24.Core.IpSubNetAttribute.AllowIPv6
+  nameWithType: IpSubNetAttribute.AllowIPv6
+- uid: wan24.Core.IpSubNetAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)
+  name: IsValid(Object, ValidationContext)
+  href: api/wan24.Core.IpSubNetAttribute.html#wan24_Core_IpSubNetAttribute_IsValid_System_Object_System_ComponentModel_DataAnnotations_ValidationContext_
+  commentId: M:wan24.Core.IpSubNetAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)
+  fullName: wan24.Core.IpSubNetAttribute.IsValid(System.Object, System.ComponentModel.DataAnnotations.ValidationContext)
+  nameWithType: IpSubNetAttribute.IsValid(Object, ValidationContext)
+- uid: wan24.Core.IpSubNetAttribute.IsValid*
+  name: IsValid
+  href: api/wan24.Core.IpSubNetAttribute.html#wan24_Core_IpSubNetAttribute_IsValid_
+  commentId: Overload:wan24.Core.IpSubNetAttribute.IsValid
+  isSpec: "True"
+  fullName: wan24.Core.IpSubNetAttribute.IsValid
+  nameWithType: IpSubNetAttribute.IsValid
 - uid: wan24.Core.IQueueWorker
   name: IQueueWorker
   href: api/wan24.Core.IQueueWorker.html
@@ -17601,6 +18005,83 @@ references:
   isSpec: "True"
   fullName: wan24.Core.LoadTypeEventArgs.Type
   nameWithType: LoadTypeEventArgs.Type
+- uid: wan24.Core.Logger
+  name: Logger
+  href: api/wan24.Core.Logger.html
+  commentId: T:wan24.Core.Logger
+  fullName: wan24.Core.Logger
+  nameWithType: Logger
+- uid: wan24.Core.Logger.#ctor(Microsoft.Extensions.Logging.LogLevel)
+  name: Logger(LogLevel)
+  href: api/wan24.Core.Logger.html#wan24_Core_Logger__ctor_Microsoft_Extensions_Logging_LogLevel_
+  commentId: M:wan24.Core.Logger.#ctor(Microsoft.Extensions.Logging.LogLevel)
+  fullName: wan24.Core.Logger.Logger(Microsoft.Extensions.Logging.LogLevel)
+  nameWithType: Logger.Logger(LogLevel)
+- uid: wan24.Core.Logger.#ctor*
+  name: Logger
+  href: api/wan24.Core.Logger.html#wan24_Core_Logger__ctor_
+  commentId: Overload:wan24.Core.Logger.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.Logger.Logger
+  nameWithType: Logger.Logger
+- uid: wan24.Core.Logger.BeginScope*
+  name: BeginScope
+  href: api/wan24.Core.Logger.html#wan24_Core_Logger_BeginScope_
+  commentId: Overload:wan24.Core.Logger.BeginScope
+  isSpec: "True"
+  fullName: wan24.Core.Logger.BeginScope
+  nameWithType: Logger.BeginScope
+- uid: wan24.Core.Logger.BeginScope``1(``0)
+  name: BeginScope<TState>(TState)
+  href: api/wan24.Core.Logger.html#wan24_Core_Logger_BeginScope__1___0_
+  commentId: M:wan24.Core.Logger.BeginScope``1(``0)
+  name.vb: BeginScope(Of TState)(TState)
+  fullName: wan24.Core.Logger.BeginScope<TState>(TState)
+  fullName.vb: wan24.Core.Logger.BeginScope(Of TState)(TState)
+  nameWithType: Logger.BeginScope<TState>(TState)
+  nameWithType.vb: Logger.BeginScope(Of TState)(TState)
+- uid: wan24.Core.Logger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)
+  name: IsEnabled(LogLevel)
+  href: api/wan24.Core.Logger.html#wan24_Core_Logger_IsEnabled_Microsoft_Extensions_Logging_LogLevel_
+  commentId: M:wan24.Core.Logger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)
+  fullName: wan24.Core.Logger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)
+  nameWithType: Logger.IsEnabled(LogLevel)
+- uid: wan24.Core.Logger.IsEnabled*
+  name: IsEnabled
+  href: api/wan24.Core.Logger.html#wan24_Core_Logger_IsEnabled_
+  commentId: Overload:wan24.Core.Logger.IsEnabled
+  isSpec: "True"
+  fullName: wan24.Core.Logger.IsEnabled
+  nameWithType: Logger.IsEnabled
+- uid: wan24.Core.Logger.Level
+  name: Level
+  href: api/wan24.Core.Logger.html#wan24_Core_Logger_Level
+  commentId: P:wan24.Core.Logger.Level
+  fullName: wan24.Core.Logger.Level
+  nameWithType: Logger.Level
+- uid: wan24.Core.Logger.Level*
+  name: Level
+  href: api/wan24.Core.Logger.html#wan24_Core_Logger_Level_
+  commentId: Overload:wan24.Core.Logger.Level
+  isSpec: "True"
+  fullName: wan24.Core.Logger.Level
+  nameWithType: Logger.Level
+- uid: wan24.Core.Logger.Log*
+  name: Log
+  href: api/wan24.Core.Logger.html#wan24_Core_Logger_Log_
+  commentId: Overload:wan24.Core.Logger.Log
+  isSpec: "True"
+  fullName: wan24.Core.Logger.Log
+  nameWithType: Logger.Log
+- uid: wan24.Core.Logger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Nullable{Exception},Func{``0,System.Nullable{Exception},System.String})
+  name: Log<TState>(LogLevel, EventId, TState, Nullable<Exception>, Func<TState, Nullable<Exception>, String>)
+  href: api/wan24.Core.Logger.html#wan24_Core_Logger_Log__1_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_EventId___0_System_Nullable_Exception__Func___0_System_Nullable_Exception__System_String__
+  commentId: M:wan24.Core.Logger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Nullable{Exception},Func{``0,System.Nullable{Exception},System.String})
+  name.vb: Log(Of TState)(LogLevel, EventId, TState, Nullable(Of Exception), Func(Of TState, Nullable(Of Exception), String))
+  fullName: wan24.Core.Logger.Log<TState>(Microsoft.Extensions.Logging.LogLevel, Microsoft.Extensions.Logging.EventId, TState, System.Nullable<Exception>, Func<TState, System.Nullable<Exception>, System.String>)
+  fullName.vb: wan24.Core.Logger.Log(Of TState)(Microsoft.Extensions.Logging.LogLevel, Microsoft.Extensions.Logging.EventId, TState, System.Nullable(Of Exception), Func(Of TState, System.Nullable(Of Exception), System.String))
+  nameWithType: Logger.Log<TState>(LogLevel, EventId, TState, Nullable<Exception>, Func<TState, Nullable<Exception>, String>)
+  nameWithType.vb: Logger.Log(Of TState)(LogLevel, EventId, TState, Nullable(Of Exception), Func(Of TState, Nullable(Of Exception), String))
 - uid: wan24.Core.Logging
   name: Logging
   href: api/wan24.Core.Logging.html
@@ -28902,6 +29383,28 @@ references:
   commentId: T:wan24.Core.StringExtensions
   fullName: wan24.Core.StringExtensions
   nameWithType: StringExtensions
+- uid: wan24.Core.StringExtensions.GetByteFromBits(ReadOnlySpan{System.Char})
+  name: GetByteFromBits(ReadOnlySpan<Char>)
+  href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetByteFromBits_ReadOnlySpan_System_Char__
+  commentId: M:wan24.Core.StringExtensions.GetByteFromBits(ReadOnlySpan{System.Char})
+  name.vb: GetByteFromBits(ReadOnlySpan(Of Char))
+  fullName: wan24.Core.StringExtensions.GetByteFromBits(ReadOnlySpan<System.Char>)
+  fullName.vb: wan24.Core.StringExtensions.GetByteFromBits(ReadOnlySpan(Of System.Char))
+  nameWithType: StringExtensions.GetByteFromBits(ReadOnlySpan<Char>)
+  nameWithType.vb: StringExtensions.GetByteFromBits(ReadOnlySpan(Of Char))
+- uid: wan24.Core.StringExtensions.GetByteFromBits(System.String)
+  name: GetByteFromBits(String)
+  href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetByteFromBits_System_String_
+  commentId: M:wan24.Core.StringExtensions.GetByteFromBits(System.String)
+  fullName: wan24.Core.StringExtensions.GetByteFromBits(System.String)
+  nameWithType: StringExtensions.GetByteFromBits(String)
+- uid: wan24.Core.StringExtensions.GetByteFromBits*
+  name: GetByteFromBits
+  href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetByteFromBits_
+  commentId: Overload:wan24.Core.StringExtensions.GetByteFromBits
+  isSpec: "True"
+  fullName: wan24.Core.StringExtensions.GetByteFromBits
+  nameWithType: StringExtensions.GetByteFromBits
 - uid: wan24.Core.StringExtensions.GetBytes(System.Char[])
   name: GetBytes(Char[])
   href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetBytes_System_Char___
@@ -29076,6 +29579,28 @@ references:
   isSpec: "True"
   fullName: wan24.Core.StringExtensions.GetBytes32
   nameWithType: StringExtensions.GetBytes32
+- uid: wan24.Core.StringExtensions.GetBytesFromHex(ReadOnlySpan{System.Char})
+  name: GetBytesFromHex(ReadOnlySpan<Char>)
+  href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetBytesFromHex_ReadOnlySpan_System_Char__
+  commentId: M:wan24.Core.StringExtensions.GetBytesFromHex(ReadOnlySpan{System.Char})
+  name.vb: GetBytesFromHex(ReadOnlySpan(Of Char))
+  fullName: wan24.Core.StringExtensions.GetBytesFromHex(ReadOnlySpan<System.Char>)
+  fullName.vb: wan24.Core.StringExtensions.GetBytesFromHex(ReadOnlySpan(Of System.Char))
+  nameWithType: StringExtensions.GetBytesFromHex(ReadOnlySpan<Char>)
+  nameWithType.vb: StringExtensions.GetBytesFromHex(ReadOnlySpan(Of Char))
+- uid: wan24.Core.StringExtensions.GetBytesFromHex(System.String)
+  name: GetBytesFromHex(String)
+  href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetBytesFromHex_System_String_
+  commentId: M:wan24.Core.StringExtensions.GetBytesFromHex(System.String)
+  fullName: wan24.Core.StringExtensions.GetBytesFromHex(System.String)
+  nameWithType: StringExtensions.GetBytesFromHex(String)
+- uid: wan24.Core.StringExtensions.GetBytesFromHex*
+  name: GetBytesFromHex
+  href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_GetBytesFromHex_
+  commentId: Overload:wan24.Core.StringExtensions.GetBytesFromHex
+  isSpec: "True"
+  fullName: wan24.Core.StringExtensions.GetBytesFromHex
+  nameWithType: StringExtensions.GetBytesFromHex
 - uid: wan24.Core.StringExtensions.Parse(System.String,Dictionary{System.String,System.String},System.Nullable{System.Int32},System.Boolean,System.Text.RegularExpressions.Regex,System.Nullable{System.Int32})
   name: Parse(String, Dictionary<String, String>, Nullable<Int32>, Boolean, Regex, Nullable<Int32>)
   href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_Parse_System_String_Dictionary_System_String_System_String__System_Nullable_System_Int32__System_Boolean_System_Text_RegularExpressions_Regex_System_Nullable_System_Int32__
@@ -33360,6 +33885,31 @@ references:
   fullName.vb: wan24.Core.UdpBroadcast(Of T).NetworkMask
   nameWithType: UdpBroadcast<T>.NetworkMask
   nameWithType.vb: UdpBroadcast(Of T).NetworkMask
+- uid: wan24.Core.UdpBroadcast`1.ServiceEvent
+  name: ServiceEvent
+  href: api/wan24.Core.UdpBroadcast-1.html#wan24_Core_UdpBroadcast_1_ServiceEvent
+  commentId: F:wan24.Core.UdpBroadcast`1.ServiceEvent
+  fullName: wan24.Core.UdpBroadcast<T>.ServiceEvent
+  fullName.vb: wan24.Core.UdpBroadcast(Of T).ServiceEvent
+  nameWithType: UdpBroadcast<T>.ServiceEvent
+  nameWithType.vb: UdpBroadcast(Of T).ServiceEvent
+- uid: wan24.Core.UdpBroadcast`1.StartAsync(CancellationToken)
+  name: StartAsync(CancellationToken)
+  href: api/wan24.Core.UdpBroadcast-1.html#wan24_Core_UdpBroadcast_1_StartAsync_CancellationToken_
+  commentId: M:wan24.Core.UdpBroadcast`1.StartAsync(CancellationToken)
+  fullName: wan24.Core.UdpBroadcast<T>.StartAsync(CancellationToken)
+  fullName.vb: wan24.Core.UdpBroadcast(Of T).StartAsync(CancellationToken)
+  nameWithType: UdpBroadcast<T>.StartAsync(CancellationToken)
+  nameWithType.vb: UdpBroadcast(Of T).StartAsync(CancellationToken)
+- uid: wan24.Core.UdpBroadcast`1.StartAsync*
+  name: StartAsync
+  href: api/wan24.Core.UdpBroadcast-1.html#wan24_Core_UdpBroadcast_1_StartAsync_
+  commentId: Overload:wan24.Core.UdpBroadcast`1.StartAsync
+  isSpec: "True"
+  fullName: wan24.Core.UdpBroadcast<T>.StartAsync
+  fullName.vb: wan24.Core.UdpBroadcast(Of T).StartAsync
+  nameWithType: UdpBroadcast<T>.StartAsync
+  nameWithType.vb: UdpBroadcast(Of T).StartAsync
 - uid: wan24.Core.UdpBroadcast`1.UdpEndPoint
   name: UdpEndPoint
   href: api/wan24.Core.UdpBroadcast-1.html#wan24_Core_UdpBroadcast_1_UdpEndPoint

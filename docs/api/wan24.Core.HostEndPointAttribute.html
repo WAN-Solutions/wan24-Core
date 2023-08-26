@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Delegate Timeout.Timeout_Delegate
+    <title>Class HostEndPointAttribute
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Delegate Timeout.Timeout_Delegate
+    <meta name="title" content="Class HostEndPointAttribute
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,19 +68,220 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.Timeout.Timeout_Delegate">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.HostEndPointAttribute">
   
   
-  <h1 id="wan24_Core_Timeout_Timeout_Delegate" data-uid="wan24.Core.Timeout.Timeout_Delegate" class="text-break">Delegate Timeout.Timeout_Delegate
+  <h1 id="wan24_Core_HostEndPointAttribute" data-uid="wan24.Core.HostEndPointAttribute" class="text-break">Class HostEndPointAttribute
   </h1>
-  <div class="markdown level0 summary"><p>Delegate for timeout events</p>
+  <div class="markdown level0 summary"><p>Host endpoint validation attribute (for validating <span class="xref">System.String</span> or <span class="xref">wan24.Core.HostEndPoint</span> value properties)</p>
 </div>
   <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">System.Attribute</span></div>
+    <div class="level2"><span class="xref">System.ComponentModel.DataAnnotations.ValidationAttribute</span></div>
+    <div class="level3"><span class="xref">HostEndPointAttribute</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.ComponentModel.DataAnnotations.ValidationAttribute.FormatErrorMessage(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.DataAnnotations.ValidationAttribute.GetValidationResult(System.Object, System.ComponentModel.DataAnnotations.ValidationContext)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.DataAnnotations.ValidationAttribute.Validate(System.Object, System.ComponentModel.DataAnnotations.ValidationContext)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.DataAnnotations.ValidationAttribute.Validate(System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessage</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceName</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageString</span>
+    </div>
+    <div>
+      <span class="xref">System.ComponentModel.DataAnnotations.ValidationAttribute.RequiresValidationContext</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttribute(System.Reflection.Assembly, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttribute(System.Reflection.Assembly, System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo, System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttribute(System.Reflection.Module, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttribute(System.Reflection.Module, System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttribute(System.Reflection.ParameterInfo, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttribute(System.Reflection.ParameterInfo, System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.Assembly)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.Assembly, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.Assembly, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.Assembly, System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo, System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.Module)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.Module, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.Module, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.Module, System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetCustomAttributes(System.Reflection.ParameterInfo, System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.IsDefaultAttribute()</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.IsDefined(System.Reflection.Assembly, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.IsDefined(System.Reflection.Assembly, System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.IsDefined(System.Reflection.MemberInfo, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.IsDefined(System.Reflection.MemberInfo, System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.IsDefined(System.Reflection.Module, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.IsDefined(System.Reflection.Module, System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.IsDefined(System.Reflection.ParameterInfo, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.IsDefined(System.Reflection.ParameterInfo, System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.Match(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Attribute.TypeId</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_Timeout_Timeout_Delegate_syntax">Syntax</h5>
+  <h5 id="wan24_Core_HostEndPointAttribute_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate void Timeout_Delegate(Timeout timeout, EventArgs e);</code></pre>
+    <pre><code class="lang-csharp hljs">public class HostEndPointAttribute : ValidationAttribute</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_HostEndPointAttribute__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.HostEndPointAttribute.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/HostEndPointAttribute.cs/#L13">View Source</a>
+  </span>
+  <a id="wan24_Core_HostEndPointAttribute__ctor_" data-uid="wan24.Core.HostEndPointAttribute.#ctor*"></a>
+  <h4 id="wan24_Core_HostEndPointAttribute__ctor" data-uid="wan24.Core.HostEndPointAttribute.#ctor">HostEndPointAttribute()</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HostEndPointAttribute()</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_HostEndPointAttribute_IsValid_System_Object_System_ComponentModel_DataAnnotations_ValidationContext_.md&amp;value=---%0Auid%3A%20wan24.Core.HostEndPointAttribute.IsValid(System.Object%2CSystem.ComponentModel.DataAnnotations.ValidationContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/HostEndPointAttribute.cs/#L16">View Source</a>
+  </span>
+  <a id="wan24_Core_HostEndPointAttribute_IsValid_" data-uid="wan24.Core.HostEndPointAttribute.IsValid*"></a>
+  <h4 id="wan24_Core_HostEndPointAttribute_IsValid_System_Object_System_ComponentModel_DataAnnotations_ValidationContext_" data-uid="wan24.Core.HostEndPointAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)">IsValid(Object, ValidationContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override ValidationResult IsValid(object value, ValidationContext validationContext)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -93,19 +294,34 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="wan24.Core.Timeout.html">Timeout</a></td>
-        <td><span class="parametername">timeout</span></td>
-        <td><p>Timeout</p>
-</td>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
       </tr>
       <tr>
-        <td><span class="xref">EventArgs</span></td>
-        <td><span class="parametername">e</span></td>
-        <td><p>Event arguments</p>
-</td>
+        <td><span class="xref">System.ComponentModel.DataAnnotations.ValidationContext</span></td>
+        <td><span class="parametername">validationContext</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ComponentModel.DataAnnotations.ValidationResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid(System.Object, System.ComponentModel.DataAnnotations.ValidationContext)</span></div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="wan24.Core.ArgumentValidationExtensions.html#wan24_Core_ArgumentValidationExtensions_EnsureValidArgument__1___0_System_String_System_Int32_System_Int32_System_Int32_System_String_">ArgumentValidationExtensions.EnsureValidArgument&lt;T&gt;(T, String, Int32, Int32, Int32, String)</a>
@@ -199,10 +415,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_Timeout_Timeout_Delegate.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.Timeout_Delegate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_HostEndPointAttribute.md&amp;value=---%0Auid%3A%20wan24.Core.HostEndPointAttribute%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/Timeout.cs/#L159" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/HostEndPointAttribute.cs/#L8" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

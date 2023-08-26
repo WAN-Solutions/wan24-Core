@@ -10,6 +10,10 @@ namespace wan24.Core
     public abstract class UdpBroadcast<T> : HostedServiceBase
     {
         /// <summary>
+        /// Service event (raised when serving)
+        /// </summary>
+        protected readonly ResetEvent ServiceEvent = new(initialState: false);
+        /// <summary>
         /// Thread synchronization
         /// </summary>
         protected readonly SemaphoreSync BroadcastSync = new();
@@ -120,6 +124,13 @@ namespace wan24.Core
             return res.Count == 0 ? Array.Empty<T>() : res.ToArray();
         }
 
+        /// <inheritdoc/>
+        public override async Task StartAsync(CancellationToken cancellationToken = default)
+        {
+            await base.StartAsync(cancellationToken).DynamicContext();
+            await ServiceEvent.WaitAsync(cancellationToken).DynamicContext();
+        }
+
         /// <summary>
         /// Configure the broadcast UDP listener
         /// </summary>
@@ -160,6 +171,7 @@ namespace wan24.Core
             {
                 EnableBroadcast = true
             };
+            ServiceEvent.Set();
             try
             {
 #pragma warning disable CA1416 // Supported on Windows only
@@ -185,6 +197,7 @@ namespace wan24.Core
             }
             finally
             {
+                ServiceEvent.Reset();
                 Listener = null;
             }
         }
@@ -194,6 +207,7 @@ namespace wan24.Core
         {
             base.Dispose(disposing);
             BroadcastSync.Dispose();
+            ServiceEvent.Dispose();
         }
 
         /// <inheritdoc/>
@@ -201,6 +215,7 @@ namespace wan24.Core
         {
             await base.DisposeCore().DynamicContext();
             BroadcastSync.Dispose();
+            await ServiceEvent.DisposeAsync().DynamicContext();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 namespace wan24.Core
@@ -122,7 +123,7 @@ namespace wan24.Core
         IEnumerator IEnumerable.GetEnumerator() => _Array.GetEnumerator();
 
         /// <inheritdoc/>
-        public override bool Equals(object? obj) => _Array.Equals(obj);
+        public override bool Equals([NotNullWhen(true)] object? obj) => _Array.Equals(obj);
 
         /// <inheritdoc/>
         public bool Equals(Memory<T> other) => Memory.Equals(other);

@@ -187,10 +187,30 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public void Network_Constructor_Tests()
         {
-            IPAddress network = IPAddress.Parse("192.168.0.0");
-            IpSubNet net = new(network);
-            Assert.AreEqual(network, net.NetworkIPAddress);
-            Assert.AreEqual(16, net.MaskBits);
+            {
+                IPAddress network = IPAddress.Parse("0.0.0.0");
+                IpSubNet net = new(network);
+                Assert.AreEqual(network, net.NetworkIPAddress);
+                Assert.AreEqual(0, net.MaskBits);
+            }
+            {
+                IPAddress network = IPAddress.Parse("192.168.0.0");
+                IpSubNet net = new(network);
+                Assert.AreEqual(network, net.NetworkIPAddress);
+                Assert.AreEqual(16, net.MaskBits);
+            }
+            {
+                IPAddress network = IPAddress.Parse("192.168.2.0");
+                IpSubNet net = new(network, countAllBits: true);
+                Assert.AreEqual(network, net.NetworkIPAddress);
+                Assert.AreEqual(23, net.MaskBits);
+            }
+            {
+                IPAddress network = IPAddress.Parse("192.168.2.1");
+                IpSubNet net = new(network, countAllBits: true);
+                Assert.AreEqual(network, net.NetworkIPAddress);
+                Assert.AreEqual(32, net.MaskBits);
+            }
         }
     }
 }
