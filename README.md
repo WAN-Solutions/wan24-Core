@@ -41,6 +41,10 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
     - Clearing
 - Array helper extensions
     - Offset/length validation
+    - Item index finding
+    - Contained items finding
+    - `AsReadOnly` extensions
+    - Generic cloning extension
 - Array pool extensions
     - Renting a cleared array
 - Enumerable extensions

@@ -246,5 +246,20 @@ namespace wan24.Core
         /// <returns>Read-only collection</returns>
         [TargetedPatchingOptOut("Tiny method")]
         public static ReadOnlyCollection<T> AsReadOnly<T>(this IEnumerable<T> enumerable) => new List<T>(enumerable).AsReadOnly();
+
+        /// <summary>
+        /// Clone an array (items will be copied into a new array)
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <returns>New array</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static T[] CloneArray<T>(this T[] arr)
+        {
+            if (arr.Length == 0) return Array.Empty<T>();
+            T[] res = new T[arr.Length];
+            Array.Copy(arr, res, arr.Length);
+            return res;
+        }
     }
 }

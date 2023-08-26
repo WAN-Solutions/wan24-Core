@@ -117,6 +117,10 @@ when disposing; for byte/char arrays just like the <code>Secure*Array</code>)</l
 <li>Array helper extensions
 <ul>
 <li>Offset/length validation</li>
+<li>Item index finding</li>
+<li>Contained items finding</li>
+<li><code>AsReadOnly</code> extensions</li>
+<li>Generic cloning extension</li>
 </ul>
 </li>
 <li>Array pool extensions
@@ -255,7 +259,13 @@ interface (timed or permanent running)</li>
 pairs</li>
 <li><code>Timeout</code> will count down and raise an event, if not reset before reaching
 the timeout</li>
-<li><code>ILogger</code> support</li>
+<li><code>ILogger</code> support
+<ul>
+<li><code>Logging</code> as global logging helper</li>
+<li><code>Logger</code> as <code>ILogger</code> for writing to <code>Logging</code></li>
+<li><code>FileLogger</code> as <code>ILogger</code> for writing to a file</li>
+</ul>
+</li>
 <li><code>IChangeToken</code> support using <code>ChangeCallback</code></li>
 <li>Hierarchic configuration using <code>OverrideableConfig</code></li>
 <li>Cancellation token awaiter</li>
@@ -396,6 +406,18 @@ the helper, if no type was found.</p>
 <p>The <code>DiHelper.GetDiObjectAsync</code> method will try to resolve the request
 synchronous, first. But the <code>DiHelper.GetDiObject</code> won't try asynchronous
 object factories.</p>
+<h2 id="logging">Logging</h2>
+<p>For a global logging, use <code>Logging</code> and set a <code>Logging.Logger</code> - for example
+the <code>FileLogger</code>:</p>
+<pre><code class="lang-cs">Logging.Logger = await FileLogger.CreateAsync(&quot;/path/to/file.log&quot;);
+Logging.WriteDebug(&quot;Hello world!&quot;);
+</code></pre>
+<p>If you need an <code>ILogger</code> instance, you can use <code>Logger</code>:</p>
+<pre><code class="lang-cs">anyObject.Logger = new Logger();
+</code></pre>
+<p>The <code>Logger</code> will use <code>Logging</code> and allows to define a minimum log level.</p>
+<p><strong>WARNING</strong>: Never set a <code>Logger</code> instance as <code>Logging.Logger</code>! This will
+cause an endless loop.</p>
 <h2 id="mixed-enumeration-value">Mixed enumeration value</h2>
 <p>A mixed enumeration contains X bits enumeration values, and Y bits flags:</p>
 <pre><code class="lang-cs">[Flags]
@@ -1286,6 +1308,12 @@ network address and the bit-mask, for being able to provide</p>
 <pre><code class="lang-cs">// Create from CIDR notation
 IpSubNet net = new(&quot;192.168.0.0/24&quot;);
 
+// Validate CIDR notation
+if(IpSubNet.TryParse(&quot;::/128&quot;, out IpSubNet subNet))
+{
+    // Valid CIDR notated sub-net
+}
+
 // Determine the network kind
 Assert.IsTrue(net.IsLan);
 Assert.IsFalse(net.IsWan);
@@ -1301,31 +1329,25 @@ Assert.AreEqual(IPAddress.Parse(&quot;192.168.0.255&quot;), net.BroadcastIPAddre
 Assert.IsTrue(IPAddress.Parse(&quot;192.168.0.1&quot;) == net);
 Assert.IsTrue(IPAddress.Parse(&quot;192.168.1.1&quot;) != net);
 
-// Combine two sub-nets
-IpSubNet combined = net + new IpSubNet(&quot;192.168.254.0/24&quot;);
-Assert.AreEqual(&quot;192.168.0.0/16&quot;, combined.ToString());
-
-// Merge to compatible (!) subnets
-IpSubNet merged = net | new IpSubNet(&quot;192.168.0.0/8&quot;);
-Assert.AreEqual(&quot;192.0.0.0/8&quot;, combined.ToString());
-
-// Determine if two sub-nets intersect, or one fits into another
-IpSubNet largerNet = new IpSubNet(&quot;192.168.0.0/16&quot;),
-    smallerNet = new IpSubNet(&quot;192.168.0.0/30&quot;),
-    otherNet = new IpSubNet(&quot;10.0.0.0/8&quot;);
-Assert.AreEqual(net &amp; largetNet, net);// net fits into largetNet
-Assert.AreEqual(net &amp; smallerNet, smallerNet);// net intersects smallerNet
-Assert.AreEqual(net &amp; otherNet, IpSubNet.ZeroV4);// no intersection between net and otherNet
-
 // Extend/shrink a sub-net
 Assert.AreEqual(&quot;192.168.0.0/23&quot;, (net &lt;&lt; 1).ToString());// Expand by one bit
 Assert.AreEqual(&quot;192.168.0.0/25&quot;, (net &gt;&gt; 1).ToString());// Shrink by one bit
 
-// Validate CIDR notation
-if(IpSubNet.TryParse(&quot;::/128&quot;, out IPSubNet subNet))
-{
-    // Valid CIDR notated sub-net
-}
+// Combine two sub-nets
+IpSubNet combined = net + new IpSubNet(&quot;192.168.254.0/24&quot;);
+Assert.AreEqual(&quot;192.168.0.0/16&quot;, combined.ToString());
+
+// Merge two compatible (!) sub-nets
+IpSubNet merged = net | new IpSubNet(&quot;192.168.0.0/8&quot;);
+Assert.AreEqual(&quot;192.168.0.0/8&quot;, merged.ToString());
+
+// Determine if two sub-nets intersect, or one fits into another
+IpSubNet largerNet = new(&quot;192.168.0.0/16&quot;),
+    smallerNet = new(&quot;192.168.0.0/30&quot;),
+    otherNet = new(&quot;10.0.0.0/8&quot;);
+Assert.AreEqual(net &amp; largetNet, net);// net fits into largerNet
+Assert.AreEqual(net &amp; smallerNet, smallerNet);// net intersects smallerNet
+Assert.AreEqual(net &amp; otherNet, IpSubNet.ZeroV4);// no intersection between net and otherNet
 
 // Serialization
 byte[] serialized = net;// Serialize
