@@ -1,5 +1,7 @@
 ﻿using System.Buffers;
 
+//TODO Use RentedArrayStruct<byte>
+
 namespace wan24.Core
 {
     // Decoding extensions

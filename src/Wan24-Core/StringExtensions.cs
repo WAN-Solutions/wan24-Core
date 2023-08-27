@@ -242,5 +242,29 @@ namespace wan24.Core
         /// <returns>Byte array</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static byte[] GetBytesFromHex(this ReadOnlySpan<char> str) => Convert.FromHexString(str);
+
+        /// <summary>
+        /// Determine if a string contains only ASCII characters
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <returns>If the string contains only ASCII characters</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static bool IsAscii(this ReadOnlySpan<char> str)
+        {
+            unchecked
+            {
+                int i = -1,
+                    len = str.Length;
+#if NO_UNSAFE
+                while (++i != len && str[i] < '\x007f') ;
+#else
+                unsafe
+                {
+                    fixed (char* chrPtr = str) while (++i != len && chrPtr[i] < '\x007f') ;
+                }
+#endif
+                return i == len;
+            }
+        }
     }
 }

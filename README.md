@@ -104,6 +104,8 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
 - String extensions
     - Get UTF-8/16/32 bytes (little endian)
     - Parsing
+    - String from/to bytes/bits extensions
+    - Determine if string contains only ACSII characters
 - Generic helper
     - Determine if two generic values are equal
     - Determine if a value is `null`
