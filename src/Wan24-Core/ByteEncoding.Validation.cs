@@ -289,6 +289,12 @@ namespace wan24.Core
                 ) > sbyte.MaxValue
                 )
                 throw new ArgumentException("Invalid ASCII character found", nameof(charMap));
+            HashSet<char> chars = new(64);
+            for (int i = 0; i != 64; i++)
+            {
+                if (chars.Add(charMap[i])) continue;
+                throw new ArgumentException($"Duplicated character at offset #{i}", nameof(charMap));
+            }
             return charMap;
         }
 
@@ -302,7 +308,8 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static bool IsCharMapValid(ReadOnlySpan<char> charMap)
-            => charMap.Length == 64 &&
+        {
+            if (charMap.Length != 64 ||
                 (
                     charMap[0] |
                     charMap[1] |
@@ -368,6 +375,15 @@ namespace wan24.Core
                     charMap[61] |
                     charMap[62] |
                     charMap[63]
-                ) <= sbyte.MaxValue;
+                ) > sbyte.MaxValue)
+                return false;
+            HashSet<char> chars = new(64);
+            for (int i = 0; i != 64; i++)
+            {
+                if (chars.Add(charMap[i])) continue;
+                return false;
+            }
+            return true;
+        }
     }
 }

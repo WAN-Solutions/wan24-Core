@@ -17,8 +17,7 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static byte DecodeByte(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            long encodedLen = GetEncodedLength(1);
-            ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
+            if (str.Length != GetEncodedLength(1)) throw new ArgumentException("Invalid encoded length", nameof(str));
             bool returnBuffer = buffer is null;
             if (buffer is null)
             {
@@ -45,8 +44,7 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static sbyte DecodeSByte(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            long encodedLen = GetEncodedLength(1);
-            ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
+            if (str.Length != GetEncodedLength(1)) throw new ArgumentException("Invalid encoded length", nameof(str));
             bool returnBuffer = buffer is null;
             if (buffer is null)
             {
@@ -73,8 +71,7 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static ushort DecodeUShort(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            long encodedLen = GetEncodedLength(sizeof(ushort));
-            ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
+            if (str.Length != GetEncodedLength(sizeof(ushort))) throw new ArgumentException("Invalid encoded length", nameof(str));
             bool returnBuffer = buffer is null;
             if (buffer is null)
             {
@@ -101,8 +98,7 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static short DecodeShort(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            long encodedLen = GetEncodedLength(sizeof(short));
-            ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
+            if (str.Length != GetEncodedLength(sizeof(short))) throw new ArgumentException("Invalid encoded length", nameof(str));
             bool returnBuffer = buffer is null;
             if (buffer is null)
             {
@@ -129,8 +125,7 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static uint DecodeUInt(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            long encodedLen = GetEncodedLength(sizeof(uint));
-            ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
+            if (str.Length != GetEncodedLength(sizeof(uint))) throw new ArgumentException("Invalid encoded length", nameof(str));
             bool returnBuffer = buffer is null;
             if (buffer is null)
             {
@@ -157,8 +152,7 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static int DecodeInt(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            long encodedLen = GetEncodedLength(sizeof(int));
-            ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
+            if (str.Length != GetEncodedLength(sizeof(int))) throw new ArgumentException("Invalid encoded length", nameof(str));
             bool returnBuffer = buffer is null;
             if (buffer is null)
             {
@@ -185,8 +179,7 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static ulong DecodeULong(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            long encodedLen = GetEncodedLength(sizeof(ulong));
-            ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
+            if (str.Length != GetEncodedLength(sizeof(ulong))) throw new ArgumentException("Invalid encoded length", nameof(str));
             bool returnBuffer = buffer is null;
             if (buffer is null)
             {
@@ -213,8 +206,7 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static long DecodeLong(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            long encodedLen = GetEncodedLength(sizeof(long));
-            ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
+            if (str.Length != GetEncodedLength(sizeof(long))) throw new ArgumentException("Invalid encoded length", nameof(str));
             bool returnBuffer = buffer is null;
             if (buffer is null)
             {
@@ -241,8 +233,7 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static float DecodeFloat(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            long encodedLen = GetEncodedLength(sizeof(float));
-            ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
+            if (str.Length != GetEncodedLength(sizeof(float))) throw new ArgumentException("Invalid encoded length", nameof(str));
             bool returnBuffer = buffer is null;
             if (buffer is null)
             {
@@ -269,8 +260,7 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static double DecodeDouble(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            long encodedLen = GetEncodedLength(sizeof(double));
-            ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
+            if (str.Length != GetEncodedLength(sizeof(double))) throw new ArgumentException("Invalid encoded length", nameof(str));
             bool returnBuffer = buffer is null;
             if (buffer is null)
             {
@@ -297,8 +287,7 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static decimal DecodeDecimal(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
-            long encodedLen = GetEncodedLength(sizeof(decimal));
-            ArgumentValidationHelper.EnsureValidArgument(nameof(str), encodedLen, encodedLen, str.Length);
+            if (str.Length != GetEncodedLength(sizeof(decimal))) throw new ArgumentException("Invalid encoded length", nameof(str));
             bool returnBuffer = buffer is null;
             if (buffer is null)
             {

@@ -1,5 +1,6 @@
 ﻿using System.Runtime;
 using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics.X86;
 
 namespace wan24.Core
 {
@@ -74,7 +75,7 @@ namespace wan24.Core
             ValidateCharMap(charMap);
             int len = str.Length;
             if (len == 0) return Array.Empty<byte>();
-            long bits = (len << 2) + (len << 1),
+            int bits = (len << 2) + (len << 1),
                 resLen = bits >> 3,
                 resOffset = 0;
             if (bits < resLen << 3) throw new InvalidDataException($"Invalid encoded string length (missing {(resLen << 3) - bits} bits)");
@@ -96,7 +97,19 @@ namespace wan24.Core
 #endif
                     unchecked
                     {
-                        for (int i = 0, bitOffset = 0; i != len; i++)
+                        int i = 0;
+#if !NO_UNSAFE
+                        //TODO Support AVX-512 and ARM
+                        int l = len;
+                        if (l >= 32 && Avx2.IsSupported)
+                        {
+                            int il = l & ~31;
+                            DecodeAvx2(l, il, charMap, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                            i += il;
+                            l &= 31;
+                        }
+#endif
+                        for (int bitOffset = 0; i != len; i++)
                         {
 #if NO_UNSAFE
                             bits = charMap.IndexOf(str[i]);
@@ -190,7 +203,8 @@ namespace wan24.Core
             int len = str.Length;
             if (len == 0) return;
             int bits = (len << 2) + (len << 1),
-                resLen = bits >> 3;
+                resLen = bits >> 3,
+                resOffset = 0;
             if (bits < resLen << 3) throw new InvalidDataException($"Invalid encoded string length (missing {(resLen << 3) - bits} bits)");
             if (resLen > res.Length) throw new ArgumentOutOfRangeException(nameof(res), $"Result buffer is too small (required {resLen} bytes)");
 #if !NO_UNSAFE
@@ -203,7 +217,19 @@ namespace wan24.Core
 #endif
                     unchecked
                     {
-                        for (int i = 0, bitOffset = 0, resOffset = 0; i != len; i++)
+                        int i = 0;
+#if !NO_UNSAFE
+                        //TODO Support AVX-512 and ARM
+                        int l = len;
+                        if (l >= 32 && Avx2.IsSupported)
+                        {
+                            int il = l & ~31;
+                            DecodeAvx2(len, il, charMap, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                            i += il;
+                            l &= 31;
+                        }
+#endif
+                        for (int bitOffset = 0; i != len; i++)
                         {
 #if NO_UNSAFE
                             bits = charMap.IndexOf(str[i]);

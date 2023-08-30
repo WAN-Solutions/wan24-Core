@@ -96,6 +96,9 @@ namespace wan24.Core
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T DecodeCompactNumber<T>(this char[] str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
             where T : struct, IConvertible
             => DecodeCompactNumber<T>((ReadOnlySpan<char>)str, charMap, buffer, pool);
@@ -110,6 +113,9 @@ namespace wan24.Core
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T DecodeCompactNumber<T>(this string str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
             where T : struct, IConvertible
             => DecodeCompactNumber<T>((ReadOnlySpan<char>)str, charMap, buffer, pool);
@@ -124,6 +130,9 @@ namespace wan24.Core
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T DecodeCompactNumber<T>(this Span<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
             where T : struct, IConvertible
             => DecodeCompactNumber<T>((ReadOnlySpan<char>)str, charMap, buffer, pool);
@@ -184,7 +193,9 @@ namespace wan24.Core
         /// </summary>
         /// <typeparam name="T">Type</typeparam>
         /// <returns>Type</returns>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         private static Type EnsureValidNumericType<T>()
         {
             Type res = typeof(T);

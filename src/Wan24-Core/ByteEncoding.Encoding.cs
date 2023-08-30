@@ -62,8 +62,8 @@ namespace wan24.Core
             ValidateCharMap(charMap);
             int len = data.Length;
             if (len == 0) return Array.Empty<char>();
-            int bitOffset = 0;
-            long resLen = GetEncodedLength(len),
+            int bitOffset = 0,
+                resLen = GetEncodedLength(len),
                 resOffset = -1;
             if (resLen > int.MaxValue) throw new OutOfMemoryException($"Encoded string length exceeds the maximum of {int.MaxValue}");
             if (res is not null)
@@ -85,7 +85,20 @@ namespace wan24.Core
 #endif
                     unchecked
                     {
-                        for (int i = 0, bits; i != len; i++)
+                        int i = 0;
+#if !NO_UNSAFE
+                        //TODO Support AVX-512 and ARM
+                        int l = len;
+                        if (l >= 28 && Avx2.IsSupported)
+                        {
+                            int il = l - (l % 24);
+                            if (il < 4) il -= 24;
+                            EncodeAvx2(il, cm, d + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                            i += il;
+                            l -= il;
+                        }
+#endif
+                        for (int bits; i != len; i++)
                         {
 #if NO_UNSAFE
                             b = data[i];
@@ -154,7 +167,7 @@ namespace wan24.Core
             int len = data.Length;
             if (len == 0) return;
             int bitOffset = 0,
-                resLen = (int)GetEncodedLength(len),
+                resLen = GetEncodedLength(len),
                 resOffset = -1;
             if (resLen > res.Length) throw new ArgumentOutOfRangeException(nameof(res), $"Result buffer is too small (required {resLen} characters)");
             byte b;
@@ -170,12 +183,15 @@ namespace wan24.Core
                     {
                         int i = 0;
 #if !NO_UNSAFE
-                        if (len >= 32 && Avx2.IsSupported)
+                        //TODO Support AVX-512 and ARM
+                        int l = len;
+                        if (l >= 28 && Avx2.IsSupported)
                         {
-                            i = len - len % 24;
-                            if (len - i < 8) i -= 24;
-                            EncodeAvx2(i, cm, d, r, out resOffset);
-                            i--;
+                            int il = l - (l % 24);
+                            if (il < 4) il -= 24;
+                            EncodeAvx2(il, cm, d + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                            i += il;
+                            l -= il;
                         }
 #endif
                         for (int bits; i != len; i++)

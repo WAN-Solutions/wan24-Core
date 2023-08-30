@@ -42,7 +42,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static long GetEncodedLength(this byte[] data) => data.Length == 0 ? 0 : (long)Math.Ceiling((double)(data.LongLength << 3) / 6);
+        public static int GetEncodedLength(this byte[] data) => data.Length == 0 ? 0 : (int)Math.Ceiling((double)(data.LongLength << 3) / 6);
 
         /// <summary>
         /// Get the encoded character array length
@@ -53,7 +53,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static long GetEncodedLength(this Span<byte> data) => data.Length == 0 ? 0 : (long)Math.Ceiling((double)(data.Length << 3) / 6);
+        public static int GetEncodedLength(this Span<byte> data) => data.Length == 0 ? 0 : (int)Math.Ceiling((double)((long)data.Length << 3) / 6);
 
         /// <summary>
         /// Get the encoded character array length
@@ -64,7 +64,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static long GetEncodedLength(this ReadOnlySpan<byte> data) => data.Length == 0 ? 0 : (long)Math.Ceiling((double)(data.Length << 3) / 6);
+        public static int GetEncodedLength(this ReadOnlySpan<byte> data) => data.Length == 0 ? 0 : (int)Math.Ceiling((double)((long)data.Length << 3) / 6);
 
         /// <summary>
         /// Get the encoded character array length
@@ -75,12 +75,12 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static long GetEncodedLength(this long len)
+        public static int GetEncodedLength(this int len)
         {
             if (len == 0) return 0;
             return len < 0
                 ? throw new ArgumentOutOfRangeException(nameof(len))
-                : (long)Math.Ceiling((double)(len << 3) / 6);
+                : (int)Math.Ceiling((double)((long)len << 3) / 6);
         }
 
         /// <summary>
@@ -137,11 +137,12 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static long GetDecodedLength(this long len)
+        public static int GetDecodedLength(this int len)
         {
             if (len == 0) return 0;
             if (len < 0) throw new ArgumentOutOfRangeException(nameof(len));
-            return ((len << 2) + (len << 1)) >> 3;
+            long longLen = len;
+            return (int)(((longLen << 2) + (len << 1)) >> 3);
         }
     }
 }

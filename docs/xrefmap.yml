@@ -5902,12 +5902,12 @@ references:
   fullName.vb: wan24.Core.ByteEncoding.GetDecodedLength(Span(Of System.Char))
   nameWithType: ByteEncoding.GetDecodedLength(Span<Char>)
   nameWithType.vb: ByteEncoding.GetDecodedLength(Span(Of Char))
-- uid: wan24.Core.ByteEncoding.GetDecodedLength(System.Int64)
-  name: GetDecodedLength(Int64)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_GetDecodedLength_System_Int64_
-  commentId: M:wan24.Core.ByteEncoding.GetDecodedLength(System.Int64)
-  fullName: wan24.Core.ByteEncoding.GetDecodedLength(System.Int64)
-  nameWithType: ByteEncoding.GetDecodedLength(Int64)
+- uid: wan24.Core.ByteEncoding.GetDecodedLength(System.Int32)
+  name: GetDecodedLength(Int32)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_GetDecodedLength_System_Int32_
+  commentId: M:wan24.Core.ByteEncoding.GetDecodedLength(System.Int32)
+  fullName: wan24.Core.ByteEncoding.GetDecodedLength(System.Int32)
+  nameWithType: ByteEncoding.GetDecodedLength(Int32)
 - uid: wan24.Core.ByteEncoding.GetDecodedLength(System.String)
   name: GetDecodedLength(String)
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_GetDecodedLength_System_String_
@@ -5948,12 +5948,12 @@ references:
   fullName.vb: wan24.Core.ByteEncoding.GetEncodedLength(System.Byte())
   nameWithType: ByteEncoding.GetEncodedLength(Byte[])
   nameWithType.vb: ByteEncoding.GetEncodedLength(Byte())
-- uid: wan24.Core.ByteEncoding.GetEncodedLength(System.Int64)
-  name: GetEncodedLength(Int64)
-  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_GetEncodedLength_System_Int64_
-  commentId: M:wan24.Core.ByteEncoding.GetEncodedLength(System.Int64)
-  fullName: wan24.Core.ByteEncoding.GetEncodedLength(System.Int64)
-  nameWithType: ByteEncoding.GetEncodedLength(Int64)
+- uid: wan24.Core.ByteEncoding.GetEncodedLength(System.Int32)
+  name: GetEncodedLength(Int32)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_GetEncodedLength_System_Int32_
+  commentId: M:wan24.Core.ByteEncoding.GetEncodedLength(System.Int32)
+  fullName: wan24.Core.ByteEncoding.GetEncodedLength(System.Int32)
+  nameWithType: ByteEncoding.GetEncodedLength(Int32)
 - uid: wan24.Core.ByteEncoding.GetEncodedLength*
   name: GetEncodedLength
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_GetEncodedLength_
@@ -5961,6 +5961,22 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ByteEncoding.GetEncodedLength
   nameWithType: ByteEncoding.GetEncodedLength
+- uid: wan24.Core.ByteEncoding.IsCharMapValid(ReadOnlySpan{System.Char})
+  name: IsCharMapValid(ReadOnlySpan<Char>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_IsCharMapValid_ReadOnlySpan_System_Char__
+  commentId: M:wan24.Core.ByteEncoding.IsCharMapValid(ReadOnlySpan{System.Char})
+  name.vb: IsCharMapValid(ReadOnlySpan(Of Char))
+  fullName: wan24.Core.ByteEncoding.IsCharMapValid(ReadOnlySpan<System.Char>)
+  fullName.vb: wan24.Core.ByteEncoding.IsCharMapValid(ReadOnlySpan(Of System.Char))
+  nameWithType: ByteEncoding.IsCharMapValid(ReadOnlySpan<Char>)
+  nameWithType.vb: ByteEncoding.IsCharMapValid(ReadOnlySpan(Of Char))
+- uid: wan24.Core.ByteEncoding.IsCharMapValid*
+  name: IsCharMapValid
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_IsCharMapValid_
+  commentId: Overload:wan24.Core.ByteEncoding.IsCharMapValid
+  isSpec: "True"
+  fullName: wan24.Core.ByteEncoding.IsCharMapValid
+  nameWithType: ByteEncoding.IsCharMapValid
 - uid: wan24.Core.ByteEncoding.IsEncodedLengthValid(ReadOnlySpan{System.Char},System.Boolean)
   name: IsEncodedLengthValid(ReadOnlySpan<Char>, Boolean)
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_IsEncodedLengthValid_ReadOnlySpan_System_Char__System_Boolean_
@@ -6041,6 +6057,22 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ByteEncoding.IsEncodingValid
   nameWithType: ByteEncoding.IsEncodingValid
+- uid: wan24.Core.ByteEncoding.ValidateCharMap(ReadOnlySpan{System.Char})
+  name: ValidateCharMap(ReadOnlySpan<Char>)
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_ValidateCharMap_ReadOnlySpan_System_Char__
+  commentId: M:wan24.Core.ByteEncoding.ValidateCharMap(ReadOnlySpan{System.Char})
+  name.vb: ValidateCharMap(ReadOnlySpan(Of Char))
+  fullName: wan24.Core.ByteEncoding.ValidateCharMap(ReadOnlySpan<System.Char>)
+  fullName.vb: wan24.Core.ByteEncoding.ValidateCharMap(ReadOnlySpan(Of System.Char))
+  nameWithType: ByteEncoding.ValidateCharMap(ReadOnlySpan<Char>)
+  nameWithType.vb: ByteEncoding.ValidateCharMap(ReadOnlySpan(Of Char))
+- uid: wan24.Core.ByteEncoding.ValidateCharMap*
+  name: ValidateCharMap
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_ValidateCharMap_
+  commentId: Overload:wan24.Core.ByteEncoding.ValidateCharMap
+  isSpec: "True"
+  fullName: wan24.Core.ByteEncoding.ValidateCharMap
+  nameWithType: ByteEncoding.ValidateCharMap
 - uid: wan24.Core.BytesExtensions
   name: BytesExtensions
   href: api/wan24.Core.BytesExtensions.html
@@ -29601,6 +29633,22 @@ references:
   isSpec: "True"
   fullName: wan24.Core.StringExtensions.GetBytesFromHex
   nameWithType: StringExtensions.GetBytesFromHex
+- uid: wan24.Core.StringExtensions.IsAscii(ReadOnlySpan{System.Char})
+  name: IsAscii(ReadOnlySpan<Char>)
+  href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_IsAscii_ReadOnlySpan_System_Char__
+  commentId: M:wan24.Core.StringExtensions.IsAscii(ReadOnlySpan{System.Char})
+  name.vb: IsAscii(ReadOnlySpan(Of Char))
+  fullName: wan24.Core.StringExtensions.IsAscii(ReadOnlySpan<System.Char>)
+  fullName.vb: wan24.Core.StringExtensions.IsAscii(ReadOnlySpan(Of System.Char))
+  nameWithType: StringExtensions.IsAscii(ReadOnlySpan<Char>)
+  nameWithType.vb: StringExtensions.IsAscii(ReadOnlySpan(Of Char))
+- uid: wan24.Core.StringExtensions.IsAscii*
+  name: IsAscii
+  href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_IsAscii_
+  commentId: Overload:wan24.Core.StringExtensions.IsAscii
+  isSpec: "True"
+  fullName: wan24.Core.StringExtensions.IsAscii
+  nameWithType: StringExtensions.IsAscii
 - uid: wan24.Core.StringExtensions.Parse(System.String,Dictionary{System.String,System.String},System.Nullable{System.Int32},System.Boolean,System.Text.RegularExpressions.Regex,System.Nullable{System.Int32})
   name: Parse(String, Dictionary<String, String>, Nullable<Int32>, Boolean, Regex, Nullable<Int32>)
   href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_Parse_System_String_Dictionary_System_String_System_String__System_Nullable_System_Int32__System_Boolean_System_Text_RegularExpressions_Regex_System_Nullable_System_Int32__

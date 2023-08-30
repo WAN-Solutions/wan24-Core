@@ -1,10 +1,7 @@
-﻿using System.Diagnostics;
+﻿#if !NO_UNSAFE
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
-using System.Text;
-
-//TODO .NET 8: Use Vector512?
 
 namespace wan24.Core
 {
@@ -14,167 +11,244 @@ namespace wan24.Core
         /// <summary>
         /// Encode using AVX2 intrinsics
         /// </summary>
-        /// <param name="len">Length in bytes</param>
+        /// <param name="len">Length in bytes (must be a multiple of 24)</param>
         /// <param name="charMap">Character map</param>
-        /// <param name="data">Data</param>
-        /// <param name="result">Result</param>
-        /// <param name="resOffset">Result offset</param>
+        /// <param name="data">Raw data (4 spare bytes at the end are required to avoid a segmentation fault)</param>
+        /// <param name="result">Encoded data</param>
+        /// <param name="resOffset">Result byte offset</param>
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static unsafe void EncodeAvx2(in int len, in char* charMap, byte* data, char* result, out int resOffset)
+        [SkipLocalsInit]
+        private static unsafe void EncodeAvx2(in int len, in char* charMap, byte* data, char* result, ref int resOffset)
         {
-            // Let's close one eye and hope everything will become better with Vector512...
+            // Let's close one eye and hope everything will become better with AVX 512...
             unchecked
             {
-                using RentedArrayStruct<byte> charMapBytes = new(len: 64, clean: false);// Character map bytes
-                using RentedArrayStruct<byte> charBytes = new(len: 32, clean: false);// Result data chunk as character bytes
-                Vector128<sbyte> compareLessThan32 = Vector128.Create(// Find low character map index values (0..31)
-                    32, 32, 32, 32,
-                    32, 32, 32, 32,
-                    32, 32, 32, 32,
-                    32, 32, 32, 32
-                    );
-                Vector256<byte> charMapVectorL,// Low index character map bytes
-                    charMapVectorH,// High index character map bytes
-                    shuffle1a = Vector256.Create(// Group for UInt32 right-shifting
-                        0, 3, 6, 9,// >> 0
-                        12, 15, 18, 21,
+                Vector256<byte> groupRight = Vector256.Create(// Group for right-shifting
+                        (byte)0, 3, 6, 9,// >> 0
                         0, 3, 6, 9,// >> 6
-                        12, 15, 18, 21,
                         1, 4, 7, 10,// >> 4
-                        13, 16, 19, 22,
                         2, 5, 8, 11,// >> 2
-                        14, 17, 20, 23
-                    ).AsByte(),
-                    shuffle1b = Vector256.Create(// Re-arrange after right-shifting
-                        0, 8, 16, 24,
-                        1, 9, 17, 25,
-                        2, 10, 18, 26,
-                        3, 11, 19, 27,
-                        4, 12, 20, 28,
-                        5, 13, 21, 29,
-                        6, 14, 22, 30,
-                        7, 15, 23, 31
-                    ).AsByte(),
-                    shuffle2a = Vector256.Create(// Group for UInt32 left-shifting
-                        0, 0, 0, 0,
-                        0, 0, 0, 0,
-                        0, 0, 0, 0,
+                        0, 3, 6, 9,
+                        0, 3, 6, 9,
+                        1, 4, 7, 10,
+                        2, 5, 8, 11
+                    ),
+                    maskRightBits = Vector256.Create(// Mask the used bits after right-shifting
+                        (byte)63, 63, 63, 63,// Bits 1..6 of 0
+                        3, 3, 3, 3,// Bits 1..2 of 1
+                        15, 15, 15, 15,// Bits 1..4 of 2
+                        63, 63, 63, 63,// Bits 1..6 of 3
+                        63, 63, 63, 63,
+                        3, 3, 3, 3,
+                        15, 15, 15, 15,
+                        63, 63, 63, 63
+                    ),
+                    orderRight = Vector256.Create(// Order the masked bits after right-shifting
+                        (byte)0, 4, 8, 12,
+                        1, 5, 9, 13,
+                        2, 6, 10, 14,
+                        3, 7, 11, 15,
+                        0, 4, 8, 12,
+                        1, 5, 9, 13,
+                        2, 6, 10, 14,
+                        3, 7, 11, 15
+                    ),
+                    groupLeft = Vector256.Create(// Group for left-shifting
+                        (byte)0, 0, 0, 0,
                         0, 0, 0, 0,
                         1, 4, 7, 10,// << 2
-                        13, 16, 19, 22,
                         2, 5, 8, 11,// << 4
-                        14, 17, 20, 23
-                    ).AsByte(),
-                    shuffle2b = Vector256.Create(// Re-arrange after left-shifting
-                        0, 16, 24, 0,
-                        0, 17, 25, 0,
-                        0, 18, 26, 0,
-                        0, 19, 27, 0,
-                        0, 20, 28, 0,
-                        0, 21, 29, 0,
-                        0, 22, 30, 0,
-                        0, 23, 31, 0
-                    ).AsByte(),
-                    mask1 = Vector256.Create(// Mask right shifted bits to use
-                        63, 63, 63, 63,
-                        63, 63, 63, 63,
-                        3, 3, 3, 3,
-                        3, 3, 3, 3,
-                        7, 7, 7, 7,
-                        7, 7, 7, 7,
-                        63, 63, 63, 63,
-                        63, 63, 63, 63
-                    ).AsByte(),
-                    mask2 = Vector256.Create(// Mask left shifted bits to use
                         0, 0, 0, 0,
                         0, 0, 0, 0,
+                        1, 4, 7, 10,
+                        2, 5, 8, 11
+                    ),
+                    maskLeftBits = Vector256.Create(// Mask the used bits after left-shifting
+                        (byte)0, 0, 0, 0,
+                        0, 0, 0, 0,
+                        60, 60, 60, 60,// Bits 3..6 of 1
+                        48, 48, 48, 48,// Bits 4..6 of 2
                         0, 0, 0, 0,
                         0, 0, 0, 0,
                         60, 60, 60, 60,
-                        60, 60, 60, 60,
-                        48, 48, 48, 48,
                         48, 48, 48, 48
-                    ).AsByte(),
-                    maskLH,// Low/high character map index mask
+                    ),
+                    orderLeft = Vector256.Create(// Order the masked bits after left-shifting
+                        (byte)0, 8, 12, 0,
+                        0, 9, 13, 0,
+                        0, 10, 14, 0,
+                        0, 11, 15, 0,
+                        0, 8, 12, 0,
+                        0, 9, 13, 0,
+                        0, 10, 14, 0,
+                        0, 11, 15, 0
+                    ),
                     dataVector,// Processing data chunk
-                    dataVector1,// Data chunk for partial processing 1
-                    dataVector2,// Data chunk for partial processing 2
-                    sub32 = Vector256.Create(// Substracted from the character map index to get only the high values for mapping charMapVectorH characters
-                        compareLessThan32.AsByte(),
-                        compareLessThan32.AsByte()
-                        ).AsByte();
-                Vector256<uint> rightShift = Vector256.Create(0u, 0, 6, 6, 4, 4, 2, 2),// Right shift steps
-                    leftShift = Vector256.Create(0u, 0, 0, 0, 2, 2, 4, 4);// Left shift steps
-                Span<char> resSpan = new(result, (len / 24) << 5);
-                int i = 0;// Result string span offset
-                fixed (byte* cmbPtr = charMapBytes.Span)
-                fixed (byte* charBytesPtr = charBytes.Span)
+                    dataVectorRight,// Data chunk for partial processing of right aligned bytes
+                    dataVectorLeft;// Data chunk for partial processing of left aligned bytes
+                Vector256<uint> shiftRight = Vector256.Create(0u, 6, 4, 2, 0, 6, 4, 2),// Right shift steps
+                    shiftLeft = Vector256.Create(0u, 0, 2, 4, 0, 0, 2, 4);// Left shift steps
+                int i;// Loop index
+                char* resultStart = result;// Result start pointer
+                byte* charMapIndexPtr = stackalloc byte[32];// Character map index buffer
+                // Process data in 24 byte chunks (which results in a 32 byte chunk each 24 byte chunk)
+                for (byte* dataEnd = data + len; data != dataEnd; data += 24, result += 32)
                 {
-                    // Copy the character map to the low/high registers
-                    Encoding.ASCII.GetBytes(charMap, 64, cmbPtr, 64);
-                    charMapVectorL = Avx.LoadVector256(cmbPtr);
-                    charMapVectorH = Avx.LoadVector256(cmbPtr + 32);
-                    // Process data in 24 byte chunks (which results in 32 byte chunks)
-                    for (byte* dataEnd = data + len; data < dataEnd; data += 24)
+                    // Load 28 bytes from the input data (only 24 bytes from that are going to be used)
+                    dataVector = Vector256.Create(Sse2.LoadVector128(data), Sse2.LoadVector128(data + 12));
+                    // Process bytes which are right aligned in the resulting byte (low bits)
+                    dataVectorRight = Avx2.Shuffle(dataVector, groupRight);// Group for shifting
+                    dataVectorRight = Avx2.ShiftRightLogicalVariable(dataVectorRight.AsUInt32(), shiftRight).AsByte();// Shift
+                    dataVectorRight = Avx2.And(dataVectorRight, maskRightBits);// Mask used bits
+                    dataVectorRight = Avx2.Shuffle(dataVectorRight, orderRight);// Order the partial result
+                    // Process bytes which are left shifted in the resulting bytes (high bits)
+                    dataVectorLeft = Avx2.Shuffle(dataVector, groupLeft);// Group for shifting
+                    dataVectorLeft = Avx2.ShiftLeftLogicalVariable(dataVectorLeft.AsUInt32(), shiftLeft).AsByte();// Shift
+                    dataVectorLeft = Avx2.And(dataVectorLeft, maskLeftBits);// Mask used bits
+                    dataVectorLeft = Avx2.Shuffle(dataVectorLeft, orderLeft);// Order the partial result
+                    // Merge the partial results to get the full character map index
+                    dataVector = Avx2.Or(dataVectorRight, dataVectorLeft);
+                    // Store the result in a temporary buffer
+                    Avx.Store(charMapIndexPtr, dataVector);
+                    // Map the characters to the result
+                    for (i = 0; i != 32; i += 4)
                     {
-                        // Load 32 bytes from the input data (only 24 bytes from that are going to be used)
-                        dataVector = Avx.LoadVector256(data);
-                        // Process bytes which are right aligned in the resulting byte
-                        dataVector1 = Avx2.Shuffle(dataVector, shuffle1a);// Group
-                        dataVector1 = Avx2.ShiftRightLogicalVariable(dataVector1.AsUInt32(), rightShift).AsByte();// Shift
-                        dataVector1 = Avx2.And(dataVector1, mask1);// Mask used bits
-                        dataVector1 = Avx2.Shuffle(dataVector1, shuffle1b);// Order
-                        // Process bytes which are left shifted in the resulting bytes
-                        dataVector2 = Avx2.Shuffle(dataVector, shuffle2a);// Group
-                        dataVector2 = Avx2.ShiftLeftLogicalVariable(dataVector2.AsUInt32(), leftShift).AsByte();// Shift
-                        dataVector2 = Avx2.And(dataVector2, mask2);// Mask used bits
-                        dataVector2 = Avx2.Shuffle(dataVector2, shuffle2b);// Order
-                        // Merge processed bytes
-                        dataVector = Avx2.Or(dataVector1, dataVector2);
-                        Avx.Store(charBytesPtr, dataVector);
-                        Logging.WriteInfo($"INDEX {string.Join('\t', (from b in charBytes.Array select b.ToString()).Take(32))}");
-                        // Map low character indexes to character bytes
-                        maskLH = Vector256.Create(// Low index mask
-                            Sse2.CompareLessThan(dataVector.GetLower().AsSByte(), compareLessThan32).AsByte(),
-                            Sse2.CompareLessThan(dataVector.GetUpper().AsSByte(), compareLessThan32).AsByte()
-                            );
-                        Avx.Store(charBytesPtr, maskLH);
-                        Logging.WriteInfo($"MASK  {string.Join('\t', (from b in charBytes.Array select b.ToString()).Take(32))}");
-                        dataVector1 = Avx2.And(dataVector, maskLH);// Select low index
-                        Avx.Store(charBytesPtr, dataVector1);
-                        Logging.WriteInfo($"MASKD {string.Join('\t', (from b in charBytes.Array select b.ToString()).Take(32))}");
-                        dataVector1 = Avx2.Shuffle(charMapVectorL, dataVector1);// Map character bytes
-                        Avx.Store(charBytesPtr, dataVector1);
-                        Logging.WriteInfo($"FIN L {string.Join('\t', (from b in charBytes.Array select b.ToString()).Take(32))}");
-                        dataVector1 = Avx2.And(dataVector1, maskLH);// Select low index
-                        Avx.Store(charBytesPtr, dataVector1);
-                        Logging.WriteInfo($"MASKD {string.Join('\t', (from b in charBytes.Array select b.ToString()).Take(32))}");
-                        // Map high character indexes to character bytes
-                        dataVector2 = Avx2.SubtractSaturate(dataVector, sub32);// Map high index to match charMapVectorH
-                        Avx.Store(charBytesPtr, dataVector2);
-                        Logging.WriteInfo($"HIGH  {string.Join('\t', (from b in charBytes.Array select b.ToString()).Take(32))}");
-                        dataVector2 = Avx2.Shuffle(charMapVectorH, dataVector2);// Map character bytes
-                        maskLH = Avx2.CompareEqual(maskLH, Vector256<byte>.Zero);// Invert the low index mask to get a high index mask
-                        Avx.Store(charBytesPtr, maskLH);
-                        Logging.WriteInfo($"MASK  {string.Join('\t', (from b in charBytes.Array select b.ToString()).Take(32))}");
-                        dataVector2 = Avx2.And(dataVector2, maskLH);// Zero low index bytes
-                        Avx.Store(charBytesPtr, dataVector2);
-                        Logging.WriteInfo($"FIN H {string.Join('\t', (from b in charBytes.Array select b.ToString()).Take(32))}");
-                        // Merge mapped character bytes
-                        dataVector = Avx2.Or(dataVector1, dataVector2);
-                        Avx.Store(charBytesPtr, dataVector);
-                        Logging.WriteInfo($"COMBI {string.Join('\t', (from b in charBytes.Array select b.ToString()).Take(32))}");
-                        // Store the resulting character bytes
-                        Avx.Store(charBytesPtr, dataVector);
-                        // Convert the character bytes to ASCII characters
-                        Encoding.ASCII.GetChars(charBytesPtr, 32, result, 32);
-                        result += 32;
+                        result[i] = charMap[charMapIndexPtr[i]];
+                        result[i + 1] = charMap[charMapIndexPtr[i + 1]];
+                        result[i + 2] = charMap[charMapIndexPtr[i + 2]];
+                        result[i + 3] = charMap[charMapIndexPtr[i + 3]];
                     }
                 }
-                resOffset = resSpan.Length;
+                resOffset += (int)(result - resultStart);
+            }
+        }
+
+        /// <summary>
+        /// Decode using AVX2 intrinsics
+        /// </summary>
+        /// <param name="dataOffset">Outher raw data byte offset</param>
+        /// <param name="len">Length in bytes (must be a multiple of 32)</param>
+        /// <param name="charMap">Character map</param>
+        /// <param name="data">Encoded data</param>
+        /// <param name="result">Raw data</param>
+        /// <param name="resOffset">Result byte offset</param>
+        /// <exception cref="InvalidDataException">Invalid character found in encoded data</exception>
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        [SkipLocalsInit]
+        private static unsafe void DecodeAvx2(in int dataOffset, in int len, in ReadOnlySpan<char> charMap, char* data, byte* result, ref int resOffset)
+        {
+            unchecked
+            {
+                Vector256<byte> groupRight = Vector256.Create(// Group for right-shifting
+                        (byte)0, 4, 8, 12,// << 0
+                        1, 5, 9, 13,// << 2
+                        2, 6, 10, 14,// << 4
+                        0, 0, 0, 0,
+                        0, 4, 8, 12,
+                        1, 5, 9, 13,
+                        2, 6, 10, 14,
+                        0, 0, 0, 0
+                    ),
+                    maskRightBits = Vector256.Create(// Mask the used bits after right-shifting
+                        (byte)63, 63, 63, 63,// Bits 0..6 of 0
+                        15, 15, 15, 15,// Bits 1..4 of 1
+                        3, 3, 3, 3,// Bits 1..2 of 2
+                        0, 0, 0, 0,
+                        63, 63, 63, 63,
+                        15, 15, 15, 15,
+                        3, 3, 3, 3,
+                        0, 0, 0, 0
+                    ),
+                    orderRight = Vector256.Create(// Order the masked bits after right-shifting (every 4th byte will be skipped)
+                        (byte)0, 4, 8, 12,
+                        1, 5, 9, 13,
+                        2, 6, 10, 14,
+                        3, 7, 11, 15,
+                        0, 4, 8, 12,
+                        1, 5, 9, 13,
+                        2, 6, 10, 14,
+                        3, 7, 11, 15
+                    ),
+                    groupLeft = Vector256.Create(// Group for left-shifting
+                        (byte)0, 0, 0, 0,
+                        1, 5, 9, 13,// << 6
+                        2, 6, 10, 14,// << 4
+                        3, 7, 11, 15,// << 2
+                        0, 0, 0, 0,
+                        1, 5, 9, 13,
+                        2, 6, 10, 14,
+                        3, 7, 11, 15
+                    ),
+                    maskLeftBits = Vector256.Create(// Mask the used bits after left-shifting
+                        0, 0, 0, 0,
+                        192, 192, 192, 192,// Bits 7..8 of 0
+                        240, 240, 240, 240,// Bits 4..8 of 1
+                        252, 252, 252, 252,// Bits 2..8 of 2
+                        0, 0, 0, 0,
+                        192, 192, 192, 192,
+                        240, 240, 240, 240,
+                        252, 252, 252, 252
+                    ),
+                    orderLeft = Vector256.Create(// Order the masked bits after left-shifting (every 4th byte will be skipped)
+                        (byte)4, 8, 12, 0,
+                        5, 9, 13, 0,
+                        6, 10, 14, 0,
+                        7, 11, 15, 0,
+                        4, 8, 12, 0,
+                        5, 9, 13, 0,
+                        6, 10, 14, 0,
+                        7, 11, 15, 0
+                    ),
+                    dataVector,// Processing data chunk
+                    dataVectorRight,// Data chunk for partial processing of right aligned bytes
+                    dataVectorLeft;// Data chunk for partial processing of left aligned bytes
+                Vector256<uint> shiftLeft = Vector256.Create(0u, 6, 4, 2, 0, 6, 4, 2),// Left shift steps
+                    shiftRight = Vector256.Create(0u, 2, 4, 0, 0, 2, 4, 0);// Right shift steps
+                int i,// Loop index
+                    j;// Loop index
+                byte charOffset;// Character map offset
+                byte* charBytesPtr = stackalloc byte[32];// Character byte buffer
+                // Process data in 32 byte chunks (which results in a 24 byte chunk each 32 byte chunk)
+                for (char* dataEnd = data + len; data != dataEnd; data += 32, result += 24)
+                {
+                    // Map the 32 ASCII characters chunk to index bytes
+                    for (i = 0; i != 32; i++)
+                    {
+                        for (charOffset = 0; charOffset != 64 && charMap[charOffset] != data[i]; charOffset++) ;
+                        if (charOffset == 64)
+                            throw new InvalidDataException($"Found invalid character \"{data[i]}\" ({(int)data[i]}) at offset #{dataOffset + (int)(data - dataEnd) + i}");
+                        charBytesPtr[i] = charOffset;
+                    }
+                    dataVector = Avx.LoadVector256(charBytesPtr);
+                    // Process bytes which are right aligned in the result byte (low bits)
+                    dataVectorRight = Avx2.Shuffle(dataVector, groupRight);// Group
+                    dataVectorRight = Avx2.ShiftRightLogicalVariable(dataVectorRight.AsUInt32(), shiftRight).AsByte();// Shift
+                    dataVectorRight = Avx2.And(dataVectorRight, maskRightBits);// Mask relevant bits
+                    dataVectorRight = Avx2.Shuffle(dataVectorRight, orderRight);// Order the partial result
+                    // Process bytes which are left shifted in the result bytes (high bits)
+                    dataVectorLeft = Avx2.Shuffle(dataVector, groupLeft);// Group
+                    dataVectorLeft = Avx2.ShiftLeftLogicalVariable(dataVectorLeft.AsUInt32(), shiftLeft).AsByte();// Shift
+                    dataVectorLeft = Avx2.And(dataVectorLeft, maskLeftBits);// Mask relevant bits
+                    dataVectorLeft = Avx2.Shuffle(dataVectorLeft, orderLeft);// Order the partial result
+                    // Merge the partial results to get the full result
+                    dataVector = Avx2.Or(dataVectorRight, dataVectorLeft);
+                    // Store the result in a temporary buffer
+                    Avx.Store(charBytesPtr, dataVector);
+                    // Map the characters to the output
+                    for (i = 0, j = 0; i != 32; i += 4, j += 3)
+                    {
+                        result[j] = charBytesPtr[i];
+                        result[j + 1] = charBytesPtr[i + 1];
+                        result[j + 2] = charBytesPtr[i + 2];
+                    }
+                }
+                resOffset += (len >> 1) + (len >> 2);// <-- ((len >> 5) << 4) + ((len >> 5) << 3) <-- len / 32 * 16 + len / 32 * 8 <-- len / 32 * 24
             }
         }
     }
 }
+#endif
