@@ -14,13 +14,13 @@
         /// Constructor
         /// </summary>
         /// <param name="message">Message</param>
-        public BootstrapperException(string? message) : base(message) { }
+        public BootstrapperException(in string? message) : base(message) { }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="message">Message</param>
         /// <param name="inner">Inner exception</param>
-        public BootstrapperException(string? message, Exception? inner) : base(message, inner) { }
+        public BootstrapperException(in string? message, in Exception? inner) : base(message, inner) { }
     }
 }

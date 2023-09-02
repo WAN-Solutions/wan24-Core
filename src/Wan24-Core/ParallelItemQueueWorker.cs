@@ -13,6 +13,6 @@
         /// <param name="capacity">Capacity</param>
         /// <param name="threads">Number of threads</param>
         [Obsolete("Use ParallelItemQueueWorkerBase instead")]
-        protected ParallelItemQueueWorker(int capacity, int threads) : base(capacity, threads) { }
+        protected ParallelItemQueueWorker(in int capacity, in int threads) : base(capacity, threads) { }
     }
 }

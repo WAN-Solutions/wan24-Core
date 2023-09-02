@@ -828,7 +828,7 @@ results in an empty string, too. Nothing encodes to nothing and decodes to
 nothing, too.
 
 If required, the used encoding character map can be customized. You may use 
-any 64 characters long map with unique items.
+any 64 ASCII characters (0..127) long map with unique items.
 
 ## String parser
 

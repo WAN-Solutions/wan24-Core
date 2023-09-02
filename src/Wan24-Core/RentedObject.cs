@@ -17,7 +17,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="pool">Pool</param>
-        public RentedObject(IObjectPool<T> pool) : base()
+        public RentedObject(in IObjectPool<T> pool) : base()
         {
             Pool = pool;
             _Object = pool.Rent();
@@ -28,7 +28,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pool">Pool</param>
         /// <param name="obj">Rented object</param>
-        public RentedObject(IObjectPool<T> pool, T obj) : base()
+        public RentedObject(in IObjectPool<T> pool, in T obj) : base()
         {
             Pool = pool;
             _Object = obj;

@@ -11,7 +11,7 @@
         /// <param name="interval">Interval in ms</param>
         /// <param name="timer">Timer type</param>
         /// <param name="nextRun">Fixed next run time</param>
-        public EnvironmentService(double interval, HostedServiceTimers timer = HostedServiceTimers.Default, DateTime? nextRun = null) : base(interval, timer, nextRun)
+        public EnvironmentService(in double interval, in HostedServiceTimers timer = HostedServiceTimers.Default, in DateTime? nextRun = null) : base(interval, timer, nextRun)
             => Name = "Environment metrics";
 
         /// <inheritdoc/>

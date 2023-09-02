@@ -17,7 +17,7 @@ namespace wan24.Core
         /// <param name="beginIncluding">Begin including?</param>
         /// <returns>Is within the range?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool IsInRange(this DateTime time, DateTime begin, DateTime end, bool endIncluding = false, bool beginIncluding = true)
+        public static bool IsInRange(this DateTime time, in DateTime begin, in DateTime end, in bool endIncluding = false, in bool beginIncluding = true)
         {
             if (begin > end) throw new ArgumentException("End before begin", nameof(end));
             if (beginIncluding && time < begin) return false;
@@ -35,7 +35,7 @@ namespace wan24.Core
         /// <param name="reference">Reference time (will be <see cref="DateTime.Now"/>, if not given)</param>
         /// <returns>Matches the reference time plus/minus the offset?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool IsInRange(this DateTime time, TimeSpan offset, DateTime? reference = null)
+        public static bool IsInRange(this DateTime time, in TimeSpan offset, in DateTime? reference = null)
         {
             DateTime rt = reference ?? DateTime.Now;
             time = time.ApplyOffset(offset, rt);
@@ -53,7 +53,7 @@ namespace wan24.Core
         /// <param name="reference">Reference time</param>
         /// <returns>Time including offset</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static DateTime ApplyOffset(this DateTime time, TimeSpan offset, DateTime? reference = null)
+        public static DateTime ApplyOffset(this DateTime time, in TimeSpan offset, in DateTime? reference = null)
         {
             DateTime rt = reference ?? DateTime.Now;
             if (time > rt) time -= offset;

@@ -16,7 +16,7 @@
         /// <param name="guid">GUID</param>
         /// <param name="timeout">Timeout in ms (<c>-n</c> to wait for <see cref="int.MaxValue"/><c>+timeout</c>ms)</param>
         /// <exception cref="TimeoutException">Couldn't lock within the timeout</exception>
-        public GlobalLock(Guid guid, int timeout = -1) : base(asyncDisposing: false)
+        public GlobalLock(in Guid guid, in int timeout = -1) : base(asyncDisposing: false)
         {
             GUID = guid;
             Mutex mutex = new(initiallyOwned: false, ID, out bool createdNew);

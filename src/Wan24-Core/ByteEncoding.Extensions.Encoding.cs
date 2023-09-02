@@ -22,10 +22,10 @@ namespace wan24.Core
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this byte value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this byte value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
 #if NO_UNSAFE
-            using RentedArrayStruct<byte> buffer = new(len: 1, clean: false);
+            using RentedArrayRefStruct<byte> buffer = new(len: 1, clean: false);
             buffer[0] = value;
             return buffer.Span.Encode(charMap, res);
 #else
@@ -47,7 +47,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static char[] Encode(this byte value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+        public static char[] Encode(this byte value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
             if (buffer.Length < 1) throw new ArgumentOutOfRangeException(nameof(buffer));
             buffer[0] = value;
@@ -69,10 +69,10 @@ namespace wan24.Core
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this sbyte value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this sbyte value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
 #if NO_UNSAFE
-            using RentedArrayStruct<byte> buffer = new(len: 1, clean: false);
+            using RentedArrayRefStruct<byte> buffer = new(len: 1, clean: false);
             buffer[0] = (byte)value;
             return buffer.Span.Encode(charMap, res);
 #else
@@ -94,7 +94,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static char[] Encode(this sbyte value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+        public static char[] Encode(this sbyte value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
             if (buffer.Length < 1) throw new ArgumentOutOfRangeException(nameof(buffer));
             buffer[0] = (byte)value;
@@ -116,10 +116,10 @@ namespace wan24.Core
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this ushort value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this ushort value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
 #if NO_UNSAFE
-            using RentedArrayStruct<byte> buffer = new(len: sizeof(ushort), clean: false);
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(ushort), clean: false);
             value.GetBytes(buffer.Span);
             return buffer.Span.Encode(charMap, res);
 #else
@@ -141,7 +141,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static char[] Encode(this ushort value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+        public static char[] Encode(this ushort value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
             if (buffer.Length < sizeof(ushort)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);
@@ -163,10 +163,10 @@ namespace wan24.Core
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this short value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this short value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
 #if NO_UNSAFE
-            using RentedArrayStruct<byte> buffer = new(len: sizeof(short), clean: false);
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(short), clean: false);
             value.GetBytes(buffer.Span);
             return buffer.Span.Encode(charMap, res);
 #else
@@ -188,7 +188,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static char[] Encode(this short value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+        public static char[] Encode(this short value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
             if (buffer.Length < sizeof(short)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);
@@ -210,10 +210,10 @@ namespace wan24.Core
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this uint value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this uint value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
 #if NO_UNSAFE
-            using RentedArrayStruct<byte> buffer = new(len: sizeof(uint), clean: false);
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(uint), clean: false);
             value.GetBytes(buffer.Span);
             return buffer.Span.Encode(charMap, res);
 #else
@@ -235,7 +235,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static char[] Encode(this uint value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+        public static char[] Encode(this uint value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
             if (buffer.Length < sizeof(uint)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);
@@ -257,10 +257,10 @@ namespace wan24.Core
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this int value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this int value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
 #if NO_UNSAFE
-            using RentedArrayStruct<byte> buffer = new(len: sizeof(int), clean: false);
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(int), clean: false);
             value.GetBytes(buffer.Span);
             return buffer.Span.Encode(charMap, res);
 #else
@@ -282,7 +282,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static char[] Encode(this int value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+        public static char[] Encode(this int value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
             if (buffer.Length < sizeof(int)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);
@@ -304,10 +304,10 @@ namespace wan24.Core
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this ulong value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this ulong value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
 #if NO_UNSAFE
-            using RentedArrayStruct<byte> buffer = new(len: sizeof(ulong), clean: false);
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(ulong), clean: false);
             value.GetBytes(buffer.Span);
             return buffer.Span.Encode(charMap, res);
 #else
@@ -329,7 +329,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static char[] Encode(this ulong value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+        public static char[] Encode(this ulong value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
             if (buffer.Length < sizeof(ulong)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);
@@ -351,10 +351,10 @@ namespace wan24.Core
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this long value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this long value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
 #if NO_UNSAFE
-            using RentedArrayStruct<byte> buffer = new(len: sizeof(long), clean: false);
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(long), clean: false);
             value.GetBytes(buffer.Span);
             return buffer.Span.Encode(charMap, res);
 #else
@@ -376,7 +376,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static char[] Encode(this long value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+        public static char[] Encode(this long value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
             if (buffer.Length < sizeof(long)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);
@@ -398,10 +398,10 @@ namespace wan24.Core
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this float value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this float value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
 #if NO_UNSAFE
-            using RentedArrayStruct<byte> buffer = new(len: sizeof(float), clean: false);
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(float), clean: false);
             value.GetBytes(buffer.Span);
             return buffer.Span.Encode(charMap, res);
 #else
@@ -423,7 +423,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static char[] Encode(this float value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+        public static char[] Encode(this float value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
             if (buffer.Length < sizeof(float)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);
@@ -445,10 +445,10 @@ namespace wan24.Core
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this double value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this double value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
 #if NO_UNSAFE
-            using RentedArrayStruct<byte> buffer = new(len: sizeof(double), clean: false);
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(double), clean: false);
             value.GetBytes(buffer.Span);
             return buffer.Span.Encode(charMap, res);
 #else
@@ -470,7 +470,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static char[] Encode(this double value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+        public static char[] Encode(this double value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
             if (buffer.Length < sizeof(double)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);
@@ -492,10 +492,10 @@ namespace wan24.Core
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this decimal value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this decimal value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
 #if NO_UNSAFE
-            using RentedArrayStruct<byte> buffer = new(len: sizeof(decimal), clean: false);
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(decimal), clean: false);
             value.GetBytes(buffer.Span);
             return buffer.Span.Encode(charMap, res);
 #else
@@ -517,7 +517,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static char[] Encode(this decimal value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+        public static char[] Encode(this decimal value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
             if (buffer.Length < sizeof(decimal)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);

@@ -28,7 +28,7 @@ namespace wan24.Core
         /// <param name="prettify">Prettify?</param>
         /// <returns>JSON string</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static string Encode(object? obj, bool prettify = false) => Encoder(obj, prettify);
+        public static string Encode(in object? obj, in bool prettify = false) => Encoder(obj, prettify);
 
         /// <summary>
         /// Decode
@@ -37,7 +37,7 @@ namespace wan24.Core
         /// <param name="json">JSON string</param>
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static T? Decode<T>(string json) => (T?)DecodeObject(typeof(T), json);
+        public static T? Decode<T>(in string json) => (T?)DecodeObject(typeof(T), json);
 
         /// <summary>
         /// Decode an object
@@ -46,7 +46,7 @@ namespace wan24.Core
         /// <param name="json">JSON string</param>
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static object? DecodeObject(Type type, string json) => Decoder(type, json);
+        public static object? DecodeObject(in Type type, in string json) => Decoder(type, json);
 
         /// <summary>
         /// Delegate for a JSON encoder

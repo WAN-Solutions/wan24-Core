@@ -111,7 +111,7 @@ namespace wan24.Core
         /// <param name="key">Key (including <c>$</c> prefix!)</param>
         /// <param name="value">Value</param>
         /// <returns>Succeed?</returns>
-        public bool TryGetData(string key, [NotNullWhen(true)] out string? value)
+        public bool TryGetData(in string key, [NotNullWhen(true)] out string? value)
         {
             if (!key.StartsWith("$"))
             {

@@ -14,7 +14,7 @@ namespace wan24.Core
         /// <param name="b">B</param>
         /// <returns>Are equal?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool AreEqual(object? a, object? b) => (a is null && b is null) || (a is not null && a.Equals(b));
+        public static bool AreEqual(in object? a, in object? b) => (a is null && b is null) || (a is not null && a.Equals(b));
 
         /// <summary>
         /// Determine if an object is <see langword="null"/>
@@ -22,6 +22,6 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <returns>Is <see langword="null"/>?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool IsNull(object? obj) => obj is null;
+        public static bool IsNull(in object? obj) => obj is null;
     }
 }

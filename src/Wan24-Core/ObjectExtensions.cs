@@ -24,7 +24,7 @@ namespace wan24.Core
         /// <param name="objs">Object list</param>
         /// <returns>Is within the object list?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool In<T>(this T obj, IEnumerable<T?> objs) => objs.Contains(obj);
+        public static bool In<T>(this T obj, in IEnumerable<T?> objs) => objs.Contains(obj);
 
         /// <summary>
         /// Change the type of an object
@@ -45,7 +45,7 @@ namespace wan24.Core
         /// <returns>Object</returns>
         /// <exception cref="InvalidOperationException">The object is not in a state which allows to perform the operation</exception>
         [TargetedPatchingOptOut("Tiny method")]
-        public static T EnsureValidState<T>(this T obj, bool state, string? error = null)
+        public static T EnsureValidState<T>(this T obj, in bool state, in string? error = null)
         {
             if (state) return obj;
             throw new InvalidOperationException(error);
@@ -81,6 +81,6 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="action">Action</param>
         /// <returns>Return value</returns>
-        public static tReturn Do<tObject, tReturn>(this tObject obj, Func<tObject, tReturn> action) => action(obj);
+        public static tReturn Do<tObject, tReturn>(this tObject obj, in Func<tObject, tReturn> action) => action(obj);
     }
 }

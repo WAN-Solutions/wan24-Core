@@ -16,7 +16,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static uint RotateLeft(this uint value, int bits) => BitOperations.RotateLeft(value, bits);
+        public static uint RotateLeft(this uint value, in int bits) => BitOperations.RotateLeft(value, bits);
 
         /// <summary>
         /// Rotate bits right
@@ -25,7 +25,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static uint RotateRight(this uint value, int bits) => BitOperations.RotateRight(value, bits);
+        public static uint RotateRight(this uint value, in int bits) => BitOperations.RotateRight(value, bits);
 
         /// <summary>
         /// Logical OR
@@ -34,7 +34,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static uint Or(this uint value, uint other) => value | other;
+        public static uint Or(this uint value, in uint other) => value | other;
 
         /// <summary>
         /// Logical AND
@@ -43,7 +43,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static uint And(this uint value, uint other) => value & other;
+        public static uint And(this uint value, in uint other) => value & other;
 
         /// <summary>
         /// Logical XOR
@@ -52,7 +52,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static uint Xor(this uint value, uint other) => value ^ other;
+        public static uint Xor(this uint value, in uint other) => value ^ other;
 
         /// <summary>
         /// Shift left
@@ -61,7 +61,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static uint ShiftLeft(this uint value, int bits) => value << bits;
+        public static uint ShiftLeft(this uint value, in int bits) => value << bits;
 
         /// <summary>
         /// Shift left
@@ -70,7 +70,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static uint ShiftRight(this uint value, int bits) => value >> bits;
+        public static uint ShiftRight(this uint value, in int bits) => value >> bits;
 
         /// <summary>
         /// Has flags?
@@ -79,7 +79,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Has the flags?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool HasFlags(this uint value, uint flags) => (value & flags) == flags;
+        public static bool HasFlags(this uint value, in uint flags) => (value & flags) == flags;
 
         /// <summary>
         /// Add flags
@@ -88,7 +88,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static uint AddFlags(this uint value, uint flags) => value | flags;
+        public static uint AddFlags(this uint value, in uint flags) => value | flags;
 
         /// <summary>
         /// Remove flags
@@ -97,7 +97,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static uint RemoveFlags(this uint value, uint flags) => value & ~flags;
+        public static uint RemoveFlags(this uint value, in uint flags) => value & ~flags;
 
         /// <summary>
         /// Cast as signed byte

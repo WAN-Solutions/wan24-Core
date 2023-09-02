@@ -37,7 +37,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="checksum">Checksum (length must be greater than zero, a power of two and not larger than <c>256</c>)</param>
-        public ChecksumTransform(byte[] checksum) : base()
+        public ChecksumTransform(in byte[] checksum) : base()
         {
             Contract.Ensures(HashValue is not null);
             Array.Empty<byte>().UpdateChecksum(checksum);

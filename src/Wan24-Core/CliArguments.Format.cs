@@ -52,7 +52,7 @@ namespace wan24.Core
         /// Initialize the instance
         /// </summary>
         /// <param name="args">Arguments</param>
-        protected void Initialize(ReadOnlySpan<string> args)
+        protected void Initialize(in ReadOnlySpan<string> args)
         {
             this.EnsureValidState(KeyLessArguments is null, "Initialized already");
             Dictionary<string, List<string>> a = new();
@@ -68,7 +68,7 @@ namespace wan24.Core
                 if (a.ContainsKey("-"))
                 {
                     // Ensure the "dash-flag" isn't a value list
-                    this.EnsureValidArgument(nameof(args), a["-"].Count == 0, $"Argument \"-\" was a value list first - can't convert to boolean (at #{i})");
+                    if (a["-"].Count != 0) throw new FormatException($"Argument \"-\" was a value list first - can't convert to boolean (at #{i})");
                 }
                 else
                 {
@@ -109,7 +109,7 @@ namespace wan24.Core
                         }
                         else
                         {
-                            this.EnsureValidArgument(nameof(args), a[lastKey].Count != 0, $"Argument \"--{lastKey}\" was boolean first - can't convert to value list (at #{i})");
+                            if (a[lastKey].Count == 0) throw new FormatException($"Argument \"--{lastKey}\" was boolean first - can't convert to value list (at #{i})");
                         }
                         requireValue = true;
                     }
@@ -123,7 +123,7 @@ namespace wan24.Core
                         }
                         else
                         {
-                            this.EnsureValidArgument(nameof(args), a[lastKey].Count == 0, $"Argument \"-{lastKey}\" was a value list first - can't convert to boolean (at #{i})");
+                            if (a[lastKey].Count != 0) throw new FormatException($"Argument \"-{lastKey}\" was a value list first - can't convert to boolean (at #{i})");
                         }
                     }
                 }
@@ -150,7 +150,7 @@ namespace wan24.Core
                 if (lastKey!.Length != 0 || a[string.Empty].Count != 0)
                 {
                     // Throw on missing last value
-                    this.EnsureValidArgument(nameof(args), !requireValue, $"Missing last argument (\"--{lastKey}\") value");
+                    if (requireValue) throw new FormatException($"Missing last argument (\"--{lastKey}\") value");
                 }
                 else
                 {
@@ -168,14 +168,14 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String  (use <c>'</c> or <c>"</c> for a quoted value, <c>\</c> for escaping within a quoted value, double escape <c>\</c>)</param>
         /// <returns>Arguments</returns>
-        public static CliArguments Parse(ReadOnlySpan<char> str) => new(Split(str));
+        public static CliArguments Parse(in ReadOnlySpan<char> str) => new(Split(str));
 
         /// <summary>
         /// Split a CLI argument string into arguments (use <c>'</c> or <c>"</c> for a quoted value, <c>\</c> for escaping)
         /// </summary>
         /// <param name="str">String  (use <c>'</c> or <c>"</c> for a quoted value, <c>\</c> for escaping within a quoted value, double escape <c>\</c>)</param>
         /// <returns>Arguments</returns>
-        public static string[] Split(ReadOnlySpan<char> str)
+        public static string[] Split(in ReadOnlySpan<char> str)
         {
             // Return early, if empty
             if (str.Length == 0) return Array.Empty<string>();
@@ -222,11 +222,8 @@ namespace wan24.Core
                 {
                     // Handle an in-value character
                     isWhiteSpace = char.IsWhiteSpace(c);
-                    ArgumentValidationHelper.EnsureValidArgument(
-                        STR_PARAMETER_NAME,
-                        isWhiteSpace || !char.IsControl(c),
-                        $"Illegal control character at #{i} (current value \"{valueBuffer.Span[..valueOffset]}\")"
-                        );
+                    if (!isWhiteSpace && char.IsControl(c))
+                        throw new FormatException($"Illegal control character at #{i} (current value \"{valueBuffer.Span[..valueOffset]}\")");
                     switch (c)
                     {
                         case '\'':
@@ -256,20 +253,13 @@ namespace wan24.Core
                             else if (isQuoted)
                             {
                                 // Add an unescaped quote character to the current value
-                                ArgumentValidationHelper.EnsureValidArgument(
-                                    STR_PARAMETER_NAME,
-                                    c != '"',
-                                    $"Double quote must be escaped always at #{i} (current value \"{valueBuffer.Span[..valueOffset]}\")"
-                                    );
+                                if (c == '"') throw new FormatException($"Double quote must be escaped always at #{i} (current value \"{valueBuffer.Span[..valueOffset]}\")");
                                 valueBuffer.Span[valueOffset] = c;
                                 valueOffset++;
                             }
                             else
                             {
-                                throw new ArgumentException(
-                                    $"Illegal quote character \"{c}\" in unquoted value at #{i} (current value \"{valueBuffer.Span[..valueOffset]}\")",
-                                    STR_PARAMETER_NAME
-                                    );
+                                throw new FormatException($"Illegal quote character \"{c}\" in unquoted value at #{i} (current value \"{valueBuffer.Span[..valueOffset]}\")");
                             }
                             break;
                         case '\\':
@@ -282,11 +272,8 @@ namespace wan24.Core
                             else
                             {
                                 // Start escaping
-                                ArgumentValidationHelper.EnsureValidArgument(
-                                    STR_PARAMETER_NAME,
-                                    isQuoted,
-                                    $"Illegal escape character in unquoted value at #{i} (current value \"{valueBuffer.Span[..valueOffset]}\")"
-                                    );
+                                if (!isQuoted)
+                                    throw new FormatException($"Illegal escape character in unquoted value at #{i} (current value \"{valueBuffer.Span[..valueOffset]}\")");
                                 isEscaped = true;
                                 valueBuffer.Span[valueOffset] = c;
                                 valueOffset++;
@@ -312,7 +299,7 @@ namespace wan24.Core
                 else if (!char.IsWhiteSpace(c))
                 {
                     // Start a new value
-                    ArgumentValidationHelper.EnsureValidArgument(STR_PARAMETER_NAME, !char.IsControl(c), $"Illegal control character at #{i}");
+                    if (char.IsControl(c)) throw new FormatException($"Illegal control character at #{i}");
                     switch (c)
                     {
                         case '\'':
@@ -322,7 +309,7 @@ namespace wan24.Core
                             quote = c;
                             break;
                         case '\\':
-                            throw new ArgumentException($"Illegal escape character at the beginning of the unquoted value at #{i}", STR_PARAMETER_NAME);
+                            throw new FormatException($"Illegal escape character at the beginning of the unquoted value at #{i}");
                     }
                     inValue = true;
                     if (isQuoted) continue;
@@ -333,16 +320,8 @@ namespace wan24.Core
             // Be sure to add the last value
             if (inValue)
             {
-                ArgumentValidationHelper.EnsureValidArgument(
-                    STR_PARAMETER_NAME,
-                    !isEscaped,
-                    $"Last escape character is unused (current value \"{valueBuffer.Span[..valueOffset]}\")"
-                    );
-                ArgumentValidationHelper.EnsureValidArgument(
-                    STR_PARAMETER_NAME,
-                    !isQuoted,
-                    $"Last quoted argument is missing the closing quote \"{quote}\" (current value \"{valueBuffer.Span[..valueOffset]}\")"
-                    );
+                if (isEscaped) throw new FormatException($"Last escape character is unused (current value \"{valueBuffer.Span[..valueOffset]}\")");
+                if (isQuoted) throw new FormatException($"Last quoted argument is missing the closing quote \"{quote}\" (current value \"{valueBuffer.Span[..valueOffset]}\")");
                 AddValue();
             }
             return argsOffset == 0 ? Array.Empty<string>() : argsBuffer.Span[..argsOffset].ToArray();
@@ -356,7 +335,7 @@ namespace wan24.Core
         /// <returns>Raw (if encoding isn't required) or encoded string (will be quoted, JSON encoded and properly escaped for use as a CLI command argument and with 
         /// <see cref="CliArguments"/>)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static string SanatizeValue(string str, char quote = '\'')
+        public static string SanatizeValue(in string str, in char quote = '\'')
             => NeedsEncoding(str) ? $"{quote}{JsonHelper.Encode(str)[1..^1].Replace(BACKSLASH, ESCAPED_BACKSLASH)}{quote}" : str;
 
         /// <summary>
@@ -365,7 +344,7 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <returns>Needs encoding for use as a CLI command argument?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool NeedsEncoding(ReadOnlySpan<char> str)
+        public static bool NeedsEncoding(in ReadOnlySpan<char> str)
         {
             for (int i = 0, len = str.Length; i < len; i++)
                 if (

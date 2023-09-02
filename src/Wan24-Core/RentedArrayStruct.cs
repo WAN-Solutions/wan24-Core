@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Runtime;
 using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
+using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
@@ -10,6 +10,7 @@ namespace wan24.Core
     /// Pool rented array (returns the array to the pool, when disposed)
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
+    [StructLayout(LayoutKind.Auto)]
     public struct RentedArrayStruct<T> : IRentedArray<T>
     {
         /// <summary>
@@ -31,11 +32,12 @@ namespace wan24.Core
         /// <param name="len">Length</param>
         /// <param name="pool">Pool</param>
         /// <param name="clean">Clean the rented array?</param>
-        public RentedArrayStruct(int len, ArrayPool<T>? pool = null, bool clean = true)
+        public RentedArrayStruct(in int len, in ArrayPool<T>? pool = null, in bool clean = true)
         {
             if (len < 1) throw new ArgumentOutOfRangeException(nameof(len));
             Pool = pool ?? ArrayPool<T>.Shared;
             Length = len;
+            LongLength = len;
             _Array = clean ? Pool.RentClean(len) : Pool.Rent(len);
         }
 
@@ -46,7 +48,7 @@ namespace wan24.Core
         /// <param name="arr">Rented array</param>
         /// <param name="len">Length</param>
         /// <param name="clean">Clean the rented array?</param>
-        public RentedArrayStruct(ArrayPool<T> pool, T[] arr, int? len = null, bool clean = false)
+        public RentedArrayStruct(in ArrayPool<T> pool, in T[] arr, int? len = null, in bool clean = false)
         {
             len ??= arr.Length;
             if (len < 1 || len > arr.Length)
@@ -56,8 +58,9 @@ namespace wan24.Core
             }
             Pool = pool;
             Length = len.Value;
+            LongLength = len.Value;
             _Array = arr;
-            if (clean) System.Array.Clear(arr, 0, len ?? arr.Length);
+            if (clean) System.Array.Clear(arr, 0, len.Value);
         }
 
         /// <inheritdoc/>
@@ -67,12 +70,20 @@ namespace wan24.Core
         public int Length { get; }
 
         /// <inheritdoc/>
-        public readonly long LongLength => Length;
+        public long LongLength { get; }
 
         /// <inheritdoc/>
         public readonly T this[int offset]
         {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => IfUndisposed(_Array[offset]);
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             set
             {
                 lock (SyncObject)
@@ -86,6 +97,10 @@ namespace wan24.Core
         /// <inheritdoc/>
         public readonly Memory<T> this[Range range]
         {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get
             {
                 lock (SyncObject)
@@ -99,6 +114,10 @@ namespace wan24.Core
         /// <inheritdoc/>
         public readonly Memory<T> this[Index start, Index end]
         {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get
             {
                 lock (SyncObject)
@@ -113,10 +132,24 @@ namespace wan24.Core
         public readonly T[] Array => IfUndisposed(_Array);
 
         /// <inheritdoc/>
-        public readonly Span<T> Span => Memory.Span;
+        public readonly Span<T> Span
+        {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Array.AsSpan(0, Length);
+        }
 
         /// <inheritdoc/>
-        public readonly Memory<T> Memory => Array.AsMemory(0, Length);
+        public readonly Memory<T> Memory
+        {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Array.AsMemory(0, Length);
+        }
 
         /// <inheritdoc/>
         public bool Clear { get; set; } = false;
@@ -143,6 +176,7 @@ namespace wan24.Core
         public override readonly int GetHashCode() => Memory.GetHashCode();
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public readonly IEnumerator<T> GetEnumerator() => ((IEnumerable<T>)_Array).GetEnumerator();
 
         /// <inheritdoc/>
@@ -151,7 +185,9 @@ namespace wan24.Core
         /// <summary>
         /// Ensure an undisposed object state
         /// </summary>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         private readonly void EnsureUndisposed()
         {
             lock (SyncObject) if (!IsDisposed) return;
@@ -164,8 +200,10 @@ namespace wan24.Core
         /// <typeparam name="tValue">Value type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private readonly tValue IfUndisposed<tValue>(tValue value)
+#endif
+        private readonly tValue IfUndisposed<tValue>(in tValue value)
         {
             EnsureUndisposed();
             return value;
@@ -186,7 +224,8 @@ namespace wan24.Core
                 bool clear = true;
                 if (arr is byte[] byteArr)
                 {
-                    RandomNumberGenerator.Fill(byteArr.AsSpan(0, Length));
+                    clear = false;
+                    byteArr.AsSpan(0, Length).Clean();
                 }
                 else if (arr is char[] charArr)
                 {
@@ -205,25 +244,29 @@ namespace wan24.Core
         /// Cast as array
         /// </summary>
         /// <param name="arr">Array (may be longer than <see cref="Length"/>!)</param>
-        public static implicit operator T[](RentedArrayStruct<T> arr) => arr.Array;
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator T[](in RentedArrayStruct<T> arr) => arr.Array;
 
         /// <summary>
         /// Cast as span
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator Span<T>(RentedArrayStruct<T> arr) => arr.Span;
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator Span<T>(in RentedArrayStruct<T> arr) => arr.Span;
 
         /// <summary>
         /// Cast as memory
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator Memory<T>(RentedArrayStruct<T> arr) => arr.Memory;
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator Memory<T>(in RentedArrayStruct<T> arr) => arr.Memory;
 
         /// <summary>
         /// Cast as Int32 (length value)
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator int(RentedArrayStruct<T> arr) => arr.Length;
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator int(in RentedArrayStruct<T> arr) => arr.Length;
 
         /// <summary>
         /// Equals
@@ -231,7 +274,8 @@ namespace wan24.Core
         /// <param name="left">Left</param>
         /// <param name="right">Right</param>
         /// <returns>Equals?</returns>
-        public static bool operator ==(RentedArrayStruct<T> left, RentedArrayStruct<T> right) => left.Equals(right);
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static bool operator ==(in RentedArrayStruct<T> left, in RentedArrayStruct<T> right) => left.Equals(right);
 
         /// <summary>
         /// Not equal
@@ -239,6 +283,7 @@ namespace wan24.Core
         /// <param name="left">Left</param>
         /// <param name="right">Right</param>
         /// <returns>Not equal?</returns>
-        public static bool operator !=(RentedArrayStruct<T> left, RentedArrayStruct<T> right) => !left.Equals(right);
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static bool operator !=(in RentedArrayStruct<T> left, in RentedArrayStruct<T> right) => !left.Equals(right);
     }
 }

@@ -13,7 +13,8 @@ namespace wan24.Core
         /// <param name="interval">Interval in ms</param>
         /// <param name="timer">Timer type</param>
         /// <param name="nextRun">Fixed next run time</param>
-        public StatisticsService(double interval, HostedServiceTimers timer = HostedServiceTimers.ExactCatchingUp, DateTime? nextRun = null) : base(interval, timer, nextRun)
+        public StatisticsService(in double interval, in HostedServiceTimers timer = HostedServiceTimers.ExactCatchingUp, in DateTime? nextRun = null)
+            : base(interval, timer, nextRun)
             => Name = "Periodical statistics";
 
         /// <summary>

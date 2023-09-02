@@ -16,20 +16,20 @@
         /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
-        public BlockingStreamPool(int capacity) : this(capacity, () => new()) { }
+        public BlockingStreamPool(in int capacity) : this(capacity, () => new()) { }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
         /// <param name="factory">Factory</param>
-        public BlockingStreamPool(int capacity, Func<T> factory) : base(capacity, factory) => ResetOnRent = false;
+        public BlockingStreamPool(in int capacity, in Func<T> factory) : base(capacity, factory) => ResetOnRent = false;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
         /// <param name="factory">Factory</param>
-        public BlockingStreamPool(int capacity, Func<Task<T>> factory) : base(capacity, factory) => ResetOnRent = false;
+        public BlockingStreamPool(in int capacity, in Func<Task<T>> factory) : base(capacity, factory) => ResetOnRent = false;
     }
 }

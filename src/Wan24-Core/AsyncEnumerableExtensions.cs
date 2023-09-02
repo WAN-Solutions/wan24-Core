@@ -63,7 +63,8 @@ namespace wan24.Core
         /// <param name="enumeration">Enumeration</param>
         /// <returns>Enumeration</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static ConfiguredCancelableAsyncEnumerable<T> FixedContext<T>(this IAsyncEnumerable<T> enumeration) => enumeration.ConfigureAwait(continueOnCapturedContext: true);
+        public static ConfiguredCancelableAsyncEnumerable<T> FixedContext<T>(this IAsyncEnumerable<T> enumeration)
+            => enumeration.ConfigureAwait(continueOnCapturedContext: true);
 
         /// <summary>
         /// Return in any thread context
@@ -72,7 +73,8 @@ namespace wan24.Core
         /// <param name="enumeration">Enumeration</param>
         /// <returns>Enumeration</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static ConfiguredCancelableAsyncEnumerable<T> DynamicContext<T>(this IAsyncEnumerable<T> enumeration) => enumeration.ConfigureAwait(continueOnCapturedContext: false);
+        public static ConfiguredCancelableAsyncEnumerable<T> DynamicContext<T>(this IAsyncEnumerable<T> enumeration)
+            => enumeration.ConfigureAwait(continueOnCapturedContext: false);
 
         /// <summary>
         /// Combine enumerables
@@ -139,7 +141,7 @@ namespace wan24.Core
         /// <param name="disposables">Disposables</param>
         public static DisposingAsyncEnumerator<T> ToDipsposingAsyncEnumerator<T>(
             this IAsyncEnumerable<T> enumerable,
-            CancellationToken cancellationToken,
+            in CancellationToken cancellationToken,
             params object?[] disposables
             )
             => new(enumerable, cancellationToken, disposables);
@@ -163,7 +165,7 @@ namespace wan24.Core
         /// <param name="disposables">Disposables</param>
         public static DisposingAsyncEnumerator<T> ToDipsposingAsyncEnumerator<T>(
             this IAsyncEnumerator<T> enumerator,
-            CancellationToken cancellationToken,
+            in CancellationToken cancellationToken,
             params object?[] disposables
             )
             => new(enumerator, cancellationToken, disposables);

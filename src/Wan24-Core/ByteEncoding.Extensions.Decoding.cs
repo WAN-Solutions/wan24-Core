@@ -1,7 +1,5 @@
 ﻿using System.Buffers;
 
-//TODO Use RentedArrayStruct<byte>
-
 namespace wan24.Core
 {
     // Decoding extensions
@@ -15,23 +13,17 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static byte DecodeByte(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static byte DecodeByte(this ReadOnlySpan<char> str, in ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
             if (str.Length != GetEncodedLength(1)) throw new ArgumentException("Invalid encoded length", nameof(str));
-            bool returnBuffer = buffer is null;
-            if (buffer is null)
+            if(buffer is null)
             {
-                pool ??= ArrayPool<byte>.Shared;
-                buffer = pool.Rent(1);
+                using RentedArrayRefStruct<byte> rented = new(len: 1, pool, clean: false);
+                str.Decode(rented.Span, charMap);
+                return rented.Span[0];
             }
-            try
-            {
-                return str.Decode(charMap, buffer)[0];
-            }
-            finally
-            {
-                if (returnBuffer) pool!.Return(buffer);
-            }
+            str.Decode(buffer, charMap);
+            return buffer[0];
         }
 
         /// <summary>
@@ -42,23 +34,17 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static sbyte DecodeSByte(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static sbyte DecodeSByte(this ReadOnlySpan<char> str, in ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
             if (str.Length != GetEncodedLength(1)) throw new ArgumentException("Invalid encoded length", nameof(str));
-            bool returnBuffer = buffer is null;
             if (buffer is null)
             {
-                pool ??= ArrayPool<byte>.Shared;
-                buffer = pool.Rent(1);
+                using RentedArrayRefStruct<byte> rented = new(len: 1, pool, clean: false);
+                str.Decode(rented.Span, charMap);
+                return (sbyte)rented.Span[0];
             }
-            try
-            {
-                return (sbyte)str.Decode(charMap, buffer)[0];
-            }
-            finally
-            {
-                if (returnBuffer) pool!.Return(buffer);
-            }
+            str.Decode(buffer, charMap);
+            return (sbyte)buffer[0];
         }
 
         /// <summary>
@@ -69,23 +55,17 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static ushort DecodeUShort(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static ushort DecodeUShort(this ReadOnlySpan<char> str, in ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
             if (str.Length != GetEncodedLength(sizeof(ushort))) throw new ArgumentException("Invalid encoded length", nameof(str));
-            bool returnBuffer = buffer is null;
             if (buffer is null)
             {
-                pool ??= ArrayPool<byte>.Shared;
-                buffer = pool.Rent(sizeof(ushort));
+                using RentedArrayRefStruct<byte> rented = new(len: sizeof(ushort), pool, clean: false);
+                str.Decode(rented.Span, charMap);
+                return rented.Span.ToUShort();
             }
-            try
-            {
-                return str.Decode(charMap, buffer).AsSpan().ToUShort();
-            }
-            finally
-            {
-                if (returnBuffer) pool!.Return(buffer);
-            }
+            str.Decode(buffer, charMap);
+            return buffer.AsSpan().ToUShort();
         }
 
         /// <summary>
@@ -96,23 +76,17 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static short DecodeShort(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static short DecodeShort(this ReadOnlySpan<char> str, in ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
             if (str.Length != GetEncodedLength(sizeof(short))) throw new ArgumentException("Invalid encoded length", nameof(str));
-            bool returnBuffer = buffer is null;
             if (buffer is null)
             {
-                pool ??= ArrayPool<byte>.Shared;
-                buffer = pool.Rent(sizeof(short));
+                using RentedArrayRefStruct<byte> rented = new(len: sizeof(short), pool, clean: false);
+                str.Decode(rented.Span, charMap);
+                return rented.Span.ToShort();
             }
-            try
-            {
-                return str.Decode(charMap, buffer).AsSpan().ToShort();
-            }
-            finally
-            {
-                if (returnBuffer) pool!.Return(buffer);
-            }
+            str.Decode(buffer, charMap);
+            return buffer.AsSpan().ToShort();
         }
 
         /// <summary>
@@ -123,23 +97,17 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static uint DecodeUInt(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static uint DecodeUInt(this ReadOnlySpan<char> str, in ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
             if (str.Length != GetEncodedLength(sizeof(uint))) throw new ArgumentException("Invalid encoded length", nameof(str));
-            bool returnBuffer = buffer is null;
             if (buffer is null)
             {
-                pool ??= ArrayPool<byte>.Shared;
-                buffer = pool.Rent(sizeof(uint));
+                using RentedArrayRefStruct<byte> rented = new(len: sizeof(uint), pool, clean: false);
+                str.Decode(rented.Span, charMap);
+                return rented.Span.ToUInt();
             }
-            try
-            {
-                return str.Decode(charMap, buffer).AsSpan().ToUInt();
-            }
-            finally
-            {
-                if (returnBuffer) pool!.Return(buffer);
-            }
+            str.Decode(buffer, charMap);
+            return buffer.AsSpan().ToUInt();
         }
 
         /// <summary>
@@ -150,23 +118,17 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static int DecodeInt(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static int DecodeInt(this ReadOnlySpan<char> str, in ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
             if (str.Length != GetEncodedLength(sizeof(int))) throw new ArgumentException("Invalid encoded length", nameof(str));
-            bool returnBuffer = buffer is null;
             if (buffer is null)
             {
-                pool ??= ArrayPool<byte>.Shared;
-                buffer = pool.Rent(sizeof(int));
+                using RentedArrayRefStruct<byte> rented = new(len: sizeof(int), pool, clean: false);
+                str.Decode(rented.Span, charMap);
+                return rented.Span.ToInt();
             }
-            try
-            {
-                return str.Decode(charMap, buffer).AsSpan().ToInt();
-            }
-            finally
-            {
-                if (returnBuffer) pool!.Return(buffer);
-            }
+            str.Decode(buffer, charMap);
+            return buffer.AsSpan().ToInt();
         }
 
         /// <summary>
@@ -177,23 +139,17 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static ulong DecodeULong(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static ulong DecodeULong(this ReadOnlySpan<char> str, in ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
             if (str.Length != GetEncodedLength(sizeof(ulong))) throw new ArgumentException("Invalid encoded length", nameof(str));
-            bool returnBuffer = buffer is null;
             if (buffer is null)
             {
-                pool ??= ArrayPool<byte>.Shared;
-                buffer = pool.Rent(sizeof(ulong));
+                using RentedArrayRefStruct<byte> rented = new(len: sizeof(ulong), pool, clean: false);
+                str.Decode(rented.Span, charMap);
+                return rented.Span.ToULong();
             }
-            try
-            {
-                return str.Decode(charMap, buffer).AsSpan().ToULong();
-            }
-            finally
-            {
-                if (returnBuffer) pool!.Return(buffer);
-            }
+            str.Decode(buffer, charMap);
+            return buffer.AsSpan().ToULong();
         }
 
         /// <summary>
@@ -204,23 +160,17 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static long DecodeLong(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static long DecodeLong(this ReadOnlySpan<char> str, in ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
             if (str.Length != GetEncodedLength(sizeof(long))) throw new ArgumentException("Invalid encoded length", nameof(str));
-            bool returnBuffer = buffer is null;
             if (buffer is null)
             {
-                pool ??= ArrayPool<byte>.Shared;
-                buffer = pool.Rent(sizeof(long));
+                using RentedArrayRefStruct<byte> rented = new(len: sizeof(long), pool, clean: false);
+                str.Decode(rented.Span, charMap);
+                return rented.Span.ToLong();
             }
-            try
-            {
-                return str.Decode(charMap, buffer).AsSpan().ToLong();
-            }
-            finally
-            {
-                if (returnBuffer) pool!.Return(buffer);
-            }
+            str.Decode(buffer, charMap);
+            return buffer.AsSpan().ToLong();
         }
 
         /// <summary>
@@ -231,23 +181,17 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static float DecodeFloat(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static float DecodeFloat(this ReadOnlySpan<char> str, in ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
             if (str.Length != GetEncodedLength(sizeof(float))) throw new ArgumentException("Invalid encoded length", nameof(str));
-            bool returnBuffer = buffer is null;
             if (buffer is null)
             {
-                pool ??= ArrayPool<byte>.Shared;
-                buffer = pool.Rent(sizeof(float));
+                using RentedArrayRefStruct<byte> rented = new(len: sizeof(float), pool, clean: false);
+                str.Decode(rented.Span, charMap);
+                return rented.Span.ToFloat();
             }
-            try
-            {
-                return str.Decode(charMap, buffer).AsSpan().ToFloat();
-            }
-            finally
-            {
-                if (returnBuffer) pool!.Return(buffer);
-            }
+            str.Decode(buffer, charMap);
+            return buffer.AsSpan().ToFloat();
         }
 
         /// <summary>
@@ -258,23 +202,17 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static double DecodeDouble(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static double DecodeDouble(this ReadOnlySpan<char> str, in ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
             if (str.Length != GetEncodedLength(sizeof(double))) throw new ArgumentException("Invalid encoded length", nameof(str));
-            bool returnBuffer = buffer is null;
             if (buffer is null)
             {
-                pool ??= ArrayPool<byte>.Shared;
-                buffer = pool.Rent(sizeof(double));
+                using RentedArrayRefStruct<byte> rented = new(len: sizeof(double), pool, clean: false);
+                str.Decode(rented.Span, charMap);
+                return rented.Span.ToDouble();
             }
-            try
-            {
-                return str.Decode(charMap, buffer).AsSpan().ToDouble();
-            }
-            finally
-            {
-                if (returnBuffer) pool!.Return(buffer);
-            }
+            str.Decode(buffer, charMap);
+            return buffer.AsSpan().ToDouble();
         }
 
         /// <summary>
@@ -285,23 +223,17 @@ namespace wan24.Core
         /// <param name="buffer">Decoding buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
-        public static decimal DecodeDecimal(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static decimal DecodeDecimal(this ReadOnlySpan<char> str, in ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
             if (str.Length != GetEncodedLength(sizeof(decimal))) throw new ArgumentException("Invalid encoded length", nameof(str));
-            bool returnBuffer = buffer is null;
             if (buffer is null)
             {
-                pool ??= ArrayPool<byte>.Shared;
-                buffer = pool.Rent(sizeof(decimal));
+                using RentedArrayRefStruct<byte> rented = new(len: sizeof(decimal), pool, clean: false);
+                str.Decode(rented.Span, charMap);
+                return rented.Span.ToDecimal();
             }
-            try
-            {
-                return str.Decode(charMap, buffer).AsSpan().ToDecimal();
-            }
-            finally
-            {
-                if (returnBuffer) pool!.Return(buffer);
-            }
+            str.Decode(buffer, charMap);
+            return buffer.AsSpan().ToDecimal();
         }
     }
 }

@@ -27,11 +27,9 @@ namespace wan24.Core
         /// <param name="res">Result buffer</param>
         /// <param name="pool">Array pool</param>
         /// <returns>Encoded</returns>
-        public static char[] EncodeNumberCompact<T>(this T value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] EncodeNumberCompact<T>(this T value, ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
             where T : struct, IConvertible
         {
-            charMap ??= _DefaultCharMap;
-            ArgumentValidationHelper.EnsureValidArgument(nameof(charMap), 64, 64, charMap.Value.Length);
             if (EnsureValidNumericType<T>().IsUnsigned())
             {
                 ulong ul = (ulong)Convert.ChangeType(value, typeof(ulong));
@@ -61,11 +59,9 @@ namespace wan24.Core
         /// <param name="charMap">Character map (must be 64 characters long!)</param>
         /// <param name="res">Result buffer</param>
         /// <returns>Encoded</returns>
-        public static char[] EncodeNumberCompact<T>(this T value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+        public static char[] EncodeNumberCompact<T>(this T value, in Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
             where T : struct, IConvertible
         {
-            charMap ??= _DefaultCharMap;
-            ArgumentValidationHelper.EnsureValidArgument(nameof(charMap), 64, 64, charMap.Value.Length);
             if (EnsureValidNumericType<T>().IsUnsigned())
             {
                 ulong ul = (ulong)Convert.ChangeType(value, typeof(ulong));
@@ -99,7 +95,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static T DecodeCompactNumber<T>(this char[] str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static T DecodeCompactNumber<T>(this char[] str, in ReadOnlyMemory<char>? charMap = null, in byte[]? buffer = null, in ArrayPool<byte>? pool = null)
             where T : struct, IConvertible
             => DecodeCompactNumber<T>((ReadOnlySpan<char>)str, charMap, buffer, pool);
 
@@ -116,7 +112,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static T DecodeCompactNumber<T>(this string str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static T DecodeCompactNumber<T>(this string str, in ReadOnlyMemory<char>? charMap = null, in byte[]? buffer = null, in ArrayPool<byte>? pool = null)
             where T : struct, IConvertible
             => DecodeCompactNumber<T>((ReadOnlySpan<char>)str, charMap, buffer, pool);
 
@@ -133,7 +129,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static T DecodeCompactNumber<T>(this Span<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
+        public static T DecodeCompactNumber<T>(this Span<char> str, in ReadOnlyMemory<char>? charMap = null, in byte[]? buffer = null, in ArrayPool<byte>? pool = null)
             where T : struct, IConvertible
             => DecodeCompactNumber<T>((ReadOnlySpan<char>)str, charMap, buffer, pool);
 
@@ -149,21 +145,12 @@ namespace wan24.Core
         public static T DecodeCompactNumber<T>(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
             where T : struct, IConvertible
         {
-            charMap ??= _DefaultCharMap;
-            ArgumentValidationHelper.EnsureValidArgument(nameof(charMap), 64, 64, charMap.Value.Length);
             int len = str.Length;
             if (len == 0) return (T)Convert.ChangeType(0, EnsureValidNumericType<T>());
-            int decodedLen = (int)GetDecodedLength(len);
-            ArgumentValidationHelper.EnsureValidArgument(nameof(str), decodedLen.In(1, 2, 4, 8), () => "Invalid encoded data length for decoding a compacted numeric value");
-            bool returnBuffer = buffer is null;
-            if (buffer is null)
-            {
-                pool ??= ArrayPool<byte>.Shared;
-                buffer = pool.Rent(decodedLen);
-            }
-            try
-            {
-                object res = EnsureValidNumericType<T>().IsUnsigned()
+            int decodedLen = GetDecodedLength(len);
+            if (!decodedLen.In(1, 2, 4, 8)) throw new InvalidDataException("Invalid encoded data length for decoding a compacted numeric value");
+            static object decode(ReadOnlySpan<char> str, byte[] buffer, ReadOnlyMemory<char>? charMap, int decodedLen)
+                => EnsureValidNumericType<T>().IsUnsigned()
                     ? decodedLen switch
                     {
                         1 => str.DecodeByte(charMap, buffer),
@@ -180,12 +167,17 @@ namespace wan24.Core
                         8 => str.DecodeLong(charMap, buffer),
                         _ => throw new InvalidProgramException()
                     };
-                return (T)Convert.ChangeType(res, typeof(T));
-            }
-            finally
+            object res;
+            if (buffer is null)
             {
-                if (returnBuffer) pool!.Return(buffer);
+                using RentedArrayRefStruct<byte> rented = new(len: decodedLen, pool, clean: false);
+                res = decode(str, rented.Array, charMap, decodedLen);
             }
+            else
+            {
+                res = decode(str, buffer, charMap, decodedLen);
+            }
+            return res.GetType() == typeof(T) ? (T)res : (T)Convert.ChangeType(res, typeof(T));
         }
 
         /// <summary>
@@ -199,7 +191,7 @@ namespace wan24.Core
         private static Type EnsureValidNumericType<T>()
         {
             Type res = typeof(T);
-            ArgumentValidationHelper.EnsureValidArgument(nameof(T), DeniedNumericTypes.IndexOf(res.GetHashCode()) == -1, () => "Unsupported numeric type");
+            if (DeniedNumericTypes.IndexOf(res.GetHashCode()) != -1) throw new NotSupportedException("Unsupported numeric type");
             return res;
         }
     }

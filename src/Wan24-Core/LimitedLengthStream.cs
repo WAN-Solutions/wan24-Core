@@ -11,7 +11,7 @@
         /// <param name="baseStream">Base stream</param>
         /// <param name="maxLength">Maximum length in bytes</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public LimitedLengthStream(Stream baseStream, long maxLength, bool leaveOpen = false) : base(baseStream, maxLength, leaveOpen) { }
+        public LimitedLengthStream(in Stream baseStream, in long maxLength, in bool leaveOpen = false) : base(baseStream, maxLength, leaveOpen) { }
     }
 
     /// <summary>
@@ -26,7 +26,7 @@
         /// <param name="baseStream">Base stream</param>
         /// <param name="maxLength">Maximum length in bytes</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public LimitedLengthStream(T baseStream, long maxLength, bool leaveOpen = false) : base(baseStream, leaveOpen)
+        public LimitedLengthStream(in T baseStream, in long maxLength, in bool leaveOpen = false) : base(baseStream, leaveOpen)
         {
             EnsureWritable();
             MaxLength = maxLength;

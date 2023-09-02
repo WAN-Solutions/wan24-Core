@@ -14,7 +14,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int ShiftLeft(this int value, int bits) => value << bits;
+        public static int ShiftLeft(this int value, in int bits) => value << bits;
 
         /// <summary>
         /// Shift left
@@ -23,7 +23,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int ShiftRight(this int value, int bits) => value >> bits;
+        public static int ShiftRight(this int value, in int bits) => value >> bits;
 
         /// <summary>
         /// Logical OR
@@ -32,7 +32,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int Or(this int value, int other) => value | other;
+        public static int Or(this int value, in int other) => value | other;
 
         /// <summary>
         /// Logical AND
@@ -41,7 +41,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int And(this int value, int other) => value & other;
+        public static int And(this int value, in int other) => value & other;
 
         /// <summary>
         /// Logical XOR
@@ -50,7 +50,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int Xor(this int value, int other) => value ^ other;
+        public static int Xor(this int value, in int other) => value ^ other;
 
         /// <summary>
         /// Has flags?
@@ -59,7 +59,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Has the flags?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool HasFlags(this int value, int flags) => (value & flags) == flags;
+        public static bool HasFlags(this int value, in int flags) => (value & flags) == flags;
 
         /// <summary>
         /// Add flags
@@ -68,7 +68,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int AddFlags(this int value, int flags) => value | flags;
+        public static int AddFlags(this int value, in int flags) => value | flags;
 
         /// <summary>
         /// Remove flags
@@ -77,7 +77,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int RemoveFlags(this int value, int flags) => value & ~flags;
+        public static int RemoveFlags(this int value, in int flags) => value & ~flags;
 
         /// <summary>
         /// Cast as signed byte

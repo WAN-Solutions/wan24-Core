@@ -13,7 +13,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="capacity">Capacity</param>
         /// <param name="threads">Number of threads</param>
-        protected ParallelItemQueueWorkerBase(int capacity, int threads) : base(capacity, threads) { }
+        protected ParallelItemQueueWorkerBase(in int capacity, in int threads) : base(capacity, threads) { }
 
         /// <inheritdoc/>
         public ValueTask EnqueueAsync(T item, CancellationToken cancellationToken = default)

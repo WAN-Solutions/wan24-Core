@@ -83,7 +83,11 @@ namespace wan24.Core
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            set => Data[index] = (char)Convert.ChangeType(ArgumentValidationHelper.EnsureValidArgument(nameof(value), value), typeof(char));
+            set
+            {
+                if (value is null) throw new ArgumentNullException(nameof(value));
+                Data[index] = (char)Convert.ChangeType(value, typeof(char));
+            }
         }
 
         /// <inheritdoc/>

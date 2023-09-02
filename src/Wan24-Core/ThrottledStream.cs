@@ -14,7 +14,14 @@
         /// <param name="writeCount">Write count (zero to disable write throttling)</param>
         /// <param name="writeTime">Write time</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public ThrottledStream(Stream baseStream, int readCount = 0, TimeSpan? readTime = null, int writeCount = 0, TimeSpan? writeTime = null, bool leaveOpen = false)
+        public ThrottledStream(
+            in Stream baseStream, 
+            in int readCount = 0, 
+            in TimeSpan? readTime = null, 
+            in int writeCount = 0, 
+            in TimeSpan? writeTime = null, 
+            in bool leaveOpen = false
+            )
             : base(baseStream, readCount, readTime, writeCount, writeTime, leaveOpen)
         { }
     }
@@ -34,7 +41,7 @@
         /// <param name="writeCount">Write count (zero to disable write throttling)</param>
         /// <param name="writeTime">Write time</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public ThrottledStream(T baseStream, int readCount = 0, TimeSpan? readTime = null, int writeCount = 0, TimeSpan? writeTime = null, bool leaveOpen = false)
+        public ThrottledStream(in T baseStream, in int readCount = 0, in TimeSpan? readTime = null, in int writeCount = 0, in TimeSpan? writeTime = null, in bool leaveOpen = false)
             : base(baseStream, leaveOpen)
         {
             ReadCount = readCount;
@@ -215,7 +222,7 @@
         /// </summary>
         /// <param name="count">Count</param>
         /// <returns>Write count</returns>
-        protected int ThrottleWriting(int count)
+        protected int ThrottleWriting(in int count)
         {
             EnsureUndisposed();
             EnsureWritable();
@@ -270,7 +277,7 @@
         /// </summary>
         /// <param name="count">Count</param>
         /// <returns>Number of bytes to read without throttling</returns>
-        protected int GetReadCount(int count)
+        protected int GetReadCount(in int count)
         {
             EnsureUndisposed();
             EnsureReadable();

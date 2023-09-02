@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime;
-using System.Security.Cryptography;
 
 namespace wan24.Core
 {
@@ -23,7 +22,7 @@ namespace wan24.Core
         /// <param name="len">Length</param>
         /// <param name="pool">Pool</param>
         /// <param name="clean">Clean the rented array?</param>
-        public RentedArray(int len, ArrayPool<T>? pool = null, bool clean = true) : base()
+        public RentedArray(in int len, in ArrayPool<T>? pool = null, in bool clean = true) : base()
         {
             if (len < 1) throw new ArgumentOutOfRangeException(nameof(len));
             Pool = pool ?? ArrayPool<T>.Shared;
@@ -38,7 +37,7 @@ namespace wan24.Core
         /// <param name="arr">Rented array</param>
         /// <param name="len">Length</param>
         /// <param name="clean">Clean the rented array?</param>
-        public RentedArray(ArrayPool<T> pool, T[] arr, int? len = null, bool clean = false) : base()
+        public RentedArray(in ArrayPool<T> pool, in T[] arr, int? len = null, in bool clean = false) : base()
         {
             len ??= arr.Length;
             if (len < 1 || len > arr.Length)
@@ -123,7 +122,8 @@ namespace wan24.Core
                 bool clear = true;
                 if (arr is byte[] byteArr)
                 {
-                    RandomNumberGenerator.Fill(byteArr.AsSpan(0, Length));
+                    clear = false;
+                    byteArr.AsSpan(0, Length).Clean();
                 }
                 else if(arr is char[] charArr)
                 {
@@ -142,24 +142,24 @@ namespace wan24.Core
         /// Cast as array
         /// </summary>
         /// <param name="arr">Array (may be longer than <see cref="Length"/>!)</param>
-        public static implicit operator T[](RentedArray<T> arr) => arr.Array;
+        public static implicit operator T[](in RentedArray<T> arr) => arr.Array;
 
         /// <summary>
         /// Cast as span
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator Span<T>(RentedArray<T> arr) => arr.Span;
+        public static implicit operator Span<T>(in RentedArray<T> arr) => arr.Span;
 
         /// <summary>
         /// Cast as memory
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator Memory<T>(RentedArray<T> arr) => arr.Memory;
+        public static implicit operator Memory<T>(in RentedArray<T> arr) => arr.Memory;
 
         /// <summary>
         /// Cast as Int32 (length value)
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator int(RentedArray<T> arr) => arr.Length;
+        public static implicit operator int(in RentedArray<T> arr) => arr.Length;
     }
 }

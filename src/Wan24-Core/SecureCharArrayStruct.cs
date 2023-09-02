@@ -4,6 +4,9 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
+//TODO SecureCharArrayStructSimple
+//TODO SecureCharArrayRefStruct
+
 namespace wan24.Core
 {
     /// <summary>
@@ -46,7 +49,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="array">Array</param>
-        public SecureCharArrayStruct(char[] array)
+        public SecureCharArrayStruct(in char[] array)
         {
             _Array = array;
             Handle = GCHandle.Alloc(_Array, GCHandleType.Pinned);
@@ -59,7 +62,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="len">Length in chars</param>
-        public SecureCharArrayStruct(long len) : this(new char[len]) { }
+        public SecureCharArrayStruct(in long len) : this(new char[len]) { }
 
         /// <inheritdoc/>
         public readonly char this[int offset]
@@ -182,7 +185,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private readonly tValue IfUndisposed<tValue>(tValue value)
+        private readonly tValue IfUndisposed<tValue>(in tValue value)
         {
             EnsureUndisposed();
             return value;
@@ -211,44 +214,44 @@ namespace wan24.Core
         /// Cast as char array
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator char[](SecureCharArrayStruct arr) => arr.Array;
+        public static implicit operator char[](in SecureCharArrayStruct arr) => arr.Array;
 
         /// <summary>
         /// Cast as span
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator Span<char>(SecureCharArrayStruct arr) => arr.Span;
+        public static implicit operator Span<char>(in SecureCharArrayStruct arr) => arr.Span;
 
         /// <summary>
         /// Cast as memory
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator Memory<char>(SecureCharArrayStruct arr) => arr.Memory;
+        public static implicit operator Memory<char>(in SecureCharArrayStruct arr) => arr.Memory;
 #if !NO_UNSAFE
         /// <summary>
         /// Cast as pointer
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator char*(SecureCharArrayStruct arr) => arr.Ptr;
+        public static implicit operator char*(in SecureCharArrayStruct arr) => arr.Ptr;
 #endif
 
         /// <summary>
         /// Cast as pointer
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator IntPtr(SecureCharArrayStruct arr) => arr.IntPtr;
+        public static implicit operator IntPtr(in SecureCharArrayStruct arr) => arr.IntPtr;
 
         /// <summary>
         /// Cast as Int32 (length value)
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator int(SecureCharArrayStruct arr) => arr.Length;
+        public static implicit operator int(in SecureCharArrayStruct arr) => arr.Length;
 
         /// <summary>
         /// Cast as Int64 (length value)
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator long(SecureCharArrayStruct arr) => arr.LongLength;
+        public static implicit operator long(in SecureCharArrayStruct arr) => arr.LongLength;
 
         /// <summary>
         /// Cast as <see cref="SecureByteArray"/> (using UTF-8 encoding)
@@ -257,14 +260,14 @@ namespace wan24.Core
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static implicit operator SecureByteArray(SecureCharArrayStruct arr)
+        public static implicit operator SecureByteArray(in SecureCharArrayStruct arr)
         {
 #if !NO_UNSAFE
             if (arr.Length << 1 > Settings.StackAllocBorder)
             {
 #endif
-                using RentedArrayStruct<byte> buffer = new(arr.Length << 1, clean: false);
-                return new(buffer.Span[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer)].ToArray());
+                using RentedArrayRefStruct<byte> buffer = new(arr.Length << 1, clean: false);
+                return new(buffer.Span[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer.Span)].ToArray());
 #if !NO_UNSAFE
             }
             else
@@ -282,14 +285,14 @@ namespace wan24.Core
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static implicit operator SecureByteArrayStruct(SecureCharArrayStruct arr)
+        public static implicit operator SecureByteArrayStruct(in SecureCharArrayStruct arr)
         {
 #if !NO_UNSAFE
             if (arr.Length << 1 > Settings.StackAllocBorder)
             {
 #endif
-                using RentedArrayStruct<byte> buffer = new(arr.Length << 1, clean: false);
-                return new(buffer.Span[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer)].ToArray());
+                using RentedArrayRefStruct<byte> buffer = new(arr.Length << 1, clean: false);
+                return new(buffer.Span[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer.Span)].ToArray());
 #if !NO_UNSAFE
             }
             else
@@ -304,7 +307,7 @@ namespace wan24.Core
         /// Cast a char array as secure char array
         /// </summary>
         /// <param name="arr">Char array</param>
-        public static explicit operator SecureCharArrayStruct(char[] arr) => new(arr);
+        public static explicit operator SecureCharArrayStruct(in char[] arr) => new(arr);
 
         /// <summary>
         /// Equals
@@ -312,7 +315,7 @@ namespace wan24.Core
         /// <param name="left">Left</param>
         /// <param name="right">Right</param>
         /// <returns>Equals?</returns>
-        public static bool operator ==(SecureCharArrayStruct left, SecureCharArrayStruct right) => left.Equals(right);
+        public static bool operator ==(in SecureCharArrayStruct left, in SecureCharArrayStruct right) => left.Equals(right);
 
         /// <summary>
         /// Not equal
@@ -320,6 +323,6 @@ namespace wan24.Core
         /// <param name="left">Left</param>
         /// <param name="right">Right</param>
         /// <returns>Not equal?</returns>
-        public static bool operator !=(SecureCharArrayStruct left, SecureCharArrayStruct right) => !left.Equals(right);
+        public static bool operator !=(in SecureCharArrayStruct left, in SecureCharArrayStruct right) => !left.Equals(right);
     }
 }

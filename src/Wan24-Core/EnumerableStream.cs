@@ -18,13 +18,13 @@
         /// Constructor
         /// </summary>
         /// <param name="enumerable">Enumerable</param>
-        public EnumerableStream(IEnumerable<byte> enumerable) : this(enumerable.GetEnumerator()) { }
+        public EnumerableStream(in IEnumerable<byte> enumerable) : this(enumerable.GetEnumerator()) { }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="enumerator">Enumerator</param>
-        public EnumerableStream(IEnumerator<byte> enumerator) : base() => Enumerator = enumerator;
+        public EnumerableStream(in IEnumerator<byte> enumerator) : base() => Enumerator = enumerator;
 
         /// <inheritdoc/>
         public bool EndOfStream { get; protected set; }

@@ -13,13 +13,13 @@ namespace wan24.Core
         /// </summary>
         /// <param name="baseStream">Base stream</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public WrapperStream(Stream baseStream, bool leaveOpen = false) : base(baseStream, leaveOpen) { }
+        public WrapperStream(in Stream baseStream, in bool leaveOpen = false) : base(baseStream, leaveOpen) { }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        protected WrapperStream(bool leaveOpen = false) : base(leaveOpen) { }
+        protected WrapperStream(in bool leaveOpen = false) : base(leaveOpen) { }
     }
 
     /// <summary>
@@ -63,7 +63,7 @@ namespace wan24.Core
         /// <param name="baseStream">Base stream</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
 #pragma warning disable CS8618 // _BaseStream must have a value - will be set by BaseStream setter
-        public WrapperStream(T baseStream, bool leaveOpen = false) : base()
+        public WrapperStream(in T baseStream, in bool leaveOpen = false) : base()
         {
             BaseStream = baseStream;
             _LeaveOpen = leaveOpen;
@@ -74,7 +74,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        protected WrapperStream(bool leaveOpen = false)
+        protected WrapperStream(in bool leaveOpen = false)
         {
             _BaseStream = null!;
             _LeaveOpen = leaveOpen;
@@ -426,7 +426,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="destination">Target</param>
         /// <param name="bufferSize">Buffer size in bytes</param>
-        protected void BaseCopyTo(Stream destination, int bufferSize) => base.CopyTo(destination, bufferSize);
+        protected void BaseCopyTo(in Stream destination, in int bufferSize) => base.CopyTo(destination, bufferSize);
 
         /// <summary>
         /// Copy to another stream
@@ -434,7 +434,7 @@ namespace wan24.Core
         /// <param name="destination">Target</param>
         /// <param name="bufferSize">Buffer size in bytes</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        protected Task BaseCopyToAsync(Stream destination, int bufferSize, CancellationToken cancellationToken)
+        protected Task BaseCopyToAsync(in Stream destination, in int bufferSize, in CancellationToken cancellationToken)
             => base.CopyToAsync(destination, bufferSize, cancellationToken);
 
         /// <summary>
@@ -446,7 +446,7 @@ namespace wan24.Core
         /// <param name="callback">Callback</param>
         /// <param name="state">State</param>
         /// <returns>Result</returns>
-        protected IAsyncResult BaseBeginRead(byte[] buffer, int offset, int count, AsyncCallback? callback, object? state)
+        protected IAsyncResult BaseBeginRead(in byte[] buffer, in int offset, in int count, in AsyncCallback? callback, object? state)
             => base.BeginRead(buffer, offset, count, callback, state);
 
         /// <summary>
@@ -454,7 +454,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="asyncResult">Result</param>
         /// <returns>Number of bytes red</returns>
-        protected int BaseEndRead(IAsyncResult asyncResult) => base.EndRead(asyncResult);
+        protected int BaseEndRead(in IAsyncResult asyncResult) => base.EndRead(asyncResult);
 
         /// <summary>
         /// Begin write
@@ -465,14 +465,14 @@ namespace wan24.Core
         /// <param name="callback">Callback</param>
         /// <param name="state">State</param>
         /// <returns>Result</returns>
-        protected IAsyncResult BaseBeginWrite(byte[] buffer, int offset, int count, AsyncCallback? callback, object? state)
+        protected IAsyncResult BaseBeginWrite(in byte[] buffer, in int offset, in int count, in AsyncCallback? callback, in object? state)
             => base.BeginWrite(buffer, offset, count, callback, state);
 
         /// <summary>
         /// End write
         /// </summary>
         /// <param name="asyncResult">Result</param>
-        protected void BaseEndWrite(IAsyncResult asyncResult) => base.EndWrite(asyncResult);
+        protected void BaseEndWrite(in IAsyncResult asyncResult) => base.EndWrite(asyncResult);
 
         /// <summary>
         /// Handle a disposed base stream

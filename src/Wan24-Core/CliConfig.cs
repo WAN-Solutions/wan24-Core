@@ -12,7 +12,7 @@ namespace wan24.Core
         /// Applya configuration from CLI arguments
         /// </summary>
         /// <param name="ca">CLI arguments</param>
-        public static void Apply(CliArguments ca)
+        public static void Apply(in CliArguments ca)
         {
             string[] temp;
             ReadOnlyCollection<string> values;

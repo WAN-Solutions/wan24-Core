@@ -9,7 +9,7 @@
         /// Create a chunked file stream
         /// </summary>
         /// <param name="fileName">Filename template (needs to use variable <c>chunk</c> (the numeric chunk index) for parsing a chunk filename using 
-        /// <see cref="StringExtensions.Parse(string, Dictionary{string, string}, int?, bool, System.Text.RegularExpressions.Regex?, int?)"/></param>
+        /// <see cref="StringExtensions.Parse(string, in Dictionary{string, string}, int?, in bool, System.Text.RegularExpressions.Regex?, int?)"/></param>
         /// <param name="chunkSize">Chunk size in bytes</param>
         /// <param name="createMode">File create mode</param>
         /// <param name="openMode">Open existing file mode</param>
@@ -19,7 +19,7 @@
         /// <returns>Chunked stream</returns>
         public static ChunkedStream Create(
             string fileName,
-            long chunkSize,
+            in long chunkSize,
             FileMode openMode = FileMode.Open,
             FileAccess access = FileAccess.ReadWrite,
             FileShare share = FileShare.None,

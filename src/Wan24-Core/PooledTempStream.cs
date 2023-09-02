@@ -33,7 +33,7 @@
         /// <param name="estimatedLength">Estimated length in bytes</param>
         /// <param name="memoryStreamPool">Memory stream pool to use</param>
         /// <param name="fileStreamPool">File stream pool to use</param>
-        public PooledTempStream(long estimatedLength = 0, StreamPool<PooledMemoryStream>? memoryStreamPool = null, StreamPool<PooledTempFileStream>? fileStreamPool = null)
+        public PooledTempStream(in long estimatedLength = 0, in StreamPool<PooledMemoryStream>? memoryStreamPool = null, in StreamPool<PooledTempFileStream>? fileStreamPool = null)
             : base(leaveOpen: true)
         {
             UsedMemoryStreamPool = memoryStreamPool ?? MemoryStreamPool;

@@ -27,7 +27,7 @@
         /// </summary>
         /// <param name="key">Object key</param>
         /// <param name="tag">Tagged object</param>
-        internal ObjectLock(object key, object? tag) : base()
+        internal ObjectLock(in object key, in object? tag) : base()
         {
             Key = key;
             Tag = tag;
@@ -80,7 +80,7 @@
         /// Set completed
         /// </summary>
         /// <param name="ex">Exception</param>
-        private void SetCompleted(Exception? ex = null)
+        private void SetCompleted(in Exception? ex = null)
         {
             using SemaphoreSyncContext ssc = Sync.SyncContext();
             if (!IsConstructed || TaskCompletion.Task.IsCompleted) return;
@@ -130,6 +130,6 @@
         /// Cast as disposing-flag
         /// </summary>
         /// <param name="ol">Lock</param>
-        public static implicit operator bool(ObjectLock ol) => !ol.IsDisposing;
+        public static implicit operator bool(in ObjectLock ol) => !ol.IsDisposing;
     }
 }

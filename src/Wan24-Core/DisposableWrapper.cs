@@ -29,7 +29,7 @@
         /// <param name="obj">Wrapped object</param>
         /// <param name="disposeAction">Dispose action</param>
         /// <param name="allowDisposingObjectAccess">Allow disposing wrapped object access?</param>
-        public DisposableWrapper(T obj, Dispose_Delegate disposeAction, bool allowDisposingObjectAccess = true) : base(asyncDisposing: false)
+        public DisposableWrapper(in T obj, in Dispose_Delegate disposeAction, in bool allowDisposingObjectAccess = true) : base(asyncDisposing: false)
         {
             _Object = obj;
             AllowDisposingObjectAccess = allowDisposingObjectAccess;
@@ -43,7 +43,7 @@
         /// <param name="obj">Wrapped object</param>
         /// <param name="disposeAsyncAction">Asynchronous dispose action</param>
         /// <param name="allowDisposingObjectAccess">Allow disposing wrapped object access?</param>
-        public DisposableWrapper(T obj, DisposeAsync_Delegate disposeAsyncAction, bool allowDisposingObjectAccess = true) : base()
+        public DisposableWrapper(in T obj, in DisposeAsync_Delegate disposeAsyncAction, in bool allowDisposingObjectAccess = true) : base()
         {
             _Object = obj;
             AllowDisposingObjectAccess = allowDisposingObjectAccess;
@@ -58,7 +58,7 @@
         /// <param name="disposeAction">Dispose action</param>
         /// <param name="disposeAsyncAction">Asynchronous dispose action</param>
         /// <param name="allowDisposingObjectAccess">Allow disposing wrapped object access?</param>
-        public DisposableWrapper(T obj, Dispose_Delegate disposeAction, DisposeAsync_Delegate disposeAsyncAction, bool allowDisposingObjectAccess = true) : base()
+        public DisposableWrapper(in T obj, in Dispose_Delegate disposeAction, in DisposeAsync_Delegate disposeAsyncAction, in bool allowDisposingObjectAccess = true) : base()
         {
             _Object = obj;
             AllowDisposingObjectAccess = allowDisposingObjectAccess;
@@ -112,12 +112,12 @@
         /// Cast as wrapped object
         /// </summary>
         /// <param name="wrapper">Wrapper</param>
-        public static implicit operator T(DisposableWrapper<T> wrapper) => wrapper.Object;
+        public static implicit operator T(in DisposableWrapper<T> wrapper) => wrapper.Object;
 
         /// <summary>
         /// Cast as disposed status
         /// </summary>
         /// <param name="wrapper">Wrapper</param>
-        public static implicit operator bool(DisposableWrapper<T> wrapper) => !wrapper.IsDisposing;
+        public static implicit operator bool(in DisposableWrapper<T> wrapper) => !wrapper.IsDisposing;
     }
 }

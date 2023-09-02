@@ -29,7 +29,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Context (don't forget to dispose!)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public SemaphoreSyncContext SyncContext(TimeSpan timeout, CancellationToken cancellationToken = default)
+        public SemaphoreSyncContext SyncContext(in TimeSpan timeout, in CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
             Semaphore.Wait(timeout, cancellationToken);
@@ -42,7 +42,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Context (don't forget to dispose!)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public SemaphoreSyncContext SyncContext(CancellationToken cancellationToken = default)
+        public SemaphoreSyncContext SyncContext(in CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
             Semaphore.Wait(cancellationToken);
@@ -124,7 +124,7 @@ namespace wan24.Core
         /// <param name="timeout">Timeout</param>
         /// <param name="cancellationToken">Cancellation token</param>
         [TargetedPatchingOptOut("Tiny method")]
-        public void Execute(Action action, TimeSpan timeout, CancellationToken cancellationToken = default)
+        public void Execute(in Action action, in TimeSpan timeout, in CancellationToken cancellationToken = default)
         {
             using SemaphoreSyncContext ssc = SyncContext(timeout, cancellationToken);
             action();
@@ -136,7 +136,7 @@ namespace wan24.Core
         /// <param name="action">Action</param>
         /// <param name="cancellationToken">Cancellation token</param>
         [TargetedPatchingOptOut("Tiny method")]
-        public void Execute(Action action, CancellationToken cancellationToken = default)
+        public void Execute(in Action action, in CancellationToken cancellationToken = default)
         {
             using SemaphoreSyncContext ssc = SyncContext(cancellationToken);
             action();
@@ -151,7 +151,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Action return value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public T Execute<T>(Func<T> action, TimeSpan timeout, CancellationToken cancellationToken = default)
+        public T Execute<T>(in Func<T> action, in TimeSpan timeout, in CancellationToken cancellationToken = default)
         {
             using SemaphoreSyncContext ssc = SyncContext(timeout, cancellationToken);
             return action();
@@ -165,7 +165,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Action return value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public T Execute<T>(Func<T> action, CancellationToken cancellationToken = default)
+        public T Execute<T>(in Func<T> action, in CancellationToken cancellationToken = default)
         {
             using SemaphoreSyncContext ssc = SyncContext(cancellationToken);
             return action();
@@ -232,6 +232,6 @@ namespace wan24.Core
         /// Cast as synchronization context
         /// </summary>
         /// <param name="sync">Synchronization</param>
-        public static implicit operator SemaphoreSyncContext(SemaphoreSync sync) => sync.SyncContext();
+        public static implicit operator SemaphoreSyncContext(in SemaphoreSync sync) => sync.SyncContext();
     }
 }

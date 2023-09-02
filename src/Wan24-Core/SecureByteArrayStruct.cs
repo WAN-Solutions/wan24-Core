@@ -3,6 +3,9 @@ using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
+//TODO SecureByteArrayStructSimple
+//TODO SecureByteArrayRefStruct
+
 namespace wan24.Core
 {
     /// <summary>
@@ -45,7 +48,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="array">Array</param>
-        public SecureByteArrayStruct(byte[] array)
+        public SecureByteArrayStruct(in byte[] array)
         {
             _Array = array;
             Handle = GCHandle.Alloc(_Array, GCHandleType.Pinned);
@@ -58,7 +61,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="len">Length in bytes</param>
-        public SecureByteArrayStruct(long len) : this(new byte[len]) { }
+        public SecureByteArrayStruct(in long len) : this(new byte[len]) { }
 
         /// <inheritdoc/>
         public readonly byte this[int offset]
@@ -210,63 +213,63 @@ namespace wan24.Core
         /// Cast as byte array
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator byte[](SecureByteArrayStruct arr) => arr.Array;
+        public static implicit operator byte[](in SecureByteArrayStruct arr) => arr.Array;
 
         /// <summary>
         /// Cast as span
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator Span<byte>(SecureByteArrayStruct arr) => arr.Span;
+        public static implicit operator Span<byte>(in SecureByteArrayStruct arr) => arr.Span;
 
         /// <summary>
         /// Cast as memory
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator Memory<byte>(SecureByteArrayStruct arr) => arr.Memory;
+        public static implicit operator Memory<byte>(in SecureByteArrayStruct arr) => arr.Memory;
 
 #if !NO_UNSAFE
         /// <summary>
         /// Cast as pointer
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator byte*(SecureByteArrayStruct arr) => arr.Ptr;
+        public static implicit operator byte*(in SecureByteArrayStruct arr) => arr.Ptr;
 #endif
 
         /// <summary>
         /// Cast as pointer
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator IntPtr(SecureByteArrayStruct arr) => arr.IntPtr;
+        public static implicit operator IntPtr(in SecureByteArrayStruct arr) => arr.IntPtr;
 
         /// <summary>
         /// Cast as Int32 (length value)
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator int(SecureByteArrayStruct arr) => arr.Length;
+        public static implicit operator int(in SecureByteArrayStruct arr) => arr.Length;
 
         /// <summary>
         /// Cast as Int64 (length value)
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator long(SecureByteArrayStruct arr) => arr.LongLength;
+        public static implicit operator long(in SecureByteArrayStruct arr) => arr.LongLength;
 
         /// <summary>
         /// Cast as <see cref="SecureCharArray"/> (using UTF-8 encoding)
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator SecureCharArray(SecureByteArrayStruct arr) => new(arr.Span.ToUtf8Chars());
+        public static implicit operator SecureCharArray(in SecureByteArrayStruct arr) => new(arr.Span.ToUtf8Chars());
 
         /// <summary>
         /// Cast as <see cref="SecureCharArrayStruct"/> (using UTF-8 encoding)
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator SecureCharArrayStruct(SecureByteArrayStruct arr) => new(arr.Span.ToUtf8Chars());
+        public static implicit operator SecureCharArrayStruct(in SecureByteArrayStruct arr) => new(arr.Span.ToUtf8Chars());
 
         /// <summary>
         /// Cast a byte array as secure byte array
         /// </summary>
         /// <param name="arr">Byte array</param>
-        public static explicit operator SecureByteArrayStruct(byte[] arr) => new(arr);
+        public static explicit operator SecureByteArrayStruct(in byte[] arr) => new(arr);
 
         /// <summary>
         /// Equals
@@ -274,7 +277,7 @@ namespace wan24.Core
         /// <param name="left">Left</param>
         /// <param name="right">Right</param>
         /// <returns>Equals?</returns>
-        public static bool operator ==(SecureByteArrayStruct left, SecureByteArrayStruct right) => left.Equals(right);
+        public static bool operator ==(in SecureByteArrayStruct left, in SecureByteArrayStruct right) => left.Equals(right);
 
         /// <summary>
         /// Not equal
@@ -282,6 +285,6 @@ namespace wan24.Core
         /// <param name="left">Left</param>
         /// <param name="right">Right</param>
         /// <returns>Not equal?</returns>
-        public static bool operator !=(SecureByteArrayStruct left, SecureByteArrayStruct right) => !left.Equals(right);
+        public static bool operator !=(in SecureByteArrayStruct left, in SecureByteArrayStruct right) => !left.Equals(right);
     }
 }

@@ -28,9 +28,9 @@
         /// <param name="name">Display name</param>
         /// <param name="capacity">Capacity</param>
         /// <param name="valueGenerator">Value generator</param>
-        public Statistics(string name, int capacity, Value_Delegate valueGenerator)
+        public Statistics(in string name, in int capacity, in Value_Delegate valueGenerator)
         {
-            this.EnsureValidArgument(nameof(capacity), 1, int.MaxValue, capacity);
+            if (capacity < 1) throw new ArgumentOutOfRangeException(nameof(capacity));
             Name = name;
             ValueGenerator = valueGenerator;
             Values = new double[capacity];

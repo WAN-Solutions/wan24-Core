@@ -186,7 +186,7 @@ namespace wan24.Core
         {
             if (bits < BigInteger.Zero || bits > MaxIPv6) throw new ArgumentOutOfRangeException(nameof(bits));
 #if NO_UNSAFE
-            using RentedArrayStruct<byte> buffer = new(ByteCount);
+            using RentedArrayRefStruct<byte> buffer = new(ByteCount);
             if (!bits.TryWriteBytes(buffer, out int written, isUnsigned: true, isBigEndian: true))
                 throw new ArgumentOutOfRangeException(nameof(bits), $"{written} bytes written");
             if (written != buffer.Length)
@@ -224,7 +224,7 @@ namespace wan24.Core
             if (ip.AddressFamily != AddressFamily.InterNetwork && ip.AddressFamily != AddressFamily.InterNetworkV6)
                 throw new ArgumentException("Sub-net supports only IPv4/6 addresses", nameof(ip));
 #if NO_UNSAFE
-            using RentedArray<byte> buffer = GetBytes(ip);
+            using RentedArrayRefStruct<byte> buffer = GetBytes(ip);
             return new(buffer.Span, isUnsigned: true, isBigEndian: true);
 #else
             Span<byte> buffer = stackalloc byte[ip.AddressFamily == AddressFamily.InterNetwork ? IPV4_BYTES : IPV6_BYTES];
@@ -241,10 +241,10 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static RentedArray<byte> GetBytes(in IPAddress ip)
+        private static RentedArrayRefStruct<byte> GetBytes(in IPAddress ip)
         {
             int len = ip.AddressFamily == AddressFamily.InterNetwork ? IPV4_BYTES : IPV6_BYTES;
-            RentedArray<byte> res = new(len, clean: false);
+            RentedArrayRefStruct<byte> res = new(len, clean: false);
             try
             {
                 if (ip.TryWriteBytes(res.Span, out int written) && len == written) return res;

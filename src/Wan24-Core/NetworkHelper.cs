@@ -393,7 +393,7 @@ namespace wan24.Core
         /// <param name="ip">IP address (IPv4 required)</param>
         /// <param name="mask">Network mask</param>
         /// <returns>Broadcast IP address</returns>
-        public static IPAddress GetBroadcastAddress(this IPAddress ip, IPAddress mask)
+        public static IPAddress GetBroadcastAddress(this IPAddress ip, in IPAddress mask)
         {
             if (ip.AddressFamily != AddressFamily.InterNetwork) throw new ArgumentException("An IPv4 IP address is required", nameof(ip));
             if (mask.AddressFamily != AddressFamily.InterNetwork) throw new ArgumentException("An IPv4 IP address is required", nameof(mask));

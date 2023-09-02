@@ -26,13 +26,13 @@ namespace wan24.Core
         /// <param name="count">Number of bytes to copy</param>
         /// <param name="bufferSize">Buffer size in bytes</param>
         /// <returns>Number of left bytes ('cause the source stream didn't deliver enough data)</returns>
-        public static long CopyPartialTo(this Stream stream, Stream target, long count, int? bufferSize = null)
+        public static long CopyPartialTo(this Stream stream, in Stream target, long count, int? bufferSize = null)
         {
             if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (count == 0) return 0;
             bufferSize ??= Settings.BufferSize;
             bufferSize = (int)Math.Min(count, bufferSize.Value);
-            using RentedArray<byte> buffer = new(bufferSize.Value, clean: false);
+            using RentedArrayRefStruct<byte> buffer = new(bufferSize.Value, clean: false);
             for (int red = 1; count != 0 && red != 0; count -= red)
             {
                 red = stream.Read(buffer.Span[..(int)Math.Min(count, bufferSize.Value)]);
@@ -56,7 +56,7 @@ namespace wan24.Core
             if (count == 0) return 0;
             bufferSize ??= Settings.BufferSize;
             bufferSize = (int)Math.Min(count, bufferSize.Value);
-            using RentedArray<byte> buffer = new(bufferSize.Value, clean: false);
+            using RentedArrayStructSimple<byte> buffer = new(bufferSize.Value, clean: false);
             for (int red = 1; count != 0 && red != 0; count -= red)
             {
                 red = await stream.ReadAsync(buffer.Memory[..(int)Math.Min(count, bufferSize.Value)], cancellationToken).DynamicContext();
@@ -73,7 +73,7 @@ namespace wan24.Core
         /// <param name="origin">Origin</param>
         /// <returns>Position</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static long GenericSeek(this Stream stream, long offset, SeekOrigin origin) => stream.Position = origin switch
+        public static long GenericSeek(this Stream stream, in long offset, in SeekOrigin origin) => stream.Position = origin switch
         {
             SeekOrigin.Begin => offset,
             SeekOrigin.Current => stream.Position + offset,
@@ -86,7 +86,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <param name="count">Number of bytes</param>
-        public static void WriteZero(this Stream stream, long count)
+        public static void WriteZero(this Stream stream, in long count)
         {
             if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (count == 0) return;
@@ -115,7 +115,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <param name="count">Number of bytes</param>
-        public static void WriteRandom(this Stream stream, long count)
+        public static void WriteRandom(this Stream stream, in long count)
         {
             if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (count == 0) return;
@@ -141,10 +141,10 @@ namespace wan24.Core
         /// <param name="stream">Stream</param>
         /// <param name="destination">Target</param>
         /// <param name="bufferSize">Buffer size in bytes</param>
-        public static void GenericCopyTo(this Stream stream, Stream destination, int bufferSize = 81_920)
+        public static void GenericCopyTo(this Stream stream, in Stream destination, in int bufferSize = 81_920)
         {
             if (bufferSize < 1) throw new ArgumentOutOfRangeException(nameof(bufferSize));
-            using RentedArray<byte> buffer = new(bufferSize, clean: false);
+            using RentedArrayRefStruct<byte> buffer = new(bufferSize, clean: false);
             for (int red = bufferSize; red == bufferSize;)
             {
                 red = stream.Read(buffer.Span);
@@ -162,7 +162,7 @@ namespace wan24.Core
         public static async Task GenericCopyToAsync(this Stream stream, Stream destination, int bufferSize = 81_920, CancellationToken cancellationToken = default)
         {
             if (bufferSize < 1) throw new ArgumentOutOfRangeException(nameof(bufferSize));
-            using RentedArray<byte> buffer = new(bufferSize, clean: false);
+            using RentedArrayStructSimple<byte> buffer = new(bufferSize, clean: false);
             for (int red = bufferSize; red == bufferSize;)
             {
                 red = await stream.ReadAsync(buffer.Memory, cancellationToken).DynamicContext();
@@ -181,7 +181,7 @@ namespace wan24.Core
         public static int GenericReadByte(this Stream stream)
         {
 #if NO_UNSAFE
-            using RentedArray<byte> buffer = new(len: 1, clean: false);
+            using RentedArrayRefStruct<byte> buffer = new(len: 1, clean: false);
             return stream.Read(buffer.Span) == 0 ? -1 : buffer.Span[0];
 #else
             Span<byte> buffer = stackalloc byte[1];
@@ -197,10 +197,10 @@ namespace wan24.Core
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static void GenericWriteByte(this Stream stream, byte value)
+        public static void GenericWriteByte(this Stream stream, in byte value)
         {
 #if NO_UNSAFE
-            using RentedArray<byte> buffer = new(len: 1);
+            using RentedArrayRefStruct<byte> buffer = new(len: 1);
             buffer[0] = value;
             stream.Write(buffer.Span);
 #else
@@ -216,7 +216,7 @@ namespace wan24.Core
         /// <param name="stream">Stream (will be chunked from position <c>0</c>)</param>
         /// <param name="chunkSize">Chunk size in bytes</param>
         /// <returns>Chunks (should be used directly, and the yielded partial chunk streams, too (their position will change as soon as a new stream was yielded)!)</returns>
-        public static IEnumerable<StreamBase> Chunk(this Stream stream, long chunkSize)
+        public static IEnumerable<StreamBase> Chunk(this Stream stream, in long chunkSize)
         {
             if (chunkSize < 1) throw new ArgumentOutOfRangeException(nameof(chunkSize));
             return new StreamChunkEnumerator(stream, chunkSize);
@@ -253,7 +253,7 @@ namespace wan24.Core
             /// </summary>
             /// <param name="stream">Stream</param>
             /// <param name="chunkSize">Chunk size in bytes</param>
-            internal StreamChunkEnumerator(Stream stream, long chunkSize) : base(asyncDisposing: false)
+            internal StreamChunkEnumerator(in Stream stream, in long chunkSize) : base(asyncDisposing: false)
             {
                 stream.Position = 0;
                 Stream = stream;

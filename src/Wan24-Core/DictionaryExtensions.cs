@@ -13,7 +13,7 @@
         /// <param name="other">Source</param>
         /// <param name="prefix">Key prefix</param>
         /// <returns>Input</returns>
-        public static Dictionary<string, T> Merge<T>(this Dictionary<string, T> dict, Dictionary<string, T> other, string? prefix = null)
+        public static Dictionary<string, T> Merge<T>(this Dictionary<string, T> dict, in Dictionary<string, T> other, string? prefix = null)
         {
             prefix ??= string.Empty;
             foreach (var kvp in other) dict[$"{prefix}{kvp.Key}"] = kvp.Value;
@@ -28,7 +28,7 @@
         /// <param name="enumerable">Enumerable</param>
         /// <param name="prefix">Key prefix</param>
         /// <returns>Input</returns>
-        public static Dictionary<string, T> Merge<T>(this Dictionary<string, T> dict, IEnumerable<T> enumerable, string? prefix = null)
+        public static Dictionary<string, T> Merge<T>(this Dictionary<string, T> dict, in IEnumerable<T> enumerable, string? prefix = null)
         {
             prefix ??= string.Empty;
             int index = 0;

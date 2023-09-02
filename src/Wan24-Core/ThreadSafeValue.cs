@@ -19,10 +19,7 @@
         /// Constructor
         /// </summary>
         /// <param name="initialValue">Initial value</param>
-        public ThreadSafeValue(T? initialValue = default) : base()
-        {
-            _Value = initialValue;
-        }
+        public ThreadSafeValue(in T? initialValue = default) : base() => _Value = initialValue;
 
         /// <summary>
         /// Value
@@ -56,7 +53,7 @@
         /// </summary>
         /// <param name="action">Action</param>
         /// <returns>Current value</returns>
-        public virtual T? Execute(Action_Delegate action)
+        public virtual T? Execute(in Action_Delegate action)
         {
             using SemaphoreSyncContext ssc = Sync.SyncContext();
             return _Value = action(_Value);
@@ -106,12 +103,12 @@
         /// Cast as value
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator T?(ThreadSafeValue<T?> value) => value.Value;
+        public static implicit operator T?(in ThreadSafeValue<T?> value) => value.Value;
 
         /// <summary>
         /// Cast as new instance
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator ThreadSafeValue<T>(T? value) => new(value);
+        public static implicit operator ThreadSafeValue<T>(in T? value) => new(value);
     }
 }

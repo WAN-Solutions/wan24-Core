@@ -559,7 +559,9 @@ namespace wan24.Core
             /// <param name="itemHandler">Item handler</param>
             /// <param name="queueCapacity">Queue capacity</param>
             /// <param name="threads">Number of threads to use</param>
-            internal ParallelAsyncProcessor(Func<T, CancellationToken, Task> itemHandler, int queueCapacity, int threads) : base(queueCapacity, threads) => ItemHandler = itemHandler;
+            internal ParallelAsyncProcessor(in Func<T, CancellationToken, Task> itemHandler, in int queueCapacity, in int threads)
+                : base(queueCapacity, threads)
+                => ItemHandler = itemHandler;
 
             /// <summary>
             /// Number of processed items

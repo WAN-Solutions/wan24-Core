@@ -18,7 +18,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static byte[] Decode(this char[] str, ReadOnlyMemory<char>? charMap = null, byte[]? res = null) => Decode((ReadOnlySpan<char>)str, charMap, res);
+        public static byte[] Decode(this char[] str, in ReadOnlyMemory<char>? charMap = null, in byte[]? res = null) => Decode((ReadOnlySpan<char>)str, charMap, res);
 
         /// <summary>
         /// Decode
@@ -31,7 +31,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static byte[] Decode(this string str, ReadOnlyMemory<char>? charMap = null, byte[]? res = null) => Decode((ReadOnlySpan<char>)str, charMap, res);
+        public static byte[] Decode(this string str, in ReadOnlyMemory<char>? charMap = null, in byte[]? res = null) => Decode((ReadOnlySpan<char>)str, charMap, res);
 
         /// <summary>
         /// Decode
@@ -44,7 +44,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static byte[] Decode(this Span<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? res = null) => Decode((ReadOnlySpan<char>)str, charMap, res);
+        public static byte[] Decode(this Span<char> str, in ReadOnlyMemory<char>? charMap = null, in byte[]? res = null) => Decode((ReadOnlySpan<char>)str, charMap, res);
 
         /// <summary>
         /// Decode
@@ -57,7 +57,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static byte[] Decode(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? res = null)
+        public static byte[] Decode(this ReadOnlySpan<char> str, in ReadOnlyMemory<char>? charMap = null, in byte[]? res = null)
             => Decode(str, (charMap ?? _DefaultCharMap).Span, res);
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static byte[] Decode(this ReadOnlySpan<char> str, ReadOnlySpan<char> charMap, byte[]? res = null)
+        public static byte[] Decode(this ReadOnlySpan<char> str, in ReadOnlySpan<char> charMap, byte[]? res = null)
         {
             ValidateCharMap(charMap);
             int len = str.Length;
@@ -90,7 +90,6 @@ namespace wan24.Core
 #if !NO_UNSAFE
             unsafe
             {
-                char c;
                 fixed (char* cm = charMap)
                 fixed (char* s = str)
                 fixed (byte* r = res)
@@ -104,7 +103,7 @@ namespace wan24.Core
                         if (l >= 32 && Avx2.IsSupported)
                         {
                             int il = l & ~31;
-                            DecodeAvx2(l, il, charMap, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                            DecodeAvx2(l, il, cm, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
                             i += il;
                             l &= 31;
                         }
@@ -115,8 +114,7 @@ namespace wan24.Core
                             bits = charMap.IndexOf(str[i]);
                             if (bits == -1) throw new InvalidDataException($"Invalid character at offset #{i}");
 #else
-                            c = s[i];
-                            for (bits = 0; bits != 64 && cm[bits] != c; bits++) ;
+                            for (bits = 0; bits != 64 && cm[bits] != s[i]; bits++) ;
                             if (bits == 64) throw new InvalidDataException($"Invalid character at offset #{i}");
 #endif
                             switch (bitOffset)
@@ -185,7 +183,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static void Decode(this ReadOnlySpan<char> str, Span<byte> res, ReadOnlyMemory<char>? charMap = null)
+        public static void Decode(this ReadOnlySpan<char> str, in Span<byte> res, in ReadOnlyMemory<char>? charMap = null)
             => Decode(str, res, (charMap ?? _DefaultCharMap).Span);
 
         /// <summary>
@@ -197,7 +195,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static void Decode(this ReadOnlySpan<char> str, Span<byte> res, ReadOnlySpan<char> charMap)
+        public static void Decode(this ReadOnlySpan<char> str, in Span<byte> res, in ReadOnlySpan<char> charMap)
         {
             ValidateCharMap(charMap);
             int len = str.Length;
@@ -210,7 +208,6 @@ namespace wan24.Core
 #if !NO_UNSAFE
             unsafe
             {
-                char c;
                 fixed (char* cm = charMap)
                 fixed (char* s = str)
                 fixed (byte* r = res)
@@ -224,7 +221,7 @@ namespace wan24.Core
                         if (l >= 32 && Avx2.IsSupported)
                         {
                             int il = l & ~31;
-                            DecodeAvx2(len, il, charMap, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                            DecodeAvx2(len, il, cm, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
                             i += il;
                             l &= 31;
                         }
@@ -235,8 +232,7 @@ namespace wan24.Core
                             bits = charMap.IndexOf(str[i]);
                             if (bits == -1) throw new InvalidDataException($"Invalid character at offset #{i}");
 #else
-                            c = s[i];
-                            for (bits = 0; bits != 64 && cm[bits] != c; bits++) ;
+                            for (bits = 0; bits != 64 && cm[bits] != s[i]; bits++) ;
                             if (bits == 64) throw new InvalidDataException($"Invalid character at offset #{i}");
 #endif
                             switch (bitOffset)

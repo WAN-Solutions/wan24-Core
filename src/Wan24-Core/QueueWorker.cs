@@ -17,7 +17,7 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        public QueueWorker(int capacity) : base()
+        public QueueWorker(in int capacity) : base()
         {
             ServiceWorkerTable.ServiceWorkers[GUID] = this;
             Queue = Channel.CreateBounded<Task_Delegate>(new BoundedChannelOptions(capacity)
@@ -183,6 +183,6 @@ namespace wan24.Core
         /// Cast as queued item count
         /// </summary>
         /// <param name="worker">Worker</param>
-        public static implicit operator int(QueueWorker worker) => worker.Queued;
+        public static implicit operator int(in QueueWorker worker) => worker.Queued;
     }
 }

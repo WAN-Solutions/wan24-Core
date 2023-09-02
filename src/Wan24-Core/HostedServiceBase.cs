@@ -143,6 +143,6 @@ namespace wan24.Core
         /// Cast as running-flag
         /// </summary>
         /// <param name="service">Service</param>
-        public static implicit operator bool(HostedServiceBase service) => service.IsRunning;
+        public static implicit operator bool(in HostedServiceBase service) => service.IsRunning;
     }
 }

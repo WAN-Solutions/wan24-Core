@@ -32,7 +32,7 @@
         /// </summary>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="disposables">Disposables</param>
-        public DisposingAsyncEnumerator(IAsyncEnumerable<T> enumerable, params object?[] disposables) : base()
+        public DisposingAsyncEnumerator(in IAsyncEnumerable<T> enumerable, params object?[] disposables) : base()
         {
             Enumerable = enumerable;
             Enumerator = null;
@@ -45,7 +45,7 @@
         /// <param name="enumerable">Enumerable</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="disposables">Disposables</param>
-        public DisposingAsyncEnumerator(IAsyncEnumerable<T> enumerable, CancellationToken cancellationToken, params object?[] disposables) : this(enumerable, disposables)
+        public DisposingAsyncEnumerator(in IAsyncEnumerable<T> enumerable, in CancellationToken cancellationToken, params object?[] disposables) : this(enumerable, disposables)
             => Cancellation = cancellationToken;
 
         /// <summary>
@@ -53,7 +53,7 @@
         /// </summary>
         /// <param name="enumerator">Enumerator (will be disposed)</param>
         /// <param name="disposables">Disposables</param>
-        public DisposingAsyncEnumerator(IAsyncEnumerator<T> enumerator, params object?[] disposables) : base()
+        public DisposingAsyncEnumerator(in IAsyncEnumerator<T> enumerator, params object?[] disposables) : base()
         {
             Enumerable = null;
             Enumerator = enumerator;
@@ -67,7 +67,7 @@
         /// <param name="enumerator">Enumerator (will be disposed)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="disposables">Disposables</param>
-        public DisposingAsyncEnumerator(IAsyncEnumerator<T> enumerator, CancellationToken cancellationToken, params object?[] disposables) : this(enumerator, disposables)
+        public DisposingAsyncEnumerator(in IAsyncEnumerator<T> enumerator, in CancellationToken cancellationToken, params object?[] disposables) : this(enumerator, disposables)
             => Cancellation = cancellationToken;
 
         /// <inheritdoc/>

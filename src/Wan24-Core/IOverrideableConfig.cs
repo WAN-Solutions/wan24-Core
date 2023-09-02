@@ -100,7 +100,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="propertyName">Property name</param>
         /// <returns>Option</returns>
-        IConfigOption? GetOption(string propertyName);
+        IConfigOption? GetOption(in string propertyName);
         /// <summary>
         /// Set a configuration
         /// </summary>
@@ -108,13 +108,13 @@ namespace wan24.Core
         /// <param name="reset">Reset first?</param>
         /// <param name="recursive">Reset recursive?</param>
         /// <returns>This</returns>
-        IOverrideableConfig SetConfig(Dictionary<string, object?> config, bool reset = false, bool recursive = false);
+        IOverrideableConfig SetConfig(in Dictionary<string, object?> config, in bool reset = false, in bool recursive = false);
         /// <summary>
         /// Unset all option values
         /// </summary>
         /// <param name="recursive">Recursive?</param>
         /// <returns>This</returns>
-        IOverrideableConfig UnsetAll(bool recursive = false);
+        IOverrideableConfig UnsetAll(in bool recursive = false);
         /// <summary>
         /// Unset all option overrides (recursive!)
         /// </summary>
@@ -125,7 +125,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="recursive">Recursive?</param>
         /// <returns>This</returns>
-        IOverrideableConfig ResetChanged(bool recursive = true);
+        IOverrideableConfig ResetChanged(in bool recursive = true);
         /// <summary>
         /// Delegate for configuration events
         /// </summary>

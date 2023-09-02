@@ -69,8 +69,8 @@ namespace wan24.Core
         /// <returns>Getter delegate</returns>
         public static Func<object?, T?> GetGetterDelegate<T>(this PropertyInfo pi)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(pi), pi.CanRead, "Property has no accessable getter");
-            ArgumentValidationHelper.EnsureValidArgument(nameof(T), typeof(T) == pi.PropertyType, $"Property type mismatch ({typeof(T)}/{pi.PropertyType})");
+            if (!pi.CanRead) throw new ArgumentException("Property has no accessable getter", nameof(pi));
+            if (typeof(T) != pi.PropertyType) throw new ArgumentException($"Property type mismatch ({typeof(T)}/{pi.PropertyType})", nameof(pi));
             return (Func<object?, T?>)(pi.GetMethod!.IsStatic
                 ? StaticGetterDelegateMethod2.MakeGenericMethod(
                     pi.PropertyType
@@ -104,7 +104,7 @@ namespace wan24.Core
         /// <returns>Getter delegate</returns>
         public static Func<object?, T?> GetCastedGetterDelegate<T>(this PropertyInfo pi)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(pi), pi.CanRead, "Property has no accessable getter");
+            if (!pi.CanRead) throw new ArgumentException("Property has no accessable getter", nameof(pi));
             return (Func<object?, T?>)(pi.GetMethod!.IsStatic
                 ? StaticGetterDelegateMethod3.MakeGenericMethod(
                     pi.PropertyType,
@@ -139,7 +139,7 @@ namespace wan24.Core
         /// <returns>Getter delegate</returns>
         public static Func<object?, object?> GetGetterDelegate(this PropertyInfo pi)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(pi), pi.CanRead, "Property has no accessable getter");
+            if (!pi.CanRead) throw new ArgumentException("Property has no accessable getter", nameof(pi));
             return (Func<object?, object?>)(pi.GetMethod!.IsStatic
                 ? StaticGetterDelegateMethod.MakeGenericMethod(
                     pi.PropertyType
@@ -174,7 +174,7 @@ namespace wan24.Core
         /// <returns>Getter delegate</returns>
         public static Func<tObject, tReturn?> GetGetterDelegate<tObject, tReturn>(this PropertyInfo pi)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(pi), pi.CanRead, "Property has no accessable getter");
+            if (!pi.CanRead) throw new ArgumentException("Property has no accessable getter", nameof(pi));
             return (Func<tObject, tReturn?>)(pi.GetMethod!.IsStatic
                 ? Delegate.CreateDelegate(typeof(Func<tReturn?>), firstArgument: null, pi.GetMethod!)
                 : Delegate.CreateDelegate(typeof(Func<tObject, tReturn?>), firstArgument: null, pi.GetMethod!));
@@ -187,7 +187,7 @@ namespace wan24.Core
         /// <returns>Setter delegate</returns>
         public static Action<object?, object?> GetSetterDelegate(this PropertyInfo pi)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(pi), pi.CanWrite, "Property has no accessable setter");
+            if (!pi.CanWrite) throw new ArgumentException("Property has no accessable setter", nameof(pi));
             return (Action<object?, object?>)(pi.SetMethod!.IsStatic
                 ? StaticSetterDelegateMethod.MakeGenericMethod(
                     pi.PropertyType
@@ -222,7 +222,7 @@ namespace wan24.Core
         /// <returns>Setter delegate</returns>
         public static Action<tObject, tValue?> GetSetterDelegate<tObject, tValue>(this PropertyInfo pi)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(pi), pi.CanWrite, "Property has no accessable setter");
+            if (!pi.CanWrite) throw new ArgumentException("Property has no accessable setter", nameof(pi));
             return (Action<tObject, tValue?>)(pi.SetMethod!.IsStatic
                 ? Delegate.CreateDelegate(typeof(Action<tValue?>), firstArgument: null, pi.SetMethod!)
                 : Delegate.CreateDelegate(typeof(Action<tObject, tValue?>), firstArgument: null, pi.SetMethod!));

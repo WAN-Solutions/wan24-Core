@@ -85,12 +85,12 @@
         /// Cast as cancellation token
         /// </summary>
         /// <param name="cancellations"><see cref="Cancellations"/></param>
-        public static implicit operator CancellationToken(Cancellations cancellations) => cancellations.Cancellation;
+        public static implicit operator CancellationToken(in Cancellations cancellations) => cancellations.Cancellation;
 
         /// <summary>
         /// Cast as disposed flag
         /// </summary>
         /// <param name="cancellations"><see cref="Cancellations"/></param>
-        public static implicit operator bool(Cancellations cancellations) => !cancellations.IsDisposing;
+        public static implicit operator bool(in Cancellations cancellations) => !cancellations.IsDisposing;
     }
 }

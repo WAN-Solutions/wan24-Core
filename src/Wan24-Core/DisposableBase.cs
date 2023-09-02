@@ -27,7 +27,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="asyncDisposing">Asynchronous disposing?</param>
-        protected DisposableBase(bool asyncDisposing) => AsyncDisposing = asyncDisposing;
+        protected DisposableBase(in bool asyncDisposing) => AsyncDisposing = asyncDisposing;
 
         /// <summary>
         /// Destructor
@@ -54,7 +54,7 @@ namespace wan24.Core
         /// <param name="throwException">Throw an exception if disposing/disposed?</param>
         /// <returns>Is not disposing?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        protected bool EnsureUndisposed(bool allowDisposing = false, bool throwException = true)
+        protected bool EnsureUndisposed(in bool allowDisposing = false, in bool throwException = true)
         {
             if (!IsDisposing) return true;
             if (allowDisposing && !IsDisposed) return true;
@@ -70,7 +70,7 @@ namespace wan24.Core
         /// <param name="allowDisposing">Allow disposing state?</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        protected T IfUndisposed<T>(T value, bool allowDisposing = false)
+        protected T IfUndisposed<T>(in T value, in bool allowDisposing = false)
         {
             EnsureUndisposed(allowDisposing);
             return value;
@@ -82,7 +82,7 @@ namespace wan24.Core
         /// <param name="action">Action</param>
         /// <param name="allowDisposing">Allow disposing state?</param>
         [TargetedPatchingOptOut("Tiny method")]
-        protected void IfUndisposed(Action action, bool allowDisposing = false)
+        protected void IfUndisposed(in Action action, in bool allowDisposing = false)
         {
             EnsureUndisposed(allowDisposing);
             action();
@@ -96,7 +96,7 @@ namespace wan24.Core
         /// <param name="allowDisposing">Allow disposing state?</param>
         /// <returns>Return value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        protected T IfUndisposed<T>(Func<T> action, bool allowDisposing = false)
+        protected T IfUndisposed<T>(in Func<T> action, in bool allowDisposing = false)
         {
             EnsureUndisposed(allowDisposing);
             return action();
@@ -110,7 +110,7 @@ namespace wan24.Core
         /// <param name="allowDisposing">Allow disposing state?</param>
         /// <returns>Return value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        protected T? IfUndisposedNullable<T>(Func<T?> action, bool allowDisposing = false)
+        protected T? IfUndisposedNullable<T>(in Func<T?> action, in bool allowDisposing = false)
         {
             EnsureUndisposed(allowDisposing);
             return action();

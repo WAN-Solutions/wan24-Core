@@ -12,7 +12,7 @@
         /// <param name="readTimeout">Read timeout (<see cref="TimeSpan.Zero"/> to disable)</param>
         /// <param name="writeTimeout">Write timeout (<see cref="TimeSpan.Zero"/> to disable)</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public TimeoutStream(Stream baseStream, TimeSpan readTimeout, TimeSpan? writeTimeout = null, bool leaveOpen = false)
+        public TimeoutStream(in Stream baseStream, in TimeSpan readTimeout, in TimeSpan? writeTimeout = null, in bool leaveOpen = false)
             : base(baseStream, readTimeout, writeTimeout, leaveOpen)
         { }
     }
@@ -39,7 +39,7 @@
         /// <param name="readTimeout">Read timeout (<see cref="TimeSpan.Zero"/> to disable)</param>
         /// <param name="writeTimeout">Write timeout (<see cref="TimeSpan.Zero"/> to disable)</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public TimeoutStream(T baseStream, TimeSpan readTimeout, TimeSpan? writeTimeout = null, bool leaveOpen = false) : base(baseStream, leaveOpen)
+        public TimeoutStream(in T baseStream, in TimeSpan readTimeout, in TimeSpan? writeTimeout = null, in bool leaveOpen = false) : base(baseStream, leaveOpen)
         {
             _ReadTimeout = readTimeout;
             _WriteTimeout = writeTimeout ?? TimeSpan.Zero;

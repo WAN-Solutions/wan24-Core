@@ -1,6 +1,8 @@
 ﻿using System.Runtime;
 using System.Runtime.CompilerServices;
+#if !NO_UNSAFE
 using System.Runtime.Intrinsics.X86;
+#endif
 
 namespace wan24.Core
 {
@@ -18,7 +20,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static char[] Encode(this byte[] data, ReadOnlyMemory<char>? charMap = null, char[]? res = null) => Encode(data.AsSpan(), charMap, res);
+        public static char[] Encode(this byte[] data, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null) => Encode(data.AsSpan(), charMap, res);
 
         /// <summary>
         /// Encode
@@ -31,7 +33,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static char[] Encode(this Span<byte> data, ReadOnlyMemory<char>? charMap = null, char[]? res = null) => Encode((ReadOnlySpan<byte>)data, charMap, res);
+        public static char[] Encode(this Span<byte> data, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null) => Encode((ReadOnlySpan<byte>)data, charMap, res);
 
         /// <summary>
         /// Encode
@@ -44,7 +46,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static char[] Encode(this ReadOnlySpan<byte> data, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+        public static char[] Encode(this ReadOnlySpan<byte> data, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
             => Encode(data, (charMap ?? _DefaultCharMap).Span, res);
 
         /// <summary>
@@ -57,7 +59,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static char[] Encode(this ReadOnlySpan<byte> data, ReadOnlySpan<char> charMap, char[]? res = null)
+        public static char[] Encode(this ReadOnlySpan<byte> data, in ReadOnlySpan<char> charMap, char[]? res = null)
         {
             ValidateCharMap(charMap);
             int len = data.Length;
@@ -74,7 +76,6 @@ namespace wan24.Core
             {
                 res = new char[resLen];
             }
-            byte b;
 #if !NO_UNSAFE
             unsafe
             {
@@ -101,12 +102,10 @@ namespace wan24.Core
                         for (int bits; i != len; i++)
                         {
 #if NO_UNSAFE
-                            b = data[i];
-                            bits = bitOffset == 0 ? b : (b << BitRotation[bitOffset]) | (data[i - 1] >> bitOffset);
+                            bits = bitOffset == 0 ? data[i] : (data[i] << BitRotation[bitOffset]) | (data[i - 1] >> bitOffset);
                             res[++resOffset] = charMap[bits & 63];
 #else
-                            b = d[i];
-                            bits = bitOffset == 0 ? b : (b << br[bitOffset]) | (d[i - 1] >> bitOffset);
+                            bits = bitOffset == 0 ? d[i] : (d[i] << br[bitOffset]) | (d[i - 1] >> bitOffset);
                             r[++resOffset] = cm[bits & 63];
 #endif
                             switch (bitOffset)
@@ -116,9 +115,9 @@ namespace wan24.Core
                                     break;
                                 case 4:
 #if NO_UNSAFE
-                                    res[++resOffset] = charMap[b >> 2];
+                                    res[++resOffset] = charMap[data[i] >> 2];
 #else
-                                    r[++resOffset] = cm[b >> 2];
+                                    r[++resOffset] = cm[d[i] >> 2];
 #endif
                                     bitOffset = 0;
                                     break;
@@ -149,7 +148,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static void Encode(this ReadOnlySpan<byte> data, Span<char> res, ReadOnlyMemory<char>? charMap = null)
+        public static void Encode(this ReadOnlySpan<byte> data, in Span<char> res, in ReadOnlyMemory<char>? charMap = null)
             => Encode(data, res, (charMap ?? _DefaultCharMap).Span);
 
         /// <summary>
@@ -161,7 +160,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static void Encode(this ReadOnlySpan<byte> data, Span<char> res, ReadOnlySpan<char> charMap)
+        public static void Encode(this ReadOnlySpan<byte> data, in Span<char> res, in ReadOnlySpan<char> charMap)
         {
             ValidateCharMap(charMap);
             int len = data.Length;
@@ -170,7 +169,6 @@ namespace wan24.Core
                 resLen = GetEncodedLength(len),
                 resOffset = -1;
             if (resLen > res.Length) throw new ArgumentOutOfRangeException(nameof(res), $"Result buffer is too small (required {resLen} characters)");
-            byte b;
 #if !NO_UNSAFE
             unsafe
             {
@@ -198,11 +196,10 @@ namespace wan24.Core
                         {
 #if NO_UNSAFE
                             b = data[i];
-                            bits = bitOffset == 0 ? b : (b << BitRotation[bitOffset]) | (data[i - 1] >> bitOffset);
+                            bits = bitOffset == 0 ? data[i] : (data[i] << BitRotation[bitOffset]) | (data[i - 1] >> bitOffset);
                             res[++resOffset] = charMap[bits & 63];
 #else
-                            b = d[i];
-                            bits = bitOffset == 0 ? b : (b << br[bitOffset]) | (d[i - 1] >> bitOffset);
+                            bits = bitOffset == 0 ? d[i] : (d[i] << br[bitOffset]) | (d[i - 1] >> bitOffset);
                             r[++resOffset] = cm[bits & 63];
 #endif
                             switch (bitOffset)
@@ -212,9 +209,9 @@ namespace wan24.Core
                                     break;
                                 case 4:
 #if NO_UNSAFE
-                                    res[++resOffset] = charMap[b >> 2];
+                                    res[++resOffset] = charMap[data[i] >> 2];
 #else
-                                    r[++resOffset] = cm[b >> 2];
+                                    r[++resOffset] = cm[d[i] >> 2];
 #endif
                                     bitOffset = 0;
                                     break;

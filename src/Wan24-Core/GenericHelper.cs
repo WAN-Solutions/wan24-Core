@@ -15,7 +15,7 @@ namespace wan24.Core
         /// <param name="b">B</param>
         /// <returns>Are equal?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool AreEqual<T>(T? a, T? b) => (a is null && b is null) || (a is not null && a.Equals(b));
+        public static bool AreEqual<T>(in T? a, in T? b) => (a is null && b is null) || (a is not null && a.Equals(b));
 
         /// <summary>
         /// Determine if a value is <see langword="null"/>
@@ -24,7 +24,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Is <see langword="null"/>?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool IsNull<T>(T? value) => value is null;
+        public static bool IsNull<T>(in T? value) => value is null;
 
         /// <summary>
         /// Determine if a value is the default value
@@ -33,7 +33,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Is the default?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool IsDefault<T>(T? value) => AreEqual(value, default);
+        public static bool IsDefault<T>(in T? value) => AreEqual(value, default);
 
         /// <summary>
         /// Determine if a value is <see langword="null"/> or the default
@@ -42,6 +42,6 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Is <see langword="null"/> or the default?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool IsNullOrDefault<T>(T? value) => IsNull(value) || IsDefault(value);
+        public static bool IsNullOrDefault<T>(in T? value) => IsNull(value) || IsDefault(value);
     }
 }

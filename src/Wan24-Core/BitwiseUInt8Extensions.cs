@@ -46,7 +46,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte ShiftLeft(this byte value, int bits) => (byte)(value << bits);
+        public static byte ShiftLeft(this byte value, in int bits) => (byte)(value << bits);
 
         /// <summary>
         /// Shift left
@@ -55,7 +55,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte ShiftRight(this byte value, int bits) => (byte)(value >> bits);
+        public static byte ShiftRight(this byte value, in int bits) => (byte)(value >> bits);
 
         /// <summary>
         /// Rotate bits left
@@ -63,7 +63,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
-        public static byte RotateLeft(this byte value, int bits)
+        public static byte RotateLeft(this byte value, in int bits)
         {
             if (bits < 0 || bits > 8) throw new ArgumentOutOfRangeException(nameof(bits));
             if (bits == 0 || bits == 8 || value == 0 || value == byte.MaxValue) return value;
@@ -80,7 +80,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
-        public static byte RotateRight(this byte value, int bits)
+        public static byte RotateRight(this byte value, in int bits)
         {
             if (bits < 0 || bits > 8) throw new ArgumentOutOfRangeException(nameof(bits));
             if (bits == 0 || bits == 8 || value == 0 || value == byte.MaxValue) return value;
@@ -98,7 +98,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte Or(this byte value, byte other) => (byte)(value | other);
+        public static byte Or(this byte value, in byte other) => (byte)(value | other);
 
         /// <summary>
         /// Logical AND
@@ -107,7 +107,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte And(this byte value, byte other) => (byte)(value & other);
+        public static byte And(this byte value, in byte other) => (byte)(value & other);
 
         /// <summary>
         /// Logical XOR
@@ -116,7 +116,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte Xor(this byte value, byte other) => (byte)(value ^ other);
+        public static byte Xor(this byte value, in byte other) => (byte)(value ^ other);
 
         /// <summary>
         /// Has flags?
@@ -125,7 +125,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Has the flags?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool HasFlags(this byte value, byte flags) => (value & flags) == flags;
+        public static bool HasFlags(this byte value, in byte flags) => (value & flags) == flags;
 
         /// <summary>
         /// Add flags
@@ -134,7 +134,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte AddFlags(this byte value, byte flags) => (byte)(value | flags);
+        public static byte AddFlags(this byte value, in byte flags) => (byte)(value | flags);
 
         /// <summary>
         /// Remove flags
@@ -143,7 +143,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte RemoveFlags(this byte value, byte flags) => (byte)(value & ~flags);
+        public static byte RemoveFlags(this byte value, in byte flags) => (byte)(value & ~flags);
 
         /// <summary>
         /// Cast as signed byte

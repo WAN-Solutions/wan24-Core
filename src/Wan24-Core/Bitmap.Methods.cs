@@ -13,7 +13,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public virtual void SetSize(int count)
+        public virtual void SetSize(in int count)
         {
             if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (count == _Map.LongLength) return;
@@ -34,7 +34,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public virtual byte[] ExchangeBitmap(byte[] map)
+        public virtual byte[] ExchangeBitmap(in byte[] map)
         {
             lock (SyncObject)
             {
@@ -52,7 +52,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public virtual void SetBitCount(long count)
+        public virtual void SetBitCount(in long count)
         {
             lock (SyncObject)
             {
@@ -89,7 +89,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public virtual long AddBits(int count)
+        public virtual long AddBits(in int count)
         {
             if (count < 1) return BitCount;
             lock (SyncObject)

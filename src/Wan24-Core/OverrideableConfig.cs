@@ -35,7 +35,7 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        protected OverrideableConfig(tFinal parent)
+        protected OverrideableConfig(in tFinal parent)
         {
             ParentConfig = parent;
             ChangeToken = new(() => ChangedValues.Any());
@@ -196,7 +196,7 @@ namespace wan24.Core
         /// <param name="reset">Reset first?</param>
         /// <param name="recursive">Reset recursive?</param>
         /// <returns>This</returns>
-        public virtual tFinal SetConfig(Dictionary<string, object?> config, bool reset = false, bool recursive = false)
+        public virtual tFinal SetConfig(in Dictionary<string, object?> config, in bool reset = false, in bool recursive = false)
         {
             if (reset) UnsetAll(recursive);
             IConfigOption? option;
@@ -215,7 +215,7 @@ namespace wan24.Core
         /// <param name="recursive">Recursive?</param>
         /// <param name="setCanBeOverridden">Set the <see cref="IConfigOption.CanBeOverridden"/> flags?</param>
         /// <returns>This</returns>
-        public tFinal MergeTo(tFinal config, bool recursive = true, bool setCanBeOverridden = true)
+        public tFinal MergeTo(in tFinal config, in bool recursive = true, in bool setCanBeOverridden = true)
         {
             if (setCanBeOverridden)
                 foreach (IConfigOption option in AllOptions)
@@ -226,7 +226,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public IConfigOption? GetOption(string propertyName)
+        public IConfigOption? GetOption(in string propertyName)
         {
             if (OptionProperties is null) GetOptionProperties();
             return OptionProperties!.TryGetValue(propertyName, out var info)
@@ -239,7 +239,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="recursive">Recursive?</param>
         /// <returns>This</returns>
-        public virtual tFinal UnsetAll(bool recursive = false)
+        public virtual tFinal UnsetAll(in bool recursive = false)
         {
             foreach (IConfigOption option in AllOptions) option.Unset(recursive);
             return (tFinal)this;
@@ -256,7 +256,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public virtual tFinal ResetChanged(bool recursive = true)
+        public virtual tFinal ResetChanged(in bool recursive = true)
         {
             foreach (IConfigOption option in from option in AllOptions
                                              where option.IsChanged
@@ -275,7 +275,7 @@ namespace wan24.Core
         /// <param name="getter">Property getter</param>
         /// <returns>Option</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        protected IConfigOption GetOption(Func<object, IConfigOption?> getter) => getter(this) ?? throw new ArgumentException("No property value", nameof(getter));
+        protected IConfigOption GetOption(in Func<object, IConfigOption?> getter) => getter(this) ?? throw new ArgumentException("No property value", nameof(getter));
 
         /// <summary>
         /// Get option properties
@@ -296,20 +296,20 @@ namespace wan24.Core
         /// <param name="final">Final value?</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        protected object? GetPropertyValue(Func<object, IConfigOption?> getter, bool final = false) => final ? GetOption(getter).FinalValue : GetOption(getter).Value;
+        protected object? GetPropertyValue(in Func<object, IConfigOption?> getter, in bool final = false) => final ? GetOption(getter).FinalValue : GetOption(getter).Value;
 
         #region IOverrideableConfig methods
         /// <inheritdoc/>
-        IOverrideableConfig IOverrideableConfig.SetConfig(Dictionary<string, object?> config, bool reset, bool recursive) => SetConfig(config, reset, recursive);
+        IOverrideableConfig IOverrideableConfig.SetConfig(in Dictionary<string, object?> config, in bool reset, in bool recursive) => SetConfig(config, reset, recursive);
 
         /// <inheritdoc/>
-        IOverrideableConfig IOverrideableConfig.UnsetAll(bool recursive) => UnsetAll(recursive);
+        IOverrideableConfig IOverrideableConfig.UnsetAll(in bool recursive) => UnsetAll(recursive);
 
         /// <inheritdoc/>
         IOverrideableConfig IOverrideableConfig.UnsetAllOverrides() => UnsetAllOverrides();
 
         /// <inheritdoc/>
-        IOverrideableConfig IOverrideableConfig.ResetChanged(bool recursive) => ResetChanged(recursive);
+        IOverrideableConfig IOverrideableConfig.ResetChanged(in bool recursive) => ResetChanged(recursive);
         #endregion
 
         /// <inheritdoc/>
@@ -320,7 +320,7 @@ namespace wan24.Core
         /// <param name="option">Option</param>
         /// <param name="oldValue">Old value</param>
         /// <param name="changed">Was this instance changed?</param>
-        protected virtual void RaiseOnChange(IConfigOption option, object? oldValue, bool changed = true)
+        protected virtual void RaiseOnChange(in IConfigOption option, in object? oldValue, in bool changed = true)
         {
             if (changed) ChangeToken.InvokeCallbacks();
             ConfigEventArgs e = new(option, oldValue);
@@ -332,6 +332,6 @@ namespace wan24.Core
         /// </summary>
         /// <param name="option">Option</param>
         /// <param name="oldValue">Old value</param>
-        internal void RaiseOnChangeInt(IConfigOption option, object? oldValue) => RaiseOnChange(option, oldValue);
+        internal void RaiseOnChangeInt(in IConfigOption option, in object? oldValue) => RaiseOnChange(option, oldValue);
     }
 }

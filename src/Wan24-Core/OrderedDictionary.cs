@@ -39,22 +39,19 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
-        public OrderedDictionary(int capacity)
-        {
-            Items = new(capacity);
-        }
+        public OrderedDictionary(in int capacity) => Items = new(capacity);
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="items">Items</param>
-        public OrderedDictionary(IEnumerable<KeyValuePair<tKey, tValue>> items) => Items = new(items);
+        public OrderedDictionary(in IEnumerable<KeyValuePair<tKey, tValue>> items) => Items = new(items);
 
         /// <summary>
         /// Constructor (creates a read-only dictionary)
         /// </summary>
         /// <param name="dict">Ordered dictionary</param>
-        public OrderedDictionary(OrderedDictionary<tKey, tValue> dict) : this(0)
+        public OrderedDictionary(in OrderedDictionary<tKey, tValue> dict) : this(0)
         {
             Items.AddRange(dict);
             IsReadOnly = true;
@@ -65,7 +62,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="info">Serialization info</param>
         /// <param name="context">Streaming context</param>
-        protected OrderedDictionary(SerializationInfo info, StreamingContext context) : this(0)
+        protected OrderedDictionary(in SerializationInfo info, in StreamingContext context) : this(0)
         {
             Info = info;
             Context = context;
@@ -463,7 +460,7 @@ namespace wan24.Core
         /// <param name="index">Index</param>
         /// <param name="key">Key</param>
         /// <param name="value">Value</param>
-        protected virtual void RaiseOnAdded(int index, tKey key, tValue value) => OnAdded?.Invoke(this, index, key, value);
+        protected virtual void RaiseOnAdded(in int index, in tKey key, in tValue value) => OnAdded?.Invoke(this, index, key, value);
 
         /// <summary>
         /// Raised when updated a value (the event handler will get the previous index, key and value)
@@ -475,7 +472,7 @@ namespace wan24.Core
         /// <param name="index">Previous index</param>
         /// <param name="key">Previous key</param>
         /// <param name="value">Previous value</param>
-        protected virtual void RaiseOnUpdated(int index, tKey key, tValue value) => OnUpdated?.Invoke(this, index, key, value);
+        protected virtual void RaiseOnUpdated(in int index, in tKey key, in tValue value) => OnUpdated?.Invoke(this, index, key, value);
 
         /// <summary>
         /// Raised when removed a key/value pair
@@ -487,13 +484,13 @@ namespace wan24.Core
         /// <param name="index">Index</param>
         /// <param name="key">Key</param>
         /// <param name="value">Value</param>
-        protected virtual void RaiseOnRemoved(int index, tKey key, tValue value) => OnRemoved?.Invoke(this, index, key, value);
+        protected virtual void RaiseOnRemoved(in int index, in tKey key, in tValue value) => OnRemoved?.Invoke(this, index, key, value);
 
         /// <summary>
         /// Cast as item count
         /// </summary>
         /// <param name="dict">Dictionary</param>
-        public static implicit operator int(OrderedDictionary<tKey, tValue> dict) => dict.Count;
+        public static implicit operator int(in OrderedDictionary<tKey, tValue> dict) => dict.Count;
 
         /// <summary>
         /// Dictionary enumerator
@@ -509,7 +506,7 @@ namespace wan24.Core
             /// Constructor
             /// </summary>
             /// <param name="enumerator">Enumerator</param>
-            public DictionaryEnumerator(IEnumerator<KeyValuePair<tKey, tValue>> enumerator) => Enumerator = enumerator;
+            public DictionaryEnumerator(in IEnumerator<KeyValuePair<tKey, tValue>> enumerator) => Enumerator = enumerator;
 
             /// <inheritdoc/>
             public DictionaryEntry Entry => new(Enumerator.Current.Key, Enumerator.Current.Value);

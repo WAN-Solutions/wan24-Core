@@ -32,7 +32,7 @@
         /// </summary>
         /// <param name="factory">Factory</param>
         /// <param name="timeout">Timeout</param>
-        public TimeoutValue(Func<T> factory, TimeSpan timeout) : base()
+        public TimeoutValue(in Func<T> factory, in TimeSpan timeout) : base()
         {
             Factory = factory;
             Timer = new()
@@ -123,12 +123,12 @@
         /// Cast as value
         /// </summary>
         /// <param name="timeoutValue">Timeout value</param>
-        public static implicit operator T(TimeoutValue<T> timeoutValue) => timeoutValue.Value;
+        public static implicit operator T(in TimeoutValue<T> timeoutValue) => timeoutValue.Value;
 
         /// <summary>
         /// Cast as has-value-flag
         /// </summary>
         /// <param name="timeoutValue">Timeout value</param>
-        public static implicit operator bool(TimeoutValue<T> timeoutValue) => timeoutValue.HasValue;
+        public static implicit operator bool(in TimeoutValue<T> timeoutValue) => timeoutValue.HasValue;
     }
 }

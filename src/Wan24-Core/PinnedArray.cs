@@ -3,6 +3,9 @@ using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
+//TODO PinnedArraySimple
+//TODO PinnedArrayRef
+
 namespace wan24.Core
 {
     /// <summary>
@@ -121,32 +124,32 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pin">Pin</param>
 #pragma warning disable CS8500 // Takes the address of, gets the size of, or declares a pointer to a managed type
-        public static implicit operator T*(PinnedArray<T> pin) => pin.ArrayPtr;
+        public static implicit operator T*(in PinnedArray<T> pin) => pin.ArrayPtr;
 #pragma warning restore CS8500 // Takes the address of, gets the size of, or declares a pointer to a managed type
 
         /// <summary>
         /// Cast as pointer
         /// </summary>
         /// <param name="pin">Pin</param>
-        public static implicit operator IntPtr(PinnedArray<T> pin) => pin.Pointer;
+        public static implicit operator IntPtr(in PinnedArray<T> pin) => pin.Pointer;
 
         /// <summary>
         /// Cast as array
         /// </summary>
         /// <param name="pin">Pin</param>
-        public static implicit operator T[](PinnedArray<T> pin) => pin.Array;
+        public static implicit operator T[](in PinnedArray<T> pin) => pin.Array;
 
         /// <summary>
         /// Cast as length
         /// </summary>
         /// <param name="pin">Pin</param>
-        public static implicit operator int(PinnedArray<T> pin) => pin.Array.Length;
+        public static implicit operator int(in PinnedArray<T> pin) => pin.Array.Length;
 
         /// <summary>
         /// Cast as length
         /// </summary>
         /// <param name="pin">Pin</param>
-        public static implicit operator long(PinnedArray<T> pin) => pin.Array.LongLength;
+        public static implicit operator long(in PinnedArray<T> pin) => pin.Array.LongLength;
 
         /// <summary>
         /// Equals
@@ -154,7 +157,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Are equal?</returns>
-        public static bool operator ==(PinnedArray<T> a, PinnedArray<T> b) => a.Equals(b);
+        public static bool operator ==(in PinnedArray<T> a, in PinnedArray<T> b) => a.Equals(b);
 
         /// <summary>
         /// Not equals
@@ -162,7 +165,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Are not equal?</returns>
-        public static bool operator !=(PinnedArray<T> a, PinnedArray<T> b) => !(a == b);
+        public static bool operator !=(in PinnedArray<T> a, in PinnedArray<T> b) => !(a == b);
     }
 }
 #endif

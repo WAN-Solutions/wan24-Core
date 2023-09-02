@@ -46,7 +46,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
-        public static ulong RotateLeft(this ulong value, int bits)
+        public static ulong RotateLeft(this ulong value, in int bits)
         {
             if (bits < 0 || bits > 64) throw new ArgumentOutOfRangeException(nameof(bits));
             if (bits == 0 || bits == 64 || value == 0 || value == ulong.MaxValue) return value;
@@ -63,7 +63,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
-        public static ulong RotateRight(this ulong value, int bits)
+        public static ulong RotateRight(this ulong value, in int bits)
         {
             if (bits < 0 || bits > 64) throw new ArgumentOutOfRangeException(nameof(bits));
             if (bits == 0 || bits == 64 || value == 0 || value == ulong.MaxValue) return value;
@@ -80,7 +80,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
-        public static ulong Or(this ulong value, ulong other) => value | other;
+        public static ulong Or(this ulong value, in ulong other) => value | other;
 
         /// <summary>
         /// Logical AND
@@ -88,7 +88,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
-        public static ulong And(this ulong value, ulong other) => value & other;
+        public static ulong And(this ulong value, in ulong other) => value & other;
 
         /// <summary>
         /// Logical XOR
@@ -97,7 +97,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ulong Xor(this ulong value, ulong other) => value ^ other;
+        public static ulong Xor(this ulong value, in ulong other) => value ^ other;
 
         /// <summary>
         /// Shift left
@@ -106,7 +106,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ulong ShiftLeft(this ulong value, int bits) => value << bits;
+        public static ulong ShiftLeft(this ulong value, in int bits) => value << bits;
 
         /// <summary>
         /// Shift left
@@ -115,7 +115,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ulong ShiftRight(this ulong value, int bits) => value >> bits;
+        public static ulong ShiftRight(this ulong value, in int bits) => value >> bits;
 
         /// <summary>
         /// Has flags?
@@ -124,7 +124,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Has the flags?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool HasFlags(this ulong value, ulong flags) => (value & flags) == flags;
+        public static bool HasFlags(this ulong value, in ulong flags) => (value & flags) == flags;
 
         /// <summary>
         /// Add flags
@@ -133,7 +133,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ulong AddFlags(this ulong value, ulong flags) => value | flags;
+        public static ulong AddFlags(this ulong value, in ulong flags) => value | flags;
 
         /// <summary>
         /// Remove flags
@@ -142,7 +142,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ulong RemoveFlags(this ulong value, ulong flags) => value & ~flags;
+        public static ulong RemoveFlags(this ulong value, in ulong flags) => value & ~flags;
 
         /// <summary>
         /// Cast as signed byte

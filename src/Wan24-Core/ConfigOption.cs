@@ -34,7 +34,7 @@
         /// <param name="config">Configuration</param>
         /// <param name="propertyName">Property name</param>
         /// <param name="canBeOverridden">Can be overridden?</param>
-        public ConfigOption(tConfig config, string propertyName, bool canBeOverridden = true)
+        public ConfigOption(in tConfig config, in string propertyName, in bool canBeOverridden = true)
         {
             ChangeToken = new(() => IsSet);
             Configuration = config;
@@ -49,7 +49,7 @@
         /// <param name="propertyName">Property name</param>
         /// <param name="canBeOverridden">Can be overridden?</param>
         /// <param name="defaultValue">Default value</param>
-        public ConfigOption(tConfig config, string propertyName, bool canBeOverridden, tValue? defaultValue)
+        public ConfigOption(in tConfig config, in string propertyName, in bool canBeOverridden, in tValue? defaultValue)
         {
             ChangeToken = new(() => IsSet);
             Configuration = config;
@@ -66,7 +66,7 @@
         /// <param name="canBeOverridden">Can be overridden?</param>
         /// <param name="value">Value to set</param>
         /// <param name="defaultValue">Default value</param>
-        public ConfigOption(tConfig config, string propertyName, bool canBeOverridden, tValue? value, tValue? defaultValue)
+        public ConfigOption(in tConfig config, in string propertyName, in bool canBeOverridden, in tValue? value, in tValue? defaultValue)
         {
             ChangeToken = new(() => IsSet);
             Configuration = config;
@@ -234,10 +234,10 @@
         #endregion
 
         /// <inheritdoc/>
-        public void SetDynamicValue(dynamic? value) => Value = DynamicValueConverter?.Invoke(value);
+        public void SetDynamicValue(in dynamic? value) => Value = DynamicValueConverter?.Invoke(value);
 
         /// <inheritdoc/>
-        public void Unset(bool recursive = false)
+        public void Unset(in bool recursive = false)
         {
             object? oldValue = _Value;
             lock (SyncObject)
@@ -256,7 +256,7 @@
         public void UnsetOverrides() => SubOption?.Unset(recursive: true);
 
         /// <inheritdoc/>
-        public void ResetChanged(bool recursive = true)
+        public void ResetChanged(in bool recursive = true)
         {
             lock (SyncObject)
             {

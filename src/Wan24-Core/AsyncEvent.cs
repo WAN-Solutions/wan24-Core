@@ -91,7 +91,7 @@
         /// </summary>
         /// <param name="handler">Handler</param>
         /// <returns>Added?</returns>
-        public bool Listen(IAsyncEvent<tSender, tArgs>.EventHandler_Delegate handler)
+        public bool Listen(in IAsyncEvent<tSender, tArgs>.EventHandler_Delegate handler)
         {
             lock (SyncObject) return EventHandlers.Add(handler);
         }
@@ -101,7 +101,7 @@
         /// </summary>
         /// <param name="handler">Handler</param>
         /// <returns>Added?</returns>
-        public bool Listen(IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate handler)
+        public bool Listen(in IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate handler)
         {
             lock (SyncObject) return AsyncEventHandlers.Add(handler);
         }
@@ -111,7 +111,7 @@
         /// </summary>
         /// <param name="handler">Handler</param>
         /// <returns>Detached?</returns>
-        public bool Detach(IAsyncEvent<tSender, tArgs>.EventHandler_Delegate handler)
+        public bool Detach(in IAsyncEvent<tSender, tArgs>.EventHandler_Delegate handler)
         {
             lock (SyncObject) return EventHandlers.Remove(handler);
         }
@@ -121,7 +121,7 @@
         /// </summary>
         /// <param name="handler">Handler</param>
         /// <returns>Detached?</returns>
-        public bool Detach(IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate handler)
+        public bool Detach(in IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate handler)
         {
             lock (SyncObject) return AsyncEventHandlers.Remove(handler);
         }
@@ -131,7 +131,7 @@
         /// </summary>
         /// <param name="timeout">Timeout</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        private Task RaiseEventAsync(TimeSpan? timeout = null, CancellationToken cancellationToken = default)
+        private Task RaiseEventAsync(in TimeSpan? timeout = null, in CancellationToken cancellationToken = default)
             => RaiseEventAsync(Sender ?? throw new InvalidOperationException(), new(), timeout, cancellationToken);
 
         /// <summary>
@@ -140,7 +140,7 @@
         /// <param name="sender">Sender</param>
         /// <param name="timeout">Timeout</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        private Task RaiseEventAsync(tSender sender, TimeSpan? timeout = null, CancellationToken cancellationToken = default)
+        private Task RaiseEventAsync(in tSender sender, in TimeSpan? timeout = null, in CancellationToken cancellationToken = default)
             => RaiseEventAsync(sender, new(), timeout, cancellationToken);
 
         /// <summary>
@@ -149,7 +149,7 @@
         /// <param name="args">Arguments</param>
         /// <param name="timeout">Timeout</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        private Task RaiseEventAsync(tArgs args, TimeSpan? timeout = null, CancellationToken cancellationToken = default)
+        private Task RaiseEventAsync(in tArgs args, in TimeSpan? timeout = null, in CancellationToken cancellationToken = default)
             => RaiseEventAsync(Sender ?? throw new InvalidOperationException(), args, timeout, cancellationToken);
 
         /// <summary>

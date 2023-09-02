@@ -55,7 +55,7 @@ namespace wan24.Core
         /// <param name="rx">Placeholder regular expression</param>
         /// <param name="rxGroup">Regular expression group to use</param>
         /// <returns>Parsed string</returns>
-        public static string Parse(this string str, Dictionary<string, string> data, int? maxRounds = null, bool throwOnError = true, Regex? rx = null, int? rxGroup = null)
+        public static string Parse(this string str, in Dictionary<string, string> data, int? maxRounds = null, in bool throwOnError = true, Regex? rx = null, int? rxGroup = null)
         {
             rx ??= RxParser;
             rxGroup ??= RxParserGroup;

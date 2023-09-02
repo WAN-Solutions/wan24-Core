@@ -9,55 +9,55 @@ namespace wan24.Core
         /// Cast as byte array
         /// </summary>
         /// <param name="bitmap">Bitmap</param>
-        public static implicit operator byte[](Bitmap bitmap) => bitmap._Map;
+        public static implicit operator byte[](in Bitmap bitmap) => bitmap._Map;
 
         /// <summary>
         /// Cast from byte array
         /// </summary>
         /// <param name="bitmap">Bitmap</param>
-        public static implicit operator Bitmap(byte[] bitmap) => new(bitmap);
+        public static implicit operator Bitmap(in byte[] bitmap) => new(bitmap);
 
         /// <summary>
         /// Cast as span
         /// </summary>
         /// <param name="bitmap">Bitmap</param>
-        public static implicit operator Span<byte>(Bitmap bitmap) => bitmap._Map.AsSpan();
+        public static implicit operator Span<byte>(in Bitmap bitmap) => bitmap._Map.AsSpan();
 
         /// <summary>
         /// Cast as span
         /// </summary>
         /// <param name="bitmap">Bitmap</param>
-        public static implicit operator ReadOnlySpan<byte>(Bitmap bitmap) => bitmap._Map.AsSpan();
+        public static implicit operator ReadOnlySpan<byte>(in Bitmap bitmap) => bitmap._Map.AsSpan();
 
         /// <summary>
         /// Cast as memory
         /// </summary>
         /// <param name="bitmap">Bitmap</param>
-        public static implicit operator Memory<byte>(Bitmap bitmap) => bitmap._Map.AsMemory();
+        public static implicit operator Memory<byte>(in Bitmap bitmap) => bitmap._Map.AsMemory();
 
         /// <summary>
         /// Cast as memory
         /// </summary>
         /// <param name="bitmap">Bitmap</param>
-        public static implicit operator ReadOnlyMemory<byte>(Bitmap bitmap) => bitmap._Map.AsMemory();
+        public static implicit operator ReadOnlyMemory<byte>(in Bitmap bitmap) => bitmap._Map.AsMemory();
 
         /// <summary>
         /// Cast as bit count
         /// </summary>
         /// <param name="bitmap">Bitmap</param>
-        public static implicit operator long(Bitmap bitmap) => bitmap.BitCount;
+        public static implicit operator long(in Bitmap bitmap) => bitmap.BitCount;
 
         /// <summary>
         /// Cast as bit array
         /// </summary>
         /// <param name="bitmap">Bitmap</param>
-        public static implicit operator bool[](Bitmap bitmap) => ((IEnumerable<bool>)bitmap).ToArray();
+        public static implicit operator bool[](in Bitmap bitmap) => ((IEnumerable<bool>)bitmap).ToArray();
 
         /// <summary>
         /// Cast from bit array
         /// </summary>
         /// <param name="bits">Bits</param>
-        public static implicit operator Bitmap(bool[] bits)
+        public static implicit operator Bitmap(in bool[] bits)
         {
             Bitmap res = new(initialSize: GetByteCount(bits.LongLength));
             res.SetBits(offset: 0, bits);
@@ -68,55 +68,55 @@ namespace wan24.Core
         /// Cast from byte
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator Bitmap(byte value) => new(new byte[] { value });
+        public static implicit operator Bitmap(in byte value) => new(new byte[] { value });
 
         /// <summary>
         /// Cast from signed byte
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator Bitmap(sbyte value) => new(new byte[] { (byte)value });
+        public static implicit operator Bitmap(in sbyte value) => new(new byte[] { (byte)value });
 
         /// <summary>
         /// Cast from unsigned short
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator Bitmap(ushort value) => new(value.GetBytes());
+        public static implicit operator Bitmap(in ushort value) => new(value.GetBytes());
 
         /// <summary>
         /// Cast from short
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator Bitmap(short value) => new(value.GetBytes());
+        public static implicit operator Bitmap(in short value) => new(value.GetBytes());
 
         /// <summary>
         /// Cast from unsigned int
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator Bitmap(uint value) => new(value.GetBytes());
+        public static implicit operator Bitmap(in uint value) => new(value.GetBytes());
 
         /// <summary>
         /// Cast from int
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator Bitmap(int value) => new(value.GetBytes());
+        public static implicit operator Bitmap(in int value) => new(value.GetBytes());
 
         /// <summary>
         /// Cast from unsigned long
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator Bitmap(ulong value) => new(value.GetBytes());
+        public static implicit operator Bitmap(in ulong value) => new(value.GetBytes());
 
         /// <summary>
         /// Cast from long
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator Bitmap(long value) => new(value.GetBytes());
+        public static implicit operator Bitmap(in long value) => new(value.GetBytes());
 
         /// <summary>
         /// Cast from enumeration
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator Bitmap(Enum value)
+        public static implicit operator Bitmap(in Enum value)
             => Convert.ChangeType(value, value.GetType().GetEnumUnderlyingType()) switch
             {
                 byte b => (Bitmap)b,
@@ -136,6 +136,6 @@ namespace wan24.Core
         /// <param name="bitCount">Bit count</param>
         /// <returns>Byte count</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static long GetByteCount(long bitCount) => (bitCount & 7) == 0 ? bitCount >> 3 : (bitCount >> 3) + 1;
+        public static long GetByteCount(in long bitCount) => (bitCount & 7) == 0 ? bitCount >> 3 : (bitCount >> 3) + 1;
     }
 }

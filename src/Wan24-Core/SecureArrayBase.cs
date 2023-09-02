@@ -39,7 +39,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="array">Array</param>
-        protected SecureArrayBase(T[] array) : base()
+        protected SecureArrayBase(in T[] array) : base()
         {
             _Array = array;
             Handle = GCHandle.Alloc(_Array, GCHandleType.Pinned);
@@ -54,7 +54,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="len">Length in bytes</param>
-        protected SecureArrayBase(long len) : this(new T[len]) { }
+        protected SecureArrayBase(in long len) : this(new T[len]) { }
 
         /// <inheritdoc/>
         public T this[int offset]

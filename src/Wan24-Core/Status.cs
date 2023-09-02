@@ -12,7 +12,7 @@
         /// <param name="state">State</param>
         /// <param name="description">Description</param>
         /// <param name="group">Group name</param>
-        public Status(string name, object? state, string? description = null, string? group = null)
+        public Status(in string name, in object? state, in string? description = null, in string? group = null)
         {
             Name = name;
             Group = group;

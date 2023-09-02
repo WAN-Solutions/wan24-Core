@@ -1,4 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+//TODO RentedObjectStructSimple
+//TODO RentedObjectRefStruct
 
 namespace wan24.Core
 {
@@ -6,6 +10,7 @@ namespace wan24.Core
     /// Rented object (returns the rented object to the pool when diposing)
     /// </summary>
     /// <typeparam name="T">Rented object type</typeparam>
+    [StructLayout(LayoutKind.Auto)]
     public record struct RentedObjectStruct<T> : IRentedObject<T> where T:struct
     {
         /// <summary>
@@ -25,7 +30,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="pool">Pool</param>
-        public RentedObjectStruct(IObjectPool<T> pool)
+        public RentedObjectStruct(in IObjectPool<T> pool)
         {
             Pool = pool;
             _Object = pool.Rent();
@@ -36,7 +41,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pool">Pool</param>
         /// <param name="obj">Rented object</param>
-        public RentedObjectStruct(IObjectPool<T> pool, T obj)
+        public RentedObjectStruct(in IObjectPool<T> pool, in T obj)
         {
             Pool = pool;
             _Object = obj;

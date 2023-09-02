@@ -16,7 +16,7 @@
         /// <param name="initialSize">Initial bitmap size in bytes</param>
         /// <param name="increaseSize">Number of bytes to enlarge the bitmap when adding new bits which overflow the current bitmap size</param>
         /// <param name="bitCount">Initial bit count</param>
-        public Bitmap(long initialSize = ushort.MaxValue, int increaseSize = ushort.MaxValue, int bitCount = 0)
+        public Bitmap(in long initialSize = ushort.MaxValue, in int increaseSize = ushort.MaxValue, in int bitCount = 0)
         {
             if (initialSize < 0) throw new ArgumentOutOfRangeException(nameof(initialSize));
             if (increaseSize < 1) throw new ArgumentOutOfRangeException(nameof(increaseSize));
@@ -32,7 +32,7 @@
         /// <param name="bitmap">Initial bitmap</param>
         /// <param name="increaseSize">Number of bytes to enlarge the bitmap when adding new bits which overflow the current bitmap size</param>
         /// <param name="bitCount">Initial bit count (if <see langword="null"/>, the initial bit count will be the number of bits in the given initial bitmap)</param>
-        public Bitmap(byte[] bitmap, int increaseSize = ushort.MaxValue, int? bitCount = null)
+        public Bitmap(in byte[] bitmap, in int increaseSize = ushort.MaxValue, in int? bitCount = null)
         {
             if (increaseSize < 1) throw new ArgumentOutOfRangeException(nameof(increaseSize));
             if (bitCount is not null && GetByteCount(bitCount.Value) > bitmap.LongLength) throw new ArgumentOutOfRangeException(nameof(bitCount));
@@ -89,7 +89,7 @@
         /// <returns>Bits</returns>
         /// <exception cref="ArgumentOutOfRangeException">The range is invalid or the bitmap size changed during processing (lock <see cref="SyncObject"/> for 
         /// thread-safety)</exception>
-        public bool[] this[int start, int end]
+        public bool[] this[in int start, in int end]
         {
             get => this[new Range(start, end)];
             set => this[new Range(start, end)] = value;
@@ -103,7 +103,7 @@
         /// <returns>Bits</returns>
         /// <exception cref="ArgumentOutOfRangeException">The range is invalid or the bitmap size changed during processing (lock <see cref="SyncObject"/> for 
         /// thread-safety)</exception>
-        public bool[] this[Index start, Index end]
+        public bool[] this[in Index start, in Index end]
         {
             get => this[new Range(start, end)];
             set => this[new Range(start, end)] = value;
@@ -117,7 +117,7 @@
         /// <exception cref="InvalidOperationException">The bitmap is too huge (><see cref="int.MaxValue"/> bits) for indexed access</exception>
         /// <exception cref="ArgumentOutOfRangeException">The range is invalid or the bitmap size changed during processing (lock <see cref="SyncObject"/> for 
         /// thread-safety)</exception>
-        public bool[] this[Range range]
+        public bool[] this[in Range range]
         {
             get
             {

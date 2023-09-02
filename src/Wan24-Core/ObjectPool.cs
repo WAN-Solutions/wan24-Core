@@ -22,7 +22,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="capacity">Capacity (may overflow a bit)</param>
         /// <param name="factory">Item factory</param>
-        public ObjectPool(int capacity, Func<T> factory)
+        public ObjectPool(in int capacity, in Func<T> factory)
         {
             PoolTable.Pools[GUID] = this;
             Capacity = capacity;
@@ -80,7 +80,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public virtual void Return(T item, bool reset = false)
+        public virtual void Return(in T item, in bool reset = false)
         {
             if (Pool.Count < Capacity)
             {
@@ -97,6 +97,6 @@ namespace wan24.Core
         /// Cast as rented object
         /// </summary>
         /// <param name="pool">Pool</param>
-        public static implicit operator T(ObjectPool<T> pool) => pool.Rent();
+        public static implicit operator T(in ObjectPool<T> pool) => pool.Rent();
     }
 }

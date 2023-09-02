@@ -183,19 +183,19 @@ public static T CastType&lt;T&gt;(object value)
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumExtensions_ContainsAllFlags__1___0___0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumExtensions.ContainsAllFlags%60%601(%60%600%2C%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_EnumExtensions_ContainsAllFlags__1___0___0__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumExtensions.ContainsAllFlags%60%601(%60%600%2C%60%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/EnumExtensions.cs/#L43">View Source</a>
   </span>
   <a id="wan24_Core_EnumExtensions_ContainsAllFlags_" data-uid="wan24.Core.EnumExtensions.ContainsAllFlags*"></a>
-  <h4 id="wan24_Core_EnumExtensions_ContainsAllFlags__1___0___0_" data-uid="wan24.Core.EnumExtensions.ContainsAllFlags``1(``0,``0)">ContainsAllFlags&lt;T&gt;(T, T)</h4>
+  <h4 id="wan24_Core_EnumExtensions_ContainsAllFlags__1___0___0__" data-uid="wan24.Core.EnumExtensions.ContainsAllFlags``1(``0,``0@)">ContainsAllFlags&lt;T&gt;(T, in T)</h4>
   <div class="markdown level1 summary"><p>Determine if an enumeration value contains all of the given flags</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool ContainsAllFlags&lt;T&gt;(this T value, T flags)
+    <pre><code class="lang-csharp hljs">public static bool ContainsAllFlags&lt;T&gt;(this T value, in T flags)
     where T : struct, Enum, IConvertible</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>

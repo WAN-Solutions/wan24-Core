@@ -44,7 +44,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>If the value is value</returns>
-        bool IsValidValue(object value);
+        bool IsValidValue(in object value);
     }
 
     /// <summary>
@@ -70,6 +70,6 @@ namespace wan24.Core
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>If the value is value</returns>
-        bool IsValidValue(T value);
+        bool IsValidValue(in T value);
     }
 }

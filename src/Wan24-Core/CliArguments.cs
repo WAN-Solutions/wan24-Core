@@ -39,19 +39,19 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="args">Arguments (an argument key for a following value starts with <c>--</c> (double dashes), a flag argument with <c>-</c> (single dash))</param>
-        public CliArguments(IEnumerable<string> args) : this(args.ToArray().AsSpan()) { }
+        public CliArguments(in IEnumerable<string> args) : this(args.ToArray().AsSpan()) { }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="args">Arguments (an argument key for a following value starts with <c>--</c> (double dashes), a flag argument with <c>-</c> (single dash))</param>
-        public CliArguments(ReadOnlySpan<string> args) => Initialize(args);
+        public CliArguments(in ReadOnlySpan<string> args) => Initialize(args);
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="args">Arguments</param>
-        public CliArguments(IEnumerable<KeyValuePair<string, ReadOnlyCollection<string>>> args) => _Arguments.AddRange(args);
+        public CliArguments(in IEnumerable<KeyValuePair<string, ReadOnlyCollection<string>>> args) => _Arguments.AddRange(args);
 
         /// <summary>
         /// Get if an argument was given
@@ -59,7 +59,7 @@ namespace wan24.Core
         /// <param name="key">Key</param>
         /// <param name="requireValues">Is the key required to have values (not be a boolean)?</param>
         /// <returns>Argument was given (and has values)?</returns>
-        public bool this[string key, bool requireValues = false] => _Arguments.ContainsKey(key) && (!requireValues || _Arguments[key].Count != 0);
+        public bool this[in string key, in bool requireValues = false] => _Arguments.ContainsKey(key) && (!requireValues || _Arguments[key].Count != 0);
 
         /// <summary>
         /// Arguments
@@ -81,11 +81,11 @@ namespace wan24.Core
         /// </summary>
         /// <param name="key">Key</param>
         /// <returns>Value</returns>
-        public string Single(string key)
+        public string Single(in string key)
         {
-            this.EnsureValidArgument(nameof(key), _Arguments.ContainsKey(key), $"Unknown argument \"{key}\"");
+            if (!_Arguments.ContainsKey(key)) throw new ArgumentException($"Unknown argument \"{key}\"", nameof(key));
             ReadOnlyCollection<string> values = _Arguments[key];
-            this.EnsureValidArgument(nameof(key), values.Count != 0, $"Given argument \"{key}\" is a boolean");
+            if (values.Count == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
             return values[0];
         }
 
@@ -95,7 +95,8 @@ namespace wan24.Core
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="key">Key</param>
         /// <returns>Value</returns>
-        public T SingleJson<T>(string key) => JsonHelper.Decode<T>(Single(key)) ?? throw new InvalidDataException($"Failed to JSON decode the value of \"{key}\" as {typeof(T)}");
+        public T SingleJson<T>(in string key)
+            => JsonHelper.Decode<T>(Single(key)) ?? throw new InvalidDataException($"Failed to JSON decode the value of \"{key}\" as {typeof(T)}");
 
         /// <summary>
         /// Get a single JSON decoded argument value
@@ -103,7 +104,7 @@ namespace wan24.Core
         /// <param name="key">Key</param>
         /// <param name="type">Value type</param>
         /// <returns>Value</returns>
-        public object SingleJson(string key, Type type)
+        public object SingleJson(in string key, in Type type)
             => JsonHelper.DecodeObject(type, Single(key)) ?? throw new InvalidDataException($"Failed to JSON decode the value of \"{key}\" as {type}");
 
         /// <summary>
@@ -112,7 +113,7 @@ namespace wan24.Core
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="key">Key</param>
         /// <returns>Value</returns>
-        public T? SingleJsonNullable<T>(string key) => JsonHelper.Decode<T>(Single(key));
+        public T? SingleJsonNullable<T>(in string key) => JsonHelper.Decode<T>(Single(key));
 
         /// <summary>
         /// Get a single JSON decoded nullable argument value
@@ -120,18 +121,18 @@ namespace wan24.Core
         /// <param name="key">Key</param>
         /// <param name="type">Value type</param>
         /// <returns>Value</returns>
-        public object? SingleJsonNullable(string key, Type type) => JsonHelper.DecodeObject(type, Single(key));
+        public object? SingleJsonNullable(in string key, in Type type) => JsonHelper.DecodeObject(type, Single(key));
 
         /// <summary>
         /// Get all argument values
         /// </summary>
         /// <param name="key">Key</param>
         /// <returns>Values</returns>
-        public ReadOnlyCollection<string> All(string key)
+        public ReadOnlyCollection<string> All(in string key)
         {
-            this.EnsureValidArgument(nameof(key), _Arguments.ContainsKey(key), $"Unknown argument \"{key}\"");
+            if (!_Arguments.ContainsKey(key)) throw new ArgumentException($"Unknown argument \"{key}\"", nameof(key));
             ReadOnlyCollection<string> values = _Arguments[key];
-            this.EnsureValidArgument(nameof(key), values.Count != 0, $"Given argument \"{key}\" is a boolean");
+            if (values.Count == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
             return values;
         }
 
@@ -143,9 +144,9 @@ namespace wan24.Core
         /// <returns>Values</returns>
         public IEnumerable<T> AllJson<T>(string key)
         {
-            this.EnsureValidArgument(nameof(key), _Arguments.ContainsKey(key), $"Unknown argument \"{key}\"");
+            if (!_Arguments.ContainsKey(key)) throw new ArgumentException($"Unknown argument \"{key}\"", nameof(key));
             ReadOnlyCollection<string> values = _Arguments[key];
-            this.EnsureValidArgument(nameof(key), values.Count != 0, $"Given argument \"{key}\" is a boolean");
+            if (values.Count == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
             for (int i = 0, len = values.Count; i < len; i++)
                 yield return JsonHelper.Decode<T>(values[i])
                     ?? throw new InvalidDataException($"Failed to JSON decode value #{i} of \"{key}\"");
@@ -159,9 +160,9 @@ namespace wan24.Core
         /// <returns>Values</returns>
         public IEnumerable<object> AllJson(string key, Type type)
         {
-            this.EnsureValidArgument(nameof(key), _Arguments.ContainsKey(key), $"Unknown argument \"{key}\"");
+            if (!_Arguments.ContainsKey(key)) throw new ArgumentException($"Unknown argument \"{key}\"", nameof(key));
             ReadOnlyCollection<string> values = _Arguments[key];
-            this.EnsureValidArgument(nameof(key), values.Count != 0, $"Given argument \"{key}\" is a boolean");
+            if (values.Count == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
             for (int i = 0, len = values.Count; i < len; i++)
                 yield return JsonHelper.DecodeObject(type, values[i])
                     ?? throw new InvalidDataException($"Failed to JSON decode value #{i} of \"{key}\" as {type}");
@@ -175,9 +176,9 @@ namespace wan24.Core
         /// <returns>Values</returns>
         public IEnumerable<T?> AllJsonNullable<T>(string key)
         {
-            this.EnsureValidArgument(nameof(key), _Arguments.ContainsKey(key), $"Unknown argument \"{key}\"");
+            if (!_Arguments.ContainsKey(key)) throw new ArgumentException($"Unknown argument \"{key}\"", nameof(key));
             ReadOnlyCollection<string> values = _Arguments[key];
-            this.EnsureValidArgument(nameof(key), values.Count != 0, $"Given argument \"{key}\" is a boolean");
+            if (values.Count == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
             for (int i = 0, len = values.Count; i < len; i++)
                 yield return JsonHelper.Decode<T>(values[i]);
         }
@@ -190,9 +191,9 @@ namespace wan24.Core
         /// <returns>Values</returns>
         public IEnumerable<object?> AllJsonNullable(string key, Type type)
         {
-            this.EnsureValidArgument(nameof(key), _Arguments.ContainsKey(key), $"Unknown argument \"{key}\"");
+            if (!_Arguments.ContainsKey(key)) throw new ArgumentException($"Unknown argument \"{key}\"", nameof(key));
             ReadOnlyCollection<string> values = _Arguments[key];
-            this.EnsureValidArgument(nameof(key), values.Count != 0, $"Given argument \"{key}\" is a boolean");
+            if (values.Count == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
             for (int i = 0, len = values.Count; i < len; i++)
                 yield return JsonHelper.DecodeObject(type, values[i]);
         }
@@ -202,21 +203,21 @@ namespace wan24.Core
         /// </summary>
         /// <param name="key">Key</param>
         /// <returns>Is a flag (boolean)?</returns>
-        public bool IsBoolean(string key) => _Arguments.ContainsKey(key) && _Arguments[key].Count == 0;
+        public bool IsBoolean(in string key) => _Arguments.ContainsKey(key) && _Arguments[key].Count == 0;
 
         /// <summary>
         /// Determine if a given argument has values
         /// </summary>
         /// <param name="key">Key</param>
         /// <returns>Is has values?</returns>
-        public bool HasValues(string key) => _Arguments.ContainsKey(key) && _Arguments[key].Count != 0;
+        public bool HasValues(in string key) => _Arguments.ContainsKey(key) && _Arguments[key].Count != 0;
 
         /// <summary>
         /// Get the value count for a key
         /// </summary>
         /// <param name="key">Key</param>
         /// <returns>Number of values or <c>-1</c>, if the argument wasn't given</returns>
-        public int ValueCount(string key) => _Arguments.ContainsKey(key) ? _Arguments[key].Count : -1;
+        public int ValueCount(in string key) => _Arguments.ContainsKey(key) ? _Arguments[key].Count : -1;
 
         /// <summary>
         /// Get an existing key
