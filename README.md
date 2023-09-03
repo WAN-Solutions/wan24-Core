@@ -35,6 +35,7 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
     - UTF-8/16/32 (little endian) string decoding
     - Clearing
     - Base64 encoding/decoding
+    - Fast XOR, AND and OR using intrinsics
 - Dictionary extensions
     - Merge with string key prefix
     - Merge a list with the index as key (and an optional key prefix)

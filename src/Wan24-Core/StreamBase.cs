@@ -46,18 +46,17 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-#pragma warning disable CA1816 // Suppress GC (will be supressed from the parent)
         public sealed override async ValueTask DisposeAsync()
         {
             if (!await DoDisposeAsync().DynamicContext()) return;
             await DisposeCore().DynamicContext();
-            await base.DisposeAsync().DynamicContext();
+            Close();
             DisposeSyncObject.Dispose();
             IsClosed = true;
             IsDisposed = true;
             OnDisposed?.Invoke(this, new());
+            GC.SuppressFinalize(this);
         }
-#pragma warning restore CA1816 // Suppress GC (will be supressed from the parent)
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)

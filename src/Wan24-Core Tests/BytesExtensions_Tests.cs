@@ -98,5 +98,35 @@ namespace Wan24_Core_Tests
             Assert.IsFalse(carr.SequenceEqual(ctemp));
             Assert.IsTrue(ctemp.SequenceEqual(Enumerable.Repeat((char)0, 3)));
         }
+
+        [TestMethod]
+        public void Xor_Tests()
+        {
+            byte[] a = Enumerable.Range(0, 128).Select(b => (byte)b).ToArray(),
+                b = Enumerable.Range(128, 128).Select(b => (byte)b).ToArray(),
+                c = Enumerable.Range(0, 128).Select(i => (byte)(a[i] ^ b[i])).ToArray();
+            a.Xor(b);
+            Assert.IsTrue(a.SequenceEqual(c));
+        }
+
+        [TestMethod]
+        public void And_Tests()
+        {
+            byte[] a = Enumerable.Range(0, 128).Select(b => (byte)b).ToArray(),
+                b = Enumerable.Range(128, 128).Select(b => (byte)b).ToArray(),
+                c = Enumerable.Range(0, 128).Select(i => (byte)(a[i] & b[i])).ToArray();
+            a.And(b);
+            Assert.IsTrue(a.SequenceEqual(c));
+        }
+
+        [TestMethod]
+        public void Or_Tests()
+        {
+            byte[] a = Enumerable.Range(0, 128).Select(b => (byte)b).ToArray(),
+                b = Enumerable.Range(128, 128).Select(b => (byte)b).ToArray(),
+                c = Enumerable.Range(0, 128).Select(i => (byte)(a[i] | b[i])).ToArray();
+            a.Or(b);
+            Assert.IsTrue(a.SequenceEqual(c));
+        }
     }
 }
