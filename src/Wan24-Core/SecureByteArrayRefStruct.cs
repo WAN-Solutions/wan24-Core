@@ -1,52 +1,43 @@
-﻿using System.Collections;
-using System.Runtime;
+﻿using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
     /// <summary>
-    /// Secure byte array (will delete its contents when disposing)
+    /// Secure byte array (will delete its contents when disposing; not thread-safe)
     /// </summary>
 #if NO_UNSAFE
-    public struct SecureByteArrayStruct : ISecureArray<byte>
+    public ref struct SecureByteArrayRefStruct
 #else
-    public unsafe struct SecureByteArrayStruct : ISecureArray<byte>
+    public unsafe ref struct SecureByteArrayRefStruct
 #endif
     {
         /// <summary>
         /// Handle
         /// </summary>
         private readonly GCHandle Handle;
-#if !NO_UNSAFE
-        /// <summary>
-        /// Pointer
-        /// </summary>
-        private readonly byte* _Ptr;
-#endif
-        /// <summary>
-        /// An object for thread synchronization
-        /// </summary>
-        private readonly object SyncObject = new();
-        /// <summary>
-        /// Is disposed?
-        /// </summary>
-        private bool IsDisposed = false;
         /// <summary>
         /// Is detached?
         /// </summary>
         private bool Detached = false;
+#if !NO_UNSAFE
+        /// <summary>
+        /// Pointer
+        /// </summary>
+        public readonly byte* Ptr;
+#endif
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="array">Array</param>
-        public SecureByteArrayStruct(in byte[] array)
+        public SecureByteArrayRefStruct(in byte[] array)
         {
             Array = array;
             Handle = GCHandle.Alloc(Array, GCHandleType.Pinned);
 #if !NO_UNSAFE
-            _Ptr = (byte*)Handle.AddrOfPinnedObject();
+            Ptr = (byte*)Handle.AddrOfPinnedObject();
 #endif
         }
 
@@ -54,55 +45,88 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="len">Length in bytes</param>
-        public SecureByteArrayStruct(in long len) : this(new byte[len]) { }
+        public SecureByteArrayRefStruct(in long len) : this(new byte[len]) { }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Get/set an element
+        /// </summary>
+        /// <param name="offset">Index</param>
+        /// <returns>Element</returns>
         public readonly byte this[int offset]
         {
-            get => IfUndisposed(Array[offset]);
-            set
-            {
-                EnsureUndisposed();
-                Array[offset] = value;
-            }
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Array[offset];
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            set => Array[offset] = value;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Get a range
+        /// </summary>
+        /// <param name="range">Range</param>
+        /// <returns>Range memory</returns>
         public readonly Memory<byte> this[Range range]
         {
-            get
-            {
-                lock (SyncObject)
-                {
-                    EnsureUndisposed();
-                    return Array[range];
-                }
-            }
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Array[range];
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Get a range
+        /// </summary>
+        /// <param name="start">Start</param>
+        /// <param name="end">End</param>
+        /// <returns>Range memory</returns>
         public readonly Memory<byte> this[Index start, Index end]
         {
-            get
-            {
-                lock (SyncObject)
-                {
-                    EnsureUndisposed();
-                    return Array[new Range(start, end)];
-                }
-            }
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Array[new Range(start, end)];
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Array
+        /// </summary>
         public byte[] Array { get; private set; }
 
-        /// <inheritdoc/>
-        public readonly int Length => IfUndisposed(Array.Length);
+        /// <summary>
+        /// Length
+        /// </summary>
+        public readonly int Length
+        {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Array.Length;
+        }
 
-        /// <inheritdoc/>
-        public readonly long LongLength => IfUndisposed(Array.LongLength);
+        /// <summary>
+        /// Length
+        /// </summary>
+        public readonly long LongLength
+        {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Array.LongLength;
+        }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Span
+        /// </summary>
         public readonly Span<byte> Span
         {
             [TargetedPatchingOptOut("Just a method adapter")]
@@ -112,7 +136,9 @@ namespace wan24.Core
             get => Array.AsSpan();
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Memory
+        /// </summary>
         public readonly Memory<byte> Memory
         {
             [TargetedPatchingOptOut("Just a method adapter")]
@@ -122,50 +148,24 @@ namespace wan24.Core
             get => Array.AsMemory();
         }
 
-#if !NO_UNSAFE
         /// <summary>
         /// Pointer
         /// </summary>
-        public readonly byte* Ptr
-        {
-            get
-            {
-                EnsureUndisposed();
-                return _Ptr;
-            }
-        }
-#endif
+        public readonly IntPtr IntPtr => Handle.AddrOfPinnedObject();
 
-        /// <inheritdoc/>
-        public readonly IntPtr IntPtr
-        {
-            get
-            {
-                lock (SyncObject)
-                {
-                    EnsureUndisposed();
-                    return Handle.AddrOfPinnedObject();
-                }
-            }
-        }
-
-        /// <inheritdoc/>
+        /// <summary>
+        /// Detach the secured byte array and dispose this instance
+        /// </summary>
+        /// <returns>Unsecure byte array</returns>
         public byte[] DetachAndDispose()
         {
-            EnsureUndisposed();
+            if (Detached) throw new InvalidOperationException();
             Detached = true;
             byte[] res = Array;
             Array = System.Array.Empty<byte>();
             Dispose();
             return res;
         }
-
-        /// <inheritdoc/>
-        [TargetedPatchingOptOut("Just a method adapter")]
-        public readonly IEnumerator<byte> GetEnumerator() => ((IEnumerable<byte>)Array).GetEnumerator();
-
-        /// <inheritdoc/>
-        readonly IEnumerator IEnumerable.GetEnumerator() => Array.GetEnumerator();
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
@@ -180,39 +180,13 @@ namespace wan24.Core
         public override readonly int GetHashCode() => Array.GetHashCode();
 
         /// <summary>
-        /// Ensure an undisposed object state
+        /// Dispose
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private readonly void EnsureUndisposed()
-        {
-            lock (SyncObject) if (!IsDisposed) return;
-            throw new ObjectDisposedException(ToString());
-        }
-
-        /// <summary>
-        /// Return a value if not disposing/disposed
-        /// </summary>
-        /// <typeparam name="tValue">Value type</typeparam>
-        /// <param name="value">Value</param>
-        /// <returns>Value</returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private readonly tValue IfUndisposed<tValue>(tValue value)
-        {
-            EnsureUndisposed();
-            return value;
-        }
-
-        /// <inheritdoc/>
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public void Dispose()
         {
-            lock (SyncObject)
-            {
-                if (IsDisposed) return;
-                IsDisposed = true;
-            }
             try
             {
                 if (!Detached && Array.Length > 0) Array.Clear();
@@ -229,21 +203,21 @@ namespace wan24.Core
         /// </summary>
         /// <param name="arr">Array</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator byte[](in SecureByteArrayStruct arr) => arr.Array;
+        public static implicit operator byte[](in SecureByteArrayRefStruct arr) => arr.Array;
 
         /// <summary>
         /// Cast as span
         /// </summary>
         /// <param name="arr">Array</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator Span<byte>(in SecureByteArrayStruct arr) => arr.Span;
+        public static implicit operator Span<byte>(in SecureByteArrayRefStruct arr) => arr.Span;
 
         /// <summary>
         /// Cast as memory
         /// </summary>
         /// <param name="arr">Array</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator Memory<byte>(in SecureByteArrayStruct arr) => arr.Memory;
+        public static implicit operator Memory<byte>(in SecureByteArrayRefStruct arr) => arr.Memory;
 
 #if !NO_UNSAFE
         /// <summary>
@@ -251,7 +225,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="arr">Array</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator byte*(in SecureByteArrayStruct arr) => arr.Ptr;
+        public static implicit operator byte*(in SecureByteArrayRefStruct arr) => arr.Ptr;
 #endif
 
         /// <summary>
@@ -259,42 +233,42 @@ namespace wan24.Core
         /// </summary>
         /// <param name="arr">Array</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator IntPtr(in SecureByteArrayStruct arr) => arr.IntPtr;
+        public static implicit operator IntPtr(in SecureByteArrayRefStruct arr) => arr.IntPtr;
 
         /// <summary>
         /// Cast as Int32 (length value)
         /// </summary>
         /// <param name="arr">Array</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator int(in SecureByteArrayStruct arr) => arr.Length;
+        public static implicit operator int(in SecureByteArrayRefStruct arr) => arr.Length;
 
         /// <summary>
         /// Cast as Int64 (length value)
         /// </summary>
         /// <param name="arr">Array</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator long(in SecureByteArrayStruct arr) => arr.LongLength;
+        public static implicit operator long(in SecureByteArrayRefStruct arr) => arr.LongLength;
 
         /// <summary>
         /// Cast as <see cref="SecureCharArray"/> (using UTF-8 encoding)
         /// </summary>
         /// <param name="arr">Array</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator SecureCharArray(in SecureByteArrayStruct arr) => new(arr.Span.ToUtf8Chars());
+        public static implicit operator SecureCharArray(in SecureByteArrayRefStruct arr) => new(arr.Span.ToUtf8Chars());
 
         /// <summary>
         /// Cast as <see cref="SecureCharArrayStruct"/> (using UTF-8 encoding)
         /// </summary>
         /// <param name="arr">Array</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator SecureCharArrayStruct(in SecureByteArrayStruct arr) => new(arr.Span.ToUtf8Chars());
+        public static implicit operator SecureCharArrayStruct(in SecureByteArrayRefStruct arr) => new(arr.Span.ToUtf8Chars());
 
         /// <summary>
         /// Cast a byte array as secure byte array
         /// </summary>
         /// <param name="arr">Byte array</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static explicit operator SecureByteArrayStruct(in byte[] arr) => new(arr);
+        public static explicit operator SecureByteArrayRefStruct(in byte[] arr) => new(arr);
 
         /// <summary>
         /// Equals
@@ -303,7 +277,7 @@ namespace wan24.Core
         /// <param name="right">Right</param>
         /// <returns>Equals?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static bool operator ==(in SecureByteArrayStruct left, in SecureByteArrayStruct right) => left.Equals(right);
+        public static bool operator ==(in SecureByteArrayRefStruct left, in SecureByteArrayRefStruct right) => left.Equals(right);
 
         /// <summary>
         /// Not equal
@@ -312,6 +286,6 @@ namespace wan24.Core
         /// <param name="right">Right</param>
         /// <returns>Not equal?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static bool operator !=(in SecureByteArrayStruct left, in SecureByteArrayStruct right) => !left.Equals(right);
+        public static bool operator !=(in SecureByteArrayRefStruct left, in SecureByteArrayRefStruct right) => !left.Equals(right);
     }
 }

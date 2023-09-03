@@ -37,7 +37,6 @@ namespace wan24.Core
             if (len < 1) throw new ArgumentOutOfRangeException(nameof(len));
             Pool = pool ?? ArrayPool<T>.Shared;
             Length = len;
-            LongLength = len;
             _Array = clean ? Pool.RentClean(len) : Pool.Rent(len);
         }
 
@@ -50,16 +49,15 @@ namespace wan24.Core
         /// <param name="clean">Clean the rented array?</param>
         public RentedArrayStruct(in ArrayPool<T> pool, in T[] arr, int? len = null, in bool clean = false)
         {
+            Pool = pool;
+            _Array = arr;
             len ??= arr.Length;
+            Length = len.Value;
             if (len < 1 || len > arr.Length)
             {
-                pool.Return(arr, clearArray: clean);
+                Dispose();
                 throw new ArgumentOutOfRangeException(nameof(len));
             }
-            Pool = pool;
-            Length = len.Value;
-            LongLength = len.Value;
-            _Array = arr;
             if (clean) System.Array.Clear(arr, 0, len.Value);
         }
 
@@ -70,7 +68,14 @@ namespace wan24.Core
         public int Length { get; }
 
         /// <inheritdoc/>
-        public long LongLength { get; }
+        public readonly long LongLength
+        {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Length;
+        }
 
         /// <inheritdoc/>
         public readonly T this[int offset]
@@ -79,7 +84,12 @@ namespace wan24.Core
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            get => IfUndisposed(_Array[offset]);
+            get
+            {
+                EnsureUndisposed();
+                if (offset < 0 || offset >= Length) throw new ArgumentOutOfRangeException(nameof(offset));
+                return _Array[offset];
+            }
             [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -89,6 +99,7 @@ namespace wan24.Core
                 lock (SyncObject)
                 {
                     EnsureUndisposed();
+                    if (offset < 0 || offset >= Length) throw new ArgumentOutOfRangeException(nameof(offset));
                     _Array[offset] = value;
                 }
             }
@@ -157,15 +168,15 @@ namespace wan24.Core
         /// <inheritdoc/>
         public readonly T[] GetCopy()
         {
-            if (Length == 0) return System.Array.Empty<T>();
+            EnsureUndisposed();
             T[] res = new T[Length];
-            Span.CopyTo(res.AsSpan(0, Length));
+            System.Array.Copy(_Array, 0, res, 0, res.Length);
             return res;
         }
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public override readonly bool Equals(object? obj) => Memory.Equals(obj);
+        public override readonly bool Equals(object? obj) => Array.Equals(obj);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
@@ -173,14 +184,14 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public override readonly int GetHashCode() => Memory.GetHashCode();
+        public override readonly int GetHashCode() => Array.GetHashCode();
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public readonly IEnumerator<T> GetEnumerator() => ((IEnumerable<T>)_Array).GetEnumerator();
+        public readonly IEnumerator<T> GetEnumerator() => ((IEnumerable<T>)Array).GetEnumerator();
 
         /// <inheritdoc/>
-        readonly IEnumerator IEnumerable.GetEnumerator() => _Array.GetEnumerator();
+        readonly IEnumerator IEnumerable.GetEnumerator() => Array.GetEnumerator();
 
         /// <summary>
         /// Ensure an undisposed object state

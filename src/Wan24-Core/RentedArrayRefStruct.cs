@@ -17,17 +17,17 @@ namespace wan24.Core
         /// </summary>
         public readonly ArrayPool<T> Pool;
         /// <summary>
+        /// Rented array
+        /// </summary>
+        public readonly T[] Array;
+        /// <summary>
         /// Length
         /// </summary>
         public readonly int Length;
         /// <summary>
-        /// As span
+        /// Span
         /// </summary>
         public readonly Span<T> Span;
-        /// <summary>
-        /// As memory
-        /// </summary>
-        public readonly Memory<T> Memory;
         /// <summary>
         /// Clear the rented array before returning?
         /// </summary>
@@ -43,10 +43,9 @@ namespace wan24.Core
         {
             if (len < 1) throw new ArgumentOutOfRangeException(nameof(len));
             Pool = pool ?? ArrayPool<T>.Shared;
-            Length = len;
             Array = clean ? Pool.RentClean(len) : Pool.Rent(len);
-            Memory = Array.AsMemory(0, len);
-            Span = Memory.Span;
+            Span = Array.AsSpan(0, len);
+            Length = len;
         }
 
         /// <summary>
@@ -58,18 +57,18 @@ namespace wan24.Core
         /// <param name="clean">Clean the rented array?</param>
         public RentedArrayRefStruct(in ArrayPool<T> pool, in T[] arr, int? len = null, in bool clean = false)
         {
+            Pool = pool;
+            Array = arr;
             len ??= arr.Length;
+            Length = len.Value;
             if (len < 1 || len > arr.Length)
             {
-                pool.Return(arr, clearArray: clean);
+                Span = arr.AsSpan();
+                Dispose();
                 throw new ArgumentOutOfRangeException(nameof(len));
             }
-            Pool = pool;
-            Length = len.Value;
-            Array = arr;
+            Span = arr.AsSpan(0, len.Value);
             if (clean) System.Array.Clear(arr, 0, len.Value);
-            Memory = Array.AsMemory(0, len.Value);
-            Span = Memory.Span;
         }
 
         /// <summary>
@@ -77,53 +76,56 @@ namespace wan24.Core
         /// </summary>
         /// <param name="offset">Offset</param>
         /// <returns>Item</returns>
-        public readonly T this[int offset]
+        public readonly T this[in int offset]
         {
-            [TargetedPatchingOptOut("Just a method adapter")]
+            [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            get => Array[offset];
-            [TargetedPatchingOptOut("Just a method adapter")]
+            get
+            {
+                if (offset < 0 || offset >= Length) throw new ArgumentOutOfRangeException(nameof(offset));
+                return Array[offset];
+            }
+            [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            set => Array[offset] = value;
+            set
+            {
+                if (offset < 0 || offset >= Length) throw new ArgumentOutOfRangeException(nameof(offset));
+                Array[offset] = value;
+            }
         }
 
         /// <summary>
-        /// Get as memory
+        /// Get as span
         /// </summary>
         /// <param name="range">Range</param>
-        /// <returns>Memory</returns>
-        public readonly Memory<T> this[Range range]
+        /// <returns>Span</returns>
+        public readonly Span<T> this[in Range range]
         {
             [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            get => Memory[range];
+            get => Span[range];
         }
 
         /// <summary>
-        /// Get as memory
+        /// Get as span
         /// </summary>
         /// <param name="start">Start</param>
         /// <param name="end">End</param>
-        /// <returns>Memory</returns>
-        public readonly Memory<T> this[Index start, Index end]
+        /// <returns>Span</returns>
+        public readonly Span<T> this[in Index start, in Index end]
         {
             [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            get => Memory[new Range(start, end)];
+            get => Span[new Range(start, end)];
         }
-
-        /// <summary>
-        /// Rented array
-        /// </summary>
-        public T[] Array { get; private set; }
 
         /// <summary>
         /// Get a copy of the array
@@ -131,49 +133,42 @@ namespace wan24.Core
         /// <returns></returns>
         public readonly T[] GetCopy()
         {
-            if (Length == 0) return System.Array.Empty<T>();
             T[] res = new T[Length];
-            Span.CopyTo(res.AsSpan(0, Length));
+            System.Array.Copy(Array, 0, res, 0, Length);
             return res;
         }
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public override readonly bool Equals(object? obj) => Memory.Equals(obj);
+        public override readonly bool Equals(object? obj) => Array.Equals(obj);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public readonly bool Equals(Memory<T> other) => Memory.Equals(other);
-
-        /// <inheritdoc/>
-        [TargetedPatchingOptOut("Just a method adapter")]
-        public override readonly int GetHashCode() => Memory.GetHashCode();
+        public override readonly int GetHashCode() => Array.GetHashCode();
 
         /// <summary>
         /// Dispose
         /// </summary>
-        public void Dispose()
+        public readonly void Dispose()
         {
-            T[] arr = Array;
-            Array = System.Array.Empty<T>();
             if (Clear)
             {
                 bool clear = true;
-                if (arr is byte[] byteArr)
+                if (Array is byte[] byteArr)
                 {
                     clear = false;
                     byteArr.AsSpan(0, Length).Clean();
                 }
-                else if (arr is char[] charArr)
+                else if (Array is char[] charArr)
                 {
                     clear = false;
                     charArr.Clear();
                 }
-                Pool.Return(arr, clearArray: clear);
+                Pool.Return(Array, clearArray: clear);
             }
             else
             {
-                Pool.Return(arr, clearArray: false);
+                Pool.Return(Array, clearArray: false);
             }
         }
     }

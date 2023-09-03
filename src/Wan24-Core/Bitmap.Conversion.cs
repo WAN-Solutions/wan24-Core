@@ -122,13 +122,13 @@ namespace wan24.Core
                     {
                         using RentedArrayRefStruct<byte> buffer = new(count);
                         _Map.AsSpan(offset, (int)(byteCount - offset)).CopyTo(buffer.Span);
-                        return function(buffer.Memory);
+                        return function(buffer.Array.AsMemory(0, buffer.Length));
                     }
                 }
                 else
                 {
                     using RentedArrayRefStruct<byte> buffer = new(count);
-                    return function(buffer.Memory);
+                    return function(buffer.Array.AsMemory(0, buffer.Length));
                 }
             }
         }

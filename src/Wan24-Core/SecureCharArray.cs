@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -44,24 +44,29 @@ namespace wan24.Core
         /// Cast as char array
         /// </summary>
         /// <param name="arr">Array</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator char[](in SecureCharArray arr) => arr.Array;
 
         /// <summary>
         /// Cast as span
         /// </summary>
         /// <param name="arr">Array</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator Span<char>(in SecureCharArray arr) => arr.Span;
 
         /// <summary>
         /// Cast as memory
         /// </summary>
         /// <param name="arr">Array</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator Memory<char>(in SecureCharArray arr) => arr.Memory;
+
 #if !NO_UNSAFE
         /// <summary>
         /// Cast as pointer
         /// </summary>
         /// <param name="arr">Array</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator char*(in SecureCharArray arr) => arr.Ptr;
 #endif
 
@@ -69,40 +74,45 @@ namespace wan24.Core
         /// Cast as pointer
         /// </summary>
         /// <param name="arr">Array</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator IntPtr(in SecureCharArray arr) => arr.IntPtr;
 
         /// <summary>
         /// Cast as Int32 (length value)
         /// </summary>
         /// <param name="arr">Array</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator int(in SecureCharArray arr) => arr.Length;
 
         /// <summary>
         /// Cast as Int64 (length value)
         /// </summary>
         /// <param name="arr">Array</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator long(in SecureCharArray arr) => arr.LongLength;
 
         /// <summary>
         /// Cast as <see cref="SecureByteArray"/> (using UTF-8 encoding)
         /// </summary>
         /// <param name="arr">Array</param>
+        [TargetedPatchingOptOut("Tiny method")]
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
         public static implicit operator SecureByteArray(in SecureCharArray arr)
         {
+            int len = arr.Length * 3;
 #if !NO_UNSAFE
-            if (arr.Length << 1 > Settings.StackAllocBorder)
+            if (len > Settings.StackAllocBorder)
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(arr.Length << 1, clean: false);
+                using RentedArrayRefStruct<byte> buffer = new(len, clean: false);
                 return new(buffer.Span[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer.Span)].ToArray());
 #if !NO_UNSAFE
             }
             else
             {
-                Span<byte> buffer = stackalloc byte[arr.Length << 1];
+                Span<byte> buffer = stackalloc byte[len];
                 return new(buffer[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer)].ToArray());
             }
 #endif
@@ -112,22 +122,24 @@ namespace wan24.Core
         /// Cast as <see cref="SecureByteArray"/> (using UTF-8 encoding)
         /// </summary>
         /// <param name="arr">Array</param>
+        [TargetedPatchingOptOut("Tiny method")]
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
         public static implicit operator SecureByteArrayStruct(in SecureCharArray arr)
         {
+            int len = arr.Length * 3;
 #if !NO_UNSAFE
-            if (arr.Length << 1 > Settings.StackAllocBorder)
+            if (len > Settings.StackAllocBorder)
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(arr.Length << 1, clean: false);
+                using RentedArrayRefStruct<byte> buffer = new(len, clean: false);
                 return new(buffer.Span[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer.Span)].ToArray());
 #if !NO_UNSAFE
             }
             else
             {
-                Span<byte> buffer = stackalloc byte[arr.Length << 1];
+                Span<byte> buffer = stackalloc byte[len];
                 return new(buffer[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer)].ToArray());
             }
 #endif
@@ -137,6 +149,7 @@ namespace wan24.Core
         /// Cast a char array as secure char array
         /// </summary>
         /// <param name="arr">Char array</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static explicit operator SecureCharArray(in char[] arr) => new(arr);
     }
 }

@@ -1,8 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Runtime;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-
-//TODO RentedObjectStructSimple
-//TODO RentedObjectRefStruct
 
 namespace wan24.Core
 {
@@ -91,10 +89,18 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Cast as rented object
+        /// </summary>
+        /// <param name="rented">Rented object</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator T(RentedObjectStruct<T> rented) => rented.Object;
+
+        /// <summary>
         /// Create an instance asynchronous
         /// </summary>
         /// <param name="pool">Object pool</param>
         /// <returns>Rented object</returns>
-        public static async Task<RentedObjectStruct<T>> CreateAsync(IAsyncObjectPool<T> pool) => new RentedObjectStruct<T>(pool, await pool.RentAsync().DynamicContext());
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static async Task<RentedObjectStruct<T>> CreateAsync(IAsyncObjectPool<T> pool) => new(pool, await pool.RentAsync().DynamicContext());
     }
 }

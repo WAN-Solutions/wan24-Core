@@ -34,11 +34,13 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
     - Bit-converter (endian-safe)
     - UTF-8/16/32 (little endian) string decoding
     - Clearing
+    - Base64 encoding/decoding
 - Dictionary extensions
     - Merge with string key prefix
     - Merge a list with the index as key (and an optional key prefix)
 - Char array extensions
     - Clearing
+    - Base64 decoding
 - Array helper extensions
     - Offset/length validation
     - Item index finding
@@ -106,6 +108,7 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
     - Parsing
     - String from/to bytes/bits extensions
     - Determine if string contains only ACSII characters
+    - Base64 decoding
 - Generic helper
     - Determine if two generic values are equal
     - Determine if a value is `null`

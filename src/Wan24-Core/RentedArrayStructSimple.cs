@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 namespace wan24.Core
 {
     /// <summary>
-    /// Pool rented array (returns the array to the pool, when disposed)
+    /// Pool rented array (returns the array to the pool, when disposed; not thread-safe)
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
     [StructLayout(LayoutKind.Auto)]
@@ -24,7 +24,6 @@ namespace wan24.Core
             if (len < 1) throw new ArgumentOutOfRangeException(nameof(len));
             Pool = pool ?? ArrayPool<T>.Shared;
             Length = len;
-            LongLength = len;
             Array = clean ? Pool.RentClean(len) : Pool.Rent(len);
         }
 
@@ -37,16 +36,15 @@ namespace wan24.Core
         /// <param name="clean">Clean the rented array?</param>
         public RentedArrayStructSimple(in ArrayPool<T> pool, in T[] arr, int? len = null, in bool clean = false)
         {
+            Pool = pool;
+            Array = arr;
             len ??= arr.Length;
+            Length = len.Value;
             if (len < 1 || len > arr.Length)
             {
-                pool.Return(arr, clearArray: clean);
+                Dispose();
                 throw new ArgumentOutOfRangeException(nameof(len));
             }
-            Pool = pool;
-            Length = len.Value;
-            LongLength = len.Value;
-            Array = arr;
             if (clean) System.Array.Clear(arr, 0, len.Value);
         }
 
@@ -57,7 +55,14 @@ namespace wan24.Core
         public int Length { get; }
 
         /// <inheritdoc/>
-        public long LongLength { get; }
+        public readonly long LongLength
+        {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Length;
+        }
 
         /// <inheritdoc/>
         public readonly T this[int offset]
@@ -66,12 +71,20 @@ namespace wan24.Core
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            get => Array[offset];
+            get
+            {
+                if (offset < 0 || offset >= Length) throw new ArgumentOutOfRangeException(nameof(offset));
+                return Array[offset];
+            }
             [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            set => Array[offset] = value;
+            set
+            {
+                if (offset < 0 || offset >= Length) throw new ArgumentOutOfRangeException(nameof(offset));
+                Array[offset] = value;
+            }
         }
 
         /// <inheritdoc/>
@@ -124,15 +137,14 @@ namespace wan24.Core
         /// <inheritdoc/>
         public readonly T[] GetCopy()
         {
-            if (Length == 0) return System.Array.Empty<T>();
             T[] res = new T[Length];
-            Span.CopyTo(res.AsSpan(0, Length));
+            System.Array.Copy(Array, 0, res, 0, res.Length);
             return res;
         }
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public override readonly bool Equals(object? obj) => Memory.Equals(obj);
+        public override readonly bool Equals(object? obj) => Array.Equals(obj);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
@@ -140,7 +152,7 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public override readonly int GetHashCode() => Memory.GetHashCode();
+        public override readonly int GetHashCode() => Array.GetHashCode();
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]

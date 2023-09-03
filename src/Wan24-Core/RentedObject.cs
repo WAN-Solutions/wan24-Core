@@ -60,11 +60,18 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Cast as rented object
+        /// </summary>
+        /// <param name="rented">Rented object</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator T(RentedObject<T> rented) => rented.Object;
+
+        /// <summary>
         /// Create an instance asynchronous
         /// </summary>
         /// <param name="pool">Object pool</param>
         /// <returns>Rented object</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static async Task<RentedObject<T>> CreateAsync(IAsyncObjectPool<T> pool) => new RentedObject<T>(pool, await pool.RentAsync().DynamicContext());
+        public static async Task<RentedObject<T>> CreateAsync(IAsyncObjectPool<T> pool) => new(pool, await pool.RentAsync().DynamicContext());
     }
 }
