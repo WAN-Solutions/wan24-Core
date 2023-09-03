@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -28,6 +29,7 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="obj">Result</param>
         /// <returns>Use the result?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool GetDiObject(in Type type, out object? obj)
         {
             obj = ServiceProvider?.GetService(type);
@@ -40,6 +42,7 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>The object and if to use the result</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static async Task<(object? Object, bool UseObject)> GetDiObjectAsync(Type type, CancellationToken cancellationToken = default)
         {
             await Task.Yield();

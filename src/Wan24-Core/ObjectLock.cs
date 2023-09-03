@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Object lock
@@ -130,6 +132,7 @@
         /// Cast as disposing-flag
         /// </summary>
         /// <param name="ol">Lock</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator bool(in ObjectLock ol) => !ol.IsDisposing;
     }
 }

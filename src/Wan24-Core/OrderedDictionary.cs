@@ -376,7 +376,9 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Are equal?</returns>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected bool IsEqual(object? a, object? b) => (a is null && b is null) || (a is not null && a.Equals(b)) || (b is not null && b.Equals(a));
 
         /// <summary>
@@ -385,7 +387,9 @@ namespace wan24.Core
         /// <param name="key">Key</param>
         /// <returns>Key</returns>
         /// <exception cref="ArgumentException">If the key is invalid</exception>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected object EnsureValidKey(object key)
             => key is null || !typeof(tKey).IsAssignableFrom(key.GetType()) ? throw new ArgumentException("Invalid key", nameof(key)) : key;
 
@@ -395,7 +399,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         /// <exception cref="ArgumentException">If the value is invalid</exception>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected object? EnsureValidValue(object? value)
             => value is not null && !typeof(tValue).IsAssignableFrom(value.GetType()) ? throw new ArgumentException("Invalid value", nameof(value)) : value;
 
@@ -405,14 +411,18 @@ namespace wan24.Core
         /// <param name="index">Index</param>
         /// <returns>Index</returns>
         /// <exception cref="IndexOutOfRangeException">If the index is invalid</exception>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected int EnsureValidIndex(int index) => index < 0 || index >= Items.Count ? throw new IndexOutOfRangeException() : index;
 
         /// <summary>
         /// Ensure writable
         /// </summary>
         /// <exception cref="NotSupportedException">If read-only</exception>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected void EnsureWritable()
         {
             if (IsReadOnly) throw new NotSupportedException();
@@ -424,7 +434,9 @@ namespace wan24.Core
         /// <param name="key">Key</param>
         /// <returns>Key</returns>
         /// <exception cref="ArgumentException">If the key exists</exception>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected tKey EnsureFreshKey(tKey key) => IndexOfKey(key) == -1 ? key : throw new ArgumentException("Key exists", nameof(key));
 
         /// <summary>
@@ -433,7 +445,9 @@ namespace wan24.Core
         /// <param name="key">Key</param>
         /// <returns>Index</returns>
         /// <exception cref="KeyNotFoundException">If the key doesn't exist</exception>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected int EnsureExistingKey(tKey key)
         {
             int index = IndexOfKey(key);
@@ -490,6 +504,7 @@ namespace wan24.Core
         /// Cast as item count
         /// </summary>
         /// <param name="dict">Dictionary</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator int(in OrderedDictionary<tKey, tValue> dict) => dict.Count;
 
         /// <summary>

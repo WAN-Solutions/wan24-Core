@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Enumerable extensions
@@ -70,6 +72,7 @@
         /// <param name="enumerable">Enumerable</param>
         /// <param name="values">Values</param>
         /// <returns>Any contained?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool ContainsAny<T>(this IEnumerable<T> enumerable, params T[] values)
         {
             if (values.Length == 0) return false;

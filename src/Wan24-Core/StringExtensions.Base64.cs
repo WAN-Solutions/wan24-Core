@@ -1,5 +1,6 @@
 ﻿using System.Buffers;
 using System.Buffers.Text;
+using System.Runtime;
 using System.Text;
 
 namespace wan24.Core
@@ -12,6 +13,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static byte[] GetBase64Bytes(this ReadOnlySpan<char> str)
         {
             using RentedArrayRefStruct<byte> buffer = new(len: str.Length, clean: false);
@@ -30,6 +32,7 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Output buffer</param>
         /// <returns>Number of bytes written to <c>buffer</c></returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static int GetBase64Bytes(this ReadOnlySpan<char> str, in Span<byte> buffer)
         {
             OperationStatus status = Base64.DecodeFromUtf8InPlace(buffer[..Encoding.UTF8.GetBytes(str, buffer)], out int written);

@@ -136,12 +136,14 @@ namespace wan24.Core
         /// Cast as cancellation token
         /// </summary>
         /// <param name="cod"><see cref="CancellationOnDispose"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator CancellationToken(in CancellationOnDispose cod) => cod.Cancellation;
 
         /// <summary>
         /// Cast as disposed flag
         /// </summary>
         /// <param name="cod"><see cref="CancellationOnDispose"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator bool(in CancellationOnDispose cod) => !cod.IsDisposed;
     }
 }

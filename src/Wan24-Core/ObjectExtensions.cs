@@ -81,6 +81,7 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="action">Action</param>
         /// <returns>Return value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static tReturn Do<tObject, tReturn>(this tObject obj, in Func<tObject, tReturn> action) => action(obj);
     }
 }

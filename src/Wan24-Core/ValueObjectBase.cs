@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -24,6 +25,7 @@ namespace wan24.Core
         protected bool HasHashCode => HashCode is not null;
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
         public sealed override bool Equals(object? obj) => obj is T other && GetHashCode() == other.GetHashCode();
 
         /// <inheritdoc/>
@@ -48,6 +50,7 @@ namespace wan24.Core
         /// <param name="left">Left</param>
         /// <param name="right">Right</param>
         /// <returns>If equal</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         protected static bool EqualOperator(in ValueObjectBase<T>? left, in ValueObjectBase<T>? right)
             => (left is null && right is null) || ReferenceEquals(left, right) || (left?.Equals(right) ?? false);
 
@@ -57,6 +60,7 @@ namespace wan24.Core
         /// <param name="left">Left</param>
         /// <param name="right">Right</param>
         /// <returns>If equal</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator ==(in ValueObjectBase<T>? left, in ValueObjectBase<T>? right) => EqualOperator(left, right);
 
         /// <summary>
@@ -65,6 +69,7 @@ namespace wan24.Core
         /// <param name="left">Left</param>
         /// <param name="right">Right</param>
         /// <returns>If not equal</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator !=(in ValueObjectBase<T>? left, in ValueObjectBase<T>? right) => !EqualOperator(left, right);
     }
 }

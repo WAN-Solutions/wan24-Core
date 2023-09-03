@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Bitmap (little endian)
@@ -38,7 +40,7 @@
             if (bitCount is not null && GetByteCount(bitCount.Value) > bitmap.LongLength) throw new ArgumentOutOfRangeException(nameof(bitCount));
             _Map = bitmap;
             IncreaseSize = increaseSize;
-            BitCount = bitCount ?? bitmap.LongLength << 3;
+            BitCount = bitCount ?? (bitmap.LongLength << 3);
         }
 
         /// <summary>
@@ -91,7 +93,9 @@
         /// thread-safety)</exception>
         public bool[] this[in int start, in int end]
         {
+            [TargetedPatchingOptOut("Just a method adapter")]
             get => this[new Range(start, end)];
+            [TargetedPatchingOptOut("Just a method adapter")]
             set => this[new Range(start, end)] = value;
         }
 
@@ -105,7 +109,9 @@
         /// thread-safety)</exception>
         public bool[] this[in Index start, in Index end]
         {
+            [TargetedPatchingOptOut("Just a method adapter")]
             get => this[new Range(start, end)];
+            [TargetedPatchingOptOut("Just a method adapter")]
             set => this[new Range(start, end)] = value;
         }
 

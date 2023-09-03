@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Disposable lazy value
@@ -84,12 +86,14 @@
         /// Cast as value
         /// </summary>
         /// <param name="lazyValue">Lazy value</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator T(in DisposableLazyValue<T> lazyValue) => lazyValue.Value;
 
         /// <summary>
         /// Cast as has-value-flag
         /// </summary>
         /// <param name="lazyValue">Lazy value</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator bool(in DisposableLazyValue<T> lazyValue) => lazyValue.HasValue;
     }
 }

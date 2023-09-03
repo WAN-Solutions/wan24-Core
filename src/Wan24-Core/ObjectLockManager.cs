@@ -302,6 +302,7 @@ namespace wan24.Core
         /// Cast as active locks count
         /// </summary>
         /// <param name="manager">Manager</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator int(in ObjectLockManager<T> manager) => manager.Count;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -143,6 +144,7 @@ namespace wan24.Core
         /// Cast as running-flag
         /// </summary>
         /// <param name="service">Service</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator bool(in HostedServiceBase service) => service.IsRunning;
     }
 }

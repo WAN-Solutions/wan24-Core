@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Disposable thread-safe value
@@ -37,6 +39,7 @@
         /// Cast as new instance
         /// </summary>
         /// <param name="value">Value</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator DisposableThreadSafeValue<T>(in T? value) => new(value);
     }
 }

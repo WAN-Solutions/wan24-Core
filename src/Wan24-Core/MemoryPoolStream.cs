@@ -1,5 +1,6 @@
 ﻿using System.Buffers;
 using System.Diagnostics;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -378,7 +379,6 @@ namespace wan24.Core
         protected override void Dispose(bool disposing)
         {
             if (IsDisposing) return;
-            if (SaveOnClose) SavedData ??= ToArray();
             base.Dispose(disposing);
             foreach (byte[] buffer in Buffers)
             {
@@ -392,7 +392,7 @@ namespace wan24.Core
         protected override async Task DisposeCore()
         {
             if (SaveOnClose) SavedData ??= ToArray();
-            await DisposeCore().DynamicContext();
+            await base.DisposeCore().DynamicContext();
             foreach (byte[] buffer in Buffers)
             {
                 if (CleanReturned) buffer.Clear();
@@ -485,12 +485,14 @@ namespace wan24.Core
         /// Cast as new byte array
         /// </summary>
         /// <param name="ms"><see cref="MemoryPoolStream"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator byte[](in MemoryPoolStream ms) => ms.ToArray();
 
         /// <summary>
         /// Cast as length
         /// </summary>
         /// <param name="ms"><see cref="MemoryPoolStream"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator long(in MemoryPoolStream ms) => ms.Length;
     }
 }

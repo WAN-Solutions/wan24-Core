@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Primitives;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -65,6 +66,7 @@ namespace wan24.Core
         /// Cast as changed-flag
         /// </summary>
         /// <param name="token">Token</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator bool(in ChangeToken token) => token.HasChanged;
     }
 }

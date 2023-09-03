@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 
 namespace wan24.Core
@@ -170,24 +171,28 @@ namespace wan24.Core
         /// Remaining time until the next timeout
         /// </summary>
         /// <param name="timeout">Timeout</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator TimeSpan(in Timeout timeout) => timeout.RemainingTime;
 
         /// <summary>
         /// If running
         /// </summary>
         /// <param name="timeout">Timeout</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator bool(in Timeout timeout) => timeout.Timer.Enabled;
 
         /// <summary>
         /// Last timeout
         /// </summary>
         /// <param name="timeout">Timeout</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator DateTime(in Timeout timeout) => timeout.LastTimeout;
 
         /// <summary>
         /// Cast a <see cref="TimeSpan"/> (the timeout) as <see cref="Timeout"/>
         /// </summary>
         /// <param name="timeout">Timeout</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static explicit operator Timeout(in TimeSpan timeout) => new(timeout);
 
         /// <summary>
@@ -196,6 +201,7 @@ namespace wan24.Core
         /// <param name="timeout">Timeout</param>
         /// <param name="time">Time to add</param>
         /// <returns>Timeout</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static Timeout operator +(in Timeout timeout, in TimeSpan time)
         {
             timeout.Time += time;
@@ -208,6 +214,7 @@ namespace wan24.Core
         /// <param name="timeout">Timeout</param>
         /// <param name="time">Time to remove</param>
         /// <returns>Timeout</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static Timeout operator -(in Timeout timeout, in TimeSpan time)
         {
             timeout.Time -= time;
@@ -220,6 +227,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is equal?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator ==(in Timeout a, in Timeout b) => a.Time == b.Time;
 
         /// <summary>
@@ -228,6 +236,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is equal?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator ==(in Timeout a, in TimeSpan b) => a.Time == b;
 
         /// <summary>
@@ -236,6 +245,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is not equal?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator !=(in Timeout a, in Timeout b) => a.Time != b.Time;
 
         /// <summary>
@@ -244,6 +254,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is not equal?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator !=(in Timeout a, in TimeSpan b) => a.Time != b;
 
         /// <summary>
@@ -252,6 +263,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is lower?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator <(in Timeout a, in Timeout b) => a.Time < b.Time;
 
         /// <summary>
@@ -260,6 +272,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is lower?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator <(in Timeout a, in TimeSpan b) => a.Time < b;
 
         /// <summary>
@@ -268,6 +281,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is greater?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator >(in Timeout a, in Timeout b) => a.Time > b.Time;
 
         /// <summary>
@@ -276,6 +290,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is greater?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator >(in Timeout a, in TimeSpan b) => a.Time > b;
 
         /// <summary>
@@ -284,6 +299,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is lower or equal?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator <=(in Timeout a, in Timeout b) => a.Time <= b.Time;
 
         /// <summary>
@@ -292,6 +308,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is lower or equal?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator <=(in Timeout a, in TimeSpan b) => a.Time <= b;
 
         /// <summary>
@@ -300,6 +317,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is greater or equal?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator >=(in Timeout a, in Timeout b) => a.Time >= b.Time;
 
         /// <summary>
@@ -308,6 +326,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is greater or equal?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator >=(in Timeout a, in TimeSpan b) => a.Time >= b;
 
         /// <summary>

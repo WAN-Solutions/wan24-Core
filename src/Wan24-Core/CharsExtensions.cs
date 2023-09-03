@@ -1,5 +1,5 @@
 ﻿using System.Buffers.Text;
-using System.Buffers;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
@@ -70,6 +70,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">base64 UTF-8 string</param>
         /// <returns>Decoded bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static byte[] DecodeBase64(this char[] str) => DecodeBase64((ReadOnlySpan<char>)str);
 
         /// <summary>
@@ -77,6 +78,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">base64 UTF-8 string</param>
         /// <returns>Decoded bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static byte[] DecodeBase64(this Span<char> str) => DecodeBase64((ReadOnlySpan<char>)str);
 
         /// <summary>
@@ -84,6 +86,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">base64 UTF-8 string</param>
         /// <returns>Decoded bytes</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static byte[] DecodeBase64(this ReadOnlySpan<char> str)
         {
             using RentedArrayRefStruct<byte> buffer = new(len: Base64.GetMaxDecodedFromUtf8Length(str.Length), clean: false);
@@ -96,6 +99,7 @@ namespace wan24.Core
         /// <param name="str">base64 UTF-8 string</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Number of decoded characters written to <c>buffer</c></returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static int DecodeBase64(this char[] str, byte[] buffer) => DecodeBase64((ReadOnlySpan<char>)str, buffer);
 
         /// <summary>
@@ -104,6 +108,7 @@ namespace wan24.Core
         /// <param name="str">base64 UTF-8 string</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Number of decoded characters written to <c>buffer</c></returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static int DecodeBase64(this Span<char> str, Span<byte> buffer) => DecodeBase64((ReadOnlySpan<char>)str, buffer);
 
         /// <summary>
@@ -112,6 +117,7 @@ namespace wan24.Core
         /// <param name="str">base64 UTF-8 string</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Number of decoded characters written to <c>buffer</c></returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static int DecodeBase64(this ReadOnlySpan<char> str, Span<byte> buffer)
         {
             using RentedArrayRefStruct<byte> bytes = new(len: buffer.Length, clean: false);

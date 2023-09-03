@@ -31,6 +31,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="type">Enumeration type</param>
         /// <returns>Informations</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static IEnumInfo GetEnumInfo(this Type type) => (Activator.CreateInstance(typeof(EnumInfo<>).MakeGenericType(type)) as IEnumInfo)!;
 
         /// <summary>
@@ -126,6 +127,7 @@ namespace wan24.Core
         /// <typeparam name="T">Enumeration type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Value without flags</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static T RemoveFlags<T>(this T value) where T : struct, Enum, IConvertible
             => CastType<T>(EnumInfo<T>.IsUnsigned
                 ? CastType<ulong>(value) & ~(ulong)EnumInfo<T>.Flags
@@ -137,6 +139,7 @@ namespace wan24.Core
         /// <typeparam name="T">Enumeration type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Only flags</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static T OnlyFlags<T>(this T value) where T : struct, Enum, IConvertible
             => CastType<T>(EnumInfo<T>.IsUnsigned
                 ? CastType<ulong>(value) & (ulong)EnumInfo<T>.Flags

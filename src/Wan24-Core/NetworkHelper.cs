@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Numerics;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -65,6 +66,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="ip">IP address</param>
         /// <returns>If the IP address is a LAN IP address</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool IsLan(this IPAddress ip) => LAN == ip;
 
         /// <summary>
@@ -72,6 +74,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="ip">IP address</param>
         /// <returns>If the IP address is a loopback IP address</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool IsLoopBack(this IPAddress ip) => LoopBack == ip;
 
         /// <summary>
@@ -79,6 +82,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="ip">IP address</param>
         /// <returns>If the IP address is a WAN IP address</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool IsWan(this IPAddress ip) => LoopBack != ip && LAN != ip;
 
         /// <summary>
@@ -264,6 +268,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="ip">Private IP address (may be a loopback address)</param>
         /// <returns>Sub-net or <see langword="null"/>, if the IP address isn't private</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static IpSubNet? GetLocalSubNet(this IPAddress ip) => LoopBack.Including(ip) ?? LAN.Including(ip);
 
         /// <summary>
@@ -409,6 +414,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="ip">IP address (IPv4 required)</param>
         /// <returns>Broadcast IP address</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static IPAddress GetBroadcastAddress(this UnicastIPAddressInformation ip) => GetBroadcastAddress(ip.Address, ip.IPv4Mask);
 
         /// <summary>

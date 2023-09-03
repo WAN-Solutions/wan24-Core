@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Asynchronous event
@@ -236,6 +238,7 @@
         /// Cast as <see cref="HasHandlers"/>
         /// </summary>
         /// <param name="e">Event</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator bool(in AsyncEvent<tSender, tArgs> e) => e.HasHandlers;
 
         /// <summary>
@@ -244,6 +247,7 @@
         /// <param name="e">Event</param>
         /// <param name="handler">Handler</param>
         /// <returns>Event</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static AsyncEvent<tSender, tArgs> operator +(in AsyncEvent<tSender, tArgs> e, in IAsyncEvent<tSender, tArgs>.EventHandler_Delegate handler)
         {
             e.Listen(handler);
@@ -256,6 +260,7 @@
         /// <param name="e">Event</param>
         /// <param name="handler">Handler</param>
         /// <returns>Event</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static AsyncEvent<tSender, tArgs> operator -(in AsyncEvent<tSender, tArgs> e, in IAsyncEvent<tSender, tArgs>.EventHandler_Delegate handler)
         {
             e.Detach(handler);
@@ -268,6 +273,7 @@
         /// <param name="e">Event</param>
         /// <param name="handler">Handler</param>
         /// <returns>Event</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static AsyncEvent<tSender, tArgs> operator +(in AsyncEvent<tSender, tArgs> e, in IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate handler)
         {
             e.Listen(handler);
@@ -280,6 +286,7 @@
         /// <param name="e">Event</param>
         /// <param name="handler">Handler</param>
         /// <returns>Event</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static AsyncEvent<tSender, tArgs> operator -(in AsyncEvent<tSender, tArgs> e, in IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate handler)
         {
             e.Detach(handler);

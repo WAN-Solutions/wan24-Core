@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Threading.Channels;
 
@@ -183,6 +184,7 @@ namespace wan24.Core
         /// Cast as queued item count
         /// </summary>
         /// <param name="worker">Worker</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator int(in QueueWorker worker) => worker.Queued;
     }
 }

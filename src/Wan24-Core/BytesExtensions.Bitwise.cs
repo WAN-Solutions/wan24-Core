@@ -1,4 +1,5 @@
-﻿using System.Runtime.Intrinsics.Arm;
+﻿using System.Runtime;
+using System.Runtime.Intrinsics.Arm;
 using System.Runtime.Intrinsics.X86;
 
 //TODO .NET 8: Support for AVX512
@@ -14,6 +15,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>A</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static byte[] Xor(this byte[] a, byte[] b)
         {
             Xor(a.AsSpan(), b.AsSpan());
@@ -93,6 +95,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>A</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static byte[] And(this byte[] a, byte[] b)
         {
             And(a.AsSpan(), b.AsSpan());
@@ -172,6 +175,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>A</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static byte[] Or(this byte[] a, byte[] b)
         {
             Or(a.AsSpan(), b.AsSpan());

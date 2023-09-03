@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Threading;
 
@@ -487,7 +488,9 @@ namespace wan24.Core
         /// <summary>
         /// Raise the <see cref="OnRan"/> event
         /// </summary>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected async Task RaiseOnRan()
         {
             if (OnRan is null) return;
@@ -499,12 +502,14 @@ namespace wan24.Core
         /// Cast as running-flag
         /// </summary>
         /// <param name="service">Service</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator bool(in TimedHostedServiceBase service) => service.IsRunning;
 
         /// <summary>
         /// Cast as time until next run
         /// </summary>
         /// <param name="service">Service</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static implicit operator TimeSpan(in TimedHostedServiceBase service) => service.IsRunning ? DateTime.Now - service.NextRun : TimeSpan.Zero;
     }
 }

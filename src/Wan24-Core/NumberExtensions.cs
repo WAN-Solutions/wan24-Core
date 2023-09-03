@@ -39,6 +39,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="type">Type</param>
         /// <returns>Is unsigned?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool IsUnsigned(this Type type)
             => Activator.CreateInstance(type.IsEnum ? type.GetEnumUnderlyingType() : type) switch
             {
@@ -62,6 +63,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="type">Type</param>
         /// <returns>Is a numeric type?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool IsNumeric(this Type type)
         {
             try
@@ -94,6 +96,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="type">Type</param>
         /// <returns>Is an unsigned numeric type?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static bool IsNumericAndUnsigned(this Type type)
         {
             try

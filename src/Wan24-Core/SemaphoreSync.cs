@@ -232,6 +232,7 @@ namespace wan24.Core
         /// Cast as synchronization context
         /// </summary>
         /// <param name="sync">Synchronization</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator SemaphoreSyncContext(in SemaphoreSync sync) => sync.SyncContext();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -356,18 +357,21 @@ namespace wan24.Core
         /// Cast as rented object
         /// </summary>
         /// <param name="pool">Pool</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator T(in BlockingObjectPool<T> pool) => pool.Rent();
 
         /// <summary>
         /// Cast as available item count
         /// </summary>
         /// <param name="pool">Pool</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator int(in BlockingObjectPool<T> pool) => pool.Available;
 
         /// <summary>
         /// Cast as available-flag
         /// </summary>
         /// <param name="pool">Pool</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static implicit operator bool(in BlockingObjectPool<T> pool) => pool.Available != 0;
     }
 }

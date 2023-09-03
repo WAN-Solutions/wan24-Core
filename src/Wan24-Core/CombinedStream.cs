@@ -213,15 +213,6 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        protected override void Dispose(bool disposing)
-        {
-            if (IsDisposing) return;
-            base.Dispose(disposing);
-            if (LeaveOpen) return;
-            Streams.DisposeAll();
-        }
-
-        /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
             await base.DisposeCore().DynamicContext();

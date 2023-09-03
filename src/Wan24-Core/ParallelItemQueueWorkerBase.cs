@@ -16,11 +16,12 @@ namespace wan24.Core
         protected ParallelItemQueueWorkerBase(in int capacity, in int threads) : base(capacity, threads) { }
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public ValueTask EnqueueAsync(T item, CancellationToken cancellationToken = default)
             => EnqueueAsync(async (ct) => await ProcessItem(item, ct).DynamicContext(), cancellationToken);
 
         /// <inheritdoc/>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
         public bool TryEnqueue(T item) => TryEnqueue(async (ct) => await ProcessItem(item, ct).DynamicContext());
 
         /// <inheritdoc/>

@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Timeout value (disposable value will be disposed on timeout or when disposing)
@@ -123,12 +125,14 @@
         /// Cast as value
         /// </summary>
         /// <param name="timeoutValue">Timeout value</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator T(in TimeoutValue<T> timeoutValue) => timeoutValue.Value;
 
         /// <summary>
         /// Cast as has-value-flag
         /// </summary>
         /// <param name="timeoutValue">Timeout value</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator bool(in TimeoutValue<T> timeoutValue) => timeoutValue.HasValue;
     }
 }

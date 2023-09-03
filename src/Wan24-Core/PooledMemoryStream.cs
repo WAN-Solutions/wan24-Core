@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Pooled memory stream
@@ -11,6 +13,7 @@
         public PooledMemoryStream() : base() { }
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
         public void Reset()
         {
             SetLength(0);

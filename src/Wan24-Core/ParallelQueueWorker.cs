@@ -181,14 +181,13 @@
         }
 
         /// <inheritdoc/>
-#pragma warning disable CA1816 // Call GC
         public override void Dispose()
         {
             base.Dispose();
             Busy.Dispose();
             Processing.Dispose();
             Sync.Dispose();
+            GC.SuppressFinalize(this);
         }
-#pragma warning restore CA1816 // Call GC
     }
 }

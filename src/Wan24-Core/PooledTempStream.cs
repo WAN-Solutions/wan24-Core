@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Pooled temporary stream (hosts written data in memory first, then switches to a temporary file when exceeding the memory limit)
@@ -90,17 +92,29 @@
         /// <summary>
         /// <see cref="PooledMemoryStream"/> (do not dispose!)
         /// </summary>
-        public PooledMemoryStream? MemoryStream => _BaseStream as PooledMemoryStream;
+        public PooledMemoryStream? MemoryStream
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            get => _BaseStream as PooledMemoryStream;
+        }
 
         /// <summary>
         /// <see cref="PooledTempFileStream"/> (do not dispose!)
         /// </summary>
-        public PooledTempFileStream? FileStream => _BaseStream as PooledTempFileStream;
+        public PooledTempFileStream? FileStream
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            get => _BaseStream as PooledTempFileStream;
+        }
 
         /// <summary>
         /// Is the data stored in a <see cref="PooledMemoryStream"/>
         /// </summary>
-        public bool IsInMemory => _BaseStream is PooledMemoryStream;
+        public bool IsInMemory
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            get => _BaseStream is PooledMemoryStream;
+        }
 
         /// <inheritdoc/>
         public override IEnumerable<Status> State
