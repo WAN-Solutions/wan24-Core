@@ -27,7 +27,7 @@ namespace wan24.Core
         /// <param name="task">Global lock thread</param>
         /// <param name="createdNew">Created a new mutex?</param>
         /// <exception cref="TimeoutException">Couldn't lock within the timeout</exception>
-        private GlobalLockAsync(Guid guid, Task task, bool createdNew) : base()
+        private GlobalLockAsync(in Guid guid, in Task task, in bool createdNew) : base()
         {
             Task = task;
             GUID = guid;
@@ -48,7 +48,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="action">Action</param>
         /// <returns>Action return value</returns>
-        public Task<object?> ExecuteAsync(Func<object?> action)
+        public Task<object?> ExecuteAsync(in Func<object?> action)
         {
             EnsureUndisposed();
             TaskCompletionSource<object?> tcs = new(TaskCreationOptions.RunContinuationsAsynchronously);

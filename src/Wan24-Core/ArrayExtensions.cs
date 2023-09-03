@@ -18,7 +18,7 @@ namespace wan24.Core
         /// <returns>Span</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on offset/length error</exception>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Span<T> EnsureValid<T>(this Span<T> span, int offset, int length)
+        public static Span<T> EnsureValid<T>(this Span<T> span, in int offset, in int length)
         {
             long lastOffset = offset + length;
             if (offset < 0 || offset > span.Length) throw new ArgumentOutOfRangeException(nameof(offset));
@@ -36,7 +36,7 @@ namespace wan24.Core
         /// <returns>Span</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on offset/length error</exception>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ReadOnlySpan<T> EnsureValid<T>(this ReadOnlySpan<T> span, int offset, int length)
+        public static ReadOnlySpan<T> EnsureValid<T>(this ReadOnlySpan<T> span, in int offset, in int length)
         {
             long lastOffset = offset + length;
             if (offset < 0 || offset > span.Length) throw new ArgumentOutOfRangeException(nameof(offset));
@@ -53,7 +53,7 @@ namespace wan24.Core
         /// <param name="length">Length</param>
         /// <returns>Is valid?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool IsValid<T>(this Span<T> span, int offset, int length)
+        public static bool IsValid<T>(this Span<T> span, in int offset, in int length)
         {
             long lastOffset = offset + length;
             return !(offset < 0 || length < 0 || lastOffset > int.MaxValue || offset > span.Length || lastOffset > span.Length);
@@ -68,7 +68,7 @@ namespace wan24.Core
         /// <param name="length">Length</param>
         /// <returns>Is valid?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool IsValid<T>(this ReadOnlySpan<T> span, int offset, int length)
+        public static bool IsValid<T>(this ReadOnlySpan<T> span, in int offset, in int length)
         {
             long lastOffset = offset + length;
             return !(offset < 0 || length < 0 || lastOffset > int.MaxValue || offset > span.Length || lastOffset > span.Length);
@@ -84,7 +84,7 @@ namespace wan24.Core
         /// <returns>Memory</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on offset/length error</exception>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Memory<T> EnsureValid<T>(this Memory<T> memory, int offset, int length)
+        public static Memory<T> EnsureValid<T>(this Memory<T> memory, in int offset, in int length)
         {
             EnsureValid(memory.Span, offset, length);
             return memory;
@@ -100,7 +100,7 @@ namespace wan24.Core
         /// <returns>Memory</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on offset/length error</exception>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ReadOnlyMemory<T> EnsureValid<T>(this ReadOnlyMemory<T> memory, int offset, int length)
+        public static ReadOnlyMemory<T> EnsureValid<T>(this ReadOnlyMemory<T> memory, in int offset, in int length)
         {
             EnsureValid(memory.Span, offset, length);
             return memory;
@@ -115,7 +115,7 @@ namespace wan24.Core
         /// <param name="length">Length</param>
         /// <returns>Is valid?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static bool IsValid<T>(this Memory<T> memory, int offset, int length) => IsValid(memory.Span, offset, length);
+        public static bool IsValid<T>(this Memory<T> memory, in int offset, in int length) => IsValid(memory.Span, offset, length);
 
         /// <summary>
         /// Determine if valid offset/length
@@ -126,7 +126,7 @@ namespace wan24.Core
         /// <param name="length">Length</param>
         /// <returns>Is valid?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static bool IsValid<T>(this ReadOnlyMemory<T> memory, int offset, int length) => IsValid(memory.Span, offset, length);
+        public static bool IsValid<T>(this ReadOnlyMemory<T> memory, in int offset, in int length) => IsValid(memory.Span, offset, length);
 
         /// <summary>
         /// Get the index of a value
@@ -136,7 +136,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Index or <c>-1</c>, if not found</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static int IndexOf<T>(this T[] arr, T value) => Array.IndexOf(arr, value);
+        public static int IndexOf<T>(this T[] arr, in T value) => Array.IndexOf(arr, value);
 
         /// <summary>
         /// Get the index of a value
@@ -146,7 +146,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Index or <c>-1</c>, if not found</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static int IndexOf<T>(this Memory<T> arr, T value) => IndexOf((ReadOnlySpan<T>)arr.Span, value);
+        public static int IndexOf<T>(this Memory<T> arr, in T value) => IndexOf((ReadOnlySpan<T>)arr.Span, value);
 
         /// <summary>
         /// Get the index of a value
@@ -156,7 +156,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Index or <c>-1</c>, if not found</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static int IndexOf<T>(this ReadOnlyMemory<T> arr, T value) => IndexOf(arr.Span, value);
+        public static int IndexOf<T>(this ReadOnlyMemory<T> arr, in T value) => IndexOf(arr.Span, value);
 
         /// <summary>
         /// Get the index of a value
@@ -166,7 +166,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Index or <c>-1</c>, if not found</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int IndexOf<T>(this ReadOnlySpan<T> arr, T value)
+        public static int IndexOf<T>(this ReadOnlySpan<T> arr, in T value)
         {
             if (value is null)
             {

@@ -14,7 +14,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte ShiftLeft(this sbyte value, int bits) => (sbyte)(value << bits);
+        public static sbyte ShiftLeft(this sbyte value, in int bits) => (sbyte)(value << bits);
 
         /// <summary>
         /// Shift left
@@ -23,7 +23,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte ShiftRight(this sbyte value, int bits) => (sbyte)(value >> bits);
+        public static sbyte ShiftRight(this sbyte value, in int bits) => (sbyte)(value >> bits);
 
         /// <summary>
         /// Logical OR
@@ -32,7 +32,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte Or(this sbyte value, sbyte other) => (sbyte)(value | other);
+        public static sbyte Or(this sbyte value, in sbyte other) => (sbyte)(value | other);
 
         /// <summary>
         /// Logical AND
@@ -41,7 +41,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte And(this sbyte value, sbyte other) => (sbyte)(value & other);
+        public static sbyte And(this sbyte value, in sbyte other) => (sbyte)(value & other);
 
         /// <summary>
         /// Logical XOR
@@ -50,7 +50,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte Xor(this sbyte value, sbyte other) => (sbyte)(value ^ other);
+        public static sbyte Xor(this sbyte value, in sbyte other) => (sbyte)(value ^ other);
 
         /// <summary>
         /// Has flags?
@@ -59,7 +59,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Has the flags?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool HasFlags(this sbyte value, sbyte flags) => (value & flags) == flags;
+        public static bool HasFlags(this sbyte value, in sbyte flags) => (value & flags) == flags;
 
         /// <summary>
         /// Add flags
@@ -68,7 +68,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte AddFlags(this sbyte value, sbyte flags) => (sbyte)(value | flags);
+        public static sbyte AddFlags(this sbyte value, in sbyte flags) => (sbyte)(value | flags);
 
         /// <summary>
         /// Remove flags
@@ -77,7 +77,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte RemoveFlags(this sbyte value, sbyte flags) => (sbyte)(value & ~flags);
+        public static sbyte RemoveFlags(this sbyte value, in sbyte flags) => (sbyte)(value & ~flags);
 
         /// <summary>
         /// Cast as byte

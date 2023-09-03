@@ -18,13 +18,9 @@ namespace wan24.Core
         /// </summary>
         public readonly int Length;
         /// <summary>
-        /// Long length
-        /// </summary>
-        public readonly long LongLength;
-        /// <summary>
         /// Decoded length
         /// </summary>
-        public readonly long DecodedLength;
+        public readonly int DecodedLength;
 
         /// <summary>
         /// Constructor
@@ -34,8 +30,7 @@ namespace wan24.Core
         {
             Data = data;
             Length = data.Length;
-            LongLength = data.LongLength;
-            DecodedLength = ByteEncoding.GetDecodedLength(LongLength);
+            DecodedLength = ByteEncoding.GetDecodedLength(Length);
         }
 
         /// <summary>
@@ -46,10 +41,14 @@ namespace wan24.Core
         public char this[in int index]
         {
             [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => Data[index];
             [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             set => Data[index] = value;
         }
 
@@ -61,10 +60,14 @@ namespace wan24.Core
         public char this[in Index index]
         {
             [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => Data[index];
             [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             set => Data[index] = value;
         }
 
@@ -72,86 +75,153 @@ namespace wan24.Core
         object? IList.this[int index]
         {
             [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             get => Data[index];
             [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            set => Data[index] = (char)Convert.ChangeType(ArgumentValidationHelper.EnsureValidArgument(nameof(value), value), typeof(char));
+#endif
+            set
+            {
+                if (value is null) throw new ArgumentNullException(nameof(value));
+                Data[index] = (char)Convert.ChangeType(value, typeof(char));
+            }
         }
 
         /// <inheritdoc/>
-        public bool IsFixedSize { [TargetedPatchingOptOut("Tiny method")][MethodImpl(MethodImplOptions.AggressiveInlining)] get => true; }
+        public bool IsFixedSize
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => true;
+        }
 
         /// <inheritdoc/>
-        public bool IsReadOnly { [TargetedPatchingOptOut("Tiny method")][MethodImpl(MethodImplOptions.AggressiveInlining)] get => false; }
+        public bool IsReadOnly
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => false;
+        }
 
         /// <inheritdoc/>
-        public int Count { [TargetedPatchingOptOut("Tiny method")][MethodImpl(MethodImplOptions.AggressiveInlining)] get => Length; }
+        public int Count
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Length;
+        }
 
         /// <inheritdoc/>
-        public bool IsSynchronized { [TargetedPatchingOptOut("Tiny method")][MethodImpl(MethodImplOptions.AggressiveInlining)] get => false; }
+        public bool IsSynchronized
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => false;
+        }
 
         /// <inheritdoc/>
-        public object SyncRoot { [TargetedPatchingOptOut("Tiny method")][MethodImpl(MethodImplOptions.AggressiveInlining)] get => Data; }
+        public object SyncRoot
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Data;
+        }
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public int Add(object? value) => throw new NotSupportedException();
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public void Clear() => Array.Clear(Data);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public int CompareTo(object? other, IComparer comparer) => ((IStructuralComparable)Data).CompareTo(other, comparer);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public bool Contains(object? value) => Array.IndexOf(Data, value) != -1;
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public void CopyTo(Array array, int index) => Data.CopyTo(array, index);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public bool Equals(object? other, IEqualityComparer comparer) => ((IStructuralEquatable)Data).Equals(other, comparer);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public IEnumerator GetEnumerator() => Data.GetEnumerator();
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public int GetHashCode(IEqualityComparer comparer) => ((IStructuralEquatable)Data).GetHashCode(comparer);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public int IndexOf(object? value) => Array.IndexOf(Data, value);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public void Insert(int index, object? value) => throw new NotSupportedException();
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public void Remove(object? value) => throw new NotSupportedException();
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public void RemoveAt(int index) => throw new NotSupportedException();
 
         /// <summary>
@@ -160,7 +230,9 @@ namespace wan24.Core
         /// <typeparam name="T">Number type</typeparam>
         /// <returns>Number</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public T DecodeCompactNumber<T>() where T : struct, IConvertible => Data.DecodeCompactNumber<T>();
 
         /// <summary>
@@ -168,7 +240,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="eb"><see cref="EncodedBytes"/></param>
         [TargetedPatchingOptOut("Tiny method")]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)] 
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator byte[](in EncodedBytes eb) => eb.Data.Decode();
 
         /// <summary>
@@ -176,23 +250,19 @@ namespace wan24.Core
         /// </summary>
         /// <param name="eb"><see cref="EncodedBytes"/></param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator int(in EncodedBytes eb) => eb.Length;
-
-        /// <summary>
-        /// Cast as long length
-        /// </summary>
-        /// <param name="eb"><see cref="EncodedBytes"/></param>
-        [TargetedPatchingOptOut("Tiny method")]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator long(in EncodedBytes eb) => eb.LongLength;
 
         /// <summary>
         /// Cast as <see cref="string"/>
         /// </summary>
         /// <param name="eb"><see cref="EncodedBytes"/></param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator string(in EncodedBytes eb) => new(eb.Data);
 
         /// <summary>
@@ -200,7 +270,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="data">Data</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator EncodedBytes(in string data) => new(data.ToCharArray());
 
         /// <summary>
@@ -208,7 +280,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="data">Data</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator EncodedBytes(in byte[] data) => new(data.Encode());
 
         /// <summary>
@@ -216,7 +290,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="data">Data</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator EncodedBytes(in Span<byte> data) => new(data.Encode());
 
         /// <summary>
@@ -224,7 +300,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="data">Data</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator EncodedBytes(in ReadOnlySpan<byte> data) => new(data.Encode());
 
         /// <summary>
@@ -232,7 +310,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="data">Data</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator EncodedBytes(in Memory<byte> data) => new(data.Span.Encode());
 
         /// <summary>
@@ -240,7 +320,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="data">Data</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator EncodedBytes(in ReadOnlyMemory<byte> data) => new(data.Span.Encode());
 
         /// <summary>
@@ -248,7 +330,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="eb"><see cref="EncodedBytes"/></param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator char[](in EncodedBytes eb) => eb.Data;
 
         /// <summary>
@@ -256,7 +340,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="eb"><see cref="EncodedBytes"/></param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator Span<char>(in EncodedBytes eb) => eb.Data;
 
         /// <summary>
@@ -264,7 +350,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="eb"><see cref="EncodedBytes"/></param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator ReadOnlySpan<char>(in EncodedBytes eb) => eb.Data;
 
         /// <summary>
@@ -272,7 +360,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="eb"><see cref="EncodedBytes"/></param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator Memory<char>(in EncodedBytes eb) => eb.Data;
 
         /// <summary>
@@ -280,7 +370,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="eb"><see cref="EncodedBytes"/></param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator ReadOnlyMemory<char>(in EncodedBytes eb) => eb.Data;
     }
 }

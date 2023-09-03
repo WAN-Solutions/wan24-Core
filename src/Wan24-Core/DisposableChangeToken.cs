@@ -9,7 +9,7 @@
         /// Constructor
         /// </summary>
         /// <param name="changeIdentifier">Change identifier</param>
-        public DisposableChangeToken(Func<bool> changeIdentifier) : base(changeIdentifier) { }
+        public DisposableChangeToken(in Func<bool> changeIdentifier) : base(changeIdentifier) { }
 
         /// <summary>
         /// Destructor

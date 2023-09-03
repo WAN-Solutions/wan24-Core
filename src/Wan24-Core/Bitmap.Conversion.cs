@@ -11,7 +11,7 @@ namespace wan24.Core
         /// <param name="buffer">Target buffer</param>
         /// <returns>Bitmap</returns>
         /// <exception cref="OutOfMemoryException">Bitmap is larger than <see cref="int.MaxValue"/></exception>
-        public byte[] ToArray(byte[]? buffer = null)
+        public byte[] ToArray(in byte[]? buffer = null)
         {
             lock (SyncObject)
             {
@@ -30,7 +30,7 @@ namespace wan24.Core
         /// <param name="buffer">Target buffer</param>
         /// <returns>Bitmap</returns>
         /// <exception cref="OutOfMemoryException">Bitmap is larger than <see cref="int.MaxValue"/></exception>
-        public Span<byte> ToSpan(Span<byte> buffer)
+        public Span<byte> ToSpan(in Span<byte> buffer)
         {
             lock (SyncObject)
             {
@@ -46,56 +46,56 @@ namespace wan24.Core
         /// </summary>
         /// <param name="offset">Offset</param>
         /// <returns>Value</returns>
-        public byte ToByte(int offset = 0) => ExecuteWithEnsuredSpan(offset, sizeof(byte), (mem) => mem.Span[0]);
+        public byte ToByte(in int offset = 0) => ExecuteWithEnsuredSpan(offset, sizeof(byte), (mem) => mem.Span[0]);
 
         /// <summary>
         /// Get the bitmap as signed byte
         /// </summary>
         /// <param name="offset">Offset</param>
         /// <returns>Value</returns>
-        public sbyte ToSByte(int offset = 0) => ExecuteWithEnsuredSpan(offset, sizeof(byte), (mem) => (sbyte)mem.Span[0]);
+        public sbyte ToSByte(in int offset = 0) => ExecuteWithEnsuredSpan(offset, sizeof(byte), (mem) => (sbyte)mem.Span[0]);
 
         /// <summary>
         /// Get the bitmap as unsigned short
         /// </summary>
         /// <param name="offset">Offset</param>
         /// <returns>Value</returns>
-        public ushort ToUShort(int offset = 0) => ExecuteWithEnsuredSpan(offset, sizeof(ushort), (mem) => BinaryPrimitives.ReadUInt16LittleEndian(mem.Span));
+        public ushort ToUShort(in int offset = 0) => ExecuteWithEnsuredSpan(offset, sizeof(ushort), (mem) => BinaryPrimitives.ReadUInt16LittleEndian(mem.Span));
 
         /// <summary>
         /// Get the bitmap as short
         /// </summary>
         /// <param name="offset">Offset</param>
         /// <returns>Value</returns>
-        public short ToShort(int offset = 0) => ExecuteWithEnsuredSpan(offset, sizeof(short), (mem) => BinaryPrimitives.ReadInt16LittleEndian(mem.Span));
+        public short ToShort(in int offset = 0) => ExecuteWithEnsuredSpan(offset, sizeof(short), (mem) => BinaryPrimitives.ReadInt16LittleEndian(mem.Span));
 
         /// <summary>
         /// Get the bitmap as unsigned int
         /// </summary>
         /// <param name="offset">Offset</param>
         /// <returns>Value</returns>
-        public uint ToUInt(int offset = 0) => ExecuteWithEnsuredSpan(offset, sizeof(uint), (mem) => BinaryPrimitives.ReadUInt32LittleEndian(mem.Span));
+        public uint ToUInt(in int offset = 0) => ExecuteWithEnsuredSpan(offset, sizeof(uint), (mem) => BinaryPrimitives.ReadUInt32LittleEndian(mem.Span));
 
         /// <summary>
         /// Get the bitmap as int
         /// </summary>
         /// <param name="offset">Offset</param>
         /// <returns>Value</returns>
-        public int ToInt(int offset = 0) => ExecuteWithEnsuredSpan(offset, sizeof(int), (mem) => BinaryPrimitives.ReadInt32LittleEndian(mem.Span));
+        public int ToInt(in int offset = 0) => ExecuteWithEnsuredSpan(offset, sizeof(int), (mem) => BinaryPrimitives.ReadInt32LittleEndian(mem.Span));
 
         /// <summary>
         /// Get the bitmap as unsigned long
         /// </summary>
         /// <param name="offset">Offset</param>
         /// <returns>Value</returns>
-        public ulong ToULong(int offset = 0) => ExecuteWithEnsuredSpan(offset, sizeof(ulong), (mem) => BinaryPrimitives.ReadUInt64LittleEndian(mem.Span));
+        public ulong ToULong(in int offset = 0) => ExecuteWithEnsuredSpan(offset, sizeof(ulong), (mem) => BinaryPrimitives.ReadUInt64LittleEndian(mem.Span));
 
         /// <summary>
         /// Get the bitmap as long
         /// </summary>
         /// <param name="offset">Offset</param>
         /// <returns>Value</returns>
-        public long ToLong(int offset = 0) => ExecuteWithEnsuredSpan(offset, sizeof(long), (mem) => BinaryPrimitives.ReadInt64LittleEndian(mem.Span));
+        public long ToLong(in int offset = 0) => ExecuteWithEnsuredSpan(offset, sizeof(long), (mem) => BinaryPrimitives.ReadInt64LittleEndian(mem.Span));
 
         /// <summary>
         /// Ensure executing a function having a size matching span of the bitmap
@@ -105,7 +105,7 @@ namespace wan24.Core
         /// <param name="count">Byte count</param>
         /// <param name="function">Function</param>
         /// <returns>Return value</returns>
-        protected T ExecuteWithEnsuredSpan<T>(int offset, int count, Func<ReadOnlyMemory<byte>, T> function)
+        protected T ExecuteWithEnsuredSpan<T>(in int offset, in int count, in Func<ReadOnlyMemory<byte>, T> function)
         {
             if (offset < 0) throw new ArgumentOutOfRangeException(nameof(offset));
             if (count < 1) throw new ArgumentOutOfRangeException(nameof(count));
@@ -120,15 +120,15 @@ namespace wan24.Core
                     }
                     else
                     {
-                        using RentedArrayStruct<byte> buffer = new(count);
+                        using RentedArrayRefStruct<byte> buffer = new(count);
                         _Map.AsSpan(offset, (int)(byteCount - offset)).CopyTo(buffer.Span);
-                        return function(buffer.Memory);
+                        return function(buffer.Array.AsMemory(0, buffer.Length));
                     }
                 }
                 else
                 {
-                    using RentedArrayStruct<byte> buffer = new(count);
-                    return function(buffer.Memory);
+                    using RentedArrayRefStruct<byte> buffer = new(count);
+                    return function(buffer.Array.AsMemory(0, buffer.Length));
                 }
             }
         }

@@ -15,10 +15,6 @@ namespace wan24.Core
 #endif
     {
         /// <summary>
-        /// Array
-        /// </summary>
-        private readonly byte[] _Array;
-        /// <summary>
         /// Handle
         /// </summary>
         private readonly GCHandle Handle;
@@ -45,10 +41,10 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="array">Array</param>
-        public SecureByteArrayStruct(byte[] array)
+        public SecureByteArrayStruct(in byte[] array)
         {
-            _Array = array;
-            Handle = GCHandle.Alloc(_Array, GCHandleType.Pinned);
+            Array = array;
+            Handle = GCHandle.Alloc(Array, GCHandleType.Pinned);
 #if !NO_UNSAFE
             _Ptr = (byte*)Handle.AddrOfPinnedObject();
 #endif
@@ -58,16 +54,16 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="len">Length in bytes</param>
-        public SecureByteArrayStruct(long len) : this(new byte[len]) { }
+        public SecureByteArrayStruct(in long len) : this(new byte[len]) { }
 
         /// <inheritdoc/>
         public readonly byte this[int offset]
         {
-            get => IfUndisposed(_Array[offset]);
+            get => IfUndisposed(Array[offset]);
             set
             {
                 EnsureUndisposed();
-                _Array[offset] = value;
+                Array[offset] = value;
             }
         }
 
@@ -79,7 +75,7 @@ namespace wan24.Core
                 lock (SyncObject)
                 {
                     EnsureUndisposed();
-                    return _Array[range];
+                    return Array[range];
                 }
             }
         }
@@ -92,25 +88,39 @@ namespace wan24.Core
                 lock (SyncObject)
                 {
                     EnsureUndisposed();
-                    return _Array[new Range(start, end)];
+                    return Array[new Range(start, end)];
                 }
             }
         }
 
         /// <inheritdoc/>
-        public readonly int Length => IfUndisposed(_Array.Length);
+        public byte[] Array { get; private set; }
 
         /// <inheritdoc/>
-        public readonly long LongLength => IfUndisposed(_Array.LongLength);
+        public readonly int Length => IfUndisposed(Array.Length);
 
         /// <inheritdoc/>
-        public readonly byte[] Array => IfUndisposed(_Array);
+        public readonly long LongLength => IfUndisposed(Array.LongLength);
 
         /// <inheritdoc/>
-        public readonly Span<byte> Span => Array;
+        public readonly Span<byte> Span
+        {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Array.AsSpan();
+        }
 
         /// <inheritdoc/>
-        public readonly Memory<byte> Memory => Array;
+        public readonly Memory<byte> Memory
+        {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Array.AsMemory();
+        }
 
 #if !NO_UNSAFE
         /// <summary>
@@ -144,25 +154,30 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             Detached = true;
+            byte[] res = Array;
+            Array = System.Array.Empty<byte>();
             Dispose();
-            return _Array;
+            return res;
         }
 
         /// <inheritdoc/>
-        public readonly IEnumerator<byte> GetEnumerator() => ((IEnumerable<byte>)_Array).GetEnumerator();
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public readonly IEnumerator<byte> GetEnumerator() => ((IEnumerable<byte>)Array).GetEnumerator();
 
         /// <inheritdoc/>
-        readonly IEnumerator IEnumerable.GetEnumerator() => _Array.GetEnumerator();
+        readonly IEnumerator IEnumerable.GetEnumerator() => Array.GetEnumerator();
 
         /// <inheritdoc/>
-        public override readonly bool Equals(object? obj) => _Array.Equals(obj);
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public override readonly bool Equals(object? obj) => Array.Equals(obj);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
         public readonly bool Equals(Memory<byte> other) => Memory.Equals(other);
 
         /// <inheritdoc/>
-        public override readonly int GetHashCode() => _Array.GetHashCode();
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public override readonly int GetHashCode() => Array.GetHashCode();
 
         /// <summary>
         /// Ensure an undisposed object state
@@ -188,6 +203,9 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public void Dispose()
         {
             lock (SyncObject)
@@ -197,7 +215,7 @@ namespace wan24.Core
             }
             try
             {
-                if (!Detached && _Array.Length > 0) _Array.Clear();
+                if (!Detached && Array.Length > 0) Array.Clear();
             }
             finally
             {
@@ -210,63 +228,73 @@ namespace wan24.Core
         /// Cast as byte array
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator byte[](SecureByteArrayStruct arr) => arr.Array;
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator byte[](in SecureByteArrayStruct arr) => arr.Array;
 
         /// <summary>
         /// Cast as span
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator Span<byte>(SecureByteArrayStruct arr) => arr.Span;
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator Span<byte>(in SecureByteArrayStruct arr) => arr.Span;
 
         /// <summary>
         /// Cast as memory
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator Memory<byte>(SecureByteArrayStruct arr) => arr.Memory;
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator Memory<byte>(in SecureByteArrayStruct arr) => arr.Memory;
 
 #if !NO_UNSAFE
         /// <summary>
         /// Cast as pointer
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator byte*(SecureByteArrayStruct arr) => arr.Ptr;
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator byte*(in SecureByteArrayStruct arr) => arr.Ptr;
 #endif
 
         /// <summary>
         /// Cast as pointer
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator IntPtr(SecureByteArrayStruct arr) => arr.IntPtr;
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator IntPtr(in SecureByteArrayStruct arr) => arr.IntPtr;
 
         /// <summary>
         /// Cast as Int32 (length value)
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator int(SecureByteArrayStruct arr) => arr.Length;
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator int(in SecureByteArrayStruct arr) => arr.Length;
 
         /// <summary>
         /// Cast as Int64 (length value)
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator long(SecureByteArrayStruct arr) => arr.LongLength;
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator long(in SecureByteArrayStruct arr) => arr.LongLength;
 
         /// <summary>
         /// Cast as <see cref="SecureCharArray"/> (using UTF-8 encoding)
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator SecureCharArray(SecureByteArrayStruct arr) => new(arr.Span.ToUtf8Chars());
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator SecureCharArray(in SecureByteArrayStruct arr) => new(arr.Span.ToUtf8Chars());
 
         /// <summary>
         /// Cast as <see cref="SecureCharArrayStruct"/> (using UTF-8 encoding)
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator SecureCharArrayStruct(SecureByteArrayStruct arr) => new(arr.Span.ToUtf8Chars());
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator SecureCharArrayStruct(in SecureByteArrayStruct arr) => new(arr.Span.ToUtf8Chars());
 
         /// <summary>
         /// Cast a byte array as secure byte array
         /// </summary>
         /// <param name="arr">Byte array</param>
-        public static explicit operator SecureByteArrayStruct(byte[] arr) => new(arr);
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static explicit operator SecureByteArrayStruct(in byte[] arr) => new(arr);
 
         /// <summary>
         /// Equals
@@ -274,7 +302,8 @@ namespace wan24.Core
         /// <param name="left">Left</param>
         /// <param name="right">Right</param>
         /// <returns>Equals?</returns>
-        public static bool operator ==(SecureByteArrayStruct left, SecureByteArrayStruct right) => left.Equals(right);
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static bool operator ==(in SecureByteArrayStruct left, in SecureByteArrayStruct right) => left.Equals(right);
 
         /// <summary>
         /// Not equal
@@ -282,6 +311,7 @@ namespace wan24.Core
         /// <param name="left">Left</param>
         /// <param name="right">Right</param>
         /// <returns>Not equal?</returns>
-        public static bool operator !=(SecureByteArrayStruct left, SecureByteArrayStruct right) => !left.Equals(right);
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static bool operator !=(in SecureByteArrayStruct left, in SecureByteArrayStruct right) => !left.Equals(right);
     }
 }

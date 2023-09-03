@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="callback">Callback</param>
         /// <param name="state">State</param>
-        public ChangeCallback(Action<object?> callback, object? state) : base()
+        public ChangeCallback(in Action<object?> callback, in object? state) : base()
         {
             Callback = callback;
             State = state;

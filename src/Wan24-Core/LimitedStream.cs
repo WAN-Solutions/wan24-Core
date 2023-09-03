@@ -13,7 +13,8 @@
         /// <param name="canWrite">Can write?</param>
         /// <param name="canSeek">Can seek?</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public LimitedStream(Stream baseStream, bool canRead, bool canWrite, bool canSeek, bool leaveOpen = false) : base(baseStream, canRead, canWrite, canSeek, leaveOpen) { }
+        public LimitedStream(in Stream baseStream, in bool canRead, in bool canWrite, in bool canSeek, in bool leaveOpen = false)
+            : base(baseStream, canRead, canWrite, canSeek, leaveOpen) { }
     }
 
     /// <summary>
@@ -43,7 +44,7 @@
         /// <param name="canWrite">Can write?</param>
         /// <param name="canSeek">Can seek?</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public LimitedStream(T baseStream, bool canRead, bool canWrite, bool canSeek, bool leaveOpen = false) : base(baseStream, leaveOpen)
+        public LimitedStream(in T baseStream, in bool canRead, in bool canWrite, in bool canSeek, in bool leaveOpen = false) : base(baseStream, leaveOpen)
         {
             _CanRead = canRead;
             _CanWrite = canWrite;

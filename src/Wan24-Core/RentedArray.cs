@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime;
-using System.Security.Cryptography;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -23,7 +23,7 @@ namespace wan24.Core
         /// <param name="len">Length</param>
         /// <param name="pool">Pool</param>
         /// <param name="clean">Clean the rented array?</param>
-        public RentedArray(int len, ArrayPool<T>? pool = null, bool clean = true) : base()
+        public RentedArray(in int len, in ArrayPool<T>? pool = null, in bool clean = true) : base()
         {
             if (len < 1) throw new ArgumentOutOfRangeException(nameof(len));
             Pool = pool ?? ArrayPool<T>.Shared;
@@ -38,17 +38,17 @@ namespace wan24.Core
         /// <param name="arr">Rented array</param>
         /// <param name="len">Length</param>
         /// <param name="clean">Clean the rented array?</param>
-        public RentedArray(ArrayPool<T> pool, T[] arr, int? len = null, bool clean = false) : base()
+        public RentedArray(in ArrayPool<T> pool, in T[] arr, int? len = null, in bool clean = false) : base()
         {
+            Pool = pool;
+            _Array = arr;
             len ??= arr.Length;
+            Length = len.Value;
             if (len < 1 || len > arr.Length)
             {
-                pool.Return(arr, clearArray: clean);
+                Dispose();
                 throw new ArgumentOutOfRangeException(nameof(len));
             }
-            Pool = pool;
-            Length = len.Value;
-            _Array = arr;
             if (clean) System.Array.Clear(arr, 0, len ?? arr.Length);
         }
 
@@ -59,20 +59,43 @@ namespace wan24.Core
         public int Length { get; }
 
         /// <inheritdoc/>
-        public long LongLength => Length;
+        public long LongLength
+        {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Length;
+        }
 
         /// <inheritdoc/>
         public T this[int offset]
         {
-            get => IfUndisposed(_Array[offset]);
-            set => IfUndisposed(() => _Array[offset] = value);
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get
+            {
+                if (offset < 0 || offset >= Length) throw new ArgumentOutOfRangeException(nameof(offset));
+                return _Array[offset];
+            }
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            set
+            {
+                if (offset < 0 || offset >= Length) throw new ArgumentOutOfRangeException(nameof(offset));
+                _Array[offset] = value;
+            }
         }
 
         /// <inheritdoc/>
-        public Memory<T> this[Range range] => IfUndisposed(() => Memory[range]);
+        public Memory<T> this[Range range] => Memory[range];
 
         /// <inheritdoc/>
-        public Memory<T> this[Index start, Index end] => IfUndisposed(() => Memory[new Range(start, end)]);
+        public Memory<T> this[Index start, Index end] => Memory[new Range(start, end)];
 
         /// <inheritdoc/>
         public T[] Array => IfUndisposed(_Array);
@@ -89,15 +112,15 @@ namespace wan24.Core
         /// <inheritdoc/>
         public T[] GetCopy()
         {
-            if (Length == 0) return System.Array.Empty<T>();
+            EnsureUndisposed();
             T[] res = new T[Length];
-            Span.CopyTo(res.AsSpan(0, Length));
+            System.Array.Copy(_Array, 0, res, 0, Length);
             return res;
         }
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public override bool Equals([NotNullWhen(true)] object? obj) => Memory.Equals(obj);
+        public override bool Equals([NotNullWhen(true)] object? obj) => Array.Equals(obj);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
@@ -105,13 +128,13 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public override int GetHashCode() => Memory.GetHashCode();
+        public override int GetHashCode() => Array.GetHashCode();
 
         /// <inheritdoc/>
-        public IEnumerator<T> GetEnumerator() => ((IEnumerable<T>)_Array).GetEnumerator();
+        public IEnumerator<T> GetEnumerator() => ((IEnumerable<T>)Array).GetEnumerator();
 
         /// <inheritdoc/>
-        IEnumerator IEnumerable.GetEnumerator() => _Array.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => Array.GetEnumerator();
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
@@ -123,7 +146,8 @@ namespace wan24.Core
                 bool clear = true;
                 if (arr is byte[] byteArr)
                 {
-                    RandomNumberGenerator.Fill(byteArr.AsSpan(0, Length));
+                    clear = false;
+                    byteArr.AsSpan(0, Length).Clean();
                 }
                 else if(arr is char[] charArr)
                 {
@@ -142,24 +166,40 @@ namespace wan24.Core
         /// Cast as array
         /// </summary>
         /// <param name="arr">Array (may be longer than <see cref="Length"/>!)</param>
-        public static implicit operator T[](RentedArray<T> arr) => arr.Array;
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static implicit operator T[](in RentedArray<T> arr) => arr._Array;
 
         /// <summary>
         /// Cast as span
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator Span<T>(RentedArray<T> arr) => arr.Span;
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static implicit operator Span<T>(in RentedArray<T> arr) => arr.Span;
 
         /// <summary>
         /// Cast as memory
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator Memory<T>(RentedArray<T> arr) => arr.Memory;
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static implicit operator Memory<T>(in RentedArray<T> arr) => arr.Memory;
 
         /// <summary>
         /// Cast as Int32 (length value)
         /// </summary>
         /// <param name="arr">Array</param>
-        public static implicit operator int(RentedArray<T> arr) => arr.Length;
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static implicit operator int(in RentedArray<T> arr) => arr.Length;
     }
 }

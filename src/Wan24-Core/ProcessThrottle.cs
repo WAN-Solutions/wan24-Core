@@ -27,7 +27,7 @@
         /// </summary>
         /// <param name="limit">Processing count limit</param>
         /// <param name="timeout">Processing count limit timeout in ms</param>
-        protected ProcessThrottle(int limit, double timeout) : base()
+        protected ProcessThrottle(in int limit, in double timeout) : base()
         {
             Timer = new()
             {
@@ -76,7 +76,7 @@
         /// </summary>
         /// <param name="limit">Processing count limit</param>
         /// <param name="timeout">Processing count limit timeout in ms</param>
-        public void SetLimit(int limit, double timeout)
+        public void SetLimit(in int limit, in double timeout)
         {
             EnsureUndisposed();
             if (limit < 1) throw new ArgumentOutOfRangeException(nameof(limit));
@@ -90,14 +90,14 @@
         /// </summary>
         /// <param name="count">Count</param>
         /// <returns>Number that can be processed now</returns>
-        public int GetProcessChunkSize(int count) => GetProcessChunkSize(count, process: false);
+        public int GetProcessChunkSize(in int count) => GetProcessChunkSize(count, process: false);
 
         /// <summary>
         /// Get a chunk size to process now
         /// </summary>
         /// <param name="count">Count</param>
         /// <returns>Number that can be processed now</returns>
-        public Task<int> GetProcessChunkSizeAsync(int count) => GetProcessChunkSizeAsync(count, process: false);
+        public Task<int> GetProcessChunkSizeAsync(in int count) => GetProcessChunkSizeAsync(count, process: false);
 
         /// <summary>
         /// Process
@@ -184,7 +184,7 @@
         /// <param name="count">Count</param>
         /// <param name="process">Process the chunk size?</param>
         /// <returns>Number to process now</returns>
-        protected int GetProcessChunkSize(int count, bool process)
+        protected int GetProcessChunkSize(in int count, in bool process)
         {
             bool throttling = false;
             int canProcess;
@@ -232,7 +232,7 @@
         /// <param name="count">Count</param>
         /// <param name="process">Process the chunk size?</param>
         /// <returns>Number to process now, and if throttling</returns>
-        protected (int Process, bool Throttling) GetProcessChunkSizeLocked(int count, bool process)
+        protected (int Process, bool Throttling) GetProcessChunkSizeLocked(in int count, in bool process)
         {
             bool throttling = false;
             if (!Throttle.IsSet) return (0, throttling);
@@ -292,6 +292,6 @@
         /// Cast as throttling-flag
         /// </summary>
         /// <param name="throttle">Throttle</param>
-        public static implicit operator bool(ProcessThrottle throttle) => throttle.IsThrottling;
+        public static implicit operator bool(in ProcessThrottle throttle) => throttle.IsThrottling;
     }
 }

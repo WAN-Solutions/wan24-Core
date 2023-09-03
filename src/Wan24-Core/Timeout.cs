@@ -19,7 +19,7 @@ namespace wan24.Core
         /// <param name="time">Timeout time</param>
         /// <param name="autoReset">Auto-reset?</param>
         /// <param name="start">Start?</param>
-        public Timeout(TimeSpan time, bool autoReset = false, bool start = false) : base()
+        public Timeout(in TimeSpan time, in bool autoReset = false, in bool start = false) : base()
         {
             TimerTable.Timers[GUID] = this;
             Timer = new()
@@ -170,25 +170,25 @@ namespace wan24.Core
         /// Remaining time until the next timeout
         /// </summary>
         /// <param name="timeout">Timeout</param>
-        public static implicit operator TimeSpan(Timeout timeout) => timeout.RemainingTime;
+        public static implicit operator TimeSpan(in Timeout timeout) => timeout.RemainingTime;
 
         /// <summary>
         /// If running
         /// </summary>
         /// <param name="timeout">Timeout</param>
-        public static implicit operator bool(Timeout timeout) => timeout.Timer.Enabled;
+        public static implicit operator bool(in Timeout timeout) => timeout.Timer.Enabled;
 
         /// <summary>
         /// Last timeout
         /// </summary>
         /// <param name="timeout">Timeout</param>
-        public static implicit operator DateTime(Timeout timeout) => timeout.LastTimeout;
+        public static implicit operator DateTime(in Timeout timeout) => timeout.LastTimeout;
 
         /// <summary>
         /// Cast a <see cref="TimeSpan"/> (the timeout) as <see cref="Timeout"/>
         /// </summary>
         /// <param name="timeout">Timeout</param>
-        public static explicit operator Timeout(TimeSpan timeout) => new(timeout);
+        public static explicit operator Timeout(in TimeSpan timeout) => new(timeout);
 
         /// <summary>
         /// Add more time (and restart, if running)
@@ -196,7 +196,7 @@ namespace wan24.Core
         /// <param name="timeout">Timeout</param>
         /// <param name="time">Time to add</param>
         /// <returns>Timeout</returns>
-        public static Timeout operator +(Timeout timeout, TimeSpan time)
+        public static Timeout operator +(in Timeout timeout, in TimeSpan time)
         {
             timeout.Time += time;
             return timeout;
@@ -208,7 +208,7 @@ namespace wan24.Core
         /// <param name="timeout">Timeout</param>
         /// <param name="time">Time to remove</param>
         /// <returns>Timeout</returns>
-        public static Timeout operator -(Timeout timeout, TimeSpan time)
+        public static Timeout operator -(in Timeout timeout, in TimeSpan time)
         {
             timeout.Time -= time;
             return timeout;
@@ -220,7 +220,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is equal?</returns>
-        public static bool operator ==(Timeout a, Timeout b) => a.Time == b.Time;
+        public static bool operator ==(in Timeout a, in Timeout b) => a.Time == b.Time;
 
         /// <summary>
         /// Time equal
@@ -228,7 +228,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is equal?</returns>
-        public static bool operator ==(Timeout a, TimeSpan b) => a.Time == b;
+        public static bool operator ==(in Timeout a, in TimeSpan b) => a.Time == b;
 
         /// <summary>
         /// Time not equal
@@ -236,7 +236,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is not equal?</returns>
-        public static bool operator !=(Timeout a, Timeout b) => a.Time != b.Time;
+        public static bool operator !=(in Timeout a, in Timeout b) => a.Time != b.Time;
 
         /// <summary>
         /// Time not equal
@@ -244,7 +244,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is not equal?</returns>
-        public static bool operator !=(Timeout a, TimeSpan b) => a.Time != b;
+        public static bool operator !=(in Timeout a, in TimeSpan b) => a.Time != b;
 
         /// <summary>
         /// Lower
@@ -252,7 +252,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is lower?</returns>
-        public static bool operator <(Timeout a, Timeout b) => a.Time < b.Time;
+        public static bool operator <(in Timeout a, in Timeout b) => a.Time < b.Time;
 
         /// <summary>
         /// Lower
@@ -260,7 +260,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is lower?</returns>
-        public static bool operator <(Timeout a, TimeSpan b) => a.Time < b;
+        public static bool operator <(in Timeout a, in TimeSpan b) => a.Time < b;
 
         /// <summary>
         /// Greater
@@ -268,7 +268,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is greater?</returns>
-        public static bool operator >(Timeout a, Timeout b) => a.Time > b.Time;
+        public static bool operator >(in Timeout a, in Timeout b) => a.Time > b.Time;
 
         /// <summary>
         /// Greater
@@ -276,7 +276,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is greater?</returns>
-        public static bool operator >(Timeout a, TimeSpan b) => a.Time > b;
+        public static bool operator >(in Timeout a, in TimeSpan b) => a.Time > b;
 
         /// <summary>
         /// Lower or equal
@@ -284,7 +284,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is lower or equal?</returns>
-        public static bool operator <=(Timeout a, Timeout b) => a.Time <= b.Time;
+        public static bool operator <=(in Timeout a, in Timeout b) => a.Time <= b.Time;
 
         /// <summary>
         /// Lower or equal
@@ -292,7 +292,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is lower or equal?</returns>
-        public static bool operator <=(Timeout a, TimeSpan b) => a.Time <= b;
+        public static bool operator <=(in Timeout a, in TimeSpan b) => a.Time <= b;
 
         /// <summary>
         /// Greater or equal
@@ -300,7 +300,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is greater or equal?</returns>
-        public static bool operator >=(Timeout a, Timeout b) => a.Time >= b.Time;
+        public static bool operator >=(in Timeout a, in Timeout b) => a.Time >= b.Time;
 
         /// <summary>
         /// Greater or equal
@@ -308,7 +308,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is greater or equal?</returns>
-        public static bool operator >=(Timeout a, TimeSpan b) => a.Time >= b;
+        public static bool operator >=(in Timeout a, in TimeSpan b) => a.Time >= b;
 
         /// <summary>
         /// Run an acion
@@ -316,7 +316,7 @@ namespace wan24.Core
         /// <param name="delay">Delay</param>
         /// <param name="action">Action</param>
         /// <returns>Timeout (will be disposed automatic when the action is being executed)</returns>
-        public static Timeout RunAction(TimeSpan delay, Action action)
+        public static Timeout RunAction(in TimeSpan delay, Action action)
         {
             Timeout res = new(delay)
             {
@@ -337,7 +337,7 @@ namespace wan24.Core
         /// <param name="delay">Delay</param>
         /// <param name="action">Action</param>
         /// <returns>Timeout (will be disposed automatic when the action is being executed)</returns>
-        public static Timeout RunAction(TimeSpan delay, Func<Task> action)
+        public static Timeout RunAction(in TimeSpan delay, Func<Task> action)
         {
             Timeout res = new(delay)
             {

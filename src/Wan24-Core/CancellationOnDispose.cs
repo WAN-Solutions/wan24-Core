@@ -33,7 +33,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="obj">Monitored object (won't be disposed)</param>
         /// <param name="cancellationToken">Monitored <see cref="CancellationToken"/></param>
-        public CancellationOnDispose(IDisposableObject obj, CancellationToken? cancellationToken = null) : base()
+        public CancellationOnDispose(in IDisposableObject obj, in CancellationToken? cancellationToken = null) : base()
         {
             Cancellation = CancellationSource.Token;
             CancellationRegistration = null;
@@ -78,7 +78,7 @@ namespace wan24.Core
         /// <exception cref="OperationCanceledException">The monitored <see cref="CancellationToken"/> was canceled or this instance was disposed (and <c>throwIfCanceled</c> was 
         /// <see langword="true"/>)</exception>
         /// <exception cref="ObjectDisposedException">The monitored object was disposed (but the monitored <see cref="CancellationToken"/> wasn't canceled)</exception>
-        public bool ThrowIfCanceled(bool throwIfCancellationRequested = true)
+        public bool ThrowIfCanceled(in bool throwIfCancellationRequested = true)
         {
             lock (CancellationSource)
                 if (!(CancellationRegistration?.Token.IsCancellationRequested ?? false) && !Object.IsDisposing && !Cancellation.IsCancellationRequested)
@@ -136,12 +136,12 @@ namespace wan24.Core
         /// Cast as cancellation token
         /// </summary>
         /// <param name="cod"><see cref="CancellationOnDispose"/></param>
-        public static implicit operator CancellationToken(CancellationOnDispose cod) => cod.Cancellation;
+        public static implicit operator CancellationToken(in CancellationOnDispose cod) => cod.Cancellation;
 
         /// <summary>
         /// Cast as disposed flag
         /// </summary>
         /// <param name="cod"><see cref="CancellationOnDispose"/></param>
-        public static implicit operator bool(CancellationOnDispose cod) => !cod.IsDisposed;
+        public static implicit operator bool(in CancellationOnDispose cod) => !cod.IsDisposed;
     }
 }

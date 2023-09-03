@@ -23,7 +23,7 @@
         /// </summary>
         /// <param name="initialState">Initial state</param>
         /// <param name="enableSyncWaiting">Enable synchronous waiting?</param>
-        public ResetEvent(bool initialState = false, bool enableSyncWaiting = true) : base()
+        public ResetEvent(in bool initialState = false, in bool enableSyncWaiting = true) : base()
         {
             TaskCompletion = new(TaskCreationOptions.RunContinuationsAsynchronously);
             SyncSet = enableSyncWaiting ? new(initialState) : null;
@@ -105,7 +105,7 @@
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <exception cref="OperationCanceledException">Canceled</exception>
-        public void Wait(CancellationToken cancellationToken = default)
+        public void Wait(in CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
             if (!SynchronousWaiting) throw new InvalidOperationException("Synchronous waiting disabled");
@@ -129,7 +129,7 @@
         /// </summary>
         /// <param name="timeout">Timeout</param>
         /// <exception cref="TimeoutException">Timeout</exception>
-        public void Wait(TimeSpan timeout)
+        public void Wait(in TimeSpan timeout)
         {
             EnsureUndisposed();
             if (!SynchronousWaiting) throw new InvalidOperationException("Synchronous waiting disabled");
@@ -156,7 +156,7 @@
         /// Wait for set and reset
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
-        public void WaitAndReset(CancellationToken cancellationToken = default)
+        public void WaitAndReset(in CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
             while (true)
@@ -236,6 +236,6 @@
         /// Cast as set-flag
         /// </summary>
         /// <param name="e">Event</param>
-        public static implicit operator bool(ResetEvent e) => e.IsSet;
+        public static implicit operator bool(in ResetEvent e) => e.IsSet;
     }
 }

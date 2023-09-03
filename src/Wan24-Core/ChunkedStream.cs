@@ -56,14 +56,14 @@ namespace wan24.Core
         /// <param name="numberOfChunks">Number of existing chunks</param>
         /// <param name="lastChunkLength">Length of the last chunk in bytes</param>
         public ChunkedStream(
-            bool writable,
-            long chunkSize,
-            StreamFactory_Delegate? chunkStreamFactory,
-            DeleteChunk_Delegate? deleteChunk,
-            AsyncStreamactory_Delegate? asyncChunkStreamFactory = null,
-            AsyncDeleteChunk_Delegate? asyncDeleteChunk = null,
-            int numberOfChunks = 0,
-            long lastChunkLength = 0
+            in bool writable,
+            in long chunkSize,
+            in StreamFactory_Delegate? chunkStreamFactory,
+            in DeleteChunk_Delegate? deleteChunk,
+            in AsyncStreamactory_Delegate? asyncChunkStreamFactory = null,
+            in AsyncDeleteChunk_Delegate? asyncDeleteChunk = null,
+            in int numberOfChunks = 0,
+            in long lastChunkLength = 0
             ) : base()
         {
             if (chunkSize < 1) throw new ArgumentOutOfRangeException(nameof(chunkSize));
@@ -159,7 +159,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="index">Chunk index</param>
         /// <returns>Chunk stream</returns>
-        protected Stream GetChunkStream(int index)
+        protected Stream GetChunkStream(in int index)
         {
             EnsureUndisposed();
             if (index < 0) throw new ArgumentOutOfRangeException(nameof(index));
@@ -187,7 +187,7 @@ namespace wan24.Core
         /// Delete a chunk
         /// </summary>
         /// <param name="index">Chunk index</param>
-        protected virtual void DeleteChunkSync(int index)
+        protected virtual void DeleteChunkSync(in int index)
         {
             EnsureUndisposed();
             EnsureWritable();

@@ -10,7 +10,7 @@
         /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
-        protected ItemQueueWorkerBase(int capacity) : base(capacity) { }
+        protected ItemQueueWorkerBase(in int capacity) : base(capacity) { }
 
         /// <inheritdoc/>
         public ValueTask EnqueueAsync(T item, CancellationToken cancellationToken = default)

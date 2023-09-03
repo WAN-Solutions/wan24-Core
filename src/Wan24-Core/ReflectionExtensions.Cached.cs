@@ -78,7 +78,7 @@ namespace wan24.Core
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Property</returns>
         public static PropertyInfoExt? GetPropertyCached(
-            this Type type, 
+            this Type type,
             string name, 
             BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public
             )
@@ -163,7 +163,7 @@ namespace wan24.Core
         /// <param name="pi">Property</param>
         /// <param name="obj">Object</param>
         /// <returns>Value</returns>
-        public static object? GetValueFast(this PropertyInfoExt pi, object? obj)
+        public static object? GetValueFast(this PropertyInfoExt pi, in object? obj)
         {
             if (pi.Getter is null) throw new InvalidOperationException("The property has no getter");
             return pi.Getter(obj);
@@ -175,7 +175,7 @@ namespace wan24.Core
         /// <param name="pi">Property</param>
         /// <param name="obj">Object</param>
         /// <returns>Value</returns>
-        public static object? GetValueFast(this PropertyInfo pi, object? obj)
+        public static object? GetValueFast(this PropertyInfo pi, in object? obj)
         {
             BindingFlags bindingFlags = (pi.GetMethod?.IsPublic ?? false) || pi.SetMethod!.IsPublic
                 ? BindingFlags.Public
@@ -206,7 +206,7 @@ namespace wan24.Core
         /// <param name="pi">Property</param>
         /// <param name="obj">Object</param>
         /// <param name="value">Value</param>
-        public static void SetValueFast(this PropertyInfoExt pi, object? obj, object? value)
+        public static void SetValueFast(this PropertyInfoExt pi, in object? obj, in object? value)
         {
             if (pi.Setter is null) throw new InvalidOperationException("The property has no setter");
             pi.Setter(obj, value);
@@ -218,7 +218,7 @@ namespace wan24.Core
         /// <param name="pi">Property</param>
         /// <param name="obj">Object</param>
         /// <param name="value">Value</param>
-        public static void SetValueFast(this PropertyInfo pi, object? obj, object? value)
+        public static void SetValueFast(this PropertyInfo pi, in object? obj, in object? value)
         {
             BindingFlags bindingFlags = (pi.GetMethod?.IsPublic ?? false) || pi.SetMethod!.IsPublic
                 ? BindingFlags.Public

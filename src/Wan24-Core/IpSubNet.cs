@@ -66,7 +66,7 @@ namespace wan24.Core
         {
             bool isIPv4 = network.AddressFamily == AddressFamily.InterNetwork;
             if (!isIPv4 && network.AddressFamily != AddressFamily.InterNetworkV6) throw new ArgumentException("Sub-net supports only IPv4/6 addresses", nameof(network));
-            using RentedArray<byte> buffer = GetBytes(network);
+            using RentedArrayRefStruct<byte> buffer = GetBytes(network);
             ReadOnlySpan<byte> bytes = buffer.Span;
             Network = new(bytes, isUnsigned: true, isBigEndian: true);
             if (countAllBits)
@@ -95,7 +95,7 @@ namespace wan24.Core
             switch (network.AddressFamily)
             {
                 case AddressFamily.InterNetworkV6:
-                    using (RentedArray<byte> maskBuffer = GetBytes(mask))
+                    using (RentedArrayRefStruct<byte> maskBuffer = GetBytes(mask))
                     {
                         ReadOnlySpan<byte> maskBytes = maskBuffer.Span;
                         int popCount = 0;//TODO .NET 7: Use BigInteger.PopCount

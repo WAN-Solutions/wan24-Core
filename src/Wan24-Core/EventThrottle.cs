@@ -18,7 +18,7 @@
         /// Constructor
         /// </summary>
         /// <param name="timeout">Timeout in ms</param>
-        protected EventThrottle(int timeout) : base()
+        protected EventThrottle(in int timeout) : base()
         {
             if (timeout < 1) throw new ArgumentOutOfRangeException(nameof(timeout));
             _Timeout = timeout;
@@ -135,7 +135,7 @@
         /// </summary>
         /// <param name="raised">First raised time</param>
         /// <param name="raisedCount">Raised count</param>
-        protected abstract void HandleEvent(DateTime raised, int raisedCount);
+        protected abstract void HandleEvent(in DateTime raised, in int raisedCount);
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing) => Timer.Dispose();
@@ -144,6 +144,6 @@
         /// Cast as throttling-flag
         /// </summary>
         /// <param name="throttle">Throttle</param>
-        public static implicit operator bool(EventThrottle throttle) => throttle.IsThrottling;
+        public static implicit operator bool(in EventThrottle throttle) => throttle.IsThrottling;
     }
 }

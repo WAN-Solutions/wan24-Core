@@ -24,7 +24,7 @@ namespace wan24.Core
         /// <param name="entryCountLimit">Maximum number of entries to trace (overflowing old entries will be removed when adding new entries)</param>
         /// <param name="skipLogger">Skip writing to the logger based on the given level?</param>
         /// <param name="logger">Logger to use</param>
-        public Tracer(in LogLevel level = LogLevel.Warning, in string? prefix = null, in int entryCountLimit = byte.MaxValue, in bool skipLogger = false, ILogger? logger = null)
+        public Tracer(in LogLevel level = LogLevel.Warning, in string? prefix = null, in int entryCountLimit = byte.MaxValue, in bool skipLogger = false, in ILogger? logger = null)
         {
             Entries = Channel.CreateBounded<Entry>(new BoundedChannelOptions(entryCountLimit)
             {

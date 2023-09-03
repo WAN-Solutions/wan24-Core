@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace wan24.Core
@@ -39,7 +41,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="array">Array</param>
-        protected SecureArrayBase(T[] array) : base()
+        protected SecureArrayBase(in T[] array) : base()
         {
             _Array = array;
             Handle = GCHandle.Alloc(_Array, GCHandleType.Pinned);
@@ -54,39 +56,85 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="len">Length in bytes</param>
-        protected SecureArrayBase(long len) : this(new T[len]) { }
+        protected SecureArrayBase(in long len) : this(new T[len]) { }
 
         /// <inheritdoc/>
         public T this[int offset]
         {
-            get => IfUndisposed(_Array[offset]);
-            set
-            {
-                EnsureUndisposed();
-                _Array[offset] = value;
-            }
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Array[offset];
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            set => Array[offset] = value;
         }
 
         /// <inheritdoc/>
-        public Memory<T> this[Range range] => IfUndisposed(() => _Array[range]);
+        public Memory<T> this[Range range]
+        {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Array[range];
+        }
 
         /// <inheritdoc/>
-        public Memory<T> this[Index start, Index end] => IfUndisposed(() => _Array[new Range(start, end)]);
+        public Memory<T> this[Index start, Index end]
+        {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Array[new Range(start, end)];
+        }
 
         /// <inheritdoc/>
-        public int Length => IfUndisposed(_Array.Length);
+        public int Length
+        {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Array.Length;
+        }
 
         /// <inheritdoc/>
-        public long LongLength => IfUndisposed(_Array.LongLength);
+        public long LongLength
+        {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Array.LongLength;
+        }
 
         /// <inheritdoc/>
         public T[] Array => IfUndisposed(_Array);
 
         /// <inheritdoc/>
-        public Span<T> Span => Array;
+        public Span<T> Span
+        {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Array.AsSpan();
+        }
 
         /// <inheritdoc/>
-        public Memory<T> Memory => Array;
+        public Memory<T> Memory
+        {
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Array.AsMemory();
+        }
 
 #if !NO_UNSAFE
         /// <summary>
@@ -117,18 +165,22 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public IEnumerator<T> GetEnumerator() => ((IEnumerable<T>)_Array).GetEnumerator();
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public IEnumerator<T> GetEnumerator() => ((IEnumerable<T>)Array).GetEnumerator();
 
         /// <inheritdoc/>
-        IEnumerator IEnumerable.GetEnumerator() => _Array.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => Array.GetEnumerator();
 
         /// <inheritdoc/>
-        public override bool Equals([NotNullWhen(true)] object? obj) => _Array.Equals(obj);
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public override bool Equals([NotNullWhen(true)] object? obj) => Array.Equals(obj);
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public bool Equals(Memory<T> other) => Memory.Equals(other);
 
         /// <inheritdoc/>
-        public override int GetHashCode() => _Array.GetHashCode();
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public override int GetHashCode() => Array.GetHashCode();
     }
 }

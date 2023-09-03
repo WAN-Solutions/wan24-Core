@@ -24,7 +24,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="leaveOpen">Leave the target streams open when disposing?</param>
         /// <param name="targets">Target streams</param>
-        public HubStream(bool leaveOpen, params Stream[] targets) : base()
+        public HubStream(in bool leaveOpen, params Stream[] targets) : base()
         {
             if (targets.Length == 0) throw new ArgumentOutOfRangeException(nameof(targets));
             Targets = targets.AsReadOnly();

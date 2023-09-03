@@ -182,19 +182,19 @@ public static T ConvertType&lt;T&gt;(this object obj)</code></pre>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ObjectExtensions_Do__2___0_Func___0___1__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectExtensions.Do%60%602(%60%600%2CFunc%7B%60%600%2C%60%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ObjectExtensions_Do__2___0_Func___0___1___.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectExtensions.Do%60%602(%60%600%2CFunc%7B%60%600%2C%60%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ObjectExtensions.cs/#L84">View Source</a>
   </span>
   <a id="wan24_Core_ObjectExtensions_Do_" data-uid="wan24.Core.ObjectExtensions.Do*"></a>
-  <h4 id="wan24_Core_ObjectExtensions_Do__2___0_Func___0___1__" data-uid="wan24.Core.ObjectExtensions.Do``2(``0,Func{``0,``1})">Do&lt;tObject, tReturn&gt;(tObject, Func&lt;tObject, tReturn&gt;)</h4>
+  <h4 id="wan24_Core_ObjectExtensions_Do__2___0_Func___0___1___" data-uid="wan24.Core.ObjectExtensions.Do``2(``0,Func{``0,``1}@)">Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</h4>
   <div class="markdown level1 summary"><p>Execute an action</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static tReturn Do&lt;tObject, tReturn&gt;(this tObject obj, Func&lt;tObject, tReturn&gt; action)</code></pre>
+    <pre><code class="lang-csharp hljs">public static tReturn Do&lt;tObject, tReturn&gt;(this tObject obj, in Func&lt;tObject, tReturn&gt; action)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -259,20 +259,20 @@ public static T ConvertType&lt;T&gt;(this object obj)</code></pre>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectExtensions.EnsureValidState%60%601(%60%600%2CSystem.Boolean%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean__System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectExtensions.EnsureValidState%60%601(%60%600%2CSystem.Boolean%40%2CSystem.String%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ObjectExtensions.cs/#L47">View Source</a>
   </span>
   <a id="wan24_Core_ObjectExtensions_EnsureValidState_" data-uid="wan24.Core.ObjectExtensions.EnsureValidState*"></a>
-  <h4 id="wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean_System_String_" data-uid="wan24.Core.ObjectExtensions.EnsureValidState``1(``0,System.Boolean,System.String)">EnsureValidState&lt;T&gt;(T, Boolean, String)</h4>
+  <h4 id="wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean__System_String__" data-uid="wan24.Core.ObjectExtensions.EnsureValidState``1(``0,System.Boolean@,System.String@)">EnsureValidState&lt;T&gt;(T, in Boolean, in String)</h4>
   <div class="markdown level1 summary"><p>Ensure a valid object state</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static T EnsureValidState&lt;T&gt;(this T obj, bool state, string error = null)</code></pre>
+public static T EnsureValidState&lt;T&gt;(this T obj, in bool state, in string error = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -461,20 +461,20 @@ public static bool In(this object obj, params object[] objs)</code></pre>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ObjectExtensions_In__1___0_IEnumerable___0__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectExtensions.In%60%601(%60%600%2CIEnumerable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ObjectExtensions_In__1___0_IEnumerable___0___.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectExtensions.In%60%601(%60%600%2CIEnumerable%7B%60%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ObjectExtensions.cs/#L26">View Source</a>
   </span>
   <a id="wan24_Core_ObjectExtensions_In_" data-uid="wan24.Core.ObjectExtensions.In*"></a>
-  <h4 id="wan24_Core_ObjectExtensions_In__1___0_IEnumerable___0__" data-uid="wan24.Core.ObjectExtensions.In``1(``0,IEnumerable{``0})">In&lt;T&gt;(T, IEnumerable&lt;T&gt;)</h4>
+  <h4 id="wan24_Core_ObjectExtensions_In__1___0_IEnumerable___0___" data-uid="wan24.Core.ObjectExtensions.In``1(``0,IEnumerable{``0}@)">In&lt;T&gt;(T, in IEnumerable&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Determine if an object is within an object list</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static bool In&lt;T&gt;(this T obj, IEnumerable&lt;T&gt; objs)</code></pre>
+public static bool In&lt;T&gt;(this T obj, in IEnumerable&lt;T&gt; objs)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

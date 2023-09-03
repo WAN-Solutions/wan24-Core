@@ -40,7 +40,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="flags">Flags</param>
         /// <returns>Contains all flags?</returns>
-        public static bool ContainsAllFlags<T>(this T value, T flags) where T : struct, Enum, IConvertible
+        public static bool ContainsAllFlags<T>(this T value, in T flags) where T : struct, Enum, IConvertible
         {
             EnumInfo<T> info = value.GetInfo();
             if (!info.HasFlags) return false;

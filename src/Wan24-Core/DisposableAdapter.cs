@@ -20,8 +20,8 @@
         /// <param name="disposer">Disposer</param>
         /// <param name="asyncDisposer">Asynchronous disposer</param>
         public DisposableAdapter(
-            DisposableWrapper<DisposableAdapter>.Dispose_Delegate disposer,
-            DisposableWrapper<DisposableAdapter>.DisposeAsync_Delegate? asyncDisposer = null
+            in DisposableWrapper<DisposableAdapter>.Dispose_Delegate disposer,
+            in DisposableWrapper<DisposableAdapter>.DisposeAsync_Delegate? asyncDisposer = null
             ) : base()
         {
             Disposer = disposer;

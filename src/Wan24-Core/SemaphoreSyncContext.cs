@@ -23,7 +23,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="semaphore">Semaphore</param>
-        internal SemaphoreSyncContext(SemaphoreSlim semaphore) => Semaphore = semaphore;
+        internal SemaphoreSyncContext(in SemaphoreSlim semaphore) => Semaphore = semaphore;
 
         /// <summary>
         /// Is disposed?
@@ -41,7 +41,7 @@ namespace wan24.Core
         /// <param name="timeout">Timeout</param>
         /// <param name="cancellationToken">Cancellation token</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public readonly void Sync(TimeSpan timeout, CancellationToken cancellationToken = default)
+        public readonly void Sync(in TimeSpan timeout, in CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
             Semaphore.Wait(timeout, cancellationToken);
@@ -52,7 +52,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public readonly void Sync(CancellationToken cancellationToken = default)
+        public readonly void Sync(in CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
             Semaphore.Wait(cancellationToken);
@@ -139,7 +139,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Synchronization context</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Task<SemaphoreSyncContext> CreateAsync(SemaphoreSlim semaphore, CancellationToken cancellationToken)
+        public static Task<SemaphoreSyncContext> CreateAsync(in SemaphoreSlim semaphore, in CancellationToken cancellationToken)
             => CreateAsync(semaphore, cancellationToken: cancellationToken);
 
         /// <summary>

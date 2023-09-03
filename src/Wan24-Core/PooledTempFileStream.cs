@@ -40,7 +40,7 @@
         /// Constructor
         /// </summary>
         /// <param name="folder">Temporary folder</param>
-        public PooledTempFileStream(string? folder)
+        public PooledTempFileStream(in string? folder)
             : base(
                   Path.Combine(
                       folder ?? Settings.TempFolder,

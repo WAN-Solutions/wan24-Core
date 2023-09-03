@@ -31,7 +31,7 @@ namespace Wan24_Core_Tests
 
             public TestObject() : base(20) { }
 
-            protected override void HandleEvent(DateTime raised, int raisedCount)
+            protected override void HandleEvent(in DateTime raised, in int raisedCount)
             {
                 Handled++;
             }

@@ -40,7 +40,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bits">Bits to set</param>
         /// <param name="offset">Start bit offset</param>
-        public virtual void SetBits(IEnumerable<bool> bits, long offset = 0)
+        public virtual void SetBits(in IEnumerable<bool> bits, long offset = 0)
         {
             lock (SyncObject)
             {
@@ -72,7 +72,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="startBitIncluding">Start bit offset including</param>
         /// <param name="endBitIncluding">End bit offset including</param>
-        public virtual void SetAllBits(bool value, long startBitIncluding = 0, long? endBitIncluding = null)
+        public virtual void SetAllBits(in bool value, in long startBitIncluding = 0, long? endBitIncluding = null)
         {
             lock (SyncObject)
             {
@@ -96,7 +96,7 @@ namespace wan24.Core
         /// <param name="offset">Bit offset</param>
         /// <param name="value">Value</param>
         /// <returns>Was updated?</returns>
-        public virtual bool UpdateBit(long offset, bool value)
+        public virtual bool UpdateBit(in long offset, in bool value)
         {
             lock (SyncObject)
             {

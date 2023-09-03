@@ -11,7 +11,7 @@
         /// </summary>
         /// <param name="baseStream">Base stream</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public SynchronizedStream(Stream baseStream, bool leaveOpen = false) : base(baseStream, leaveOpen) { }
+        public SynchronizedStream(in Stream baseStream, in bool leaveOpen = false) : base(baseStream, leaveOpen) { }
     }
 
     /// <summary>
@@ -26,7 +26,7 @@
         /// </summary>
         /// <param name="baseStream">Base stream</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public SynchronizedStream(T baseStream, bool leaveOpen = false) : base(baseStream, leaveOpen) { }
+        public SynchronizedStream(in T baseStream, in bool leaveOpen = false) : base(baseStream, leaveOpen) { }
 
         /// <summary>
         /// I/O synchronization
@@ -98,7 +98,7 @@
         /// <param name="offset">Byte offset</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Number of bytes red</returns>
-        public int ReadAt(long offset, Span<byte> buffer)
+        public int ReadAt(in long offset, in Span<byte> buffer)
         {
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
@@ -150,7 +150,7 @@
         /// </summary>
         /// <param name="offset">Byte offset</param>
         /// <returns>Byte or <c>-1</c>, if reading failed</returns>
-        public int ReadByteAt(long offset)
+        public int ReadByteAt(in long offset)
         {
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
@@ -179,7 +179,7 @@
         /// </summary>
         /// <param name="offset">Byte offset</param>
         /// <param name="buffer">Buffer</param>
-        public void WriteAt(long offset, ReadOnlySpan<byte> buffer)
+        public void WriteAt(in long offset, in ReadOnlySpan<byte> buffer)
         {
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
@@ -230,7 +230,7 @@
         /// </summary>
         /// <param name="offset">Byte offset</param>
         /// <param name="value">Value</param>
-        public void WriteByteAt(long offset, byte value)
+        public void WriteByteAt(in long offset, in byte value)
         {
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();

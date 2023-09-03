@@ -123,7 +123,7 @@ namespace wan24.Core
         /// <param name="tag">Tagged object</param>
         /// <returns>Object lock</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public Task<ObjectLock> LockAsync(IObjectKey obj, TimeSpan timeout, object? tag = null) => LockAsync(obj.Key, timeout, tag);
+        public Task<ObjectLock> LockAsync(in IObjectKey obj, in TimeSpan timeout, in object? tag = null) => LockAsync(obj.Key, timeout, tag);
 
         /// <summary>
         /// Create an object lock asynchronous
@@ -134,7 +134,7 @@ namespace wan24.Core
         /// <param name="tag">Tagged object</param>
         /// <returns>Object lock</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public Task<ObjectLock> LockAsync<tObject>(tObject obj, TimeSpan timeout, object? tag = null) where tObject : T, IObjectKey
+        public Task<ObjectLock> LockAsync<tObject>(in tObject obj, in TimeSpan timeout, in object? tag = null) where tObject : T, IObjectKey
             => LockAsync(obj.Key, timeout, tag);
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Object lock</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public Task<ObjectLock> LockAsync(IObjectKey obj, object? tag = null, CancellationToken cancellationToken = default)
+        public Task<ObjectLock> LockAsync(in IObjectKey obj, in object? tag = null, in CancellationToken cancellationToken = default)
             => LockAsync(obj.Key, tag, cancellationToken);
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Object lock</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public Task<ObjectLock> LockAsync<tObject>(tObject obj, object? tag = null, CancellationToken cancellationToken = default) where tObject : T, IObjectKey
+        public Task<ObjectLock> LockAsync<tObject>(in tObject obj, in object? tag = null, in CancellationToken cancellationToken = default) where tObject : T, IObjectKey
             => LockAsync(obj.Key, tag, cancellationToken);
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="key">Object key</param>
         /// <returns>Active lock or <see langword="null"/>, if none</returns>
-        public ObjectLock? GetActiveLock(object key)
+        public ObjectLock? GetActiveLock(in object key)
         {
             EnsureUndisposed();
             return ActiveLocks.TryGetValue(key, out ObjectLock? res) ? res : null;
@@ -227,7 +227,7 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <returns>Active lock or <see langword="null"/>, if none</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public ObjectLock? GetActiveLock(IObjectKey obj) => GetActiveLock(obj.Key);
+        public ObjectLock? GetActiveLock(in IObjectKey obj) => GetActiveLock(obj.Key);
 
         /// <summary>
         /// Get an active lock
@@ -236,7 +236,7 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <returns>Active lock or <see langword="null"/>, if none</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public ObjectLock? GetActiveLock<tObject>(tObject obj) where tObject : T, IObjectKey => GetActiveLock(obj.Key);
+        public ObjectLock? GetActiveLock<tObject>(in tObject obj) where tObject : T, IObjectKey => GetActiveLock(obj.Key);
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
@@ -284,7 +284,7 @@ namespace wan24.Core
         /// <param name="key">Object key</param>
         /// <param name="objectLock">Lock</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        private void RaiseOnLocked(object key, ObjectLock objectLock) => OnLocked?.Invoke(this, key, objectLock);
+        private void RaiseOnLocked(in object key, in ObjectLock objectLock) => OnLocked?.Invoke(this, key, objectLock);
 
         /// <summary>
         /// Raised when a lock was disposed
@@ -296,12 +296,12 @@ namespace wan24.Core
         /// <param name="key">Object key</param>
         /// <param name="objectLock">Lock</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        private void RaiseOnUnlocked(object key, ObjectLock objectLock) => OnUnlocked?.Invoke(this, key, objectLock);
+        private void RaiseOnUnlocked(in object key, in ObjectLock objectLock) => OnUnlocked?.Invoke(this, key, objectLock);
 
         /// <summary>
         /// Cast as active locks count
         /// </summary>
         /// <param name="manager">Manager</param>
-        public static implicit operator int(ObjectLockManager<T> manager) => manager.Count;
+        public static implicit operator int(in ObjectLockManager<T> manager) => manager.Count;
     }
 }

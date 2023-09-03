@@ -51,7 +51,7 @@ namespace wan24.Core
         /// <param name="interval">Interval in ms</param>
         /// <param name="timer">Timer type</param>
         /// <param name="nextRun">Fixed next run time</param>
-        protected TimedHostedServiceBase(double interval, HostedServiceTimers timer = HostedServiceTimers.Default, DateTime? nextRun = null) : base()
+        protected TimedHostedServiceBase(in double interval, in HostedServiceTimers timer = HostedServiceTimers.Default, in DateTime? nextRun = null) : base()
         {
             TimerTable.Timers[GUID] = this;
             ServiceWorkerTable.ServiceWorkers[GUID] = this;
@@ -499,12 +499,12 @@ namespace wan24.Core
         /// Cast as running-flag
         /// </summary>
         /// <param name="service">Service</param>
-        public static implicit operator bool(TimedHostedServiceBase service) => service.IsRunning;
+        public static implicit operator bool(in TimedHostedServiceBase service) => service.IsRunning;
 
         /// <summary>
         /// Cast as time until next run
         /// </summary>
         /// <param name="service">Service</param>
-        public static implicit operator TimeSpan(TimedHostedServiceBase service) => service.IsRunning ? DateTime.Now - service.NextRun : TimeSpan.Zero;
+        public static implicit operator TimeSpan(in TimedHostedServiceBase service) => service.IsRunning ? DateTime.Now - service.NextRun : TimeSpan.Zero;
     }
 }

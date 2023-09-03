@@ -48,7 +48,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="capacity">Capacity</param>
         /// <param name="factory">Factory</param>
-        public BlockingObjectPool(int capacity, Func<T> factory) : base()
+        public BlockingObjectPool(in int capacity, in Func<T> factory) : base()
         {
             if (capacity < 1) throw new ArgumentOutOfRangeException(nameof(capacity));
             Factory = factory;
@@ -61,7 +61,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="capacity">Capacity</param>
         /// <param name="factory">Factory</param>
-        public BlockingObjectPool(int capacity, Func<Task<T>> factory) : base()
+        public BlockingObjectPool(in int capacity, in Func<Task<T>> factory) : base()
         {
             if (capacity < 1) throw new ArgumentOutOfRangeException(nameof(capacity));
             Factory = null;
@@ -260,7 +260,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public virtual void Return(T item, bool reset = false)
+        public virtual void Return(in T item, in bool reset = false)
         {
             if (!EnsureUndisposed(throwException: false))
             {
@@ -356,18 +356,18 @@ namespace wan24.Core
         /// Cast as rented object
         /// </summary>
         /// <param name="pool">Pool</param>
-        public static implicit operator T(BlockingObjectPool<T> pool) => pool.Rent();
+        public static implicit operator T(in BlockingObjectPool<T> pool) => pool.Rent();
 
         /// <summary>
         /// Cast as available item count
         /// </summary>
         /// <param name="pool">Pool</param>
-        public static implicit operator int(BlockingObjectPool<T> pool) => pool.Available;
+        public static implicit operator int(in BlockingObjectPool<T> pool) => pool.Available;
 
         /// <summary>
         /// Cast as available-flag
         /// </summary>
         /// <param name="pool">Pool</param>
-        public static implicit operator bool(BlockingObjectPool<T> pool) => pool.Available != 0;
+        public static implicit operator bool(in BlockingObjectPool<T> pool) => pool.Available != 0;
     }
 }

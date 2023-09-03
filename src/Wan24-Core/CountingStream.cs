@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="baseStream">Base stream</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public CountingStream(Stream baseStream, bool leaveOpen = false) : base(baseStream, leaveOpen) { }
+        public CountingStream(in Stream baseStream, in bool leaveOpen = false) : base(baseStream, leaveOpen) { }
     }
     
     /// <summary>
@@ -24,7 +24,7 @@
         /// </summary>
         /// <param name="baseStream">Base stream</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public CountingStream(T baseStream, bool leaveOpen = false) : base(baseStream, leaveOpen) { }
+        public CountingStream(in T baseStream, in bool leaveOpen = false) : base(baseStream, leaveOpen) { }
 
         /// <summary>
         /// Number of bytes red

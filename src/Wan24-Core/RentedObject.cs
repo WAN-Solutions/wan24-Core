@@ -17,7 +17,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="pool">Pool</param>
-        public RentedObject(IObjectPool<T> pool) : base()
+        public RentedObject(in IObjectPool<T> pool) : base()
         {
             Pool = pool;
             _Object = pool.Rent();
@@ -28,7 +28,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pool">Pool</param>
         /// <param name="obj">Rented object</param>
-        public RentedObject(IObjectPool<T> pool, T obj) : base()
+        public RentedObject(in IObjectPool<T> pool, in T obj) : base()
         {
             Pool = pool;
             _Object = obj;
@@ -60,11 +60,18 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Cast as rented object
+        /// </summary>
+        /// <param name="rented">Rented object</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator T(RentedObject<T> rented) => rented.Object;
+
+        /// <summary>
         /// Create an instance asynchronous
         /// </summary>
         /// <param name="pool">Object pool</param>
         /// <returns>Rented object</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static async Task<RentedObject<T>> CreateAsync(IAsyncObjectPool<T> pool) => new RentedObject<T>(pool, await pool.RentAsync().DynamicContext());
+        public static async Task<RentedObject<T>> CreateAsync(IAsyncObjectPool<T> pool) => new(pool, await pool.RentAsync().DynamicContext());
     }
 }

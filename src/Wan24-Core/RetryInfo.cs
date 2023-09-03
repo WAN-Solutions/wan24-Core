@@ -71,18 +71,18 @@
         /// Cast as <see cref="Succeed"/>
         /// </summary>
         /// <param name="info"><see cref="RetryInfo{T}"/></param>
-        public static implicit operator bool(RetryInfo<T> info) => info.Succeed;
+        public static implicit operator bool(in RetryInfo<T> info) => info.Succeed;
 
         /// <summary>
         /// Cast as <see cref="NumberOfTries"/>
         /// </summary>
         /// <param name="info"><see cref="RetryInfo{T}"/></param>
-        public static implicit operator int(RetryInfo<T> info) => info.NumberOfTries;
+        public static implicit operator int(in RetryInfo<T> info) => info.NumberOfTries;
 
         /// <summary>
         /// Cast as <see cref="Result"/>
         /// </summary>
         /// <param name="info"><see cref="RetryInfo{T}"/></param>
-        public static implicit operator T?(RetryInfo<T> info) => info.Result;
+        public static implicit operator T?(in RetryInfo<T> info) => info.Result;
     }
 }

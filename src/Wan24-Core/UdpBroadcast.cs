@@ -33,7 +33,7 @@ namespace wan24.Core
         /// <param name="mask">Network mask</param>
         /// <param name="broadcastPort">Broadcast UDP port</param>
         /// <param name="backgroundPacketHandler">Run the packet handler in background (asynchronous, without waiting for a call to finish)?</param>
-        protected UdpBroadcast(IPEndPoint udpEndPoint, IPAddress mask, int broadcastPort = 0, bool backgroundPacketHandler = false) : base()
+        protected UdpBroadcast(in IPEndPoint udpEndPoint, in IPAddress mask, int broadcastPort = 0, in bool backgroundPacketHandler = false) : base()
         {
             if (udpEndPoint.Address.AddressFamily != AddressFamily.InterNetwork) throw new ArgumentException("IPv6 doesn't support broadcast", nameof(udpEndPoint));
             if (broadcastPort < 1) broadcastPort = udpEndPoint.Port;

@@ -16,14 +16,23 @@ namespace wan24.Core
         /// <param name="pool">Array pool</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this byte value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this byte value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
+#if NO_UNSAFE
+            using RentedArrayRefStruct<byte> buffer = new(len: 1, clean: false);
+            buffer[0] = value;
+            return buffer.Span.Encode(charMap, res);
+#else
             Span<byte> buffer = stackalloc byte[1];
             buffer[0] = value;
             return buffer.Encode(charMap, res);
+#endif
         }
 
         /// <summary>
@@ -35,9 +44,12 @@ namespace wan24.Core
         /// <param name="res">Result buffer</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static char[] Encode(this byte value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static char[] Encode(this byte value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(buffer), 1, int.MaxValue, buffer.Length);
+            if (buffer.Length < 1) throw new ArgumentOutOfRangeException(nameof(buffer));
             buffer[0] = value;
             return buffer[..1].Encode(charMap, res);
         }
@@ -51,14 +63,23 @@ namespace wan24.Core
         /// <param name="pool">Array pool</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this sbyte value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this sbyte value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
+#if NO_UNSAFE
+            using RentedArrayRefStruct<byte> buffer = new(len: 1, clean: false);
+            buffer[0] = (byte)value;
+            return buffer.Span.Encode(charMap, res);
+#else
             Span<byte> buffer = stackalloc byte[1];
             buffer[0] = (byte)value;
             return buffer.Encode(charMap, res);
+#endif
         }
 
         /// <summary>
@@ -70,11 +91,14 @@ namespace wan24.Core
         /// <param name="res">Result buffer</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static char[] Encode(this sbyte value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static char[] Encode(this sbyte value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(buffer), 1, int.MaxValue, buffer.Length);
+            if (buffer.Length < 1) throw new ArgumentOutOfRangeException(nameof(buffer));
             buffer[0] = (byte)value;
-            return buffer[..1].Encode(charMap, res);
+            return buffer.Encode(charMap, res);
         }
 
         /// <summary>
@@ -86,14 +110,23 @@ namespace wan24.Core
         /// <param name="pool">Array pool</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this ushort value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this ushort value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
+#if NO_UNSAFE
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(ushort), clean: false);
+            value.GetBytes(buffer.Span);
+            return buffer.Span.Encode(charMap, res);
+#else
             Span<byte> buffer = stackalloc byte[sizeof(ushort)];
             value.GetBytes(buffer);
             return buffer.Encode(charMap, res);
+#endif
         }
 
         /// <summary>
@@ -105,11 +138,14 @@ namespace wan24.Core
         /// <param name="res">Result buffer</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static char[] Encode(this ushort value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static char[] Encode(this ushort value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(buffer), sizeof(ushort), int.MaxValue, buffer.Length);
+            if (buffer.Length < sizeof(ushort)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);
-            return buffer[..sizeof(ushort)].Encode(charMap, res);
+            return buffer.Encode(charMap, res);
         }
 
         /// <summary>
@@ -121,14 +157,23 @@ namespace wan24.Core
         /// <param name="pool">Array pool</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this short value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this short value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
+#if NO_UNSAFE
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(short), clean: false);
+            value.GetBytes(buffer.Span);
+            return buffer.Span.Encode(charMap, res);
+#else
             Span<byte> buffer = stackalloc byte[sizeof(short)];
             value.GetBytes(buffer);
             return buffer.Encode(charMap, res);
+#endif
         }
 
         /// <summary>
@@ -140,11 +185,14 @@ namespace wan24.Core
         /// <param name="res">Result buffer</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static char[] Encode(this short value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static char[] Encode(this short value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(buffer), sizeof(short), int.MaxValue, buffer.Length);
+            if (buffer.Length < sizeof(short)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);
-            return buffer[..sizeof(short)].Encode(charMap, res);
+            return buffer.Encode(charMap, res);
         }
 
         /// <summary>
@@ -156,14 +204,23 @@ namespace wan24.Core
         /// <param name="pool">Array pool</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this uint value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this uint value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
+#if NO_UNSAFE
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(uint), clean: false);
+            value.GetBytes(buffer.Span);
+            return buffer.Span.Encode(charMap, res);
+#else
             Span<byte> buffer = stackalloc byte[sizeof(uint)];
             value.GetBytes(buffer);
             return buffer.Encode(charMap, res);
+#endif
         }
 
         /// <summary>
@@ -175,11 +232,14 @@ namespace wan24.Core
         /// <param name="res">Result buffer</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static char[] Encode(this uint value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static char[] Encode(this uint value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(buffer), sizeof(uint), int.MaxValue, buffer.Length);
+            if (buffer.Length < sizeof(uint)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);
-            return buffer[..sizeof(uint)].Encode(charMap, res);
+            return buffer.Encode(charMap, res);
         }
 
         /// <summary>
@@ -191,14 +251,23 @@ namespace wan24.Core
         /// <param name="pool">Array pool</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this int value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this int value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
+#if NO_UNSAFE
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(int), clean: false);
+            value.GetBytes(buffer.Span);
+            return buffer.Span.Encode(charMap, res);
+#else
             Span<byte> buffer = stackalloc byte[sizeof(int)];
             value.GetBytes(buffer);
             return buffer.Encode(charMap, res);
+#endif
         }
 
         /// <summary>
@@ -210,11 +279,14 @@ namespace wan24.Core
         /// <param name="res">Result buffer</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static char[] Encode(this int value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static char[] Encode(this int value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(buffer), sizeof(int), int.MaxValue, buffer.Length);
+            if (buffer.Length < sizeof(int)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);
-            return buffer[..sizeof(int)].Encode(charMap, res);
+            return buffer.Encode(charMap, res);
         }
 
         /// <summary>
@@ -226,14 +298,23 @@ namespace wan24.Core
         /// <param name="pool">Array pool</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this ulong value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this ulong value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
+#if NO_UNSAFE
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(ulong), clean: false);
+            value.GetBytes(buffer.Span);
+            return buffer.Span.Encode(charMap, res);
+#else
             Span<byte> buffer = stackalloc byte[sizeof(ulong)];
             value.GetBytes(buffer);
             return buffer.Encode(charMap, res);
+#endif
         }
 
         /// <summary>
@@ -245,11 +326,14 @@ namespace wan24.Core
         /// <param name="res">Result buffer</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static char[] Encode(this ulong value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static char[] Encode(this ulong value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(buffer), sizeof(ulong), int.MaxValue, buffer.Length);
+            if (buffer.Length < sizeof(ulong)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);
-            return buffer[..sizeof(ulong)].Encode(charMap, res);
+            return buffer.Encode(charMap, res);
         }
 
         /// <summary>
@@ -261,14 +345,23 @@ namespace wan24.Core
         /// <param name="pool">Array pool</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this long value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this long value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
+#if NO_UNSAFE
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(long), clean: false);
+            value.GetBytes(buffer.Span);
+            return buffer.Span.Encode(charMap, res);
+#else
             Span<byte> buffer = stackalloc byte[sizeof(long)];
             value.GetBytes(buffer);
             return buffer.Encode(charMap, res);
+#endif
         }
 
         /// <summary>
@@ -280,11 +373,14 @@ namespace wan24.Core
         /// <param name="res">Result buffer</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static char[] Encode(this long value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static char[] Encode(this long value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(buffer), sizeof(long), int.MaxValue, buffer.Length);
+            if (buffer.Length < sizeof(long)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);
-            return buffer[..sizeof(long)].Encode(charMap, res);
+            return buffer.Encode(charMap, res);
         }
 
         /// <summary>
@@ -296,14 +392,23 @@ namespace wan24.Core
         /// <param name="pool">Array pool</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this float value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this float value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
+#if NO_UNSAFE
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(float), clean: false);
+            value.GetBytes(buffer.Span);
+            return buffer.Span.Encode(charMap, res);
+#else
             Span<byte> buffer = stackalloc byte[sizeof(float)];
             value.GetBytes(buffer);
             return buffer.Encode(charMap, res);
+#endif
         }
 
         /// <summary>
@@ -315,11 +420,14 @@ namespace wan24.Core
         /// <param name="res">Result buffer</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static char[] Encode(this float value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static char[] Encode(this float value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(buffer), sizeof(float), int.MaxValue, buffer.Length);
+            if (buffer.Length < sizeof(float)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);
-            return buffer[..sizeof(float)].Encode(charMap, res);
+            return buffer.Encode(charMap, res);
         }
 
         /// <summary>
@@ -331,14 +439,23 @@ namespace wan24.Core
         /// <param name="pool">Array pool</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this double value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this double value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
+#if NO_UNSAFE
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(double), clean: false);
+            value.GetBytes(buffer.Span);
+            return buffer.Span.Encode(charMap, res);
+#else
             Span<byte> buffer = stackalloc byte[sizeof(double)];
             value.GetBytes(buffer);
             return buffer.Encode(charMap, res);
+#endif
         }
 
         /// <summary>
@@ -350,11 +467,14 @@ namespace wan24.Core
         /// <param name="res">Result buffer</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static char[] Encode(this double value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static char[] Encode(this double value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(buffer), sizeof(double), int.MaxValue, buffer.Length);
+            if (buffer.Length < sizeof(double)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);
-            return buffer[..sizeof(double)].Encode(charMap, res);
+            return buffer.Encode(charMap, res);
         }
 
         /// <summary>
@@ -366,14 +486,23 @@ namespace wan24.Core
         /// <param name="pool">Array pool</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static char[] Encode(this decimal value, ReadOnlyMemory<char>? charMap = null, char[]? res = null, ArrayPool<byte>? pool = null)
+        public static char[] Encode(this decimal value, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
         {
+#if NO_UNSAFE
+            using RentedArrayRefStruct<byte> buffer = new(len: sizeof(decimal), clean: false);
+            value.GetBytes(buffer.Span);
+            return buffer.Span.Encode(charMap, res);
+#else
             Span<byte> buffer = stackalloc byte[sizeof(decimal)];
             value.GetBytes(buffer);
             return buffer.Encode(charMap, res);
+#endif
         }
 
         /// <summary>
@@ -385,11 +514,14 @@ namespace wan24.Core
         /// <param name="res">Result buffer</param>
         /// <returns>Encoded</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static char[] Encode(this decimal value, Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, char[]? res = null)
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static char[] Encode(this decimal value, in Span<byte> buffer, in ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(buffer), sizeof(decimal), int.MaxValue, buffer.Length);
+            if (buffer.Length < sizeof(decimal)) throw new ArgumentOutOfRangeException(nameof(buffer));
             value.GetBytes(buffer);
-            return buffer[..sizeof(decimal)].Encode(charMap, res);
+            return buffer.Encode(charMap, res);
         }
     }
 }

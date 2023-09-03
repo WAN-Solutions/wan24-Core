@@ -28,7 +28,7 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="obj">Result</param>
         /// <returns>Use the result?</returns>
-        public static bool GetDiObject(Type type, out object? obj)
+        public static bool GetDiObject(in Type type, out object? obj)
         {
             obj = ServiceProvider?.GetService(type);
             return obj is not null || (ObjectFactories.TryGetValue(type, out Di_Delegate? factory) && factory(type, out obj));

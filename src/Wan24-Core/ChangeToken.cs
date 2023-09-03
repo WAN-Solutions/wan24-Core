@@ -16,7 +16,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="changeIdentifier">Change identifier</param>
-        public ChangeToken(Func<bool> changeIdentifier) => ChangeIdentifier = changeIdentifier;
+        public ChangeToken(in Func<bool> changeIdentifier) => ChangeIdentifier = changeIdentifier;
 
         /// <summary>
         /// Constructor
@@ -65,6 +65,6 @@ namespace wan24.Core
         /// Cast as changed-flag
         /// </summary>
         /// <param name="token">Token</param>
-        public static implicit operator bool(ChangeToken token) => token.HasChanged;
+        public static implicit operator bool(in ChangeToken token) => token.HasChanged;
     }
 }

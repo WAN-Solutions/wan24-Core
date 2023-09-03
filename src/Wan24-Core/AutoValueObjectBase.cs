@@ -29,7 +29,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="includePropertyNames">Include property names in the objects hash code calculation?</param>
-        protected AutoValueObjectBase(bool includePropertyNames = true) : base() => IncludePropertyNames = includePropertyNames;
+        protected AutoValueObjectBase(in bool includePropertyNames = true) : base() => IncludePropertyNames = includePropertyNames;
 
         /// <inheritdoc/>
         protected sealed override IEnumerable<object?> EqualsObjects()

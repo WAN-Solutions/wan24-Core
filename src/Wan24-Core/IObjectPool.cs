@@ -16,6 +16,6 @@
         /// </summary>
         /// <param name="item">Item</param>
         /// <param name="reset">Reset the <see cref="IObjectPoolItem"/> object?</param>
-        void Return(T item, bool reset = false);
+        void Return(in T item, in bool reset = false);
     }
 }

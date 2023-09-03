@@ -31,7 +31,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="leaveOpen">Leave the streams open when disposing?</param>
         /// <param name="streams">Streams</param>
-        public CombinedStream(bool leaveOpen, params Stream[] streams) : base()
+        public CombinedStream(in bool leaveOpen, params Stream[] streams) : base()
         {
             if (streams.Length == 0) throw new ArgumentOutOfRangeException(nameof(streams));
             if (streams.Any(s => !s.CanSeek || !s.CanRead)) throw new ArgumentException("Read- and seekable streams required", nameof(streams));
@@ -93,7 +93,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="position">Position byte offset</param>
         /// <returns>Stream index or <c>-1</c>, if the position exceeds the total length in bytes</returns>
-        public int GetStreamIndex(long position)
+        public int GetStreamIndex(in long position)
         {
             EnsureUndisposed();
             if (position < 0) throw new ArgumentOutOfRangeException(nameof(position));

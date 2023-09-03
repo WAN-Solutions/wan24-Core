@@ -11,7 +11,7 @@
         /// <param name="baseStream">Base stream</param>
         /// <param name="length">Length in bytes</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public PartialStream(Stream baseStream, long length, bool leaveOpen = false) : base(baseStream, length, leaveOpen) { }
+        public PartialStream(in Stream baseStream, in long length, in bool leaveOpen = false) : base(baseStream, length, leaveOpen) { }
     }
 
     /// <summary>
@@ -35,7 +35,7 @@
         /// <param name="baseStream">Base stream</param>
         /// <param name="length">Length in bytes</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public PartialStream(T baseStream, long length, bool leaveOpen = false) : base(baseStream, leaveOpen)
+        public PartialStream(in T baseStream, in long length, in bool leaveOpen = false) : base(baseStream, leaveOpen)
         {
             EnsureSeekable();
             Offset = baseStream.Position;

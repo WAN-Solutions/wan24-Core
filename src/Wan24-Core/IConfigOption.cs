@@ -103,12 +103,12 @@ namespace wan24.Core
         /// Set a dynamic value
         /// </summary>
         /// <param name="value">Value</param>
-        void SetDynamicValue(dynamic? value);
+        void SetDynamicValue(in dynamic? value);
         /// <summary>
         /// Unset the value
         /// </summary>
         /// <param name="recursive">Recursive?</param>
-        void Unset(bool recursive = false);
+        void Unset(in bool recursive = false);
         /// <summary>
         /// Unset overrides (recursive!)
         /// </summary>
@@ -117,7 +117,7 @@ namespace wan24.Core
         /// Reset the changed state
         /// </summary>
         /// <param name="recursive">Recursive?</param>
-        void ResetChanged(bool recursive = true);
+        void ResetChanged(in bool recursive = true);
         /// <summary>
         /// Delegate for option events
         /// </summary>

@@ -27,7 +27,7 @@
         /// Constructor
         /// </summary>
         /// <param name="factory">Factory</param>
-        public AsyncDisposableLazyValue(Func<T> factory) : base() => Factory = factory;
+        public AsyncDisposableLazyValue(in Func<T> factory) : base() => Factory = factory;
 
         /// <summary>
         /// Value
@@ -79,12 +79,12 @@
         /// Cast as value
         /// </summary>
         /// <param name="lazyValue">Lazy value</param>
-        public static implicit operator T(AsyncDisposableLazyValue<T> lazyValue) => lazyValue.Value;
+        public static implicit operator T(in AsyncDisposableLazyValue<T> lazyValue) => lazyValue.Value;
 
         /// <summary>
         /// Cast as has-value-flag
         /// </summary>
         /// <param name="lazyValue">Lazy value</param>
-        public static implicit operator bool(AsyncDisposableLazyValue<T> lazyValue) => lazyValue.HasValue;
+        public static implicit operator bool(in AsyncDisposableLazyValue<T> lazyValue) => lazyValue.HasValue;
     }
 }

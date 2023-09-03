@@ -6,7 +6,6 @@ namespace wan24.Core
     /// A base class for a value object
     /// </summary>
     /// <typeparam name="T">Final type (should be immutable using private property setters (for serialization purposes))</typeparam>
-    [ImmutableObject(immutable: true)]
     public abstract class ValueObjectBase<T> : IEquatable<T> where T : ValueObjectBase<T>
     {
         /// <summary>
@@ -49,7 +48,7 @@ namespace wan24.Core
         /// <param name="left">Left</param>
         /// <param name="right">Right</param>
         /// <returns>If equal</returns>
-        protected static bool EqualOperator(ValueObjectBase<T>? left, ValueObjectBase<T>? right)
+        protected static bool EqualOperator(in ValueObjectBase<T>? left, in ValueObjectBase<T>? right)
             => (left is null && right is null) || ReferenceEquals(left, right) || (left?.Equals(right) ?? false);
 
         /// <summary>
@@ -58,7 +57,7 @@ namespace wan24.Core
         /// <param name="left">Left</param>
         /// <param name="right">Right</param>
         /// <returns>If equal</returns>
-        public static bool operator ==(ValueObjectBase<T>? left, ValueObjectBase<T>? right) => EqualOperator(left, right);
+        public static bool operator ==(in ValueObjectBase<T>? left, in ValueObjectBase<T>? right) => EqualOperator(left, right);
 
         /// <summary>
         /// Not equals
@@ -66,6 +65,6 @@ namespace wan24.Core
         /// <param name="left">Left</param>
         /// <param name="right">Right</param>
         /// <returns>If not equal</returns>
-        public static bool operator !=(ValueObjectBase<T>? left, ValueObjectBase<T>? right) => !EqualOperator(left, right);
+        public static bool operator !=(in ValueObjectBase<T>? left, in ValueObjectBase<T>? right) => !EqualOperator(left, right);
     }
 }

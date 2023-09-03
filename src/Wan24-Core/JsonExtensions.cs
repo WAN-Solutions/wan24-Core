@@ -14,7 +14,7 @@ namespace wan24.Core
         /// <param name="prettify">Prettify?</param>
         /// <returns>JSON string</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static string ToJson(this object obj, bool prettify = false) => JsonHelper.Encode(obj, prettify);
+        public static string ToJson(this object obj, in bool prettify = false) => JsonHelper.Encode(obj, prettify);
 
         /// <summary>
         /// Decode a JSON string
@@ -23,7 +23,7 @@ namespace wan24.Core
         /// <param name="json">JSON string</param>
         /// <returns>Object</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static object? FromJson(this Type type, string json) => JsonHelper.DecodeObject(type, json);
+        public static object? FromJson(this Type type, in string json) => JsonHelper.DecodeObject(type, json);
 
         /// <summary>
         /// Decode JSON

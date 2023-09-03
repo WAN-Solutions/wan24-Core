@@ -115,19 +115,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_Chunk_Stream_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.Chunk(Stream%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_Chunk_Stream_System_Int64__.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.Chunk(Stream%2CSystem.Int64%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L219">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_Chunk_" data-uid="wan24.Core.StreamExtensions.Chunk*"></a>
-  <h4 id="wan24_Core_StreamExtensions_Chunk_Stream_System_Int64_" data-uid="wan24.Core.StreamExtensions.Chunk(Stream,System.Int64)">Chunk(Stream, Int64)</h4>
+  <h4 id="wan24_Core_StreamExtensions_Chunk_Stream_System_Int64__" data-uid="wan24.Core.StreamExtensions.Chunk(Stream,System.Int64@)">Chunk(Stream, in Int64)</h4>
   <div class="markdown level1 summary"><p>Create stream chunks</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;StreamBase&gt; Chunk(this Stream stream, long chunkSize)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;StreamBase&gt; Chunk(this Stream stream, in long chunkSize)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -171,19 +171,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_CopyPartialTo_Stream_Stream_System_Int64_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.CopyPartialTo(Stream%2CStream%2CSystem.Int64%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_CopyPartialTo_Stream_Stream__System_Int64_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.CopyPartialTo(Stream%2CStream%40%2CSystem.Int64%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L29">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_CopyPartialTo_" data-uid="wan24.Core.StreamExtensions.CopyPartialTo*"></a>
-  <h4 id="wan24_Core_StreamExtensions_CopyPartialTo_Stream_Stream_System_Int64_System_Nullable_System_Int32__" data-uid="wan24.Core.StreamExtensions.CopyPartialTo(Stream,Stream,System.Int64,System.Nullable{System.Int32})">CopyPartialTo(Stream, Stream, Int64, Nullable&lt;Int32&gt;)</h4>
+  <h4 id="wan24_Core_StreamExtensions_CopyPartialTo_Stream_Stream__System_Int64_System_Nullable_System_Int32__" data-uid="wan24.Core.StreamExtensions.CopyPartialTo(Stream,Stream@,System.Int64,System.Nullable{System.Int32})">CopyPartialTo(Stream, in Stream, Int64, Nullable&lt;Int32&gt;)</h4>
   <div class="markdown level1 summary"><p>Copy partial to another stream</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static long CopyPartialTo(this Stream stream, Stream target, long count, int? bufferSize = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static long CopyPartialTo(this Stream stream, in Stream target, long count, int? bufferSize = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -313,19 +313,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_GenericCopyTo_Stream_Stream_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.GenericCopyTo(Stream%2CStream%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_GenericCopyTo_Stream_Stream__System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.GenericCopyTo(Stream%2CStream%40%2CSystem.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L144">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_GenericCopyTo_" data-uid="wan24.Core.StreamExtensions.GenericCopyTo*"></a>
-  <h4 id="wan24_Core_StreamExtensions_GenericCopyTo_Stream_Stream_System_Int32_" data-uid="wan24.Core.StreamExtensions.GenericCopyTo(Stream,Stream,System.Int32)">GenericCopyTo(Stream, Stream, Int32)</h4>
+  <h4 id="wan24_Core_StreamExtensions_GenericCopyTo_Stream_Stream__System_Int32__" data-uid="wan24.Core.StreamExtensions.GenericCopyTo(Stream,Stream@,System.Int32@)">GenericCopyTo(Stream, in Stream, in Int32)</h4>
   <div class="markdown level1 summary"><p>Generic copy to another stream</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void GenericCopyTo(this Stream stream, Stream destination, int bufferSize = 81920)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void GenericCopyTo(this Stream stream, in Stream destination, in int bufferSize = 81920)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -476,20 +476,20 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_GenericSeek_Stream_System_Int64_SeekOrigin_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.GenericSeek(Stream%2CSystem.Int64%2CSeekOrigin)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_GenericSeek_Stream_System_Int64__SeekOrigin__.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.GenericSeek(Stream%2CSystem.Int64%40%2CSeekOrigin%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L75">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_GenericSeek_" data-uid="wan24.Core.StreamExtensions.GenericSeek*"></a>
-  <h4 id="wan24_Core_StreamExtensions_GenericSeek_Stream_System_Int64_SeekOrigin_" data-uid="wan24.Core.StreamExtensions.GenericSeek(Stream,System.Int64,SeekOrigin)">GenericSeek(Stream, Int64, SeekOrigin)</h4>
+  <h4 id="wan24_Core_StreamExtensions_GenericSeek_Stream_System_Int64__SeekOrigin__" data-uid="wan24.Core.StreamExtensions.GenericSeek(Stream,System.Int64@,SeekOrigin@)">GenericSeek(Stream, in Int64, in SeekOrigin)</h4>
   <div class="markdown level1 summary"><p>Seek</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static long GenericSeek(this Stream stream, long offset, SeekOrigin origin)</code></pre>
+public static long GenericSeek(this Stream stream, in long offset, in SeekOrigin origin)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -539,19 +539,19 @@ public static long GenericSeek(this Stream stream, long offset, SeekOrigin origi
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_GenericWriteByte_Stream_System_Byte_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.GenericWriteByte(Stream%2CSystem.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_GenericWriteByte_Stream_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.GenericWriteByte(Stream%2CSystem.Byte%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L198">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_GenericWriteByte_" data-uid="wan24.Core.StreamExtensions.GenericWriteByte*"></a>
-  <h4 id="wan24_Core_StreamExtensions_GenericWriteByte_Stream_System_Byte_" data-uid="wan24.Core.StreamExtensions.GenericWriteByte(Stream,System.Byte)">GenericWriteByte(Stream, Byte)</h4>
+  <h4 id="wan24_Core_StreamExtensions_GenericWriteByte_Stream_System_Byte__" data-uid="wan24.Core.StreamExtensions.GenericWriteByte(Stream,System.Byte@)">GenericWriteByte(Stream, in Byte)</h4>
   <div class="markdown level1 summary"><p>Generic write byte</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void GenericWriteByte(this Stream stream, byte value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void GenericWriteByte(this Stream stream, in byte value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -630,19 +630,19 @@ public static long GetRemainingBytes(this Stream stream)</code></pre>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_WriteRandom_Stream_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.WriteRandom(Stream%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_WriteRandom_Stream_System_Int64__.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.WriteRandom(Stream%2CSystem.Int64%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L118">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_WriteRandom_" data-uid="wan24.Core.StreamExtensions.WriteRandom*"></a>
-  <h4 id="wan24_Core_StreamExtensions_WriteRandom_Stream_System_Int64_" data-uid="wan24.Core.StreamExtensions.WriteRandom(Stream,System.Int64)">WriteRandom(Stream, Int64)</h4>
+  <h4 id="wan24_Core_StreamExtensions_WriteRandom_Stream_System_Int64__" data-uid="wan24.Core.StreamExtensions.WriteRandom(Stream,System.Int64@)">WriteRandom(Stream, in Int64)</h4>
   <div class="markdown level1 summary"><p>Write random bytes</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void WriteRandom(this Stream stream, long count)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void WriteRandom(this Stream stream, in long count)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -731,19 +731,19 @@ public static long GetRemainingBytes(this Stream stream)</code></pre>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_WriteZero_Stream_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.WriteZero(Stream%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StreamExtensions_WriteZero_Stream_System_Int64__.md&amp;value=---%0Auid%3A%20wan24.Core.StreamExtensions.WriteZero(Stream%2CSystem.Int64%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StreamExtensions.cs/#L89">View Source</a>
   </span>
   <a id="wan24_Core_StreamExtensions_WriteZero_" data-uid="wan24.Core.StreamExtensions.WriteZero*"></a>
-  <h4 id="wan24_Core_StreamExtensions_WriteZero_Stream_System_Int64_" data-uid="wan24.Core.StreamExtensions.WriteZero(Stream,System.Int64)">WriteZero(Stream, Int64)</h4>
+  <h4 id="wan24_Core_StreamExtensions_WriteZero_Stream_System_Int64__" data-uid="wan24.Core.StreamExtensions.WriteZero(Stream,System.Int64@)">WriteZero(Stream, in Int64)</h4>
   <div class="markdown level1 summary"><p>Write zero</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void WriteZero(this Stream stream, long count)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void WriteZero(this Stream stream, in long count)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

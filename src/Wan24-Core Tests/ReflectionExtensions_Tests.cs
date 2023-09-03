@@ -120,65 +120,54 @@ namespace Wan24_Core_Tests
         public void GetMethod_Tests()
         {
             // Match method
-            MethodInfo? mi = typeof(ArrayExtensions).GetMethod(
-                nameof(ArrayExtensions.EnsureValid),
-                BindingFlags.Public | BindingFlags.Static,
-                filter: null,
-                genericArgumentCount: 1,
-                exactTypes: true,
-                typeof(Memory<>),
-                typeof(Memory<>),
-                typeof(int),
-                typeof(int)
-                );
-            Assert.IsNotNull(mi);
-            Assert.AreEqual(nameof(ArrayExtensions.EnsureValid), mi.Name);
-            Assert.IsTrue(typeof(Memory<>).IsAssignableFrom(mi.ReturnType.GetGenericTypeDefinition()));
-            ParameterInfo[] param = mi.GetParameters();
-            Assert.AreEqual(3, param.Length);
-            Assert.IsTrue(typeof(Memory<>).IsAssignableFrom(param[0].ParameterType.GetGenericTypeDefinition()));
-            Assert.AreEqual(typeof(int), param[1].ParameterType);
-            Assert.AreEqual(typeof(int), param[2].ParameterType);
-
-            // Miss generic parameter count
-            mi = typeof(ArrayExtensions).GetMethod(
-                nameof(ArrayExtensions.EnsureValid),
+            MethodInfo? mi = typeof(ByteEncoding).GetMethod(
+                nameof(ByteEncoding.GetEncodedLength),
                 BindingFlags.Public | BindingFlags.Static,
                 filter: null,
                 genericArgumentCount: 0,
                 exactTypes: true,
-                typeof(Memory<>),
-                typeof(Memory<>),
                 typeof(int),
-                typeof(int)
+                typeof(byte[])
+                );
+            Assert.IsNotNull(mi);
+            Assert.AreEqual(nameof(ByteEncoding.GetEncodedLength), mi.Name);
+            ParameterInfo[] param = mi.GetParameters();
+            Assert.AreEqual(1, param.Length);
+            Assert.AreEqual(typeof(byte[]), param[0].ParameterType);
+
+            // Miss generic parameter count
+            mi = mi = typeof(ByteEncoding).GetMethod(
+                nameof(ByteEncoding.GetEncodedLength),
+                BindingFlags.Public | BindingFlags.Static,
+                filter: null,
+                genericArgumentCount: 1,
+                exactTypes: true,
+                typeof(int),
+                typeof(byte[])
                 );
             Assert.IsNull(mi);
 
             // Skipped type checks
-            mi = typeof(ArrayExtensions).GetMethod(
-                nameof(ArrayExtensions.EnsureValid),
+            mi = mi = typeof(ByteEncoding).GetMethod(
+                nameof(ByteEncoding.GetEncodedLength),
                 BindingFlags.Public | BindingFlags.Static,
                 filter: null,
-                genericArgumentCount: null,
+                genericArgumentCount: 0,
                 exactTypes: true,
-                returnType: null,
                 null,
-                typeof(int),
-                typeof(int)
+                typeof(byte[])
                 );
             Assert.IsNotNull(mi);
 
-            // Miss parameter types
-            mi = typeof(ArrayExtensions).GetMethod(
-                nameof(ArrayExtensions.EnsureValid),
+            // Miss return type
+            mi = mi = typeof(ByteEncoding).GetMethod(
+                nameof(ByteEncoding.GetEncodedLength),
                 BindingFlags.Public | BindingFlags.Static,
                 filter: null,
-                genericArgumentCount: 1,
+                genericArgumentCount: 0,
                 exactTypes: false,
-                typeof(Memory<>),
-                typeof(Memory<>),
-                typeof(int),
-                typeof(short)
+                typeof(long),
+                typeof(byte[])
                 );
             Assert.IsNull(mi);
         }

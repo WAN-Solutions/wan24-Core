@@ -101,6 +101,7 @@ when disposing; for byte/char arrays just like the <code>Secure*Array</code>)</l
 <li>Bit-converter (endian-safe)</li>
 <li>UTF-8/16/32 (little endian) string decoding</li>
 <li>Clearing</li>
+<li>Base64 encoding/decoding</li>
 </ul>
 </li>
 <li>Dictionary extensions
@@ -112,6 +113,7 @@ when disposing; for byte/char arrays just like the <code>Secure*Array</code>)</l
 <li>Char array extensions
 <ul>
 <li>Clearing</li>
+<li>Base64 decoding</li>
 </ul>
 </li>
 <li>Array helper extensions
@@ -219,6 +221,9 @@ per default)</li>
 <ul>
 <li>Get UTF-8/16/32 bytes (little endian)</li>
 <li>Parsing</li>
+<li>String from/to bytes/bits extensions</li>
+<li>Determine if string contains only ACSII characters</li>
+<li>Base64 decoding</li>
 </ul>
 </li>
 <li>Generic helper
@@ -875,7 +880,7 @@ original numeric type as generic argument for decoding).</p>
 results in an empty string, too. Nothing encodes to nothing and decodes to
 nothing, too.</p>
 <p>If required, the used encoding character map can be customized. You may use
-any 64 characters long map with unique items.</p>
+any 64 ASCII characters (0..127) long map with unique items.</p>
 <h2 id="string-parser">String parser</h2>
 <p>Using the <code>Parse</code> extension method for a <code>string</code>, you can parse placeholders
 into a string and modify the output using (customizable) parser functions:</p>

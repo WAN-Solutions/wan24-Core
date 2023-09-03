@@ -9,7 +9,7 @@
         /// Constructor
         /// </summary>
         /// <param name="name">Requested type name</param>
-        public LoadTypeEventArgs(string name) : base() => Name = name;
+        public LoadTypeEventArgs(in string name) : base() => Name = name;
 
         /// <summary>
         /// Requested type name

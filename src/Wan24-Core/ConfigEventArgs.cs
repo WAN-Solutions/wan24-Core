@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="option">Option</param>
         /// <param name="oldValue">Old value</param>
-        public ConfigEventArgs(IConfigOption option, object? oldValue) : base()
+        public ConfigEventArgs(in IConfigOption option, in object? oldValue) : base()
         {
             Option = option;
             OldValue = oldValue;

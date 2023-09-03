@@ -1,6 +1,8 @@
 ﻿#if !NO_UNSAFE
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+using System.Runtime;
 using System.Runtime.InteropServices;
 
 namespace wan24.Core
@@ -46,16 +48,16 @@ namespace wan24.Core
         /// <returns>Element</returns>
         public T this[int offset]
         {
-            get
-            {
-                if (offset < 0 || offset >= Array.Length) throw new ArgumentOutOfRangeException(nameof(offset));
-                return ArrayPtr[offset];
-            }
-            set
-            {
-                if (offset < 0 || offset >= Array.Length) throw new ArgumentOutOfRangeException(nameof(offset));
-                ArrayPtr[offset] = value;
-            }
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => ArrayPtr[offset];
+            [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            set => ArrayPtr[offset] = value;
         }
 
         /// <summary>
@@ -69,33 +71,49 @@ namespace wan24.Core
         public IntPtr Pointer => ArrayPin.AddrOfPinnedObject();
 
         /// <inheritdoc/>
-        public int Count => Array.Length;
+        public int Count
+        {
+            [TargetedPatchingOptOut("Just a method adapter")]
+            get => Array.Length;
+        }
 
         /// <inheritdoc/>
-        public bool IsReadOnly => false;
+        public bool IsReadOnly
+        {
+            [TargetedPatchingOptOut("TIny method")]
+            get => false;
+        }
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public int IndexOf(T item) => Array.IndexOf(item);
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public void Insert(int index, T item) => ((IList<T>)Array).Insert(index, item);
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public void RemoveAt(int index) => ((IList<T>)Array).RemoveAt(index);
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public void Add(T item) => ((ICollection<T>)Array).Add(item);
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public void Clear() => Array.AsSpan().Clear();
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public bool Contains(T item) => Array.Contains(item);
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public void CopyTo(T[] array, int arrayIndex) => ((ICollection<T>)Array).CopyTo(array, arrayIndex);
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public bool Remove(T item) => ((ICollection<T>)Array).Remove(item);
 
         /// <inheritdoc/>
@@ -111,42 +129,49 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public override int GetHashCode() => Array.GetHashCode();
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public override bool Equals([NotNullWhen(true)] object? obj) => Array.Equals(obj);
 
         /// <summary>
         /// Cast as pointer
         /// </summary>
         /// <param name="pin">Pin</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
 #pragma warning disable CS8500 // Takes the address of, gets the size of, or declares a pointer to a managed type
-        public static implicit operator T*(PinnedArray<T> pin) => pin.ArrayPtr;
+        public static implicit operator T*(in PinnedArray<T> pin) => pin.ArrayPtr;
 #pragma warning restore CS8500 // Takes the address of, gets the size of, or declares a pointer to a managed type
 
         /// <summary>
         /// Cast as pointer
         /// </summary>
         /// <param name="pin">Pin</param>
-        public static implicit operator IntPtr(PinnedArray<T> pin) => pin.Pointer;
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator IntPtr(in PinnedArray<T> pin) => pin.Pointer;
 
         /// <summary>
         /// Cast as array
         /// </summary>
         /// <param name="pin">Pin</param>
-        public static implicit operator T[](PinnedArray<T> pin) => pin.Array;
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator T[](in PinnedArray<T> pin) => pin.Array;
 
         /// <summary>
         /// Cast as length
         /// </summary>
         /// <param name="pin">Pin</param>
-        public static implicit operator int(PinnedArray<T> pin) => pin.Array.Length;
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator int(in PinnedArray<T> pin) => pin.Array.Length;
 
         /// <summary>
         /// Cast as length
         /// </summary>
         /// <param name="pin">Pin</param>
-        public static implicit operator long(PinnedArray<T> pin) => pin.Array.LongLength;
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator long(in PinnedArray<T> pin) => pin.Array.LongLength;
 
         /// <summary>
         /// Equals
@@ -154,7 +179,8 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Are equal?</returns>
-        public static bool operator ==(PinnedArray<T> a, PinnedArray<T> b) => a.Equals(b);
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static bool operator ==(in PinnedArray<T> a, in PinnedArray<T> b) => a.Equals(b);
 
         /// <summary>
         /// Not equals
@@ -162,7 +188,8 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Are not equal?</returns>
-        public static bool operator !=(PinnedArray<T> a, PinnedArray<T> b) => !(a == b);
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static bool operator !=(in PinnedArray<T> a, in PinnedArray<T> b) => !(a == b);
     }
 }
 #endif

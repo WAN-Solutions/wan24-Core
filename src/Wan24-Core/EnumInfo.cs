@@ -218,7 +218,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Is valid?</returns>
-        public static bool IsValid(T value)
+        public static bool IsValid(in T value)
         {
             if (IsUnsigned)
             {
@@ -236,10 +236,10 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public bool IsValidValue(T value) => IsValid(value);
+        public bool IsValidValue(in T value) => IsValid(value);
 
         /// <inheritdoc/>
-        public bool IsValidValue(object value)
+        public bool IsValidValue(in object value)
         {
             if (value.GetType() != typeof(T)) return false;
             if (IsUnsigned)

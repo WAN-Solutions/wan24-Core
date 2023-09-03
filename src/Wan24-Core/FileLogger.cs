@@ -21,7 +21,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="fileName">Filename</param>
         /// <param name="level">Log level</param>
-        protected FileLogger(string fileName, LogLevel level = LogLevel.Information) : base()
+        protected FileLogger(in string fileName, in LogLevel level = LogLevel.Information) : base()
         {
             try
             {
@@ -111,7 +111,7 @@ namespace wan24.Core
             /// Constructor
             /// </summary>
             /// <param name="stream">Stream</param>
-            public LogQueueWorker(Stream stream) : base(int.MaxValue) => Stream = stream;
+            public LogQueueWorker(in Stream stream) : base(int.MaxValue) => Stream = stream;
 
             /// <inheritdoc/>
             protected override async Task ProcessItem(string item, CancellationToken cancellationToken)

@@ -157,7 +157,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte[] GetBytes(this short value, byte[] target)
+        public static byte[] GetBytes(this short value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
             return target;
@@ -170,7 +170,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Span<byte> GetBytes(this short value, Span<byte> target)
+        public static Span<byte> GetBytes(this short value, in Span<byte> target)
         {
             BinaryPrimitives.WriteInt16LittleEndian(target, value);
             return target;
@@ -183,7 +183,7 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Memory<byte> GetBytes(this short value, Memory<byte> target)
+        public static Memory<byte> GetBytes(this short value, in Memory<byte> target)
         {
             BinaryPrimitives.WriteInt16LittleEndian(target.Span, value);
             return target;
@@ -209,7 +209,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte[] GetBytes(this ushort value, byte[] target)
+        public static byte[] GetBytes(this ushort value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
             return target;
@@ -222,7 +222,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Span<byte> GetBytes(this ushort value, Span<byte> target)
+        public static Span<byte> GetBytes(this ushort value, in Span<byte> target)
         {
             BinaryPrimitives.WriteUInt16LittleEndian(target, value);
             return target;
@@ -235,7 +235,7 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Memory<byte> GetBytes(this ushort value, Memory<byte> target)
+        public static Memory<byte> GetBytes(this ushort value, in Memory<byte> target)
         {
             BinaryPrimitives.WriteUInt16LittleEndian(target.Span, value);
             return target;
@@ -261,7 +261,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte[] GetBytes(this int value, byte[] target)
+        public static byte[] GetBytes(this int value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
             return target;
@@ -274,7 +274,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Span<byte> GetBytes(this int value, Span<byte> target)
+        public static Span<byte> GetBytes(this int value, in Span<byte> target)
         {
             BinaryPrimitives.WriteInt32LittleEndian(target, value);
             return target;
@@ -287,7 +287,7 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Memory<byte> GetBytes(this int value, Memory<byte> target)
+        public static Memory<byte> GetBytes(this int value, in Memory<byte> target)
         {
             BinaryPrimitives.WriteInt32LittleEndian(target.Span, value);
             return target;
@@ -313,7 +313,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte[] GetBytes(this uint value, byte[] target)
+        public static byte[] GetBytes(this uint value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
             return target;
@@ -326,7 +326,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Span<byte> GetBytes(this uint value, Span<byte> target)
+        public static Span<byte> GetBytes(this uint value, in Span<byte> target)
         {
             BinaryPrimitives.WriteUInt32LittleEndian(target, value);
             return target;
@@ -339,7 +339,7 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Memory<byte> GetBytes(this uint value, Memory<byte> target)
+        public static Memory<byte> GetBytes(this uint value, in Memory<byte> target)
         {
             BinaryPrimitives.WriteUInt32LittleEndian(target.Span, value);
             return target;
@@ -365,7 +365,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte[] GetBytes(this long value, byte[] target)
+        public static byte[] GetBytes(this long value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
             return target;
@@ -378,7 +378,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Span<byte> GetBytes(this long value, Span<byte> target)
+        public static Span<byte> GetBytes(this long value, in Span<byte> target)
         {
             BinaryPrimitives.WriteInt64LittleEndian(target, value);
             return target;
@@ -391,7 +391,7 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Memory<byte> GetBytes(this long value, Memory<byte> target)
+        public static Memory<byte> GetBytes(this long value, in Memory<byte> target)
         {
             BinaryPrimitives.WriteInt64LittleEndian(target.Span, value);
             return target;
@@ -417,7 +417,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte[] GetBytes(this ulong value, byte[] target)
+        public static byte[] GetBytes(this ulong value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
             return target;
@@ -430,7 +430,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Span<byte> GetBytes(this ulong value, Span<byte> target)
+        public static Span<byte> GetBytes(this ulong value, in Span<byte> target)
         {
             BinaryPrimitives.WriteUInt64LittleEndian(target, value);
             return target;
@@ -443,7 +443,7 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Memory<byte> GetBytes(this ulong value, Memory<byte> target)
+        public static Memory<byte> GetBytes(this ulong value, in Memory<byte> target)
         {
             BinaryPrimitives.WriteUInt64LittleEndian(target.Span, value);
             return target;
@@ -469,7 +469,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte[] GetBytes(this float value, byte[] target)
+        public static byte[] GetBytes(this float value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
             return target;
@@ -482,7 +482,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Span<byte> GetBytes(this float value, Span<byte> target)
+        public static Span<byte> GetBytes(this float value, in Span<byte> target)
         {
             BinaryPrimitives.WriteSingleLittleEndian(target, value);
             return target;
@@ -495,7 +495,7 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Memory<byte> GetBytes(this float value, Memory<byte> target)
+        public static Memory<byte> GetBytes(this float value, in Memory<byte> target)
         {
             BinaryPrimitives.WriteSingleLittleEndian(target.Span, value);
             return target;
@@ -521,7 +521,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte[] GetBytes(this double value, byte[] target)
+        public static byte[] GetBytes(this double value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
             return target;
@@ -534,7 +534,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Span<byte> GetBytes(this double value, Span<byte> target)
+        public static Span<byte> GetBytes(this double value, in Span<byte> target)
         {
             BinaryPrimitives.WriteDoubleLittleEndian(target, value);
             return target;
@@ -547,7 +547,7 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Memory<byte> GetBytes(this double value, Memory<byte> target)
+        public static Memory<byte> GetBytes(this double value, in Memory<byte> target)
         {
             BinaryPrimitives.WriteDoubleLittleEndian(target.Span, value);
             return target;
@@ -574,7 +574,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte[] GetBytes(this decimal value, byte[] target)
+        public static byte[] GetBytes(this decimal value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
             return target;
@@ -587,7 +587,7 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Span<byte> GetBytes(this decimal value, Span<byte> target)
+        public static Span<byte> GetBytes(this decimal value, in Span<byte> target)
         {
             if (target.Length < sizeof(int) << 2) throw new ArgumentOutOfRangeException(nameof(target));
             int[] bits = decimal.GetBits(value);
@@ -602,7 +602,7 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Memory<byte> GetBytes(this decimal value, Memory<byte> target)
+        public static Memory<byte> GetBytes(this decimal value, in Memory<byte> target)
         {
             if (target.Length < sizeof(int) << 2) throw new ArgumentOutOfRangeException(nameof(target));
             int[] bits = decimal.GetBits(value);
@@ -618,6 +618,7 @@ namespace wan24.Core
         /// <param name="higherBorder">Range end (including)</param>
         /// <returns>Is within the range?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool IsBetween<T>(this T value, T lowerBorder, T higherBorder) where T : IComparable => value.CompareTo(lowerBorder) >= 0 && value.CompareTo(higherBorder) <= 0;
+        public static bool IsBetween<T>(this T value, in T lowerBorder, in T higherBorder) where T : IComparable
+            => value.CompareTo(lowerBorder) >= 0 && value.CompareTo(higherBorder) <= 0;
     }
 }

@@ -10,7 +10,7 @@
         /// Constructor
         /// </summary>
         /// <param name="initialValue">Initial value</param>
-        public DisposableThreadSafeValue(T? initialValue = default) : base(initialValue) { }
+        public DisposableThreadSafeValue(in T? initialValue = default) : base(initialValue) { }
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
@@ -37,6 +37,6 @@
         /// Cast as new instance
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator DisposableThreadSafeValue<T>(T? value) => new(value);
+        public static implicit operator DisposableThreadSafeValue<T>(in T? value) => new(value);
     }
 }

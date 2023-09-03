@@ -46,7 +46,7 @@
         /// Constructor
         /// </summary>
         /// <param name="bufferSize">Buffer size in bytes</param>
-        public BlockingBufferStream(int bufferSize) : base()
+        public BlockingBufferStream(in int bufferSize) : base()
         {
             if (bufferSize < 1) throw new ArgumentOutOfRangeException(nameof(bufferSize));
             BufferSize = bufferSize;

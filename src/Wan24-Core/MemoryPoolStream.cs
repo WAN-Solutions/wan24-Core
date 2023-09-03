@@ -56,7 +56,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pool">Pool</param>
         /// <param name="bufferSize">Buffer size in bytes</param>
-        public MemoryPoolStream(ArrayPool<byte>? pool = null, int? bufferSize = null) : base()
+        public MemoryPoolStream(in ArrayPool<byte>? pool = null, in int? bufferSize = null) : base()
         {
             Pool = pool ?? ArrayPool<byte>.Shared;
             if (bufferSize is not null) BufferSize = bufferSize.Value;
@@ -72,7 +72,7 @@ namespace wan24.Core
         /// <param name="data">Initial data (will be copied; stream is writable; initial position will be <c>0</c>)</param>
         /// <param name="pool">Pool</param>
         /// <param name="bufferSize">Buffer size in bytes</param>
-        public MemoryPoolStream(byte[] data, ArrayPool<byte>? pool = null, int? bufferSize = null) : this(pool, bufferSize)
+        public MemoryPoolStream(in byte[] data, in ArrayPool<byte>? pool = null, in int? bufferSize = null) : this(pool, bufferSize)
         {
             Write(data);
             Position = 0;
@@ -86,7 +86,7 @@ namespace wan24.Core
             get => _DefaultBufferSize;
             set
             {
-                ArgumentValidationHelper.EnsureValidArgument(nameof(value), 1, int.MaxValue, value);
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(value));
                 lock (StaticSyncObject) _DefaultBufferSize = value;
             }
         }
@@ -100,7 +100,7 @@ namespace wan24.Core
             set
             {
                 EnsureUndisposed();
-                this.EnsureValidArgument(nameof(value), 1, int.MaxValue, value);
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(value));
                 _BufferSize = value;
             }
         }
@@ -160,7 +160,7 @@ namespace wan24.Core
             set
             {
                 EnsureUndisposed();
-                this.EnsureValidArgument(nameof(value), 0, _Length, value);
+                if (value < 0 || value > _Length) throw new ArgumentOutOfRangeException(nameof(value));
                 _Position = value;
                 // Find buffer index and byte offset
                 if (value == 0)
@@ -406,10 +406,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="value">New length in bytes</param>
         /// <param name="clear">Clear new buffers?</param>
-        protected void SetLength(long value, bool clear)
+        protected void SetLength(in long value, in bool clear)
         {
             EnsureUndisposed();
-            this.EnsureValidArgument(nameof(value), 0, long.MaxValue, value);
+            if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
             if (value == _Length) return;
             if (value == 0)
             {
@@ -485,12 +485,12 @@ namespace wan24.Core
         /// Cast as new byte array
         /// </summary>
         /// <param name="ms"><see cref="MemoryPoolStream"/></param>
-        public static implicit operator byte[](MemoryPoolStream ms) => ms.ToArray();
+        public static implicit operator byte[](in MemoryPoolStream ms) => ms.ToArray();
 
         /// <summary>
         /// Cast as length
         /// </summary>
         /// <param name="ms"><see cref="MemoryPoolStream"/></param>
-        public static implicit operator long(MemoryPoolStream ms) => ms.Length;
+        public static implicit operator long(in MemoryPoolStream ms) => ms.Length;
     }
 }

@@ -15,7 +15,7 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
-        public static object? InvokeAuto(this MethodInfo mi, object? obj, params object?[] param)
+        public static object? InvokeAuto(this MethodInfo mi, in object? obj, params object?[] param)
         {
             List<object?> par = new(param);
             ParameterInfo[] pis = mi.GetParametersCached();
@@ -47,7 +47,7 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static T? InvokeAuto<T>(this MethodInfo mi, object? obj, params object?[] param) => (T?)InvokeAuto(mi, obj, param);
+        public static T? InvokeAuto<T>(this MethodInfo mi, in object? obj, params object?[] param) => (T?)InvokeAuto(mi, obj, param);
 
         /// <summary>
         /// Invoke a method and complete parameters with default values
@@ -155,7 +155,7 @@ namespace wan24.Core
         /// <param name="usePrivate">Use private constructors, too?</param>
         /// <param name="param">Parameters</param>
         /// <returns>Instance or <see langword="null"/>, if no constructor could be found</returns>
-        public static object? ConstructAuto(this Type type, bool usePrivate = false, params object?[] param)
+        public static object? ConstructAuto(this Type type, in bool usePrivate = false, params object?[] param)
             => ConstructAuto(type, out _, usePrivate, param);
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace wan24.Core
         /// <param name="usePrivate">Use private constructors, too?</param>
         /// <param name="param">Parameters</param>
         /// <returns>Instance or <see langword="null"/>, if no constructor could be found</returns>
-        public static object? ConstructAuto(this Type type, out ConstructorInfo? usedConstructor, bool usePrivate = false, params object?[] param)
+        public static object? ConstructAuto(this Type type, out ConstructorInfo? usedConstructor, in bool usePrivate = false, params object?[] param)
         {
             NullabilityInfoContext nic = new();
             BindingFlags flags = usePrivate
@@ -211,7 +211,7 @@ namespace wan24.Core
         /// <param name="nic">Nullability info context</param>
         /// <returns>Is nullable?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static bool IsNullable(this MethodInfo mi, NullabilityInfoContext? nic = null) => IsNullable(mi.ReturnParameter, nic);
+        public static bool IsNullable(this MethodInfo mi, in NullabilityInfoContext? nic = null) => IsNullable(mi.ReturnParameter, nic);
 
         /// <summary>
         /// Determine if a parameter is nullable
@@ -220,7 +220,7 @@ namespace wan24.Core
         /// <param name="nic">Nullability info context</param>
         /// <returns>Is nullable?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool IsNullable(this ParameterInfo pi, NullabilityInfoContext? nic = null) => (nic ?? new NullabilityInfoContext()).Create(pi).IsNullable();
+        public static bool IsNullable(this ParameterInfo pi, in NullabilityInfoContext? nic = null) => (nic ?? new NullabilityInfoContext()).Create(pi).IsNullable();
 
         /// <summary>
         /// Determine if a property is nullable
@@ -229,7 +229,7 @@ namespace wan24.Core
         /// <param name="nic">Nullability info context</param>
         /// <returns>Is nullable?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool IsNullable(this PropertyInfo pi, NullabilityInfoContext? nic = null) => (nic ?? new NullabilityInfoContext()).Create(pi).IsNullable();
+        public static bool IsNullable(this PropertyInfo pi, in NullabilityInfoContext? nic = null) => (nic ?? new NullabilityInfoContext()).Create(pi).IsNullable();
 
         /// <summary>
         /// Determine if a field is nullable
@@ -238,7 +238,7 @@ namespace wan24.Core
         /// <param name="nic">Nullability info context</param>
         /// <returns>Is nullable?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool IsNullable(this FieldInfo fi, NullabilityInfoContext? nic = null) => (nic ?? new NullabilityInfoContext()).Create(fi).IsNullable();
+        public static bool IsNullable(this FieldInfo fi, in NullabilityInfoContext? nic = null) => (nic ?? new NullabilityInfoContext()).Create(fi).IsNullable();
 
         /// <summary>
         /// Determine if nullable
@@ -256,7 +256,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static Type GetFinalElementType(this Type type)
         {
-            ArgumentValidationHelper.EnsureValidArgument(nameof(type), type.IsArray, "Not an array type");
+            if (type.IsAbstract) throw new ArgumentException("Not an array type", nameof(type));
             Type res = type.GetElementType()!;
             while (res.IsArray) res = res.GetElementType()!;
             return res;
@@ -277,12 +277,12 @@ namespace wan24.Core
         /// <returns>Matching method</returns>
         public static MethodInfo? GetMethod(
             this Type type,
-            string? name = null,
-            BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic,
-            Func<MethodInfo, bool>? filter = null,
-            int? genericArgumentCount = null,
-            bool exactTypes = true,
-            Type? returnType = null,
+            in string? name = null,
+            in BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic,
+            in Func<MethodInfo, bool>? filter = null,
+            in int? genericArgumentCount = null,
+            in bool exactTypes = true,
+            in Type? returnType = null,
             params Type?[]? parameterTypes
             )
         {
@@ -329,9 +329,9 @@ namespace wan24.Core
         /// <returns>Matching constructor</returns>
         public static ConstructorInfo? GetConstructor(
             this Type type,
-            BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic,
-            Func<ConstructorInfo, bool>? filter = null,
-            bool exactTypes = true,
+            in BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic,
+            in Func<ConstructorInfo, bool>? filter = null,
+            in bool exactTypes = true,
             params Type?[]? parameterTypes
             )
         {
@@ -366,7 +366,7 @@ namespace wan24.Core
         /// <param name="expectedReturnType">Expected return type</param>
         /// <param name="exact">Exact type match?</param>
         /// <returns>Is match?</returns>
-        private static bool MatchReturnType(MethodInfo method, Type expectedReturnType, bool exact)
+        private static bool MatchReturnType(in MethodInfo method, in Type expectedReturnType, in bool exact)
         {
             if (method.IsGenericMethod && method.ReturnType.IsGenericType && method.ReturnType.GetGenericArguments()[0].IsGenericMethodParameter)
                 return expectedReturnType.IsAssignableFrom(method.ReturnType.GetGenericTypeDefinition());
@@ -381,7 +381,7 @@ namespace wan24.Core
         /// <param name="expectedType">Expected type</param>
         /// <param name="exact">Exact type match?</param>
         /// <returns>Is match?</returns>
-        private static bool MatchParameterType(MethodInfo method, Type parameterType, Type expectedType, bool exact)
+        private static bool MatchParameterType(in MethodInfo method, in Type parameterType, in Type expectedType, in bool exact)
         {
             if (method.IsGenericMethod && parameterType.IsGenericType && parameterType.GetGenericArguments()[0].IsGenericMethodParameter)
                 return parameterType.GetGenericTypeDefinition().IsAssignableFrom(expectedType);
@@ -395,7 +395,7 @@ namespace wan24.Core
         /// <param name="expectedType">Expected type</param>
         /// <param name="exact">Exact type match?</param>
         /// <returns>Is match?</returns>
-        private static bool MatchParameterType(Type parameterType, Type expectedType, bool exact)
+        private static bool MatchParameterType(in Type parameterType, in Type expectedType, in bool exact)
             => (exact && parameterType == expectedType) || (!exact && parameterType.IsAssignableFrom(expectedType));
     }
 }

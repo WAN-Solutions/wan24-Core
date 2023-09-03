@@ -46,7 +46,7 @@ namespace wan24.Core
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
 #pragma warning disable IDE0060 // Remove unused parameter
-        public static object GetResult(this Task task, Type type)
+        public static object GetResult(this Task task, in Type type)
 #pragma warning restore IDE0060 // Remove unused parameter
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
@@ -63,7 +63,7 @@ namespace wan24.Core
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
 #pragma warning disable IDE0060 // Remove unused parameter
-        public static object? GetResultNullable(this Task task, Type type)
+        public static object? GetResultNullable(this Task task, in Type type)
 #pragma warning restore IDE0060 // Remove unused parameter
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
@@ -110,7 +110,7 @@ namespace wan24.Core
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
 #pragma warning disable IDE0060 // Remove unused parameter
-        public static object GetResult(this ValueTask task, Type type)
+        public static object GetResult(this ValueTask task, in Type type)
 #pragma warning restore IDE0060 // Remove unused parameter
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
@@ -127,7 +127,7 @@ namespace wan24.Core
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
 #pragma warning disable IDE0060 // Remove unused parameter
-        public static object? GetResultNullable(this ValueTask task, Type type)
+        public static object? GetResultNullable(this ValueTask task, in Type type)
 #pragma warning restore IDE0060 // Remove unused parameter
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
@@ -296,7 +296,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Long running task</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static Task StartLongRunningTask(this Func<Task> action, TaskScheduler? scheduler = null, CancellationToken cancellationToken = default)
+        public static Task StartLongRunningTask(this Func<Task> action, in TaskScheduler? scheduler = null, in CancellationToken cancellationToken = default)
             => Task.Factory.StartNew(
                 action,
                 cancellationToken,
@@ -314,7 +314,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Long running task</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static Task<T> StartLongRunningTask<T>(this Func<Task<T>> action, TaskScheduler? scheduler = null, CancellationToken cancellationToken = default)
+        public static Task<T> StartLongRunningTask<T>(this Func<Task<T>> action, in TaskScheduler? scheduler = null, in CancellationToken cancellationToken = default)
             => Task.Factory.StartNew(
                 action,
                 cancellationToken,
@@ -331,7 +331,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Task</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static Task StartFairTask(this Func<Task> action, TaskScheduler? scheduler = null, CancellationToken cancellationToken = default)
+        public static Task StartFairTask(this Func<Task> action, in TaskScheduler? scheduler = null, in CancellationToken cancellationToken = default)
             => Task.Factory.StartNew(
                 action,
                 cancellationToken,
@@ -349,7 +349,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Task</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static Task<T> StartFairTask<T>(this Func<Task<T>> action, TaskScheduler? scheduler = null, CancellationToken cancellationToken = default)
+        public static Task<T> StartFairTask<T>(this Func<Task<T>> action, in TaskScheduler? scheduler = null, in CancellationToken cancellationToken = default)
             => Task.Factory.StartNew(
                 action,
                 cancellationToken,
@@ -366,7 +366,7 @@ namespace wan24.Core
         /// <returns>Task</returns>
         /// <exception cref="TaskCanceledException">If canceled</exception>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static Task WithCancellation(this Task task, CancellationToken cancellationToken) => task.WaitAsync(cancellationToken);
+        public static Task WithCancellation(this Task task, in CancellationToken cancellationToken) => task.WaitAsync(cancellationToken);
 
         /// <summary>
         /// Add a cancellation token to a task
@@ -377,7 +377,7 @@ namespace wan24.Core
         /// <returns>Task</returns>
         /// <exception cref="TaskCanceledException">If canceled</exception>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static Task<T> WithCancellation<T>(this Task<T> task, CancellationToken cancellationToken) => task.WaitAsync(cancellationToken);
+        public static Task<T> WithCancellation<T>(this Task<T> task, in CancellationToken cancellationToken) => task.WaitAsync(cancellationToken);
 
         /// <summary>
         /// Add a timeout to a task

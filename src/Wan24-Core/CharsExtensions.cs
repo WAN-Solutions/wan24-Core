@@ -1,5 +1,8 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Buffers.Text;
+using System.Buffers;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace wan24.Core
 {
@@ -22,7 +25,7 @@ namespace wan24.Core
             if (arr.Length > Settings.StackAllocBorder)
             {
 #endif
-                using RentedArrayStruct<byte> random = new(arr.Length, clean: false);
+                using RentedArrayRefStruct<byte> random = new(arr.Length, clean: false);
                 RandomNumberGenerator.Fill(random.Span);
 #if !NO_UNSAFE
                 unsafe
@@ -60,6 +63,59 @@ namespace wan24.Core
                 }
             }
 #endif
+        }
+
+        /// <summary>
+        /// Decode base64
+        /// </summary>
+        /// <param name="str">base64 UTF-8 string</param>
+        /// <returns>Decoded bytes</returns>
+        public static byte[] DecodeBase64(this char[] str) => DecodeBase64((ReadOnlySpan<char>)str);
+
+        /// <summary>
+        /// Decode base64
+        /// </summary>
+        /// <param name="str">base64 UTF-8 string</param>
+        /// <returns>Decoded bytes</returns>
+        public static byte[] DecodeBase64(this Span<char> str) => DecodeBase64((ReadOnlySpan<char>)str);
+
+        /// <summary>
+        /// Decode base64
+        /// </summary>
+        /// <param name="str">base64 UTF-8 string</param>
+        /// <returns>Decoded bytes</returns>
+        public static byte[] DecodeBase64(this ReadOnlySpan<char> str)
+        {
+            using RentedArrayRefStruct<byte> buffer = new(len: Base64.GetMaxDecodedFromUtf8Length(str.Length), clean: false);
+            return buffer.Span[..DecodeBase64(str, buffer.Span)].ToArray();
+        }
+
+        /// <summary>
+        /// Decode base64
+        /// </summary>
+        /// <param name="str">base64 UTF-8 string</param>
+        /// <param name="buffer">Buffer</param>
+        /// <returns>Number of decoded characters written to <c>buffer</c></returns>
+        public static int DecodeBase64(this char[] str, byte[] buffer) => DecodeBase64((ReadOnlySpan<char>)str, buffer);
+
+        /// <summary>
+        /// Decode base64
+        /// </summary>
+        /// <param name="str">base64 UTF-8 string</param>
+        /// <param name="buffer">Buffer</param>
+        /// <returns>Number of decoded characters written to <c>buffer</c></returns>
+        public static int DecodeBase64(this Span<char> str, Span<byte> buffer) => DecodeBase64((ReadOnlySpan<char>)str, buffer);
+
+        /// <summary>
+        /// Decode base64
+        /// </summary>
+        /// <param name="str">base64 UTF-8 string</param>
+        /// <param name="buffer">Buffer</param>
+        /// <returns>Number of decoded characters written to <c>buffer</c></returns>
+        public static int DecodeBase64(this ReadOnlySpan<char> str, Span<byte> buffer)
+        {
+            using RentedArrayRefStruct<byte> bytes = new(len: buffer.Length, clean: false);
+            return bytes.Span[..Encoding.UTF8.GetBytes(str, bytes.Span)].DecodeBase64(buffer);
         }
     }
 }

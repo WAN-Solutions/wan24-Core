@@ -14,7 +14,7 @@ namespace wan24.Core
         /// <param name="pi">Property</param>
         /// <param name="getter">Getter</param>
         /// <param name="setter">Setter</param>
-        public PropertyInfoExt(PropertyInfo pi, Func<object?, object?>? getter, Action<object?, object?>? setter)
+        public PropertyInfoExt(in PropertyInfo pi, in Func<object?, object?>? getter, in Action<object?, object?>? setter)
         {
             Property = pi;
             Getter = getter;
@@ -77,6 +77,6 @@ namespace wan24.Core
         /// Cast as <see cref="PropertyInfo"/>
         /// </summary>
         /// <param name="pi"><see cref="PropertyInfoExt"/></param>
-        public static implicit operator PropertyInfo(PropertyInfoExt pi) => pi.Property;
+        public static implicit operator PropertyInfo(in PropertyInfoExt pi) => pi.Property;
     }
 }

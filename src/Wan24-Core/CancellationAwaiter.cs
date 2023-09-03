@@ -11,7 +11,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
-        public CancellationAwaiter(CancellationToken cancellationToken) => CancellationToken = cancellationToken;
+        public CancellationAwaiter(in CancellationToken cancellationToken) => CancellationToken = cancellationToken;
 
         /// <summary>
         /// Cancellation token
