@@ -214,6 +214,7 @@ including extensions for numeric type encoding/decoding)
 - Delayed tasks
 - Progress
 - Sensitive data handling
+- Object storage
 
 ## How to get it
 
@@ -1422,3 +1423,39 @@ public class HidePasswordAttribute : SensitiveDataAttribute
 As soon as `CanSanitizeValue` delivers `true`, supporting code should call the 
 `CreateSanitizedValue` method to create a replacement for the the actual value 
 in an output.
+
+## Object storage
+
+An object storage stores objects in memory and in any backend. If a number of 
+in-memory objects was reached, least accessed objects will be removed from 
+memory. On request an object can be re-created from the backend, and will then 
+be stored in-memory again.
+
+The object doesn't have to be stored in a backend. They may also be objects 
+which require a lot of resources for their initialization, but will be 
+accessed frequently and should be cached for that reason, for example.
+
+There's only one requirement for an object to be object-storable: It needs to 
+export a non-nullable unique object key by implementing the interface 
+`IStoredObject<T>`.
+
+All in all the object storage is a kind of memory cache for a single object 
+type. The configured in-memory limit is only a soft-limit, 'cause the storage 
+won't limit the number of used objects - but the number of unused, cached 
+objects.
+
+The implementing storage can control
+
+- synchronous/asynchronous object creation
+- object disposing
+
+and override any other base object storage operation, if required.
+
+Implemented operations:
+
+- `GetObject(Async)`: Get an object by its key (the returned wrapper needs to 
+be disposed!)
+- `Release`: Release object usage (will be called from the returned wrapper of 
+`GetObject(Async)`, when it's being disposed)
+- `Remove`: Remove the object from the storage (if it's being deleted 
+permanently, for example)

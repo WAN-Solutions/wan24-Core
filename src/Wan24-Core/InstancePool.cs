@@ -35,14 +35,14 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
-        public InstancePool(int capacity) : this(capacity, async (pool, ct) => (T)(await typeof(T).ConstructAutoAsync(DiHelper.Instance).DynamicContext()).Object) { }
+        public InstancePool(in int capacity) : this(capacity, async (pool, ct) => (T)(await typeof(T).ConstructAutoAsync(DiHelper.Instance).DynamicContext()).Object) { }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
         /// <param name="factory">Instance factory</param>
-        public InstancePool(int capacity, IInstancePool<T>.Instance_Delegate factory) : this(capacity, intern: true)
+        public InstancePool(in int capacity, in IInstancePool<T>.Instance_Delegate factory) : this(capacity, intern: true)
         {
             if (capacity < 1) throw new ArgumentOutOfRangeException(nameof(capacity));
             SyncFactory = factory;
@@ -54,7 +54,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="capacity">Capacity</param>
         /// <param name="factory">Instance factory</param>
-        public InstancePool(int capacity, IInstancePool<T>.InstanceAsync_Delegate factory) : this(capacity, intern: true)
+        public InstancePool(in int capacity, in IInstancePool<T>.InstanceAsync_Delegate factory) : this(capacity, intern: true)
         {
             if (capacity < 1) throw new ArgumentOutOfRangeException(nameof(capacity));
             SyncFactory = null;
@@ -67,7 +67,7 @@ namespace wan24.Core
         /// <param name="capacity">Capacity</param>
         /// <param name="intern">Intern construction</param>
 #pragma warning disable IDE0060 // Remove unused parameter
-        protected InstancePool(int capacity, bool intern) : base()
+        protected InstancePool(in int capacity, in bool intern) : base()
 #pragma warning restore IDE0060 // Remove unused parameter
         {
             Capacity = capacity;
