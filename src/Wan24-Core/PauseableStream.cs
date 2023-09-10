@@ -154,16 +154,15 @@
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            if (IsDisposing) return;
-            base.Dispose(disposing);
             _Pause.Dispose();
+            base.Dispose(disposing);
         }
 
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            await base.DisposeCore().DynamicContext();
             await _Pause.DisposeAsync().DynamicContext();
+            await base.DisposeCore().DynamicContext();
         }
     }
 }

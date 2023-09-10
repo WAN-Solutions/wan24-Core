@@ -80,23 +80,76 @@
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><a class="xref" href="wan24.Core.DisposableBase.html">DisposableBase</a></div>
-    <div class="level2"><span class="xref">TimedHostedServiceBase</span></div>
-      <div class="level3"><a class="xref" href="wan24.Core.EnvironmentService.html">EnvironmentService</a></div>
-      <div class="level3"><a class="xref" href="wan24.Core.StatisticsService.html">StatisticsService</a></div>
+    <div class="level2"><a class="xref" href="wan24.Core.HostedServiceBase.html">HostedServiceBase</a></div>
+    <div class="level3"><span class="xref">TimedHostedServiceBase</span></div>
+      <div class="level4"><a class="xref" href="wan24.Core.DelayService.html">DelayService</a></div>
+      <div class="level4"><a class="xref" href="wan24.Core.EnvironmentService.html">EnvironmentService</a></div>
+      <div class="level4"><a class="xref" href="wan24.Core.StatisticsService.html">StatisticsService</a></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
-    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
-    <div><span class="xref">IDisposable</span></div>
-    <div><span class="xref">IAsyncDisposable</span></div>
-    <div><span class="xref">Microsoft.Extensions.Hosting.IHostedService</span></div>
     <div><a class="xref" href="wan24.Core.ITimer.html">ITimer</a></div>
     <div><a class="xref" href="wan24.Core.IServiceWorkerStatus.html">IServiceWorkerStatus</a></div>
     <div><a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a></div>
+    <div><span class="xref">Microsoft.Extensions.Hosting.IHostedService</span></div>
+    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><span class="xref">IDisposable</span></div>
+    <div><span class="xref">IAsyncDisposable</span></div>
     <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Sync">HostedServiceBase.Sync</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_StopTask">HostedServiceBase.StopTask</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Cancellation">HostedServiceBase.Cancellation</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_ServiceTask">HostedServiceBase.ServiceTask</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase__LastException">HostedServiceBase._LastException</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_IsRunning">HostedServiceBase.IsRunning</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Started">HostedServiceBase.Started</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_IsStopping">HostedServiceBase.IsStopping</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_LastException">HostedServiceBase.LastException</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Name">HostedServiceBase.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_ToString">HostedServiceBase.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_RunServiceAsync">HostedServiceBase.RunServiceAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_wan24_Core_IServiceWorker_StartAsync">HostedServiceBase.IServiceWorker.StartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_wan24_Core_IServiceWorker_StopAsync">HostedServiceBase.IServiceWorker.StopAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_wan24_Core_IServiceWorker_RestartAsync">HostedServiceBase.IServiceWorker.RestartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_OnException">HostedServiceBase.OnException</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_RaiseOnException">HostedServiceBase.RaiseOnException()</a>
+    </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeSyncObject">DisposableBase.DisposeSyncObject</a>
     </div>
@@ -160,15 +213,12 @@
     <div>
       <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
     </div>
-    <div>
-      <span class="xref">System.Object.ToString()</span>
-    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_TimedHostedServiceBase_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class TimedHostedServiceBase : DisposableBase, IDisposableObject, IHostedService, ITimer, IServiceWorkerStatus, IServiceWorker, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class TimedHostedServiceBase : HostedServiceBase, ITimer, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IStatusProvider</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -177,7 +227,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase__ctor_System_Double__wan24_Core_HostedServiceTimers__System_Nullable_DateTime___.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.%23ctor(System.Double%40%2Cwan24.Core.HostedServiceTimers%40%2CSystem.Nullable%7BDateTime%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L55">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L41">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase__ctor_" data-uid="wan24.Core.TimedHostedServiceBase.#ctor*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase__ctor_System_Double__wan24_Core_HostedServiceTimers__System_Nullable_DateTime___" data-uid="wan24.Core.TimedHostedServiceBase.#ctor(System.Double@,wan24.Core.HostedServiceTimers@,System.Nullable{DateTime}@)">TimedHostedServiceBase(in Double, in HostedServiceTimers, in Nullable&lt;DateTime&gt;)</h4>
@@ -225,7 +275,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase__Interval.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase._Interval%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L47">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L33">View Source</a>
   </span>
   <h4 id="wan24_Core_TimedHostedServiceBase__Interval" data-uid="wan24.Core.TimedHostedServiceBase._Interval">_Interval</h4>
   <div class="markdown level1 summary"><p>Interval</p>
@@ -252,40 +302,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_Cancellation.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.Cancellation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L39">View Source</a>
-  </span>
-  <h4 id="wan24_Core_TimedHostedServiceBase_Cancellation" data-uid="wan24.Core.TimedHostedServiceBase.Cancellation">Cancellation</h4>
-  <div class="markdown level1 summary"><p>Cancellation token</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected CancellationTokenSource Cancellation</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.CancellationTokenSource</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_RunEvent.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.RunEvent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L23">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L21">View Source</a>
   </span>
   <h4 id="wan24_Core_TimedHostedServiceBase_RunEvent" data-uid="wan24.Core.TimedHostedServiceBase.RunEvent">RunEvent</h4>
   <div class="markdown level1 summary"><p>Run event (raised when should run)</p>
@@ -312,103 +332,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_ServiceTask.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.ServiceTask%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L43">View Source</a>
-  </span>
-  <h4 id="wan24_Core_TimedHostedServiceBase_ServiceTask" data-uid="wan24.Core.TimedHostedServiceBase.ServiceTask">ServiceTask</h4>
-  <div class="markdown level1 summary"><p>Service task</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Task? ServiceTask</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Task</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_StopTask.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.StopTask%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L35">View Source</a>
-  </span>
-  <h4 id="wan24_Core_TimedHostedServiceBase_StopTask" data-uid="wan24.Core.TimedHostedServiceBase.StopTask">StopTask</h4>
-  <div class="markdown level1 summary"><p>Stop task</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected volatile TaskCompletionSource? StopTask</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">TaskCompletionSource</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_Sync.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.Sync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L27">View Source</a>
-  </span>
-  <h4 id="wan24_Core_TimedHostedServiceBase_Sync" data-uid="wan24.Core.TimedHostedServiceBase.Sync">Sync</h4>
-  <div class="markdown level1 summary"><p>Thread synchronization</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly SemaphoreSync Sync</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="wan24.Core.SemaphoreSync.html">SemaphoreSync</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_SyncControl.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.SyncControl%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L31">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L29">View Source</a>
   </span>
   <h4 id="wan24_Core_TimedHostedServiceBase_SyncControl" data-uid="wan24.Core.TimedHostedServiceBase.SyncControl">SyncControl</h4>
-  <div class="markdown level1 summary"><p>Thread synchronization for the start/stop control</p>
+  <div class="markdown level1 summary"><p>Service control thread synchronization</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -435,7 +365,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_Timer.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.Timer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L16">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L14">View Source</a>
   </span>
   <h4 id="wan24_Core_TimedHostedServiceBase_Timer" data-uid="wan24.Core.TimedHostedServiceBase.Timer">Timer</h4>
   <div class="markdown level1 summary"><p>Timer</p>
@@ -460,6 +390,36 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_WorkerSync.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.WorkerSync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L25">View Source</a>
+  </span>
+  <h4 id="wan24_Core_TimedHostedServiceBase_WorkerSync" data-uid="wan24.Core.TimedHostedServiceBase.WorkerSync">WorkerSync</h4>
+  <div class="markdown level1 summary"><p>Thread synchronization</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly SemaphoreSync WorkerSync</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.SemaphoreSync.html">SemaphoreSync</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
@@ -467,7 +427,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_GUID.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.GUID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L69">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L54">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_GUID_" data-uid="wan24.Core.TimedHostedServiceBase.GUID*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_GUID" data-uid="wan24.Core.TimedHostedServiceBase.GUID">GUID</h4>
@@ -498,7 +458,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_Interval.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.Interval%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L119">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L86">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_Interval_" data-uid="wan24.Core.TimedHostedServiceBase.Interval*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_Interval" data-uid="wan24.Core.TimedHostedServiceBase.Interval">Interval</h4>
@@ -526,72 +486,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_IsRunning.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.IsRunning%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L104">View Source</a>
-  </span>
-  <a id="wan24_Core_TimedHostedServiceBase_IsRunning_" data-uid="wan24.Core.TimedHostedServiceBase.IsRunning*"></a>
-  <h4 id="wan24_Core_TimedHostedServiceBase_IsRunning" data-uid="wan24.Core.TimedHostedServiceBase.IsRunning">IsRunning</h4>
-  <div class="markdown level1 summary"><p>Is running?</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsRunning { get; protected set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_IsStopping.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.IsStopping%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L109">View Source</a>
-  </span>
-  <a id="wan24_Core_TimedHostedServiceBase_IsStopping_" data-uid="wan24.Core.TimedHostedServiceBase.IsStopping*"></a>
-  <h4 id="wan24_Core_TimedHostedServiceBase_IsStopping" data-uid="wan24.Core.TimedHostedServiceBase.IsStopping">IsStopping</h4>
-  <div class="markdown level1 summary"><p>Is stopping?</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsStopping { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_LastDuration.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.LastDuration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L139">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L101">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_LastDuration_" data-uid="wan24.Core.TimedHostedServiceBase.LastDuration*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_LastDuration" data-uid="wan24.Core.TimedHostedServiceBase.LastDuration">LastDuration</h4>
@@ -619,41 +517,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_LastException.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.LastException%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L114">View Source</a>
-  </span>
-  <a id="wan24_Core_TimedHostedServiceBase_LastException_" data-uid="wan24.Core.TimedHostedServiceBase.LastException*"></a>
-  <h4 id="wan24_Core_TimedHostedServiceBase_LastException" data-uid="wan24.Core.TimedHostedServiceBase.LastException">LastException</h4>
-  <div class="markdown level1 summary"><p>Last exception</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Exception? LastException { get; protected set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Exception</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_LastRun.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.LastRun%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L134">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L96">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_LastRun_" data-uid="wan24.Core.TimedHostedServiceBase.LastRun*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_LastRun" data-uid="wan24.Core.TimedHostedServiceBase.LastRun">LastRun</h4>
@@ -681,41 +548,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_Name.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L72">View Source</a>
-  </span>
-  <a id="wan24_Core_TimedHostedServiceBase_Name_" data-uid="wan24.Core.TimedHostedServiceBase.Name*"></a>
-  <h4 id="wan24_Core_TimedHostedServiceBase_Name" data-uid="wan24.Core.TimedHostedServiceBase.Name">Name</h4>
-  <div class="markdown level1 summary"><p>Display name</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual string Name { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_NextRun.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.NextRun%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L144">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L106">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_NextRun_" data-uid="wan24.Core.TimedHostedServiceBase.NextRun*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_NextRun" data-uid="wan24.Core.TimedHostedServiceBase.NextRun">NextRun</h4>
@@ -746,7 +582,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_RunOnce.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.RunOnce%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L149">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L111">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_RunOnce_" data-uid="wan24.Core.TimedHostedServiceBase.RunOnce*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_RunOnce" data-uid="wan24.Core.TimedHostedServiceBase.RunOnce">RunOnce</h4>
@@ -774,41 +610,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_Started.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.Started%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L129">View Source</a>
-  </span>
-  <a id="wan24_Core_TimedHostedServiceBase_Started_" data-uid="wan24.Core.TimedHostedServiceBase.Started*"></a>
-  <h4 id="wan24_Core_TimedHostedServiceBase_Started" data-uid="wan24.Core.TimedHostedServiceBase.Started">Started</h4>
-  <div class="markdown level1 summary"><p>Started time (or <see cref="!:DateTime.MinValue"></see>, if never started)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DateTime Started { get; protected set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">DateTime</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_State.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.State%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L87">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L69">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_State_" data-uid="wan24.Core.TimedHostedServiceBase.State*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_State" data-uid="wan24.Core.TimedHostedServiceBase.State">State</h4>
@@ -839,7 +644,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_TimerType.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.TimerType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L124">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L91">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_TimerType_" data-uid="wan24.Core.TimedHostedServiceBase.TimerType*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_TimerType" data-uid="wan24.Core.TimedHostedServiceBase.TimerType">TimerType</h4>
@@ -872,7 +677,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L449">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L342">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_Dispose_" data-uid="wan24.Core.TimedHostedServiceBase.Dispose*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_Dispose_System_Boolean_" data-uid="wan24.Core.TimedHostedServiceBase.Dispose(System.Boolean)">Dispose(Boolean)</h4>
@@ -902,13 +707,13 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose_System_Boolean_">DisposableBase.Dispose(Boolean)</a></div>
+  <div><a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Dispose_System_Boolean_">HostedServiceBase.Dispose(Boolean)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.DisposeCore%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L461">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L353">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_DisposeCore_" data-uid="wan24.Core.TimedHostedServiceBase.DisposeCore*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_DisposeCore" data-uid="wan24.Core.TimedHostedServiceBase.DisposeCore">DisposeCore()</h4>
@@ -935,13 +740,13 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeCore">DisposableBase.DisposeCore()</a></div>
+  <div><a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_DisposeCore">HostedServiceBase.DisposeCore()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_EnableTimerAsync.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.EnableTimerAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L393">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L286">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_EnableTimerAsync_" data-uid="wan24.Core.TimedHostedServiceBase.EnableTimerAsync*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_EnableTimerAsync" data-uid="wan24.Core.TimedHostedServiceBase.EnableTimerAsync">EnableTimerAsync()</h4>
@@ -973,7 +778,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_RaiseOnRan.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.RaiseOnRan%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L492">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L378">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_RaiseOnRan_" data-uid="wan24.Core.TimedHostedServiceBase.RaiseOnRan*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_RaiseOnRan" data-uid="wan24.Core.TimedHostedServiceBase.RaiseOnRan">RaiseOnRan()</h4>
@@ -1001,50 +806,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_RunServiceAsync.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.RunServiceAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_SetTimerAsync_System_Double_System_Nullable_wan24_Core_HostedServiceTimers__System_Nullable_DateTime__CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.SetTimerAsync(System.Double%2CSystem.Nullable%7Bwan24.Core.HostedServiceTimers%7D%2CSystem.Nullable%7BDateTime%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L299">View Source</a>
-  </span>
-  <a id="wan24_Core_TimedHostedServiceBase_RunServiceAsync_" data-uid="wan24.Core.TimedHostedServiceBase.RunServiceAsync*"></a>
-  <h4 id="wan24_Core_TimedHostedServiceBase_RunServiceAsync" data-uid="wan24.Core.TimedHostedServiceBase.RunServiceAsync">RunServiceAsync()</h4>
-  <div class="markdown level1 summary"><p>Run the service</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected async Task RunServiceAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_SetTimerAsync_System_Double_System_Nullable_wan24_Core_HostedServiceTimers__System_Nullable_DateTime__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.SetTimerAsync(System.Double%2CSystem.Nullable%7Bwan24.Core.HostedServiceTimers%7D%2CSystem.Nullable%7BDateTime%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L158">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L120">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_SetTimerAsync_" data-uid="wan24.Core.TimedHostedServiceBase.SetTimerAsync*"></a>
-  <h4 id="wan24_Core_TimedHostedServiceBase_SetTimerAsync_System_Double_System_Nullable_wan24_Core_HostedServiceTimers__System_Nullable_DateTime__System_Threading_CancellationToken_" data-uid="wan24.Core.TimedHostedServiceBase.SetTimerAsync(System.Double,System.Nullable{wan24.Core.HostedServiceTimers},System.Nullable{DateTime},System.Threading.CancellationToken)">SetTimerAsync(Double, Nullable&lt;HostedServiceTimers&gt;, Nullable&lt;DateTime&gt;, CancellationToken)</h4>
+  <h4 id="wan24_Core_TimedHostedServiceBase_SetTimerAsync_System_Double_System_Nullable_wan24_Core_HostedServiceTimers__System_Nullable_DateTime__CancellationToken_" data-uid="wan24.Core.TimedHostedServiceBase.SetTimerAsync(System.Double,System.Nullable{wan24.Core.HostedServiceTimers},System.Nullable{DateTime},CancellationToken)">SetTimerAsync(Double, Nullable&lt;HostedServiceTimers&gt;, Nullable&lt;DateTime&gt;, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Set the timer</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public async Task SetTimerAsync(double interval, HostedServiceTimers? timer = null, DateTime? nextRun = null, CancellationToken cancellationToken = default(CancellationToken))</code></pre>
+    <pre><code class="lang-csharp hljs">public async Task SetTimerAsync(double interval, HostedServiceTimers? timer = null, DateTime? nextRun = null, CancellationToken cancellationToken = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1075,7 +849,7 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
         <td><p>Cancellation token</p>
 </td>
@@ -1099,18 +873,18 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_StartAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.StartAsync(System.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_StartAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.StartAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L217">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L182">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_StartAsync_" data-uid="wan24.Core.TimedHostedServiceBase.StartAsync*"></a>
-  <h4 id="wan24_Core_TimedHostedServiceBase_StartAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.TimedHostedServiceBase.StartAsync(System.Threading.CancellationToken)">StartAsync(CancellationToken)</h4>
+  <h4 id="wan24_Core_TimedHostedServiceBase_StartAsync_CancellationToken_" data-uid="wan24.Core.TimedHostedServiceBase.StartAsync(CancellationToken)">StartAsync(CancellationToken)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public async Task StartAsync(CancellationToken cancellationToken = default(CancellationToken))</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed override async Task StartAsync(CancellationToken cancellationToken = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1123,7 +897,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
         <td></td>
       </tr>
@@ -1144,20 +918,23 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_StartAsync_CancellationToken_">HostedServiceBase.StartAsync(CancellationToken)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_StartAsyncInt_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.StartAsyncInt(System.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_StartIntAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.StartIntAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L257">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L201">View Source</a>
   </span>
-  <a id="wan24_Core_TimedHostedServiceBase_StartAsyncInt_" data-uid="wan24.Core.TimedHostedServiceBase.StartAsyncInt*"></a>
-  <h4 id="wan24_Core_TimedHostedServiceBase_StartAsyncInt_System_Threading_CancellationToken_" data-uid="wan24.Core.TimedHostedServiceBase.StartAsyncInt(System.Threading.CancellationToken)">StartAsyncInt(CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="wan24_Core_TimedHostedServiceBase_StartIntAsync_" data-uid="wan24.Core.TimedHostedServiceBase.StartIntAsync*"></a>
+  <h4 id="wan24_Core_TimedHostedServiceBase_StartIntAsync_CancellationToken_" data-uid="wan24.Core.TimedHostedServiceBase.StartIntAsync(CancellationToken)">StartIntAsync(CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Start</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public async Task StartAsyncInt(CancellationToken cancellationToken)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual async Task StartIntAsync(CancellationToken cancellationToken)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1170,9 +947,10 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
+        <td><p>Cancellation token</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1193,18 +971,18 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_StopAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.StopAsync(System.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_StopAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.StopAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L230">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L190">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_StopAsync_" data-uid="wan24.Core.TimedHostedServiceBase.StopAsync*"></a>
-  <h4 id="wan24_Core_TimedHostedServiceBase_StopAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.TimedHostedServiceBase.StopAsync(System.Threading.CancellationToken)">StopAsync(CancellationToken)</h4>
+  <h4 id="wan24_Core_TimedHostedServiceBase_StopAsync_CancellationToken_" data-uid="wan24.Core.TimedHostedServiceBase.StopAsync(CancellationToken)">StopAsync(CancellationToken)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public async Task StopAsync(CancellationToken cancellationToken = default(CancellationToken))</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed override async Task StopAsync(CancellationToken cancellationToken = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1217,7 +995,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
         <td></td>
       </tr>
@@ -1238,20 +1016,23 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_StopAsync_CancellationToken_">HostedServiceBase.StopAsync(CancellationToken)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_StopAsyncInt_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.StopAsyncInt(System.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_StopIntAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.StopIntAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L274">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L218">View Source</a>
   </span>
-  <a id="wan24_Core_TimedHostedServiceBase_StopAsyncInt_" data-uid="wan24.Core.TimedHostedServiceBase.StopAsyncInt*"></a>
-  <h4 id="wan24_Core_TimedHostedServiceBase_StopAsyncInt_System_Threading_CancellationToken_" data-uid="wan24.Core.TimedHostedServiceBase.StopAsyncInt(System.Threading.CancellationToken)">StopAsyncInt(CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="wan24_Core_TimedHostedServiceBase_StopIntAsync_" data-uid="wan24.Core.TimedHostedServiceBase.StopIntAsync*"></a>
+  <h4 id="wan24_Core_TimedHostedServiceBase_StopIntAsync_CancellationToken_" data-uid="wan24.Core.TimedHostedServiceBase.StopIntAsync(CancellationToken)">StopIntAsync(CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Stop</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public async Task StopAsyncInt(CancellationToken cancellationToken)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual async Task StopIntAsync(CancellationToken cancellationToken)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1264,12 +1045,44 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_TimedWorkerAsync.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.TimedWorkerAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L280">View Source</a>
+  </span>
+  <a id="wan24_Core_TimedHostedServiceBase_TimedWorkerAsync_" data-uid="wan24.Core.TimedHostedServiceBase.TimedWorkerAsync*"></a>
+  <h4 id="wan24_Core_TimedHostedServiceBase_TimedWorkerAsync" data-uid="wan24.Core.TimedHostedServiceBase.TimedWorkerAsync">TimedWorkerAsync()</h4>
+  <div class="markdown level1 summary"><p>Timed service worker</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract Task TimedWorkerAsync()</code></pre>
+  </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -1290,7 +1103,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_WorkerAsync.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.WorkerAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L387">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L227">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_WorkerAsync_" data-uid="wan24.Core.TimedHostedServiceBase.WorkerAsync*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_WorkerAsync" data-uid="wan24.Core.TimedHostedServiceBase.WorkerAsync">WorkerAsync()</h4>
@@ -1299,7 +1112,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected abstract Task WorkerAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">protected sealed override async Task WorkerAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1316,44 +1129,16 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_WorkerAsync">HostedServiceBase.WorkerAsync()</a></div>
   <h3 id="events">Events
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_OnException.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.OnException%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L482">View Source</a>
-  </span>
-  <h4 id="wan24_Core_TimedHostedServiceBase_OnException" data-uid="wan24.Core.TimedHostedServiceBase.OnException">OnException</h4>
-  <div class="markdown level1 summary"><p>Raised on exception</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event TimedHostedServiceBase.TimedHostedService_Delegate OnException</code></pre>
-  </div>
-  <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="wan24.Core.TimedHostedServiceBase.TimedHostedService_Delegate.html">TimedHostedServiceBase.TimedHostedService_Delegate</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_OnRan.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.OnRan%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L487">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L373">View Source</a>
   </span>
   <h4 id="wan24_Core_TimedHostedServiceBase_OnRan" data-uid="wan24.Core.TimedHostedServiceBase.OnRan">OnRan</h4>
   <div class="markdown level1 summary"><p>Raised after ran once</p>
@@ -1385,7 +1170,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_op_Implicit_wan24_Core_TimedHostedServiceBase___System_Boolean.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.op_Implicit(wan24.Core.TimedHostedServiceBase%40)~System.Boolean%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L505">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L391">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_op_Implicit_" data-uid="wan24.Core.TimedHostedServiceBase.op_Implicit*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_op_Implicit_wan24_Core_TimedHostedServiceBase___System_Boolean" data-uid="wan24.Core.TimedHostedServiceBase.op_Implicit(wan24.Core.TimedHostedServiceBase@)~System.Boolean">Implicit(in TimedHostedServiceBase to Boolean)</h4>
@@ -1435,7 +1220,7 @@ public static implicit operator bool (in TimedHostedServiceBase service)</code><
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_op_Implicit_wan24_Core_TimedHostedServiceBase___TimeSpan.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.op_Implicit(wan24.Core.TimedHostedServiceBase%40)~TimeSpan%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L512">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L398">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_op_Implicit_" data-uid="wan24.Core.TimedHostedServiceBase.op_Implicit*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_op_Implicit_wan24_Core_TimedHostedServiceBase___TimeSpan" data-uid="wan24.Core.TimedHostedServiceBase.op_Implicit(wan24.Core.TimedHostedServiceBase@)~TimeSpan">Implicit(in TimedHostedServiceBase to TimeSpan)</h4>
@@ -1484,103 +1269,10 @@ public static implicit operator TimeSpan(in TimedHostedServiceBase service)</cod
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_wan24_Core_IServiceWorker_RestartAsync.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.wan24%23Core%23IServiceWorker%23RestartAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L250">View Source</a>
-  </span>
-  <a id="wan24_Core_TimedHostedServiceBase_wan24_Core_IServiceWorker_RestartAsync_" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#IServiceWorker#RestartAsync*"></a>
-  <h4 id="wan24_Core_TimedHostedServiceBase_wan24_Core_IServiceWorker_RestartAsync" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#IServiceWorker#RestartAsync">IServiceWorker.RestartAsync()</h4>
-  <div class="markdown level1 summary"><p>Restart</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">async Task IServiceWorker.RestartAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_wan24_Core_IServiceWorker_StartAsync.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.wan24%23Core%23IServiceWorker%23StartAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L227">View Source</a>
-  </span>
-  <a id="wan24_Core_TimedHostedServiceBase_wan24_Core_IServiceWorker_StartAsync_" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#IServiceWorker#StartAsync*"></a>
-  <h4 id="wan24_Core_TimedHostedServiceBase_wan24_Core_IServiceWorker_StartAsync" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#IServiceWorker#StartAsync">IServiceWorker.StartAsync()</h4>
-  <div class="markdown level1 summary"><p>Start</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task IServiceWorker.StartAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_wan24_Core_IServiceWorker_StopAsync.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.wan24%23Core%23IServiceWorker%23StopAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L240">View Source</a>
-  </span>
-  <a id="wan24_Core_TimedHostedServiceBase_wan24_Core_IServiceWorker_StopAsync_" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#IServiceWorker#StopAsync*"></a>
-  <h4 id="wan24_Core_TimedHostedServiceBase_wan24_Core_IServiceWorker_StopAsync" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#IServiceWorker#StopAsync">IServiceWorker.StopAsync()</h4>
-  <div class="markdown level1 summary"><p>Stop</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task IServiceWorker.StopAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_AutoReset.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.wan24%23Core%23ITimer%23AutoReset%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L84">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L66">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_AutoReset_" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#ITimer#AutoReset*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_AutoReset" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#ITimer#AutoReset">ITimer.AutoReset</h4>
@@ -1611,7 +1303,7 @@ public static implicit operator TimeSpan(in TimedHostedServiceBase service)</cod
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_Interval.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.wan24%23Core%23ITimer%23Interval%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L75">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L57">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_Interval_" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#ITimer#Interval*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_Interval" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#ITimer#Interval">ITimer.Interval</h4>
@@ -1642,7 +1334,7 @@ public static implicit operator TimeSpan(in TimedHostedServiceBase service)</cod
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_LastElapsed.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.wan24%23Core%23ITimer%23LastElapsed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L78">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L60">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_LastElapsed_" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#ITimer#LastElapsed*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_LastElapsed" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#ITimer#LastElapsed">ITimer.LastElapsed</h4>
@@ -1670,41 +1362,10 @@ public static implicit operator TimeSpan(in TimedHostedServiceBase service)</cod
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_RestartAsync.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.wan24%23Core%23ITimer%23RestartAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L243">View Source</a>
-  </span>
-  <a id="wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_RestartAsync_" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#ITimer#RestartAsync*"></a>
-  <h4 id="wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_RestartAsync" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#ITimer#RestartAsync">ITimer.RestartAsync()</h4>
-  <div class="markdown level1 summary"><p>Restart</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">async Task ITimer.RestartAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_Sheduled.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.wan24%23Core%23ITimer%23Sheduled%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L81">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L63">View Source</a>
   </span>
   <a id="wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_Sheduled_" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#ITimer#Sheduled*"></a>
   <h4 id="wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_Sheduled" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#ITimer#Sheduled">ITimer.Sheduled</h4>
@@ -1730,81 +1391,7 @@ public static implicit operator TimeSpan(in TimedHostedServiceBase service)</cod
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_StartAsync.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.wan24%23Core%23ITimer%23StartAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L224">View Source</a>
-  </span>
-  <a id="wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_StartAsync_" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#ITimer#StartAsync*"></a>
-  <h4 id="wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_StartAsync" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#ITimer#StartAsync">ITimer.StartAsync()</h4>
-  <div class="markdown level1 summary"><p>Start</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task ITimer.StartAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_StopAsync.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.wan24%23Core%23ITimer%23StopAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L237">View Source</a>
-  </span>
-  <a id="wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_StopAsync_" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#ITimer#StopAsync*"></a>
-  <h4 id="wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_StopAsync" data-uid="wan24.Core.TimedHostedServiceBase.wan24#Core#ITimer#StopAsync">ITimer.StopAsync()</h4>
-  <div class="markdown level1 summary"><p>Stop</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task ITimer.StopAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
-  </div>
-  <div>
-      <span class="xref">IDisposable</span>
-  </div>
-  <div>
-      <span class="xref">IAsyncDisposable</span>
-  </div>
-  <div>
-      <span class="xref">Microsoft.Extensions.Hosting.IHostedService</span>
-  </div>
   <div>
       <a class="xref" href="wan24.Core.ITimer.html">ITimer</a>
   </div>
@@ -1815,9 +1402,27 @@ public static implicit operator TimeSpan(in TimedHostedServiceBase service)</cod
       <a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a>
   </div>
   <div>
+      <span class="xref">Microsoft.Extensions.Hosting.IHostedService</span>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
+      <span class="xref">IDisposable</span>
+  </div>
+  <div>
+      <span class="xref">IAsyncDisposable</span>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+  </div>
   <div>
       <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(Object)</a>
   </div>
@@ -1828,7 +1433,7 @@ public static implicit operator TimeSpan(in TimedHostedServiceBase service)</cod
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T&gt;)</a>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_System_Collections_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
@@ -1842,6 +1447,12 @@ public static implicit operator TimeSpan(in TimedHostedServiceBase service)</cod
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
   </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in Int32)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in Int32)</a>
+  </div>
 </article>
           </div>
           
@@ -1853,7 +1464,7 @@ public static implicit operator TimeSpan(in TimedHostedServiceBase service)</cod
                     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L11" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/TimedHostedServiceBase.cs/#L9" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -1,6 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using Microsoft.Extensions.Hosting;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime;
-using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -68,18 +68,14 @@ namespace wan24.Core
             }
         }
 
-        /// <summary>
-        /// Auto-reset?
-        /// </summary>
+        /// <inheritdoc/>
         public bool AutoReset
         {
             get => Timer.AutoReset;
             set => Timer.AutoReset = value;
         }
 
-        /// <summary>
-        /// Is running?
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsRunning => Timer.Enabled;
 
         /// <summary>
@@ -92,19 +88,29 @@ namespace wan24.Core
         /// </summary>
         public TimeSpan RemainingTime => Timer.Enabled ? Time - (DateTime.Now - LastTimeout) : TimeSpan.Zero;
 
+        /// <inheritdoc/>
+        public DateTime Started { get; protected set; } = DateTime.MinValue;
+
         /// <summary>
         /// Start
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual void Start()
         {
             if (Timer.Enabled) return;
             LastTimeout = DateTime.Now;
+            Started = DateTime.Now;
             Timer.Start();
         }
 
         /// <inheritdoc/>
-        Task ITimer.StartAsync()
+        Task IServiceWorker.StartAsync()
+        {
+            Start();
+            return Task.CompletedTask;
+        }
+
+        /// <inheritdoc/>
+        Task IHostedService.StartAsync(CancellationToken cancellationToken)
         {
             Start();
             return Task.CompletedTask;
@@ -113,11 +119,17 @@ namespace wan24.Core
         /// <summary>
         /// Stop
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual void Stop() => Timer.Stop();
 
         /// <inheritdoc/>
-        Task ITimer.StopAsync()
+        Task IServiceWorker.StopAsync()
+        {
+            Stop();
+            return Task.CompletedTask;
+        }
+
+        /// <inheritdoc/>
+        Task IHostedService.StopAsync(CancellationToken cancellationToken)
         {
             Stop();
             return Task.CompletedTask;
@@ -133,7 +145,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        Task ITimer.RestartAsync()
+        Task IServiceWorker.RestartAsync()
         {
             Reset();
             return Task.CompletedTask;

@@ -103,7 +103,7 @@ namespace wan24.Core
                 throw new ArgumentOutOfRangeException(nameof(checksum), "Checksum length must be greater than zero, a power of two and not larger than 256");
             if (data.Length == 0) return;
 #if NO_UNSAFE
-            for (int i = 0, dataLen = data.Length; i < dataLen; checksum[checksum[data[i] & mask] & mask] ^= data[i], i++) ;
+            for (int i = 0, dataLen = data.Length; i != dataLen; checksum[checksum[data[i] & mask] & mask] ^= data[i], i++) ;
 #else
             unsafe
             {
@@ -111,7 +111,7 @@ namespace wan24.Core
                 {
                     fixed (byte* dataPtr = data)
                     fixed (byte* checksumPtr = checksum)
-                        for (int i = 0, dataLen = data.Length; i < dataLen; checksumPtr[dataPtr[i] & mask] ^= dataPtr[i], i++) ;
+                        for (int i = 0, dataLen = data.Length; i != dataLen; checksumPtr[dataPtr[i] & mask] ^= dataPtr[i], i++) ;
                 }
             }
 #endif

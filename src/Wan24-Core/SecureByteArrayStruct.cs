@@ -182,7 +182,9 @@ namespace wan24.Core
         /// <summary>
         /// Ensure an undisposed object state
         /// </summary>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         private readonly void EnsureUndisposed()
         {
             lock (SyncObject) if (!IsDisposed) return;
@@ -195,7 +197,9 @@ namespace wan24.Core
         /// <typeparam name="tValue">Value type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         private readonly tValue IfUndisposed<tValue>(tValue value)
         {
             EnsureUndisposed();

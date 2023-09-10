@@ -230,11 +230,15 @@ namespace wan24.Core
         public bool Contains(object key) => key is not null && typeof(tKey).IsAssignableFrom(key.GetType()) && ContainsKey((tKey)key);
 
         /// <inheritdoc/>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public bool ContainsKey(tKey key) => IndexOfKey(key) != -1;
 
         /// <inheritdoc/>
+#if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public bool ContainsValue(tValue value) => IndexOfValue(value) != -1;
 
         /// <inheritdoc/>

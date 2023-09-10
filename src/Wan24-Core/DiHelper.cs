@@ -1,57 +1,30 @@
-﻿using System.Collections.Concurrent;
-using System.Runtime;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 
 namespace wan24.Core
 {
     /// <summary>
     /// DI helper
     /// </summary>
-    public static class DiHelper
+    public partial class DiHelper : IAsyncServiceProvider, IServiceProviderIsService
     {
         /// <summary>
-        /// DI object factories
+        /// Constructor
         /// </summary>
-        public static readonly ConcurrentDictionary<Type, Di_Delegate> ObjectFactories = new();
+        public DiHelper() { }
 
-        /// <summary>
-        /// Asynchronous DI object factories
-        /// </summary>
-        public static readonly ConcurrentDictionary<Type, DiAsync_Delegate> AsyncObjectFactories = new();
+        /// <inheritdoc/>
+        public virtual object? GetService(Type serviceType) => GetDiObject(serviceType, out object? res) ? res : null;
 
-        /// <summary>
-        /// DI service provider
-        /// </summary>
-        public static IServiceProvider? ServiceProvider { get; set; }
+        /// <inheritdoc/>
+        public virtual async Task<object?> GetServiceAsync(Type serviceType, CancellationToken cancellationToken = default)
+            => (await GetDiObjectAsync(serviceType, serviceProvider: null, cancellationToken).DynamicContext()).Object;
 
-        /// <summary>
-        /// Get a DI object
-        /// </summary>
-        /// <param name="type">Type</param>
-        /// <param name="obj">Result</param>
-        /// <returns>Use the result?</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static bool GetDiObject(in Type type, out object? obj)
-        {
-            obj = ServiceProvider?.GetService(type);
-            return obj is not null || (ObjectFactories.TryGetValue(type, out Di_Delegate? factory) && factory(type, out obj));
-        }
-
-        /// <summary>
-        /// Get a DI object
-        /// </summary>
-        /// <param name="type">Type</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>The object and if to use the result</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static async Task<(object? Object, bool UseObject)> GetDiObjectAsync(Type type, CancellationToken cancellationToken = default)
-        {
-            await Task.Yield();
-            object? res = ServiceProvider?.GetService(type);
-            bool use = AsyncObjectFactories.TryGetValue(type, out DiAsync_Delegate? factory)
-                ? GetDiObject(type, out res) || await factory(type, out res, cancellationToken).DynamicContext()
-                : GetDiObject(type, out res);
-            return (res, use);
-        }
+        /// <inheritdoc/>
+        public virtual bool IsService(Type serviceType)
+            => ((ServiceProvider as IServiceProviderIsService)?.IsService(serviceType) ?? false) ||
+                GetFactory(serviceType) is not null ||
+                GetAsyncFactory(serviceType) is not null;
 
         /// <summary>
         /// DI delegate
@@ -59,15 +32,14 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="obj">Object</param>
         /// <returns>Use the object?</returns>
-        public delegate bool Di_Delegate(Type type, out object? obj);
+        public delegate bool Di_Delegate(Type type, [NotNullWhen(returnValue: true)] out object? obj);
 
         /// <summary>
         /// Asynchronous DI delegate
         /// </summary>
         /// <param name="type">Type</param>
-        /// <param name="obj">Object</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Use the object?</returns>
-        public delegate Task<bool> DiAsync_Delegate(Type type, out object? obj, CancellationToken cancellationToken);
+        /// <returns>The object and if to use the result</returns>
+        public delegate Task<AsyncResult> DiAsync_Delegate(Type type, CancellationToken cancellationToken);
     }
 }

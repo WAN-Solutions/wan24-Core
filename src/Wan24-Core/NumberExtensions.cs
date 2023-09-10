@@ -15,7 +15,8 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Is unsigned?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static bool IsUnsigned<T>(this T? value) where T : struct, IConvertible => (value?.GetType() ?? typeof(T)).IsUnsigned();
+        public static bool IsUnsigned<T>(this T? value) where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
+            => (value?.GetType() ?? typeof(T)).IsUnsigned();
 
         /// <summary>
         /// Determine if a numeric value is unsigned (works for enumerations, too)
@@ -24,7 +25,8 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Is unsigned?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static bool IsUnsigned<T>(this T value) where T : struct, IConvertible => value.GetType().IsUnsigned();
+        public static bool IsUnsigned<T>(this T value) where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
+            => value.GetType().IsUnsigned();
 
         /// <summary>
         /// Determine if a numeric value is unsigned (works for enumerations, too)
@@ -32,7 +34,8 @@ namespace wan24.Core
         /// <typeparam name="T">Value type</typeparam>
         /// <returns>Is unsigned?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static bool IsUnsigned<T>() where T : struct, IConvertible => typeof(T).IsUnsigned();
+        public static bool IsUnsigned<T>() where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
+            => typeof(T).IsUnsigned();
 
         /// <summary>
         /// Determine if a numeric type is unsigned (works for enumerations, too)
@@ -621,7 +624,7 @@ namespace wan24.Core
         /// <param name="higherBorder">Range end (including)</param>
         /// <returns>Is within the range?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool IsBetween<T>(this T value, in T lowerBorder, in T higherBorder) where T : IComparable
+        public static bool IsBetween<T>(this T value, in T lowerBorder, in T higherBorder) where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
             => value.CompareTo(lowerBorder) >= 0 && value.CompareTo(higherBorder) <= 0;
     }
 }

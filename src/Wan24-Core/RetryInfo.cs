@@ -49,9 +49,9 @@ namespace wan24.Core
         public T? Result { get; set; }
 
         /// <summary>
-        /// Was cancelled?
+        /// Was canceled?
         /// </summary>
-        public bool WasCancelled => !Succeed && Exceptions.LastOrDefault() is OperationCanceledException;
+        public bool WasCanceled => !Succeed && Exceptions.LastOrDefault() is OperationCanceledException;
 
         /// <summary>
         /// Was timeout?

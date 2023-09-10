@@ -13,6 +13,10 @@
         /// Asynchronous disposer
         /// </summary>
         private readonly DisposableWrapper<DisposableAdapter>.DisposeAsync_Delegate? AsyncDisposer;
+        /// <summary>
+        /// Disposed from the destructor?
+        /// </summary>
+        private bool DisposedFromDestructor = false;
 
         /// <summary>
         /// Constructor
@@ -22,14 +26,39 @@
         public DisposableAdapter(
             in DisposableWrapper<DisposableAdapter>.Dispose_Delegate disposer,
             in DisposableWrapper<DisposableAdapter>.DisposeAsync_Delegate? asyncDisposer = null
-            ) : base()
+            ) : base(asyncDisposing: asyncDisposer is not null)
         {
             Disposer = disposer;
             AsyncDisposer = asyncDisposer;
         }
 
+        /// <summary>
+        /// Dispose at destruction time
+        /// </summary>
+        public void DisposeFromDestructor()
+        {
+            try
+            {
+                using (SemaphoreSyncContext ssc = new(DisposeSyncObject))
+                {
+                    ssc.Sync();
+                    if (IsDisposing || DisposedFromDestructor) return;
+                    DisposedFromDestructor = true;
+                }
+                Dispose();
+            }
+            catch (Exception ex)
+            {
+                ErrorHandling.Handle(ex);
+                Dispose();
+            }
+        }
+
         /// <inheritdoc/>
-        protected override void Dispose(bool disposing) => Disposer(disposing);
+        protected override void Dispose(bool disposing)
+        {
+            Disposer(disposing && !DisposedFromDestructor);
+        }
 
         /// <inheritdoc/>
         protected override async Task DisposeCore()

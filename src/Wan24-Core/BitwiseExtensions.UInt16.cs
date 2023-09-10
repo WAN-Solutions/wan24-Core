@@ -1,22 +1,30 @@
-﻿using System.Numerics;
-using System.Runtime;
+﻿using System.Runtime;
 
 namespace wan24.Core
 {
-    /// <summary>
-    /// Bitwise UInt32 extensions
-    /// </summary>
-    public static class BitwiseUInt32Extensions
+    // UInt16
+#if NO_UNSAFE
+    public static partial class BitwiseExtensions
+#else
+    public static unsafe partial class BitwiseExtensions
+#endif
     {
-
         /// <summary>
         /// Rotate bits left
         /// </summary>
         /// <param name="value">Value</param>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-        public static uint RotateLeft(this uint value, in int bits) => BitOperations.RotateLeft(value, bits);
+        public static ushort RotateLeft(this ushort value, in int bits)
+        {
+            if (bits < 0 || bits > 16) throw new ArgumentOutOfRangeException(nameof(bits));
+            if (bits == 0 || bits == 16 || value == 0 || value == ushort.MaxValue) return value;
+#if NO_UNSAFE
+            return (ushort)((value << bits) | (value >> BitRotation[bits]));
+#else
+            return (ushort)((value << bits) | (value >> BitRotationUInt16Ptr[bits]));
+#endif
+        }
 
         /// <summary>
         /// Rotate bits right
@@ -24,8 +32,16 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-        public static uint RotateRight(this uint value, in int bits) => BitOperations.RotateRight(value, bits);
+        public static ushort RotateRight(this ushort value, in int bits)
+        {
+            if (bits < 0 || bits > 16) throw new ArgumentOutOfRangeException(nameof(bits));
+            if (bits == 0 || bits == 16 || value == 0 || value == ushort.MaxValue) return value;
+#if NO_UNSAFE
+            return (ushort)((value >> bits) | (value << BitRotation[bits]));
+#else
+            return (ushort)((value >> bits) | (value << BitRotationUInt16Ptr[bits]));
+#endif
+        }
 
         /// <summary>
         /// Logical OR
@@ -34,7 +50,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static uint Or(this uint value, in uint other) => value | other;
+        public static ushort Or(this ushort value, in ushort other) => (ushort)(value | other);
 
         /// <summary>
         /// Logical AND
@@ -43,7 +59,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static uint And(this uint value, in uint other) => value & other;
+        public static ushort And(this ushort value, in ushort other) => (ushort)(value & other);
 
         /// <summary>
         /// Logical XOR
@@ -52,7 +68,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static uint Xor(this uint value, in uint other) => value ^ other;
+        public static ushort Xor(this ushort value, in ushort other) => (ushort)(value ^ other);
 
         /// <summary>
         /// Shift left
@@ -61,7 +77,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static uint ShiftLeft(this uint value, in int bits) => value << bits;
+        public static ushort ShiftLeft(this ushort value, in int bits) => (ushort)(value << bits);
 
         /// <summary>
         /// Shift left
@@ -70,7 +86,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static uint ShiftRight(this uint value, in int bits) => value >> bits;
+        public static ushort ShiftRight(this ushort value, in int bits) => (ushort)(value >> bits);
 
         /// <summary>
         /// Has flags?
@@ -79,7 +95,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Has the flags?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool HasFlags(this uint value, in uint flags) => (value & flags) == flags;
+        public static bool HasFlags(this ushort value, in ushort flags) => (value & flags) == flags;
 
         /// <summary>
         /// Add flags
@@ -88,7 +104,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static uint AddFlags(this uint value, in uint flags) => value | flags;
+        public static ushort AddFlags(this ushort value, in ushort flags) => (ushort)(value | flags);
 
         /// <summary>
         /// Remove flags
@@ -97,7 +113,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static uint RemoveFlags(this uint value, in uint flags) => value & ~flags;
+        public static ushort RemoveFlags(this ushort value, in ushort flags) => (ushort)(value & ~flags);
 
         /// <summary>
         /// Cast as signed byte
@@ -105,7 +121,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte ToSByte(this uint value) => (sbyte)value;
+        public static sbyte ToSByte(this ushort value) => (sbyte)value;
 
         /// <summary>
         /// Cast as byte
@@ -113,7 +129,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte ToByte(this uint value) => (byte)value;
+        public static byte ToByte(this ushort value) => (byte)value;
 
         /// <summary>
         /// Cast as short
@@ -121,15 +137,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static short ToShort(this uint value) => (short)value;
-
-        /// <summary>
-        /// Cast as unsigned short
-        /// </summary>
-        /// <param name="value">Value</param>
-        /// <returns>Value</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static ushort ToUShort(this uint value) => (ushort)value;
+        public static short ToShort(this ushort value) => (short)value;
 
         /// <summary>
         /// Cast as integer
@@ -137,7 +145,15 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int ToInt(this uint value) => (int)value;
+        public static int ToInt(this ushort value) => value;
+
+        /// <summary>
+        /// Cast as unsigned integer
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static uint ToUInt(this ushort value) => value;
 
         /// <summary>
         /// Cast as long
@@ -145,7 +161,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static long ToLong(this uint value) => value;
+        public static long ToLong(this ushort value) => value;
 
         /// <summary>
         /// Cast as unsigned long
@@ -153,6 +169,6 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ulong ToULong(this uint value) => value;
+        public static ulong ToULong(this ushort value) => value;
     }
 }

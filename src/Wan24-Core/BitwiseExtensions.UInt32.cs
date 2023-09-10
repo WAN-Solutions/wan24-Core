@@ -1,44 +1,11 @@
-﻿using System.Runtime;
-using System.Runtime.InteropServices;
+﻿using System.Numerics;
+using System.Runtime;
 
 namespace wan24.Core
 {
-    /// <summary>
-    /// Bitwise UInt64 extensions
-    /// </summary>
-#if NO_UNSAFE
-    public static class BitwiseUInt64Extensions
-#else
-    public static unsafe class BitwiseUInt64Extensions
-#endif
+    // UInt32
+    public static partial class BitwiseExtensions
     {
-        /// <summary>
-        /// Bit rotation offsets
-        /// </summary>
-        private static readonly int[] BitRotation = new int[]
-        {
-            0, 63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 
-            31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
-        };
-#if !NO_UNSAFE
-        /// <summary>
-        /// Bit rotation pointer
-        /// </summary>
-        private static readonly int* BitRotationPtr;
-        /// <summary>
-        /// Bit rotation pin
-        /// </summary>
-        private static readonly GCHandle BitRotationPin;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        static BitwiseUInt64Extensions()
-        {
-            BitRotationPin = GCHandle.Alloc(BitRotation, GCHandleType.Pinned);
-            BitRotationPtr = (int*)BitRotationPin.AddrOfPinnedObject();
-        }
-#endif
 
         /// <summary>
         /// Rotate bits left
@@ -46,16 +13,8 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
-        public static ulong RotateLeft(this ulong value, in int bits)
-        {
-            if (bits < 0 || bits > 64) throw new ArgumentOutOfRangeException(nameof(bits));
-            if (bits == 0 || bits == 64 || value == 0 || value == ulong.MaxValue) return value;
-#if NO_UNSAFE
-            return (value << bits) | (value >> BitRotation[bits]);
-#else
-            return (value << bits) | (value >> BitRotationPtr[bits]);
-#endif
-        }
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static uint RotateLeft(this uint value, in int bits) => BitOperations.RotateLeft(value, bits);
 
         /// <summary>
         /// Rotate bits right
@@ -63,16 +22,8 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
-        public static ulong RotateRight(this ulong value, in int bits)
-        {
-            if (bits < 0 || bits > 64) throw new ArgumentOutOfRangeException(nameof(bits));
-            if (bits == 0 || bits == 64 || value == 0 || value == ulong.MaxValue) return value;
-#if NO_UNSAFE
-            return (value >> bits) | (value << BitRotation[bits]);
-#else
-            return (value >> bits) | (value << BitRotationPtr[bits]);
-#endif
-        }
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static uint RotateRight(this uint value, in int bits) => BitOperations.RotateRight(value, bits);
 
         /// <summary>
         /// Logical OR
@@ -80,7 +31,8 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
-        public static ulong Or(this ulong value, in ulong other) => value | other;
+        [TargetedPatchingOptOut("Tiny method")]
+        public static uint Or(this uint value, in uint other) => value | other;
 
         /// <summary>
         /// Logical AND
@@ -88,7 +40,8 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
-        public static ulong And(this ulong value, in ulong other) => value & other;
+        [TargetedPatchingOptOut("Tiny method")]
+        public static uint And(this uint value, in uint other) => value & other;
 
         /// <summary>
         /// Logical XOR
@@ -97,7 +50,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ulong Xor(this ulong value, in ulong other) => value ^ other;
+        public static uint Xor(this uint value, in uint other) => value ^ other;
 
         /// <summary>
         /// Shift left
@@ -106,7 +59,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ulong ShiftLeft(this ulong value, in int bits) => value << bits;
+        public static uint ShiftLeft(this uint value, in int bits) => value << bits;
 
         /// <summary>
         /// Shift left
@@ -115,7 +68,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ulong ShiftRight(this ulong value, in int bits) => value >> bits;
+        public static uint ShiftRight(this uint value, in int bits) => value >> bits;
 
         /// <summary>
         /// Has flags?
@@ -124,7 +77,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Has the flags?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool HasFlags(this ulong value, in ulong flags) => (value & flags) == flags;
+        public static bool HasFlags(this uint value, in uint flags) => (value & flags) == flags;
 
         /// <summary>
         /// Add flags
@@ -133,7 +86,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ulong AddFlags(this ulong value, in ulong flags) => value | flags;
+        public static uint AddFlags(this uint value, in uint flags) => value | flags;
 
         /// <summary>
         /// Remove flags
@@ -142,7 +95,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ulong RemoveFlags(this ulong value, in ulong flags) => value & ~flags;
+        public static uint RemoveFlags(this uint value, in uint flags) => value & ~flags;
 
         /// <summary>
         /// Cast as signed byte
@@ -150,7 +103,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte ToSByte(this ulong value) => (sbyte)value;
+        public static sbyte ToSByte(this uint value) => (sbyte)value;
 
         /// <summary>
         /// Cast as byte
@@ -158,7 +111,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte ToByte(this ulong value) => (byte)value;
+        public static byte ToByte(this uint value) => (byte)value;
 
         /// <summary>
         /// Cast as short
@@ -166,7 +119,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static short ToShort(this ulong value) => (short)value;
+        public static short ToShort(this uint value) => (short)value;
 
         /// <summary>
         /// Cast as unsigned short
@@ -174,7 +127,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ushort ToUShort(this ulong value) => (ushort)value;
+        public static ushort ToUShort(this uint value) => (ushort)value;
 
         /// <summary>
         /// Cast as integer
@@ -182,15 +135,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int ToInt(this ulong value) => (int)value;
-
-        /// <summary>
-        /// Cast as unsigned integer
-        /// </summary>
-        /// <param name="value">Value</param>
-        /// <returns>Value</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static uint ToUInt(this ulong value) => (uint)value;
+        public static int ToInt(this uint value) => (int)value;
 
         /// <summary>
         /// Cast as long
@@ -198,6 +143,14 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static long ToLong(this ulong value) => (long)value;
+        public static long ToLong(this uint value) => value;
+
+        /// <summary>
+        /// Cast as unsigned long
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static ulong ToULong(this uint value) => value;
     }
 }

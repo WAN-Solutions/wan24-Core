@@ -1,9 +1,11 @@
-﻿namespace wan24.Core
+﻿using Microsoft.Extensions.Hosting;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Interface for a service worker object
     /// </summary>
-    public interface IServiceWorker
+    public interface IServiceWorker : IHostedService, IDisposableObject
     {
         /// <summary>
         /// Display name

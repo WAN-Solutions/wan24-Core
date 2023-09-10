@@ -407,7 +407,6 @@
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            if (IsDisposing) return;
             using SemaphoreSync bufferSync = BufferSync;
             using (SemaphoreSyncContext ssc = bufferSync.SyncContext())
             {

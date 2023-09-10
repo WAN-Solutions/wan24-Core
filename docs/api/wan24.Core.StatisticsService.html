@@ -80,18 +80,19 @@
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><a class="xref" href="wan24.Core.DisposableBase.html">DisposableBase</a></div>
-    <div class="level2"><a class="xref" href="wan24.Core.TimedHostedServiceBase.html">TimedHostedServiceBase</a></div>
-    <div class="level3"><span class="xref">StatisticsService</span></div>
+    <div class="level2"><a class="xref" href="wan24.Core.HostedServiceBase.html">HostedServiceBase</a></div>
+    <div class="level3"><a class="xref" href="wan24.Core.TimedHostedServiceBase.html">TimedHostedServiceBase</a></div>
+    <div class="level4"><span class="xref">StatisticsService</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
-    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
-    <div><span class="xref">IDisposable</span></div>
-    <div><span class="xref">IAsyncDisposable</span></div>
-    <div><span class="xref">Microsoft.Extensions.Hosting.IHostedService</span></div>
     <div><a class="xref" href="wan24.Core.ITimer.html">ITimer</a></div>
     <div><a class="xref" href="wan24.Core.IServiceWorkerStatus.html">IServiceWorkerStatus</a></div>
     <div><a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a></div>
+    <div><span class="xref">Microsoft.Extensions.Hosting.IHostedService</span></div>
+    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><span class="xref">IDisposable</span></div>
+    <div><span class="xref">IAsyncDisposable</span></div>
     <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
   </div>
   <div class="inheritedMembers">
@@ -103,28 +104,16 @@
       <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_RunEvent">TimedHostedServiceBase.RunEvent</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_Sync">TimedHostedServiceBase.Sync</a>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_WorkerSync">TimedHostedServiceBase.WorkerSync</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_SyncControl">TimedHostedServiceBase.SyncControl</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_StopTask">TimedHostedServiceBase.StopTask</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_Cancellation">TimedHostedServiceBase.Cancellation</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_ServiceTask">TimedHostedServiceBase.ServiceTask</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase__Interval">TimedHostedServiceBase._Interval</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_GUID">TimedHostedServiceBase.GUID</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_Name">TimedHostedServiceBase.Name</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_Interval">TimedHostedServiceBase.ITimer.Interval</a>
@@ -139,22 +128,10 @@
       <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_AutoReset">TimedHostedServiceBase.ITimer.AutoReset</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_IsRunning">TimedHostedServiceBase.IsRunning</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_IsStopping">TimedHostedServiceBase.IsStopping</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_LastException">TimedHostedServiceBase.LastException</a>
-    </div>
-    <div>
       <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_Interval">TimedHostedServiceBase.Interval</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_TimerType">TimedHostedServiceBase.TimerType</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_Started">TimedHostedServiceBase.Started</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_LastRun">TimedHostedServiceBase.LastRun</a>
@@ -169,40 +146,22 @@
       <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_RunOnce">TimedHostedServiceBase.RunOnce</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_SetTimerAsync_System_Double_System_Nullable_wan24_Core_HostedServiceTimers__System_Nullable_DateTime__System_Threading_CancellationToken_">TimedHostedServiceBase.SetTimerAsync(Double, Nullable&lt;HostedServiceTimers&gt;, Nullable&lt;DateTime&gt;, CancellationToken)</a>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_SetTimerAsync_System_Double_System_Nullable_wan24_Core_HostedServiceTimers__System_Nullable_DateTime__CancellationToken_">TimedHostedServiceBase.SetTimerAsync(Double, Nullable&lt;HostedServiceTimers&gt;, Nullable&lt;DateTime&gt;, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_StartAsync_System_Threading_CancellationToken_">TimedHostedServiceBase.StartAsync(CancellationToken)</a>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_StartAsync_CancellationToken_">TimedHostedServiceBase.StartAsync(CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_StartAsync">TimedHostedServiceBase.ITimer.StartAsync()</a>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_StopAsync_CancellationToken_">TimedHostedServiceBase.StopAsync(CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_IServiceWorker_StartAsync">TimedHostedServiceBase.IServiceWorker.StartAsync()</a>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_StartIntAsync_CancellationToken_">TimedHostedServiceBase.StartIntAsync(CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_StopAsync_System_Threading_CancellationToken_">TimedHostedServiceBase.StopAsync(CancellationToken)</a>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_StopIntAsync_CancellationToken_">TimedHostedServiceBase.StopIntAsync(CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_StopAsync">TimedHostedServiceBase.ITimer.StopAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_IServiceWorker_StopAsync">TimedHostedServiceBase.IServiceWorker.StopAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_ITimer_RestartAsync">TimedHostedServiceBase.ITimer.RestartAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_wan24_Core_IServiceWorker_RestartAsync">TimedHostedServiceBase.IServiceWorker.RestartAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_StartAsyncInt_System_Threading_CancellationToken_">TimedHostedServiceBase.StartAsyncInt(CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_StopAsyncInt_System_Threading_CancellationToken_">TimedHostedServiceBase.StopAsyncInt(CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_RunServiceAsync">TimedHostedServiceBase.RunServiceAsync()</a>
+      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_WorkerAsync">TimedHostedServiceBase.WorkerAsync()</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_EnableTimerAsync">TimedHostedServiceBase.EnableTimerAsync()</a>
@@ -214,13 +173,61 @@
       <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_DisposeCore">TimedHostedServiceBase.DisposeCore()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_OnException">TimedHostedServiceBase.OnException</a>
-    </div>
-    <div>
       <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_OnRan">TimedHostedServiceBase.OnRan</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_RaiseOnRan">TimedHostedServiceBase.RaiseOnRan()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Sync">HostedServiceBase.Sync</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_StopTask">HostedServiceBase.StopTask</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Cancellation">HostedServiceBase.Cancellation</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_ServiceTask">HostedServiceBase.ServiceTask</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase__LastException">HostedServiceBase._LastException</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_IsRunning">HostedServiceBase.IsRunning</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Started">HostedServiceBase.Started</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_IsStopping">HostedServiceBase.IsStopping</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_LastException">HostedServiceBase.LastException</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Name">HostedServiceBase.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_ToString">HostedServiceBase.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_RunServiceAsync">HostedServiceBase.RunServiceAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_wan24_Core_IServiceWorker_StartAsync">HostedServiceBase.IServiceWorker.StartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_wan24_Core_IServiceWorker_StopAsync">HostedServiceBase.IServiceWorker.StopAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_wan24_Core_IServiceWorker_RestartAsync">HostedServiceBase.IServiceWorker.RestartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_OnException">HostedServiceBase.OnException</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_RaiseOnException">HostedServiceBase.RaiseOnException()</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeSyncObject">DisposableBase.DisposeSyncObject</a>
@@ -285,15 +292,12 @@
     <div>
       <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
     </div>
-    <div>
-      <span class="xref">System.Object.ToString()</span>
-    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_StatisticsService_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class StatisticsService : TimedHostedServiceBase, IDisposableObject, IHostedService, ITimer, IServiceWorkerStatus, IServiceWorker, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class StatisticsService : TimedHostedServiceBase, ITimer, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IStatusProvider</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -413,19 +417,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StatisticsService_WorkerAsync.md&amp;value=---%0Auid%3A%20wan24.Core.StatisticsService.WorkerAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_StatisticsService_TimedWorkerAsync.md&amp;value=---%0Auid%3A%20wan24.Core.StatisticsService.TimedWorkerAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/StatisticsService.cs/#L36">View Source</a>
   </span>
-  <a id="wan24_Core_StatisticsService_WorkerAsync_" data-uid="wan24.Core.StatisticsService.WorkerAsync*"></a>
-  <h4 id="wan24_Core_StatisticsService_WorkerAsync" data-uid="wan24.Core.StatisticsService.WorkerAsync">WorkerAsync()</h4>
-  <div class="markdown level1 summary"><p>Service worker</p>
+  <a id="wan24_Core_StatisticsService_TimedWorkerAsync_" data-uid="wan24.Core.StatisticsService.TimedWorkerAsync*"></a>
+  <h4 id="wan24_Core_StatisticsService_TimedWorkerAsync" data-uid="wan24.Core.StatisticsService.TimedWorkerAsync">TimedWorkerAsync()</h4>
+  <div class="markdown level1 summary"><p>Timed service worker</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override async Task WorkerAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override async Task TimedWorkerAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -443,20 +447,8 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_WorkerAsync">TimedHostedServiceBase.WorkerAsync()</a></div>
+  <div><a class="xref" href="wan24.Core.TimedHostedServiceBase.html#wan24_Core_TimedHostedServiceBase_TimedWorkerAsync">TimedHostedServiceBase.TimedWorkerAsync()</a></div>
   <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
-  </div>
-  <div>
-      <span class="xref">IDisposable</span>
-  </div>
-  <div>
-      <span class="xref">IAsyncDisposable</span>
-  </div>
-  <div>
-      <span class="xref">Microsoft.Extensions.Hosting.IHostedService</span>
-  </div>
   <div>
       <a class="xref" href="wan24.Core.ITimer.html">ITimer</a>
   </div>
@@ -467,9 +459,27 @@
       <a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a>
   </div>
   <div>
+      <span class="xref">Microsoft.Extensions.Hosting.IHostedService</span>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
+      <span class="xref">IDisposable</span>
+  </div>
+  <div>
+      <span class="xref">IAsyncDisposable</span>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+  </div>
   <div>
       <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(Object)</a>
   </div>
@@ -480,7 +490,7 @@
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T&gt;)</a>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_System_Collections_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
@@ -493,6 +503,12 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in Int32)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in Int32)</a>
   </div>
 </article>
           </div>

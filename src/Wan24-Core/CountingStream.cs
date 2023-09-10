@@ -164,7 +164,7 @@
         {
             EnsureUndisposed();
             EnsureReadable();
-            await this.GenericCopyToAsync(destination, bufferSize, cancellationToken).DynamicContext();
+            await this.GenericCopyToAsync(destination, bufferSize, cancellationToken: cancellationToken).DynamicContext();
         }
     }
 }

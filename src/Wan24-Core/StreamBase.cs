@@ -36,13 +36,8 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override void Close()
         {
-            if (IsClosed) return;
-            using (SemaphoreSyncContext ssc = DisposeSyncObject.SyncContext())
-            {
-                if (IsClosed) return;
-                IsClosed = true;
-            }
-            base.Close();
+            DoClose();
+            if (DoDispose()) Dispose(disposing: true);
         }
 
         /// <inheritdoc/>
@@ -52,24 +47,39 @@ namespace wan24.Core
             await DisposeCore().DynamicContext();
             Close();
             DisposeSyncObject.Dispose();
-            IsClosed = true;
             IsDisposed = true;
-            OnDisposed?.Invoke(this, new());
             GC.SuppressFinalize(this);
+            OnDisposed?.Invoke(this, new());
         }
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            if (!DoDispose()) return;
-            base.Dispose(disposing);
-            IsClosed = true;
+            DoDispose();
+            Close();
+            DisposeSyncObject.Dispose();
             IsDisposed = true;
+#pragma warning disable CA1816 // Unexpected call of GC.SuppressFinalize
+            GC.SuppressFinalize(this);
+#pragma warning restore CA1816 // Unexpected call of GC.SuppressFinalize
             OnDisposed?.Invoke(this, new());
         }
 
         /// <inheritdoc/>
         protected virtual Task DisposeCore() => Task.CompletedTask;
+
+        /// <summary>
+        /// Determine if to close (and signal closed)
+        /// </summary>
+        /// <returns>Do close?</returns>
+        protected bool DoClose()
+        {
+            if (IsClosed || IsDisposed) return false;
+            using SemaphoreSyncContext ssc = DisposeSyncObject.SyncContext();
+            if (IsClosed) return false;
+            IsClosed = true;
+            return true;
+        }
 
         /// <summary>
         /// Determine if to dispose
@@ -78,13 +88,14 @@ namespace wan24.Core
         private bool DoDispose()
         {
             if (IsDisposing) return false;
+            bool release = true;
             try
             {
                 DisposeSyncObject.Sync();
             }
             catch (ObjectDisposedException)
             {
-                return false;
+                release = false;
             }
             try
             {
@@ -93,7 +104,7 @@ namespace wan24.Core
             }
             finally
             {
-                DisposeSyncObject.Release();
+                if (release) DisposeSyncObject.Release();
             }
             OnDisposing?.Invoke(this, new());
             return true;
@@ -106,13 +117,14 @@ namespace wan24.Core
         private async Task<bool> DoDisposeAsync()
         {
             if (IsDisposing) return false;
+            bool release = true;
             try
             {
                 await DisposeSyncObject.SyncAsync().DynamicContext();
             }
             catch (ObjectDisposedException)
             {
-                return false;
+                release = false;
             }
             try
             {
@@ -121,7 +133,7 @@ namespace wan24.Core
             }
             finally
             {
-                DisposeSyncObject.Release();
+                if (release) DisposeSyncObject.Release();
             }
             OnDisposing?.Invoke(this, new());
             return true;

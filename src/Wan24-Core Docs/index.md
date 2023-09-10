@@ -138,8 +138,12 @@ pairs
 the timeout
 - `ILogger` support
     - `Logging` as global logging helper
+    - `LoggerBase` and `DisposableLoggerBase` as base classes for a custom 
+    logger
     - `Logger` as `ILogger` for writing to `Logging`
     - `FileLogger` as `ILogger` for writing to a file
+    - `ConsoleLogger` writes to STDERR
+    - `DebugLogger` writes to the debug console
 - `IChangeToken` support using `ChangeCallback`
 - Hierarchic configuration using `OverrideableConfig`
 - Cancellation token awaiter
@@ -205,6 +209,10 @@ including extensions for numeric type encoding/decoding)
     - Browsing ethernet adapters filtered
     - Classify LAN, WAN and loopback IP addresses and ethernet adapters
     - `IpSubNet` implementation for managing IPv4/6 sub-nets (CIDR)
+- Centralized error handling
+- Delayed tasks
+- Progress
+- Sensitive data handling
 
 ## How to get it
 
@@ -283,7 +291,54 @@ In order to make DI (dependency injection) working, you need to
 
 The `DiHelper.GetDiObjectAsync` method will try to resolve the request 
 synchronous, first. But the `DiHelper.GetDiObject` won't try asynchronous 
-object factories.
+object factories. Created objects will be cached - to avoid that, add the 
+type to the not cached types by using `DiHelper.AddNotCachedType`.
+
+The `Instance` property returns a generic service provider, which uses the 
+`ServiceProvider` and the registered object factories. It also implements the 
+`IAsyncServiceProvider` interface, which extends `IServiceProvider`.
+
+Object factories are as generic as possible. They'll receive the requested 
+object type as an argument and may return different instanced based on the 
+particular request. The registration of an object factory requires to define 
+the object type, which the factory method served, as key. This type can be 
+any type, which can be assigned to a requested type, or a generic type 
+definition to match all generic variants. The hierarchic factory selection 
+works like this:
+
+1. Requested type is the registered factory type
+2. Requested type is assignable from the registered factory type
+3. Requested type is a generic type, and its generic type definition is 
+assignable from the registered factory type
+
+The `ScopedDiHelper` uses its own object factory collections and service 
+provider and falls back to the `DiHelper`. Created objects will be disposed, 
+if possible and the `ScopedDiHelper` is being disposed, and only in case the 
+object wasn't created using the base `DiHelper`. `ScopedDiHelper` will also 
+dispose the defined `ServiceProvider`, if possible.
+
+**CAUTION**: `DiHelper` and `ScopedDiHelper` will cache created objects. For 
+this reason you should **never** dispose a returned object in your code!
+
+To replace the default DI of a .NET app:
+
+```cs
+appBuilder.UseServiceProviderFactory(context => new DiHelper.DiServiceProviderFactory(new()
+{
+    ValidateOnBuild = false,
+    ValidateScopes = context.HostingEnvironment.IsDevelopment()
+}));
+```
+
+Then you can use the DI helper by injection:
+
+```cs
+public async Task YourMethod(IAsyncServiceProvider diHelper)
+{
+    YourService service = await diHelper.GetServiceAsync(typeof(YourService));
+    ...
+}
+```
 
 ## Logging
 
@@ -1190,3 +1245,179 @@ byte[] serialized = net;// Serialize
 IpSubNet net2 = serialized;// Deserialize
 Assert.AreEqual(net, net2);
 ```
+
+## Centralized error handling
+
+By setting `ErrorHandling.ErrorHandler` to your custom error handler, you can 
+handle errors centralized. The error handling
+
+1. will write to the debug console
+1. will write to the logging
+1. invoke the `ErrorHandling.ErrorHandler` (if any)
+1. raise the `ErrorHandling.OnError` event
+
+You may set `ErrorHandling.ErrorCollectingHandler` as error handler, or call 
+that method from your custom error handler to collect errors in 
+`ErrorHandling.Errors`.
+
+Unhandled exceptions of the current app domain will be handled by this error 
+handling. To handle a catched exception within your code, you can call the 
+`ErrorHandling.Handle` method.
+
+By setting `ErrorHandling.DebugOnError` to `true` (which is the default), an 
+attached debugger will break before `ErrorHandling.Handle` handles an 
+exception, finally.
+
+Your custom error handler may
+
+- store environment informations in a DBMS
+- send an email
+- do whatever is required to handle any error later
+
+The `ErrorHandling` uses an `ErrorInfo` object, which can be implicit casted 
+from/to an `Exception`. For your custom error handling you may want to host 
+additional error informations, which you may give as `tag` to the constructor, 
+or you create a custom error information type, which extends `ErrorInfo`. You 
+can define an additional error message, if you use the constructor which 
+accepts a string as first argument.
+
+**CAUTION**: An unhandled exception during error handling could cause an 
+endless loop. For this reason any uncatched error handling exception MUST be 
+ignored - they'll be written to STDERR instead.
+
+**NOTE**: The default error handling won't act as fist chance error handler. 
+You'll need to call `ErrorHandling.Handle` from your code in order to handle a 
+catched exception manually.
+
+## Delayed tasks
+
+You'll need to add the `DelayService.Instance` to your apps hosted services, 
+then you can use the delay like this:
+
+```cs
+await new Delay(TimeSpan.FromSeconds(3)).Task;
+```
+
+The line above will wait for 3 seconds and then continue in the current 
+processing, while the delay could be used from other threads, too, if you did 
+communicate the delays GUID (delays will organize themselfes in the 
+`DelayTable`).
+
+**WARNING**: The delays are not exact!
+
+**NOTE**: `Delay` will be disposed automatted.
+
+To cancel a delay, call the `Cancel(Async)` method of the `Delay` instance.
+
+If the `Delay` was disposed or cancelled, awaiting the `Task` will throw an 
+`ObjectDisposedException` or `OperationCancelledException`.
+
+A delay is similar to `Timeout`, but it doesn't use its own timer and is a bit 
+more easy to use for some specialized tasks.
+
+## Progress
+
+A `ProcessingProgress` can be a 
+
+- counting progress with a total and a current count
+- a progress collection with counting sub-progresses
+
+A progress collection receives events of sub-progresses and forwards their 
+events. The collection is self-managing - done sub-progresses will be removed 
+and disposed automatically.
+
+To display a progress with automatic updates, you can attach to the events of 
+the progress (collection):
+
+- `OnProgress`: The progress changed (will be forwarded until the root)
+- `OnAllProgress`: The overall progress changed (will be raised after 
+`OnProgress`, but won't be forwarded)
+- `OnStatus`: A progress status message was updated (won't be forwarded)
+- `OnDone`: A progress was done (will be forwarded until the root)
+
+A progress can be canceled using the `Cancel` method. The `OnDone` event will 
+be raised, `IsDone` will be `false`, but `IsCanceled` will be `true`. 
+Canceling a collection means canceling all sub-progresses, too.
+
+You can use the `AllProgress` property to get the current progress in %.
+
+Example counting progress:
+
+```cs
+using ProcessingProgress progress = new()
+{
+    Total = 50
+};
+for(int i = 0; i < 50; i++)
+{
+    // Do some work
+    progress.Update();// Increase the current count by one
+}
+```
+
+Example progress collection:
+
+```cs
+using ProcessingProgress progressCollection = new();
+ProcessingProgress progress = new()
+{
+    Total = 50
+};
+progressCollection.AddSubProgress(progress);
+for(int i = 0; i < 50; i++)
+{
+    // Do some work
+    progress.Update();// Increase the current count by one
+}
+// Now progress was disposed and removed from progressCollection, because it was done
+```
+
+**NOTE**: `Total` may be changed until a progress was completed or canceled.
+
+## Sensitive data handling
+
+Using the `SensitiveDataAttribute` you can mark properties which host 
+sensitive information. This could be used for the logging, for example: As you 
+don't want sensitive data to appear in your logfiles, you may want to filter 
+them out during logging. This could look like this:
+
+```cs
+public class YourObject
+{
+    public string LoggedData { get; set; }
+
+    [SensitiveData]
+    public string HiddenData { get; set; }
+}
+
+Logging.WriteDebug($"Object: {yourObjectInstance.ToDictionary().ToJson()}");
+```
+
+The `ToDictionary` object extension will filter the sensitive information from 
+the given object, so that the `ToJson` extension will process on a sanitized 
+data structure, which doesn't contain sensitive data.
+
+You may use the attribute in other places, too, and handle values from such 
+marked properties accordingly. It's also possible to extend the attribute with 
+a value sanization method:
+
+```cs
+public class HidePasswordAttribute : SensitiveDataAttribute
+{
+    public HidePasswordAttribute() : base() { }
+
+    public override bool CanSanitizeValue => true;
+
+    public override object? CreateSanitizedValue(object obj, string propertyName, object? value)
+    {
+        if(value is not string pwd) return "(no password string value)";
+        if(pwd.Length < 12) return "(password value too short)";
+        if(pwd.Length > byte.MaxValue) return "(password value too long)";
+        return "(valid password value hidden)";
+    }
+}
+```
+
+As soon as `CanSanitizeValue` delivers `true`, supporting code should call the 
+`CreateSanitizedValue` method to create a replacement for the the actual value 
+in an output.

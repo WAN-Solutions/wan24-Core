@@ -268,8 +268,12 @@ the timeout</li>
 <li><code>ILogger</code> support
 <ul>
 <li><code>Logging</code> as global logging helper</li>
+<li><code>LoggerBase</code> and <code>DisposableLoggerBase</code> as base classes for a custom
+logger</li>
 <li><code>Logger</code> as <code>ILogger</code> for writing to <code>Logging</code></li>
 <li><code>FileLogger</code> as <code>ILogger</code> for writing to a file</li>
+<li><code>ConsoleLogger</code> writes to STDERR</li>
+<li><code>DebugLogger</code> writes to the debug console</li>
 </ul>
 </li>
 <li><code>IChangeToken</code> support using <code>ChangeCallback</code></li>
@@ -352,6 +356,10 @@ including extensions for numeric type encoding/decoding)</li>
 <li><code>IpSubNet</code> implementation for managing IPv4/6 sub-nets (CIDR)</li>
 </ul>
 </li>
+<li>Centralized error handling</li>
+<li>Delayed tasks</li>
+<li>Progress</li>
+<li>Sensitive data handling</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
@@ -411,7 +419,45 @@ the helper, if no type was found.</p>
 </ul>
 <p>The <code>DiHelper.GetDiObjectAsync</code> method will try to resolve the request
 synchronous, first. But the <code>DiHelper.GetDiObject</code> won't try asynchronous
-object factories.</p>
+object factories. Created objects will be cached - to avoid that, add the
+type to the not cached types by using <code>DiHelper.AddNotCachedType</code>.</p>
+<p>The <code>Instance</code> property returns a generic service provider, which uses the
+<code>ServiceProvider</code> and the registered object factories. It also implements the
+<code>IAsyncServiceProvider</code> interface, which extends <code>IServiceProvider</code>.</p>
+<p>Object factories are as generic as possible. They'll receive the requested
+object type as an argument and may return different instanced based on the
+particular request. The registration of an object factory requires to define
+the object type, which the factory method served, as key. This type can be
+any type, which can be assigned to a requested type, or a generic type
+definition to match all generic variants. The hierarchic factory selection
+works like this:</p>
+<ol>
+<li>Requested type is the registered factory type</li>
+<li>Requested type is assignable from the registered factory type</li>
+<li>Requested type is a generic type, and its generic type definition is
+assignable from the registered factory type</li>
+</ol>
+<p>The <code>ScopedDiHelper</code> uses its own object factory collections and service
+provider and falls back to the <code>DiHelper</code>. Created objects will be disposed,
+if possible and the <code>ScopedDiHelper</code> is being disposed, and only in case the
+object wasn't created using the base <code>DiHelper</code>. <code>ScopedDiHelper</code> will also
+dispose the defined <code>ServiceProvider</code>, if possible.</p>
+<p><strong>CAUTION</strong>: <code>DiHelper</code> and <code>ScopedDiHelper</code> will cache created objects. For
+this reason you should <strong>never</strong> dispose a returned object in your code!</p>
+<p>To replace the default DI of a .NET app:</p>
+<pre><code class="lang-cs">appBuilder.UseServiceProviderFactory(context =&gt; new DiHelper.DiServiceProviderFactory(new()
+{
+    ValidateOnBuild = false,
+    ValidateScopes = context.HostingEnvironment.IsDevelopment()
+}));
+</code></pre>
+<p>Then you can use the DI helper by injection:</p>
+<pre><code class="lang-cs">public async Task YourMethod(IAsyncServiceProvider diHelper)
+{
+    YourService service = await diHelper.GetServiceAsync(typeof(YourService));
+    ...
+}
+</code></pre>
 <h2 id="logging">Logging</h2>
 <p>For a global logging, use <code>Logging</code> and set a <code>Logging.Logger</code> - for example
 the <code>FileLogger</code>:</p>
@@ -1360,6 +1406,145 @@ byte[] serialized = net;// Serialize
 IpSubNet net2 = serialized;// Deserialize
 Assert.AreEqual(net, net2);
 </code></pre>
+<h2 id="centralized-error-handling">Centralized error handling</h2>
+<p>By setting <code>ErrorHandling.ErrorHandler</code> to your custom error handler, you can
+handle errors centralized. The error handling</p>
+<ol>
+<li>will write to the debug console</li>
+<li>will write to the logging</li>
+<li>invoke the <code>ErrorHandling.ErrorHandler</code> (if any)</li>
+<li>raise the <code>ErrorHandling.OnError</code> event</li>
+</ol>
+<p>You may set <code>ErrorHandling.ErrorCollectingHandler</code> as error handler, or call
+that method from your custom error handler to collect errors in
+<code>ErrorHandling.Errors</code>.</p>
+<p>Unhandled exceptions of the current app domain will be handled by this error
+handling. To handle a catched exception within your code, you can call the
+<code>ErrorHandling.Handle</code> method.</p>
+<p>By setting <code>ErrorHandling.DebugOnError</code> to <code>true</code> (which is the default), an
+attached debugger will break before <code>ErrorHandling.Handle</code> handles an
+exception, finally.</p>
+<p>Your custom error handler may</p>
+<ul>
+<li>store environment informations in a DBMS</li>
+<li>send an email</li>
+<li>do whatever is required to handle any error later</li>
+</ul>
+<p>The <code>ErrorHandling</code> uses an <code>ErrorInfo</code> object, which can be implicit casted
+from/to an <code>Exception</code>. For your custom error handling you may want to host
+additional error informations, which you may give as <code>tag</code> to the constructor,
+or you create a custom error information type, which extends <code>ErrorInfo</code>. You
+can define an additional error message, if you use the constructor which
+accepts a string as first argument.</p>
+<p><strong>CAUTION</strong>: An unhandled exception during error handling could cause an
+endless loop. For this reason any uncatched error handling exception MUST be
+ignored - they'll be written to STDERR instead.</p>
+<p><strong>NOTE</strong>: The default error handling won't act as fist chance error handler.
+You'll need to call <code>ErrorHandling.Handle</code> from your code in order to handle a
+catched exception manually.</p>
+<h2 id="delayed-tasks">Delayed tasks</h2>
+<p>You'll need to add the <code>DelayService.Instance</code> to your apps hosted services,
+then you can use the delay like this:</p>
+<pre><code class="lang-cs">await new Delay(TimeSpan.FromSeconds(3)).Task;
+</code></pre>
+<p>The line above will wait for 3 seconds and then continue in the current
+processing, while the delay could be used from other threads, too, if you did
+communicate the delays GUID (delays will organize themselfes in the
+<code>DelayTable</code>).</p>
+<p><strong>WARNING</strong>: The delays are not exact!</p>
+<p><strong>NOTE</strong>: <code>Delay</code> will be disposed automatted.</p>
+<p>To cancel a delay, call the <code>Cancel(Async)</code> method of the <code>Delay</code> instance.</p>
+<p>If the <code>Delay</code> was disposed or cancelled, awaiting the <code>Task</code> will throw an
+<code>ObjectDisposedException</code> or <code>OperationCancelledException</code>.</p>
+<p>A delay is similar to <code>Timeout</code>, but it doesn't use its own timer and is a bit
+more easy to use for some specialized tasks.</p>
+<h2 id="progress">Progress</h2>
+<p>A <code>ProcessingProgress</code> can be a</p>
+<ul>
+<li>counting progress with a total and a current count</li>
+<li>a progress collection with counting sub-progresses</li>
+</ul>
+<p>A progress collection receives events of sub-progresses and forwards their
+events. The collection is self-managing - done sub-progresses will be removed
+and disposed automatically.</p>
+<p>To display a progress with automatic updates, you can attach to the events of
+the progress (collection):</p>
+<ul>
+<li><code>OnProgress</code>: The progress changed (will be forwarded until the root)</li>
+<li><code>OnAllProgress</code>: The overall progress changed (will be raised after
+<code>OnProgress</code>, but won't be forwarded)</li>
+<li><code>OnStatus</code>: A progress status message was updated (won't be forwarded)</li>
+<li><code>OnDone</code>: A progress was done (will be forwarded until the root)</li>
+</ul>
+<p>A progress can be canceled using the <code>Cancel</code> method. The <code>OnDone</code> event will
+be raised, <code>IsDone</code> will be <code>false</code>, but <code>IsCanceled</code> will be <code>true</code>.
+Canceling a collection means canceling all sub-progresses, too.</p>
+<p>You can use the <code>AllProgress</code> property to get the current progress in %.</p>
+<p>Example counting progress:</p>
+<pre><code class="lang-cs">using ProcessingProgress progress = new()
+{
+    Total = 50
+};
+for(int i = 0; i &lt; 50; i++)
+{
+    // Do some work
+    progress.Update();// Increase the current count by one
+}
+</code></pre>
+<p>Example progress collection:</p>
+<pre><code class="lang-cs">using ProcessingProgress progressCollection = new();
+ProcessingProgress progress = new()
+{
+    Total = 50
+};
+progressCollection.AddSubProgress(progress);
+for(int i = 0; i &lt; 50; i++)
+{
+    // Do some work
+    progress.Update();// Increase the current count by one
+}
+// Now progress was disposed and removed from progressCollection, because it was done
+</code></pre>
+<p><strong>NOTE</strong>: <code>Total</code> may be changed until a progress was completed or canceled.</p>
+<h2 id="sensitive-data-handling">Sensitive data handling</h2>
+<p>Using the <code>SensitiveDataAttribute</code> you can mark properties which host
+sensitive information. This could be used for the logging, for example: As you
+don't want sensitive data to appear in your logfiles, you may want to filter
+them out during logging. This could look like this:</p>
+<pre><code class="lang-cs">public class YourObject
+{
+    public string LoggedData { get; set; }
+
+    [SensitiveData]
+    public string HiddenData { get; set; }
+}
+
+Logging.WriteDebug($&quot;Object: {yourObjectInstance.ToDictionary().ToJson()}&quot;);
+</code></pre>
+<p>The <code>ToDictionary</code> object extension will filter the sensitive information from
+the given object, so that the <code>ToJson</code> extension will process on a sanitized
+data structure, which doesn't contain sensitive data.</p>
+<p>You may use the attribute in other places, too, and handle values from such
+marked properties accordingly. It's also possible to extend the attribute with
+a value sanization method:</p>
+<pre><code class="lang-cs">public class HidePasswordAttribute : SensitiveDataAttribute
+{
+    public HidePasswordAttribute() : base() { }
+
+    public override bool CanSanitizeValue =&gt; true;
+
+    public override object? CreateSanitizedValue(object obj, string propertyName, object? value)
+    {
+        if(value is not string pwd) return &quot;(no password string value)&quot;;
+        if(pwd.Length &lt; 12) return &quot;(password value too short)&quot;;
+        if(pwd.Length &gt; byte.MaxValue) return &quot;(password value too long)&quot;;
+        return &quot;(valid password value hidden)&quot;;
+    }
+}
+</code></pre>
+<p>As soon as <code>CanSanitizeValue</code> delivers <code>true</code>, supporting code should call the
+<code>CreateSanitizedValue</code> method to create a replacement for the the actual value
+in an output.</p>
 </article>
           </div>
           

@@ -72,23 +72,24 @@ namespace wan24.Core
         /// </summary>
         /// <param name="info">Info</param>
         /// <param name="level">Level</param>
+        /// <param name="args">Arguments</param>
         /// <returns>This</returns>
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public Tracer WriteInfo(in string info, in LogLevel level)
+        public Tracer Write(in string info, in LogLevel level, params object?[] args)
         {
-            Entry entry = new(level, $"{Prefix}{info}");
+            Entry entry = new(level, $"{Prefix}{info}", args);
             Entries.Writer.TryWrite(entry);
             if (!SkipLogger && entry.Level >= Level)
                 if (Logger is null)
                 {
-                    Logging.WriteLog(entry.Info, entry.Level);
+                    Logging.WriteLog(entry.Info, level, args);
                 }
                 else
                 {
 #pragma warning disable CA2254 // Logger call shouldn't be different from the template
-                    Logger.Log(level, info);
+                    Logger.Log(level, info, args);
 #pragma warning restore CA2254 // Logger call shouldn't be different from the template
                 }
             return this;
@@ -98,49 +99,55 @@ namespace wan24.Core
         /// Write a trace message
         /// </summary>
         /// <param name="info">Info</param>
+        /// <param name="args">Arguments</param>
         /// <returns>This</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public Tracer WriteTrace(in string info) => WriteInfo(info, LogLevel.Trace);
+        public Tracer WriteTrace(in string info, params object?[] args) => Write(info, LogLevel.Trace, args);
 
         /// <summary>
         /// Write a debug message
         /// </summary>
         /// <param name="info">Info</param>
+        /// <param name="args">Arguments</param>
         /// <returns>This</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public Tracer WriteDebug(in string info) => WriteInfo(info, LogLevel.Debug);
+        public Tracer WriteDebug(in string info, params object?[] args) => Write(info, LogLevel.Debug, args);
 
         /// <summary>
         /// Write a information message
         /// </summary>
         /// <param name="info">Info</param>
+        /// <param name="args">Arguments</param>
         /// <returns>This</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public Tracer WriteInfo(in string info) => WriteInfo(info, LogLevel.Information);
+        public Tracer WriteInfo(in string info, params object?[] args) => Write(info, LogLevel.Information, args);
 
         /// <summary>
         /// Write a warning message
         /// </summary>
         /// <param name="info">Info</param>
+        /// <param name="args">Arguments</param>
         /// <returns>This</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public Tracer WriteWarning(in string info) => WriteInfo(info, LogLevel.Warning);
+        public Tracer WriteWarning(in string info, params object?[] args) => Write(info, LogLevel.Warning, args);
 
         /// <summary>
         /// Write an error message
         /// </summary>
         /// <param name="info">Info</param>
+        /// <param name="args">Arguments</param>
         /// <returns>This</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public Tracer WriteError(in string info) => WriteInfo(info, LogLevel.Error);
+        public Tracer WriteError(in string info, params object?[] args) => Write(info, LogLevel.Error, args);
 
         /// <summary>
         /// Write a critical error message
         /// </summary>
         /// <param name="info">Info</param>
+        /// <param name="args">Arguments</param>
         /// <returns>This</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public Tracer WriteCritical(in string info) => WriteInfo(info, LogLevel.Critical);
+        public Tracer WriteCritical(in string info, params object?[] args) => Write(info, LogLevel.Critical, args);
 
         /// <summary>
         /// Clear written entries
@@ -165,12 +172,12 @@ namespace wan24.Core
                 if (entry.Level >= level && entry.Level < minLevel)
                     if (logger is null)
                     {
-                        Logging.WriteLog($"Traced at {entry.Time}: {entry.Info}", entry.Level);
+                        Logging.WriteLog($"Traced at {entry.Time}: {entry.Info}", entry.Level, entry.Arguments);
                     }
                     else
                     {
 #pragma warning disable CA2254 // Logger call shouldn't be different from the template
-                        logger.Log(entry.Level, $"Traced at {entry.Time}: {entry.Info}");
+                        logger.Log(entry.Level, $"Traced at {entry.Time}: {entry.Info}", entry.Arguments);
 #pragma warning restore CA2254 // Logger call shouldn't be different from the template
                     }
             return this;
@@ -194,16 +201,22 @@ namespace wan24.Core
             /// Info
             /// </summary>
             public readonly string Info;
+            /// <summary>
+            /// Arguments
+            /// </summary>
+            public readonly object?[] Arguments;
 
             /// <summary>
             /// Constructor
             /// </summary>
             /// <param name="level">Level</param>
             /// <param name="info">Info</param>
-            internal Entry(in LogLevel level, in string info)
+            /// <param name="args">Arguments</param>
+            internal Entry(in LogLevel level, in string info, in object?[] args)
             {
                 Level = level;
                 Info = info;
+                Arguments = args;
             }
         }
     }

@@ -266,7 +266,7 @@ namespace wan24.Core
             if (!EnsureUndisposed(throwException: false))
             {
                 if (item is IObjectPoolItem opItem) opItem.Reset();
-                if (item is IDisposable disposable) disposable.Dispose();
+                item.TryDispose();
                 return;
             }
             else if ((reset || ForceResetOnReturn) && item is IObjectPoolItem opItem)
@@ -293,14 +293,7 @@ namespace wan24.Core
             if (!EnsureUndisposed(throwException: false))
             {
                 if (item is IObjectPoolItem opItem) opItem.Reset();
-                if (item is IAsyncDisposable asyncDisposable)
-                {
-                    await asyncDisposable.DisposeAsync().DynamicContext();
-                }
-                else if (item is IDisposable disposable)
-                {
-                    disposable.Dispose();
-                }
+                await item.TryDisposeAsync().DynamicContext();
                 return;
             }
             else if ((reset || ForceResetOnReturn) && item is IObjectPoolItem opItem)

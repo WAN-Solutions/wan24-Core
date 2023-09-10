@@ -399,26 +399,25 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override void Close()
         {
-            if (IsClosed) return;
-            base.Close();
+            if (!DoClose()) return;
             if (!LeaveOpen) _BaseStream.Close();
+            base.Close();
         }
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            if (IsDisposing) return;
-            base.Dispose(disposing);
             if (_BaseStream is IDisposableObject disposable) disposable.OnDisposed -= HandlebaseStreamDisposed;
             if (!LeaveOpen) _BaseStream.Dispose();
+            base.Dispose(disposing);
         }
 
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            await base.DisposeCore().DynamicContext();
             if (_BaseStream is IDisposableObject disposable) disposable.OnDisposed -= HandlebaseStreamDisposed;
             if (!LeaveOpen) await _BaseStream.DisposeAsync().DynamicContext();
+            await base.DisposeCore().DynamicContext();
         }
 
         /// <summary>

@@ -80,7 +80,8 @@
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><a class="xref" href="wan24.Core.DisposableBase.html">DisposableBase</a></div>
-    <div class="level2"><span class="xref">FileLogger</span></div>
+    <div class="level2"><a class="xref" href="wan24.Core.DisposableLoggerBase.html">DisposableLoggerBase</a></div>
+    <div class="level3"><span class="xref">FileLogger</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
@@ -91,6 +92,24 @@
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableLoggerBase.html#wan24_Core_DisposableLoggerBase_Level">DisposableLoggerBase.Level</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableLoggerBase.html#wan24_Core_DisposableLoggerBase_Next">DisposableLoggerBase.Next</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableLoggerBase.html#wan24_Core_DisposableLoggerBase_BeginScope__1___0_">DisposableLoggerBase.BeginScope&lt;TState&gt;(TState)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableLoggerBase.html#wan24_Core_DisposableLoggerBase_IsEnabled_Microsoft_Extensions_Logging_LogLevel_">DisposableLoggerBase.IsEnabled(LogLevel)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableLoggerBase.html#wan24_Core_DisposableLoggerBase_Log__1_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_EventId___0_System_Nullable_Exception__Func___0_System_Nullable_Exception__System_String__">DisposableLoggerBase.Log&lt;TState&gt;(LogLevel, EventId, TState, Nullable&lt;Exception&gt;, Func&lt;TState, Nullable&lt;Exception&gt;, String&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableLoggerBase.html#wan24_Core_DisposableLoggerBase_GetMessage__1_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_EventId___0_System_Nullable_Exception__Func___0_System_Nullable_Exception__System_String__System_Boolean_">DisposableLoggerBase.GetMessage&lt;TState&gt;(LogLevel, EventId, TState, Nullable&lt;Exception&gt;, Func&lt;TState, Nullable&lt;Exception&gt;, String&gt;, Boolean)</a>
+    </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeSyncObject">DisposableBase.DisposeSyncObject</a>
     </div>
@@ -162,25 +181,25 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_FileLogger_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class FileLogger : DisposableBase, IDisposableObject, ILogger</code></pre>
+    <pre><code class="lang-csharp hljs">public class FileLogger : DisposableLoggerBase, IDisposableObject, ILogger</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_FileLogger__ctor_System_String__Microsoft_Extensions_Logging_LogLevel__.md&amp;value=---%0Auid%3A%20wan24.Core.FileLogger.%23ctor(System.String%40%2CMicrosoft.Extensions.Logging.LogLevel%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_FileLogger__ctor_System_String__Microsoft_Extensions_Logging_LogLevel__Microsoft_Extensions_Logging_ILogger__System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.FileLogger.%23ctor(System.String%40%2CMicrosoft.Extensions.Logging.LogLevel%40%2CMicrosoft.Extensions.Logging.ILogger%40%2CSystem.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L24">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L22">View Source</a>
   </span>
   <a id="wan24_Core_FileLogger__ctor_" data-uid="wan24.Core.FileLogger.#ctor*"></a>
-  <h4 id="wan24_Core_FileLogger__ctor_System_String__Microsoft_Extensions_Logging_LogLevel__" data-uid="wan24.Core.FileLogger.#ctor(System.String@,Microsoft.Extensions.Logging.LogLevel@)">FileLogger(in String, in LogLevel)</h4>
+  <h4 id="wan24_Core_FileLogger__ctor_System_String__Microsoft_Extensions_Logging_LogLevel__Microsoft_Extensions_Logging_ILogger__System_Int32__" data-uid="wan24.Core.FileLogger.#ctor(System.String@,Microsoft.Extensions.Logging.LogLevel@,Microsoft.Extensions.Logging.ILogger@,System.Int32@)">FileLogger(in String, in LogLevel, in ILogger, in Int32)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected FileLogger(in string fileName, in LogLevel level = LogLevel.Information)</code></pre>
+    <pre><code class="lang-csharp hljs">protected FileLogger(in string fileName, in LogLevel level = LogLevel.Information, in ILogger next = null, in int maxQueue = 2147483647)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -204,46 +223,28 @@
         <td><p>Log level</p>
 </td>
       </tr>
+      <tr>
+        <td><span class="xref">Microsoft.Extensions.Logging.ILogger</span></td>
+        <td><span class="parametername">next</span></td>
+        <td><p>Next logger which should receive the message</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">maxQueue</span></td>
+        <td><p>Maximum number of queued messages before blocking</p>
+</td>
+      </tr>
     </tbody>
   </table>
   <h3 id="fields">Fields
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_FileLogger_Stream.md&amp;value=---%0Auid%3A%20wan24.Core.FileLogger.Stream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L13">View Source</a>
-  </span>
-  <h4 id="wan24_Core_FileLogger_Stream" data-uid="wan24.Core.FileLogger.Stream">Stream</h4>
-  <div class="markdown level1 summary"><p>Stream</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly FileStream Stream</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">FileStream</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_FileLogger_Worker.md&amp;value=---%0Auid%3A%20wan24.Core.FileLogger.Worker%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L17">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L13">View Source</a>
   </span>
   <h4 id="wan24_Core_FileLogger_Worker" data-uid="wan24.Core.FileLogger.Worker">Worker</h4>
   <div class="markdown level1 summary"><p>Worker</p>
@@ -275,7 +276,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_FileLogger_FileName.md&amp;value=---%0Auid%3A%20wan24.Core.FileLogger.FileName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L44">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L39">View Source</a>
   </span>
   <a id="wan24_Core_FileLogger_FileName_" data-uid="wan24.Core.FileLogger.FileName*"></a>
   <h4 id="wan24_Core_FileLogger_FileName" data-uid="wan24.Core.FileLogger.FileName">FileName</h4>
@@ -301,116 +302,23 @@
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_FileLogger_Level.md&amp;value=---%0Auid%3A%20wan24.Core.FileLogger.Level%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L49">View Source</a>
-  </span>
-  <a id="wan24_Core_FileLogger_Level_" data-uid="wan24.Core.FileLogger.Level*"></a>
-  <h4 id="wan24_Core_FileLogger_Level" data-uid="wan24.Core.FileLogger.Level">Level</h4>
-  <div class="markdown level1 summary"><p>Log level</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LogLevel Level { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Microsoft.Extensions.Logging.LogLevel</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_FileLogger_BeginScope__1___0_.md&amp;value=---%0Auid%3A%20wan24.Core.FileLogger.BeginScope%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_FileLogger_CreateAsync_System_String_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_ILogger_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.FileLogger.CreateAsync(System.String%2CMicrosoft.Extensions.Logging.LogLevel%2CMicrosoft.Extensions.Logging.ILogger%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L52">View Source</a>
-  </span>
-  <a id="wan24_Core_FileLogger_BeginScope_" data-uid="wan24.Core.FileLogger.BeginScope*"></a>
-  <h4 id="wan24_Core_FileLogger_BeginScope__1___0_" data-uid="wan24.Core.FileLogger.BeginScope``1(``0)">BeginScope&lt;TState&gt;(TState)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IDisposable? BeginScope&lt;TState&gt;(TState state)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">TState</span></td>
-        <td><span class="parametername">state</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">IDisposable</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TState</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_FileLogger_CreateAsync_System_String_Microsoft_Extensions_Logging_LogLevel_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.FileLogger.CreateAsync(System.String%2CMicrosoft.Extensions.Logging.LogLevel%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L85">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L59">View Source</a>
   </span>
   <a id="wan24_Core_FileLogger_CreateAsync_" data-uid="wan24.Core.FileLogger.CreateAsync*"></a>
-  <h4 id="wan24_Core_FileLogger_CreateAsync_System_String_Microsoft_Extensions_Logging_LogLevel_CancellationToken_" data-uid="wan24.Core.FileLogger.CreateAsync(System.String,Microsoft.Extensions.Logging.LogLevel,CancellationToken)">CreateAsync(String, LogLevel, CancellationToken)</h4>
+  <h4 id="wan24_Core_FileLogger_CreateAsync_System_String_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_ILogger_CancellationToken_" data-uid="wan24.Core.FileLogger.CreateAsync(System.String,Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.ILogger,CancellationToken)">CreateAsync(String, LogLevel, ILogger, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Create a file logger</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static async Task&lt;FileLogger&gt; CreateAsync(string fileName, LogLevel level = LogLevel.Information, CancellationToken cancellationToken = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static async Task&lt;FileLogger&gt; CreateAsync(string fileName, LogLevel level = LogLevel.Information, ILogger next = null, CancellationToken cancellationToken = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -432,6 +340,12 @@
         <td><span class="xref">Microsoft.Extensions.Logging.LogLevel</span></td>
         <td><span class="parametername">level</span></td>
         <td><p>Log level</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Microsoft.Extensions.Logging.ILogger</span></td>
+        <td><span class="parametername">next</span></td>
+        <td><p>Next logger which should receive the message</p>
 </td>
       </tr>
       <tr>
@@ -463,7 +377,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_FileLogger_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.FileLogger.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L65">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L46">View Source</a>
   </span>
   <a id="wan24_Core_FileLogger_Dispose_" data-uid="wan24.Core.FileLogger.Dispose*"></a>
   <h4 id="wan24_Core_FileLogger_Dispose_System_Boolean_" data-uid="wan24.Core.FileLogger.Dispose(System.Boolean)">Dispose(Boolean)</h4>
@@ -499,7 +413,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_FileLogger_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.FileLogger.DisposeCore%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L72">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L49">View Source</a>
   </span>
   <a id="wan24_Core_FileLogger_DisposeCore_" data-uid="wan24.Core.FileLogger.DisposeCore*"></a>
   <h4 id="wan24_Core_FileLogger_DisposeCore" data-uid="wan24.Core.FileLogger.DisposeCore">DisposeCore()</h4>
@@ -529,18 +443,19 @@
   <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeCore">DisposableBase.DisposeCore()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_FileLogger_IsEnabled_Microsoft_Extensions_Logging_LogLevel_.md&amp;value=---%0Auid%3A%20wan24.Core.FileLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_FileLogger_LogInt__1_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_EventId___0_System_Nullable_Exception__Func___0_System_Nullable_Exception__System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.FileLogger.LogInt%60%601(Microsoft.Extensions.Logging.LogLevel%2CMicrosoft.Extensions.Logging.EventId%2C%60%600%2CSystem.Nullable%7BException%7D%2CFunc%7B%60%600%2CSystem.Nullable%7BException%7D%2CSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L55">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L42">View Source</a>
   </span>
-  <a id="wan24_Core_FileLogger_IsEnabled_" data-uid="wan24.Core.FileLogger.IsEnabled*"></a>
-  <h4 id="wan24_Core_FileLogger_IsEnabled_Microsoft_Extensions_Logging_LogLevel_" data-uid="wan24.Core.FileLogger.IsEnabled(Microsoft.Extensions.Logging.LogLevel)">IsEnabled(LogLevel)</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="wan24_Core_FileLogger_LogInt_" data-uid="wan24.Core.FileLogger.LogInt*"></a>
+  <h4 id="wan24_Core_FileLogger_LogInt__1_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_EventId___0_System_Nullable_Exception__Func___0_System_Nullable_Exception__System_String__" data-uid="wan24.Core.FileLogger.LogInt``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Nullable{Exception},Func{``0,System.Nullable{Exception},System.String})">LogInt&lt;TState&gt;(LogLevel, EventId, TState, Nullable&lt;Exception&gt;, Func&lt;TState, Nullable&lt;Exception&gt;, String&gt;)</h4>
+  <div class="markdown level1 summary"><p>Writes a log entry</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsEnabled(LogLevel logLevel)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void LogInt&lt;TState&gt;(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func&lt;TState, Exception?, string&gt; formatter)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -555,74 +470,32 @@
       <tr>
         <td><span class="xref">Microsoft.Extensions.Logging.LogLevel</span></td>
         <td><span class="parametername">logLevel</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_FileLogger_Log__1_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_EventId___0_System_Nullable_Exception__Func___0_System_Nullable_Exception__System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.FileLogger.Log%60%601(Microsoft.Extensions.Logging.LogLevel%2CMicrosoft.Extensions.Logging.EventId%2C%60%600%2CSystem.Nullable%7BException%7D%2CFunc%7B%60%600%2CSystem.Nullable%7BException%7D%2CSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/FileLogger.cs/#L58">View Source</a>
-  </span>
-  <a id="wan24_Core_FileLogger_Log_" data-uid="wan24.Core.FileLogger.Log*"></a>
-  <h4 id="wan24_Core_FileLogger_Log__1_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_EventId___0_System_Nullable_Exception__Func___0_System_Nullable_Exception__System_String__" data-uid="wan24.Core.FileLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Nullable{Exception},Func{``0,System.Nullable{Exception},System.String})">Log&lt;TState&gt;(LogLevel, EventId, TState, Nullable&lt;Exception&gt;, Func&lt;TState, Nullable&lt;Exception&gt;, String&gt;)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Log&lt;TState&gt;(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func&lt;TState, Exception?, string&gt; formatter)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Microsoft.Extensions.Logging.LogLevel</span></td>
-        <td><span class="parametername">logLevel</span></td>
-        <td></td>
+        <td><p>Level</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">Microsoft.Extensions.Logging.EventId</span></td>
         <td><span class="parametername">eventId</span></td>
-        <td></td>
+        <td><p>Event ID</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">TState</span></td>
         <td><span class="parametername">state</span></td>
-        <td></td>
+        <td><p>State</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Exception</span>&gt;</td>
         <td><span class="parametername">exception</span></td>
-        <td></td>
+        <td><p>Exception</p>
+</td>
       </tr>
       <tr>
         <td><span class="xref">Func</span>&lt;TState, <span class="xref">System.Nullable</span>&lt;<span class="xref">Exception</span>&gt;, <span class="xref">System.String</span>&gt;</td>
         <td><span class="parametername">formatter</span></td>
-        <td></td>
+        <td><p>Formatter</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -637,10 +510,13 @@
     <tbody>
       <tr>
         <td><span class="parametername">TState</span></td>
-        <td></td>
+        <td><p>State type</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">wan24.Core.DisposableLoggerBase.LogInt&lt;TState&gt;(Microsoft.Extensions.Logging.LogLevel, Microsoft.Extensions.Logging.EventId, TState, System.Nullable&lt;Exception&gt;, Func&lt;TState, System.Nullable&lt;Exception&gt;, System.String&gt;)</span></div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
@@ -656,6 +532,12 @@
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(Object)</a>
   </div>
   <div>
@@ -665,7 +547,7 @@
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T&gt;)</a>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_System_Collections_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
@@ -678,6 +560,12 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in Int32)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in Int32)</a>
   </div>
 </article>
           </div>

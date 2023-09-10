@@ -3,6 +3,7 @@
     /// <summary>
     /// Thrown on bootstrapping error (bootstrapper called twice, or recursive)
     /// </summary>
+    [Serializable]
     public sealed class BootstrapperException : Exception
     {
         /// <summary>

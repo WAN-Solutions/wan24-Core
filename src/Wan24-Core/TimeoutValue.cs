@@ -46,15 +46,7 @@ namespace wan24.Core
             {
                 lock (SyncObject)
                 {
-                    if (HasValue)
-                        if (_Value is IDisposable disposable)
-                        {
-                            disposable.Dispose();
-                        }
-                        else if (_Value is IAsyncDisposable asyncDisposable)
-                        {
-                            asyncDisposable.DisposeAsync().AsTask().Wait();
-                        }
+                    if (HasValue) _Value.TryDispose();
                     HasValue = false;
                     _Value = default;
                 }
@@ -89,16 +81,7 @@ namespace wan24.Core
         protected override void Dispose(bool disposing)
         {
             Timer.Dispose();
-            lock (SyncObject)
-                if (HasValue)
-                    if (_Value is IDisposable disposable)
-                    {
-                        disposable.Dispose();
-                    }
-                    else if (_Value is IAsyncDisposable asyncDisposable)
-                    {
-                        asyncDisposable.DisposeAsync().AsTask().Wait();
-                    }
+            lock (SyncObject) if (HasValue) _Value.TryDispose();
         }
 
         /// <inheritdoc/>

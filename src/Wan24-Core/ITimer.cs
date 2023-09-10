@@ -3,16 +3,8 @@
     /// <summary>
     /// Interface for a timer object
     /// </summary>
-    public interface ITimer
+    public interface ITimer : IServiceWorker
     {
-        /// <summary>
-        /// Display name
-        /// </summary>
-        string? Name { get; }
-        /// <summary>
-        /// Is running?
-        /// </summary>
-        bool IsRunning { get; }
         /// <summary>
         /// Auto-reset?
         /// </summary>
@@ -29,17 +21,5 @@
         /// Shedules
         /// </summary>
         DateTime Sheduled { get; }
-        /// <summary>
-        /// Start
-        /// </summary>
-        Task StartAsync();
-        /// <summary>
-        /// Stop
-        /// </summary>
-        Task StopAsync();
-        /// <summary>
-        /// Restart
-        /// </summary>
-        Task RestartAsync();
     }
 }

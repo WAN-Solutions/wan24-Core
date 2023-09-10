@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using wan24.Core;
 
 namespace Wan24_Core_Tests
@@ -9,12 +10,10 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public void Invoke_Tests()
         {
+            DiHelper.ClearObjectCache();
             Assert.IsTrue((bool)typeof(ReflectionExtensions_Tests).GetMethod(nameof(InvokedMethod))!.InvokeAuto(obj: null, false)!);
-            DiHelper.ObjectFactories[typeof(bool)] = delegate (Type t, out object? o)
-            {
-                o = false;
-                return true;
-            };
+            DiHelper.ClearObjectCache();
+            DiHelper.ObjectFactories[typeof(bool)] = GetFalse;
             try
             {
                 Assert.IsFalse((bool)typeof(ReflectionExtensions_Tests).GetMethod(nameof(InvokedMethod))!.InvokeAuto(obj: null, false)!);
@@ -28,12 +27,10 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public async Task InvokeAsync_Tests()
         {
+            await DiHelper.ClearObjectCacheAsync().DynamicContext();
             Assert.IsTrue((bool)(await typeof(ReflectionExtensions_Tests).GetMethod(nameof(InvokedMethodAsync))!.InvokeAutoAsync(obj: null, false))!);
-            DiHelper.ObjectFactories[typeof(bool)] = delegate (Type t, out object? o)
-            {
-                o = false;
-                return true;
-            };
+            await DiHelper.ClearObjectCacheAsync().DynamicContext();
+            DiHelper.ObjectFactories[typeof(bool)] = GetFalse;
             try
             {
                 Assert.IsFalse((bool)(await typeof(ReflectionExtensions_Tests).GetMethod(nameof(InvokedMethodAsync))!.InvokeAutoAsync(obj: null, false))!);
@@ -42,16 +39,8 @@ namespace Wan24_Core_Tests
             {
                 DiHelper.ObjectFactories.Clear();
             }
-            DiHelper.ObjectFactories[typeof(bool)] = delegate (Type t, out object? o)
-            {
-                o = false;
-                return true;
-            };
-            DiHelper.AsyncObjectFactories[typeof(bool)] = delegate (Type t, out object? o, CancellationToken ct)
-            {
-                o = true;
-                return Task.FromResult(true);
-            };
+            DiHelper.ObjectFactories[typeof(bool)] = GetFalse;
+            DiHelper.AsyncObjectFactories[typeof(bool)] = GetTrueAsync;
             try
             {
                 Assert.IsFalse((bool)(await typeof(ReflectionExtensions_Tests).GetMethod(nameof(InvokedMethodAsync))!.InvokeAutoAsync(obj: null, false))!);
@@ -65,12 +54,10 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public void Construction_Tests()
         {
+            DiHelper.ClearObjectCache();
             Assert.IsTrue(typeof(ReflectionTestClass).ConstructAuto(usePrivate: false, false) is ReflectionTestClass);
-            DiHelper.ObjectFactories[typeof(bool)] = delegate (Type t, out object? o)
-            {
-                o = false;
-                return true;
-            };
+            DiHelper.ClearObjectCache();
+            DiHelper.ObjectFactories[typeof(bool)] = GetFalse;
             try
             {
                 Assert.IsTrue(typeof(ReflectionTestClass).ConstructAuto(usePrivate: false, false) is ReflectionTestClass);
@@ -79,11 +66,7 @@ namespace Wan24_Core_Tests
             {
                 DiHelper.ObjectFactories.Clear();
             }
-            DiHelper.ObjectFactories[typeof(bool)] = delegate (Type t, out object? o)
-            {
-                o = true;
-                return true;
-            };
+            DiHelper.ObjectFactories[typeof(bool)] = GetTrue;
             try
             {
                 Assert.IsTrue(typeof(ReflectionTestClass).ConstructAuto(usePrivate: true) is ReflectionTestClass);
@@ -222,6 +205,21 @@ namespace Wan24_Core_Tests
         public static Task<bool> InvokedMethodAsync(bool param1, bool param2 = true) => Task.FromResult(param2);
 
         public static int? TestMethod(int? test, int test2) => test;
+
+        private static bool GetFalse(Type type, [NotNullWhen(returnValue: true)] out object? obj)
+        {
+            obj = false;
+            return true;
+        }
+
+        private static bool GetTrue(Type type, [NotNullWhen(returnValue: true)] out object? obj)
+        {
+            obj = true;
+            return true;
+        }
+
+        private static Task<DiHelper.AsyncResult> GetTrueAsync(Type type, CancellationToken cancellationToken)
+            => Task.FromResult(new DiHelper.AsyncResult(true, true));
 
         public sealed class ReflectionTestClass
         {

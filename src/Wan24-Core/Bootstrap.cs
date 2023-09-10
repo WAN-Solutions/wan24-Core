@@ -1,5 +1,8 @@
 ﻿using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+
+//TODO Use ArrayIndexOutOfBoundException
 
 namespace wan24.Core
 {
@@ -16,6 +19,18 @@ namespace wan24.Core
         /// Thread synchronization
         /// </summary>
         private static readonly SemaphoreSync Sync = new();
+
+        /// <summary>
+        /// Static constructor
+        /// </summary>
+        static Bootstrap() => AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+            {
+                ErrorHandling.Handle(
+                    e.ExceptionObject is Exception ex 
+                        ? new($"Catched unhandled exception from the current app domain (will terminate: {e.IsTerminating})", ex) 
+                        : new($"Catched unhandled exception without exception object from the current app domain (will terminate: {e.IsTerminating})", new Exception())
+                    );
+            };
 
         /// <summary>
         /// Asynchronous bootstrapper (after running bootstrapper methods)
@@ -57,11 +72,12 @@ namespace wan24.Core
                 if (IsBooting) throw new BootstrapperException("Booting recursion");
                 IsBooting = true;
             }
-            DiHelper.ObjectFactories[typeof(CancellationToken)] = delegate (Type t, out object? obj)
+            bool getCancellationToken(Type type, [NotNullWhen(returnValue: true)] out object? obj)
             {
                 obj = cancellationToken;
                 return true;
-            };
+            }
+            DiHelper.ObjectFactories[typeof(CancellationToken)] = getCancellationToken;
             try
             {
                 if (startAssembly is not null) TypeHelper.Instance.ScanAssemblies(startAssembly);

@@ -28,7 +28,7 @@ namespace wan24.Core
         /// <param name="pool">Array pool</param>
         /// <returns>Encoded</returns>
         public static char[] EncodeNumberCompact<T>(this T value, ReadOnlyMemory<char>? charMap = null, in char[]? res = null, in ArrayPool<byte>? pool = null)
-            where T : struct, IConvertible
+             where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
         {
             if (EnsureValidNumericType<T>().IsUnsigned())
             {
@@ -60,7 +60,7 @@ namespace wan24.Core
         /// <param name="res">Result buffer</param>
         /// <returns>Encoded</returns>
         public static char[] EncodeNumberCompact<T>(this T value, in Span<byte> buffer, ReadOnlyMemory<char>? charMap = null, in char[]? res = null)
-            where T : struct, IConvertible
+             where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
         {
             if (EnsureValidNumericType<T>().IsUnsigned())
             {
@@ -96,7 +96,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static T DecodeCompactNumber<T>(this char[] str, in ReadOnlyMemory<char>? charMap = null, in byte[]? buffer = null, in ArrayPool<byte>? pool = null)
-            where T : struct, IConvertible
+             where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
             => DecodeCompactNumber<T>((ReadOnlySpan<char>)str, charMap, buffer, pool);
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static T DecodeCompactNumber<T>(this string str, in ReadOnlyMemory<char>? charMap = null, in byte[]? buffer = null, in ArrayPool<byte>? pool = null)
-            where T : struct, IConvertible
+             where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
             => DecodeCompactNumber<T>((ReadOnlySpan<char>)str, charMap, buffer, pool);
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static T DecodeCompactNumber<T>(this Span<char> str, in ReadOnlyMemory<char>? charMap = null, in byte[]? buffer = null, in ArrayPool<byte>? pool = null)
-            where T : struct, IConvertible
+             where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
             => DecodeCompactNumber<T>((ReadOnlySpan<char>)str, charMap, buffer, pool);
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace wan24.Core
         /// <param name="pool">Array pool</param>
         /// <returns>Value</returns>
         public static T DecodeCompactNumber<T>(this ReadOnlySpan<char> str, ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
-            where T : struct, IConvertible
+             where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
         {
             int len = str.Length;
             if (len == 0) return (T)Convert.ChangeType(0, EnsureValidNumericType<T>());

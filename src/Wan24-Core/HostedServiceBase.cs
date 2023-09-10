@@ -6,7 +6,7 @@ namespace wan24.Core
     /// <summary>
     /// Base class for a hosted service
     /// </summary>
-    public abstract class HostedServiceBase : DisposableBase, IHostedService
+    public abstract class HostedServiceBase : DisposableBase, IServiceWorker, IHostedService
     {
         /// <summary>
         /// Thread synchronization
@@ -24,6 +24,10 @@ namespace wan24.Core
         /// Service task
         /// </summary>
         protected Task? ServiceTask = null;
+        /// <summary>
+        /// Last exception
+        /// </summary>
+        protected Exception? _LastException = null;
 
         /// <summary>
         /// Constructor
@@ -36,6 +40,11 @@ namespace wan24.Core
         public bool IsRunning { get; protected set; }
 
         /// <summary>
+        /// Start time
+        /// </summary>
+        public DateTime Started { get; protected set; } = DateTime.MinValue;
+
+        /// <summary>
         /// Is stopping?
         /// </summary>
         public bool IsStopping => StopTask is not null;
@@ -43,7 +52,20 @@ namespace wan24.Core
         /// <summary>
         /// Last exception
         /// </summary>
-        public Exception? LastException { get; protected set; }
+        public virtual Exception? LastException
+        {
+            get => _LastException;
+            protected set
+            {
+                _LastException = value;
+                if (value is not null) ErrorHandling.Handle(new($"{this} stopped exceptional", value, this));
+            }
+        }
+
+        /// <summary>
+        /// Name
+        /// </summary>
+        public string? Name { get; set; }
 
         /// <inheritdoc/>
         public virtual async Task StartAsync(CancellationToken cancellationToken = default)
@@ -72,6 +94,9 @@ namespace wan24.Core
             await stopTask.WaitAsync(cancellationToken).DynamicContext();
         }
 
+        /// <inheritdoc/>
+        public override string ToString() => $"Service \"{Name ?? "(unnamed)"}\" ({GetType()}, started {Started})";
+
         /// <summary>
         /// Service handler
         /// </summary>
@@ -86,14 +111,13 @@ namespace wan24.Core
                 if (ex.CancellationToken != Cancellation!.Token)
                 {
                     LastException = ex;
-                    OnException?.Invoke(this, new());
-                    throw;
+                    RaiseOnException();
                 }
             }
             catch (Exception ex)
             {
                 LastException = ex;
-                OnException?.Invoke(this, new());
+                RaiseOnException();
             }
             finally
             {
@@ -128,6 +152,21 @@ namespace wan24.Core
             Sync.Dispose();
         }
 
+        #region IServiceWorker
+        /// <inheritdoc/>
+        Task IServiceWorker.StartAsync() => StartAsync();
+
+        /// <inheritdoc/>
+        Task IServiceWorker.StopAsync() => StopAsync();
+
+        /// <inheritdoc/>
+        async Task IServiceWorker.RestartAsync()
+        {
+            await StopAsync().DynamicContext();
+            await StartAsync().DynamicContext();
+        }
+        #endregion
+
         /// <summary>
         /// Delegate for a hosted service event
         /// </summary>
@@ -139,6 +178,10 @@ namespace wan24.Core
         /// Raised on exception
         /// </summary>
         public event HostedService_Delegate? OnException;
+        /// <summary>
+        /// Raise the <see cref="OnException"/> event
+        /// </summary>
+        protected virtual void RaiseOnException() => OnException?.Invoke(this, new());
 
         /// <summary>
         /// Cast as running-flag
