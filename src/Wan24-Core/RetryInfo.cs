@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Retry informations
@@ -47,9 +49,9 @@
         public T? Result { get; set; }
 
         /// <summary>
-        /// Was cancelled?
+        /// Was canceled?
         /// </summary>
-        public bool WasCancelled => !Succeed && Exceptions.LastOrDefault() is OperationCanceledException;
+        public bool WasCanceled => !Succeed && Exceptions.LastOrDefault() is OperationCanceledException;
 
         /// <summary>
         /// Was timeout?
@@ -71,18 +73,21 @@
         /// Cast as <see cref="Succeed"/>
         /// </summary>
         /// <param name="info"><see cref="RetryInfo{T}"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator bool(in RetryInfo<T> info) => info.Succeed;
 
         /// <summary>
         /// Cast as <see cref="NumberOfTries"/>
         /// </summary>
         /// <param name="info"><see cref="RetryInfo{T}"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator int(in RetryInfo<T> info) => info.NumberOfTries;
 
         /// <summary>
         /// Cast as <see cref="Result"/>
         /// </summary>
         /// <param name="info"><see cref="RetryInfo{T}"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator T?(in RetryInfo<T> info) => info.Result;
     }
 }

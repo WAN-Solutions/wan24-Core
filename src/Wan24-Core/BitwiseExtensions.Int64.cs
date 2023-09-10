@@ -2,10 +2,8 @@
 
 namespace wan24.Core
 {
-    /// <summary>
-    /// Bitwise Int32 extensions
-    /// </summary>
-    public static class BitwiseInt32Extensions
+    // Int64
+    public static partial class BitwiseExtensions
     {
         /// <summary>
         /// Shift left
@@ -14,7 +12,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int ShiftLeft(this int value, in int bits) => value << bits;
+        public static long ShiftLeft(this long value, in int bits) => value << bits;
 
         /// <summary>
         /// Shift left
@@ -23,7 +21,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int ShiftRight(this int value, in int bits) => value >> bits;
+        public static long ShiftRight(this long value, in int bits) => value >> bits;
 
         /// <summary>
         /// Logical OR
@@ -32,7 +30,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int Or(this int value, in int other) => value | other;
+        public static long Or(this long value, in long other) => value | other;
 
         /// <summary>
         /// Logical AND
@@ -41,7 +39,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int And(this int value, in int other) => value & other;
+        public static long And(this long value, in long other) => value & other;
 
         /// <summary>
         /// Logical XOR
@@ -50,7 +48,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int Xor(this int value, in int other) => value ^ other;
+        public static long Xor(this long value, in long other) => value ^ other;
 
         /// <summary>
         /// Has flags?
@@ -59,7 +57,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Has the flags?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool HasFlags(this int value, in int flags) => (value & flags) == flags;
+        public static bool HasFlags(this long value, in long flags) => (value & flags) == flags;
 
         /// <summary>
         /// Add flags
@@ -68,7 +66,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int AddFlags(this int value, in int flags) => value | flags;
+        public static long AddFlags(this long value, in long flags) => value | flags;
 
         /// <summary>
         /// Remove flags
@@ -77,7 +75,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int RemoveFlags(this int value, in int flags) => value & ~flags;
+        public static long RemoveFlags(this long value, in long flags) => value & ~flags;
 
         /// <summary>
         /// Cast as signed byte
@@ -85,7 +83,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte ToSByte(this int value) => (sbyte)value;
+        public static sbyte ToSByte(this long value) => (sbyte)value;
 
         /// <summary>
         /// Cast as byte
@@ -93,7 +91,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte ToByte(this int value) => (byte)value;
+        public static byte ToByte(this long value) => (byte)value;
 
         /// <summary>
         /// Cast as short
@@ -101,7 +99,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static short ToShort(this int value) => (short)value;
+        public static short ToShort(this long value) => (short)value;
 
         /// <summary>
         /// Cast as unsigned short
@@ -109,7 +107,15 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ushort ToUShort(this int value) => (ushort)value;
+        public static ushort ToUShort(this long value) => (ushort)value;
+
+        /// <summary>
+        /// Cast as integer
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static int ToInt(this long value) => (int)value;
 
         /// <summary>
         /// Cast as unsigned integer
@@ -117,15 +123,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static uint ToUInt(this int value) => (uint)value;
-
-        /// <summary>
-        /// Cast as long
-        /// </summary>
-        /// <param name="value">Value</param>
-        /// <returns>Value</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static long ToLong(this int value) => value;
+        public static uint ToUInt(this long value) => (uint)value;
 
         /// <summary>
         /// Cast as unsigned long
@@ -133,6 +131,6 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ulong ToULong(this int value) => (ulong)value;
+        public static ulong ToULong(this long value) => (ulong)value;
     }
 }

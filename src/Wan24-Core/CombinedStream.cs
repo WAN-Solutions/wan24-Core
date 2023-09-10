@@ -206,27 +206,23 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override void Close()
         {
-            if (IsClosed) return;
+            if (!DoClose()) return;
+            if (!LeaveOpen) foreach (Stream stream in Streams) stream.Close();
             base.Close();
-            if (LeaveOpen) return;
-            foreach (Stream stream in Streams) stream.Close();
         }
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            if (IsDisposing) return;
+            if (!LeaveOpen) Streams.DisposeAll();
             base.Dispose(disposing);
-            if (LeaveOpen) return;
-            Streams.DisposeAll();
         }
 
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
+            if (!LeaveOpen) await Streams.DisposeAllAsync().DynamicContext();
             await base.DisposeCore().DynamicContext();
-            if (LeaveOpen) return;
-            await Streams.DisposeAllAsync().DynamicContext();
         }
     }
 }

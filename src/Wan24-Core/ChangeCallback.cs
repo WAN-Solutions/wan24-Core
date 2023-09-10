@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Change callback
@@ -29,6 +31,7 @@
         /// <summary>
         /// Invoke the callback
         /// </summary>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public virtual void Invoke() => Callback(State);
 
         /// <inheritdoc/>

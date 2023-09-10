@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Disposable lazy value
@@ -49,16 +51,7 @@
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            lock (SyncObject)
-                if (HasValue)
-                    if (_Value is IDisposable disposable)
-                    {
-                        disposable.Dispose();
-                    }
-                    else if (_Value is IAsyncDisposable asyncDisposable)
-                    {
-                        asyncDisposable.DisposeAsync().AsTask().Wait();
-                    }
+            lock (SyncObject) if (HasValue) _Value.TryDispose();
         }
 
         /// <inheritdoc/>
@@ -67,7 +60,7 @@
             T? value = default;
             bool dispose = false;
             lock (SyncObject)
-                if (HasValue)
+                if (HasValue) 
                 {
                     value = _Value!;
                     dispose = true;
@@ -79,12 +72,14 @@
         /// Cast as value
         /// </summary>
         /// <param name="lazyValue">Lazy value</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator T(in AsyncDisposableLazyValue<T> lazyValue) => lazyValue.Value;
 
         /// <summary>
         /// Cast as has-value-flag
         /// </summary>
         /// <param name="lazyValue">Lazy value</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator bool(in AsyncDisposableLazyValue<T> lazyValue) => lazyValue.HasValue;
     }
 }

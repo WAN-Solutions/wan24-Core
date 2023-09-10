@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Net;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -81,7 +82,11 @@ namespace wan24.Core
         /// <summary>
         /// Structure size in bytes
         /// </summary>
-        public int StructureSize => Encoding.Unicode.GetByteCount(Hostname) + sizeof(ushort);
+        public int StructureSize
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            get => Encoding.Unicode.GetByteCount(Hostname) + sizeof(ushort);
+        }
 
         /// <summary>
         /// Resolve IP endpoints for the hostname
@@ -111,6 +116,7 @@ namespace wan24.Core
         /// Get the bytes for this host endpoint
         /// </summary>
         /// <returns>Bytes</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public byte[] ToBytes()
         {
             byte[] res = new byte[StructureSize];
@@ -135,6 +141,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
         public override string ToString() => $"{Hostname}:{Port}";
 
         /// <summary>
@@ -142,6 +149,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Host endpoint</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static HostEndPoint Parse(in string str)
         {
             string[] info = str.Split(':');
@@ -201,54 +209,63 @@ namespace wan24.Core
         /// Cast as bytes
         /// </summary>
         /// <param name="hep"><see cref="HostEndPoint"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator byte[](in HostEndPoint hep) => hep.ToBytes();
 
         /// <summary>
         /// Cast from bytes
         /// </summary>
         /// <param name="buffer">Buffer</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator HostEndPoint(in byte[] buffer) => new(buffer);
 
         /// <summary>
         /// Cast from bytes
         /// </summary>
         /// <param name="buffer">Buffer</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator HostEndPoint(in Span<byte> buffer) => new(buffer);
 
         /// <summary>
         /// Cast from bytes
         /// </summary>
         /// <param name="buffer">Buffer</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator HostEndPoint(in ReadOnlySpan<byte> buffer) => new(buffer);
 
         /// <summary>
         /// Cast from bytes
         /// </summary>
         /// <param name="buffer">Buffer</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator HostEndPoint(in Memory<byte> buffer) => new(buffer.Span);
 
         /// <summary>
         /// Cast from bytes
         /// </summary>
         /// <param name="buffer">Buffer</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator HostEndPoint(in ReadOnlyMemory<byte> buffer) => new(buffer.Span);
 
         /// <summary>
         /// Cast as port number
         /// </summary>
         /// <param name="hep"><see cref="HostEndPoint"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator int(in HostEndPoint hep) => hep.Port;
 
         /// <summary>
         /// Cast as hostname
         /// </summary>
         /// <param name="hep"><see cref="HostEndPoint"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator string(in HostEndPoint hep) => hep.Hostname;
 
         /// <summary>
         /// Cast as first IP endpoint
         /// </summary>
         /// <param name="hep"><see cref="HostEndPoint"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator IPEndPoint?(in HostEndPoint hep) => hep.ResolvedIpEndPoints.FirstOrDefault();
     }
 }

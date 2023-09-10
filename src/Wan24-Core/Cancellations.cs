@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// <see cref="Cancellations"/> combines multiple <see cref="CancellationToken"/> into one
@@ -85,12 +87,14 @@
         /// Cast as cancellation token
         /// </summary>
         /// <param name="cancellations"><see cref="Cancellations"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator CancellationToken(in Cancellations cancellations) => cancellations.Cancellation;
 
         /// <summary>
         /// Cast as disposed flag
         /// </summary>
         /// <param name="cancellations"><see cref="Cancellations"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator bool(in Cancellations cancellations) => !cancellations.IsDisposing;
     }
 }

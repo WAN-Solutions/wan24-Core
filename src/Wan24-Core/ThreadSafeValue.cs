@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Thread-safe value
@@ -103,12 +105,14 @@
         /// Cast as value
         /// </summary>
         /// <param name="value">Value</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator T?(in ThreadSafeValue<T?> value) => value.Value;
 
         /// <summary>
         /// Cast as new instance
         /// </summary>
         /// <param name="value">Value</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator ThreadSafeValue<T>(in T? value) => new(value);
     }
 }

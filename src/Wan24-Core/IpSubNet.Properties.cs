@@ -175,6 +175,7 @@ namespace wan24.Core
         /// </summary>
         public IPAddress NetworkIPAddress
         {
+            [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
@@ -186,6 +187,7 @@ namespace wan24.Core
         /// </summary>
         public IPAddress MaskIPAddress
         {
+            [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
@@ -197,6 +199,7 @@ namespace wan24.Core
         /// </summary>
         public IPAddress BroadcastIPAddress
         {
+            [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
@@ -208,6 +211,7 @@ namespace wan24.Core
         /// </summary>
         public IPAddress MaskedNetworkIPAddress
         {
+            [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif

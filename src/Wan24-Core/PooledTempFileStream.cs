@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Pooled temporary file stream
@@ -60,6 +62,7 @@
         public static int BufferSize { get; set; } = DEFAULT_BUFFER_SIZE;
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
         public void Reset()
         {
             SetLength(0);

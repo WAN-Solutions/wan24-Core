@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Configuration option
@@ -298,6 +300,7 @@
         /// Cast as value
         /// </summary>
         /// <param name="option">Option</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator tValue?(ConfigOption<tValue, tConfig> option) => option.FinalValue;
     }
 }

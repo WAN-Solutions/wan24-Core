@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Runtime;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -37,6 +38,7 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="data">Parser data (accessable with the zero based index)</param>
         /// <returns>Parsed string</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static string Parse(this string str, params string[] data)
         {
             int len = data.Length;

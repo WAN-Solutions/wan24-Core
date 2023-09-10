@@ -168,6 +168,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String  (use <c>'</c> or <c>"</c> for a quoted value, <c>\</c> for escaping within a quoted value, double escape <c>\</c>)</param>
         /// <returns>Arguments</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static CliArguments Parse(in ReadOnlySpan<char> str) => new(Split(str));
 
         /// <summary>

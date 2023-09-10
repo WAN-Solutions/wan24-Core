@@ -29,6 +29,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="disposables">Disposables</param>
         /// <param name="parallel">Dispose parallel?</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static async Task DisposeAllAsync(this IEnumerable<IAsyncDisposable> disposables, bool parallel = false)
         {
             if (parallel)

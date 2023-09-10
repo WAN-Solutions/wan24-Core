@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Reflection;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -163,6 +164,7 @@ namespace wan24.Core
         /// <param name="pi">Property</param>
         /// <param name="obj">Object</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static object? GetValueFast(this PropertyInfoExt pi, in object? obj)
         {
             if (pi.Getter is null) throw new InvalidOperationException("The property has no getter");
@@ -206,6 +208,7 @@ namespace wan24.Core
         /// <param name="pi">Property</param>
         /// <param name="obj">Object</param>
         /// <param name="value">Value</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static void SetValueFast(this PropertyInfoExt pi, in object? obj, in object? value)
         {
             if (pi.Setter is null) throw new InvalidOperationException("The property has no setter");

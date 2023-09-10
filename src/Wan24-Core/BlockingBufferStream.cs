@@ -8,7 +8,7 @@
         /// <summary>
         /// Buffer
         /// </summary>
-        protected readonly RentedArray<byte> Buffer;
+        protected readonly RentedArrayStruct<byte> Buffer;
         /// <summary>
         /// Thread synchronization for buffer access
         /// </summary>
@@ -407,7 +407,6 @@
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            if (IsDisposing) return;
             using SemaphoreSync bufferSync = BufferSync;
             using (SemaphoreSyncContext ssc = bufferSync.SyncContext())
             {

@@ -557,7 +557,7 @@ public static byte[] Decode(this string str, in ReadOnlyMemory&lt;char&gt;? char
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_DecodeByte_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.DecodeByte(ReadOnlySpan%7BSystem.Char%7D%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Byte%5B%5D%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Decoding.cs/#L16">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.DecodingExtensions.cs/#L16">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_DecodeByte_" data-uid="wan24.Core.ByteEncoding.DecodeByte*"></a>
   <h4 id="wan24_Core_ByteEncoding_DecodeByte_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__" data-uid="wan24.Core.ByteEncoding.DecodeByte(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}}@,System.Byte[],System.Buffers.ArrayPool{System.Byte})">DecodeByte(ReadOnlySpan&lt;Char&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, Byte[], ArrayPool&lt;Byte&gt;)</h4>
@@ -625,7 +625,7 @@ public static byte[] Decode(this string str, in ReadOnlyMemory&lt;char&gt;? char
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_DecodeCompactNumber__1_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.DecodeCompactNumber%60%601(ReadOnlySpan%7BSystem.Char%7D%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%2CSystem.Byte%5B%5D%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Number.cs/#L145">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.NumberExtensions.cs/#L145">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_DecodeCompactNumber_" data-uid="wan24.Core.ByteEncoding.DecodeCompactNumber*"></a>
   <h4 id="wan24_Core_ByteEncoding_DecodeCompactNumber__1_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char___System_Byte___System_Buffers_ArrayPool_System_Byte__" data-uid="wan24.Core.ByteEncoding.DecodeCompactNumber``1(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}},System.Byte[],System.Buffers.ArrayPool{System.Byte})">DecodeCompactNumber&lt;T&gt;(ReadOnlySpan&lt;Char&gt;, Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, Byte[], ArrayPool&lt;Byte&gt;)</h4>
@@ -635,7 +635,7 @@ public static byte[] Decode(this string str, in ReadOnlyMemory&lt;char&gt;? char
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static T DecodeCompactNumber&lt;T&gt;(this ReadOnlySpan&lt;char&gt; str, ReadOnlyMemory&lt;char&gt;? charMap = null, byte[] buffer = null, ArrayPool&lt;byte&gt; pool = null)
-    where T : struct, IConvertible</code></pre>
+    where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable&lt;T&gt;, IEquatable&lt;T&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -710,7 +710,7 @@ public static byte[] Decode(this string str, in ReadOnlyMemory&lt;char&gt;? char
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_DecodeCompactNumber__1_Span_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte____System_Buffers_ArrayPool_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.DecodeCompactNumber%60%601(Span%7BSystem.Char%7D%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Byte%5B%5D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Number.cs/#L128">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.NumberExtensions.cs/#L128">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_DecodeCompactNumber_" data-uid="wan24.Core.ByteEncoding.DecodeCompactNumber*"></a>
   <h4 id="wan24_Core_ByteEncoding_DecodeCompactNumber__1_Span_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte____System_Buffers_ArrayPool_System_Byte___" data-uid="wan24.Core.ByteEncoding.DecodeCompactNumber``1(Span{System.Char},System.Nullable{ReadOnlyMemory{System.Char}}@,System.Byte[]@,System.Buffers.ArrayPool{System.Byte}@)">DecodeCompactNumber&lt;T&gt;(Span&lt;Char&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Byte[], in ArrayPool&lt;Byte&gt;)</h4>
@@ -721,7 +721,7 @@ public static byte[] Decode(this string str, in ReadOnlyMemory&lt;char&gt;? char
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
 public static T DecodeCompactNumber&lt;T&gt;(this Span&lt;char&gt; str, in ReadOnlyMemory&lt;char&gt;? charMap = null, in byte[] buffer = null, in ArrayPool&lt;byte&gt; pool = null)
-    where T : struct, IConvertible</code></pre>
+    where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable&lt;T&gt;, IEquatable&lt;T&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -796,7 +796,7 @@ public static T DecodeCompactNumber&lt;T&gt;(this Span&lt;char&gt; str, in ReadO
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_DecodeCompactNumber__1_System_Char___System_Nullable_ReadOnlyMemory_System_Char____System_Byte____System_Buffers_ArrayPool_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.DecodeCompactNumber%60%601(System.Char%5B%5D%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Byte%5B%5D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Number.cs/#L94">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.NumberExtensions.cs/#L94">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_DecodeCompactNumber_" data-uid="wan24.Core.ByteEncoding.DecodeCompactNumber*"></a>
   <h4 id="wan24_Core_ByteEncoding_DecodeCompactNumber__1_System_Char___System_Nullable_ReadOnlyMemory_System_Char____System_Byte____System_Buffers_ArrayPool_System_Byte___" data-uid="wan24.Core.ByteEncoding.DecodeCompactNumber``1(System.Char[],System.Nullable{ReadOnlyMemory{System.Char}}@,System.Byte[]@,System.Buffers.ArrayPool{System.Byte}@)">DecodeCompactNumber&lt;T&gt;(Char[], in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Byte[], in ArrayPool&lt;Byte&gt;)</h4>
@@ -807,7 +807,7 @@ public static T DecodeCompactNumber&lt;T&gt;(this Span&lt;char&gt; str, in ReadO
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
 public static T DecodeCompactNumber&lt;T&gt;(this char[] str, in ReadOnlyMemory&lt;char&gt;? charMap = null, in byte[] buffer = null, in ArrayPool&lt;byte&gt; pool = null)
-    where T : struct, IConvertible</code></pre>
+    where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable&lt;T&gt;, IEquatable&lt;T&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -882,7 +882,7 @@ public static T DecodeCompactNumber&lt;T&gt;(this char[] str, in ReadOnlyMemory&
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_DecodeCompactNumber__1_System_String_System_Nullable_ReadOnlyMemory_System_Char____System_Byte____System_Buffers_ArrayPool_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.DecodeCompactNumber%60%601(System.String%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Byte%5B%5D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Number.cs/#L111">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.NumberExtensions.cs/#L111">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_DecodeCompactNumber_" data-uid="wan24.Core.ByteEncoding.DecodeCompactNumber*"></a>
   <h4 id="wan24_Core_ByteEncoding_DecodeCompactNumber__1_System_String_System_Nullable_ReadOnlyMemory_System_Char____System_Byte____System_Buffers_ArrayPool_System_Byte___" data-uid="wan24.Core.ByteEncoding.DecodeCompactNumber``1(System.String,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Byte[]@,System.Buffers.ArrayPool{System.Byte}@)">DecodeCompactNumber&lt;T&gt;(String, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Byte[], in ArrayPool&lt;Byte&gt;)</h4>
@@ -893,7 +893,7 @@ public static T DecodeCompactNumber&lt;T&gt;(this char[] str, in ReadOnlyMemory&
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
 public static T DecodeCompactNumber&lt;T&gt;(this string str, in ReadOnlyMemory&lt;char&gt;? charMap = null, in byte[] buffer = null, in ArrayPool&lt;byte&gt; pool = null)
-    where T : struct, IConvertible</code></pre>
+    where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable&lt;T&gt;, IEquatable&lt;T&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -968,7 +968,7 @@ public static T DecodeCompactNumber&lt;T&gt;(this string str, in ReadOnlyMemory&
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_DecodeDecimal_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.DecodeDecimal(ReadOnlySpan%7BSystem.Char%7D%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Byte%5B%5D%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Decoding.cs/#L226">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.DecodingExtensions.cs/#L226">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_DecodeDecimal_" data-uid="wan24.Core.ByteEncoding.DecodeDecimal*"></a>
   <h4 id="wan24_Core_ByteEncoding_DecodeDecimal_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__" data-uid="wan24.Core.ByteEncoding.DecodeDecimal(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}}@,System.Byte[],System.Buffers.ArrayPool{System.Byte})">DecodeDecimal(ReadOnlySpan&lt;Char&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, Byte[], ArrayPool&lt;Byte&gt;)</h4>
@@ -1036,7 +1036,7 @@ public static T DecodeCompactNumber&lt;T&gt;(this string str, in ReadOnlyMemory&
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_DecodeDouble_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.DecodeDouble(ReadOnlySpan%7BSystem.Char%7D%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Byte%5B%5D%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Decoding.cs/#L205">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.DecodingExtensions.cs/#L205">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_DecodeDouble_" data-uid="wan24.Core.ByteEncoding.DecodeDouble*"></a>
   <h4 id="wan24_Core_ByteEncoding_DecodeDouble_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__" data-uid="wan24.Core.ByteEncoding.DecodeDouble(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}}@,System.Byte[],System.Buffers.ArrayPool{System.Byte})">DecodeDouble(ReadOnlySpan&lt;Char&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, Byte[], ArrayPool&lt;Byte&gt;)</h4>
@@ -1104,7 +1104,7 @@ public static T DecodeCompactNumber&lt;T&gt;(this string str, in ReadOnlyMemory&
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_DecodeFloat_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.DecodeFloat(ReadOnlySpan%7BSystem.Char%7D%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Byte%5B%5D%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Decoding.cs/#L184">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.DecodingExtensions.cs/#L184">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_DecodeFloat_" data-uid="wan24.Core.ByteEncoding.DecodeFloat*"></a>
   <h4 id="wan24_Core_ByteEncoding_DecodeFloat_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__" data-uid="wan24.Core.ByteEncoding.DecodeFloat(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}}@,System.Byte[],System.Buffers.ArrayPool{System.Byte})">DecodeFloat(ReadOnlySpan&lt;Char&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, Byte[], ArrayPool&lt;Byte&gt;)</h4>
@@ -1172,7 +1172,7 @@ public static T DecodeCompactNumber&lt;T&gt;(this string str, in ReadOnlyMemory&
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_DecodeInt_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.DecodeInt(ReadOnlySpan%7BSystem.Char%7D%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Byte%5B%5D%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Decoding.cs/#L121">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.DecodingExtensions.cs/#L121">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_DecodeInt_" data-uid="wan24.Core.ByteEncoding.DecodeInt*"></a>
   <h4 id="wan24_Core_ByteEncoding_DecodeInt_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__" data-uid="wan24.Core.ByteEncoding.DecodeInt(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}}@,System.Byte[],System.Buffers.ArrayPool{System.Byte})">DecodeInt(ReadOnlySpan&lt;Char&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, Byte[], ArrayPool&lt;Byte&gt;)</h4>
@@ -1240,7 +1240,7 @@ public static T DecodeCompactNumber&lt;T&gt;(this string str, in ReadOnlyMemory&
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_DecodeLong_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.DecodeLong(ReadOnlySpan%7BSystem.Char%7D%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Byte%5B%5D%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Decoding.cs/#L163">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.DecodingExtensions.cs/#L163">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_DecodeLong_" data-uid="wan24.Core.ByteEncoding.DecodeLong*"></a>
   <h4 id="wan24_Core_ByteEncoding_DecodeLong_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__" data-uid="wan24.Core.ByteEncoding.DecodeLong(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}}@,System.Byte[],System.Buffers.ArrayPool{System.Byte})">DecodeLong(ReadOnlySpan&lt;Char&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, Byte[], ArrayPool&lt;Byte&gt;)</h4>
@@ -1308,7 +1308,7 @@ public static T DecodeCompactNumber&lt;T&gt;(this string str, in ReadOnlyMemory&
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_DecodeSByte_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.DecodeSByte(ReadOnlySpan%7BSystem.Char%7D%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Byte%5B%5D%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Decoding.cs/#L37">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.DecodingExtensions.cs/#L37">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_DecodeSByte_" data-uid="wan24.Core.ByteEncoding.DecodeSByte*"></a>
   <h4 id="wan24_Core_ByteEncoding_DecodeSByte_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__" data-uid="wan24.Core.ByteEncoding.DecodeSByte(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}}@,System.Byte[],System.Buffers.ArrayPool{System.Byte})">DecodeSByte(ReadOnlySpan&lt;Char&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, Byte[], ArrayPool&lt;Byte&gt;)</h4>
@@ -1376,7 +1376,7 @@ public static T DecodeCompactNumber&lt;T&gt;(this string str, in ReadOnlyMemory&
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_DecodeShort_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.DecodeShort(ReadOnlySpan%7BSystem.Char%7D%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Byte%5B%5D%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Decoding.cs/#L79">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.DecodingExtensions.cs/#L79">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_DecodeShort_" data-uid="wan24.Core.ByteEncoding.DecodeShort*"></a>
   <h4 id="wan24_Core_ByteEncoding_DecodeShort_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__" data-uid="wan24.Core.ByteEncoding.DecodeShort(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}}@,System.Byte[],System.Buffers.ArrayPool{System.Byte})">DecodeShort(ReadOnlySpan&lt;Char&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, Byte[], ArrayPool&lt;Byte&gt;)</h4>
@@ -1444,7 +1444,7 @@ public static T DecodeCompactNumber&lt;T&gt;(this string str, in ReadOnlyMemory&
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_DecodeUInt_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.DecodeUInt(ReadOnlySpan%7BSystem.Char%7D%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Byte%5B%5D%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Decoding.cs/#L100">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.DecodingExtensions.cs/#L100">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_DecodeUInt_" data-uid="wan24.Core.ByteEncoding.DecodeUInt*"></a>
   <h4 id="wan24_Core_ByteEncoding_DecodeUInt_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__" data-uid="wan24.Core.ByteEncoding.DecodeUInt(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}}@,System.Byte[],System.Buffers.ArrayPool{System.Byte})">DecodeUInt(ReadOnlySpan&lt;Char&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, Byte[], ArrayPool&lt;Byte&gt;)</h4>
@@ -1512,7 +1512,7 @@ public static T DecodeCompactNumber&lt;T&gt;(this string str, in ReadOnlyMemory&
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_DecodeULong_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.DecodeULong(ReadOnlySpan%7BSystem.Char%7D%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Byte%5B%5D%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Decoding.cs/#L142">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.DecodingExtensions.cs/#L142">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_DecodeULong_" data-uid="wan24.Core.ByteEncoding.DecodeULong*"></a>
   <h4 id="wan24_Core_ByteEncoding_DecodeULong_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__" data-uid="wan24.Core.ByteEncoding.DecodeULong(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}}@,System.Byte[],System.Buffers.ArrayPool{System.Byte})">DecodeULong(ReadOnlySpan&lt;Char&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, Byte[], ArrayPool&lt;Byte&gt;)</h4>
@@ -1580,7 +1580,7 @@ public static T DecodeCompactNumber&lt;T&gt;(this string str, in ReadOnlyMemory&
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_DecodeUShort_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.DecodeUShort(ReadOnlySpan%7BSystem.Char%7D%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Byte%5B%5D%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Decoding.cs/#L58">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.DecodingExtensions.cs/#L58">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_DecodeUShort_" data-uid="wan24.Core.ByteEncoding.DecodeUShort*"></a>
   <h4 id="wan24_Core_ByteEncoding_DecodeUShort_ReadOnlySpan_System_Char__System_Nullable_ReadOnlyMemory_System_Char____System_Byte___System_Buffers_ArrayPool_System_Byte__" data-uid="wan24.Core.ByteEncoding.DecodeUShort(ReadOnlySpan{System.Char},System.Nullable{ReadOnlyMemory{System.Char}}@,System.Byte[],System.Buffers.ArrayPool{System.Byte})">DecodeUShort(ReadOnlySpan&lt;Char&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, Byte[], ArrayPool&lt;Byte&gt;)</h4>
@@ -1929,7 +1929,7 @@ public static char[] Encode(this Span&lt;byte&gt; data, in ReadOnlyMemory&lt;cha
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_Byte_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.Byte%2CSpan%7BSystem.Byte%7D%40%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L46">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L46">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_Byte_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____" data-uid="wan24.Core.ByteEncoding.Encode(System.Byte,Span{System.Byte}@,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@)">Encode(Byte, in Span&lt;Byte&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[])</h4>
@@ -1998,7 +1998,7 @@ public static char[] Encode(this byte value, in Span&lt;byte&gt; buffer, in Read
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_Byte_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.Byte%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L18">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L18">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_Byte_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___" data-uid="wan24.Core.ByteEncoding.Encode(System.Byte,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@,System.Buffers.ArrayPool{System.Byte}@)">Encode(Byte, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[], in ArrayPool&lt;Byte&gt;)</h4>
@@ -2130,7 +2130,7 @@ public static char[] Encode(this byte[] data, in ReadOnlyMemory&lt;char&gt;? cha
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_Decimal_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.Decimal%2CSpan%7BSystem.Byte%7D%40%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L516">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L516">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_Decimal_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____" data-uid="wan24.Core.ByteEncoding.Encode(System.Decimal,Span{System.Byte}@,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@)">Encode(Decimal, in Span&lt;Byte&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[])</h4>
@@ -2199,7 +2199,7 @@ public static char[] Encode(this decimal value, in Span&lt;byte&gt; buffer, in R
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_Decimal_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.Decimal%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L488">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L488">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_Decimal_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___" data-uid="wan24.Core.ByteEncoding.Encode(System.Decimal,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@,System.Buffers.ArrayPool{System.Byte}@)">Encode(Decimal, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[], in ArrayPool&lt;Byte&gt;)</h4>
@@ -2268,7 +2268,7 @@ public static char[] Encode(this decimal value, in ReadOnlyMemory&lt;char&gt;? c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_Double_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.Double%2CSpan%7BSystem.Byte%7D%40%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L469">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L469">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_Double_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____" data-uid="wan24.Core.ByteEncoding.Encode(System.Double,Span{System.Byte}@,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@)">Encode(Double, in Span&lt;Byte&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[])</h4>
@@ -2337,7 +2337,7 @@ public static char[] Encode(this double value, in Span&lt;byte&gt; buffer, in Re
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_Double_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.Double%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L441">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L441">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_Double_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___" data-uid="wan24.Core.ByteEncoding.Encode(System.Double,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@,System.Buffers.ArrayPool{System.Byte}@)">Encode(Double, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[], in ArrayPool&lt;Byte&gt;)</h4>
@@ -2406,7 +2406,7 @@ public static char[] Encode(this double value, in ReadOnlyMemory&lt;char&gt;? ch
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_Int16_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.Int16%2CSpan%7BSystem.Byte%7D%40%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L187">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L187">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_Int16_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____" data-uid="wan24.Core.ByteEncoding.Encode(System.Int16,Span{System.Byte}@,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@)">Encode(Int16, in Span&lt;Byte&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[])</h4>
@@ -2475,7 +2475,7 @@ public static char[] Encode(this short value, in Span&lt;byte&gt; buffer, in Rea
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_Int16_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.Int16%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L159">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L159">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_Int16_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___" data-uid="wan24.Core.ByteEncoding.Encode(System.Int16,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@,System.Buffers.ArrayPool{System.Byte}@)">Encode(Int16, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[], in ArrayPool&lt;Byte&gt;)</h4>
@@ -2544,7 +2544,7 @@ public static char[] Encode(this short value, in ReadOnlyMemory&lt;char&gt;? cha
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_Int32_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.Int32%2CSpan%7BSystem.Byte%7D%40%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L281">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L281">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_Int32_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____" data-uid="wan24.Core.ByteEncoding.Encode(System.Int32,Span{System.Byte}@,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@)">Encode(Int32, in Span&lt;Byte&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[])</h4>
@@ -2613,7 +2613,7 @@ public static char[] Encode(this int value, in Span&lt;byte&gt; buffer, in ReadO
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_Int32_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.Int32%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L253">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L253">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_Int32_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___" data-uid="wan24.Core.ByteEncoding.Encode(System.Int32,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@,System.Buffers.ArrayPool{System.Byte}@)">Encode(Int32, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[], in ArrayPool&lt;Byte&gt;)</h4>
@@ -2682,7 +2682,7 @@ public static char[] Encode(this int value, in ReadOnlyMemory&lt;char&gt;? charM
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_Int64_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.Int64%2CSpan%7BSystem.Byte%7D%40%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L375">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L375">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_Int64_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____" data-uid="wan24.Core.ByteEncoding.Encode(System.Int64,Span{System.Byte}@,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@)">Encode(Int64, in Span&lt;Byte&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[])</h4>
@@ -2751,7 +2751,7 @@ public static char[] Encode(this long value, in Span&lt;byte&gt; buffer, in Read
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_Int64_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.Int64%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L347">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L347">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_Int64_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___" data-uid="wan24.Core.ByteEncoding.Encode(System.Int64,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@,System.Buffers.ArrayPool{System.Byte}@)">Encode(Int64, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[], in ArrayPool&lt;Byte&gt;)</h4>
@@ -2820,7 +2820,7 @@ public static char[] Encode(this long value, in ReadOnlyMemory&lt;char&gt;? char
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_SByte_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.SByte%2CSpan%7BSystem.Byte%7D%40%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L93">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L93">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_SByte_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____" data-uid="wan24.Core.ByteEncoding.Encode(System.SByte,Span{System.Byte}@,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@)">Encode(SByte, in Span&lt;Byte&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[])</h4>
@@ -2889,7 +2889,7 @@ public static char[] Encode(this sbyte value, in Span&lt;byte&gt; buffer, in Rea
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_SByte_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.SByte%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L65">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L65">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_SByte_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___" data-uid="wan24.Core.ByteEncoding.Encode(System.SByte,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@,System.Buffers.ArrayPool{System.Byte}@)">Encode(SByte, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[], in ArrayPool&lt;Byte&gt;)</h4>
@@ -2958,7 +2958,7 @@ public static char[] Encode(this sbyte value, in ReadOnlyMemory&lt;char&gt;? cha
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_Single_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.Single%2CSpan%7BSystem.Byte%7D%40%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L422">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L422">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_Single_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____" data-uid="wan24.Core.ByteEncoding.Encode(System.Single,Span{System.Byte}@,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@)">Encode(Single, in Span&lt;Byte&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[])</h4>
@@ -3027,7 +3027,7 @@ public static char[] Encode(this float value, in Span&lt;byte&gt; buffer, in Rea
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_Single_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.Single%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L394">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L394">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_Single_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___" data-uid="wan24.Core.ByteEncoding.Encode(System.Single,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@,System.Buffers.ArrayPool{System.Byte}@)">Encode(Single, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[], in ArrayPool&lt;Byte&gt;)</h4>
@@ -3096,7 +3096,7 @@ public static char[] Encode(this float value, in ReadOnlyMemory&lt;char&gt;? cha
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_UInt16_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.UInt16%2CSpan%7BSystem.Byte%7D%40%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L140">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L140">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_UInt16_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____" data-uid="wan24.Core.ByteEncoding.Encode(System.UInt16,Span{System.Byte}@,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@)">Encode(UInt16, in Span&lt;Byte&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[])</h4>
@@ -3165,7 +3165,7 @@ public static char[] Encode(this ushort value, in Span&lt;byte&gt; buffer, in Re
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_UInt16_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.UInt16%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L112">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L112">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_UInt16_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___" data-uid="wan24.Core.ByteEncoding.Encode(System.UInt16,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@,System.Buffers.ArrayPool{System.Byte}@)">Encode(UInt16, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[], in ArrayPool&lt;Byte&gt;)</h4>
@@ -3234,7 +3234,7 @@ public static char[] Encode(this ushort value, in ReadOnlyMemory&lt;char&gt;? ch
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_UInt32_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.UInt32%2CSpan%7BSystem.Byte%7D%40%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L234">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L234">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_UInt32_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____" data-uid="wan24.Core.ByteEncoding.Encode(System.UInt32,Span{System.Byte}@,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@)">Encode(UInt32, in Span&lt;Byte&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[])</h4>
@@ -3303,7 +3303,7 @@ public static char[] Encode(this uint value, in Span&lt;byte&gt; buffer, in Read
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_UInt32_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.UInt32%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L206">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L206">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_UInt32_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___" data-uid="wan24.Core.ByteEncoding.Encode(System.UInt32,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@,System.Buffers.ArrayPool{System.Byte}@)">Encode(UInt32, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[], in ArrayPool&lt;Byte&gt;)</h4>
@@ -3372,7 +3372,7 @@ public static char[] Encode(this uint value, in ReadOnlyMemory&lt;char&gt;? char
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_UInt64_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.UInt64%2CSpan%7BSystem.Byte%7D%40%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L328">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L328">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_UInt64_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char____System_Char____" data-uid="wan24.Core.ByteEncoding.Encode(System.UInt64,Span{System.Byte}@,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@)">Encode(UInt64, in Span&lt;Byte&gt;, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[])</h4>
@@ -3441,7 +3441,7 @@ public static char[] Encode(this ulong value, in Span&lt;byte&gt; buffer, in Rea
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_Encode_System_UInt64_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.Encode(System.UInt64%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%40%2CSystem.Char%5B%5D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Encoding.cs/#L300">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.EncodingExtensions.cs/#L300">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_Encode_" data-uid="wan24.Core.ByteEncoding.Encode*"></a>
   <h4 id="wan24_Core_ByteEncoding_Encode_System_UInt64_System_Nullable_ReadOnlyMemory_System_Char____System_Char____System_Buffers_ArrayPool_System_Byte___" data-uid="wan24.Core.ByteEncoding.Encode(System.UInt64,System.Nullable{ReadOnlyMemory{System.Char}}@,System.Char[]@,System.Buffers.ArrayPool{System.Byte}@)">Encode(UInt64, in Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[], in ArrayPool&lt;Byte&gt;)</h4>
@@ -3510,7 +3510,7 @@ public static char[] Encode(this ulong value, in ReadOnlyMemory&lt;char&gt;? cha
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_EncodeNumberCompact__1___0_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char___System_Char____.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.EncodeNumberCompact%60%601(%60%600%2CSpan%7BSystem.Byte%7D%40%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%2CSystem.Char%5B%5D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Number.cs/#L62">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.NumberExtensions.cs/#L62">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_EncodeNumberCompact_" data-uid="wan24.Core.ByteEncoding.EncodeNumberCompact*"></a>
   <h4 id="wan24_Core_ByteEncoding_EncodeNumberCompact__1___0_Span_System_Byte___System_Nullable_ReadOnlyMemory_System_Char___System_Char____" data-uid="wan24.Core.ByteEncoding.EncodeNumberCompact``1(``0,Span{System.Byte}@,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[]@)">EncodeNumberCompact&lt;T&gt;(T, in Span&lt;Byte&gt;, Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[])</h4>
@@ -3520,7 +3520,7 @@ public static char[] Encode(this ulong value, in ReadOnlyMemory&lt;char&gt;? cha
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static char[] EncodeNumberCompact&lt;T&gt;(this T value, in Span&lt;byte&gt; buffer, ReadOnlyMemory&lt;char&gt;? charMap = null, in char[] res = null)
-    where T : struct, IConvertible</code></pre>
+    where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable&lt;T&gt;, IEquatable&lt;T&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3595,7 +3595,7 @@ public static char[] Encode(this ulong value, in ReadOnlyMemory&lt;char&gt;? cha
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ByteEncoding_EncodeNumberCompact__1___0_System_Nullable_ReadOnlyMemory_System_Char___System_Char____System_Buffers_ArrayPool_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.ByteEncoding.EncodeNumberCompact%60%601(%60%600%2CSystem.Nullable%7BReadOnlyMemory%7BSystem.Char%7D%7D%2CSystem.Char%5B%5D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.Extensions.Number.cs/#L30">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ByteEncoding.NumberExtensions.cs/#L30">View Source</a>
   </span>
   <a id="wan24_Core_ByteEncoding_EncodeNumberCompact_" data-uid="wan24.Core.ByteEncoding.EncodeNumberCompact*"></a>
   <h4 id="wan24_Core_ByteEncoding_EncodeNumberCompact__1___0_System_Nullable_ReadOnlyMemory_System_Char___System_Char____System_Buffers_ArrayPool_System_Byte___" data-uid="wan24.Core.ByteEncoding.EncodeNumberCompact``1(``0,System.Nullable{ReadOnlyMemory{System.Char}},System.Char[]@,System.Buffers.ArrayPool{System.Byte}@)">EncodeNumberCompact&lt;T&gt;(T, Nullable&lt;ReadOnlyMemory&lt;Char&gt;&gt;, in Char[], in ArrayPool&lt;Byte&gt;)</h4>
@@ -3605,7 +3605,7 @@ public static char[] Encode(this ulong value, in ReadOnlyMemory&lt;char&gt;? cha
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static char[] EncodeNumberCompact&lt;T&gt;(this T value, ReadOnlyMemory&lt;char&gt;? charMap = null, in char[] res = null, in ArrayPool&lt;byte&gt; pool = null)
-    where T : struct, IConvertible</code></pre>
+    where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable&lt;T&gt;, IEquatable&lt;T&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

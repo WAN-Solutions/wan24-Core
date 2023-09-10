@@ -45,6 +45,8 @@
                 yield return new("Pools", PoolTable.Pools.Count, "Number of pools");
                 yield return new("Object lock managers", ObjectLockTable.ObjectLocks.Count, "Number of registered object lock manager instances");
                 yield return new("Active object locks", ObjectLockTable.ObjectLocks.Values.Sum(l => l.ActiveLocks), "Number of locked objects");
+                yield return new("Active processes", ProcessTable.Processing.Count, "Number of active registered processings");
+                yield return new("Delayed processes", DelayTable.Delays.Count, "Number of delayed processings");
             }
         }
 
@@ -84,7 +86,7 @@
         public long LockedObjects { get; protected set; } = ObjectLockTable.ObjectLocks.Values.Sum(l => l.ActiveLocks);
 
         /// <inheritdoc/>
-        protected override Task WorkerAsync()
+        protected override Task TimedWorkerAsync()
         {
             WorkingSet = (long)Math.Ceiling((double)(WorkingSet + Environment.WorkingSet) / 2);
             Services = (long)Math.Ceiling((double)(Services + ServiceWorkerTable.ServiceWorkers.Count) / 2);

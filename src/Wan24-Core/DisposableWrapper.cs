@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Disposable wrapper
@@ -112,12 +114,14 @@
         /// Cast as wrapped object
         /// </summary>
         /// <param name="wrapper">Wrapper</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator T(in DisposableWrapper<T> wrapper) => wrapper.Object;
 
         /// <summary>
         /// Cast as disposed status
         /// </summary>
         /// <param name="wrapper">Wrapper</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator bool(in DisposableWrapper<T> wrapper) => !wrapper.IsDisposing;
     }
 }

@@ -237,7 +237,7 @@
         /// <inheritdoc/>
         public override void Close()
         {
-            if (IsClosed) return;
+            if (!DoClose()) return;
             if (CommitOnClose) Commit();
             base.Close();
         }
@@ -245,16 +245,16 @@
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            base.Dispose(disposing);
             ChunkStreams.Values.DisposeAll();
+            base.Dispose(disposing);
         }
 
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
             if (CommitOnClose) await CommitAsync().DynamicContext();
-            await base.DisposeCore().DynamicContext();
             await ChunkStreams.Values.DisposeAllAsync().DynamicContext();
+            await base.DisposeCore().DynamicContext();
         }
     }
 }

@@ -80,7 +80,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public bool IsReadOnly
         {
-            [TargetedPatchingOptOut("TIny method")]
+            [TargetedPatchingOptOut("Tiny method")]
             get => false;
         }
 

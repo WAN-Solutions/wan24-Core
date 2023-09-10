@@ -36,9 +36,9 @@ namespace wan24.Core
                     ),
                     maskRightBits = Vector256.Create(// Mask the used bits after right-shifting
                         (byte)63, 63, 63, 63,// Bits 1..6 of 0
-                        3, 3, 3, 3,// Bits 1..2 of 1
-                        15, 15, 15, 15,// Bits 1..4 of 2
-                        63, 63, 63, 63,// Bits 1..6 of 3
+                        3, 3, 3, 3,// Bits 7..8 of 0
+                        15, 15, 15, 15,// Bits 5..8 of 1
+                        63, 63, 63, 63,// Bits 3..8 of 2
                         63, 63, 63, 63,
                         3, 3, 3, 3,
                         15, 15, 15, 15,
@@ -67,8 +67,8 @@ namespace wan24.Core
                     maskLeftBits = Vector256.Create(// Mask the used bits after left-shifting
                         (byte)0, 0, 0, 0,
                         0, 0, 0, 0,
-                        60, 60, 60, 60,// Bits 3..6 of 1
-                        48, 48, 48, 48,// Bits 4..6 of 2
+                        60, 60, 60, 60,// Bits 1..4 of 1
+                        48, 48, 48, 48,// Bits 1..2 of 2
                         0, 0, 0, 0,
                         0, 0, 0, 0,
                         60, 60, 60, 60,
@@ -179,7 +179,7 @@ namespace wan24.Core
                         0, 0, 0, 0
                     ),
                     maskRightBits = Vector256.Create(// Mask the used bits after right-shifting
-                        (byte)63, 63, 63, 63,// Bits 0..6 of 0
+                        (byte)63, 63, 63, 63,// Bits 1..6 of 0
                         15, 15, 15, 15,// Bits 1..4 of 1
                         3, 3, 3, 3,// Bits 1..2 of 2
                         0, 0, 0, 0,
@@ -211,8 +211,8 @@ namespace wan24.Core
                     maskLeftBits = Vector256.Create(// Mask the used bits after left-shifting
                         0, 0, 0, 0,
                         192, 192, 192, 192,// Bits 7..8 of 0
-                        240, 240, 240, 240,// Bits 4..8 of 1
-                        252, 252, 252, 252,// Bits 2..8 of 2
+                        240, 240, 240, 240,// Bits 5..8 of 1
+                        252, 252, 252, 252,// Bits 3..8 of 2
                         0, 0, 0, 0,
                         192, 192, 192, 192,
                         240, 240, 240, 240,

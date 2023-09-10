@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -123,6 +124,7 @@ namespace wan24.Core
         /// Cast as rented object
         /// </summary>
         /// <param name="pool">Pool</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator T(in DisposableObjectPool<T> pool) => pool.Rent();
     }
 }

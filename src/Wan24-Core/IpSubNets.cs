@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime;
 using System.Runtime.InteropServices;
 
 namespace wan24.Core
@@ -299,7 +300,7 @@ namespace wan24.Core
         /// Get this as array
         /// </summary>
         /// <returns>IP sub-net array</returns>
-        public IpSubNet[] ToArray() => (IpSubNet[])SubNets.Clone();
+        public IpSubNet[] ToArray() => SubNets.CloneArray();
 
         /// <summary>
         /// Get an IP sub-net enumerator
@@ -314,24 +315,28 @@ namespace wan24.Core
         /// Cast as IP sub-net count
         /// </summary>
         /// <param name="subNets"><see cref="IpSubNets"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator int(in IpSubNets subNets) => subNets.Count;
 
         /// <summary>
         /// Cast as IP network kind
         /// </summary>
         /// <param name="subNets"><see cref="IpSubNets"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator IpNetworkKind(in IpSubNets subNets) => subNets.NetworkKind;
 
         /// <summary>
         /// Cast as IP address family
         /// </summary>
         /// <param name="subNets"><see cref="IpSubNets"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator AddressFamily(in IpSubNets subNets) => subNets.AddressFamily;
 
         /// <summary>
         /// Cast as combined IP sub-net
         /// </summary>
         /// <param name="subNets"><see cref="IpSubNets"/></param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static explicit operator IpSubNet(in IpSubNets subNets)
         {
             if (subNets.Count == 0) return IpSubNet.ZeroV4;
@@ -347,6 +352,7 @@ namespace wan24.Core
         /// <param name="subNets"><see cref="IpSubNets"/></param>
         /// <param name="ip"><see cref="IPAddress"/></param>
         /// <returns>If included in any IP sub-net</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator ==(in IpSubNets subNets, in IPAddress ip) => subNets.Includes(ip);
 
         /// <summary>
@@ -355,6 +361,7 @@ namespace wan24.Core
         /// <param name="subNets"><see cref="IpSubNets"/></param>
         /// <param name="ip"><see cref="IPAddress"/></param>
         /// <returns>If not included in any IP sub-net</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator !=(in IpSubNets subNets, in IPAddress ip) => !subNets.Includes(ip);
 
         /// <summary>
@@ -363,6 +370,7 @@ namespace wan24.Core
         /// <param name="ip"><see cref="IPAddress"/></param>
         /// <param name="subNets"><see cref="IpSubNets"/></param>
         /// <returns>If included in any IP sub-net</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator ==(in IPAddress ip, in IpSubNets subNets) => subNets.Includes(ip);
 
         /// <summary>
@@ -371,6 +379,7 @@ namespace wan24.Core
         /// <param name="ip"><see cref="IPAddress"/></param>
         /// <param name="subNets"><see cref="IpSubNets"/></param>
         /// <returns>If not included in any IP sub-net</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator !=(in IPAddress ip, in IpSubNets subNets) => !subNets.Includes(ip);
 
         /// <summary>
@@ -379,6 +388,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>If lower</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator <(in IpSubNets a, in IpSubNets b) => a.SubNets.Length < b.SubNets.Length;
 
         /// <summary>
@@ -387,6 +397,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>If greater</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator >(in IpSubNets a, in IpSubNets b) => a.SubNets.Length > b.SubNets.Length;
 
         /// <summary>
@@ -395,6 +406,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>If lower or equal</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator <=(in IpSubNets a, in IpSubNets b) => a.SubNets.Length <= b.SubNets.Length;
 
         /// <summary>
@@ -403,6 +415,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>If greater or equal</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator >=(in IpSubNets a, in IpSubNets b) => a.SubNets.Length >= b.SubNets.Length;
 
         /// <summary>
@@ -411,6 +424,7 @@ namespace wan24.Core
         /// <param name="subNets"><see cref="IpSubNets"/></param>
         /// <param name="ip"><see cref="IPAddress"/></param>
         /// <returns>The including IP sub-net or <see cref="IpSubNet.ZeroV4"/></returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static IpSubNet operator &(in IpSubNets subNets, in IPAddress ip) => subNets.Including(ip) ?? IpSubNet.ZeroV4;
 
         /// <summary>
@@ -419,6 +433,7 @@ namespace wan24.Core
         /// <param name="ip"><see cref="IPAddress"/></param>
         /// <param name="subNets"><see cref="IpSubNets"/></param>
         /// <returns>The including IP sub-net or <see cref="IpSubNet.ZeroV4"/></returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static IpSubNet operator &(in IPAddress ip, in IpSubNets subNets) => subNets.Including(ip) ?? IpSubNet.ZeroV4;
 
         /// <summary>
@@ -427,6 +442,7 @@ namespace wan24.Core
         /// <param name="subNets"><see cref="IpSubNets"/></param>
         /// <param name="subNet"><see cref="IpSubNet"/></param>
         /// <returns>The matching or intersecting IP sub-net, or <see cref="IpSubNet.ZeroV4"/>, if not intersecting at al</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static IpSubNet operator &(in IpSubNets subNets, in IpSubNet subNet) => subNets.GetMatching(subNet) ?? subNets.GetIntersecting(subNet) ?? IpSubNet.ZeroV4;
 
         /// <summary>
@@ -435,6 +451,7 @@ namespace wan24.Core
         /// <param name="subNet"><see cref="IpSubNet"/></param>
         /// <param name="subNets"><see cref="IpSubNets"/></param>
         /// <returns>The matching or intersecting IP sub-net, or <see cref="IpSubNet.ZeroV4"/>, if not intersecting at al</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static IpSubNet operator &(in IpSubNet subNet, in IpSubNets subNets) => subNets.GetMatching(subNet) ?? subNets.GetIntersecting(subNet) ?? IpSubNet.ZeroV4;
 
         /// <summary>
@@ -443,6 +460,7 @@ namespace wan24.Core
         /// <param name="subNets"><see cref="IpSubNets"/></param>
         /// <param name="subNet"><see cref="IpSubNet"/></param>
         /// <returns>New <see cref="IpSubNets"/></returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static IpSubNets operator |(in IpSubNets subNets, in IpSubNet subNet)
         {
             if (subNets.Contains(subNet)) return subNets;
@@ -458,6 +476,7 @@ namespace wan24.Core
         /// <param name="subNet"><see cref="IpSubNet"/></param>
         /// <param name="subNets"><see cref="IpSubNets"/></param>
         /// <returns><see cref="IpSubNets"/></returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static IpSubNets operator |(in IpSubNet subNet, in IpSubNets subNets)
         {
             if (subNets.Contains(subNet)) return subNets;
@@ -494,6 +513,7 @@ namespace wan24.Core
         /// <param name="subNets"><see cref="IpSubNets"/></param>
         /// <param name="subNet"><see cref="IpSubNet"/></param>
         /// <returns>New <see cref="IpSubNets"/></returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static IpSubNets operator +(in IpSubNets subNets, in IpSubNet subNet)
         {
             IpSubNet[] newSubNets = new IpSubNet[subNets.Count + 1];
@@ -508,6 +528,7 @@ namespace wan24.Core
         /// <param name="subNets"><see cref="IpSubNets"/></param>
         /// <param name="other"><see cref="IpSubNets"/></param>
         /// <returns><see cref="IpSubNets"/></returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static IpSubNets operator +(in IpSubNets subNets, in IpSubNets other)
         {
             if (other.SubNets.Length == 0) return subNets;

@@ -140,6 +140,7 @@ namespace wan24.Core
         /// Wait for all tasks
         /// </summary>
         /// <param name="tasks">Tasks</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static async Task WaitAll(this IEnumerable<Task> tasks)
         {
             List<Exception> exceptions = new();
@@ -161,6 +162,7 @@ namespace wan24.Core
         /// <typeparam name="T">Result type</typeparam>
         /// <param name="tasks">Tasks</param>
         /// <returns>Results</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static async Task<T[]> WaitAll<T>(this IEnumerable<Task<T>> tasks)
         {
             List<Exception> exceptions = new();
@@ -182,6 +184,7 @@ namespace wan24.Core
         /// Wait for all tasks
         /// </summary>
         /// <param name="tasks">Tasks</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static async Task WaitAll(this IEnumerable<ValueTask> tasks)
         {
             List<Exception> exceptions = new();
@@ -203,6 +206,7 @@ namespace wan24.Core
         /// <typeparam name="T">Result type</typeparam>
         /// <param name="tasks">Tasks</param>
         /// <returns>Results</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static async Task<T[]> WaitAll<T>(this IEnumerable<ValueTask<T>> tasks)
         {
             List<Exception> exceptions = new();

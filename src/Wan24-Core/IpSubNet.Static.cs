@@ -62,6 +62,7 @@ namespace wan24.Core
         /// Cast as IP address list
         /// </summary>
         /// <param name="net">Sub-net</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static implicit operator IPAddress[](in IpSubNet net)
         {
             BigInteger count = net.IPAddressCount;
@@ -75,48 +76,56 @@ namespace wan24.Core
         /// Cast from <see cref="IPAddress"/> (should be a network address; zero bytes count)
         /// </summary>
         /// <param name="network"><see cref="IPAddress"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator IpSubNet(in IPAddress network) => new(network);
 
         /// <summary>
         /// Cast as <see cref="IPAddress"/> (network address)
         /// </summary>
         /// <param name="network"><see cref="IpSubNet"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator IPAddress(in IpSubNet network) => network.MaskedNetworkIPAddress;
 
         /// <summary>
         /// Cast as bytes
         /// </summary>
         /// <param name="net"><see cref="IpSubNet"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator byte[](in IpSubNet net) => net.GetBytes();
 
         /// <summary>
         /// Cast from bytes
         /// </summary>
         /// <param name="data">Bytes</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator IpSubNet(in byte[] data) => new(data);
 
         /// <summary>
         /// Cast from bytes
         /// </summary>
         /// <param name="data">Bytes</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator IpSubNet(in Span<byte> data) => new(data);
 
         /// <summary>
         /// Cast from bytes
         /// </summary>
         /// <param name="data">Bytes</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator IpSubNet(in Memory<byte> data) => new(data.Span);
 
         /// <summary>
         /// Cast from bytes
         /// </summary>
         /// <param name="data">Bytes</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator IpSubNet(in ReadOnlySpan<byte> data) => new(data);
 
         /// <summary>
         /// Cast from bytes
         /// </summary>
         /// <param name="data">Bytes</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator IpSubNet(in ReadOnlyMemory<byte> data) => new(data.Span);
 
         /// <summary>
@@ -125,6 +134,7 @@ namespace wan24.Core
         /// <param name="net">Sub-net</param>
         /// <param name="ip">IP address</param>
         /// <returns>Does match?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator ==(in IpSubNet net, in IPAddress ip) => net.Includes(ip, throwOnError: false);
 
         /// <summary>
@@ -133,6 +143,7 @@ namespace wan24.Core
         /// <param name="net">Sub-net</param>
         /// <param name="ip">IP address</param>
         /// <returns>Does not match?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator !=(in IpSubNet net, in IPAddress ip) => !net.Includes(ip, throwOnError: false);
 
         /// <summary>
@@ -141,6 +152,7 @@ namespace wan24.Core
         /// <param name="ip">IP address</param>
         /// <param name="net">Sub-net</param>
         /// <returns>Does match?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator ==(in IPAddress ip, in IpSubNet net) => net.Includes(ip, throwOnError: false);
 
         /// <summary>
@@ -149,6 +161,7 @@ namespace wan24.Core
         /// <param name="ip">IP address</param>
         /// <param name="net">Sub-net</param>
         /// <returns>Does not match?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator !=(in IPAddress ip, in IpSubNet net) => !net.Includes(ip, throwOnError: false);
 
         /// <summary>
@@ -157,6 +170,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is A lower than B?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator <(in IpSubNet a, in IpSubNet b) => a.MaskBits < b.MaskBits;
 
         /// <summary>
@@ -165,6 +179,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is A greater than B?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator >(in IpSubNet a, in IpSubNet b) => a.MaskBits > b.MaskBits;
 
         /// <summary>
@@ -173,6 +188,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is A lower or equal to B?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator <=(in IpSubNet a, in IpSubNet b) => a.MaskBits <= b.MaskBits;
 
         /// <summary>
@@ -181,6 +197,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Is A greater or equal to B?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator >=(in IpSubNet a, in IpSubNet b) => a.MaskBits >= b.MaskBits;
 
         /// <summary>
@@ -189,6 +206,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Combined sub-net</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static IpSubNet operator +(in IpSubNet a, in IpSubNet b) => a.CombineWith(b);
 
         /// <summary>
@@ -197,6 +215,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Merged sub-net</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static IpSubNet operator |(in IpSubNet a, in IpSubNet b)
             => a.IsCompatibleWith(b) ? new(a.Network, Math.Min(a.MaskBits, b.MaskBits), a.IsIPv4) : throw new InvalidOperationException("Incompatible sub-nets");
 
@@ -206,6 +225,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>A, if A fits into B, or B, if A intersects B, or <see cref="ZeroV4"/>, if no intersection at all</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static IpSubNet operator &(in IpSubNet a, in IpSubNet b)
         {
             if (a.IsIPv4 == b.IsIPv4)
@@ -222,6 +242,7 @@ namespace wan24.Core
         /// <param name="net">Sub-net</param>
         /// <param name="bits">Bits</param>
         /// <returns>Resized sub-net</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static IpSubNet operator <<(in IpSubNet net, in int bits)
         {
             int newBits = net.MaskBits + bits;
@@ -236,6 +257,7 @@ namespace wan24.Core
         /// <param name="net">Sub-net</param>
         /// <param name="bits">Bits</param>
         /// <returns>Resized sub-net</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static IpSubNet operator >>(in IpSubNet net, in int bits)
         {
             int newBits = net.MaskBits - bits;
@@ -249,7 +271,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="subNet">Sub-net in IP/n CIDR notation</param>
         /// <returns>Sub-net</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static IpSubNet Parse(in ReadOnlySpan<char> subNet) => new(subNet);
 
         /// <summary>

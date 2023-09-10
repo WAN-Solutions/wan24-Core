@@ -2,10 +2,8 @@
 
 namespace wan24.Core
 {
-    /// <summary>
-    /// Bitwise Int16 extensions
-    /// </summary>
-    public static class BitwiseInt16Extensions
+    // Int16
+    public static partial class BitwiseExtensions
     {
         /// <summary>
         /// Shift left

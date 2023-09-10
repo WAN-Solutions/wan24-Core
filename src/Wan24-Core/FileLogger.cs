@@ -5,12 +5,8 @@ namespace wan24.Core
     /// <summary>
     /// File logger (don't forget to dispose an instance!)
     /// </summary>
-    public class FileLogger : DisposableBase, ILogger
+    public class FileLogger : DisposableLoggerBase
     {
-        /// <summary>
-        /// Stream
-        /// </summary>
-        protected readonly FileStream Stream = null!;
         /// <summary>
         /// Worker
         /// </summary>
@@ -21,19 +17,18 @@ namespace wan24.Core
         /// </summary>
         /// <param name="fileName">Filename</param>
         /// <param name="level">Log level</param>
-        protected FileLogger(in string fileName, in LogLevel level = LogLevel.Information) : base()
+        /// <param name="next">Next logger which should receive the message</param>
+        /// <param name="maxQueue">Maximum number of queued messages before blocking</param>
+        protected FileLogger(in string fileName, in LogLevel level = LogLevel.Information, in ILogger? next = null, in int maxQueue = int.MaxValue) : base(level, next)
         {
             try
             {
-                Stream = new(fileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read);
-                Worker = new(Stream);
+                Worker = new(fileName, maxQueue);
                 FileName = fileName;
-                Level = level;
             }
             catch
             {
                 Worker?.Dispose();
-                Stream?.Dispose();
                 throw;
             }
         }
@@ -43,48 +38,32 @@ namespace wan24.Core
         /// </summary>
         public string FileName { get; }
 
-        /// <summary>
-        /// Log level
-        /// </summary>
-        public LogLevel Level { get; set; }
+        /// <inheritdoc/>
+        protected override void LogInt<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
+            => Worker.TryEnqueue(GetMessage(logLevel, eventId, state, exception, formatter, nl: true));
 
         /// <inheritdoc/>
-        public IDisposable? BeginScope<TState>(TState state) where TState : notnull => null;
+        protected override void Dispose(bool disposing) => Worker.Dispose();
 
         /// <inheritdoc/>
-        public bool IsEnabled(LogLevel logLevel) => logLevel >= Level;
-
-        /// <inheritdoc/>
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
-        {
-            if (!IsEnabled(logLevel)) return;
-            Worker.TryEnqueue($"{DateTime.Now}\t{logLevel}\t{formatter(state, exception).Replace("\n", "\n\t")}\n");
-        }
-
-        /// <inheritdoc/>
-        protected override void Dispose(bool disposing)
-        {
-            Worker.Dispose();
-            Stream.Dispose();
-        }
-
-        /// <inheritdoc/>
-        protected override async Task DisposeCore()
-        {
-            Worker.Dispose();
-            await Stream.DisposeAsync().DynamicContext();
-        }
+        protected override async Task DisposeCore() => await Worker.DisposeAsync().DynamicContext();
 
         /// <summary>
         /// Create a file logger
         /// </summary>
         /// <param name="fileName">Filename</param>
         /// <param name="level">Log level</param>
+        /// <param name="next">Next logger which should receive the message</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>File logger</returns>
-        public static async Task<FileLogger> CreateAsync(string fileName, LogLevel level = LogLevel.Information, CancellationToken cancellationToken = default)
+        public static async Task<FileLogger> CreateAsync(
+            string fileName, 
+            LogLevel level = LogLevel.Information, 
+            ILogger? next = null, 
+            CancellationToken cancellationToken = default
+            )
         {
-            FileLogger res = new(fileName, level);
+            FileLogger res = new(fileName, level, next);
             try
             {
                 await res.Worker.StartAsync(cancellationToken).DynamicContext();
@@ -105,17 +84,33 @@ namespace wan24.Core
             /// <summary>
             /// Stream
             /// </summary>
-            private readonly Stream Stream;
+            private readonly FileStream Stream;
 
             /// <summary>
             /// Constructor
             /// </summary>
-            /// <param name="stream">Stream</param>
-            public LogQueueWorker(in Stream stream) : base(int.MaxValue) => Stream = stream;
+            /// <param name="fileName">Filename</param>
+            /// <param name="maxQueue">Maximum number of queued messages before blocking</param>
+            public LogQueueWorker(in string fileName, in int maxQueue) : base(maxQueue)
+                => Stream = new(fileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read);
 
             /// <inheritdoc/>
             protected override async Task ProcessItem(string item, CancellationToken cancellationToken)
                 => await Stream.WriteAsync(item.GetBytes(), cancellationToken).DynamicContext();
+
+            /// <inheritdoc/>
+            protected override void Dispose(bool disposing)
+            {
+                base.Dispose(disposing);
+                Stream.Dispose();
+            }
+
+            /// <inheritdoc/>
+            protected override async Task DisposeCore()
+            {
+                await base.DisposeCore().DynamicContext();
+                await Stream.DisposeAsync().DynamicContext();
+            }
         }
     }
 }

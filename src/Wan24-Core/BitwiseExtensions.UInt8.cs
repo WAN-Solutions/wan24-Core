@@ -2,10 +2,12 @@
 
 namespace wan24.Core
 {
-    /// <summary>
-    /// Bitwise Int64 extensions
-    /// </summary>
-    public static class BitwiseInt64Extensions
+    // UInt8
+#if NO_UNSAFE
+    public static partial class BitwiseExtensions
+#else
+    public static unsafe partial class BitwiseExtensions
+#endif
     {
         /// <summary>
         /// Shift left
@@ -14,7 +16,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static long ShiftLeft(this long value, in int bits) => value << bits;
+        public static byte ShiftLeft(this byte value, in int bits) => (byte)(value << bits);
 
         /// <summary>
         /// Shift left
@@ -23,7 +25,41 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static long ShiftRight(this long value, in int bits) => value >> bits;
+        public static byte ShiftRight(this byte value, in int bits) => (byte)(value >> bits);
+
+        /// <summary>
+        /// Rotate bits left
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="bits">Bits</param>
+        /// <returns>Value</returns>
+        public static byte RotateLeft(this byte value, in int bits)
+        {
+            if (bits < 0 || bits > 8) throw new ArgumentOutOfRangeException(nameof(bits));
+            if (bits == 0 || bits == 8 || value == 0 || value == byte.MaxValue) return value;
+#if NO_UNSAFE
+            return (byte)((value << bits) | (value >> BitRotation[bits]));
+#else
+            return (byte)((value << bits) | (value >> BitRotationUInt8Ptr[bits]));
+#endif
+        }
+
+        /// <summary>
+        /// Rotate bits right
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="bits">Bits</param>
+        /// <returns>Value</returns>
+        public static byte RotateRight(this byte value, in int bits)
+        {
+            if (bits < 0 || bits > 8) throw new ArgumentOutOfRangeException(nameof(bits));
+            if (bits == 0 || bits == 8 || value == 0 || value == byte.MaxValue) return value;
+#if NO_UNSAFE
+            return (byte)((value >> bits) | (value << BitRotation[bits]));
+#else
+            return (byte)((value >> bits) | (value << BitRotationUInt8Ptr[bits]));
+#endif
+        }
 
         /// <summary>
         /// Logical OR
@@ -32,7 +68,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static long Or(this long value, in long other) => value | other;
+        public static byte Or(this byte value, in byte other) => (byte)(value | other);
 
         /// <summary>
         /// Logical AND
@@ -41,7 +77,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static long And(this long value, in long other) => value & other;
+        public static byte And(this byte value, in byte other) => (byte)(value & other);
 
         /// <summary>
         /// Logical XOR
@@ -50,7 +86,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static long Xor(this long value, in long other) => value ^ other;
+        public static byte Xor(this byte value, in byte other) => (byte)(value ^ other);
 
         /// <summary>
         /// Has flags?
@@ -59,7 +95,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Has the flags?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool HasFlags(this long value, in long flags) => (value & flags) == flags;
+        public static bool HasFlags(this byte value, in byte flags) => (value & flags) == flags;
 
         /// <summary>
         /// Add flags
@@ -68,7 +104,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static long AddFlags(this long value, in long flags) => value | flags;
+        public static byte AddFlags(this byte value, in byte flags) => (byte)(value | flags);
 
         /// <summary>
         /// Remove flags
@@ -77,7 +113,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static long RemoveFlags(this long value, in long flags) => value & ~flags;
+        public static byte RemoveFlags(this byte value, in byte flags) => (byte)(value & ~flags);
 
         /// <summary>
         /// Cast as signed byte
@@ -85,15 +121,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte ToSByte(this long value) => (sbyte)value;
-
-        /// <summary>
-        /// Cast as byte
-        /// </summary>
-        /// <param name="value">Value</param>
-        /// <returns>Value</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static byte ToByte(this long value) => (byte)value;
+        public static sbyte ToSByte(this byte value) => (sbyte)value;
 
         /// <summary>
         /// Cast as short
@@ -101,7 +129,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static short ToShort(this long value) => (short)value;
+        public static short ToShort(this byte value) => value;
 
         /// <summary>
         /// Cast as unsigned short
@@ -109,7 +137,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ushort ToUShort(this long value) => (ushort)value;
+        public static ushort ToUShort(this byte value) => value;
 
         /// <summary>
         /// Cast as integer
@@ -117,7 +145,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static int ToInt(this long value) => (int)value;
+        public static int ToInt(this byte value) => value;
 
         /// <summary>
         /// Cast as unsigned integer
@@ -125,7 +153,15 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static uint ToUInt(this long value) => (uint)value;
+        public static uint ToUInt(this byte value) => value;
+
+        /// <summary>
+        /// Cast as long
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static long ToLong(this byte value) => value;
 
         /// <summary>
         /// Cast as unsigned long
@@ -133,6 +169,6 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ulong ToULong(this long value) => (ulong)value;
+        public static ulong ToULong(this byte value) => value;
     }
 }

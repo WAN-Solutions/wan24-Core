@@ -109,15 +109,7 @@
         {
             Enumerator?.DisposeAsync().AsTask().Wait();
             foreach (object? obj in Disposables)
-                if (obj is not null)
-                    if (obj is IDisposable disposable)
-                    {
-                        disposable.Dispose();
-                    }
-                    else if (obj is IAsyncDisposable asyncDisposable)
-                    {
-                        asyncDisposable.DisposeAsync().AsTask().Wait();
-                    }
+                    obj?.TryDispose();
         }
 
         /// <inheritdoc/>
@@ -126,14 +118,7 @@
             if (Enumerator is not null) await Enumerator.DisposeAsync().DynamicContext();
             foreach (object? obj in Disposables)
                 if (obj is not null)
-                    if (obj is IAsyncDisposable asyncDisposable)
-                    {
-                        await asyncDisposable.DisposeAsync().DynamicContext();
-                    }
-                    else if (obj is IDisposable disposable)
-                    {
-                        disposable.Dispose();
-                    }
+                    await obj.TryDisposeAsync().DynamicContext();
         }
     }
 }

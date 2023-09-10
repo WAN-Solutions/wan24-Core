@@ -79,21 +79,23 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">Microsoft.Extensions.Hosting.BackgroundService</span></div>
-    <div class="level2"><a class="xref" href="wan24.Core.QueueWorker.html">QueueWorker</a></div>
-    <div class="level3"><span class="xref">ParallelQueueWorker</span></div>
-      <div class="level4"><a class="xref" href="wan24.Core.ParallelItemQueueWorkerBase-1.html">ParallelItemQueueWorkerBase&lt;T&gt;</a></div>
+    <div class="level1"><a class="xref" href="wan24.Core.DisposableBase.html">DisposableBase</a></div>
+    <div class="level2"><a class="xref" href="wan24.Core.HostedServiceBase.html">HostedServiceBase</a></div>
+    <div class="level3"><a class="xref" href="wan24.Core.QueueWorker.html">QueueWorker</a></div>
+    <div class="level4"><span class="xref">ParallelQueueWorker</span></div>
+      <div class="level5"><a class="xref" href="wan24.Core.ParallelItemQueueWorkerBase-1.html">ParallelItemQueueWorkerBase&lt;T&gt;</a></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
-    <div><span class="xref">Microsoft.Extensions.Hosting.IHostedService</span></div>
-    <div><span class="xref">System.IDisposable</span></div>
     <div><a class="xref" href="wan24.Core.IParallelQueueWorker.html">IParallelQueueWorker</a></div>
     <div><a class="xref" href="wan24.Core.IQueueWorker.html">IQueueWorker</a></div>
     <div><a class="xref" href="wan24.Core.IServiceWorkerStatus.html">IServiceWorkerStatus</a></div>
     <div><a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a></div>
-    <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
+    <div><span class="xref">Microsoft.Extensions.Hosting.IHostedService</span></div>
+    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><span class="xref">IDisposable</span></div>
+    <div><span class="xref">IAsyncDisposable</span></div>
+    <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -104,31 +106,7 @@
       <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_GUID">QueueWorker.GUID</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_Name">QueueWorker.Name</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_IsRunning">QueueWorker.IsRunning</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_Started">QueueWorker.Started</a>
-    </div>
-    <div>
       <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_Queued">QueueWorker.Queued</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_LastException">QueueWorker.LastException</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_wan24_Core_IServiceWorker_StartAsync">QueueWorker.IServiceWorker.StartAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_StartAsync_CancellationToken_">QueueWorker.StartAsync(CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_wan24_Core_IServiceWorker_StopAsync">QueueWorker.IServiceWorker.StopAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_wan24_Core_IServiceWorker_RestartAsync">QueueWorker.IServiceWorker.RestartAsync()</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_EnqueueAsync_wan24_Core_QueueWorker_Task_Delegate_CancellationToken_">QueueWorker.EnqueueAsync(QueueWorker.Task_Delegate, CancellationToken)</a>
@@ -143,22 +121,106 @@
       <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_EnqueueRangeAsync_IAsyncEnumerable_wan24_Core_QueueWorker_Task_Delegate__CancellationToken_">QueueWorker.EnqueueRangeAsync(IAsyncEnumerable&lt;QueueWorker.Task_Delegate&gt;, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_OnException">QueueWorker.OnException</a>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Sync">HostedServiceBase.Sync</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_RaiseOnException">QueueWorker.RaiseOnException()</a>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_StopTask">HostedServiceBase.StopTask</a>
     </div>
     <div>
-      <span class="xref">Microsoft.Extensions.Hosting.BackgroundService.ExecuteAsync(System.Threading.CancellationToken)</span>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Cancellation">HostedServiceBase.Cancellation</a>
     </div>
     <div>
-      <span class="xref">Microsoft.Extensions.Hosting.BackgroundService.StartAsync(System.Threading.CancellationToken)</span>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_ServiceTask">HostedServiceBase.ServiceTask</a>
     </div>
     <div>
-      <span class="xref">Microsoft.Extensions.Hosting.BackgroundService.StopAsync(System.Threading.CancellationToken)</span>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase__LastException">HostedServiceBase._LastException</a>
     </div>
     <div>
-      <span class="xref">Microsoft.Extensions.Hosting.BackgroundService.ExecuteTask</span>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_IsRunning">HostedServiceBase.IsRunning</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Started">HostedServiceBase.Started</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_IsStopping">HostedServiceBase.IsStopping</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_LastException">HostedServiceBase.LastException</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Name">HostedServiceBase.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_StartAsync_CancellationToken_">HostedServiceBase.StartAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_ToString">HostedServiceBase.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_RunServiceAsync">HostedServiceBase.RunServiceAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_DisposeCore">HostedServiceBase.DisposeCore()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_wan24_Core_IServiceWorker_StartAsync">HostedServiceBase.IServiceWorker.StartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_wan24_Core_IServiceWorker_StopAsync">HostedServiceBase.IServiceWorker.StopAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_wan24_Core_IServiceWorker_RestartAsync">HostedServiceBase.IServiceWorker.RestartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_OnException">HostedServiceBase.OnException</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_RaiseOnException">HostedServiceBase.RaiseOnException()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeSyncObject">DisposableBase.DisposeSyncObject</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AsyncDisposing">DisposableBase.AsyncDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposing">DisposableBase.IsDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposed">DisposableBase.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_EnsureUndisposed_System_Boolean__System_Boolean__">DisposableBase.EnsureUndisposed(Boolean, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed__1___0__System_Boolean__">DisposableBase.IfUndisposed&lt;T&gt;(T, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed_Action__System_Boolean__">DisposableBase.IfUndisposed(Action, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed__1_Func___0___System_Boolean__">DisposableBase.IfUndisposed&lt;T&gt;(Func&lt;T&gt;, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposedNullable__1_Func___0___System_Boolean__">DisposableBase.IfUndisposedNullable&lt;T&gt;(Func&lt;T&gt;, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributes">DisposableBase.DisposeAttributes()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributesAsync">DisposableBase.DisposeAttributesAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose">DisposableBase.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAsync">DisposableBase.DisposeAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposing">DisposableBase.OnDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposed">DisposableBase.OnDisposed</a>
     </div>
     <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
@@ -178,15 +240,12 @@
     <div>
       <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
     </div>
-    <div>
-      <span class="xref">System.Object.ToString()</span>
-    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_ParallelQueueWorker_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ParallelQueueWorker : QueueWorker, IHostedService, IDisposable, IParallelQueueWorker, IQueueWorker, IServiceWorkerStatus, IServiceWorker, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class ParallelQueueWorker : QueueWorker, IParallelQueueWorker, IQueueWorker, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IStatusProvider</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -324,18 +383,18 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_Sync.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.Sync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_WorkerSync.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.WorkerSync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L19">View Source</a>
   </span>
-  <h4 id="wan24_Core_ParallelQueueWorker_Sync" data-uid="wan24.Core.ParallelQueueWorker.Sync">Sync</h4>
+  <h4 id="wan24_Core_ParallelQueueWorker_WorkerSync" data-uid="wan24.Core.ParallelQueueWorker.WorkerSync">WorkerSync</h4>
   <div class="markdown level1 summary"><p>Thread synchronization</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly SemaphoreSync Sync</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly SemaphoreSync WorkerSync</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -422,35 +481,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_Dispose.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L185">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L172">View Source</a>
   </span>
   <a id="wan24_Core_ParallelQueueWorker_Dispose_" data-uid="wan24.Core.ParallelQueueWorker.Dispose*"></a>
-  <h4 id="wan24_Core_ParallelQueueWorker_Dispose" data-uid="wan24.Core.ParallelQueueWorker.Dispose">Dispose()</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="wan24_Core_ParallelQueueWorker_Dispose_System_Boolean_" data-uid="wan24.Core.ParallelQueueWorker.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Dispose</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Dispose()</code></pre>
-  </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_Dispose">QueueWorker.Dispose()</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_ExecuteAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.ExecuteAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L122">View Source</a>
-  </span>
-  <a id="wan24_Core_ParallelQueueWorker_ExecuteAsync_" data-uid="wan24.Core.ParallelQueueWorker.ExecuteAsync*"></a>
-  <h4 id="wan24_Core_ParallelQueueWorker_ExecuteAsync_CancellationToken_" data-uid="wan24.Core.ParallelQueueWorker.ExecuteAsync(CancellationToken)">ExecuteAsync(CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override async Task ExecuteAsync(CancellationToken stoppingToken)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -463,35 +506,21 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">CancellationToken</span></td>
-        <td><span class="parametername">stoppingToken</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>Disposing? (may be <span class="xref">false</span>, if called from the destructor)</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_ExecuteAsync_CancellationToken_">QueueWorker.ExecuteAsync(CancellationToken)</a></div>
+  <div><a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Dispose_System_Boolean_">HostedServiceBase.Dispose(Boolean)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_Process_wan24_Core_QueueWorker_Task_Delegate_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.Process(wan24.Core.QueueWorker.Task_Delegate%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L155">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L143">View Source</a>
   </span>
   <a id="wan24_Core_ParallelQueueWorker_Process_" data-uid="wan24.Core.ParallelQueueWorker.Process*"></a>
   <h4 id="wan24_Core_ParallelQueueWorker_Process_wan24_Core_QueueWorker_Task_Delegate_CancellationToken_" data-uid="wan24.Core.ParallelQueueWorker.Process(wan24.Core.QueueWorker.Task_Delegate,CancellationToken)">Process(QueueWorker.Task_Delegate, CancellationToken)</h4>
@@ -589,7 +618,7 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_StopAsync_CancellationToken_">QueueWorker.StopAsync(CancellationToken)</a></div>
+  <div><a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_StopAsync_CancellationToken_">HostedServiceBase.StopAsync(CancellationToken)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_WaitBoring_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.WaitBoring(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -790,13 +819,40 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/dev/apiSpec/new?filename=wan24_Core_ParallelQueueWorker_WorkerAsync.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelQueueWorker.WorkerAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/dev/src/Wan24-Core/ParallelQueueWorker.cs/#L122">View Source</a>
+  </span>
+  <a id="wan24_Core_ParallelQueueWorker_WorkerAsync_" data-uid="wan24.Core.ParallelQueueWorker.WorkerAsync*"></a>
+  <h4 id="wan24_Core_ParallelQueueWorker_WorkerAsync" data-uid="wan24.Core.ParallelQueueWorker.WorkerAsync">WorkerAsync()</h4>
+  <div class="markdown level1 summary"><p>Service worker</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override async Task WorkerAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_WorkerAsync">QueueWorker.WorkerAsync()</a></div>
   <h3 id="implements">Implements</h3>
-  <div>
-      <span class="xref">Microsoft.Extensions.Hosting.IHostedService</span>
-  </div>
-  <div>
-      <span class="xref">System.IDisposable</span>
-  </div>
   <div>
       <a class="xref" href="wan24.Core.IParallelQueueWorker.html">IParallelQueueWorker</a>
   </div>
@@ -810,12 +866,27 @@
       <a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
+      <span class="xref">Microsoft.Extensions.Hosting.IHostedService</span>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
   </div>
   <div>
       <span class="xref">IDisposable</span>
   </div>
+  <div>
+      <span class="xref">IAsyncDisposable</span>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
+  </div>
   <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+  </div>
   <div>
       <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(Object)</a>
   </div>
@@ -826,7 +897,7 @@
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T&gt;)</a>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_System_Collections_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
@@ -839,6 +910,12 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in Int32)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in Int32)</a>
   </div>
 </article>
           </div>

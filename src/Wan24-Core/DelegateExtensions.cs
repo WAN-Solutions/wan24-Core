@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -13,6 +14,7 @@ namespace wan24.Core
         /// <typeparam name="T">Delegate type</typeparam>
         /// <param name="delegates">Delegates</param>
         /// <param name="param">Parameters</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static void InvokeAll<T>(this IEnumerable<T> delegates, params object?[] param) where T : Delegate
         {
             foreach (T d in delegates) d.Method.InvokeAuto(obj: null, param);
@@ -44,6 +46,7 @@ namespace wan24.Core
         /// <param name="delegates">Delegates</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="param">Parameters</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static async Task InvokeAllAsync<T>(this IEnumerable<T> delegates, CancellationToken cancellationToken = default, params object?[] param) where T : Delegate
         {
             foreach (T d in delegates)
@@ -81,6 +84,7 @@ namespace wan24.Core
         /// <param name="delegates">Delegates</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="param">Parameters</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static async Task InvokeAllAsync<T>(this IAsyncEnumerable<T> delegates, CancellationToken cancellationToken = default, params object?[] param) where T : Delegate
         {
             await foreach (T d in delegates.DynamicContext().WithCancellation(cancellationToken))

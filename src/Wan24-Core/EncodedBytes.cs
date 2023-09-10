@@ -233,7 +233,8 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public T DecodeCompactNumber<T>() where T : struct, IConvertible => Data.DecodeCompactNumber<T>();
+        public T DecodeCompactNumber<T>() where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
+            => Data.DecodeCompactNumber<T>();
 
         /// <summary>
         /// Cast as byte array

@@ -298,13 +298,14 @@ namespace wan24.Core
         private bool DoDispose()
         {
             if (IsDisposing) return false;
+            bool release = true;
             try
             {
                 DisposeSyncObject.Wait();
             }
             catch (ObjectDisposedException)
             {
-                return false;
+                release = false;
             }
             try
             {
@@ -313,7 +314,7 @@ namespace wan24.Core
             }
             finally
             {
-                DisposeSyncObject.Release();
+                if (release) DisposeSyncObject.Release();
             }
             OnDisposing?.Invoke(this, new());
             return true;
@@ -326,13 +327,14 @@ namespace wan24.Core
         private async Task<bool> DoDisposeAsync()
         {
             if (IsDisposing) return false;
+            bool release = true;
             try
             {
                 await DisposeSyncObject.WaitAsync().DynamicContext();
             }
             catch (ObjectDisposedException)
             {
-                return false;
+                release = false;
             }
             try
             {
@@ -341,7 +343,7 @@ namespace wan24.Core
             }
             finally
             {
-                DisposeSyncObject.Release();
+                if (release) DisposeSyncObject.Release();
             }
             OnDisposing?.Invoke(this, new());
             return true;

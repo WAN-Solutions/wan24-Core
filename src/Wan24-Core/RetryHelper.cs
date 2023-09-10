@@ -309,8 +309,9 @@
             in TimeSpan? delay
             )
         {
-            if (currentTry == maxNumberOfTries || !(retryOnError?.Invoke(exception) ?? true)) return false;
-            if (delay.HasValue) Thread.Sleep((int)delay.Value.TotalMilliseconds);
+            TimeSpan? useDelay = delay;
+            if (currentTry == maxNumberOfTries || !(retryOnError?.Invoke(exception, delay, ref useDelay) ?? true)) return false;
+            if (useDelay.HasValue) Thread.Sleep((int)useDelay.Value.TotalMilliseconds);
             return true;
         }
 
@@ -331,8 +332,9 @@
             TimeSpan? delay
             )
         {
-            if (currentTry == maxNumberOfTries || !(retryOnError?.Invoke(exception) ?? true)) return false;
-            if (delay.HasValue) await Task.Delay(delay.Value);
+            TimeSpan? useDelay = delay;
+            if (currentTry == maxNumberOfTries || !(retryOnError?.Invoke(exception, delay, ref useDelay) ?? true)) return false;
+            if (useDelay.HasValue) await Task.Delay(useDelay.Value).DynamicContext();
             return true;
         }
 
@@ -384,7 +386,9 @@
         /// Delegate to decide if to continue with the next try after an error (is being called before the delay)
         /// </summary>
         /// <param name="exception">Exception</param>
+        /// <param name="givenDelay">Given delay</param>
+        /// <param name="delayToUse">Delay to use</param>
         /// <returns>Continue with the next try?</returns>
-        public delegate bool RetryOnError_Delegate(Exception exception);
+        public delegate bool RetryOnError_Delegate(Exception exception, TimeSpan? givenDelay, ref TimeSpan? delayToUse);
     }
 }

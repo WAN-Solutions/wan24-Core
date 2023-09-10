@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Timeout value (disposable value will be disposed on timeout or when disposing)
@@ -44,15 +46,7 @@
             {
                 lock (SyncObject)
                 {
-                    if (HasValue)
-                        if (_Value is IDisposable disposable)
-                        {
-                            disposable.Dispose();
-                        }
-                        else if (_Value is IAsyncDisposable asyncDisposable)
-                        {
-                            asyncDisposable.DisposeAsync().AsTask().Wait();
-                        }
+                    if (HasValue) _Value.TryDispose();
                     HasValue = false;
                     _Value = default;
                 }
@@ -87,16 +81,7 @@
         protected override void Dispose(bool disposing)
         {
             Timer.Dispose();
-            lock (SyncObject)
-                if (HasValue)
-                    if (_Value is IDisposable disposable)
-                    {
-                        disposable.Dispose();
-                    }
-                    else if (_Value is IAsyncDisposable asyncDisposable)
-                    {
-                        asyncDisposable.DisposeAsync().AsTask().Wait();
-                    }
+            lock (SyncObject) if (HasValue) _Value.TryDispose();
         }
 
         /// <inheritdoc/>
@@ -123,12 +108,14 @@
         /// Cast as value
         /// </summary>
         /// <param name="timeoutValue">Timeout value</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator T(in TimeoutValue<T> timeoutValue) => timeoutValue.Value;
 
         /// <summary>
         /// Cast as has-value-flag
         /// </summary>
         /// <param name="timeoutValue">Timeout value</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator bool(in TimeoutValue<T> timeoutValue) => timeoutValue.HasValue;
     }
 }

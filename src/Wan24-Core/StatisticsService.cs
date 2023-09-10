@@ -33,7 +33,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        protected override async Task WorkerAsync()
+        protected override async Task TimedWorkerAsync()
             => await Statistics.Values.Select(s => s.GenerateValue(Cancellation?.Token ?? default)).ToList().WaitAll().DynamicContext();
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Process throttle
@@ -292,6 +294,7 @@
         /// Cast as throttling-flag
         /// </summary>
         /// <param name="throttle">Throttle</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator bool(in ProcessThrottle throttle) => throttle.IsThrottling;
     }
 }

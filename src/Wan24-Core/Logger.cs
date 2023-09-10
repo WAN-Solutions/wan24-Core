@@ -5,27 +5,17 @@ namespace wan24.Core
     /// <summary>
     /// Logger (adopts to <see cref="Logging"/> - NEVER use this as <see cref="Logging.Logger"/>!)
     /// </summary>
-    public class Logger : ILogger
+    public class Logger : LoggerBase
     {
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="level">Log level</param>
-        public Logger(LogLevel level = LogLevel.Information) => Level = level;
-
-        /// <summary>
-        /// Log level
-        /// </summary>
-        public LogLevel Level { get; set; }
+        /// <param name="next">Next logger which should receive the message</param>
+        public Logger(in LogLevel level = LogLevel.Information, in ILogger? next = null) :base(level, next) { }
 
         /// <inheritdoc/>
-        public IDisposable? BeginScope<TState>(TState state) where TState : notnull => null;
-
-        /// <inheritdoc/>
-        public bool IsEnabled(LogLevel logLevel) => logLevel >= Level;
-
-        /// <inheritdoc/>
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
+        protected override void LogInt<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
         {
             if (!IsEnabled(logLevel)) return;
             switch (logLevel)

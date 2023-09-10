@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Reset event
@@ -236,6 +238,7 @@
         /// Cast as set-flag
         /// </summary>
         /// <param name="e">Event</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator bool(in ResetEvent e) => e.IsSet;
     }
 }

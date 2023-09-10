@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Event throttle (allow to raise once within N ms)
@@ -144,6 +146,7 @@
         /// Cast as throttling-flag
         /// </summary>
         /// <param name="throttle">Throttle</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator bool(in EventThrottle throttle) => throttle.IsThrottling;
     }
 }

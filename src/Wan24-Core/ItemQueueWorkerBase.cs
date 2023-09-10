@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Base class for an item queue worker
@@ -13,13 +15,16 @@
         protected ItemQueueWorkerBase(in int capacity) : base(capacity) { }
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public ValueTask EnqueueAsync(T item, CancellationToken cancellationToken = default)
             => EnqueueAsync(async (ct) => await ProcessItem(item, ct).DynamicContext(), cancellationToken);
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public bool TryEnqueue(T item) => TryEnqueue(async (ct) => await ProcessItem(item, ct).DynamicContext());
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
         public async ValueTask<int> EnqueueRangeAsync(IEnumerable<T> items, CancellationToken cancellationToken = default)
         {
             int enqueued = 0;
@@ -32,6 +37,7 @@
         }
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
         public async ValueTask<int> EnqueueRangeAsync(IAsyncEnumerable<T> items, CancellationToken cancellationToken = default)
         {
             int enqueued = 0;

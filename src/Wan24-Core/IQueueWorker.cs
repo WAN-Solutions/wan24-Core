@@ -5,7 +5,7 @@ namespace wan24.Core
     /// <summary>
     /// Interface for a queue worker
     /// </summary>
-    public interface IQueueWorker : IServiceWorkerStatus, IDisposable
+    public interface IQueueWorker : IServiceWorkerStatus
     {
         /// <summary>
         /// Number of queued items

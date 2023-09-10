@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Collection extensions
@@ -12,6 +14,7 @@
         /// <param name="collection">Collection</param>
         /// <param name="items">Items</param>
         /// <returns>Collection</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static ICollection<T> AddRange<T>(this ICollection<T> collection, params T[] items) => AddRange(collection, items.AsEnumerable());
 
         /// <summary>
@@ -21,6 +24,7 @@
         /// <param name="collection">Collection</param>
         /// <param name="items">Items</param>
         /// <returns>Collection</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static ICollection<T> AddRange<T>(this ICollection<T> collection, IEnumerable<T> items)
         {
             foreach (T item in items) collection.Add(item);
@@ -34,6 +38,7 @@
         /// <param name="collection">Collection</param>
         /// <param name="items">Items</param>
         /// <param name="cancellationToken">Cancellation token</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static async Task AddRangeAsync<T>(this ICollection<T> collection, IAsyncEnumerable<T> items, CancellationToken cancellationToken = default)
         {
             await foreach (T item in items.WithCancellation(cancellationToken).ConfigureAwait(continueOnCapturedContext: false)) collection.Add(item);

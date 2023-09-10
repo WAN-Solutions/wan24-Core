@@ -12,15 +12,28 @@ namespace wan24.Core
         /// <summary>
         /// Logger
         /// </summary>
-        public static ILogger? Logger { get; set; }
+        private static ILogger? _Logger = null;
+
+        /// <summary>
+        /// Logger
+        /// </summary>
+        public static ILogger? Logger
+        {
+            get => _Logger;
+            set
+            {
+                if (value is Logger) throw new InvalidOperationException();
+                _Logger = value;
+            }
+        }
 
         /// <summary>
         /// Write a message
         /// </summary>
         /// <param name="str">Message</param>
         /// <param name="level">Level</param>
-#pragma warning disable CA2254 // Logger call shouldn't be different from the template
-        public static void WriteLog(this string str, in LogLevel level = LogLevel.Information)
+        /// <param name="args">Arguments</param>
+        public static void WriteLog(this string str, in LogLevel level = LogLevel.Information, params object?[] args)
         {
             if (Logger is null)
             {
@@ -30,52 +43,59 @@ namespace wan24.Core
             }
             else
             {
-                Logger.Log(level, str);
+#pragma warning disable CA2254 // Logger call shouldn't be different from the template
+                Logger.Log(level, str, args);
+#pragma warning restore CA2254
                 if (level <= LogLevel.Debug) Debug.WriteLine(str);
             }
         }
-#pragma warning restore CA2254
 
         /// <summary>
         /// Write a message
         /// </summary>
         /// <param name="str">Message</param>
+        /// <param name="args">Arguments</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static void WriteTrace(this string str) => WriteLog(str, LogLevel.Trace);
+        public static void WriteTrace(this string str, params object?[] args) => WriteLog(str, LogLevel.Trace, args);
 
         /// <summary>
         /// Write a message
         /// </summary>
         /// <param name="str">Message</param>
+        /// <param name="args">Arguments</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static void WriteDebug(this string str) => WriteLog(str, LogLevel.Debug);
+        public static void WriteDebug(this string str, params object?[] args) => WriteLog(str, LogLevel.Debug, args);
 
         /// <summary>
         /// Write a message
         /// </summary>
         /// <param name="str">Message</param>
+        /// <param name="args">Arguments</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static void WriteInfo(this string str) => WriteLog(str);
+        public static void WriteInfo(this string str, params object?[] args) => WriteLog(str, args: args);
 
         /// <summary>
         /// Write a message
         /// </summary>
         /// <param name="str">Message</param>
+        /// <param name="args">Arguments</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static void WriteWarning(this string str) => WriteLog(str, LogLevel.Warning);
+        public static void WriteWarning(this string str, params object?[] args) => WriteLog(str, LogLevel.Warning, args);
 
         /// <summary>
         /// Write a message
         /// </summary>
         /// <param name="str">Message</param>
+        /// <param name="args">Arguments</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static void WriteError(this string str) => WriteLog(str, LogLevel.Error);
+        public static void WriteError(this string str, params object?[] args) => WriteLog(str, LogLevel.Error, args);
 
         /// <summary>
         /// Write a message
         /// </summary>
         /// <param name="str">Message</param>
+        /// <param name="args">Arguments</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static void WriteCritical(this string str) => WriteLog(str, LogLevel.Critical);
+        public static void WriteCritical(this string str, params object?[] args) => WriteLog(str, LogLevel.Critical, args);
     }
 }

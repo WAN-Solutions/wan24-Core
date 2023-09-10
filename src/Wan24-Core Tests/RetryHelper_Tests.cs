@@ -17,7 +17,7 @@ namespace Wan24_Core_Tests
                 Assert.IsFalse(info.Succeed);
                 Assert.AreEqual(3, info.NumberOfTries);
                 Assert.AreEqual(3, info.Exceptions.Count);
-                Assert.IsFalse(info.WasCancelled);
+                Assert.IsFalse(info.WasCanceled);
                 Assert.IsFalse(info.WasTimeout);
             }
             // Last succeed
@@ -32,7 +32,7 @@ namespace Wan24_Core_Tests
                 Assert.IsTrue(info.Succeed);
                 Assert.AreEqual(3, info.NumberOfTries);
                 Assert.AreEqual(2, info.Exceptions.Count);
-                Assert.IsFalse(info.WasCancelled);
+                Assert.IsFalse(info.WasCanceled);
                 Assert.IsFalse(info.WasTimeout);
             }
             // Cancelled
@@ -47,7 +47,7 @@ namespace Wan24_Core_Tests
                 Assert.IsFalse(info.Succeed);
                 Assert.AreEqual(1, info.NumberOfTries);
                 Assert.AreEqual(1, info.Exceptions.Count);
-                Assert.IsTrue(info.WasCancelled);
+                Assert.IsTrue(info.WasCanceled);
                 Assert.IsFalse(info.WasTimeout);
             }
             // Timeout
@@ -61,7 +61,7 @@ namespace Wan24_Core_Tests
                 Assert.IsFalse(info.Succeed);
                 Assert.AreEqual(2, info.NumberOfTries);
                 Assert.AreEqual(2, info.Exceptions.Count);
-                Assert.IsFalse(info.WasCancelled);
+                Assert.IsFalse(info.WasCanceled);
                 Assert.IsTrue(info.WasTimeout);
                 Assert.IsTrue(info.Runtime > TimeSpan.FromMilliseconds(100));
             }
@@ -74,7 +74,7 @@ namespace Wan24_Core_Tests
                 Assert.IsTrue(info.Succeed);
                 Assert.AreEqual(1, info.NumberOfTries);
                 Assert.AreEqual(0, info.Exceptions.Count);
-                Assert.IsFalse(info.WasCancelled);
+                Assert.IsFalse(info.WasCanceled);
                 Assert.IsFalse(info.WasTimeout);
                 Assert.IsTrue(info.Result);
             }
@@ -92,7 +92,7 @@ namespace Wan24_Core_Tests
                 Assert.IsFalse(info.Succeed);
                 Assert.AreEqual(3, info.NumberOfTries);
                 Assert.AreEqual(3, info.Exceptions.Count);
-                Assert.IsFalse(info.WasCancelled);
+                Assert.IsFalse(info.WasCanceled);
                 Assert.IsFalse(info.WasTimeout);
             }
             // Last succeed
@@ -108,7 +108,7 @@ namespace Wan24_Core_Tests
                 Assert.IsTrue(info.Succeed);
                 Assert.AreEqual(3, info.NumberOfTries);
                 Assert.AreEqual(2, info.Exceptions.Count);
-                Assert.IsFalse(info.WasCancelled);
+                Assert.IsFalse(info.WasCanceled);
                 Assert.IsFalse(info.WasTimeout);
             }
             // Cancelled
@@ -123,7 +123,7 @@ namespace Wan24_Core_Tests
                 Assert.IsFalse(info.Succeed);
                 Assert.AreEqual(1, info.NumberOfTries);
                 Assert.AreEqual(1, info.Exceptions.Count);
-                Assert.IsTrue(info.WasCancelled);
+                Assert.IsTrue(info.WasCanceled);
                 Assert.IsFalse(info.WasTimeout);
             }
             // Timeout
@@ -137,7 +137,7 @@ namespace Wan24_Core_Tests
                 Assert.IsFalse(info.Succeed);
                 Assert.AreEqual(2, info.NumberOfTries);
                 Assert.AreEqual(2, info.Exceptions.Count);
-                Assert.IsFalse(info.WasCancelled);
+                Assert.IsFalse(info.WasCanceled);
                 Assert.IsTrue(info.WasTimeout);
                 Assert.IsTrue(info.Runtime > TimeSpan.FromMilliseconds(100));
             }
@@ -150,7 +150,7 @@ namespace Wan24_Core_Tests
                 Assert.IsTrue(info.Succeed);
                 Assert.AreEqual(1, info.NumberOfTries);
                 Assert.AreEqual(0, info.Exceptions.Count);
-                Assert.IsFalse(info.WasCancelled);
+                Assert.IsFalse(info.WasCanceled);
                 Assert.IsFalse(info.WasTimeout);
                 Assert.IsTrue(info.Result);
             }

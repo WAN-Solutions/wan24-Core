@@ -60,7 +60,7 @@ namespace Wan24_Core_Tests
 
             public TestObject(int delay, HostedServiceTimers timer, double interval = 100) : base(interval, timer) => Delay = delay;
 
-            protected override async Task WorkerAsync()
+            protected override async Task TimedWorkerAsync()
             {
                 if (TimerType == HostedServiceTimers.ExactCatchingUp && Worked == 0)
                 {

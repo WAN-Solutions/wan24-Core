@@ -2,10 +2,8 @@
 
 namespace wan24.Core
 {
-    /// <summary>
-    /// Bitwise Int8 extensions
-    /// </summary>
-    public static class BitwiseInt8Extensions
+    // Int32
+    public static partial class BitwiseExtensions
     {
         /// <summary>
         /// Shift left
@@ -14,7 +12,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte ShiftLeft(this sbyte value, in int bits) => (sbyte)(value << bits);
+        public static int ShiftLeft(this int value, in int bits) => value << bits;
 
         /// <summary>
         /// Shift left
@@ -23,7 +21,7 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte ShiftRight(this sbyte value, in int bits) => (sbyte)(value >> bits);
+        public static int ShiftRight(this int value, in int bits) => value >> bits;
 
         /// <summary>
         /// Logical OR
@@ -32,7 +30,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte Or(this sbyte value, in sbyte other) => (sbyte)(value | other);
+        public static int Or(this int value, in int other) => value | other;
 
         /// <summary>
         /// Logical AND
@@ -41,7 +39,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte And(this sbyte value, in sbyte other) => (sbyte)(value & other);
+        public static int And(this int value, in int other) => value & other;
 
         /// <summary>
         /// Logical XOR
@@ -50,7 +48,7 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte Xor(this sbyte value, in sbyte other) => (sbyte)(value ^ other);
+        public static int Xor(this int value, in int other) => value ^ other;
 
         /// <summary>
         /// Has flags?
@@ -59,7 +57,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Has the flags?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool HasFlags(this sbyte value, in sbyte flags) => (value & flags) == flags;
+        public static bool HasFlags(this int value, in int flags) => (value & flags) == flags;
 
         /// <summary>
         /// Add flags
@@ -68,7 +66,7 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte AddFlags(this sbyte value, in sbyte flags) => (sbyte)(value | flags);
+        public static int AddFlags(this int value, in int flags) => value | flags;
 
         /// <summary>
         /// Remove flags
@@ -77,7 +75,15 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static sbyte RemoveFlags(this sbyte value, in sbyte flags) => (sbyte)(value & ~flags);
+        public static int RemoveFlags(this int value, in int flags) => value & ~flags;
+
+        /// <summary>
+        /// Cast as signed byte
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static sbyte ToSByte(this int value) => (sbyte)value;
 
         /// <summary>
         /// Cast as byte
@@ -85,7 +91,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static byte ToByte(this sbyte value) => (byte)value;
+        public static byte ToByte(this int value) => (byte)value;
 
         /// <summary>
         /// Cast as short
@@ -93,7 +99,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static short ToShort(this sbyte value) => value;
+        public static short ToShort(this int value) => (short)value;
 
         /// <summary>
         /// Cast as unsigned short
@@ -101,15 +107,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ushort ToUShort(this sbyte value) => (ushort)value;
-
-        /// <summary>
-        /// Cast as integer
-        /// </summary>
-        /// <param name="value">Value</param>
-        /// <returns>Value</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static int ToInt(this sbyte value) => value;
+        public static ushort ToUShort(this int value) => (ushort)value;
 
         /// <summary>
         /// Cast as unsigned integer
@@ -117,7 +115,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static uint ToUInt(this sbyte value) => (uint)value;
+        public static uint ToUInt(this int value) => (uint)value;
 
         /// <summary>
         /// Cast as long
@@ -125,7 +123,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static long ToLong(this sbyte value) => value;
+        public static long ToLong(this int value) => value;
 
         /// <summary>
         /// Cast as unsigned long
@@ -133,6 +131,6 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static ulong ToULong(this sbyte value) => (ulong)value;
+        public static ulong ToULong(this int value) => (ulong)value;
     }
 }
