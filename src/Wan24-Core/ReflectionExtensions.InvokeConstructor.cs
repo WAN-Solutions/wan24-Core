@@ -12,7 +12,7 @@ namespace wan24.Core
         /// <param name="ci">Constructor</param>
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
-        public static object InvokeAuto(this ConstructorInfo ci, params object[] param) => ci.Invoke(ci.GetParametersCached().GetDiObjects(param));
+        public static object InvokeAuto(this ConstructorInfo ci, params object?[] param) => ci.Invoke(ci.GetParametersCached().GetDiObjects(param));
 
         /// <summary>
         /// Invoke a constructor and complete parameters with default values
@@ -21,7 +21,7 @@ namespace wan24.Core
         /// <param name="serviceProvider">Service provider</param>
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
-        public static object InvokeAuto(this ConstructorInfo ci, IServiceProvider serviceProvider, params object[] param)
+        public static object InvokeAuto(this ConstructorInfo ci, IServiceProvider serviceProvider, params object?[] param)
              => ci.Invoke(ci.GetParametersCached().GetDiObjects(param, serviceProvider));
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static T InvokeAuto<T>(this ConstructorInfo ci, params object[] param) => (T)InvokeAuto(ci, param);
+        public static T InvokeAuto<T>(this ConstructorInfo ci, params object?[] param) => (T)InvokeAuto(ci, param);
 
         /// <summary>
         /// Invoke a constructor and complete parameters with default values
@@ -43,7 +43,7 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static T InvokeAuto<T>(this ConstructorInfo ci, IServiceProvider serviceProvider, params object[] param) => (T)InvokeAuto(ci, serviceProvider, param);
+        public static T InvokeAuto<T>(this ConstructorInfo ci, IServiceProvider serviceProvider, params object?[] param) => (T)InvokeAuto(ci, serviceProvider, param);
 
         /// <summary>
         /// Invoke a constructor and complete parameters with default values
@@ -52,7 +52,7 @@ namespace wan24.Core
         /// <param name="serviceProvider">Service provider</param>
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
-        public static async Task<object> InvokeAutoAsync(this ConstructorInfo ci, IAsyncServiceProvider serviceProvider, params object[] param)
+        public static async Task<object> InvokeAutoAsync(this ConstructorInfo ci, IAsyncServiceProvider serviceProvider, params object?[] param)
             => ci.Invoke(await ci.GetParametersCached().GetDiObjectsAsync(param,serviceProvider).DynamicContext());
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static async Task<T> InvokeAutoAsync<T>(this ConstructorInfo ci, IAsyncServiceProvider serviceProvider, params object[] param)
+        public static async Task<T> InvokeAutoAsync<T>(this ConstructorInfo ci, IAsyncServiceProvider serviceProvider, params object?[] param)
             => (T)await InvokeAutoAsync(ci, serviceProvider, param).DynamicContext();
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace wan24.Core
         /// <param name="usePrivate">Use private constructors, too?</param>
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
-        public static object ConstructAuto(this Type type, in bool usePrivate = false, params object[] param)
+        public static object ConstructAuto(this Type type, in bool usePrivate = false, params object?[] param)
             => ConstructAuto(type, out _, usePrivate, param);
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace wan24.Core
         /// <param name="usePrivate">Use private constructors, too?</param>
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
-        public static object ConstructAuto(this Type type, in IServiceProvider serviceProvider, in bool usePrivate = false, params object[] param)
+        public static object ConstructAuto(this Type type, in IServiceProvider serviceProvider, in bool usePrivate = false, params object?[] param)
             => ConstructAuto(type, serviceProvider, out _, usePrivate, param);
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace wan24.Core
         /// <param name="usePrivate">Use private constructors, too?</param>
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
-        public static object ConstructAuto(this Type type, out ConstructorInfo? usedConstructor, in bool usePrivate = false, params object[] param)
+        public static object ConstructAuto(this Type type, out ConstructorInfo? usedConstructor, in bool usePrivate = false, params object?[] param)
         {
             NullabilityInfoContext nic = new();
             BindingFlags flags = usePrivate
@@ -129,7 +129,7 @@ namespace wan24.Core
             in IServiceProvider serviceProvider, 
             out ConstructorInfo? usedConstructor, 
             in bool usePrivate = false, 
-            params object[] param
+            params object?[] param
             )
         {
             NullabilityInfoContext nic = new();
@@ -161,7 +161,7 @@ namespace wan24.Core
             this Type type, 
             IAsyncServiceProvider serviceProvider, 
             bool usePrivate = false, 
-            params object[] param
+            params object?[] param
             )
             => (await ConstructAutoAsync(type, serviceProvider, usePrivate, param)).Object;
 
@@ -177,7 +177,8 @@ namespace wan24.Core
             this Type type, 
             IAsyncServiceProvider serviceProvider, 
             bool usePrivate = false, 
-            params object[] param)
+            params object?[] param
+            )
         {
             NullabilityInfoContext nic = new();
             BindingFlags flags = usePrivate
