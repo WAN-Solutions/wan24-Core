@@ -5,7 +5,7 @@ using wan24.Core;
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class BytesExtensions_Tests
+    public class BytesExtensions_Tests : TestBase
     {
         [TestMethod]
         public void Endian_Tests()

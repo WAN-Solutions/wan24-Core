@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class ParallelQueueWorker_Tests
+    public class ParallelQueueWorker_Tests : TestBase
     {
         [TestMethod("ParallelQueueWorker_Tests.General_Tests"), Timeout(3000)]
         public async Task General_Tests()

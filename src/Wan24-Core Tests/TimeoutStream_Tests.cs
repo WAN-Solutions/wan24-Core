@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class TimeoutStream_Tests
+    public class TimeoutStream_Tests : TestBase
     {
         [TestMethod]
         public async Task General_Tests()

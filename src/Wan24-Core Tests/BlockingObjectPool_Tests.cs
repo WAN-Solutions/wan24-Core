@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class BlockingObjectPool_Tests
+    public class BlockingObjectPool_Tests : TestBase
     {
         [TestMethod("BlockingObjectPool_Tests.General_Tests"), Timeout(1000)]
         public async Task General_Tests()

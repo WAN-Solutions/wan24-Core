@@ -19,6 +19,10 @@
         /// </summary>
         int Created { get; }
         /// <summary>
+        /// Total number of on-demand created instances
+        /// </summary>
+        int CreatedOnDemand { get; }
+        /// <summary>
         /// Get one instance
         /// </summary>
         /// <returns>Instance</returns>
@@ -33,8 +37,9 @@
         /// Get many instances
         /// </summary>
         /// <param name="count">Number of instances</param>
+        /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Instances</returns>
-        IEnumerable<T> GetMany(int count);
+        IEnumerable<T> GetMany(int count, CancellationToken cancellationToken = default);
         /// <summary>
         /// Get many instances
         /// </summary>

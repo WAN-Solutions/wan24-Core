@@ -4,7 +4,7 @@ using wan24.Core;
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class IpSubNets_Tests
+    public class IpSubNets_Tests : TestBase
     {
         [TestMethod]
         public void LoopBack_Lan_Wan_Tests()

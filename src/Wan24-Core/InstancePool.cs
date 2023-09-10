@@ -26,13 +26,23 @@ namespace wan24.Core
         /// Total number of created instances
         /// </summary>
         protected volatile int _Created = 0;
+        /// <summary>
+        /// Total number of on-demand created instances
+        /// </summary>
+        protected volatile int _CreatedOnDemand = 0;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="capacity">Capacity</param>
+        public InstancePool(int capacity) : this(capacity, async (pool, ct) => (T)(await typeof(T).ConstructAutoAsync(DiHelper.Instance).DynamicContext()).Object) { }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
         /// <param name="factory">Instance factory</param>
-        public InstancePool(int capacity, IInstancePool<T>.Instance_Delegate factory) : this(capacity)
+        public InstancePool(int capacity, IInstancePool<T>.Instance_Delegate factory) : this(capacity, intern: true)
         {
             if (capacity < 1) throw new ArgumentOutOfRangeException(nameof(capacity));
             SyncFactory = factory;
@@ -44,7 +54,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="capacity">Capacity</param>
         /// <param name="factory">Instance factory</param>
-        public InstancePool(int capacity, IInstancePool<T>.InstanceAsync_Delegate factory) : this(capacity)
+        public InstancePool(int capacity, IInstancePool<T>.InstanceAsync_Delegate factory) : this(capacity, intern: true)
         {
             if (capacity < 1) throw new ArgumentOutOfRangeException(nameof(capacity));
             SyncFactory = null;
@@ -55,7 +65,10 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
-        protected InstancePool(int capacity) : base()
+        /// <param name="intern">Intern construction</param>
+#pragma warning disable IDE0060 // Remove unused parameter
+        protected InstancePool(int capacity, bool intern) : base()
+#pragma warning restore IDE0060 // Remove unused parameter
         {
             Capacity = capacity;
             Instances = Channel.CreateBounded<T>(new BoundedChannelOptions(capacity)
@@ -79,6 +92,9 @@ namespace wan24.Core
         public int Created => _Created;
 
         /// <inheritdoc/>
+        public int CreatedOnDemand => _CreatedOnDemand;
+
+        /// <inheritdoc/>
         public virtual IEnumerable<Status> State
         {
             get
@@ -88,6 +104,7 @@ namespace wan24.Core
                 yield return new("Capacity", Capacity, "Number of hold instances");
                 yield return new("Available", Available, "Number of available instances");
                 yield return new("Created", Created, "Total number of created instances");
+                yield return new("On-demand", CreatedOnDemand, "Total number of on-demand created instances");
             }
         }
 
@@ -98,6 +115,7 @@ namespace wan24.Core
             if (Instances.Reader.TryRead(out T? res)) return res;
             res = SyncFactory?.Invoke(this) ?? AsyncFactory!(this, default).Result;
             _Created++;
+            _CreatedOnDemand++;
             return res;
         }
 
@@ -116,21 +134,22 @@ namespace wan24.Core
                 res = SyncFactory(this);
             }
             _Created++;
+            _CreatedOnDemand++;
             return res;
         }
 
         /// <inheritdoc/>
-        public virtual IEnumerable<T> GetMany(int count)
+        public virtual IEnumerable<T> GetMany(int count, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            for (int i = 0; i < count; i++) yield return GetOne();
+            for (int i = 0; i != count && !cancellationToken.IsCancellationRequested; i++) yield return GetOne();
         }
 
         /// <inheritdoc/>
         public virtual async IAsyncEnumerable<T> GetManyAsync(int count, [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            for (int i = 0; i < count && !cancellationToken.IsCancellationRequested; i++) yield return await GetOneAsync(cancellationToken).DynamicContext();
+            for (int i = 0; i != count && !cancellationToken.IsCancellationRequested; i++) yield return await GetOneAsync(cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>

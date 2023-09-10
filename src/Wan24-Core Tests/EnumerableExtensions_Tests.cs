@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class EnumerableExtensions_Tests
+    public class EnumerableExtensions_Tests : TestBase
     {
         [TestMethod]
         public void Combine_Tests()

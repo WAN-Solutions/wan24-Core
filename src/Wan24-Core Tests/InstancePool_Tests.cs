@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class InstancePool_Tests
+    public class InstancePool_Tests : TestBase
     {
         [TestMethod, Timeout(3000)]
         public async Task General_Tests()
@@ -19,8 +19,9 @@ namespace Wan24_Core_Tests
                 await Task.Delay(100);
                 Assert.AreEqual(1, pool.Available);
                 DateTime started = DateTime.Now;
-                Assert.AreEqual(2, (await pool.GetManyAsync(2).ToListAsync()).Count);
-                Assert.IsTrue(started - DateTime.Now < TimeSpan.FromMilliseconds(100));
+                Assert.AreEqual(3, (await pool.GetManyAsync(3).ToListAsync()).Count);
+                Assert.IsTrue(pool.CreatedOnDemand != 0);
+                Assert.IsTrue(started - DateTime.Now < TimeSpan.FromMilliseconds(140));
             }
         }
 

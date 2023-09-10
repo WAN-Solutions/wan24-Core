@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class DisposableWrapper_Tests
+    public class DisposableWrapper_Tests : TestBase
     {
         [TestMethod]
         public async Task General_Tests()

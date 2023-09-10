@@ -4,7 +4,7 @@ using wan24.Core;
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class PinnedArray_Tests
+    public class PinnedArray_Tests : TestBase
     {
         [TestMethod]
         public unsafe void General_Tests()

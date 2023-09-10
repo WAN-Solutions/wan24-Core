@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class DisposableExtensions_Tests
+    public class DisposableExtensions_Tests : TestBase
     {
         [TestMethod]
         public void DisposeAll_Tests()

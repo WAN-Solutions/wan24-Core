@@ -4,7 +4,7 @@ using wan24.Core;
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class NetworkHelper_Tests
+    public class NetworkHelper_Tests : TestBase
     {
         [TestMethod]
         public void SubNet_Tests()

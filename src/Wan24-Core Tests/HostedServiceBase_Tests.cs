@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class HostedServiceBase_Tests
+    public class HostedServiceBase_Tests : TestBase
     {
         [TestMethod("HostedServiceBase_Tests.General_Tests"), Timeout(3000)]
         public async Task General_Tests()

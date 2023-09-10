@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class TaskExtensions_Tests
+    public class TaskExtensions_Tests : TestBase
     {
         [TestMethod("TaskExtensions_Tests.GetResult_Tests"), Timeout(1000)]
         public async Task GetResult_Tests()

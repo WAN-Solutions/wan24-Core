@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class Cancellations_Tests
+    public class Cancellations_Tests : TestBase
     {
         [TestMethod]
         public void Cancelling_Tests()

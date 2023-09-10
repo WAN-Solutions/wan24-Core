@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class DateTimeExtensions_Tests
+    public class DateTimeExtensions_Tests : TestBase
     {
         [TestMethod]
         public void InRange_Tests()
