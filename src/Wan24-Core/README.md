@@ -188,6 +188,7 @@ including extensions for numeric type encoding/decoding)
     - `SynchronizedStream` synchronizes IO and seeking
     - `RandomStream` reads random bytes into the given buffers
     - `ChunkedStream` for reading/writing stream chunks
+    - `ExchangeableStream` wraps an exchangeable base stream
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context
