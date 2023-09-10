@@ -18,13 +18,13 @@ namespace wan24.Core
         /// <returns>Parameters (if the length doesn't match the number of parameters, DI failed)</returns>
         public static object?[] GetDiObjects(
             this IEnumerable<ParameterInfo> parameters,
-            object[]? values = null,
+            object?[]? values = null,
             IServiceProvider? serviceProvider = null,
             NullabilityInfoContext? nic = null,
             bool throwOnMissing = true
             )
         {
-            List<object> valueList = new(values ?? Array.Empty<object>());
+            List<object?> valueList = new(values ?? Array.Empty<object?>());
             List<object?> res = new();
             int i,
                 len = valueList.Count;
@@ -37,7 +37,7 @@ namespace wan24.Core
                 found = false;
                 for (i = 0; i != len; i++)
                 {
-                    if (!pi.ParameterType.IsAssignableFrom(valueList[i].GetType())) continue;
+                    if (valueList[i] is null || !pi.ParameterType.IsAssignableFrom(valueList[i]!.GetType())) continue;
                     res.Add(valueList[i]);
                     valueList.RemoveAt(i);
                     len--;
@@ -65,14 +65,14 @@ namespace wan24.Core
         /// <returns>Parameters (if the length doesn't match the number of parameters, DI failed)</returns>
         public static async Task<object?[]> GetDiObjectsAsync(
             this IEnumerable<ParameterInfo> parameters,
-            object[]? values = null,
+            object?[]? values = null,
             IServiceProvider? serviceProvider = null,
             NullabilityInfoContext? nic = null,
             bool throwOnMissing = true,
             CancellationToken cancellationToken = default
             )
         {
-            List<object> valueList = new(values ?? Array.Empty<object>());
+            List<object?> valueList = new(values ?? Array.Empty<object?>());
             List<object?> res = new();
             int i,
                 len = valueList.Count;
@@ -83,7 +83,7 @@ namespace wan24.Core
                 found = false;
                 for (i = 0; i != len; i++)
                 {
-                    if (!pi.ParameterType.IsAssignableFrom(valueList[i].GetType())) continue;
+                    if (valueList[i] is null || !pi.ParameterType.IsAssignableFrom(valueList[i]!.GetType())) continue;
                     res.Add(valueList[i]);
                     valueList.RemoveAt(i);
                     len--;
@@ -113,13 +113,13 @@ namespace wan24.Core
         public static async Task<object?[]> GetDiObjectsAsync(
             this IEnumerable<ParameterInfo> parameters,
             IAsyncServiceProvider serviceProvider,
-            object[]? values = null,
+            object?[]? values = null,
             NullabilityInfoContext? nic = null,
             bool throwOnMissing = true,
             CancellationToken cancellationToken = default
             )
         {
-            List<object> valueList = new(values ?? Array.Empty<object>());
+            List<object?> valueList = new(values ?? Array.Empty<object?>());
             List<object?> res = new();
             int i,
                 len = valueList.Count;
@@ -130,7 +130,7 @@ namespace wan24.Core
                 found = false;
                 for (i = 0; i != len; i++)
                 {
-                    if (!pi.ParameterType.IsAssignableFrom(valueList[i].GetType())) continue;
+                    if (valueList[i] is null || !pi.ParameterType.IsAssignableFrom(valueList[i]!.GetType())) continue;
                     res.Add(valueList[i]);
                     valueList.RemoveAt(i);
                     len--;
@@ -155,9 +155,9 @@ namespace wan24.Core
         /// <param name="serviceProvider">Service provider</param>
         /// <param name="throwOnMissing">Throw an exception on missing value?</param>
         /// <returns>DI objects (if the length doesn't match the number of types, DI failed)</returns>
-        public static object?[] GetDiObjects(this IEnumerable<Type> types, object[]? values = null, IServiceProvider? serviceProvider = null, bool throwOnMissing = true)
+        public static object?[] GetDiObjects(this IEnumerable<Type> types, object?[]? values = null, IServiceProvider? serviceProvider = null, bool throwOnMissing = true)
         {
-            List<object> valueList = new(values ?? Array.Empty<object>());
+            List<object?> valueList = new(values ?? Array.Empty<object?>());
             List<object?> res = new();
             int i,
                 len = valueList.Count,
@@ -171,7 +171,7 @@ namespace wan24.Core
                 found = false;
                 for (i = 0; i != len; i++)
                 {
-                    if (!type.IsAssignableFrom(valueList[i].GetType())) continue;
+                    if (valueList[i] is null || !type.IsAssignableFrom(valueList[i]!.GetType())) continue;
                     res.Add(valueList[i]);
                     valueList.RemoveAt(i);
                     len--;
@@ -197,14 +197,14 @@ namespace wan24.Core
         /// <param name="throwOnMissing">Throw an exception on missing value?</param>
         /// <returns>DI objects (if the length doesn't match the number of types, DI failed)</returns>
         public static async Task<object?[]> GetDiObjectsAsync(
-            this IEnumerable<Type> types, 
+            this IEnumerable<Type> types,
             IAsyncServiceProvider serviceProvider,
-            object[]? values = null,
+            object?[]? values = null,
             bool throwOnMissing = true,
             CancellationToken cancellationToken = default
             )
         {
-            List<object> valueList = new(values ?? Array.Empty<object>());
+            List<object?> valueList = new(values ?? Array.Empty<object?>());
             List<object?> res = new();
             int i,
                 len = valueList.Count,
@@ -216,7 +216,7 @@ namespace wan24.Core
                 found = false;
                 for (i = 0; i != len; i++)
                 {
-                    if (!type.IsAssignableFrom(valueList[i].GetType())) continue;
+                    if (valueList[i] is null || !type.IsAssignableFrom(valueList[i]!.GetType())) continue;
                     res.Add(valueList[i]);
                     valueList.RemoveAt(i);
                     len--;
@@ -248,13 +248,13 @@ namespace wan24.Core
         /// <returns>DI objects (if the length doesn't match the number of types, DI failed)</returns>
         public static async Task<object?[]> GetDiObjectsAsync(
             this IEnumerable<Type> types,
-            object[]? values = null,
+            object?[]? values = null,
             IServiceProvider? serviceProvider = null,
             bool throwOnMissing = true,
             CancellationToken cancellationToken = default
             )
         {
-            List<object> valueList = new(values ?? Array.Empty<object>());
+            List<object?> valueList = new(values ?? Array.Empty<object?>());
             List<object?> res = new();
             int i,
                 len = valueList.Count,
@@ -266,7 +266,7 @@ namespace wan24.Core
                 found = false;
                 for (i = 0; i != len; i++)
                 {
-                    if (!type.IsAssignableFrom(valueList[i].GetType())) continue;
+                    if (valueList[i] is null || !type.IsAssignableFrom(valueList[i]!.GetType())) continue;
                     res.Add(valueList[i]);
                     valueList.RemoveAt(i);
                     len--;

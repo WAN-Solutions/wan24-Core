@@ -15,7 +15,7 @@ namespace wan24.Core
         /// <param name="delegates">Delegates</param>
         /// <param name="param">Parameters</param>
         [TargetedPatchingOptOut("Tiny method")]
-        public static void InvokeAll<T>(this IEnumerable<T> delegates, params object[] param) where T : Delegate
+        public static void InvokeAll<T>(this IEnumerable<T> delegates, params object?[] param) where T : Delegate
         {
             foreach (T d in delegates) d.Method.InvokeAuto(obj: null, param);
         }
@@ -27,7 +27,7 @@ namespace wan24.Core
         /// <typeparam name="tResult">Result type</typeparam>
         /// <param name="delegates">Delegates</param>
         /// <param name="param">Parameters</param>
-        public static IEnumerable<tResult?> InvokeAll<tDelegate, tResult>(this IEnumerable<tDelegate> delegates, params object[] param) where tDelegate : Delegate
+        public static IEnumerable<tResult?> InvokeAll<tDelegate, tResult>(this IEnumerable<tDelegate> delegates, params object?[] param) where tDelegate : Delegate
         {
             List<tResult?> res = new();
             foreach (tDelegate d in delegates)
@@ -47,7 +47,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="param">Parameters</param>
         [TargetedPatchingOptOut("Tiny method")]
-        public static async Task InvokeAllAsync<T>(this IEnumerable<T> delegates, CancellationToken cancellationToken = default, params object[] param) where T : Delegate
+        public static async Task InvokeAllAsync<T>(this IEnumerable<T> delegates, CancellationToken cancellationToken = default, params object?[] param) where T : Delegate
         {
             foreach (T d in delegates)
             {
@@ -67,7 +67,9 @@ namespace wan24.Core
         public static async IAsyncEnumerable<tResult?> InvokeAllAsync<tDelegate, tResult>(
             this IEnumerable<tDelegate> delegates,
             [EnumeratorCancellation] CancellationToken cancellationToken = default,
-            params object[] param) where tDelegate : Delegate
+            params object?[] param
+            )
+            where tDelegate : Delegate
         {
             foreach (tDelegate d in delegates)
             {
@@ -85,7 +87,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="param">Parameters</param>
         [TargetedPatchingOptOut("Tiny method")]
-        public static async Task InvokeAllAsync<T>(this IAsyncEnumerable<T> delegates, CancellationToken cancellationToken = default, params object[] param) where T : Delegate
+        public static async Task InvokeAllAsync<T>(this IAsyncEnumerable<T> delegates, CancellationToken cancellationToken = default, params object?[] param) where T : Delegate
         {
             await foreach (T d in delegates.DynamicContext().WithCancellation(cancellationToken))
             {
@@ -105,7 +107,9 @@ namespace wan24.Core
         public static async IAsyncEnumerable<tResult?> InvokeAllAsync<tDelegate, tResult>(
             this IAsyncEnumerable<tDelegate> delegates,
             [EnumeratorCancellation] CancellationToken cancellationToken = default,
-            params object[] param) where tDelegate : Delegate
+            params object?[] param
+            )
+            where tDelegate : Delegate
         {
             await foreach (tDelegate d in delegates.DynamicContext().WithCancellation(cancellationToken))
             {
