@@ -129,14 +129,12 @@ namespace wan24.Core
                 {
                     // Stop the timer and set a one second interval to start the timer temporary
                     await base.StopAsync(cancellationToken).DynamicContext();
-                    await StopIntAsync(cancellationToken).DynamicContext();
                     using (SemaphoreSyncContext ssc = await WorkerSync.SyncContextAsync(cancellationToken).DynamicContext())
                     {
                         Interval = 30000;
                         TimerType = timer.Value;
                     }
                     await base.StartAsync(cancellationToken).DynamicContext();
-                    await StartIntAsync(cancellationToken).DynamicContext();
                     // Reset the timer to elapse on the desired time
                     using (SemaphoreSyncContext ssc = await WorkerSync.SyncContextAsync(cancellationToken).DynamicContext())
                     {
@@ -154,7 +152,6 @@ namespace wan24.Core
                 catch
                 {
                     await base.StopAsync(CancellationToken.None).DynamicContext();
-                    await StopIntAsync(CancellationToken.None).DynamicContext();
                     throw;
                 }
             }
@@ -183,7 +180,6 @@ namespace wan24.Core
         {
             using SemaphoreSyncContext ssc = await SyncControl.SyncContextAsync(cancellationToken).DynamicContext();
             await base.StartAsync(cancellationToken).DynamicContext();
-            await StartIntAsync(cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
@@ -191,14 +187,10 @@ namespace wan24.Core
         {
             using SemaphoreSyncContext ssc = await SyncControl.SyncContextAsync(cancellationToken).DynamicContext();
             await base.StopAsync(cancellationToken).DynamicContext();
-            await StopIntAsync(cancellationToken).DynamicContext();
         }
 
-        /// <summary>
-        /// Start
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
-        protected virtual async Task StartIntAsync(CancellationToken cancellationToken)
+        /// <inheritdoc/>
+        protected override async Task AfterStartAsync(CancellationToken cancellationToken)
         {
             using (SemaphoreSyncContext ssc2 = await WorkerSync.SyncContextAsync(cancellationToken).DynamicContext())
             {
@@ -211,11 +203,8 @@ namespace wan24.Core
             await EnableTimerAsync().DynamicContext();
         }
 
-        /// <summary>
-        /// Stop
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
-        protected virtual async Task StopIntAsync(CancellationToken cancellationToken)
+        /// <inheritdoc/>
+        protected override async Task AfterStopAsync(CancellationToken cancellationToken)
         {
             using (SemaphoreSyncContext ssc2 = await WorkerSync.SyncContextAsync(cancellationToken).DynamicContext())
                 Timer.Stop();

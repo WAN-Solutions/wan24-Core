@@ -18,6 +18,10 @@
         /// </summary>
         int Stored { get; }
         /// <summary>
+        /// Max. counted number of objects in memory
+        /// </summary>
+        int StoredPeak { get; }
+        /// <summary>
         /// Get an object
         /// </summary>
         /// <param name="key">Key</param>

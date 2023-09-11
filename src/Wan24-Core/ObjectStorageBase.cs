@@ -12,6 +12,11 @@ namespace wan24.Core
         where tObj : class, IStoredObject<tKey>
     {
         /// <summary>
+        /// Can dispose objects?
+        /// </summary>
+        protected static readonly bool CanDispose;
+
+        /// <summary>
         /// Thread synchronization
         /// </summary>
         protected readonly SemaphoreSync WorkerSync = new();
@@ -24,13 +29,18 @@ namespace wan24.Core
         /// </summary>
         protected readonly ConcurrentDictionary<tKey, StoredObject> Storage = new();
         /// <summary>
-        /// Can dispose objects?
-        /// </summary>
-        protected readonly bool CanDispose;
-        /// <summary>
         /// Cancel registration
         /// </summary>
         protected CancellationTokenRegistration? CancelRegistration = null;
+        /// <summary>
+        /// Max. number of stored objects
+        /// </summary>
+        protected volatile int _StoredPeak = 0;
+
+        /// <summary>
+        /// Static constructor
+        /// </summary>
+        static ObjectStorageBase() => CanDispose = typeof(IDisposable).IsAssignableFrom(typeof(tObj)) || typeof(IAsyncDisposable).IsAssignableFrom(typeof(tObj));
 
         /// <summary>
         /// Constructor
@@ -40,7 +50,6 @@ namespace wan24.Core
         {
             if (inMemoryLimit < 1) throw new ArgumentOutOfRangeException(nameof(inMemoryLimit));
             InMemoryLimit = inMemoryLimit;
-            CanDispose = typeof(IDisposable).IsAssignableFrom(typeof(tObj)) || typeof(IAsyncDisposable).IsAssignableFrom(typeof(tObj));
         }
 
         /// <summary>
@@ -54,10 +63,13 @@ namespace wan24.Core
         /// <inheritdoc/>
         public int Stored => Storage.Count;
 
+        /// <inheritdoc/>
+        public int StoredPeak => _StoredPeak;
+
         /// <summary>
         /// Number of currently active object references
         /// </summary>
-        public long ObjectReferences => Storage.Values.Sum(o => (long)o.UsageCount);
+        public long ObjectReferences => IfUndisposed(() => Storage.Values.Sum(o => (long)o.UsageCount));
 
         /// <inheritdoc/>
         public IEnumerable<Status> State
@@ -68,6 +80,7 @@ namespace wan24.Core
                 yield return new("Last exception", LastException?.Message, "Last exception message");
                 yield return new("In-memory limit", InMemoryLimit, "Maximum number of objects hold in memory");
                 yield return new("Stored", Stored, "Number of objects hold in memory");
+                yield return new("Peak", StoredPeak, "Maximum number of objects hold in memory counted");
                 yield return new("References", ObjectReferences, "Number of currently used object references");
             }
         }
@@ -82,6 +95,7 @@ namespace wan24.Core
             tObj? obj = CreateObject(key);
             if (obj is null) return null;
             Storage[key] = new(obj);
+            if (Storage.Count > _StoredPeak) _StoredPeak = Storage.Count;
             if (Storage.Count > InMemoryLimit) CleanEvent.Set();
             return new(this, obj);
         }
@@ -96,6 +110,7 @@ namespace wan24.Core
             tObj? obj = await CreateObjectAsync(key, cancellationToken).DynamicContext();
             if (obj is null) return null;
             Storage[key] = new(obj);
+            if (Storage.Count > _StoredPeak) _StoredPeak = Storage.Count;
             if (Storage.Count > InMemoryLimit) await CleanEvent.SetAsync().DynamicContext();
             return new(this, obj);
         }
@@ -117,25 +132,6 @@ namespace wan24.Core
             Storage.TryRemove(obj.ObjectKey, out _);
             if (Storage.Count > InMemoryLimit) CleanEvent.Set();
             return obj;
-        }
-
-        /// <inheritdoc/>
-        public override async Task StartAsync(CancellationToken cancellationToken = default)
-        {
-            if (CancelRegistration.HasValue) return;
-            await base.StartAsync(cancellationToken).DynamicContext();
-            CancelRegistration = Cancellation!.Token.Register(() => CleanEvent.Set());
-        }
-
-        /// <inheritdoc/>
-        public override async Task StopAsync(CancellationToken cancellationToken = default)
-        {
-            await base.StopAsync(cancellationToken).DynamicContext();
-            if(CancelRegistration.HasValue)
-            {
-                CancelRegistration.Value.Dispose();
-                CancelRegistration = null;
-            }
         }
 
         /// <summary>
@@ -166,6 +162,24 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        protected override Task AfterStartAsync(CancellationToken cancellationToken)
+        {
+            CancelRegistration = Cancellation!.Token.Register(() => CleanEvent.Set());
+            return base.AfterStartAsync(cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        protected override Task AfterStopAsync(CancellationToken cancellationToken)
+        {
+            if (CancelRegistration.HasValue)
+            {
+                CancelRegistration.Value.Dispose();
+                CancelRegistration = null;
+            }
+            return base.AfterStopAsync(cancellationToken);
+        }
+
+        /// <inheritdoc/>
         protected override async Task WorkerAsync()
         {
             for (; !Cancellation!.IsCancellationRequested;)
@@ -178,7 +192,7 @@ namespace wan24.Core
                                               where obj.UsageCount == 0
                                               orderby obj.Accessed
                                               select obj)
-                                      .Take(Storage.Count - InMemoryLimit)
+                                      .Take(Math.Max(0, Storage.Count - InMemoryLimit))
                                       .ToArray())
                     await RemoveAsync(obj, sync: false).DynamicContext();
             }
