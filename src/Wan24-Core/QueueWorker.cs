@@ -42,13 +42,23 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public ValueTask EnqueueAsync(Task_Delegate task, CancellationToken cancellationToken = default)
-            => Queue.Writer.WriteAsync(task, cancellationToken);
+        public async ValueTask EnqueueAsync(Task_Delegate task, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            await RunEvent.WaitAsync(cancellationToken).DynamicContext();
+            await Queue.Writer.WriteAsync(task, cancellationToken).DynamicContext();
+        }
 
         /// <inheritdoc/>
-        public bool TryEnqueue(Task_Delegate task) => Queue.Writer.TryWrite(task);
+        public bool TryEnqueue(Task_Delegate task)
+        {
+            EnsureUndisposed();
+            RunEvent.Wait();
+            return Queue.Writer.TryWrite(task);
+        }
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
         public async ValueTask<int> EnqueueRangeAsync(IEnumerable<Task_Delegate> tasks, CancellationToken cancellationToken = default)
         {
             int enqueued = 0;
@@ -61,6 +71,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
         public async ValueTask<int> EnqueueRangeAsync(IAsyncEnumerable<Task_Delegate> tasks, CancellationToken cancellationToken = default)
         {
             int enqueued = 0;

@@ -3,8 +3,7 @@
     /// <summary>
     /// Interface for an instance pool
     /// </summary>
-    /// <typeparam name="T">Object type</typeparam>
-    public interface IInstancePool<T> : IServiceWorkerStatus where T : class
+    public interface IInstancePool : IServiceWorkerStatus
     {
         /// <summary>
         /// Capacity
@@ -22,6 +21,14 @@
         /// Total number of on-demand created instances
         /// </summary>
         int CreatedOnDemand { get; }
+    }
+
+    /// <summary>
+    /// Interface for an instance pool
+    /// </summary>
+    /// <typeparam name="T">Object type</typeparam>
+    public interface IInstancePool<T> : IInstancePool where T : class
+    {
         /// <summary>
         /// Get one instance
         /// </summary>

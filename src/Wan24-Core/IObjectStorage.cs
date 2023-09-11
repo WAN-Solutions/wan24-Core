@@ -3,11 +3,7 @@
     /// <summary>
     /// Interface for an object storage
     /// </summary>
-    /// <typeparam name="tKey">Object key type</typeparam>
-    /// <typeparam name="tObj">Object type</typeparam>
-    public interface IObjectStorage<tKey, tObj> : IServiceWorkerStatus
-        where tKey : notnull
-        where tObj : class, IStoredObject<tKey>
+    public interface IObjectStorage : IServiceWorkerStatus
     {
         /// <summary>
         /// Max. number of objects to hold in memory
@@ -21,6 +17,21 @@
         /// Max. counted number of objects in memory
         /// </summary>
         int StoredPeak { get; }
+        /// <summary>
+        /// Number of currently active object references
+        /// </summary>
+        long ObjectReferences { get; }
+    }
+
+    /// <summary>
+    /// Interface for an object storage
+    /// </summary>
+    /// <typeparam name="tKey">Object key type</typeparam>
+    /// <typeparam name="tObj">Object type</typeparam>
+    public interface IObjectStorage<tKey, tObj> : IObjectStorage
+        where tKey : notnull
+        where tObj : class, IStoredObject<tKey>
+    {
         /// <summary>
         /// Get an object
         /// </summary>

@@ -13,6 +13,10 @@ namespace wan24.Core
         /// </summary>
         protected readonly SemaphoreSync Sync = new();
         /// <summary>
+        /// Run event (raised when running)
+        /// </summary>
+        protected readonly ResetEvent RunEvent = new(initialState: false);
+        /// <summary>
         /// Stop task
         /// </summary>
         protected volatile TaskCompletionSource? StopTask = null;
@@ -34,15 +38,14 @@ namespace wan24.Core
         /// </summary>
         protected HostedServiceBase() : base() { }
 
-        /// <summary>
-        /// Is running?
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsRunning { get; protected set; }
 
-        /// <summary>
-        /// Start time
-        /// </summary>
+        /// <inheritdoc/>
         public DateTime Started { get; protected set; } = DateTime.MinValue;
+
+        /// <inheritdoc/>
+        public DateTime Stopped { get; protected set; } = DateTime.MinValue;
 
         /// <summary>
         /// Is stopping?
@@ -82,6 +85,7 @@ namespace wan24.Core
             Cancellation = new();
             ServiceTask = ((Func<Task>)RunServiceAsync).StartLongRunningTask(cancellationToken: CancellationToken.None);
             await AfterStartAsync(cancellationToken).DynamicContext();
+            RunEvent.Set();
         }
 
         /// <inheritdoc/>
@@ -97,6 +101,7 @@ namespace wan24.Core
                     isStopping = true;
                     await BeforeStopAsync(cancellationToken).DynamicContext();
                     StopTask = new(TaskCreationOptions.RunContinuationsAsynchronously);
+                    RunEvent.Reset();
                     Cancellation!.Cancel();
                 }
                 stopTask = StopTask.Task;
@@ -178,11 +183,13 @@ namespace wan24.Core
                         isStopping = true;
                         await BeforeStopAsync(CancellationToken.None).DynamicContext();
                         StopTask = new(TaskCreationOptions.RunContinuationsAsynchronously);
+                        RunEvent.Reset();
                     }
                 Cancellation!.Dispose();
                 Cancellation = null;
                 ServiceTask = null;
                 IsRunning = false;
+                Stopped = DateTime.Now;
                 if (isStopping) await AfterStopAsync(CancellationToken.None).DynamicContext();
                 using SemaphoreSyncContext ssc2 = await Sync.SyncContextAsync().DynamicContext();
                 StopTask.SetResult();
@@ -200,13 +207,15 @@ namespace wan24.Core
         {
             StopAsync().Wait();
             Sync.Dispose();
+            RunEvent.Dispose();
         }
 
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
             await StopAsync().DynamicContext();
-            Sync.Dispose();
+            await Sync.DisposeAsync().DynamicContext();
+            await RunEvent.DisposeAsync().DynamicContext();
         }
 
         /// <summary>

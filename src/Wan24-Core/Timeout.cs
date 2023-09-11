@@ -91,6 +91,9 @@ namespace wan24.Core
         /// <inheritdoc/>
         public DateTime Started { get; protected set; } = DateTime.MinValue;
 
+        /// <inheritdoc/>
+        public DateTime Stopped { get; protected set; } = DateTime.MinValue;
+
         /// <summary>
         /// Start
         /// </summary>
@@ -119,7 +122,12 @@ namespace wan24.Core
         /// <summary>
         /// Stop
         /// </summary>
-        public virtual void Stop() => Timer.Stop();
+        public virtual void Stop()
+        {
+            if (!Timer.Enabled) return;
+            Stopped = DateTime.Now;
+            Timer.Stop();
+        }
 
         /// <inheritdoc/>
         Task IServiceWorker.StopAsync()

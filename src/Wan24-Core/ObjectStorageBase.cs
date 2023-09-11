@@ -66,9 +66,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public int StoredPeak => _StoredPeak;
 
-        /// <summary>
-        /// Number of currently active object references
-        /// </summary>
+        /// <inheritdoc/>
         public long ObjectReferences => IfUndisposed(() => Storage.Values.Sum(o => (long)o.UsageCount));
 
         /// <inheritdoc/>
@@ -90,6 +88,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             if (Storage.TryGetValue(key, out StoredObject? res)) return new(this, res.Object);
+            RunEvent.Wait();
             using SemaphoreSyncContext ssc = WorkerSync.SyncContext();
             if (Storage.TryGetValue(key, out res)) return new(this, res.Object);
             tObj? obj = CreateObject(key);
@@ -105,6 +104,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             if (Storage.TryGetValue(key, out StoredObject? res)) return new(this, res.Object);
+            await RunEvent.WaitAsync(cancellationToken).DynamicContext();
             using SemaphoreSyncContext ssc = await WorkerSync.SyncContextAsync(cancellationToken).DynamicContext();
             if (Storage.TryGetValue(key, out res)) return new(this, res.Object);
             tObj? obj = await CreateObjectAsync(key, cancellationToken).DynamicContext();
