@@ -49,7 +49,7 @@
             }
             catch (Exception ex)
             {
-                ErrorHandling.Handle(ex);
+                ErrorHandling.Handle(new(ex, ErrorHandling.DISPOSABLE_ADAPTER_ERROR));
                 Dispose();
             }
         }

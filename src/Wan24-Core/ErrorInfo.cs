@@ -9,10 +9,12 @@
         /// Constructor
         /// </summary>
         /// <param name="ex">Exception</param>
+        /// <param name="source">Source ID</param>
         /// <param name="tag">Any tagges object</param>
-        public ErrorInfo(in Exception ex, in object? tag = null)
+        public ErrorInfo(in Exception ex, in int source = ErrorHandling.UNSPECIFIED_ERROR_SOURCE, in object? tag = null)
         {
             Exception = ex;
+            Source = source;
             Tag = tag;
         }
 
@@ -21,12 +23,14 @@
         /// </summary>
         /// <param name="info">Information</param>
         /// <param name="ex">Exception</param>
+        /// <param name="source">Source ID</param>
         /// <param name="tag">Any tagges object</param>
-        public ErrorInfo(in string info, in Exception ex, in object? tag = null)
+        public ErrorInfo(in string info, in Exception ex, in int source = ErrorHandling.UNSPECIFIED_ERROR_SOURCE, in object? tag = null)
         {
             Exception = ex;
             Tag = tag;
             Info = info;
+            Source = source;
         }
 
         /// <summary>
@@ -38,6 +42,11 @@
         /// Exception
         /// </summary>
         public Exception Exception { get; }
+
+        /// <summary>
+        /// Error source ID
+        /// </summary>
+        public int Source { get; }
 
         /// <summary>
         /// Any tagged object

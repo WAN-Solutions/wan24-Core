@@ -1291,6 +1291,21 @@ ignored - they'll be written to STDERR instead.
 You'll need to call `ErrorHandling.Handle` from your code in order to handle a 
 catched exception manually.
 
+**NOTE**: You can specify an error source ID, which may be one of the pre-
+defined IDs from the `ErrorHandling` constants, or a custom value. If you use 
+custom values, please only use bits 17..31, since the bits 1..16 are reserved 
+for pre-defined error source IDs. Example for defining a custom error source 
+ID:
+
+```cs
+public const int CUSTOM_ERROR_SOURCE = 1 << 16;
+```
+
+You can count from one as usual, but shift the ID 16 bits to the left, which 
+enables you to define up to 32,768 different positive custom error sources. 
+You may also use all the Int32 negative values for +2,147,483,648 custom error 
+source IDs.
+
 ## Delayed tasks
 
 You'll need to add the `DelayService.Instance` to your apps hosted services, 

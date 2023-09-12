@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.Contracts;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Threading.Channels;
 
 namespace wan24.Core
@@ -130,8 +129,7 @@ namespace wan24.Core
             }
             else
             {
-                Contract.Assert(SyncFactory is not null);
-                res = SyncFactory(this);
+                res = SyncFactory!(this);
             }
             _Created++;
             _CreatedOnDemand++;
@@ -161,9 +159,8 @@ namespace wan24.Core
             }
             else
             {
-                Contract.Assert(AsyncFactory is not null);
                 for (; !Cancellation!.IsCancellationRequested; _Created++)
-                    await Instances.Writer.WriteAsync(await AsyncFactory(this, Cancellation.Token).DynamicContext(), Cancellation.Token).DynamicContext();
+                    await Instances.Writer.WriteAsync(await AsyncFactory!(this, Cancellation.Token).DynamicContext(), Cancellation.Token).DynamicContext();
             }
         }
 

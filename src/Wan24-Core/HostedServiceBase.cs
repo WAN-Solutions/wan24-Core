@@ -61,7 +61,7 @@ namespace wan24.Core
             protected set
             {
                 _LastException = value;
-                if (value is not null) ErrorHandling.Handle(new($"{this} stopped exceptional", value, this));
+                if (value is not null) ErrorHandling.Handle(new($"{this} stopped exceptional", value, ErrorSource, this));
             }
         }
 
@@ -74,6 +74,11 @@ namespace wan24.Core
         /// Name
         /// </summary>
         public string? Name { get; set; }
+
+        /// <summary>
+        /// Error source ID
+        /// </summary>
+        public int ErrorSource { get; set; } = ErrorHandling.SERVICE_ERROR;
 
         /// <inheritdoc/>
         public virtual async Task StartAsync(CancellationToken cancellationToken = default)
@@ -164,6 +169,7 @@ namespace wan24.Core
             {
                 if (ex.CancellationToken != Cancellation!.Token)
                 {
+                    StoppedExceptional = true;
                     LastException = ex;
                     RaiseOnException();
                 }
