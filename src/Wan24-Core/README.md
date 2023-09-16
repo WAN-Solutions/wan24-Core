@@ -36,6 +36,7 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
     - Clearing
     - Base64 encoding/decoding
     - Fast XOR, AND and OR using intrinsics
+    - Slow compare
 - Dictionary extensions
     - Merge with string key prefix
     - Merge a list with the index as key (and an optional key prefix)
@@ -73,7 +74,6 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
     - Shortcuts for starting a function as long running task
     - Shortcuts for starting a function as task with fair execution by the 
     scheduler
-    - Add a cancellation token to a task (which can cancel the task awaiter)
 - DI helper
     - Service provider adoption
     - DI object factory delegates

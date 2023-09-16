@@ -76,9 +76,12 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static bool SlowCompare(this ReadOnlySpan<byte> a, in ReadOnlySpan<byte> b)
         {
-            int diff = a.Length ^ b.Length;
-            for (int i = Math.Min(a.Length, b.Length) - 1; i >= 0; diff |= a[i] ^ b[i], i--) ;
-            return diff == 0;
+            unchecked
+            {
+                int diff = a.Length ^ b.Length;
+                for (int i = Math.Min(a.Length, b.Length) - 1; i >= 0; diff |= a[i] ^ b[i], i--) ;
+                return diff == 0;
+            }
         }
 
         /// <summary>

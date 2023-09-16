@@ -20,6 +20,7 @@ namespace wan24.Core
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
                 ?? throw new ArgumentException("Not a result task", nameof(task));
             if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
+            if (!typeof(T).IsAssignableFrom(pi.PropertyType)) throw new ArgumentException($"Result type {pi.PropertyType} mismatch", nameof(task));
             return (T)(pi.Getter(task) ?? throw new InvalidDataException("Task result is NULL"));
         }
 
@@ -35,6 +36,7 @@ namespace wan24.Core
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
                 ?? throw new ArgumentException("Not a result task", nameof(task));
             if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
+            if (!typeof(T).IsAssignableFrom(pi.PropertyType)) throw new ArgumentException($"Result type {pi.PropertyType} mismatch", nameof(task));
             return (T?)pi.Getter(task);
         }
 
@@ -45,13 +47,12 @@ namespace wan24.Core
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-#pragma warning disable IDE0060 // Remove unused parameter
         public static object GetResult(this Task task, in Type type)
-#pragma warning restore IDE0060 // Remove unused parameter
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
                 ?? throw new ArgumentException("Not a result task", nameof(task));
             if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
+            if (!type.IsAssignableFrom(pi.PropertyType)) throw new ArgumentException("Result type mismatch", nameof(task));
             return pi.Getter(task) ?? throw new InvalidDataException("Task result is NULL");
         }
 
@@ -62,13 +63,12 @@ namespace wan24.Core
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-#pragma warning disable IDE0060 // Remove unused parameter
         public static object? GetResultNullable(this Task task, in Type type)
-#pragma warning restore IDE0060 // Remove unused parameter
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
                 ?? throw new ArgumentException("Not a result task", nameof(task));
             if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
+            if (!type.IsAssignableFrom(pi.PropertyType)) throw new ArgumentException("Result type mismatch", nameof(task));
             return pi.Getter(task);
         }
 
@@ -84,6 +84,7 @@ namespace wan24.Core
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
                 ?? throw new ArgumentException("Not a result task", nameof(task));
             if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
+            if (!typeof(T).IsAssignableFrom(pi.PropertyType)) throw new ArgumentException($"Result type {pi.PropertyType} mismatch", nameof(task));
             return (T)(pi.Getter(task) ?? throw new InvalidDataException("Task result is NULL"));
         }
 
@@ -99,6 +100,7 @@ namespace wan24.Core
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
                 ?? throw new ArgumentException("Not a result task", nameof(task));
             if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
+            if (!typeof(T).IsAssignableFrom(pi.PropertyType)) throw new ArgumentException($"Result type {pi.PropertyType} mismatch", nameof(task));
             return (T?)pi.Getter(task);
         }
 
@@ -109,13 +111,12 @@ namespace wan24.Core
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-#pragma warning disable IDE0060 // Remove unused parameter
         public static object GetResult(this ValueTask task, in Type type)
-#pragma warning restore IDE0060 // Remove unused parameter
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
                 ?? throw new ArgumentException("Not a result task", nameof(task));
             if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
+            if (!type.IsAssignableFrom(pi.PropertyType)) throw new ArgumentException("Result type mismatch", nameof(task));
             return pi.Getter(task) ?? throw new InvalidDataException("Task result is NULL");
         }
 
@@ -126,13 +127,12 @@ namespace wan24.Core
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-#pragma warning disable IDE0060 // Remove unused parameter
         public static object? GetResultNullable(this ValueTask task, in Type type)
-#pragma warning restore IDE0060 // Remove unused parameter
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
                 ?? throw new ArgumentException("Not a result task", nameof(task));
             if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
+            if (!type.IsAssignableFrom(pi.PropertyType)) throw new ArgumentException("Result type mismatch", nameof(task));
             return pi.Getter(task);
         }
 
@@ -361,174 +361,5 @@ namespace wan24.Core
                 scheduler ?? TaskScheduler.Current
                 )
                 .Unwrap();
-
-        /// <summary>
-        /// Add a cancellation token to a task
-        /// </summary>
-        /// <param name="task">Task</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Task</returns>
-        /// <exception cref="TaskCanceledException">If canceled</exception>
-        [TargetedPatchingOptOut("Just a method adapter")]
-        public static Task WithCancellation(this Task task, in CancellationToken cancellationToken) => task.WaitAsync(cancellationToken);
-
-        /// <summary>
-        /// Add a cancellation token to a task
-        /// </summary>
-        /// <typeparam name="T">Result type</typeparam>
-        /// <param name="task">Task</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Task</returns>
-        /// <exception cref="TaskCanceledException">If canceled</exception>
-        [TargetedPatchingOptOut("Just a method adapter")]
-        public static Task<T> WithCancellation<T>(this Task<T> task, in CancellationToken cancellationToken) => task.WaitAsync(cancellationToken);
-
-        /// <summary>
-        /// Add a timeout to a task
-        /// </summary>
-        /// <param name="task">Task</param>
-        /// <param name="timeout">Timeout</param>
-        /// <returns>Task</returns>
-        /// <exception cref="TimeoutException">On timeout (<c>TimeoutException.Data[timeout]</c> is set)</exception>
-        public static async Task WithTimeout(this Task task, TimeSpan timeout)
-        {
-            using CancellationTokenSource cts = new(timeout);
-            Task timeoutTask = Task.Delay(timeout, cts.Token);
-            try
-            {
-                if(await Task.WhenAny(task, timeoutTask).DynamicContext() == timeoutTask)
-                {
-                    TimeoutException ex = new();
-                    ex.Data[timeout] = true;
-                    throw ex;
-                }
-                await task.DynamicContext();
-            }
-            catch (TaskCanceledException ex)
-            {
-                if (ex.CancellationToken != cts.Token) throw;
-                TimeoutException timeoutException = new(message: null, ex);
-                timeoutException.Data[timeout] = true;
-                throw timeoutException;
-            }
-            catch (OperationCanceledException ex)
-            {
-                if (ex.CancellationToken != cts.Token) throw;
-                TimeoutException timeoutException = new(message: null, ex);
-                timeoutException.Data[timeout] = true;
-                throw timeoutException;
-            }
-        }
-
-        /// <summary>
-        /// Add a timeout to a task
-        /// </summary>
-        /// <typeparam name="T">Result type</typeparam>
-        /// <param name="task">Task</param>
-        /// <param name="timeout">Timeout</param>
-        /// <returns>Task</returns>
-        /// <exception cref="TimeoutException">On timeout (<c>TimeoutException.Data[timeout]</c> is set)</exception>
-        public static async Task<T> WithTimeout<T>(this Task<T> task, TimeSpan timeout)
-        {
-            using CancellationTokenSource cts = new(timeout);
-            Task timeoutTask = Task.Delay(timeout, cts.Token);
-            try
-            {
-                if(await Task.WhenAny(task, timeoutTask).DynamicContext() == timeoutTask)
-                {
-                    TimeoutException ex = new();
-                    ex.Data[timeout] = true;
-                    throw ex;
-                }
-                return await task.DynamicContext();
-            }
-            catch (TaskCanceledException ex)
-            {
-                if (ex.CancellationToken != cts.Token) throw;
-                TimeoutException timeoutException = new();
-                timeoutException.Data[timeout] = true;
-                throw timeoutException;
-            }
-            catch (OperationCanceledException ex)
-            {
-                if (ex.CancellationToken != cts.Token) throw;
-                TimeoutException timeoutException = new();
-                timeoutException.Data[timeout] = true;
-                throw timeoutException;
-            }
-        }
-
-        /// <summary>
-        /// Add a timeout to a task
-        /// </summary>
-        /// <param name="task">Task</param>
-        /// <param name="timeout">Timeout</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Task</returns>
-        /// <exception cref="OperationCanceledException">If canceled</exception>
-        /// <exception cref="TimeoutException">On timeout</exception>
-        public static async Task WithTimeoutAndCancellation(this Task task, TimeSpan timeout, CancellationToken cancellationToken)
-        {
-            using CancellationTokenSource cts = new(timeout);
-            bool canceled = false;
-            CancellationTokenRegistration registration = default!;
-            void Canceled()
-            {
-                canceled = true;
-                registration.Dispose();
-                cts.Cancel();
-            }
-            registration = cancellationToken.Register(Canceled);
-            try
-            {
-                await task.WithCancellation(cts.Token).DynamicContext();
-            }
-            catch (TaskCanceledException ex)
-            {
-                if (canceled || ex.CancellationToken != cts.Token) throw;
-                throw new TimeoutException(message: null, ex);
-            }
-            finally
-            {
-                registration.Dispose();
-            }
-        }
-
-        /// <summary>
-        /// Add a timeout to a task
-        /// </summary>
-        /// <typeparam name="T">Result type</typeparam>
-        /// <param name="task">Task</param>
-        /// <param name="timeout">Timeout</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Task</returns>
-        /// <exception cref="OperationCanceledException">If canceled</exception>
-        /// <exception cref="TimeoutException">On timeout</exception>
-        public static async Task<T> WithTimeoutAndCancellation<T>(this Task<T> task, TimeSpan timeout, CancellationToken cancellationToken)
-        {
-            using CancellationTokenSource cts = new(timeout);
-            bool canceled = false;
-            CancellationTokenRegistration registration = default!;
-            void Canceled()
-            {
-                canceled = true;
-                registration.Dispose();
-                cts.Cancel();
-            }
-            registration = cancellationToken.Register(Canceled);
-            try
-            {
-                return await task.WithCancellation(cts.Token).DynamicContext();
-            }
-            catch (TaskCanceledException ex)
-            {
-                if (canceled || ex.CancellationToken != cts.Token) throw;
-                throw new TimeoutException(message: null, ex);
-            }
-            finally
-            {
-                registration.Dispose();
-            }
-        }
     }
 }

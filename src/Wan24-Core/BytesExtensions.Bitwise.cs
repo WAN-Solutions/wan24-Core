@@ -1,7 +1,6 @@
 ﻿using System.Runtime;
 using System.Runtime.Intrinsics.Arm;
 using System.Runtime.Intrinsics.X86;
-using System.Xml.Schema;
 
 //TODO .NET 8: Support for AVX512
 
