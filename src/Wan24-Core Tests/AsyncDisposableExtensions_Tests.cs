@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class AsyncDisposableExtensions_Tests
+    public class AsyncDisposableExtensions_Tests : TestBase
     {
         [TestMethod]
         public async Task Context_Tests()

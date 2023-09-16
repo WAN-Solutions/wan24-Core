@@ -27,8 +27,8 @@ namespace wan24.Core
             {
                 ErrorHandling.Handle(
                     e.ExceptionObject is Exception ex 
-                        ? new($"Catched unhandled exception from the current app domain (will terminate: {e.IsTerminating})", ex) 
-                        : new($"Catched unhandled exception without exception object from the current app domain (will terminate: {e.IsTerminating})", new Exception())
+                        ? new($"Catched unhandled exception from the current app domain (will terminate: {e.IsTerminating})", ex, ErrorHandling.UNHANDLED_EXCEPTION) 
+                        : new($"Catched unhandled exception without exception object from the current app domain (will terminate: {e.IsTerminating})", new Exception(), ErrorHandling.UNHANDLED_EXCEPTION)
                     );
             };
 

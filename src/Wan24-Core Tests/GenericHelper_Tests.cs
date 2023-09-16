@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class GenericHelper_Tests
+    public class GenericHelper_Tests : TestBase
     {
         [TestMethod]
         public void AreEqual_Tests()

@@ -1,7 +1,7 @@
 ﻿namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class Timeout_Tests
+    public class Timeout_Tests : TestBase
     {
         [TestMethod]
         public void General_Tests()

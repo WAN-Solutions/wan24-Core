@@ -20,6 +20,10 @@ namespace wan24.Core
         /// </summary>
         DateTime Started { get; }
         /// <summary>
+        /// Last stop time
+        /// </summary>
+        DateTime Stopped { get; }
+        /// <summary>
         /// Start
         /// </summary>
         Task StartAsync();

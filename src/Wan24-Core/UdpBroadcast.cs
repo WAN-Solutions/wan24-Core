@@ -124,13 +124,6 @@ namespace wan24.Core
             return res.Count == 0 ? Array.Empty<T>() : res.ToArray();
         }
 
-        /// <inheritdoc/>
-        public override async Task StartAsync(CancellationToken cancellationToken = default)
-        {
-            await base.StartAsync(cancellationToken).DynamicContext();
-            await ServiceEvent.WaitAsync(cancellationToken).DynamicContext();
-        }
-
         /// <summary>
         /// Configure the broadcast UDP listener
         /// </summary>
@@ -162,6 +155,13 @@ namespace wan24.Core
         /// <param name="packet">Packet</param>
         /// <param name="cancellationToken">Cancellation token</param>
         protected abstract Task HandleReceivedAsync(UdpReceiveResult packet, CancellationToken cancellationToken);
+
+        /// <inheritdoc/>
+        protected override async Task AfterStartAsync(CancellationToken cancellationToken)
+        {
+            await ServiceEvent.WaitAsync(cancellationToken).DynamicContext();
+            await base.AfterStartAsync(cancellationToken).DynamicContext();
+        }
 
         /// <inheritdoc/>
         protected override async Task WorkerAsync()

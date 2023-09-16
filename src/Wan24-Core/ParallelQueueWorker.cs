@@ -50,6 +50,7 @@
         /// <inheritdoc/>
         public bool WaitBoring(TimeSpan timeout)
         {
+            EnsureUndisposed();
             DateTime started = DateTime.Now;
             while (ServiceTask is not null && (Queued != 0 || !Busy.IsSet))
                 try
@@ -67,6 +68,7 @@
         /// <inheritdoc/>
         public async Task<bool> WaitBoringAsync(TimeSpan timeout)
         {
+            EnsureUndisposed();
             DateTime started = DateTime.Now;
             while (ServiceTask is not null && (Queued != 0 || !Busy.IsSet))
                 try
@@ -84,6 +86,7 @@
         /// <inheritdoc/>
         public bool WaitBoring(CancellationToken cancellationToken = default)
         {
+            EnsureUndisposed();
             while (ServiceTask is not null && (Queued != 0 || !Busy.IsSet))
                 try
                 {
@@ -99,6 +102,7 @@
         /// <inheritdoc/>
         public async Task<bool> WaitBoringAsync(CancellationToken cancellationToken = default)
         {
+            EnsureUndisposed();
             while (ServiceTask is not null && (Queued != 0 || !Busy.IsSet))
                 try
                 {
@@ -112,10 +116,10 @@
         }
 
         /// <inheritdoc/>
-        public override async Task StopAsync(CancellationToken cancellationToken = default)
+        protected override async Task AfterStopAsync(CancellationToken cancellationToken)
         {
-            await base.StopAsync(cancellationToken).DynamicContext();
             await Busy.WaitAsync(cancellationToken).DynamicContext();
+            await base.AfterStartAsync(cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>

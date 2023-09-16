@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class BitwiseExtensions_Tests
+    public class BitwiseExtensions_Tests : TestBase
     {
         [TestMethod]
         public void UInt8_Tests()

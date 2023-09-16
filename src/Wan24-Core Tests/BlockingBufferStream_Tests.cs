@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class BlockingBufferStream_Tests
+    public class BlockingBufferStream_Tests : TestBase
     {
         [TestMethod, Timeout(5000)]
         public void General_Tests()

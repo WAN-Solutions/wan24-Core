@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class ZeroStream_Tests
+    public class ZeroStream_Tests : TestBase
     {
         [TestMethod]
         public void General_Tests()

@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class GlobalLock_Tests
+    public class GlobalLock_Tests : TestBase
     {
         [TestMethod, Timeout(3000)]
         public void Sync_Tests()

@@ -6,7 +6,7 @@ using wan24.Core;
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class UdpBroadcast_Tests
+    public class UdpBroadcast_Tests : TestBase
     {
         [TestMethod]
         public async Task BroadcastAsync_Tests()

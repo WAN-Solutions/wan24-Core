@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class SecureByteArrayStruct_Tests
+    public class SecureByteArrayStruct_Tests : TestBase
     {
         [TestMethod]
         public void Instance_Tests()

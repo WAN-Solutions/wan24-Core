@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class CliConfig_Tests
+    public class CliConfig_Tests : TestBase
     {
         [CliConfig]
         public static bool Flag { get; set; }

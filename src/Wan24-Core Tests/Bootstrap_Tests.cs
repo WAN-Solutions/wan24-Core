@@ -5,7 +5,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass, Bootstrapper]
-    public class Bootstrap_Tests
+    public class Bootstrap_Tests : TestBase
     {
         public static readonly List<string> Runs = new();
 

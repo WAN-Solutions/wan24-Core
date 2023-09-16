@@ -8,6 +8,27 @@ namespace wan24.Core
     public static class ErrorHandling
     {
         /// <summary>
+        /// Unspecified error source ID
+        /// </summary>
+        public const int UNSPECIFIED_ERROR_SOURCE = 0;
+        /// <summary>
+        /// Unhandled exception error source
+        /// </summary>
+        public const int UNHANDLED_EXCEPTION = 1;
+        /// <summary>
+        /// Delayed service error source
+        /// </summary>
+        public const int DELAYED_SERVICE_ERROR = 2;
+        /// <summary>
+        /// Disposable adapter error source
+        /// </summary>
+        public const int DISPOSABLE_ADAPTER_ERROR = 3;
+        /// <summary>
+        /// Service error source
+        /// </summary>
+        public const int SERVICE_ERROR = 4;
+
+        /// <summary>
         /// An object for thread synchronization
         /// </summary>
         public static readonly object SyncObject = new();

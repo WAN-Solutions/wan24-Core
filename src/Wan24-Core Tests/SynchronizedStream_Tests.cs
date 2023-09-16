@@ -4,7 +4,7 @@ using wan24.Core;
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class SynchronizedStream_Tests
+    public class SynchronizedStream_Tests : TestBase
     {
         [TestMethod, Timeout(3000)]
         public void General_Tests()

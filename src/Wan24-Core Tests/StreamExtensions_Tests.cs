@@ -4,7 +4,7 @@ using wan24.Core;
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class StreamExtensions_Tests
+    public class StreamExtensions_Tests : TestBase
     {
         [TestMethod]
         public void GetRemainingBytes_Tests()

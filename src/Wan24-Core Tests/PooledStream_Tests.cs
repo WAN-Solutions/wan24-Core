@@ -4,7 +4,7 @@ using wan24.Core;
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class PooledStream_Tests
+    public class PooledStream_Tests : TestBase
     {
         [TestMethod]
         public void TempFile_Tests()

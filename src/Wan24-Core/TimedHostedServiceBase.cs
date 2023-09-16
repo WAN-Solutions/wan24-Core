@@ -18,7 +18,7 @@ namespace wan24.Core
         /// <summary>
         /// Run event (raised when should run)
         /// </summary>
-        protected readonly ResetEvent RunEvent = new(initialState: false);
+        protected readonly ResetEvent RunningEvent = new(initialState: false);
         /// <summary>
         /// Thread synchronization
         /// </summary>
@@ -42,7 +42,7 @@ namespace wan24.Core
         {
             TimerTable.Timers[GUID] = this;
             if (nextRun is not null && nextRun <= DateTime.Now) throw new ArgumentException("Next run is in the past", nameof(nextRun));
-            Timer.Elapsed += (s, e) => RunEvent.Set();
+            Timer.Elapsed += (s, e) => RunningEvent.Set();
             Interval = interval;
             TimerType = timer;
             NextRun = (nextRun ?? DateTime.Now) - TimeSpan.FromMilliseconds(interval);
@@ -119,6 +119,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         public async Task SetTimerAsync(double interval, HostedServiceTimers? timer = null, DateTime? nextRun = null, CancellationToken cancellationToken = default)
         {
+            EnsureUndisposed();
             if (interval <= 0) throw new ArgumentOutOfRangeException(nameof(interval));
             timer ??= TimerType;
             // Handle fixed next run time
@@ -129,14 +130,12 @@ namespace wan24.Core
                 {
                     // Stop the timer and set a one second interval to start the timer temporary
                     await base.StopAsync(cancellationToken).DynamicContext();
-                    await StopIntAsync(cancellationToken).DynamicContext();
                     using (SemaphoreSyncContext ssc = await WorkerSync.SyncContextAsync(cancellationToken).DynamicContext())
                     {
                         Interval = 30000;
                         TimerType = timer.Value;
                     }
                     await base.StartAsync(cancellationToken).DynamicContext();
-                    await StartIntAsync(cancellationToken).DynamicContext();
                     // Reset the timer to elapse on the desired time
                     using (SemaphoreSyncContext ssc = await WorkerSync.SyncContextAsync(cancellationToken).DynamicContext())
                     {
@@ -154,7 +153,6 @@ namespace wan24.Core
                 catch
                 {
                     await base.StopAsync(CancellationToken.None).DynamicContext();
-                    await StopIntAsync(CancellationToken.None).DynamicContext();
                     throw;
                 }
             }
@@ -169,7 +167,7 @@ namespace wan24.Core
                 nextRun = (LastRun + LastDuration).AddMilliseconds(interval);
                 if (nextRun <= DateTime.Now)
                 {
-                    await RunEvent.SetAsync().DynamicContext();
+                    await RunningEvent.SetAsync().DynamicContext();
                     return;
                 }
                 NextRun = nextRun.Value;
@@ -183,7 +181,6 @@ namespace wan24.Core
         {
             using SemaphoreSyncContext ssc = await SyncControl.SyncContextAsync(cancellationToken).DynamicContext();
             await base.StartAsync(cancellationToken).DynamicContext();
-            await StartIntAsync(cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
@@ -191,14 +188,10 @@ namespace wan24.Core
         {
             using SemaphoreSyncContext ssc = await SyncControl.SyncContextAsync(cancellationToken).DynamicContext();
             await base.StopAsync(cancellationToken).DynamicContext();
-            await StopIntAsync(cancellationToken).DynamicContext();
         }
 
-        /// <summary>
-        /// Start
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
-        protected virtual async Task StartIntAsync(CancellationToken cancellationToken)
+        /// <inheritdoc/>
+        protected override async Task AfterStartAsync(CancellationToken cancellationToken)
         {
             using (SemaphoreSyncContext ssc2 = await WorkerSync.SyncContextAsync(cancellationToken).DynamicContext())
             {
@@ -206,21 +199,18 @@ namespace wan24.Core
                 LastDuration = TimeSpan.Zero;
                 IsRunning = true;
                 Cancellation = new();
-                await RunEvent.ResetAsync().DynamicContext();
+                await RunningEvent.ResetAsync().DynamicContext();
             }
             await EnableTimerAsync().DynamicContext();
         }
 
-        /// <summary>
-        /// Stop
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
-        protected virtual async Task StopIntAsync(CancellationToken cancellationToken)
+        /// <inheritdoc/>
+        protected override async Task AfterStopAsync(CancellationToken cancellationToken)
         {
             using (SemaphoreSyncContext ssc2 = await WorkerSync.SyncContextAsync(cancellationToken).DynamicContext())
                 Timer.Stop();
             NextRun = DateTime.MinValue;
-            await RunEvent.SetAsync().DynamicContext();
+            await RunningEvent.SetAsync().DynamicContext();
         }
 
         /// <inheritdoc/>
@@ -232,8 +222,8 @@ namespace wan24.Core
                 while (!Cancellation!.IsCancellationRequested)
                     try
                     {
-                        await RunEvent.WaitAsync(Cancellation.Token).DynamicContext();
-                        await RunEvent.ResetAsync().DynamicContext();
+                        await RunningEvent.WaitAsync(Cancellation.Token).DynamicContext();
+                        await RunningEvent.ResetAsync().DynamicContext();
                         if (Cancellation.IsCancellationRequested) break;
                         LastRun = DateTime.Now;
                         await TimedWorkerAsync().DynamicContext();
@@ -297,7 +287,7 @@ namespace wan24.Core
                     if (LastRun == DateTime.MinValue)
                     {
                         NextRun = DateTime.Now;
-                        await RunEvent.SetAsync().DynamicContext();
+                        await RunningEvent.SetAsync().DynamicContext();
                         return false;
                     }
                     else
@@ -306,7 +296,7 @@ namespace wan24.Core
                         while (NextRun < now) NextRun = NextRun.AddMilliseconds(Interval);
                         if (NextRun == now)
                         {
-                            await RunEvent.SetAsync().DynamicContext();
+                            await RunningEvent.SetAsync().DynamicContext();
                             return false;
                         }
                     }
@@ -315,7 +305,7 @@ namespace wan24.Core
                     if (NextRun == DateTime.MinValue)
                     {
                         NextRun = DateTime.Now;
-                        await RunEvent.SetAsync().DynamicContext();
+                        await RunningEvent.SetAsync().DynamicContext();
                         return false;
                     }
                     else
@@ -324,7 +314,7 @@ namespace wan24.Core
                         if (NextRun <= now)
                         {
                             // Catch up on a missing processing run
-                            await RunEvent.SetAsync().DynamicContext();
+                            await RunningEvent.SetAsync().DynamicContext();
                             return false;
                         }
                     }
@@ -344,7 +334,7 @@ namespace wan24.Core
             StopAsync().Wait();
             TimerTable.Timers.Remove(GUID, out _);
             Timer.Dispose();
-            RunEvent.Dispose();
+            RunningEvent.Dispose();
             WorkerSync.Dispose();
             SyncControl.Dispose();
         }
@@ -355,7 +345,7 @@ namespace wan24.Core
             await StopAsync().DynamicContext();
             TimerTable.Timers.Remove(GUID, out _);
             Timer.Dispose();
-            RunEvent.Dispose();
+            RunningEvent.Dispose();
             WorkerSync.Dispose();
             SyncControl.Dispose();
         }

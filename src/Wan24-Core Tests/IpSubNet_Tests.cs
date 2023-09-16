@@ -4,7 +4,7 @@ using wan24.Core;
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class IpSubNet_Tests
+    public class IpSubNet_Tests : TestBase
     {
         private static readonly Dictionary<string, string[]> ValidTestData = new()
             {
