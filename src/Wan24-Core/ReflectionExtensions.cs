@@ -79,6 +79,16 @@ namespace wan24.Core
             return true;
         }
 
+        //TODO .NET 7: Enable IsInitOnly
+        /*/// <summary>
+        /// Determine if a property is init-only
+        /// </summary>
+        /// <param name="pi">Property</param>
+        /// <returns>Is init-only?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static bool IsInitOnly(this PropertyInfo pi)
+            => pi.SetMethod is MethodInfo mi && mi.ReturnParameter.GetRequiredCustomModifiers().Contains(typeof(IsExternalInit));*/
+
         /// <summary>
         /// Get the final array element type of a multi-dimensional array type
         /// </summary>
