@@ -114,9 +114,11 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        [SensitiveData]
         public T[] Array => IfUndisposed(_Array);
 
         /// <inheritdoc/>
+        [SensitiveData]
         public Span<T> Span
         {
             [TargetedPatchingOptOut("Just a method adapter")]
@@ -127,6 +129,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        [SensitiveData]
         public Memory<T> Memory
         {
             [TargetedPatchingOptOut("Just a method adapter")]
