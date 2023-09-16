@@ -4,7 +4,7 @@ using wan24.Core;
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class LimitedStream_Tests
+    public class LimitedStream_Tests : TestBase
     {
         [TestMethod]
         public void Write_Tests()

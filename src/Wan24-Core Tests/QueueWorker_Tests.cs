@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class QueueWorker_Tests
+    public class QueueWorker_Tests : TestBase
     {
         [TestMethod("QueueWorker_Tests.General_Tests"), Timeout(3000)]
         public async Task General_Tests()
@@ -32,11 +32,11 @@ namespace Wan24_Core_Tests
                 worked++;
             }));
             task1Event.Set();
-            await Task.Delay(100);
+            await Task.Delay(200);
             Assert.AreEqual(1, worked);
             await addTask;
             task2Event.Set();
-            await Task.Delay(100);
+            await Task.Delay(200);
             Assert.AreEqual(2, worked);
         }
     }

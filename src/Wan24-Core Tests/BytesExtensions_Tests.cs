@@ -5,7 +5,7 @@ using wan24.Core;
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class BytesExtensions_Tests
+    public class BytesExtensions_Tests : TestBase
     {
         [TestMethod]
         public void Endian_Tests()
@@ -127,6 +127,19 @@ namespace Wan24_Core_Tests
                 c = Enumerable.Range(0, 128).Select(i => (byte)(a[i] | b[i])).ToArray();
             a.Or(b);
             Assert.IsTrue(a.SequenceEqual(c));
+        }
+
+        [TestMethod]
+        public void Compare_Tests()
+        {
+            byte[] data = RandomNumberGenerator.GetBytes(1024 * 80 - 1),
+                data2 = (byte[])data.Clone();
+            data2[^1] = (byte)~data2[^1];
+            Assert.IsTrue(data.SlowCompare(data));
+            Assert.IsFalse(data.SlowCompare(data2));
+            data2[^1] = data[^1];
+            data2[0] = (byte)~data2[0];
+            Assert.IsFalse(data.SlowCompare(data2));
         }
     }
 }

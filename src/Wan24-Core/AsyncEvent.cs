@@ -197,11 +197,11 @@ namespace wan24.Core
                     if (timeout.HasValue)
                     {
                         if (!TimeSpanHelper.UpdateTimeout(ref started, ref to)) throwTimeoutException();
-                        await handler(sender, args, cancellationToken).WithTimeoutAndCancellation(timeout.Value, cancellation).DynamicContext();
+                        await handler(sender, args, cancellationToken).WaitAsync(timeout.Value, cancellation).DynamicContext();
                     }
                     else
                     {
-                        await handler(sender, args, cancellationToken).WithCancellation(cancellation).DynamicContext();
+                        await handler(sender, args, cancellationToken).WaitAsync(cancellation).DynamicContext();
                     }
                 }
             }

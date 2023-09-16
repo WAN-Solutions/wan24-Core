@@ -4,7 +4,7 @@ using wan24.Core;
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class StringExtensions_Tests
+    public class StringExtensions_Tests : TestBase
     {
         [TestMethod]
         public void UTF8_Tests()

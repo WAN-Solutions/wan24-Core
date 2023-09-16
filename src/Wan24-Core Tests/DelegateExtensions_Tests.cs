@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class DelegateExtensions_Tests
+    public class DelegateExtensions_Tests : TestBase
     {
         [TestMethod]
         public void Invoke_Tests()

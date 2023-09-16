@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class CollectionExtensions_Tests
+    public class CollectionExtensions_Tests : TestBase
     {
         [TestMethod]
         public void AddRange_Tests()

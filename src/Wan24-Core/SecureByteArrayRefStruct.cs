@@ -17,16 +17,16 @@ namespace wan24.Core
         /// Handle
         /// </summary>
         private readonly GCHandle Handle;
-        /// <summary>
-        /// Is detached?
-        /// </summary>
-        private bool Detached = false;
 #if !NO_UNSAFE
         /// <summary>
         /// Pointer
         /// </summary>
         public readonly byte* Ptr;
 #endif
+        /// <summary>
+        /// Is detached?
+        /// </summary>
+        private bool Detached = false;
 
         /// <summary>
         /// Constructor

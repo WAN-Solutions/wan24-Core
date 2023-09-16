@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class ArrayExtensions_Tests
+    public class ArrayExtensions_Tests : TestBase
     {
         [TestMethod]
         public void SpanValidation_Tests()

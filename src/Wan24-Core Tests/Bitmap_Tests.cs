@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class Bitmap_Tests
+    public class Bitmap_Tests : TestBase
     {
         [TestMethod]
         public void Bits_Tests()

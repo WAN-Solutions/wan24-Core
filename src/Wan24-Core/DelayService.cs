@@ -42,14 +42,14 @@
                     }
                     catch(Exception ex)
                     {
-                        ErrorHandling.Handle(new("Delay service failed to complete a delay", ex));
+                        ErrorHandling.Handle(new("Delay service failed to complete a delay", ex, ErrorHandling.DELAYED_SERVICE_ERROR));
                         try
                         {
                             await delay.FailAsync().DynamicContext();
                         }
                         catch(Exception ex2)
                         {
-                            ErrorHandling.Handle(new("Delay service failed to complete a delay with a failure", ex2));
+                            ErrorHandling.Handle(new("Delay service failed to complete a delay with a failure", ex2, ErrorHandling.DELAYED_SERVICE_ERROR));
                         }
                         await delay.DisposeAsync().DynamicContext();
                     }

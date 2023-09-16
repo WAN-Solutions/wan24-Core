@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class ObjectExtensions_Tests
+    public class ObjectExtensions_Tests : TestBase
     {
         [TestMethod]
         public void In_Tests()

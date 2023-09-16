@@ -80,18 +80,7 @@ namespace wan24.Core
                     }
                     try
                     {
-                        if (cancellationToken == default)
-                        {
-                            await ol.Task.WithTimeout(timeout).DynamicContext();
-                        }
-                        else
-                        {
-                            await ol.Task.WithTimeoutAndCancellation(timeout, cancellationToken).DynamicContext();
-                        }
-                    }
-                    catch (TimeoutException ex)
-                    {
-                        if (ex.Data.Contains(timeout)) throw;
+                        await ol.Task.WaitAsync(timeout, cancellationToken).DynamicContext();
                     }
                     catch (TaskCanceledException ex)
                     {
@@ -168,7 +157,7 @@ namespace wan24.Core
                     cancellationToken.ThrowIfCancellationRequested();
                     try
                     {
-                        await ol.Task.WithCancellation(cancellationToken).DynamicContext();
+                        await ol.Task.WaitAsync(cancellationToken).DynamicContext();
                     }
                     catch (TaskCanceledException ex)
                     {

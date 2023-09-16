@@ -36,6 +36,7 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
     - Clearing
     - Base64 encoding/decoding
     - Fast XOR, AND and OR using intrinsics
+    - Slow compare
 - Dictionary extensions
     - Merge with string key prefix
     - Merge a list with the index as key (and an optional key prefix)
@@ -73,7 +74,6 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
     - Shortcuts for starting a function as long running task
     - Shortcuts for starting a function as task with fair execution by the 
     scheduler
-    - Add a cancellation token to a task (which can cancel the task awaiter)
 - DI helper
     - Service provider adoption
     - DI object factory delegates
@@ -188,6 +188,7 @@ including extensions for numeric type encoding/decoding)
     - `SynchronizedStream` synchronizes IO and seeking
     - `RandomStream` reads random bytes into the given buffers
     - `ChunkedStream` for reading/writing stream chunks
+    - `ExchangeableStream` wraps an exchangeable base stream
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context
@@ -213,6 +214,7 @@ including extensions for numeric type encoding/decoding)
 - Delayed tasks
 - Progress
 - Sensitive data handling
+- Object storage
 
 ## How to get it
 
@@ -1289,6 +1291,21 @@ ignored - they'll be written to STDERR instead.
 You'll need to call `ErrorHandling.Handle` from your code in order to handle a 
 catched exception manually.
 
+**NOTE**: You can specify an error source ID, which may be one of the pre-
+defined IDs from the `ErrorHandling` constants, or a custom value. If you use 
+custom values, please only use bits 17..31, since the bits 1..16 are reserved 
+for pre-defined error source IDs. Example for defining a custom error source 
+ID:
+
+```cs
+public const int CUSTOM_ERROR_SOURCE = 1 << 16;
+```
+
+You can count from one as usual, but shift the ID 16 bits to the left, which 
+enables you to define up to 32,768 different positive custom error sources. 
+You may also use all the Int32 negative values for +2,147,483,648 custom error 
+source IDs.
+
 ## Delayed tasks
 
 You'll need to add the `DelayService.Instance` to your apps hosted services, 
@@ -1421,3 +1438,39 @@ public class HidePasswordAttribute : SensitiveDataAttribute
 As soon as `CanSanitizeValue` delivers `true`, supporting code should call the 
 `CreateSanitizedValue` method to create a replacement for the the actual value 
 in an output.
+
+## Object storage
+
+An object storage stores objects in memory and in any backend. If a number of 
+in-memory objects was reached, least accessed objects will be removed from 
+memory. On request an object can be re-created from the backend, and will then 
+be stored in-memory again.
+
+The object doesn't have to be stored in a backend. They may also be objects 
+which require a lot of resources for their initialization, but will be 
+accessed frequently and should be cached for that reason, for example.
+
+There's only one requirement for an object to be object-storable: It needs to 
+export a non-nullable unique object key by implementing the interface 
+`IStoredObject<T>`.
+
+All in all the object storage is a kind of memory cache for a single object 
+type. The configured in-memory limit is only a soft-limit, 'cause the storage 
+won't limit the number of used objects - but the number of unused, cached 
+objects.
+
+The implementing storage can control
+
+- synchronous/asynchronous object creation
+- object disposing
+
+and override any other base object storage operation, if required.
+
+Implemented operations:
+
+- `GetObject(Async)`: Get an object by its key (the returned wrapper needs to 
+be disposed!)
+- `Release`: Release object usage (will be called from the returned wrapper of 
+`GetObject(Async)`, when it's being disposed)
+- `Remove`: Remove the object from the storage (if it's being deleted 
+permanently, for example)

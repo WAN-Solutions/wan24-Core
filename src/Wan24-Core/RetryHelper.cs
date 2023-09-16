@@ -181,8 +181,8 @@
                         break;
                     }
                     res.Result = timeout.HasValue
-                        ? await action(i, cancellationToken).WithTimeoutAndCancellation(to, cancellationToken).DynamicContext()
-                        : await action(i, cancellationToken).WithCancellation(cancellationToken).DynamicContext();
+                        ? await action(i, cancellationToken).WaitAsync(to, cancellationToken).DynamicContext()
+                        : await action(i, cancellationToken).WaitAsync(cancellationToken).DynamicContext();
                     Finalize(res, i);
                     res.Succeed = true;
                     break;
@@ -253,11 +253,11 @@
                             Finalize(res, i);
                             break;
                         }
-                        await action(i, cancellationToken).WithTimeoutAndCancellation(to, cancellationToken).DynamicContext();
+                        await action(i, cancellationToken).WaitAsync(to, cancellationToken).DynamicContext();
                     }
                     else
                     {
-                        await action(i, cancellationToken).WithCancellation(cancellationToken).DynamicContext();
+                        await action(i, cancellationToken).WaitAsync(cancellationToken).DynamicContext();
                     }
                     Finalize(res, i);
                     res.Succeed = true;
@@ -275,7 +275,7 @@
                 catch (TimeoutException ex)
                 {
                     res.Exceptions.Add(ex);
-                    if ((timeout.HasValue && ex.Data.Contains(timeout.Value)) || !await HandleExceptionAsync(ex, maxNumberOfTries, i, retryOnError, delay).DynamicContext())
+                    if (timeout.HasValue || !await HandleExceptionAsync(ex, maxNumberOfTries, i, retryOnError, delay).DynamicContext())
                     {
                         Finalize(res, i);
                         break;

@@ -5,7 +5,7 @@ using wan24.Core;
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class ReflectionExtensions_Tests
+    public class ReflectionExtensions_Tests : TestBase
     {
         [TestMethod]
         public void Invoke_Tests()
