@@ -112,19 +112,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ErrorInfo__ctor_Exception__System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.ErrorInfo.%23ctor(Exception%40%2CSystem.Object%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ErrorInfo__ctor_Exception__System_Int32__System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.ErrorInfo.%23ctor(Exception%40%2CSystem.Int32%40%2CSystem.Object%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L13">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L14">View Source</a>
   </span>
   <a id="wan24_Core_ErrorInfo__ctor_" data-uid="wan24.Core.ErrorInfo.#ctor*"></a>
-  <h4 id="wan24_Core_ErrorInfo__ctor_Exception__System_Object__" data-uid="wan24.Core.ErrorInfo.#ctor(Exception@,System.Object@)">ErrorInfo(in Exception, in Object)</h4>
+  <h4 id="wan24_Core_ErrorInfo__ctor_Exception__System_Int32__System_Object__" data-uid="wan24.Core.ErrorInfo.#ctor(Exception@,System.Int32@,System.Object@)">ErrorInfo(in Exception, in Int32, in Object)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ErrorInfo(in Exception ex, in object tag = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public ErrorInfo(in Exception ex, in int source = 0, in object tag = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -143,6 +143,12 @@
 </td>
       </tr>
       <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>Source ID</p>
+</td>
+      </tr>
+      <tr>
         <td><span class="xref">System.Object</span></td>
         <td><span class="parametername">tag</span></td>
         <td><p>Any tagges object</p>
@@ -152,19 +158,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ErrorInfo__ctor_System_String__Exception__System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.ErrorInfo.%23ctor(System.String%40%2CException%40%2CSystem.Object%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ErrorInfo__ctor_System_String__Exception__System_Int32__System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.ErrorInfo.%23ctor(System.String%40%2CException%40%2CSystem.Int32%40%2CSystem.Object%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L25">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L28">View Source</a>
   </span>
   <a id="wan24_Core_ErrorInfo__ctor_" data-uid="wan24.Core.ErrorInfo.#ctor*"></a>
-  <h4 id="wan24_Core_ErrorInfo__ctor_System_String__Exception__System_Object__" data-uid="wan24.Core.ErrorInfo.#ctor(System.String@,Exception@,System.Object@)">ErrorInfo(in String, in Exception, in Object)</h4>
+  <h4 id="wan24_Core_ErrorInfo__ctor_System_String__Exception__System_Int32__System_Object__" data-uid="wan24.Core.ErrorInfo.#ctor(System.String@,Exception@,System.Int32@,System.Object@)">ErrorInfo(in String, in Exception, in Int32, in Object)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ErrorInfo(in string info, in Exception ex, in object tag = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public ErrorInfo(in string info, in Exception ex, in int source = 0, in object tag = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -189,6 +195,12 @@
 </td>
       </tr>
       <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>Source ID</p>
+</td>
+      </tr>
+      <tr>
         <td><span class="xref">System.Object</span></td>
         <td><span class="parametername">tag</span></td>
         <td><p>Any tagges object</p>
@@ -203,7 +215,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ErrorInfo_Created.md&amp;value=---%0Auid%3A%20wan24.Core.ErrorInfo.Created%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L35">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L39">View Source</a>
   </span>
   <a id="wan24_Core_ErrorInfo_Created_" data-uid="wan24.Core.ErrorInfo.Created*"></a>
   <h4 id="wan24_Core_ErrorInfo_Created" data-uid="wan24.Core.ErrorInfo.Created">Created</h4>
@@ -234,7 +246,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ErrorInfo_Exception.md&amp;value=---%0Auid%3A%20wan24.Core.ErrorInfo.Exception%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L40">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L44">View Source</a>
   </span>
   <a id="wan24_Core_ErrorInfo_Exception_" data-uid="wan24.Core.ErrorInfo.Exception*"></a>
   <h4 id="wan24_Core_ErrorInfo_Exception" data-uid="wan24.Core.ErrorInfo.Exception">Exception</h4>
@@ -265,7 +277,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ErrorInfo_Info.md&amp;value=---%0Auid%3A%20wan24.Core.ErrorInfo.Info%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L50">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L59">View Source</a>
   </span>
   <a id="wan24_Core_ErrorInfo_Info_" data-uid="wan24.Core.ErrorInfo.Info*"></a>
   <h4 id="wan24_Core_ErrorInfo_Info" data-uid="wan24.Core.ErrorInfo.Info">Info</h4>
@@ -293,10 +305,41 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ErrorInfo_Source.md&amp;value=---%0Auid%3A%20wan24.Core.ErrorInfo.Source%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L49">View Source</a>
+  </span>
+  <a id="wan24_Core_ErrorInfo_Source_" data-uid="wan24.Core.ErrorInfo.Source*"></a>
+  <h4 id="wan24_Core_ErrorInfo_Source" data-uid="wan24.Core.ErrorInfo.Source">Source</h4>
+  <div class="markdown level1 summary"><p>Error source ID</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Source { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ErrorInfo_Tag.md&amp;value=---%0Auid%3A%20wan24.Core.ErrorInfo.Tag%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L45">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L54">View Source</a>
   </span>
   <a id="wan24_Core_ErrorInfo_Tag_" data-uid="wan24.Core.ErrorInfo.Tag*"></a>
   <h4 id="wan24_Core_ErrorInfo_Tag" data-uid="wan24.Core.ErrorInfo.Tag">Tag</h4>
@@ -329,7 +372,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ErrorInfo_ToString.md&amp;value=---%0Auid%3A%20wan24.Core.ErrorInfo.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L53">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L62">View Source</a>
   </span>
   <a id="wan24_Core_ErrorInfo_ToString_" data-uid="wan24.Core.ErrorInfo.ToString*"></a>
   <h4 id="wan24_Core_ErrorInfo_ToString" data-uid="wan24.Core.ErrorInfo.ToString">ToString()</h4>
@@ -363,7 +406,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ErrorInfo_op_Implicit_Exception___wan24_Core_ErrorInfo.md&amp;value=---%0Auid%3A%20wan24.Core.ErrorInfo.op_Implicit(Exception%40)~wan24.Core.ErrorInfo%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L65">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L74">View Source</a>
   </span>
   <a id="wan24_Core_ErrorInfo_op_Implicit_" data-uid="wan24.Core.ErrorInfo.op_Implicit*"></a>
   <h4 id="wan24_Core_ErrorInfo_op_Implicit_Exception___wan24_Core_ErrorInfo" data-uid="wan24.Core.ErrorInfo.op_Implicit(Exception@)~wan24.Core.ErrorInfo">Implicit(in Exception to ErrorInfo)</h4>
@@ -412,7 +455,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ErrorInfo_op_Implicit_wan24_Core_ErrorInfo___Exception.md&amp;value=---%0Auid%3A%20wan24.Core.ErrorInfo.op_Implicit(wan24.Core.ErrorInfo%40)~Exception%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L59">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L68">View Source</a>
   </span>
   <a id="wan24_Core_ErrorInfo_op_Implicit_" data-uid="wan24.Core.ErrorInfo.op_Implicit*"></a>
   <h4 id="wan24_Core_ErrorInfo_op_Implicit_wan24_Core_ErrorInfo___Exception" data-uid="wan24.Core.ErrorInfo.op_Implicit(wan24.Core.ErrorInfo@)~Exception">Implicit(in ErrorInfo to Exception)</h4>
@@ -461,7 +504,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ErrorInfo_op_Implicit_wan24_Core_ErrorInfo___System_String.md&amp;value=---%0Auid%3A%20wan24.Core.ErrorInfo.op_Implicit(wan24.Core.ErrorInfo%40)~System.String%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L71">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ErrorInfo.cs/#L80">View Source</a>
   </span>
   <a id="wan24_Core_ErrorInfo_op_Implicit_" data-uid="wan24.Core.ErrorInfo.op_Implicit*"></a>
   <h4 id="wan24_Core_ErrorInfo_op_Implicit_wan24_Core_ErrorInfo___System_String" data-uid="wan24.Core.ErrorInfo.op_Implicit(wan24.Core.ErrorInfo@)~System.String">Implicit(in ErrorInfo to String)</h4>

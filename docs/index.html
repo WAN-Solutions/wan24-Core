@@ -103,6 +103,7 @@ when disposing; for byte/char arrays just like the <code>Secure*Array</code>)</l
 <li>Clearing</li>
 <li>Base64 encoding/decoding</li>
 <li>Fast XOR, AND and OR using intrinsics</li>
+<li>Slow compare</li>
 </ul>
 </li>
 <li>Dictionary extensions
@@ -164,7 +165,6 @@ with DI support)</li>
 <li>Shortcuts for starting a function as long running task</li>
 <li>Shortcuts for starting a function as task with fair execution by the
 scheduler</li>
-<li>Add a cancellation token to a task (which can cancel the task awaiter)</li>
 </ul>
 </li>
 <li>DI helper
@@ -321,6 +321,7 @@ including extensions for numeric type encoding/decoding)</li>
 <li><code>SynchronizedStream</code> synchronizes IO and seeking</li>
 <li><code>RandomStream</code> reads random bytes into the given buffers</li>
 <li><code>ChunkedStream</code> for reading/writing stream chunks</li>
+<li><code>ExchangeableStream</code> wraps an exchangeable base stream</li>
 </ul>
 </li>
 <li>Named mutex helper
@@ -360,6 +361,7 @@ including extensions for numeric type encoding/decoding)</li>
 <li>Delayed tasks</li>
 <li>Progress</li>
 <li>Sensitive data handling</li>
+<li>Object storage</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
@@ -1442,6 +1444,17 @@ ignored - they'll be written to STDERR instead.</p>
 <p><strong>NOTE</strong>: The default error handling won't act as fist chance error handler.
 You'll need to call <code>ErrorHandling.Handle</code> from your code in order to handle a
 catched exception manually.</p>
+<p><strong>NOTE</strong>: You can specify an error source ID, which may be one of the pre-
+defined IDs from the <code>ErrorHandling</code> constants, or a custom value. If you use
+custom values, please only use bits 17..31, since the bits 1..16 are reserved
+for pre-defined error source IDs. Example for defining a custom error source
+ID:</p>
+<pre><code class="lang-cs">public const int CUSTOM_ERROR_SOURCE = 1 &lt;&lt; 16;
+</code></pre>
+<p>You can count from one as usual, but shift the ID 16 bits to the left, which
+enables you to define up to 32,768 different positive custom error sources.
+You may also use all the Int32 negative values for +2,147,483,648 custom error
+source IDs.</p>
 <h2 id="delayed-tasks">Delayed tasks</h2>
 <p>You'll need to add the <code>DelayService.Instance</code> to your apps hosted services,
 then you can use the delay like this:</p>
@@ -1545,6 +1558,36 @@ a value sanization method:</p>
 <p>As soon as <code>CanSanitizeValue</code> delivers <code>true</code>, supporting code should call the
 <code>CreateSanitizedValue</code> method to create a replacement for the the actual value
 in an output.</p>
+<h2 id="object-storage">Object storage</h2>
+<p>An object storage stores objects in memory and in any backend. If a number of
+in-memory objects was reached, least accessed objects will be removed from
+memory. On request an object can be re-created from the backend, and will then
+be stored in-memory again.</p>
+<p>The object doesn't have to be stored in a backend. They may also be objects
+which require a lot of resources for their initialization, but will be
+accessed frequently and should be cached for that reason, for example.</p>
+<p>There's only one requirement for an object to be object-storable: It needs to
+export a non-nullable unique object key by implementing the interface
+<code>IStoredObject&lt;T&gt;</code>.</p>
+<p>All in all the object storage is a kind of memory cache for a single object
+type. The configured in-memory limit is only a soft-limit, 'cause the storage
+won't limit the number of used objects - but the number of unused, cached
+objects.</p>
+<p>The implementing storage can control</p>
+<ul>
+<li>synchronous/asynchronous object creation</li>
+<li>object disposing</li>
+</ul>
+<p>and override any other base object storage operation, if required.</p>
+<p>Implemented operations:</p>
+<ul>
+<li><code>GetObject(Async)</code>: Get an object by its key (the returned wrapper needs to
+be disposed!)</li>
+<li><code>Release</code>: Release object usage (will be called from the returned wrapper of
+<code>GetObject(Async)</code>, when it's being disposed)</li>
+<li><code>Remove</code>: Remove the object from the storage (if it's being deleted
+permanently, for example)</li>
+</ul>
 </article>
           </div>
           

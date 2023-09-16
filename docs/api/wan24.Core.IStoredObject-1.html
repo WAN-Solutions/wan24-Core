@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface IServiceWorkerStatus
+    <title>Interface IStoredObject&lt;T&gt;
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface IServiceWorkerStatus
+    <meta name="title" content="Interface IStoredObject&lt;T&gt;
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,65 +68,69 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.IServiceWorkerStatus">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.IStoredObject`1">
   
   
-  <h1 id="wan24_Core_IServiceWorkerStatus" data-uid="wan24.Core.IServiceWorkerStatus" class="text-break">Interface IServiceWorkerStatus
+  <h1 id="wan24_Core_IStoredObject_1" data-uid="wan24.Core.IStoredObject`1" class="text-break">Interface IStoredObject&lt;T&gt;
   </h1>
-  <div class="markdown level0 summary"><p>Interface for a service worker which provides status informations</p>
+  <div class="markdown level0 summary"><p>Interface for a stored object</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_Name">IServiceWorker.Name</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_IsRunning">IServiceWorker.IsRunning</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_Started">IServiceWorker.Started</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_Stopped">IServiceWorker.Stopped</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_StartAsync">IServiceWorker.StartAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_StopAsync">IServiceWorker.StopAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_RestartAsync">IServiceWorker.RestartAsync()</a>
-    </div>
-    <div>
-      <span class="xref">Microsoft.Extensions.Hosting.IHostedService.StartAsync(System.Threading.CancellationToken)</span>
-    </div>
-    <div>
-      <span class="xref">Microsoft.Extensions.Hosting.IHostedService.StopAsync(System.Threading.CancellationToken)</span>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_IsDisposing">IDisposableObject.IsDisposing</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_IsDisposed">IDisposableObject.IsDisposed</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_OnDisposing">IDisposableObject.OnDisposing</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_OnDisposed">IDisposableObject.OnDisposed</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IStatusProvider.html#wan24_Core_IStatusProvider_State">IStatusProvider.State</a>
-    </div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_IServiceWorkerStatus_syntax">Syntax</h5>
+  <h5 id="wan24_Core_IStoredObject_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IServiceWorkerStatus : IServiceWorker, IHostedService, IDisposableObject, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IStoredObject&lt;T&gt;</code></pre>
   </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Object key type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IStoredObject_1_ObjectKey.md&amp;value=---%0Auid%3A%20wan24.Core.IStoredObject%601.ObjectKey%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IStoredObject.cs/#L12">View Source</a>
+  </span>
+  <a id="wan24_Core_IStoredObject_1_ObjectKey_" data-uid="wan24.Core.IStoredObject`1.ObjectKey*"></a>
+  <h4 id="wan24_Core_IStoredObject_1_ObjectKey" data-uid="wan24.Core.IStoredObject`1.ObjectKey">ObjectKey</h4>
+  <div class="markdown level1 summary"><p>Object key</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T ObjectKey { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
@@ -172,10 +176,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IServiceWorkerStatus.md&amp;value=---%0Auid%3A%20wan24.Core.IServiceWorkerStatus%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IStoredObject_1.md&amp;value=---%0Auid%3A%20wan24.Core.IStoredObject%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IServiceWorkerStatus.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IStoredObject.cs/#L7" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

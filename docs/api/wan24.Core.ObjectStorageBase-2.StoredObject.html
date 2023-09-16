@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface IServiceWorker
+    <title>Class ObjectStorageBase&lt;tKey, tObj&gt;.StoredObject
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface IServiceWorker
+    <meta name="title" content="Class ObjectStorageBase&lt;tKey, tObj&gt;.StoredObject
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,120 +68,102 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.IServiceWorker">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.ObjectStorageBase`2.StoredObject">
   
   
-  <h1 id="wan24_Core_IServiceWorker" data-uid="wan24.Core.IServiceWorker" class="text-break">Interface IServiceWorker
+  <h1 id="wan24_Core_ObjectStorageBase_2_StoredObject" data-uid="wan24.Core.ObjectStorageBase`2.StoredObject" class="text-break">Class ObjectStorageBase&lt;tKey, tObj&gt;.StoredObject
   </h1>
-  <div class="markdown level0 summary"><p>Interface for a service worker object</p>
+  <div class="markdown level0 summary"><p>Stored object</p>
 </div>
   <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">ObjectStorageBase&lt;tKey, tObj&gt;.StoredObject</span></div>
+  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <span class="xref">Microsoft.Extensions.Hosting.IHostedService.StartAsync(System.Threading.CancellationToken)</span>
+      <span class="xref">System.Object.Equals(System.Object)</span>
     </div>
     <div>
-      <span class="xref">Microsoft.Extensions.Hosting.IHostedService.StopAsync(System.Threading.CancellationToken)</span>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_IsDisposing">IDisposableObject.IsDisposing</a>
+      <span class="xref">System.Object.GetHashCode()</span>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_IsDisposed">IDisposableObject.IsDisposed</a>
+      <span class="xref">System.Object.GetType()</span>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_OnDisposing">IDisposableObject.OnDisposing</a>
+      <span class="xref">System.Object.MemberwiseClone()</span>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_OnDisposed">IDisposableObject.OnDisposed</a>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_IServiceWorker_syntax">Syntax</h5>
+  <h5 id="wan24_Core_ObjectStorageBase_2_StoredObject_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IServiceWorker : IHostedService, IDisposableObject</code></pre>
+    <pre><code class="lang-csharp hljs">protected sealed class StoredObject</code></pre>
   </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectStorageBase_2_StoredObject__ctor__1_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectStorageBase%602.StoredObject.%23ctor(%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectStorageBase.cs/#L243">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectStorageBase_2_StoredObject__ctor_" data-uid="wan24.Core.ObjectStorageBase`2.StoredObject.#ctor*"></a>
+  <h4 id="wan24_Core_ObjectStorageBase_2_StoredObject__ctor__1_" data-uid="wan24.Core.ObjectStorageBase`2.StoredObject.#ctor(`1)">StoredObject(tObj)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StoredObject(tObj obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tObj</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IServiceWorker_IsRunning.md&amp;value=---%0Auid%3A%20wan24.Core.IServiceWorker.IsRunning%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectStorageBase_2_StoredObject_Accessed.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectStorageBase%602.StoredObject.Accessed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IServiceWorker.cs/#L17">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectStorageBase.cs/#L275">View Source</a>
   </span>
-  <a id="wan24_Core_IServiceWorker_IsRunning_" data-uid="wan24.Core.IServiceWorker.IsRunning*"></a>
-  <h4 id="wan24_Core_IServiceWorker_IsRunning" data-uid="wan24.Core.IServiceWorker.IsRunning">IsRunning</h4>
-  <div class="markdown level1 summary"><p>Is running?</p>
+  <a id="wan24_Core_ObjectStorageBase_2_StoredObject_Accessed_" data-uid="wan24.Core.ObjectStorageBase`2.StoredObject.Accessed*"></a>
+  <h4 id="wan24_Core_ObjectStorageBase_2_StoredObject_Accessed" data-uid="wan24.Core.ObjectStorageBase`2.StoredObject.Accessed">Accessed</h4>
+  <div class="markdown level1 summary"><p>Last access time</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool IsRunning { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IServiceWorker_Name.md&amp;value=---%0Auid%3A%20wan24.Core.IServiceWorker.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IServiceWorker.cs/#L13">View Source</a>
-  </span>
-  <a id="wan24_Core_IServiceWorker_Name_" data-uid="wan24.Core.IServiceWorker.Name*"></a>
-  <h4 id="wan24_Core_IServiceWorker_Name" data-uid="wan24.Core.IServiceWorker.Name">Name</h4>
-  <div class="markdown level1 summary"><p>Display name</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string Name { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IServiceWorker_Started.md&amp;value=---%0Auid%3A%20wan24.Core.IServiceWorker.Started%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IServiceWorker.cs/#L21">View Source</a>
-  </span>
-  <a id="wan24_Core_IServiceWorker_Started_" data-uid="wan24.Core.IServiceWorker.Started*"></a>
-  <h4 id="wan24_Core_IServiceWorker_Started" data-uid="wan24.Core.IServiceWorker.Started">Started</h4>
-  <div class="markdown level1 summary"><p>Last start time</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">DateTime Started { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public DateTime Accessed { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -200,19 +182,81 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IServiceWorker_Stopped.md&amp;value=---%0Auid%3A%20wan24.Core.IServiceWorker.Stopped%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectStorageBase_2_StoredObject_Key.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectStorageBase%602.StoredObject.Key%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IServiceWorker.cs/#L25">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectStorageBase.cs/#L265">View Source</a>
   </span>
-  <a id="wan24_Core_IServiceWorker_Stopped_" data-uid="wan24.Core.IServiceWorker.Stopped*"></a>
-  <h4 id="wan24_Core_IServiceWorker_Stopped" data-uid="wan24.Core.IServiceWorker.Stopped">Stopped</h4>
-  <div class="markdown level1 summary"><p>Last stop time</p>
+  <a id="wan24_Core_ObjectStorageBase_2_StoredObject_Key_" data-uid="wan24.Core.ObjectStorageBase`2.StoredObject.Key*"></a>
+  <h4 id="wan24_Core_ObjectStorageBase_2_StoredObject_Key" data-uid="wan24.Core.ObjectStorageBase`2.StoredObject.Key">Key</h4>
+  <div class="markdown level1 summary"><p>Object key</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">DateTime Stopped { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public tKey Key { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tKey</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectStorageBase_2_StoredObject_Object.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectStorageBase%602.StoredObject.Object%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectStorageBase.cs/#L252">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectStorageBase_2_StoredObject_Object_" data-uid="wan24.Core.ObjectStorageBase`2.StoredObject.Object*"></a>
+  <h4 id="wan24_Core_ObjectStorageBase_2_StoredObject_Object" data-uid="wan24.Core.ObjectStorageBase`2.StoredObject.Object">Object</h4>
+  <div class="markdown level1 summary"><p>Object (when accessing the getter, the <a class="xref" href="wan24.Core.ObjectStorageBase-2.StoredObject.html#wan24_Core_ObjectStorageBase_2_StoredObject_UsageCount">UsageCount</a> will be increased by one)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public tObj Object { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tObj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectStorageBase_2_StoredObject_Stored.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectStorageBase%602.StoredObject.Stored%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectStorageBase.cs/#L270">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectStorageBase_2_StoredObject_Stored_" data-uid="wan24.Core.ObjectStorageBase`2.StoredObject.Stored*"></a>
+  <h4 id="wan24_Core_ObjectStorageBase_2_StoredObject_Stored" data-uid="wan24.Core.ObjectStorageBase`2.StoredObject.Stored">Stored</h4>
+  <div class="markdown level1 summary"><p>Stored time</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime Stored { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -225,6 +269,37 @@
     <tbody>
       <tr>
         <td><span class="xref">DateTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectStorageBase_2_StoredObject_UsageCount.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectStorageBase%602.StoredObject.UsageCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectStorageBase.cs/#L280">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectStorageBase_2_StoredObject_UsageCount_" data-uid="wan24.Core.ObjectStorageBase`2.StoredObject.UsageCount*"></a>
+  <h4 id="wan24_Core_ObjectStorageBase_2_StoredObject_UsageCount" data-uid="wan24.Core.ObjectStorageBase`2.StoredObject.UsageCount">UsageCount</h4>
+  <div class="markdown level1 summary"><p>Usage counter</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int UsageCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -233,97 +308,20 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IServiceWorker_RestartAsync.md&amp;value=---%0Auid%3A%20wan24.Core.IServiceWorker.RestartAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectStorageBase_2_StoredObject_Release.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectStorageBase%602.StoredObject.Release%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IServiceWorker.cs/#L37">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectStorageBase.cs/#L286">View Source</a>
   </span>
-  <a id="wan24_Core_IServiceWorker_RestartAsync_" data-uid="wan24.Core.IServiceWorker.RestartAsync*"></a>
-  <h4 id="wan24_Core_IServiceWorker_RestartAsync" data-uid="wan24.Core.IServiceWorker.RestartAsync">RestartAsync()</h4>
-  <div class="markdown level1 summary"><p>Restart</p>
+  <a id="wan24_Core_ObjectStorageBase_2_StoredObject_Release_" data-uid="wan24.Core.ObjectStorageBase`2.StoredObject.Release*"></a>
+  <h4 id="wan24_Core_ObjectStorageBase_2_StoredObject_Release" data-uid="wan24.Core.ObjectStorageBase`2.StoredObject.Release">Release()</h4>
+  <div class="markdown level1 summary"><p>Release an object usage</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task RestartAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">public void Release()</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IServiceWorker_StartAsync.md&amp;value=---%0Auid%3A%20wan24.Core.IServiceWorker.StartAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IServiceWorker.cs/#L29">View Source</a>
-  </span>
-  <a id="wan24_Core_IServiceWorker_StartAsync_" data-uid="wan24.Core.IServiceWorker.StartAsync*"></a>
-  <h4 id="wan24_Core_IServiceWorker_StartAsync" data-uid="wan24.Core.IServiceWorker.StartAsync">StartAsync()</h4>
-  <div class="markdown level1 summary"><p>Start</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task StartAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IServiceWorker_StopAsync.md&amp;value=---%0Auid%3A%20wan24.Core.IServiceWorker.StopAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IServiceWorker.cs/#L33">View Source</a>
-  </span>
-  <a id="wan24_Core_IServiceWorker_StopAsync_" data-uid="wan24.Core.IServiceWorker.StopAsync*"></a>
-  <h4 id="wan24_Core_IServiceWorker_StopAsync" data-uid="wan24.Core.IServiceWorker.StopAsync">StopAsync()</h4>
-  <div class="markdown level1 summary"><p>Stop</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task StopAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
@@ -369,10 +367,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IServiceWorker.md&amp;value=---%0Auid%3A%20wan24.Core.IServiceWorker%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectStorageBase_2_StoredObject.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectStorageBase%602.StoredObject%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IServiceWorker.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectStorageBase.cs/#L224" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

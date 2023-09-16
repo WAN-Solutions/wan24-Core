@@ -97,6 +97,9 @@
       <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Sync">HostedServiceBase.Sync</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_RunEvent">HostedServiceBase.RunEvent</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_StopTask">HostedServiceBase.StopTask</a>
     </div>
     <div>
@@ -115,22 +118,31 @@
       <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Started">HostedServiceBase.Started</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Stopped">HostedServiceBase.Stopped</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_IsStopping">HostedServiceBase.IsStopping</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_LastException">HostedServiceBase.LastException</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_StoppedExceptional">HostedServiceBase.StoppedExceptional</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Name">HostedServiceBase.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_ErrorSource">HostedServiceBase.ErrorSource</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_StartAsync_CancellationToken_">HostedServiceBase.StartAsync(CancellationToken)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_StopAsync_CancellationToken_">HostedServiceBase.StopAsync(CancellationToken)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_ToString">HostedServiceBase.ToString()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_RunServiceAsync">HostedServiceBase.RunServiceAsync()</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_wan24_Core_IServiceWorker_StartAsync">HostedServiceBase.IServiceWorker.StartAsync()</a>
@@ -140,6 +152,18 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_wan24_Core_IServiceWorker_RestartAsync">HostedServiceBase.IServiceWorker.RestartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_BeforeStartAsync_CancellationToken_">HostedServiceBase.BeforeStartAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_BeforeStopAsync_CancellationToken_">HostedServiceBase.BeforeStopAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_AfterStopAsync_CancellationToken_">HostedServiceBase.AfterStopAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_RunServiceAsync">HostedServiceBase.RunServiceAsync()</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_OnException">HostedServiceBase.OnException</a>
@@ -508,6 +532,57 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UdpBroadcast_1_AfterStartAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.UdpBroadcast%601.AfterStartAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UdpBroadcast.cs/#L160">View Source</a>
+  </span>
+  <a id="wan24_Core_UdpBroadcast_1_AfterStartAsync_" data-uid="wan24.Core.UdpBroadcast`1.AfterStartAsync*"></a>
+  <h4 id="wan24_Core_UdpBroadcast_1_AfterStartAsync_CancellationToken_" data-uid="wan24.Core.UdpBroadcast`1.AfterStartAsync(CancellationToken)">AfterStartAsync(CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>After started</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override async Task AfterStartAsync(CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_AfterStartAsync_CancellationToken_">HostedServiceBase.AfterStartAsync(CancellationToken)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UdpBroadcast_1_BroadcastAsync_System_Byte___System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.UdpBroadcast%601.BroadcastAsync(System.Byte%5B%5D%2CSystem.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -646,7 +721,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UdpBroadcast_1_ConfigureBroadcastListener_System_Net_Sockets_UdpClient_.md&amp;value=---%0Auid%3A%20wan24.Core.UdpBroadcast%601.ConfigureBroadcastListener(System.Net.Sockets.UdpClient)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UdpBroadcast.cs/#L138">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UdpBroadcast.cs/#L131">View Source</a>
   </span>
   <a id="wan24_Core_UdpBroadcast_1_ConfigureBroadcastListener_" data-uid="wan24.Core.UdpBroadcast`1.ConfigureBroadcastListener*"></a>
   <h4 id="wan24_Core_UdpBroadcast_1_ConfigureBroadcastListener_System_Net_Sockets_UdpClient_" data-uid="wan24.Core.UdpBroadcast`1.ConfigureBroadcastListener(System.Net.Sockets.UdpClient)">ConfigureBroadcastListener(UdpClient)</h4>
@@ -680,7 +755,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UdpBroadcast_1_ConfigureListener_System_Net_Sockets_UdpClient_.md&amp;value=---%0Auid%3A%20wan24.Core.UdpBroadcast%601.ConfigureListener(System.Net.Sockets.UdpClient)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UdpBroadcast.cs/#L150">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UdpBroadcast.cs/#L143">View Source</a>
   </span>
   <a id="wan24_Core_UdpBroadcast_1_ConfigureListener_" data-uid="wan24.Core.UdpBroadcast`1.ConfigureListener*"></a>
   <h4 id="wan24_Core_UdpBroadcast_1_ConfigureListener_System_Net_Sockets_UdpClient_" data-uid="wan24.Core.UdpBroadcast`1.ConfigureListener(System.Net.Sockets.UdpClient)">ConfigureListener(UdpClient)</h4>
@@ -714,7 +789,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UdpBroadcast_1_ConfigureUdpListener_System_Net_Sockets_UdpClient_.md&amp;value=---%0Auid%3A%20wan24.Core.UdpBroadcast%601.ConfigureUdpListener(System.Net.Sockets.UdpClient)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UdpBroadcast.cs/#L144">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UdpBroadcast.cs/#L137">View Source</a>
   </span>
   <a id="wan24_Core_UdpBroadcast_1_ConfigureUdpListener_" data-uid="wan24.Core.UdpBroadcast`1.ConfigureUdpListener*"></a>
   <h4 id="wan24_Core_UdpBroadcast_1_ConfigureUdpListener_System_Net_Sockets_UdpClient_" data-uid="wan24.Core.UdpBroadcast`1.ConfigureUdpListener(System.Net.Sockets.UdpClient)">ConfigureUdpListener(UdpClient)</h4>
@@ -817,7 +892,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UdpBroadcast_1_HandleReceivedAsync_System_Net_Sockets_UdpReceiveResult_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.UdpBroadcast%601.HandleReceivedAsync(System.Net.Sockets.UdpReceiveResult%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UdpBroadcast.cs/#L164">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UdpBroadcast.cs/#L157">View Source</a>
   </span>
   <a id="wan24_Core_UdpBroadcast_1_HandleReceivedAsync_" data-uid="wan24.Core.UdpBroadcast`1.HandleReceivedAsync*"></a>
   <h4 id="wan24_Core_UdpBroadcast_1_HandleReceivedAsync_System_Net_Sockets_UdpReceiveResult_CancellationToken_" data-uid="wan24.Core.UdpBroadcast`1.HandleReceivedAsync(System.Net.Sockets.UdpReceiveResult,CancellationToken)">HandleReceivedAsync(UdpReceiveResult, CancellationToken)</h4>
@@ -872,7 +947,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UdpBroadcast_1_HandleResponse_System_Net_Sockets_UdpReceiveResult__.md&amp;value=---%0Auid%3A%20wan24.Core.UdpBroadcast%601.HandleResponse(System.Net.Sockets.UdpReceiveResult%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UdpBroadcast.cs/#L157">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UdpBroadcast.cs/#L150">View Source</a>
   </span>
   <a id="wan24_Core_UdpBroadcast_1_HandleResponse_" data-uid="wan24.Core.UdpBroadcast`1.HandleResponse*"></a>
   <h4 id="wan24_Core_UdpBroadcast_1_HandleResponse_System_Net_Sockets_UdpReceiveResult__" data-uid="wan24.Core.UdpBroadcast`1.HandleResponse(System.Net.Sockets.UdpReceiveResult@)">HandleResponse(in UdpReceiveResult)</h4>
@@ -917,55 +992,6 @@
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UdpBroadcast_1_StartAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.UdpBroadcast%601.StartAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UdpBroadcast.cs/#L128">View Source</a>
-  </span>
-  <a id="wan24_Core_UdpBroadcast_1_StartAsync_" data-uid="wan24.Core.UdpBroadcast`1.StartAsync*"></a>
-  <h4 id="wan24_Core_UdpBroadcast_1_StartAsync_CancellationToken_" data-uid="wan24.Core.UdpBroadcast`1.StartAsync(CancellationToken)">StartAsync(CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override async Task StartAsync(CancellationToken cancellationToken = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">CancellationToken</span></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_StartAsync_CancellationToken_">HostedServiceBase.StartAsync(CancellationToken)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UdpBroadcast_1_WorkerAsync.md&amp;value=---%0Auid%3A%20wan24.Core.UdpBroadcast%601.WorkerAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>

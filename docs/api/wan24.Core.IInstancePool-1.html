@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface ITimer
+    <title>Interface IInstancePool&lt;T&gt;
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface ITimer
+    <meta name="title" content="Interface IInstancePool&lt;T&gt;
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,16 +68,28 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.ITimer">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.IInstancePool`1">
   
   
-  <h1 id="wan24_Core_ITimer" data-uid="wan24.Core.ITimer" class="text-break">Interface ITimer
+  <h1 id="wan24_Core_IInstancePool_1" data-uid="wan24.Core.IInstancePool`1" class="text-break">Interface IInstancePool&lt;T&gt;
   </h1>
-  <div class="markdown level0 summary"><p>Interface for a timer object</p>
+  <div class="markdown level0 summary"><p>Interface for an instance pool</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.IInstancePool.html#wan24_Core_IInstancePool_Capacity">IInstancePool.Capacity</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IInstancePool.html#wan24_Core_IInstancePool_Available">IInstancePool.Available</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IInstancePool.html#wan24_Core_IInstancePool_Created">IInstancePool.Created</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IInstancePool.html#wan24_Core_IInstancePool_CreatedOnDemand">IInstancePool.CreatedOnDemand</a>
+    </div>
     <div>
       <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_Name">IServiceWorker.Name</a>
     </div>
@@ -117,32 +129,75 @@
     <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_OnDisposed">IDisposableObject.OnDisposed</a>
     </div>
+    <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html#wan24_Core_IStatusProvider_State">IStatusProvider.State</a>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_ITimer_syntax">Syntax</h5>
+  <h5 id="wan24_Core_IInstancePool_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface ITimer : IServiceWorker, IHostedService, IDisposableObject</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IInstancePool&lt;T&gt; : IInstancePool, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IStatusProvider where T : class</code></pre>
   </div>
-  <h3 id="properties">Properties
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITimer_AutoReset.md&amp;value=---%0Auid%3A%20wan24.Core.ITimer.AutoReset%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IInstancePool_1_GetMany_System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.IInstancePool%601.GetMany(System.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITimer.cs/#L11">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IInstancePool.cs/#L49">View Source</a>
   </span>
-  <a id="wan24_Core_ITimer_AutoReset_" data-uid="wan24.Core.ITimer.AutoReset*"></a>
-  <h4 id="wan24_Core_ITimer_AutoReset" data-uid="wan24.Core.ITimer.AutoReset">AutoReset</h4>
-  <div class="markdown level1 summary"><p>Auto-reset?</p>
+  <a id="wan24_Core_IInstancePool_1_GetMany_" data-uid="wan24.Core.IInstancePool`1.GetMany*"></a>
+  <h4 id="wan24_Core_IInstancePool_1_GetMany_System_Int32_CancellationToken_" data-uid="wan24.Core.IInstancePool`1.GetMany(System.Int32,CancellationToken)">GetMany(Int32, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Get many instances</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool AutoReset { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;T&gt; GetMany(int count, CancellationToken cancellationToken = null)</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>Number of instances</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -152,28 +207,53 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><p>Instances</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITimer_Interval.md&amp;value=---%0Auid%3A%20wan24.Core.ITimer.Interval%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IInstancePool_1_GetManyAsync_System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.IInstancePool%601.GetManyAsync(System.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITimer.cs/#L15">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IInstancePool.cs/#L56">View Source</a>
   </span>
-  <a id="wan24_Core_ITimer_Interval_" data-uid="wan24.Core.ITimer.Interval*"></a>
-  <h4 id="wan24_Core_ITimer_Interval" data-uid="wan24.Core.ITimer.Interval">Interval</h4>
-  <div class="markdown level1 summary"><p>Interval</p>
+  <a id="wan24_Core_IInstancePool_1_GetManyAsync_" data-uid="wan24.Core.IInstancePool`1.GetManyAsync*"></a>
+  <h4 id="wan24_Core_IInstancePool_1_GetManyAsync_System_Int32_CancellationToken_" data-uid="wan24.Core.IInstancePool`1.GetManyAsync(System.Int32,CancellationToken)">GetManyAsync(Int32, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Get many instances</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">TimeSpan Interval { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">IAsyncEnumerable&lt;T&gt; GetManyAsync(int count, CancellationToken cancellationToken = null)</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>Number of instances</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -183,28 +263,29 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TimeSpan</span></td>
-        <td></td>
+        <td><span class="xref">IAsyncEnumerable</span>&lt;T&gt;</td>
+        <td><p>Instances</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITimer_LastElapsed.md&amp;value=---%0Auid%3A%20wan24.Core.ITimer.LastElapsed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IInstancePool_1_GetOne.md&amp;value=---%0Auid%3A%20wan24.Core.IInstancePool%601.GetOne%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITimer.cs/#L19">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IInstancePool.cs/#L36">View Source</a>
   </span>
-  <a id="wan24_Core_ITimer_LastElapsed_" data-uid="wan24.Core.ITimer.LastElapsed*"></a>
-  <h4 id="wan24_Core_ITimer_LastElapsed" data-uid="wan24.Core.ITimer.LastElapsed">LastElapsed</h4>
-  <div class="markdown level1 summary"><p>Last elapsed</p>
+  <a id="wan24_Core_IInstancePool_1_GetOne_" data-uid="wan24.Core.IInstancePool`1.GetOne*"></a>
+  <h4 id="wan24_Core_IInstancePool_1_GetOne" data-uid="wan24.Core.IInstancePool`1.GetOne">GetOne()</h4>
+  <div class="markdown level1 summary"><p>Get one instance</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">DateTime LastElapsed { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">T GetOne()</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -214,28 +295,47 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">DateTime</span></td>
-        <td></td>
+        <td><span class="xref">T</span></td>
+        <td><p>Instance</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITimer_Sheduled.md&amp;value=---%0Auid%3A%20wan24.Core.ITimer.Sheduled%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IInstancePool_1_GetOneAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.IInstancePool%601.GetOneAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITimer.cs/#L23">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IInstancePool.cs/#L42">View Source</a>
   </span>
-  <a id="wan24_Core_ITimer_Sheduled_" data-uid="wan24.Core.ITimer.Sheduled*"></a>
-  <h4 id="wan24_Core_ITimer_Sheduled" data-uid="wan24.Core.ITimer.Sheduled">Sheduled</h4>
-  <div class="markdown level1 summary"><p>Shedules</p>
+  <a id="wan24_Core_IInstancePool_1_GetOneAsync_" data-uid="wan24.Core.IInstancePool`1.GetOneAsync*"></a>
+  <h4 id="wan24_Core_IInstancePool_1_GetOneAsync_CancellationToken_" data-uid="wan24.Core.IInstancePool`1.GetOneAsync(CancellationToken)">GetOneAsync(CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Get one instance</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">DateTime Sheduled { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;T&gt; GetOneAsync(CancellationToken cancellationToken = null)</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -245,8 +345,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">DateTime</span></td>
-        <td></td>
+        <td><span class="xref">Task</span>&lt;T&gt;</td>
+        <td><p>Instance</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -295,10 +396,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITimer.md&amp;value=---%0Auid%3A%20wan24.Core.ITimer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IInstancePool_1.md&amp;value=---%0Auid%3A%20wan24.Core.IInstancePool%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITimer.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IInstancePool.cs/#L30" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

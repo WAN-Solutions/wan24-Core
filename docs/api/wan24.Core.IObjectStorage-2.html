@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface ITimer
+    <title>Interface IObjectStorage&lt;tKey, tObj&gt;
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface ITimer
+    <meta name="title" content="Interface IObjectStorage&lt;tKey, tObj&gt;
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,16 +68,28 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.ITimer">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.IObjectStorage`2">
   
   
-  <h1 id="wan24_Core_ITimer" data-uid="wan24.Core.ITimer" class="text-break">Interface ITimer
+  <h1 id="wan24_Core_IObjectStorage_2" data-uid="wan24.Core.IObjectStorage`2" class="text-break">Interface IObjectStorage&lt;tKey, tObj&gt;
   </h1>
-  <div class="markdown level0 summary"><p>Interface for a timer object</p>
+  <div class="markdown level0 summary"><p>Interface for an object storage</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.IObjectStorage.html#wan24_Core_IObjectStorage_InMemoryLimit">IObjectStorage.InMemoryLimit</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IObjectStorage.html#wan24_Core_IObjectStorage_Stored">IObjectStorage.Stored</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IObjectStorage.html#wan24_Core_IObjectStorage_StoredPeak">IObjectStorage.StoredPeak</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IObjectStorage.html#wan24_Core_IObjectStorage_ObjectReferences">IObjectStorage.ObjectReferences</a>
+    </div>
     <div>
       <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_Name">IServiceWorker.Name</a>
     </div>
@@ -117,32 +129,74 @@
     <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_OnDisposed">IDisposableObject.OnDisposed</a>
     </div>
+    <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html#wan24_Core_IStatusProvider_State">IStatusProvider.State</a>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_ITimer_syntax">Syntax</h5>
+  <h5 id="wan24_Core_IObjectStorage_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface ITimer : IServiceWorker, IHostedService, IDisposableObject</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IObjectStorage&lt;tKey, tObj&gt; : IObjectStorage, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IStatusProvider where tObj : class, IStoredObject&lt;tKey&gt;</code></pre>
   </div>
-  <h3 id="properties">Properties
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tKey</span></td>
+        <td><p>Object key type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tObj</span></td>
+        <td><p>Object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITimer_AutoReset.md&amp;value=---%0Auid%3A%20wan24.Core.ITimer.AutoReset%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IObjectStorage_2_GetObject__0__.md&amp;value=---%0Auid%3A%20wan24.Core.IObjectStorage%602.GetObject(%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITimer.cs/#L11">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IObjectStorage.cs/#L40">View Source</a>
   </span>
-  <a id="wan24_Core_ITimer_AutoReset_" data-uid="wan24.Core.ITimer.AutoReset*"></a>
-  <h4 id="wan24_Core_ITimer_AutoReset" data-uid="wan24.Core.ITimer.AutoReset">AutoReset</h4>
-  <div class="markdown level1 summary"><p>Auto-reset?</p>
+  <a id="wan24_Core_IObjectStorage_2_GetObject_" data-uid="wan24.Core.IObjectStorage`2.GetObject*"></a>
+  <h4 id="wan24_Core_IObjectStorage_2_GetObject__0__" data-uid="wan24.Core.IObjectStorage`2.GetObject(`0@)">GetObject(in tKey)</h4>
+  <div class="markdown level1 summary"><p>Get an object</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool AutoReset { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">StoredObject&lt;tKey, tObj&gt; GetObject(in tKey key)</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tKey</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -152,28 +206,53 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
+        <td><a class="xref" href="wan24.Core.StoredObject-2.html">StoredObject</a>&lt;tKey, tObj&gt;</td>
+        <td><p>Object</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITimer_Interval.md&amp;value=---%0Auid%3A%20wan24.Core.ITimer.Interval%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IObjectStorage_2_GetObjectAsnc__0_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.IObjectStorage%602.GetObjectAsnc(%600%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITimer.cs/#L15">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IObjectStorage.cs/#L47">View Source</a>
   </span>
-  <a id="wan24_Core_ITimer_Interval_" data-uid="wan24.Core.ITimer.Interval*"></a>
-  <h4 id="wan24_Core_ITimer_Interval" data-uid="wan24.Core.ITimer.Interval">Interval</h4>
-  <div class="markdown level1 summary"><p>Interval</p>
+  <a id="wan24_Core_IObjectStorage_2_GetObjectAsnc_" data-uid="wan24.Core.IObjectStorage`2.GetObjectAsnc*"></a>
+  <h4 id="wan24_Core_IObjectStorage_2_GetObjectAsnc__0_CancellationToken_" data-uid="wan24.Core.IObjectStorage`2.GetObjectAsnc(`0,CancellationToken)">GetObjectAsnc(tKey, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Get an object</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">TimeSpan Interval { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;StoredObject&lt;tKey, tObj&gt;&gt; GetObjectAsnc(tKey key, CancellationToken cancellationToken = null)</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tKey</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -183,59 +262,81 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TimeSpan</span></td>
-        <td></td>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="wan24.Core.StoredObject-2.html">StoredObject</a>&lt;tKey, tObj&gt;&gt;</td>
+        <td><p>Object</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITimer_LastElapsed.md&amp;value=---%0Auid%3A%20wan24.Core.ITimer.LastElapsed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IObjectStorage_2_Release__1__.md&amp;value=---%0Auid%3A%20wan24.Core.IObjectStorage%602.Release(%601%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITimer.cs/#L19">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IObjectStorage.cs/#L52">View Source</a>
   </span>
-  <a id="wan24_Core_ITimer_LastElapsed_" data-uid="wan24.Core.ITimer.LastElapsed*"></a>
-  <h4 id="wan24_Core_ITimer_LastElapsed" data-uid="wan24.Core.ITimer.LastElapsed">LastElapsed</h4>
-  <div class="markdown level1 summary"><p>Last elapsed</p>
+  <a id="wan24_Core_IObjectStorage_2_Release_" data-uid="wan24.Core.IObjectStorage`2.Release*"></a>
+  <h4 id="wan24_Core_IObjectStorage_2_Release__1__" data-uid="wan24.Core.IObjectStorage`2.Release(`1@)">Release(in tObj)</h4>
+  <div class="markdown level1 summary"><p>Release an object</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">DateTime LastElapsed { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">void Release(in tObj obj)</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
+        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">DateTime</span></td>
-        <td></td>
+        <td><span class="xref">tObj</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>Object</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITimer_Sheduled.md&amp;value=---%0Auid%3A%20wan24.Core.ITimer.Sheduled%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IObjectStorage_2_Remove__1__.md&amp;value=---%0Auid%3A%20wan24.Core.IObjectStorage%602.Remove(%601%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITimer.cs/#L23">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IObjectStorage.cs/#L58">View Source</a>
   </span>
-  <a id="wan24_Core_ITimer_Sheduled_" data-uid="wan24.Core.ITimer.Sheduled*"></a>
-  <h4 id="wan24_Core_ITimer_Sheduled" data-uid="wan24.Core.ITimer.Sheduled">Sheduled</h4>
-  <div class="markdown level1 summary"><p>Shedules</p>
+  <a id="wan24_Core_IObjectStorage_2_Remove_" data-uid="wan24.Core.IObjectStorage`2.Remove*"></a>
+  <h4 id="wan24_Core_IObjectStorage_2_Remove__1__" data-uid="wan24.Core.IObjectStorage`2.Remove(`1@)">Remove(in tObj)</h4>
+  <div class="markdown level1 summary"><p>Remove an object</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">DateTime Sheduled { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">tObj Remove(in tObj obj)</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tObj</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -245,8 +346,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">DateTime</span></td>
-        <td></td>
+        <td><span class="xref">tObj</span></td>
+        <td><p>Object</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -295,10 +397,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITimer.md&amp;value=---%0Auid%3A%20wan24.Core.ITimer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IObjectStorage_2.md&amp;value=---%0Auid%3A%20wan24.Core.IObjectStorage%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITimer.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IObjectStorage.cs/#L31" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

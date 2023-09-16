@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class StreamPool&lt;T&gt;
+    <title>Class StoredObject&lt;tKey, tObj&gt;
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class StreamPool&lt;T&gt;
+    <meta name="title" content="Class StoredObject&lt;tKey, tObj&gt;
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,67 +68,28 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.StreamPool`1">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.StoredObject`2">
   
   
-  <h1 id="wan24_Core_StreamPool_1" data-uid="wan24.Core.StreamPool`1" class="text-break">Class StreamPool&lt;T&gt;
+  <h1 id="wan24_Core_StoredObject_2" data-uid="wan24.Core.StoredObject`2" class="text-break">Class StoredObject&lt;tKey, tObj&gt;
   </h1>
-  <div class="markdown level0 summary"><p>Stream pool</p>
+  <div class="markdown level0 summary"><p>Stored object</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><a class="xref" href="wan24.Core.DisposableBase.html">DisposableBase</a></div>
-    <div class="level2"><a class="xref" href="wan24.Core.DisposableObjectPool-1.html">DisposableObjectPool</a>&lt;T&gt;</div>
-    <div class="level3"><span class="xref">StreamPool&lt;T&gt;</span></div>
+    <div class="level2"><span class="xref">StoredObject&lt;tKey, tObj&gt;</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><span class="xref">IDisposable</span></div>
     <div><span class="xref">IAsyncDisposable</span></div>
-    <div><a class="xref" href="wan24.Core.IObjectPool-1.html">IObjectPool</a>&lt;T&gt;</div>
-    <div><a class="xref" href="wan24.Core.IPool.html">IPool</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_Pool">DisposableObjectPool&lt;T&gt;.Pool</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_Factory">DisposableObjectPool&lt;T&gt;.Factory</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_GUID">DisposableObjectPool&lt;T&gt;.GUID</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_Name">DisposableObjectPool&lt;T&gt;.Name</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_ItemType">DisposableObjectPool&lt;T&gt;.ItemType</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_Capacity">DisposableObjectPool&lt;T&gt;.Capacity</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_Available">DisposableObjectPool&lt;T&gt;.Available</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_ResetOnRent">DisposableObjectPool&lt;T&gt;.ResetOnRent</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_ForceResetOnReturn">DisposableObjectPool&lt;T&gt;.ForceResetOnReturn</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_Rent">DisposableObjectPool&lt;T&gt;.Rent()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_Dispose_System_Boolean_">DisposableObjectPool&lt;T&gt;.Dispose(Boolean)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_DisposeCore">DisposableObjectPool&lt;T&gt;.DisposeCore()</a>
-    </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeSyncObject">DisposableBase.DisposeSyncObject</a>
     </div>
@@ -155,6 +116,9 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposedNullable__1_Func___0___System_Boolean__">DisposableBase.IfUndisposedNullable&lt;T&gt;(Func&lt;T&gt;, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeCore">DisposableBase.DisposeCore()</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributes">DisposableBase.DisposeAttributes()</a>
@@ -198,9 +162,9 @@
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_StreamPool_1_syntax">Syntax</h5>
+  <h5 id="wan24_Core_StoredObject_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class StreamPool&lt;T&gt; : DisposableObjectPool&lt;T&gt;, IDisposableObject, IObjectPool&lt;T&gt;, IPool where T : Stream, IObjectPoolItem, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class StoredObject&lt;tKey, tObj&gt; : DisposableBase, IDisposableObject where tObj : class, IStoredObject&lt;tKey&gt;</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -212,9 +176,12 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Stream type</p>
-</td>
+        <td><span class="parametername">tKey</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tObj</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -222,19 +189,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamPool_1__ctor_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.StreamPool%601.%23ctor(System.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StoredObject_2__ctor_wan24_Core_IObjectStorage__0__1____1__.md&amp;value=---%0Auid%3A%20wan24.Core.StoredObject%602.%23ctor(wan24.Core.IObjectStorage%7B%600%2C%601%7D%40%2C%601%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamPool.cs/#L23">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StoredObject.cs/#L15">View Source</a>
   </span>
-  <a id="wan24_Core_StreamPool_1__ctor_" data-uid="wan24.Core.StreamPool`1.#ctor*"></a>
-  <h4 id="wan24_Core_StreamPool_1__ctor_System_Int32__" data-uid="wan24.Core.StreamPool`1.#ctor(System.Int32@)">StreamPool(in Int32)</h4>
+  <a id="wan24_Core_StoredObject_2__ctor_" data-uid="wan24.Core.StoredObject`2.#ctor*"></a>
+  <h4 id="wan24_Core_StoredObject_2__ctor_wan24_Core_IObjectStorage__0__1____1__" data-uid="wan24.Core.StoredObject`2.#ctor(wan24.Core.IObjectStorage{`0,`1}@,`1@)">StoredObject(in IObjectStorage&lt;tKey, tObj&gt;, in tObj)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public StreamPool(in int capacity)</code></pre>
+    <pre><code class="lang-csharp hljs">public StoredObject(in IObjectStorage&lt;tKey, tObj&gt; storage, in tObj obj)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -247,71 +214,38 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">capacity</span></td>
-        <td><p>Capacity</p>
+        <td><a class="xref" href="wan24.Core.IObjectStorage-2.html">IObjectStorage</a>&lt;tKey, tObj&gt;</td>
+        <td><span class="parametername">storage</span></td>
+        <td><p>Storage</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">tObj</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>Object</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamPool_1__ctor_System_Int32__Func__0___.md&amp;value=---%0Auid%3A%20wan24.Core.StreamPool%601.%23ctor(System.Int32%40%2CFunc%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamPool.cs/#L30">View Source</a>
-  </span>
-  <a id="wan24_Core_StreamPool_1__ctor_" data-uid="wan24.Core.StreamPool`1.#ctor*"></a>
-  <h4 id="wan24_Core_StreamPool_1__ctor_System_Int32__Func__0___" data-uid="wan24.Core.StreamPool`1.#ctor(System.Int32@,Func{`0}@)">StreamPool(in Int32, in Func&lt;T&gt;)</h4>
-  <div class="markdown level1 summary"><p>Constructor</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public StreamPool(in int capacity, in Func&lt;T&gt; factory)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">capacity</span></td>
-        <td><p>Capacity</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">Func</span>&lt;T&gt;</td>
-        <td><span class="parametername">factory</span></td>
-        <td><p>Stream factory</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="fields">Fields
+  <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamPool_1_IsStreamBase.md&amp;value=---%0Auid%3A%20wan24.Core.StreamPool%601.IsStreamBase%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StoredObject_2_Object.md&amp;value=---%0Auid%3A%20wan24.Core.StoredObject%602.Object%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamPool.cs/#L12">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StoredObject.cs/#L29">View Source</a>
   </span>
-  <h4 id="wan24_Core_StreamPool_1_IsStreamBase" data-uid="wan24.Core.StreamPool`1.IsStreamBase">IsStreamBase</h4>
-  <div class="markdown level1 summary"><p>Is a <a class="xref" href="wan24.Core.StreamBase.html">StreamBase</a> stream?</p>
+  <a id="wan24_Core_StoredObject_2_Object_" data-uid="wan24.Core.StoredObject`2.Object*"></a>
+  <h4 id="wan24_Core_StoredObject_2_Object" data-uid="wan24.Core.StoredObject`2.Object">Object</h4>
+  <div class="markdown level1 summary"><p>Object</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static readonly bool IsStreamBase</code></pre>
+    <pre><code class="lang-csharp hljs">public tObj Object { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -321,7 +255,38 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">tObj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StoredObject_2_Storage.md&amp;value=---%0Auid%3A%20wan24.Core.StoredObject%602.Storage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StoredObject.cs/#L24">View Source</a>
+  </span>
+  <a id="wan24_Core_StoredObject_2_Storage_" data-uid="wan24.Core.StoredObject`2.Storage*"></a>
+  <h4 id="wan24_Core_StoredObject_2_Storage" data-uid="wan24.Core.StoredObject`2.Storage">Storage</h4>
+  <div class="markdown level1 summary"><p>Storage</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IObjectStorage&lt;tKey, tObj&gt; Storage { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IObjectStorage-2.html">IObjectStorage</a>&lt;tKey, tObj&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -330,19 +295,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamPool_1_Return__0__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.StreamPool%601.Return(%600%40%2CSystem.Boolean%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StoredObject_2_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.StoredObject%602.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamPool.cs/#L33">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StoredObject.cs/#L32">View Source</a>
   </span>
-  <a id="wan24_Core_StreamPool_1_Return_" data-uid="wan24.Core.StreamPool`1.Return*"></a>
-  <h4 id="wan24_Core_StreamPool_1_Return__0__System_Boolean__" data-uid="wan24.Core.StreamPool`1.Return(`0@,System.Boolean@)">Return(in T, in Boolean)</h4>
-  <div class="markdown level1 summary"><p>Return an item</p>
+  <a id="wan24_Core_StoredObject_2_Dispose_" data-uid="wan24.Core.StoredObject`2.Dispose*"></a>
+  <h4 id="wan24_Core_StoredObject_2_Dispose_System_Boolean_" data-uid="wan24.Core.StoredObject`2.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Dispose</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Return(in T item, in bool reset = false)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -355,21 +320,66 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">T</span></td>
-        <td><span class="parametername">item</span></td>
-        <td><p>Item</p>
-</td>
-      </tr>
-      <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><span class="parametername">reset</span></td>
-        <td><p>Reset the <a class="xref" href="wan24.Core.IObjectPoolItem.html">IObjectPoolItem</a> object?</p>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>Disposing? (may be <span class="xref">false</span>, if called from the destructor)</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">wan24.Core.DisposableObjectPool&lt;T&gt;.Return(T, System.Boolean)</span></div>
+  <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose_System_Boolean_">DisposableBase.Dispose(Boolean)</a></div>
+  <h3 id="operators">Operators
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StoredObject_2_op_Implicit_wan24_Core_StoredObject__0__1____1.md&amp;value=---%0Auid%3A%20wan24.Core.StoredObject%602.op_Implicit(wan24.Core.StoredObject%7B%600%2C%601%7D)~%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StoredObject.cs/#L38">View Source</a>
+  </span>
+  <a id="wan24_Core_StoredObject_2_op_Implicit_" data-uid="wan24.Core.StoredObject`2.op_Implicit*"></a>
+  <h4 id="wan24_Core_StoredObject_2_op_Implicit_wan24_Core_StoredObject__0__1____1" data-uid="wan24.Core.StoredObject`2.op_Implicit(wan24.Core.StoredObject{`0,`1})~`1">Implicit(StoredObject&lt;tKey, tObj&gt; to tObj)</h4>
+  <div class="markdown level1 summary"><p>Cast as object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator tObj(StoredObject&lt;tKey, tObj&gt; so)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StoredObject-2.html">StoredObject</a>&lt;tKey, tObj&gt;</td>
+        <td><span class="parametername">so</span></td>
+        <td><p><a class="xref" href="wan24.Core.StoredObject-2.html">StoredObject&lt;tKey, tObj&gt;</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tObj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
@@ -379,12 +389,6 @@
   </div>
   <div>
       <span class="xref">IAsyncDisposable</span>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.IObjectPool-1.html">IObjectPool&lt;T&gt;</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.IPool.html">IPool</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
@@ -431,10 +435,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamPool_1.md&amp;value=---%0Auid%3A%20wan24.Core.StreamPool%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StoredObject_2.md&amp;value=---%0Auid%3A%20wan24.Core.StoredObject%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamPool.cs/#L7" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StoredObject.cs/#L6" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
