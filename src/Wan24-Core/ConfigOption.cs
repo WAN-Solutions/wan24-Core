@@ -152,12 +152,12 @@ namespace wan24.Core
         /// <summary>
         /// Sub-configuration value
         /// </summary>
-        public tValue? SubValue => SubOption == null ? default : SubOption.Value;
+        public tValue? SubValue => SubOption is null ? default : SubOption.Value;
 
         /// <summary>
         /// Overriding parent option value
         /// </summary>
-        public tValue? ParentValue => ParentOption == null ? default : ParentOption.Value;
+        public tValue? ParentValue => ParentOption is null ? default : ParentOption.Value;
 
         /// <inheritdoc/>
         public bool IsSet { get; private set; }

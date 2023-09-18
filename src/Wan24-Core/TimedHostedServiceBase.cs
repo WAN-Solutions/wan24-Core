@@ -180,15 +180,27 @@ namespace wan24.Core
         public sealed override async Task StartAsync(CancellationToken cancellationToken = default)
         {
             using SemaphoreSyncContext ssc = await SyncControl.SyncContextAsync(cancellationToken).DynamicContext();
-            await base.StartAsync(cancellationToken).DynamicContext();
+            await StartTimerAsync(cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
         public sealed override async Task StopAsync(CancellationToken cancellationToken = default)
         {
             using SemaphoreSyncContext ssc = await SyncControl.SyncContextAsync(cancellationToken).DynamicContext();
-            await base.StopAsync(cancellationToken).DynamicContext();
+            await StopTimerAsync(cancellationToken).DynamicContext();
         }
+
+        /// <summary>
+        /// Start the timer
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        protected Task StartTimerAsync(CancellationToken cancellationToken) => base.StartAsync(cancellationToken);
+
+        /// <summary>
+        /// Stop the timer
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        protected Task StopTimerAsync(CancellationToken cancellationToken) => base.StopAsync(cancellationToken);
 
         /// <inheritdoc/>
         protected override async Task AfterStartAsync(CancellationToken cancellationToken)

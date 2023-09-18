@@ -167,7 +167,7 @@ namespace wan24.Core
                     if (!OptionProperties!.ContainsKey(kvp.Key)) continue;
                     GetOption(kvp.Value)!.SetDynamicValue(kvp.Value);
                 }
-                if (SubConfig is not null && value.ContainsKey(SubKey) && value[SubKey] != null)
+                if (SubConfig is not null && value.ContainsKey(SubKey) && value[SubKey] is not null)
                     SubConfig!.ConfigTree = value[SubKey]!;
             }
         }
