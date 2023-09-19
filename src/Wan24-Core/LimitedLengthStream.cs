@@ -38,19 +38,24 @@
         /// </summary>
         public long MaxLength { get; set; }
 
+        /// <summary>
+        /// Throw an exception, when reading overflows?
+        /// </summary>
+        public bool ThrowOnReadOverflow { get; set; }
+
         /// <inheritdoc/>
         public override long Position
         {
-            get => base.Position;
+            get => _BaseStream.Position;
             set
             {
                 if (value > MaxLength) throw new ArgumentOutOfRangeException(nameof(value));
-                base.Position = value;
+                _BaseStream.Position = value;
             }
         }
 
         /// <inheritdoc/>
-        public override long Length => Math.Min(base.Length, MaxLength);
+        public override long Length => Math.Min(_BaseStream.Length, MaxLength);
 
         /// <summary>
         /// Detach the base stream and dispose
@@ -88,7 +93,8 @@
         public override void Write(byte[] buffer, int offset, int count)
         {
             EnsureUndisposed();
-            Write(buffer.AsSpan(offset, count));
+            if (Position + buffer.Length > MaxLength) throw new OutOfMemoryException("Maximum length exceeded");
+            _BaseStream.Write(buffer, offset, count);
         }
 
         /// <inheritdoc/>
@@ -108,10 +114,11 @@
         }
 
         /// <inheritdoc/>
-        public override async Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        public override Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             EnsureUndisposed();
-            await WriteAsync(buffer.AsMemory(offset, count), cancellationToken).DynamicContext();
+            if (Position + buffer.Length > MaxLength) throw new OutOfMemoryException("Maximum length exceeded");
+            return _BaseStream.WriteAsync(buffer, offset, count, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -126,35 +133,49 @@
         public override int Read(byte[] buffer, int offset, int count)
         {
             EnsureUndisposed();
-            if (Position + count > MaxLength) count = (int)(MaxLength - Position);
-            return base.Read(buffer, offset, count);
+            if (!ThrowOnReadOverflow && Position + count > MaxLength) count = (int)(MaxLength - Position);
+            int res = _BaseStream.Read(buffer, offset, count);
+            if (ThrowOnReadOverflow && Position > MaxLength) throw new OverflowException();
+            return res;
         }
 
         /// <inheritdoc/>
         public override int Read(Span<byte> buffer)
         {
             EnsureUndisposed();
-            if (Position + buffer.Length > MaxLength) buffer = buffer[..(buffer.Length - (int)(MaxLength - Position))];
-            return base.Read(buffer);
+            if (!ThrowOnReadOverflow && Position + buffer.Length > MaxLength) buffer = buffer[..(buffer.Length - (int)(MaxLength - Position))];
+            int res = _BaseStream.Read(buffer);
+            if (ThrowOnReadOverflow && Position > MaxLength) throw new OverflowException();
+            return res;
         }
 
         /// <inheritdoc/>
-        public override int ReadByte() => Position >= MaxLength ? -1 : base.ReadByte();
-
-        /// <inheritdoc/>
-        public override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        public override int ReadByte()
         {
             EnsureUndisposed();
-            if (Position + count > MaxLength) count = (int)(MaxLength - Position);
-            return base.ReadAsync(buffer, offset, count, cancellationToken);
+            int res = !ThrowOnReadOverflow && Position >= MaxLength ? -1 : _BaseStream.ReadByte();
+            if (ThrowOnReadOverflow && Position > MaxLength) throw new OverflowException();
+            return res;
         }
 
         /// <inheritdoc/>
-        public override ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
+        public override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             EnsureUndisposed();
-            if (Position + buffer.Length > MaxLength) buffer = buffer[..(buffer.Length - (int)(MaxLength - Position))];
-            return base.ReadAsync(buffer, cancellationToken);
+            if (!ThrowOnReadOverflow && Position + count > MaxLength) count = (int)(MaxLength - Position);
+            int res = await _BaseStream.ReadAsync(buffer, offset, count, cancellationToken).DynamicContext();
+            if (ThrowOnReadOverflow && Position > MaxLength) throw new OverflowException();
+            return res;
+        }
+
+        /// <inheritdoc/>
+        public override async ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            if (!ThrowOnReadOverflow && Position + buffer.Length > MaxLength) buffer = buffer[..(buffer.Length - (int)(MaxLength - Position))];
+            int res = await _BaseStream.ReadAsync(buffer, cancellationToken).DynamicContext();
+            if (ThrowOnReadOverflow && Position > MaxLength) throw new OverflowException();
+            return res;
         }
 
         /// <inheritdoc/>
@@ -168,8 +189,8 @@
                 SeekOrigin.End => Length + offset,
                 _ => throw new ArgumentException("Invalid origin", nameof(origin))
             };
-            if (pos > MaxLength) throw new ArgumentOutOfRangeException(nameof(offset));
-            return base.Seek(offset, origin);
+            if (pos > MaxLength) throw new OverflowException();
+            return _BaseStream.Seek(offset, origin);
         }
     }
 }
