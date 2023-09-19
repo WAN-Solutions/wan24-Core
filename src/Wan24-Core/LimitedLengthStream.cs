@@ -37,7 +37,6 @@
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
         public LimitedLengthStream(in T baseStream, in long maxLength, in bool leaveOpen = false) : base(baseStream, leaveOpen)
         {
-            EnsureWritable();
             if (maxLength < 0) throw new ArgumentOutOfRangeException(nameof(maxLength));
             _MaxLength = maxLength;
             UseOriginalBeginWrite = true;
