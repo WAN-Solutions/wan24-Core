@@ -9,7 +9,6 @@ namespace Wan24_Core_Tests
         public async Task General_Tests()
         {
             using QueueWorker worker = new(1);
-            await worker.StartAsync(default);
             int worked = 0;
             using ManualResetEventSlim task1Event = new(initialState: false);
             await worker.EnqueueAsync(async (ct) =>
@@ -30,10 +29,11 @@ namespace Wan24_Core_Tests
                 await Task.Yield();
                 task2Event.Wait(ct);
                 worked++;
-            }));
+            }), "Enqueued");
+            await worker.StartAsync(default);
             task1Event.Set();
             await Task.Delay(200);
-            Assert.AreEqual(1, worked);
+            Assert.AreEqual(1, worked, "");
             await addTask;
             task2Event.Set();
             await Task.Delay(200);
