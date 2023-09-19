@@ -711,7 +711,7 @@ public sealed class Config : OverrideableConfig<Config>
 
     private Config(Config parent, Config? sub = null) : base(parent)
     {
-        if(sub is not null)
+        if(sub != null)
         {
             SubConfig = sub;
             sub.ParentConfig = this;
@@ -725,7 +725,7 @@ public sealed class Config : OverrideableConfig<Config>
 
     private void InitProperties()
     {
-        AnyValue = ParentConfig is null 
+        AnyValue = ParentConfig == null 
             // The master option has a default value
             ? new(this, nameof(AnyValue), canBeOverridden: true, "default")
             // No default value for a sub-option
