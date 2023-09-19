@@ -18,6 +18,7 @@ namespace Wan24_Core_Tests
                 task1Event.Wait(ct);
                 worked++;
             });
+            await worker.StopAsync(default);
             using ManualResetEventSlim task2Event = new(initialState: false);
             ValueTask addTask = worker.EnqueueAsync(async (ct) =>
             {
@@ -25,15 +26,16 @@ namespace Wan24_Core_Tests
                 task2Event.Wait(ct);
                 worked++;
             });
+            await worker.StartAsync(default);
             Assert.IsFalse(worker.TryEnqueue(async (ct) =>
             {
                 await Task.Yield();
                 task2Event.Wait(ct);
                 worked++;
-            }));
+            }), "Enqueued");
             task1Event.Set();
             await Task.Delay(200);
-            Assert.AreEqual(1, worked);
+            Assert.AreEqual(1, worked, "");
             await addTask;
             task2Event.Set();
             await Task.Delay(200);

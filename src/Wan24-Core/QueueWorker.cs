@@ -53,7 +53,6 @@ namespace wan24.Core
         public bool TryEnqueue(Task_Delegate task)
         {
             EnsureUndisposed();
-            RunEvent.Wait();
             return Queue.Writer.TryWrite(task);
         }
 
