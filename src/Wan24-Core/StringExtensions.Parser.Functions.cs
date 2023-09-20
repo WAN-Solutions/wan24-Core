@@ -507,7 +507,15 @@ namespace wan24.Core
             foreach (string v in values)
             {
                 context.Data["_item"] = v;
-                res.Add(value.Parse(context.Data, context.MaxRounds - context.Round, throwOnError: true, context.Rx, context.RxGroup));
+                res.Add(value.Parse(
+                    context.Data,
+                    new()
+                    {
+                        MaxParserRounds = context.MaxRounds - context.Round,
+                        Regex = context.Rx,
+                        RegexGroup = context.RxGroup
+                    }
+                    ));
             }
             return string.Join(string.Empty, res);
         }
@@ -533,11 +541,27 @@ namespace wan24.Core
             }
             if (context.Value == "1")
             {
-                return trueValue.Parse(context.Data, context.MaxRounds - context.Round, throwOnError: true, context.Rx, context.RxGroup);
+                return trueValue.Parse(
+                    context.Data,
+                    new()
+                    {
+                        MaxParserRounds = context.MaxRounds - context.Round,
+                        Regex = context.Rx,
+                        RegexGroup = context.RxGroup
+                    }
+                    );
             }
             else if (falseValue is not null)
             {
-                return falseValue.Parse(context.Data, context.MaxRounds - context.Round, throwOnError: true, context.Rx, context.RxGroup);
+                return falseValue.Parse(
+                    context.Data,
+                    new()
+                    {
+                        MaxParserRounds = context.MaxRounds - context.Round,
+                        Regex = context.Rx,
+                        RegexGroup = context.RxGroup
+                    }
+                    );
             }
             else
             {

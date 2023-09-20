@@ -50,10 +50,11 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public bool TryEnqueue(Task_Delegate task)
+        public bool TryEnqueue(Task_Delegate task, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            return Queue.Writer.TryWrite(task);
+            RunEvent.Wait(cancellationToken);
+            return RunEvent.IsSet && Queue.Writer.TryWrite(task);
         }
 
         /// <inheritdoc/>

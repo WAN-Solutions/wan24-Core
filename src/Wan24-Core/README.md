@@ -215,6 +215,7 @@ including extensions for numeric type encoding/decoding)
 - Progress
 - Sensitive data handling
 - Object storage
+- Localization support
 
 ## How to get it
 
@@ -1474,3 +1475,72 @@ be disposed!)
 `GetObject(Async)`, when it's being disposed)
 - `Remove`: Remove the object from the storage (if it's being deleted 
 permanently, for example)
+
+## Localization
+
+A basic localization support without built-in plural handling is available:
+
+```cs
+Translation.Locales["en-US"] = new(new Dictionary<string, string>()
+{
+    {"Hello", "Hello"},
+    ...
+});
+Translation.Locales["de-DE"] = new(new Dictionary<string, string>()
+{
+    {"Hello", "Hallo"},
+    ...
+});
+Translation.Current = Translation.Locales["de-DE"];
+```
+
+This initializes English and German translations, where English is always the 
+main locale. To translate a text:
+
+```cs
+using static wan24.Translation;
+
+string translated = Translate("Hello");
+```
+
+Or for a specific locale:
+
+```cs
+using static wan24.Translation;
+
+string translated = Localize("de-DE", "Hello");
+```
+
+To implement plural support, you can extend the `TranslationTermsBase` type:
+
+```cs
+public sealed class YourTerms : TranslationTermsBase// Implements IReadOnlyDictionary<string, string>
+{
+    public YourTerms(IReadOnlyDictionary<string, string> terms) : base(terms) { }
+
+    public override bool PluralSupport => true;
+
+    public override string GetTerm(in string key, in int count)
+    {
+        // Return the translated plural term
+    }
+}
+```
+
+**NOTE**: `Translation` supports string parser usage.
+
+You may also use localized filenames. For this you'll need to store files as 
+
+- `filename.ext` (fallback, if a known locale or an existing file isn't 
+required)
+- `filename.en-EN.ext` (localized file)
+- ...
+
+Then you can localize a filename:
+
+```cs
+using static wan24.Translation;
+
+string fn = LocalizedFileName("de-DE", "/path/to/filename.ext");
+Assert.AreEqual("/path/to/filename.de-DE.ext", fn);
+```
