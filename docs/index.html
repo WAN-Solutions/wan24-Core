@@ -362,6 +362,7 @@ including extensions for numeric type encoding/decoding)</li>
 <li>Progress</li>
 <li>Sensitive data handling</li>
 <li>Object storage</li>
+<li>Localization support</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
@@ -1588,6 +1589,58 @@ be disposed!)</li>
 <li><code>Remove</code>: Remove the object from the storage (if it's being deleted
 permanently, for example)</li>
 </ul>
+<h2 id="localization">Localization</h2>
+<p>A basic localization support without built-in plural handling is available:</p>
+<pre><code class="lang-cs">Translation.Locales[&quot;en-US&quot;] = new(new Dictionary&lt;string, string&gt;()
+{
+    {&quot;Hello&quot;, &quot;Hello&quot;},
+    ...
+});
+Translation.Locales[&quot;de-DE&quot;] = new(new Dictionary&lt;string, string&gt;()
+{
+    {&quot;Hello&quot;, &quot;Hallo&quot;},
+    ...
+});
+Translation.Current = Translation.Locales[&quot;de-DE&quot;];
+</code></pre>
+<p>This initializes English and German translations, where English is always the
+main locale. To translate a text:</p>
+<pre><code class="lang-cs">using static wan24.Translation;
+
+string translated = Translate(&quot;Hello&quot;);
+</code></pre>
+<p>Or for a specific locale:</p>
+<pre><code class="lang-cs">using static wan24.Translation;
+
+string translated = Localize(&quot;de-DE&quot;, &quot;Hello&quot;);
+</code></pre>
+<p>To implement plural support, you can extend the <code>TranslationTermsBase</code> type:</p>
+<pre><code class="lang-cs">public sealed class YourTerms : TranslationTermsBase// Implements IReadOnlyDictionary&lt;string, string&gt;
+{
+    public YourTerms(IReadOnlyDictionary&lt;string, string&gt; terms) : base(terms) { }
+
+    public override bool PluralSupport =&gt; true;
+
+    public override string GetTerm(in string key, in int count)
+    {
+        // Return the translated plural term
+    }
+}
+</code></pre>
+<p><strong>NOTE</strong>: <code>Translation</code> supports string parser usage.</p>
+<p>You may also use localized filenames. For this you'll need to store files as</p>
+<ul>
+<li><code>filename.ext</code> (fallback, if a known locale or an existing file isn't
+required)</li>
+<li><code>filename.en-EN.ext</code> (localized file)</li>
+<li>...</li>
+</ul>
+<p>Then you can localize a filename:</p>
+<pre><code class="lang-cs">using static wan24.Translation;
+
+string fn = LocalizedFileName(&quot;de-DE&quot;, &quot;/path/to/filename.ext&quot;);
+Assert.AreEqual(&quot;/path/to/filename.de-DE.ext&quot;, fn);
+</code></pre>
 </article>
           </div>
           

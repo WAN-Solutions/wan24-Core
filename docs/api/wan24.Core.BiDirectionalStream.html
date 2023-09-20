@@ -1,0 +1,411 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class BiDirectionalStream
+   | wan24-Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class BiDirectionalStream
+   | wan24-Core ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.BiDirectionalStream">
+  
+  
+  <h1 id="wan24_Core_BiDirectionalStream" data-uid="wan24.Core.BiDirectionalStream" class="text-break">Class BiDirectionalStream
+  </h1>
+  <div class="markdown level0 summary"><p>Bi-directional stream</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="wan24.Core.StreamBase.html">StreamBase</a></div>
+    <div class="level2"><a class="xref" href="wan24.Core.BiDirectionalStream-2.html">BiDirectionalStream</a>&lt;<span class="xref">Stream</span>, <span class="xref">Stream</span>&gt;</div>
+    <div class="level3"><span class="xref">BiDirectionalStream</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IStream.html">IStream</a></div>
+    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><span class="xref">IDisposable</span></div>
+    <div><span class="xref">IAsyncDisposable</span></div>
+    <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_Readable">BiDirectionalStream&lt;Stream, Stream&gt;.Readable</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_Writable">BiDirectionalStream&lt;Stream, Stream&gt;.Writable</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_LeaveOpen">BiDirectionalStream&lt;Stream, Stream&gt;.LeaveOpen</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_CanRead">BiDirectionalStream&lt;Stream, Stream&gt;.CanRead</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_CanSeek">BiDirectionalStream&lt;Stream, Stream&gt;.CanSeek</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_CanWrite">BiDirectionalStream&lt;Stream, Stream&gt;.CanWrite</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_CanTimeout">BiDirectionalStream&lt;Stream, Stream&gt;.CanTimeout</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_Length">BiDirectionalStream&lt;Stream, Stream&gt;.Length</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_Position">BiDirectionalStream&lt;Stream, Stream&gt;.Position</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_ReadTimeout">BiDirectionalStream&lt;Stream, Stream&gt;.ReadTimeout</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_WriteTimeout">BiDirectionalStream&lt;Stream, Stream&gt;.WriteTimeout</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_State">BiDirectionalStream&lt;Stream, Stream&gt;.State</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_Seek_System_Int64_SeekOrigin_">BiDirectionalStream&lt;Stream, Stream&gt;.Seek(Int64, SeekOrigin)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_SetLength_System_Int64_">BiDirectionalStream&lt;Stream, Stream&gt;.SetLength(Int64)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_Flush">BiDirectionalStream&lt;Stream, Stream&gt;.Flush()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_FlushAsync_CancellationToken_">BiDirectionalStream&lt;Stream, Stream&gt;.FlushAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_Read_System_Byte___System_Int32_System_Int32_">BiDirectionalStream&lt;Stream, Stream&gt;.Read(Byte[], Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_Read_Span_System_Byte__">BiDirectionalStream&lt;Stream, Stream&gt;.Read(Span&lt;Byte&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_">BiDirectionalStream&lt;Stream, Stream&gt;.ReadAsync(Byte[], Int32, Int32, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_ReadAsync_Memory_System_Byte__CancellationToken_">BiDirectionalStream&lt;Stream, Stream&gt;.ReadAsync(Memory&lt;Byte&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_ReadByte">BiDirectionalStream&lt;Stream, Stream&gt;.ReadByte()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_Write_System_Byte___System_Int32_System_Int32_">BiDirectionalStream&lt;Stream, Stream&gt;.Write(Byte[], Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_Write_ReadOnlySpan_System_Byte__">BiDirectionalStream&lt;Stream, Stream&gt;.Write(ReadOnlySpan&lt;Byte&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_WriteAsync_System_Byte___System_Int32_System_Int32_CancellationToken_">BiDirectionalStream&lt;Stream, Stream&gt;.WriteAsync(Byte[], Int32, Int32, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_WriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_">BiDirectionalStream&lt;Stream, Stream&gt;.WriteAsync(ReadOnlyMemory&lt;Byte&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_WriteByte_System_Byte_">BiDirectionalStream&lt;Stream, Stream&gt;.WriteByte(Byte)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_CopyTo_Stream_System_Int32_">BiDirectionalStream&lt;Stream, Stream&gt;.CopyTo(Stream, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_CopyToAsync_Stream_System_Int32_CancellationToken_">BiDirectionalStream&lt;Stream, Stream&gt;.CopyToAsync(Stream, Int32, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_BeginRead_System_Byte___System_Int32_System_Int32_System_Nullable_AsyncCallback__System_Object_">BiDirectionalStream&lt;Stream, Stream&gt;.BeginRead(Byte[], Int32, Int32, Nullable&lt;AsyncCallback&gt;, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_EndRead_IAsyncResult_">BiDirectionalStream&lt;Stream, Stream&gt;.EndRead(IAsyncResult)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_BeginWrite_System_Byte___System_Int32_System_Int32_System_Nullable_AsyncCallback__System_Object_">BiDirectionalStream&lt;Stream, Stream&gt;.BeginWrite(Byte[], Int32, Int32, Nullable&lt;AsyncCallback&gt;, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_EndWrite_IAsyncResult_">BiDirectionalStream&lt;Stream, Stream&gt;.EndWrite(IAsyncResult)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_Close">BiDirectionalStream&lt;Stream, Stream&gt;.Close()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_Dispose_System_Boolean_">BiDirectionalStream&lt;Stream, Stream&gt;.Dispose(Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BiDirectionalStream-2.html#wan24_Core_BiDirectionalStream_2_DisposeCore">BiDirectionalStream&lt;Stream, Stream&gt;.DisposeCore()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_SyncObject">StreamBase.SyncObject</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_Name">StreamBase.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsClosed">StreamBase.IsClosed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsDisposed">StreamBase.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsDisposing">StreamBase.IsDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_Close">StreamBase.Close()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_DisposeAsync">StreamBase.DisposeAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_Dispose_System_Boolean_">StreamBase.Dispose(Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_DisposeCore">StreamBase.DisposeCore()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_DoClose">StreamBase.DoClose()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureUndisposed_System_Boolean__System_Boolean__">StreamBase.EnsureUndisposed(Boolean, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed__1___0__System_Boolean__">StreamBase.IfUndisposed&lt;T&gt;(T, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed_Action__System_Boolean__">StreamBase.IfUndisposed(Action, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed__1_Func___0___System_Boolean__">StreamBase.IfUndisposed&lt;T&gt;(Func&lt;T&gt;, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposedNullable__1_Func___0___System_Boolean__">StreamBase.IfUndisposedNullable&lt;T&gt;(Func&lt;T&gt;, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureSeekable">StreamBase.EnsureSeekable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureWritable">StreamBase.EnsureWritable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureReadable">StreamBase.EnsureReadable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_OnDisposing">StreamBase.OnDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_OnDisposed">StreamBase.OnDisposed</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_BiDirectionalStream_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class BiDirectionalStream : BiDirectionalStream&lt;Stream, Stream&gt;, IStream, IDisposableObject, IStatusProvider</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BiDirectionalStream__ctor_Stream_Stream_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.BiDirectionalStream.%23ctor(Stream%2CStream%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BiDirectionalStream.cs/#L14">View Source</a>
+  </span>
+  <a id="wan24_Core_BiDirectionalStream__ctor_" data-uid="wan24.Core.BiDirectionalStream.#ctor*"></a>
+  <h4 id="wan24_Core_BiDirectionalStream__ctor_Stream_Stream_System_Boolean_" data-uid="wan24.Core.BiDirectionalStream.#ctor(Stream,Stream,System.Boolean)">BiDirectionalStream(Stream, Stream, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BiDirectionalStream(Stream readable, Stream writable, bool leaveOpen = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">readable</span></td>
+        <td><p>Readable source stream</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">writable</span></td>
+        <td><p>Writable target stream</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">leaveOpen</span></td>
+        <td><p>Leave the streams open when disposing?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IStream.html">IStream</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
+      <span class="xref">IDisposable</span>
+  </div>
+  <div>
+      <span class="xref">IAsyncDisposable</span>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean__">JsonExtensions.ToJson(Object, in Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_System_Collections_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean__System_String__">ObjectExtensions.EnsureValidState&lt;T&gt;(T, in Boolean, in String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText__1___0_">ObjectExtensions.GetDisplayText&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in Int32)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in Int32)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BiDirectionalStream.md&amp;value=---%0Auid%3A%20wan24.Core.BiDirectionalStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BiDirectionalStream.cs/#L6" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            (c) 2023 Andreas Zimmermann, wan24.de
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
