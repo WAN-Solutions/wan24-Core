@@ -21,8 +21,9 @@ namespace wan24.Core
         /// Try enqueue
         /// </summary>
         /// <param name="task">Task</param>
+        /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Enqueued?</returns>
-        bool TryEnqueue(Task_Delegate task);
+        bool TryEnqueue(Task_Delegate task, CancellationToken cancellationToken = default);
         /// <summary>
         /// Enqueue many tasks for processing
         /// </summary>

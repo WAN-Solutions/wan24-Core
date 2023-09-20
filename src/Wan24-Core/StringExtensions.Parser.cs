@@ -52,16 +52,13 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <param name="data">Parser data</param>
-        /// <param name="maxRounds">Maximum recursive parser rounds</param>
-        /// <param name="throwOnError">Throw an exception on error?</param>
-        /// <param name="rx">Placeholder regular expression</param>
-        /// <param name="rxGroup">Regular expression group to use</param>
+        /// <param name="options">Options</param>
         /// <returns>Parsed string</returns>
-        public static string Parse(this string str, in Dictionary<string, string> data, int? maxRounds = null, in bool throwOnError = true, Regex? rx = null, int? rxGroup = null)
+        public static string Parse(this string str, in Dictionary<string, string> data, in StringParserOptions? options = null)
         {
-            rx ??= RxParser;
-            rxGroup ??= RxParserGroup;
-            maxRounds ??= ParserMaxRounds;
+            Regex rx = options?.Regex ?? RxParser;
+            int rxGroup = options?.RegexGroup ?? RxParserGroup;
+            int maxRounds = options?.MaxParserRounds ?? ParserMaxRounds;
             foreach (var kvp in ParserEnvironment) if (!data.ContainsKey(kvp.Key)) data[kvp.Key] = kvp.Value;
             int round = 0,// Current parser round
                 index,// Current function call index
@@ -88,7 +85,7 @@ namespace wan24.Core
                 {
                     if (parsed.ContainsKey(m.Groups[1].Value)) continue;
                     parts.Clear();
-                    key = m.Groups[rxGroup.Value].Value.Trim();
+                    key = m.Groups[rxGroup].Value.Trim();
                     parts.Add(key);
                     // Parse function calls
                     if (key.IndexOf(':') != -1)
@@ -115,13 +112,13 @@ namespace wan24.Core
                             {
                                 // Function call parameter list opening bracket
                                 if (sb.Length == 0)
-                                    if (throwOnError)
+                                    if (options?.ThrowOnError ?? true)
                                     {
-                                        throw new InvalidDataException($"Unexpected opening bracket in \"{m.Groups[rxGroup.Value].Value}\" in round {round}");
+                                        throw new InvalidDataException($"Unexpected opening bracket in \"{m.Groups[rxGroup].Value}\" in round {round}");
                                     }
                                     else
                                     {
-                                        Logging.WriteWarning($"Ignoring unexpected opening bracket in \"{m.Groups[rxGroup.Value].Value}\" in round {round}");
+                                        Logging.WriteWarning($"Ignoring unexpected opening bracket in \"{m.Groups[rxGroup].Value}\" in round {round}");
                                         continue;
                                     }
                                 sb.Append(c);
@@ -133,7 +130,7 @@ namespace wan24.Core
                                 sb.Append(c);
                             }
                         if (needClosingBracket)
-                            if (throwOnError)
+                            if (options?.ThrowOnError ?? true)
                             {
                                 throw new InvalidDataException($"Missing closing bracket for function call in \"{parts[0]}\" near \"{sb}\" in round {round}");
                             }
@@ -154,7 +151,7 @@ namespace wan24.Core
                     else
                     {
                         if (key.Length != 0 || match.Length == 1)
-                            if (throwOnError)
+                            if (options?.ThrowOnError ?? true)
                             {
                                 throw new InvalidDataException($"Missing parser data \"{key}\" in round {round}");
                             }
@@ -172,13 +169,13 @@ namespace wan24.Core
                         {
                             String = str,
                             Rx = rx,
-                            RxGroup = rxGroup.Value,
+                            RxGroup = rxGroup,
                             Matches = matches,
                             M = m,
                             Data = data,
                             Parsed = parsed,
                             Round = round,
-                            MaxRounds = maxRounds.Value,
+                            MaxRounds = maxRounds,
                             Match = match
                         };
                         // Call function handlers
@@ -200,13 +197,13 @@ namespace wan24.Core
                             // Try to find the handler
                             if (!ParserFunctionHandlers.TryGetValue(func, out handler))
                             {
-                                if (throwOnError)
+                                if (options?.ThrowOnError ?? true)
                                 {
-                                    throw new InvalidDataException($"Unknown parser function \"{func}\" in \"{m.Groups[rxGroup.Value].Value}\" in round {round}");
+                                    throw new InvalidDataException($"Unknown parser function \"{func}\" in \"{m.Groups[rxGroup].Value}\" in round {round}");
                                 }
                                 else
                                 {
-                                    Logging.WriteError($"Unknown parser function \"{func}\" in \"{m.Groups[rxGroup.Value].Value}\" in round {round}");
+                                    Logging.WriteError($"Unknown parser function \"{func}\" in \"{m.Groups[rxGroup].Value}\" in round {round}");
                                 }
                                 continue;
                             }
@@ -221,13 +218,13 @@ namespace wan24.Core
                             {
                                 value = handler(context);
                                 if (context.Error is not null)
-                                    if (throwOnError)
+                                    if (options?.ThrowOnError ?? true)
                                     {
-                                        throw new InvalidDataException($"Failed to execute function \"{match[index]}\" in \"{m.Groups[rxGroup.Value].Value}\" in round {round}: {context.Error}");
+                                        throw new InvalidDataException($"Failed to execute function \"{match[index]}\" in \"{m.Groups[rxGroup].Value}\" in round {round}: {context.Error}");
                                     }
                                     else
                                     {
-                                        Logging.WriteError($"Failed to execute function \"{match[index]}\" in \"{m.Groups[rxGroup.Value].Value}\" in round {round}: {context.Error}");
+                                        Logging.WriteError($"Failed to execute function \"{match[index]}\" in \"{m.Groups[rxGroup].Value}\" in round {round}: {context.Error}");
                                     }
                             }
                             catch (InvalidDataException)
@@ -236,13 +233,13 @@ namespace wan24.Core
                             }
                             catch (Exception ex)
                             {
-                                if (throwOnError)
+                                if (options?.ThrowOnError ?? true)
                                 {
-                                    throw new InvalidDataException($"Failed to handle function call \"{match[index]}\" in \"{m.Groups[rxGroup.Value].Value}\" in round {round}: {ex.Message}", ex);
+                                    throw new InvalidDataException($"Failed to handle function call \"{match[index]}\" in \"{m.Groups[rxGroup].Value}\" in round {round}: {ex.Message}", ex);
                                 }
                                 else
                                 {
-                                    Logging.WriteError($"Failed to handle function call \"{match[index]}\" in \"{m.Groups[rxGroup.Value].Value}\" in round {round}: {ex.Message}");
+                                    Logging.WriteError($"Failed to handle function call \"{match[index]}\" in \"{m.Groups[rxGroup].Value}\" in round {round}: {ex.Message}");
                                 }
                             }
                             // Apply new settings
@@ -260,7 +257,7 @@ namespace wan24.Core
             }
             // Handle parser problem
             if (round == maxRounds && matches.Count != 0)
-                if (throwOnError)
+                if (options?.ThrowOnError ?? true)
                 {
                     throw new InvalidDataException($"String not fully parsed (after {round} rounds there are still {matches.Count} placeholders left)");
                 }
