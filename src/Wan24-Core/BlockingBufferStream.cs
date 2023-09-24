@@ -8,7 +8,7 @@
         /// <summary>
         /// Buffer
         /// </summary>
-        protected readonly RentedArrayStruct<byte> Buffer;
+        protected readonly RentedArray<byte> Buffer;
         /// <summary>
         /// Thread synchronization for buffer access
         /// </summary>
