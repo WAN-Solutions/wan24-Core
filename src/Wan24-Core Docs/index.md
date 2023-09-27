@@ -189,6 +189,7 @@ including extensions for numeric type encoding/decoding)
     - `RandomStream` reads random bytes into the given buffers
     - `ChunkedStream` for reading/writing stream chunks
     - `ExchangeableStream` wraps an exchangeable base stream
+    - `BackupStream` writes all red data to another stream
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context
