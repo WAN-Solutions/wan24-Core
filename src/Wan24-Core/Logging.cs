@@ -10,6 +10,16 @@ namespace wan24.Core
     public static class Logging
     {
         /// <summary>
+        /// Default log level
+        /// </summary>
+        public const LogLevel DEFAULT_LOGLEVEL =
+#if !RELEASE
+            LogLevel.Debug;
+#else
+            LogLevel.Information;
+#endif
+
+        /// <summary>
         /// Logger
         /// </summary>
         private static ILogger? _Logger = null;

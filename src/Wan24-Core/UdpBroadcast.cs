@@ -92,8 +92,7 @@ namespace wan24.Core
                 EnableBroadcast = true
             };
 #pragma warning disable CA1416 // Supported on Windows only
-            if (Environment.OSVersion.Platform == PlatformID.Win32NT)
-                listener.AllowNatTraversal(allowed: true);
+            if (ENV.IsWindows) listener.AllowNatTraversal(allowed: true);
 #pragma warning restore CA1416 // Supported on Windows only
             listener.Client.DontFragment = true;
             ConfigureBroadcastListener(listener);
@@ -175,8 +174,7 @@ namespace wan24.Core
             try
             {
 #pragma warning disable CA1416 // Supported on Windows only
-                if (Environment.OSVersion.Platform == PlatformID.Win32NT)
-                    listener.AllowNatTraversal(allowed: true);
+                if (ENV.IsWindows) listener.AllowNatTraversal(allowed: true);
 #pragma warning restore CA1416 // Supported on Windows only
                 listener.Client.DontFragment = true;
                 ConfigureUdpListener(listener);

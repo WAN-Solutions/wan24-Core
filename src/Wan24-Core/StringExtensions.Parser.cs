@@ -252,7 +252,9 @@ namespace wan24.Core
                 }
                 // Finalize the string for the current round
                 if (parsed.Count == 0) break;
-                foreach (string k in parsed.Keys) str = str.Replace(k, parsed[k]);//TODO Is there maybe a better way?
+                StringBuilder stringBuilder = new(str);
+                foreach (string k in parsed.Keys) stringBuilder.Replace(k, parsed[k]);
+                str = stringBuilder.ToString();
                 parsed.Clear();
             }
             // Handle parser problem

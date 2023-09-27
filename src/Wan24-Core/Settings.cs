@@ -44,7 +44,7 @@
         /// <summary>
         /// Temporary folder (may be the customized value or the system users temporary folder)
         /// </summary>
-        public static string TempFolder => CustomTempFolder ?? Path.GetTempPath();
+        public static string TempFolder => CustomTempFolder ?? Path.GetTempPath();//TODO How to do when running as WASM?
 
         /// <summary>
         /// Custom temporary folder

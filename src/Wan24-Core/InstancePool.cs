@@ -155,12 +155,12 @@ namespace wan24.Core
         {
             if (SyncFactory is not null)
             {
-                for (; !Cancellation!.IsCancellationRequested; _Created++) await Instances.Writer.WriteAsync(SyncFactory(this), Cancellation.Token).DynamicContext();
+                for (; !CancelToken.IsCancellationRequested; _Created++) await Instances.Writer.WriteAsync(SyncFactory(this), CancelToken).DynamicContext();
             }
             else
             {
-                for (; !Cancellation!.IsCancellationRequested; _Created++)
-                    await Instances.Writer.WriteAsync(await AsyncFactory!(this, Cancellation.Token).DynamicContext(), Cancellation.Token).DynamicContext();
+                for (; !CancelToken.IsCancellationRequested; _Created++)
+                    await Instances.Writer.WriteAsync(await AsyncFactory!(this, CancelToken).DynamicContext(), CancelToken).DynamicContext();
             }
         }
 

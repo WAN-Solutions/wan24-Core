@@ -9,10 +9,12 @@ namespace Wan24_Core_Tests
         public async Task General_Tests()
         {
             using TestObject service = new();
-            await service.StartAsync(default);
+            await service.StartAsync();
             service.WorkDone.Set();
             await Task.Delay(100);
             Assert.AreEqual(1, service.Worked);
+            Assert.IsTrue(service.IsRunning);
+            await service.StopAsync();
             Assert.IsFalse(service.IsRunning);
         }
 
@@ -29,6 +31,7 @@ namespace Wan24_Core_Tests
                 await Task.Yield();
                 WorkDone.Wait();
                 Worked++;
+                await CancelToken;
             }
 
             protected override void Dispose(bool disposing)

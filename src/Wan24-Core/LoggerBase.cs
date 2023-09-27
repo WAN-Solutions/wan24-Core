@@ -18,7 +18,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="level">Level</param>
         /// <param name="next">Next logger which should receive the message</param>
-        protected LoggerBase(in LogLevel level = LogLevel.Information, in ILogger? next = null)
+        protected LoggerBase(in LogLevel level = Logging.DEFAULT_LOGLEVEL, in ILogger? next = null)
         {
             Level = level;
             Next = next;

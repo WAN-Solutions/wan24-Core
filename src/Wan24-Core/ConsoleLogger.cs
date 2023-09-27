@@ -12,7 +12,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="level">Log level</param>
         /// <param name="next">Next logger which should receive the message</param>
-        public ConsoleLogger(in LogLevel level = LogLevel.Information, in ILogger? next = null) : base(level, next) { }
+        public ConsoleLogger(in LogLevel level = Logging.DEFAULT_LOGLEVEL, in ILogger? next = null) : base(level, next) { }
 
         /// <summary>
         /// Write to STDERR?
