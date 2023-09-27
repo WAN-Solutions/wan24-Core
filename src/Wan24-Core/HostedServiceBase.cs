@@ -80,6 +80,11 @@ namespace wan24.Core
         /// </summary>
         public int ErrorSource { get; set; } = ErrorHandling.SERVICE_ERROR;
 
+        /// <summary>
+        /// Cancellation token
+        /// </summary>
+        protected CancellationToken CancelToken { get; private set; }
+
         /// <inheritdoc/>
         public virtual async Task StartAsync(CancellationToken cancellationToken = default)
         {
@@ -88,6 +93,7 @@ namespace wan24.Core
             IsRunning = true;
             await BeforeStartAsync(cancellationToken).DynamicContext();
             Cancellation = new();
+            CancelToken = Cancellation.Token;
             ServiceTask = ((Func<Task>)RunServiceAsync).StartLongRunningTask(cancellationToken: CancellationToken.None);
             await AfterStartAsync(cancellationToken).DynamicContext();
             RunEvent.Set();
@@ -106,8 +112,8 @@ namespace wan24.Core
                     isStopping = true;
                     await BeforeStopAsync(cancellationToken).DynamicContext();
                     StopTask = new(TaskCreationOptions.RunContinuationsAsynchronously);
-                    RunEvent.Reset();
                     Cancellation!.Cancel();
+                    RunEvent.Reset();
                 }
                 stopTask = StopTask.Task;
             }
@@ -167,7 +173,7 @@ namespace wan24.Core
             }
             catch (OperationCanceledException ex)
             {
-                if (ex.CancellationToken != Cancellation!.Token)
+                if (ex.CancellationToken != CancelToken)
                 {
                     StoppedExceptional = true;
                     LastException = ex;

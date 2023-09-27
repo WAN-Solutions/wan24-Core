@@ -13,7 +13,7 @@ namespace wan24.Core
         /// <param name="level">Level</param>
         /// <param name="next">Next logger which should receive the message</param>
         /// <param name="asyncDisposing">Asynchronous disposing?</param>
-        protected DisposableLoggerBase(in LogLevel level = LogLevel.Information, in ILogger? next = null, in bool asyncDisposing = true) : base(asyncDisposing)
+        protected DisposableLoggerBase(in LogLevel level = Logging.DEFAULT_LOGLEVEL, in ILogger? next = null, in bool asyncDisposing = true) : base(asyncDisposing)
         {
             Level = level;
             Next = next;

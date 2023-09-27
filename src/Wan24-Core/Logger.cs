@@ -12,7 +12,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="level">Log level</param>
         /// <param name="next">Next logger which should receive the message</param>
-        public Logger(in LogLevel level = LogLevel.Information, in ILogger? next = null) :base(level, next) { }
+        public Logger(in LogLevel level = Logging.DEFAULT_LOGLEVEL, in ILogger? next = null) :base(level, next) { }
 
         /// <inheritdoc/>
         protected override void LogInt<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)

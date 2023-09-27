@@ -19,7 +19,7 @@ namespace wan24.Core
         /// <param name="level">Log level</param>
         /// <param name="next">Next logger which should receive the message</param>
         /// <param name="maxQueue">Maximum number of queued messages before blocking</param>
-        protected FileLogger(in string fileName, in LogLevel level = LogLevel.Information, in ILogger? next = null, in int maxQueue = int.MaxValue) : base(level, next)
+        protected FileLogger(in string fileName, in LogLevel level = Logging.DEFAULT_LOGLEVEL, in ILogger? next = null, in int maxQueue = int.MaxValue) : base(level, next)
         {
             try
             {

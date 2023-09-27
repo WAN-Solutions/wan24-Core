@@ -161,11 +161,12 @@ namespace wan24.Core
         public void WaitAndReset(in CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            while (true)
+            while (!cancellationToken.IsCancellationRequested)
             {
                 Wait(cancellationToken);
                 if (Reset()) return;
             }
+            cancellationToken.ThrowIfCancellationRequested();
         }
 
         /// <summary>
@@ -175,11 +176,12 @@ namespace wan24.Core
         public async Task WaitAndResetAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            while (true)
+            while (!cancellationToken.IsCancellationRequested)
             {
                 await WaitAsync(cancellationToken).DynamicContext();
                 if (await ResetAsync().DynamicContext()) return;
             }
+            cancellationToken.ThrowIfCancellationRequested();
         }
 
         /// <summary>
@@ -190,12 +192,12 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             DateTime start = DateTime.Now;
-            while (true)
+            while (TimeSpanHelper.UpdateTimeout(ref start, ref timeout))
             {
                 Wait(timeout);
                 if (Reset()) return;
-                if (!TimeSpanHelper.UpdateTimeout(ref start, ref timeout)) throw new TimeoutException();
             }
+            throw new TimeoutException();
         }
 
         /// <summary>
@@ -206,12 +208,12 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             DateTime start = DateTime.Now;
-            while (true)
+            while (TimeSpanHelper.UpdateTimeout(ref start, ref timeout))
             {
                 await WaitAsync(timeout).DynamicContext();
                 if (await ResetAsync().DynamicContext()) return;
-                if (!TimeSpanHelper.UpdateTimeout(ref start, ref timeout)) throw new TimeoutException();
             }
+            throw new TimeoutException();
         }
 
         /// <inheritdoc/>

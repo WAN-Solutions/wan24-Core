@@ -205,12 +205,10 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override async Task AfterStartAsync(CancellationToken cancellationToken)
         {
-            using (SemaphoreSyncContext ssc2 = await WorkerSync.SyncContextAsync(cancellationToken).DynamicContext())
+            using (SemaphoreSyncContext ssc = await WorkerSync.SyncContextAsync(cancellationToken).DynamicContext())
             {
                 LastRun = DateTime.MinValue;
                 LastDuration = TimeSpan.Zero;
-                IsRunning = true;
-                Cancellation = new();
                 await RunningEvent.ResetAsync().DynamicContext();
             }
             await EnableTimerAsync().DynamicContext();
@@ -219,7 +217,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override async Task AfterStopAsync(CancellationToken cancellationToken)
         {
-            using (SemaphoreSyncContext ssc2 = await WorkerSync.SyncContextAsync(cancellationToken).DynamicContext())
+            using (SemaphoreSyncContext ssc = await WorkerSync.SyncContextAsync(cancellationToken).DynamicContext())
                 Timer.Stop();
             NextRun = DateTime.MinValue;
             await RunningEvent.SetAsync().DynamicContext();
@@ -231,18 +229,17 @@ namespace wan24.Core
             bool hadException = false;
             try
             {
-                while (!Cancellation!.IsCancellationRequested)
+                while (!CancelToken.IsCancellationRequested)
                     try
                     {
-                        await RunningEvent.WaitAsync(Cancellation.Token).DynamicContext();
-                        await RunningEvent.ResetAsync().DynamicContext();
-                        if (Cancellation.IsCancellationRequested) break;
+                        await RunningEvent.WaitAndResetAsync(CancelToken).DynamicContext();
+                        if (CancelToken.IsCancellationRequested) break;
                         LastRun = DateTime.Now;
                         await TimedWorkerAsync().DynamicContext();
                     }
                     catch (OperationCanceledException)
                     {
-                        if (!Cancellation.IsCancellationRequested)
+                        if (!CancelToken.IsCancellationRequested)
                         {
                             hadException = true;
                             throw;
@@ -256,9 +253,9 @@ namespace wan24.Core
                     finally
                     {
                         LastDuration = DateTime.Now - LastRun;
-                        if (StopTask is not null || hadException || RunOnce || Cancellation.IsCancellationRequested)
+                        if (StopTask is not null || hadException || RunOnce || CancelToken.IsCancellationRequested)
                         {
-                            Cancellation.Cancel();
+                            if (!CancelToken.IsCancellationRequested) Cancellation!.Cancel();
                         }
                         else
                         {
@@ -268,7 +265,7 @@ namespace wan24.Core
             }
             catch (OperationCanceledException)
             {
-                if (hadException || !Cancellation!.IsCancellationRequested) throw;
+                if (hadException || !CancelToken.IsCancellationRequested) throw;
             }
             finally
             {
