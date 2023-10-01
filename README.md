@@ -144,6 +144,7 @@ the timeout
     - `FileLogger` as `ILogger` for writing to a file
     - `ConsoleLogger` writes to STDERR
     - `DebugLogger` writes to the debug console
+    - `EmailLogger` sends an email
 - `IChangeToken` support using `ChangeCallback`
 - Hierarchic configuration using `OverrideableConfig`
 - Cancellation token awaiter
@@ -217,6 +218,7 @@ including extensions for numeric type encoding/decoding)
 - Sensitive data handling
 - Object storage
 - Localization support
+- Email sending abstractions
 
 ## How to get it
 
