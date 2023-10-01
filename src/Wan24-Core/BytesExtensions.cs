@@ -79,7 +79,7 @@ namespace wan24.Core
             unchecked
             {
                 int diff = a.Length ^ b.Length;
-                for (int i = Math.Min(a.Length, b.Length) - 1; i >= 0; diff |= a[i] ^ b[i], i--) ;
+                for (int i = 0; i != a.Length && i != b.Length; diff |= a[i] ^ b[i], i++) ;
                 return diff == 0;
             }
         }

@@ -30,7 +30,7 @@
     /// Throttled stream
     /// </summary>
     /// <typeparam name="T">Wrapped stream type</typeparam>
-    public class ThrottledStream<T> : WrapperStream<T> where T : Stream
+    public class ThrottledStream<T> : WrapperStream<T>, IThrottledStream where T : Stream
     {
         /// <summary>
         /// Constructor
@@ -53,49 +53,31 @@
             UseOriginalBeginWrite = true;
         }
 
-        /// <summary>
-        /// Read count (zero to disable read throttling)
-        /// </summary>
+        /// <inheritdoc/>
         public int ReadCount { get; set; }
 
-        /// <summary>
-        /// Read time
-        /// </summary>
+        /// <inheritdoc/>
         public TimeSpan ReadTime { get; set; }
 
-        /// <summary>
-        /// Last read time start
-        /// </summary>
+        /// <inheritdoc/>
         public DateTime LastReadTimeStart { get; protected set; } = DateTime.Now;
 
-        /// <summary>
-        /// Red count since the last read time start
-        /// </summary>
+        /// <inheritdoc/>
         public int RedCount { get; protected set; }
 
-        /// <summary>
-        /// Write count (zero to disable write throttling)
-        /// </summary>
+        /// <inheritdoc/>
         public int WriteCount { get; set; }
 
-        /// <summary>
-        /// Write time
-        /// </summary>
+        /// <inheritdoc/>
         public TimeSpan WriteTime { get; set; }
 
-        /// <summary>
-        /// Last write time start
-        /// </summary>
+        /// <inheritdoc/>
         public DateTime LastWriteTimeStart { get; protected set; } = DateTime.Now;
 
-        /// <summary>
-        /// Wrote count since last write time start
-        /// </summary>
+        /// <inheritdoc/>
         public int WroteCount { get; protected set; }
 
-        /// <summary>
-        /// Reset the write throttle
-        /// </summary>
+        /// <inheritdoc/>
         public void ResetWriteThrottle()
         {
             EnsureUndisposed();
@@ -104,9 +86,7 @@
             LastWriteTimeStart = DateTime.Now;
         }
 
-        /// <summary>
-        /// Reset the read throttle
-        /// </summary>
+        /// <inheritdoc/>
         public void ResetReadThrottle()
         {
             EnsureUndisposed();
