@@ -13704,6 +13704,934 @@ references:
   fullName.vb: wan24.Core.DisposingAsyncEnumerator(Of T).MoveNextAsync
   nameWithType: DisposingAsyncEnumerator<T>.MoveNextAsync
   nameWithType.vb: DisposingAsyncEnumerator(Of T).MoveNextAsync
+- uid: wan24.Core.EmailAttachment
+  name: EmailAttachment
+  href: api/wan24.Core.EmailAttachment.html
+  commentId: T:wan24.Core.EmailAttachment
+  fullName: wan24.Core.EmailAttachment
+  nameWithType: EmailAttachment
+- uid: wan24.Core.EmailAttachment.#ctor(System.String@,System.String@,Stream@)
+  name: EmailAttachment(in String, in String, in Stream)
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment__ctor_System_String__System_String__Stream__
+  commentId: M:wan24.Core.EmailAttachment.#ctor(System.String@,System.String@,Stream@)
+  name.vb: EmailAttachment(ByRef String, ByRef String, ByRef Stream)
+  fullName: wan24.Core.EmailAttachment.EmailAttachment(in System.String, in System.String, in Stream)
+  fullName.vb: wan24.Core.EmailAttachment.EmailAttachment(ByRef System.String, ByRef System.String, ByRef Stream)
+  nameWithType: EmailAttachment.EmailAttachment(in String, in String, in Stream)
+  nameWithType.vb: EmailAttachment.EmailAttachment(ByRef String, ByRef String, ByRef Stream)
+- uid: wan24.Core.EmailAttachment.#ctor(System.String@,System.String@,System.Byte[]@)
+  name: EmailAttachment(in String, in String, in Byte[])
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment__ctor_System_String__System_String__System_Byte____
+  commentId: M:wan24.Core.EmailAttachment.#ctor(System.String@,System.String@,System.Byte[]@)
+  name.vb: EmailAttachment(ByRef String, ByRef String, ByRef Byte())
+  fullName: wan24.Core.EmailAttachment.EmailAttachment(in System.String, in System.String, in System.Byte[])
+  fullName.vb: wan24.Core.EmailAttachment.EmailAttachment(ByRef System.String, ByRef System.String, ByRef System.Byte())
+  nameWithType: EmailAttachment.EmailAttachment(in String, in String, in Byte[])
+  nameWithType.vb: EmailAttachment.EmailAttachment(ByRef String, ByRef String, ByRef Byte())
+- uid: wan24.Core.EmailAttachment.#ctor(System.String@,System.String@,System.Int64@,wan24.Core.StreamPool{wan24.Core.PooledMemoryStream}@,wan24.Core.StreamPool{wan24.Core.PooledTempFileStream}@)
+  name: EmailAttachment(in String, in String, in Int64, in StreamPool<PooledMemoryStream>, in StreamPool<PooledTempFileStream>)
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment__ctor_System_String__System_String__System_Int64__wan24_Core_StreamPool_wan24_Core_PooledMemoryStream___wan24_Core_StreamPool_wan24_Core_PooledTempFileStream___
+  commentId: M:wan24.Core.EmailAttachment.#ctor(System.String@,System.String@,System.Int64@,wan24.Core.StreamPool{wan24.Core.PooledMemoryStream}@,wan24.Core.StreamPool{wan24.Core.PooledTempFileStream}@)
+  name.vb: EmailAttachment(ByRef String, ByRef String, ByRef Int64, ByRef StreamPool(Of PooledMemoryStream), ByRef StreamPool(Of PooledTempFileStream))
+  fullName: wan24.Core.EmailAttachment.EmailAttachment(in System.String, in System.String, in System.Int64, in wan24.Core.StreamPool<wan24.Core.PooledMemoryStream>, in wan24.Core.StreamPool<wan24.Core.PooledTempFileStream>)
+  fullName.vb: wan24.Core.EmailAttachment.EmailAttachment(ByRef System.String, ByRef System.String, ByRef System.Int64, ByRef wan24.Core.StreamPool(Of wan24.Core.PooledMemoryStream), ByRef wan24.Core.StreamPool(Of wan24.Core.PooledTempFileStream))
+  nameWithType: EmailAttachment.EmailAttachment(in String, in String, in Int64, in StreamPool<PooledMemoryStream>, in StreamPool<PooledTempFileStream>)
+  nameWithType.vb: EmailAttachment.EmailAttachment(ByRef String, ByRef String, ByRef Int64, ByRef StreamPool(Of PooledMemoryStream), ByRef StreamPool(Of PooledTempFileStream))
+- uid: wan24.Core.EmailAttachment.#ctor(System.String@,System.String@,System.String@)
+  name: EmailAttachment(in String, in String, in String)
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment__ctor_System_String__System_String__System_String__
+  commentId: M:wan24.Core.EmailAttachment.#ctor(System.String@,System.String@,System.String@)
+  name.vb: EmailAttachment(ByRef String, ByRef String, ByRef String)
+  fullName: wan24.Core.EmailAttachment.EmailAttachment(in System.String, in System.String, in System.String)
+  fullName.vb: wan24.Core.EmailAttachment.EmailAttachment(ByRef System.String, ByRef System.String, ByRef System.String)
+  nameWithType: EmailAttachment.EmailAttachment(in String, in String, in String)
+  nameWithType.vb: EmailAttachment.EmailAttachment(ByRef String, ByRef String, ByRef String)
+- uid: wan24.Core.EmailAttachment.#ctor(wan24.Core.IEmailAttachment@,System.String@,System.String@,wan24.Core.StreamPool{wan24.Core.PooledMemoryStream}@,wan24.Core.StreamPool{wan24.Core.PooledTempFileStream}@)
+  name: EmailAttachment(in IEmailAttachment, in String, in String, in StreamPool<PooledMemoryStream>, in StreamPool<PooledTempFileStream>)
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment__ctor_wan24_Core_IEmailAttachment__System_String__System_String__wan24_Core_StreamPool_wan24_Core_PooledMemoryStream___wan24_Core_StreamPool_wan24_Core_PooledTempFileStream___
+  commentId: M:wan24.Core.EmailAttachment.#ctor(wan24.Core.IEmailAttachment@,System.String@,System.String@,wan24.Core.StreamPool{wan24.Core.PooledMemoryStream}@,wan24.Core.StreamPool{wan24.Core.PooledTempFileStream}@)
+  name.vb: EmailAttachment(ByRef IEmailAttachment, ByRef String, ByRef String, ByRef StreamPool(Of PooledMemoryStream), ByRef StreamPool(Of PooledTempFileStream))
+  fullName: wan24.Core.EmailAttachment.EmailAttachment(in wan24.Core.IEmailAttachment, in System.String, in System.String, in wan24.Core.StreamPool<wan24.Core.PooledMemoryStream>, in wan24.Core.StreamPool<wan24.Core.PooledTempFileStream>)
+  fullName.vb: wan24.Core.EmailAttachment.EmailAttachment(ByRef wan24.Core.IEmailAttachment, ByRef System.String, ByRef System.String, ByRef wan24.Core.StreamPool(Of wan24.Core.PooledMemoryStream), ByRef wan24.Core.StreamPool(Of wan24.Core.PooledTempFileStream))
+  nameWithType: EmailAttachment.EmailAttachment(in IEmailAttachment, in String, in String, in StreamPool<PooledMemoryStream>, in StreamPool<PooledTempFileStream>)
+  nameWithType.vb: EmailAttachment.EmailAttachment(ByRef IEmailAttachment, ByRef String, ByRef String, ByRef StreamPool(Of PooledMemoryStream), ByRef StreamPool(Of PooledTempFileStream))
+- uid: wan24.Core.EmailAttachment.#ctor*
+  name: EmailAttachment
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment__ctor_
+  commentId: Overload:wan24.Core.EmailAttachment.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.EmailAttachment.EmailAttachment
+  nameWithType: EmailAttachment.EmailAttachment
+- uid: wan24.Core.EmailAttachment.CreateAsync(wan24.Core.IEmailAttachment,System.String,System.String,wan24.Core.StreamPool{wan24.Core.PooledMemoryStream},wan24.Core.StreamPool{wan24.Core.PooledTempFileStream},CancellationToken)
+  name: CreateAsync(IEmailAttachment, String, String, StreamPool<PooledMemoryStream>, StreamPool<PooledTempFileStream>, CancellationToken)
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment_CreateAsync_wan24_Core_IEmailAttachment_System_String_System_String_wan24_Core_StreamPool_wan24_Core_PooledMemoryStream__wan24_Core_StreamPool_wan24_Core_PooledTempFileStream__CancellationToken_
+  commentId: M:wan24.Core.EmailAttachment.CreateAsync(wan24.Core.IEmailAttachment,System.String,System.String,wan24.Core.StreamPool{wan24.Core.PooledMemoryStream},wan24.Core.StreamPool{wan24.Core.PooledTempFileStream},CancellationToken)
+  name.vb: CreateAsync(IEmailAttachment, String, String, StreamPool(Of PooledMemoryStream), StreamPool(Of PooledTempFileStream), CancellationToken)
+  fullName: wan24.Core.EmailAttachment.CreateAsync(wan24.Core.IEmailAttachment, System.String, System.String, wan24.Core.StreamPool<wan24.Core.PooledMemoryStream>, wan24.Core.StreamPool<wan24.Core.PooledTempFileStream>, CancellationToken)
+  fullName.vb: wan24.Core.EmailAttachment.CreateAsync(wan24.Core.IEmailAttachment, System.String, System.String, wan24.Core.StreamPool(Of wan24.Core.PooledMemoryStream), wan24.Core.StreamPool(Of wan24.Core.PooledTempFileStream), CancellationToken)
+  nameWithType: EmailAttachment.CreateAsync(IEmailAttachment, String, String, StreamPool<PooledMemoryStream>, StreamPool<PooledTempFileStream>, CancellationToken)
+  nameWithType.vb: EmailAttachment.CreateAsync(IEmailAttachment, String, String, StreamPool(Of PooledMemoryStream), StreamPool(Of PooledTempFileStream), CancellationToken)
+- uid: wan24.Core.EmailAttachment.CreateAsync*
+  name: CreateAsync
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment_CreateAsync_
+  commentId: Overload:wan24.Core.EmailAttachment.CreateAsync
+  isSpec: "True"
+  fullName: wan24.Core.EmailAttachment.CreateAsync
+  nameWithType: EmailAttachment.CreateAsync
+- uid: wan24.Core.EmailAttachment.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment_Dispose_System_Boolean_
+  commentId: M:wan24.Core.EmailAttachment.Dispose(System.Boolean)
+  fullName: wan24.Core.EmailAttachment.Dispose(System.Boolean)
+  nameWithType: EmailAttachment.Dispose(Boolean)
+- uid: wan24.Core.EmailAttachment.Dispose*
+  name: Dispose
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment_Dispose_
+  commentId: Overload:wan24.Core.EmailAttachment.Dispose
+  isSpec: "True"
+  fullName: wan24.Core.EmailAttachment.Dispose
+  nameWithType: EmailAttachment.Dispose
+- uid: wan24.Core.EmailAttachment.DisposeCore
+  name: DisposeCore()
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment_DisposeCore
+  commentId: M:wan24.Core.EmailAttachment.DisposeCore
+  fullName: wan24.Core.EmailAttachment.DisposeCore()
+  nameWithType: EmailAttachment.DisposeCore()
+- uid: wan24.Core.EmailAttachment.DisposeCore*
+  name: DisposeCore
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment_DisposeCore_
+  commentId: Overload:wan24.Core.EmailAttachment.DisposeCore
+  isSpec: "True"
+  fullName: wan24.Core.EmailAttachment.DisposeCore
+  nameWithType: EmailAttachment.DisposeCore
+- uid: wan24.Core.EmailAttachment.FileName
+  name: FileName
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment_FileName
+  commentId: P:wan24.Core.EmailAttachment.FileName
+  fullName: wan24.Core.EmailAttachment.FileName
+  nameWithType: EmailAttachment.FileName
+- uid: wan24.Core.EmailAttachment.FileName*
+  name: FileName
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment_FileName_
+  commentId: Overload:wan24.Core.EmailAttachment.FileName
+  isSpec: "True"
+  fullName: wan24.Core.EmailAttachment.FileName
+  nameWithType: EmailAttachment.FileName
+- uid: wan24.Core.EmailAttachment.MimeType
+  name: MimeType
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment_MimeType
+  commentId: P:wan24.Core.EmailAttachment.MimeType
+  fullName: wan24.Core.EmailAttachment.MimeType
+  nameWithType: EmailAttachment.MimeType
+- uid: wan24.Core.EmailAttachment.MimeType*
+  name: MimeType
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment_MimeType_
+  commentId: Overload:wan24.Core.EmailAttachment.MimeType
+  isSpec: "True"
+  fullName: wan24.Core.EmailAttachment.MimeType
+  nameWithType: EmailAttachment.MimeType
+- uid: wan24.Core.EmailAttachment.Stream
+  name: Stream
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment_Stream
+  commentId: P:wan24.Core.EmailAttachment.Stream
+  fullName: wan24.Core.EmailAttachment.Stream
+  nameWithType: EmailAttachment.Stream
+- uid: wan24.Core.EmailAttachment.Stream*
+  name: Stream
+  href: api/wan24.Core.EmailAttachment.html#wan24_Core_EmailAttachment_Stream_
+  commentId: Overload:wan24.Core.EmailAttachment.Stream
+  isSpec: "True"
+  fullName: wan24.Core.EmailAttachment.Stream
+  nameWithType: EmailAttachment.Stream
+- uid: wan24.Core.EmailBase
+  name: EmailBase
+  href: api/wan24.Core.EmailBase.html
+  commentId: T:wan24.Core.EmailBase
+  fullName: wan24.Core.EmailBase
+  nameWithType: EmailBase
+- uid: wan24.Core.EmailBase.#ctor
+  name: EmailBase()
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase__ctor
+  commentId: M:wan24.Core.EmailBase.#ctor
+  fullName: wan24.Core.EmailBase.EmailBase()
+  nameWithType: EmailBase.EmailBase()
+- uid: wan24.Core.EmailBase.#ctor(System.String@,System.String@,System.String@,System.String@,System.String@,wan24.Core.IEmailAttachment[])
+  name: EmailBase(in String, in String, in String, in String, in String, IEmailAttachment[])
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase__ctor_System_String__System_String__System_String__System_String__System_String__wan24_Core_IEmailAttachment___
+  commentId: M:wan24.Core.EmailBase.#ctor(System.String@,System.String@,System.String@,System.String@,System.String@,wan24.Core.IEmailAttachment[])
+  name.vb: EmailBase(ByRef String, ByRef String, ByRef String, ByRef String, ByRef String, IEmailAttachment())
+  fullName: wan24.Core.EmailBase.EmailBase(in System.String, in System.String, in System.String, in System.String, in System.String, wan24.Core.IEmailAttachment[])
+  fullName.vb: wan24.Core.EmailBase.EmailBase(ByRef System.String, ByRef System.String, ByRef System.String, ByRef System.String, ByRef System.String, wan24.Core.IEmailAttachment())
+  nameWithType: EmailBase.EmailBase(in String, in String, in String, in String, in String, IEmailAttachment[])
+  nameWithType.vb: EmailBase.EmailBase(ByRef String, ByRef String, ByRef String, ByRef String, ByRef String, IEmailAttachment())
+- uid: wan24.Core.EmailBase.#ctor*
+  name: EmailBase
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase__ctor_
+  commentId: Overload:wan24.Core.EmailBase.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.EmailBase.EmailBase
+  nameWithType: EmailBase.EmailBase
+- uid: wan24.Core.EmailBase._Attachments
+  name: _Attachments
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase__Attachments
+  commentId: F:wan24.Core.EmailBase._Attachments
+  fullName: wan24.Core.EmailBase._Attachments
+  nameWithType: EmailBase._Attachments
+- uid: wan24.Core.EmailBase.Attachments
+  name: Attachments
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase_Attachments
+  commentId: P:wan24.Core.EmailBase.Attachments
+  fullName: wan24.Core.EmailBase.Attachments
+  nameWithType: EmailBase.Attachments
+- uid: wan24.Core.EmailBase.Attachments*
+  name: Attachments
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase_Attachments_
+  commentId: Overload:wan24.Core.EmailBase.Attachments
+  isSpec: "True"
+  fullName: wan24.Core.EmailBase.Attachments
+  nameWithType: EmailBase.Attachments
+- uid: wan24.Core.EmailBase.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase_Dispose_System_Boolean_
+  commentId: M:wan24.Core.EmailBase.Dispose(System.Boolean)
+  fullName: wan24.Core.EmailBase.Dispose(System.Boolean)
+  nameWithType: EmailBase.Dispose(Boolean)
+- uid: wan24.Core.EmailBase.Dispose*
+  name: Dispose
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase_Dispose_
+  commentId: Overload:wan24.Core.EmailBase.Dispose
+  isSpec: "True"
+  fullName: wan24.Core.EmailBase.Dispose
+  nameWithType: EmailBase.Dispose
+- uid: wan24.Core.EmailBase.DisposeCore
+  name: DisposeCore()
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase_DisposeCore
+  commentId: M:wan24.Core.EmailBase.DisposeCore
+  fullName: wan24.Core.EmailBase.DisposeCore()
+  nameWithType: EmailBase.DisposeCore()
+- uid: wan24.Core.EmailBase.DisposeCore*
+  name: DisposeCore
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase_DisposeCore_
+  commentId: Overload:wan24.Core.EmailBase.DisposeCore
+  isSpec: "True"
+  fullName: wan24.Core.EmailBase.DisposeCore
+  nameWithType: EmailBase.DisposeCore
+- uid: wan24.Core.EmailBase.FromEmail
+  name: FromEmail
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase_FromEmail
+  commentId: P:wan24.Core.EmailBase.FromEmail
+  fullName: wan24.Core.EmailBase.FromEmail
+  nameWithType: EmailBase.FromEmail
+- uid: wan24.Core.EmailBase.FromEmail*
+  name: FromEmail
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase_FromEmail_
+  commentId: Overload:wan24.Core.EmailBase.FromEmail
+  isSpec: "True"
+  fullName: wan24.Core.EmailBase.FromEmail
+  nameWithType: EmailBase.FromEmail
+- uid: wan24.Core.EmailBase.HtmlBody
+  name: HtmlBody
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase_HtmlBody
+  commentId: P:wan24.Core.EmailBase.HtmlBody
+  fullName: wan24.Core.EmailBase.HtmlBody
+  nameWithType: EmailBase.HtmlBody
+- uid: wan24.Core.EmailBase.HtmlBody*
+  name: HtmlBody
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase_HtmlBody_
+  commentId: Overload:wan24.Core.EmailBase.HtmlBody
+  isSpec: "True"
+  fullName: wan24.Core.EmailBase.HtmlBody
+  nameWithType: EmailBase.HtmlBody
+- uid: wan24.Core.EmailBase.Subject
+  name: Subject
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase_Subject
+  commentId: P:wan24.Core.EmailBase.Subject
+  fullName: wan24.Core.EmailBase.Subject
+  nameWithType: EmailBase.Subject
+- uid: wan24.Core.EmailBase.Subject*
+  name: Subject
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase_Subject_
+  commentId: Overload:wan24.Core.EmailBase.Subject
+  isSpec: "True"
+  fullName: wan24.Core.EmailBase.Subject
+  nameWithType: EmailBase.Subject
+- uid: wan24.Core.EmailBase.TextBody
+  name: TextBody
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase_TextBody
+  commentId: P:wan24.Core.EmailBase.TextBody
+  fullName: wan24.Core.EmailBase.TextBody
+  nameWithType: EmailBase.TextBody
+- uid: wan24.Core.EmailBase.TextBody*
+  name: TextBody
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase_TextBody_
+  commentId: Overload:wan24.Core.EmailBase.TextBody
+  isSpec: "True"
+  fullName: wan24.Core.EmailBase.TextBody
+  nameWithType: EmailBase.TextBody
+- uid: wan24.Core.EmailBase.ToEmail
+  name: ToEmail
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase_ToEmail
+  commentId: P:wan24.Core.EmailBase.ToEmail
+  fullName: wan24.Core.EmailBase.ToEmail
+  nameWithType: EmailBase.ToEmail
+- uid: wan24.Core.EmailBase.ToEmail*
+  name: ToEmail
+  href: api/wan24.Core.EmailBase.html#wan24_Core_EmailBase_ToEmail_
+  commentId: Overload:wan24.Core.EmailBase.ToEmail
+  isSpec: "True"
+  fullName: wan24.Core.EmailBase.ToEmail
+  nameWithType: EmailBase.ToEmail
+- uid: wan24.Core.EmailExtensions
+  name: EmailExtensions
+  href: api/wan24.Core.EmailExtensions.html
+  commentId: T:wan24.Core.EmailExtensions
+  fullName: wan24.Core.EmailExtensions
+  nameWithType: EmailExtensions
+- uid: wan24.Core.EmailExtensions.Send(wan24.Core.IEmail,wan24.Core.IMta)
+  name: Send(IEmail, IMta)
+  href: api/wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_Send_wan24_Core_IEmail_wan24_Core_IMta_
+  commentId: M:wan24.Core.EmailExtensions.Send(wan24.Core.IEmail,wan24.Core.IMta)
+  fullName: wan24.Core.EmailExtensions.Send(wan24.Core.IEmail, wan24.Core.IMta)
+  nameWithType: EmailExtensions.Send(IEmail, IMta)
+- uid: wan24.Core.EmailExtensions.Send(wan24.Core.IEmailTemplate,System.String,System.String,System.Nullable{Dictionary{System.String,System.String}},wan24.Core.IMta,wan24.Core.IEmailAttachment[])
+  name: Send(IEmailTemplate, String, String, Nullable<Dictionary<String, String>>, IMta, IEmailAttachment[])
+  href: api/wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_Send_wan24_Core_IEmailTemplate_System_String_System_String_System_Nullable_Dictionary_System_String_System_String___wan24_Core_IMta_wan24_Core_IEmailAttachment___
+  commentId: M:wan24.Core.EmailExtensions.Send(wan24.Core.IEmailTemplate,System.String,System.String,System.Nullable{Dictionary{System.String,System.String}},wan24.Core.IMta,wan24.Core.IEmailAttachment[])
+  name.vb: Send(IEmailTemplate, String, String, Nullable(Of Dictionary(Of String, String)), IMta, IEmailAttachment())
+  fullName: wan24.Core.EmailExtensions.Send(wan24.Core.IEmailTemplate, System.String, System.String, System.Nullable<Dictionary<System.String, System.String>>, wan24.Core.IMta, wan24.Core.IEmailAttachment[])
+  fullName.vb: wan24.Core.EmailExtensions.Send(wan24.Core.IEmailTemplate, System.String, System.String, System.Nullable(Of Dictionary(Of System.String, System.String)), wan24.Core.IMta, wan24.Core.IEmailAttachment())
+  nameWithType: EmailExtensions.Send(IEmailTemplate, String, String, Nullable<Dictionary<String, String>>, IMta, IEmailAttachment[])
+  nameWithType.vb: EmailExtensions.Send(IEmailTemplate, String, String, Nullable(Of Dictionary(Of String, String)), IMta, IEmailAttachment())
+- uid: wan24.Core.EmailExtensions.Send*
+  name: Send
+  href: api/wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_Send_
+  commentId: Overload:wan24.Core.EmailExtensions.Send
+  isSpec: "True"
+  fullName: wan24.Core.EmailExtensions.Send
+  nameWithType: EmailExtensions.Send
+- uid: wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmail,wan24.Core.IMta,CancellationToken)
+  name: SendAsync(IEmail, IMta, CancellationToken)
+  href: api/wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_SendAsync_wan24_Core_IEmail_wan24_Core_IMta_CancellationToken_
+  commentId: M:wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmail,wan24.Core.IMta,CancellationToken)
+  fullName: wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmail, wan24.Core.IMta, CancellationToken)
+  nameWithType: EmailExtensions.SendAsync(IEmail, IMta, CancellationToken)
+- uid: wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmailTemplate,System.String,System.String,System.Nullable{Dictionary{System.String,System.String}},wan24.Core.IMta,CancellationToken,wan24.Core.IEmailAttachment[])
+  name: SendAsync(IEmailTemplate, String, String, Nullable<Dictionary<String, String>>, IMta, CancellationToken, IEmailAttachment[])
+  href: api/wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_SendAsync_wan24_Core_IEmailTemplate_System_String_System_String_System_Nullable_Dictionary_System_String_System_String___wan24_Core_IMta_CancellationToken_wan24_Core_IEmailAttachment___
+  commentId: M:wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmailTemplate,System.String,System.String,System.Nullable{Dictionary{System.String,System.String}},wan24.Core.IMta,CancellationToken,wan24.Core.IEmailAttachment[])
+  name.vb: SendAsync(IEmailTemplate, String, String, Nullable(Of Dictionary(Of String, String)), IMta, CancellationToken, IEmailAttachment())
+  fullName: wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmailTemplate, System.String, System.String, System.Nullable<Dictionary<System.String, System.String>>, wan24.Core.IMta, CancellationToken, wan24.Core.IEmailAttachment[])
+  fullName.vb: wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmailTemplate, System.String, System.String, System.Nullable(Of Dictionary(Of System.String, System.String)), wan24.Core.IMta, CancellationToken, wan24.Core.IEmailAttachment())
+  nameWithType: EmailExtensions.SendAsync(IEmailTemplate, String, String, Nullable<Dictionary<String, String>>, IMta, CancellationToken, IEmailAttachment[])
+  nameWithType.vb: EmailExtensions.SendAsync(IEmailTemplate, String, String, Nullable(Of Dictionary(Of String, String)), IMta, CancellationToken, IEmailAttachment())
+- uid: wan24.Core.EmailExtensions.SendAsync*
+  name: SendAsync
+  href: api/wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_SendAsync_
+  commentId: Overload:wan24.Core.EmailExtensions.SendAsync
+  isSpec: "True"
+  fullName: wan24.Core.EmailExtensions.SendAsync
+  nameWithType: EmailExtensions.SendAsync
+- uid: wan24.Core.EmailHelper
+  name: EmailHelper
+  href: api/wan24.Core.EmailHelper.html
+  commentId: T:wan24.Core.EmailHelper
+  fullName: wan24.Core.EmailHelper
+  nameWithType: EmailHelper
+- uid: wan24.Core.EmailHelper.Create(System.String@,System.String@,System.String@,System.String@,System.String@,wan24.Core.IEmailAttachment[])
+  name: Create(in String, in String, in String, in String, in String, IEmailAttachment[])
+  href: api/wan24.Core.EmailHelper.html#wan24_Core_EmailHelper_Create_System_String__System_String__System_String__System_String__System_String__wan24_Core_IEmailAttachment___
+  commentId: M:wan24.Core.EmailHelper.Create(System.String@,System.String@,System.String@,System.String@,System.String@,wan24.Core.IEmailAttachment[])
+  name.vb: Create(ByRef String, ByRef String, ByRef String, ByRef String, ByRef String, IEmailAttachment())
+  fullName: wan24.Core.EmailHelper.Create(in System.String, in System.String, in System.String, in System.String, in System.String, wan24.Core.IEmailAttachment[])
+  fullName.vb: wan24.Core.EmailHelper.Create(ByRef System.String, ByRef System.String, ByRef System.String, ByRef System.String, ByRef System.String, wan24.Core.IEmailAttachment())
+  nameWithType: EmailHelper.Create(in String, in String, in String, in String, in String, IEmailAttachment[])
+  nameWithType.vb: EmailHelper.Create(ByRef String, ByRef String, ByRef String, ByRef String, ByRef String, IEmailAttachment())
+- uid: wan24.Core.EmailHelper.Create*
+  name: Create
+  href: api/wan24.Core.EmailHelper.html#wan24_Core_EmailHelper_Create_
+  commentId: Overload:wan24.Core.EmailHelper.Create
+  isSpec: "True"
+  fullName: wan24.Core.EmailHelper.Create
+  nameWithType: EmailHelper.Create
+- uid: wan24.Core.EmailHelper.EmailType
+  name: EmailType
+  href: api/wan24.Core.EmailHelper.html#wan24_Core_EmailHelper_EmailType
+  commentId: P:wan24.Core.EmailHelper.EmailType
+  fullName: wan24.Core.EmailHelper.EmailType
+  nameWithType: EmailHelper.EmailType
+- uid: wan24.Core.EmailHelper.EmailType*
+  name: EmailType
+  href: api/wan24.Core.EmailHelper.html#wan24_Core_EmailHelper_EmailType_
+  commentId: Overload:wan24.Core.EmailHelper.EmailType
+  isSpec: "True"
+  fullName: wan24.Core.EmailHelper.EmailType
+  nameWithType: EmailHelper.EmailType
+- uid: wan24.Core.EmailHelper.MTA
+  name: MTA
+  href: api/wan24.Core.EmailHelper.html#wan24_Core_EmailHelper_MTA
+  commentId: P:wan24.Core.EmailHelper.MTA
+  fullName: wan24.Core.EmailHelper.MTA
+  nameWithType: EmailHelper.MTA
+- uid: wan24.Core.EmailHelper.MTA*
+  name: MTA
+  href: api/wan24.Core.EmailHelper.html#wan24_Core_EmailHelper_MTA_
+  commentId: Overload:wan24.Core.EmailHelper.MTA
+  isSpec: "True"
+  fullName: wan24.Core.EmailHelper.MTA
+  nameWithType: EmailHelper.MTA
+- uid: wan24.Core.EmailHelper.Send(System.String@,System.String@,System.String@,System.String@,System.String@,wan24.Core.IEmailAttachment[])
+  name: Send(in String, in String, in String, in String, in String, IEmailAttachment[])
+  href: api/wan24.Core.EmailHelper.html#wan24_Core_EmailHelper_Send_System_String__System_String__System_String__System_String__System_String__wan24_Core_IEmailAttachment___
+  commentId: M:wan24.Core.EmailHelper.Send(System.String@,System.String@,System.String@,System.String@,System.String@,wan24.Core.IEmailAttachment[])
+  name.vb: Send(ByRef String, ByRef String, ByRef String, ByRef String, ByRef String, IEmailAttachment())
+  fullName: wan24.Core.EmailHelper.Send(in System.String, in System.String, in System.String, in System.String, in System.String, wan24.Core.IEmailAttachment[])
+  fullName.vb: wan24.Core.EmailHelper.Send(ByRef System.String, ByRef System.String, ByRef System.String, ByRef System.String, ByRef System.String, wan24.Core.IEmailAttachment())
+  nameWithType: EmailHelper.Send(in String, in String, in String, in String, in String, IEmailAttachment[])
+  nameWithType.vb: EmailHelper.Send(ByRef String, ByRef String, ByRef String, ByRef String, ByRef String, IEmailAttachment())
+- uid: wan24.Core.EmailHelper.Send(wan24.Core.IEmail@)
+  name: Send(in IEmail)
+  href: api/wan24.Core.EmailHelper.html#wan24_Core_EmailHelper_Send_wan24_Core_IEmail__
+  commentId: M:wan24.Core.EmailHelper.Send(wan24.Core.IEmail@)
+  name.vb: Send(ByRef IEmail)
+  fullName: wan24.Core.EmailHelper.Send(in wan24.Core.IEmail)
+  fullName.vb: wan24.Core.EmailHelper.Send(ByRef wan24.Core.IEmail)
+  nameWithType: EmailHelper.Send(in IEmail)
+  nameWithType.vb: EmailHelper.Send(ByRef IEmail)
+- uid: wan24.Core.EmailHelper.Send*
+  name: Send
+  href: api/wan24.Core.EmailHelper.html#wan24_Core_EmailHelper_Send_
+  commentId: Overload:wan24.Core.EmailHelper.Send
+  isSpec: "True"
+  fullName: wan24.Core.EmailHelper.Send
+  nameWithType: EmailHelper.Send
+- uid: wan24.Core.EmailHelper.SendAsync(System.String,System.String,System.String,System.String,System.String,CancellationToken,wan24.Core.IEmailAttachment[])
+  name: SendAsync(String, String, String, String, String, CancellationToken, IEmailAttachment[])
+  href: api/wan24.Core.EmailHelper.html#wan24_Core_EmailHelper_SendAsync_System_String_System_String_System_String_System_String_System_String_CancellationToken_wan24_Core_IEmailAttachment___
+  commentId: M:wan24.Core.EmailHelper.SendAsync(System.String,System.String,System.String,System.String,System.String,CancellationToken,wan24.Core.IEmailAttachment[])
+  name.vb: SendAsync(String, String, String, String, String, CancellationToken, IEmailAttachment())
+  fullName: wan24.Core.EmailHelper.SendAsync(System.String, System.String, System.String, System.String, System.String, CancellationToken, wan24.Core.IEmailAttachment[])
+  fullName.vb: wan24.Core.EmailHelper.SendAsync(System.String, System.String, System.String, System.String, System.String, CancellationToken, wan24.Core.IEmailAttachment())
+  nameWithType: EmailHelper.SendAsync(String, String, String, String, String, CancellationToken, IEmailAttachment[])
+  nameWithType.vb: EmailHelper.SendAsync(String, String, String, String, String, CancellationToken, IEmailAttachment())
+- uid: wan24.Core.EmailHelper.SendAsync(wan24.Core.IEmail,CancellationToken)
+  name: SendAsync(IEmail, CancellationToken)
+  href: api/wan24.Core.EmailHelper.html#wan24_Core_EmailHelper_SendAsync_wan24_Core_IEmail_CancellationToken_
+  commentId: M:wan24.Core.EmailHelper.SendAsync(wan24.Core.IEmail,CancellationToken)
+  fullName: wan24.Core.EmailHelper.SendAsync(wan24.Core.IEmail, CancellationToken)
+  nameWithType: EmailHelper.SendAsync(IEmail, CancellationToken)
+- uid: wan24.Core.EmailHelper.SendAsync*
+  name: SendAsync
+  href: api/wan24.Core.EmailHelper.html#wan24_Core_EmailHelper_SendAsync_
+  commentId: Overload:wan24.Core.EmailHelper.SendAsync
+  isSpec: "True"
+  fullName: wan24.Core.EmailHelper.SendAsync
+  nameWithType: EmailHelper.SendAsync
+- uid: wan24.Core.EmailLogger
+  name: EmailLogger
+  href: api/wan24.Core.EmailLogger.html
+  commentId: T:wan24.Core.EmailLogger
+  fullName: wan24.Core.EmailLogger
+  nameWithType: EmailLogger
+- uid: wan24.Core.EmailLogger.#ctor(wan24.Core.IEmailTemplate@,System.String@,System.String@,Microsoft.Extensions.Logging.LogLevel@,Microsoft.Extensions.Logging.LogLevel@,Microsoft.Extensions.Logging.ILogger@,wan24.Core.IMta@)
+  name: EmailLogger(in IEmailTemplate, in String, in String, in LogLevel, in LogLevel, in ILogger, in IMta)
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger__ctor_wan24_Core_IEmailTemplate__System_String__System_String__Microsoft_Extensions_Logging_LogLevel__Microsoft_Extensions_Logging_LogLevel__Microsoft_Extensions_Logging_ILogger__wan24_Core_IMta__
+  commentId: M:wan24.Core.EmailLogger.#ctor(wan24.Core.IEmailTemplate@,System.String@,System.String@,Microsoft.Extensions.Logging.LogLevel@,Microsoft.Extensions.Logging.LogLevel@,Microsoft.Extensions.Logging.ILogger@,wan24.Core.IMta@)
+  name.vb: EmailLogger(ByRef IEmailTemplate, ByRef String, ByRef String, ByRef LogLevel, ByRef LogLevel, ByRef ILogger, ByRef IMta)
+  fullName: wan24.Core.EmailLogger.EmailLogger(in wan24.Core.IEmailTemplate, in System.String, in System.String, in Microsoft.Extensions.Logging.LogLevel, in Microsoft.Extensions.Logging.LogLevel, in Microsoft.Extensions.Logging.ILogger, in wan24.Core.IMta)
+  fullName.vb: wan24.Core.EmailLogger.EmailLogger(ByRef wan24.Core.IEmailTemplate, ByRef System.String, ByRef System.String, ByRef Microsoft.Extensions.Logging.LogLevel, ByRef Microsoft.Extensions.Logging.LogLevel, ByRef Microsoft.Extensions.Logging.ILogger, ByRef wan24.Core.IMta)
+  nameWithType: EmailLogger.EmailLogger(in IEmailTemplate, in String, in String, in LogLevel, in LogLevel, in ILogger, in IMta)
+  nameWithType.vb: EmailLogger.EmailLogger(ByRef IEmailTemplate, ByRef String, ByRef String, ByRef LogLevel, ByRef LogLevel, ByRef ILogger, ByRef IMta)
+- uid: wan24.Core.EmailLogger.#ctor*
+  name: EmailLogger
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger__ctor_
+  commentId: Overload:wan24.Core.EmailLogger.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.EmailLogger.EmailLogger
+  nameWithType: EmailLogger.EmailLogger
+- uid: wan24.Core.EmailLogger.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_Dispose_System_Boolean_
+  commentId: M:wan24.Core.EmailLogger.Dispose(System.Boolean)
+  fullName: wan24.Core.EmailLogger.Dispose(System.Boolean)
+  nameWithType: EmailLogger.Dispose(Boolean)
+- uid: wan24.Core.EmailLogger.Dispose*
+  name: Dispose
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_Dispose_
+  commentId: Overload:wan24.Core.EmailLogger.Dispose
+  isSpec: "True"
+  fullName: wan24.Core.EmailLogger.Dispose
+  nameWithType: EmailLogger.Dispose
+- uid: wan24.Core.EmailLogger.DisposeCore
+  name: DisposeCore()
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_DisposeCore
+  commentId: M:wan24.Core.EmailLogger.DisposeCore
+  fullName: wan24.Core.EmailLogger.DisposeCore()
+  nameWithType: EmailLogger.DisposeCore()
+- uid: wan24.Core.EmailLogger.DisposeCore*
+  name: DisposeCore
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_DisposeCore_
+  commentId: Overload:wan24.Core.EmailLogger.DisposeCore
+  isSpec: "True"
+  fullName: wan24.Core.EmailLogger.DisposeCore
+  nameWithType: EmailLogger.DisposeCore
+- uid: wan24.Core.EmailLogger.EmailLevel
+  name: EmailLevel
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_EmailLevel
+  commentId: P:wan24.Core.EmailLogger.EmailLevel
+  fullName: wan24.Core.EmailLogger.EmailLevel
+  nameWithType: EmailLogger.EmailLevel
+- uid: wan24.Core.EmailLogger.EmailLevel*
+  name: EmailLevel
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_EmailLevel_
+  commentId: Overload:wan24.Core.EmailLogger.EmailLevel
+  isSpec: "True"
+  fullName: wan24.Core.EmailLogger.EmailLevel
+  nameWithType: EmailLogger.EmailLevel
+- uid: wan24.Core.EmailLogger.FromEmail
+  name: FromEmail
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_FromEmail
+  commentId: P:wan24.Core.EmailLogger.FromEmail
+  fullName: wan24.Core.EmailLogger.FromEmail
+  nameWithType: EmailLogger.FromEmail
+- uid: wan24.Core.EmailLogger.FromEmail*
+  name: FromEmail
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_FromEmail_
+  commentId: Overload:wan24.Core.EmailLogger.FromEmail
+  isSpec: "True"
+  fullName: wan24.Core.EmailLogger.FromEmail
+  nameWithType: EmailLogger.FromEmail
+- uid: wan24.Core.EmailLogger.GetParserData*
+  name: GetParserData
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_GetParserData_
+  commentId: Overload:wan24.Core.EmailLogger.GetParserData
+  isSpec: "True"
+  fullName: wan24.Core.EmailLogger.GetParserData
+  nameWithType: EmailLogger.GetParserData
+- uid: wan24.Core.EmailLogger.GetParserData``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Nullable{Exception},Func{``0,System.Nullable{Exception},System.String})
+  name: GetParserData<TState>(LogLevel, EventId, TState, Nullable<Exception>, Func<TState, Nullable<Exception>, String>)
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_GetParserData__1_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_EventId___0_System_Nullable_Exception__Func___0_System_Nullable_Exception__System_String__
+  commentId: M:wan24.Core.EmailLogger.GetParserData``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Nullable{Exception},Func{``0,System.Nullable{Exception},System.String})
+  name.vb: GetParserData(Of TState)(LogLevel, EventId, TState, Nullable(Of Exception), Func(Of TState, Nullable(Of Exception), String))
+  fullName: wan24.Core.EmailLogger.GetParserData<TState>(Microsoft.Extensions.Logging.LogLevel, Microsoft.Extensions.Logging.EventId, TState, System.Nullable<Exception>, Func<TState, System.Nullable<Exception>, System.String>)
+  fullName.vb: wan24.Core.EmailLogger.GetParserData(Of TState)(Microsoft.Extensions.Logging.LogLevel, Microsoft.Extensions.Logging.EventId, TState, System.Nullable(Of Exception), Func(Of TState, System.Nullable(Of Exception), System.String))
+  nameWithType: EmailLogger.GetParserData<TState>(LogLevel, EventId, TState, Nullable<Exception>, Func<TState, Nullable<Exception>, String>)
+  nameWithType.vb: EmailLogger.GetParserData(Of TState)(LogLevel, EventId, TState, Nullable(Of Exception), Func(Of TState, Nullable(Of Exception), String))
+- uid: wan24.Core.EmailLogger.LastEmail
+  name: LastEmail
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_LastEmail
+  commentId: P:wan24.Core.EmailLogger.LastEmail
+  fullName: wan24.Core.EmailLogger.LastEmail
+  nameWithType: EmailLogger.LastEmail
+- uid: wan24.Core.EmailLogger.LastEmail*
+  name: LastEmail
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_LastEmail_
+  commentId: Overload:wan24.Core.EmailLogger.LastEmail
+  isSpec: "True"
+  fullName: wan24.Core.EmailLogger.LastEmail
+  nameWithType: EmailLogger.LastEmail
+- uid: wan24.Core.EmailLogger.LogInt*
+  name: LogInt
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_LogInt_
+  commentId: Overload:wan24.Core.EmailLogger.LogInt
+  isSpec: "True"
+  fullName: wan24.Core.EmailLogger.LogInt
+  nameWithType: EmailLogger.LogInt
+- uid: wan24.Core.EmailLogger.LogInt``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Nullable{Exception},Func{``0,System.Nullable{Exception},System.String})
+  name: LogInt<TState>(LogLevel, EventId, TState, Nullable<Exception>, Func<TState, Nullable<Exception>, String>)
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_LogInt__1_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_EventId___0_System_Nullable_Exception__Func___0_System_Nullable_Exception__System_String__
+  commentId: M:wan24.Core.EmailLogger.LogInt``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Nullable{Exception},Func{``0,System.Nullable{Exception},System.String})
+  name.vb: LogInt(Of TState)(LogLevel, EventId, TState, Nullable(Of Exception), Func(Of TState, Nullable(Of Exception), String))
+  fullName: wan24.Core.EmailLogger.LogInt<TState>(Microsoft.Extensions.Logging.LogLevel, Microsoft.Extensions.Logging.EventId, TState, System.Nullable<Exception>, Func<TState, System.Nullable<Exception>, System.String>)
+  fullName.vb: wan24.Core.EmailLogger.LogInt(Of TState)(Microsoft.Extensions.Logging.LogLevel, Microsoft.Extensions.Logging.EventId, TState, System.Nullable(Of Exception), Func(Of TState, System.Nullable(Of Exception), System.String))
+  nameWithType: EmailLogger.LogInt<TState>(LogLevel, EventId, TState, Nullable<Exception>, Func<TState, Nullable<Exception>, String>)
+  nameWithType.vb: EmailLogger.LogInt(Of TState)(LogLevel, EventId, TState, Nullable(Of Exception), Func(Of TState, Nullable(Of Exception), String))
+- uid: wan24.Core.EmailLogger.MTA
+  name: MTA
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_MTA
+  commentId: P:wan24.Core.EmailLogger.MTA
+  fullName: wan24.Core.EmailLogger.MTA
+  nameWithType: EmailLogger.MTA
+- uid: wan24.Core.EmailLogger.MTA*
+  name: MTA
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_MTA_
+  commentId: Overload:wan24.Core.EmailLogger.MTA
+  isSpec: "True"
+  fullName: wan24.Core.EmailLogger.MTA
+  nameWithType: EmailLogger.MTA
+- uid: wan24.Core.EmailLogger.ParserData
+  name: ParserData
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_ParserData
+  commentId: P:wan24.Core.EmailLogger.ParserData
+  fullName: wan24.Core.EmailLogger.ParserData
+  nameWithType: EmailLogger.ParserData
+- uid: wan24.Core.EmailLogger.ParserData*
+  name: ParserData
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_ParserData_
+  commentId: Overload:wan24.Core.EmailLogger.ParserData
+  isSpec: "True"
+  fullName: wan24.Core.EmailLogger.ParserData
+  nameWithType: EmailLogger.ParserData
+- uid: wan24.Core.EmailLogger.SendingFrequency
+  name: SendingFrequency
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_SendingFrequency
+  commentId: P:wan24.Core.EmailLogger.SendingFrequency
+  fullName: wan24.Core.EmailLogger.SendingFrequency
+  nameWithType: EmailLogger.SendingFrequency
+- uid: wan24.Core.EmailLogger.SendingFrequency*
+  name: SendingFrequency
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_SendingFrequency_
+  commentId: Overload:wan24.Core.EmailLogger.SendingFrequency
+  isSpec: "True"
+  fullName: wan24.Core.EmailLogger.SendingFrequency
+  nameWithType: EmailLogger.SendingFrequency
+- uid: wan24.Core.EmailLogger.Skipped
+  name: Skipped
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_Skipped
+  commentId: P:wan24.Core.EmailLogger.Skipped
+  fullName: wan24.Core.EmailLogger.Skipped
+  nameWithType: EmailLogger.Skipped
+- uid: wan24.Core.EmailLogger.Skipped*
+  name: Skipped
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_Skipped_
+  commentId: Overload:wan24.Core.EmailLogger.Skipped
+  isSpec: "True"
+  fullName: wan24.Core.EmailLogger.Skipped
+  nameWithType: EmailLogger.Skipped
+- uid: wan24.Core.EmailLogger.SyncObject
+  name: SyncObject
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_SyncObject
+  commentId: F:wan24.Core.EmailLogger.SyncObject
+  fullName: wan24.Core.EmailLogger.SyncObject
+  nameWithType: EmailLogger.SyncObject
+- uid: wan24.Core.EmailLogger.Template
+  name: Template
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_Template
+  commentId: P:wan24.Core.EmailLogger.Template
+  fullName: wan24.Core.EmailLogger.Template
+  nameWithType: EmailLogger.Template
+- uid: wan24.Core.EmailLogger.Template*
+  name: Template
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_Template_
+  commentId: Overload:wan24.Core.EmailLogger.Template
+  isSpec: "True"
+  fullName: wan24.Core.EmailLogger.Template
+  nameWithType: EmailLogger.Template
+- uid: wan24.Core.EmailLogger.ToEmail
+  name: ToEmail
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_ToEmail
+  commentId: P:wan24.Core.EmailLogger.ToEmail
+  fullName: wan24.Core.EmailLogger.ToEmail
+  nameWithType: EmailLogger.ToEmail
+- uid: wan24.Core.EmailLogger.ToEmail*
+  name: ToEmail
+  href: api/wan24.Core.EmailLogger.html#wan24_Core_EmailLogger_ToEmail_
+  commentId: Overload:wan24.Core.EmailLogger.ToEmail
+  isSpec: "True"
+  fullName: wan24.Core.EmailLogger.ToEmail
+  nameWithType: EmailLogger.ToEmail
+- uid: wan24.Core.EmailTemplate
+  name: EmailTemplate
+  href: api/wan24.Core.EmailTemplate.html
+  commentId: T:wan24.Core.EmailTemplate
+  fullName: wan24.Core.EmailTemplate
+  nameWithType: EmailTemplate
+- uid: wan24.Core.EmailTemplate.#ctor(System.String@,System.String@,System.String@,wan24.Core.IEmailAttachment[])
+  name: EmailTemplate(in String, in String, in String, IEmailAttachment[])
+  href: api/wan24.Core.EmailTemplate.html#wan24_Core_EmailTemplate__ctor_System_String__System_String__System_String__wan24_Core_IEmailAttachment___
+  commentId: M:wan24.Core.EmailTemplate.#ctor(System.String@,System.String@,System.String@,wan24.Core.IEmailAttachment[])
+  name.vb: EmailTemplate(ByRef String, ByRef String, ByRef String, IEmailAttachment())
+  fullName: wan24.Core.EmailTemplate.EmailTemplate(in System.String, in System.String, in System.String, wan24.Core.IEmailAttachment[])
+  fullName.vb: wan24.Core.EmailTemplate.EmailTemplate(ByRef System.String, ByRef System.String, ByRef System.String, wan24.Core.IEmailAttachment())
+  nameWithType: EmailTemplate.EmailTemplate(in String, in String, in String, IEmailAttachment[])
+  nameWithType.vb: EmailTemplate.EmailTemplate(ByRef String, ByRef String, ByRef String, IEmailAttachment())
+- uid: wan24.Core.EmailTemplate.#ctor(Type@,System.String@,System.String@,System.String@,wan24.Core.IEmailAttachment[])
+  name: EmailTemplate(in Type, in String, in String, in String, IEmailAttachment[])
+  href: api/wan24.Core.EmailTemplate.html#wan24_Core_EmailTemplate__ctor_Type__System_String__System_String__System_String__wan24_Core_IEmailAttachment___
+  commentId: M:wan24.Core.EmailTemplate.#ctor(Type@,System.String@,System.String@,System.String@,wan24.Core.IEmailAttachment[])
+  name.vb: EmailTemplate(ByRef Type, ByRef String, ByRef String, ByRef String, IEmailAttachment())
+  fullName: wan24.Core.EmailTemplate.EmailTemplate(in Type, in System.String, in System.String, in System.String, wan24.Core.IEmailAttachment[])
+  fullName.vb: wan24.Core.EmailTemplate.EmailTemplate(ByRef Type, ByRef System.String, ByRef System.String, ByRef System.String, wan24.Core.IEmailAttachment())
+  nameWithType: EmailTemplate.EmailTemplate(in Type, in String, in String, in String, IEmailAttachment[])
+  nameWithType.vb: EmailTemplate.EmailTemplate(ByRef Type, ByRef String, ByRef String, ByRef String, IEmailAttachment())
+- uid: wan24.Core.EmailTemplate.#ctor*
+  name: EmailTemplate
+  href: api/wan24.Core.EmailTemplate.html#wan24_Core_EmailTemplate__ctor_
+  commentId: Overload:wan24.Core.EmailTemplate.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.EmailTemplate.EmailTemplate
+  nameWithType: EmailTemplate.EmailTemplate
+- uid: wan24.Core.EmailTemplate.CreateEmail(System.String,System.String,System.String,System.String,System.String,HashSet{wan24.Core.IEmailAttachment})
+  name: CreateEmail(String, String, String, String, String, HashSet<IEmailAttachment>)
+  href: api/wan24.Core.EmailTemplate.html#wan24_Core_EmailTemplate_CreateEmail_System_String_System_String_System_String_System_String_System_String_HashSet_wan24_Core_IEmailAttachment__
+  commentId: M:wan24.Core.EmailTemplate.CreateEmail(System.String,System.String,System.String,System.String,System.String,HashSet{wan24.Core.IEmailAttachment})
+  name.vb: CreateEmail(String, String, String, String, String, HashSet(Of IEmailAttachment))
+  fullName: wan24.Core.EmailTemplate.CreateEmail(System.String, System.String, System.String, System.String, System.String, HashSet<wan24.Core.IEmailAttachment>)
+  fullName.vb: wan24.Core.EmailTemplate.CreateEmail(System.String, System.String, System.String, System.String, System.String, HashSet(Of wan24.Core.IEmailAttachment))
+  nameWithType: EmailTemplate.CreateEmail(String, String, String, String, String, HashSet<IEmailAttachment>)
+  nameWithType.vb: EmailTemplate.CreateEmail(String, String, String, String, String, HashSet(Of IEmailAttachment))
+- uid: wan24.Core.EmailTemplate.CreateEmail*
+  name: CreateEmail
+  href: api/wan24.Core.EmailTemplate.html#wan24_Core_EmailTemplate_CreateEmail_
+  commentId: Overload:wan24.Core.EmailTemplate.CreateEmail
+  isSpec: "True"
+  fullName: wan24.Core.EmailTemplate.CreateEmail
+  nameWithType: EmailTemplate.CreateEmail
+- uid: wan24.Core.EmailTemplate.DefaultEmailType
+  name: DefaultEmailType
+  href: api/wan24.Core.EmailTemplate.html#wan24_Core_EmailTemplate_DefaultEmailType
+  commentId: P:wan24.Core.EmailTemplate.DefaultEmailType
+  fullName: wan24.Core.EmailTemplate.DefaultEmailType
+  nameWithType: EmailTemplate.DefaultEmailType
+- uid: wan24.Core.EmailTemplate.DefaultEmailType*
+  name: DefaultEmailType
+  href: api/wan24.Core.EmailTemplate.html#wan24_Core_EmailTemplate_DefaultEmailType_
+  commentId: Overload:wan24.Core.EmailTemplate.DefaultEmailType
+  isSpec: "True"
+  fullName: wan24.Core.EmailTemplate.DefaultEmailType
+  nameWithType: EmailTemplate.DefaultEmailType
+- uid: wan24.Core.EmailTemplate.EmailType
+  name: EmailType
+  href: api/wan24.Core.EmailTemplate.html#wan24_Core_EmailTemplate_EmailType
+  commentId: P:wan24.Core.EmailTemplate.EmailType
+  fullName: wan24.Core.EmailTemplate.EmailType
+  nameWithType: EmailTemplate.EmailType
+- uid: wan24.Core.EmailTemplate.EmailType*
+  name: EmailType
+  href: api/wan24.Core.EmailTemplate.html#wan24_Core_EmailTemplate_EmailType_
+  commentId: Overload:wan24.Core.EmailTemplate.EmailType
+  isSpec: "True"
+  fullName: wan24.Core.EmailTemplate.EmailType
+  nameWithType: EmailTemplate.EmailType
+- uid: wan24.Core.EmailTemplateBase
+  name: EmailTemplateBase
+  href: api/wan24.Core.EmailTemplateBase.html
+  commentId: T:wan24.Core.EmailTemplateBase
+  fullName: wan24.Core.EmailTemplateBase
+  nameWithType: EmailTemplateBase
+- uid: wan24.Core.EmailTemplateBase.#ctor
+  name: EmailTemplateBase()
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase__ctor
+  commentId: M:wan24.Core.EmailTemplateBase.#ctor
+  fullName: wan24.Core.EmailTemplateBase.EmailTemplateBase()
+  nameWithType: EmailTemplateBase.EmailTemplateBase()
+- uid: wan24.Core.EmailTemplateBase.#ctor(System.String@,System.String@,System.String@,wan24.Core.IEmailAttachment[])
+  name: EmailTemplateBase(in String, in String, in String, IEmailAttachment[])
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase__ctor_System_String__System_String__System_String__wan24_Core_IEmailAttachment___
+  commentId: M:wan24.Core.EmailTemplateBase.#ctor(System.String@,System.String@,System.String@,wan24.Core.IEmailAttachment[])
+  name.vb: EmailTemplateBase(ByRef String, ByRef String, ByRef String, IEmailAttachment())
+  fullName: wan24.Core.EmailTemplateBase.EmailTemplateBase(in System.String, in System.String, in System.String, wan24.Core.IEmailAttachment[])
+  fullName.vb: wan24.Core.EmailTemplateBase.EmailTemplateBase(ByRef System.String, ByRef System.String, ByRef System.String, wan24.Core.IEmailAttachment())
+  nameWithType: EmailTemplateBase.EmailTemplateBase(in String, in String, in String, IEmailAttachment[])
+  nameWithType.vb: EmailTemplateBase.EmailTemplateBase(ByRef String, ByRef String, ByRef String, IEmailAttachment())
+- uid: wan24.Core.EmailTemplateBase.#ctor*
+  name: EmailTemplateBase
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase__ctor_
+  commentId: Overload:wan24.Core.EmailTemplateBase.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.EmailTemplateBase.EmailTemplateBase
+  nameWithType: EmailTemplateBase.EmailTemplateBase
+- uid: wan24.Core.EmailTemplateBase._Attachments
+  name: _Attachments
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase__Attachments
+  commentId: F:wan24.Core.EmailTemplateBase._Attachments
+  fullName: wan24.Core.EmailTemplateBase._Attachments
+  nameWithType: EmailTemplateBase._Attachments
+- uid: wan24.Core.EmailTemplateBase.Attachments
+  name: Attachments
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_Attachments
+  commentId: P:wan24.Core.EmailTemplateBase.Attachments
+  fullName: wan24.Core.EmailTemplateBase.Attachments
+  nameWithType: EmailTemplateBase.Attachments
+- uid: wan24.Core.EmailTemplateBase.Attachments*
+  name: Attachments
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_Attachments_
+  commentId: Overload:wan24.Core.EmailTemplateBase.Attachments
+  isSpec: "True"
+  fullName: wan24.Core.EmailTemplateBase.Attachments
+  nameWithType: EmailTemplateBase.Attachments
+- uid: wan24.Core.EmailTemplateBase.CreateEmail(System.String,System.String,System.Nullable{Dictionary{System.String,System.String}},wan24.Core.IEmailAttachment[])
+  name: CreateEmail(String, String, Nullable<Dictionary<String, String>>, IEmailAttachment[])
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_CreateEmail_System_String_System_String_System_Nullable_Dictionary_System_String_System_String___wan24_Core_IEmailAttachment___
+  commentId: M:wan24.Core.EmailTemplateBase.CreateEmail(System.String,System.String,System.Nullable{Dictionary{System.String,System.String}},wan24.Core.IEmailAttachment[])
+  name.vb: CreateEmail(String, String, Nullable(Of Dictionary(Of String, String)), IEmailAttachment())
+  fullName: wan24.Core.EmailTemplateBase.CreateEmail(System.String, System.String, System.Nullable<Dictionary<System.String, System.String>>, wan24.Core.IEmailAttachment[])
+  fullName.vb: wan24.Core.EmailTemplateBase.CreateEmail(System.String, System.String, System.Nullable(Of Dictionary(Of System.String, System.String)), wan24.Core.IEmailAttachment())
+  nameWithType: EmailTemplateBase.CreateEmail(String, String, Nullable<Dictionary<String, String>>, IEmailAttachment[])
+  nameWithType.vb: EmailTemplateBase.CreateEmail(String, String, Nullable(Of Dictionary(Of String, String)), IEmailAttachment())
+- uid: wan24.Core.EmailTemplateBase.CreateEmail(System.String,System.String,System.String,System.String,System.String,HashSet{wan24.Core.IEmailAttachment})
+  name: CreateEmail(String, String, String, String, String, HashSet<IEmailAttachment>)
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_CreateEmail_System_String_System_String_System_String_System_String_System_String_HashSet_wan24_Core_IEmailAttachment__
+  commentId: M:wan24.Core.EmailTemplateBase.CreateEmail(System.String,System.String,System.String,System.String,System.String,HashSet{wan24.Core.IEmailAttachment})
+  name.vb: CreateEmail(String, String, String, String, String, HashSet(Of IEmailAttachment))
+  fullName: wan24.Core.EmailTemplateBase.CreateEmail(System.String, System.String, System.String, System.String, System.String, HashSet<wan24.Core.IEmailAttachment>)
+  fullName.vb: wan24.Core.EmailTemplateBase.CreateEmail(System.String, System.String, System.String, System.String, System.String, HashSet(Of wan24.Core.IEmailAttachment))
+  nameWithType: EmailTemplateBase.CreateEmail(String, String, String, String, String, HashSet<IEmailAttachment>)
+  nameWithType.vb: EmailTemplateBase.CreateEmail(String, String, String, String, String, HashSet(Of IEmailAttachment))
+- uid: wan24.Core.EmailTemplateBase.CreateEmail*
+  name: CreateEmail
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_CreateEmail_
+  commentId: Overload:wan24.Core.EmailTemplateBase.CreateEmail
+  isSpec: "True"
+  fullName: wan24.Core.EmailTemplateBase.CreateEmail
+  nameWithType: EmailTemplateBase.CreateEmail
+- uid: wan24.Core.EmailTemplateBase.CreateEmailAsync(System.String,System.String,System.Nullable{Dictionary{System.String,System.String}},CancellationToken,wan24.Core.IEmailAttachment[])
+  name: CreateEmailAsync(String, String, Nullable<Dictionary<String, String>>, CancellationToken, IEmailAttachment[])
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_CreateEmailAsync_System_String_System_String_System_Nullable_Dictionary_System_String_System_String___CancellationToken_wan24_Core_IEmailAttachment___
+  commentId: M:wan24.Core.EmailTemplateBase.CreateEmailAsync(System.String,System.String,System.Nullable{Dictionary{System.String,System.String}},CancellationToken,wan24.Core.IEmailAttachment[])
+  name.vb: CreateEmailAsync(String, String, Nullable(Of Dictionary(Of String, String)), CancellationToken, IEmailAttachment())
+  fullName: wan24.Core.EmailTemplateBase.CreateEmailAsync(System.String, System.String, System.Nullable<Dictionary<System.String, System.String>>, CancellationToken, wan24.Core.IEmailAttachment[])
+  fullName.vb: wan24.Core.EmailTemplateBase.CreateEmailAsync(System.String, System.String, System.Nullable(Of Dictionary(Of System.String, System.String)), CancellationToken, wan24.Core.IEmailAttachment())
+  nameWithType: EmailTemplateBase.CreateEmailAsync(String, String, Nullable<Dictionary<String, String>>, CancellationToken, IEmailAttachment[])
+  nameWithType.vb: EmailTemplateBase.CreateEmailAsync(String, String, Nullable(Of Dictionary(Of String, String)), CancellationToken, IEmailAttachment())
+- uid: wan24.Core.EmailTemplateBase.CreateEmailAsync*
+  name: CreateEmailAsync
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_CreateEmailAsync_
+  commentId: Overload:wan24.Core.EmailTemplateBase.CreateEmailAsync
+  isSpec: "True"
+  fullName: wan24.Core.EmailTemplateBase.CreateEmailAsync
+  nameWithType: EmailTemplateBase.CreateEmailAsync
+- uid: wan24.Core.EmailTemplateBase.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_Dispose_System_Boolean_
+  commentId: M:wan24.Core.EmailTemplateBase.Dispose(System.Boolean)
+  fullName: wan24.Core.EmailTemplateBase.Dispose(System.Boolean)
+  nameWithType: EmailTemplateBase.Dispose(Boolean)
+- uid: wan24.Core.EmailTemplateBase.Dispose*
+  name: Dispose
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_Dispose_
+  commentId: Overload:wan24.Core.EmailTemplateBase.Dispose
+  isSpec: "True"
+  fullName: wan24.Core.EmailTemplateBase.Dispose
+  nameWithType: EmailTemplateBase.Dispose
+- uid: wan24.Core.EmailTemplateBase.DisposeCore
+  name: DisposeCore()
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_DisposeCore
+  commentId: M:wan24.Core.EmailTemplateBase.DisposeCore
+  fullName: wan24.Core.EmailTemplateBase.DisposeCore()
+  nameWithType: EmailTemplateBase.DisposeCore()
+- uid: wan24.Core.EmailTemplateBase.DisposeCore*
+  name: DisposeCore
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_DisposeCore_
+  commentId: Overload:wan24.Core.EmailTemplateBase.DisposeCore
+  isSpec: "True"
+  fullName: wan24.Core.EmailTemplateBase.DisposeCore
+  nameWithType: EmailTemplateBase.DisposeCore
+- uid: wan24.Core.EmailTemplateBase.GetData(System.Nullable{Dictionary{System.String,System.String}})
+  name: GetData(Nullable<Dictionary<String, String>>)
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_GetData_System_Nullable_Dictionary_System_String_System_String___
+  commentId: M:wan24.Core.EmailTemplateBase.GetData(System.Nullable{Dictionary{System.String,System.String}})
+  name.vb: GetData(Nullable(Of Dictionary(Of String, String)))
+  fullName: wan24.Core.EmailTemplateBase.GetData(System.Nullable<Dictionary<System.String, System.String>>)
+  fullName.vb: wan24.Core.EmailTemplateBase.GetData(System.Nullable(Of Dictionary(Of System.String, System.String)))
+  nameWithType: EmailTemplateBase.GetData(Nullable<Dictionary<String, String>>)
+  nameWithType.vb: EmailTemplateBase.GetData(Nullable(Of Dictionary(Of String, String)))
+- uid: wan24.Core.EmailTemplateBase.GetData*
+  name: GetData
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_GetData_
+  commentId: Overload:wan24.Core.EmailTemplateBase.GetData
+  isSpec: "True"
+  fullName: wan24.Core.EmailTemplateBase.GetData
+  nameWithType: EmailTemplateBase.GetData
+- uid: wan24.Core.EmailTemplateBase.GetDataAsync(System.Nullable{Dictionary{System.String,System.String}},CancellationToken)
+  name: GetDataAsync(Nullable<Dictionary<String, String>>, CancellationToken)
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_GetDataAsync_System_Nullable_Dictionary_System_String_System_String___CancellationToken_
+  commentId: M:wan24.Core.EmailTemplateBase.GetDataAsync(System.Nullable{Dictionary{System.String,System.String}},CancellationToken)
+  name.vb: GetDataAsync(Nullable(Of Dictionary(Of String, String)), CancellationToken)
+  fullName: wan24.Core.EmailTemplateBase.GetDataAsync(System.Nullable<Dictionary<System.String, System.String>>, CancellationToken)
+  fullName.vb: wan24.Core.EmailTemplateBase.GetDataAsync(System.Nullable(Of Dictionary(Of System.String, System.String)), CancellationToken)
+  nameWithType: EmailTemplateBase.GetDataAsync(Nullable<Dictionary<String, String>>, CancellationToken)
+  nameWithType.vb: EmailTemplateBase.GetDataAsync(Nullable(Of Dictionary(Of String, String)), CancellationToken)
+- uid: wan24.Core.EmailTemplateBase.GetDataAsync*
+  name: GetDataAsync
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_GetDataAsync_
+  commentId: Overload:wan24.Core.EmailTemplateBase.GetDataAsync
+  isSpec: "True"
+  fullName: wan24.Core.EmailTemplateBase.GetDataAsync
+  nameWithType: EmailTemplateBase.GetDataAsync
+- uid: wan24.Core.EmailTemplateBase.HtmlBody
+  name: HtmlBody
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_HtmlBody
+  commentId: P:wan24.Core.EmailTemplateBase.HtmlBody
+  fullName: wan24.Core.EmailTemplateBase.HtmlBody
+  nameWithType: EmailTemplateBase.HtmlBody
+- uid: wan24.Core.EmailTemplateBase.HtmlBody*
+  name: HtmlBody
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_HtmlBody_
+  commentId: Overload:wan24.Core.EmailTemplateBase.HtmlBody
+  isSpec: "True"
+  fullName: wan24.Core.EmailTemplateBase.HtmlBody
+  nameWithType: EmailTemplateBase.HtmlBody
+- uid: wan24.Core.EmailTemplateBase.Subject
+  name: Subject
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_Subject
+  commentId: P:wan24.Core.EmailTemplateBase.Subject
+  fullName: wan24.Core.EmailTemplateBase.Subject
+  nameWithType: EmailTemplateBase.Subject
+- uid: wan24.Core.EmailTemplateBase.Subject*
+  name: Subject
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_Subject_
+  commentId: Overload:wan24.Core.EmailTemplateBase.Subject
+  isSpec: "True"
+  fullName: wan24.Core.EmailTemplateBase.Subject
+  nameWithType: EmailTemplateBase.Subject
+- uid: wan24.Core.EmailTemplateBase.TextBody
+  name: TextBody
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_TextBody
+  commentId: P:wan24.Core.EmailTemplateBase.TextBody
+  fullName: wan24.Core.EmailTemplateBase.TextBody
+  nameWithType: EmailTemplateBase.TextBody
+- uid: wan24.Core.EmailTemplateBase.TextBody*
+  name: TextBody
+  href: api/wan24.Core.EmailTemplateBase.html#wan24_Core_EmailTemplateBase_TextBody_
+  commentId: Overload:wan24.Core.EmailTemplateBase.TextBody
+  isSpec: "True"
+  fullName: wan24.Core.EmailTemplateBase.TextBody
+  nameWithType: EmailTemplateBase.TextBody
+- uid: wan24.Core.EmailTemplateBase`1
+  name: EmailTemplateBase<T>
+  href: api/wan24.Core.EmailTemplateBase-1.html
+  commentId: T:wan24.Core.EmailTemplateBase`1
+  name.vb: EmailTemplateBase(Of T)
+  fullName: wan24.Core.EmailTemplateBase<T>
+  fullName.vb: wan24.Core.EmailTemplateBase(Of T)
+  nameWithType: EmailTemplateBase<T>
+  nameWithType.vb: EmailTemplateBase(Of T)
+- uid: wan24.Core.EmailTemplateBase`1.#ctor(System.String@,System.String@,System.String@,wan24.Core.IEmailAttachment[])
+  name: EmailTemplateBase(in String, in String, in String, IEmailAttachment[])
+  href: api/wan24.Core.EmailTemplateBase-1.html#wan24_Core_EmailTemplateBase_1__ctor_System_String__System_String__System_String__wan24_Core_IEmailAttachment___
+  commentId: M:wan24.Core.EmailTemplateBase`1.#ctor(System.String@,System.String@,System.String@,wan24.Core.IEmailAttachment[])
+  name.vb: EmailTemplateBase(ByRef String, ByRef String, ByRef String, IEmailAttachment())
+  fullName: wan24.Core.EmailTemplateBase<T>.EmailTemplateBase(in System.String, in System.String, in System.String, wan24.Core.IEmailAttachment[])
+  fullName.vb: wan24.Core.EmailTemplateBase(Of T).EmailTemplateBase(ByRef System.String, ByRef System.String, ByRef System.String, wan24.Core.IEmailAttachment())
+  nameWithType: EmailTemplateBase<T>.EmailTemplateBase(in String, in String, in String, IEmailAttachment[])
+  nameWithType.vb: EmailTemplateBase(Of T).EmailTemplateBase(ByRef String, ByRef String, ByRef String, IEmailAttachment())
+- uid: wan24.Core.EmailTemplateBase`1.#ctor*
+  name: EmailTemplateBase
+  href: api/wan24.Core.EmailTemplateBase-1.html#wan24_Core_EmailTemplateBase_1__ctor_
+  commentId: Overload:wan24.Core.EmailTemplateBase`1.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.EmailTemplateBase<T>.EmailTemplateBase
+  fullName.vb: wan24.Core.EmailTemplateBase(Of T).EmailTemplateBase
+  nameWithType: EmailTemplateBase<T>.EmailTemplateBase
+  nameWithType.vb: EmailTemplateBase(Of T).EmailTemplateBase
+- uid: wan24.Core.EmailTemplateBase`1.CreateEmail(System.String,System.String,System.String,System.String,System.String,HashSet{wan24.Core.IEmailAttachment})
+  name: CreateEmail(String, String, String, String, String, HashSet<IEmailAttachment>)
+  href: api/wan24.Core.EmailTemplateBase-1.html#wan24_Core_EmailTemplateBase_1_CreateEmail_System_String_System_String_System_String_System_String_System_String_HashSet_wan24_Core_IEmailAttachment__
+  commentId: M:wan24.Core.EmailTemplateBase`1.CreateEmail(System.String,System.String,System.String,System.String,System.String,HashSet{wan24.Core.IEmailAttachment})
+  name.vb: CreateEmail(String, String, String, String, String, HashSet(Of IEmailAttachment))
+  fullName: wan24.Core.EmailTemplateBase<T>.CreateEmail(System.String, System.String, System.String, System.String, System.String, HashSet<wan24.Core.IEmailAttachment>)
+  fullName.vb: wan24.Core.EmailTemplateBase(Of T).CreateEmail(System.String, System.String, System.String, System.String, System.String, HashSet(Of wan24.Core.IEmailAttachment))
+  nameWithType: EmailTemplateBase<T>.CreateEmail(String, String, String, String, String, HashSet<IEmailAttachment>)
+  nameWithType.vb: EmailTemplateBase(Of T).CreateEmail(String, String, String, String, String, HashSet(Of IEmailAttachment))
+- uid: wan24.Core.EmailTemplateBase`1.CreateEmail*
+  name: CreateEmail
+  href: api/wan24.Core.EmailTemplateBase-1.html#wan24_Core_EmailTemplateBase_1_CreateEmail_
+  commentId: Overload:wan24.Core.EmailTemplateBase`1.CreateEmail
+  isSpec: "True"
+  fullName: wan24.Core.EmailTemplateBase<T>.CreateEmail
+  fullName.vb: wan24.Core.EmailTemplateBase(Of T).CreateEmail
+  nameWithType: EmailTemplateBase<T>.CreateEmail
+  nameWithType.vb: EmailTemplateBase(Of T).CreateEmail
 - uid: wan24.Core.EndPointAttribute
   name: EndPointAttribute
   href: api/wan24.Core.EndPointAttribute.html
@@ -17530,6 +18458,225 @@ references:
   commentId: E:wan24.Core.IDisposableObject.OnDisposing
   fullName: wan24.Core.IDisposableObject.OnDisposing
   nameWithType: IDisposableObject.OnDisposing
+- uid: wan24.Core.IEmail
+  name: IEmail
+  href: api/wan24.Core.IEmail.html
+  commentId: T:wan24.Core.IEmail
+  fullName: wan24.Core.IEmail
+  nameWithType: IEmail
+- uid: wan24.Core.IEmail.Attachments
+  name: Attachments
+  href: api/wan24.Core.IEmail.html#wan24_Core_IEmail_Attachments
+  commentId: P:wan24.Core.IEmail.Attachments
+  fullName: wan24.Core.IEmail.Attachments
+  nameWithType: IEmail.Attachments
+- uid: wan24.Core.IEmail.Attachments*
+  name: Attachments
+  href: api/wan24.Core.IEmail.html#wan24_Core_IEmail_Attachments_
+  commentId: Overload:wan24.Core.IEmail.Attachments
+  isSpec: "True"
+  fullName: wan24.Core.IEmail.Attachments
+  nameWithType: IEmail.Attachments
+- uid: wan24.Core.IEmail.FromEmail
+  name: FromEmail
+  href: api/wan24.Core.IEmail.html#wan24_Core_IEmail_FromEmail
+  commentId: P:wan24.Core.IEmail.FromEmail
+  fullName: wan24.Core.IEmail.FromEmail
+  nameWithType: IEmail.FromEmail
+- uid: wan24.Core.IEmail.FromEmail*
+  name: FromEmail
+  href: api/wan24.Core.IEmail.html#wan24_Core_IEmail_FromEmail_
+  commentId: Overload:wan24.Core.IEmail.FromEmail
+  isSpec: "True"
+  fullName: wan24.Core.IEmail.FromEmail
+  nameWithType: IEmail.FromEmail
+- uid: wan24.Core.IEmail.HtmlBody
+  name: HtmlBody
+  href: api/wan24.Core.IEmail.html#wan24_Core_IEmail_HtmlBody
+  commentId: P:wan24.Core.IEmail.HtmlBody
+  fullName: wan24.Core.IEmail.HtmlBody
+  nameWithType: IEmail.HtmlBody
+- uid: wan24.Core.IEmail.HtmlBody*
+  name: HtmlBody
+  href: api/wan24.Core.IEmail.html#wan24_Core_IEmail_HtmlBody_
+  commentId: Overload:wan24.Core.IEmail.HtmlBody
+  isSpec: "True"
+  fullName: wan24.Core.IEmail.HtmlBody
+  nameWithType: IEmail.HtmlBody
+- uid: wan24.Core.IEmail.Subject
+  name: Subject
+  href: api/wan24.Core.IEmail.html#wan24_Core_IEmail_Subject
+  commentId: P:wan24.Core.IEmail.Subject
+  fullName: wan24.Core.IEmail.Subject
+  nameWithType: IEmail.Subject
+- uid: wan24.Core.IEmail.Subject*
+  name: Subject
+  href: api/wan24.Core.IEmail.html#wan24_Core_IEmail_Subject_
+  commentId: Overload:wan24.Core.IEmail.Subject
+  isSpec: "True"
+  fullName: wan24.Core.IEmail.Subject
+  nameWithType: IEmail.Subject
+- uid: wan24.Core.IEmail.TextBody
+  name: TextBody
+  href: api/wan24.Core.IEmail.html#wan24_Core_IEmail_TextBody
+  commentId: P:wan24.Core.IEmail.TextBody
+  fullName: wan24.Core.IEmail.TextBody
+  nameWithType: IEmail.TextBody
+- uid: wan24.Core.IEmail.TextBody*
+  name: TextBody
+  href: api/wan24.Core.IEmail.html#wan24_Core_IEmail_TextBody_
+  commentId: Overload:wan24.Core.IEmail.TextBody
+  isSpec: "True"
+  fullName: wan24.Core.IEmail.TextBody
+  nameWithType: IEmail.TextBody
+- uid: wan24.Core.IEmail.ToEmail
+  name: ToEmail
+  href: api/wan24.Core.IEmail.html#wan24_Core_IEmail_ToEmail
+  commentId: P:wan24.Core.IEmail.ToEmail
+  fullName: wan24.Core.IEmail.ToEmail
+  nameWithType: IEmail.ToEmail
+- uid: wan24.Core.IEmail.ToEmail*
+  name: ToEmail
+  href: api/wan24.Core.IEmail.html#wan24_Core_IEmail_ToEmail_
+  commentId: Overload:wan24.Core.IEmail.ToEmail
+  isSpec: "True"
+  fullName: wan24.Core.IEmail.ToEmail
+  nameWithType: IEmail.ToEmail
+- uid: wan24.Core.IEmailAttachment
+  name: IEmailAttachment
+  href: api/wan24.Core.IEmailAttachment.html
+  commentId: T:wan24.Core.IEmailAttachment
+  fullName: wan24.Core.IEmailAttachment
+  nameWithType: IEmailAttachment
+- uid: wan24.Core.IEmailAttachment.FileName
+  name: FileName
+  href: api/wan24.Core.IEmailAttachment.html#wan24_Core_IEmailAttachment_FileName
+  commentId: P:wan24.Core.IEmailAttachment.FileName
+  fullName: wan24.Core.IEmailAttachment.FileName
+  nameWithType: IEmailAttachment.FileName
+- uid: wan24.Core.IEmailAttachment.FileName*
+  name: FileName
+  href: api/wan24.Core.IEmailAttachment.html#wan24_Core_IEmailAttachment_FileName_
+  commentId: Overload:wan24.Core.IEmailAttachment.FileName
+  isSpec: "True"
+  fullName: wan24.Core.IEmailAttachment.FileName
+  nameWithType: IEmailAttachment.FileName
+- uid: wan24.Core.IEmailAttachment.MimeType
+  name: MimeType
+  href: api/wan24.Core.IEmailAttachment.html#wan24_Core_IEmailAttachment_MimeType
+  commentId: P:wan24.Core.IEmailAttachment.MimeType
+  fullName: wan24.Core.IEmailAttachment.MimeType
+  nameWithType: IEmailAttachment.MimeType
+- uid: wan24.Core.IEmailAttachment.MimeType*
+  name: MimeType
+  href: api/wan24.Core.IEmailAttachment.html#wan24_Core_IEmailAttachment_MimeType_
+  commentId: Overload:wan24.Core.IEmailAttachment.MimeType
+  isSpec: "True"
+  fullName: wan24.Core.IEmailAttachment.MimeType
+  nameWithType: IEmailAttachment.MimeType
+- uid: wan24.Core.IEmailAttachment.Stream
+  name: Stream
+  href: api/wan24.Core.IEmailAttachment.html#wan24_Core_IEmailAttachment_Stream
+  commentId: P:wan24.Core.IEmailAttachment.Stream
+  fullName: wan24.Core.IEmailAttachment.Stream
+  nameWithType: IEmailAttachment.Stream
+- uid: wan24.Core.IEmailAttachment.Stream*
+  name: Stream
+  href: api/wan24.Core.IEmailAttachment.html#wan24_Core_IEmailAttachment_Stream_
+  commentId: Overload:wan24.Core.IEmailAttachment.Stream
+  isSpec: "True"
+  fullName: wan24.Core.IEmailAttachment.Stream
+  nameWithType: IEmailAttachment.Stream
+- uid: wan24.Core.IEmailTemplate
+  name: IEmailTemplate
+  href: api/wan24.Core.IEmailTemplate.html
+  commentId: T:wan24.Core.IEmailTemplate
+  fullName: wan24.Core.IEmailTemplate
+  nameWithType: IEmailTemplate
+- uid: wan24.Core.IEmailTemplate.Attachments
+  name: Attachments
+  href: api/wan24.Core.IEmailTemplate.html#wan24_Core_IEmailTemplate_Attachments
+  commentId: P:wan24.Core.IEmailTemplate.Attachments
+  fullName: wan24.Core.IEmailTemplate.Attachments
+  nameWithType: IEmailTemplate.Attachments
+- uid: wan24.Core.IEmailTemplate.Attachments*
+  name: Attachments
+  href: api/wan24.Core.IEmailTemplate.html#wan24_Core_IEmailTemplate_Attachments_
+  commentId: Overload:wan24.Core.IEmailTemplate.Attachments
+  isSpec: "True"
+  fullName: wan24.Core.IEmailTemplate.Attachments
+  nameWithType: IEmailTemplate.Attachments
+- uid: wan24.Core.IEmailTemplate.CreateEmail(System.String,System.String,System.Nullable{Dictionary{System.String,System.String}},wan24.Core.IEmailAttachment[])
+  name: CreateEmail(String, String, Nullable<Dictionary<String, String>>, IEmailAttachment[])
+  href: api/wan24.Core.IEmailTemplate.html#wan24_Core_IEmailTemplate_CreateEmail_System_String_System_String_System_Nullable_Dictionary_System_String_System_String___wan24_Core_IEmailAttachment___
+  commentId: M:wan24.Core.IEmailTemplate.CreateEmail(System.String,System.String,System.Nullable{Dictionary{System.String,System.String}},wan24.Core.IEmailAttachment[])
+  name.vb: CreateEmail(String, String, Nullable(Of Dictionary(Of String, String)), IEmailAttachment())
+  fullName: wan24.Core.IEmailTemplate.CreateEmail(System.String, System.String, System.Nullable<Dictionary<System.String, System.String>>, wan24.Core.IEmailAttachment[])
+  fullName.vb: wan24.Core.IEmailTemplate.CreateEmail(System.String, System.String, System.Nullable(Of Dictionary(Of System.String, System.String)), wan24.Core.IEmailAttachment())
+  nameWithType: IEmailTemplate.CreateEmail(String, String, Nullable<Dictionary<String, String>>, IEmailAttachment[])
+  nameWithType.vb: IEmailTemplate.CreateEmail(String, String, Nullable(Of Dictionary(Of String, String)), IEmailAttachment())
+- uid: wan24.Core.IEmailTemplate.CreateEmail*
+  name: CreateEmail
+  href: api/wan24.Core.IEmailTemplate.html#wan24_Core_IEmailTemplate_CreateEmail_
+  commentId: Overload:wan24.Core.IEmailTemplate.CreateEmail
+  isSpec: "True"
+  fullName: wan24.Core.IEmailTemplate.CreateEmail
+  nameWithType: IEmailTemplate.CreateEmail
+- uid: wan24.Core.IEmailTemplate.CreateEmailAsync(System.String,System.String,System.Nullable{Dictionary{System.String,System.String}},CancellationToken,wan24.Core.IEmailAttachment[])
+  name: CreateEmailAsync(String, String, Nullable<Dictionary<String, String>>, CancellationToken, IEmailAttachment[])
+  href: api/wan24.Core.IEmailTemplate.html#wan24_Core_IEmailTemplate_CreateEmailAsync_System_String_System_String_System_Nullable_Dictionary_System_String_System_String___CancellationToken_wan24_Core_IEmailAttachment___
+  commentId: M:wan24.Core.IEmailTemplate.CreateEmailAsync(System.String,System.String,System.Nullable{Dictionary{System.String,System.String}},CancellationToken,wan24.Core.IEmailAttachment[])
+  name.vb: CreateEmailAsync(String, String, Nullable(Of Dictionary(Of String, String)), CancellationToken, IEmailAttachment())
+  fullName: wan24.Core.IEmailTemplate.CreateEmailAsync(System.String, System.String, System.Nullable<Dictionary<System.String, System.String>>, CancellationToken, wan24.Core.IEmailAttachment[])
+  fullName.vb: wan24.Core.IEmailTemplate.CreateEmailAsync(System.String, System.String, System.Nullable(Of Dictionary(Of System.String, System.String)), CancellationToken, wan24.Core.IEmailAttachment())
+  nameWithType: IEmailTemplate.CreateEmailAsync(String, String, Nullable<Dictionary<String, String>>, CancellationToken, IEmailAttachment[])
+  nameWithType.vb: IEmailTemplate.CreateEmailAsync(String, String, Nullable(Of Dictionary(Of String, String)), CancellationToken, IEmailAttachment())
+- uid: wan24.Core.IEmailTemplate.CreateEmailAsync*
+  name: CreateEmailAsync
+  href: api/wan24.Core.IEmailTemplate.html#wan24_Core_IEmailTemplate_CreateEmailAsync_
+  commentId: Overload:wan24.Core.IEmailTemplate.CreateEmailAsync
+  isSpec: "True"
+  fullName: wan24.Core.IEmailTemplate.CreateEmailAsync
+  nameWithType: IEmailTemplate.CreateEmailAsync
+- uid: wan24.Core.IEmailTemplate.HtmlBody
+  name: HtmlBody
+  href: api/wan24.Core.IEmailTemplate.html#wan24_Core_IEmailTemplate_HtmlBody
+  commentId: P:wan24.Core.IEmailTemplate.HtmlBody
+  fullName: wan24.Core.IEmailTemplate.HtmlBody
+  nameWithType: IEmailTemplate.HtmlBody
+- uid: wan24.Core.IEmailTemplate.HtmlBody*
+  name: HtmlBody
+  href: api/wan24.Core.IEmailTemplate.html#wan24_Core_IEmailTemplate_HtmlBody_
+  commentId: Overload:wan24.Core.IEmailTemplate.HtmlBody
+  isSpec: "True"
+  fullName: wan24.Core.IEmailTemplate.HtmlBody
+  nameWithType: IEmailTemplate.HtmlBody
+- uid: wan24.Core.IEmailTemplate.Subject
+  name: Subject
+  href: api/wan24.Core.IEmailTemplate.html#wan24_Core_IEmailTemplate_Subject
+  commentId: P:wan24.Core.IEmailTemplate.Subject
+  fullName: wan24.Core.IEmailTemplate.Subject
+  nameWithType: IEmailTemplate.Subject
+- uid: wan24.Core.IEmailTemplate.Subject*
+  name: Subject
+  href: api/wan24.Core.IEmailTemplate.html#wan24_Core_IEmailTemplate_Subject_
+  commentId: Overload:wan24.Core.IEmailTemplate.Subject
+  isSpec: "True"
+  fullName: wan24.Core.IEmailTemplate.Subject
+  nameWithType: IEmailTemplate.Subject
+- uid: wan24.Core.IEmailTemplate.TextBody
+  name: TextBody
+  href: api/wan24.Core.IEmailTemplate.html#wan24_Core_IEmailTemplate_TextBody
+  commentId: P:wan24.Core.IEmailTemplate.TextBody
+  fullName: wan24.Core.IEmailTemplate.TextBody
+  nameWithType: IEmailTemplate.TextBody
+- uid: wan24.Core.IEmailTemplate.TextBody*
+  name: TextBody
+  href: api/wan24.Core.IEmailTemplate.html#wan24_Core_IEmailTemplate_TextBody_
+  commentId: Overload:wan24.Core.IEmailTemplate.TextBody
+  isSpec: "True"
+  fullName: wan24.Core.IEmailTemplate.TextBody
+  nameWithType: IEmailTemplate.TextBody
 - uid: wan24.Core.IEnumInfo
   name: IEnumInfo
   href: api/wan24.Core.IEnumInfo.html
@@ -18021,6 +19168,76 @@ references:
   fullName.vb: wan24.Core.IItemQueueWorker(Of T).TryEnqueue
   nameWithType: IItemQueueWorker<T>.TryEnqueue
   nameWithType.vb: IItemQueueWorker(Of T).TryEnqueue
+- uid: wan24.Core.IMta
+  name: IMta
+  href: api/wan24.Core.IMta.html
+  commentId: T:wan24.Core.IMta
+  fullName: wan24.Core.IMta
+  nameWithType: IMta
+- uid: wan24.Core.IMtaConnection
+  name: IMtaConnection
+  href: api/wan24.Core.IMtaConnection.html
+  commentId: T:wan24.Core.IMtaConnection
+  fullName: wan24.Core.IMtaConnection
+  nameWithType: IMtaConnection
+- uid: wan24.Core.IMtaConnection.MTA
+  name: MTA
+  href: api/wan24.Core.IMtaConnection.html#wan24_Core_IMtaConnection_MTA
+  commentId: P:wan24.Core.IMtaConnection.MTA
+  fullName: wan24.Core.IMtaConnection.MTA
+  nameWithType: IMtaConnection.MTA
+- uid: wan24.Core.IMtaConnection.MTA*
+  name: MTA
+  href: api/wan24.Core.IMtaConnection.html#wan24_Core_IMtaConnection_MTA_
+  commentId: Overload:wan24.Core.IMtaConnection.MTA
+  isSpec: "True"
+  fullName: wan24.Core.IMtaConnection.MTA
+  nameWithType: IMtaConnection.MTA
+- uid: wan24.Core.IMtaConnection.Send(wan24.Core.IEmail)
+  name: Send(IEmail)
+  href: api/wan24.Core.IMtaConnection.html#wan24_Core_IMtaConnection_Send_wan24_Core_IEmail_
+  commentId: M:wan24.Core.IMtaConnection.Send(wan24.Core.IEmail)
+  fullName: wan24.Core.IMtaConnection.Send(wan24.Core.IEmail)
+  nameWithType: IMtaConnection.Send(IEmail)
+- uid: wan24.Core.IMtaConnection.Send*
+  name: Send
+  href: api/wan24.Core.IMtaConnection.html#wan24_Core_IMtaConnection_Send_
+  commentId: Overload:wan24.Core.IMtaConnection.Send
+  isSpec: "True"
+  fullName: wan24.Core.IMtaConnection.Send
+  nameWithType: IMtaConnection.Send
+- uid: wan24.Core.IMtaConnection.SendAsync(wan24.Core.IEmail,CancellationToken)
+  name: SendAsync(IEmail, CancellationToken)
+  href: api/wan24.Core.IMtaConnection.html#wan24_Core_IMtaConnection_SendAsync_wan24_Core_IEmail_CancellationToken_
+  commentId: M:wan24.Core.IMtaConnection.SendAsync(wan24.Core.IEmail,CancellationToken)
+  fullName: wan24.Core.IMtaConnection.SendAsync(wan24.Core.IEmail, CancellationToken)
+  nameWithType: IMtaConnection.SendAsync(IEmail, CancellationToken)
+- uid: wan24.Core.IMtaConnection.SendAsync*
+  name: SendAsync
+  href: api/wan24.Core.IMtaConnection.html#wan24_Core_IMtaConnection_SendAsync_
+  commentId: Overload:wan24.Core.IMtaConnection.SendAsync
+  isSpec: "True"
+  fullName: wan24.Core.IMtaConnection.SendAsync
+  nameWithType: IMtaConnection.SendAsync
+- uid: wan24.Core.IMtaConnection.Settings
+  name: Settings
+  href: api/wan24.Core.IMtaConnection.html#wan24_Core_IMtaConnection_Settings
+  commentId: P:wan24.Core.IMtaConnection.Settings
+  fullName: wan24.Core.IMtaConnection.Settings
+  nameWithType: IMtaConnection.Settings
+- uid: wan24.Core.IMtaConnection.Settings*
+  name: Settings
+  href: api/wan24.Core.IMtaConnection.html#wan24_Core_IMtaConnection_Settings_
+  commentId: Overload:wan24.Core.IMtaConnection.Settings
+  isSpec: "True"
+  fullName: wan24.Core.IMtaConnection.Settings
+  nameWithType: IMtaConnection.Settings
+- uid: wan24.Core.IMtaSettings
+  name: IMtaSettings
+  href: api/wan24.Core.IMtaSettings.html
+  commentId: T:wan24.Core.IMtaSettings
+  fullName: wan24.Core.IMtaSettings
+  nameWithType: IMtaSettings
 - uid: wan24.Core.InstancePool`1
   name: InstancePool<T>
   href: api/wan24.Core.InstancePool-1.html
@@ -20322,6 +21539,142 @@ references:
   fullName.vb: wan24.Core.ItemQueueWorkerBase(Of T).TryEnqueue
   nameWithType: ItemQueueWorkerBase<T>.TryEnqueue
   nameWithType.vb: ItemQueueWorkerBase(Of T).TryEnqueue
+- uid: wan24.Core.IThrottledStream
+  name: IThrottledStream
+  href: api/wan24.Core.IThrottledStream.html
+  commentId: T:wan24.Core.IThrottledStream
+  fullName: wan24.Core.IThrottledStream
+  nameWithType: IThrottledStream
+- uid: wan24.Core.IThrottledStream.LastReadTimeStart
+  name: LastReadTimeStart
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_LastReadTimeStart
+  commentId: P:wan24.Core.IThrottledStream.LastReadTimeStart
+  fullName: wan24.Core.IThrottledStream.LastReadTimeStart
+  nameWithType: IThrottledStream.LastReadTimeStart
+- uid: wan24.Core.IThrottledStream.LastReadTimeStart*
+  name: LastReadTimeStart
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_LastReadTimeStart_
+  commentId: Overload:wan24.Core.IThrottledStream.LastReadTimeStart
+  isSpec: "True"
+  fullName: wan24.Core.IThrottledStream.LastReadTimeStart
+  nameWithType: IThrottledStream.LastReadTimeStart
+- uid: wan24.Core.IThrottledStream.LastWriteTimeStart
+  name: LastWriteTimeStart
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_LastWriteTimeStart
+  commentId: P:wan24.Core.IThrottledStream.LastWriteTimeStart
+  fullName: wan24.Core.IThrottledStream.LastWriteTimeStart
+  nameWithType: IThrottledStream.LastWriteTimeStart
+- uid: wan24.Core.IThrottledStream.LastWriteTimeStart*
+  name: LastWriteTimeStart
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_LastWriteTimeStart_
+  commentId: Overload:wan24.Core.IThrottledStream.LastWriteTimeStart
+  isSpec: "True"
+  fullName: wan24.Core.IThrottledStream.LastWriteTimeStart
+  nameWithType: IThrottledStream.LastWriteTimeStart
+- uid: wan24.Core.IThrottledStream.ReadCount
+  name: ReadCount
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_ReadCount
+  commentId: P:wan24.Core.IThrottledStream.ReadCount
+  fullName: wan24.Core.IThrottledStream.ReadCount
+  nameWithType: IThrottledStream.ReadCount
+- uid: wan24.Core.IThrottledStream.ReadCount*
+  name: ReadCount
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_ReadCount_
+  commentId: Overload:wan24.Core.IThrottledStream.ReadCount
+  isSpec: "True"
+  fullName: wan24.Core.IThrottledStream.ReadCount
+  nameWithType: IThrottledStream.ReadCount
+- uid: wan24.Core.IThrottledStream.ReadTime
+  name: ReadTime
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_ReadTime
+  commentId: P:wan24.Core.IThrottledStream.ReadTime
+  fullName: wan24.Core.IThrottledStream.ReadTime
+  nameWithType: IThrottledStream.ReadTime
+- uid: wan24.Core.IThrottledStream.ReadTime*
+  name: ReadTime
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_ReadTime_
+  commentId: Overload:wan24.Core.IThrottledStream.ReadTime
+  isSpec: "True"
+  fullName: wan24.Core.IThrottledStream.ReadTime
+  nameWithType: IThrottledStream.ReadTime
+- uid: wan24.Core.IThrottledStream.RedCount
+  name: RedCount
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_RedCount
+  commentId: P:wan24.Core.IThrottledStream.RedCount
+  fullName: wan24.Core.IThrottledStream.RedCount
+  nameWithType: IThrottledStream.RedCount
+- uid: wan24.Core.IThrottledStream.RedCount*
+  name: RedCount
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_RedCount_
+  commentId: Overload:wan24.Core.IThrottledStream.RedCount
+  isSpec: "True"
+  fullName: wan24.Core.IThrottledStream.RedCount
+  nameWithType: IThrottledStream.RedCount
+- uid: wan24.Core.IThrottledStream.ResetReadThrottle
+  name: ResetReadThrottle()
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_ResetReadThrottle
+  commentId: M:wan24.Core.IThrottledStream.ResetReadThrottle
+  fullName: wan24.Core.IThrottledStream.ResetReadThrottle()
+  nameWithType: IThrottledStream.ResetReadThrottle()
+- uid: wan24.Core.IThrottledStream.ResetReadThrottle*
+  name: ResetReadThrottle
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_ResetReadThrottle_
+  commentId: Overload:wan24.Core.IThrottledStream.ResetReadThrottle
+  isSpec: "True"
+  fullName: wan24.Core.IThrottledStream.ResetReadThrottle
+  nameWithType: IThrottledStream.ResetReadThrottle
+- uid: wan24.Core.IThrottledStream.ResetWriteThrottle
+  name: ResetWriteThrottle()
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_ResetWriteThrottle
+  commentId: M:wan24.Core.IThrottledStream.ResetWriteThrottle
+  fullName: wan24.Core.IThrottledStream.ResetWriteThrottle()
+  nameWithType: IThrottledStream.ResetWriteThrottle()
+- uid: wan24.Core.IThrottledStream.ResetWriteThrottle*
+  name: ResetWriteThrottle
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_ResetWriteThrottle_
+  commentId: Overload:wan24.Core.IThrottledStream.ResetWriteThrottle
+  isSpec: "True"
+  fullName: wan24.Core.IThrottledStream.ResetWriteThrottle
+  nameWithType: IThrottledStream.ResetWriteThrottle
+- uid: wan24.Core.IThrottledStream.WriteCount
+  name: WriteCount
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_WriteCount
+  commentId: P:wan24.Core.IThrottledStream.WriteCount
+  fullName: wan24.Core.IThrottledStream.WriteCount
+  nameWithType: IThrottledStream.WriteCount
+- uid: wan24.Core.IThrottledStream.WriteCount*
+  name: WriteCount
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_WriteCount_
+  commentId: Overload:wan24.Core.IThrottledStream.WriteCount
+  isSpec: "True"
+  fullName: wan24.Core.IThrottledStream.WriteCount
+  nameWithType: IThrottledStream.WriteCount
+- uid: wan24.Core.IThrottledStream.WriteTime
+  name: WriteTime
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_WriteTime
+  commentId: P:wan24.Core.IThrottledStream.WriteTime
+  fullName: wan24.Core.IThrottledStream.WriteTime
+  nameWithType: IThrottledStream.WriteTime
+- uid: wan24.Core.IThrottledStream.WriteTime*
+  name: WriteTime
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_WriteTime_
+  commentId: Overload:wan24.Core.IThrottledStream.WriteTime
+  isSpec: "True"
+  fullName: wan24.Core.IThrottledStream.WriteTime
+  nameWithType: IThrottledStream.WriteTime
+- uid: wan24.Core.IThrottledStream.WroteCount
+  name: WroteCount
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_WroteCount
+  commentId: P:wan24.Core.IThrottledStream.WroteCount
+  fullName: wan24.Core.IThrottledStream.WroteCount
+  nameWithType: IThrottledStream.WroteCount
+- uid: wan24.Core.IThrottledStream.WroteCount*
+  name: WroteCount
+  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_WroteCount_
+  commentId: Overload:wan24.Core.IThrottledStream.WroteCount
+  isSpec: "True"
+  fullName: wan24.Core.IThrottledStream.WroteCount
+  nameWithType: IThrottledStream.WroteCount
 - uid: wan24.Core.ITimer
   name: ITimer
   href: api/wan24.Core.ITimer.html
@@ -22255,6 +23608,641 @@ references:
   isSpec: "True"
   fullName: wan24.Core.MemoryPoolStream.WriteByte
   nameWithType: MemoryPoolStream.WriteByte
+- uid: wan24.Core.MultiProcessThrottle
+  name: MultiProcessThrottle
+  href: api/wan24.Core.MultiProcessThrottle.html
+  commentId: T:wan24.Core.MultiProcessThrottle
+  fullName: wan24.Core.MultiProcessThrottle
+  nameWithType: MultiProcessThrottle
+- uid: wan24.Core.MultiProcessThrottle.#ctor(System.Int32@)
+  name: MultiProcessThrottle(in Int32)
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle__ctor_System_Int32__
+  commentId: M:wan24.Core.MultiProcessThrottle.#ctor(System.Int32@)
+  name.vb: MultiProcessThrottle(ByRef Int32)
+  fullName: wan24.Core.MultiProcessThrottle.MultiProcessThrottle(in System.Int32)
+  fullName.vb: wan24.Core.MultiProcessThrottle.MultiProcessThrottle(ByRef System.Int32)
+  nameWithType: MultiProcessThrottle.MultiProcessThrottle(in Int32)
+  nameWithType.vb: MultiProcessThrottle.MultiProcessThrottle(ByRef Int32)
+- uid: wan24.Core.MultiProcessThrottle.#ctor*
+  name: MultiProcessThrottle
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle__ctor_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.MultiProcessThrottle
+  nameWithType: MultiProcessThrottle.MultiProcessThrottle
+- uid: wan24.Core.MultiProcessThrottle._Throttles
+  name: _Throttles
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle__Throttles
+  commentId: F:wan24.Core.MultiProcessThrottle._Throttles
+  fullName: wan24.Core.MultiProcessThrottle._Throttles
+  nameWithType: MultiProcessThrottle._Throttles
+- uid: wan24.Core.MultiProcessThrottle._TotalLimit
+  name: _TotalLimit
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle__TotalLimit
+  commentId: F:wan24.Core.MultiProcessThrottle._TotalLimit
+  fullName: wan24.Core.MultiProcessThrottle._TotalLimit
+  nameWithType: MultiProcessThrottle._TotalLimit
+- uid: wan24.Core.MultiProcessThrottle.AddThrottle*
+  name: AddThrottle
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_AddThrottle_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.AddThrottle
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.AddThrottle
+  nameWithType: MultiProcessThrottle.AddThrottle
+- uid: wan24.Core.MultiProcessThrottle.AddThrottle``1(``0)
+  name: AddThrottle<T>(T)
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_AddThrottle__1___0_
+  commentId: M:wan24.Core.MultiProcessThrottle.AddThrottle``1(``0)
+  name.vb: AddThrottle(Of T)(T)
+  fullName: wan24.Core.MultiProcessThrottle.AddThrottle<T>(T)
+  fullName.vb: wan24.Core.MultiProcessThrottle.AddThrottle(Of T)(T)
+  nameWithType: MultiProcessThrottle.AddThrottle<T>(T)
+  nameWithType.vb: MultiProcessThrottle.AddThrottle(Of T)(T)
+- uid: wan24.Core.MultiProcessThrottle.AddThrottleAsync*
+  name: AddThrottleAsync
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_AddThrottleAsync_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.AddThrottleAsync
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.AddThrottleAsync
+  nameWithType: MultiProcessThrottle.AddThrottleAsync
+- uid: wan24.Core.MultiProcessThrottle.AddThrottleAsync``1(``0,CancellationToken)
+  name: AddThrottleAsync<T>(T, CancellationToken)
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_AddThrottleAsync__1___0_CancellationToken_
+  commentId: M:wan24.Core.MultiProcessThrottle.AddThrottleAsync``1(``0,CancellationToken)
+  name.vb: AddThrottleAsync(Of T)(T, CancellationToken)
+  fullName: wan24.Core.MultiProcessThrottle.AddThrottleAsync<T>(T, CancellationToken)
+  fullName.vb: wan24.Core.MultiProcessThrottle.AddThrottleAsync(Of T)(T, CancellationToken)
+  nameWithType: MultiProcessThrottle.AddThrottleAsync<T>(T, CancellationToken)
+  nameWithType.vb: MultiProcessThrottle.AddThrottleAsync(Of T)(T, CancellationToken)
+- uid: wan24.Core.MultiProcessThrottle.Clear
+  name: Clear()
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_Clear
+  commentId: M:wan24.Core.MultiProcessThrottle.Clear
+  fullName: wan24.Core.MultiProcessThrottle.Clear()
+  nameWithType: MultiProcessThrottle.Clear()
+- uid: wan24.Core.MultiProcessThrottle.Clear*
+  name: Clear
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_Clear_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.Clear
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.Clear
+  nameWithType: MultiProcessThrottle.Clear
+- uid: wan24.Core.MultiProcessThrottle.ClearAsync(CancellationToken)
+  name: ClearAsync(CancellationToken)
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_ClearAsync_CancellationToken_
+  commentId: M:wan24.Core.MultiProcessThrottle.ClearAsync(CancellationToken)
+  fullName: wan24.Core.MultiProcessThrottle.ClearAsync(CancellationToken)
+  nameWithType: MultiProcessThrottle.ClearAsync(CancellationToken)
+- uid: wan24.Core.MultiProcessThrottle.ClearAsync*
+  name: ClearAsync
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_ClearAsync_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.ClearAsync
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.ClearAsync
+  nameWithType: MultiProcessThrottle.ClearAsync
+- uid: wan24.Core.MultiProcessThrottle.Count
+  name: Count
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_Count
+  commentId: P:wan24.Core.MultiProcessThrottle.Count
+  fullName: wan24.Core.MultiProcessThrottle.Count
+  nameWithType: MultiProcessThrottle.Count
+- uid: wan24.Core.MultiProcessThrottle.Count*
+  name: Count
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_Count_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.Count
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.Count
+  nameWithType: MultiProcessThrottle.Count
+- uid: wan24.Core.MultiProcessThrottle.CurrentLimit
+  name: CurrentLimit
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_CurrentLimit
+  commentId: P:wan24.Core.MultiProcessThrottle.CurrentLimit
+  fullName: wan24.Core.MultiProcessThrottle.CurrentLimit
+  nameWithType: MultiProcessThrottle.CurrentLimit
+- uid: wan24.Core.MultiProcessThrottle.CurrentLimit*
+  name: CurrentLimit
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_CurrentLimit_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.CurrentLimit
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.CurrentLimit
+  nameWithType: MultiProcessThrottle.CurrentLimit
+- uid: wan24.Core.MultiProcessThrottle.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_Dispose_System_Boolean_
+  commentId: M:wan24.Core.MultiProcessThrottle.Dispose(System.Boolean)
+  fullName: wan24.Core.MultiProcessThrottle.Dispose(System.Boolean)
+  nameWithType: MultiProcessThrottle.Dispose(Boolean)
+- uid: wan24.Core.MultiProcessThrottle.Dispose*
+  name: Dispose
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_Dispose_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.Dispose
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.Dispose
+  nameWithType: MultiProcessThrottle.Dispose
+- uid: wan24.Core.MultiProcessThrottle.DisposeCore
+  name: DisposeCore()
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_DisposeCore
+  commentId: M:wan24.Core.MultiProcessThrottle.DisposeCore
+  fullName: wan24.Core.MultiProcessThrottle.DisposeCore()
+  nameWithType: MultiProcessThrottle.DisposeCore()
+- uid: wan24.Core.MultiProcessThrottle.DisposeCore*
+  name: DisposeCore
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_DisposeCore_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.DisposeCore
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.DisposeCore
+  nameWithType: MultiProcessThrottle.DisposeCore
+- uid: wan24.Core.MultiProcessThrottle.GUID
+  name: GUID
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_GUID
+  commentId: P:wan24.Core.MultiProcessThrottle.GUID
+  fullName: wan24.Core.MultiProcessThrottle.GUID
+  nameWithType: MultiProcessThrottle.GUID
+- uid: wan24.Core.MultiProcessThrottle.GUID*
+  name: GUID
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_GUID_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.GUID
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.GUID
+  nameWithType: MultiProcessThrottle.GUID
+- uid: wan24.Core.MultiProcessThrottle.HandleDisposedThrottle(wan24.Core.IDisposableObject,EventArgs)
+  name: HandleDisposedThrottle(IDisposableObject, EventArgs)
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_HandleDisposedThrottle_wan24_Core_IDisposableObject_EventArgs_
+  commentId: M:wan24.Core.MultiProcessThrottle.HandleDisposedThrottle(wan24.Core.IDisposableObject,EventArgs)
+  fullName: wan24.Core.MultiProcessThrottle.HandleDisposedThrottle(wan24.Core.IDisposableObject, EventArgs)
+  nameWithType: MultiProcessThrottle.HandleDisposedThrottle(IDisposableObject, EventArgs)
+- uid: wan24.Core.MultiProcessThrottle.HandleDisposedThrottle*
+  name: HandleDisposedThrottle
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_HandleDisposedThrottle_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.HandleDisposedThrottle
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.HandleDisposedThrottle
+  nameWithType: MultiProcessThrottle.HandleDisposedThrottle
+- uid: wan24.Core.MultiProcessThrottle.LastLimit
+  name: LastLimit
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_LastLimit
+  commentId: F:wan24.Core.MultiProcessThrottle.LastLimit
+  fullName: wan24.Core.MultiProcessThrottle.LastLimit
+  nameWithType: MultiProcessThrottle.LastLimit
+- uid: wan24.Core.MultiProcessThrottle.Name
+  name: Name
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_Name
+  commentId: P:wan24.Core.MultiProcessThrottle.Name
+  fullName: wan24.Core.MultiProcessThrottle.Name
+  nameWithType: MultiProcessThrottle.Name
+- uid: wan24.Core.MultiProcessThrottle.Name*
+  name: Name
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_Name_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.Name
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.Name
+  nameWithType: MultiProcessThrottle.Name
+- uid: wan24.Core.MultiProcessThrottle.RemoveThrottle*
+  name: RemoveThrottle
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_RemoveThrottle_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.RemoveThrottle
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.RemoveThrottle
+  nameWithType: MultiProcessThrottle.RemoveThrottle
+- uid: wan24.Core.MultiProcessThrottle.RemoveThrottle``1(``0)
+  name: RemoveThrottle<T>(T)
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_RemoveThrottle__1___0_
+  commentId: M:wan24.Core.MultiProcessThrottle.RemoveThrottle``1(``0)
+  name.vb: RemoveThrottle(Of T)(T)
+  fullName: wan24.Core.MultiProcessThrottle.RemoveThrottle<T>(T)
+  fullName.vb: wan24.Core.MultiProcessThrottle.RemoveThrottle(Of T)(T)
+  nameWithType: MultiProcessThrottle.RemoveThrottle<T>(T)
+  nameWithType.vb: MultiProcessThrottle.RemoveThrottle(Of T)(T)
+- uid: wan24.Core.MultiProcessThrottle.RemoveThrottleAsync*
+  name: RemoveThrottleAsync
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_RemoveThrottleAsync_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.RemoveThrottleAsync
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.RemoveThrottleAsync
+  nameWithType: MultiProcessThrottle.RemoveThrottleAsync
+- uid: wan24.Core.MultiProcessThrottle.RemoveThrottleAsync``1(``0,CancellationToken)
+  name: RemoveThrottleAsync<T>(T, CancellationToken)
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_RemoveThrottleAsync__1___0_CancellationToken_
+  commentId: M:wan24.Core.MultiProcessThrottle.RemoveThrottleAsync``1(``0,CancellationToken)
+  name.vb: RemoveThrottleAsync(Of T)(T, CancellationToken)
+  fullName: wan24.Core.MultiProcessThrottle.RemoveThrottleAsync<T>(T, CancellationToken)
+  fullName.vb: wan24.Core.MultiProcessThrottle.RemoveThrottleAsync(Of T)(T, CancellationToken)
+  nameWithType: MultiProcessThrottle.RemoveThrottleAsync<T>(T, CancellationToken)
+  nameWithType.vb: MultiProcessThrottle.RemoveThrottleAsync(Of T)(T, CancellationToken)
+- uid: wan24.Core.MultiProcessThrottle.SetLimitAsync(System.Int32,CancellationToken)
+  name: SetLimitAsync(Int32, CancellationToken)
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_SetLimitAsync_System_Int32_CancellationToken_
+  commentId: M:wan24.Core.MultiProcessThrottle.SetLimitAsync(System.Int32,CancellationToken)
+  fullName: wan24.Core.MultiProcessThrottle.SetLimitAsync(System.Int32, CancellationToken)
+  nameWithType: MultiProcessThrottle.SetLimitAsync(Int32, CancellationToken)
+- uid: wan24.Core.MultiProcessThrottle.SetLimitAsync*
+  name: SetLimitAsync
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_SetLimitAsync_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.SetLimitAsync
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.SetLimitAsync
+  nameWithType: MultiProcessThrottle.SetLimitAsync
+- uid: wan24.Core.MultiProcessThrottle.State
+  name: State
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_State
+  commentId: P:wan24.Core.MultiProcessThrottle.State
+  fullName: wan24.Core.MultiProcessThrottle.State
+  nameWithType: MultiProcessThrottle.State
+- uid: wan24.Core.MultiProcessThrottle.State*
+  name: State
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_State_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.State
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.State
+  nameWithType: MultiProcessThrottle.State
+- uid: wan24.Core.MultiProcessThrottle.Sync
+  name: Sync
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_Sync
+  commentId: F:wan24.Core.MultiProcessThrottle.Sync
+  fullName: wan24.Core.MultiProcessThrottle.Sync
+  nameWithType: MultiProcessThrottle.Sync
+- uid: wan24.Core.MultiProcessThrottle.Throttles
+  name: Throttles
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_Throttles
+  commentId: P:wan24.Core.MultiProcessThrottle.Throttles
+  fullName: wan24.Core.MultiProcessThrottle.Throttles
+  nameWithType: MultiProcessThrottle.Throttles
+- uid: wan24.Core.MultiProcessThrottle.Throttles*
+  name: Throttles
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_Throttles_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.Throttles
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.Throttles
+  nameWithType: MultiProcessThrottle.Throttles
+- uid: wan24.Core.MultiProcessThrottle.TotalLimit
+  name: TotalLimit
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_TotalLimit
+  commentId: P:wan24.Core.MultiProcessThrottle.TotalLimit
+  fullName: wan24.Core.MultiProcessThrottle.TotalLimit
+  nameWithType: MultiProcessThrottle.TotalLimit
+- uid: wan24.Core.MultiProcessThrottle.TotalLimit*
+  name: TotalLimit
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_TotalLimit_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.TotalLimit
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.TotalLimit
+  nameWithType: MultiProcessThrottle.TotalLimit
+- uid: wan24.Core.MultiProcessThrottle.UpdateCurrentLimit
+  name: UpdateCurrentLimit()
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_UpdateCurrentLimit
+  commentId: M:wan24.Core.MultiProcessThrottle.UpdateCurrentLimit
+  fullName: wan24.Core.MultiProcessThrottle.UpdateCurrentLimit()
+  nameWithType: MultiProcessThrottle.UpdateCurrentLimit()
+- uid: wan24.Core.MultiProcessThrottle.UpdateCurrentLimit*
+  name: UpdateCurrentLimit
+  href: api/wan24.Core.MultiProcessThrottle.html#wan24_Core_MultiProcessThrottle_UpdateCurrentLimit_
+  commentId: Overload:wan24.Core.MultiProcessThrottle.UpdateCurrentLimit
+  isSpec: "True"
+  fullName: wan24.Core.MultiProcessThrottle.UpdateCurrentLimit
+  nameWithType: MultiProcessThrottle.UpdateCurrentLimit
+- uid: wan24.Core.MultiThrottledStream
+  name: MultiThrottledStream
+  href: api/wan24.Core.MultiThrottledStream.html
+  commentId: T:wan24.Core.MultiThrottledStream
+  fullName: wan24.Core.MultiThrottledStream
+  nameWithType: MultiThrottledStream
+- uid: wan24.Core.MultiThrottledStream.#ctor(System.Int32@,System.Int32@)
+  name: MultiThrottledStream(in Int32, in Int32)
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream__ctor_System_Int32__System_Int32__
+  commentId: M:wan24.Core.MultiThrottledStream.#ctor(System.Int32@,System.Int32@)
+  name.vb: MultiThrottledStream(ByRef Int32, ByRef Int32)
+  fullName: wan24.Core.MultiThrottledStream.MultiThrottledStream(in System.Int32, in System.Int32)
+  fullName.vb: wan24.Core.MultiThrottledStream.MultiThrottledStream(ByRef System.Int32, ByRef System.Int32)
+  nameWithType: MultiThrottledStream.MultiThrottledStream(in Int32, in Int32)
+  nameWithType.vb: MultiThrottledStream.MultiThrottledStream(ByRef Int32, ByRef Int32)
+- uid: wan24.Core.MultiThrottledStream.#ctor*
+  name: MultiThrottledStream
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream__ctor_
+  commentId: Overload:wan24.Core.MultiThrottledStream.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.MultiThrottledStream
+  nameWithType: MultiThrottledStream.MultiThrottledStream
+- uid: wan24.Core.MultiThrottledStream._Streams
+  name: _Streams
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream__Streams
+  commentId: F:wan24.Core.MultiThrottledStream._Streams
+  fullName: wan24.Core.MultiThrottledStream._Streams
+  nameWithType: MultiThrottledStream._Streams
+- uid: wan24.Core.MultiThrottledStream._TotalReadLimit
+  name: _TotalReadLimit
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream__TotalReadLimit
+  commentId: F:wan24.Core.MultiThrottledStream._TotalReadLimit
+  fullName: wan24.Core.MultiThrottledStream._TotalReadLimit
+  nameWithType: MultiThrottledStream._TotalReadLimit
+- uid: wan24.Core.MultiThrottledStream._TotalWriteLimit
+  name: _TotalWriteLimit
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream__TotalWriteLimit
+  commentId: F:wan24.Core.MultiThrottledStream._TotalWriteLimit
+  fullName: wan24.Core.MultiThrottledStream._TotalWriteLimit
+  nameWithType: MultiThrottledStream._TotalWriteLimit
+- uid: wan24.Core.MultiThrottledStream.AddStream*
+  name: AddStream
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_AddStream_
+  commentId: Overload:wan24.Core.MultiThrottledStream.AddStream
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.AddStream
+  nameWithType: MultiThrottledStream.AddStream
+- uid: wan24.Core.MultiThrottledStream.AddStream``1(``0)
+  name: AddStream<T>(T)
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_AddStream__1___0_
+  commentId: M:wan24.Core.MultiThrottledStream.AddStream``1(``0)
+  name.vb: AddStream(Of T)(T)
+  fullName: wan24.Core.MultiThrottledStream.AddStream<T>(T)
+  fullName.vb: wan24.Core.MultiThrottledStream.AddStream(Of T)(T)
+  nameWithType: MultiThrottledStream.AddStream<T>(T)
+  nameWithType.vb: MultiThrottledStream.AddStream(Of T)(T)
+- uid: wan24.Core.MultiThrottledStream.AddStreamAsync*
+  name: AddStreamAsync
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_AddStreamAsync_
+  commentId: Overload:wan24.Core.MultiThrottledStream.AddStreamAsync
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.AddStreamAsync
+  nameWithType: MultiThrottledStream.AddStreamAsync
+- uid: wan24.Core.MultiThrottledStream.AddStreamAsync``1(``0,CancellationToken)
+  name: AddStreamAsync<T>(T, CancellationToken)
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_AddStreamAsync__1___0_CancellationToken_
+  commentId: M:wan24.Core.MultiThrottledStream.AddStreamAsync``1(``0,CancellationToken)
+  name.vb: AddStreamAsync(Of T)(T, CancellationToken)
+  fullName: wan24.Core.MultiThrottledStream.AddStreamAsync<T>(T, CancellationToken)
+  fullName.vb: wan24.Core.MultiThrottledStream.AddStreamAsync(Of T)(T, CancellationToken)
+  nameWithType: MultiThrottledStream.AddStreamAsync<T>(T, CancellationToken)
+  nameWithType.vb: MultiThrottledStream.AddStreamAsync(Of T)(T, CancellationToken)
+- uid: wan24.Core.MultiThrottledStream.Clear
+  name: Clear()
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Clear
+  commentId: M:wan24.Core.MultiThrottledStream.Clear
+  fullName: wan24.Core.MultiThrottledStream.Clear()
+  nameWithType: MultiThrottledStream.Clear()
+- uid: wan24.Core.MultiThrottledStream.Clear*
+  name: Clear
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Clear_
+  commentId: Overload:wan24.Core.MultiThrottledStream.Clear
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.Clear
+  nameWithType: MultiThrottledStream.Clear
+- uid: wan24.Core.MultiThrottledStream.ClearAsync(CancellationToken)
+  name: ClearAsync(CancellationToken)
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_ClearAsync_CancellationToken_
+  commentId: M:wan24.Core.MultiThrottledStream.ClearAsync(CancellationToken)
+  fullName: wan24.Core.MultiThrottledStream.ClearAsync(CancellationToken)
+  nameWithType: MultiThrottledStream.ClearAsync(CancellationToken)
+- uid: wan24.Core.MultiThrottledStream.ClearAsync*
+  name: ClearAsync
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_ClearAsync_
+  commentId: Overload:wan24.Core.MultiThrottledStream.ClearAsync
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.ClearAsync
+  nameWithType: MultiThrottledStream.ClearAsync
+- uid: wan24.Core.MultiThrottledStream.Count
+  name: Count
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Count
+  commentId: P:wan24.Core.MultiThrottledStream.Count
+  fullName: wan24.Core.MultiThrottledStream.Count
+  nameWithType: MultiThrottledStream.Count
+- uid: wan24.Core.MultiThrottledStream.Count*
+  name: Count
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Count_
+  commentId: Overload:wan24.Core.MultiThrottledStream.Count
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.Count
+  nameWithType: MultiThrottledStream.Count
+- uid: wan24.Core.MultiThrottledStream.CurrentReadLimit
+  name: CurrentReadLimit
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_CurrentReadLimit
+  commentId: P:wan24.Core.MultiThrottledStream.CurrentReadLimit
+  fullName: wan24.Core.MultiThrottledStream.CurrentReadLimit
+  nameWithType: MultiThrottledStream.CurrentReadLimit
+- uid: wan24.Core.MultiThrottledStream.CurrentReadLimit*
+  name: CurrentReadLimit
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_CurrentReadLimit_
+  commentId: Overload:wan24.Core.MultiThrottledStream.CurrentReadLimit
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.CurrentReadLimit
+  nameWithType: MultiThrottledStream.CurrentReadLimit
+- uid: wan24.Core.MultiThrottledStream.CurrentWriteLimit
+  name: CurrentWriteLimit
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_CurrentWriteLimit
+  commentId: P:wan24.Core.MultiThrottledStream.CurrentWriteLimit
+  fullName: wan24.Core.MultiThrottledStream.CurrentWriteLimit
+  nameWithType: MultiThrottledStream.CurrentWriteLimit
+- uid: wan24.Core.MultiThrottledStream.CurrentWriteLimit*
+  name: CurrentWriteLimit
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_CurrentWriteLimit_
+  commentId: Overload:wan24.Core.MultiThrottledStream.CurrentWriteLimit
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.CurrentWriteLimit
+  nameWithType: MultiThrottledStream.CurrentWriteLimit
+- uid: wan24.Core.MultiThrottledStream.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Dispose_System_Boolean_
+  commentId: M:wan24.Core.MultiThrottledStream.Dispose(System.Boolean)
+  fullName: wan24.Core.MultiThrottledStream.Dispose(System.Boolean)
+  nameWithType: MultiThrottledStream.Dispose(Boolean)
+- uid: wan24.Core.MultiThrottledStream.Dispose*
+  name: Dispose
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Dispose_
+  commentId: Overload:wan24.Core.MultiThrottledStream.Dispose
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.Dispose
+  nameWithType: MultiThrottledStream.Dispose
+- uid: wan24.Core.MultiThrottledStream.DisposeCore
+  name: DisposeCore()
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_DisposeCore
+  commentId: M:wan24.Core.MultiThrottledStream.DisposeCore
+  fullName: wan24.Core.MultiThrottledStream.DisposeCore()
+  nameWithType: MultiThrottledStream.DisposeCore()
+- uid: wan24.Core.MultiThrottledStream.DisposeCore*
+  name: DisposeCore
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_DisposeCore_
+  commentId: Overload:wan24.Core.MultiThrottledStream.DisposeCore
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.DisposeCore
+  nameWithType: MultiThrottledStream.DisposeCore
+- uid: wan24.Core.MultiThrottledStream.GUID
+  name: GUID
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_GUID
+  commentId: P:wan24.Core.MultiThrottledStream.GUID
+  fullName: wan24.Core.MultiThrottledStream.GUID
+  nameWithType: MultiThrottledStream.GUID
+- uid: wan24.Core.MultiThrottledStream.GUID*
+  name: GUID
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_GUID_
+  commentId: Overload:wan24.Core.MultiThrottledStream.GUID
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.GUID
+  nameWithType: MultiThrottledStream.GUID
+- uid: wan24.Core.MultiThrottledStream.HandleDisposedStream(wan24.Core.IDisposableObject,EventArgs)
+  name: HandleDisposedStream(IDisposableObject, EventArgs)
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_HandleDisposedStream_wan24_Core_IDisposableObject_EventArgs_
+  commentId: M:wan24.Core.MultiThrottledStream.HandleDisposedStream(wan24.Core.IDisposableObject,EventArgs)
+  fullName: wan24.Core.MultiThrottledStream.HandleDisposedStream(wan24.Core.IDisposableObject, EventArgs)
+  nameWithType: MultiThrottledStream.HandleDisposedStream(IDisposableObject, EventArgs)
+- uid: wan24.Core.MultiThrottledStream.HandleDisposedStream*
+  name: HandleDisposedStream
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_HandleDisposedStream_
+  commentId: Overload:wan24.Core.MultiThrottledStream.HandleDisposedStream
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.HandleDisposedStream
+  nameWithType: MultiThrottledStream.HandleDisposedStream
+- uid: wan24.Core.MultiThrottledStream.LastReadLimit
+  name: LastReadLimit
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_LastReadLimit
+  commentId: F:wan24.Core.MultiThrottledStream.LastReadLimit
+  fullName: wan24.Core.MultiThrottledStream.LastReadLimit
+  nameWithType: MultiThrottledStream.LastReadLimit
+- uid: wan24.Core.MultiThrottledStream.LastWriteLimit
+  name: LastWriteLimit
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_LastWriteLimit
+  commentId: F:wan24.Core.MultiThrottledStream.LastWriteLimit
+  fullName: wan24.Core.MultiThrottledStream.LastWriteLimit
+  nameWithType: MultiThrottledStream.LastWriteLimit
+- uid: wan24.Core.MultiThrottledStream.Name
+  name: Name
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Name
+  commentId: P:wan24.Core.MultiThrottledStream.Name
+  fullName: wan24.Core.MultiThrottledStream.Name
+  nameWithType: MultiThrottledStream.Name
+- uid: wan24.Core.MultiThrottledStream.Name*
+  name: Name
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Name_
+  commentId: Overload:wan24.Core.MultiThrottledStream.Name
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.Name
+  nameWithType: MultiThrottledStream.Name
+- uid: wan24.Core.MultiThrottledStream.RemoveStream*
+  name: RemoveStream
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_RemoveStream_
+  commentId: Overload:wan24.Core.MultiThrottledStream.RemoveStream
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.RemoveStream
+  nameWithType: MultiThrottledStream.RemoveStream
+- uid: wan24.Core.MultiThrottledStream.RemoveStream``1(``0)
+  name: RemoveStream<T>(T)
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_RemoveStream__1___0_
+  commentId: M:wan24.Core.MultiThrottledStream.RemoveStream``1(``0)
+  name.vb: RemoveStream(Of T)(T)
+  fullName: wan24.Core.MultiThrottledStream.RemoveStream<T>(T)
+  fullName.vb: wan24.Core.MultiThrottledStream.RemoveStream(Of T)(T)
+  nameWithType: MultiThrottledStream.RemoveStream<T>(T)
+  nameWithType.vb: MultiThrottledStream.RemoveStream(Of T)(T)
+- uid: wan24.Core.MultiThrottledStream.RemoveStreamAsync*
+  name: RemoveStreamAsync
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_RemoveStreamAsync_
+  commentId: Overload:wan24.Core.MultiThrottledStream.RemoveStreamAsync
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.RemoveStreamAsync
+  nameWithType: MultiThrottledStream.RemoveStreamAsync
+- uid: wan24.Core.MultiThrottledStream.RemoveStreamAsync``1(``0,CancellationToken)
+  name: RemoveStreamAsync<T>(T, CancellationToken)
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_RemoveStreamAsync__1___0_CancellationToken_
+  commentId: M:wan24.Core.MultiThrottledStream.RemoveStreamAsync``1(``0,CancellationToken)
+  name.vb: RemoveStreamAsync(Of T)(T, CancellationToken)
+  fullName: wan24.Core.MultiThrottledStream.RemoveStreamAsync<T>(T, CancellationToken)
+  fullName.vb: wan24.Core.MultiThrottledStream.RemoveStreamAsync(Of T)(T, CancellationToken)
+  nameWithType: MultiThrottledStream.RemoveStreamAsync<T>(T, CancellationToken)
+  nameWithType.vb: MultiThrottledStream.RemoveStreamAsync(Of T)(T, CancellationToken)
+- uid: wan24.Core.MultiThrottledStream.SetLimits(System.Int32,System.Int32)
+  name: SetLimits(Int32, Int32)
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_SetLimits_System_Int32_System_Int32_
+  commentId: M:wan24.Core.MultiThrottledStream.SetLimits(System.Int32,System.Int32)
+  fullName: wan24.Core.MultiThrottledStream.SetLimits(System.Int32, System.Int32)
+  nameWithType: MultiThrottledStream.SetLimits(Int32, Int32)
+- uid: wan24.Core.MultiThrottledStream.SetLimits*
+  name: SetLimits
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_SetLimits_
+  commentId: Overload:wan24.Core.MultiThrottledStream.SetLimits
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.SetLimits
+  nameWithType: MultiThrottledStream.SetLimits
+- uid: wan24.Core.MultiThrottledStream.SetLimitsAsync(System.Int32,System.Int32,CancellationToken)
+  name: SetLimitsAsync(Int32, Int32, CancellationToken)
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_SetLimitsAsync_System_Int32_System_Int32_CancellationToken_
+  commentId: M:wan24.Core.MultiThrottledStream.SetLimitsAsync(System.Int32,System.Int32,CancellationToken)
+  fullName: wan24.Core.MultiThrottledStream.SetLimitsAsync(System.Int32, System.Int32, CancellationToken)
+  nameWithType: MultiThrottledStream.SetLimitsAsync(Int32, Int32, CancellationToken)
+- uid: wan24.Core.MultiThrottledStream.SetLimitsAsync*
+  name: SetLimitsAsync
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_SetLimitsAsync_
+  commentId: Overload:wan24.Core.MultiThrottledStream.SetLimitsAsync
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.SetLimitsAsync
+  nameWithType: MultiThrottledStream.SetLimitsAsync
+- uid: wan24.Core.MultiThrottledStream.State
+  name: State
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_State
+  commentId: P:wan24.Core.MultiThrottledStream.State
+  fullName: wan24.Core.MultiThrottledStream.State
+  nameWithType: MultiThrottledStream.State
+- uid: wan24.Core.MultiThrottledStream.State*
+  name: State
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_State_
+  commentId: Overload:wan24.Core.MultiThrottledStream.State
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.State
+  nameWithType: MultiThrottledStream.State
+- uid: wan24.Core.MultiThrottledStream.Streams
+  name: Streams
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Streams
+  commentId: P:wan24.Core.MultiThrottledStream.Streams
+  fullName: wan24.Core.MultiThrottledStream.Streams
+  nameWithType: MultiThrottledStream.Streams
+- uid: wan24.Core.MultiThrottledStream.Streams*
+  name: Streams
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Streams_
+  commentId: Overload:wan24.Core.MultiThrottledStream.Streams
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.Streams
+  nameWithType: MultiThrottledStream.Streams
+- uid: wan24.Core.MultiThrottledStream.Sync
+  name: Sync
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Sync
+  commentId: F:wan24.Core.MultiThrottledStream.Sync
+  fullName: wan24.Core.MultiThrottledStream.Sync
+  nameWithType: MultiThrottledStream.Sync
+- uid: wan24.Core.MultiThrottledStream.TotalReadLimit
+  name: TotalReadLimit
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_TotalReadLimit
+  commentId: P:wan24.Core.MultiThrottledStream.TotalReadLimit
+  fullName: wan24.Core.MultiThrottledStream.TotalReadLimit
+  nameWithType: MultiThrottledStream.TotalReadLimit
+- uid: wan24.Core.MultiThrottledStream.TotalReadLimit*
+  name: TotalReadLimit
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_TotalReadLimit_
+  commentId: Overload:wan24.Core.MultiThrottledStream.TotalReadLimit
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.TotalReadLimit
+  nameWithType: MultiThrottledStream.TotalReadLimit
+- uid: wan24.Core.MultiThrottledStream.TotalWriteLimit
+  name: TotalWriteLimit
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_TotalWriteLimit
+  commentId: P:wan24.Core.MultiThrottledStream.TotalWriteLimit
+  fullName: wan24.Core.MultiThrottledStream.TotalWriteLimit
+  nameWithType: MultiThrottledStream.TotalWriteLimit
+- uid: wan24.Core.MultiThrottledStream.TotalWriteLimit*
+  name: TotalWriteLimit
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_TotalWriteLimit_
+  commentId: Overload:wan24.Core.MultiThrottledStream.TotalWriteLimit
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.TotalWriteLimit
+  nameWithType: MultiThrottledStream.TotalWriteLimit
+- uid: wan24.Core.MultiThrottledStream.UpdateCurrentLimit
+  name: UpdateCurrentLimit()
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_UpdateCurrentLimit
+  commentId: M:wan24.Core.MultiThrottledStream.UpdateCurrentLimit
+  fullName: wan24.Core.MultiThrottledStream.UpdateCurrentLimit()
+  nameWithType: MultiThrottledStream.UpdateCurrentLimit()
+- uid: wan24.Core.MultiThrottledStream.UpdateCurrentLimit*
+  name: UpdateCurrentLimit
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_UpdateCurrentLimit_
+  commentId: Overload:wan24.Core.MultiThrottledStream.UpdateCurrentLimit
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.UpdateCurrentLimit
+  nameWithType: MultiThrottledStream.UpdateCurrentLimit
 - uid: wan24.Core.NetworkHelper
   name: NetworkHelper
   href: api/wan24.Core.NetworkHelper.html
