@@ -13,9 +13,9 @@ namespace wan24.Core
         private static Type? _EmailType = null;
 
         /// <summary>
-        /// MTA
+        /// MTA connection
         /// </summary>
-        public static IMta? MTA { get; set; }
+        public static IMtaConnection? MtaConnection { get; set; }
 
         /// <summary>
         /// Email type
@@ -61,7 +61,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static bool Send(in string fromEmail, in string toEmail, in string subject, in string? text, in string? html, params IEmailAttachment[] attachments)
         {
-            if (MTA is not IMta mta) throw new InvalidOperationException("No MTA");
+            if (MtaConnection is not IMta mta) throw new InvalidOperationException("No MTA connection");
             using IEmail email = Create(fromEmail, toEmail, subject, text, html, attachments);
             return mta.Send(email);
         }
@@ -88,7 +88,7 @@ namespace wan24.Core
             params IEmailAttachment[] attachments
             )
         {
-            if (MTA is not IMta mta) throw new InvalidOperationException("No MTA");
+            if (MtaConnection is not IMta mta) throw new InvalidOperationException("No MTA connection");
             IEmail email = Create(fromEmail, toEmail, subject, text, html, attachments);
             await using (email.DynamicContext())
                 return await mta.SendAsync(email, cancellationToken).DynamicContext();
@@ -104,7 +104,7 @@ namespace wan24.Core
         {
             try
             {
-                if (MTA is not IMta mta) throw new InvalidOperationException("No MTA");
+                if (MtaConnection is not IMta mta) throw new InvalidOperationException("No MTA connection");
                 return mta.Send(email);
             }
             finally
@@ -127,7 +127,7 @@ namespace wan24.Core
         {
             try
             {
-                if (MTA is not IMta mta) throw new InvalidOperationException("No MTA");
+                if (MtaConnection is not IMta mta) throw new InvalidOperationException("No MTA connection");
                 return await mta.SendAsync(email, cancellationToken).DynamicContext();
             }
             finally
