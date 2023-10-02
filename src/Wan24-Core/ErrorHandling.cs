@@ -27,6 +27,11 @@ namespace wan24.Core
         /// Service error source
         /// </summary>
         public const int SERVICE_ERROR = 4;
+        // wan24-Crypto is #5
+        /// <summary>
+        /// Bootstrapper error source
+        /// </summary>
+        public const int BOOTSTRAPPER_ERROR = 6;
 
         /// <summary>
         /// An object for thread synchronization

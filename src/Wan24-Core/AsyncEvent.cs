@@ -73,6 +73,11 @@ namespace wan24.Core
         /// </summary>
         public bool HasHandlers => EventHandlers.Count != 0 || AsyncEventHandlers.Count != 0;
 
+        /// <summary>
+        /// Get the abstract interface of this instance
+        /// </summary>
+        public IAsyncEvent<tSender, tArgs> Abstract => this;
+
         /// <inheritdoc/>
         tSender? IAsyncEvent<tSender, tArgs>.Sender => Sender;
 
@@ -129,6 +134,18 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Detach all event handlers
+        /// </summary>
+        private void DetachAll()
+        {
+            lock (SyncObject)
+            {
+                EventHandlers.Clear();
+                AsyncEventHandlers.Clear();
+            }
+        }
+
+        /// <summary>
         /// Raise the event
         /// </summary>
         /// <param name="timeout">Timeout</param>
@@ -165,14 +182,8 @@ namespace wan24.Core
         {
             lock (SyncObject)
             {
-                if (FirstRaised == DateTime.MinValue)
-                {
-                    FirstRaised = LastRaised = DateTime.Now;
-                }
-                else
-                {
-                    LastRaised = DateTime.Now;
-                }
+                if (FirstRaised == DateTime.MinValue) FirstRaised = LastRaised = DateTime.Now;
+                LastRaised = DateTime.Now;
                 _RaiseCount++;
             }
             if (!HasHandlers) return;
@@ -217,6 +228,9 @@ namespace wan24.Core
                 }
             }
         }
+
+        /// <inheritdoc/>
+        void IAsyncEvent<tSender, tArgs>.DetachAll() => DetachAll();
 
         /// <inheritdoc/>
         Task IAsyncEvent<tSender, tArgs>.RaiseEventAsync(TimeSpan? timeout, CancellationToken cancellationToken)

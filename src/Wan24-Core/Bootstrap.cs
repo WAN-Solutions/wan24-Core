@@ -33,9 +33,9 @@ namespace wan24.Core
             };
 
         /// <summary>
-        /// Asynchronous bootstrapper (after running bootstrapper methods)
+        /// Asynchronous bootstrapper (executed in parallel at the end of the bootstrapper before raising <see cref="OnBootstrap"/>)
         /// </summary>
-        public static HashSet<BootStrapAsync_Delegate> AsyncBootstrapper { get; } = new();
+        public static AsyncEvent<object, EventArgs> OnBootstrapAsync { get; } = new();
 
         /// <summary>
         /// Scan assemblies for classes with a <see cref="BootstrapperAttribute"/>?
@@ -139,13 +139,9 @@ namespace wan24.Core
                     }
                 }
                 // Raise the events
-                foreach (BootStrapAsync_Delegate bootstrapper in AsyncBootstrapper.ToArray())
-                {
-                    await bootstrapper(cancellationToken).DynamicContext();
-                    cancellationToken.ThrowIfCancellationRequested();
-                }
+                await OnBootstrapAsync.Abstract.RaiseEventAsync(cancellationToken: cancellationToken).DynamicContext();
+                OnBootstrapAsync.Abstract.DetachAll();
                 OnBootstrap?.Invoke();
-                AsyncBootstrapper.Clear();
             }
             finally
             {
@@ -170,8 +166,9 @@ namespace wan24.Core
                 await Async(startAssembly, cancellationToken).DynamicContext();
                 return true;
             }
-            catch (BootstrapperException)
+            catch (BootstrapperException ex)
             {
+                ErrorHandling.Handle(new(ex, ErrorHandling.BOOTSTRAPPER_ERROR));
                 return false;
             }
         }
