@@ -97,7 +97,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="rented">Rented object</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator T(RentedObjectStruct<T> rented) => rented.Object;
+        public static implicit operator T(in RentedObjectStruct<T> rented) => rented.Object;
 
         /// <summary>
         /// Create an instance asynchronous
