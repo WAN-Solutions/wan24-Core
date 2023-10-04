@@ -26,6 +26,7 @@
                 yield return new("Machine", Environment.MachineName, "Machine name");
                 yield return new("OS", Environment.OSVersion, "Operating system identifier");
                 yield return new("64bit OS", Environment.Is64BitOperatingSystem, "Is a 64bit operating system?");
+                yield return new("Browser", ENV.IsBrowserApp, "Is a browser app (WASM)?");
                 yield return new("Uptime", TimeSpan.FromMilliseconds(Environment.TickCount64), "Operating system uptime since the last restart");
                 yield return new(".NET CLR version", Environment.Version, ".NET CLR version");
                 yield return new("CPU cores", Environment.ProcessorCount, "Number of CPU cores");

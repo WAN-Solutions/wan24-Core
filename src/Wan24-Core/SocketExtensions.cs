@@ -10,7 +10,7 @@ namespace wan24.Core
         /// <summary>
         /// One byte waste buffer (may be written from multiple threads, but never red)
         /// </summary>
-        private static readonly RentedArrayStruct<byte> OneByteWasteBuffer = new(len: 1);
+        private static readonly RentedArrayStructSimple<byte> OneByteWasteBuffer = new(len: 1);
 
         /// <summary>
         /// Determine if a socket is connected (may return <see langword="false"/>, if even if connected - not 100% safe...)

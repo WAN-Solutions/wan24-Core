@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics;
 using System.Reflection;
 using System.Runtime;
 
@@ -17,6 +18,10 @@ namespace wan24.Core
         /// Asynchronous disposing?
         /// </summary>
         protected readonly bool AsyncDisposing;
+        /// <summary>
+        /// Stack information
+        /// </summary>
+        protected IStackInfo? StackInfo = null;
 
         /// <summary>
         /// Constructor
@@ -34,7 +39,14 @@ namespace wan24.Core
         /// </summary>
         ~DisposableBase()
         {
-            if (!DoDispose()) return;
+            Debugger.Break();
+            if (StackInfo is not null)
+                ErrorHandling.Handle(new StackInfoException(StackInfo, "Destructor called"));
+            if (!DoDispose())
+            {
+                Logging.WriteWarning($"Destructor on {GetType()} called, but seems to be disposed already");
+                return;
+            }
             Dispose(disposing: false);
             DisposeSyncObject.Dispose();
             IsDisposed = true;

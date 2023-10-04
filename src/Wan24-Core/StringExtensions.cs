@@ -1,5 +1,6 @@
 ﻿using System.Runtime;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace wan24.Core
 {
@@ -266,5 +267,26 @@ namespace wan24.Core
                 return i == len;
             }
         }
+
+        /// <summary>
+        /// Try to match a string with a regular expression
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="pattern">Regular expression pattern</param>
+        /// <param name="options">Regular expression options</param>
+        /// <returns>If the pattern does match the given string</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static bool IsMatch(this string str, string pattern, RegexOptions options = RegexOptions.None) => new Regex(pattern, options).IsMatch(str);
+
+        /// <summary>
+        /// Try to match a string with a regular expression
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="pattern">Regular expression pattern</param>
+        /// <param name="start">Start offset</param>
+        /// <param name="options">Regular expression options</param>
+        /// <returns>If the pattern does match the given string</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static bool IsMatch(this string str, string pattern, int start, RegexOptions options = RegexOptions.None) => new Regex(pattern, options).IsMatch(str, start);
     }
 }

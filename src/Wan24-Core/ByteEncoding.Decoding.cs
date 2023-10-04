@@ -72,7 +72,7 @@ namespace wan24.Core
 #endif
         public static byte[] Decode(this ReadOnlySpan<char> str, in ReadOnlySpan<char> charMap, byte[]? res = null)
         {
-            ValidateCharMap(charMap);
+            if (!SkipCharMapCheck) ValidateCharMap(charMap);
             int len = str.Length;
             if (len == 0) return Array.Empty<byte>();
             int bits = (len << 2) + (len << 1),
@@ -197,7 +197,7 @@ namespace wan24.Core
 #endif
         public static void Decode(this ReadOnlySpan<char> str, in Span<byte> res, in ReadOnlySpan<char> charMap)
         {
-            ValidateCharMap(charMap);
+            if (!SkipCharMapCheck) ValidateCharMap(charMap);
             int len = str.Length;
             if (len == 0) return;
             int bits = (len << 2) + (len << 1),

@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Email attachment
@@ -24,12 +26,7 @@
         /// <param name="fileName">Filename</param>
         /// <param name="mimeType">MIME type</param>
         /// <param name="data">Data</param>
-        public EmailAttachment(in string fileName, in string mimeType, in byte[] data) : base()
-        {
-            FileName = fileName;
-            MimeType = mimeType;
-            Stream = new MemoryPoolStream(data);
-        }
+        public EmailAttachment(in string fileName, in string mimeType, in byte[] data) : this(fileName, mimeType, new MemoryPoolStream(data) as Stream) { }
 
         /// <summary>
         /// Constructor
@@ -37,12 +34,9 @@
         /// <param name="fileName">Filename</param>
         /// <param name="mimeType">MIME type</param>
         /// <param name="localFileName">Local filename</param>
-        public EmailAttachment(in string fileName, in string mimeType, in string localFileName) : base()
-        {
-            FileName = fileName;
-            MimeType = mimeType;
-            Stream = new FileStream(localFileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-        }
+        public EmailAttachment(in string fileName, in string mimeType, in string localFileName)
+            : this(fileName, mimeType, new FileStream(localFileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+        { }
 
         /// <summary>
         /// Constructor
@@ -59,11 +53,8 @@
             in StreamPool<PooledMemoryStream>? memoryStreamPool = null, 
             in StreamPool<PooledTempFileStream>? fileStreamPool = null
             )
-            : base()
+            : this(fileName ?? attachment.FileName, mimeType ?? attachment.MimeType, attachment.Stream.Length, memoryStreamPool, fileStreamPool)
         {
-            FileName = fileName ?? attachment.FileName;
-            MimeType = mimeType ?? attachment.MimeType;
-            Stream = new PooledTempStream(attachment.Stream.Length, memoryStreamPool, fileStreamPool);
             attachment.Stream.Position = 0;
             attachment.Stream.CopyTo(Stream);
             Stream.Position = 0;
@@ -95,6 +86,7 @@
         public virtual string FileName { get; }
 
         /// <inheritdoc/>
+        [RegularExpression(RegularExpressions.MIME_TYPE)]
         public virtual string MimeType { get; }
 
         /// <inheritdoc/>

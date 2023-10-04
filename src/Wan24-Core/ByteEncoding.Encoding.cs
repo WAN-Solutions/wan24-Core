@@ -61,7 +61,7 @@ namespace wan24.Core
 #endif
         public static char[] Encode(this ReadOnlySpan<byte> data, in ReadOnlySpan<char> charMap, char[]? res = null)
         {
-            ValidateCharMap(charMap);
+            if (!SkipCharMapCheck) ValidateCharMap(charMap);
             int len = data.Length;
             if (len == 0) return Array.Empty<char>();
             int bitOffset = 0,
@@ -162,7 +162,7 @@ namespace wan24.Core
 #endif
         public static void Encode(this ReadOnlySpan<byte> data, in Span<char> res, in ReadOnlySpan<char> charMap)
         {
-            ValidateCharMap(charMap);
+            if (!SkipCharMapCheck) ValidateCharMap(charMap);
             int len = data.Length;
             if (len == 0) return;
             int bitOffset = 0,

@@ -12,7 +12,7 @@
         /// <param name="text">Text body</param>
         /// <param name="html">HTML body</param>
         /// <param name="attachments">Attachments</param>
-        public EmailTemplate(in string subject, in string? text, in string? html, params IEmailAttachment[] attachments)
+        public EmailTemplate(in string subject, in string? text = null, in string? html = null, params IEmailAttachment[] attachments)
             : this(DefaultEmailType ?? throw new InvalidOperationException("No default email type"), subject, text, html, attachments)
         { }
 
@@ -24,7 +24,7 @@
         /// <param name="text">Text body</param>
         /// <param name="html">HTML body</param>
         /// <param name="attachments">Attachments</param>
-        public EmailTemplate(in Type emailType, in string subject, in string? text, in string? html, params IEmailAttachment[] attachments)
+        public EmailTemplate(in Type emailType, in string subject, in string? text = null, in string? html = null, params IEmailAttachment[] attachments)
             : base(subject, text, html, attachments)
         {
             try

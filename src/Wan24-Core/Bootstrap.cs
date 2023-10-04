@@ -139,7 +139,7 @@ namespace wan24.Core
                     }
                 }
                 // Raise the events
-                await OnBootstrapAsync.Abstract.RaiseEventAsync(cancellationToken: cancellationToken).DynamicContext();
+                await OnBootstrapAsync.Abstract.RaiseEventAsync(new object(), cancellationToken: cancellationToken).DynamicContext();
                 OnBootstrapAsync.Abstract.DetachAll();
                 OnBootstrap?.Invoke();
             }

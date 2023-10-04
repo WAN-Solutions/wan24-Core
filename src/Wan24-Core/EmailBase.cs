@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Base class for an email
@@ -19,7 +21,15 @@
         /// <param name="text">Text body</param>
         /// <param name="html">HTML body</param>
         /// <param name="attachments">Attachments</param>
-        protected EmailBase(in string fromEmail, in string toEmail, in string subject, in string? text, in string? html, params IEmailAttachment[] attachments) : this()
+        protected EmailBase(
+            in string fromEmail, 
+            in string toEmail, 
+            in string subject, 
+            in string? text = null, 
+            in string? html = null, 
+            params IEmailAttachment[] attachments
+            )
+            : this()
         {
             FromEmail = fromEmail;
             ToEmail = toEmail;
@@ -35,12 +45,15 @@
         protected EmailBase() : base() { }
 
         /// <inheritdoc/>
+        [EmailAddress]
         public virtual string FromEmail { get; } = null!;
 
         /// <inheritdoc/>
+        [EmailAddress]
         public virtual string ToEmail { get; } = null!;
 
         /// <inheritdoc/>
+        [RegularExpression(RegularExpressions.NO_NEW_LINE)]
         public virtual string Subject { get; } = null!;
 
         /// <inheritdoc/>

@@ -15,11 +15,6 @@ namespace wan24.Core
         private static Translation? _Current = null;
 
         /// <summary>
-        /// Regular expression to match a valid locale
-        /// </summary>
-        public static readonly Regex RX_LOCALE = new("^[a-z]{2}-[A-Z]{2}$", RegexOptions.Compiled);
-
-        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="terms">Terms</param>
@@ -134,7 +129,7 @@ namespace wan24.Core
         /// <summary>
         /// Locale
         /// </summary>
-        [RegularExpression("^[a-z]{2}-[A-Z]{2}$")]
+        [RegularExpression(RegularExpressions.LOCALE_WITH_DASH)]
         public string? Locale { get; }
 
         /// <summary>
@@ -329,7 +324,7 @@ namespace wan24.Core
         /// <returns>If the locale is valid (and exists)</returns>
         public static bool EnsureValidLocale(in string locale, in bool checkExists = true, in bool throwOnError = true)
         {
-            if (RX_LOCALE.IsMatch(locale))
+            if (RegularExpressions.RX_LOCALE_WITH_DASH.IsMatch(locale))
             {
                 if (!checkExists || Locales.ContainsKey(locale)) return true;
                 if (!throwOnError) return false;

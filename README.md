@@ -219,6 +219,7 @@ including extensions for numeric type encoding/decoding)
 - Object storage
 - Localization support
 - Email sending abstractions
+- Commonly used regular expressions and global named expression collection
 
 ## How to get it
 
