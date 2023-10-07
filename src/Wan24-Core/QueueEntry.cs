@@ -6,7 +6,7 @@ namespace wan24.Core
     /// Queue entry
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
-    public class QueueEntry<T> : IQueueEntry
+    public record class QueueEntry<T> : IQueueEntry
     {
         /// <summary>
         /// Changes
