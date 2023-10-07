@@ -4,15 +4,15 @@ using System.Diagnostics.CodeAnalysis;
 namespace wan24.Core
 {
     /// <summary>
-    /// Base class for a translation implementation
+    /// Simple dictionary based translation
     /// </summary>
-    public abstract class TranslationTermsBase : ITranslationTerms
+    public class TranslationTerms : ITranslationTerms
     {
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="terms">Terms</param>
-        protected TranslationTermsBase(IReadOnlyDictionary<string, string> terms) => Terms = terms;
+        public TranslationTerms(IReadOnlyDictionary<string, string> terms) => Terms = terms;
 
         /// <summary>
         /// Terms

@@ -6,9 +6,9 @@ using System.Runtime;
 namespace wan24.Core
 {
     /// <summary>
-    /// Base class for a disposable type
+    /// Base class for a disposable record type
     /// </summary>
-    public abstract class DisposableBase : IDisposableObject
+    public abstract record class DisposableRecordBase : IDisposableObject
     {
         /// <summary>
         /// An object for thread synchronization during disposing
@@ -26,18 +26,18 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        protected DisposableBase() : this(asyncDisposing: true) { }
+        protected DisposableRecordBase() : this(asyncDisposing: true) { }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="asyncDisposing">Asynchronous disposing?</param>
-        protected DisposableBase(in bool asyncDisposing) => AsyncDisposing = asyncDisposing;
+        protected DisposableRecordBase(in bool asyncDisposing) => AsyncDisposing = asyncDisposing;
 
         /// <summary>
         /// Destructor
         /// </summary>
-        ~DisposableBase()
+        ~DisposableRecordBase()
         {
             Debugger.Break();
             if (StackInfo is not null)

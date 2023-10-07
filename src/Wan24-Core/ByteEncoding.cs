@@ -32,6 +32,10 @@ namespace wan24.Core
         /// </summary>
         public static readonly ReadOnlyMemory<char> DefaultCharMap = _DefaultCharMap;
 
+        /// <summary>
+        /// Skip checking the used character map?
+        /// </summary>
+        public static bool SkipCharMapCheck { get; set; }
 
         /// <summary>
         /// Get the encoded character array length

@@ -73,7 +73,7 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>Equal?</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
         public static bool SlowCompare(this ReadOnlySpan<byte> a, in ReadOnlySpan<byte> b)
         {
             unchecked

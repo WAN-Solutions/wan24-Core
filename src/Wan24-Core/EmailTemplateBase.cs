@@ -15,7 +15,8 @@ namespace wan24.Core
         /// <param name="text">Text body</param>
         /// <param name="html">HTML body</param>
         /// <param name="attachments">Attachments</param>
-        protected EmailTemplateBase(in string subject, in string? text, in string? html, params IEmailAttachment[] attachments) : base(subject, text, html, attachments) { }
+        protected EmailTemplateBase(in string subject, in string? text = null, in string? html = null, params IEmailAttachment[] attachments)
+            : base(subject, text, html, attachments) { }
 
         /// <inheritdoc/>
         protected override IEmail CreateEmail(string fromEmail, string toEmail, string subject, string? text, string? html, HashSet<IEmailAttachment> attachments)
@@ -39,7 +40,7 @@ namespace wan24.Core
         /// <param name="text">Text body</param>
         /// <param name="html">HTML body</param>
         /// <param name="attachments">Attachments</param>
-        protected EmailTemplateBase(in string subject, in string? text, in string? html, params IEmailAttachment[] attachments) : this()
+        protected EmailTemplateBase(in string subject, in string? text = null, in string? html = null, params IEmailAttachment[] attachments) : this()
         {
             Subject = subject;
             TextBody = text;

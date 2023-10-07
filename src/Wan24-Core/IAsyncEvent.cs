@@ -30,6 +30,10 @@
         /// </summary>
         HashSet<IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate> AsyncEventHandlers { get; }
         /// <summary>
+        /// Detach all event handlers
+        /// </summary>
+        void DetachAll();
+        /// <summary>
         /// Raise the event
         /// </summary>
         /// <param name="timeout">Timeout</param>

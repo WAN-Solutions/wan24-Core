@@ -26,6 +26,7 @@ namespace Wan24_Core_Benchmark_Tests
 
         static ByteEncoding_Tests()
         {
+            ByteEncoding.SkipCharMapCheck = true;
             TestData = RandomNumberGenerator.GetBytes(TEST_DATA_LEN);
             TestData_Base64EncodedChars = Convert.ToBase64String(TestData).ToCharArray();
             TestData_Base64Encoded = Encoding.UTF8.GetBytes(TestData_Base64EncodedChars);

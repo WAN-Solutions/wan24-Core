@@ -31,6 +31,25 @@ namespace wan24.Core
         /// Send the email
         /// </summary>
         /// <param name="email">Email (will be disposed!)</param>
+        /// <param name="connection">Connection</param>
+        /// <returns>If succeed</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static bool Send(this IEmail email, IMtaConnection connection)
+        {
+            try
+            {
+                return connection.Send(email);
+            }
+            finally
+            {
+                email.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Send the email
+        /// </summary>
+        /// <param name="email">Email (will be disposed!)</param>
         /// <param name="mta">MTA</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>If succeed</returns>
@@ -41,6 +60,26 @@ namespace wan24.Core
             try
             {
                 return await mta.SendAsync(email, cancellationToken).DynamicContext();
+            }
+            finally
+            {
+                await email.DisposeAsync().DynamicContext();
+            }
+        }
+
+        /// <summary>
+        /// Send the email
+        /// </summary>
+        /// <param name="email">Email (will be disposed!)</param>
+        /// <param name="connection">Connection</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>If succeed</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static async Task<bool> SendAsync(this IEmail email, IMtaConnection connection, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await connection.SendAsync(email, cancellationToken).DynamicContext();
             }
             finally
             {
@@ -75,6 +114,27 @@ namespace wan24.Core
         /// <param name="tmpl">Email template</param>
         /// <param name="fromEmail">Sender email address</param>
         /// <param name="toEmail">Recipient email address</param>
+        /// <param name="connection">Connection</param>
+        /// <param name="parserData">Parser data</param>
+        /// <param name="attachments">Attachments (will be disposed!)</param>
+        /// <returns>If succeed</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static bool Send(
+            this IEmailTemplate tmpl,
+            string fromEmail,
+            string toEmail,
+            IMtaConnection connection,
+            Dictionary<string, string>? parserData = null,
+            params IEmailAttachment[] attachments
+            )
+            => Send(tmpl.CreateEmail(fromEmail, toEmail, parserData, attachments), connection);
+
+        /// <summary>
+        /// Send an email
+        /// </summary>
+        /// <param name="tmpl">Email template</param>
+        /// <param name="fromEmail">Sender email address</param>
+        /// <param name="toEmail">Recipient email address</param>
         /// <param name="parserData">Parser data</param>
         /// <param name="mta">MTA</param>
         /// <param name="cancellationToken">Cancellation token</param>
@@ -91,6 +151,30 @@ namespace wan24.Core
             params IEmailAttachment[] attachments
             )
             => await SendAsync(await tmpl.CreateEmailAsync(fromEmail, toEmail, parserData, cancellationToken, attachments).DynamicContext(), mta, cancellationToken)
+                .DynamicContext();
+
+        /// <summary>
+        /// Send an email
+        /// </summary>
+        /// <param name="tmpl">Email template</param>
+        /// <param name="fromEmail">Sender email address</param>
+        /// <param name="toEmail">Recipient email address</param>
+        /// <param name="connection">Connection</param>
+        /// <param name="parserData">Parser data</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <param name="attachments">Attachments (will be disposed!)</param>
+        /// <returns>If succeed</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static async Task<bool> SendAsync(
+            this IEmailTemplate tmpl,
+            string fromEmail,
+            string toEmail,
+            IMtaConnection connection,
+            Dictionary<string, string>? parserData = null,
+            CancellationToken cancellationToken = default,
+            params IEmailAttachment[] attachments
+            )
+            => await SendAsync(await tmpl.CreateEmailAsync(fromEmail, toEmail, parserData, cancellationToken, attachments).DynamicContext(), connection, cancellationToken)
                 .DynamicContext();
     }
 }
