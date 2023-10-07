@@ -1,0 +1,544 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IQueueEntry
+   | wan24-Core </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IQueueEntry
+   | wan24-Core ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.IQueueEntry">
+  
+  
+  <h1 id="wan24_Core_IQueueEntry" data-uid="wan24.Core.IQueueEntry" class="text-break">Interface IQueueEntry
+  </h1>
+  <div class="markdown level0 summary"><p>Interface for a queue entry</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html#wan24_Core_IStatusProvider_State">IStatusProvider.State</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_IQueueEntry_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IQueueEntry : IStatusProvider</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueEntry_Changes.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueEntry.Changes%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueEntry.cs/#L41">View Source</a>
+  </span>
+  <a id="wan24_Core_IQueueEntry_Changes_" data-uid="wan24.Core.IQueueEntry.Changes*"></a>
+  <h4 id="wan24_Core_IQueueEntry_Changes" data-uid="wan24.Core.IQueueEntry.Changes">Changes</h4>
+  <div class="markdown level1 summary"><p>Queue state changes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ReadOnlyCollection&lt;QueueEntryStateChange&gt; Changes { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.ObjectModel.ReadOnlyCollection</span>&lt;<span class="xref">wan24.Core.QueueEntryStateChange</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueEntry_Created.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueEntry.Created%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueEntry.cs/#L21">View Source</a>
+  </span>
+  <a id="wan24_Core_IQueueEntry_Created_" data-uid="wan24.Core.IQueueEntry.Created*"></a>
+  <h4 id="wan24_Core_IQueueEntry_Created" data-uid="wan24.Core.IQueueEntry.Created">Created</h4>
+  <div class="markdown level1 summary"><p>Created time</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DateTime Created { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DateTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueEntry_Done.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueEntry.Done%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueEntry.cs/#L45">View Source</a>
+  </span>
+  <a id="wan24_Core_IQueueEntry_Done_" data-uid="wan24.Core.IQueueEntry.Done*"></a>
+  <h4 id="wan24_Core_IQueueEntry_Done" data-uid="wan24.Core.IQueueEntry.Done">Done</h4>
+  <div class="markdown level1 summary"><p>Processing done time</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DateTime Done { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DateTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueEntry_GUID.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueEntry.GUID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueEntry.cs/#L13">View Source</a>
+  </span>
+  <a id="wan24_Core_IQueueEntry_GUID_" data-uid="wan24.Core.IQueueEntry.GUID*"></a>
+  <h4 id="wan24_Core_IQueueEntry_GUID" data-uid="wan24.Core.IQueueEntry.GUID">GUID</h4>
+  <div class="markdown level1 summary"><p>GUID</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string GUID { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueEntry_Item.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueEntry.Item%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueEntry.cs/#L25">View Source</a>
+  </span>
+  <a id="wan24_Core_IQueueEntry_Item_" data-uid="wan24.Core.IQueueEntry.Item*"></a>
+  <h4 id="wan24_Core_IQueueEntry_Item" data-uid="wan24.Core.IQueueEntry.Item">Item</h4>
+  <div class="markdown level1 summary"><p>Item</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">object Item { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueEntry_LastException.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueEntry.LastException%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueEntry.cs/#L33">View Source</a>
+  </span>
+  <a id="wan24_Core_IQueueEntry_LastException_" data-uid="wan24.Core.IQueueEntry.LastException*"></a>
+  <h4 id="wan24_Core_IQueueEntry_LastException" data-uid="wan24.Core.IQueueEntry.LastException">LastException</h4>
+  <div class="markdown level1 summary"><p>Last exception</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Exception? LastException { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Exception</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueEntry_LastProcessed.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueEntry.LastProcessed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueEntry.cs/#L29">View Source</a>
+  </span>
+  <a id="wan24_Core_IQueueEntry_LastProcessed_" data-uid="wan24.Core.IQueueEntry.LastProcessed*"></a>
+  <h4 id="wan24_Core_IQueueEntry_LastProcessed" data-uid="wan24.Core.IQueueEntry.LastProcessed">LastProcessed</h4>
+  <div class="markdown level1 summary"><p>Last processing time</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DateTime LastProcessed { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DateTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueEntry_LastProcessingTime.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueEntry.LastProcessingTime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueEntry.cs/#L49">View Source</a>
+  </span>
+  <a id="wan24_Core_IQueueEntry_LastProcessingTime_" data-uid="wan24.Core.IQueueEntry.LastProcessingTime*"></a>
+  <h4 id="wan24_Core_IQueueEntry_LastProcessingTime" data-uid="wan24.Core.IQueueEntry.LastProcessingTime">LastProcessingTime</h4>
+  <div class="markdown level1 summary"><p>Last processing time</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TimeSpan LastProcessingTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueEntry_Name.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueEntry.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueEntry.cs/#L17">View Source</a>
+  </span>
+  <a id="wan24_Core_IQueueEntry_Name_" data-uid="wan24.Core.IQueueEntry.Name*"></a>
+  <h4 id="wan24_Core_IQueueEntry_Name" data-uid="wan24.Core.IQueueEntry.Name">Name</h4>
+  <div class="markdown level1 summary"><p>Name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string Name { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueEntry_QueueState.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueEntry.QueueState%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueEntry.cs/#L37">View Source</a>
+  </span>
+  <a id="wan24_Core_IQueueEntry_QueueState_" data-uid="wan24.Core.IQueueEntry.QueueState*"></a>
+  <h4 id="wan24_Core_IQueueEntry_QueueState" data-uid="wan24.Core.IQueueEntry.QueueState">QueueState</h4>
+  <div class="markdown level1 summary"><p>Queue state</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">QueueEntryStates QueueState { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.QueueEntryStates.html">QueueEntryStates</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueEntry_TotalProcessingTime.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueEntry.TotalProcessingTime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueEntry.cs/#L53">View Source</a>
+  </span>
+  <a id="wan24_Core_IQueueEntry_TotalProcessingTime_" data-uid="wan24.Core.IQueueEntry.TotalProcessingTime*"></a>
+  <h4 id="wan24_Core_IQueueEntry_TotalProcessingTime" data-uid="wan24.Core.IQueueEntry.TotalProcessingTime">TotalProcessingTime</h4>
+  <div class="markdown level1 summary"><p>Total processing time (until done)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TimeSpan TotalProcessingTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueEntry_WaitingProcessingTime.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueEntry.WaitingProcessingTime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueEntry.cs/#L57">View Source</a>
+  </span>
+  <a id="wan24_Core_IQueueEntry_WaitingProcessingTime_" data-uid="wan24.Core.IQueueEntry.WaitingProcessingTime*"></a>
+  <h4 id="wan24_Core_IQueueEntry_WaitingProcessingTime" data-uid="wan24.Core.IQueueEntry.WaitingProcessingTime">WaitingProcessingTime</h4>
+  <div class="markdown level1 summary"><p>Waiting processing time</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TimeSpan WaitingProcessingTime { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean__">JsonExtensions.ToJson(Object, in Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_System_Collections_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean__System_String__">ObjectExtensions.EnsureValidState&lt;T&gt;(T, in Boolean, in String)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText__1___0_">ObjectExtensions.GetDisplayText&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in Int32)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in Int32)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueEntry.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueEntry%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueEntry.cs/#L8" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            (c) 2023 Andreas Zimmermann, wan24.de
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

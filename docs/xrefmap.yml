@@ -611,6 +611,23 @@ references:
   fullName.vb: wan24.Core.AsyncEvent(Of tSender, tArgs).AsyncEvent
   nameWithType: AsyncEvent<tSender, tArgs>.AsyncEvent
   nameWithType.vb: AsyncEvent(Of tSender, tArgs).AsyncEvent
+- uid: wan24.Core.AsyncEvent`2.Abstract
+  name: Abstract
+  href: api/wan24.Core.AsyncEvent-2.html#wan24_Core_AsyncEvent_2_Abstract
+  commentId: P:wan24.Core.AsyncEvent`2.Abstract
+  fullName: wan24.Core.AsyncEvent<tSender, tArgs>.Abstract
+  fullName.vb: wan24.Core.AsyncEvent(Of tSender, tArgs).Abstract
+  nameWithType: AsyncEvent<tSender, tArgs>.Abstract
+  nameWithType.vb: AsyncEvent(Of tSender, tArgs).Abstract
+- uid: wan24.Core.AsyncEvent`2.Abstract*
+  name: Abstract
+  href: api/wan24.Core.AsyncEvent-2.html#wan24_Core_AsyncEvent_2_Abstract_
+  commentId: Overload:wan24.Core.AsyncEvent`2.Abstract
+  isSpec: "True"
+  fullName: wan24.Core.AsyncEvent<tSender, tArgs>.Abstract
+  fullName.vb: wan24.Core.AsyncEvent(Of tSender, tArgs).Abstract
+  nameWithType: AsyncEvent<tSender, tArgs>.Abstract
+  nameWithType.vb: AsyncEvent(Of tSender, tArgs).Abstract
 - uid: wan24.Core.AsyncEvent`2.Detach(wan24.Core.IAsyncEvent{`0,`1}.EventHandler_Delegate@)
   name: Detach(in IAsyncEvent<tSender, tArgs>.EventHandler_Delegate)
   href: api/wan24.Core.AsyncEvent-2.html#wan24_Core_AsyncEvent_2_Detach_wan24_Core_IAsyncEvent__0__1__EventHandler_Delegate__
@@ -844,6 +861,25 @@ references:
   fullName.vb: wan24.Core.AsyncEvent(Of tSender, tArgs).wan24.Core.IAsyncEvent<tSender,tArgs>.Cancellation
   nameWithType: AsyncEvent<tSender, tArgs>.IAsyncEvent<tSender, tArgs>.Cancellation
   nameWithType.vb: AsyncEvent(Of tSender, tArgs).wan24.Core.IAsyncEvent<tSender,tArgs>.Cancellation
+- uid: wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#DetachAll
+  name: IAsyncEvent<tSender, tArgs>.DetachAll()
+  href: api/wan24.Core.AsyncEvent-2.html#wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__DetachAll
+  commentId: M:wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#DetachAll
+  name.vb: wan24.Core.IAsyncEvent<tSender,tArgs>.DetachAll()
+  fullName: wan24.Core.AsyncEvent<tSender, tArgs>.wan24.Core.IAsyncEvent<tSender, tArgs>.DetachAll()
+  fullName.vb: wan24.Core.AsyncEvent(Of tSender, tArgs).wan24.Core.IAsyncEvent<tSender,tArgs>.DetachAll()
+  nameWithType: AsyncEvent<tSender, tArgs>.IAsyncEvent<tSender, tArgs>.DetachAll()
+  nameWithType.vb: AsyncEvent(Of tSender, tArgs).wan24.Core.IAsyncEvent<tSender,tArgs>.DetachAll()
+- uid: wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#DetachAll*
+  name: IAsyncEvent<tSender, tArgs>.DetachAll
+  href: api/wan24.Core.AsyncEvent-2.html#wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__DetachAll_
+  commentId: Overload:wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#DetachAll
+  isSpec: "True"
+  name.vb: wan24.Core.IAsyncEvent<tSender,tArgs>.DetachAll
+  fullName: wan24.Core.AsyncEvent<tSender, tArgs>.wan24.Core.IAsyncEvent<tSender, tArgs>.DetachAll
+  fullName.vb: wan24.Core.AsyncEvent(Of tSender, tArgs).wan24.Core.IAsyncEvent<tSender,tArgs>.DetachAll
+  nameWithType: AsyncEvent<tSender, tArgs>.IAsyncEvent<tSender, tArgs>.DetachAll
+  nameWithType.vb: AsyncEvent(Of tSender, tArgs).wan24.Core.IAsyncEvent<tSender,tArgs>.DetachAll
 - uid: wan24.Core.AsyncEvent`2.wan24#Core#IAsyncEvent{tSender,tArgs}#EventHandlers
   name: IAsyncEvent<tSender, tArgs>.EventHandlers
   href: api/wan24.Core.AsyncEvent-2.html#wan24_Core_AsyncEvent_2_wan24_Core_IAsyncEvent_tSender_tArgs__EventHandlers
@@ -5274,19 +5310,6 @@ references:
   isSpec: "True"
   fullName: wan24.Core.Bootstrap.Async
   nameWithType: Bootstrap.Async
-- uid: wan24.Core.Bootstrap.AsyncBootstrapper
-  name: AsyncBootstrapper
-  href: api/wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_AsyncBootstrapper
-  commentId: P:wan24.Core.Bootstrap.AsyncBootstrapper
-  fullName: wan24.Core.Bootstrap.AsyncBootstrapper
-  nameWithType: Bootstrap.AsyncBootstrapper
-- uid: wan24.Core.Bootstrap.AsyncBootstrapper*
-  name: AsyncBootstrapper
-  href: api/wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_AsyncBootstrapper_
-  commentId: Overload:wan24.Core.Bootstrap.AsyncBootstrapper
-  isSpec: "True"
-  fullName: wan24.Core.Bootstrap.AsyncBootstrapper
-  nameWithType: Bootstrap.AsyncBootstrapper
 - uid: wan24.Core.Bootstrap.Bootstrap_Delegate
   name: Bootstrap.Bootstrap_Delegate
   href: api/wan24.Core.Bootstrap.Bootstrap_Delegate.html
@@ -5357,6 +5380,19 @@ references:
   commentId: E:wan24.Core.Bootstrap.OnBootstrap
   fullName: wan24.Core.Bootstrap.OnBootstrap
   nameWithType: Bootstrap.OnBootstrap
+- uid: wan24.Core.Bootstrap.OnBootstrapAsync
+  name: OnBootstrapAsync
+  href: api/wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_OnBootstrapAsync
+  commentId: P:wan24.Core.Bootstrap.OnBootstrapAsync
+  fullName: wan24.Core.Bootstrap.OnBootstrapAsync
+  nameWithType: Bootstrap.OnBootstrapAsync
+- uid: wan24.Core.Bootstrap.OnBootstrapAsync*
+  name: OnBootstrapAsync
+  href: api/wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_OnBootstrapAsync_
+  commentId: Overload:wan24.Core.Bootstrap.OnBootstrapAsync
+  isSpec: "True"
+  fullName: wan24.Core.Bootstrap.OnBootstrapAsync
+  nameWithType: Bootstrap.OnBootstrapAsync
 - uid: wan24.Core.Bootstrap.TryAsync(System.Reflection.Assembly,CancellationToken)
   name: TryAsync(Assembly, CancellationToken)
   href: api/wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_TryAsync_System_Reflection_Assembly_CancellationToken_
@@ -6375,6 +6411,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ByteEncoding.IsEncodingValid
   nameWithType: ByteEncoding.IsEncodingValid
+- uid: wan24.Core.ByteEncoding.SkipCharMapCheck
+  name: SkipCharMapCheck
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_SkipCharMapCheck
+  commentId: P:wan24.Core.ByteEncoding.SkipCharMapCheck
+  fullName: wan24.Core.ByteEncoding.SkipCharMapCheck
+  nameWithType: ByteEncoding.SkipCharMapCheck
+- uid: wan24.Core.ByteEncoding.SkipCharMapCheck*
+  name: SkipCharMapCheck
+  href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_SkipCharMapCheck_
+  commentId: Overload:wan24.Core.ByteEncoding.SkipCharMapCheck
+  isSpec: "True"
+  fullName: wan24.Core.ByteEncoding.SkipCharMapCheck
+  nameWithType: ByteEncoding.SkipCharMapCheck
 - uid: wan24.Core.ByteEncoding.ValidateCharMap(ReadOnlySpan{System.Char}@)
   name: ValidateCharMap(in ReadOnlySpan<Char>)
   href: api/wan24.Core.ByteEncoding.html#wan24_Core_ByteEncoding_ValidateCharMap_ReadOnlySpan_System_Char___
@@ -12690,6 +12739,12 @@ references:
   commentId: E:wan24.Core.DisposableBase.OnDisposing
   fullName: wan24.Core.DisposableBase.OnDisposing
   nameWithType: DisposableBase.OnDisposing
+- uid: wan24.Core.DisposableBase.StackInfo
+  name: StackInfo
+  href: api/wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_StackInfo
+  commentId: F:wan24.Core.DisposableBase.StackInfo
+  fullName: wan24.Core.DisposableBase.StackInfo
+  nameWithType: DisposableBase.StackInfo
 - uid: wan24.Core.DisposableBase`1
   name: DisposableBase<T>
   href: api/wan24.Core.DisposableBase-1.html
@@ -13993,6 +14048,12 @@ references:
   commentId: M:wan24.Core.EmailExtensions.Send(wan24.Core.IEmail,wan24.Core.IMta)
   fullName: wan24.Core.EmailExtensions.Send(wan24.Core.IEmail, wan24.Core.IMta)
   nameWithType: EmailExtensions.Send(IEmail, IMta)
+- uid: wan24.Core.EmailExtensions.Send(wan24.Core.IEmail,wan24.Core.IMtaConnection)
+  name: Send(IEmail, IMtaConnection)
+  href: api/wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_Send_wan24_Core_IEmail_wan24_Core_IMtaConnection_
+  commentId: M:wan24.Core.EmailExtensions.Send(wan24.Core.IEmail,wan24.Core.IMtaConnection)
+  fullName: wan24.Core.EmailExtensions.Send(wan24.Core.IEmail, wan24.Core.IMtaConnection)
+  nameWithType: EmailExtensions.Send(IEmail, IMtaConnection)
 - uid: wan24.Core.EmailExtensions.Send(wan24.Core.IEmailTemplate,System.String,System.String,System.Nullable{Dictionary{System.String,System.String}},wan24.Core.IMta,wan24.Core.IEmailAttachment[])
   name: Send(IEmailTemplate, String, String, Nullable<Dictionary<String, String>>, IMta, IEmailAttachment[])
   href: api/wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_Send_wan24_Core_IEmailTemplate_System_String_System_String_System_Nullable_Dictionary_System_String_System_String___wan24_Core_IMta_wan24_Core_IEmailAttachment___
@@ -14002,6 +14063,15 @@ references:
   fullName.vb: wan24.Core.EmailExtensions.Send(wan24.Core.IEmailTemplate, System.String, System.String, System.Nullable(Of Dictionary(Of System.String, System.String)), wan24.Core.IMta, wan24.Core.IEmailAttachment())
   nameWithType: EmailExtensions.Send(IEmailTemplate, String, String, Nullable<Dictionary<String, String>>, IMta, IEmailAttachment[])
   nameWithType.vb: EmailExtensions.Send(IEmailTemplate, String, String, Nullable(Of Dictionary(Of String, String)), IMta, IEmailAttachment())
+- uid: wan24.Core.EmailExtensions.Send(wan24.Core.IEmailTemplate,System.String,System.String,wan24.Core.IMtaConnection,System.Nullable{Dictionary{System.String,System.String}},wan24.Core.IEmailAttachment[])
+  name: Send(IEmailTemplate, String, String, IMtaConnection, Nullable<Dictionary<String, String>>, IEmailAttachment[])
+  href: api/wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_Send_wan24_Core_IEmailTemplate_System_String_System_String_wan24_Core_IMtaConnection_System_Nullable_Dictionary_System_String_System_String___wan24_Core_IEmailAttachment___
+  commentId: M:wan24.Core.EmailExtensions.Send(wan24.Core.IEmailTemplate,System.String,System.String,wan24.Core.IMtaConnection,System.Nullable{Dictionary{System.String,System.String}},wan24.Core.IEmailAttachment[])
+  name.vb: Send(IEmailTemplate, String, String, IMtaConnection, Nullable(Of Dictionary(Of String, String)), IEmailAttachment())
+  fullName: wan24.Core.EmailExtensions.Send(wan24.Core.IEmailTemplate, System.String, System.String, wan24.Core.IMtaConnection, System.Nullable<Dictionary<System.String, System.String>>, wan24.Core.IEmailAttachment[])
+  fullName.vb: wan24.Core.EmailExtensions.Send(wan24.Core.IEmailTemplate, System.String, System.String, wan24.Core.IMtaConnection, System.Nullable(Of Dictionary(Of System.String, System.String)), wan24.Core.IEmailAttachment())
+  nameWithType: EmailExtensions.Send(IEmailTemplate, String, String, IMtaConnection, Nullable<Dictionary<String, String>>, IEmailAttachment[])
+  nameWithType.vb: EmailExtensions.Send(IEmailTemplate, String, String, IMtaConnection, Nullable(Of Dictionary(Of String, String)), IEmailAttachment())
 - uid: wan24.Core.EmailExtensions.Send*
   name: Send
   href: api/wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_Send_
@@ -14015,6 +14085,12 @@ references:
   commentId: M:wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmail,wan24.Core.IMta,CancellationToken)
   fullName: wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmail, wan24.Core.IMta, CancellationToken)
   nameWithType: EmailExtensions.SendAsync(IEmail, IMta, CancellationToken)
+- uid: wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmail,wan24.Core.IMtaConnection,CancellationToken)
+  name: SendAsync(IEmail, IMtaConnection, CancellationToken)
+  href: api/wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_SendAsync_wan24_Core_IEmail_wan24_Core_IMtaConnection_CancellationToken_
+  commentId: M:wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmail,wan24.Core.IMtaConnection,CancellationToken)
+  fullName: wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmail, wan24.Core.IMtaConnection, CancellationToken)
+  nameWithType: EmailExtensions.SendAsync(IEmail, IMtaConnection, CancellationToken)
 - uid: wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmailTemplate,System.String,System.String,System.Nullable{Dictionary{System.String,System.String}},wan24.Core.IMta,CancellationToken,wan24.Core.IEmailAttachment[])
   name: SendAsync(IEmailTemplate, String, String, Nullable<Dictionary<String, String>>, IMta, CancellationToken, IEmailAttachment[])
   href: api/wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_SendAsync_wan24_Core_IEmailTemplate_System_String_System_String_System_Nullable_Dictionary_System_String_System_String___wan24_Core_IMta_CancellationToken_wan24_Core_IEmailAttachment___
@@ -14024,6 +14100,15 @@ references:
   fullName.vb: wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmailTemplate, System.String, System.String, System.Nullable(Of Dictionary(Of System.String, System.String)), wan24.Core.IMta, CancellationToken, wan24.Core.IEmailAttachment())
   nameWithType: EmailExtensions.SendAsync(IEmailTemplate, String, String, Nullable<Dictionary<String, String>>, IMta, CancellationToken, IEmailAttachment[])
   nameWithType.vb: EmailExtensions.SendAsync(IEmailTemplate, String, String, Nullable(Of Dictionary(Of String, String)), IMta, CancellationToken, IEmailAttachment())
+- uid: wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmailTemplate,System.String,System.String,wan24.Core.IMtaConnection,System.Nullable{Dictionary{System.String,System.String}},CancellationToken,wan24.Core.IEmailAttachment[])
+  name: SendAsync(IEmailTemplate, String, String, IMtaConnection, Nullable<Dictionary<String, String>>, CancellationToken, IEmailAttachment[])
+  href: api/wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_SendAsync_wan24_Core_IEmailTemplate_System_String_System_String_wan24_Core_IMtaConnection_System_Nullable_Dictionary_System_String_System_String___CancellationToken_wan24_Core_IEmailAttachment___
+  commentId: M:wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmailTemplate,System.String,System.String,wan24.Core.IMtaConnection,System.Nullable{Dictionary{System.String,System.String}},CancellationToken,wan24.Core.IEmailAttachment[])
+  name.vb: SendAsync(IEmailTemplate, String, String, IMtaConnection, Nullable(Of Dictionary(Of String, String)), CancellationToken, IEmailAttachment())
+  fullName: wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmailTemplate, System.String, System.String, wan24.Core.IMtaConnection, System.Nullable<Dictionary<System.String, System.String>>, CancellationToken, wan24.Core.IEmailAttachment[])
+  fullName.vb: wan24.Core.EmailExtensions.SendAsync(wan24.Core.IEmailTemplate, System.String, System.String, wan24.Core.IMtaConnection, System.Nullable(Of Dictionary(Of System.String, System.String)), CancellationToken, wan24.Core.IEmailAttachment())
+  nameWithType: EmailExtensions.SendAsync(IEmailTemplate, String, String, IMtaConnection, Nullable<Dictionary<String, String>>, CancellationToken, IEmailAttachment[])
+  nameWithType.vb: EmailExtensions.SendAsync(IEmailTemplate, String, String, IMtaConnection, Nullable(Of Dictionary(Of String, String)), CancellationToken, IEmailAttachment())
 - uid: wan24.Core.EmailExtensions.SendAsync*
   name: SendAsync
   href: api/wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_SendAsync_
@@ -14066,19 +14151,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.EmailHelper.EmailType
   nameWithType: EmailHelper.EmailType
-- uid: wan24.Core.EmailHelper.MTA
-  name: MTA
-  href: api/wan24.Core.EmailHelper.html#wan24_Core_EmailHelper_MTA
-  commentId: P:wan24.Core.EmailHelper.MTA
-  fullName: wan24.Core.EmailHelper.MTA
-  nameWithType: EmailHelper.MTA
-- uid: wan24.Core.EmailHelper.MTA*
-  name: MTA
-  href: api/wan24.Core.EmailHelper.html#wan24_Core_EmailHelper_MTA_
-  commentId: Overload:wan24.Core.EmailHelper.MTA
+- uid: wan24.Core.EmailHelper.MtaConnection
+  name: MtaConnection
+  href: api/wan24.Core.EmailHelper.html#wan24_Core_EmailHelper_MtaConnection
+  commentId: P:wan24.Core.EmailHelper.MtaConnection
+  fullName: wan24.Core.EmailHelper.MtaConnection
+  nameWithType: EmailHelper.MtaConnection
+- uid: wan24.Core.EmailHelper.MtaConnection*
+  name: MtaConnection
+  href: api/wan24.Core.EmailHelper.html#wan24_Core_EmailHelper_MtaConnection_
+  commentId: Overload:wan24.Core.EmailHelper.MtaConnection
   isSpec: "True"
-  fullName: wan24.Core.EmailHelper.MTA
-  nameWithType: EmailHelper.MTA
+  fullName: wan24.Core.EmailHelper.MtaConnection
+  nameWithType: EmailHelper.MtaConnection
 - uid: wan24.Core.EmailHelper.Send(System.String@,System.String@,System.String@,System.String@,System.String@,wan24.Core.IEmailAttachment[])
   name: Send(in String, in String, in String, in String, in String, IEmailAttachment[])
   href: api/wan24.Core.EmailHelper.html#wan24_Core_EmailHelper_Send_System_String__System_String__System_String__System_String__System_String__wan24_Core_IEmailAttachment___
@@ -15921,6 +16006,12 @@ references:
   commentId: T:wan24.Core.ErrorHandling
   fullName: wan24.Core.ErrorHandling
   nameWithType: ErrorHandling
+- uid: wan24.Core.ErrorHandling.BOOTSTRAPPER_ERROR
+  name: BOOTSTRAPPER_ERROR
+  href: api/wan24.Core.ErrorHandling.html#wan24_Core_ErrorHandling_BOOTSTRAPPER_ERROR
+  commentId: F:wan24.Core.ErrorHandling.BOOTSTRAPPER_ERROR
+  fullName: wan24.Core.ErrorHandling.BOOTSTRAPPER_ERROR
+  nameWithType: ErrorHandling.BOOTSTRAPPER_ERROR
 - uid: wan24.Core.ErrorHandling.DebugOnError
   name: DebugOnError
   href: api/wan24.Core.ErrorHandling.html#wan24_Core_ErrorHandling_DebugOnError
@@ -17854,6 +17945,23 @@ references:
   fullName.vb: wan24.Core.IAsyncEvent(Of tSender, tArgs).Cancellation
   nameWithType: IAsyncEvent<tSender, tArgs>.Cancellation
   nameWithType.vb: IAsyncEvent(Of tSender, tArgs).Cancellation
+- uid: wan24.Core.IAsyncEvent`2.DetachAll
+  name: DetachAll()
+  href: api/wan24.Core.IAsyncEvent-2.html#wan24_Core_IAsyncEvent_2_DetachAll
+  commentId: M:wan24.Core.IAsyncEvent`2.DetachAll
+  fullName: wan24.Core.IAsyncEvent<tSender, tArgs>.DetachAll()
+  fullName.vb: wan24.Core.IAsyncEvent(Of tSender, tArgs).DetachAll()
+  nameWithType: IAsyncEvent<tSender, tArgs>.DetachAll()
+  nameWithType.vb: IAsyncEvent(Of tSender, tArgs).DetachAll()
+- uid: wan24.Core.IAsyncEvent`2.DetachAll*
+  name: DetachAll
+  href: api/wan24.Core.IAsyncEvent-2.html#wan24_Core_IAsyncEvent_2_DetachAll_
+  commentId: Overload:wan24.Core.IAsyncEvent`2.DetachAll
+  isSpec: "True"
+  fullName: wan24.Core.IAsyncEvent<tSender, tArgs>.DetachAll
+  fullName.vb: wan24.Core.IAsyncEvent(Of tSender, tArgs).DetachAll
+  nameWithType: IAsyncEvent<tSender, tArgs>.DetachAll
+  nameWithType.vb: IAsyncEvent(Of tSender, tArgs).DetachAll
 - uid: wan24.Core.IAsyncEvent`2.EventHandler_Delegate
   name: IAsyncEvent<tSender, tArgs>.EventHandler_Delegate
   href: api/wan24.Core.IAsyncEvent-2.EventHandler_Delegate.html
@@ -19174,6 +19282,58 @@ references:
   commentId: T:wan24.Core.IMta
   fullName: wan24.Core.IMta
   nameWithType: IMta
+- uid: wan24.Core.IMta.GetConnection(wan24.Core.IMtaSettings)
+  name: GetConnection(IMtaSettings)
+  href: api/wan24.Core.IMta.html#wan24_Core_IMta_GetConnection_wan24_Core_IMtaSettings_
+  commentId: M:wan24.Core.IMta.GetConnection(wan24.Core.IMtaSettings)
+  fullName: wan24.Core.IMta.GetConnection(wan24.Core.IMtaSettings)
+  nameWithType: IMta.GetConnection(IMtaSettings)
+- uid: wan24.Core.IMta.GetConnection*
+  name: GetConnection
+  href: api/wan24.Core.IMta.html#wan24_Core_IMta_GetConnection_
+  commentId: Overload:wan24.Core.IMta.GetConnection
+  isSpec: "True"
+  fullName: wan24.Core.IMta.GetConnection
+  nameWithType: IMta.GetConnection
+- uid: wan24.Core.IMta.GetConnectionAsync(wan24.Core.IMtaSettings,CancellationToken)
+  name: GetConnectionAsync(IMtaSettings, CancellationToken)
+  href: api/wan24.Core.IMta.html#wan24_Core_IMta_GetConnectionAsync_wan24_Core_IMtaSettings_CancellationToken_
+  commentId: M:wan24.Core.IMta.GetConnectionAsync(wan24.Core.IMtaSettings,CancellationToken)
+  fullName: wan24.Core.IMta.GetConnectionAsync(wan24.Core.IMtaSettings, CancellationToken)
+  nameWithType: IMta.GetConnectionAsync(IMtaSettings, CancellationToken)
+- uid: wan24.Core.IMta.GetConnectionAsync*
+  name: GetConnectionAsync
+  href: api/wan24.Core.IMta.html#wan24_Core_IMta_GetConnectionAsync_
+  commentId: Overload:wan24.Core.IMta.GetConnectionAsync
+  isSpec: "True"
+  fullName: wan24.Core.IMta.GetConnectionAsync
+  nameWithType: IMta.GetConnectionAsync
+- uid: wan24.Core.IMta.ReturnConnection(wan24.Core.IMtaConnection)
+  name: ReturnConnection(IMtaConnection)
+  href: api/wan24.Core.IMta.html#wan24_Core_IMta_ReturnConnection_wan24_Core_IMtaConnection_
+  commentId: M:wan24.Core.IMta.ReturnConnection(wan24.Core.IMtaConnection)
+  fullName: wan24.Core.IMta.ReturnConnection(wan24.Core.IMtaConnection)
+  nameWithType: IMta.ReturnConnection(IMtaConnection)
+- uid: wan24.Core.IMta.ReturnConnection*
+  name: ReturnConnection
+  href: api/wan24.Core.IMta.html#wan24_Core_IMta_ReturnConnection_
+  commentId: Overload:wan24.Core.IMta.ReturnConnection
+  isSpec: "True"
+  fullName: wan24.Core.IMta.ReturnConnection
+  nameWithType: IMta.ReturnConnection
+- uid: wan24.Core.IMta.ReturnConnectionAsync(wan24.Core.IMtaConnection,CancellationToken)
+  name: ReturnConnectionAsync(IMtaConnection, CancellationToken)
+  href: api/wan24.Core.IMta.html#wan24_Core_IMta_ReturnConnectionAsync_wan24_Core_IMtaConnection_CancellationToken_
+  commentId: M:wan24.Core.IMta.ReturnConnectionAsync(wan24.Core.IMtaConnection,CancellationToken)
+  fullName: wan24.Core.IMta.ReturnConnectionAsync(wan24.Core.IMtaConnection, CancellationToken)
+  nameWithType: IMta.ReturnConnectionAsync(IMtaConnection, CancellationToken)
+- uid: wan24.Core.IMta.ReturnConnectionAsync*
+  name: ReturnConnectionAsync
+  href: api/wan24.Core.IMta.html#wan24_Core_IMta_ReturnConnectionAsync_
+  commentId: Overload:wan24.Core.IMta.ReturnConnectionAsync
+  isSpec: "True"
+  fullName: wan24.Core.IMta.ReturnConnectionAsync
+  nameWithType: IMta.ReturnConnectionAsync
 - uid: wan24.Core.IMtaConnection
   name: IMtaConnection
   href: api/wan24.Core.IMtaConnection.html
@@ -20610,6 +20770,168 @@ references:
   isSpec: "True"
   fullName: wan24.Core.IpSubNetAttribute.IsValid
   nameWithType: IpSubNetAttribute.IsValid
+- uid: wan24.Core.IQueueEntry
+  name: IQueueEntry
+  href: api/wan24.Core.IQueueEntry.html
+  commentId: T:wan24.Core.IQueueEntry
+  fullName: wan24.Core.IQueueEntry
+  nameWithType: IQueueEntry
+- uid: wan24.Core.IQueueEntry.Changes
+  name: Changes
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_Changes
+  commentId: P:wan24.Core.IQueueEntry.Changes
+  fullName: wan24.Core.IQueueEntry.Changes
+  nameWithType: IQueueEntry.Changes
+- uid: wan24.Core.IQueueEntry.Changes*
+  name: Changes
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_Changes_
+  commentId: Overload:wan24.Core.IQueueEntry.Changes
+  isSpec: "True"
+  fullName: wan24.Core.IQueueEntry.Changes
+  nameWithType: IQueueEntry.Changes
+- uid: wan24.Core.IQueueEntry.Created
+  name: Created
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_Created
+  commentId: P:wan24.Core.IQueueEntry.Created
+  fullName: wan24.Core.IQueueEntry.Created
+  nameWithType: IQueueEntry.Created
+- uid: wan24.Core.IQueueEntry.Created*
+  name: Created
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_Created_
+  commentId: Overload:wan24.Core.IQueueEntry.Created
+  isSpec: "True"
+  fullName: wan24.Core.IQueueEntry.Created
+  nameWithType: IQueueEntry.Created
+- uid: wan24.Core.IQueueEntry.Done
+  name: Done
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_Done
+  commentId: P:wan24.Core.IQueueEntry.Done
+  fullName: wan24.Core.IQueueEntry.Done
+  nameWithType: IQueueEntry.Done
+- uid: wan24.Core.IQueueEntry.Done*
+  name: Done
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_Done_
+  commentId: Overload:wan24.Core.IQueueEntry.Done
+  isSpec: "True"
+  fullName: wan24.Core.IQueueEntry.Done
+  nameWithType: IQueueEntry.Done
+- uid: wan24.Core.IQueueEntry.GUID
+  name: GUID
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_GUID
+  commentId: P:wan24.Core.IQueueEntry.GUID
+  fullName: wan24.Core.IQueueEntry.GUID
+  nameWithType: IQueueEntry.GUID
+- uid: wan24.Core.IQueueEntry.GUID*
+  name: GUID
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_GUID_
+  commentId: Overload:wan24.Core.IQueueEntry.GUID
+  isSpec: "True"
+  fullName: wan24.Core.IQueueEntry.GUID
+  nameWithType: IQueueEntry.GUID
+- uid: wan24.Core.IQueueEntry.Item
+  name: Item
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_Item
+  commentId: P:wan24.Core.IQueueEntry.Item
+  fullName: wan24.Core.IQueueEntry.Item
+  nameWithType: IQueueEntry.Item
+- uid: wan24.Core.IQueueEntry.Item*
+  name: Item
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_Item_
+  commentId: Overload:wan24.Core.IQueueEntry.Item
+  isSpec: "True"
+  fullName: wan24.Core.IQueueEntry.Item
+  nameWithType: IQueueEntry.Item
+- uid: wan24.Core.IQueueEntry.LastException
+  name: LastException
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_LastException
+  commentId: P:wan24.Core.IQueueEntry.LastException
+  fullName: wan24.Core.IQueueEntry.LastException
+  nameWithType: IQueueEntry.LastException
+- uid: wan24.Core.IQueueEntry.LastException*
+  name: LastException
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_LastException_
+  commentId: Overload:wan24.Core.IQueueEntry.LastException
+  isSpec: "True"
+  fullName: wan24.Core.IQueueEntry.LastException
+  nameWithType: IQueueEntry.LastException
+- uid: wan24.Core.IQueueEntry.LastProcessed
+  name: LastProcessed
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_LastProcessed
+  commentId: P:wan24.Core.IQueueEntry.LastProcessed
+  fullName: wan24.Core.IQueueEntry.LastProcessed
+  nameWithType: IQueueEntry.LastProcessed
+- uid: wan24.Core.IQueueEntry.LastProcessed*
+  name: LastProcessed
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_LastProcessed_
+  commentId: Overload:wan24.Core.IQueueEntry.LastProcessed
+  isSpec: "True"
+  fullName: wan24.Core.IQueueEntry.LastProcessed
+  nameWithType: IQueueEntry.LastProcessed
+- uid: wan24.Core.IQueueEntry.LastProcessingTime
+  name: LastProcessingTime
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_LastProcessingTime
+  commentId: P:wan24.Core.IQueueEntry.LastProcessingTime
+  fullName: wan24.Core.IQueueEntry.LastProcessingTime
+  nameWithType: IQueueEntry.LastProcessingTime
+- uid: wan24.Core.IQueueEntry.LastProcessingTime*
+  name: LastProcessingTime
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_LastProcessingTime_
+  commentId: Overload:wan24.Core.IQueueEntry.LastProcessingTime
+  isSpec: "True"
+  fullName: wan24.Core.IQueueEntry.LastProcessingTime
+  nameWithType: IQueueEntry.LastProcessingTime
+- uid: wan24.Core.IQueueEntry.Name
+  name: Name
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_Name
+  commentId: P:wan24.Core.IQueueEntry.Name
+  fullName: wan24.Core.IQueueEntry.Name
+  nameWithType: IQueueEntry.Name
+- uid: wan24.Core.IQueueEntry.Name*
+  name: Name
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_Name_
+  commentId: Overload:wan24.Core.IQueueEntry.Name
+  isSpec: "True"
+  fullName: wan24.Core.IQueueEntry.Name
+  nameWithType: IQueueEntry.Name
+- uid: wan24.Core.IQueueEntry.QueueState
+  name: QueueState
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_QueueState
+  commentId: P:wan24.Core.IQueueEntry.QueueState
+  fullName: wan24.Core.IQueueEntry.QueueState
+  nameWithType: IQueueEntry.QueueState
+- uid: wan24.Core.IQueueEntry.QueueState*
+  name: QueueState
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_QueueState_
+  commentId: Overload:wan24.Core.IQueueEntry.QueueState
+  isSpec: "True"
+  fullName: wan24.Core.IQueueEntry.QueueState
+  nameWithType: IQueueEntry.QueueState
+- uid: wan24.Core.IQueueEntry.TotalProcessingTime
+  name: TotalProcessingTime
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_TotalProcessingTime
+  commentId: P:wan24.Core.IQueueEntry.TotalProcessingTime
+  fullName: wan24.Core.IQueueEntry.TotalProcessingTime
+  nameWithType: IQueueEntry.TotalProcessingTime
+- uid: wan24.Core.IQueueEntry.TotalProcessingTime*
+  name: TotalProcessingTime
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_TotalProcessingTime_
+  commentId: Overload:wan24.Core.IQueueEntry.TotalProcessingTime
+  isSpec: "True"
+  fullName: wan24.Core.IQueueEntry.TotalProcessingTime
+  nameWithType: IQueueEntry.TotalProcessingTime
+- uid: wan24.Core.IQueueEntry.WaitingProcessingTime
+  name: WaitingProcessingTime
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_WaitingProcessingTime
+  commentId: P:wan24.Core.IQueueEntry.WaitingProcessingTime
+  fullName: wan24.Core.IQueueEntry.WaitingProcessingTime
+  nameWithType: IQueueEntry.WaitingProcessingTime
+- uid: wan24.Core.IQueueEntry.WaitingProcessingTime*
+  name: WaitingProcessingTime
+  href: api/wan24.Core.IQueueEntry.html#wan24_Core_IQueueEntry_WaitingProcessingTime_
+  commentId: Overload:wan24.Core.IQueueEntry.WaitingProcessingTime
+  isSpec: "True"
+  fullName: wan24.Core.IQueueEntry.WaitingProcessingTime
+  nameWithType: IQueueEntry.WaitingProcessingTime
 - uid: wan24.Core.IQueueWorker
   name: IQueueWorker
   href: api/wan24.Core.IQueueWorker.html
@@ -20946,6 +21268,51 @@ references:
   commentId: T:wan24.Core.IServiceWorkerStatus
   fullName: wan24.Core.IServiceWorkerStatus
   nameWithType: IServiceWorkerStatus
+- uid: wan24.Core.IStackInfo
+  name: IStackInfo
+  href: api/wan24.Core.IStackInfo.html
+  commentId: T:wan24.Core.IStackInfo
+  fullName: wan24.Core.IStackInfo
+  nameWithType: IStackInfo
+- uid: wan24.Core.IStackInfo.Created
+  name: Created
+  href: api/wan24.Core.IStackInfo.html#wan24_Core_IStackInfo_Created
+  commentId: P:wan24.Core.IStackInfo.Created
+  fullName: wan24.Core.IStackInfo.Created
+  nameWithType: IStackInfo.Created
+- uid: wan24.Core.IStackInfo.Created*
+  name: Created
+  href: api/wan24.Core.IStackInfo.html#wan24_Core_IStackInfo_Created_
+  commentId: Overload:wan24.Core.IStackInfo.Created
+  isSpec: "True"
+  fullName: wan24.Core.IStackInfo.Created
+  nameWithType: IStackInfo.Created
+- uid: wan24.Core.IStackInfo.Object
+  name: Object
+  href: api/wan24.Core.IStackInfo.html#wan24_Core_IStackInfo_Object
+  commentId: P:wan24.Core.IStackInfo.Object
+  fullName: wan24.Core.IStackInfo.Object
+  nameWithType: IStackInfo.Object
+- uid: wan24.Core.IStackInfo.Object*
+  name: Object
+  href: api/wan24.Core.IStackInfo.html#wan24_Core_IStackInfo_Object_
+  commentId: Overload:wan24.Core.IStackInfo.Object
+  isSpec: "True"
+  fullName: wan24.Core.IStackInfo.Object
+  nameWithType: IStackInfo.Object
+- uid: wan24.Core.IStackInfo.Stack
+  name: Stack
+  href: api/wan24.Core.IStackInfo.html#wan24_Core_IStackInfo_Stack
+  commentId: P:wan24.Core.IStackInfo.Stack
+  fullName: wan24.Core.IStackInfo.Stack
+  nameWithType: IStackInfo.Stack
+- uid: wan24.Core.IStackInfo.Stack*
+  name: Stack
+  href: api/wan24.Core.IStackInfo.html#wan24_Core_IStackInfo_Stack_
+  commentId: Overload:wan24.Core.IStackInfo.Stack
+  isSpec: "True"
+  fullName: wan24.Core.IStackInfo.Stack
+  nameWithType: IStackInfo.Stack
 - uid: wan24.Core.IStatusProvider
   name: IStatusProvider
   href: api/wan24.Core.IStatusProvider.html
@@ -31376,6 +31743,42 @@ references:
   isSpec: "True"
   fullName: wan24.Core.PropertyInfoExt.Setter
   nameWithType: PropertyInfoExt.Setter
+- uid: wan24.Core.QueueEntryStates
+  name: QueueEntryStates
+  href: api/wan24.Core.QueueEntryStates.html
+  commentId: T:wan24.Core.QueueEntryStates
+  fullName: wan24.Core.QueueEntryStates
+  nameWithType: QueueEntryStates
+- uid: wan24.Core.QueueEntryStates.Done
+  name: Done
+  href: api/wan24.Core.QueueEntryStates.html#wan24_Core_QueueEntryStates_Done
+  commentId: F:wan24.Core.QueueEntryStates.Done
+  fullName: wan24.Core.QueueEntryStates.Done
+  nameWithType: QueueEntryStates.Done
+- uid: wan24.Core.QueueEntryStates.Enqueued
+  name: Enqueued
+  href: api/wan24.Core.QueueEntryStates.html#wan24_Core_QueueEntryStates_Enqueued
+  commentId: F:wan24.Core.QueueEntryStates.Enqueued
+  fullName: wan24.Core.QueueEntryStates.Enqueued
+  nameWithType: QueueEntryStates.Enqueued
+- uid: wan24.Core.QueueEntryStates.Error
+  name: Error
+  href: api/wan24.Core.QueueEntryStates.html#wan24_Core_QueueEntryStates_Error
+  commentId: F:wan24.Core.QueueEntryStates.Error
+  fullName: wan24.Core.QueueEntryStates.Error
+  nameWithType: QueueEntryStates.Error
+- uid: wan24.Core.QueueEntryStates.Paused
+  name: Paused
+  href: api/wan24.Core.QueueEntryStates.html#wan24_Core_QueueEntryStates_Paused
+  commentId: F:wan24.Core.QueueEntryStates.Paused
+  fullName: wan24.Core.QueueEntryStates.Paused
+  nameWithType: QueueEntryStates.Paused
+- uid: wan24.Core.QueueEntryStates.Processing
+  name: Processing
+  href: api/wan24.Core.QueueEntryStates.html#wan24_Core_QueueEntryStates_Processing
+  commentId: F:wan24.Core.QueueEntryStates.Processing
+  fullName: wan24.Core.QueueEntryStates.Processing
+  nameWithType: QueueEntryStates.Processing
 - uid: wan24.Core.QueueWorker
   name: QueueWorker
   href: api/wan24.Core.QueueWorker.html
@@ -32350,6 +32753,201 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ReflectionExtensions.SetValueFast
   nameWithType: ReflectionExtensions.SetValueFast
+- uid: wan24.Core.RegularExpressions
+  name: RegularExpressions
+  href: api/wan24.Core.RegularExpressions.html
+  commentId: T:wan24.Core.RegularExpressions
+  fullName: wan24.Core.RegularExpressions
+  nameWithType: RegularExpressions
+- uid: wan24.Core.RegularExpressions.Add(System.String,System.String,System.Text.RegularExpressions.RegexOptions)
+  name: Add(String, String, RegexOptions)
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_Add_System_String_System_String_System_Text_RegularExpressions_RegexOptions_
+  commentId: M:wan24.Core.RegularExpressions.Add(System.String,System.String,System.Text.RegularExpressions.RegexOptions)
+  fullName: wan24.Core.RegularExpressions.Add(System.String, System.String, System.Text.RegularExpressions.RegexOptions)
+  nameWithType: RegularExpressions.Add(String, String, RegexOptions)
+- uid: wan24.Core.RegularExpressions.Add*
+  name: Add
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_Add_
+  commentId: Overload:wan24.Core.RegularExpressions.Add
+  isSpec: "True"
+  fullName: wan24.Core.RegularExpressions.Add
+  nameWithType: RegularExpressions.Add
+- uid: wan24.Core.RegularExpressions.Contains(System.String)
+  name: Contains(String)
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_Contains_System_String_
+  commentId: M:wan24.Core.RegularExpressions.Contains(System.String)
+  fullName: wan24.Core.RegularExpressions.Contains(System.String)
+  nameWithType: RegularExpressions.Contains(String)
+- uid: wan24.Core.RegularExpressions.Contains*
+  name: Contains
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_Contains_
+  commentId: Overload:wan24.Core.RegularExpressions.Contains
+  isSpec: "True"
+  fullName: wan24.Core.RegularExpressions.Contains
+  nameWithType: RegularExpressions.Contains
+- uid: wan24.Core.RegularExpressions.GetPattern(System.String)
+  name: GetPattern(String)
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_GetPattern_System_String_
+  commentId: M:wan24.Core.RegularExpressions.GetPattern(System.String)
+  fullName: wan24.Core.RegularExpressions.GetPattern(System.String)
+  nameWithType: RegularExpressions.GetPattern(String)
+- uid: wan24.Core.RegularExpressions.GetPattern*
+  name: GetPattern
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_GetPattern_
+  commentId: Overload:wan24.Core.RegularExpressions.GetPattern
+  isSpec: "True"
+  fullName: wan24.Core.RegularExpressions.GetPattern
+  nameWithType: RegularExpressions.GetPattern
+- uid: wan24.Core.RegularExpressions.GetRegex(System.String)
+  name: GetRegex(String)
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_GetRegex_System_String_
+  commentId: M:wan24.Core.RegularExpressions.GetRegex(System.String)
+  fullName: wan24.Core.RegularExpressions.GetRegex(System.String)
+  nameWithType: RegularExpressions.GetRegex(String)
+- uid: wan24.Core.RegularExpressions.GetRegex*
+  name: GetRegex
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_GetRegex_
+  commentId: Overload:wan24.Core.RegularExpressions.GetRegex
+  isSpec: "True"
+  fullName: wan24.Core.RegularExpressions.GetRegex
+  nameWithType: RegularExpressions.GetRegex
+- uid: wan24.Core.RegularExpressions.LOCALE
+  name: LOCALE
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_LOCALE
+  commentId: F:wan24.Core.RegularExpressions.LOCALE
+  fullName: wan24.Core.RegularExpressions.LOCALE
+  nameWithType: RegularExpressions.LOCALE
+- uid: wan24.Core.RegularExpressions.LOCALE_WITH_DASH
+  name: LOCALE_WITH_DASH
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_LOCALE_WITH_DASH
+  commentId: F:wan24.Core.RegularExpressions.LOCALE_WITH_DASH
+  fullName: wan24.Core.RegularExpressions.LOCALE_WITH_DASH
+  nameWithType: RegularExpressions.LOCALE_WITH_DASH
+- uid: wan24.Core.RegularExpressions.LOCALE_WITH_UNDERSCORE
+  name: LOCALE_WITH_UNDERSCORE
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_LOCALE_WITH_UNDERSCORE
+  commentId: F:wan24.Core.RegularExpressions.LOCALE_WITH_UNDERSCORE
+  fullName: wan24.Core.RegularExpressions.LOCALE_WITH_UNDERSCORE
+  nameWithType: RegularExpressions.LOCALE_WITH_UNDERSCORE
+- uid: wan24.Core.RegularExpressions.MIME_TYPE
+  name: MIME_TYPE
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_MIME_TYPE
+  commentId: F:wan24.Core.RegularExpressions.MIME_TYPE
+  fullName: wan24.Core.RegularExpressions.MIME_TYPE
+  nameWithType: RegularExpressions.MIME_TYPE
+- uid: wan24.Core.RegularExpressions.NamedExpressionCount
+  name: NamedExpressionCount
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_NamedExpressionCount
+  commentId: P:wan24.Core.RegularExpressions.NamedExpressionCount
+  fullName: wan24.Core.RegularExpressions.NamedExpressionCount
+  nameWithType: RegularExpressions.NamedExpressionCount
+- uid: wan24.Core.RegularExpressions.NamedExpressionCount*
+  name: NamedExpressionCount
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_NamedExpressionCount_
+  commentId: Overload:wan24.Core.RegularExpressions.NamedExpressionCount
+  isSpec: "True"
+  fullName: wan24.Core.RegularExpressions.NamedExpressionCount
+  nameWithType: RegularExpressions.NamedExpressionCount
+- uid: wan24.Core.RegularExpressions.NamedExpressionNames
+  name: NamedExpressionNames
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_NamedExpressionNames
+  commentId: P:wan24.Core.RegularExpressions.NamedExpressionNames
+  fullName: wan24.Core.RegularExpressions.NamedExpressionNames
+  nameWithType: RegularExpressions.NamedExpressionNames
+- uid: wan24.Core.RegularExpressions.NamedExpressionNames*
+  name: NamedExpressionNames
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_NamedExpressionNames_
+  commentId: Overload:wan24.Core.RegularExpressions.NamedExpressionNames
+  isSpec: "True"
+  fullName: wan24.Core.RegularExpressions.NamedExpressionNames
+  nameWithType: RegularExpressions.NamedExpressionNames
+- uid: wan24.Core.RegularExpressions.NamedExpressions
+  name: NamedExpressions
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_NamedExpressions
+  commentId: P:wan24.Core.RegularExpressions.NamedExpressions
+  fullName: wan24.Core.RegularExpressions.NamedExpressions
+  nameWithType: RegularExpressions.NamedExpressions
+- uid: wan24.Core.RegularExpressions.NamedExpressions*
+  name: NamedExpressions
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_NamedExpressions_
+  commentId: Overload:wan24.Core.RegularExpressions.NamedExpressions
+  isSpec: "True"
+  fullName: wan24.Core.RegularExpressions.NamedExpressions
+  nameWithType: RegularExpressions.NamedExpressions
+- uid: wan24.Core.RegularExpressions.NamedRegex
+  name: NamedRegex
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_NamedRegex
+  commentId: P:wan24.Core.RegularExpressions.NamedRegex
+  fullName: wan24.Core.RegularExpressions.NamedRegex
+  nameWithType: RegularExpressions.NamedRegex
+- uid: wan24.Core.RegularExpressions.NamedRegex*
+  name: NamedRegex
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_NamedRegex_
+  commentId: Overload:wan24.Core.RegularExpressions.NamedRegex
+  isSpec: "True"
+  fullName: wan24.Core.RegularExpressions.NamedRegex
+  nameWithType: RegularExpressions.NamedRegex
+- uid: wan24.Core.RegularExpressions.NEW_LINE
+  name: NEW_LINE
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_NEW_LINE
+  commentId: F:wan24.Core.RegularExpressions.NEW_LINE
+  fullName: wan24.Core.RegularExpressions.NEW_LINE
+  nameWithType: RegularExpressions.NEW_LINE
+- uid: wan24.Core.RegularExpressions.NO_NEW_LINE
+  name: NO_NEW_LINE
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_NO_NEW_LINE
+  commentId: F:wan24.Core.RegularExpressions.NO_NEW_LINE
+  fullName: wan24.Core.RegularExpressions.NO_NEW_LINE
+  nameWithType: RegularExpressions.NO_NEW_LINE
+- uid: wan24.Core.RegularExpressions.Remove(System.String)
+  name: Remove(String)
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_Remove_System_String_
+  commentId: M:wan24.Core.RegularExpressions.Remove(System.String)
+  fullName: wan24.Core.RegularExpressions.Remove(System.String)
+  nameWithType: RegularExpressions.Remove(String)
+- uid: wan24.Core.RegularExpressions.Remove*
+  name: Remove
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_Remove_
+  commentId: Overload:wan24.Core.RegularExpressions.Remove
+  isSpec: "True"
+  fullName: wan24.Core.RegularExpressions.Remove
+  nameWithType: RegularExpressions.Remove
+- uid: wan24.Core.RegularExpressions.RX_LOCALE
+  name: RX_LOCALE
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_RX_LOCALE
+  commentId: F:wan24.Core.RegularExpressions.RX_LOCALE
+  fullName: wan24.Core.RegularExpressions.RX_LOCALE
+  nameWithType: RegularExpressions.RX_LOCALE
+- uid: wan24.Core.RegularExpressions.RX_LOCALE_WITH_DASH
+  name: RX_LOCALE_WITH_DASH
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_RX_LOCALE_WITH_DASH
+  commentId: F:wan24.Core.RegularExpressions.RX_LOCALE_WITH_DASH
+  fullName: wan24.Core.RegularExpressions.RX_LOCALE_WITH_DASH
+  nameWithType: RegularExpressions.RX_LOCALE_WITH_DASH
+- uid: wan24.Core.RegularExpressions.RX_LOCALE_WITH_UNDERSCORE
+  name: RX_LOCALE_WITH_UNDERSCORE
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_RX_LOCALE_WITH_UNDERSCORE
+  commentId: F:wan24.Core.RegularExpressions.RX_LOCALE_WITH_UNDERSCORE
+  fullName: wan24.Core.RegularExpressions.RX_LOCALE_WITH_UNDERSCORE
+  nameWithType: RegularExpressions.RX_LOCALE_WITH_UNDERSCORE
+- uid: wan24.Core.RegularExpressions.RX_MIME_TYPE
+  name: RX_MIME_TYPE
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_RX_MIME_TYPE
+  commentId: F:wan24.Core.RegularExpressions.RX_MIME_TYPE
+  fullName: wan24.Core.RegularExpressions.RX_MIME_TYPE
+  nameWithType: RegularExpressions.RX_MIME_TYPE
+- uid: wan24.Core.RegularExpressions.RX_NEW_LINE
+  name: RX_NEW_LINE
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_RX_NEW_LINE
+  commentId: F:wan24.Core.RegularExpressions.RX_NEW_LINE
+  fullName: wan24.Core.RegularExpressions.RX_NEW_LINE
+  nameWithType: RegularExpressions.RX_NEW_LINE
+- uid: wan24.Core.RegularExpressions.RX_NO_NEW_LINE
+  name: RX_NO_NEW_LINE
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_RX_NO_NEW_LINE
+  commentId: F:wan24.Core.RegularExpressions.RX_NO_NEW_LINE
+  fullName: wan24.Core.RegularExpressions.RX_NO_NEW_LINE
+  nameWithType: RegularExpressions.RX_NO_NEW_LINE
 - uid: wan24.Core.RentedArray`1
   name: RentedArray<T>
   href: api/wan24.Core.RentedArray-1.html
@@ -33757,15 +34355,15 @@ references:
   fullName.vb: wan24.Core.RentedObject(Of T).Object
   nameWithType: RentedObject<T>.Object
   nameWithType.vb: RentedObject(Of T).Object
-- uid: wan24.Core.RentedObject`1.op_Implicit(wan24.Core.RentedObject{`0})~`0
-  name: Implicit(RentedObject<T> to T)
-  href: api/wan24.Core.RentedObject-1.html#wan24_Core_RentedObject_1_op_Implicit_wan24_Core_RentedObject__0____0
-  commentId: M:wan24.Core.RentedObject`1.op_Implicit(wan24.Core.RentedObject{`0})~`0
-  name.vb: Widening(RentedObject(Of T) to T)
-  fullName: wan24.Core.RentedObject<T>.Implicit(wan24.Core.RentedObject<T> to T)
-  fullName.vb: wan24.Core.RentedObject(Of T).Widening(wan24.Core.RentedObject(Of T) to T)
-  nameWithType: RentedObject<T>.Implicit(RentedObject<T> to T)
-  nameWithType.vb: RentedObject(Of T).Widening(RentedObject(Of T) to T)
+- uid: wan24.Core.RentedObject`1.op_Implicit(wan24.Core.RentedObject{`0}@)~`0
+  name: Implicit(in RentedObject<T> to T)
+  href: api/wan24.Core.RentedObject-1.html#wan24_Core_RentedObject_1_op_Implicit_wan24_Core_RentedObject__0_____0
+  commentId: M:wan24.Core.RentedObject`1.op_Implicit(wan24.Core.RentedObject{`0}@)~`0
+  name.vb: Widening(ByRef RentedObject(Of T) to T)
+  fullName: wan24.Core.RentedObject<T>.Implicit(in wan24.Core.RentedObject<T> to T)
+  fullName.vb: wan24.Core.RentedObject(Of T).Widening(ByRef wan24.Core.RentedObject(Of T) to T)
+  nameWithType: RentedObject<T>.Implicit(in RentedObject<T> to T)
+  nameWithType.vb: RentedObject(Of T).Widening(ByRef RentedObject(Of T) to T)
 - uid: wan24.Core.RentedObject`1.op_Implicit*
   name: Implicit
   href: api/wan24.Core.RentedObject-1.html#wan24_Core_RentedObject_1_op_Implicit_
@@ -33905,15 +34503,15 @@ references:
   fullName.vb: wan24.Core.RentedObjectRefStruct(Of T).Object
   nameWithType: RentedObjectRefStruct<T>.Object
   nameWithType.vb: RentedObjectRefStruct(Of T).Object
-- uid: wan24.Core.RentedObjectRefStruct`1.op_Implicit(wan24.Core.RentedObjectRefStruct{`0})~`0
-  name: Implicit(RentedObjectRefStruct<T> to T)
-  href: api/wan24.Core.RentedObjectRefStruct-1.html#wan24_Core_RentedObjectRefStruct_1_op_Implicit_wan24_Core_RentedObjectRefStruct__0____0
-  commentId: M:wan24.Core.RentedObjectRefStruct`1.op_Implicit(wan24.Core.RentedObjectRefStruct{`0})~`0
-  name.vb: Widening(RentedObjectRefStruct(Of T) to T)
-  fullName: wan24.Core.RentedObjectRefStruct<T>.Implicit(wan24.Core.RentedObjectRefStruct<T> to T)
-  fullName.vb: wan24.Core.RentedObjectRefStruct(Of T).Widening(wan24.Core.RentedObjectRefStruct(Of T) to T)
-  nameWithType: RentedObjectRefStruct<T>.Implicit(RentedObjectRefStruct<T> to T)
-  nameWithType.vb: RentedObjectRefStruct(Of T).Widening(RentedObjectRefStruct(Of T) to T)
+- uid: wan24.Core.RentedObjectRefStruct`1.op_Implicit(wan24.Core.RentedObjectRefStruct{`0}@)~`0
+  name: Implicit(in RentedObjectRefStruct<T> to T)
+  href: api/wan24.Core.RentedObjectRefStruct-1.html#wan24_Core_RentedObjectRefStruct_1_op_Implicit_wan24_Core_RentedObjectRefStruct__0_____0
+  commentId: M:wan24.Core.RentedObjectRefStruct`1.op_Implicit(wan24.Core.RentedObjectRefStruct{`0}@)~`0
+  name.vb: Widening(ByRef RentedObjectRefStruct(Of T) to T)
+  fullName: wan24.Core.RentedObjectRefStruct<T>.Implicit(in wan24.Core.RentedObjectRefStruct<T> to T)
+  fullName.vb: wan24.Core.RentedObjectRefStruct(Of T).Widening(ByRef wan24.Core.RentedObjectRefStruct(Of T) to T)
+  nameWithType: RentedObjectRefStruct<T>.Implicit(in RentedObjectRefStruct<T> to T)
+  nameWithType.vb: RentedObjectRefStruct(Of T).Widening(ByRef RentedObjectRefStruct(Of T) to T)
 - uid: wan24.Core.RentedObjectRefStruct`1.op_Implicit*
   name: Implicit
   href: api/wan24.Core.RentedObjectRefStruct-1.html#wan24_Core_RentedObjectRefStruct_1_op_Implicit_
@@ -38260,6 +38858,155 @@ references:
   isSpec: "True"
   fullName: wan24.Core.SocketExtensions.IsConnected
   nameWithType: SocketExtensions.IsConnected
+- uid: wan24.Core.StackInfo`1
+  name: StackInfo<T>
+  href: api/wan24.Core.StackInfo-1.html
+  commentId: T:wan24.Core.StackInfo`1
+  name.vb: StackInfo(Of T)
+  fullName: wan24.Core.StackInfo<T>
+  fullName.vb: wan24.Core.StackInfo(Of T)
+  nameWithType: StackInfo<T>
+  nameWithType.vb: StackInfo(Of T)
+- uid: wan24.Core.StackInfo`1.#ctor(`0)
+  name: StackInfo(T)
+  href: api/wan24.Core.StackInfo-1.html#wan24_Core_StackInfo_1__ctor__0_
+  commentId: M:wan24.Core.StackInfo`1.#ctor(`0)
+  fullName: wan24.Core.StackInfo<T>.StackInfo(T)
+  fullName.vb: wan24.Core.StackInfo(Of T).StackInfo(T)
+  nameWithType: StackInfo<T>.StackInfo(T)
+  nameWithType.vb: StackInfo(Of T).StackInfo(T)
+- uid: wan24.Core.StackInfo`1.#ctor*
+  name: StackInfo
+  href: api/wan24.Core.StackInfo-1.html#wan24_Core_StackInfo_1__ctor_
+  commentId: Overload:wan24.Core.StackInfo`1.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.StackInfo<T>.StackInfo
+  fullName.vb: wan24.Core.StackInfo(Of T).StackInfo
+  nameWithType: StackInfo<T>.StackInfo
+  nameWithType.vb: StackInfo(Of T).StackInfo
+- uid: wan24.Core.StackInfo`1.Created
+  name: Created
+  href: api/wan24.Core.StackInfo-1.html#wan24_Core_StackInfo_1_Created
+  commentId: P:wan24.Core.StackInfo`1.Created
+  fullName: wan24.Core.StackInfo<T>.Created
+  fullName.vb: wan24.Core.StackInfo(Of T).Created
+  nameWithType: StackInfo<T>.Created
+  nameWithType.vb: StackInfo(Of T).Created
+- uid: wan24.Core.StackInfo`1.Created*
+  name: Created
+  href: api/wan24.Core.StackInfo-1.html#wan24_Core_StackInfo_1_Created_
+  commentId: Overload:wan24.Core.StackInfo`1.Created
+  isSpec: "True"
+  fullName: wan24.Core.StackInfo<T>.Created
+  fullName.vb: wan24.Core.StackInfo(Of T).Created
+  nameWithType: StackInfo<T>.Created
+  nameWithType.vb: StackInfo(Of T).Created
+- uid: wan24.Core.StackInfo`1.Object
+  name: Object
+  href: api/wan24.Core.StackInfo-1.html#wan24_Core_StackInfo_1_Object
+  commentId: P:wan24.Core.StackInfo`1.Object
+  fullName: wan24.Core.StackInfo<T>.Object
+  fullName.vb: wan24.Core.StackInfo(Of T).Object
+  nameWithType: StackInfo<T>.Object
+  nameWithType.vb: StackInfo(Of T).Object
+- uid: wan24.Core.StackInfo`1.Object*
+  name: Object
+  href: api/wan24.Core.StackInfo-1.html#wan24_Core_StackInfo_1_Object_
+  commentId: Overload:wan24.Core.StackInfo`1.Object
+  isSpec: "True"
+  fullName: wan24.Core.StackInfo<T>.Object
+  fullName.vb: wan24.Core.StackInfo(Of T).Object
+  nameWithType: StackInfo<T>.Object
+  nameWithType.vb: StackInfo(Of T).Object
+- uid: wan24.Core.StackInfo`1.Stack
+  name: Stack
+  href: api/wan24.Core.StackInfo-1.html#wan24_Core_StackInfo_1_Stack
+  commentId: P:wan24.Core.StackInfo`1.Stack
+  fullName: wan24.Core.StackInfo<T>.Stack
+  fullName.vb: wan24.Core.StackInfo(Of T).Stack
+  nameWithType: StackInfo<T>.Stack
+  nameWithType.vb: StackInfo(Of T).Stack
+- uid: wan24.Core.StackInfo`1.Stack*
+  name: Stack
+  href: api/wan24.Core.StackInfo-1.html#wan24_Core_StackInfo_1_Stack_
+  commentId: Overload:wan24.Core.StackInfo`1.Stack
+  isSpec: "True"
+  fullName: wan24.Core.StackInfo<T>.Stack
+  fullName.vb: wan24.Core.StackInfo(Of T).Stack
+  nameWithType: StackInfo<T>.Stack
+  nameWithType.vb: StackInfo(Of T).Stack
+- uid: wan24.Core.StackInfo`1.wan24#Core#IStackInfo#Object
+  name: IStackInfo.Object
+  href: api/wan24.Core.StackInfo-1.html#wan24_Core_StackInfo_1_wan24_Core_IStackInfo_Object
+  commentId: P:wan24.Core.StackInfo`1.wan24#Core#IStackInfo#Object
+  name.vb: wan24.Core.IStackInfo.Object
+  fullName: wan24.Core.StackInfo<T>.wan24.Core.IStackInfo.Object
+  fullName.vb: wan24.Core.StackInfo(Of T).wan24.Core.IStackInfo.Object
+  nameWithType: StackInfo<T>.IStackInfo.Object
+  nameWithType.vb: StackInfo(Of T).wan24.Core.IStackInfo.Object
+- uid: wan24.Core.StackInfo`1.wan24#Core#IStackInfo#Object*
+  name: IStackInfo.Object
+  href: api/wan24.Core.StackInfo-1.html#wan24_Core_StackInfo_1_wan24_Core_IStackInfo_Object_
+  commentId: Overload:wan24.Core.StackInfo`1.wan24#Core#IStackInfo#Object
+  isSpec: "True"
+  name.vb: wan24.Core.IStackInfo.Object
+  fullName: wan24.Core.StackInfo<T>.wan24.Core.IStackInfo.Object
+  fullName.vb: wan24.Core.StackInfo(Of T).wan24.Core.IStackInfo.Object
+  nameWithType: StackInfo<T>.IStackInfo.Object
+  nameWithType.vb: StackInfo(Of T).wan24.Core.IStackInfo.Object
+- uid: wan24.Core.StackInfoException
+  name: StackInfoException
+  href: api/wan24.Core.StackInfoException.html
+  commentId: T:wan24.Core.StackInfoException
+  fullName: wan24.Core.StackInfoException
+  nameWithType: StackInfoException
+- uid: wan24.Core.StackInfoException.#ctor(wan24.Core.IStackInfo@)
+  name: StackInfoException(in IStackInfo)
+  href: api/wan24.Core.StackInfoException.html#wan24_Core_StackInfoException__ctor_wan24_Core_IStackInfo__
+  commentId: M:wan24.Core.StackInfoException.#ctor(wan24.Core.IStackInfo@)
+  name.vb: StackInfoException(ByRef IStackInfo)
+  fullName: wan24.Core.StackInfoException.StackInfoException(in wan24.Core.IStackInfo)
+  fullName.vb: wan24.Core.StackInfoException.StackInfoException(ByRef wan24.Core.IStackInfo)
+  nameWithType: StackInfoException.StackInfoException(in IStackInfo)
+  nameWithType.vb: StackInfoException.StackInfoException(ByRef IStackInfo)
+- uid: wan24.Core.StackInfoException.#ctor(wan24.Core.IStackInfo@,System.String@)
+  name: StackInfoException(in IStackInfo, in String)
+  href: api/wan24.Core.StackInfoException.html#wan24_Core_StackInfoException__ctor_wan24_Core_IStackInfo__System_String__
+  commentId: M:wan24.Core.StackInfoException.#ctor(wan24.Core.IStackInfo@,System.String@)
+  name.vb: StackInfoException(ByRef IStackInfo, ByRef String)
+  fullName: wan24.Core.StackInfoException.StackInfoException(in wan24.Core.IStackInfo, in System.String)
+  fullName.vb: wan24.Core.StackInfoException.StackInfoException(ByRef wan24.Core.IStackInfo, ByRef System.String)
+  nameWithType: StackInfoException.StackInfoException(in IStackInfo, in String)
+  nameWithType.vb: StackInfoException.StackInfoException(ByRef IStackInfo, ByRef String)
+- uid: wan24.Core.StackInfoException.#ctor(wan24.Core.IStackInfo@,System.String@,System.Nullable{Exception}@)
+  name: StackInfoException(in IStackInfo, in String, in Nullable<Exception>)
+  href: api/wan24.Core.StackInfoException.html#wan24_Core_StackInfoException__ctor_wan24_Core_IStackInfo__System_String__System_Nullable_Exception___
+  commentId: M:wan24.Core.StackInfoException.#ctor(wan24.Core.IStackInfo@,System.String@,System.Nullable{Exception}@)
+  name.vb: StackInfoException(ByRef IStackInfo, ByRef String, ByRef Nullable(Of Exception))
+  fullName: wan24.Core.StackInfoException.StackInfoException(in wan24.Core.IStackInfo, in System.String, in System.Nullable<Exception>)
+  fullName.vb: wan24.Core.StackInfoException.StackInfoException(ByRef wan24.Core.IStackInfo, ByRef System.String, ByRef System.Nullable(Of Exception))
+  nameWithType: StackInfoException.StackInfoException(in IStackInfo, in String, in Nullable<Exception>)
+  nameWithType.vb: StackInfoException.StackInfoException(ByRef IStackInfo, ByRef String, ByRef Nullable(Of Exception))
+- uid: wan24.Core.StackInfoException.#ctor*
+  name: StackInfoException
+  href: api/wan24.Core.StackInfoException.html#wan24_Core_StackInfoException__ctor_
+  commentId: Overload:wan24.Core.StackInfoException.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.StackInfoException.StackInfoException
+  nameWithType: StackInfoException.StackInfoException
+- uid: wan24.Core.StackInfoException.StackInfo
+  name: StackInfo
+  href: api/wan24.Core.StackInfoException.html#wan24_Core_StackInfoException_StackInfo
+  commentId: P:wan24.Core.StackInfoException.StackInfo
+  fullName: wan24.Core.StackInfoException.StackInfo
+  nameWithType: StackInfoException.StackInfo
+- uid: wan24.Core.StackInfoException.StackInfo*
+  name: StackInfo
+  href: api/wan24.Core.StackInfoException.html#wan24_Core_StackInfoException_StackInfo_
+  commentId: Overload:wan24.Core.StackInfoException.StackInfo
+  isSpec: "True"
+  fullName: wan24.Core.StackInfoException.StackInfo
+  nameWithType: StackInfoException.StackInfo
 - uid: wan24.Core.Statistics
   name: Statistics
   href: api/wan24.Core.Statistics.html
@@ -39409,6 +40156,25 @@ references:
   isSpec: "True"
   fullName: wan24.Core.StringExtensions.IsAscii
   nameWithType: StringExtensions.IsAscii
+- uid: wan24.Core.StringExtensions.IsMatch(System.String,System.String,System.Int32,System.Text.RegularExpressions.RegexOptions)
+  name: IsMatch(String, String, Int32, RegexOptions)
+  href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_IsMatch_System_String_System_String_System_Int32_System_Text_RegularExpressions_RegexOptions_
+  commentId: M:wan24.Core.StringExtensions.IsMatch(System.String,System.String,System.Int32,System.Text.RegularExpressions.RegexOptions)
+  fullName: wan24.Core.StringExtensions.IsMatch(System.String, System.String, System.Int32, System.Text.RegularExpressions.RegexOptions)
+  nameWithType: StringExtensions.IsMatch(String, String, Int32, RegexOptions)
+- uid: wan24.Core.StringExtensions.IsMatch(System.String,System.String,System.Text.RegularExpressions.RegexOptions)
+  name: IsMatch(String, String, RegexOptions)
+  href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_IsMatch_System_String_System_String_System_Text_RegularExpressions_RegexOptions_
+  commentId: M:wan24.Core.StringExtensions.IsMatch(System.String,System.String,System.Text.RegularExpressions.RegexOptions)
+  fullName: wan24.Core.StringExtensions.IsMatch(System.String, System.String, System.Text.RegularExpressions.RegexOptions)
+  nameWithType: StringExtensions.IsMatch(String, String, RegexOptions)
+- uid: wan24.Core.StringExtensions.IsMatch*
+  name: IsMatch
+  href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_IsMatch_
+  commentId: Overload:wan24.Core.StringExtensions.IsMatch
+  isSpec: "True"
+  fullName: wan24.Core.StringExtensions.IsMatch
+  nameWithType: StringExtensions.IsMatch
 - uid: wan24.Core.StringExtensions.Parse(System.String,Dictionary{System.String,System.String}@,wan24.Core.StringParserOptions@)
   name: Parse(String, in Dictionary<String, String>, in StringParserOptions)
   href: api/wan24.Core.StringExtensions.html#wan24_Core_StringExtensions_Parse_System_String_Dictionary_System_String_System_String___wan24_Core_StringParserOptions__
@@ -43528,12 +44294,6 @@ references:
   isSpec: "True"
   fullName: wan24.Core.Translation.RequireTranslation
   nameWithType: Translation.RequireTranslation
-- uid: wan24.Core.Translation.RX_LOCALE
-  name: RX_LOCALE
-  href: api/wan24.Core.Translation.html#wan24_Core_Translation_RX_LOCALE
-  commentId: F:wan24.Core.Translation.RX_LOCALE
-  fullName: wan24.Core.Translation.RX_LOCALE
-  nameWithType: Translation.RX_LOCALE
 - uid: wan24.Core.Translation.Terms
   name: Terms
   href: api/wan24.Core.Translation.html#wan24_Core_Translation_Terms
@@ -43628,202 +44388,202 @@ references:
   isSpec: "True"
   fullName: wan24.Core.Translation.TranslationTerms
   nameWithType: Translation.TranslationTerms
-- uid: wan24.Core.TranslationTermsBase
-  name: TranslationTermsBase
-  href: api/wan24.Core.TranslationTermsBase.html
-  commentId: T:wan24.Core.TranslationTermsBase
-  fullName: wan24.Core.TranslationTermsBase
-  nameWithType: TranslationTermsBase
-- uid: wan24.Core.TranslationTermsBase.#ctor(IReadOnlyDictionary{System.String,System.String})
-  name: TranslationTermsBase(IReadOnlyDictionary<String, String>)
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase__ctor_IReadOnlyDictionary_System_String_System_String__
-  commentId: M:wan24.Core.TranslationTermsBase.#ctor(IReadOnlyDictionary{System.String,System.String})
-  name.vb: TranslationTermsBase(IReadOnlyDictionary(Of String, String))
-  fullName: wan24.Core.TranslationTermsBase.TranslationTermsBase(IReadOnlyDictionary<System.String, System.String>)
-  fullName.vb: wan24.Core.TranslationTermsBase.TranslationTermsBase(IReadOnlyDictionary(Of System.String, System.String))
-  nameWithType: TranslationTermsBase.TranslationTermsBase(IReadOnlyDictionary<String, String>)
-  nameWithType.vb: TranslationTermsBase.TranslationTermsBase(IReadOnlyDictionary(Of String, String))
-- uid: wan24.Core.TranslationTermsBase.#ctor*
-  name: TranslationTermsBase
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase__ctor_
-  commentId: Overload:wan24.Core.TranslationTermsBase.#ctor
+- uid: wan24.Core.TranslationTerms
+  name: TranslationTerms
+  href: api/wan24.Core.TranslationTerms.html
+  commentId: T:wan24.Core.TranslationTerms
+  fullName: wan24.Core.TranslationTerms
+  nameWithType: TranslationTerms
+- uid: wan24.Core.TranslationTerms.#ctor(IReadOnlyDictionary{System.String,System.String})
+  name: TranslationTerms(IReadOnlyDictionary<String, String>)
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms__ctor_IReadOnlyDictionary_System_String_System_String__
+  commentId: M:wan24.Core.TranslationTerms.#ctor(IReadOnlyDictionary{System.String,System.String})
+  name.vb: TranslationTerms(IReadOnlyDictionary(Of String, String))
+  fullName: wan24.Core.TranslationTerms.TranslationTerms(IReadOnlyDictionary<System.String, System.String>)
+  fullName.vb: wan24.Core.TranslationTerms.TranslationTerms(IReadOnlyDictionary(Of System.String, System.String))
+  nameWithType: TranslationTerms.TranslationTerms(IReadOnlyDictionary<String, String>)
+  nameWithType.vb: TranslationTerms.TranslationTerms(IReadOnlyDictionary(Of String, String))
+- uid: wan24.Core.TranslationTerms.#ctor*
+  name: TranslationTerms
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms__ctor_
+  commentId: Overload:wan24.Core.TranslationTerms.#ctor
   isSpec: "True"
-  fullName: wan24.Core.TranslationTermsBase.TranslationTermsBase
-  nameWithType: TranslationTermsBase.TranslationTermsBase
-- uid: wan24.Core.TranslationTermsBase.ContainsKey(System.String)
+  fullName: wan24.Core.TranslationTerms.TranslationTerms
+  nameWithType: TranslationTerms.TranslationTerms
+- uid: wan24.Core.TranslationTerms.ContainsKey(System.String)
   name: ContainsKey(String)
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_ContainsKey_System_String_
-  commentId: M:wan24.Core.TranslationTermsBase.ContainsKey(System.String)
-  fullName: wan24.Core.TranslationTermsBase.ContainsKey(System.String)
-  nameWithType: TranslationTermsBase.ContainsKey(String)
-- uid: wan24.Core.TranslationTermsBase.ContainsKey*
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_ContainsKey_System_String_
+  commentId: M:wan24.Core.TranslationTerms.ContainsKey(System.String)
+  fullName: wan24.Core.TranslationTerms.ContainsKey(System.String)
+  nameWithType: TranslationTerms.ContainsKey(String)
+- uid: wan24.Core.TranslationTerms.ContainsKey*
   name: ContainsKey
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_ContainsKey_
-  commentId: Overload:wan24.Core.TranslationTermsBase.ContainsKey
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_ContainsKey_
+  commentId: Overload:wan24.Core.TranslationTerms.ContainsKey
   isSpec: "True"
-  fullName: wan24.Core.TranslationTermsBase.ContainsKey
-  nameWithType: TranslationTermsBase.ContainsKey
-- uid: wan24.Core.TranslationTermsBase.Count
+  fullName: wan24.Core.TranslationTerms.ContainsKey
+  nameWithType: TranslationTerms.ContainsKey
+- uid: wan24.Core.TranslationTerms.Count
   name: Count
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_Count
-  commentId: P:wan24.Core.TranslationTermsBase.Count
-  fullName: wan24.Core.TranslationTermsBase.Count
-  nameWithType: TranslationTermsBase.Count
-- uid: wan24.Core.TranslationTermsBase.Count*
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_Count
+  commentId: P:wan24.Core.TranslationTerms.Count
+  fullName: wan24.Core.TranslationTerms.Count
+  nameWithType: TranslationTerms.Count
+- uid: wan24.Core.TranslationTerms.Count*
   name: Count
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_Count_
-  commentId: Overload:wan24.Core.TranslationTermsBase.Count
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_Count_
+  commentId: Overload:wan24.Core.TranslationTerms.Count
   isSpec: "True"
-  fullName: wan24.Core.TranslationTermsBase.Count
-  nameWithType: TranslationTermsBase.Count
-- uid: wan24.Core.TranslationTermsBase.GetEnumerator
+  fullName: wan24.Core.TranslationTerms.Count
+  nameWithType: TranslationTerms.Count
+- uid: wan24.Core.TranslationTerms.GetEnumerator
   name: GetEnumerator()
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_GetEnumerator
-  commentId: M:wan24.Core.TranslationTermsBase.GetEnumerator
-  fullName: wan24.Core.TranslationTermsBase.GetEnumerator()
-  nameWithType: TranslationTermsBase.GetEnumerator()
-- uid: wan24.Core.TranslationTermsBase.GetEnumerator*
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_GetEnumerator
+  commentId: M:wan24.Core.TranslationTerms.GetEnumerator
+  fullName: wan24.Core.TranslationTerms.GetEnumerator()
+  nameWithType: TranslationTerms.GetEnumerator()
+- uid: wan24.Core.TranslationTerms.GetEnumerator*
   name: GetEnumerator
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_GetEnumerator_
-  commentId: Overload:wan24.Core.TranslationTermsBase.GetEnumerator
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_GetEnumerator_
+  commentId: Overload:wan24.Core.TranslationTerms.GetEnumerator
   isSpec: "True"
-  fullName: wan24.Core.TranslationTermsBase.GetEnumerator
-  nameWithType: TranslationTermsBase.GetEnumerator
-- uid: wan24.Core.TranslationTermsBase.GetTerm(System.String@)
+  fullName: wan24.Core.TranslationTerms.GetEnumerator
+  nameWithType: TranslationTerms.GetEnumerator
+- uid: wan24.Core.TranslationTerms.GetTerm(System.String@)
   name: GetTerm(in String)
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_GetTerm_System_String__
-  commentId: M:wan24.Core.TranslationTermsBase.GetTerm(System.String@)
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_GetTerm_System_String__
+  commentId: M:wan24.Core.TranslationTerms.GetTerm(System.String@)
   name.vb: GetTerm(ByRef String)
-  fullName: wan24.Core.TranslationTermsBase.GetTerm(in System.String)
-  fullName.vb: wan24.Core.TranslationTermsBase.GetTerm(ByRef System.String)
-  nameWithType: TranslationTermsBase.GetTerm(in String)
-  nameWithType.vb: TranslationTermsBase.GetTerm(ByRef String)
-- uid: wan24.Core.TranslationTermsBase.GetTerm(System.String@,System.Int32@)
+  fullName: wan24.Core.TranslationTerms.GetTerm(in System.String)
+  fullName.vb: wan24.Core.TranslationTerms.GetTerm(ByRef System.String)
+  nameWithType: TranslationTerms.GetTerm(in String)
+  nameWithType.vb: TranslationTerms.GetTerm(ByRef String)
+- uid: wan24.Core.TranslationTerms.GetTerm(System.String@,System.Int32@)
   name: GetTerm(in String, in Int32)
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_GetTerm_System_String__System_Int32__
-  commentId: M:wan24.Core.TranslationTermsBase.GetTerm(System.String@,System.Int32@)
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_GetTerm_System_String__System_Int32__
+  commentId: M:wan24.Core.TranslationTerms.GetTerm(System.String@,System.Int32@)
   name.vb: GetTerm(ByRef String, ByRef Int32)
-  fullName: wan24.Core.TranslationTermsBase.GetTerm(in System.String, in System.Int32)
-  fullName.vb: wan24.Core.TranslationTermsBase.GetTerm(ByRef System.String, ByRef System.Int32)
-  nameWithType: TranslationTermsBase.GetTerm(in String, in Int32)
-  nameWithType.vb: TranslationTermsBase.GetTerm(ByRef String, ByRef Int32)
-- uid: wan24.Core.TranslationTermsBase.GetTerm*
+  fullName: wan24.Core.TranslationTerms.GetTerm(in System.String, in System.Int32)
+  fullName.vb: wan24.Core.TranslationTerms.GetTerm(ByRef System.String, ByRef System.Int32)
+  nameWithType: TranslationTerms.GetTerm(in String, in Int32)
+  nameWithType.vb: TranslationTerms.GetTerm(ByRef String, ByRef Int32)
+- uid: wan24.Core.TranslationTerms.GetTerm*
   name: GetTerm
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_GetTerm_
-  commentId: Overload:wan24.Core.TranslationTermsBase.GetTerm
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_GetTerm_
+  commentId: Overload:wan24.Core.TranslationTerms.GetTerm
   isSpec: "True"
-  fullName: wan24.Core.TranslationTermsBase.GetTerm
-  nameWithType: TranslationTermsBase.GetTerm
-- uid: wan24.Core.TranslationTermsBase.Item(System.String)
+  fullName: wan24.Core.TranslationTerms.GetTerm
+  nameWithType: TranslationTerms.GetTerm
+- uid: wan24.Core.TranslationTerms.Item(System.String)
   name: Item[String]
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_Item_System_String_
-  commentId: P:wan24.Core.TranslationTermsBase.Item(System.String)
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_Item_System_String_
+  commentId: P:wan24.Core.TranslationTerms.Item(System.String)
   name.vb: Item(String)
-  fullName: wan24.Core.TranslationTermsBase.Item[System.String]
-  fullName.vb: wan24.Core.TranslationTermsBase.Item(System.String)
-  nameWithType: TranslationTermsBase.Item[String]
-  nameWithType.vb: TranslationTermsBase.Item(String)
-- uid: wan24.Core.TranslationTermsBase.Item(System.String@,System.Int32@)
+  fullName: wan24.Core.TranslationTerms.Item[System.String]
+  fullName.vb: wan24.Core.TranslationTerms.Item(System.String)
+  nameWithType: TranslationTerms.Item[String]
+  nameWithType.vb: TranslationTerms.Item(String)
+- uid: wan24.Core.TranslationTerms.Item(System.String@,System.Int32@)
   name: Item[in String, in Int32]
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_Item_System_String__System_Int32__
-  commentId: P:wan24.Core.TranslationTermsBase.Item(System.String@,System.Int32@)
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_Item_System_String__System_Int32__
+  commentId: P:wan24.Core.TranslationTerms.Item(System.String@,System.Int32@)
   name.vb: Item(ByRef String, ByRef Int32)
-  fullName: wan24.Core.TranslationTermsBase.Item[in System.String, in System.Int32]
-  fullName.vb: wan24.Core.TranslationTermsBase.Item(ByRef System.String, ByRef System.Int32)
-  nameWithType: TranslationTermsBase.Item[in String, in Int32]
-  nameWithType.vb: TranslationTermsBase.Item(ByRef String, ByRef Int32)
-- uid: wan24.Core.TranslationTermsBase.Item*
+  fullName: wan24.Core.TranslationTerms.Item[in System.String, in System.Int32]
+  fullName.vb: wan24.Core.TranslationTerms.Item(ByRef System.String, ByRef System.Int32)
+  nameWithType: TranslationTerms.Item[in String, in Int32]
+  nameWithType.vb: TranslationTerms.Item(ByRef String, ByRef Int32)
+- uid: wan24.Core.TranslationTerms.Item*
   name: Item
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_Item_
-  commentId: Overload:wan24.Core.TranslationTermsBase.Item
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_Item_
+  commentId: Overload:wan24.Core.TranslationTerms.Item
   isSpec: "True"
-  fullName: wan24.Core.TranslationTermsBase.Item
-  nameWithType: TranslationTermsBase.Item
-- uid: wan24.Core.TranslationTermsBase.Keys
+  fullName: wan24.Core.TranslationTerms.Item
+  nameWithType: TranslationTerms.Item
+- uid: wan24.Core.TranslationTerms.Keys
   name: Keys
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_Keys
-  commentId: P:wan24.Core.TranslationTermsBase.Keys
-  fullName: wan24.Core.TranslationTermsBase.Keys
-  nameWithType: TranslationTermsBase.Keys
-- uid: wan24.Core.TranslationTermsBase.Keys*
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_Keys
+  commentId: P:wan24.Core.TranslationTerms.Keys
+  fullName: wan24.Core.TranslationTerms.Keys
+  nameWithType: TranslationTerms.Keys
+- uid: wan24.Core.TranslationTerms.Keys*
   name: Keys
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_Keys_
-  commentId: Overload:wan24.Core.TranslationTermsBase.Keys
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_Keys_
+  commentId: Overload:wan24.Core.TranslationTerms.Keys
   isSpec: "True"
-  fullName: wan24.Core.TranslationTermsBase.Keys
-  nameWithType: TranslationTermsBase.Keys
-- uid: wan24.Core.TranslationTermsBase.PluralSupport
+  fullName: wan24.Core.TranslationTerms.Keys
+  nameWithType: TranslationTerms.Keys
+- uid: wan24.Core.TranslationTerms.PluralSupport
   name: PluralSupport
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_PluralSupport
-  commentId: P:wan24.Core.TranslationTermsBase.PluralSupport
-  fullName: wan24.Core.TranslationTermsBase.PluralSupport
-  nameWithType: TranslationTermsBase.PluralSupport
-- uid: wan24.Core.TranslationTermsBase.PluralSupport*
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_PluralSupport
+  commentId: P:wan24.Core.TranslationTerms.PluralSupport
+  fullName: wan24.Core.TranslationTerms.PluralSupport
+  nameWithType: TranslationTerms.PluralSupport
+- uid: wan24.Core.TranslationTerms.PluralSupport*
   name: PluralSupport
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_PluralSupport_
-  commentId: Overload:wan24.Core.TranslationTermsBase.PluralSupport
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_PluralSupport_
+  commentId: Overload:wan24.Core.TranslationTerms.PluralSupport
   isSpec: "True"
-  fullName: wan24.Core.TranslationTermsBase.PluralSupport
-  nameWithType: TranslationTermsBase.PluralSupport
-- uid: wan24.Core.TranslationTermsBase.System#Collections#IEnumerable#GetEnumerator
+  fullName: wan24.Core.TranslationTerms.PluralSupport
+  nameWithType: TranslationTerms.PluralSupport
+- uid: wan24.Core.TranslationTerms.System#Collections#IEnumerable#GetEnumerator
   name: IEnumerable.GetEnumerator()
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_System_Collections_IEnumerable_GetEnumerator
-  commentId: M:wan24.Core.TranslationTermsBase.System#Collections#IEnumerable#GetEnumerator
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_System_Collections_IEnumerable_GetEnumerator
+  commentId: M:wan24.Core.TranslationTerms.System#Collections#IEnumerable#GetEnumerator
   name.vb: System.Collections.IEnumerable.GetEnumerator()
-  fullName: wan24.Core.TranslationTermsBase.System.Collections.IEnumerable.GetEnumerator()
-  nameWithType: TranslationTermsBase.IEnumerable.GetEnumerator()
-  nameWithType.vb: TranslationTermsBase.System.Collections.IEnumerable.GetEnumerator()
-- uid: wan24.Core.TranslationTermsBase.System#Collections#IEnumerable#GetEnumerator*
+  fullName: wan24.Core.TranslationTerms.System.Collections.IEnumerable.GetEnumerator()
+  nameWithType: TranslationTerms.IEnumerable.GetEnumerator()
+  nameWithType.vb: TranslationTerms.System.Collections.IEnumerable.GetEnumerator()
+- uid: wan24.Core.TranslationTerms.System#Collections#IEnumerable#GetEnumerator*
   name: IEnumerable.GetEnumerator
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_System_Collections_IEnumerable_GetEnumerator_
-  commentId: Overload:wan24.Core.TranslationTermsBase.System#Collections#IEnumerable#GetEnumerator
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_System_Collections_IEnumerable_GetEnumerator_
+  commentId: Overload:wan24.Core.TranslationTerms.System#Collections#IEnumerable#GetEnumerator
   isSpec: "True"
   name.vb: System.Collections.IEnumerable.GetEnumerator
-  fullName: wan24.Core.TranslationTermsBase.System.Collections.IEnumerable.GetEnumerator
-  nameWithType: TranslationTermsBase.IEnumerable.GetEnumerator
-  nameWithType.vb: TranslationTermsBase.System.Collections.IEnumerable.GetEnumerator
-- uid: wan24.Core.TranslationTermsBase.Terms
+  fullName: wan24.Core.TranslationTerms.System.Collections.IEnumerable.GetEnumerator
+  nameWithType: TranslationTerms.IEnumerable.GetEnumerator
+  nameWithType.vb: TranslationTerms.System.Collections.IEnumerable.GetEnumerator
+- uid: wan24.Core.TranslationTerms.Terms
   name: Terms
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_Terms
-  commentId: P:wan24.Core.TranslationTermsBase.Terms
-  fullName: wan24.Core.TranslationTermsBase.Terms
-  nameWithType: TranslationTermsBase.Terms
-- uid: wan24.Core.TranslationTermsBase.Terms*
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_Terms
+  commentId: P:wan24.Core.TranslationTerms.Terms
+  fullName: wan24.Core.TranslationTerms.Terms
+  nameWithType: TranslationTerms.Terms
+- uid: wan24.Core.TranslationTerms.Terms*
   name: Terms
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_Terms_
-  commentId: Overload:wan24.Core.TranslationTermsBase.Terms
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_Terms_
+  commentId: Overload:wan24.Core.TranslationTerms.Terms
   isSpec: "True"
-  fullName: wan24.Core.TranslationTermsBase.Terms
-  nameWithType: TranslationTermsBase.Terms
-- uid: wan24.Core.TranslationTermsBase.TryGetValue(System.String,System.String@)
+  fullName: wan24.Core.TranslationTerms.Terms
+  nameWithType: TranslationTerms.Terms
+- uid: wan24.Core.TranslationTerms.TryGetValue(System.String,System.String@)
   name: TryGetValue(String, out String)
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_TryGetValue_System_String_System_String__
-  commentId: M:wan24.Core.TranslationTermsBase.TryGetValue(System.String,System.String@)
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_TryGetValue_System_String_System_String__
+  commentId: M:wan24.Core.TranslationTerms.TryGetValue(System.String,System.String@)
   name.vb: TryGetValue(String, ByRef String)
-  fullName: wan24.Core.TranslationTermsBase.TryGetValue(System.String, out System.String)
-  fullName.vb: wan24.Core.TranslationTermsBase.TryGetValue(System.String, ByRef System.String)
-  nameWithType: TranslationTermsBase.TryGetValue(String, out String)
-  nameWithType.vb: TranslationTermsBase.TryGetValue(String, ByRef String)
-- uid: wan24.Core.TranslationTermsBase.TryGetValue*
+  fullName: wan24.Core.TranslationTerms.TryGetValue(System.String, out System.String)
+  fullName.vb: wan24.Core.TranslationTerms.TryGetValue(System.String, ByRef System.String)
+  nameWithType: TranslationTerms.TryGetValue(String, out String)
+  nameWithType.vb: TranslationTerms.TryGetValue(String, ByRef String)
+- uid: wan24.Core.TranslationTerms.TryGetValue*
   name: TryGetValue
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_TryGetValue_
-  commentId: Overload:wan24.Core.TranslationTermsBase.TryGetValue
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_TryGetValue_
+  commentId: Overload:wan24.Core.TranslationTerms.TryGetValue
   isSpec: "True"
-  fullName: wan24.Core.TranslationTermsBase.TryGetValue
-  nameWithType: TranslationTermsBase.TryGetValue
-- uid: wan24.Core.TranslationTermsBase.Values
+  fullName: wan24.Core.TranslationTerms.TryGetValue
+  nameWithType: TranslationTerms.TryGetValue
+- uid: wan24.Core.TranslationTerms.Values
   name: Values
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_Values
-  commentId: P:wan24.Core.TranslationTermsBase.Values
-  fullName: wan24.Core.TranslationTermsBase.Values
-  nameWithType: TranslationTermsBase.Values
-- uid: wan24.Core.TranslationTermsBase.Values*
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_Values
+  commentId: P:wan24.Core.TranslationTerms.Values
+  fullName: wan24.Core.TranslationTerms.Values
+  nameWithType: TranslationTerms.Values
+- uid: wan24.Core.TranslationTerms.Values*
   name: Values
-  href: api/wan24.Core.TranslationTermsBase.html#wan24_Core_TranslationTermsBase_Values_
-  commentId: Overload:wan24.Core.TranslationTermsBase.Values
+  href: api/wan24.Core.TranslationTerms.html#wan24_Core_TranslationTerms_Values_
+  commentId: Overload:wan24.Core.TranslationTerms.Values
   isSpec: "True"
-  fullName: wan24.Core.TranslationTermsBase.Values
-  nameWithType: TranslationTermsBase.Values
+  fullName: wan24.Core.TranslationTerms.Values
+  nameWithType: TranslationTerms.Values
 - uid: wan24.Core.TypeCache
   name: TypeCache
   href: api/wan24.Core.TypeCache.html

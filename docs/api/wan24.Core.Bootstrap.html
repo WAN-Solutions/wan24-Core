@@ -115,37 +115,6 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Bootstrap_AsyncBootstrapper.md&amp;value=---%0Auid%3A%20wan24.Core.Bootstrap.AsyncBootstrapper%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Bootstrap.cs/#L38">View Source</a>
-  </span>
-  <a id="wan24_Core_Bootstrap_AsyncBootstrapper_" data-uid="wan24.Core.Bootstrap.AsyncBootstrapper*"></a>
-  <h4 id="wan24_Core_Bootstrap_AsyncBootstrapper" data-uid="wan24.Core.Bootstrap.AsyncBootstrapper">AsyncBootstrapper</h4>
-  <div class="markdown level1 summary"><p>Asynchronous bootstrapper (after running bootstrapper methods)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static HashSet&lt;Bootstrap.BootStrapAsync_Delegate&gt; AsyncBootstrapper { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">HashSet</span>&lt;<a class="xref" href="wan24.Core.Bootstrap.BootStrapAsync_Delegate.html">Bootstrap.BootStrapAsync_Delegate</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Bootstrap_DidBoot.md&amp;value=---%0Auid%3A%20wan24.Core.Bootstrap.DidBoot%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -268,6 +237,37 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Bootstrap_OnBootstrapAsync.md&amp;value=---%0Auid%3A%20wan24.Core.Bootstrap.OnBootstrapAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Bootstrap.cs/#L38">View Source</a>
+  </span>
+  <a id="wan24_Core_Bootstrap_OnBootstrapAsync_" data-uid="wan24.Core.Bootstrap.OnBootstrapAsync*"></a>
+  <h4 id="wan24_Core_Bootstrap_OnBootstrapAsync" data-uid="wan24.Core.Bootstrap.OnBootstrapAsync">OnBootstrapAsync</h4>
+  <div class="markdown level1 summary"><p>Asynchronous bootstrapper (executed in parallel at the end of the bootstrapper before raising <a class="xref" href="wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_OnBootstrap">OnBootstrap</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AsyncEvent&lt;object, EventArgs&gt; OnBootstrapAsync { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.AsyncEvent-2.html">AsyncEvent</a>&lt;<span class="xref">System.Object</span>, <span class="xref">EventArgs</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
@@ -275,7 +275,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Bootstrap_AssemblyAsync_System_Reflection_Assembly_System_Boolean_System_Boolean_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Bootstrap.AssemblyAsync(System.Reflection.Assembly%2CSystem.Boolean%2CSystem.Boolean%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Bootstrap.cs/#L186">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Bootstrap.cs/#L183">View Source</a>
   </span>
   <a id="wan24_Core_Bootstrap_AssemblyAsync_" data-uid="wan24.Core.Bootstrap.AssemblyAsync*"></a>
   <h4 id="wan24_Core_Bootstrap_AssemblyAsync_System_Reflection_Assembly_System_Boolean_System_Boolean_CancellationToken_" data-uid="wan24.Core.Bootstrap.AssemblyAsync(System.Reflection.Assembly,System.Boolean,System.Boolean,CancellationToken)">AssemblyAsync(Assembly, Boolean, Boolean, CancellationToken)</h4>
@@ -413,7 +413,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Bootstrap_TryAsync_System_Reflection_Assembly_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Bootstrap.TryAsync(System.Reflection.Assembly%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Bootstrap.cs/#L164">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Bootstrap.cs/#L160">View Source</a>
   </span>
   <a id="wan24_Core_Bootstrap_TryAsync_" data-uid="wan24.Core.Bootstrap.TryAsync*"></a>
   <h4 id="wan24_Core_Bootstrap_TryAsync_System_Reflection_Assembly_CancellationToken_" data-uid="wan24.Core.Bootstrap.TryAsync(System.Reflection.Assembly,CancellationToken)">TryAsync(Assembly, CancellationToken)</h4>
@@ -471,7 +471,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Bootstrap_OnBootstrap.md&amp;value=---%0Auid%3A%20wan24.Core.Bootstrap.OnBootstrap%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Bootstrap.cs/#L257">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Bootstrap.cs/#L254">View Source</a>
   </span>
   <h4 id="wan24_Core_Bootstrap_OnBootstrap" data-uid="wan24.Core.Bootstrap.OnBootstrap">OnBootstrap</h4>
   <div class="markdown level1 summary"><p>Raised when bootstrapping (after running bootstrapper methods and the asynchronous bootstrapper delegates)</p>

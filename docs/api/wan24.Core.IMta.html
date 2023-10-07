@@ -109,6 +109,203 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public interface IMta : IMtaConnection, IDisposableObject</code></pre>
   </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IMta_GetConnection_wan24_Core_IMtaSettings_.md&amp;value=---%0Auid%3A%20wan24.Core.IMta.GetConnection(wan24.Core.IMtaSettings)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IMta.cs/#L13">View Source</a>
+  </span>
+  <a id="wan24_Core_IMta_GetConnection_" data-uid="wan24.Core.IMta.GetConnection*"></a>
+  <h4 id="wan24_Core_IMta_GetConnection_wan24_Core_IMtaSettings_" data-uid="wan24.Core.IMta.GetConnection(wan24.Core.IMtaSettings)">GetConnection(IMtaSettings)</h4>
+  <div class="markdown level1 summary"><p>Get a connection</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IMtaConnection GetConnection(IMtaSettings settings = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IMtaSettings.html">IMtaSettings</a></td>
+        <td><span class="parametername">settings</span></td>
+        <td><p>Settings</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IMtaConnection.html">IMtaConnection</a></td>
+        <td><p>Connection (if no <code>settings</code> were given, the instance should be returned using <a class="xref" href="wan24.Core.IMta.html#wan24_Core_IMta_ReturnConnection_wan24_Core_IMtaConnection_">ReturnConnection(IMtaConnection)</a>)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IMta_GetConnectionAsync_wan24_Core_IMtaSettings_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.IMta.GetConnectionAsync(wan24.Core.IMtaSettings%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IMta.cs/#L20">View Source</a>
+  </span>
+  <a id="wan24_Core_IMta_GetConnectionAsync_" data-uid="wan24.Core.IMta.GetConnectionAsync*"></a>
+  <h4 id="wan24_Core_IMta_GetConnectionAsync_wan24_Core_IMtaSettings_CancellationToken_" data-uid="wan24.Core.IMta.GetConnectionAsync(wan24.Core.IMtaSettings,CancellationToken)">GetConnectionAsync(IMtaSettings, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Get a connection</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;IMtaConnection&gt; GetConnectionAsync(IMtaSettings settings = null, CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IMtaSettings.html">IMtaSettings</a></td>
+        <td><span class="parametername">settings</span></td>
+        <td><p>Settings</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="wan24.Core.IMtaConnection.html">IMtaConnection</a>&gt;</td>
+        <td><p>Connection (if no <code>settings</code> were given, the instance should be returned using <a class="xref" href="wan24.Core.IMta.html#wan24_Core_IMta_ReturnConnectionAsync_wan24_Core_IMtaConnection_CancellationToken_">ReturnConnectionAsync(IMtaConnection, CancellationToken)</a>)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IMta_ReturnConnection_wan24_Core_IMtaConnection_.md&amp;value=---%0Auid%3A%20wan24.Core.IMta.ReturnConnection(wan24.Core.IMtaConnection)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IMta.cs/#L25">View Source</a>
+  </span>
+  <a id="wan24_Core_IMta_ReturnConnection_" data-uid="wan24.Core.IMta.ReturnConnection*"></a>
+  <h4 id="wan24_Core_IMta_ReturnConnection_wan24_Core_IMtaConnection_" data-uid="wan24.Core.IMta.ReturnConnection(wan24.Core.IMtaConnection)">ReturnConnection(IMtaConnection)</h4>
+  <div class="markdown level1 summary"><p>Return a connection</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ReturnConnection(IMtaConnection connection)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IMtaConnection.html">IMtaConnection</a></td>
+        <td><span class="parametername">connection</span></td>
+        <td><p>Connection</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IMta_ReturnConnectionAsync_wan24_Core_IMtaConnection_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.IMta.ReturnConnectionAsync(wan24.Core.IMtaConnection%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IMta.cs/#L31">View Source</a>
+  </span>
+  <a id="wan24_Core_IMta_ReturnConnectionAsync_" data-uid="wan24.Core.IMta.ReturnConnectionAsync*"></a>
+  <h4 id="wan24_Core_IMta_ReturnConnectionAsync_wan24_Core_IMtaConnection_CancellationToken_" data-uid="wan24.Core.IMta.ReturnConnectionAsync(wan24.Core.IMtaConnection,CancellationToken)">ReturnConnectionAsync(IMtaConnection, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Return a connection</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task ReturnConnectionAsync(IMtaConnection connection, CancellationToken cancellationToken = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IMtaConnection.html">IMtaConnection</a></td>
+        <td><span class="parametername">connection</span></td>
+        <td><p>Connection</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>

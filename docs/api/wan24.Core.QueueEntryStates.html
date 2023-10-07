@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Delegate Bootstrap.Bootstrap_Delegate
+    <title>Enum QueueEntryStates
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Delegate Bootstrap.Bootstrap_Delegate
+    <meta name="title" content="Enum QueueEntryStates
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,56 +68,93 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.Bootstrap.Bootstrap_Delegate">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.QueueEntryStates">
   
   
-  <h1 id="wan24_Core_Bootstrap_Bootstrap_Delegate" data-uid="wan24.Core.Bootstrap.Bootstrap_Delegate" class="text-break">Delegate Bootstrap.Bootstrap_Delegate
+  <h1 id="wan24_Core_QueueEntryStates" data-uid="wan24.Core.QueueEntryStates" class="text-break">Enum QueueEntryStates
   </h1>
-  <div class="markdown level0 summary"><p>Delegate for the <a class="xref" href="wan24.Core.Bootstrap.html#wan24_Core_Bootstrap_OnBootstrap">OnBootstrap</a> event</p>
+  <div class="markdown level0 summary"><p>Queue entry states</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_Bootstrap_Bootstrap_Delegate_syntax">Syntax</h5>
+  <h5 id="wan24_Core_QueueEntryStates_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate void Bootstrap_Delegate();</code></pre>
+    <pre><code class="lang-csharp hljs">public enum QueueEntryStates : byte</code></pre>
   </div>
+  <h3 id="fields">Fields
+  </h3>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    <thead>
+    <tbody>
+      <tr>
+        <td id="wan24_Core_QueueEntryStates_Done">Done</td>
+        <td><p>Processing done</p>
+</td>
+      </tr>
+      <tr>
+        <td id="wan24_Core_QueueEntryStates_Enqueued">Enqueued</td>
+        <td><p>Enqueued</p>
+</td>
+      </tr>
+      <tr>
+        <td id="wan24_Core_QueueEntryStates_Error">Error</td>
+        <td><p>Processing error</p>
+</td>
+      </tr>
+      <tr>
+        <td id="wan24_Core_QueueEntryStates_Paused">Paused</td>
+        <td><p>Processing paused</p>
+</td>
+      </tr>
+      <tr>
+        <td id="wan24_Core_QueueEntryStates_Processing">Processing</td>
+        <td><p>Processing</p>
+</td>
+      </tr>
+    </tbody>
+  </thead></thead></table>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;QueueEntryStates&gt;()</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;QueueEntryStates&gt;()</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(Object)</a>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue()</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean__">JsonExtensions.ToJson(Object, in Boolean)</a>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean__">JsonExtensions.ToJson(Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object[])</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_System_Collections_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T&gt;)</a>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_System_Collections_IEnumerable___0___">ObjectExtensions.In&lt;QueueEntryStates&gt;(IEnumerable&lt;QueueEntryStates&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(Object)</a>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;()</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean__System_String__">ObjectExtensions.EnsureValidState&lt;T&gt;(T, in Boolean, in String)</a>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean__System_String__">ObjectExtensions.EnsureValidState&lt;QueueEntryStates&gt;(Boolean, String)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText__1___0_">ObjectExtensions.GetDisplayText&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText__1___0_">ObjectExtensions.GetDisplayText&lt;QueueEntryStates&gt;()</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_Func___0___1___">ObjectExtensions.Do&lt;QueueEntryStates, tReturn&gt;(Func&lt;QueueEntryStates, tReturn&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in Int32)</a>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;QueueEntryStates&gt;(Int32)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in Int32)</a>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;QueueEntryStates&gt;(Int32)</a>
   </div>
 </article>
           </div>
@@ -127,10 +164,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Bootstrap_Bootstrap_Delegate.md&amp;value=---%0Auid%3A%20wan24.Core.Bootstrap.Bootstrap_Delegate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueEntryStates.md&amp;value=---%0Auid%3A%20wan24.Core.QueueEntryStates%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Bootstrap.cs/#L250" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueEntryStates.cs/#L6" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -132,6 +132,9 @@
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AsyncDisposing">DisposableBase.AsyncDisposing</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_StackInfo">DisposableBase.StackInfo</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposing">DisposableBase.IsDisposing</a>
     </div>
     <div>
@@ -230,7 +233,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected EmailTemplateBase(in string subject, in string text, in string html, params IEmailAttachment[] attachments)</code></pre>
+    <pre><code class="lang-csharp hljs">protected EmailTemplateBase(in string subject, in string text = null, in string html = null, params IEmailAttachment[] attachments)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -275,7 +278,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EmailTemplateBase_1_CreateEmail_System_String_System_String_System_String_System_String_System_String_HashSet_wan24_Core_IEmailAttachment__.md&amp;value=---%0Auid%3A%20wan24.Core.EmailTemplateBase%601.CreateEmail(System.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CHashSet%7Bwan24.Core.IEmailAttachment%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EmailTemplateBase.cs/#L21">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EmailTemplateBase.cs/#L22">View Source</a>
   </span>
   <a id="wan24_Core_EmailTemplateBase_1_CreateEmail_" data-uid="wan24.Core.EmailTemplateBase`1.CreateEmail*"></a>
   <h4 id="wan24_Core_EmailTemplateBase_1_CreateEmail_System_String_System_String_System_String_System_String_System_String_HashSet_wan24_Core_IEmailAttachment__" data-uid="wan24.Core.EmailTemplateBase`1.CreateEmail(System.String,System.String,System.String,System.String,System.String,HashSet{wan24.Core.IEmailAttachment})">CreateEmail(String, String, String, String, String, HashSet&lt;IEmailAttachment&gt;)</h4>
@@ -375,7 +378,13 @@
       <a class="xref" href="wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_Send_wan24_Core_IEmailTemplate_System_String_System_String_System_Nullable_Dictionary_System_String_System_String___wan24_Core_IMta_wan24_Core_IEmailAttachment___">EmailExtensions.Send(IEmailTemplate, String, String, Nullable&lt;Dictionary&lt;String, String&gt;&gt;, IMta, IEmailAttachment[])</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_Send_wan24_Core_IEmailTemplate_System_String_System_String_wan24_Core_IMtaConnection_System_Nullable_Dictionary_System_String_System_String___wan24_Core_IEmailAttachment___">EmailExtensions.Send(IEmailTemplate, String, String, IMtaConnection, Nullable&lt;Dictionary&lt;String, String&gt;&gt;, IEmailAttachment[])</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_SendAsync_wan24_Core_IEmailTemplate_System_String_System_String_System_Nullable_Dictionary_System_String_System_String___wan24_Core_IMta_CancellationToken_wan24_Core_IEmailAttachment___">EmailExtensions.SendAsync(IEmailTemplate, String, String, Nullable&lt;Dictionary&lt;String, String&gt;&gt;, IMta, CancellationToken, IEmailAttachment[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_SendAsync_wan24_Core_IEmailTemplate_System_String_System_String_wan24_Core_IMtaConnection_System_Nullable_Dictionary_System_String_System_String___CancellationToken_wan24_Core_IEmailAttachment___">EmailExtensions.SendAsync(IEmailTemplate, String, String, IMtaConnection, Nullable&lt;Dictionary&lt;String, String&gt;&gt;, CancellationToken, IEmailAttachment[])</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(Object)</a>

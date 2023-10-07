@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface IEmail
+    <title>Class StackInfo&lt;T&gt;
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface IEmail
+    <meta name="title" content="Class StackInfo&lt;T&gt;
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,52 +68,122 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.IEmail">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.StackInfo`1">
   
   
-  <h1 id="wan24_Core_IEmail" data-uid="wan24.Core.IEmail" class="text-break">Interface IEmail
+  <h1 id="wan24_Core_StackInfo_1" data-uid="wan24.Core.StackInfo`1" class="text-break">Class StackInfo&lt;T&gt;
   </h1>
-  <div class="markdown level0 summary"><p>Interface for an email</p>
+  <div class="markdown level0 summary"><p>Current stack informations</p>
 </div>
   <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">StackInfo&lt;T&gt;</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IStackInfo.html">IStackInfo</a></div>
+  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_IsDisposing">IDisposableObject.IsDisposing</a>
+      <span class="xref">System.Object.Equals(System.Object)</span>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_IsDisposed">IDisposableObject.IsDisposed</a>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_OnDisposing">IDisposableObject.OnDisposing</a>
+      <span class="xref">System.Object.GetHashCode()</span>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_OnDisposed">IDisposableObject.OnDisposed</a>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_IEmail_syntax">Syntax</h5>
+  <h5 id="wan24_Core_StackInfo_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IEmail : IDisposableObject</code></pre>
+    <pre><code class="lang-csharp hljs">public class StackInfo&lt;T&gt; : IStackInfo</code></pre>
   </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StackInfo_1__ctor__0_.md&amp;value=---%0Auid%3A%20wan24.Core.StackInfo%601.%23ctor(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StackInfo.cs/#L15">View Source</a>
+  </span>
+  <a id="wan24_Core_StackInfo_1__ctor_" data-uid="wan24.Core.StackInfo`1.#ctor*"></a>
+  <h4 id="wan24_Core_StackInfo_1__ctor__0_" data-uid="wan24.Core.StackInfo`1.#ctor(`0)">StackInfo(T)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StackInfo(T obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IEmail_Attachments.md&amp;value=---%0Auid%3A%20wan24.Core.IEmail.Attachments%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StackInfo_1_Created.md&amp;value=---%0Auid%3A%20wan24.Core.StackInfo%601.Created%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IEmail.cs/#L31">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StackInfo.cs/#L23">View Source</a>
   </span>
-  <a id="wan24_Core_IEmail_Attachments_" data-uid="wan24.Core.IEmail.Attachments*"></a>
-  <h4 id="wan24_Core_IEmail_Attachments" data-uid="wan24.Core.IEmail.Attachments">Attachments</h4>
-  <div class="markdown level1 summary"><p>Attached files</p>
+  <a id="wan24_Core_StackInfo_1_Created_" data-uid="wan24.Core.StackInfo`1.Created*"></a>
+  <h4 id="wan24_Core_StackInfo_1_Created" data-uid="wan24.Core.StackInfo`1.Created">Created</h4>
+  <div class="markdown level1 summary"><p>Created time</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IReadOnlyCollection&lt;IEmailAttachment&gt; Attachments { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public DateTime Created { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -125,26 +195,57 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IReadOnlyCollection</span>&lt;<a class="xref" href="wan24.Core.IEmailAttachment.html">IEmailAttachment</a>&gt;</td>
+        <td><span class="xref">DateTime</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IEmail_FromEmail.md&amp;value=---%0Auid%3A%20wan24.Core.IEmail.FromEmail%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StackInfo_1_Object.md&amp;value=---%0Auid%3A%20wan24.Core.StackInfo%601.Object%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IEmail.cs/#L11">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StackInfo.cs/#L28">View Source</a>
   </span>
-  <a id="wan24_Core_IEmail_FromEmail_" data-uid="wan24.Core.IEmail.FromEmail*"></a>
-  <h4 id="wan24_Core_IEmail_FromEmail" data-uid="wan24.Core.IEmail.FromEmail">FromEmail</h4>
-  <div class="markdown level1 summary"><p>Sender email address</p>
+  <a id="wan24_Core_StackInfo_1_Object_" data-uid="wan24.Core.StackInfo`1.Object*"></a>
+  <h4 id="wan24_Core_StackInfo_1_Object" data-uid="wan24.Core.StackInfo`1.Object">Object</h4>
+  <div class="markdown level1 summary"><p>Object</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string FromEmail { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public T Object { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StackInfo_1_Stack.md&amp;value=---%0Auid%3A%20wan24.Core.StackInfo%601.Stack%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StackInfo.cs/#L31">View Source</a>
+  </span>
+  <a id="wan24_Core_StackInfo_1_Stack_" data-uid="wan24.Core.StackInfo`1.Stack*"></a>
+  <h4 id="wan24_Core_StackInfo_1_Stack" data-uid="wan24.Core.StackInfo`1.Stack">Stack</h4>
+  <div class="markdown level1 summary"><p>Stack</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Stack { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -161,23 +262,25 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IEmail_HtmlBody.md&amp;value=---%0Auid%3A%20wan24.Core.IEmail.HtmlBody%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StackInfo_1_wan24_Core_IStackInfo_Object.md&amp;value=---%0Auid%3A%20wan24.Core.StackInfo%601.wan24%23Core%23IStackInfo%23Object%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IEmail.cs/#L27">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StackInfo.cs/#L34">View Source</a>
   </span>
-  <a id="wan24_Core_IEmail_HtmlBody_" data-uid="wan24.Core.IEmail.HtmlBody*"></a>
-  <h4 id="wan24_Core_IEmail_HtmlBody" data-uid="wan24.Core.IEmail.HtmlBody">HtmlBody</h4>
-  <div class="markdown level1 summary"><p>HTML body</p>
+  <a id="wan24_Core_StackInfo_1_wan24_Core_IStackInfo_Object_" data-uid="wan24.Core.StackInfo`1.wan24#Core#IStackInfo#Object*"></a>
+  <h4 id="wan24_Core_StackInfo_1_wan24_Core_IStackInfo_Object" data-uid="wan24.Core.StackInfo`1.wan24#Core#IStackInfo#Object">IStackInfo.Object</h4>
+  <div class="markdown level1 summary"><p>Object</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string HtmlBody { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">object IStackInfo.Object { get; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -187,122 +290,21 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">System.Object</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IEmail_Subject.md&amp;value=---%0Auid%3A%20wan24.Core.IEmail.Subject%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IEmail.cs/#L19">View Source</a>
-  </span>
-  <a id="wan24_Core_IEmail_Subject_" data-uid="wan24.Core.IEmail.Subject*"></a>
-  <h4 id="wan24_Core_IEmail_Subject" data-uid="wan24.Core.IEmail.Subject">Subject</h4>
-  <div class="markdown level1 summary"><p>Subject</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string Subject { get; }</code></pre>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IStackInfo.html">IStackInfo</a>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IEmail_TextBody.md&amp;value=---%0Auid%3A%20wan24.Core.IEmail.TextBody%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IEmail.cs/#L23">View Source</a>
-  </span>
-  <a id="wan24_Core_IEmail_TextBody_" data-uid="wan24.Core.IEmail.TextBody*"></a>
-  <h4 id="wan24_Core_IEmail_TextBody" data-uid="wan24.Core.IEmail.TextBody">TextBody</h4>
-  <div class="markdown level1 summary"><p>Text body</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string TextBody { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IEmail_ToEmail.md&amp;value=---%0Auid%3A%20wan24.Core.IEmail.ToEmail%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IEmail.cs/#L15">View Source</a>
-  </span>
-  <a id="wan24_Core_IEmail_ToEmail_" data-uid="wan24.Core.IEmail.ToEmail*"></a>
-  <h4 id="wan24_Core_IEmail_ToEmail" data-uid="wan24.Core.IEmail.ToEmail">ToEmail</h4>
-  <div class="markdown level1 summary"><p>Recipient email address</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string ToEmail { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_Send_wan24_Core_IEmail_wan24_Core_IMta_">EmailExtensions.Send(IEmail, IMta)</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_Send_wan24_Core_IEmail_wan24_Core_IMtaConnection_">EmailExtensions.Send(IEmail, IMtaConnection)</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_SendAsync_wan24_Core_IEmail_wan24_Core_IMta_CancellationToken_">EmailExtensions.SendAsync(IEmail, IMta, CancellationToken)</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.EmailExtensions.html#wan24_Core_EmailExtensions_SendAsync_wan24_Core_IEmail_wan24_Core_IMtaConnection_CancellationToken_">EmailExtensions.SendAsync(IEmail, IMtaConnection, CancellationToken)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(Object)</a>
@@ -342,10 +344,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IEmail.md&amp;value=---%0Auid%3A%20wan24.Core.IEmail%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StackInfo_1.md&amp;value=---%0Auid%3A%20wan24.Core.StackInfo%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IEmail.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StackInfo.cs/#L9" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
