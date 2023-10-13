@@ -44,14 +44,17 @@
         public ThrottledStream(in T baseStream, in int readCount = 0, in TimeSpan? readTime = null, in int writeCount = 0, in TimeSpan? writeTime = null, in bool leaveOpen = false)
             : base(baseStream, leaveOpen)
         {
-            ReadCount = readCount;
+            ReadCountQuota = ReadCount = readCount;
             ReadTime = readTime ?? TimeSpan.Zero;
-            WriteCount = writeCount;
+            WriteCountQuota = WriteCount = writeCount;
             WriteTime = writeTime ?? TimeSpan.Zero;
             UseOriginalCopyTo = true;
             UseOriginalBeginRead = true;
             UseOriginalBeginWrite = true;
         }
+
+        /// <inheritdoc/>
+        public int ReadCountQuota { get; set; }
 
         /// <inheritdoc/>
         public int ReadCount { get; set; }
@@ -64,6 +67,9 @@
 
         /// <inheritdoc/>
         public int RedCount { get; protected set; }
+
+        /// <inheritdoc/>
+        public int WriteCountQuota { get; set; }
 
         /// <inheritdoc/>
         public int WriteCount { get; set; }

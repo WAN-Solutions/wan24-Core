@@ -3,12 +3,8 @@
     /// <summary>
     /// Interface for a throttled stream
     /// </summary>
-    public interface IThrottledStream : IStreamWrapper
+    public interface IThrottledStream : IStreamWrapper, IStreamThrottle
     {
-        /// <summary>
-        /// Read count (zero to disable read throttling)
-        /// </summary>
-        int ReadCount { get; set; }
         /// <summary>
         /// Read time
         /// </summary>
@@ -21,10 +17,6 @@
         /// Red count since the last read time start
         /// </summary>
         int RedCount { get; }
-        /// <summary>
-        /// Write count (zero to disable write throttling)
-        /// </summary>
-        int WriteCount { get; set; }
         /// <summary>
         /// Write time
         /// </summary>

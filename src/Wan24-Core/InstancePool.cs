@@ -22,6 +22,10 @@ namespace wan24.Core
         /// </summary>
         protected readonly Channel<T> Instances;
         /// <summary>
+        /// Buffer thread synchronization (raised when creating instances)
+        /// </summary>
+        protected readonly ResetEvent BufferSync = new(initialState: true, enableSyncWaiting: false);
+        /// <summary>
         /// Total number of created instances
         /// </summary>
         protected volatile int _Created = 0;
@@ -151,16 +155,25 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        protected override async Task BeforeStopAsync(CancellationToken cancellationToken)
+        {
+            await BufferSync.SetAsync().DynamicContext();
+            await base.BeforeStopAsync(cancellationToken).DynamicContext();
+        }
+
+        /// <inheritdoc/>
         protected override async Task WorkerAsync()
         {
-            if (SyncFactory is not null)
+            await BufferSync.WaitAsync(CancelToken).DynamicContext();
+            if (AsyncFactory is not null)
             {
-                for (; !CancelToken.IsCancellationRequested; _Created++) await Instances.Writer.WriteAsync(SyncFactory(this), CancelToken).DynamicContext();
+                for (; !CancelToken.IsCancellationRequested; _Created++, await BufferSync.WaitAsync(CancelToken).DynamicContext())
+                    await Instances.Writer.WriteAsync(await AsyncFactory(this, CancelToken).DynamicContext(), CancelToken).DynamicContext();
             }
             else
             {
-                for (; !CancelToken.IsCancellationRequested; _Created++)
-                    await Instances.Writer.WriteAsync(await AsyncFactory!(this, CancelToken).DynamicContext(), CancelToken).DynamicContext();
+                for (; !CancelToken.IsCancellationRequested; _Created++, await BufferSync.WaitAsync(CancelToken).DynamicContext())
+                    await Instances.Writer.WriteAsync(SyncFactory!(this), CancelToken).DynamicContext();
             }
         }
 
@@ -169,6 +182,7 @@ namespace wan24.Core
         {
             base.Dispose(disposing);
             while (Instances.Reader.TryRead(out T? instance)) instance.TryDispose();
+            BufferSync.Dispose();
         }
 
         /// <inheritdoc/>
@@ -176,6 +190,7 @@ namespace wan24.Core
         {
             await base.DisposeCore().DynamicContext();
             while (Instances.Reader.TryRead(out T? instance)) await instance.TryDisposeAsync().DynamicContext();
+            await BufferSync.DisposeAsync().DynamicContext();
         }
     }
 }

@@ -16,9 +16,21 @@ namespace wan24.Core
         /// </summary>
         bool IsRunning { get; }
         /// <summary>
+        /// Is paused?
+        /// </summary>
+        bool IsPaused { get; }
+        /// <summary>
+        /// Can be paused
+        /// </summary>
+        bool CanPause { get; }
+        /// <summary>
         /// Last start time
         /// </summary>
         DateTime Started { get; }
+        /// <summary>
+        /// Paused time (if paused)
+        /// </summary>
+        DateTime Paused { get; }
         /// <summary>
         /// Last stop time
         /// </summary>
@@ -35,5 +47,13 @@ namespace wan24.Core
         /// Restart
         /// </summary>
         Task RestartAsync();
+        /// <summary>
+        /// Pause
+        /// </summary>
+        Task PauseAsync();
+        /// <summary>
+        /// Resume from pause
+        /// </summary>
+        Task ResumeAsync();
     }
 }

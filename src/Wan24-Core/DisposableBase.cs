@@ -19,6 +19,10 @@ namespace wan24.Core
         /// </summary>
         protected readonly bool AsyncDisposing;
         /// <summary>
+        /// Don't count running the finalizer as an error?
+        /// </summary>
+        protected readonly bool AllowFinalizer;
+        /// <summary>
         /// Stack information
         /// </summary>
         protected IStackInfo? StackInfo = null;
@@ -32,16 +36,24 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="asyncDisposing">Asynchronous disposing?</param>
-        protected DisposableBase(in bool asyncDisposing) => AsyncDisposing = asyncDisposing;
+        /// <param name="allowFinalizer">Don't count running the finalizer as an error?</param>
+        protected DisposableBase(in bool asyncDisposing, in bool allowFinalizer = false)
+        {
+            AsyncDisposing = asyncDisposing;
+            AllowFinalizer = allowFinalizer;
+        }
 
         /// <summary>
         /// Destructor
         /// </summary>
         ~DisposableBase()
         {
-            Debugger.Break();
-            if (StackInfo is not null)
-                ErrorHandling.Handle(new StackInfoException(StackInfo, "Destructor called"));
+            if (!AllowFinalizer)
+            {
+                Debugger.Break();
+                if (StackInfo is not null)
+                    ErrorHandling.Handle(new StackInfoException(StackInfo, "Destructor called"));
+            }
             if (!DoDispose())
             {
                 Logging.WriteWarning($"Destructor on {GetType()} called, but seems to be disposed already");

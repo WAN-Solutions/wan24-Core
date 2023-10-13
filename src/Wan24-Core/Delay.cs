@@ -18,14 +18,14 @@
         /// Constructor
         /// </summary>
         /// <param name="delay">Delay</param>
-        public Delay(TimeSpan delay) : this(DateTime.Now + delay) { }
+        public Delay(in TimeSpan delay) : this(DateTime.Now + delay) { }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="runTime">Runtime</param>
         /// <param name="guid">GUID to use</param>
-        public Delay(DateTime runTime, string? guid = null) : base()
+        public Delay(in DateTime runTime, in string? guid = null) : base()
         {
             GUID = guid ?? Guid.NewGuid().ToString();
             RunTime = runTime;
@@ -118,7 +118,7 @@
         /// Fail (and dispose)
         /// </summary>
         /// <param name="ex">Exception</param>
-        public void Fail(Exception? ex = null)
+        public void Fail(in Exception? ex = null)
         {
             if (IsDisposing) return;
             using (SemaphoreSyncContext ssc = Sync.SyncContext())

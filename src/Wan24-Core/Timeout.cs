@@ -94,6 +94,15 @@ namespace wan24.Core
         /// <inheritdoc/>
         public DateTime Stopped { get; protected set; } = DateTime.MinValue;
 
+        /// <inheritdoc/>
+        bool IServiceWorker.IsPaused => false;
+
+        /// <inheritdoc/>
+        bool IServiceWorker.CanPause => false;
+
+        /// <inheritdoc/>
+        DateTime IServiceWorker.Paused => DateTime.MinValue;
+
         /// <summary>
         /// Start
         /// </summary>
@@ -118,6 +127,12 @@ namespace wan24.Core
             Start();
             return Task.CompletedTask;
         }
+
+        /// <inheritdoc/>
+        Task IServiceWorker.PauseAsync() => throw new NotSupportedException();
+
+        /// <inheritdoc/>
+        Task IServiceWorker.ResumeAsync() => throw new NotSupportedException();
 
         /// <summary>
         /// Stop
