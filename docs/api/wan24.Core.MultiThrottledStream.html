@@ -73,7 +73,7 @@
   
   <h1 id="wan24_Core_MultiThrottledStream" data-uid="wan24.Core.MultiThrottledStream" class="text-break">Class MultiThrottledStream
   </h1>
-  <div class="markdown level0 summary"><p>Multiple combined throttled streams (will balance a total read/write limit to all hosted streams; all streams need to use the same time restrictions for this)</p>
+  <div class="markdown level0 summary"><p>Multiple combined throttled streams (will balance a total read/write limit to all hosted streams, based on quotas; all streams need to use the same time restrictions for this)</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -84,10 +84,11 @@
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
+    <div><a class="xref" href="wan24.Core.IStreamThrottle.html">IStreamThrottle</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><span class="xref">IDisposable</span></div>
     <div><span class="xref">IAsyncDisposable</span></div>
-    <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -96,6 +97,9 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AsyncDisposing">DisposableBase.AsyncDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AllowFinalizer">DisposableBase.AllowFinalizer</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_StackInfo">DisposableBase.StackInfo</a>
@@ -165,7 +169,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_MultiThrottledStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MultiThrottledStream : DisposableBase, IDisposableObject, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class MultiThrottledStream : DisposableBase, IStatusProvider, IStreamThrottle, IDisposableObject</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -174,7 +178,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream__ctor_System_Int32__System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.%23ctor(System.Int32%40%2CSystem.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L38">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L34">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream__ctor_" data-uid="wan24.Core.MultiThrottledStream.#ctor*"></a>
   <h4 id="wan24_Core_MultiThrottledStream__ctor_System_Int32__System_Int32__" data-uid="wan24.Core.MultiThrottledStream.#ctor(System.Int32@,System.Int32@)">MultiThrottledStream(in Int32, in Int32)</h4>
@@ -213,18 +217,18 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream__Streams.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream._Streams%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream__Parent.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream._Parent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L15">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L19">View Source</a>
   </span>
-  <h4 id="wan24_Core_MultiThrottledStream__Streams" data-uid="wan24.Core.MultiThrottledStream._Streams">_Streams</h4>
-  <div class="markdown level1 summary"><p>Streams</p>
+  <h4 id="wan24_Core_MultiThrottledStream__Parent" data-uid="wan24.Core.MultiThrottledStream._Parent">_Parent</h4>
+  <div class="markdown level1 summary"><p>Parent <a class="xref" href="wan24.Core.MultiThrottledStream.html">MultiThrottledStream</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly HashSet&lt;IThrottledStream&gt; _Streams</code></pre>
+    <pre><code class="lang-csharp hljs">protected MultiThrottledStream _Parent</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -236,7 +240,37 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">HashSet</span>&lt;<a class="xref" href="wan24.Core.IThrottledStream.html">IThrottledStream</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.MultiThrottledStream.html">MultiThrottledStream</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream__Streams.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream._Streams%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L15">View Source</a>
+  </span>
+  <h4 id="wan24_Core_MultiThrottledStream__Streams" data-uid="wan24.Core.MultiThrottledStream._Streams">_Streams</h4>
+  <div class="markdown level1 summary"><p>Streams</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly HashSet&lt;IStreamThrottle&gt; _Streams</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">HashSet</span>&lt;<a class="xref" href="wan24.Core.IStreamThrottle.html">IStreamThrottle</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -246,7 +280,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream__TotalReadLimit.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream._TotalReadLimit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L19">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L23">View Source</a>
   </span>
   <h4 id="wan24_Core_MultiThrottledStream__TotalReadLimit" data-uid="wan24.Core.MultiThrottledStream._TotalReadLimit">_TotalReadLimit</h4>
   <div class="markdown level1 summary"><p>Read count total limit</p>
@@ -276,7 +310,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream__TotalWriteLimit.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream._TotalWriteLimit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L23">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L27">View Source</a>
   </span>
   <h4 id="wan24_Core_MultiThrottledStream__TotalWriteLimit" data-uid="wan24.Core.MultiThrottledStream._TotalWriteLimit">_TotalWriteLimit</h4>
   <div class="markdown level1 summary"><p>Write count total limit</p>
@@ -285,66 +319,6 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected int _TotalWriteLimit</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_LastReadLimit.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.LastReadLimit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L27">View Source</a>
-  </span>
-  <h4 id="wan24_Core_MultiThrottledStream_LastReadLimit" data-uid="wan24.Core.MultiThrottledStream.LastReadLimit">LastReadLimit</h4>
-  <div class="markdown level1 summary"><p>Last read count limit</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected int LastReadLimit</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_LastWriteLimit.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.LastWriteLimit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L31">View Source</a>
-  </span>
-  <h4 id="wan24_Core_MultiThrottledStream_LastWriteLimit" data-uid="wan24.Core.MultiThrottledStream.LastWriteLimit">LastWriteLimit</h4>
-  <div class="markdown level1 summary"><p>Last write count limit</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected int LastWriteLimit</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -398,11 +372,11 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_Count.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.Count%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L104">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L114">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_Count_" data-uid="wan24.Core.MultiThrottledStream.Count*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_Count" data-uid="wan24.Core.MultiThrottledStream.Count">Count</h4>
-  <div class="markdown level1 summary"><p>Number of hosted streams</p>
+  <div class="markdown level1 summary"><p>Number of hosted streams (recursive, excluding nested <a class="xref" href="wan24.Core.MultiThrottledStream.html">MultiThrottledStream</a>, but including their hosted stream count)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -426,72 +400,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_CurrentReadLimit.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.CurrentReadLimit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L109">View Source</a>
-  </span>
-  <a id="wan24_Core_MultiThrottledStream_CurrentReadLimit_" data-uid="wan24.Core.MultiThrottledStream.CurrentReadLimit*"></a>
-  <h4 id="wan24_Core_MultiThrottledStream_CurrentReadLimit" data-uid="wan24.Core.MultiThrottledStream.CurrentReadLimit">CurrentReadLimit</h4>
-  <div class="markdown level1 summary"><p>Current reading count limit per hosted stream</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual int CurrentReadLimit { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_CurrentWriteLimit.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.CurrentWriteLimit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L124">View Source</a>
-  </span>
-  <a id="wan24_Core_MultiThrottledStream_CurrentWriteLimit_" data-uid="wan24.Core.MultiThrottledStream.CurrentWriteLimit*"></a>
-  <h4 id="wan24_Core_MultiThrottledStream_CurrentWriteLimit" data-uid="wan24.Core.MultiThrottledStream.CurrentWriteLimit">CurrentWriteLimit</h4>
-  <div class="markdown level1 summary"><p>Current writing count limit per hosted stream</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual int CurrentWriteLimit { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_GUID.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.GUID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L47">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L53">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_GUID_" data-uid="wan24.Core.MultiThrottledStream.GUID*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_GUID" data-uid="wan24.Core.MultiThrottledStream.GUID">GUID</h4>
@@ -519,10 +431,72 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_LongReadCountQuota.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.LongReadCountQuota%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L148">View Source</a>
+  </span>
+  <a id="wan24_Core_MultiThrottledStream_LongReadCountQuota_" data-uid="wan24.Core.MultiThrottledStream.LongReadCountQuota*"></a>
+  <h4 id="wan24_Core_MultiThrottledStream_LongReadCountQuota" data-uid="wan24.Core.MultiThrottledStream.LongReadCountQuota">LongReadCountQuota</h4>
+  <div class="markdown level1 summary"><p>Read count limit quota as 64 bit integer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long LongReadCountQuota { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_LongWriteCountQuota.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.LongWriteCountQuota%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L171">View Source</a>
+  </span>
+  <a id="wan24_Core_MultiThrottledStream_LongWriteCountQuota_" data-uid="wan24.Core.MultiThrottledStream.LongWriteCountQuota*"></a>
+  <h4 id="wan24_Core_MultiThrottledStream_LongWriteCountQuota" data-uid="wan24.Core.MultiThrottledStream.LongWriteCountQuota">LongWriteCountQuota</h4>
+  <div class="markdown level1 summary"><p>Write count limit quota as 64 bit integer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long LongWriteCountQuota { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_Name.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L52">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L58">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_Name_" data-uid="wan24.Core.MultiThrottledStream.Name*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_Name" data-uid="wan24.Core.MultiThrottledStream.Name">Name</h4>
@@ -550,10 +524,134 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_Parent.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.Parent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L48">View Source</a>
+  </span>
+  <a id="wan24_Core_MultiThrottledStream_Parent_" data-uid="wan24.Core.MultiThrottledStream.Parent*"></a>
+  <h4 id="wan24_Core_MultiThrottledStream_Parent" data-uid="wan24.Core.MultiThrottledStream.Parent">Parent</h4>
+  <div class="markdown level1 summary"><p>Parent <a class="xref" href="wan24.Core.MultiThrottledStream.html">MultiThrottledStream</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected MultiThrottledStream Parent { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.MultiThrottledStream.html">MultiThrottledStream</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_ReadCount.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.ReadCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L159">View Source</a>
+  </span>
+  <a id="wan24_Core_MultiThrottledStream_ReadCount_" data-uid="wan24.Core.MultiThrottledStream.ReadCount*"></a>
+  <h4 id="wan24_Core_MultiThrottledStream_ReadCount" data-uid="wan24.Core.MultiThrottledStream.ReadCount">ReadCount</h4>
+  <div class="markdown level1 summary"><p>Read count (zero to disable read throttling)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ReadCount { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_ReadCountQuota.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.ReadCountQuota%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L143">View Source</a>
+  </span>
+  <a id="wan24_Core_MultiThrottledStream_ReadCountQuota_" data-uid="wan24.Core.MultiThrottledStream.ReadCountQuota*"></a>
+  <h4 id="wan24_Core_MultiThrottledStream_ReadCountQuota" data-uid="wan24.Core.MultiThrottledStream.ReadCountQuota">ReadCountQuota</h4>
+  <div class="markdown level1 summary"><p>Quota value for the read count (used to normalize the stream collection read count)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ReadCountQuota { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_Root.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.Root%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L43">View Source</a>
+  </span>
+  <a id="wan24_Core_MultiThrottledStream_Root_" data-uid="wan24.Core.MultiThrottledStream.Root*"></a>
+  <h4 id="wan24_Core_MultiThrottledStream_Root" data-uid="wan24.Core.MultiThrottledStream.Root">Root</h4>
+  <div class="markdown level1 summary"><p>Root <a class="xref" href="wan24.Core.MultiThrottledStream.html">MultiThrottledStream</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected MultiThrottledStream Root { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.MultiThrottledStream.html">MultiThrottledStream</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_State.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.State%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L137">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L129">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_State_" data-uid="wan24.Core.MultiThrottledStream.State*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_State" data-uid="wan24.Core.MultiThrottledStream.State">State</h4>
@@ -584,16 +682,16 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_Streams.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.Streams%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L91">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L101">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_Streams_" data-uid="wan24.Core.MultiThrottledStream.Streams*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_Streams" data-uid="wan24.Core.MultiThrottledStream.Streams">Streams</h4>
-  <div class="markdown level1 summary"><p>Hosted streams</p>
+  <div class="markdown level1 summary"><p>Hosted streams (may contain nested <a class="xref" href="wan24.Core.MultiThrottledStream.html">MultiThrottledStream</a>)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IThrottledStream[] Streams { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IStreamThrottle[] Streams { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -605,7 +703,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="wan24.Core.IThrottledStream.html">IThrottledStream</a>[]</td>
+        <td><a class="xref" href="wan24.Core.IStreamThrottle.html">IStreamThrottle</a>[]</td>
         <td></td>
       </tr>
     </tbody>
@@ -615,7 +713,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_TotalReadLimit.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.TotalReadLimit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L57">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L63">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_TotalReadLimit_" data-uid="wan24.Core.MultiThrottledStream.TotalReadLimit*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_TotalReadLimit" data-uid="wan24.Core.MultiThrottledStream.TotalReadLimit">TotalReadLimit</h4>
@@ -646,7 +744,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_TotalWriteLimit.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.TotalWriteLimit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L74">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L82">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_TotalWriteLimit_" data-uid="wan24.Core.MultiThrottledStream.TotalWriteLimit*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_TotalWriteLimit" data-uid="wan24.Core.MultiThrottledStream.TotalWriteLimit">TotalWriteLimit</h4>
@@ -672,6 +770,68 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_WriteCount.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.WriteCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L182">View Source</a>
+  </span>
+  <a id="wan24_Core_MultiThrottledStream_WriteCount_" data-uid="wan24.Core.MultiThrottledStream.WriteCount*"></a>
+  <h4 id="wan24_Core_MultiThrottledStream_WriteCount" data-uid="wan24.Core.MultiThrottledStream.WriteCount">WriteCount</h4>
+  <div class="markdown level1 summary"><p>Write count (zero to disable write throttling)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int WriteCount { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_WriteCountQuota.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.WriteCountQuota%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L166">View Source</a>
+  </span>
+  <a id="wan24_Core_MultiThrottledStream_WriteCountQuota_" data-uid="wan24.Core.MultiThrottledStream.WriteCountQuota*"></a>
+  <h4 id="wan24_Core_MultiThrottledStream_WriteCountQuota" data-uid="wan24.Core.MultiThrottledStream.WriteCountQuota">WriteCountQuota</h4>
+  <div class="markdown level1 summary"><p>Quota value for the write count (used to normalize the stream collection write count)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int WriteCountQuota { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
@@ -679,7 +839,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_AddStream__1___0_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.AddStream%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L193">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L220">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_AddStream_" data-uid="wan24.Core.MultiThrottledStream.AddStream*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_AddStream__1___0_" data-uid="wan24.Core.MultiThrottledStream.AddStream``1(``0)">AddStream&lt;T&gt;(T)</h4>
@@ -689,7 +849,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public T AddStream&lt;T&gt;(T stream)
-    where T : IThrottledStream</code></pre>
+    where T : IStreamThrottle</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -746,7 +906,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_AddStreamAsync__1___0_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.AddStreamAsync%60%601(%60%600%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L212">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L240">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_AddStreamAsync_" data-uid="wan24.Core.MultiThrottledStream.AddStreamAsync*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_AddStreamAsync__1___0_CancellationToken_" data-uid="wan24.Core.MultiThrottledStream.AddStreamAsync``1(``0,CancellationToken)">AddStreamAsync&lt;T&gt;(T, CancellationToken)</h4>
@@ -756,7 +916,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public async Task&lt;T&gt; AddStreamAsync&lt;T&gt;(T stream, CancellationToken cancellationToken = null)
-    where T : IThrottledStream</code></pre>
+    where T : IStreamThrottle</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -819,7 +979,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_Clear.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.Clear%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L265">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L296">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_Clear_" data-uid="wan24.Core.MultiThrottledStream.Clear*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_Clear" data-uid="wan24.Core.MultiThrottledStream.Clear">Clear()</h4>
@@ -828,7 +988,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IThrottledStream[] Clear()</code></pre>
+    <pre><code class="lang-csharp hljs">public IStreamThrottle[] Clear()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -840,7 +1000,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="wan24.Core.IThrottledStream.html">IThrottledStream</a>[]</td>
+        <td><a class="xref" href="wan24.Core.IStreamThrottle.html">IStreamThrottle</a>[]</td>
         <td><p>Removed streams</p>
 </td>
       </tr>
@@ -851,7 +1011,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_ClearAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.ClearAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L287">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L315">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_ClearAsync_" data-uid="wan24.Core.MultiThrottledStream.ClearAsync*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_ClearAsync_CancellationToken_" data-uid="wan24.Core.MultiThrottledStream.ClearAsync(CancellationToken)">ClearAsync(CancellationToken)</h4>
@@ -860,7 +1020,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public async Task&lt;IThrottledStream[]&gt; ClearAsync(CancellationToken cancellationToken = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public async Task&lt;IStreamThrottle[]&gt; ClearAsync(CancellationToken cancellationToken = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -890,7 +1050,39 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span>&lt;<a class="xref" href="wan24.Core.IThrottledStream.html">IThrottledStream</a>[]&gt;</td>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="wan24.Core.IStreamThrottle.html">IStreamThrottle</a>[]&gt;</td>
+        <td><p>Removed streams</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_ClearUnblocked.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.ClearUnblocked%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L373">View Source</a>
+  </span>
+  <a id="wan24_Core_MultiThrottledStream_ClearUnblocked_" data-uid="wan24.Core.MultiThrottledStream.ClearUnblocked*"></a>
+  <h4 id="wan24_Core_MultiThrottledStream_ClearUnblocked" data-uid="wan24.Core.MultiThrottledStream.ClearUnblocked">ClearUnblocked()</h4>
+  <div class="markdown level1 summary"><p>Remove all streams</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IStreamThrottle[] ClearUnblocked()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IStreamThrottle.html">IStreamThrottle</a>[]</td>
         <td><p>Removed streams</p>
 </td>
       </tr>
@@ -901,7 +1093,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L333">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L483">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_Dispose_" data-uid="wan24.Core.MultiThrottledStream.Dispose*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_Dispose_System_Boolean_" data-uid="wan24.Core.MultiThrottledStream.Dispose(System.Boolean)">Dispose(Boolean)</h4>
@@ -937,7 +1129,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.DisposeCore%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L340">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L490">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_DisposeCore_" data-uid="wan24.Core.MultiThrottledStream.DisposeCore*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_DisposeCore" data-uid="wan24.Core.MultiThrottledStream.DisposeCore">DisposeCore()</h4>
@@ -967,10 +1159,74 @@
   <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeCore">DisposableBase.DisposeCore()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_GetLongReadCountQuotaUnblocked.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.GetLongReadCountQuotaUnblocked%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L335">View Source</a>
+  </span>
+  <a id="wan24_Core_MultiThrottledStream_GetLongReadCountQuotaUnblocked_" data-uid="wan24.Core.MultiThrottledStream.GetLongReadCountQuotaUnblocked*"></a>
+  <h4 id="wan24_Core_MultiThrottledStream_GetLongReadCountQuotaUnblocked" data-uid="wan24.Core.MultiThrottledStream.GetLongReadCountQuotaUnblocked">GetLongReadCountQuotaUnblocked()</h4>
+  <div class="markdown level1 summary"><p>Get the read count quota as 64 bit integer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected long GetLongReadCountQuotaUnblocked()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><p>Read count quota</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_GetLongWriteCountQuotaUnblocked.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.GetLongWriteCountQuotaUnblocked%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L347">View Source</a>
+  </span>
+  <a id="wan24_Core_MultiThrottledStream_GetLongWriteCountQuotaUnblocked_" data-uid="wan24.Core.MultiThrottledStream.GetLongWriteCountQuotaUnblocked*"></a>
+  <h4 id="wan24_Core_MultiThrottledStream_GetLongWriteCountQuotaUnblocked" data-uid="wan24.Core.MultiThrottledStream.GetLongWriteCountQuotaUnblocked">GetLongWriteCountQuotaUnblocked()</h4>
+  <div class="markdown level1 summary"><p>Get the write count quota as 64 bit integer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected long GetLongWriteCountQuotaUnblocked()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><p>Write count quota</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_HandleDisposedStream_wan24_Core_IDisposableObject_EventArgs_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.HandleDisposedStream(wan24.Core.IDisposableObject%2CEventArgs)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L326">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L480">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_HandleDisposedStream_" data-uid="wan24.Core.MultiThrottledStream.HandleDisposedStream*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_HandleDisposedStream_wan24_Core_IDisposableObject_EventArgs_" data-uid="wan24.Core.MultiThrottledStream.HandleDisposedStream(wan24.Core.IDisposableObject,EventArgs)">HandleDisposedStream(IDisposableObject, EventArgs)</h4>
@@ -1010,7 +1266,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_RemoveStream__1___0_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.RemoveStream%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L230">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L259">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_RemoveStream_" data-uid="wan24.Core.MultiThrottledStream.RemoveStream*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_RemoveStream__1___0_" data-uid="wan24.Core.MultiThrottledStream.RemoveStream``1(``0)">RemoveStream&lt;T&gt;(T)</h4>
@@ -1020,7 +1276,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public T RemoveStream&lt;T&gt;(T stream)
-    where T : IThrottledStream</code></pre>
+    where T : IStreamThrottle</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1077,7 +1333,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_RemoveStreamAsync__1___0_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.RemoveStreamAsync%60%601(%60%600%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L249">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L279">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_RemoveStreamAsync_" data-uid="wan24.Core.MultiThrottledStream.RemoveStreamAsync*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_RemoveStreamAsync__1___0_CancellationToken_" data-uid="wan24.Core.MultiThrottledStream.RemoveStreamAsync``1(``0,CancellationToken)">RemoveStreamAsync&lt;T&gt;(T, CancellationToken)</h4>
@@ -1087,7 +1343,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public async Task&lt;T&gt; RemoveStreamAsync&lt;T&gt;(T stream, CancellationToken cancellationToken = null)
-    where T : IThrottledStream</code></pre>
+    where T : IStreamThrottle</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1150,7 +1406,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_SetLimits_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.SetLimits(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L157">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L193">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_SetLimits_" data-uid="wan24.Core.MultiThrottledStream.SetLimits*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_SetLimits_System_Int32_System_Int32_" data-uid="wan24.Core.MultiThrottledStream.SetLimits(System.Int32,System.Int32)">SetLimits(Int32, Int32)</h4>
@@ -1190,7 +1446,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_SetLimitsAsync_System_Int32_System_Int32_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.SetLimitsAsync(System.Int32%2CSystem.Int32%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L175">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L206">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_SetLimitsAsync_" data-uid="wan24.Core.MultiThrottledStream.SetLimitsAsync*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_SetLimitsAsync_System_Int32_System_Int32_CancellationToken_" data-uid="wan24.Core.MultiThrottledStream.SetLimitsAsync(System.Int32,System.Int32,CancellationToken)">SetLimitsAsync(Int32, Int32, CancellationToken)</h4>
@@ -1248,21 +1504,134 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_UpdateCurrentLimit.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.UpdateCurrentLimit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_SetLimitsUnblocked_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.SetLimitsUnblocked(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L307">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L360">View Source</a>
+  </span>
+  <a id="wan24_Core_MultiThrottledStream_SetLimitsUnblocked_" data-uid="wan24.Core.MultiThrottledStream.SetLimitsUnblocked*"></a>
+  <h4 id="wan24_Core_MultiThrottledStream_SetLimitsUnblocked_System_Int32_System_Int32_" data-uid="wan24.Core.MultiThrottledStream.SetLimitsUnblocked(System.Int32,System.Int32)">SetLimitsUnblocked(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Set new limits</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void SetLimitsUnblocked(int totalReadLimit, int totalWriteLimit)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">totalReadLimit</span></td>
+        <td><p>New reading count total limit</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">totalWriteLimit</span></td>
+        <td><p>New writing count total limit</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_UpdateCurrentLimit_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.UpdateCurrentLimit(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L389">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_UpdateCurrentLimit_" data-uid="wan24.Core.MultiThrottledStream.UpdateCurrentLimit*"></a>
-  <h4 id="wan24_Core_MultiThrottledStream_UpdateCurrentLimit" data-uid="wan24.Core.MultiThrottledStream.UpdateCurrentLimit">UpdateCurrentLimit()</h4>
+  <h4 id="wan24_Core_MultiThrottledStream_UpdateCurrentLimit_System_Boolean_" data-uid="wan24.Core.MultiThrottledStream.UpdateCurrentLimit(System.Boolean)">UpdateCurrentLimit(Boolean)</h4>
   <div class="markdown level1 summary"><p>Update the current processing count limit for all hosted streams (<a class="xref" href="wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Sync">Sync</a> should be synchronized)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void UpdateCurrentLimit()</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual void UpdateCurrentLimit(bool syncRoot)</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">syncRoot</span></td>
+        <td><p>Synchronize the root?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_UpdateCurrentLimitAsync_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.UpdateCurrentLimitAsync(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L434">View Source</a>
+  </span>
+  <a id="wan24_Core_MultiThrottledStream_UpdateCurrentLimitAsync_" data-uid="wan24.Core.MultiThrottledStream.UpdateCurrentLimitAsync*"></a>
+  <h4 id="wan24_Core_MultiThrottledStream_UpdateCurrentLimitAsync_System_Boolean_" data-uid="wan24.Core.MultiThrottledStream.UpdateCurrentLimitAsync(System.Boolean)">UpdateCurrentLimitAsync(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Update the current processing count limit for all hosted streams (<a class="xref" href="wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Sync">Sync</a> should be synchronized)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual async Task UpdateCurrentLimitAsync(bool syncRoot)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">syncRoot</span></td>
+        <td><p>Synchronize the root?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IStreamThrottle.html">IStreamThrottle</a>
+  </div>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
   </div>
@@ -1271,9 +1640,6 @@
   </div>
   <div>
       <span class="xref">IAsyncDisposable</span>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>

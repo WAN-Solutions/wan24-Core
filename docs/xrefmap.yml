@@ -4731,6 +4731,38 @@ references:
   isSpec: "True"
   fullName: wan24.Core.BlockingBufferStream.TryReadAsync
   nameWithType: BlockingBufferStream.TryReadAsync
+- uid: wan24.Core.BlockingBufferStream.TryWrite(ReadOnlySpan{System.Byte})
+  name: TryWrite(ReadOnlySpan<Byte>)
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_TryWrite_ReadOnlySpan_System_Byte__
+  commentId: M:wan24.Core.BlockingBufferStream.TryWrite(ReadOnlySpan{System.Byte})
+  name.vb: TryWrite(ReadOnlySpan(Of Byte))
+  fullName: wan24.Core.BlockingBufferStream.TryWrite(ReadOnlySpan<System.Byte>)
+  fullName.vb: wan24.Core.BlockingBufferStream.TryWrite(ReadOnlySpan(Of System.Byte))
+  nameWithType: BlockingBufferStream.TryWrite(ReadOnlySpan<Byte>)
+  nameWithType.vb: BlockingBufferStream.TryWrite(ReadOnlySpan(Of Byte))
+- uid: wan24.Core.BlockingBufferStream.TryWrite*
+  name: TryWrite
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_TryWrite_
+  commentId: Overload:wan24.Core.BlockingBufferStream.TryWrite
+  isSpec: "True"
+  fullName: wan24.Core.BlockingBufferStream.TryWrite
+  nameWithType: BlockingBufferStream.TryWrite
+- uid: wan24.Core.BlockingBufferStream.TryWriteAsync(ReadOnlyMemory{System.Byte},CancellationToken)
+  name: TryWriteAsync(ReadOnlyMemory<Byte>, CancellationToken)
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_TryWriteAsync_ReadOnlyMemory_System_Byte__CancellationToken_
+  commentId: M:wan24.Core.BlockingBufferStream.TryWriteAsync(ReadOnlyMemory{System.Byte},CancellationToken)
+  name.vb: TryWriteAsync(ReadOnlyMemory(Of Byte), CancellationToken)
+  fullName: wan24.Core.BlockingBufferStream.TryWriteAsync(ReadOnlyMemory<System.Byte>, CancellationToken)
+  fullName.vb: wan24.Core.BlockingBufferStream.TryWriteAsync(ReadOnlyMemory(Of System.Byte), CancellationToken)
+  nameWithType: BlockingBufferStream.TryWriteAsync(ReadOnlyMemory<Byte>, CancellationToken)
+  nameWithType.vb: BlockingBufferStream.TryWriteAsync(ReadOnlyMemory(Of Byte), CancellationToken)
+- uid: wan24.Core.BlockingBufferStream.TryWriteAsync*
+  name: TryWriteAsync
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_TryWriteAsync_
+  commentId: Overload:wan24.Core.BlockingBufferStream.TryWriteAsync
+  isSpec: "True"
+  fullName: wan24.Core.BlockingBufferStream.TryWriteAsync
+  nameWithType: BlockingBufferStream.TryWriteAsync
 - uid: wan24.Core.BlockingBufferStream.Write(ReadOnlySpan{System.Byte})
   name: Write(ReadOnlySpan<Byte>)
   href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_Write_ReadOnlySpan_System_Byte__
@@ -4800,6 +4832,111 @@ references:
   commentId: F:wan24.Core.BlockingBufferStream.WriteOffset
   fullName: wan24.Core.BlockingBufferStream.WriteOffset
   nameWithType: BlockingBufferStream.WriteOffset
+- uid: wan24.Core.BlockingInstancePool`1
+  name: BlockingInstancePool<T>
+  href: api/wan24.Core.BlockingInstancePool-1.html
+  commentId: T:wan24.Core.BlockingInstancePool`1
+  name.vb: BlockingInstancePool(Of T)
+  fullName: wan24.Core.BlockingInstancePool<T>
+  fullName.vb: wan24.Core.BlockingInstancePool(Of T)
+  nameWithType: BlockingInstancePool<T>
+  nameWithType.vb: BlockingInstancePool(Of T)
+- uid: wan24.Core.BlockingInstancePool`1.#ctor(System.Int32@)
+  name: BlockingInstancePool(in Int32)
+  href: api/wan24.Core.BlockingInstancePool-1.html#wan24_Core_BlockingInstancePool_1__ctor_System_Int32__
+  commentId: M:wan24.Core.BlockingInstancePool`1.#ctor(System.Int32@)
+  name.vb: BlockingInstancePool(ByRef Int32)
+  fullName: wan24.Core.BlockingInstancePool<T>.BlockingInstancePool(in System.Int32)
+  fullName.vb: wan24.Core.BlockingInstancePool(Of T).BlockingInstancePool(ByRef System.Int32)
+  nameWithType: BlockingInstancePool<T>.BlockingInstancePool(in Int32)
+  nameWithType.vb: BlockingInstancePool(Of T).BlockingInstancePool(ByRef Int32)
+- uid: wan24.Core.BlockingInstancePool`1.#ctor(System.Int32@,System.Boolean@)
+  name: BlockingInstancePool(in Int32, in Boolean)
+  href: api/wan24.Core.BlockingInstancePool-1.html#wan24_Core_BlockingInstancePool_1__ctor_System_Int32__System_Boolean__
+  commentId: M:wan24.Core.BlockingInstancePool`1.#ctor(System.Int32@,System.Boolean@)
+  name.vb: BlockingInstancePool(ByRef Int32, ByRef Boolean)
+  fullName: wan24.Core.BlockingInstancePool<T>.BlockingInstancePool(in System.Int32, in System.Boolean)
+  fullName.vb: wan24.Core.BlockingInstancePool(Of T).BlockingInstancePool(ByRef System.Int32, ByRef System.Boolean)
+  nameWithType: BlockingInstancePool<T>.BlockingInstancePool(in Int32, in Boolean)
+  nameWithType.vb: BlockingInstancePool(Of T).BlockingInstancePool(ByRef Int32, ByRef Boolean)
+- uid: wan24.Core.BlockingInstancePool`1.#ctor(System.Int32@,wan24.Core.IInstancePool{`0}.Instance_Delegate@)
+  name: BlockingInstancePool(in Int32, in IInstancePool<T>.Instance_Delegate)
+  href: api/wan24.Core.BlockingInstancePool-1.html#wan24_Core_BlockingInstancePool_1__ctor_System_Int32__wan24_Core_IInstancePool__0__Instance_Delegate__
+  commentId: M:wan24.Core.BlockingInstancePool`1.#ctor(System.Int32@,wan24.Core.IInstancePool{`0}.Instance_Delegate@)
+  name.vb: BlockingInstancePool(ByRef Int32, ByRef IInstancePool(Of T).Instance_Delegate)
+  fullName: wan24.Core.BlockingInstancePool<T>.BlockingInstancePool(in System.Int32, in wan24.Core.IInstancePool<T>.Instance_Delegate)
+  fullName.vb: wan24.Core.BlockingInstancePool(Of T).BlockingInstancePool(ByRef System.Int32, ByRef wan24.Core.IInstancePool(Of T).Instance_Delegate)
+  nameWithType: BlockingInstancePool<T>.BlockingInstancePool(in Int32, in IInstancePool<T>.Instance_Delegate)
+  nameWithType.vb: BlockingInstancePool(Of T).BlockingInstancePool(ByRef Int32, ByRef IInstancePool(Of T).Instance_Delegate)
+- uid: wan24.Core.BlockingInstancePool`1.#ctor(System.Int32@,wan24.Core.IInstancePool{`0}.InstanceAsync_Delegate@)
+  name: BlockingInstancePool(in Int32, in IInstancePool<T>.InstanceAsync_Delegate)
+  href: api/wan24.Core.BlockingInstancePool-1.html#wan24_Core_BlockingInstancePool_1__ctor_System_Int32__wan24_Core_IInstancePool__0__InstanceAsync_Delegate__
+  commentId: M:wan24.Core.BlockingInstancePool`1.#ctor(System.Int32@,wan24.Core.IInstancePool{`0}.InstanceAsync_Delegate@)
+  name.vb: BlockingInstancePool(ByRef Int32, ByRef IInstancePool(Of T).InstanceAsync_Delegate)
+  fullName: wan24.Core.BlockingInstancePool<T>.BlockingInstancePool(in System.Int32, in wan24.Core.IInstancePool<T>.InstanceAsync_Delegate)
+  fullName.vb: wan24.Core.BlockingInstancePool(Of T).BlockingInstancePool(ByRef System.Int32, ByRef wan24.Core.IInstancePool(Of T).InstanceAsync_Delegate)
+  nameWithType: BlockingInstancePool<T>.BlockingInstancePool(in Int32, in IInstancePool<T>.InstanceAsync_Delegate)
+  nameWithType.vb: BlockingInstancePool(Of T).BlockingInstancePool(ByRef Int32, ByRef IInstancePool(Of T).InstanceAsync_Delegate)
+- uid: wan24.Core.BlockingInstancePool`1.#ctor*
+  name: BlockingInstancePool
+  href: api/wan24.Core.BlockingInstancePool-1.html#wan24_Core_BlockingInstancePool_1__ctor_
+  commentId: Overload:wan24.Core.BlockingInstancePool`1.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.BlockingInstancePool<T>.BlockingInstancePool
+  fullName.vb: wan24.Core.BlockingInstancePool(Of T).BlockingInstancePool
+  nameWithType: BlockingInstancePool<T>.BlockingInstancePool
+  nameWithType.vb: BlockingInstancePool(Of T).BlockingInstancePool
+- uid: wan24.Core.BlockingInstancePool`1.GetMany(System.Int32,CancellationToken)
+  name: GetMany(Int32, CancellationToken)
+  href: api/wan24.Core.BlockingInstancePool-1.html#wan24_Core_BlockingInstancePool_1_GetMany_System_Int32_CancellationToken_
+  commentId: M:wan24.Core.BlockingInstancePool`1.GetMany(System.Int32,CancellationToken)
+  fullName: wan24.Core.BlockingInstancePool<T>.GetMany(System.Int32, CancellationToken)
+  fullName.vb: wan24.Core.BlockingInstancePool(Of T).GetMany(System.Int32, CancellationToken)
+  nameWithType: BlockingInstancePool<T>.GetMany(Int32, CancellationToken)
+  nameWithType.vb: BlockingInstancePool(Of T).GetMany(Int32, CancellationToken)
+- uid: wan24.Core.BlockingInstancePool`1.GetMany*
+  name: GetMany
+  href: api/wan24.Core.BlockingInstancePool-1.html#wan24_Core_BlockingInstancePool_1_GetMany_
+  commentId: Overload:wan24.Core.BlockingInstancePool`1.GetMany
+  isSpec: "True"
+  fullName: wan24.Core.BlockingInstancePool<T>.GetMany
+  fullName.vb: wan24.Core.BlockingInstancePool(Of T).GetMany
+  nameWithType: BlockingInstancePool<T>.GetMany
+  nameWithType.vb: BlockingInstancePool(Of T).GetMany
+- uid: wan24.Core.BlockingInstancePool`1.GetOne
+  name: GetOne()
+  href: api/wan24.Core.BlockingInstancePool-1.html#wan24_Core_BlockingInstancePool_1_GetOne
+  commentId: M:wan24.Core.BlockingInstancePool`1.GetOne
+  fullName: wan24.Core.BlockingInstancePool<T>.GetOne()
+  fullName.vb: wan24.Core.BlockingInstancePool(Of T).GetOne()
+  nameWithType: BlockingInstancePool<T>.GetOne()
+  nameWithType.vb: BlockingInstancePool(Of T).GetOne()
+- uid: wan24.Core.BlockingInstancePool`1.GetOne*
+  name: GetOne
+  href: api/wan24.Core.BlockingInstancePool-1.html#wan24_Core_BlockingInstancePool_1_GetOne_
+  commentId: Overload:wan24.Core.BlockingInstancePool`1.GetOne
+  isSpec: "True"
+  fullName: wan24.Core.BlockingInstancePool<T>.GetOne
+  fullName.vb: wan24.Core.BlockingInstancePool(Of T).GetOne
+  nameWithType: BlockingInstancePool<T>.GetOne
+  nameWithType.vb: BlockingInstancePool(Of T).GetOne
+- uid: wan24.Core.BlockingInstancePool`1.GetOneAsync(CancellationToken)
+  name: GetOneAsync(CancellationToken)
+  href: api/wan24.Core.BlockingInstancePool-1.html#wan24_Core_BlockingInstancePool_1_GetOneAsync_CancellationToken_
+  commentId: M:wan24.Core.BlockingInstancePool`1.GetOneAsync(CancellationToken)
+  fullName: wan24.Core.BlockingInstancePool<T>.GetOneAsync(CancellationToken)
+  fullName.vb: wan24.Core.BlockingInstancePool(Of T).GetOneAsync(CancellationToken)
+  nameWithType: BlockingInstancePool<T>.GetOneAsync(CancellationToken)
+  nameWithType.vb: BlockingInstancePool(Of T).GetOneAsync(CancellationToken)
+- uid: wan24.Core.BlockingInstancePool`1.GetOneAsync*
+  name: GetOneAsync
+  href: api/wan24.Core.BlockingInstancePool-1.html#wan24_Core_BlockingInstancePool_1_GetOneAsync_
+  commentId: Overload:wan24.Core.BlockingInstancePool`1.GetOneAsync
+  isSpec: "True"
+  fullName: wan24.Core.BlockingInstancePool<T>.GetOneAsync
+  fullName.vb: wan24.Core.BlockingInstancePool(Of T).GetOneAsync
+  nameWithType: BlockingInstancePool<T>.GetOneAsync
+  nameWithType.vb: BlockingInstancePool(Of T).GetOneAsync
 - uid: wan24.Core.BlockingObjectPool`1
   name: BlockingObjectPool<T>
   href: api/wan24.Core.BlockingObjectPool-1.html
@@ -11399,18 +11536,24 @@ references:
   commentId: T:wan24.Core.Delay
   fullName: wan24.Core.Delay
   nameWithType: Delay
-- uid: wan24.Core.Delay.#ctor(DateTime,System.String)
-  name: Delay(DateTime, String)
-  href: api/wan24.Core.Delay.html#wan24_Core_Delay__ctor_DateTime_System_String_
-  commentId: M:wan24.Core.Delay.#ctor(DateTime,System.String)
-  fullName: wan24.Core.Delay.Delay(DateTime, System.String)
-  nameWithType: Delay.Delay(DateTime, String)
-- uid: wan24.Core.Delay.#ctor(TimeSpan)
-  name: Delay(TimeSpan)
-  href: api/wan24.Core.Delay.html#wan24_Core_Delay__ctor_TimeSpan_
-  commentId: M:wan24.Core.Delay.#ctor(TimeSpan)
-  fullName: wan24.Core.Delay.Delay(TimeSpan)
-  nameWithType: Delay.Delay(TimeSpan)
+- uid: wan24.Core.Delay.#ctor(DateTime@,System.String@)
+  name: Delay(in DateTime, in String)
+  href: api/wan24.Core.Delay.html#wan24_Core_Delay__ctor_DateTime__System_String__
+  commentId: M:wan24.Core.Delay.#ctor(DateTime@,System.String@)
+  name.vb: Delay(ByRef DateTime, ByRef String)
+  fullName: wan24.Core.Delay.Delay(in DateTime, in System.String)
+  fullName.vb: wan24.Core.Delay.Delay(ByRef DateTime, ByRef System.String)
+  nameWithType: Delay.Delay(in DateTime, in String)
+  nameWithType.vb: Delay.Delay(ByRef DateTime, ByRef String)
+- uid: wan24.Core.Delay.#ctor(TimeSpan@)
+  name: Delay(in TimeSpan)
+  href: api/wan24.Core.Delay.html#wan24_Core_Delay__ctor_TimeSpan__
+  commentId: M:wan24.Core.Delay.#ctor(TimeSpan@)
+  name.vb: Delay(ByRef TimeSpan)
+  fullName: wan24.Core.Delay.Delay(in TimeSpan)
+  fullName.vb: wan24.Core.Delay.Delay(ByRef TimeSpan)
+  nameWithType: Delay.Delay(in TimeSpan)
+  nameWithType.vb: Delay.Delay(ByRef TimeSpan)
 - uid: wan24.Core.Delay.#ctor*
   name: Delay
   href: api/wan24.Core.Delay.html#wan24_Core_Delay__ctor_
@@ -11496,15 +11639,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.Delay.DisposeCore
   nameWithType: Delay.DisposeCore
-- uid: wan24.Core.Delay.Fail(System.Nullable{Exception})
-  name: Fail(Nullable<Exception>)
-  href: api/wan24.Core.Delay.html#wan24_Core_Delay_Fail_System_Nullable_Exception__
-  commentId: M:wan24.Core.Delay.Fail(System.Nullable{Exception})
-  name.vb: Fail(Nullable(Of Exception))
-  fullName: wan24.Core.Delay.Fail(System.Nullable<Exception>)
-  fullName.vb: wan24.Core.Delay.Fail(System.Nullable(Of Exception))
-  nameWithType: Delay.Fail(Nullable<Exception>)
-  nameWithType.vb: Delay.Fail(Nullable(Of Exception))
+- uid: wan24.Core.Delay.Fail(System.Nullable{Exception}@)
+  name: Fail(in Nullable<Exception>)
+  href: api/wan24.Core.Delay.html#wan24_Core_Delay_Fail_System_Nullable_Exception___
+  commentId: M:wan24.Core.Delay.Fail(System.Nullable{Exception}@)
+  name.vb: Fail(ByRef Nullable(Of Exception))
+  fullName: wan24.Core.Delay.Fail(in System.Nullable<Exception>)
+  fullName.vb: wan24.Core.Delay.Fail(ByRef System.Nullable(Of Exception))
+  nameWithType: Delay.Fail(in Nullable<Exception>)
+  nameWithType.vb: Delay.Fail(ByRef Nullable(Of Exception))
 - uid: wan24.Core.Delay.Fail*
   name: Fail
   href: api/wan24.Core.Delay.html#wan24_Core_Delay_Fail_
@@ -12523,15 +12666,15 @@ references:
   commentId: M:wan24.Core.DisposableBase.#ctor
   fullName: wan24.Core.DisposableBase.DisposableBase()
   nameWithType: DisposableBase.DisposableBase()
-- uid: wan24.Core.DisposableBase.#ctor(System.Boolean@)
-  name: DisposableBase(in Boolean)
-  href: api/wan24.Core.DisposableBase.html#wan24_Core_DisposableBase__ctor_System_Boolean__
-  commentId: M:wan24.Core.DisposableBase.#ctor(System.Boolean@)
-  name.vb: DisposableBase(ByRef Boolean)
-  fullName: wan24.Core.DisposableBase.DisposableBase(in System.Boolean)
-  fullName.vb: wan24.Core.DisposableBase.DisposableBase(ByRef System.Boolean)
-  nameWithType: DisposableBase.DisposableBase(in Boolean)
-  nameWithType.vb: DisposableBase.DisposableBase(ByRef Boolean)
+- uid: wan24.Core.DisposableBase.#ctor(System.Boolean@,System.Boolean@)
+  name: DisposableBase(in Boolean, in Boolean)
+  href: api/wan24.Core.DisposableBase.html#wan24_Core_DisposableBase__ctor_System_Boolean__System_Boolean__
+  commentId: M:wan24.Core.DisposableBase.#ctor(System.Boolean@,System.Boolean@)
+  name.vb: DisposableBase(ByRef Boolean, ByRef Boolean)
+  fullName: wan24.Core.DisposableBase.DisposableBase(in System.Boolean, in System.Boolean)
+  fullName.vb: wan24.Core.DisposableBase.DisposableBase(ByRef System.Boolean, ByRef System.Boolean)
+  nameWithType: DisposableBase.DisposableBase(in Boolean, in Boolean)
+  nameWithType.vb: DisposableBase.DisposableBase(ByRef Boolean, ByRef Boolean)
 - uid: wan24.Core.DisposableBase.#ctor*
   name: DisposableBase
   href: api/wan24.Core.DisposableBase.html#wan24_Core_DisposableBase__ctor_
@@ -12539,6 +12682,12 @@ references:
   isSpec: "True"
   fullName: wan24.Core.DisposableBase.DisposableBase
   nameWithType: DisposableBase.DisposableBase
+- uid: wan24.Core.DisposableBase.AllowFinalizer
+  name: AllowFinalizer
+  href: api/wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AllowFinalizer
+  commentId: F:wan24.Core.DisposableBase.AllowFinalizer
+  fullName: wan24.Core.DisposableBase.AllowFinalizer
+  nameWithType: DisposableBase.AllowFinalizer
 - uid: wan24.Core.DisposableBase.AsyncDisposing
   name: AsyncDisposing
   href: api/wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AsyncDisposing
@@ -16000,6 +16149,627 @@ references:
   isSpec: "True"
   fullName: wan24.Core.EnvironmentService.WorkingSet
   nameWithType: EnvironmentService.WorkingSet
+- uid: wan24.Core.EquatableArray
+  name: EquatableArray
+  href: api/wan24.Core.EquatableArray.html
+  commentId: T:wan24.Core.EquatableArray
+  fullName: wan24.Core.EquatableArray
+  nameWithType: EquatableArray
+- uid: wan24.Core.EquatableArray.AsEquatableArray*
+  name: AsEquatableArray
+  href: api/wan24.Core.EquatableArray.html#wan24_Core_EquatableArray_AsEquatableArray_
+  commentId: Overload:wan24.Core.EquatableArray.AsEquatableArray
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray.AsEquatableArray
+  nameWithType: EquatableArray.AsEquatableArray
+- uid: wan24.Core.EquatableArray.AsEquatableArray``1(``0[])
+  name: AsEquatableArray<T>(T[])
+  href: api/wan24.Core.EquatableArray.html#wan24_Core_EquatableArray_AsEquatableArray__1___0___
+  commentId: M:wan24.Core.EquatableArray.AsEquatableArray``1(``0[])
+  name.vb: AsEquatableArray(Of T)(T())
+  fullName: wan24.Core.EquatableArray.AsEquatableArray<T>(T[])
+  fullName.vb: wan24.Core.EquatableArray.AsEquatableArray(Of T)(T())
+  nameWithType: EquatableArray.AsEquatableArray<T>(T[])
+  nameWithType.vb: EquatableArray.AsEquatableArray(Of T)(T())
+- uid: wan24.Core.EquatableArray.From*
+  name: From
+  href: api/wan24.Core.EquatableArray.html#wan24_Core_EquatableArray_From_
+  commentId: Overload:wan24.Core.EquatableArray.From
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray.From
+  nameWithType: EquatableArray.From
+- uid: wan24.Core.EquatableArray.From``1(``0[]@)
+  name: From<T>(in T[])
+  href: api/wan24.Core.EquatableArray.html#wan24_Core_EquatableArray_From__1___0____
+  commentId: M:wan24.Core.EquatableArray.From``1(``0[]@)
+  name.vb: From(Of T)(ByRef T())
+  fullName: wan24.Core.EquatableArray.From<T>(in T[])
+  fullName.vb: wan24.Core.EquatableArray.From(Of T)(ByRef T())
+  nameWithType: EquatableArray.From<T>(in T[])
+  nameWithType.vb: EquatableArray.From(Of T)(ByRef T())
+- uid: wan24.Core.EquatableArray`1
+  name: EquatableArray<T>
+  href: api/wan24.Core.EquatableArray-1.html
+  commentId: T:wan24.Core.EquatableArray`1
+  name.vb: EquatableArray(Of T)
+  fullName: wan24.Core.EquatableArray<T>
+  fullName.vb: wan24.Core.EquatableArray(Of T)
+  nameWithType: EquatableArray<T>
+  nameWithType.vb: EquatableArray(Of T)
+- uid: wan24.Core.EquatableArray`1.#ctor(`0[]@)
+  name: EquatableArray(in T[])
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1__ctor__0____
+  commentId: M:wan24.Core.EquatableArray`1.#ctor(`0[]@)
+  name.vb: EquatableArray(ByRef T())
+  fullName: wan24.Core.EquatableArray<T>.EquatableArray(in T[])
+  fullName.vb: wan24.Core.EquatableArray(Of T).EquatableArray(ByRef T())
+  nameWithType: EquatableArray<T>.EquatableArray(in T[])
+  nameWithType.vb: EquatableArray(Of T).EquatableArray(ByRef T())
+- uid: wan24.Core.EquatableArray`1.#ctor*
+  name: EquatableArray
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1__ctor_
+  commentId: Overload:wan24.Core.EquatableArray`1.#ctor
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.EquatableArray
+  fullName.vb: wan24.Core.EquatableArray(Of T).EquatableArray
+  nameWithType: EquatableArray<T>.EquatableArray
+  nameWithType.vb: EquatableArray(Of T).EquatableArray
+- uid: wan24.Core.EquatableArray`1.Array
+  name: Array
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_Array
+  commentId: F:wan24.Core.EquatableArray`1.Array
+  fullName: wan24.Core.EquatableArray<T>.Array
+  fullName.vb: wan24.Core.EquatableArray(Of T).Array
+  nameWithType: EquatableArray<T>.Array
+  nameWithType.vb: EquatableArray(Of T).Array
+- uid: wan24.Core.EquatableArray`1.Clear
+  name: Clear()
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_Clear
+  commentId: M:wan24.Core.EquatableArray`1.Clear
+  fullName: wan24.Core.EquatableArray<T>.Clear()
+  fullName.vb: wan24.Core.EquatableArray(Of T).Clear()
+  nameWithType: EquatableArray<T>.Clear()
+  nameWithType.vb: EquatableArray(Of T).Clear()
+- uid: wan24.Core.EquatableArray`1.Clear*
+  name: Clear
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_Clear_
+  commentId: Overload:wan24.Core.EquatableArray`1.Clear
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.Clear
+  fullName.vb: wan24.Core.EquatableArray(Of T).Clear
+  nameWithType: EquatableArray<T>.Clear
+  nameWithType.vb: EquatableArray(Of T).Clear
+- uid: wan24.Core.EquatableArray`1.CloneArray
+  name: CloneArray()
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_CloneArray
+  commentId: M:wan24.Core.EquatableArray`1.CloneArray
+  fullName: wan24.Core.EquatableArray<T>.CloneArray()
+  fullName.vb: wan24.Core.EquatableArray(Of T).CloneArray()
+  nameWithType: EquatableArray<T>.CloneArray()
+  nameWithType.vb: EquatableArray(Of T).CloneArray()
+- uid: wan24.Core.EquatableArray`1.CloneArray*
+  name: CloneArray
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_CloneArray_
+  commentId: Overload:wan24.Core.EquatableArray`1.CloneArray
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.CloneArray
+  fullName.vb: wan24.Core.EquatableArray(Of T).CloneArray
+  nameWithType: EquatableArray<T>.CloneArray
+  nameWithType.vb: EquatableArray(Of T).CloneArray
+- uid: wan24.Core.EquatableArray`1.CompareTo(System.Object,System.Collections.IComparer)
+  name: CompareTo(Object, IComparer)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_CompareTo_System_Object_System_Collections_IComparer_
+  commentId: M:wan24.Core.EquatableArray`1.CompareTo(System.Object,System.Collections.IComparer)
+  fullName: wan24.Core.EquatableArray<T>.CompareTo(System.Object, System.Collections.IComparer)
+  fullName.vb: wan24.Core.EquatableArray(Of T).CompareTo(System.Object, System.Collections.IComparer)
+  nameWithType: EquatableArray<T>.CompareTo(Object, IComparer)
+  nameWithType.vb: EquatableArray(Of T).CompareTo(Object, IComparer)
+- uid: wan24.Core.EquatableArray`1.CompareTo*
+  name: CompareTo
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_CompareTo_
+  commentId: Overload:wan24.Core.EquatableArray`1.CompareTo
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.CompareTo
+  fullName.vb: wan24.Core.EquatableArray(Of T).CompareTo
+  nameWithType: EquatableArray<T>.CompareTo
+  nameWithType.vb: EquatableArray(Of T).CompareTo
+- uid: wan24.Core.EquatableArray`1.Contains(`0@)
+  name: Contains(in T)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_Contains__0__
+  commentId: M:wan24.Core.EquatableArray`1.Contains(`0@)
+  name.vb: Contains(ByRef T)
+  fullName: wan24.Core.EquatableArray<T>.Contains(in T)
+  fullName.vb: wan24.Core.EquatableArray(Of T).Contains(ByRef T)
+  nameWithType: EquatableArray<T>.Contains(in T)
+  nameWithType.vb: EquatableArray(Of T).Contains(ByRef T)
+- uid: wan24.Core.EquatableArray`1.Contains(System.Object)
+  name: Contains(Object)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_Contains_System_Object_
+  commentId: M:wan24.Core.EquatableArray`1.Contains(System.Object)
+  fullName: wan24.Core.EquatableArray<T>.Contains(System.Object)
+  fullName.vb: wan24.Core.EquatableArray(Of T).Contains(System.Object)
+  nameWithType: EquatableArray<T>.Contains(Object)
+  nameWithType.vb: EquatableArray(Of T).Contains(Object)
+- uid: wan24.Core.EquatableArray`1.Contains*
+  name: Contains
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_Contains_
+  commentId: Overload:wan24.Core.EquatableArray`1.Contains
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.Contains
+  fullName.vb: wan24.Core.EquatableArray(Of T).Contains
+  nameWithType: EquatableArray<T>.Contains
+  nameWithType.vb: EquatableArray(Of T).Contains
+- uid: wan24.Core.EquatableArray`1.CopyTo(Array,System.Int32)
+  name: CopyTo(Array, Int32)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_CopyTo_Array_System_Int32_
+  commentId: M:wan24.Core.EquatableArray`1.CopyTo(Array,System.Int32)
+  fullName: wan24.Core.EquatableArray<T>.CopyTo(Array, System.Int32)
+  fullName.vb: wan24.Core.EquatableArray(Of T).CopyTo(Array, System.Int32)
+  nameWithType: EquatableArray<T>.CopyTo(Array, Int32)
+  nameWithType.vb: EquatableArray(Of T).CopyTo(Array, Int32)
+- uid: wan24.Core.EquatableArray`1.CopyTo*
+  name: CopyTo
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_CopyTo_
+  commentId: Overload:wan24.Core.EquatableArray`1.CopyTo
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.CopyTo
+  fullName.vb: wan24.Core.EquatableArray(Of T).CopyTo
+  nameWithType: EquatableArray<T>.CopyTo
+  nameWithType.vb: EquatableArray(Of T).CopyTo
+- uid: wan24.Core.EquatableArray`1.Equals(`0[])
+  name: Equals(T[])
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_Equals__0___
+  commentId: M:wan24.Core.EquatableArray`1.Equals(`0[])
+  name.vb: Equals(T())
+  fullName: wan24.Core.EquatableArray<T>.Equals(T[])
+  fullName.vb: wan24.Core.EquatableArray(Of T).Equals(T())
+  nameWithType: EquatableArray<T>.Equals(T[])
+  nameWithType.vb: EquatableArray(Of T).Equals(T())
+- uid: wan24.Core.EquatableArray`1.Equals(System.Object)
+  name: Equals(Object)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_Equals_System_Object_
+  commentId: M:wan24.Core.EquatableArray`1.Equals(System.Object)
+  fullName: wan24.Core.EquatableArray<T>.Equals(System.Object)
+  fullName.vb: wan24.Core.EquatableArray(Of T).Equals(System.Object)
+  nameWithType: EquatableArray<T>.Equals(Object)
+  nameWithType.vb: EquatableArray(Of T).Equals(Object)
+- uid: wan24.Core.EquatableArray`1.Equals(System.Object,System.Collections.IEqualityComparer)
+  name: Equals(Object, IEqualityComparer)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_Equals_System_Object_System_Collections_IEqualityComparer_
+  commentId: M:wan24.Core.EquatableArray`1.Equals(System.Object,System.Collections.IEqualityComparer)
+  fullName: wan24.Core.EquatableArray<T>.Equals(System.Object, System.Collections.IEqualityComparer)
+  fullName.vb: wan24.Core.EquatableArray(Of T).Equals(System.Object, System.Collections.IEqualityComparer)
+  nameWithType: EquatableArray<T>.Equals(Object, IEqualityComparer)
+  nameWithType.vb: EquatableArray(Of T).Equals(Object, IEqualityComparer)
+- uid: wan24.Core.EquatableArray`1.Equals(wan24.Core.EquatableArray{`0})
+  name: Equals(EquatableArray<T>)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_Equals_wan24_Core_EquatableArray__0__
+  commentId: M:wan24.Core.EquatableArray`1.Equals(wan24.Core.EquatableArray{`0})
+  name.vb: Equals(EquatableArray(Of T))
+  fullName: wan24.Core.EquatableArray<T>.Equals(wan24.Core.EquatableArray<T>)
+  fullName.vb: wan24.Core.EquatableArray(Of T).Equals(wan24.Core.EquatableArray(Of T))
+  nameWithType: EquatableArray<T>.Equals(EquatableArray<T>)
+  nameWithType.vb: EquatableArray(Of T).Equals(EquatableArray(Of T))
+- uid: wan24.Core.EquatableArray`1.Equals*
+  name: Equals
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_Equals_
+  commentId: Overload:wan24.Core.EquatableArray`1.Equals
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.Equals
+  fullName.vb: wan24.Core.EquatableArray(Of T).Equals
+  nameWithType: EquatableArray<T>.Equals
+  nameWithType.vb: EquatableArray(Of T).Equals
+- uid: wan24.Core.EquatableArray`1.GetEnumerator
+  name: GetEnumerator()
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_GetEnumerator
+  commentId: M:wan24.Core.EquatableArray`1.GetEnumerator
+  fullName: wan24.Core.EquatableArray<T>.GetEnumerator()
+  fullName.vb: wan24.Core.EquatableArray(Of T).GetEnumerator()
+  nameWithType: EquatableArray<T>.GetEnumerator()
+  nameWithType.vb: EquatableArray(Of T).GetEnumerator()
+- uid: wan24.Core.EquatableArray`1.GetEnumerator*
+  name: GetEnumerator
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_GetEnumerator_
+  commentId: Overload:wan24.Core.EquatableArray`1.GetEnumerator
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.GetEnumerator
+  fullName.vb: wan24.Core.EquatableArray(Of T).GetEnumerator
+  nameWithType: EquatableArray<T>.GetEnumerator
+  nameWithType.vb: EquatableArray(Of T).GetEnumerator
+- uid: wan24.Core.EquatableArray`1.GetHashCode
+  name: GetHashCode()
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_GetHashCode
+  commentId: M:wan24.Core.EquatableArray`1.GetHashCode
+  fullName: wan24.Core.EquatableArray<T>.GetHashCode()
+  fullName.vb: wan24.Core.EquatableArray(Of T).GetHashCode()
+  nameWithType: EquatableArray<T>.GetHashCode()
+  nameWithType.vb: EquatableArray(Of T).GetHashCode()
+- uid: wan24.Core.EquatableArray`1.GetHashCode(System.Collections.IEqualityComparer)
+  name: GetHashCode(IEqualityComparer)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_GetHashCode_System_Collections_IEqualityComparer_
+  commentId: M:wan24.Core.EquatableArray`1.GetHashCode(System.Collections.IEqualityComparer)
+  fullName: wan24.Core.EquatableArray<T>.GetHashCode(System.Collections.IEqualityComparer)
+  fullName.vb: wan24.Core.EquatableArray(Of T).GetHashCode(System.Collections.IEqualityComparer)
+  nameWithType: EquatableArray<T>.GetHashCode(IEqualityComparer)
+  nameWithType.vb: EquatableArray(Of T).GetHashCode(IEqualityComparer)
+- uid: wan24.Core.EquatableArray`1.GetHashCode*
+  name: GetHashCode
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_GetHashCode_
+  commentId: Overload:wan24.Core.EquatableArray`1.GetHashCode
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.GetHashCode
+  fullName.vb: wan24.Core.EquatableArray(Of T).GetHashCode
+  nameWithType: EquatableArray<T>.GetHashCode
+  nameWithType.vb: EquatableArray(Of T).GetHashCode
+- uid: wan24.Core.EquatableArray`1.IndexOf(`0@)
+  name: IndexOf(in T)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_IndexOf__0__
+  commentId: M:wan24.Core.EquatableArray`1.IndexOf(`0@)
+  name.vb: IndexOf(ByRef T)
+  fullName: wan24.Core.EquatableArray<T>.IndexOf(in T)
+  fullName.vb: wan24.Core.EquatableArray(Of T).IndexOf(ByRef T)
+  nameWithType: EquatableArray<T>.IndexOf(in T)
+  nameWithType.vb: EquatableArray(Of T).IndexOf(ByRef T)
+- uid: wan24.Core.EquatableArray`1.IndexOf(System.Object)
+  name: IndexOf(Object)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_IndexOf_System_Object_
+  commentId: M:wan24.Core.EquatableArray`1.IndexOf(System.Object)
+  fullName: wan24.Core.EquatableArray<T>.IndexOf(System.Object)
+  fullName.vb: wan24.Core.EquatableArray(Of T).IndexOf(System.Object)
+  nameWithType: EquatableArray<T>.IndexOf(Object)
+  nameWithType.vb: EquatableArray(Of T).IndexOf(Object)
+- uid: wan24.Core.EquatableArray`1.IndexOf*
+  name: IndexOf
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_IndexOf_
+  commentId: Overload:wan24.Core.EquatableArray`1.IndexOf
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.IndexOf
+  fullName.vb: wan24.Core.EquatableArray(Of T).IndexOf
+  nameWithType: EquatableArray<T>.IndexOf
+  nameWithType.vb: EquatableArray(Of T).IndexOf
+- uid: wan24.Core.EquatableArray`1.IsFixedSize
+  name: IsFixedSize
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_IsFixedSize
+  commentId: P:wan24.Core.EquatableArray`1.IsFixedSize
+  fullName: wan24.Core.EquatableArray<T>.IsFixedSize
+  fullName.vb: wan24.Core.EquatableArray(Of T).IsFixedSize
+  nameWithType: EquatableArray<T>.IsFixedSize
+  nameWithType.vb: EquatableArray(Of T).IsFixedSize
+- uid: wan24.Core.EquatableArray`1.IsFixedSize*
+  name: IsFixedSize
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_IsFixedSize_
+  commentId: Overload:wan24.Core.EquatableArray`1.IsFixedSize
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.IsFixedSize
+  fullName.vb: wan24.Core.EquatableArray(Of T).IsFixedSize
+  nameWithType: EquatableArray<T>.IsFixedSize
+  nameWithType.vb: EquatableArray(Of T).IsFixedSize
+- uid: wan24.Core.EquatableArray`1.IsReadOnly
+  name: IsReadOnly
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_IsReadOnly
+  commentId: P:wan24.Core.EquatableArray`1.IsReadOnly
+  fullName: wan24.Core.EquatableArray<T>.IsReadOnly
+  fullName.vb: wan24.Core.EquatableArray(Of T).IsReadOnly
+  nameWithType: EquatableArray<T>.IsReadOnly
+  nameWithType.vb: EquatableArray(Of T).IsReadOnly
+- uid: wan24.Core.EquatableArray`1.IsReadOnly*
+  name: IsReadOnly
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_IsReadOnly_
+  commentId: Overload:wan24.Core.EquatableArray`1.IsReadOnly
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.IsReadOnly
+  fullName.vb: wan24.Core.EquatableArray(Of T).IsReadOnly
+  nameWithType: EquatableArray<T>.IsReadOnly
+  nameWithType.vb: EquatableArray(Of T).IsReadOnly
+- uid: wan24.Core.EquatableArray`1.IsSynchronized
+  name: IsSynchronized
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_IsSynchronized
+  commentId: P:wan24.Core.EquatableArray`1.IsSynchronized
+  fullName: wan24.Core.EquatableArray<T>.IsSynchronized
+  fullName.vb: wan24.Core.EquatableArray(Of T).IsSynchronized
+  nameWithType: EquatableArray<T>.IsSynchronized
+  nameWithType.vb: EquatableArray(Of T).IsSynchronized
+- uid: wan24.Core.EquatableArray`1.IsSynchronized*
+  name: IsSynchronized
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_IsSynchronized_
+  commentId: Overload:wan24.Core.EquatableArray`1.IsSynchronized
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.IsSynchronized
+  fullName.vb: wan24.Core.EquatableArray(Of T).IsSynchronized
+  nameWithType: EquatableArray<T>.IsSynchronized
+  nameWithType.vb: EquatableArray(Of T).IsSynchronized
+- uid: wan24.Core.EquatableArray`1.Item(Index)
+  name: Item[Index]
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_Item_Index_
+  commentId: P:wan24.Core.EquatableArray`1.Item(Index)
+  name.vb: Item(Index)
+  fullName: wan24.Core.EquatableArray<T>.Item[Index]
+  fullName.vb: wan24.Core.EquatableArray(Of T).Item(Index)
+  nameWithType: EquatableArray<T>.Item[Index]
+  nameWithType.vb: EquatableArray(Of T).Item(Index)
+- uid: wan24.Core.EquatableArray`1.Item(System.Int32)
+  name: Item[Int32]
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_Item_System_Int32_
+  commentId: P:wan24.Core.EquatableArray`1.Item(System.Int32)
+  name.vb: Item(Int32)
+  fullName: wan24.Core.EquatableArray<T>.Item[System.Int32]
+  fullName.vb: wan24.Core.EquatableArray(Of T).Item(System.Int32)
+  nameWithType: EquatableArray<T>.Item[Int32]
+  nameWithType.vb: EquatableArray(Of T).Item(Int32)
+- uid: wan24.Core.EquatableArray`1.Item*
+  name: Item
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_Item_
+  commentId: Overload:wan24.Core.EquatableArray`1.Item
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.Item
+  fullName.vb: wan24.Core.EquatableArray(Of T).Item
+  nameWithType: EquatableArray<T>.Item
+  nameWithType.vb: EquatableArray(Of T).Item
+- uid: wan24.Core.EquatableArray`1.Length
+  name: Length
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_Length
+  commentId: P:wan24.Core.EquatableArray`1.Length
+  fullName: wan24.Core.EquatableArray<T>.Length
+  fullName.vb: wan24.Core.EquatableArray(Of T).Length
+  nameWithType: EquatableArray<T>.Length
+  nameWithType.vb: EquatableArray(Of T).Length
+- uid: wan24.Core.EquatableArray`1.Length*
+  name: Length
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_Length_
+  commentId: Overload:wan24.Core.EquatableArray`1.Length
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.Length
+  fullName.vb: wan24.Core.EquatableArray(Of T).Length
+  nameWithType: EquatableArray<T>.Length
+  nameWithType.vb: EquatableArray(Of T).Length
+- uid: wan24.Core.EquatableArray`1.LongLength
+  name: LongLength
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_LongLength
+  commentId: P:wan24.Core.EquatableArray`1.LongLength
+  fullName: wan24.Core.EquatableArray<T>.LongLength
+  fullName.vb: wan24.Core.EquatableArray(Of T).LongLength
+  nameWithType: EquatableArray<T>.LongLength
+  nameWithType.vb: EquatableArray(Of T).LongLength
+- uid: wan24.Core.EquatableArray`1.LongLength*
+  name: LongLength
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_LongLength_
+  commentId: Overload:wan24.Core.EquatableArray`1.LongLength
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.LongLength
+  fullName.vb: wan24.Core.EquatableArray(Of T).LongLength
+  nameWithType: EquatableArray<T>.LongLength
+  nameWithType.vb: EquatableArray(Of T).LongLength
+- uid: wan24.Core.EquatableArray`1.op_Equality(`0[]@,wan24.Core.EquatableArray{`0}@)
+  name: Equality(in T[], in EquatableArray<T>)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_op_Equality__0____wan24_Core_EquatableArray__0___
+  commentId: M:wan24.Core.EquatableArray`1.op_Equality(`0[]@,wan24.Core.EquatableArray{`0}@)
+  name.vb: Equality(ByRef T(), ByRef EquatableArray(Of T))
+  fullName: wan24.Core.EquatableArray<T>.Equality(in T[], in wan24.Core.EquatableArray<T>)
+  fullName.vb: wan24.Core.EquatableArray(Of T).Equality(ByRef T(), ByRef wan24.Core.EquatableArray(Of T))
+  nameWithType: EquatableArray<T>.Equality(in T[], in EquatableArray<T>)
+  nameWithType.vb: EquatableArray(Of T).Equality(ByRef T(), ByRef EquatableArray(Of T))
+- uid: wan24.Core.EquatableArray`1.op_Equality(wan24.Core.EquatableArray{`0}@,`0[]@)
+  name: Equality(in EquatableArray<T>, in T[])
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_op_Equality_wan24_Core_EquatableArray__0____0____
+  commentId: M:wan24.Core.EquatableArray`1.op_Equality(wan24.Core.EquatableArray{`0}@,`0[]@)
+  name.vb: Equality(ByRef EquatableArray(Of T), ByRef T())
+  fullName: wan24.Core.EquatableArray<T>.Equality(in wan24.Core.EquatableArray<T>, in T[])
+  fullName.vb: wan24.Core.EquatableArray(Of T).Equality(ByRef wan24.Core.EquatableArray(Of T), ByRef T())
+  nameWithType: EquatableArray<T>.Equality(in EquatableArray<T>, in T[])
+  nameWithType.vb: EquatableArray(Of T).Equality(ByRef EquatableArray(Of T), ByRef T())
+- uid: wan24.Core.EquatableArray`1.op_Equality(wan24.Core.EquatableArray{`0}@,wan24.Core.EquatableArray{`0}@)
+  name: Equality(in EquatableArray<T>, in EquatableArray<T>)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_op_Equality_wan24_Core_EquatableArray__0___wan24_Core_EquatableArray__0___
+  commentId: M:wan24.Core.EquatableArray`1.op_Equality(wan24.Core.EquatableArray{`0}@,wan24.Core.EquatableArray{`0}@)
+  name.vb: Equality(ByRef EquatableArray(Of T), ByRef EquatableArray(Of T))
+  fullName: wan24.Core.EquatableArray<T>.Equality(in wan24.Core.EquatableArray<T>, in wan24.Core.EquatableArray<T>)
+  fullName.vb: wan24.Core.EquatableArray(Of T).Equality(ByRef wan24.Core.EquatableArray(Of T), ByRef wan24.Core.EquatableArray(Of T))
+  nameWithType: EquatableArray<T>.Equality(in EquatableArray<T>, in EquatableArray<T>)
+  nameWithType.vb: EquatableArray(Of T).Equality(ByRef EquatableArray(Of T), ByRef EquatableArray(Of T))
+- uid: wan24.Core.EquatableArray`1.op_Equality*
+  name: Equality
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_op_Equality_
+  commentId: Overload:wan24.Core.EquatableArray`1.op_Equality
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.Equality
+  fullName.vb: wan24.Core.EquatableArray(Of T).Equality
+  nameWithType: EquatableArray<T>.Equality
+  nameWithType.vb: EquatableArray(Of T).Equality
+- uid: wan24.Core.EquatableArray`1.op_Implicit(`0[]@)~wan24.Core.EquatableArray{`0}
+  name: Implicit(in T[] to EquatableArray<T>)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_op_Implicit__0_____wan24_Core_EquatableArray__0_
+  commentId: M:wan24.Core.EquatableArray`1.op_Implicit(`0[]@)~wan24.Core.EquatableArray{`0}
+  name.vb: Widening(ByRef T() to EquatableArray(Of T))
+  fullName: wan24.Core.EquatableArray<T>.Implicit(in T[] to wan24.Core.EquatableArray<T>)
+  fullName.vb: wan24.Core.EquatableArray(Of T).Widening(ByRef T() to wan24.Core.EquatableArray(Of T))
+  nameWithType: EquatableArray<T>.Implicit(in T[] to EquatableArray<T>)
+  nameWithType.vb: EquatableArray(Of T).Widening(ByRef T() to EquatableArray(Of T))
+- uid: wan24.Core.EquatableArray`1.op_Implicit(wan24.Core.EquatableArray{`0}@)~`0[]
+  name: Implicit(in EquatableArray<T> to T[])
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_op_Implicit_wan24_Core_EquatableArray__0_____0__
+  commentId: M:wan24.Core.EquatableArray`1.op_Implicit(wan24.Core.EquatableArray{`0}@)~`0[]
+  name.vb: Widening(ByRef EquatableArray(Of T) to T())
+  fullName: wan24.Core.EquatableArray<T>.Implicit(in wan24.Core.EquatableArray<T> to T[])
+  fullName.vb: wan24.Core.EquatableArray(Of T).Widening(ByRef wan24.Core.EquatableArray(Of T) to T())
+  nameWithType: EquatableArray<T>.Implicit(in EquatableArray<T> to T[])
+  nameWithType.vb: EquatableArray(Of T).Widening(ByRef EquatableArray(Of T) to T())
+- uid: wan24.Core.EquatableArray`1.op_Implicit*
+  name: Implicit
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_op_Implicit_
+  commentId: Overload:wan24.Core.EquatableArray`1.op_Implicit
+  isSpec: "True"
+  name.vb: Widening
+  fullName: wan24.Core.EquatableArray<T>.Implicit
+  fullName.vb: wan24.Core.EquatableArray(Of T).Widening
+  nameWithType: EquatableArray<T>.Implicit
+  nameWithType.vb: EquatableArray(Of T).Widening
+- uid: wan24.Core.EquatableArray`1.op_Inequality(`0[]@,wan24.Core.EquatableArray{`0}@)
+  name: Inequality(in T[], in EquatableArray<T>)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_op_Inequality__0____wan24_Core_EquatableArray__0___
+  commentId: M:wan24.Core.EquatableArray`1.op_Inequality(`0[]@,wan24.Core.EquatableArray{`0}@)
+  name.vb: Inequality(ByRef T(), ByRef EquatableArray(Of T))
+  fullName: wan24.Core.EquatableArray<T>.Inequality(in T[], in wan24.Core.EquatableArray<T>)
+  fullName.vb: wan24.Core.EquatableArray(Of T).Inequality(ByRef T(), ByRef wan24.Core.EquatableArray(Of T))
+  nameWithType: EquatableArray<T>.Inequality(in T[], in EquatableArray<T>)
+  nameWithType.vb: EquatableArray(Of T).Inequality(ByRef T(), ByRef EquatableArray(Of T))
+- uid: wan24.Core.EquatableArray`1.op_Inequality(wan24.Core.EquatableArray{`0}@,`0[]@)
+  name: Inequality(in EquatableArray<T>, in T[])
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_op_Inequality_wan24_Core_EquatableArray__0____0____
+  commentId: M:wan24.Core.EquatableArray`1.op_Inequality(wan24.Core.EquatableArray{`0}@,`0[]@)
+  name.vb: Inequality(ByRef EquatableArray(Of T), ByRef T())
+  fullName: wan24.Core.EquatableArray<T>.Inequality(in wan24.Core.EquatableArray<T>, in T[])
+  fullName.vb: wan24.Core.EquatableArray(Of T).Inequality(ByRef wan24.Core.EquatableArray(Of T), ByRef T())
+  nameWithType: EquatableArray<T>.Inequality(in EquatableArray<T>, in T[])
+  nameWithType.vb: EquatableArray(Of T).Inequality(ByRef EquatableArray(Of T), ByRef T())
+- uid: wan24.Core.EquatableArray`1.op_Inequality(wan24.Core.EquatableArray{`0}@,wan24.Core.EquatableArray{`0}@)
+  name: Inequality(in EquatableArray<T>, in EquatableArray<T>)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_op_Inequality_wan24_Core_EquatableArray__0___wan24_Core_EquatableArray__0___
+  commentId: M:wan24.Core.EquatableArray`1.op_Inequality(wan24.Core.EquatableArray{`0}@,wan24.Core.EquatableArray{`0}@)
+  name.vb: Inequality(ByRef EquatableArray(Of T), ByRef EquatableArray(Of T))
+  fullName: wan24.Core.EquatableArray<T>.Inequality(in wan24.Core.EquatableArray<T>, in wan24.Core.EquatableArray<T>)
+  fullName.vb: wan24.Core.EquatableArray(Of T).Inequality(ByRef wan24.Core.EquatableArray(Of T), ByRef wan24.Core.EquatableArray(Of T))
+  nameWithType: EquatableArray<T>.Inequality(in EquatableArray<T>, in EquatableArray<T>)
+  nameWithType.vb: EquatableArray(Of T).Inequality(ByRef EquatableArray(Of T), ByRef EquatableArray(Of T))
+- uid: wan24.Core.EquatableArray`1.op_Inequality*
+  name: Inequality
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_op_Inequality_
+  commentId: Overload:wan24.Core.EquatableArray`1.op_Inequality
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.Inequality
+  fullName.vb: wan24.Core.EquatableArray(Of T).Inequality
+  nameWithType: EquatableArray<T>.Inequality
+  nameWithType.vb: EquatableArray(Of T).Inequality
+- uid: wan24.Core.EquatableArray`1.SyncRoot
+  name: SyncRoot
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_SyncRoot
+  commentId: P:wan24.Core.EquatableArray`1.SyncRoot
+  fullName: wan24.Core.EquatableArray<T>.SyncRoot
+  fullName.vb: wan24.Core.EquatableArray(Of T).SyncRoot
+  nameWithType: EquatableArray<T>.SyncRoot
+  nameWithType.vb: EquatableArray(Of T).SyncRoot
+- uid: wan24.Core.EquatableArray`1.SyncRoot*
+  name: SyncRoot
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_SyncRoot_
+  commentId: Overload:wan24.Core.EquatableArray`1.SyncRoot
+  isSpec: "True"
+  fullName: wan24.Core.EquatableArray<T>.SyncRoot
+  fullName.vb: wan24.Core.EquatableArray(Of T).SyncRoot
+  nameWithType: EquatableArray<T>.SyncRoot
+  nameWithType.vb: EquatableArray(Of T).SyncRoot
+- uid: wan24.Core.EquatableArray`1.System#Collections#ICollection#Count
+  name: ICollection.Count
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_System_Collections_ICollection_Count
+  commentId: P:wan24.Core.EquatableArray`1.System#Collections#ICollection#Count
+  name.vb: System.Collections.ICollection.Count
+  fullName: wan24.Core.EquatableArray<T>.System.Collections.ICollection.Count
+  fullName.vb: wan24.Core.EquatableArray(Of T).System.Collections.ICollection.Count
+  nameWithType: EquatableArray<T>.ICollection.Count
+  nameWithType.vb: EquatableArray(Of T).System.Collections.ICollection.Count
+- uid: wan24.Core.EquatableArray`1.System#Collections#ICollection#Count*
+  name: ICollection.Count
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_System_Collections_ICollection_Count_
+  commentId: Overload:wan24.Core.EquatableArray`1.System#Collections#ICollection#Count
+  isSpec: "True"
+  name.vb: System.Collections.ICollection.Count
+  fullName: wan24.Core.EquatableArray<T>.System.Collections.ICollection.Count
+  fullName.vb: wan24.Core.EquatableArray(Of T).System.Collections.ICollection.Count
+  nameWithType: EquatableArray<T>.ICollection.Count
+  nameWithType.vb: EquatableArray(Of T).System.Collections.ICollection.Count
+- uid: wan24.Core.EquatableArray`1.System#Collections#IList#Add(System.Object)
+  name: IList.Add(Object)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_System_Collections_IList_Add_System_Object_
+  commentId: M:wan24.Core.EquatableArray`1.System#Collections#IList#Add(System.Object)
+  name.vb: System.Collections.IList.Add(Object)
+  fullName: wan24.Core.EquatableArray<T>.System.Collections.IList.Add(System.Object)
+  fullName.vb: wan24.Core.EquatableArray(Of T).System.Collections.IList.Add(System.Object)
+  nameWithType: EquatableArray<T>.IList.Add(Object)
+  nameWithType.vb: EquatableArray(Of T).System.Collections.IList.Add(Object)
+- uid: wan24.Core.EquatableArray`1.System#Collections#IList#Add*
+  name: IList.Add
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_System_Collections_IList_Add_
+  commentId: Overload:wan24.Core.EquatableArray`1.System#Collections#IList#Add
+  isSpec: "True"
+  name.vb: System.Collections.IList.Add
+  fullName: wan24.Core.EquatableArray<T>.System.Collections.IList.Add
+  fullName.vb: wan24.Core.EquatableArray(Of T).System.Collections.IList.Add
+  nameWithType: EquatableArray<T>.IList.Add
+  nameWithType.vb: EquatableArray(Of T).System.Collections.IList.Add
+- uid: wan24.Core.EquatableArray`1.System#Collections#IList#Insert(System.Int32,System.Object)
+  name: IList.Insert(Int32, Object)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_System_Collections_IList_Insert_System_Int32_System_Object_
+  commentId: M:wan24.Core.EquatableArray`1.System#Collections#IList#Insert(System.Int32,System.Object)
+  name.vb: System.Collections.IList.Insert(Int32, Object)
+  fullName: wan24.Core.EquatableArray<T>.System.Collections.IList.Insert(System.Int32, System.Object)
+  fullName.vb: wan24.Core.EquatableArray(Of T).System.Collections.IList.Insert(System.Int32, System.Object)
+  nameWithType: EquatableArray<T>.IList.Insert(Int32, Object)
+  nameWithType.vb: EquatableArray(Of T).System.Collections.IList.Insert(Int32, Object)
+- uid: wan24.Core.EquatableArray`1.System#Collections#IList#Insert*
+  name: IList.Insert
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_System_Collections_IList_Insert_
+  commentId: Overload:wan24.Core.EquatableArray`1.System#Collections#IList#Insert
+  isSpec: "True"
+  name.vb: System.Collections.IList.Insert
+  fullName: wan24.Core.EquatableArray<T>.System.Collections.IList.Insert
+  fullName.vb: wan24.Core.EquatableArray(Of T).System.Collections.IList.Insert
+  nameWithType: EquatableArray<T>.IList.Insert
+  nameWithType.vb: EquatableArray(Of T).System.Collections.IList.Insert
+- uid: wan24.Core.EquatableArray`1.System#Collections#IList#Item(System.Int32)
+  name: IList.Item[Int32]
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_System_Collections_IList_Item_System_Int32_
+  commentId: P:wan24.Core.EquatableArray`1.System#Collections#IList#Item(System.Int32)
+  name.vb: System.Collections.IList.Item(Int32)
+  fullName: wan24.Core.EquatableArray<T>.System.Collections.IList.Item[System.Int32]
+  fullName.vb: wan24.Core.EquatableArray(Of T).System.Collections.IList.Item(System.Int32)
+  nameWithType: EquatableArray<T>.IList.Item[Int32]
+  nameWithType.vb: EquatableArray(Of T).System.Collections.IList.Item(Int32)
+- uid: wan24.Core.EquatableArray`1.System#Collections#IList#Item*
+  name: IList.Item
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_System_Collections_IList_Item_
+  commentId: Overload:wan24.Core.EquatableArray`1.System#Collections#IList#Item
+  isSpec: "True"
+  name.vb: System.Collections.IList.Item
+  fullName: wan24.Core.EquatableArray<T>.System.Collections.IList.Item
+  fullName.vb: wan24.Core.EquatableArray(Of T).System.Collections.IList.Item
+  nameWithType: EquatableArray<T>.IList.Item
+  nameWithType.vb: EquatableArray(Of T).System.Collections.IList.Item
+- uid: wan24.Core.EquatableArray`1.System#Collections#IList#Remove(System.Object)
+  name: IList.Remove(Object)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_System_Collections_IList_Remove_System_Object_
+  commentId: M:wan24.Core.EquatableArray`1.System#Collections#IList#Remove(System.Object)
+  name.vb: System.Collections.IList.Remove(Object)
+  fullName: wan24.Core.EquatableArray<T>.System.Collections.IList.Remove(System.Object)
+  fullName.vb: wan24.Core.EquatableArray(Of T).System.Collections.IList.Remove(System.Object)
+  nameWithType: EquatableArray<T>.IList.Remove(Object)
+  nameWithType.vb: EquatableArray(Of T).System.Collections.IList.Remove(Object)
+- uid: wan24.Core.EquatableArray`1.System#Collections#IList#Remove*
+  name: IList.Remove
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_System_Collections_IList_Remove_
+  commentId: Overload:wan24.Core.EquatableArray`1.System#Collections#IList#Remove
+  isSpec: "True"
+  name.vb: System.Collections.IList.Remove
+  fullName: wan24.Core.EquatableArray<T>.System.Collections.IList.Remove
+  fullName.vb: wan24.Core.EquatableArray(Of T).System.Collections.IList.Remove
+  nameWithType: EquatableArray<T>.IList.Remove
+  nameWithType.vb: EquatableArray(Of T).System.Collections.IList.Remove
+- uid: wan24.Core.EquatableArray`1.System#Collections#IList#RemoveAt(System.Int32)
+  name: IList.RemoveAt(Int32)
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_System_Collections_IList_RemoveAt_System_Int32_
+  commentId: M:wan24.Core.EquatableArray`1.System#Collections#IList#RemoveAt(System.Int32)
+  name.vb: System.Collections.IList.RemoveAt(Int32)
+  fullName: wan24.Core.EquatableArray<T>.System.Collections.IList.RemoveAt(System.Int32)
+  fullName.vb: wan24.Core.EquatableArray(Of T).System.Collections.IList.RemoveAt(System.Int32)
+  nameWithType: EquatableArray<T>.IList.RemoveAt(Int32)
+  nameWithType.vb: EquatableArray(Of T).System.Collections.IList.RemoveAt(Int32)
+- uid: wan24.Core.EquatableArray`1.System#Collections#IList#RemoveAt*
+  name: IList.RemoveAt
+  href: api/wan24.Core.EquatableArray-1.html#wan24_Core_EquatableArray_1_System_Collections_IList_RemoveAt_
+  commentId: Overload:wan24.Core.EquatableArray`1.System#Collections#IList#RemoveAt
+  isSpec: "True"
+  name.vb: System.Collections.IList.RemoveAt
+  fullName: wan24.Core.EquatableArray<T>.System.Collections.IList.RemoveAt
+  fullName.vb: wan24.Core.EquatableArray(Of T).System.Collections.IList.RemoveAt
+  nameWithType: EquatableArray<T>.IList.RemoveAt
+  nameWithType.vb: EquatableArray(Of T).System.Collections.IList.RemoveAt
 - uid: wan24.Core.ErrorHandling
   name: ErrorHandling
   href: api/wan24.Core.ErrorHandling.html
@@ -16999,6 +17769,32 @@ references:
   commentId: F:wan24.Core.HostedServiceBase._LastException
   fullName: wan24.Core.HostedServiceBase._LastException
   nameWithType: HostedServiceBase._LastException
+- uid: wan24.Core.HostedServiceBase.AfterPauseAsync(CancellationToken)
+  name: AfterPauseAsync(CancellationToken)
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_AfterPauseAsync_CancellationToken_
+  commentId: M:wan24.Core.HostedServiceBase.AfterPauseAsync(CancellationToken)
+  fullName: wan24.Core.HostedServiceBase.AfterPauseAsync(CancellationToken)
+  nameWithType: HostedServiceBase.AfterPauseAsync(CancellationToken)
+- uid: wan24.Core.HostedServiceBase.AfterPauseAsync*
+  name: AfterPauseAsync
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_AfterPauseAsync_
+  commentId: Overload:wan24.Core.HostedServiceBase.AfterPauseAsync
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceBase.AfterPauseAsync
+  nameWithType: HostedServiceBase.AfterPauseAsync
+- uid: wan24.Core.HostedServiceBase.AfterResumeAsync(CancellationToken)
+  name: AfterResumeAsync(CancellationToken)
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_AfterResumeAsync_CancellationToken_
+  commentId: M:wan24.Core.HostedServiceBase.AfterResumeAsync(CancellationToken)
+  fullName: wan24.Core.HostedServiceBase.AfterResumeAsync(CancellationToken)
+  nameWithType: HostedServiceBase.AfterResumeAsync(CancellationToken)
+- uid: wan24.Core.HostedServiceBase.AfterResumeAsync*
+  name: AfterResumeAsync
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_AfterResumeAsync_
+  commentId: Overload:wan24.Core.HostedServiceBase.AfterResumeAsync
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceBase.AfterResumeAsync
+  nameWithType: HostedServiceBase.AfterResumeAsync
 - uid: wan24.Core.HostedServiceBase.AfterStartAsync(CancellationToken)
   name: AfterStartAsync(CancellationToken)
   href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_AfterStartAsync_CancellationToken_
@@ -17025,6 +17821,32 @@ references:
   isSpec: "True"
   fullName: wan24.Core.HostedServiceBase.AfterStopAsync
   nameWithType: HostedServiceBase.AfterStopAsync
+- uid: wan24.Core.HostedServiceBase.BeforePauseAsync(CancellationToken)
+  name: BeforePauseAsync(CancellationToken)
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_BeforePauseAsync_CancellationToken_
+  commentId: M:wan24.Core.HostedServiceBase.BeforePauseAsync(CancellationToken)
+  fullName: wan24.Core.HostedServiceBase.BeforePauseAsync(CancellationToken)
+  nameWithType: HostedServiceBase.BeforePauseAsync(CancellationToken)
+- uid: wan24.Core.HostedServiceBase.BeforePauseAsync*
+  name: BeforePauseAsync
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_BeforePauseAsync_
+  commentId: Overload:wan24.Core.HostedServiceBase.BeforePauseAsync
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceBase.BeforePauseAsync
+  nameWithType: HostedServiceBase.BeforePauseAsync
+- uid: wan24.Core.HostedServiceBase.BeforeResumeAsync(CancellationToken)
+  name: BeforeResumeAsync(CancellationToken)
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_BeforeResumeAsync_CancellationToken_
+  commentId: M:wan24.Core.HostedServiceBase.BeforeResumeAsync(CancellationToken)
+  fullName: wan24.Core.HostedServiceBase.BeforeResumeAsync(CancellationToken)
+  nameWithType: HostedServiceBase.BeforeResumeAsync(CancellationToken)
+- uid: wan24.Core.HostedServiceBase.BeforeResumeAsync*
+  name: BeforeResumeAsync
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_BeforeResumeAsync_
+  commentId: Overload:wan24.Core.HostedServiceBase.BeforeResumeAsync
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceBase.BeforeResumeAsync
+  nameWithType: HostedServiceBase.BeforeResumeAsync
 - uid: wan24.Core.HostedServiceBase.BeforeStartAsync(CancellationToken)
   name: BeforeStartAsync(CancellationToken)
   href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_BeforeStartAsync_CancellationToken_
@@ -17070,6 +17892,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.HostedServiceBase.CancelToken
   nameWithType: HostedServiceBase.CancelToken
+- uid: wan24.Core.HostedServiceBase.CanPause
+  name: CanPause
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_CanPause
+  commentId: P:wan24.Core.HostedServiceBase.CanPause
+  fullName: wan24.Core.HostedServiceBase.CanPause
+  nameWithType: HostedServiceBase.CanPause
+- uid: wan24.Core.HostedServiceBase.CanPause*
+  name: CanPause
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_CanPause_
+  commentId: Overload:wan24.Core.HostedServiceBase.CanPause
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceBase.CanPause
+  nameWithType: HostedServiceBase.CanPause
 - uid: wan24.Core.HostedServiceBase.Dispose(System.Boolean)
   name: Dispose(Boolean)
   href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Dispose_System_Boolean_
@@ -17115,6 +17950,19 @@ references:
   commentId: T:wan24.Core.HostedServiceBase.HostedService_Delegate
   fullName: wan24.Core.HostedServiceBase.HostedService_Delegate
   nameWithType: HostedServiceBase.HostedService_Delegate
+- uid: wan24.Core.HostedServiceBase.IsPaused
+  name: IsPaused
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_IsPaused
+  commentId: P:wan24.Core.HostedServiceBase.IsPaused
+  fullName: wan24.Core.HostedServiceBase.IsPaused
+  nameWithType: HostedServiceBase.IsPaused
+- uid: wan24.Core.HostedServiceBase.IsPaused*
+  name: IsPaused
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_IsPaused_
+  commentId: Overload:wan24.Core.HostedServiceBase.IsPaused
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceBase.IsPaused
+  nameWithType: HostedServiceBase.IsPaused
 - uid: wan24.Core.HostedServiceBase.IsRunning
   name: IsRunning
   href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_IsRunning
@@ -17192,6 +18040,38 @@ references:
   fullName.vb: wan24.Core.HostedServiceBase.Widening
   nameWithType: HostedServiceBase.Implicit
   nameWithType.vb: HostedServiceBase.Widening
+- uid: wan24.Core.HostedServiceBase.PauseAsync(CancellationToken)
+  name: PauseAsync(CancellationToken)
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_PauseAsync_CancellationToken_
+  commentId: M:wan24.Core.HostedServiceBase.PauseAsync(CancellationToken)
+  fullName: wan24.Core.HostedServiceBase.PauseAsync(CancellationToken)
+  nameWithType: HostedServiceBase.PauseAsync(CancellationToken)
+- uid: wan24.Core.HostedServiceBase.PauseAsync*
+  name: PauseAsync
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_PauseAsync_
+  commentId: Overload:wan24.Core.HostedServiceBase.PauseAsync
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceBase.PauseAsync
+  nameWithType: HostedServiceBase.PauseAsync
+- uid: wan24.Core.HostedServiceBase.Paused
+  name: Paused
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Paused
+  commentId: P:wan24.Core.HostedServiceBase.Paused
+  fullName: wan24.Core.HostedServiceBase.Paused
+  nameWithType: HostedServiceBase.Paused
+- uid: wan24.Core.HostedServiceBase.Paused*
+  name: Paused
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Paused_
+  commentId: Overload:wan24.Core.HostedServiceBase.Paused
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceBase.Paused
+  nameWithType: HostedServiceBase.Paused
+- uid: wan24.Core.HostedServiceBase.PauseEvent
+  name: PauseEvent
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_PauseEvent
+  commentId: F:wan24.Core.HostedServiceBase.PauseEvent
+  fullName: wan24.Core.HostedServiceBase.PauseEvent
+  nameWithType: HostedServiceBase.PauseEvent
 - uid: wan24.Core.HostedServiceBase.RaiseOnException
   name: RaiseOnException()
   href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_RaiseOnException
@@ -17205,6 +18085,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.HostedServiceBase.RaiseOnException
   nameWithType: HostedServiceBase.RaiseOnException
+- uid: wan24.Core.HostedServiceBase.ResumeAsync(CancellationToken)
+  name: ResumeAsync(CancellationToken)
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_ResumeAsync_CancellationToken_
+  commentId: M:wan24.Core.HostedServiceBase.ResumeAsync(CancellationToken)
+  fullName: wan24.Core.HostedServiceBase.ResumeAsync(CancellationToken)
+  nameWithType: HostedServiceBase.ResumeAsync(CancellationToken)
+- uid: wan24.Core.HostedServiceBase.ResumeAsync*
+  name: ResumeAsync
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_ResumeAsync_
+  commentId: Overload:wan24.Core.HostedServiceBase.ResumeAsync
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceBase.ResumeAsync
+  nameWithType: HostedServiceBase.ResumeAsync
 - uid: wan24.Core.HostedServiceBase.RunEvent
   name: RunEvent
   href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_RunEvent
@@ -17320,6 +18213,23 @@ references:
   isSpec: "True"
   fullName: wan24.Core.HostedServiceBase.ToString
   nameWithType: HostedServiceBase.ToString
+- uid: wan24.Core.HostedServiceBase.wan24#Core#IServiceWorker#PauseAsync
+  name: IServiceWorker.PauseAsync()
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_wan24_Core_IServiceWorker_PauseAsync
+  commentId: M:wan24.Core.HostedServiceBase.wan24#Core#IServiceWorker#PauseAsync
+  name.vb: wan24.Core.IServiceWorker.PauseAsync()
+  fullName: wan24.Core.HostedServiceBase.wan24.Core.IServiceWorker.PauseAsync()
+  nameWithType: HostedServiceBase.IServiceWorker.PauseAsync()
+  nameWithType.vb: HostedServiceBase.wan24.Core.IServiceWorker.PauseAsync()
+- uid: wan24.Core.HostedServiceBase.wan24#Core#IServiceWorker#PauseAsync*
+  name: IServiceWorker.PauseAsync
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_wan24_Core_IServiceWorker_PauseAsync_
+  commentId: Overload:wan24.Core.HostedServiceBase.wan24#Core#IServiceWorker#PauseAsync
+  isSpec: "True"
+  name.vb: wan24.Core.IServiceWorker.PauseAsync
+  fullName: wan24.Core.HostedServiceBase.wan24.Core.IServiceWorker.PauseAsync
+  nameWithType: HostedServiceBase.IServiceWorker.PauseAsync
+  nameWithType.vb: HostedServiceBase.wan24.Core.IServiceWorker.PauseAsync
 - uid: wan24.Core.HostedServiceBase.wan24#Core#IServiceWorker#RestartAsync
   name: IServiceWorker.RestartAsync()
   href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_wan24_Core_IServiceWorker_RestartAsync
@@ -17337,6 +18247,23 @@ references:
   fullName: wan24.Core.HostedServiceBase.wan24.Core.IServiceWorker.RestartAsync
   nameWithType: HostedServiceBase.IServiceWorker.RestartAsync
   nameWithType.vb: HostedServiceBase.wan24.Core.IServiceWorker.RestartAsync
+- uid: wan24.Core.HostedServiceBase.wan24#Core#IServiceWorker#ResumeAsync
+  name: IServiceWorker.ResumeAsync()
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_wan24_Core_IServiceWorker_ResumeAsync
+  commentId: M:wan24.Core.HostedServiceBase.wan24#Core#IServiceWorker#ResumeAsync
+  name.vb: wan24.Core.IServiceWorker.ResumeAsync()
+  fullName: wan24.Core.HostedServiceBase.wan24.Core.IServiceWorker.ResumeAsync()
+  nameWithType: HostedServiceBase.IServiceWorker.ResumeAsync()
+  nameWithType.vb: HostedServiceBase.wan24.Core.IServiceWorker.ResumeAsync()
+- uid: wan24.Core.HostedServiceBase.wan24#Core#IServiceWorker#ResumeAsync*
+  name: IServiceWorker.ResumeAsync
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_wan24_Core_IServiceWorker_ResumeAsync_
+  commentId: Overload:wan24.Core.HostedServiceBase.wan24#Core#IServiceWorker#ResumeAsync
+  isSpec: "True"
+  name.vb: wan24.Core.IServiceWorker.ResumeAsync
+  fullName: wan24.Core.HostedServiceBase.wan24.Core.IServiceWorker.ResumeAsync
+  nameWithType: HostedServiceBase.IServiceWorker.ResumeAsync
+  nameWithType.vb: HostedServiceBase.wan24.Core.IServiceWorker.ResumeAsync
 - uid: wan24.Core.HostedServiceBase.wan24#Core#IServiceWorker#StartAsync
   name: IServiceWorker.StartAsync()
   href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_wan24_Core_IServiceWorker_StartAsync
@@ -19493,6 +20420,31 @@ references:
   fullName.vb: wan24.Core.InstancePool(Of T).Available
   nameWithType: InstancePool<T>.Available
   nameWithType.vb: InstancePool(Of T).Available
+- uid: wan24.Core.InstancePool`1.BeforeStopAsync(CancellationToken)
+  name: BeforeStopAsync(CancellationToken)
+  href: api/wan24.Core.InstancePool-1.html#wan24_Core_InstancePool_1_BeforeStopAsync_CancellationToken_
+  commentId: M:wan24.Core.InstancePool`1.BeforeStopAsync(CancellationToken)
+  fullName: wan24.Core.InstancePool<T>.BeforeStopAsync(CancellationToken)
+  fullName.vb: wan24.Core.InstancePool(Of T).BeforeStopAsync(CancellationToken)
+  nameWithType: InstancePool<T>.BeforeStopAsync(CancellationToken)
+  nameWithType.vb: InstancePool(Of T).BeforeStopAsync(CancellationToken)
+- uid: wan24.Core.InstancePool`1.BeforeStopAsync*
+  name: BeforeStopAsync
+  href: api/wan24.Core.InstancePool-1.html#wan24_Core_InstancePool_1_BeforeStopAsync_
+  commentId: Overload:wan24.Core.InstancePool`1.BeforeStopAsync
+  isSpec: "True"
+  fullName: wan24.Core.InstancePool<T>.BeforeStopAsync
+  fullName.vb: wan24.Core.InstancePool(Of T).BeforeStopAsync
+  nameWithType: InstancePool<T>.BeforeStopAsync
+  nameWithType.vb: InstancePool(Of T).BeforeStopAsync
+- uid: wan24.Core.InstancePool`1.BufferSync
+  name: BufferSync
+  href: api/wan24.Core.InstancePool-1.html#wan24_Core_InstancePool_1_BufferSync
+  commentId: F:wan24.Core.InstancePool`1.BufferSync
+  fullName: wan24.Core.InstancePool<T>.BufferSync
+  fullName.vb: wan24.Core.InstancePool(Of T).BufferSync
+  nameWithType: InstancePool<T>.BufferSync
+  nameWithType.vb: InstancePool(Of T).BufferSync
 - uid: wan24.Core.InstancePool`1.Capacity
   name: Capacity
   href: api/wan24.Core.InstancePool-1.html#wan24_Core_InstancePool_1_Capacity
@@ -21171,6 +22123,32 @@ references:
   commentId: T:wan24.Core.IServiceWorker
   fullName: wan24.Core.IServiceWorker
   nameWithType: IServiceWorker
+- uid: wan24.Core.IServiceWorker.CanPause
+  name: CanPause
+  href: api/wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_CanPause
+  commentId: P:wan24.Core.IServiceWorker.CanPause
+  fullName: wan24.Core.IServiceWorker.CanPause
+  nameWithType: IServiceWorker.CanPause
+- uid: wan24.Core.IServiceWorker.CanPause*
+  name: CanPause
+  href: api/wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_CanPause_
+  commentId: Overload:wan24.Core.IServiceWorker.CanPause
+  isSpec: "True"
+  fullName: wan24.Core.IServiceWorker.CanPause
+  nameWithType: IServiceWorker.CanPause
+- uid: wan24.Core.IServiceWorker.IsPaused
+  name: IsPaused
+  href: api/wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_IsPaused
+  commentId: P:wan24.Core.IServiceWorker.IsPaused
+  fullName: wan24.Core.IServiceWorker.IsPaused
+  nameWithType: IServiceWorker.IsPaused
+- uid: wan24.Core.IServiceWorker.IsPaused*
+  name: IsPaused
+  href: api/wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_IsPaused_
+  commentId: Overload:wan24.Core.IServiceWorker.IsPaused
+  isSpec: "True"
+  fullName: wan24.Core.IServiceWorker.IsPaused
+  nameWithType: IServiceWorker.IsPaused
 - uid: wan24.Core.IServiceWorker.IsRunning
   name: IsRunning
   href: api/wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_IsRunning
@@ -21197,6 +22175,32 @@ references:
   isSpec: "True"
   fullName: wan24.Core.IServiceWorker.Name
   nameWithType: IServiceWorker.Name
+- uid: wan24.Core.IServiceWorker.PauseAsync
+  name: PauseAsync()
+  href: api/wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_PauseAsync
+  commentId: M:wan24.Core.IServiceWorker.PauseAsync
+  fullName: wan24.Core.IServiceWorker.PauseAsync()
+  nameWithType: IServiceWorker.PauseAsync()
+- uid: wan24.Core.IServiceWorker.PauseAsync*
+  name: PauseAsync
+  href: api/wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_PauseAsync_
+  commentId: Overload:wan24.Core.IServiceWorker.PauseAsync
+  isSpec: "True"
+  fullName: wan24.Core.IServiceWorker.PauseAsync
+  nameWithType: IServiceWorker.PauseAsync
+- uid: wan24.Core.IServiceWorker.Paused
+  name: Paused
+  href: api/wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_Paused
+  commentId: P:wan24.Core.IServiceWorker.Paused
+  fullName: wan24.Core.IServiceWorker.Paused
+  nameWithType: IServiceWorker.Paused
+- uid: wan24.Core.IServiceWorker.Paused*
+  name: Paused
+  href: api/wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_Paused_
+  commentId: Overload:wan24.Core.IServiceWorker.Paused
+  isSpec: "True"
+  fullName: wan24.Core.IServiceWorker.Paused
+  nameWithType: IServiceWorker.Paused
 - uid: wan24.Core.IServiceWorker.RestartAsync
   name: RestartAsync()
   href: api/wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_RestartAsync
@@ -21210,6 +22214,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.IServiceWorker.RestartAsync
   nameWithType: IServiceWorker.RestartAsync
+- uid: wan24.Core.IServiceWorker.ResumeAsync
+  name: ResumeAsync()
+  href: api/wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_ResumeAsync
+  commentId: M:wan24.Core.IServiceWorker.ResumeAsync
+  fullName: wan24.Core.IServiceWorker.ResumeAsync()
+  nameWithType: IServiceWorker.ResumeAsync()
+- uid: wan24.Core.IServiceWorker.ResumeAsync*
+  name: ResumeAsync
+  href: api/wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_ResumeAsync_
+  commentId: Overload:wan24.Core.IServiceWorker.ResumeAsync
+  isSpec: "True"
+  fullName: wan24.Core.IServiceWorker.ResumeAsync
+  nameWithType: IServiceWorker.ResumeAsync
 - uid: wan24.Core.IServiceWorker.StartAsync
   name: StartAsync()
   href: api/wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_StartAsync
@@ -21769,6 +22786,64 @@ references:
   isSpec: "True"
   fullName: wan24.Core.IStream.WriteTimeout
   nameWithType: IStream.WriteTimeout
+- uid: wan24.Core.IStreamThrottle
+  name: IStreamThrottle
+  href: api/wan24.Core.IStreamThrottle.html
+  commentId: T:wan24.Core.IStreamThrottle
+  fullName: wan24.Core.IStreamThrottle
+  nameWithType: IStreamThrottle
+- uid: wan24.Core.IStreamThrottle.ReadCount
+  name: ReadCount
+  href: api/wan24.Core.IStreamThrottle.html#wan24_Core_IStreamThrottle_ReadCount
+  commentId: P:wan24.Core.IStreamThrottle.ReadCount
+  fullName: wan24.Core.IStreamThrottle.ReadCount
+  nameWithType: IStreamThrottle.ReadCount
+- uid: wan24.Core.IStreamThrottle.ReadCount*
+  name: ReadCount
+  href: api/wan24.Core.IStreamThrottle.html#wan24_Core_IStreamThrottle_ReadCount_
+  commentId: Overload:wan24.Core.IStreamThrottle.ReadCount
+  isSpec: "True"
+  fullName: wan24.Core.IStreamThrottle.ReadCount
+  nameWithType: IStreamThrottle.ReadCount
+- uid: wan24.Core.IStreamThrottle.ReadCountQuota
+  name: ReadCountQuota
+  href: api/wan24.Core.IStreamThrottle.html#wan24_Core_IStreamThrottle_ReadCountQuota
+  commentId: P:wan24.Core.IStreamThrottle.ReadCountQuota
+  fullName: wan24.Core.IStreamThrottle.ReadCountQuota
+  nameWithType: IStreamThrottle.ReadCountQuota
+- uid: wan24.Core.IStreamThrottle.ReadCountQuota*
+  name: ReadCountQuota
+  href: api/wan24.Core.IStreamThrottle.html#wan24_Core_IStreamThrottle_ReadCountQuota_
+  commentId: Overload:wan24.Core.IStreamThrottle.ReadCountQuota
+  isSpec: "True"
+  fullName: wan24.Core.IStreamThrottle.ReadCountQuota
+  nameWithType: IStreamThrottle.ReadCountQuota
+- uid: wan24.Core.IStreamThrottle.WriteCount
+  name: WriteCount
+  href: api/wan24.Core.IStreamThrottle.html#wan24_Core_IStreamThrottle_WriteCount
+  commentId: P:wan24.Core.IStreamThrottle.WriteCount
+  fullName: wan24.Core.IStreamThrottle.WriteCount
+  nameWithType: IStreamThrottle.WriteCount
+- uid: wan24.Core.IStreamThrottle.WriteCount*
+  name: WriteCount
+  href: api/wan24.Core.IStreamThrottle.html#wan24_Core_IStreamThrottle_WriteCount_
+  commentId: Overload:wan24.Core.IStreamThrottle.WriteCount
+  isSpec: "True"
+  fullName: wan24.Core.IStreamThrottle.WriteCount
+  nameWithType: IStreamThrottle.WriteCount
+- uid: wan24.Core.IStreamThrottle.WriteCountQuota
+  name: WriteCountQuota
+  href: api/wan24.Core.IStreamThrottle.html#wan24_Core_IStreamThrottle_WriteCountQuota
+  commentId: P:wan24.Core.IStreamThrottle.WriteCountQuota
+  fullName: wan24.Core.IStreamThrottle.WriteCountQuota
+  nameWithType: IStreamThrottle.WriteCountQuota
+- uid: wan24.Core.IStreamThrottle.WriteCountQuota*
+  name: WriteCountQuota
+  href: api/wan24.Core.IStreamThrottle.html#wan24_Core_IStreamThrottle_WriteCountQuota_
+  commentId: Overload:wan24.Core.IStreamThrottle.WriteCountQuota
+  isSpec: "True"
+  fullName: wan24.Core.IStreamThrottle.WriteCountQuota
+  nameWithType: IStreamThrottle.WriteCountQuota
 - uid: wan24.Core.IStreamWrapper
   name: IStreamWrapper
   href: api/wan24.Core.IStreamWrapper.html
@@ -21938,19 +23013,6 @@ references:
   isSpec: "True"
   fullName: wan24.Core.IThrottledStream.LastWriteTimeStart
   nameWithType: IThrottledStream.LastWriteTimeStart
-- uid: wan24.Core.IThrottledStream.ReadCount
-  name: ReadCount
-  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_ReadCount
-  commentId: P:wan24.Core.IThrottledStream.ReadCount
-  fullName: wan24.Core.IThrottledStream.ReadCount
-  nameWithType: IThrottledStream.ReadCount
-- uid: wan24.Core.IThrottledStream.ReadCount*
-  name: ReadCount
-  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_ReadCount_
-  commentId: Overload:wan24.Core.IThrottledStream.ReadCount
-  isSpec: "True"
-  fullName: wan24.Core.IThrottledStream.ReadCount
-  nameWithType: IThrottledStream.ReadCount
 - uid: wan24.Core.IThrottledStream.ReadTime
   name: ReadTime
   href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_ReadTime
@@ -22003,19 +23065,6 @@ references:
   isSpec: "True"
   fullName: wan24.Core.IThrottledStream.ResetWriteThrottle
   nameWithType: IThrottledStream.ResetWriteThrottle
-- uid: wan24.Core.IThrottledStream.WriteCount
-  name: WriteCount
-  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_WriteCount
-  commentId: P:wan24.Core.IThrottledStream.WriteCount
-  fullName: wan24.Core.IThrottledStream.WriteCount
-  nameWithType: IThrottledStream.WriteCount
-- uid: wan24.Core.IThrottledStream.WriteCount*
-  name: WriteCount
-  href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_WriteCount_
-  commentId: Overload:wan24.Core.IThrottledStream.WriteCount
-  isSpec: "True"
-  fullName: wan24.Core.IThrottledStream.WriteCount
-  nameWithType: IThrottledStream.WriteCount
 - uid: wan24.Core.IThrottledStream.WriteTime
   name: WriteTime
   href: api/wan24.Core.IThrottledStream.html#wan24_Core_IThrottledStream_WriteTime
@@ -24289,6 +25338,12 @@ references:
   isSpec: "True"
   fullName: wan24.Core.MultiThrottledStream.MultiThrottledStream
   nameWithType: MultiThrottledStream.MultiThrottledStream
+- uid: wan24.Core.MultiThrottledStream._Parent
+  name: _Parent
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream__Parent
+  commentId: F:wan24.Core.MultiThrottledStream._Parent
+  fullName: wan24.Core.MultiThrottledStream._Parent
+  nameWithType: MultiThrottledStream._Parent
 - uid: wan24.Core.MultiThrottledStream._Streams
   name: _Streams
   href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream__Streams
@@ -24365,6 +25420,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.MultiThrottledStream.ClearAsync
   nameWithType: MultiThrottledStream.ClearAsync
+- uid: wan24.Core.MultiThrottledStream.ClearUnblocked
+  name: ClearUnblocked()
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_ClearUnblocked
+  commentId: M:wan24.Core.MultiThrottledStream.ClearUnblocked
+  fullName: wan24.Core.MultiThrottledStream.ClearUnblocked()
+  nameWithType: MultiThrottledStream.ClearUnblocked()
+- uid: wan24.Core.MultiThrottledStream.ClearUnblocked*
+  name: ClearUnblocked
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_ClearUnblocked_
+  commentId: Overload:wan24.Core.MultiThrottledStream.ClearUnblocked
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.ClearUnblocked
+  nameWithType: MultiThrottledStream.ClearUnblocked
 - uid: wan24.Core.MultiThrottledStream.Count
   name: Count
   href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Count
@@ -24378,32 +25446,6 @@ references:
   isSpec: "True"
   fullName: wan24.Core.MultiThrottledStream.Count
   nameWithType: MultiThrottledStream.Count
-- uid: wan24.Core.MultiThrottledStream.CurrentReadLimit
-  name: CurrentReadLimit
-  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_CurrentReadLimit
-  commentId: P:wan24.Core.MultiThrottledStream.CurrentReadLimit
-  fullName: wan24.Core.MultiThrottledStream.CurrentReadLimit
-  nameWithType: MultiThrottledStream.CurrentReadLimit
-- uid: wan24.Core.MultiThrottledStream.CurrentReadLimit*
-  name: CurrentReadLimit
-  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_CurrentReadLimit_
-  commentId: Overload:wan24.Core.MultiThrottledStream.CurrentReadLimit
-  isSpec: "True"
-  fullName: wan24.Core.MultiThrottledStream.CurrentReadLimit
-  nameWithType: MultiThrottledStream.CurrentReadLimit
-- uid: wan24.Core.MultiThrottledStream.CurrentWriteLimit
-  name: CurrentWriteLimit
-  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_CurrentWriteLimit
-  commentId: P:wan24.Core.MultiThrottledStream.CurrentWriteLimit
-  fullName: wan24.Core.MultiThrottledStream.CurrentWriteLimit
-  nameWithType: MultiThrottledStream.CurrentWriteLimit
-- uid: wan24.Core.MultiThrottledStream.CurrentWriteLimit*
-  name: CurrentWriteLimit
-  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_CurrentWriteLimit_
-  commentId: Overload:wan24.Core.MultiThrottledStream.CurrentWriteLimit
-  isSpec: "True"
-  fullName: wan24.Core.MultiThrottledStream.CurrentWriteLimit
-  nameWithType: MultiThrottledStream.CurrentWriteLimit
 - uid: wan24.Core.MultiThrottledStream.Dispose(System.Boolean)
   name: Dispose(Boolean)
   href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Dispose_System_Boolean_
@@ -24430,6 +25472,32 @@ references:
   isSpec: "True"
   fullName: wan24.Core.MultiThrottledStream.DisposeCore
   nameWithType: MultiThrottledStream.DisposeCore
+- uid: wan24.Core.MultiThrottledStream.GetLongReadCountQuotaUnblocked
+  name: GetLongReadCountQuotaUnblocked()
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_GetLongReadCountQuotaUnblocked
+  commentId: M:wan24.Core.MultiThrottledStream.GetLongReadCountQuotaUnblocked
+  fullName: wan24.Core.MultiThrottledStream.GetLongReadCountQuotaUnblocked()
+  nameWithType: MultiThrottledStream.GetLongReadCountQuotaUnblocked()
+- uid: wan24.Core.MultiThrottledStream.GetLongReadCountQuotaUnblocked*
+  name: GetLongReadCountQuotaUnblocked
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_GetLongReadCountQuotaUnblocked_
+  commentId: Overload:wan24.Core.MultiThrottledStream.GetLongReadCountQuotaUnblocked
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.GetLongReadCountQuotaUnblocked
+  nameWithType: MultiThrottledStream.GetLongReadCountQuotaUnblocked
+- uid: wan24.Core.MultiThrottledStream.GetLongWriteCountQuotaUnblocked
+  name: GetLongWriteCountQuotaUnblocked()
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_GetLongWriteCountQuotaUnblocked
+  commentId: M:wan24.Core.MultiThrottledStream.GetLongWriteCountQuotaUnblocked
+  fullName: wan24.Core.MultiThrottledStream.GetLongWriteCountQuotaUnblocked()
+  nameWithType: MultiThrottledStream.GetLongWriteCountQuotaUnblocked()
+- uid: wan24.Core.MultiThrottledStream.GetLongWriteCountQuotaUnblocked*
+  name: GetLongWriteCountQuotaUnblocked
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_GetLongWriteCountQuotaUnblocked_
+  commentId: Overload:wan24.Core.MultiThrottledStream.GetLongWriteCountQuotaUnblocked
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.GetLongWriteCountQuotaUnblocked
+  nameWithType: MultiThrottledStream.GetLongWriteCountQuotaUnblocked
 - uid: wan24.Core.MultiThrottledStream.GUID
   name: GUID
   href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_GUID
@@ -24456,18 +25524,32 @@ references:
   isSpec: "True"
   fullName: wan24.Core.MultiThrottledStream.HandleDisposedStream
   nameWithType: MultiThrottledStream.HandleDisposedStream
-- uid: wan24.Core.MultiThrottledStream.LastReadLimit
-  name: LastReadLimit
-  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_LastReadLimit
-  commentId: F:wan24.Core.MultiThrottledStream.LastReadLimit
-  fullName: wan24.Core.MultiThrottledStream.LastReadLimit
-  nameWithType: MultiThrottledStream.LastReadLimit
-- uid: wan24.Core.MultiThrottledStream.LastWriteLimit
-  name: LastWriteLimit
-  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_LastWriteLimit
-  commentId: F:wan24.Core.MultiThrottledStream.LastWriteLimit
-  fullName: wan24.Core.MultiThrottledStream.LastWriteLimit
-  nameWithType: MultiThrottledStream.LastWriteLimit
+- uid: wan24.Core.MultiThrottledStream.LongReadCountQuota
+  name: LongReadCountQuota
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_LongReadCountQuota
+  commentId: P:wan24.Core.MultiThrottledStream.LongReadCountQuota
+  fullName: wan24.Core.MultiThrottledStream.LongReadCountQuota
+  nameWithType: MultiThrottledStream.LongReadCountQuota
+- uid: wan24.Core.MultiThrottledStream.LongReadCountQuota*
+  name: LongReadCountQuota
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_LongReadCountQuota_
+  commentId: Overload:wan24.Core.MultiThrottledStream.LongReadCountQuota
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.LongReadCountQuota
+  nameWithType: MultiThrottledStream.LongReadCountQuota
+- uid: wan24.Core.MultiThrottledStream.LongWriteCountQuota
+  name: LongWriteCountQuota
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_LongWriteCountQuota
+  commentId: P:wan24.Core.MultiThrottledStream.LongWriteCountQuota
+  fullName: wan24.Core.MultiThrottledStream.LongWriteCountQuota
+  nameWithType: MultiThrottledStream.LongWriteCountQuota
+- uid: wan24.Core.MultiThrottledStream.LongWriteCountQuota*
+  name: LongWriteCountQuota
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_LongWriteCountQuota_
+  commentId: Overload:wan24.Core.MultiThrottledStream.LongWriteCountQuota
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.LongWriteCountQuota
+  nameWithType: MultiThrottledStream.LongWriteCountQuota
 - uid: wan24.Core.MultiThrottledStream.Name
   name: Name
   href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Name
@@ -24481,6 +25563,45 @@ references:
   isSpec: "True"
   fullName: wan24.Core.MultiThrottledStream.Name
   nameWithType: MultiThrottledStream.Name
+- uid: wan24.Core.MultiThrottledStream.Parent
+  name: Parent
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Parent
+  commentId: P:wan24.Core.MultiThrottledStream.Parent
+  fullName: wan24.Core.MultiThrottledStream.Parent
+  nameWithType: MultiThrottledStream.Parent
+- uid: wan24.Core.MultiThrottledStream.Parent*
+  name: Parent
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Parent_
+  commentId: Overload:wan24.Core.MultiThrottledStream.Parent
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.Parent
+  nameWithType: MultiThrottledStream.Parent
+- uid: wan24.Core.MultiThrottledStream.ReadCount
+  name: ReadCount
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_ReadCount
+  commentId: P:wan24.Core.MultiThrottledStream.ReadCount
+  fullName: wan24.Core.MultiThrottledStream.ReadCount
+  nameWithType: MultiThrottledStream.ReadCount
+- uid: wan24.Core.MultiThrottledStream.ReadCount*
+  name: ReadCount
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_ReadCount_
+  commentId: Overload:wan24.Core.MultiThrottledStream.ReadCount
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.ReadCount
+  nameWithType: MultiThrottledStream.ReadCount
+- uid: wan24.Core.MultiThrottledStream.ReadCountQuota
+  name: ReadCountQuota
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_ReadCountQuota
+  commentId: P:wan24.Core.MultiThrottledStream.ReadCountQuota
+  fullName: wan24.Core.MultiThrottledStream.ReadCountQuota
+  nameWithType: MultiThrottledStream.ReadCountQuota
+- uid: wan24.Core.MultiThrottledStream.ReadCountQuota*
+  name: ReadCountQuota
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_ReadCountQuota_
+  commentId: Overload:wan24.Core.MultiThrottledStream.ReadCountQuota
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.ReadCountQuota
+  nameWithType: MultiThrottledStream.ReadCountQuota
 - uid: wan24.Core.MultiThrottledStream.RemoveStream*
   name: RemoveStream
   href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_RemoveStream_
@@ -24513,6 +25634,19 @@ references:
   fullName.vb: wan24.Core.MultiThrottledStream.RemoveStreamAsync(Of T)(T, CancellationToken)
   nameWithType: MultiThrottledStream.RemoveStreamAsync<T>(T, CancellationToken)
   nameWithType.vb: MultiThrottledStream.RemoveStreamAsync(Of T)(T, CancellationToken)
+- uid: wan24.Core.MultiThrottledStream.Root
+  name: Root
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Root
+  commentId: P:wan24.Core.MultiThrottledStream.Root
+  fullName: wan24.Core.MultiThrottledStream.Root
+  nameWithType: MultiThrottledStream.Root
+- uid: wan24.Core.MultiThrottledStream.Root*
+  name: Root
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_Root_
+  commentId: Overload:wan24.Core.MultiThrottledStream.Root
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.Root
+  nameWithType: MultiThrottledStream.Root
 - uid: wan24.Core.MultiThrottledStream.SetLimits(System.Int32,System.Int32)
   name: SetLimits(Int32, Int32)
   href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_SetLimits_System_Int32_System_Int32_
@@ -24539,6 +25673,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.MultiThrottledStream.SetLimitsAsync
   nameWithType: MultiThrottledStream.SetLimitsAsync
+- uid: wan24.Core.MultiThrottledStream.SetLimitsUnblocked(System.Int32,System.Int32)
+  name: SetLimitsUnblocked(Int32, Int32)
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_SetLimitsUnblocked_System_Int32_System_Int32_
+  commentId: M:wan24.Core.MultiThrottledStream.SetLimitsUnblocked(System.Int32,System.Int32)
+  fullName: wan24.Core.MultiThrottledStream.SetLimitsUnblocked(System.Int32, System.Int32)
+  nameWithType: MultiThrottledStream.SetLimitsUnblocked(Int32, Int32)
+- uid: wan24.Core.MultiThrottledStream.SetLimitsUnblocked*
+  name: SetLimitsUnblocked
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_SetLimitsUnblocked_
+  commentId: Overload:wan24.Core.MultiThrottledStream.SetLimitsUnblocked
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.SetLimitsUnblocked
+  nameWithType: MultiThrottledStream.SetLimitsUnblocked
 - uid: wan24.Core.MultiThrottledStream.State
   name: State
   href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_State
@@ -24597,12 +25744,12 @@ references:
   isSpec: "True"
   fullName: wan24.Core.MultiThrottledStream.TotalWriteLimit
   nameWithType: MultiThrottledStream.TotalWriteLimit
-- uid: wan24.Core.MultiThrottledStream.UpdateCurrentLimit
-  name: UpdateCurrentLimit()
-  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_UpdateCurrentLimit
-  commentId: M:wan24.Core.MultiThrottledStream.UpdateCurrentLimit
-  fullName: wan24.Core.MultiThrottledStream.UpdateCurrentLimit()
-  nameWithType: MultiThrottledStream.UpdateCurrentLimit()
+- uid: wan24.Core.MultiThrottledStream.UpdateCurrentLimit(System.Boolean)
+  name: UpdateCurrentLimit(Boolean)
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_UpdateCurrentLimit_System_Boolean_
+  commentId: M:wan24.Core.MultiThrottledStream.UpdateCurrentLimit(System.Boolean)
+  fullName: wan24.Core.MultiThrottledStream.UpdateCurrentLimit(System.Boolean)
+  nameWithType: MultiThrottledStream.UpdateCurrentLimit(Boolean)
 - uid: wan24.Core.MultiThrottledStream.UpdateCurrentLimit*
   name: UpdateCurrentLimit
   href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_UpdateCurrentLimit_
@@ -24610,6 +25757,45 @@ references:
   isSpec: "True"
   fullName: wan24.Core.MultiThrottledStream.UpdateCurrentLimit
   nameWithType: MultiThrottledStream.UpdateCurrentLimit
+- uid: wan24.Core.MultiThrottledStream.UpdateCurrentLimitAsync(System.Boolean)
+  name: UpdateCurrentLimitAsync(Boolean)
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_UpdateCurrentLimitAsync_System_Boolean_
+  commentId: M:wan24.Core.MultiThrottledStream.UpdateCurrentLimitAsync(System.Boolean)
+  fullName: wan24.Core.MultiThrottledStream.UpdateCurrentLimitAsync(System.Boolean)
+  nameWithType: MultiThrottledStream.UpdateCurrentLimitAsync(Boolean)
+- uid: wan24.Core.MultiThrottledStream.UpdateCurrentLimitAsync*
+  name: UpdateCurrentLimitAsync
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_UpdateCurrentLimitAsync_
+  commentId: Overload:wan24.Core.MultiThrottledStream.UpdateCurrentLimitAsync
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.UpdateCurrentLimitAsync
+  nameWithType: MultiThrottledStream.UpdateCurrentLimitAsync
+- uid: wan24.Core.MultiThrottledStream.WriteCount
+  name: WriteCount
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_WriteCount
+  commentId: P:wan24.Core.MultiThrottledStream.WriteCount
+  fullName: wan24.Core.MultiThrottledStream.WriteCount
+  nameWithType: MultiThrottledStream.WriteCount
+- uid: wan24.Core.MultiThrottledStream.WriteCount*
+  name: WriteCount
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_WriteCount_
+  commentId: Overload:wan24.Core.MultiThrottledStream.WriteCount
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.WriteCount
+  nameWithType: MultiThrottledStream.WriteCount
+- uid: wan24.Core.MultiThrottledStream.WriteCountQuota
+  name: WriteCountQuota
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_WriteCountQuota
+  commentId: P:wan24.Core.MultiThrottledStream.WriteCountQuota
+  fullName: wan24.Core.MultiThrottledStream.WriteCountQuota
+  nameWithType: MultiThrottledStream.WriteCountQuota
+- uid: wan24.Core.MultiThrottledStream.WriteCountQuota*
+  name: WriteCountQuota
+  href: api/wan24.Core.MultiThrottledStream.html#wan24_Core_MultiThrottledStream_WriteCountQuota_
+  commentId: Overload:wan24.Core.MultiThrottledStream.WriteCountQuota
+  isSpec: "True"
+  fullName: wan24.Core.MultiThrottledStream.WriteCountQuota
+  nameWithType: MultiThrottledStream.WriteCountQuota
 - uid: wan24.Core.NetworkHelper
   name: NetworkHelper
   href: api/wan24.Core.NetworkHelper.html
@@ -30819,6 +32005,25 @@ references:
   commentId: F:wan24.Core.PoolTable.Pools
   fullName: wan24.Core.PoolTable.Pools
   nameWithType: PoolTable.Pools
+- uid: wan24.Core.ProcessExtensions
+  name: ProcessExtensions
+  href: api/wan24.Core.ProcessExtensions.html
+  commentId: T:wan24.Core.ProcessExtensions
+  fullName: wan24.Core.ProcessExtensions
+  nameWithType: ProcessExtensions
+- uid: wan24.Core.ProcessExtensions.NeedUserInput(System.Diagnostics.Process)
+  name: NeedUserInput(Process)
+  href: api/wan24.Core.ProcessExtensions.html#wan24_Core_ProcessExtensions_NeedUserInput_System_Diagnostics_Process_
+  commentId: M:wan24.Core.ProcessExtensions.NeedUserInput(System.Diagnostics.Process)
+  fullName: wan24.Core.ProcessExtensions.NeedUserInput(System.Diagnostics.Process)
+  nameWithType: ProcessExtensions.NeedUserInput(Process)
+- uid: wan24.Core.ProcessExtensions.NeedUserInput*
+  name: NeedUserInput
+  href: api/wan24.Core.ProcessExtensions.html#wan24_Core_ProcessExtensions_NeedUserInput_
+  commentId: Overload:wan24.Core.ProcessExtensions.NeedUserInput
+  isSpec: "True"
+  fullName: wan24.Core.ProcessExtensions.NeedUserInput
+  nameWithType: ProcessExtensions.NeedUserInput
 - uid: wan24.Core.ProcessingInfo
   name: ProcessingInfo
   href: api/wan24.Core.ProcessingInfo.html
@@ -42161,6 +43366,23 @@ references:
   fullName.vb: wan24.Core.ThrottledStream(Of T).ReadCount
   nameWithType: ThrottledStream<T>.ReadCount
   nameWithType.vb: ThrottledStream(Of T).ReadCount
+- uid: wan24.Core.ThrottledStream`1.ReadCountQuota
+  name: ReadCountQuota
+  href: api/wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ReadCountQuota
+  commentId: P:wan24.Core.ThrottledStream`1.ReadCountQuota
+  fullName: wan24.Core.ThrottledStream<T>.ReadCountQuota
+  fullName.vb: wan24.Core.ThrottledStream(Of T).ReadCountQuota
+  nameWithType: ThrottledStream<T>.ReadCountQuota
+  nameWithType.vb: ThrottledStream(Of T).ReadCountQuota
+- uid: wan24.Core.ThrottledStream`1.ReadCountQuota*
+  name: ReadCountQuota
+  href: api/wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ReadCountQuota_
+  commentId: Overload:wan24.Core.ThrottledStream`1.ReadCountQuota
+  isSpec: "True"
+  fullName: wan24.Core.ThrottledStream<T>.ReadCountQuota
+  fullName.vb: wan24.Core.ThrottledStream(Of T).ReadCountQuota
+  nameWithType: ThrottledStream<T>.ReadCountQuota
+  nameWithType.vb: ThrottledStream(Of T).ReadCountQuota
 - uid: wan24.Core.ThrottledStream`1.ReadTime
   name: ReadTime
   href: api/wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ReadTime
@@ -42386,6 +43608,23 @@ references:
   fullName.vb: wan24.Core.ThrottledStream(Of T).WriteCount
   nameWithType: ThrottledStream<T>.WriteCount
   nameWithType.vb: ThrottledStream(Of T).WriteCount
+- uid: wan24.Core.ThrottledStream`1.WriteCountQuota
+  name: WriteCountQuota
+  href: api/wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_WriteCountQuota
+  commentId: P:wan24.Core.ThrottledStream`1.WriteCountQuota
+  fullName: wan24.Core.ThrottledStream<T>.WriteCountQuota
+  fullName.vb: wan24.Core.ThrottledStream(Of T).WriteCountQuota
+  nameWithType: ThrottledStream<T>.WriteCountQuota
+  nameWithType.vb: ThrottledStream(Of T).WriteCountQuota
+- uid: wan24.Core.ThrottledStream`1.WriteCountQuota*
+  name: WriteCountQuota
+  href: api/wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_WriteCountQuota_
+  commentId: Overload:wan24.Core.ThrottledStream`1.WriteCountQuota
+  isSpec: "True"
+  fullName: wan24.Core.ThrottledStream<T>.WriteCountQuota
+  fullName.vb: wan24.Core.ThrottledStream(Of T).WriteCountQuota
+  nameWithType: ThrottledStream<T>.WriteCountQuota
+  nameWithType.vb: ThrottledStream(Of T).WriteCountQuota
 - uid: wan24.Core.ThrottledStream`1.WriteTime
   name: WriteTime
   href: api/wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_WriteTime
@@ -43367,6 +44606,74 @@ references:
   commentId: F:wan24.Core.Timeout.Timer
   fullName: wan24.Core.Timeout.Timer
   nameWithType: Timeout.Timer
+- uid: wan24.Core.Timeout.wan24#Core#IServiceWorker#CanPause
+  name: IServiceWorker.CanPause
+  href: api/wan24.Core.Timeout.html#wan24_Core_Timeout_wan24_Core_IServiceWorker_CanPause
+  commentId: P:wan24.Core.Timeout.wan24#Core#IServiceWorker#CanPause
+  name.vb: wan24.Core.IServiceWorker.CanPause
+  fullName: wan24.Core.Timeout.wan24.Core.IServiceWorker.CanPause
+  nameWithType: Timeout.IServiceWorker.CanPause
+  nameWithType.vb: Timeout.wan24.Core.IServiceWorker.CanPause
+- uid: wan24.Core.Timeout.wan24#Core#IServiceWorker#CanPause*
+  name: IServiceWorker.CanPause
+  href: api/wan24.Core.Timeout.html#wan24_Core_Timeout_wan24_Core_IServiceWorker_CanPause_
+  commentId: Overload:wan24.Core.Timeout.wan24#Core#IServiceWorker#CanPause
+  isSpec: "True"
+  name.vb: wan24.Core.IServiceWorker.CanPause
+  fullName: wan24.Core.Timeout.wan24.Core.IServiceWorker.CanPause
+  nameWithType: Timeout.IServiceWorker.CanPause
+  nameWithType.vb: Timeout.wan24.Core.IServiceWorker.CanPause
+- uid: wan24.Core.Timeout.wan24#Core#IServiceWorker#IsPaused
+  name: IServiceWorker.IsPaused
+  href: api/wan24.Core.Timeout.html#wan24_Core_Timeout_wan24_Core_IServiceWorker_IsPaused
+  commentId: P:wan24.Core.Timeout.wan24#Core#IServiceWorker#IsPaused
+  name.vb: wan24.Core.IServiceWorker.IsPaused
+  fullName: wan24.Core.Timeout.wan24.Core.IServiceWorker.IsPaused
+  nameWithType: Timeout.IServiceWorker.IsPaused
+  nameWithType.vb: Timeout.wan24.Core.IServiceWorker.IsPaused
+- uid: wan24.Core.Timeout.wan24#Core#IServiceWorker#IsPaused*
+  name: IServiceWorker.IsPaused
+  href: api/wan24.Core.Timeout.html#wan24_Core_Timeout_wan24_Core_IServiceWorker_IsPaused_
+  commentId: Overload:wan24.Core.Timeout.wan24#Core#IServiceWorker#IsPaused
+  isSpec: "True"
+  name.vb: wan24.Core.IServiceWorker.IsPaused
+  fullName: wan24.Core.Timeout.wan24.Core.IServiceWorker.IsPaused
+  nameWithType: Timeout.IServiceWorker.IsPaused
+  nameWithType.vb: Timeout.wan24.Core.IServiceWorker.IsPaused
+- uid: wan24.Core.Timeout.wan24#Core#IServiceWorker#PauseAsync
+  name: IServiceWorker.PauseAsync()
+  href: api/wan24.Core.Timeout.html#wan24_Core_Timeout_wan24_Core_IServiceWorker_PauseAsync
+  commentId: M:wan24.Core.Timeout.wan24#Core#IServiceWorker#PauseAsync
+  name.vb: wan24.Core.IServiceWorker.PauseAsync()
+  fullName: wan24.Core.Timeout.wan24.Core.IServiceWorker.PauseAsync()
+  nameWithType: Timeout.IServiceWorker.PauseAsync()
+  nameWithType.vb: Timeout.wan24.Core.IServiceWorker.PauseAsync()
+- uid: wan24.Core.Timeout.wan24#Core#IServiceWorker#PauseAsync*
+  name: IServiceWorker.PauseAsync
+  href: api/wan24.Core.Timeout.html#wan24_Core_Timeout_wan24_Core_IServiceWorker_PauseAsync_
+  commentId: Overload:wan24.Core.Timeout.wan24#Core#IServiceWorker#PauseAsync
+  isSpec: "True"
+  name.vb: wan24.Core.IServiceWorker.PauseAsync
+  fullName: wan24.Core.Timeout.wan24.Core.IServiceWorker.PauseAsync
+  nameWithType: Timeout.IServiceWorker.PauseAsync
+  nameWithType.vb: Timeout.wan24.Core.IServiceWorker.PauseAsync
+- uid: wan24.Core.Timeout.wan24#Core#IServiceWorker#Paused
+  name: IServiceWorker.Paused
+  href: api/wan24.Core.Timeout.html#wan24_Core_Timeout_wan24_Core_IServiceWorker_Paused
+  commentId: P:wan24.Core.Timeout.wan24#Core#IServiceWorker#Paused
+  name.vb: wan24.Core.IServiceWorker.Paused
+  fullName: wan24.Core.Timeout.wan24.Core.IServiceWorker.Paused
+  nameWithType: Timeout.IServiceWorker.Paused
+  nameWithType.vb: Timeout.wan24.Core.IServiceWorker.Paused
+- uid: wan24.Core.Timeout.wan24#Core#IServiceWorker#Paused*
+  name: IServiceWorker.Paused
+  href: api/wan24.Core.Timeout.html#wan24_Core_Timeout_wan24_Core_IServiceWorker_Paused_
+  commentId: Overload:wan24.Core.Timeout.wan24#Core#IServiceWorker#Paused
+  isSpec: "True"
+  name.vb: wan24.Core.IServiceWorker.Paused
+  fullName: wan24.Core.Timeout.wan24.Core.IServiceWorker.Paused
+  nameWithType: Timeout.IServiceWorker.Paused
+  nameWithType.vb: Timeout.wan24.Core.IServiceWorker.Paused
 - uid: wan24.Core.Timeout.wan24#Core#IServiceWorker#RestartAsync
   name: IServiceWorker.RestartAsync()
   href: api/wan24.Core.Timeout.html#wan24_Core_Timeout_wan24_Core_IServiceWorker_RestartAsync
@@ -43384,6 +44691,23 @@ references:
   fullName: wan24.Core.Timeout.wan24.Core.IServiceWorker.RestartAsync
   nameWithType: Timeout.IServiceWorker.RestartAsync
   nameWithType.vb: Timeout.wan24.Core.IServiceWorker.RestartAsync
+- uid: wan24.Core.Timeout.wan24#Core#IServiceWorker#ResumeAsync
+  name: IServiceWorker.ResumeAsync()
+  href: api/wan24.Core.Timeout.html#wan24_Core_Timeout_wan24_Core_IServiceWorker_ResumeAsync
+  commentId: M:wan24.Core.Timeout.wan24#Core#IServiceWorker#ResumeAsync
+  name.vb: wan24.Core.IServiceWorker.ResumeAsync()
+  fullName: wan24.Core.Timeout.wan24.Core.IServiceWorker.ResumeAsync()
+  nameWithType: Timeout.IServiceWorker.ResumeAsync()
+  nameWithType.vb: Timeout.wan24.Core.IServiceWorker.ResumeAsync()
+- uid: wan24.Core.Timeout.wan24#Core#IServiceWorker#ResumeAsync*
+  name: IServiceWorker.ResumeAsync
+  href: api/wan24.Core.Timeout.html#wan24_Core_Timeout_wan24_Core_IServiceWorker_ResumeAsync_
+  commentId: Overload:wan24.Core.Timeout.wan24#Core#IServiceWorker#ResumeAsync
+  isSpec: "True"
+  name.vb: wan24.Core.IServiceWorker.ResumeAsync
+  fullName: wan24.Core.Timeout.wan24.Core.IServiceWorker.ResumeAsync
+  nameWithType: Timeout.IServiceWorker.ResumeAsync
+  nameWithType.vb: Timeout.wan24.Core.IServiceWorker.ResumeAsync
 - uid: wan24.Core.Timeout.wan24#Core#IServiceWorker#StartAsync
   name: IServiceWorker.StartAsync()
   href: api/wan24.Core.Timeout.html#wan24_Core_Timeout_wan24_Core_IServiceWorker_StartAsync
@@ -44388,6 +45712,55 @@ references:
   isSpec: "True"
   fullName: wan24.Core.Translation.TranslationTerms
   nameWithType: Translation.TranslationTerms
+- uid: wan24.Core.TranslationHelper
+  name: TranslationHelper
+  href: api/wan24.Core.TranslationHelper.html
+  commentId: T:wan24.Core.TranslationHelper
+  fullName: wan24.Core.TranslationHelper
+  nameWithType: TranslationHelper
+- uid: wan24.Core.TranslationHelper._(System.String,Dictionary{System.String,System.String}@)
+  name: _(String, in Dictionary<String, String>)
+  href: api/wan24.Core.TranslationHelper.html#wan24_Core_TranslationHelper___System_String_Dictionary_System_String_System_String___
+  commentId: M:wan24.Core.TranslationHelper._(System.String,Dictionary{System.String,System.String}@)
+  name.vb: _(String, ByRef Dictionary(Of String, String))
+  fullName: wan24.Core.TranslationHelper._(System.String, in Dictionary<System.String, System.String>)
+  fullName.vb: wan24.Core.TranslationHelper._(System.String, ByRef Dictionary(Of System.String, System.String))
+  nameWithType: TranslationHelper._(String, in Dictionary<String, String>)
+  nameWithType.vb: TranslationHelper._(String, ByRef Dictionary(Of String, String))
+- uid: wan24.Core.TranslationHelper._(System.String,System.Int32@,Dictionary{System.String,System.String}@)
+  name: _(String, in Int32, in Dictionary<String, String>)
+  href: api/wan24.Core.TranslationHelper.html#wan24_Core_TranslationHelper___System_String_System_Int32__Dictionary_System_String_System_String___
+  commentId: M:wan24.Core.TranslationHelper._(System.String,System.Int32@,Dictionary{System.String,System.String}@)
+  name.vb: _(String, ByRef Int32, ByRef Dictionary(Of String, String))
+  fullName: wan24.Core.TranslationHelper._(System.String, in System.Int32, in Dictionary<System.String, System.String>)
+  fullName.vb: wan24.Core.TranslationHelper._(System.String, ByRef System.Int32, ByRef Dictionary(Of System.String, System.String))
+  nameWithType: TranslationHelper._(String, in Int32, in Dictionary<String, String>)
+  nameWithType.vb: TranslationHelper._(String, ByRef Int32, ByRef Dictionary(Of String, String))
+- uid: wan24.Core.TranslationHelper._(System.String,System.Int32@,System.String[])
+  name: _(String, in Int32, String[])
+  href: api/wan24.Core.TranslationHelper.html#wan24_Core_TranslationHelper___System_String_System_Int32__System_String___
+  commentId: M:wan24.Core.TranslationHelper._(System.String,System.Int32@,System.String[])
+  name.vb: _(String, ByRef Int32, String())
+  fullName: wan24.Core.TranslationHelper._(System.String, in System.Int32, System.String[])
+  fullName.vb: wan24.Core.TranslationHelper._(System.String, ByRef System.Int32, System.String())
+  nameWithType: TranslationHelper._(String, in Int32, String[])
+  nameWithType.vb: TranslationHelper._(String, ByRef Int32, String())
+- uid: wan24.Core.TranslationHelper._(System.String,System.String[])
+  name: _(String, String[])
+  href: api/wan24.Core.TranslationHelper.html#wan24_Core_TranslationHelper___System_String_System_String___
+  commentId: M:wan24.Core.TranslationHelper._(System.String,System.String[])
+  name.vb: _(String, String())
+  fullName: wan24.Core.TranslationHelper._(System.String, System.String[])
+  fullName.vb: wan24.Core.TranslationHelper._(System.String, System.String())
+  nameWithType: TranslationHelper._(String, String[])
+  nameWithType.vb: TranslationHelper._(String, String())
+- uid: wan24.Core.TranslationHelper._*
+  name: _
+  href: api/wan24.Core.TranslationHelper.html#wan24_Core_TranslationHelper___
+  commentId: Overload:wan24.Core.TranslationHelper._
+  isSpec: "True"
+  fullName: wan24.Core.TranslationHelper._
+  nameWithType: TranslationHelper._
 - uid: wan24.Core.TranslationTerms
   name: TranslationTerms
   href: api/wan24.Core.TranslationTerms.html

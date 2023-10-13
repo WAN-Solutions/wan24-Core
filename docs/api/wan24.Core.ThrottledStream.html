@@ -89,13 +89,17 @@
     <div><a class="xref" href="wan24.Core.IThrottledStream.html">IThrottledStream</a></div>
     <div><a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a></div>
     <div><a class="xref" href="wan24.Core.IStream.html">IStream</a></div>
+    <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
+    <div><a class="xref" href="wan24.Core.IStreamThrottle.html">IStreamThrottle</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><span class="xref">IDisposable</span></div>
     <div><span class="xref">IAsyncDisposable</span></div>
-    <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ReadCountQuota">ThrottledStream&lt;Stream&gt;.ReadCountQuota</a>
+    </div>
     <div>
       <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_ReadCount">ThrottledStream&lt;Stream&gt;.ReadCount</a>
     </div>
@@ -107,6 +111,9 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_RedCount">ThrottledStream&lt;Stream&gt;.RedCount</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_WriteCountQuota">ThrottledStream&lt;Stream&gt;.WriteCountQuota</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.ThrottledStream-1.html#wan24_Core_ThrottledStream_1_WriteCount">ThrottledStream&lt;Stream&gt;.WriteCount</a>
@@ -356,7 +363,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_ThrottledStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ThrottledStream : ThrottledStream&lt;Stream&gt;, IThrottledStream, IStreamWrapper, IStream, IDisposableObject, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class ThrottledStream : ThrottledStream&lt;Stream&gt;, IThrottledStream, IStreamWrapper, IStream, IStatusProvider, IStreamThrottle, IDisposableObject</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -435,6 +442,12 @@
       <a class="xref" href="wan24.Core.IStream.html">IStream</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IStreamThrottle.html">IStreamThrottle</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
   </div>
   <div>
@@ -442,9 +455,6 @@
   </div>
   <div>
       <span class="xref">IAsyncDisposable</span>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>

@@ -128,6 +128,9 @@
       <h4><a class="xref" href="wan24.Core.BlockingBufferStream.html">BlockingBufferStream</a></h4>
       <section><p>Blocking buffer stream (reading blocks until (all, if aggressive) data is available, writing until the buffer was red completely; reading/writing is synchronized)</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.BlockingInstancePool-1.html">BlockingInstancePool&lt;T&gt;</a></h4>
+      <section><p>Blocking instance pool</p>
+</section>
       <h4><a class="xref" href="wan24.Core.BlockingObjectPool-1.html">BlockingObjectPool&lt;T&gt;</a></h4>
       <section><p>Disposable blocking object pool (disposes items when disposing, if <see cref="!:IDisposable"></see>/<see cref="!:IAsyncDisposable"></see>)</p>
 </section>
@@ -335,6 +338,9 @@
       <h4><a class="xref" href="wan24.Core.EnvironmentService.html">EnvironmentService</a></h4>
       <section><p>Environment metrics measuring service</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.EquatableArray.html">EquatableArray</a></h4>
+      <section><p>Equatable array helper</p>
+</section>
       <h4><a class="xref" href="wan24.Core.ErrorHandling.html">ErrorHandling</a></h4>
       <section><p>Error handling</p>
 </section>
@@ -427,7 +433,7 @@ the first stream per default)</p>
       <section><p>Multiple combined process throttles (will balance a total limit to all hosted throttles; all throttles need to use the same time restriction for this)</p>
 </section>
       <h4><a class="xref" href="wan24.Core.MultiThrottledStream.html">MultiThrottledStream</a></h4>
-      <section><p>Multiple combined throttled streams (will balance a total read/write limit to all hosted streams; all streams need to use the same time restrictions for this)</p>
+      <section><p>Multiple combined throttled streams (will balance a total read/write limit to all hosted streams, based on quotas; all streams need to use the same time restrictions for this)</p>
 </section>
       <h4><a class="xref" href="wan24.Core.NetworkHelper.html">NetworkHelper</a></h4>
       <section><p>Network helper</p>
@@ -503,6 +509,9 @@ the first stream per default)</p>
 </section>
       <h4><a class="xref" href="wan24.Core.PoolTable.html">PoolTable</a></h4>
       <section><p>Pool table</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ProcessExtensions.html">ProcessExtensions</a></h4>
+      <section><p><span class="xref">System.Diagnostics.Process</span> extensions</p>
 </section>
       <h4><a class="xref" href="wan24.Core.ProcessingInfo.html">ProcessingInfo</a></h4>
       <section><p>Processing information (don't forget to dispose!)</p>
@@ -659,6 +668,10 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
       <h4><a class="xref" href="wan24.Core.Translation.html">Translation</a></h4>
       <section><p>Translation</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.TranslationHelper.html">TranslationHelper</a></h4>
+      <section><p>Translation helper (use <code>using static wan24.Core.TranslationHelper;</code> for getting <code>_</code> as translation method, which will help a POEdit parser to find translation
+texts in your source code)</p>
+</section>
       <h4><a class="xref" href="wan24.Core.TranslationTerms.html">TranslationTerms</a></h4>
       <section><p>Simple dictionary based translation</p>
 </section>
@@ -685,6 +698,9 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
 </section>
     <h3 id="structs">Structs
   </h3>
+      <h4><a class="xref" href="wan24.Core.EquatableArray-1.html">EquatableArray&lt;T&gt;</a></h4>
+      <section><p>Equatable array (validates sequence validity, not object references)</p>
+</section>
       <h4><a class="xref" href="wan24.Core.PinnedArray-1.html">PinnedArray&lt;T&gt;</a></h4>
       <section><p>Pinned array</p>
 </section>
@@ -845,6 +861,9 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
 </section>
       <h4><a class="xref" href="wan24.Core.IStream.html">IStream</a></h4>
       <section><p>Interface for a stream</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.IStreamThrottle.html">IStreamThrottle</a></h4>
+      <section><p>Interface for a stream throttle</p>
 </section>
       <h4><a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a></h4>
       <section><p>Interface for a stream wrapper</p>

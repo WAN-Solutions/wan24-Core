@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface IObjectStorage
+    <title>Interface IStreamThrottle
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface IObjectStorage
+    <meta name="title" content="Interface IStreamThrottle
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,58 +68,16 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.IObjectStorage">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.IStreamThrottle">
   
   
-  <h1 id="wan24_Core_IObjectStorage" data-uid="wan24.Core.IObjectStorage" class="text-break">Interface IObjectStorage
+  <h1 id="wan24_Core_IStreamThrottle" data-uid="wan24.Core.IStreamThrottle" class="text-break">Interface IStreamThrottle
   </h1>
-  <div class="markdown level0 summary"><p>Interface for an object storage</p>
+  <div class="markdown level0 summary"><p>Interface for a stream throttle</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_Name">IServiceWorker.Name</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_IsRunning">IServiceWorker.IsRunning</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_IsPaused">IServiceWorker.IsPaused</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_CanPause">IServiceWorker.CanPause</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_Started">IServiceWorker.Started</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_Paused">IServiceWorker.Paused</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_Stopped">IServiceWorker.Stopped</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_StartAsync">IServiceWorker.StartAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_StopAsync">IServiceWorker.StopAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_RestartAsync">IServiceWorker.RestartAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_PauseAsync">IServiceWorker.PauseAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_ResumeAsync">IServiceWorker.ResumeAsync()</a>
-    </div>
-    <div>
-      <span class="xref">Microsoft.Extensions.Hosting.IHostedService.StartAsync(System.Threading.CancellationToken)</span>
-    </div>
-    <div>
-      <span class="xref">Microsoft.Extensions.Hosting.IHostedService.StopAsync(System.Threading.CancellationToken)</span>
-    </div>
     <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_IsDisposing">IDisposableObject.IsDisposing</a>
     </div>
@@ -132,33 +90,30 @@
     <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_OnDisposed">IDisposableObject.OnDisposed</a>
     </div>
-    <div>
-      <a class="xref" href="wan24.Core.IStatusProvider.html#wan24_Core_IStatusProvider_State">IStatusProvider.State</a>
-    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_IObjectStorage_syntax">Syntax</h5>
+  <h5 id="wan24_Core_IStreamThrottle_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IObjectStorage : IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IStreamThrottle : IDisposableObject</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IObjectStorage_InMemoryLimit.md&amp;value=---%0Auid%3A%20wan24.Core.IObjectStorage.InMemoryLimit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IStreamThrottle_ReadCount.md&amp;value=---%0Auid%3A%20wan24.Core.IStreamThrottle.ReadCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IObjectStorage.cs/#L11">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IStreamThrottle.cs/#L15">View Source</a>
   </span>
-  <a id="wan24_Core_IObjectStorage_InMemoryLimit_" data-uid="wan24.Core.IObjectStorage.InMemoryLimit*"></a>
-  <h4 id="wan24_Core_IObjectStorage_InMemoryLimit" data-uid="wan24.Core.IObjectStorage.InMemoryLimit">InMemoryLimit</h4>
-  <div class="markdown level1 summary"><p>Max. number of objects to hold in memory</p>
+  <a id="wan24_Core_IStreamThrottle_ReadCount_" data-uid="wan24.Core.IStreamThrottle.ReadCount*"></a>
+  <h4 id="wan24_Core_IStreamThrottle_ReadCount" data-uid="wan24.Core.IStreamThrottle.ReadCount">ReadCount</h4>
+  <div class="markdown level1 summary"><p>Read count (zero to disable read throttling)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">int InMemoryLimit { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">int ReadCount { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -177,50 +132,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IObjectStorage_ObjectReferences.md&amp;value=---%0Auid%3A%20wan24.Core.IObjectStorage.ObjectReferences%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IStreamThrottle_ReadCountQuota.md&amp;value=---%0Auid%3A%20wan24.Core.IStreamThrottle.ReadCountQuota%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IObjectStorage.cs/#L23">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IStreamThrottle.cs/#L11">View Source</a>
   </span>
-  <a id="wan24_Core_IObjectStorage_ObjectReferences_" data-uid="wan24.Core.IObjectStorage.ObjectReferences*"></a>
-  <h4 id="wan24_Core_IObjectStorage_ObjectReferences" data-uid="wan24.Core.IObjectStorage.ObjectReferences">ObjectReferences</h4>
-  <div class="markdown level1 summary"><p>Number of currently active object references</p>
+  <a id="wan24_Core_IStreamThrottle_ReadCountQuota_" data-uid="wan24.Core.IStreamThrottle.ReadCountQuota*"></a>
+  <h4 id="wan24_Core_IStreamThrottle_ReadCountQuota" data-uid="wan24.Core.IStreamThrottle.ReadCountQuota">ReadCountQuota</h4>
+  <div class="markdown level1 summary"><p>Quota value for the read count (used to normalize the stream collection read count)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">long ObjectReferences { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int64</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IObjectStorage_Stored.md&amp;value=---%0Auid%3A%20wan24.Core.IObjectStorage.Stored%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IObjectStorage.cs/#L15">View Source</a>
-  </span>
-  <a id="wan24_Core_IObjectStorage_Stored_" data-uid="wan24.Core.IObjectStorage.Stored*"></a>
-  <h4 id="wan24_Core_IObjectStorage_Stored" data-uid="wan24.Core.IObjectStorage.Stored">Stored</h4>
-  <div class="markdown level1 summary"><p>Number of objects in memory</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">int Stored { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">int ReadCountQuota { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -239,19 +163,50 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IObjectStorage_StoredPeak.md&amp;value=---%0Auid%3A%20wan24.Core.IObjectStorage.StoredPeak%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IStreamThrottle_WriteCount.md&amp;value=---%0Auid%3A%20wan24.Core.IStreamThrottle.WriteCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IObjectStorage.cs/#L19">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IStreamThrottle.cs/#L23">View Source</a>
   </span>
-  <a id="wan24_Core_IObjectStorage_StoredPeak_" data-uid="wan24.Core.IObjectStorage.StoredPeak*"></a>
-  <h4 id="wan24_Core_IObjectStorage_StoredPeak" data-uid="wan24.Core.IObjectStorage.StoredPeak">StoredPeak</h4>
-  <div class="markdown level1 summary"><p>Max. counted number of objects in memory</p>
+  <a id="wan24_Core_IStreamThrottle_WriteCount_" data-uid="wan24.Core.IStreamThrottle.WriteCount*"></a>
+  <h4 id="wan24_Core_IStreamThrottle_WriteCount" data-uid="wan24.Core.IStreamThrottle.WriteCount">WriteCount</h4>
+  <div class="markdown level1 summary"><p>Write count (zero to disable write throttling)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">int StoredPeak { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">int WriteCount { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IStreamThrottle_WriteCountQuota.md&amp;value=---%0Auid%3A%20wan24.Core.IStreamThrottle.WriteCountQuota%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IStreamThrottle.cs/#L19">View Source</a>
+  </span>
+  <a id="wan24_Core_IStreamThrottle_WriteCountQuota_" data-uid="wan24.Core.IStreamThrottle.WriteCountQuota*"></a>
+  <h4 id="wan24_Core_IStreamThrottle_WriteCountQuota" data-uid="wan24.Core.IStreamThrottle.WriteCountQuota">WriteCountQuota</h4>
+  <div class="markdown level1 summary"><p>Quota value for the write count (used to normalize the stream collection write count)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int WriteCountQuota { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -313,10 +268,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IObjectStorage.md&amp;value=---%0Auid%3A%20wan24.Core.IObjectStorage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IStreamThrottle.md&amp;value=---%0Auid%3A%20wan24.Core.IStreamThrottle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IObjectStorage.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IStreamThrottle.cs/#L6" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

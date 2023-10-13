@@ -178,6 +178,21 @@
       <a class="xref" href="wan24.Core.IStream.html#wan24_Core_IStream_Close">IStream.Close()</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html#wan24_Core_IStatusProvider_State">IStatusProvider.State</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IStreamThrottle.html#wan24_Core_IStreamThrottle_ReadCountQuota">IStreamThrottle.ReadCountQuota</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IStreamThrottle.html#wan24_Core_IStreamThrottle_ReadCount">IStreamThrottle.ReadCount</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IStreamThrottle.html#wan24_Core_IStreamThrottle_WriteCountQuota">IStreamThrottle.WriteCountQuota</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IStreamThrottle.html#wan24_Core_IStreamThrottle_WriteCount">IStreamThrottle.WriteCount</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_IsDisposing">IDisposableObject.IsDisposing</a>
     </div>
     <div>
@@ -189,15 +204,12 @@
     <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_OnDisposed">IDisposableObject.OnDisposed</a>
     </div>
-    <div>
-      <a class="xref" href="wan24.Core.IStatusProvider.html#wan24_Core_IStatusProvider_State">IStatusProvider.State</a>
-    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_IThrottledStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IThrottledStream : IStreamWrapper, IStream, IDisposableObject, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IThrottledStream : IStreamWrapper, IStream, IStatusProvider, IStreamThrottle, IDisposableObject</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
@@ -206,7 +218,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IThrottledStream_LastReadTimeStart.md&amp;value=---%0Auid%3A%20wan24.Core.IThrottledStream.LastReadTimeStart%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L19">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L15">View Source</a>
   </span>
   <a id="wan24_Core_IThrottledStream_LastReadTimeStart_" data-uid="wan24.Core.IThrottledStream.LastReadTimeStart*"></a>
   <h4 id="wan24_Core_IThrottledStream_LastReadTimeStart" data-uid="wan24.Core.IThrottledStream.LastReadTimeStart">LastReadTimeStart</h4>
@@ -237,7 +249,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IThrottledStream_LastWriteTimeStart.md&amp;value=---%0Auid%3A%20wan24.Core.IThrottledStream.LastWriteTimeStart%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L35">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L27">View Source</a>
   </span>
   <a id="wan24_Core_IThrottledStream_LastWriteTimeStart_" data-uid="wan24.Core.IThrottledStream.LastWriteTimeStart*"></a>
   <h4 id="wan24_Core_IThrottledStream_LastWriteTimeStart" data-uid="wan24.Core.IThrottledStream.LastWriteTimeStart">LastWriteTimeStart</h4>
@@ -265,41 +277,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IThrottledStream_ReadCount.md&amp;value=---%0Auid%3A%20wan24.Core.IThrottledStream.ReadCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L11">View Source</a>
-  </span>
-  <a id="wan24_Core_IThrottledStream_ReadCount_" data-uid="wan24.Core.IThrottledStream.ReadCount*"></a>
-  <h4 id="wan24_Core_IThrottledStream_ReadCount" data-uid="wan24.Core.IThrottledStream.ReadCount">ReadCount</h4>
-  <div class="markdown level1 summary"><p>Read count (zero to disable read throttling)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">int ReadCount { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IThrottledStream_ReadTime.md&amp;value=---%0Auid%3A%20wan24.Core.IThrottledStream.ReadTime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L15">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L11">View Source</a>
   </span>
   <a id="wan24_Core_IThrottledStream_ReadTime_" data-uid="wan24.Core.IThrottledStream.ReadTime*"></a>
   <h4 id="wan24_Core_IThrottledStream_ReadTime" data-uid="wan24.Core.IThrottledStream.ReadTime">ReadTime</h4>
@@ -330,7 +311,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IThrottledStream_RedCount.md&amp;value=---%0Auid%3A%20wan24.Core.IThrottledStream.RedCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L23">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L19">View Source</a>
   </span>
   <a id="wan24_Core_IThrottledStream_RedCount_" data-uid="wan24.Core.IThrottledStream.RedCount*"></a>
   <h4 id="wan24_Core_IThrottledStream_RedCount" data-uid="wan24.Core.IThrottledStream.RedCount">RedCount</h4>
@@ -358,41 +339,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IThrottledStream_WriteCount.md&amp;value=---%0Auid%3A%20wan24.Core.IThrottledStream.WriteCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L27">View Source</a>
-  </span>
-  <a id="wan24_Core_IThrottledStream_WriteCount_" data-uid="wan24.Core.IThrottledStream.WriteCount*"></a>
-  <h4 id="wan24_Core_IThrottledStream_WriteCount" data-uid="wan24.Core.IThrottledStream.WriteCount">WriteCount</h4>
-  <div class="markdown level1 summary"><p>Write count (zero to disable write throttling)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">int WriteCount { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IThrottledStream_WriteTime.md&amp;value=---%0Auid%3A%20wan24.Core.IThrottledStream.WriteTime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L31">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L23">View Source</a>
   </span>
   <a id="wan24_Core_IThrottledStream_WriteTime_" data-uid="wan24.Core.IThrottledStream.WriteTime*"></a>
   <h4 id="wan24_Core_IThrottledStream_WriteTime" data-uid="wan24.Core.IThrottledStream.WriteTime">WriteTime</h4>
@@ -423,7 +373,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IThrottledStream_WroteCount.md&amp;value=---%0Auid%3A%20wan24.Core.IThrottledStream.WroteCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L39">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L31">View Source</a>
   </span>
   <a id="wan24_Core_IThrottledStream_WroteCount_" data-uid="wan24.Core.IThrottledStream.WroteCount*"></a>
   <h4 id="wan24_Core_IThrottledStream_WroteCount" data-uid="wan24.Core.IThrottledStream.WroteCount">WroteCount</h4>
@@ -456,7 +406,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IThrottledStream_ResetReadThrottle.md&amp;value=---%0Auid%3A%20wan24.Core.IThrottledStream.ResetReadThrottle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L47">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L39">View Source</a>
   </span>
   <a id="wan24_Core_IThrottledStream_ResetReadThrottle_" data-uid="wan24.Core.IThrottledStream.ResetReadThrottle*"></a>
   <h4 id="wan24_Core_IThrottledStream_ResetReadThrottle" data-uid="wan24.Core.IThrottledStream.ResetReadThrottle">ResetReadThrottle()</h4>
@@ -472,7 +422,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IThrottledStream_ResetWriteThrottle.md&amp;value=---%0Auid%3A%20wan24.Core.IThrottledStream.ResetWriteThrottle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L43">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IThrottledStream.cs/#L35">View Source</a>
   </span>
   <a id="wan24_Core_IThrottledStream_ResetWriteThrottle_" data-uid="wan24.Core.IThrottledStream.ResetWriteThrottle*"></a>
   <h4 id="wan24_Core_IThrottledStream_ResetWriteThrottle" data-uid="wan24.Core.IThrottledStream.ResetWriteThrottle">ResetWriteThrottle()</h4>
