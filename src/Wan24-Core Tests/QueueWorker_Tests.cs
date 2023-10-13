@@ -12,19 +12,20 @@ namespace Wan24_Core_Tests
             await worker.StartAsync(default);
             int worked = 0;
             using ManualResetEventSlim task1Event = new(initialState: false);
+            using ManualResetEventSlim task2Event = new(initialState: false);
             await worker.EnqueueAsync(async (ct) =>
             {
                 await Task.Yield();
                 task1Event.Wait(ct);
                 worked++;
             });
-            using ManualResetEventSlim task2Event = new(initialState: false);
             ValueTask addTask = worker.EnqueueAsync(async (ct) =>
             {
                 await Task.Yield();
                 task2Event.Wait(ct);
                 worked++;
             });
+            await Task.Delay(200);
             Assert.IsFalse(worker.TryEnqueue(async (ct) =>
             {
                 await Task.Yield();

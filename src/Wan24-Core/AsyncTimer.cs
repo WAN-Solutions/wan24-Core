@@ -75,10 +75,10 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        protected override async Task DisposeCore()
+        protected override Task DisposeCore()
         {
             TimerTable.Timers.Remove(GUID, out _);
-            await base.DisposeCore().DynamicContext();
+            return base.DisposeCore();
         }
 
         /// <summary>

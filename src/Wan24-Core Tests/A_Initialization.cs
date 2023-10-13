@@ -11,8 +11,8 @@ namespace Wan24_Core_Tests
         [AssemblyInitialize]
         public static void Init(TestContext tc)
         {
-            LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder.AddConsole());
-            Logging.Logger = LoggerFactory.CreateLogger("Tests");
+            if (File.Exists("tests.log")) File.Delete("tests.log");
+            Logging.Logger = new ConsoleLogger(next: FileLogger.CreateAsync("tests.log").Result);
             Logging.WriteInfo("wan24-Core Tests initialized");
             Bootstrap.Async().Wait();
         }

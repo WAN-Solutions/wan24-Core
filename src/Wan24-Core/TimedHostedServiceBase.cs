@@ -340,8 +340,8 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            StopAsync().Wait();
             TimerTable.Timers.Remove(GUID, out _);
+            base.Dispose(disposing);
             Timer.Dispose();
             RunningEvent.Dispose();
             WorkerSync.Dispose();
@@ -351,8 +351,8 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            await StopAsync().DynamicContext();
             TimerTable.Timers.Remove(GUID, out _);
+            await base.DisposeCore().DynamicContext();
             Timer.Dispose();
             RunningEvent.Dispose();
             WorkerSync.Dispose();

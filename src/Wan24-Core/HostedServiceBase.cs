@@ -101,6 +101,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public virtual async Task StartAsync(CancellationToken cancellationToken = default)
         {
+            EnsureUndisposed();
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             if (IsRunning) return;
             IsRunning = true;
@@ -115,6 +116,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public virtual async Task StopAsync(CancellationToken cancellationToken = default)
         {
+            if (!EnsureUndisposed(allowDisposing: true)) return;
             Task stopTask;
             bool isStopping = false;
             using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext())
@@ -144,6 +146,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public virtual async Task PauseAsync(CancellationToken cancellationToken = default)
         {
+            EnsureUndisposed();
             if (!CanPause) throw new NotSupportedException();
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             if (IsPaused || !IsRunning) return;
@@ -156,6 +159,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public virtual async Task ResumeAsync(CancellationToken cancellationToken = default)
         {
+            EnsureUndisposed();
             if (!CanPause) throw new NotSupportedException();
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             if (!IsPaused) return;
@@ -294,6 +298,7 @@ namespace wan24.Core
             StopAsync().Wait();
             Sync.Dispose();
             RunEvent.Dispose();
+            PauseEvent.Dispose();
         }
 
         /// <inheritdoc/>
@@ -302,6 +307,7 @@ namespace wan24.Core
             await StopAsync().DynamicContext();
             await Sync.DisposeAsync().DynamicContext();
             await RunEvent.DisposeAsync().DynamicContext();
+            await PauseEvent.DisposeAsync().DynamicContext();
         }
 
         /// <summary>
