@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime;
 
+//TODO .NET 7: Override ReadExactly(Async) and ReadAtLeast(Async)
+
 namespace wan24.Core
 {
     /// <summary>

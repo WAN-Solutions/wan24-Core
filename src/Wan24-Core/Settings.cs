@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿//TODO .NET 8: Default folder and file Unix modes
+
+namespace wan24.Core
 {
     /// <summary>
     /// Settings
