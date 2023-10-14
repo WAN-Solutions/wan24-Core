@@ -41,6 +41,7 @@ namespace wan24.Core
         {
             AsyncDisposing = asyncDisposing;
             AllowFinalizer = allowFinalizer;
+            if (CreateStackInfo) StackInfo = new StackInfo<DisposableRecordBase>(this);
         }
 
         /// <summary>
@@ -69,6 +70,11 @@ namespace wan24.Core
             IsDisposed = true;
             OnDisposed?.Invoke(this, new());
         }
+
+        /// <summary>
+        /// Create a <see cref="StackInfo"/> for every instance?
+        /// </summary>
+        public static bool CreateStackInfo { get; set; }
 
         /// <inheritdoc/>
         public bool IsDisposing { get; private set; }
