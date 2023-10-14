@@ -38,12 +38,22 @@ namespace wan24.Core
         /// Hosted array
         /// </summary>
         public readonly T[] Array;
+        /// <summary>
+        /// Hash code
+        /// </summary>
+        public readonly int HashCode;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="array">Hosted array</param>
-        public EquatableArray(in T[] array) => Array = array;
+        public EquatableArray(in T[] array)
+        {
+            Array = array;
+            int hashCode = 0;
+            for (int i = 0, len = array.Length; i != len; hashCode ^= array[i]?.GetHashCode() ?? 0, i++) ;
+            HashCode = hashCode;
+        }
 
         /// <inheritdoc/>
         public T this[int index]
@@ -131,7 +141,7 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public override int GetHashCode() => Array.GetHashCode();
+        public override int GetHashCode() => HashCode;
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
@@ -297,5 +307,22 @@ namespace wan24.Core
         /// <returns>If not equals</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static bool operator !=(in T[] a, in EquatableArray<T> b) => !(a == b);
+
+        /// <summary>
+        /// Equality comparer
+        /// </summary>
+        public sealed class EqualityComparer : IEqualityComparer<EquatableArray<T>>
+        {
+            /// <summary>
+            /// Constructor
+            /// </summary>
+            public EqualityComparer() { }
+
+            /// <inheritdoc/>
+            public bool Equals(EquatableArray<T> x, EquatableArray<T> y) => x == y;
+
+            /// <inheritdoc/>
+            public int GetHashCode([DisallowNull] EquatableArray<T> obj) => obj.HashCode;
+        }
     }
 }
