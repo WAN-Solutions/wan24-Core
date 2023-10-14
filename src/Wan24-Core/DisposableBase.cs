@@ -50,9 +50,14 @@ namespace wan24.Core
         {
             if (!AllowFinalizer)
             {
+                Logging.WriteWarning($"Disposing {GetType()} from finalizer (shouldn't happen!)");
                 Debugger.Break();
                 if (StackInfo is not null)
                     ErrorHandling.Handle(new StackInfoException(StackInfo, "Destructor called"));
+            }
+            else
+            {
+                Logging.WriteTrace($"Disposing {GetType()} from finalizer");
             }
             if (!DoDispose())
             {
