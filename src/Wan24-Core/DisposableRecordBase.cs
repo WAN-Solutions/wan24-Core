@@ -41,7 +41,7 @@ namespace wan24.Core
         {
             AsyncDisposing = asyncDisposing;
             AllowFinalizer = allowFinalizer;
-            if (CreateStackInfo) StackInfo = new StackInfo<DisposableBase>(this);
+            if (CreateStackInfo) StackInfo = new StackInfo<DisposableRecordBase>(this);
         }
 
         /// <summary>
