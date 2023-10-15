@@ -96,7 +96,10 @@ namespace wan24.Core
 
             /// <inheritdoc/>
             protected override async Task ProcessItem(string item, CancellationToken cancellationToken)
-                => await Stream.WriteAsync(item.GetBytes(), cancellationToken).DynamicContext();
+            {
+                await Stream.WriteAsync(item.GetBytes(), cancellationToken).DynamicContext();
+                await Stream.FlushAsync(cancellationToken).DynamicContext();
+            }
 
             /// <inheritdoc/>
             protected override void Dispose(bool disposing)
