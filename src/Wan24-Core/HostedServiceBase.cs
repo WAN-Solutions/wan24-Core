@@ -256,6 +256,7 @@ namespace wan24.Core
         protected async Task RunServiceAsync()
         {
             StoppedExceptional = false;
+            Started = DateTime.Now;
             try
             {
                 await WorkerAsync().DynamicContext();
