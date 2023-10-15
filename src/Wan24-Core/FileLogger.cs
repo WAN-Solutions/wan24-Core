@@ -98,7 +98,21 @@ namespace wan24.Core
             protected override async Task ProcessItem(string item, CancellationToken cancellationToken)
             {
                 await Stream.WriteAsync(item.GetBytes(), cancellationToken).DynamicContext();
+                if (Queued == 0) await Stream.FlushAsync(cancellationToken).DynamicContext();
+            }
+
+            /// <inheritdoc/>
+            protected override async Task AfterStopAsync(CancellationToken cancellationToken)
+            {
                 await Stream.FlushAsync(cancellationToken).DynamicContext();
+                await base.AfterStopAsync(cancellationToken).DynamicContext();
+            }
+
+            /// <inheritdoc/>
+            protected override async Task AfterPauseAsync(CancellationToken cancellationToken)
+            {
+                await Stream.FlushAsync(cancellationToken).DynamicContext();
+                await base.AfterPauseAsync(cancellationToken).DynamicContext();
             }
 
             /// <inheritdoc/>
