@@ -144,7 +144,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="item">Item (<see cref="IObjectPoolItem"/> will be reset before returning)</param>
         /// <returns>Succeed?</returns>
-        public virtual bool TryRent([MaybeNullWhen(returnValue: false)] out T? item)
+        public virtual bool TryRent([NotNullWhen(returnValue: true)] out T? item)
         {
             item = default;
             EnsureUndisposed();
@@ -176,7 +176,7 @@ namespace wan24.Core
             {
                 if (synced) Sync.Release();
             }
-            return true;
+            return item is not null;
         }
 
         /// <inheritdoc/>
