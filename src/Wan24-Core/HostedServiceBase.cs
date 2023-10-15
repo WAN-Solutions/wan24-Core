@@ -106,7 +106,6 @@ namespace wan24.Core
             if (IsRunning) return;
             Logging.WriteDebug($"Starting {this}");
             IsRunning = true;
-            Started = DateTime.Now;
             await BeforeStartAsync(cancellationToken).DynamicContext();
             Cancellation = new();
             CancelToken = Cancellation.Token;
@@ -129,7 +128,6 @@ namespace wan24.Core
                 {
                     Logging.WriteDebug($"Stopping {this}");
                     isStopping = true;
-                    Stopped = DateTime.Now;
                     await BeforeStopAsync(cancellationToken).DynamicContext();
                     StopTask = new(TaskCreationOptions.RunContinuationsAsynchronously);
                     Cancellation!.Cancel();
@@ -258,6 +256,7 @@ namespace wan24.Core
         protected async Task RunServiceAsync()
         {
             StoppedExceptional = false;
+            Started = DateTime.Now;
             try
             {
                 await WorkerAsync().DynamicContext();
