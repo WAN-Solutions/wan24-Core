@@ -43,7 +43,7 @@ namespace wan24.Core
         protected HostedServiceBase() : base() { }
 
         /// <inheritdoc/>
-        public bool CanPause { get; protected set; }
+        public virtual bool CanPause { get; protected set; }
 
         /// <inheritdoc/>
         public bool IsRunning { get; protected set; }
@@ -109,6 +109,7 @@ namespace wan24.Core
             await BeforeStartAsync(cancellationToken).DynamicContext();
             Cancellation = new();
             CancelToken = Cancellation.Token;
+            await StartingAsync(cancellationToken).DynamicContext();
             ServiceTask = ((Func<Task>)RunServiceAsync).StartLongRunningTask(cancellationToken: CancellationToken.None);
             await AfterStartAsync(cancellationToken).DynamicContext();
             RunEvent.Set();
@@ -134,11 +135,13 @@ namespace wan24.Core
                     RunEvent.Reset();
                     if (IsPaused)
                     {
-                        await BeforeResumeAsync(cancellationToken).DynamicContext();
-                        await PauseEvent.SetAsync().DynamicContext();
                         Paused = DateTime.MinValue;
+                        await BeforeResumeAsync(cancellationToken).DynamicContext();
+                        await ResumingAsync(cancellationToken).DynamicContext();
+                        await PauseEvent.SetAsync().DynamicContext();
                         await AfterResumeAsync(cancellationToken).DynamicContext();
                     }
+                    await StoppingAsync(cancellationToken).DynamicContext();
                 }
                 stopTask = StopTask.Task;
             }
@@ -157,9 +160,10 @@ namespace wan24.Core
             if (!CanPause) throw new NotSupportedException();
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             if (IsPaused || !IsRunning) return;
-            Logging.WriteDebug($"Pausing {this}");
             Paused = DateTime.Now;
+            Logging.WriteDebug($"Pausing {this}");
             await BeforePauseAsync(cancellationToken).DynamicContext();
+            await PausingAsync(cancellationToken).DynamicContext();
             await PauseEvent.ResetAsync().DynamicContext();
             await AfterPauseAsync(cancellationToken).DynamicContext();
             Logging.WriteDebug($"Paused {this}");
@@ -172,10 +176,11 @@ namespace wan24.Core
             if (!CanPause) throw new NotSupportedException();
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             if (!IsPaused) return;
+            Paused = DateTime.MinValue;
             Logging.WriteDebug($"Resuming {this}");
             await BeforeResumeAsync(cancellationToken).DynamicContext();
+            await ResumingAsync(cancellationToken).DynamicContext();
             await PauseEvent.SetAsync().DynamicContext();
-            Paused = DateTime.MinValue;
             await AfterResumeAsync(cancellationToken).DynamicContext();
             Logging.WriteDebug($"Resumed {this}");
         }
@@ -209,6 +214,12 @@ namespace wan24.Core
         protected virtual Task BeforeStartAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 
         /// <summary>
+        /// When starting
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        protected virtual Task StartingAsync(CancellationToken cancellationToken) => Task.CompletedTask;
+
+        /// <summary>
         /// After started
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
@@ -219,6 +230,12 @@ namespace wan24.Core
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
         protected virtual Task BeforeStopAsync(CancellationToken cancellationToken) => Task.CompletedTask;
+
+        /// <summary>
+        /// When stopping
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        protected virtual Task StoppingAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 
         /// <summary>
         /// After stopped
@@ -233,6 +250,12 @@ namespace wan24.Core
         protected virtual Task BeforePauseAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 
         /// <summary>
+        /// When pausing
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        protected virtual Task PausingAsync(CancellationToken cancellationToken) => Task.CompletedTask;
+
+        /// <summary>
         /// After paused
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
@@ -243,6 +266,12 @@ namespace wan24.Core
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
         protected virtual Task BeforeResumeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
+
+        /// <summary>
+        /// When resuming
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        protected virtual Task ResumingAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 
         /// <summary>
         /// After resumed from pause
@@ -256,9 +285,9 @@ namespace wan24.Core
         protected async Task RunServiceAsync()
         {
             StoppedExceptional = false;
-            Started = DateTime.Now;
             try
             {
+                Started = DateTime.Now;
                 await WorkerAsync().DynamicContext();
             }
             catch (OperationCanceledException ex)

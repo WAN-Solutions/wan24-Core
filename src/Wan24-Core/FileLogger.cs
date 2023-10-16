@@ -85,34 +85,41 @@ namespace wan24.Core
             /// Stream
             /// </summary>
             private readonly FileStream Stream;
+            /// <summary>
+            /// Need to flush the stream?
+            /// </summary>
+            private bool NeedFlush = false;
 
             /// <summary>
             /// Constructor
             /// </summary>
             /// <param name="fileName">Filename</param>
             /// <param name="maxQueue">Maximum number of queued messages before blocking</param>
-            public LogQueueWorker(in string fileName, in int maxQueue) : base(maxQueue)
-                => Stream = new(fileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read);
+            public LogQueueWorker(in string fileName, in int maxQueue) : base(maxQueue) => Stream = new(fileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read);
 
             /// <inheritdoc/>
             protected override async Task ProcessItem(string item, CancellationToken cancellationToken)
             {
                 await Stream.WriteAsync(item.GetBytes(), cancellationToken).DynamicContext();
-                if (Queued == 0) await Stream.FlushAsync(cancellationToken).DynamicContext();
+                if (Queued == 0)
+                {
+                    await Stream.FlushAsync(cancellationToken).DynamicContext();
+                }
+                else
+                {
+                    NeedFlush = true;
+                }
             }
 
             /// <inheritdoc/>
             protected override async Task AfterStopAsync(CancellationToken cancellationToken)
             {
-                await Stream.FlushAsync(cancellationToken).DynamicContext();
+                if (NeedFlush)
+                {
+                    await Stream.FlushAsync(cancellationToken).DynamicContext();
+                    NeedFlush = false;
+                }
                 await base.AfterStopAsync(cancellationToken).DynamicContext();
-            }
-
-            /// <inheritdoc/>
-            protected override async Task AfterPauseAsync(CancellationToken cancellationToken)
-            {
-                await Stream.FlushAsync(cancellationToken).DynamicContext();
-                await base.AfterPauseAsync(cancellationToken).DynamicContext();
             }
 
             /// <inheritdoc/>
