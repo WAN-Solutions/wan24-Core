@@ -95,7 +95,11 @@ namespace wan24.Core
             /// </summary>
             /// <param name="fileName">Filename</param>
             /// <param name="maxQueue">Maximum number of queued messages before blocking</param>
-            public LogQueueWorker(in string fileName, in int maxQueue) : base(maxQueue) => Stream = new(fileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read);
+            public LogQueueWorker(in string fileName, in int maxQueue) : base(maxQueue)
+            {
+                Stream = new(fileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read);
+                if (Stream.Length != 0) Stream.Position = Stream.Length;
+            }
 
             /// <inheritdoc/>
             protected override async Task ProcessItem(string item, CancellationToken cancellationToken)

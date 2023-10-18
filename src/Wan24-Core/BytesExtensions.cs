@@ -11,6 +11,11 @@ namespace wan24.Core
     public static partial class BytesExtensions
     {
         /// <summary>
+        /// Clear bytes handler
+        /// </summary>
+        public static Clear_Delegate? ClearHandler { get; set; }
+
+        /// <summary>
         /// Convert the endian to be little endian for serializing, and big endian, if the system uses it
         /// </summary>
         /// <param name="bytes">Bytes</param>
@@ -310,12 +315,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         [TargetedPatchingOptOut("Tiny method")]
-        public static void Clear(this byte[] bytes)
-        {
-            if (bytes.Length == 0) return;
-            RandomNumberGenerator.Fill(bytes);
-            Array.Clear(bytes);
-        }
+        public static void Clear(this byte[] bytes) => Clean(bytes.AsSpan());
 
         /// <summary>
         /// Clear the array
@@ -325,8 +325,21 @@ namespace wan24.Core
         public static void Clean(this Span<byte> bytes)
         {
             if (bytes.Length == 0) return;
-            RandomNumberGenerator.Fill(bytes);
-            bytes.Clear();
+            if (ClearHandler is null)
+            {
+                RandomNumberGenerator.Fill(bytes);
+                bytes.Clear();
+            }
+            else
+            {
+                ClearHandler(bytes);
+            }
         }
+
+        /// <summary>
+        /// Delegate for a byte clearing handler
+        /// </summary>
+        /// <param name="bytes">Bytes to clear (must be zeroed)</param>
+        public delegate void Clear_Delegate(Span<byte> bytes);
     }
 }

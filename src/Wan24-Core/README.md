@@ -191,6 +191,7 @@ including extensions for numeric type encoding/decoding)
     - `ChunkedStream` for reading/writing stream chunks
     - `ExchangeableStream` wraps an exchangeable base stream
     - `BackupStream` writes all red data to another stream
+    - `ProcessStream` uses STDIN/OUT of a process
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context
