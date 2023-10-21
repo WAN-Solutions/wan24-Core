@@ -54,6 +54,7 @@ when disposing; for byte/char arrays just like the `Secure*Array`)
 - Enumerable extensions
     - Combine enumerables
     - Chunk enumerables
+- Enumeration classes
 - Reflection extensions
     - Automatic parameter extension when invoking a method (with DI support)
     - Synchronous/asynchronous method invokation
@@ -1549,3 +1550,26 @@ using static wan24.Translation;
 string fn = LocalizedFileName("de-DE", "/path/to/filename.ext");
 Assert.AreEqual("/path/to/filename.de-DE.ext", fn);
 ```
+
+## Enumeration classes
+
+Using the `EnumerationBase<T>` base type you can implement enumeration classes 
+like this:
+
+```cs
+public sealed class YourEnum : EnumerationBase<YourEnum>
+{
+    public static readonly YourEnum Value1 = new(1, nameof(Value1));
+    public static readonly YourEnum Value2 = new(2, nameof(Value2));
+    ...
+
+    private YourEnum(int value, string name) : base(value, name) { }
+}
+```
+
+Your implementation needs to fit some restrictions:
+
+1. Values and names are unique
+2. Names must match their readonly-field name
+3. Your type must be sealed and use private construction
+4. Your type must extend `EnumerationBase<T>` (not `EnumerationBase` directly)
