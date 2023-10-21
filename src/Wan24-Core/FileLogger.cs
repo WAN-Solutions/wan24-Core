@@ -85,6 +85,10 @@ namespace wan24.Core
             /// Stream
             /// </summary>
             private readonly FileStream Stream;
+            /// <summary>
+            /// Need to flush the stream?
+            /// </summary>
+            private bool NeedFlush = false;
 
             /// <summary>
             /// Constructor
@@ -92,13 +96,34 @@ namespace wan24.Core
             /// <param name="fileName">Filename</param>
             /// <param name="maxQueue">Maximum number of queued messages before blocking</param>
             public LogQueueWorker(in string fileName, in int maxQueue) : base(maxQueue)
-                => Stream = new(fileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read);
+            {
+                Stream = new(fileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read);
+                if (Stream.Length != 0) Stream.Position = Stream.Length;
+            }
 
             /// <inheritdoc/>
             protected override async Task ProcessItem(string item, CancellationToken cancellationToken)
             {
                 await Stream.WriteAsync(item.GetBytes(), cancellationToken).DynamicContext();
-                await Stream.FlushAsync(cancellationToken).DynamicContext();
+                if (Queued == 0)
+                {
+                    await Stream.FlushAsync(cancellationToken).DynamicContext();
+                }
+                else
+                {
+                    NeedFlush = true;
+                }
+            }
+
+            /// <inheritdoc/>
+            protected override async Task AfterStopAsync(CancellationToken cancellationToken)
+            {
+                if (NeedFlush)
+                {
+                    await Stream.FlushAsync(cancellationToken).DynamicContext();
+                    NeedFlush = false;
+                }
+                await base.AfterStopAsync(cancellationToken).DynamicContext();
             }
 
             /// <inheritdoc/>

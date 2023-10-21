@@ -54,6 +54,16 @@ namespace wan24.Core
         public string GUID { get; } = Guid.NewGuid().ToString();
 
         /// <inheritdoc/>
+        public sealed override bool CanPause
+        { 
+            get => false;
+            protected set
+            {
+                if (value) throw new NotSupportedException();
+            }
+        }
+
+        /// <inheritdoc/>
         TimeSpan ITimer.Interval => TimeSpan.FromMilliseconds(Interval);
 
         /// <inheritdoc/>
@@ -212,6 +222,15 @@ namespace wan24.Core
                 await RunningEvent.ResetAsync().DynamicContext();
             }
             await EnableTimerAsync().DynamicContext();
+        }
+
+        /// <inheritdoc/>
+        protected override async Task StoppingAsync(CancellationToken cancellationToken)
+        {
+            using (SemaphoreSyncContext ssc = await WorkerSync.SyncContextAsync(cancellationToken).DynamicContext())
+                Timer.Stop();
+            NextRun = DateTime.MinValue;
+            await RunningEvent.SetAsync().DynamicContext();
         }
 
         /// <inheritdoc/>

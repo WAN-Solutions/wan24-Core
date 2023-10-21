@@ -1,0 +1,62 @@
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace wan24.Core
+{
+    /// <summary>
+    /// Result of an asynchronous try-action
+    /// </summary>
+    /// <typeparam name="T">Result type</typeparam>
+    public readonly record struct TryAsyncResult<T>
+    {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="result">Result (must be non-<see langword="null"/>, if <c>succeed</c> is <see langword="true"/>)</param>
+        /// <param name="succeed">If succeed</param>
+        public TryAsyncResult(T? result = default, bool? succeed = null)
+        {
+            if (succeed.HasValue)
+            {
+                if (succeed.Value != result is not null)
+                    throw result is null 
+                        ? new ArgumentNullException(nameof(result)) 
+                        : new ArgumentException("NULL expected", nameof(result));
+            }
+            else
+            {
+                succeed = result is not null;
+            }
+            Succeed = succeed.Value;
+            Result = result;
+        }
+
+        /// <summary>
+        /// Did the try-action succeed?
+        /// </summary>
+        [MemberNotNullWhen(returnValue: true, nameof(Result))]
+        public bool Succeed { get; }
+
+        /// <summary>
+        /// Action result (not <see langword="null"/>, if <see cref="Succeed"/> is <see langword="true"/>)
+        /// </summary>
+        public T? Result { get; }
+
+        /// <summary>
+        /// Cast as succeed-flag
+        /// </summary>
+        /// <param name="instance">Instance</param>
+        public static implicit operator bool(TryAsyncResult<T> instance) => instance.Succeed;
+
+        /// <summary>
+        /// Cast as non-<see langword="null"/> result
+        /// </summary>
+        /// <param name="instance">Instance</param>
+        public static implicit operator T(TryAsyncResult<T> instance) => instance.Result ?? throw new InvalidOperationException();
+
+        /// <summary>
+        /// Cast as instance
+        /// </summary>
+        /// <param name="result">Result</param>
+        public static implicit operator TryAsyncResult<T>(T? result) => new(result);
+    }
+}

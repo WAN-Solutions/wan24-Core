@@ -41,7 +41,7 @@ namespace wan24.Core
         public bool IsEnabled(LogLevel logLevel) => logLevel >= Level;
 
         /// <inheritdoc/>
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
+        public virtual void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
         {
             if (!IsEnabled(logLevel)) return;
             LogInt(logLevel, eventId, state,exception,formatter);

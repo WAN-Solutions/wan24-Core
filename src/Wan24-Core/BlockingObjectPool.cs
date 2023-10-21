@@ -222,7 +222,7 @@ namespace wan24.Core
         /// Try renting an item
         /// </summary>
         /// <returns>If succeed, and the rented item</returns>
-        public virtual async Task<(bool Succeed, T? Item)> TryRentAsync()
+        public virtual async Task<TryAsyncResult<T>> TryRentAsync()
         {
             EnsureUndisposed();
             T? res;
@@ -236,7 +236,7 @@ namespace wan24.Core
             {
                 if ((AsyncFactory is null && Factory is null) || _Initialized >= Capacity)
                 {
-                    if (!Pool.TryTake(out res)) return (Succeed: false, Item: default);
+                    if (!Pool.TryTake(out res)) return new();
                     if (ResetOnRent && res is IObjectPoolItem item) item.Reset();
                 }
                 else if (Pool.TryTake(out res))
@@ -257,7 +257,7 @@ namespace wan24.Core
             {
                 if (synced) Sync.Release();
             }
-            return (Succeed: true, Item: res);
+            return res;
         }
 
         /// <inheritdoc/>
