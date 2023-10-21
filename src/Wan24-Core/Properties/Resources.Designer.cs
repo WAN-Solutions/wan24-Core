@@ -62,17 +62,17 @@ namespace wan24.Core.Properties {
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die [Unit]
-        ///Description={Description}
+        ///Description=%{Description}
         ///
         ///[Service]
-        ///WorkingDirectory={WorkingDirectory}
-        ///ExecStart={ExecStart}
+        ///WorkingDirectory=%{WorkingDirectory}
+        ///ExecStart=%{ExecStart}
         ///Restart=always
         ///# Restart service after 10 seconds if the dotnet service crashes:
         ///RestartSec=10
         ///KillSignal=SIGINT
-        ///SyslogIdentifier={SyslogIdentifier}
-        ///User={User}
+        ///SyslogIdentifier=%{SyslogIdentifier}
+        ///User=%{User}
         ///Environment=ASPNETCORE_ENVIRONMENT=Production
         ///
         ///[Install]

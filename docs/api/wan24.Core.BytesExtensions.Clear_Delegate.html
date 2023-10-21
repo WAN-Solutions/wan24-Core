@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Delegate TimedHostedServiceBase.TimedHostedService_Delegate
+    <title>Delegate BytesExtensions.Clear_Delegate
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Delegate TimedHostedServiceBase.TimedHostedService_Delegate
+    <meta name="title" content="Delegate BytesExtensions.Clear_Delegate
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,19 +68,19 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.TimedHostedServiceBase.TimedHostedService_Delegate">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.BytesExtensions.Clear_Delegate">
   
   
-  <h1 id="wan24_Core_TimedHostedServiceBase_TimedHostedService_Delegate" data-uid="wan24.Core.TimedHostedServiceBase.TimedHostedService_Delegate" class="text-break">Delegate TimedHostedServiceBase.TimedHostedService_Delegate
+  <h1 id="wan24_Core_BytesExtensions_Clear_Delegate" data-uid="wan24.Core.BytesExtensions.Clear_Delegate" class="text-break">Delegate BytesExtensions.Clear_Delegate
   </h1>
-  <div class="markdown level0 summary"><p>Delegate for a hosted service event</p>
+  <div class="markdown level0 summary"><p>Delegate for a byte clearing handler</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_TimedHostedServiceBase_TimedHostedService_Delegate_syntax">Syntax</h5>
+  <h5 id="wan24_Core_BytesExtensions_Clear_Delegate_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate void TimedHostedService_Delegate(TimedHostedServiceBase service, EventArgs e);</code></pre>
+    <pre><code class="lang-csharp hljs">public delegate void Clear_Delegate(Span&lt;byte&gt; bytes);</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -93,15 +93,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="wan24.Core.TimedHostedServiceBase.html">TimedHostedServiceBase</a></td>
-        <td><span class="parametername">service</span></td>
-        <td><p>Service</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">EventArgs</span></td>
-        <td><span class="parametername">e</span></td>
-        <td><p>Event arguments</p>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="parametername">bytes</span></td>
+        <td><p>Bytes to clear (must be zeroed)</p>
 </td>
       </tr>
     </tbody>
@@ -151,10 +145,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_TimedHostedServiceBase_TimedHostedService_Delegate.md&amp;value=---%0Auid%3A%20wan24.Core.TimedHostedServiceBase.TimedHostedService_Delegate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BytesExtensions_Clear_Delegate.md&amp;value=---%0Auid%3A%20wan24.Core.BytesExtensions.Clear_Delegate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TimedHostedServiceBase.cs/#L386" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BytesExtensions.cs/#L343" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

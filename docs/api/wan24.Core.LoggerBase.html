@@ -80,6 +80,7 @@
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">LoggerBase</span></div>
+      <div class="level2"><a class="xref" href="wan24.Core.CategoryLogger.html">CategoryLogger</a></div>
       <div class="level2"><a class="xref" href="wan24.Core.ConsoleLogger.html">ConsoleLogger</a></div>
       <div class="level2"><a class="xref" href="wan24.Core.DebugLogger.html">DebugLogger</a></div>
       <div class="level2"><a class="xref" href="wan24.Core.Logger.html">Logger</a></div>
@@ -444,7 +445,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Log&lt;TState&gt;(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func&lt;TState, Exception?, string&gt; formatter)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void Log&lt;TState&gt;(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func&lt;TState, Exception?, string&gt; formatter)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

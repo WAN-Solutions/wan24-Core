@@ -138,6 +138,7 @@ when disposing; for byte/char arrays just like the <code>Secure*Array</code>)</l
 <li>Chunk enumerables</li>
 </ul>
 </li>
+<li>Enumeration classes</li>
 <li>Reflection extensions
 <ul>
 <li>Automatic parameter extension when invoking a method (with DI support)</li>
@@ -324,6 +325,7 @@ including extensions for numeric type encoding/decoding)</li>
 <li><code>ChunkedStream</code> for reading/writing stream chunks</li>
 <li><code>ExchangeableStream</code> wraps an exchangeable base stream</li>
 <li><code>BackupStream</code> writes all red data to another stream</li>
+<li><code>ProcessStream</code> uses STDIN/OUT of a process</li>
 </ul>
 </li>
 <li>Named mutex helper
@@ -1645,6 +1647,25 @@ required)</li>
 string fn = LocalizedFileName(&quot;de-DE&quot;, &quot;/path/to/filename.ext&quot;);
 Assert.AreEqual(&quot;/path/to/filename.de-DE.ext&quot;, fn);
 </code></pre>
+<h2 id="enumeration-classes">Enumeration classes</h2>
+<p>Using the <code>EnumerationBase&lt;T&gt;</code> base type you can implement enumeration classes
+like this:</p>
+<pre><code class="lang-cs">public sealed class YourEnum : EnumerationBase&lt;YourEnum&gt;
+{
+    public static readonly YourEnum Value1 = new(1, nameof(Value1));
+    public static readonly YourEnum Value2 = new(2, nameof(Value2));
+    ...
+
+    private YourEnum(int value, string name) : base(value, name) { }
+}
+</code></pre>
+<p>Your implementation needs to fit some restrictions:</p>
+<ol>
+<li>Values and names are unique</li>
+<li>Names must match their readonly-field name</li>
+<li>Your type must be sealed and use private construction</li>
+<li>Your type must extend <code>EnumerationBase&lt;T&gt;</code> (not <code>EnumerationBase</code> directly)</li>
+</ol>
 </article>
           </div>
           

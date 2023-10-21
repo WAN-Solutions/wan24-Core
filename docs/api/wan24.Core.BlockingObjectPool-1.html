@@ -942,7 +942,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual async Task&lt;(bool Succeed, T Item)&gt; TryRentAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual async Task&lt;TryAsyncResult&lt;T&gt;&gt; TryRentAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -954,7 +954,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span>&lt;<span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Boolean</span>, T&gt;&gt;</td>
+        <td><span class="xref">Task</span>&lt;<span class="xref">wan24.Core.TryAsyncResult</span>&lt;T&gt;&gt;</td>
         <td><p>If succeed, and the rented item</p>
 </td>
       </tr>
