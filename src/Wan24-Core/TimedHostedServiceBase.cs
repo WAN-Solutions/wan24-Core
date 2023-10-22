@@ -248,11 +248,10 @@ namespace wan24.Core
             bool hadException = false;
             try
             {
-                while (!CancelToken.IsCancellationRequested)
+                while (EnsureNotCanceled())
                     try
                     {
                         await RunningEvent.WaitAndResetAsync(CancelToken).DynamicContext();
-                        if (CancelToken.IsCancellationRequested) break;
                         LastRun = DateTime.Now;
                         await TimedWorkerAsync().DynamicContext();
                     }

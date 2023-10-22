@@ -285,6 +285,7 @@ namespace wan24.Core
         protected async Task RunServiceAsync()
         {
             StoppedExceptional = false;
+            LastException = null;
             try
             {
                 Started = DateTime.Now;
@@ -325,6 +326,25 @@ namespace wan24.Core
                 using SemaphoreSyncContext ssc2 = await Sync.SyncContextAsync().DynamicContext();
                 StopTask.SetResult();
                 StopTask = null;
+            }
+        }
+
+        /// <summary>
+        /// Ensure not being canceled
+        /// </summary>
+        /// <param name="throwOnCancellation">Throw an exception if canceled?</param>
+        /// <returns>If not canceled</returns>
+        /// <exception cref="OperationCanceledException">The service was canceled</exception>
+        protected bool EnsureNotCanceled(in bool throwOnCancellation = true)
+        {
+            if (throwOnCancellation)
+            {
+                CancelToken.ThrowIfCancellationRequested();
+                return true;
+            }
+            else
+            {
+                return !CancelToken.IsCancellationRequested;
             }
         }
 
