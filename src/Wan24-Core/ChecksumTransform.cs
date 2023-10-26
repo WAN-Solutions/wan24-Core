@@ -139,7 +139,7 @@ namespace wan24.Core
             }
             else
             {
-                for (bytesWritten = destination.Length; bytesWritten != 0 && (bytesWritten & (bytesWritten - 1)) != 0; bytesWritten--) ;
+                for (bytesWritten = destination.Length; bytesWritten > 0 && (bytesWritten & (bytesWritten - 1)) != 0; bytesWritten--) ;
             }
             HashData(source, destination[..bytesWritten]);
             return true;

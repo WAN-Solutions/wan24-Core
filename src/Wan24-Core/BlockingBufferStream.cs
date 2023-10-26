@@ -184,7 +184,7 @@
             }
             if (!hadSpace)
             {
-                SpaceEvent.Set();
+                SpaceEvent.Set(cancellationToken);
                 RaiseOnSpaceAvailable();
             }
             return true;
@@ -206,7 +206,7 @@
             if (_IsEndOfFile && Available == 0) return 0;
             int res = 0;
             bool blocking = false;
-            for (int read = 1; buffer.Length != 0 && read != 0 && EnsureUndisposed();)
+            for (int read = 1; buffer.Length > 0 && read > 0 && EnsureUndisposed();)
             {
                 DataEvent.Wait();
                 EnsureUndisposed();
@@ -264,7 +264,7 @@
             if (_IsEndOfFile && Available == 0) return 0;
             int res = 0;
             bool blocking = false;
-            for (int read = 1; buffer.Length != 0 && read != 0 && EnsureUndisposed();)
+            for (int read = 1; buffer.Length > 0 && read > 0 && EnsureUndisposed();)
             {
                 using SemaphoreSyncContext ssc = BufferSync.SyncContext();
                 EnsureUndisposed();
@@ -308,7 +308,7 @@
             if (_IsEndOfFile && Available == 0) return 0;
             int res = 0;
             bool blocking = false;
-            for (int read = 1; buffer.Length != 0 && read != 0 && EnsureUndisposed();)
+            for (int read = 1; buffer.Length > 0 && read > 0 && EnsureUndisposed();)
             {
                 await DataEvent.WaitAsync(cancellationToken).DynamicContext();
                 EnsureUndisposed();
@@ -322,7 +322,7 @@
                         blocking = true;
                         break;
                     }
-                    DataEvent.Reset();
+                    DataEvent.Reset(cancellationToken);
                     ssc.Dispose();
                     RaiseOnNeedData();
                     read = 1;
@@ -342,7 +342,7 @@
                     if (Available == 0)
                     {
                         blocking = true;
-                        DataEvent.Reset();
+                        DataEvent.Reset(cancellationToken);
                     }
                     else
                     {
@@ -367,7 +367,7 @@
             if (_IsEndOfFile && Available == 0) return 0;
             int res = 0;
             bool blocking = false;
-            for (int read = 1; buffer.Length != 0 && read != 0 && EnsureUndisposed();)
+            for (int read = 1; buffer.Length > 0 && read > 0 && EnsureUndisposed();)
             {
                 using SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext();
                 EnsureUndisposed();
@@ -387,7 +387,7 @@
                     if (Available == 0)
                     {
                         blocking = true;
-                        DataEvent.Reset();
+                        DataEvent.Reset(cancellationToken);
                     }
                     else
                     {
@@ -419,7 +419,7 @@
             if (_IsEndOfFile) throw new InvalidOperationException();
             bool blocking = false,
                 haveData = false;
-            for (int write; buffer.Length != 0 && EnsureUndisposed();)
+            for (int write; buffer.Length > 0 && EnsureUndisposed();)
             {
                 SpaceEvent.Wait();
                 EnsureUndisposed();
@@ -465,7 +465,7 @@
             int res = 0;
             bool blocking = false,
                 haveData = false;
-            for (int write; buffer.Length != 0 && EnsureUndisposed();)
+            for (int write; buffer.Length > 0 && EnsureUndisposed();)
             {
                 using (SemaphoreSyncContext ssc = BufferSync.SyncContext())
                 {
@@ -511,7 +511,7 @@
             if (_IsEndOfFile) throw new InvalidOperationException();
             bool blocking = false,
                 haveData = false;
-            for (int write; buffer.Length != 0 && EnsureUndisposed();)
+            for (int write; buffer.Length > 0 && EnsureUndisposed();)
             {
                 await SpaceEvent.WaitAsync(cancellationToken).DynamicContext();
                 EnsureUndisposed();
@@ -526,10 +526,10 @@
                     if (SpaceLeft == 0)
                     {
                         blocking = true;
-                        SpaceEvent.Reset();
+                        SpaceEvent.Reset(cancellationToken);
                     }
                     haveData = !DataEvent.IsSet;
-                    DataEvent.Set();
+                    DataEvent.Set(cancellationToken);
                 }
                 if (haveData)
                 {
@@ -558,7 +558,7 @@
             int res = 0;
             bool blocking = false,
                 haveData = false;
-            for (int write; buffer.Length != 0 && EnsureUndisposed();)
+            for (int write; buffer.Length > 0 && EnsureUndisposed();)
             {
                 using (SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext())
                 {
@@ -573,10 +573,10 @@
                     if (SpaceLeft == 0)
                     {
                         blocking = true;
-                        SpaceEvent.Reset();
+                        SpaceEvent.Reset(cancellationToken);
                     }
                     haveData = !DataEvent.IsSet;
-                    DataEvent.Set();
+                    DataEvent.Set(cancellationToken);
                 }
                 if (haveData)
                 {

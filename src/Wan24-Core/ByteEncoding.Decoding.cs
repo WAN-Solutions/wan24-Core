@@ -108,13 +108,13 @@ namespace wan24.Core
                             l &= 31;
                         }
 #endif
-                        for (int bitOffset = 0; i != len; i++)
+                        for (int bitOffset = 0; i < len; i++)
                         {
 #if NO_UNSAFE
                             bits = charMap.IndexOf(str[i]);
                             if (bits == -1) throw new InvalidDataException($"Invalid character at offset #{i}");
 #else
-                            for (bits = 0; bits != 64 && cm[bits] != s[i]; bits++) ;
+                            for (bits = 0; bits < 64 && cm[bits] != s[i]; bits++) ;
                             if (bits == 64) throw new InvalidDataException($"Invalid character at offset #{i}");
 #endif
                             switch (bitOffset)
@@ -226,13 +226,13 @@ namespace wan24.Core
                             l &= 31;
                         }
 #endif
-                        for (int bitOffset = 0; i != len; i++)
+                        for (int bitOffset = 0; i < len; i++)
                         {
 #if NO_UNSAFE
                             bits = charMap.IndexOf(str[i]);
                             if (bits == -1) throw new InvalidDataException($"Invalid character at offset #{i}");
 #else
-                            for (bits = 0; bits != 64 && cm[bits] != s[i]; bits++) ;
+                            for (bits = 0; bits < 64 && cm[bits] != s[i]; bits++) ;
                             if (bits == 64) throw new InvalidDataException($"Invalid character at offset #{i}");
 #endif
                             switch (bitOffset)

@@ -317,10 +317,10 @@ namespace wan24.Core
             [TargetedPatchingOptOut("Tiny method")]
             get
             {
-                for (int i = 0, len = NetworkHelper.LoopBack.Count; i != len; i++)
+                for (int i = 0, len = NetworkHelper.LoopBack.Count; i < len; i++)
                     if (IsWithin(NetworkHelper.LoopBack[i]))
                         return NetworkHelper.LoopBack[i];
-                for (int i = 0, len = NetworkHelper.LAN.Count; i != len; i++)
+                for (int i = 0, len = NetworkHelper.LAN.Count; i < len; i++)
                     if (IsWithin(NetworkHelper.LAN[i]))
                         return NetworkHelper.LAN[i];
                 return this;

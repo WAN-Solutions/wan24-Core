@@ -65,7 +65,7 @@
                 Stream chunk;
                 long total = _Length - value,
                     extend;
-                for (int currentChunk = NumberOfChunks - 1; total != 0; total -= extend, currentChunk++)
+                for (int currentChunk = NumberOfChunks - 1; total > 0; total -= extend, currentChunk++)
                 {
                     chunk = GetChunkStream(currentChunk);
                     extend = Math.Min(ChunkSize, total);
@@ -109,7 +109,7 @@
                 Stream chunk;
                 long total = _Length - value,
                     extend;
-                for (int currentChunk = NumberOfChunks - 1; total != 0; total -= extend, currentChunk++)
+                for (int currentChunk = NumberOfChunks - 1; total > 0; total -= extend, currentChunk++)
                 {
                     chunk = await GetChunkStreamAsync(currentChunk, cancellationToken).DynamicContext();
                     extend = Math.Min(ChunkSize, total);
@@ -145,7 +145,7 @@
             int res = 0;
             Stream chunk;
             long pos;
-            for (int read, red; buffer.Length != 0 && _Position != _Length; _Position += red, buffer = buffer[red..], res += red)
+            for (int read, red; buffer.Length > 0 && _Position < _Length; _Position += red, buffer = buffer[red..], res += red)
             {
                 chunk = GetChunkStream(CurrentChunk);
                 pos = CurrentChunkPosition;
@@ -169,7 +169,7 @@
             int res = 0;
             Stream chunk;
             long pos;
-            for (int read, red; buffer.Length != 0 && _Position != _Length; _Position += red, buffer = buffer[red..], res += red)
+            for (int read, red; buffer.Length > 0 && _Position < _Length; _Position += red, buffer = buffer[red..], res += red)
             {
                 chunk = await GetChunkStreamAsync(CurrentChunk, cancellationToken).DynamicContext();
                 pos = CurrentChunkPosition;
@@ -195,7 +195,7 @@
             EnsureWritable();
             Stream chunk;
             long pos;
-            for (int write, currentChunk; buffer.Length != 0; buffer = buffer[write..])
+            for (int write, currentChunk; buffer.Length > 0; buffer = buffer[write..])
             {
                 currentChunk = CurrentChunk;
                 chunk = GetChunkStream(currentChunk);
@@ -220,7 +220,7 @@
             EnsureWritable();
             Stream chunk;
             long pos;
-            for (int write, currentChunk; buffer.Length != 0; buffer = buffer[write..])
+            for (int write, currentChunk; buffer.Length > 0; buffer = buffer[write..])
             {
                 currentChunk = CurrentChunk;
                 chunk = await GetChunkStreamAsync(currentChunk, cancellationToken).DynamicContext();

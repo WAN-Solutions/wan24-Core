@@ -144,20 +144,20 @@ namespace wan24.Core
         public virtual IEnumerable<T> GetMany(int count, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            for (int i = 0; i != count && !cancellationToken.IsCancellationRequested; i++) yield return GetOne();
+            for (int i = 0; i < count && !cancellationToken.IsCancellationRequested; i++) yield return GetOne();
         }
 
         /// <inheritdoc/>
         public virtual async IAsyncEnumerable<T> GetManyAsync(int count, [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            for (int i = 0; i != count && !cancellationToken.IsCancellationRequested; i++) yield return await GetOneAsync(cancellationToken).DynamicContext();
+            for (int i = 0; i < count && !cancellationToken.IsCancellationRequested; i++) yield return await GetOneAsync(cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
         protected override async Task BeforeStopAsync(CancellationToken cancellationToken)
         {
-            await BufferSync.SetAsync().DynamicContext();
+            await BufferSync.SetAsync(cancellationToken).DynamicContext();
             await base.BeforeStopAsync(cancellationToken).DynamicContext();
         }
 

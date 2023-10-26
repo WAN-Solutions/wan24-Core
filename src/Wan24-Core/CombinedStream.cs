@@ -129,7 +129,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             int res = 0;
-            for(int read = 1, red; buffer.Length != 0 && read != 0;)
+            for(int read = 1, red; buffer.Length > 0 && read > 0;)
             {
                 read = (int)Math.Min(buffer.Length, CurrentStream.GetRemainingBytes());
                 if (read == 0)
@@ -158,7 +158,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             int res = 0;
-            for (int read = 1, red; buffer.Length != 0 && read != 0;)
+            for (int read = 1, red; buffer.Length > 0 && read > 0;)
             {
                 read = (int)Math.Min(buffer.Length, CurrentStream.GetRemainingBytes());
                 if (read == 0)

@@ -72,13 +72,13 @@ namespace wan24.Core
 #endif
                     unchecked
                     {
-                        for (int i = 0; i != len; i++)
+                        for (int i = 0; i < len; i++)
                         {
 #if NO_UNSAFE
                             if (charMap.Value.IndexOf(str[i]) != -1) continue;
 #else
                             c = s[i];
-                            for (j = 0; j != 64 && c != cm[j]; j++) ;
+                            for (j = 0; j < 64 && c != cm[j]; j++) ;
                             if (j != 64) continue;
 #endif
                             if (throwOnError) throw new FormatException($"Invalid character at offset #{i}");
@@ -123,13 +123,13 @@ namespace wan24.Core
 #endif
                     unchecked
                     {
-                        for (int i = 0; i != len; i++)
+                        for (int i = 0; i < len; i++)
                         {
 #if NO_UNSAFE
                             if (charMap.Value.IndexOf(str[i]) != -1) continue;
 #else
                             c = s[i];
-                            for (j = 0; j != 64 && c != cm[j]; j++) ;
+                            for (j = 0; j < 64 && c != cm[j]; j++) ;
                             if (j != 64) continue;
 #endif
                             if (throwOnError) throw new FormatException($"Invalid character at offset #{i}");

@@ -18,7 +18,7 @@
                 if (offset + count > BitCount) throw new ArgumentOutOfRangeException(nameof(count));
                 bool[] res = new bool[count];
                 long byteOffset = offset >> 3;
-                for (int i = 0; i != count; res[i] = ((_Map[byteOffset] >> (int)(offset - (byteOffset << 3))) & 1) == 1, offset++, byteOffset = offset >> 3, i++) ;
+                for (int i = 0; i < count; res[i] = ((_Map[byteOffset] >> (int)(offset - (byteOffset << 3))) & 1) == 1, offset++, byteOffset = offset >> 3, i++) ;
                 return res;
             }
         }

@@ -214,6 +214,7 @@ including extensions for numeric type encoding/decoding)
     - Browsing ethernet adapters filtered
     - Classify LAN, WAN and loopback IP addresses and ethernet adapters
     - `IpSubNet` implementation for managing IPv4/6 sub-nets (CIDR)
+    - Find the next free TCP port for an IP address
 - Centralized error handling
 - Delayed tasks
 - Progress
