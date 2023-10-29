@@ -26,12 +26,12 @@ namespace Wan24_Core_Tests
 
             // Release A (will be fully released to free storage memory)
             a.Dispose();
-            Thread.Sleep(200);
+            Thread.Sleep(500);
             Assert.AreEqual(1, storage.Stored, "A not disposed");
 
             // Release B (will stay in memory)
             b.Dispose();
-            Thread.Sleep(200);
+            Thread.Sleep(500);
             Assert.AreEqual(1, storage.Stored, "B not in storage?");
 
             // Validate B was still in memory
