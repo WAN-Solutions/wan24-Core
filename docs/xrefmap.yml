@@ -18568,6 +18568,22 @@ references:
   isSpec: "True"
   fullName: wan24.Core.HostedServiceBase.DisposeCore
   nameWithType: HostedServiceBase.DisposeCore
+- uid: wan24.Core.HostedServiceBase.EnsureNotCanceled(System.Boolean@)
+  name: EnsureNotCanceled(in Boolean)
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_EnsureNotCanceled_System_Boolean__
+  commentId: M:wan24.Core.HostedServiceBase.EnsureNotCanceled(System.Boolean@)
+  name.vb: EnsureNotCanceled(ByRef Boolean)
+  fullName: wan24.Core.HostedServiceBase.EnsureNotCanceled(in System.Boolean)
+  fullName.vb: wan24.Core.HostedServiceBase.EnsureNotCanceled(ByRef System.Boolean)
+  nameWithType: HostedServiceBase.EnsureNotCanceled(in Boolean)
+  nameWithType.vb: HostedServiceBase.EnsureNotCanceled(ByRef Boolean)
+- uid: wan24.Core.HostedServiceBase.EnsureNotCanceled*
+  name: EnsureNotCanceled
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_EnsureNotCanceled_
+  commentId: Overload:wan24.Core.HostedServiceBase.EnsureNotCanceled
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceBase.EnsureNotCanceled
+  nameWithType: HostedServiceBase.EnsureNotCanceled
 - uid: wan24.Core.HostedServiceBase.ErrorSource
   name: ErrorSource
   href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_ErrorSource
@@ -24045,6 +24061,31 @@ references:
   fullName.vb: wan24.Core.JsonHelper.Decode(Of T)(ByRef System.String)
   nameWithType: JsonHelper.Decode<T>(in String)
   nameWithType.vb: JsonHelper.Decode(Of T)(ByRef String)
+- uid: wan24.Core.JsonHelper.DecodeAsync*
+  name: DecodeAsync
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_DecodeAsync_
+  commentId: Overload:wan24.Core.JsonHelper.DecodeAsync
+  isSpec: "True"
+  fullName: wan24.Core.JsonHelper.DecodeAsync
+  nameWithType: JsonHelper.DecodeAsync
+- uid: wan24.Core.JsonHelper.DecodeAsync``1(Stream,CancellationToken)
+  name: DecodeAsync<T>(Stream, CancellationToken)
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_DecodeAsync__1_Stream_CancellationToken_
+  commentId: M:wan24.Core.JsonHelper.DecodeAsync``1(Stream,CancellationToken)
+  name.vb: DecodeAsync(Of T)(Stream, CancellationToken)
+  fullName: wan24.Core.JsonHelper.DecodeAsync<T>(Stream, CancellationToken)
+  fullName.vb: wan24.Core.JsonHelper.DecodeAsync(Of T)(Stream, CancellationToken)
+  nameWithType: JsonHelper.DecodeAsync<T>(Stream, CancellationToken)
+  nameWithType.vb: JsonHelper.DecodeAsync(Of T)(Stream, CancellationToken)
+- uid: wan24.Core.JsonHelper.DecodeAsync``1(System.String,CancellationToken)
+  name: DecodeAsync<T>(String, CancellationToken)
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_DecodeAsync__1_System_String_CancellationToken_
+  commentId: M:wan24.Core.JsonHelper.DecodeAsync``1(System.String,CancellationToken)
+  name.vb: DecodeAsync(Of T)(String, CancellationToken)
+  fullName: wan24.Core.JsonHelper.DecodeAsync<T>(System.String, CancellationToken)
+  fullName.vb: wan24.Core.JsonHelper.DecodeAsync(Of T)(System.String, CancellationToken)
+  nameWithType: JsonHelper.DecodeAsync<T>(String, CancellationToken)
+  nameWithType.vb: JsonHelper.DecodeAsync(Of T)(String, CancellationToken)
 - uid: wan24.Core.JsonHelper.DecodeObject(Type@,System.String@)
   name: DecodeObject(in Type, in String)
   href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_DecodeObject_Type__System_String__
@@ -24061,6 +24102,25 @@ references:
   isSpec: "True"
   fullName: wan24.Core.JsonHelper.DecodeObject
   nameWithType: JsonHelper.DecodeObject
+- uid: wan24.Core.JsonHelper.DecodeObjectAsync(Type,Stream,CancellationToken)
+  name: DecodeObjectAsync(Type, Stream, CancellationToken)
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_DecodeObjectAsync_Type_Stream_CancellationToken_
+  commentId: M:wan24.Core.JsonHelper.DecodeObjectAsync(Type,Stream,CancellationToken)
+  fullName: wan24.Core.JsonHelper.DecodeObjectAsync(Type, Stream, CancellationToken)
+  nameWithType: JsonHelper.DecodeObjectAsync(Type, Stream, CancellationToken)
+- uid: wan24.Core.JsonHelper.DecodeObjectAsync(Type,System.String,CancellationToken)
+  name: DecodeObjectAsync(Type, String, CancellationToken)
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_DecodeObjectAsync_Type_System_String_CancellationToken_
+  commentId: M:wan24.Core.JsonHelper.DecodeObjectAsync(Type,System.String,CancellationToken)
+  fullName: wan24.Core.JsonHelper.DecodeObjectAsync(Type, System.String, CancellationToken)
+  nameWithType: JsonHelper.DecodeObjectAsync(Type, String, CancellationToken)
+- uid: wan24.Core.JsonHelper.DecodeObjectAsync*
+  name: DecodeObjectAsync
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_DecodeObjectAsync_
+  commentId: Overload:wan24.Core.JsonHelper.DecodeObjectAsync
+  isSpec: "True"
+  fullName: wan24.Core.JsonHelper.DecodeObjectAsync
+  nameWithType: JsonHelper.DecodeObjectAsync
 - uid: wan24.Core.JsonHelper.Decoder
   name: Decoder
   href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_Decoder
@@ -24096,6 +24156,22 @@ references:
   isSpec: "True"
   fullName: wan24.Core.JsonHelper.Encode
   nameWithType: JsonHelper.Encode
+- uid: wan24.Core.JsonHelper.EncodeAsync(System.Object,System.Nullable{Stream},System.Boolean,CancellationToken)
+  name: EncodeAsync(Object, Nullable<Stream>, Boolean, CancellationToken)
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_EncodeAsync_System_Object_System_Nullable_Stream__System_Boolean_CancellationToken_
+  commentId: M:wan24.Core.JsonHelper.EncodeAsync(System.Object,System.Nullable{Stream},System.Boolean,CancellationToken)
+  name.vb: EncodeAsync(Object, Nullable(Of Stream), Boolean, CancellationToken)
+  fullName: wan24.Core.JsonHelper.EncodeAsync(System.Object, System.Nullable<Stream>, System.Boolean, CancellationToken)
+  fullName.vb: wan24.Core.JsonHelper.EncodeAsync(System.Object, System.Nullable(Of Stream), System.Boolean, CancellationToken)
+  nameWithType: JsonHelper.EncodeAsync(Object, Nullable<Stream>, Boolean, CancellationToken)
+  nameWithType.vb: JsonHelper.EncodeAsync(Object, Nullable(Of Stream), Boolean, CancellationToken)
+- uid: wan24.Core.JsonHelper.EncodeAsync*
+  name: EncodeAsync
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_EncodeAsync_
+  commentId: Overload:wan24.Core.JsonHelper.EncodeAsync
+  isSpec: "True"
+  fullName: wan24.Core.JsonHelper.EncodeAsync
+  nameWithType: JsonHelper.EncodeAsync
 - uid: wan24.Core.JsonHelper.Encoder
   name: Encoder
   href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_Encoder
@@ -24115,6 +24191,63 @@ references:
   commentId: T:wan24.Core.JsonHelper.Encoder_Delegate
   fullName: wan24.Core.JsonHelper.Encoder_Delegate
   nameWithType: JsonHelper.Encoder_Delegate
+- uid: wan24.Core.JsonHelper.EncoderAsync
+  name: EncoderAsync
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_EncoderAsync
+  commentId: P:wan24.Core.JsonHelper.EncoderAsync
+  fullName: wan24.Core.JsonHelper.EncoderAsync
+  nameWithType: JsonHelper.EncoderAsync
+- uid: wan24.Core.JsonHelper.EncoderAsync*
+  name: EncoderAsync
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_EncoderAsync_
+  commentId: Overload:wan24.Core.JsonHelper.EncoderAsync
+  isSpec: "True"
+  fullName: wan24.Core.JsonHelper.EncoderAsync
+  nameWithType: JsonHelper.EncoderAsync
+- uid: wan24.Core.JsonHelper.EncoderAsync_Delegate
+  name: JsonHelper.EncoderAsync_Delegate
+  href: api/wan24.Core.JsonHelper.EncoderAsync_Delegate.html
+  commentId: T:wan24.Core.JsonHelper.EncoderAsync_Delegate
+  fullName: wan24.Core.JsonHelper.EncoderAsync_Delegate
+  nameWithType: JsonHelper.EncoderAsync_Delegate
+- uid: wan24.Core.JsonHelper.StreamDecoderAsync
+  name: StreamDecoderAsync
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_StreamDecoderAsync
+  commentId: P:wan24.Core.JsonHelper.StreamDecoderAsync
+  fullName: wan24.Core.JsonHelper.StreamDecoderAsync
+  nameWithType: JsonHelper.StreamDecoderAsync
+- uid: wan24.Core.JsonHelper.StreamDecoderAsync*
+  name: StreamDecoderAsync
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_StreamDecoderAsync_
+  commentId: Overload:wan24.Core.JsonHelper.StreamDecoderAsync
+  isSpec: "True"
+  fullName: wan24.Core.JsonHelper.StreamDecoderAsync
+  nameWithType: JsonHelper.StreamDecoderAsync
+- uid: wan24.Core.JsonHelper.StreamDecoderAsync_Delegate
+  name: JsonHelper.StreamDecoderAsync_Delegate
+  href: api/wan24.Core.JsonHelper.StreamDecoderAsync_Delegate.html
+  commentId: T:wan24.Core.JsonHelper.StreamDecoderAsync_Delegate
+  fullName: wan24.Core.JsonHelper.StreamDecoderAsync_Delegate
+  nameWithType: JsonHelper.StreamDecoderAsync_Delegate
+- uid: wan24.Core.JsonHelper.StringDecoderAsync
+  name: StringDecoderAsync
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_StringDecoderAsync
+  commentId: P:wan24.Core.JsonHelper.StringDecoderAsync
+  fullName: wan24.Core.JsonHelper.StringDecoderAsync
+  nameWithType: JsonHelper.StringDecoderAsync
+- uid: wan24.Core.JsonHelper.StringDecoderAsync*
+  name: StringDecoderAsync
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_StringDecoderAsync_
+  commentId: Overload:wan24.Core.JsonHelper.StringDecoderAsync
+  isSpec: "True"
+  fullName: wan24.Core.JsonHelper.StringDecoderAsync
+  nameWithType: JsonHelper.StringDecoderAsync
+- uid: wan24.Core.JsonHelper.StringDecoderAsync_Delegate
+  name: JsonHelper.StringDecoderAsync_Delegate
+  href: api/wan24.Core.JsonHelper.StringDecoderAsync_Delegate.html
+  commentId: T:wan24.Core.JsonHelper.StringDecoderAsync_Delegate
+  fullName: wan24.Core.JsonHelper.StringDecoderAsync_Delegate
+  nameWithType: JsonHelper.StringDecoderAsync_Delegate
 - uid: wan24.Core.LazyValue`1
   name: LazyValue<T>
   href: api/wan24.Core.LazyValue-1.html
@@ -26632,6 +26765,19 @@ references:
   commentId: T:wan24.Core.NetworkHelper
   fullName: wan24.Core.NetworkHelper
   nameWithType: NetworkHelper
+- uid: wan24.Core.NetworkHelper.FindTcpPort(System.Net.IPAddress)
+  name: FindTcpPort(IPAddress)
+  href: api/wan24.Core.NetworkHelper.html#wan24_Core_NetworkHelper_FindTcpPort_System_Net_IPAddress_
+  commentId: M:wan24.Core.NetworkHelper.FindTcpPort(System.Net.IPAddress)
+  fullName: wan24.Core.NetworkHelper.FindTcpPort(System.Net.IPAddress)
+  nameWithType: NetworkHelper.FindTcpPort(IPAddress)
+- uid: wan24.Core.NetworkHelper.FindTcpPort*
+  name: FindTcpPort
+  href: api/wan24.Core.NetworkHelper.html#wan24_Core_NetworkHelper_FindTcpPort_
+  commentId: Overload:wan24.Core.NetworkHelper.FindTcpPort
+  isSpec: "True"
+  fullName: wan24.Core.NetworkHelper.FindTcpPort
+  nameWithType: NetworkHelper.FindTcpPort
 - uid: wan24.Core.NetworkHelper.GetBroadcastAddress(System.Net.IPAddress,System.Net.IPAddress@)
   name: GetBroadcastAddress(IPAddress, in IPAddress)
   href: api/wan24.Core.NetworkHelper.html#wan24_Core_NetworkHelper_GetBroadcastAddress_System_Net_IPAddress_System_Net_IPAddress__
@@ -36867,12 +37013,15 @@ references:
   fullName.vb: wan24.Core.ResetEvent.Widening
   nameWithType: ResetEvent.Implicit
   nameWithType.vb: ResetEvent.Widening
-- uid: wan24.Core.ResetEvent.Reset
-  name: Reset()
-  href: api/wan24.Core.ResetEvent.html#wan24_Core_ResetEvent_Reset
-  commentId: M:wan24.Core.ResetEvent.Reset
-  fullName: wan24.Core.ResetEvent.Reset()
-  nameWithType: ResetEvent.Reset()
+- uid: wan24.Core.ResetEvent.Reset(CancellationToken@)
+  name: Reset(in CancellationToken)
+  href: api/wan24.Core.ResetEvent.html#wan24_Core_ResetEvent_Reset_CancellationToken__
+  commentId: M:wan24.Core.ResetEvent.Reset(CancellationToken@)
+  name.vb: Reset(ByRef CancellationToken)
+  fullName: wan24.Core.ResetEvent.Reset(in CancellationToken)
+  fullName.vb: wan24.Core.ResetEvent.Reset(ByRef CancellationToken)
+  nameWithType: ResetEvent.Reset(in CancellationToken)
+  nameWithType.vb: ResetEvent.Reset(ByRef CancellationToken)
 - uid: wan24.Core.ResetEvent.Reset*
   name: Reset
   href: api/wan24.Core.ResetEvent.html#wan24_Core_ResetEvent_Reset_
@@ -36880,12 +37029,12 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ResetEvent.Reset
   nameWithType: ResetEvent.Reset
-- uid: wan24.Core.ResetEvent.ResetAsync
-  name: ResetAsync()
-  href: api/wan24.Core.ResetEvent.html#wan24_Core_ResetEvent_ResetAsync
-  commentId: M:wan24.Core.ResetEvent.ResetAsync
-  fullName: wan24.Core.ResetEvent.ResetAsync()
-  nameWithType: ResetEvent.ResetAsync()
+- uid: wan24.Core.ResetEvent.ResetAsync(CancellationToken)
+  name: ResetAsync(CancellationToken)
+  href: api/wan24.Core.ResetEvent.html#wan24_Core_ResetEvent_ResetAsync_CancellationToken_
+  commentId: M:wan24.Core.ResetEvent.ResetAsync(CancellationToken)
+  fullName: wan24.Core.ResetEvent.ResetAsync(CancellationToken)
+  nameWithType: ResetEvent.ResetAsync(CancellationToken)
 - uid: wan24.Core.ResetEvent.ResetAsync*
   name: ResetAsync
   href: api/wan24.Core.ResetEvent.html#wan24_Core_ResetEvent_ResetAsync_
@@ -36893,12 +37042,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ResetEvent.ResetAsync
   nameWithType: ResetEvent.ResetAsync
-- uid: wan24.Core.ResetEvent.Set
-  name: Set()
-  href: api/wan24.Core.ResetEvent.html#wan24_Core_ResetEvent_Set
-  commentId: M:wan24.Core.ResetEvent.Set
-  fullName: wan24.Core.ResetEvent.Set()
-  nameWithType: ResetEvent.Set()
+- uid: wan24.Core.ResetEvent.Set(CancellationToken@)
+  name: Set(in CancellationToken)
+  href: api/wan24.Core.ResetEvent.html#wan24_Core_ResetEvent_Set_CancellationToken__
+  commentId: M:wan24.Core.ResetEvent.Set(CancellationToken@)
+  name.vb: Set(ByRef CancellationToken)
+  fullName: wan24.Core.ResetEvent.Set(in CancellationToken)
+  fullName.vb: wan24.Core.ResetEvent.Set(ByRef CancellationToken)
+  nameWithType: ResetEvent.Set(in CancellationToken)
+  nameWithType.vb: ResetEvent.Set(ByRef CancellationToken)
 - uid: wan24.Core.ResetEvent.Set*
   name: Set
   href: api/wan24.Core.ResetEvent.html#wan24_Core_ResetEvent_Set_
@@ -36906,12 +37058,12 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ResetEvent.Set
   nameWithType: ResetEvent.Set
-- uid: wan24.Core.ResetEvent.SetAsync
-  name: SetAsync()
-  href: api/wan24.Core.ResetEvent.html#wan24_Core_ResetEvent_SetAsync
-  commentId: M:wan24.Core.ResetEvent.SetAsync
-  fullName: wan24.Core.ResetEvent.SetAsync()
-  nameWithType: ResetEvent.SetAsync()
+- uid: wan24.Core.ResetEvent.SetAsync(CancellationToken)
+  name: SetAsync(CancellationToken)
+  href: api/wan24.Core.ResetEvent.html#wan24_Core_ResetEvent_SetAsync_CancellationToken_
+  commentId: M:wan24.Core.ResetEvent.SetAsync(CancellationToken)
+  fullName: wan24.Core.ResetEvent.SetAsync(CancellationToken)
+  nameWithType: ResetEvent.SetAsync(CancellationToken)
 - uid: wan24.Core.ResetEvent.SetAsync*
   name: SetAsync
   href: api/wan24.Core.ResetEvent.html#wan24_Core_ResetEvent_SetAsync_

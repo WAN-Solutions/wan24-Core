@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Delegate JsonHelper.Encoder_Delegate
+    <title>Delegate JsonHelper.EncoderAsync_Delegate
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Delegate JsonHelper.Encoder_Delegate
+    <meta name="title" content="Delegate JsonHelper.EncoderAsync_Delegate
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,19 +68,19 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.JsonHelper.Encoder_Delegate">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.JsonHelper.EncoderAsync_Delegate">
   
   
-  <h1 id="wan24_Core_JsonHelper_Encoder_Delegate" data-uid="wan24.Core.JsonHelper.Encoder_Delegate" class="text-break">Delegate JsonHelper.Encoder_Delegate
+  <h1 id="wan24_Core_JsonHelper_EncoderAsync_Delegate" data-uid="wan24.Core.JsonHelper.EncoderAsync_Delegate" class="text-break">Delegate JsonHelper.EncoderAsync_Delegate
   </h1>
   <div class="markdown level0 summary"><p>Delegate for a JSON encoder</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_JsonHelper_Encoder_Delegate_syntax">Syntax</h5>
+  <h5 id="wan24_Core_JsonHelper_EncoderAsync_Delegate_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate string Encoder_Delegate(object obj, bool prettify);</code></pre>
+    <pre><code class="lang-csharp hljs">public delegate Task&lt;string&gt; EncoderAsync_Delegate(object obj, Stream? target, bool prettify, CancellationToken cancellationToken);</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -99,9 +99,21 @@
 </td>
       </tr>
       <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Stream</span>&gt;</td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target stream</p>
+</td>
+      </tr>
+      <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">prettify</span></td>
         <td><p>Prettify?</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
 </td>
       </tr>
     </tbody>
@@ -116,8 +128,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><p>JSON string</p>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><p>JSON string or emptym if <code>target</code> was given</p>
 </td>
       </tr>
     </tbody>
@@ -167,10 +179,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_JsonHelper_Encoder_Delegate.md&amp;value=---%0Auid%3A%20wan24.Core.JsonHelper.Encoder_Delegate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_JsonHelper_EncoderAsync_Delegate.md&amp;value=---%0Auid%3A%20wan24.Core.JsonHelper.EncoderAsync_Delegate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/JsonHelper.cs/#L160" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/JsonHelper.cs/#L169" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
