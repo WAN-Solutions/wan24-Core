@@ -348,7 +348,7 @@ namespace wan24.Core
         /// <param name="throwOnCancellation">Throw an exception if canceled?</param>
         /// <returns>If not canceled</returns>
         /// <exception cref="OperationCanceledException">The service was canceled</exception>
-        protected bool EnsureNotCanceled(in bool throwOnCancellation = true)
+        protected virtual bool EnsureNotCanceled(in bool throwOnCancellation = true)
         {
             if (!throwOnCancellation) return !CancelToken.IsCancellationRequested;
             CancelToken.ThrowIfCancellationRequested();
