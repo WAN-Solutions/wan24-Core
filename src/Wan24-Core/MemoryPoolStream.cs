@@ -469,7 +469,7 @@ namespace wan24.Core
                 }
                 else
                 {
-                    for (; len != 0; len -= LastBufferOffset)
+                    for (; len > 0; len -= LastBufferOffset)
                     {
                         data = clear ? Pool.RentClean(BufferSize) : Pool.Rent(BufferSize);
                         Buffers.Add(data);

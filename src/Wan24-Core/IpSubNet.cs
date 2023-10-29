@@ -72,13 +72,13 @@ namespace wan24.Core
             if (countAllBits)
             {
                 int bits = bytes.Length << 3;
-                if ((bytes[^1] & 1) == 0) for (; --bits != 0 && ((bytes[bits >> 3] >> (8 - (bits & 7))) & 1) == 0;) ;
+                if ((bytes[^1] & 1) == 0) for (; --bits > 0 && ((bytes[bits >> 3] >> (8 - (bits & 7))) & 1) == 0;) ;
                 MaskBits = (byte)bits;
             }
             else
             {
                 int i = bytes.Length - 1;
-                for (; i != -1 && bytes[i] == 0; i--) ;
+                for (; i > -1 && bytes[i] == 0; i--) ;
                 MaskBits = (byte)(++i << 3);
             }
             IsIPv4 = isIPv4;

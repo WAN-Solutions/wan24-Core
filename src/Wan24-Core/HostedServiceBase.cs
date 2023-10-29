@@ -104,16 +104,29 @@ namespace wan24.Core
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             if (IsRunning) return;
-            Logging.WriteDebug($"Starting {this}");
-            IsRunning = true;
-            await BeforeStartAsync(cancellationToken).DynamicContext();
-            Cancellation = new();
-            CancelToken = Cancellation.Token;
-            await StartingAsync(cancellationToken).DynamicContext();
-            ServiceTask = ((Func<Task>)RunServiceAsync).StartLongRunningTask(cancellationToken: CancellationToken.None);
-            await AfterStartAsync(cancellationToken).DynamicContext();
-            RunEvent.Set();
-            Logging.WriteDebug($"Started {this}");
+            try
+            {
+                Logging.WriteDebug($"Starting {this}");
+                IsRunning = true;
+                await BeforeStartAsync(cancellationToken).DynamicContext();
+                Cancellation = new();
+                CancelToken = Cancellation.Token;
+                await StartingAsync(cancellationToken).DynamicContext();
+                ServiceTask = ((Func<Task>)RunServiceAsync).StartLongRunningTask(cancellationToken: CancellationToken.None);
+                await AfterStartAsync(cancellationToken).DynamicContext();
+                RunEvent.Set();
+                Logging.WriteDebug($"Started {this}");
+            }
+            catch
+            {
+                IsRunning = false;
+                if(Cancellation is not null)
+                {
+                    if (!Cancellation.IsCancellationRequested) Cancellation.Cancel();
+                    if (ServiceTask is not null) RunEvent.Set();
+                }
+                throw;
+            }
         }
 
         /// <inheritdoc/>
@@ -285,6 +298,7 @@ namespace wan24.Core
         protected async Task RunServiceAsync()
         {
             StoppedExceptional = false;
+            LastException = null;
             try
             {
                 Started = DateTime.Now;
@@ -326,6 +340,19 @@ namespace wan24.Core
                 StopTask.SetResult();
                 StopTask = null;
             }
+        }
+
+        /// <summary>
+        /// Ensure not being canceled
+        /// </summary>
+        /// <param name="throwOnCancellation">Throw an exception if canceled?</param>
+        /// <returns>If not canceled</returns>
+        /// <exception cref="OperationCanceledException">The service was canceled</exception>
+        protected bool EnsureNotCanceled(in bool throwOnCancellation = true)
+        {
+            if (!throwOnCancellation) return !CancelToken.IsCancellationRequested;
+            CancelToken.ThrowIfCancellationRequested();
+            return true;
         }
 
         /// <summary>

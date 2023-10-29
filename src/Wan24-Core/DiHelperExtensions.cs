@@ -35,7 +35,7 @@ namespace wan24.Core
             foreach (ParameterInfo pi in parameters)
             {
                 found = false;
-                for (i = 0; i != len; i++)
+                for (i = 0; i < len; i++)
                 {
                     if (valueList[i] is null || !pi.ParameterType.IsAssignableFrom(valueList[i]!.GetType())) continue;
                     res.Add(valueList[i]);
@@ -81,7 +81,7 @@ namespace wan24.Core
             foreach (ParameterInfo pi in parameters)
             {
                 found = false;
-                for (i = 0; i != len; i++)
+                for (i = 0; i < len; i++)
                 {
                     if (valueList[i] is null || !pi.ParameterType.IsAssignableFrom(valueList[i]!.GetType())) continue;
                     res.Add(valueList[i]);
@@ -128,7 +128,7 @@ namespace wan24.Core
             foreach (ParameterInfo pi in parameters)
             {
                 found = false;
-                for (i = 0; i != len; i++)
+                for (i = 0; i < len; i++)
                 {
                     if (valueList[i] is null || !pi.ParameterType.IsAssignableFrom(valueList[i]!.GetType())) continue;
                     res.Add(valueList[i]);
@@ -169,7 +169,7 @@ namespace wan24.Core
             foreach (Type type in types)
             {
                 found = false;
-                for (i = 0; i != len; i++)
+                for (i = 0; i < len; i++)
                 {
                     if (valueList[i] is null || !type.IsAssignableFrom(valueList[i]!.GetType())) continue;
                     res.Add(valueList[i]);
@@ -214,7 +214,7 @@ namespace wan24.Core
             foreach (Type type in types)
             {
                 found = false;
-                for (i = 0; i != len; i++)
+                for (i = 0; i < len; i++)
                 {
                     if (valueList[i] is null || !type.IsAssignableFrom(valueList[i]!.GetType())) continue;
                     res.Add(valueList[i]);
@@ -264,7 +264,7 @@ namespace wan24.Core
             foreach (Type type in types)
             {
                 found = false;
-                for (i = 0; i != len; i++)
+                for (i = 0; i < len; i++)
                 {
                     if (valueList[i] is null || !type.IsAssignableFrom(valueList[i]!.GetType())) continue;
                     res.Add(valueList[i]);

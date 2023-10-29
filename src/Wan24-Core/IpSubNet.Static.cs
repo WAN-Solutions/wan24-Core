@@ -68,7 +68,7 @@ namespace wan24.Core
             BigInteger count = net.IPAddressCount;
             if (count > long.MaxValue) throw new OutOfMemoryException("IP address range is too large!");
             IPAddress[] res = new IPAddress[(long)count];
-            for (long i = 0; i != count; res[i] = net.GetIPAddress(BigInteger.Add(net.MaskedNetwork, new(i))), i++) ;
+            for (long i = 0; i < count; res[i] = net.GetIPAddress(BigInteger.Add(net.MaskedNetwork, new(i))), i++) ;
             return res;
         }
 

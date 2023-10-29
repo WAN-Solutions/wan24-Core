@@ -33,7 +33,7 @@ namespace wan24.Core
             bufferSize ??= Settings.BufferSize;
             bufferSize = (int)Math.Min(count, bufferSize.Value);
             using RentedArrayRefStruct<byte> buffer = new(bufferSize.Value, clean: false);
-            for (int red = 1; count != 0 && red != 0; count -= red)
+            for (int red = 1; count > 0 && red > 0; count -= red)
             {
                 red = stream.Read(buffer.Span[..(int)Math.Min(count, bufferSize.Value)]);
                 if (red != 0)
@@ -70,7 +70,7 @@ namespace wan24.Core
             bufferSize ??= Settings.BufferSize;
             bufferSize = (int)Math.Min(count, bufferSize.Value);
             using RentedArrayStructSimple<byte> buffer = new(bufferSize.Value, clean: false);
-            for (int red = 1; count != 0 && red != 0; count -= red)
+            for (int red = 1; count > 0 && red > 0; count -= red)
             {
                 red = await stream.ReadAsync(buffer.Memory[..(int)Math.Min(count, bufferSize.Value)], cancellationToken).DynamicContext();
                 if (red != 0)

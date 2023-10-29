@@ -45,11 +45,12 @@ namespace wan24.Core
         /// <summary>
         /// Set the state
         /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Did set?</returns>
-        public bool Set()
+        public bool Set(in CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            using SemaphoreSyncContext ssc = Sync.SyncContext();
+            using SemaphoreSyncContext ssc = Sync.SyncContext(cancellationToken);
             EnsureUndisposed();
             if (IsSet) return false;
             TaskCompletion.SetResult();
@@ -60,11 +61,12 @@ namespace wan24.Core
         /// <summary>
         /// Set the state
         /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Did set?</returns>
-        public async Task<bool> SetAsync()
+        public async Task<bool> SetAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync();
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken);
             EnsureUndisposed();
             if (IsSet) return false;
             TaskCompletion.SetResult();
@@ -75,11 +77,12 @@ namespace wan24.Core
         /// <summary>
         /// Reset the state
         /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Did reset?</returns>
-        public bool Reset()
+        public bool Reset(in CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            using SemaphoreSyncContext ssc = Sync.SyncContext();
+            using SemaphoreSyncContext ssc = Sync.SyncContext(cancellationToken);
             EnsureUndisposed();
             if (!IsSet) return false;
             TaskCompletion = new(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -90,11 +93,12 @@ namespace wan24.Core
         /// <summary>
         /// Reset the state
         /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Did reset?</returns>
-        public async Task<bool> ResetAsync()
+        public async Task<bool> ResetAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync();
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken);
             EnsureUndisposed();
             if (!IsSet) return false;
             TaskCompletion = new(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -122,7 +126,7 @@ namespace wan24.Core
         public async Task WaitAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            async Task WaitAsyncInt() => await TaskCompletion.Task.DynamicContext();
+            async Task WaitAsyncInt() => await TaskCompletion.Task.WaitAsync(cancellationToken).DynamicContext();
             await ((Func<Task>)WaitAsyncInt).StartFairTask(cancellationToken: cancellationToken).DynamicContext();
         }
 
@@ -164,7 +168,7 @@ namespace wan24.Core
             while (!cancellationToken.IsCancellationRequested)
             {
                 Wait(cancellationToken);
-                if (Reset()) return;
+                if (Reset(cancellationToken)) return;
             }
             cancellationToken.ThrowIfCancellationRequested();
         }
@@ -179,7 +183,7 @@ namespace wan24.Core
             while (!cancellationToken.IsCancellationRequested)
             {
                 await WaitAsync(cancellationToken).DynamicContext();
-                if (await ResetAsync().DynamicContext()) return;
+                if (await ResetAsync(cancellationToken).DynamicContext()) return;
             }
             cancellationToken.ThrowIfCancellationRequested();
         }

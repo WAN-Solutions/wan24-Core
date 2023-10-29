@@ -84,5 +84,16 @@ namespace Wan24_Core_Tests
             await stream.WriteAsync(writeBuffer);
             await task;
         }
+
+        [TestMethod, Timeout(3000)]
+        public async Task Cancellation_Test()
+        {
+            using BlockingBufferStream stream = new(bufferSize: 3);
+            using CancellationTokenSource cts = new();
+            Task task = Task.Run(async () => await stream.WriteAsync(new byte[] { 1, 2, 3, 4 }, cts.Token).DynamicContext());
+            await Task.Delay(200);
+            cts.Cancel();
+            await Assert.ThrowsExceptionAsync<TaskCanceledException>(async () => await task);
+        }
     }
 }

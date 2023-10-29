@@ -224,7 +224,7 @@ namespace wan24.Core
         {
             if (str.Length != 8) throw new ArgumentOutOfRangeException(nameof(str));
             int res = 0;
-            for (int i = 0; i != 8; res |= str[i] == '1' ? 1 << i : 0, i++) ;
+            for (int i = 0; i < 8; res |= str[i] == '1' ? 1 << i : 0, i++) ;
             return (byte)res;
         }
 

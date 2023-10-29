@@ -121,7 +121,7 @@
             EnsureUndisposed();
             EnsureReadable();
             int res = 0;
-            for (int read, red = 1; buffer.Length != 0 && red != 0; )
+            for (int read, red = 1; buffer.Length > 0 && red > 0; )
             {
                 read = GetReadCount(buffer.Length);
                 if (read == 0)
@@ -147,7 +147,7 @@
             EnsureUndisposed();
             EnsureReadable();
             int res = 0;
-            for (int read, red = 1; buffer.Length != 0 && red != 0; )
+            for (int read, red = 1; buffer.Length > 0 && red > 0; )
             {
                 read = GetReadCount(buffer.Length);
                 if (read == 0)
@@ -180,7 +180,7 @@
         {
             EnsureUndisposed();
             EnsureWritable();
-            for (int write; buffer.Length != 0; buffer = buffer[write..])
+            for (int write; buffer.Length > 0; buffer = buffer[write..])
             {
                 write = ThrottleWriting(count: buffer.Length);
                 Target.Write(buffer[..write]);
@@ -196,7 +196,7 @@
         {
             EnsureUndisposed();
             EnsureWritable();
-            for (int write; buffer.Length != 0; buffer = buffer[write..])
+            for (int write; buffer.Length > 0; buffer = buffer[write..])
             {
                 write = await ThrottleWritingAsync(count: buffer.Length, cancellationToken);
                 await Target.WriteAsync(buffer[..write], cancellationToken).DynamicContext();

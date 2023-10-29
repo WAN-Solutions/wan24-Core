@@ -94,7 +94,7 @@ namespace wan24.Core
                 fixed (byte* charMapIndexPtr = charMapIndex.Span)
                 {
                     // Process data in 24 byte chunks (which results in a 32 byte chunk each 24 byte chunk)
-                    for (byte* dataEnd = data + len; data != dataEnd; data += 24, result += 32)
+                    for (byte* dataEnd = data + len; data < dataEnd; data += 24, result += 32)
                     {
                         // Load 28 bytes from the input data (only 24 bytes from that are going to be used)
                         dataVector = Vector256.Create(Sse2.LoadVector128(data), Sse2.LoadVector128(data + 12));
@@ -237,10 +237,10 @@ namespace wan24.Core
                 using RentedArrayRefStruct<byte> charBytes = new(len: 32, clean: false);// Character byte buffer
                 fixed (byte* charBytesPtr = charBytes.Span)
                     // Process data in 32 byte chunks (which results in a 24 byte chunk each 32 byte chunk)
-                    for (char* dataEnd = data + len; data != dataEnd; data += 32, result += 24)
+                    for (char* dataEnd = data + len; data < dataEnd; data += 32, result += 24)
                     {
                         // Map the 32 ASCII characters chunk to character map index bytes
-                        for (i = 0; i != 32; i++)
+                        for (i = 0; i < 32; i++)
                             if (data[i] == charMap[0]) charBytesPtr[i] = 0;// Saved ~140ms
                             else if (data[i] == charMap[1]) charBytesPtr[i] = 1;
                             else if (data[i] == charMap[2]) charBytesPtr[i] = 2;

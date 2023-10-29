@@ -77,7 +77,7 @@ namespace wan24.Core
             Parser_Delegate? handler;// Function handler
 #pragma warning restore IDE0018 // Can be declared inline
             StringParserContext context;
-            for (matches = rx.Matches(str); matches.Count != 0 && round < maxRounds; matches = RxParser.Matches(str), round++)
+            for (matches = rx.Matches(str); matches.Count > 0 && round < maxRounds; matches = RxParser.Matches(str), round++)
             {
                 data["_round"] = round.ToString();
                 // Parse placeholders

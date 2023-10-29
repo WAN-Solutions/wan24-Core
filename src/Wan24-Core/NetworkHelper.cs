@@ -440,5 +440,24 @@ namespace wan24.Core
                 where addr.Address == ip
                 select adapter)
                 .FirstOrDefault();
+
+        /// <summary>
+        /// Find the next free TCP port
+        /// </summary>
+        /// <param name="ip">IP address</param>
+        /// <returns>Next free TCP port</returns>
+        public static int FindTcpPort(this IPAddress ip)
+        {
+            TcpListener listener = new(new IPEndPoint(ip, 0));
+            listener.Start();
+            try
+            {
+                return ((IPEndPoint)listener.LocalEndpoint).Port;
+            }
+            finally
+            {
+                listener.Stop();
+            }
+        }
     }
 }

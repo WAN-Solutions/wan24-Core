@@ -99,7 +99,7 @@ namespace wan24.Core
                             l -= il;
                         }
 #endif
-                        for (int bits; i != len; i++)
+                        for (int bits; i < len; i++)
                         {
 #if NO_UNSAFE
                             bits = bitOffset == 0 ? data[i] : (data[i] << BitRotation[bitOffset]) | (data[i - 1] >> bitOffset);
@@ -192,7 +192,7 @@ namespace wan24.Core
                             l -= il;
                         }
 #endif
-                        for (int bits; i != len; i++)
+                        for (int bits; i < len; i++)
                         {
 #if NO_UNSAFE
                             b = data[i];

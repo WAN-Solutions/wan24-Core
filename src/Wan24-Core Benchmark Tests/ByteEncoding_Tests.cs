@@ -44,7 +44,7 @@ namespace Wan24_Core_Benchmark_Tests
             ReadOnlySpan<byte> data = TestData.AsSpan();
             Span<byte> encoded = Base64Encoded.AsSpan();
             Span<char> encodedChars = Base64EncodedChars.AsSpan();
-            for (int i = 0; i != RUN_COUNT; i++)
+            for (int i = 0; i < RUN_COUNT; i++)
             {
                 Base64.EncodeToUtf8(data, encoded, out _, out _);
                 Encoding.UTF8.GetChars(encoded, encodedChars);
@@ -57,7 +57,7 @@ namespace Wan24_Core_Benchmark_Tests
             ReadOnlySpan<char> data = TestData_Base64EncodedChars.AsSpan();
             Span<byte> dataBytes = Base64Encoded.AsSpan();
             Span<byte> decoded = Base64Decoded.AsSpan();
-            for (int i = 0; i != RUN_COUNT; i++)
+            for (int i = 0; i < RUN_COUNT; i++)
             {
                 Encoding.UTF8.GetBytes(data, dataBytes);
                 Base64.DecodeFromUtf8(dataBytes, decoded, out _, out _);
@@ -71,7 +71,7 @@ namespace Wan24_Core_Benchmark_Tests
             Span<byte> encoded = Base64Encoded.AsSpan();
             Span<char> encodedChars = Base64EncodedChars.AsSpan();
             Span<byte> decoded = Base64Decoded.AsSpan();
-            for (int i = 0; i != RUN_COUNT; i++)
+            for (int i = 0; i < RUN_COUNT; i++)
             {
                 Base64.EncodeToUtf8(data, encoded, out _, out _);
                 Encoding.UTF8.GetChars(encoded, encodedChars);
@@ -86,7 +86,7 @@ namespace Wan24_Core_Benchmark_Tests
             ReadOnlySpan<byte> data = TestData.AsSpan();
             Span<char> encoded = ByteEncoded.AsSpan();
             ReadOnlySpan<char> charMap = ByteEncoding.DefaultCharMap.Span;
-            for (int i = 0; i != RUN_COUNT; i++) data.Encode(encoded, charMap);
+            for (int i = 0; i < RUN_COUNT; i++) data.Encode(encoded, charMap);
         }
 
         [Benchmark]
@@ -95,7 +95,7 @@ namespace Wan24_Core_Benchmark_Tests
             ReadOnlySpan<char> data = TestData_ByteEncoded.AsSpan();
             Span<byte> decoded = ByteDecoded.AsSpan();
             ReadOnlySpan<char> charMap = ByteEncoding.DefaultCharMap.Span;
-            for (int i = 0; i != RUN_COUNT; i++) data.Decode(decoded, charMap);
+            for (int i = 0; i < RUN_COUNT; i++) data.Decode(decoded, charMap);
         }
 
         [Benchmark]
@@ -106,7 +106,7 @@ namespace Wan24_Core_Benchmark_Tests
             ReadOnlySpan<char> encodedReadOnly = encoded;
             Span<byte> decoded = ByteDecoded.AsSpan();
             ReadOnlySpan<char> charMap = ByteEncoding.DefaultCharMap.Span;
-            for (int i = 0; i != RUN_COUNT; i++)
+            for (int i = 0; i < RUN_COUNT; i++)
             {
                 data.Encode(encoded, charMap);
                 encodedReadOnly.Decode(decoded, charMap);

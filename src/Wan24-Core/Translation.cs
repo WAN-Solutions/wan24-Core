@@ -89,7 +89,7 @@ namespace wan24.Core
                 {
                     int len = values.Length;
                     Dictionary<string, string> valuesDict = new(len);
-                    for (int i = 0; i != len; valuesDict[i.ToString()] = values[i], i++) ;
+                    for (int i = 0; i < len; valuesDict[i.ToString()] = values[i], i++) ;
                     term = term.Parse(valuesDict, ParserOptions);
                 }
                 return term;
@@ -157,7 +157,7 @@ namespace wan24.Core
             {
                 int len = values.Length;
                 Dictionary<string, string> valuesDict = new(len);
-                for (int i = 0; i != len; valuesDict[i.ToString()] = values[i], i++) ;
+                for (int i = 0; i < len; valuesDict[i.ToString()] = values[i], i++) ;
                 term = term.Parse(valuesDict, ParserOptions);
             }
             return term;
@@ -245,7 +245,7 @@ namespace wan24.Core
             {
                 int len = values.Length;
                 Dictionary<string, string> valuesDict = new(len);
-                for (int i = 0; i != len; valuesDict[i.ToString()] = values[i], i++) ;
+                for (int i = 0; i < len; valuesDict[i.ToString()] = values[i], i++) ;
                 term = term.Parse(valuesDict, ParserOptions);
             }
             return term;
