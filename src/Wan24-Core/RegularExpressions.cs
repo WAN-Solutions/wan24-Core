@@ -32,6 +32,10 @@ namespace wan24.Core
         /// Locale using an underscore (<c>$1</c> contains the first part, <c>$2</c> the second part)
         /// </summary>
         public const string LOCALE_WITH_UNDERSCORE = @"^([a-z]{2})_([A-Z]{2})$";
+        /// <summary>
+        /// GUID
+        /// </summary>
+        public const string GUID = @"^[0-9|a-f]{8}-([0-9|a-f]{4}-){3}[0-9|a-f]{12}$";
 
         /// <summary>
         /// An object for thread synchronization
@@ -69,6 +73,10 @@ namespace wan24.Core
         /// Locale using an underscore (<c>$1</c> contains the first part, <c>$2</c> the second part)
         /// </summary>
         public static readonly Regex RX_LOCALE_WITH_UNDERSCORE = new(LOCALE_WITH_UNDERSCORE, RegexOptions.Compiled | RegexOptions.Singleline);
+        /// <summary>
+        /// GUID
+        /// </summary>
+        public static readonly Regex RX_GUID = new(GUID, RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.IgnoreCase);
 
         /// <summary>
         /// Named expression names
