@@ -101,8 +101,11 @@
             set
             {
                 EnsureUndisposed();
-                if (_IsEndOfFile && !value) throw new InvalidOperationException();
+                using SemaphoreSyncContext ssc = BufferSync.SyncContext();
+                if (_IsEndOfFile || !value) throw new InvalidOperationException();
                 _IsEndOfFile = value;
+                SpaceEvent.Set();
+                DataEvent.Set();
             }
         }
 
@@ -137,6 +140,20 @@
         {
             get => IfUndisposed(_Position);
             set => throw new NotSupportedException();
+        }
+
+        /// <summary>
+        /// Set the end of the file
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public async Task SetIsEndOfFileAsync(CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            using SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext();
+            if (_IsEndOfFile) throw new InvalidOperationException();
+            _IsEndOfFile = true;
+            await SpaceEvent.SetAsync(cancellationToken).DynamicContext();
+            await DataEvent.SetAsync(cancellationToken).DynamicContext();
         }
 
         /// <summary>
@@ -422,6 +439,7 @@
             for (int write; buffer.Length > 0 && EnsureUndisposed();)
             {
                 SpaceEvent.Wait();
+                if (_IsEndOfFile) throw new InvalidOperationException();
                 EnsureUndisposed();
                 using (SemaphoreSyncContext ssc = BufferSync.SyncContext())
                 {
@@ -514,6 +532,7 @@
             for (int write; buffer.Length > 0 && EnsureUndisposed();)
             {
                 await SpaceEvent.WaitAsync(cancellationToken).DynamicContext();
+                if (_IsEndOfFile) throw new InvalidOperationException();
                 EnsureUndisposed();
                 using (SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext())
                 {
