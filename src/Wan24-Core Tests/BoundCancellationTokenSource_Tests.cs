@@ -9,9 +9,10 @@ namespace Wan24_Core_Tests
         public void General_Tests()
         {
             using CancellationTokenSource tcs = new();
-            using BoundCancellationTokenSource tcs2 = new(tcs.Token);
-            tcs.Cancel();
-            Assert.IsTrue(tcs2.IsCancellationRequested);
+            using CancellationTokenSource tcs2 = new();
+            using BoundCancellationTokenSource bcts = new(tcs.Token, tcs2.Token);
+            tcs2.Cancel();
+            Assert.IsTrue(bcts.IsCancellationRequested);
         }
     }
 }

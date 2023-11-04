@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Collections.ObjectModel;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Bound cancellation token source (canceled when a parent token was canceled)
@@ -6,69 +8,92 @@
     public class BoundCancellationTokenSource : CancellationTokenSource
     {
         /// <summary>
+        /// Thread synchronization
+        /// </summary>
+        protected readonly SemaphoreSync Sync = new();
+        /// <summary>
+        /// Bound cancellation tokens
+        /// </summary>
+        protected readonly List<CancellationToken> _BoundTokens = new();
+        /// <summary>
+        /// Cancellation registrations
+        /// </summary>
+        protected readonly List<CancellationTokenRegistration> CancelRegistrations = new();
+        /// <summary>
         /// Is disposed?
         /// </summary>
         private bool IsDisposed = false;
-        /// <summary>
-        /// Cancellation registration
-        /// </summary>
-        protected CancellationTokenRegistration? CancelRegistration = null;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
-        public BoundCancellationTokenSource(in CancellationToken cancellationToken) : base() => Rebind(cancellationToken);
+        /// <param name="cancellationTokens">Cancellation tokens</param>
+        public BoundCancellationTokenSource(params CancellationToken[] cancellationTokens) : base() => AddTokens(cancellationTokens);
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="delayMs">Cancellation delay in ms</param>
-        public BoundCancellationTokenSource(in CancellationToken cancellationToken, in int delayMs) : base(delayMs) => Rebind(cancellationToken);
+        /// <param name="cancellationTokens">Cancellation tokens</param>
+        public BoundCancellationTokenSource(in int delayMs, params CancellationToken[] cancellationTokens) : base(delayMs) => AddTokens(cancellationTokens);
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="delay">Cancellation delay</param>
-        public BoundCancellationTokenSource(in CancellationToken cancellationToken, in TimeSpan delay) : base(delay) => Rebind(cancellationToken);
+        /// <param name="cancellationTokens">Cancellation tokens</param>
+        public BoundCancellationTokenSource(in TimeSpan delay, params CancellationToken[] cancellationTokens) : base(delay) => AddTokens(cancellationTokens);
 
         /// <summary>
-        /// Parent cancellation token
+        /// Bound cancellation token
         /// </summary>
-        public CancellationToken ParentToken { get; protected set; } = default;
+        public ReadOnlyCollection<CancellationToken> BoundTokens => _BoundTokens.AsReadOnly();
 
         /// <summary>
-        /// Is bound to the parent token?
+        /// Add tokens
         /// </summary>
-        public bool IsBoundToParent { get; protected set; }
-
-        /// <summary>
-        /// Unbind
-        /// </summary>
-        public virtual void Unbind()
+        /// <param name="cancellationTokens">Cancellation tokens</param>
+        public virtual void AddTokens(params CancellationToken[] cancellationTokens)
         {
-            if (!CancelRegistration.HasValue) return;
-            CancelRegistration.Value.Dispose();
-            CancelRegistration = null;
-            IsBoundToParent = false;
+            if (IsDisposed) throw new ObjectDisposedException(GetType().Name);
+            if (IsCancellationRequested) throw new InvalidOperationException("Cancelled");
+            using SemaphoreSyncContext ssc = Sync;
+            foreach (CancellationToken cancellationToken in cancellationTokens)
+            {
+                if (_BoundTokens.Contains(cancellationToken)) continue;
+                CancelRegistrations.Add(cancellationToken.Register(() =>
+                {
+                    using SemaphoreSyncContext ssc = Sync;
+                    if (!IsCancellationRequested) Cancel();
+                }));
+                _BoundTokens.Add(cancellationToken);
+            }
         }
 
         /// <summary>
-        /// Re-bind to another cancellation token
+        /// Remove a token
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
-        public virtual void Rebind(in CancellationToken cancellationToken)
+        public virtual void RemoveToken(in CancellationToken cancellationToken)
         {
-            Unbind();
             if (IsDisposed) throw new ObjectDisposedException(GetType().Name);
-            ParentToken = cancellationToken;
-            CancelRegistration = cancellationToken.Register(() =>
+            using SemaphoreSyncContext ssc = Sync;
+            for (int i = 0, len = _BoundTokens.Count; i < len; i++)
             {
-                if (!IsCancellationRequested) Cancel();
-            });
-            IsBoundToParent = true;
+                if (_BoundTokens[i] != cancellationToken) continue;
+                CancelRegistrations[i].Dispose();
+                CancelRegistrations.RemoveAt(i);
+                _BoundTokens.RemoveAt(i);
+            }
+        }
+
+        /// <summary>
+        /// Remove all tokens
+        /// </summary>
+        public virtual void Clear()
+        {
+            if (IsDisposed) throw new ObjectDisposedException(GetType().Name);
+            foreach (CancellationToken cancellationToken in _BoundTokens) RemoveToken(cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -77,7 +102,9 @@
             if (IsDisposed) return;
             IsDisposed = true;
             base.Dispose(disposing);
-            Unbind();
+            foreach (CancellationTokenRegistration ctr in CancelRegistrations)
+                ctr.Dispose();
+            Sync.Dispose();
         }
     }
 }
