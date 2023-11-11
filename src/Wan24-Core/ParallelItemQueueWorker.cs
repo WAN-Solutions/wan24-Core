@@ -4,7 +4,7 @@
     /// Base class for a parallel item queue worker
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
-    [Obsolete("Use ParallelItemQueueWorkerBase instead")]
+    [Obsolete("Use ParallelItemQueueWorkerBase instead")]//TODO Remove in v2
     public abstract class ParallelItemQueueWorker<T> : ParallelItemQueueWorkerBase<T>
     {
         /// <summary>

@@ -114,7 +114,7 @@ namespace wan24.Core
                 await StartingAsync(cancellationToken).DynamicContext();
                 ServiceTask = ((Func<Task>)RunServiceAsync).StartLongRunningTask(cancellationToken: CancellationToken.None);
                 await AfterStartAsync(cancellationToken).DynamicContext();
-                RunEvent.Set();
+                RunEvent.Set(cancellationToken);
                 Logging.WriteDebug($"Started {this}");
             }
             catch
@@ -123,7 +123,7 @@ namespace wan24.Core
                 if(Cancellation is not null)
                 {
                     if (!Cancellation.IsCancellationRequested) Cancellation.Cancel();
-                    if (ServiceTask is not null) RunEvent.Set();
+                    if (ServiceTask is not null) RunEvent.Set(cancellationToken);
                 }
                 throw;
             }
@@ -142,26 +142,26 @@ namespace wan24.Core
                 {
                     Logging.WriteDebug($"Stopping {this}");
                     isStopping = true;
-                    await BeforeStopAsync(cancellationToken).DynamicContext();
+                    await BeforeStopAsync(CancellationToken.None).DynamicContext();
                     StopTask = new(TaskCreationOptions.RunContinuationsAsynchronously);
                     Cancellation!.Cancel();
-                    RunEvent.Reset();
+                    RunEvent.Reset(CancellationToken.None);
                     if (IsPaused)
                     {
                         Paused = DateTime.MinValue;
-                        await BeforeResumeAsync(cancellationToken).DynamicContext();
-                        await ResumingAsync(cancellationToken).DynamicContext();
-                        await PauseEvent.SetAsync().DynamicContext();
-                        await AfterResumeAsync(cancellationToken).DynamicContext();
+                        await BeforeResumeAsync(CancellationToken.None).DynamicContext();
+                        await ResumingAsync(CancellationToken.None).DynamicContext();
+                        await PauseEvent.SetAsync(CancellationToken.None).DynamicContext();
+                        await AfterResumeAsync(CancellationToken.None).DynamicContext();
                     }
-                    await StoppingAsync(cancellationToken).DynamicContext();
+                    await StoppingAsync(CancellationToken.None).DynamicContext();
                 }
                 stopTask = StopTask.Task;
             }
-            await stopTask.WaitAsync(cancellationToken).DynamicContext();
+            await stopTask.WaitAsync(isStopping ? CancellationToken.None : cancellationToken).DynamicContext();
             if (isStopping)
             {
-                await AfterStopAsync(cancellationToken).DynamicContext();
+                await AfterStopAsync(CancellationToken.None).DynamicContext();
                 Logging.WriteDebug($"Stopped {this}");
             }
         }
@@ -175,10 +175,10 @@ namespace wan24.Core
             if (IsPaused || !IsRunning) return;
             Paused = DateTime.Now;
             Logging.WriteDebug($"Pausing {this}");
-            await BeforePauseAsync(cancellationToken).DynamicContext();
-            await PausingAsync(cancellationToken).DynamicContext();
-            await PauseEvent.ResetAsync().DynamicContext();
-            await AfterPauseAsync(cancellationToken).DynamicContext();
+            await BeforePauseAsync(CancellationToken.None).DynamicContext();
+            await PausingAsync(CancellationToken.None).DynamicContext();
+            await PauseEvent.ResetAsync(CancellationToken.None).DynamicContext();
+            await AfterPauseAsync(CancellationToken.None).DynamicContext();
             Logging.WriteDebug($"Paused {this}");
         }
 
@@ -191,10 +191,10 @@ namespace wan24.Core
             if (!IsPaused) return;
             Paused = DateTime.MinValue;
             Logging.WriteDebug($"Resuming {this}");
-            await BeforeResumeAsync(cancellationToken).DynamicContext();
-            await ResumingAsync(cancellationToken).DynamicContext();
-            await PauseEvent.SetAsync().DynamicContext();
-            await AfterResumeAsync(cancellationToken).DynamicContext();
+            await BeforeResumeAsync(CancellationToken.None).DynamicContext();
+            await ResumingAsync(CancellationToken.None).DynamicContext();
+            await PauseEvent.SetAsync(CancellationToken.None).DynamicContext();
+            await AfterResumeAsync(CancellationToken.None).DynamicContext();
             Logging.WriteDebug($"Resumed {this}");
         }
 
@@ -353,6 +353,19 @@ namespace wan24.Core
             if (!throwOnCancellation) return !CancelToken.IsCancellationRequested;
             CancelToken.ThrowIfCancellationRequested();
             return true;
+        }
+
+        /// <summary>
+        /// Ensure running
+        /// </summary>
+        /// <param name="throwOnNotRunning">Throw an exception if not running?</param>
+        /// <returns>If running</returns>
+        /// <exception cref="InvalidOperationException">The service isn't running</exception>
+        protected virtual bool EnsureRunning(in bool throwOnNotRunning = true)
+        {
+            if (IsRunning && !IsPaused) return true;
+            if (!throwOnNotRunning) return false;
+            throw new InvalidOperationException("Service isn't running");
         }
 
         /// <summary>

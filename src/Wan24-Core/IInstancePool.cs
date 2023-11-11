@@ -21,6 +21,31 @@
         /// Total number of on-demand created instances
         /// </summary>
         int CreatedOnDemand { get; }
+        /// <summary>
+        /// Get one instance
+        /// </summary>
+        /// <returns>Instance</returns>
+        object GetOneObject();
+        /// <summary>
+        /// Get one instance
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Instance</returns>
+        Task<object> GetOneObjectAsync(CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get many instances
+        /// </summary>
+        /// <param name="count">Number of instances</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Instances</returns>
+        IEnumerable<object> GetManyObjects(int count, CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get many instances
+        /// </summary>
+        /// <param name="count">Number of instances</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Instances</returns>
+        IAsyncEnumerable<object> GetManyObjectsAsync(int count, CancellationToken cancellationToken = default);
     }
 
     /// <summary>

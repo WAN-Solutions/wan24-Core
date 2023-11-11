@@ -3,7 +3,7 @@
     /// <summary>
     /// Bi-directional stream
     /// </summary>
-    public sealed class BiDirectionalStream : BiDirectionalStream<Stream, Stream>
+    public class BiDirectionalStream : BiDirectionalStream<Stream, Stream>
     {
         /// <summary>
         /// Constructor
