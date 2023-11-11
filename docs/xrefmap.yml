@@ -4533,15 +4533,6 @@ references:
   isSpec: "True"
   fullName: wan24.Core.BlockingBufferStream.RaiseOnSpaceAvailable
   nameWithType: BlockingBufferStream.RaiseOnSpaceAvailable
-- uid: wan24.Core.BlockingBufferStream.Read(Span{System.Byte})
-  name: Read(Span<Byte>)
-  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_Read_Span_System_Byte__
-  commentId: M:wan24.Core.BlockingBufferStream.Read(Span{System.Byte})
-  name.vb: Read(Span(Of Byte))
-  fullName: wan24.Core.BlockingBufferStream.Read(Span<System.Byte>)
-  fullName.vb: wan24.Core.BlockingBufferStream.Read(Span(Of System.Byte))
-  nameWithType: BlockingBufferStream.Read(Span<Byte>)
-  nameWithType.vb: BlockingBufferStream.Read(Span(Of Byte))
 - uid: wan24.Core.BlockingBufferStream.Read(System.Byte[],System.Int32,System.Int32)
   name: Read(Byte[], Int32, Int32)
   href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_Read_System_Byte___System_Int32_System_Int32_
@@ -4551,6 +4542,15 @@ references:
   fullName.vb: wan24.Core.BlockingBufferStream.Read(System.Byte(), System.Int32, System.Int32)
   nameWithType: BlockingBufferStream.Read(Byte[], Int32, Int32)
   nameWithType.vb: BlockingBufferStream.Read(Byte(), Int32, Int32)
+- uid: wan24.Core.BlockingBufferStream.Read(System.Span{System.Byte})
+  name: Read(Span<Byte>)
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_Read_System_Span_System_Byte__
+  commentId: M:wan24.Core.BlockingBufferStream.Read(System.Span{System.Byte})
+  name.vb: Read(Span(Of Byte))
+  fullName: wan24.Core.BlockingBufferStream.Read(System.Span<System.Byte>)
+  fullName.vb: wan24.Core.BlockingBufferStream.Read(System.Span(Of System.Byte))
+  nameWithType: BlockingBufferStream.Read(Span<Byte>)
+  nameWithType.vb: BlockingBufferStream.Read(Span(Of Byte))
 - uid: wan24.Core.BlockingBufferStream.Read*
   name: Read
   href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_Read_
@@ -4558,15 +4558,6 @@ references:
   isSpec: "True"
   fullName: wan24.Core.BlockingBufferStream.Read
   nameWithType: BlockingBufferStream.Read
-- uid: wan24.Core.BlockingBufferStream.ReadAsync(Memory{System.Byte},CancellationToken)
-  name: ReadAsync(Memory<Byte>, CancellationToken)
-  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_ReadAsync_Memory_System_Byte__CancellationToken_
-  commentId: M:wan24.Core.BlockingBufferStream.ReadAsync(Memory{System.Byte},CancellationToken)
-  name.vb: ReadAsync(Memory(Of Byte), CancellationToken)
-  fullName: wan24.Core.BlockingBufferStream.ReadAsync(Memory<System.Byte>, CancellationToken)
-  fullName.vb: wan24.Core.BlockingBufferStream.ReadAsync(Memory(Of System.Byte), CancellationToken)
-  nameWithType: BlockingBufferStream.ReadAsync(Memory<Byte>, CancellationToken)
-  nameWithType.vb: BlockingBufferStream.ReadAsync(Memory(Of Byte), CancellationToken)
 - uid: wan24.Core.BlockingBufferStream.ReadAsync(System.Byte[],System.Int32,System.Int32,CancellationToken)
   name: ReadAsync(Byte[], Int32, Int32, CancellationToken)
   href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_ReadAsync_System_Byte___System_Int32_System_Int32_CancellationToken_
@@ -4576,6 +4567,15 @@ references:
   fullName.vb: wan24.Core.BlockingBufferStream.ReadAsync(System.Byte(), System.Int32, System.Int32, CancellationToken)
   nameWithType: BlockingBufferStream.ReadAsync(Byte[], Int32, Int32, CancellationToken)
   nameWithType.vb: BlockingBufferStream.ReadAsync(Byte(), Int32, Int32, CancellationToken)
+- uid: wan24.Core.BlockingBufferStream.ReadAsync(System.Memory{System.Byte},CancellationToken)
+  name: ReadAsync(Memory<Byte>, CancellationToken)
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_ReadAsync_System_Memory_System_Byte__CancellationToken_
+  commentId: M:wan24.Core.BlockingBufferStream.ReadAsync(System.Memory{System.Byte},CancellationToken)
+  name.vb: ReadAsync(Memory(Of Byte), CancellationToken)
+  fullName: wan24.Core.BlockingBufferStream.ReadAsync(System.Memory<System.Byte>, CancellationToken)
+  fullName.vb: wan24.Core.BlockingBufferStream.ReadAsync(System.Memory(Of System.Byte), CancellationToken)
+  nameWithType: BlockingBufferStream.ReadAsync(Memory<Byte>, CancellationToken)
+  nameWithType.vb: BlockingBufferStream.ReadAsync(Memory(Of Byte), CancellationToken)
 - uid: wan24.Core.BlockingBufferStream.ReadAsync*
   name: ReadAsync
   href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_ReadAsync_
@@ -4596,6 +4596,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.BlockingBufferStream.ReadByte
   nameWithType: BlockingBufferStream.ReadByte
+- uid: wan24.Core.BlockingBufferStream.ReadIncomplete
+  name: ReadIncomplete
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_ReadIncomplete
+  commentId: P:wan24.Core.BlockingBufferStream.ReadIncomplete
+  fullName: wan24.Core.BlockingBufferStream.ReadIncomplete
+  nameWithType: BlockingBufferStream.ReadIncomplete
+- uid: wan24.Core.BlockingBufferStream.ReadIncomplete*
+  name: ReadIncomplete
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_ReadIncomplete_
+  commentId: Overload:wan24.Core.BlockingBufferStream.ReadIncomplete
+  isSpec: "True"
+  fullName: wan24.Core.BlockingBufferStream.ReadIncomplete
+  nameWithType: BlockingBufferStream.ReadIncomplete
 - uid: wan24.Core.BlockingBufferStream.ReadOffset
   name: ReadOffset
   href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_ReadOffset
@@ -4712,13 +4725,13 @@ references:
   isSpec: "True"
   fullName: wan24.Core.BlockingBufferStream.State
   nameWithType: BlockingBufferStream.State
-- uid: wan24.Core.BlockingBufferStream.TryRead(Span{System.Byte})
+- uid: wan24.Core.BlockingBufferStream.TryRead(System.Span{System.Byte})
   name: TryRead(Span<Byte>)
-  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_TryRead_Span_System_Byte__
-  commentId: M:wan24.Core.BlockingBufferStream.TryRead(Span{System.Byte})
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_TryRead_System_Span_System_Byte__
+  commentId: M:wan24.Core.BlockingBufferStream.TryRead(System.Span{System.Byte})
   name.vb: TryRead(Span(Of Byte))
-  fullName: wan24.Core.BlockingBufferStream.TryRead(Span<System.Byte>)
-  fullName.vb: wan24.Core.BlockingBufferStream.TryRead(Span(Of System.Byte))
+  fullName: wan24.Core.BlockingBufferStream.TryRead(System.Span<System.Byte>)
+  fullName.vb: wan24.Core.BlockingBufferStream.TryRead(System.Span(Of System.Byte))
   nameWithType: BlockingBufferStream.TryRead(Span<Byte>)
   nameWithType.vb: BlockingBufferStream.TryRead(Span(Of Byte))
 - uid: wan24.Core.BlockingBufferStream.TryRead*
@@ -4728,13 +4741,13 @@ references:
   isSpec: "True"
   fullName: wan24.Core.BlockingBufferStream.TryRead
   nameWithType: BlockingBufferStream.TryRead
-- uid: wan24.Core.BlockingBufferStream.TryReadAsync(Memory{System.Byte},CancellationToken)
+- uid: wan24.Core.BlockingBufferStream.TryReadAsync(System.Memory{System.Byte},CancellationToken)
   name: TryReadAsync(Memory<Byte>, CancellationToken)
-  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_TryReadAsync_Memory_System_Byte__CancellationToken_
-  commentId: M:wan24.Core.BlockingBufferStream.TryReadAsync(Memory{System.Byte},CancellationToken)
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_TryReadAsync_System_Memory_System_Byte__CancellationToken_
+  commentId: M:wan24.Core.BlockingBufferStream.TryReadAsync(System.Memory{System.Byte},CancellationToken)
   name.vb: TryReadAsync(Memory(Of Byte), CancellationToken)
-  fullName: wan24.Core.BlockingBufferStream.TryReadAsync(Memory<System.Byte>, CancellationToken)
-  fullName.vb: wan24.Core.BlockingBufferStream.TryReadAsync(Memory(Of System.Byte), CancellationToken)
+  fullName: wan24.Core.BlockingBufferStream.TryReadAsync(System.Memory<System.Byte>, CancellationToken)
+  fullName.vb: wan24.Core.BlockingBufferStream.TryReadAsync(System.Memory(Of System.Byte), CancellationToken)
   nameWithType: BlockingBufferStream.TryReadAsync(Memory<Byte>, CancellationToken)
   nameWithType.vb: BlockingBufferStream.TryReadAsync(Memory(Of Byte), CancellationToken)
 - uid: wan24.Core.BlockingBufferStream.TryReadAsync*
@@ -4776,6 +4789,58 @@ references:
   isSpec: "True"
   fullName: wan24.Core.BlockingBufferStream.TryWriteAsync
   nameWithType: BlockingBufferStream.TryWriteAsync
+- uid: wan24.Core.BlockingBufferStream.WaitData(CancellationToken)
+  name: WaitData(CancellationToken)
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_WaitData_CancellationToken_
+  commentId: M:wan24.Core.BlockingBufferStream.WaitData(CancellationToken)
+  fullName: wan24.Core.BlockingBufferStream.WaitData(CancellationToken)
+  nameWithType: BlockingBufferStream.WaitData(CancellationToken)
+- uid: wan24.Core.BlockingBufferStream.WaitData*
+  name: WaitData
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_WaitData_
+  commentId: Overload:wan24.Core.BlockingBufferStream.WaitData
+  isSpec: "True"
+  fullName: wan24.Core.BlockingBufferStream.WaitData
+  nameWithType: BlockingBufferStream.WaitData
+- uid: wan24.Core.BlockingBufferStream.WaitDataAsync(CancellationToken)
+  name: WaitDataAsync(CancellationToken)
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_WaitDataAsync_CancellationToken_
+  commentId: M:wan24.Core.BlockingBufferStream.WaitDataAsync(CancellationToken)
+  fullName: wan24.Core.BlockingBufferStream.WaitDataAsync(CancellationToken)
+  nameWithType: BlockingBufferStream.WaitDataAsync(CancellationToken)
+- uid: wan24.Core.BlockingBufferStream.WaitDataAsync*
+  name: WaitDataAsync
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_WaitDataAsync_
+  commentId: Overload:wan24.Core.BlockingBufferStream.WaitDataAsync
+  isSpec: "True"
+  fullName: wan24.Core.BlockingBufferStream.WaitDataAsync
+  nameWithType: BlockingBufferStream.WaitDataAsync
+- uid: wan24.Core.BlockingBufferStream.WaitSpace(CancellationToken)
+  name: WaitSpace(CancellationToken)
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_WaitSpace_CancellationToken_
+  commentId: M:wan24.Core.BlockingBufferStream.WaitSpace(CancellationToken)
+  fullName: wan24.Core.BlockingBufferStream.WaitSpace(CancellationToken)
+  nameWithType: BlockingBufferStream.WaitSpace(CancellationToken)
+- uid: wan24.Core.BlockingBufferStream.WaitSpace*
+  name: WaitSpace
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_WaitSpace_
+  commentId: Overload:wan24.Core.BlockingBufferStream.WaitSpace
+  isSpec: "True"
+  fullName: wan24.Core.BlockingBufferStream.WaitSpace
+  nameWithType: BlockingBufferStream.WaitSpace
+- uid: wan24.Core.BlockingBufferStream.WaitSpaceAsync(CancellationToken)
+  name: WaitSpaceAsync(CancellationToken)
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_WaitSpaceAsync_CancellationToken_
+  commentId: M:wan24.Core.BlockingBufferStream.WaitSpaceAsync(CancellationToken)
+  fullName: wan24.Core.BlockingBufferStream.WaitSpaceAsync(CancellationToken)
+  nameWithType: BlockingBufferStream.WaitSpaceAsync(CancellationToken)
+- uid: wan24.Core.BlockingBufferStream.WaitSpaceAsync*
+  name: WaitSpaceAsync
+  href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_WaitSpaceAsync_
+  commentId: Overload:wan24.Core.BlockingBufferStream.WaitSpaceAsync
+  isSpec: "True"
+  fullName: wan24.Core.BlockingBufferStream.WaitSpaceAsync
+  nameWithType: BlockingBufferStream.WaitSpaceAsync
 - uid: wan24.Core.BlockingBufferStream.Write(ReadOnlySpan{System.Byte})
   name: Write(ReadOnlySpan<Byte>)
   href: api/wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_Write_ReadOnlySpan_System_Byte__
@@ -5312,6 +5377,44 @@ references:
   fullName.vb: wan24.Core.BlockingObjectPool(Of T).TryRentAsync
   nameWithType: BlockingObjectPool<T>.TryRentAsync
   nameWithType.vb: BlockingObjectPool(Of T).TryRentAsync
+- uid: wan24.Core.BlockingObjectPool`1.wan24#Core#IObjectPool#RentObject
+  name: IObjectPool.RentObject()
+  href: api/wan24.Core.BlockingObjectPool-1.html#wan24_Core_BlockingObjectPool_1_wan24_Core_IObjectPool_RentObject
+  commentId: M:wan24.Core.BlockingObjectPool`1.wan24#Core#IObjectPool#RentObject
+  name.vb: wan24.Core.IObjectPool.RentObject()
+  fullName: wan24.Core.BlockingObjectPool<T>.wan24.Core.IObjectPool.RentObject()
+  fullName.vb: wan24.Core.BlockingObjectPool(Of T).wan24.Core.IObjectPool.RentObject()
+  nameWithType: BlockingObjectPool<T>.IObjectPool.RentObject()
+  nameWithType.vb: BlockingObjectPool(Of T).wan24.Core.IObjectPool.RentObject()
+- uid: wan24.Core.BlockingObjectPool`1.wan24#Core#IObjectPool#RentObject*
+  name: IObjectPool.RentObject
+  href: api/wan24.Core.BlockingObjectPool-1.html#wan24_Core_BlockingObjectPool_1_wan24_Core_IObjectPool_RentObject_
+  commentId: Overload:wan24.Core.BlockingObjectPool`1.wan24#Core#IObjectPool#RentObject
+  isSpec: "True"
+  name.vb: wan24.Core.IObjectPool.RentObject
+  fullName: wan24.Core.BlockingObjectPool<T>.wan24.Core.IObjectPool.RentObject
+  fullName.vb: wan24.Core.BlockingObjectPool(Of T).wan24.Core.IObjectPool.RentObject
+  nameWithType: BlockingObjectPool<T>.IObjectPool.RentObject
+  nameWithType.vb: BlockingObjectPool(Of T).wan24.Core.IObjectPool.RentObject
+- uid: wan24.Core.BlockingObjectPool`1.wan24#Core#IObjectPool#Return(System.Object@,System.Boolean@)
+  name: IObjectPool.Return(in Object, in Boolean)
+  href: api/wan24.Core.BlockingObjectPool-1.html#wan24_Core_BlockingObjectPool_1_wan24_Core_IObjectPool_Return_System_Object__System_Boolean__
+  commentId: M:wan24.Core.BlockingObjectPool`1.wan24#Core#IObjectPool#Return(System.Object@,System.Boolean@)
+  name.vb: wan24.Core.IObjectPool.Return(ByRef Object, ByRef Boolean)
+  fullName: wan24.Core.BlockingObjectPool<T>.wan24.Core.IObjectPool.Return(in System.Object, in System.Boolean)
+  fullName.vb: wan24.Core.BlockingObjectPool(Of T).wan24.Core.IObjectPool.Return(ByRef System.Object, ByRef System.Boolean)
+  nameWithType: BlockingObjectPool<T>.IObjectPool.Return(in Object, in Boolean)
+  nameWithType.vb: BlockingObjectPool(Of T).wan24.Core.IObjectPool.Return(ByRef Object, ByRef Boolean)
+- uid: wan24.Core.BlockingObjectPool`1.wan24#Core#IObjectPool#Return*
+  name: IObjectPool.Return
+  href: api/wan24.Core.BlockingObjectPool-1.html#wan24_Core_BlockingObjectPool_1_wan24_Core_IObjectPool_Return_
+  commentId: Overload:wan24.Core.BlockingObjectPool`1.wan24#Core#IObjectPool#Return
+  isSpec: "True"
+  name.vb: wan24.Core.IObjectPool.Return
+  fullName: wan24.Core.BlockingObjectPool<T>.wan24.Core.IObjectPool.Return
+  fullName.vb: wan24.Core.BlockingObjectPool(Of T).wan24.Core.IObjectPool.Return
+  nameWithType: BlockingObjectPool<T>.IObjectPool.Return
+  nameWithType.vb: BlockingObjectPool(Of T).wan24.Core.IObjectPool.Return
 - uid: wan24.Core.BlockingObjectPool`1.wan24#Core#IPool#ItemType
   name: IPool.ItemType
   href: api/wan24.Core.BlockingObjectPool-1.html#wan24_Core_BlockingObjectPool_1_wan24_Core_IPool_ItemType
@@ -13672,6 +13775,44 @@ references:
   fullName.vb: wan24.Core.DisposableObjectPool(Of T).Return
   nameWithType: DisposableObjectPool<T>.Return
   nameWithType.vb: DisposableObjectPool(Of T).Return
+- uid: wan24.Core.DisposableObjectPool`1.wan24#Core#IObjectPool#RentObject
+  name: IObjectPool.RentObject()
+  href: api/wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_wan24_Core_IObjectPool_RentObject
+  commentId: M:wan24.Core.DisposableObjectPool`1.wan24#Core#IObjectPool#RentObject
+  name.vb: wan24.Core.IObjectPool.RentObject()
+  fullName: wan24.Core.DisposableObjectPool<T>.wan24.Core.IObjectPool.RentObject()
+  fullName.vb: wan24.Core.DisposableObjectPool(Of T).wan24.Core.IObjectPool.RentObject()
+  nameWithType: DisposableObjectPool<T>.IObjectPool.RentObject()
+  nameWithType.vb: DisposableObjectPool(Of T).wan24.Core.IObjectPool.RentObject()
+- uid: wan24.Core.DisposableObjectPool`1.wan24#Core#IObjectPool#RentObject*
+  name: IObjectPool.RentObject
+  href: api/wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_wan24_Core_IObjectPool_RentObject_
+  commentId: Overload:wan24.Core.DisposableObjectPool`1.wan24#Core#IObjectPool#RentObject
+  isSpec: "True"
+  name.vb: wan24.Core.IObjectPool.RentObject
+  fullName: wan24.Core.DisposableObjectPool<T>.wan24.Core.IObjectPool.RentObject
+  fullName.vb: wan24.Core.DisposableObjectPool(Of T).wan24.Core.IObjectPool.RentObject
+  nameWithType: DisposableObjectPool<T>.IObjectPool.RentObject
+  nameWithType.vb: DisposableObjectPool(Of T).wan24.Core.IObjectPool.RentObject
+- uid: wan24.Core.DisposableObjectPool`1.wan24#Core#IObjectPool#Return(System.Object@,System.Boolean@)
+  name: IObjectPool.Return(in Object, in Boolean)
+  href: api/wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_wan24_Core_IObjectPool_Return_System_Object__System_Boolean__
+  commentId: M:wan24.Core.DisposableObjectPool`1.wan24#Core#IObjectPool#Return(System.Object@,System.Boolean@)
+  name.vb: wan24.Core.IObjectPool.Return(ByRef Object, ByRef Boolean)
+  fullName: wan24.Core.DisposableObjectPool<T>.wan24.Core.IObjectPool.Return(in System.Object, in System.Boolean)
+  fullName.vb: wan24.Core.DisposableObjectPool(Of T).wan24.Core.IObjectPool.Return(ByRef System.Object, ByRef System.Boolean)
+  nameWithType: DisposableObjectPool<T>.IObjectPool.Return(in Object, in Boolean)
+  nameWithType.vb: DisposableObjectPool(Of T).wan24.Core.IObjectPool.Return(ByRef Object, ByRef Boolean)
+- uid: wan24.Core.DisposableObjectPool`1.wan24#Core#IObjectPool#Return*
+  name: IObjectPool.Return
+  href: api/wan24.Core.DisposableObjectPool-1.html#wan24_Core_DisposableObjectPool_1_wan24_Core_IObjectPool_Return_
+  commentId: Overload:wan24.Core.DisposableObjectPool`1.wan24#Core#IObjectPool#Return
+  isSpec: "True"
+  name.vb: wan24.Core.IObjectPool.Return
+  fullName: wan24.Core.DisposableObjectPool<T>.wan24.Core.IObjectPool.Return
+  fullName.vb: wan24.Core.DisposableObjectPool(Of T).wan24.Core.IObjectPool.Return
+  nameWithType: DisposableObjectPool<T>.IObjectPool.Return
+  nameWithType.vb: DisposableObjectPool(Of T).wan24.Core.IObjectPool.Return
 - uid: wan24.Core.DisposableThreadSafeValue`1
   name: DisposableThreadSafeValue<T>
   href: api/wan24.Core.DisposableThreadSafeValue-1.html
@@ -18612,6 +18753,22 @@ references:
   isSpec: "True"
   fullName: wan24.Core.HostedServiceBase.EnsureNotCanceled
   nameWithType: HostedServiceBase.EnsureNotCanceled
+- uid: wan24.Core.HostedServiceBase.EnsureRunning(System.Boolean@)
+  name: EnsureRunning(in Boolean)
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_EnsureRunning_System_Boolean__
+  commentId: M:wan24.Core.HostedServiceBase.EnsureRunning(System.Boolean@)
+  name.vb: EnsureRunning(ByRef Boolean)
+  fullName: wan24.Core.HostedServiceBase.EnsureRunning(in System.Boolean)
+  fullName.vb: wan24.Core.HostedServiceBase.EnsureRunning(ByRef System.Boolean)
+  nameWithType: HostedServiceBase.EnsureRunning(in Boolean)
+  nameWithType.vb: HostedServiceBase.EnsureRunning(ByRef Boolean)
+- uid: wan24.Core.HostedServiceBase.EnsureRunning*
+  name: EnsureRunning
+  href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_EnsureRunning_
+  commentId: Overload:wan24.Core.HostedServiceBase.EnsureRunning
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceBase.EnsureRunning
+  nameWithType: HostedServiceBase.EnsureRunning
 - uid: wan24.Core.HostedServiceBase.ErrorSource
   name: ErrorSource
   href: api/wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_ErrorSource
@@ -20842,6 +20999,58 @@ references:
   isSpec: "True"
   fullName: wan24.Core.IInstancePool.CreatedOnDemand
   nameWithType: IInstancePool.CreatedOnDemand
+- uid: wan24.Core.IInstancePool.GetManyObjects(System.Int32,CancellationToken)
+  name: GetManyObjects(Int32, CancellationToken)
+  href: api/wan24.Core.IInstancePool.html#wan24_Core_IInstancePool_GetManyObjects_System_Int32_CancellationToken_
+  commentId: M:wan24.Core.IInstancePool.GetManyObjects(System.Int32,CancellationToken)
+  fullName: wan24.Core.IInstancePool.GetManyObjects(System.Int32, CancellationToken)
+  nameWithType: IInstancePool.GetManyObjects(Int32, CancellationToken)
+- uid: wan24.Core.IInstancePool.GetManyObjects*
+  name: GetManyObjects
+  href: api/wan24.Core.IInstancePool.html#wan24_Core_IInstancePool_GetManyObjects_
+  commentId: Overload:wan24.Core.IInstancePool.GetManyObjects
+  isSpec: "True"
+  fullName: wan24.Core.IInstancePool.GetManyObjects
+  nameWithType: IInstancePool.GetManyObjects
+- uid: wan24.Core.IInstancePool.GetManyObjectsAsync(System.Int32,CancellationToken)
+  name: GetManyObjectsAsync(Int32, CancellationToken)
+  href: api/wan24.Core.IInstancePool.html#wan24_Core_IInstancePool_GetManyObjectsAsync_System_Int32_CancellationToken_
+  commentId: M:wan24.Core.IInstancePool.GetManyObjectsAsync(System.Int32,CancellationToken)
+  fullName: wan24.Core.IInstancePool.GetManyObjectsAsync(System.Int32, CancellationToken)
+  nameWithType: IInstancePool.GetManyObjectsAsync(Int32, CancellationToken)
+- uid: wan24.Core.IInstancePool.GetManyObjectsAsync*
+  name: GetManyObjectsAsync
+  href: api/wan24.Core.IInstancePool.html#wan24_Core_IInstancePool_GetManyObjectsAsync_
+  commentId: Overload:wan24.Core.IInstancePool.GetManyObjectsAsync
+  isSpec: "True"
+  fullName: wan24.Core.IInstancePool.GetManyObjectsAsync
+  nameWithType: IInstancePool.GetManyObjectsAsync
+- uid: wan24.Core.IInstancePool.GetOneObject
+  name: GetOneObject()
+  href: api/wan24.Core.IInstancePool.html#wan24_Core_IInstancePool_GetOneObject
+  commentId: M:wan24.Core.IInstancePool.GetOneObject
+  fullName: wan24.Core.IInstancePool.GetOneObject()
+  nameWithType: IInstancePool.GetOneObject()
+- uid: wan24.Core.IInstancePool.GetOneObject*
+  name: GetOneObject
+  href: api/wan24.Core.IInstancePool.html#wan24_Core_IInstancePool_GetOneObject_
+  commentId: Overload:wan24.Core.IInstancePool.GetOneObject
+  isSpec: "True"
+  fullName: wan24.Core.IInstancePool.GetOneObject
+  nameWithType: IInstancePool.GetOneObject
+- uid: wan24.Core.IInstancePool.GetOneObjectAsync(CancellationToken)
+  name: GetOneObjectAsync(CancellationToken)
+  href: api/wan24.Core.IInstancePool.html#wan24_Core_IInstancePool_GetOneObjectAsync_CancellationToken_
+  commentId: M:wan24.Core.IInstancePool.GetOneObjectAsync(CancellationToken)
+  fullName: wan24.Core.IInstancePool.GetOneObjectAsync(CancellationToken)
+  nameWithType: IInstancePool.GetOneObjectAsync(CancellationToken)
+- uid: wan24.Core.IInstancePool.GetOneObjectAsync*
+  name: GetOneObjectAsync
+  href: api/wan24.Core.IInstancePool.html#wan24_Core_IInstancePool_GetOneObjectAsync_
+  commentId: Overload:wan24.Core.IInstancePool.GetOneObjectAsync
+  isSpec: "True"
+  fullName: wan24.Core.IInstancePool.GetOneObjectAsync
+  nameWithType: IInstancePool.GetOneObjectAsync
 - uid: wan24.Core.IInstancePool`1
   name: IInstancePool<T>
   href: api/wan24.Core.IInstancePool-1.html
@@ -21452,6 +21661,82 @@ references:
   fullName.vb: wan24.Core.InstancePool(Of T).SyncFactory
   nameWithType: InstancePool<T>.SyncFactory
   nameWithType.vb: InstancePool(Of T).SyncFactory
+- uid: wan24.Core.InstancePool`1.wan24#Core#IInstancePool#GetManyObjects(System.Int32,CancellationToken)
+  name: IInstancePool.GetManyObjects(Int32, CancellationToken)
+  href: api/wan24.Core.InstancePool-1.html#wan24_Core_InstancePool_1_wan24_Core_IInstancePool_GetManyObjects_System_Int32_CancellationToken_
+  commentId: M:wan24.Core.InstancePool`1.wan24#Core#IInstancePool#GetManyObjects(System.Int32,CancellationToken)
+  name.vb: wan24.Core.IInstancePool.GetManyObjects(Int32, CancellationToken)
+  fullName: wan24.Core.InstancePool<T>.wan24.Core.IInstancePool.GetManyObjects(System.Int32, CancellationToken)
+  fullName.vb: wan24.Core.InstancePool(Of T).wan24.Core.IInstancePool.GetManyObjects(System.Int32, CancellationToken)
+  nameWithType: InstancePool<T>.IInstancePool.GetManyObjects(Int32, CancellationToken)
+  nameWithType.vb: InstancePool(Of T).wan24.Core.IInstancePool.GetManyObjects(Int32, CancellationToken)
+- uid: wan24.Core.InstancePool`1.wan24#Core#IInstancePool#GetManyObjects*
+  name: IInstancePool.GetManyObjects
+  href: api/wan24.Core.InstancePool-1.html#wan24_Core_InstancePool_1_wan24_Core_IInstancePool_GetManyObjects_
+  commentId: Overload:wan24.Core.InstancePool`1.wan24#Core#IInstancePool#GetManyObjects
+  isSpec: "True"
+  name.vb: wan24.Core.IInstancePool.GetManyObjects
+  fullName: wan24.Core.InstancePool<T>.wan24.Core.IInstancePool.GetManyObjects
+  fullName.vb: wan24.Core.InstancePool(Of T).wan24.Core.IInstancePool.GetManyObjects
+  nameWithType: InstancePool<T>.IInstancePool.GetManyObjects
+  nameWithType.vb: InstancePool(Of T).wan24.Core.IInstancePool.GetManyObjects
+- uid: wan24.Core.InstancePool`1.wan24#Core#IInstancePool#GetManyObjectsAsync(System.Int32,CancellationToken)
+  name: IInstancePool.GetManyObjectsAsync(Int32, CancellationToken)
+  href: api/wan24.Core.InstancePool-1.html#wan24_Core_InstancePool_1_wan24_Core_IInstancePool_GetManyObjectsAsync_System_Int32_CancellationToken_
+  commentId: M:wan24.Core.InstancePool`1.wan24#Core#IInstancePool#GetManyObjectsAsync(System.Int32,CancellationToken)
+  name.vb: wan24.Core.IInstancePool.GetManyObjectsAsync(Int32, CancellationToken)
+  fullName: wan24.Core.InstancePool<T>.wan24.Core.IInstancePool.GetManyObjectsAsync(System.Int32, CancellationToken)
+  fullName.vb: wan24.Core.InstancePool(Of T).wan24.Core.IInstancePool.GetManyObjectsAsync(System.Int32, CancellationToken)
+  nameWithType: InstancePool<T>.IInstancePool.GetManyObjectsAsync(Int32, CancellationToken)
+  nameWithType.vb: InstancePool(Of T).wan24.Core.IInstancePool.GetManyObjectsAsync(Int32, CancellationToken)
+- uid: wan24.Core.InstancePool`1.wan24#Core#IInstancePool#GetManyObjectsAsync*
+  name: IInstancePool.GetManyObjectsAsync
+  href: api/wan24.Core.InstancePool-1.html#wan24_Core_InstancePool_1_wan24_Core_IInstancePool_GetManyObjectsAsync_
+  commentId: Overload:wan24.Core.InstancePool`1.wan24#Core#IInstancePool#GetManyObjectsAsync
+  isSpec: "True"
+  name.vb: wan24.Core.IInstancePool.GetManyObjectsAsync
+  fullName: wan24.Core.InstancePool<T>.wan24.Core.IInstancePool.GetManyObjectsAsync
+  fullName.vb: wan24.Core.InstancePool(Of T).wan24.Core.IInstancePool.GetManyObjectsAsync
+  nameWithType: InstancePool<T>.IInstancePool.GetManyObjectsAsync
+  nameWithType.vb: InstancePool(Of T).wan24.Core.IInstancePool.GetManyObjectsAsync
+- uid: wan24.Core.InstancePool`1.wan24#Core#IInstancePool#GetOneObject
+  name: IInstancePool.GetOneObject()
+  href: api/wan24.Core.InstancePool-1.html#wan24_Core_InstancePool_1_wan24_Core_IInstancePool_GetOneObject
+  commentId: M:wan24.Core.InstancePool`1.wan24#Core#IInstancePool#GetOneObject
+  name.vb: wan24.Core.IInstancePool.GetOneObject()
+  fullName: wan24.Core.InstancePool<T>.wan24.Core.IInstancePool.GetOneObject()
+  fullName.vb: wan24.Core.InstancePool(Of T).wan24.Core.IInstancePool.GetOneObject()
+  nameWithType: InstancePool<T>.IInstancePool.GetOneObject()
+  nameWithType.vb: InstancePool(Of T).wan24.Core.IInstancePool.GetOneObject()
+- uid: wan24.Core.InstancePool`1.wan24#Core#IInstancePool#GetOneObject*
+  name: IInstancePool.GetOneObject
+  href: api/wan24.Core.InstancePool-1.html#wan24_Core_InstancePool_1_wan24_Core_IInstancePool_GetOneObject_
+  commentId: Overload:wan24.Core.InstancePool`1.wan24#Core#IInstancePool#GetOneObject
+  isSpec: "True"
+  name.vb: wan24.Core.IInstancePool.GetOneObject
+  fullName: wan24.Core.InstancePool<T>.wan24.Core.IInstancePool.GetOneObject
+  fullName.vb: wan24.Core.InstancePool(Of T).wan24.Core.IInstancePool.GetOneObject
+  nameWithType: InstancePool<T>.IInstancePool.GetOneObject
+  nameWithType.vb: InstancePool(Of T).wan24.Core.IInstancePool.GetOneObject
+- uid: wan24.Core.InstancePool`1.wan24#Core#IInstancePool#GetOneObjectAsync(CancellationToken)
+  name: IInstancePool.GetOneObjectAsync(CancellationToken)
+  href: api/wan24.Core.InstancePool-1.html#wan24_Core_InstancePool_1_wan24_Core_IInstancePool_GetOneObjectAsync_CancellationToken_
+  commentId: M:wan24.Core.InstancePool`1.wan24#Core#IInstancePool#GetOneObjectAsync(CancellationToken)
+  name.vb: wan24.Core.IInstancePool.GetOneObjectAsync(CancellationToken)
+  fullName: wan24.Core.InstancePool<T>.wan24.Core.IInstancePool.GetOneObjectAsync(CancellationToken)
+  fullName.vb: wan24.Core.InstancePool(Of T).wan24.Core.IInstancePool.GetOneObjectAsync(CancellationToken)
+  nameWithType: InstancePool<T>.IInstancePool.GetOneObjectAsync(CancellationToken)
+  nameWithType.vb: InstancePool(Of T).wan24.Core.IInstancePool.GetOneObjectAsync(CancellationToken)
+- uid: wan24.Core.InstancePool`1.wan24#Core#IInstancePool#GetOneObjectAsync*
+  name: IInstancePool.GetOneObjectAsync
+  href: api/wan24.Core.InstancePool-1.html#wan24_Core_InstancePool_1_wan24_Core_IInstancePool_GetOneObjectAsync_
+  commentId: Overload:wan24.Core.InstancePool`1.wan24#Core#IInstancePool#GetOneObjectAsync
+  isSpec: "True"
+  name.vb: wan24.Core.IInstancePool.GetOneObjectAsync
+  fullName: wan24.Core.InstancePool<T>.wan24.Core.IInstancePool.GetOneObjectAsync
+  fullName.vb: wan24.Core.InstancePool(Of T).wan24.Core.IInstancePool.GetOneObjectAsync
+  nameWithType: InstancePool<T>.IInstancePool.GetOneObjectAsync
+  nameWithType.vb: InstancePool(Of T).wan24.Core.IInstancePool.GetOneObjectAsync
 - uid: wan24.Core.InstancePool`1.WorkerAsync
   name: WorkerAsync()
   href: api/wan24.Core.InstancePool-1.html#wan24_Core_InstancePool_1_WorkerAsync
@@ -21533,6 +21818,41 @@ references:
   isSpec: "True"
   fullName: wan24.Core.IObjectLockManager.ObjectType
   nameWithType: IObjectLockManager.ObjectType
+- uid: wan24.Core.IObjectPool
+  name: IObjectPool
+  href: api/wan24.Core.IObjectPool.html
+  commentId: T:wan24.Core.IObjectPool
+  fullName: wan24.Core.IObjectPool
+  nameWithType: IObjectPool
+- uid: wan24.Core.IObjectPool.RentObject
+  name: RentObject()
+  href: api/wan24.Core.IObjectPool.html#wan24_Core_IObjectPool_RentObject
+  commentId: M:wan24.Core.IObjectPool.RentObject
+  fullName: wan24.Core.IObjectPool.RentObject()
+  nameWithType: IObjectPool.RentObject()
+- uid: wan24.Core.IObjectPool.RentObject*
+  name: RentObject
+  href: api/wan24.Core.IObjectPool.html#wan24_Core_IObjectPool_RentObject_
+  commentId: Overload:wan24.Core.IObjectPool.RentObject
+  isSpec: "True"
+  fullName: wan24.Core.IObjectPool.RentObject
+  nameWithType: IObjectPool.RentObject
+- uid: wan24.Core.IObjectPool.Return(System.Object@,System.Boolean@)
+  name: Return(in Object, in Boolean)
+  href: api/wan24.Core.IObjectPool.html#wan24_Core_IObjectPool_Return_System_Object__System_Boolean__
+  commentId: M:wan24.Core.IObjectPool.Return(System.Object@,System.Boolean@)
+  name.vb: Return(ByRef Object, ByRef Boolean)
+  fullName: wan24.Core.IObjectPool.Return(in System.Object, in System.Boolean)
+  fullName.vb: wan24.Core.IObjectPool.Return(ByRef System.Object, ByRef System.Boolean)
+  nameWithType: IObjectPool.Return(in Object, in Boolean)
+  nameWithType.vb: IObjectPool.Return(ByRef Object, ByRef Boolean)
+- uid: wan24.Core.IObjectPool.Return*
+  name: Return
+  href: api/wan24.Core.IObjectPool.html#wan24_Core_IObjectPool_Return_
+  commentId: Overload:wan24.Core.IObjectPool.Return
+  isSpec: "True"
+  fullName: wan24.Core.IObjectPool.Return
+  nameWithType: IObjectPool.Return
 - uid: wan24.Core.IObjectPool`1
   name: IObjectPool<T>
   href: api/wan24.Core.IObjectPool-1.html
@@ -28552,6 +28872,44 @@ references:
   fullName.vb: wan24.Core.ObjectPool(Of T).Return
   nameWithType: ObjectPool<T>.Return
   nameWithType.vb: ObjectPool(Of T).Return
+- uid: wan24.Core.ObjectPool`1.wan24#Core#IObjectPool#RentObject
+  name: IObjectPool.RentObject()
+  href: api/wan24.Core.ObjectPool-1.html#wan24_Core_ObjectPool_1_wan24_Core_IObjectPool_RentObject
+  commentId: M:wan24.Core.ObjectPool`1.wan24#Core#IObjectPool#RentObject
+  name.vb: wan24.Core.IObjectPool.RentObject()
+  fullName: wan24.Core.ObjectPool<T>.wan24.Core.IObjectPool.RentObject()
+  fullName.vb: wan24.Core.ObjectPool(Of T).wan24.Core.IObjectPool.RentObject()
+  nameWithType: ObjectPool<T>.IObjectPool.RentObject()
+  nameWithType.vb: ObjectPool(Of T).wan24.Core.IObjectPool.RentObject()
+- uid: wan24.Core.ObjectPool`1.wan24#Core#IObjectPool#RentObject*
+  name: IObjectPool.RentObject
+  href: api/wan24.Core.ObjectPool-1.html#wan24_Core_ObjectPool_1_wan24_Core_IObjectPool_RentObject_
+  commentId: Overload:wan24.Core.ObjectPool`1.wan24#Core#IObjectPool#RentObject
+  isSpec: "True"
+  name.vb: wan24.Core.IObjectPool.RentObject
+  fullName: wan24.Core.ObjectPool<T>.wan24.Core.IObjectPool.RentObject
+  fullName.vb: wan24.Core.ObjectPool(Of T).wan24.Core.IObjectPool.RentObject
+  nameWithType: ObjectPool<T>.IObjectPool.RentObject
+  nameWithType.vb: ObjectPool(Of T).wan24.Core.IObjectPool.RentObject
+- uid: wan24.Core.ObjectPool`1.wan24#Core#IObjectPool#Return(System.Object@,System.Boolean@)
+  name: IObjectPool.Return(in Object, in Boolean)
+  href: api/wan24.Core.ObjectPool-1.html#wan24_Core_ObjectPool_1_wan24_Core_IObjectPool_Return_System_Object__System_Boolean__
+  commentId: M:wan24.Core.ObjectPool`1.wan24#Core#IObjectPool#Return(System.Object@,System.Boolean@)
+  name.vb: wan24.Core.IObjectPool.Return(ByRef Object, ByRef Boolean)
+  fullName: wan24.Core.ObjectPool<T>.wan24.Core.IObjectPool.Return(in System.Object, in System.Boolean)
+  fullName.vb: wan24.Core.ObjectPool(Of T).wan24.Core.IObjectPool.Return(ByRef System.Object, ByRef System.Boolean)
+  nameWithType: ObjectPool<T>.IObjectPool.Return(in Object, in Boolean)
+  nameWithType.vb: ObjectPool(Of T).wan24.Core.IObjectPool.Return(ByRef Object, ByRef Boolean)
+- uid: wan24.Core.ObjectPool`1.wan24#Core#IObjectPool#Return*
+  name: IObjectPool.Return
+  href: api/wan24.Core.ObjectPool-1.html#wan24_Core_ObjectPool_1_wan24_Core_IObjectPool_Return_
+  commentId: Overload:wan24.Core.ObjectPool`1.wan24#Core#IObjectPool#Return
+  isSpec: "True"
+  name.vb: wan24.Core.IObjectPool.Return
+  fullName: wan24.Core.ObjectPool<T>.wan24.Core.IObjectPool.Return
+  fullName.vb: wan24.Core.ObjectPool(Of T).wan24.Core.IObjectPool.Return
+  nameWithType: ObjectPool<T>.IObjectPool.Return
+  nameWithType.vb: ObjectPool(Of T).wan24.Core.IObjectPool.Return
 - uid: wan24.Core.ObjectStorageBase`2
   name: ObjectStorageBase<tKey, tObj>
   href: api/wan24.Core.ObjectStorageBase-2.html
@@ -31230,6 +31588,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ParallelQueueWorker.Dispose
   nameWithType: ParallelQueueWorker.Dispose
+- uid: wan24.Core.ParallelQueueWorker.DisposeCore
+  name: DisposeCore()
+  href: api/wan24.Core.ParallelQueueWorker.html#wan24_Core_ParallelQueueWorker_DisposeCore
+  commentId: M:wan24.Core.ParallelQueueWorker.DisposeCore
+  fullName: wan24.Core.ParallelQueueWorker.DisposeCore()
+  nameWithType: ParallelQueueWorker.DisposeCore()
+- uid: wan24.Core.ParallelQueueWorker.DisposeCore*
+  name: DisposeCore
+  href: api/wan24.Core.ParallelQueueWorker.html#wan24_Core_ParallelQueueWorker_DisposeCore_
+  commentId: Overload:wan24.Core.ParallelQueueWorker.DisposeCore
+  isSpec: "True"
+  fullName: wan24.Core.ParallelQueueWorker.DisposeCore
+  nameWithType: ParallelQueueWorker.DisposeCore
 - uid: wan24.Core.ParallelQueueWorker.Process(wan24.Core.QueueWorker.Task_Delegate,CancellationToken)
   name: Process(QueueWorker.Task_Delegate, CancellationToken)
   href: api/wan24.Core.ParallelQueueWorker.html#wan24_Core_ParallelQueueWorker_Process_wan24_Core_QueueWorker_Task_Delegate_CancellationToken_

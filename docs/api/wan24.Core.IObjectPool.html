@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Delegate HostedServiceBase.HostedService_Delegate
+    <title>Interface IObjectPool
    | wan24-Core </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Delegate HostedServiceBase.HostedService_Delegate
+    <meta name="title" content="Interface IObjectPool
    | wan24-Core ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -68,19 +68,84 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.HostedServiceBase.HostedService_Delegate">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.IObjectPool">
   
   
-  <h1 id="wan24_Core_HostedServiceBase_HostedService_Delegate" data-uid="wan24.Core.HostedServiceBase.HostedService_Delegate" class="text-break">Delegate HostedServiceBase.HostedService_Delegate
+  <h1 id="wan24_Core_IObjectPool" data-uid="wan24.Core.IObjectPool" class="text-break">Interface IObjectPool
   </h1>
-  <div class="markdown level0 summary"><p>Delegate for a hosted service event</p>
+  <div class="markdown level0 summary"><p>Intrface for an object pool</p>
 </div>
   <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.IPool.html#wan24_Core_IPool_Name">IPool.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IPool.html#wan24_Core_IPool_Capacity">IPool.Capacity</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IPool.html#wan24_Core_IPool_Available">IPool.Available</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IPool.html#wan24_Core_IPool_ItemType">IPool.ItemType</a>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.Core.html">wan24.Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_HostedServiceBase_HostedService_Delegate_syntax">Syntax</h5>
+  <h5 id="wan24_Core_IObjectPool_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate void HostedService_Delegate(HostedServiceBase service, EventArgs e);</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IObjectPool : IPool</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IObjectPool_RentObject.md&amp;value=---%0Auid%3A%20wan24.Core.IObjectPool.RentObject%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IObjectPool.cs/#L12">View Source</a>
+  </span>
+  <a id="wan24_Core_IObjectPool_RentObject_" data-uid="wan24.Core.IObjectPool.RentObject*"></a>
+  <h4 id="wan24_Core_IObjectPool_RentObject" data-uid="wan24.Core.IObjectPool.RentObject">RentObject()</h4>
+  <div class="markdown level1 summary"><p>Rent an item</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">object RentObject()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><p>Item (<a class="xref" href="wan24.Core.IObjectPoolItem.html">IObjectPoolItem</a> will be reset before returning)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IObjectPool_Return_System_Object__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.IObjectPool.Return(System.Object%40%2CSystem.Boolean%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IObjectPool.cs/#L18">View Source</a>
+  </span>
+  <a id="wan24_Core_IObjectPool_Return_" data-uid="wan24.Core.IObjectPool.Return*"></a>
+  <h4 id="wan24_Core_IObjectPool_Return_System_Object__System_Boolean__" data-uid="wan24.Core.IObjectPool.Return(System.Object@,System.Boolean@)">Return(in Object, in Boolean)</h4>
+  <div class="markdown level1 summary"><p>Return an item</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Return(in object item, in bool reset = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -93,15 +158,15 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="wan24.Core.HostedServiceBase.html">HostedServiceBase</a></td>
-        <td><span class="parametername">service</span></td>
-        <td><p>Service</p>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>Item</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">EventArgs</span></td>
-        <td><span class="parametername">e</span></td>
-        <td><p>Event arguments</p>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">reset</span></td>
+        <td><p>Reset the <a class="xref" href="wan24.Core.IObjectPoolItem.html">IObjectPoolItem</a> object?</p>
 </td>
       </tr>
     </tbody>
@@ -151,10 +216,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_HostedServiceBase_HostedService_Delegate.md&amp;value=---%0Auid%3A%20wan24.Core.HostedServiceBase.HostedService_Delegate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IObjectPool.md&amp;value=---%0Auid%3A%20wan24.Core.IObjectPool%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/HostedServiceBase.cs/#L399" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IObjectPool.cs/#L6" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

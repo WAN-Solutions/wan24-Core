@@ -89,6 +89,7 @@
     <div><span class="xref">IDisposable</span></div>
     <div><span class="xref">IAsyncDisposable</span></div>
     <div><a class="xref" href="wan24.Core.IObjectPool-1.html">IObjectPool</a>&lt;T&gt;</div>
+    <div><a class="xref" href="wan24.Core.IObjectPool.html">IObjectPool</a></div>
     <div><a class="xref" href="wan24.Core.IPool.html">IPool</a></div>
   </div>
   <div class="inheritedMembers">
@@ -173,7 +174,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_DisposableObjectPool_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class DisposableObjectPool&lt;T&gt; : DisposableBase, IDisposableObject, IObjectPool&lt;T&gt;, IPool where T : IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class DisposableObjectPool&lt;T&gt; : DisposableBase, IDisposableObject, IObjectPool&lt;T&gt;, IObjectPool, IPool where T : IDisposable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -664,7 +665,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableObjectPool_1_op_Implicit_wan24_Core_DisposableObjectPool__0_____0.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableObjectPool%601.op_Implicit(wan24.Core.DisposableObjectPool%7B%600%7D%40)~%600%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableObjectPool.cs/#L127">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableObjectPool.cs/#L133">View Source</a>
   </span>
   <a id="wan24_Core_DisposableObjectPool_1_op_Implicit_" data-uid="wan24.Core.DisposableObjectPool`1.op_Implicit*"></a>
   <h4 id="wan24_Core_DisposableObjectPool_1_op_Implicit_wan24_Core_DisposableObjectPool__0_____0" data-uid="wan24.Core.DisposableObjectPool`1.op_Implicit(wan24.Core.DisposableObjectPool{`0}@)~`0">Implicit(in DisposableObjectPool&lt;T&gt; to T)</h4>
@@ -709,6 +710,80 @@ public static implicit operator T(in DisposableObjectPool&lt;T&gt; pool)</code><
       </tr>
     </tbody>
   </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableObjectPool_1_wan24_Core_IObjectPool_RentObject.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableObjectPool%601.wan24%23Core%23IObjectPool%23RentObject%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableObjectPool.cs/#L124">View Source</a>
+  </span>
+  <a id="wan24_Core_DisposableObjectPool_1_wan24_Core_IObjectPool_RentObject_" data-uid="wan24.Core.DisposableObjectPool`1.wan24#Core#IObjectPool#RentObject*"></a>
+  <h4 id="wan24_Core_DisposableObjectPool_1_wan24_Core_IObjectPool_RentObject" data-uid="wan24.Core.DisposableObjectPool`1.wan24#Core#IObjectPool#RentObject">IObjectPool.RentObject()</h4>
+  <div class="markdown level1 summary"><p>Rent an item</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">object IObjectPool.RentObject()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><p>Item (<a class="xref" href="wan24.Core.IObjectPoolItem.html">IObjectPoolItem</a> will be reset before returning)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableObjectPool_1_wan24_Core_IObjectPool_Return_System_Object__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableObjectPool%601.wan24%23Core%23IObjectPool%23Return(System.Object%40%2CSystem.Boolean%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableObjectPool.cs/#L127">View Source</a>
+  </span>
+  <a id="wan24_Core_DisposableObjectPool_1_wan24_Core_IObjectPool_Return_" data-uid="wan24.Core.DisposableObjectPool`1.wan24#Core#IObjectPool#Return*"></a>
+  <h4 id="wan24_Core_DisposableObjectPool_1_wan24_Core_IObjectPool_Return_System_Object__System_Boolean__" data-uid="wan24.Core.DisposableObjectPool`1.wan24#Core#IObjectPool#Return(System.Object@,System.Boolean@)">IObjectPool.Return(in Object, in Boolean)</h4>
+  <div class="markdown level1 summary"><p>Return an item</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void IObjectPool.Return(in object item, in bool reset)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>Item</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">reset</span></td>
+        <td><p>Reset the <a class="xref" href="wan24.Core.IObjectPoolItem.html">IObjectPoolItem</a> object?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
@@ -721,6 +796,9 @@ public static implicit operator T(in DisposableObjectPool&lt;T&gt; pool)</code><
   </div>
   <div>
       <a class="xref" href="wan24.Core.IObjectPool-1.html">IObjectPool&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IObjectPool.html">IObjectPool</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.IPool.html">IPool</a>

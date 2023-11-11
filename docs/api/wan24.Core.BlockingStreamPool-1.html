@@ -90,6 +90,7 @@
     <div><span class="xref">IAsyncDisposable</span></div>
     <div><a class="xref" href="wan24.Core.IAsyncObjectPool-1.html">IAsyncObjectPool</a>&lt;T&gt;</div>
     <div><a class="xref" href="wan24.Core.IObjectPool-1.html">IObjectPool</a>&lt;T&gt;</div>
+    <div><a class="xref" href="wan24.Core.IObjectPool.html">IObjectPool</a></div>
     <div><a class="xref" href="wan24.Core.IPool.html">IPool</a></div>
   </div>
   <div class="inheritedMembers">
@@ -147,6 +148,12 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.BlockingObjectPool-1.html#wan24_Core_BlockingObjectPool_1_DisposeCore">BlockingObjectPool&lt;T&gt;.DisposeCore()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BlockingObjectPool-1.html#wan24_Core_BlockingObjectPool_1_wan24_Core_IObjectPool_RentObject">BlockingObjectPool&lt;T&gt;.IObjectPool.RentObject()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BlockingObjectPool-1.html#wan24_Core_BlockingObjectPool_1_wan24_Core_IObjectPool_Return_System_Object__System_Boolean__">BlockingObjectPool&lt;T&gt;.IObjectPool.Return(Object, Boolean)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeSyncObject">DisposableBase.DisposeSyncObject</a>
@@ -228,7 +235,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_BlockingStreamPool_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class BlockingStreamPool&lt;T&gt; : BlockingObjectPool&lt;T&gt;, IDisposableObject, IAsyncObjectPool&lt;T&gt;, IObjectPool&lt;T&gt;, IPool where T : Stream, IObjectPoolItem, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public class BlockingStreamPool&lt;T&gt; : BlockingObjectPool&lt;T&gt;, IDisposableObject, IAsyncObjectPool&lt;T&gt;, IObjectPool&lt;T&gt;, IObjectPool, IPool where T : Stream, IObjectPoolItem, new()</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -544,6 +551,9 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.IObjectPool-1.html">IObjectPool&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IObjectPool.html">IObjectPool</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.IPool.html">IPool</a>
