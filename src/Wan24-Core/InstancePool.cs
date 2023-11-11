@@ -155,6 +155,18 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        object IInstancePool.GetOneObject() => GetOne();
+
+        /// <inheritdoc/>
+        async Task<object> IInstancePool.GetOneObjectAsync(CancellationToken cancellationToken) => await GetOneAsync(cancellationToken).DynamicContext();
+
+        /// <inheritdoc/>
+        IEnumerable<object> IInstancePool.GetManyObjects(int count, CancellationToken cancellationToken) => GetMany(count, cancellationToken);
+
+        /// <inheritdoc/>
+        IAsyncEnumerable<object> IInstancePool.GetManyObjectsAsync(int count, CancellationToken cancellationToken) => GetManyAsync(count, cancellationToken);
+
+        /// <inheritdoc/>
         protected override async Task BeforeStopAsync(CancellationToken cancellationToken)
         {
             await BufferSync.SetAsync(cancellationToken).DynamicContext();

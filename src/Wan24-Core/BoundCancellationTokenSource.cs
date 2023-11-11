@@ -63,8 +63,15 @@ namespace wan24.Core
                 if (_BoundTokens.Contains(cancellationToken)) continue;
                 CancelRegistrations.Add(cancellationToken.Register(() =>
                 {
-                    using SemaphoreSyncContext ssc = Sync;
-                    if (!IsCancellationRequested) Cancel();
+                    try
+                    {
+                        using SemaphoreSyncContext ssc = Sync;
+                        if (IsDisposed) return;
+                        if (!IsCancellationRequested) Cancel();
+                    }
+                    catch (ObjectDisposedException)
+                    {
+                    }
                 }));
                 _BoundTokens.Add(cancellationToken);
             }
@@ -93,7 +100,8 @@ namespace wan24.Core
         public virtual void Clear()
         {
             if (IsDisposed) throw new ObjectDisposedException(GetType().Name);
-            foreach (CancellationToken cancellationToken in _BoundTokens) RemoveToken(cancellationToken);
+            foreach (CancellationToken cancellationToken in _BoundTokens.ToArray())
+                RemoveToken(cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -101,10 +109,11 @@ namespace wan24.Core
         {
             if (IsDisposed) return;
             IsDisposed = true;
-            base.Dispose(disposing);
-            foreach (CancellationTokenRegistration ctr in CancelRegistrations)
-                ctr.Dispose();
+            using (SemaphoreSyncContext ssc = Sync)
+                foreach (CancellationTokenRegistration ctr in CancelRegistrations)
+                    ctr.Dispose();
             Sync.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

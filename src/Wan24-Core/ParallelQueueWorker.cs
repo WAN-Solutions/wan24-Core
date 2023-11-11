@@ -125,17 +125,19 @@
         /// <inheritdoc/>
         protected override async Task WorkerAsync()
         {
-            while (!Cancellation!.IsCancellationRequested)
+            Task_Delegate task;
+            while (!CancelToken.IsCancellationRequested)
             {
-                await Processing.WaitAsync(Cancellation!.Token).DynamicContext();
-                Task_Delegate task = await Queue.Reader.ReadAsync(Cancellation!.Token).DynamicContext();
-                using (SemaphoreSyncContext ssc = await WorkerSync.SyncContextAsync(Cancellation!.Token).DynamicContext())
+                await Processing.WaitAsync(CancelToken).DynamicContext();
+                if (IsDisposing) return;
+                task = await Queue.Reader.ReadAsync(CancelToken).DynamicContext();
+                using (SemaphoreSyncContext ssc = await WorkerSync.SyncContextAsync(CancelToken).DynamicContext())
                 {
                     ProcessCount++;
                     if (ProcessCount >= Threads) await Processing.ResetAsync().DynamicContext();
                     await Busy.ResetAsync().DynamicContext();
                 }
-                _ = Process(task, Cancellation!.Token);
+                _ = Process(task, CancelToken).DynamicContext();
             }
         }
 
@@ -167,18 +169,29 @@
             {
                 using SemaphoreSyncContext ssc = await WorkerSync.SyncContextAsync(CancellationToken.None).DynamicContext();
                 ProcessCount--;
-                if (ProcessCount == Threads - 1) await Processing.SetAsync().DynamicContext();
-                if (ProcessCount == 0) await Busy.SetAsync().DynamicContext();
+                if (ProcessCount == Threads - 1) await Processing.SetAsync(CancellationToken.None).DynamicContext();
+                if (ProcessCount == 0) await Busy.SetAsync(CancellationToken.None).DynamicContext();
             }
         }
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
+            Processing.Set();
             base.Dispose(disposing);
             Busy.Dispose();
             Processing.Dispose();
             WorkerSync.Dispose();
+        }
+
+        /// <inheritdoc/>
+        protected override async Task DisposeCore()
+        {
+            await Processing.SetAsync().DynamicContext();
+            await base.DisposeCore().DynamicContext();
+            await Busy.DisposeAsync().DynamicContext();
+            await Processing.DisposeAsync().DynamicContext();
+            await WorkerSync.DisposeAsync().DynamicContext();
         }
     }
 }

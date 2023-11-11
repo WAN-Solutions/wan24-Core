@@ -346,6 +346,12 @@ namespace wan24.Core
             Pool.Dispose();
         }
 
+        /// <inheritdoc/>
+        object IObjectPool.RentObject() => Rent()!;
+
+        /// <inheritdoc/>
+        void IObjectPool.Return(in object item, in bool reset) => Return((T)item, reset);
+
         /// <summary>
         /// Cast as rented object
         /// </summary>
