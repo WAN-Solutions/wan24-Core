@@ -87,7 +87,9 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Just a method adapter")]
         public readonly void Release()
         {
-            lock (Semaphore) if (IsSynchronized) Semaphore.Release();
+            lock (Semaphore)
+                if (IsSynchronized)
+                    Semaphore.Release();
         }
 
         /// <inheritdoc/>
@@ -98,7 +100,15 @@ namespace wan24.Core
                 if (IsDisposed) return;
                 IsDisposed = true;
             }
-            lock (Semaphore) if (IsSynchronized) Semaphore.Release();
+            lock (Semaphore)
+                if (IsSynchronized)
+                    try
+                    {
+                        Semaphore.Release();
+                    }
+                    catch (ObjectDisposedException)
+                    {
+                    }
         }
 
         /// <summary>
