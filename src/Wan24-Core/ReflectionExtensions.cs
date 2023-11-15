@@ -238,5 +238,20 @@ namespace wan24.Core
         /// <returns>Is match?</returns>
         private static bool MatchParameterType(in Type parameterType, in Type expectedType, in bool exact)
             => (exact && parameterType == expectedType) || (!exact && parameterType.IsAssignableFrom(expectedType));
+
+        /// <summary>
+        /// Unwrap the final result type of a task type recursive
+        /// </summary>
+        /// <param name="task">Task type</param>
+        /// <returns>Final result type</returns>
+        public static Type? UnwrapFinalTaskResultType(this Type task)
+        {
+            if (!typeof(Task).IsAssignableFrom(task)) throw new ArgumentException("Task type required", nameof(task));
+            while (true)
+            {
+                if (!task.IsGenericType || !typeof(Task).IsAssignableFrom(task)) return task;
+                task = task.GetGenericArguments()[0];
+            }
+        }
     }
 }

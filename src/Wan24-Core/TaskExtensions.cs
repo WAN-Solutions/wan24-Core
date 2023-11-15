@@ -361,5 +361,21 @@ namespace wan24.Core
                 scheduler ?? TaskScheduler.Current
                 )
                 .Unwrap();
+
+        /// <summary>
+        /// Unwrap the final result type of a task recursive
+        /// </summary>
+        /// <param name="task">Task</param>
+        /// <returns>Final result type</returns>
+        public static Type? UnwrapFinalResultType(this Task task)
+        {
+            Type type = task.GetType();
+            Type? res = null;
+            while (true)
+            {
+                if (!type.IsGenericType || !typeof(Task).IsAssignableFrom(type)) return res;
+                res = type = type.GetGenericArguments()[0];
+            }
+        }
     }
 }
