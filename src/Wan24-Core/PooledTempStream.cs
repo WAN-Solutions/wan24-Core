@@ -191,10 +191,10 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        protected override async Task DisposeCore()
+        protected override Task DisposeCore()
         {
             ReturnBaseStream();
-            await base.DisposeCore().DynamicContext();
+            return base.DisposeCore();
         }
 
         /// <summary>

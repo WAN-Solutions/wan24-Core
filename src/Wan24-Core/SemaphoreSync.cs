@@ -1,4 +1,5 @@
-﻿using System.Runtime;
+﻿using System.Collections.Concurrent;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -8,14 +9,51 @@ namespace wan24.Core
     public sealed class SemaphoreSync : DisposableBase
     {
         /// <summary>
-        /// Constuctor
+        /// Object synchronization instances
         /// </summary>
-        public SemaphoreSync() : base(asyncDisposing: false) { }
+        internal static readonly ConcurrentDictionary<int, ObjectInfo> Instances = new();
+
+        /// <summary>
+        /// Object synchronization information
+        /// </summary>
+        internal readonly ObjectInfo? Object;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public SemaphoreSync() : base(asyncDisposing: false)
+        {
+            Object = null;
+            Semaphore = new(1, 1);
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="obj">Synchronized object</param>
+        public SemaphoreSync(in object obj) : base(asyncDisposing: false)
+        {
+            int hashCode = obj.GetType().GetHashCode() ^ obj.GetHashCode();
+            ObjectInfo? objInfo;
+            while (!Instances.TryGetValue(hashCode, out objInfo) || !objInfo.AddInstance())
+            {
+                objInfo = new(obj, hashCode);
+                if (Instances.TryAdd(hashCode, objInfo)) break;
+                objInfo.Dispose();
+            }
+            Object = objInfo;
+            Semaphore = objInfo.Semaphore;
+        }
+
+        /// <summary>
+        /// Number of managed object synchronizing instances
+        /// </summary>
+        public static int SynchronizedObjectCount => Instances.Count;
 
         /// <summary>
         /// Semaphore
         /// </summary>
-        public SemaphoreSlim Semaphore { get; } = new(1, 1);
+        public SemaphoreSlim Semaphore { get; }
 
         /// <summary>
         /// Is synchronized?
@@ -226,7 +264,17 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        protected override void Dispose(bool disposing) => Semaphore.Dispose();
+        protected override void Dispose(bool disposing)
+        {
+            if (Object is null)
+            {
+                Semaphore.Dispose();
+            }
+            else
+            {
+                Object.RemoveInstance();
+            }
+        }
 
         /// <summary>
         /// Cast as synchronization context
@@ -234,5 +282,128 @@ namespace wan24.Core
         /// <param name="sync">Synchronization</param>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator SemaphoreSyncContext(in SemaphoreSync sync) => sync.SyncContext();
+
+        /// <summary>
+        /// Get the number of object synchronizing instances
+        /// </summary>
+        /// <param name="obj">Object</param>
+        /// <returns>Number of object synchronizing instances</returns>
+        public static int GetSynchronizationInstanceCount(in object obj)
+            => Instances.TryGetValue(obj.GetType().GetHashCode() ^ obj.GetHashCode(), out ObjectInfo? objInfo) ? objInfo.InstanceCount : 0;
+
+        /// <summary>
+        /// Synchronized object information
+        /// </summary>
+        internal sealed class ObjectInfo : DisposableBase
+        {
+            /// <summary>
+            /// Synchronization instance count
+            /// </summary>
+            private volatile int _InstanceCount = 1;
+            /// <summary>
+            /// Semaphore
+            /// </summary>
+            private SemaphoreSlim? _Semaphore = null;
+
+            /// <summary>
+            /// Constructor
+            /// </summary>
+            /// <param name="obj">Object</param>
+            /// <param name="hashCode">Hash code</param>
+            public ObjectInfo(in object obj, in int hashCode) : base()
+            {
+                Object = obj;
+                HashCode = hashCode;
+            }
+
+            /// <summary>
+            /// Object
+            /// </summary>
+            public object Object { get; }
+
+            /// <summary>
+            /// Hash code
+            /// </summary>
+            public int HashCode { get; }
+
+            /// <summary>
+            /// Synchronization count
+            /// </summary>
+            public int InstanceCount => _InstanceCount;
+
+            /// <summary>
+            /// Semaphore
+            /// </summary>
+            public SemaphoreSlim Semaphore => IfUndisposed(() => _Semaphore ??= new(1, 1));
+
+            /// <summary>
+            /// Add a synchronization instance
+            /// </summary>
+            /// <returns>Instance added?</returns>
+            public bool AddInstance()
+            {
+                if (!EnsureUndisposed(throwException: false)) return false;
+                try
+                {
+                    DisposeSyncObject.Wait();
+                    try
+                    {
+                        if (!EnsureUndisposed(throwException: false)) return false;
+                        _InstanceCount++;
+                        return true;
+                    }
+                    finally
+                    {
+                        DisposeSyncObject.Release();
+                    }
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            /// <summary>
+            /// Remove a synchronization instance
+            /// </summary>
+            public void RemoveInstance()
+            {
+                if (!EnsureUndisposed(throwException: false)) return;
+                try
+                {
+                    DisposeSyncObject.Wait();
+                    try
+                    {
+                        if (!EnsureUndisposed(throwException: false)) return;
+                        _InstanceCount--;
+                        if (_InstanceCount > 0) return;
+                        Instances.TryRemove(HashCode, out _);
+                        _ = DisposeAsync().DynamicContext();
+                    }
+                    finally
+                    {
+                        DisposeSyncObject.Release();
+                    }
+                }
+                catch
+                {
+                }
+            }
+
+            /// <inheritdoc/>
+            protected override void Dispose(bool disposing)
+            {
+                _Semaphore?.Dispose();
+                if (_InstanceCount != 0)
+                    Logging.WriteWarning($"{GetType()} counts {_InstanceCount} synchronization instances for {Object.GetType()} when disposed");
+            }
+
+            /// <inheritdoc/>
+            protected override Task DisposeCore()
+            {
+                Dispose(disposing: true);
+                return Task.CompletedTask;
+            }
+        }
     }
 }
