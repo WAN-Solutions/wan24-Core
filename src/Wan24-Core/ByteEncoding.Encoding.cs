@@ -63,7 +63,7 @@ namespace wan24.Core
         {
             if (!SkipCharMapCheck) ValidateCharMap(charMap);
             int len = data.Length;
-            if (len == 0) return Array.Empty<char>();
+            if (len == 0) return [];
             int bitOffset = 0,
                 resLen = GetEncodedLength(len),
                 resOffset = -1;
@@ -88,15 +88,26 @@ namespace wan24.Core
                     {
                         int i = 0;
 #if !NO_UNSAFE
-                        //TODO Support AVX-512 and ARM
+                        //TODO Support ARM
                         int l = len;
-                        if (l >= 28 && Avx2.IsSupported)
+                        if (UseCpuCmd)
                         {
-                            int il = l - (l % 24);
-                            if (il < 4) il -= 24;
-                            EncodeAvx2(il, cm, d + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
-                            i += il;
-                            l -= il;
+                            if (false && l >= 56 && (UseAvx & AvxCmd.Avx512) == AvxCmd.Avx512 && Avx512BW.IsSupported)
+                            {
+                                int chunkLen = l - (l % 48);
+                                if (len - chunkLen < 8) chunkLen -= 48;
+                                EncodeAvx512(chunkLen, cm, d + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                                i += chunkLen;
+                                l -= chunkLen;
+                            }
+                            if (l >= 28 && (UseAvx & AvxCmd.Avx2) == AvxCmd.Avx2 && Avx2.IsSupported)
+                            {
+                                int chunkLen = l - (l % 24);
+                                if (len - chunkLen < 4) chunkLen -= 24;
+                                EncodeAvx2(chunkLen, cm, d + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                                i += chunkLen;
+                                l -= chunkLen;
+                            }
                         }
 #endif
                         for (int bits; i < len; i++)
@@ -181,15 +192,26 @@ namespace wan24.Core
                     {
                         int i = 0;
 #if !NO_UNSAFE
-                        //TODO Support AVX-512 and ARM
+                        //TODO Support ARM
                         int l = len;
-                        if (l >= 28 && Avx2.IsSupported)
+                        if (UseCpuCmd)
                         {
-                            int il = l - (l % 24);
-                            if (il < 4) il -= 24;
-                            EncodeAvx2(il, cm, d + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
-                            i += il;
-                            l -= il;
+                            if (false && l >= 56 && (UseAvx & AvxCmd.Avx512) == AvxCmd.Avx512 && Avx512BW.IsSupported)
+                            {
+                                int chunkLen = l - (l % 48);
+                                if (len - chunkLen < 8) chunkLen -= 48;
+                                EncodeAvx512(chunkLen, cm, d + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                                i += chunkLen;
+                                l -= chunkLen;
+                            }
+                            if (l >= 28 && (UseAvx & AvxCmd.Avx2) == AvxCmd.Avx2 && Avx2.IsSupported)
+                            {
+                                int chunkLen = l - (l % 24);
+                                if (len - chunkLen < 4) chunkLen -= 24;
+                                EncodeAvx2(chunkLen, cm, d + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                                i += chunkLen;
+                                l -= chunkLen;
+                            }
                         }
 #endif
                         for (int bits; i < len; i++)

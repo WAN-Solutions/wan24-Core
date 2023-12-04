@@ -11,7 +11,7 @@ namespace wan24.Core
         /// <summary>
         /// Registered callbacks
         /// </summary>
-        protected readonly List<ChangeCallback> Callbacks = new();
+        protected readonly List<ChangeCallback> Callbacks = [];
 
         /// <summary>
         /// Constructor
@@ -58,7 +58,7 @@ namespace wan24.Core
         public virtual void InvokeCallbacks()
         {
             ChangeCallback[] callbacks;
-            lock (SyncObject) callbacks = Callbacks.ToArray();
+            lock (SyncObject) callbacks = [.. Callbacks];
             callbacks.Invoke();
         }
 

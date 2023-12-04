@@ -9,7 +9,7 @@ namespace Wan24_Core_Tests
         [TestMethod, Timeout(3000)]
         public void General_Tests()
         {
-            PauseableStream pauseStream = new(new MemoryPoolStream());
+            PausableStream pauseStream = new(new MemoryPoolStream());
             using SynchronizedStream stream = new(pauseStream);
             pauseStream.Pause = true;
             bool running = false;
@@ -36,7 +36,7 @@ namespace Wan24_Core_Tests
         [TestMethod, Timeout(3000)]
         public async Task GeneralAsync_Tests()
         {
-            PauseableStream pauseStream = new(new MemoryPoolStream());
+            PausableStream pauseStream = new(new MemoryPoolStream());
             using SynchronizedStream stream = new(pauseStream);
             pauseStream.Pause = true;
             bool running = false;

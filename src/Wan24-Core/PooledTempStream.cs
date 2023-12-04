@@ -1,7 +1,5 @@
 ﻿using System.Runtime;
 
-//TODO .NET 8: Use File.SetUnixFileMode and let the user define a default file mode
-
 namespace wan24.Core
 {
     /// <summary>

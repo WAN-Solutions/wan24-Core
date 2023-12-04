@@ -1,8 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime;
 
-//TODO .NET 7: Override ReadExactly(Async) and ReadAtLeast(Async)
-
 namespace wan24.Core
 {
     /// <summary>
@@ -96,9 +94,9 @@ namespace wan24.Core
                 EnsureUndisposed();
                 if (value == this) throw new InvalidOperationException();
                 if (value == _BaseStream) return;
-                if (_BaseStream is IDisposableObject oldDisposable) oldDisposable.OnDisposed -= HandlebaseStreamDisposed;
+                if (_BaseStream is IDisposableObject oldDisposable) oldDisposable.OnDisposed -= HandleBaseStreamDisposed;
                 _BaseStream = value;
-                if (value is IDisposableObject newDisposable) newDisposable.OnDisposed += HandlebaseStreamDisposed;
+                if (value is IDisposableObject newDisposable) newDisposable.OnDisposed += HandleBaseStreamDisposed;
             }
         }
 
@@ -409,7 +407,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            if (_BaseStream is IDisposableObject disposable) disposable.OnDisposed -= HandlebaseStreamDisposed;
+            if (_BaseStream is IDisposableObject disposable) disposable.OnDisposed -= HandleBaseStreamDisposed;
             if (!LeaveOpen) _BaseStream.Dispose();
             base.Dispose(disposing);
         }
@@ -417,7 +415,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            if (_BaseStream is IDisposableObject disposable) disposable.OnDisposed -= HandlebaseStreamDisposed;
+            if (_BaseStream is IDisposableObject disposable) disposable.OnDisposed -= HandleBaseStreamDisposed;
             if (!LeaveOpen) await _BaseStream.DisposeAsync().DynamicContext();
             await base.DisposeCore().DynamicContext();
         }
@@ -480,6 +478,6 @@ namespace wan24.Core
         /// </summary>
         /// <param name="sender">Sender</param>
         /// <param name="e">Event arguments</param>
-        protected async void HandlebaseStreamDisposed(IDisposableObject sender, EventArgs e) => await DisposeAsync().DynamicContext();
+        protected async void HandleBaseStreamDisposed(IDisposableObject sender, EventArgs e) => await DisposeAsync().DynamicContext();
     }
 }

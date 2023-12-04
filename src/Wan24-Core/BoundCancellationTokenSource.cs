@@ -14,11 +14,11 @@ namespace wan24.Core
         /// <summary>
         /// Bound cancellation tokens
         /// </summary>
-        protected readonly List<CancellationToken> _BoundTokens = new();
+        protected readonly List<CancellationToken> _BoundTokens = [];
         /// <summary>
         /// Cancellation registrations
         /// </summary>
-        protected readonly List<CancellationTokenRegistration> CancelRegistrations = new();
+        protected readonly List<CancellationTokenRegistration> CancelRegistrations = [];
         /// <summary>
         /// Is disposed?
         /// </summary>
@@ -55,7 +55,7 @@ namespace wan24.Core
         /// <param name="cancellationTokens">Cancellation tokens</param>
         public virtual void AddTokens(params CancellationToken[] cancellationTokens)
         {
-            if (IsDisposed) throw new ObjectDisposedException(GetType().Name);
+            ObjectDisposedException.ThrowIf(IsDisposed, this);
             if (IsCancellationRequested) throw new InvalidOperationException("Cancelled");
             using SemaphoreSyncContext ssc = Sync;
             foreach (CancellationToken cancellationToken in cancellationTokens)
@@ -83,7 +83,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         public virtual void RemoveToken(in CancellationToken cancellationToken)
         {
-            if (IsDisposed) throw new ObjectDisposedException(GetType().Name);
+            ObjectDisposedException.ThrowIf(IsDisposed, this);
             using SemaphoreSyncContext ssc = Sync;
             for (int i = 0, len = _BoundTokens.Count; i < len; i++)
             {
@@ -99,7 +99,7 @@ namespace wan24.Core
         /// </summary>
         public virtual void Clear()
         {
-            if (IsDisposed) throw new ObjectDisposedException(GetType().Name);
+            ObjectDisposedException.ThrowIf(IsDisposed, this);
             foreach (CancellationToken cancellationToken in _BoundTokens.ToArray())
                 RemoveToken(cancellationToken);
         }

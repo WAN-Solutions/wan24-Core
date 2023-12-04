@@ -20,7 +20,7 @@ namespace wan24.Core
         /// <summary>
         /// Regular expression to parse a string (<c>$1</c> is the whole placeholder, <c>$2</c> the inner variable declaration)
         /// </summary>
-        public static Regex RxParser { get; set; } = new(@"(\%\{([^\}]+)\})", RegexOptions.Compiled | RegexOptions.Singleline);
+        public static Regex RxParser { get; set; } = RxParser_Generated();
 
         /// <summary>
         /// Regular expression content group (2 per default)
@@ -63,7 +63,7 @@ namespace wan24.Core
             int round = 0,// Current parser round
                 index,// Current function call index
                 charIndex;
-            List<string> parts = new();// Current match parts (during parsing)
+            List<string> parts = [];// Current match parts (during parsing)
             string[] match,// Current match parts (after parsing)
                 param;// Current function call parameters
             string func,// Current function name
@@ -88,7 +88,7 @@ namespace wan24.Core
                     key = m.Groups[rxGroup].Value.Trim();
                     parts.Add(key);
                     // Parse function calls
-                    if (key.IndexOf(':') != -1)
+                    if (key.Contains(':'))
                     {
                         sb.Clear();
                         needClosingBracket = false;
@@ -142,11 +142,11 @@ namespace wan24.Core
                         parts.RemoveAt(0);
                         key = parts[0].Trim();
                     }
-                    match = parts.ToArray();
+                    match = [.. parts];
                     // Get the variable value
-                    if (data.ContainsKey(key))
+                    if (data.TryGetValue(key, out string? v))
                     {
-                        value = data[key];
+                        value = v;
                     }
                     else
                     {
@@ -192,7 +192,7 @@ namespace wan24.Core
                             else
                             {
                                 func = match[index].Trim();
-                                param = Array.Empty<string>();
+                                param = [];
                             }
                             // Try to find the handler
                             if (!ParserFunctionHandlers.TryGetValue(func, out handler))
@@ -276,5 +276,12 @@ namespace wan24.Core
         /// <param name="context">Context</param>
         /// <returns>Function return value (will be the final value or the value for the next function call)</returns>
         public delegate string Parser_Delegate(StringParserContext context);
+
+        /// <summary>
+        /// Regular expression to parse a string (<c>$1</c> is the whole placeholder, <c>$2</c> the inner variable declaration)
+        /// </summary>
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex(@"(\%\{([^\}]+)\})", RegexOptions.Compiled | RegexOptions.Singleline)]
+        private static partial Regex RxParser_Generated();
     }
 }

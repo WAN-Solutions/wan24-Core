@@ -129,7 +129,7 @@ namespace wan24.Core
             if (Detached) throw new InvalidOperationException();
             Detached = true;
             byte[] res = Array;
-            Array = System.Array.Empty<byte>();
+            Array = [];
             Dispose();
             return res;
         }

@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="ex">Exception</param>
         /// <param name="source">Source ID</param>
-        /// <param name="tag">Any tagges object</param>
+        /// <param name="tag">Any tagged object</param>
         public ErrorInfo(in Exception ex, in int source = ErrorHandling.UNSPECIFIED_ERROR_SOURCE, in object? tag = null)
         {
             Exception = ex;
@@ -24,7 +24,7 @@
         /// <param name="info">Information</param>
         /// <param name="ex">Exception</param>
         /// <param name="source">Source ID</param>
-        /// <param name="tag">Any tagges object</param>
+        /// <param name="tag">Any tagged object</param>
         public ErrorInfo(in string info, in Exception ex, in int source = ErrorHandling.UNSPECIFIED_ERROR_SOURCE, in object? tag = null)
         {
             Exception = ex;

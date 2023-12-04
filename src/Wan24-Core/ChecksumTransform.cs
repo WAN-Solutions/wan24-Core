@@ -89,9 +89,6 @@ namespace wan24.Core
         /// <inheritdoc/>
         new public static ChecksumTransform Create() => new();
 
-        /// <inheritdoc/>
-        new public static HashAlgorithm? Create(string hashName) => hashName == ALGORITHM_NAME ? new ChecksumTransform() : HashAlgorithm.Create(hashName);
-
         /// <summary>
         /// Create a checksum from source data
         /// </summary>

@@ -30,7 +30,7 @@
         /// <param name="valueGenerator">Value generator</param>
         public Statistics(in string name, in int capacity, in Value_Delegate valueGenerator)
         {
-            if (capacity < 1) throw new ArgumentOutOfRangeException(nameof(capacity));
+            ArgumentOutOfRangeException.ThrowIfLessThan(capacity, 1);
             Name = name;
             ValueGenerator = valueGenerator;
             Values = new double[capacity];

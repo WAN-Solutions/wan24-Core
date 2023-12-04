@@ -6,18 +6,16 @@ namespace wan24.Core
     /// <summary>
     /// Simple dictionary based translation
     /// </summary>
-    public class TranslationTerms : ITranslationTerms
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="terms">Terms</param>
+    public class TranslationTerms(IReadOnlyDictionary<string, string> terms) : ITranslationTerms
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="terms">Terms</param>
-        public TranslationTerms(IReadOnlyDictionary<string, string> terms) => Terms = terms;
-
         /// <summary>
         /// Terms
         /// </summary>
-        public IReadOnlyDictionary<string, string> Terms { get; }
+        public IReadOnlyDictionary<string, string> Terms { get; } = terms;
 
         /// <inheritdoc/>
         public virtual bool PluralSupport => false;

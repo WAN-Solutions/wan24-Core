@@ -10,13 +10,13 @@ namespace wan24.Core
         /// <summary>
         /// Denied numeric type hash codes
         /// </summary>
-        private static readonly int[] DeniedNumericTypes = new int[] 
-        { 
+        private static readonly int[] DeniedNumericTypes =
+        [
             typeof(float).GetHashCode(), 
             typeof(double).GetHashCode(), 
             typeof(decimal).GetHashCode(), 
             typeof(Half).GetHashCode() 
-        };
+        ];
 
         /// <summary>
         /// Encode a numeric value as compact as possible
@@ -33,7 +33,7 @@ namespace wan24.Core
             if (EnsureValidNumericType<T>().IsUnsigned())
             {
                 ulong ul = (ulong)Convert.ChangeType(value, typeof(ulong));
-                if (ul == 0) return res ?? Array.Empty<char>();
+                if (ul == 0) return res ?? [];
                 if (ul > uint.MaxValue) return ul.Encode(charMap, res, pool);
                 if (ul > ushort.MaxValue) return ((uint)ul).Encode(charMap, res, pool);
                 if (ul > byte.MaxValue) return ((ushort)ul).Encode(charMap, res, pool);
@@ -42,7 +42,7 @@ namespace wan24.Core
             else
             {
                 long l = (long)Convert.ChangeType(value, typeof(long));
-                if (l == 0) return res ?? Array.Empty<char>();
+                if (l == 0) return res ?? [];
                 if (l > int.MaxValue) return l.Encode(charMap, res, pool);
                 if (l > short.MaxValue) return ((int)l).Encode(charMap, res, pool);
                 if (l > sbyte.MaxValue) return ((short)l).Encode(charMap, res, pool);
@@ -65,7 +65,7 @@ namespace wan24.Core
             if (EnsureValidNumericType<T>().IsUnsigned())
             {
                 ulong ul = (ulong)Convert.ChangeType(value, typeof(ulong));
-                if (ul == 0) return res ?? Array.Empty<char>();
+                if (ul == 0) return res ?? [];
                 if (ul > uint.MaxValue) return ul.Encode(buffer, charMap, res);
                 if (ul > ushort.MaxValue) return ((uint)ul).Encode(buffer, charMap, res);
                 if (ul > byte.MaxValue) return ((ushort)ul).Encode(buffer, charMap, res);
@@ -74,7 +74,7 @@ namespace wan24.Core
             else
             {
                 long l = (long)Convert.ChangeType(value, typeof(long));
-                if (l == 0) return res ?? Array.Empty<char>();
+                if (l == 0) return res ?? [];
                 if (l > int.MaxValue) return l.Encode(buffer, charMap, res);
                 if (l > short.MaxValue) return ((int)l).Encode(buffer, charMap, res);
                 if (l > sbyte.MaxValue) return ((short)l).Encode(buffer, charMap, res);

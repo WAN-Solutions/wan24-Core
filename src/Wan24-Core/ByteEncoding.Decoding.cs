@@ -74,7 +74,7 @@ namespace wan24.Core
         {
             if (!SkipCharMapCheck) ValidateCharMap(charMap);
             int len = str.Length;
-            if (len == 0) return Array.Empty<byte>();
+            if (len == 0) return [];
             int bits = (len << 2) + (len << 1),
                 resLen = bits >> 3,
                 resOffset = 0;
@@ -98,14 +98,24 @@ namespace wan24.Core
                     {
                         int i = 0;
 #if !NO_UNSAFE
-                        //TODO Support AVX-512 and ARM
+                        //TODO Support ARM
                         int l = len;
-                        if (l >= 32 && Avx2.IsSupported)
+                        if (UseCpuCmd)
                         {
-                            int il = l & ~31;
-                            DecodeAvx2(l, il, cm, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
-                            i += il;
-                            l &= 31;
+                            if (false && l >= 64 && (UseAvx & AvxCmd.Avx512) == AvxCmd.Avx512 && Avx512BW.IsSupported)
+                            {
+                                int il = l & ~63;
+                                DecodeAvx512(l, il, cm, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                                i += il;
+                                l &= 63;
+                            }
+                            if (l >= 32 && (UseAvx & AvxCmd.Avx2) == AvxCmd.Avx2 && Avx2.IsSupported)
+                            {
+                                int il = l & ~31;
+                                DecodeAvx2(l, il, cm, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                                i += il;
+                                l &= 31;
+                            }
                         }
 #endif
                         for (int bitOffset = 0; i < len; i++)
@@ -216,14 +226,24 @@ namespace wan24.Core
                     {
                         int i = 0;
 #if !NO_UNSAFE
-                        //TODO Support AVX-512 and ARM
+                        //TODO Support ARM
                         int l = len;
-                        if (l >= 32 && Avx2.IsSupported)
+                        if (UseCpuCmd)
                         {
-                            int il = l & ~31;
-                            DecodeAvx2(len, il, cm, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
-                            i += il;
-                            l &= 31;
+                            if (false && l >= 64 && (UseAvx & AvxCmd.Avx512) == AvxCmd.Avx512 && Avx512BW.IsSupported)
+                            {
+                                int il = l & ~63;
+                                DecodeAvx512(l, il, cm, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                                i += il;
+                                l &= 63;
+                            }
+                            if (l >= 32 && (UseAvx & AvxCmd.Avx2) == AvxCmd.Avx2 && Avx2.IsSupported)
+                            {
+                                int il = l & ~31;
+                                DecodeAvx2(len, il, cm, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                                i += il;
+                                l &= 31;
+                            }
                         }
 #endif
                         for (int bitOffset = 0; i < len; i++)

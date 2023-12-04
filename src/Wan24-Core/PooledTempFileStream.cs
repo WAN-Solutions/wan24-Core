@@ -1,13 +1,41 @@
 ﻿using System.Runtime;
 
-//TODO .NET 8: Use File.SetUnixFileMode and let the user define a default file mode
-
 namespace wan24.Core
 {
     /// <summary>
     /// Pooled temporary file stream
     /// </summary>
-    public sealed class PooledTempFileStream : FileStream, IObjectPoolItem
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="folder">Temporary folder</param>
+    /// <param name="mode">Unix create file mode</param>
+    public sealed class PooledTempFileStream(in string? folder, in UnixFileMode? mode = null) : FileStream(
+          Path.Combine(
+                      folder ?? Settings.TempFolder,
+                      $"{Guid.NewGuid()}{(Settings.AppId is null ? string.Empty : $"-{Settings.AppId}")}{(Settings.ProcessId is null ? string.Empty : $"-{Settings.ProcessId}")}.pooled"
+                      ),
+          ENV.IsLinux
+            ? new FileStreamOptions()
+            {
+                Mode = FileMode.CreateNew,
+                Access = FileAccess.ReadWrite,
+                Share = FileShare.None,
+                BufferSize = BufferSize,
+                Options = FileOptions.DeleteOnClose | FileOptions.SequentialScan | FileOptions.Asynchronous,
+#pragma warning disable CA1416 // Platform specific
+                UnixCreateMode = ENV.IsLinux ? mode ?? Settings.CreateFileMode : null
+#pragma warning restore CA1416 // Platform specific
+            }
+            : new FileStreamOptions()
+            {
+                Mode = FileMode.CreateNew,
+                Access = FileAccess.ReadWrite,
+                Share = FileShare.None,
+                BufferSize = BufferSize,
+                Options = FileOptions.DeleteOnClose | FileOptions.SequentialScan | FileOptions.Asynchronous,
+            }
+            ), IObjectPoolItem
     {
         /// <summary>
         /// Default buffer size in bytes
@@ -38,25 +66,13 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        public PooledTempFileStream() : this(folder: null) { }
+        /// <param name="mode">Unix create file mode</param>
+        public PooledTempFileStream(in UnixFileMode? mode) : this(folder: null, mode) { }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="folder">Temporary folder</param>
-        public PooledTempFileStream(in string? folder)
-            : base(
-                  Path.Combine(
-                      folder ?? Settings.TempFolder,
-                      $"{Guid.NewGuid()}{(Settings.AppId is null ? string.Empty : $"-{Settings.AppId}")}{(Settings.ProcessId is null ? string.Empty : $"-{Settings.ProcessId}")}.pooled"
-                      ),
-                  FileMode.CreateNew,
-                  FileAccess.ReadWrite,
-                  FileShare.None,
-                  BufferSize,
-                  FileOptions.DeleteOnClose | FileOptions.SequentialScan | FileOptions.Asynchronous
-            )
-        { }
+        public PooledTempFileStream() : this(folder: null) { }
 
         /// <summary>
         /// Buffer size in bytes

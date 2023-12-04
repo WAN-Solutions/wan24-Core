@@ -8,29 +8,29 @@ namespace wan24.Core
     public static class EnumExtensions
     {
         /// <summary>
-        /// Get enumeration informations
+        /// Get enumeration information
         /// </summary>
         /// <typeparam name="T">Enumeration type</typeparam>
         /// <param name="value">Value</param>
-        /// <returns>Informations</returns>
+        /// <returns>Information</returns>
 #pragma warning disable IDE0060 // Remove unused parameter
         [TargetedPatchingOptOut("Tiny method")]
         public static EnumInfo<T> GetInfo<T>(this T value) where T : struct, Enum, IConvertible => new();
 #pragma warning restore IDE0060 // Remove unused parameter
 
         /// <summary>
-        /// Get enumeration informations
+        /// Get enumeration information
         /// </summary>
         /// <typeparam name="T">Enumeration type</typeparam>
-        /// <returns>Informations</returns>
+        /// <returns>Information</returns>
         [TargetedPatchingOptOut("Tiny method")]
         public static EnumInfo<T> GetInfo<T>() where T : struct, Enum, IConvertible => new();
 
         /// <summary>
-        /// Get enumeration informations
+        /// Get enumeration information
         /// </summary>
         /// <param name="type">Enumeration type</param>
-        /// <returns>Informations</returns>
+        /// <returns>Information</returns>
         [TargetedPatchingOptOut("Tiny method")]
         public static IEnumInfo GetEnumInfo(this Type type) => (Activator.CreateInstance(typeof(EnumInfo<>).MakeGenericType(type)) as IEnumInfo)!;
 

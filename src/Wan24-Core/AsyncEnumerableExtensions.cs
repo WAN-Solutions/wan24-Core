@@ -16,7 +16,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Array</returns>
         public static async Task<T[]> ToArrayAsync<T>(this IAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
-            => (await enumerable.ToListAsync(cancellationToken).DynamicContext()).ToArray();
+            => [.. (await enumerable.ToListAsync(cancellationToken).DynamicContext())];
 
         /// <summary>
         /// Get as list
@@ -27,7 +27,7 @@ namespace wan24.Core
         /// <returns>List</returns>
         public static async Task<List<T>> ToListAsync<T>(this IAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
         {
-            List<T> res = new();
+            List<T> res = [];
             await foreach (T item in enumerable.DynamicContext().WithCancellation(cancellationToken)) res.Add(item);
             return res;
         }
@@ -40,7 +40,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Array</returns>
         public static async Task<T[]> ToArrayAsync<T>(this ConfiguredCancelableAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
-            => (await enumerable.ToListAsync(cancellationToken).DynamicContext()).ToArray();
+            => [.. (await enumerable.ToListAsync(cancellationToken).DynamicContext())];
 
         /// <summary>
         /// Get as list
@@ -51,7 +51,7 @@ namespace wan24.Core
         /// <returns>List</returns>
         public static async Task<List<T>> ToListAsync<T>(this ConfiguredCancelableAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
         {
-            List<T> res = new();
+            List<T> res = [];
             await foreach (T item in enumerable.WithCancellation(cancellationToken)) res.Add(item);
             return res;
         }
@@ -121,7 +121,7 @@ namespace wan24.Core
             int chunkSize,
             [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
-            if (chunkSize < 1) throw new ArgumentOutOfRangeException(nameof(chunkSize));
+            ArgumentOutOfRangeException.ThrowIfLessThan(chunkSize, 1);
             List<T> res = new(chunkSize);
             await foreach (T item in enumerable.DynamicContext().WithCancellation(cancellationToken))
             {
@@ -139,7 +139,7 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="disposables">Disposables</param>
-        public static DisposingAsyncEnumerator<T> ToDipsposingAsyncEnumerator<T>(
+        public static DisposingAsyncEnumerator<T> ToDisposingAsyncEnumerator<T>(
             this IAsyncEnumerable<T> enumerable,
             in CancellationToken cancellationToken,
             params object?[] disposables
@@ -151,7 +151,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="disposables">Disposables</param>
-        public static DisposingAsyncEnumerator<T> ToDipsposingAsyncEnumerable<T>(
+        public static DisposingAsyncEnumerator<T> ToDisposingAsyncEnumerator<T>(
             this IAsyncEnumerable<T> enumerable,
             params object?[] disposables
             )
@@ -163,7 +163,7 @@ namespace wan24.Core
         /// <param name="enumerator">Enumerator (will be disposed)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="disposables">Disposables</param>
-        public static DisposingAsyncEnumerator<T> ToDipsposingAsyncEnumerator<T>(
+        public static DisposingAsyncEnumerator<T> ToDisposingAsyncEnumerator<T>(
             this IAsyncEnumerator<T> enumerator,
             in CancellationToken cancellationToken,
             params object?[] disposables
@@ -175,7 +175,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="enumerator">Enumerator (will be disposed)</param>
         /// <param name="disposables">Disposables</param>
-        public static DisposingAsyncEnumerator<T> ToDipsposingAsyncEnumerable<T>(
+        public static DisposingAsyncEnumerator<T> ToDisposingAsyncEnumerator<T>(
             this IAsyncEnumerator<T> enumerator,
             params object?[] disposables
             )

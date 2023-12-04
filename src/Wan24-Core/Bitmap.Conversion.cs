@@ -107,8 +107,8 @@ namespace wan24.Core
         /// <returns>Return value</returns>
         protected T ExecuteWithEnsuredSpan<T>(in int offset, in int count, in Func<ReadOnlyMemory<byte>, T> function)
         {
-            if (offset < 0) throw new ArgumentOutOfRangeException(nameof(offset));
-            if (count < 1) throw new ArgumentOutOfRangeException(nameof(count));
+            ArgumentOutOfRangeException.ThrowIfNegative(offset);
+            ArgumentOutOfRangeException.ThrowIfLessThan(count, 1);
             lock (SyncObject)
             {
                 long byteCount = GetByteCount(BitCount);

@@ -12,7 +12,7 @@
         /// <summary>
         /// Throttles
         /// </summary>
-        protected readonly HashSet<ProcessThrottle> _Throttles = new();
+        protected readonly HashSet<ProcessThrottle> _Throttles = [];
         /// <summary>
         /// Processing count total limit
         /// </summary>
@@ -28,7 +28,7 @@
         /// <param name="totalLimit">Processing count total limit</param>
         public MultiProcessThrottle(in int totalLimit) : base()
         {
-            if (totalLimit < 1) throw new ArgumentOutOfRangeException(nameof(totalLimit));
+            ArgumentOutOfRangeException.ThrowIfLessThan(totalLimit, 1);
             _TotalLimit = totalLimit;
         }
 
@@ -51,7 +51,7 @@
             set
             {
                 EnsureUndisposed();
-                if (value < 1) throw new ArgumentOutOfRangeException(nameof(value));
+                ArgumentOutOfRangeException.ThrowIfLessThan(value, 1);
                 using SemaphoreSyncContext ssc = Sync;
                 if (_TotalLimit == value) return;
                 _TotalLimit = value;
@@ -68,7 +68,7 @@
             {
                 EnsureUndisposed();
                 using SemaphoreSyncContext ssc = Sync;
-                return _Throttles.ToArray();
+                return [.. _Throttles];
             }
         }
 
@@ -112,7 +112,7 @@
         public async Task SetLimitAsync(int totalLimit, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            if (totalLimit < 1) throw new ArgumentOutOfRangeException(nameof(totalLimit));
+            ArgumentOutOfRangeException.ThrowIfLessThan(totalLimit, 1);
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             if (_TotalLimit == totalLimit) return;
             _TotalLimit = totalLimit;
@@ -203,7 +203,7 @@
             using SemaphoreSyncContext ssc = Sync;
             try
             {
-                ProcessThrottle[] res = _Throttles.ToArray();
+                ProcessThrottle[] res = [.. _Throttles];
                 foreach (ProcessThrottle throttle in res) throttle.OnDisposing -= HandleDisposedThrottle;
                 return res;
             }
@@ -225,7 +225,7 @@
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             try
             {
-                ProcessThrottle[] res = _Throttles.ToArray();
+                ProcessThrottle[] res = [.. _Throttles];
                 foreach (ProcessThrottle throttle in res) throttle.OnDisposing -= HandleDisposedThrottle;
                 return res;
             }

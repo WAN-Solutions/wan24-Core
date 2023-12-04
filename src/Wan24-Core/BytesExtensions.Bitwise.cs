@@ -2,8 +2,6 @@
 using System.Runtime.Intrinsics.Arm;
 using System.Runtime.Intrinsics.X86;
 
-//TODO .NET 8: Support for AVX512
-
 namespace wan24.Core
 {
     // Bitwise
@@ -56,7 +54,7 @@ namespace wan24.Core
         /// <returns>A</returns>
         public static unsafe byte* Xor(byte* ptrA, byte* ptrB, int len)
         {
-            if (len < 1) throw new ArgumentOutOfRangeException(nameof(len));
+            ArgumentOutOfRangeException.ThrowIfLessThan(len, 1);
             if (len == 0) return ptrA;
             unchecked
             {

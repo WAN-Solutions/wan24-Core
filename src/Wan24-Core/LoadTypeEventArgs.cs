@@ -3,18 +3,16 @@
     /// <summary>
     /// Type loader event arguments
     /// </summary>
-    public sealed class LoadTypeEventArgs : EventArgs
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="name">Requested type name</param>
+    public sealed class LoadTypeEventArgs(in string name) : EventArgs()
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="name">Requested type name</param>
-        public LoadTypeEventArgs(in string name) : base() => Name = name;
-
         /// <summary>
         /// Requested type name
         /// </summary>
-        public string Name { get; }
+        public string Name { get; } = name;
 
         /// <summary>
         /// Type to use

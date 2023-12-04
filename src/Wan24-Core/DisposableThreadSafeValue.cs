@@ -6,14 +6,12 @@ namespace wan24.Core
     /// Disposable thread-safe value
     /// </summary>
     /// <typeparam name="T">Value type</typeparam>
-    public class DisposableThreadSafeValue<T> : ThreadSafeValue<T> where T : IDisposable
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="initialValue">Initial value</param>
+    public class DisposableThreadSafeValue<T>(in T? initialValue = default) : ThreadSafeValue<T>(initialValue) where T : IDisposable
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="initialValue">Initial value</param>
-        public DisposableThreadSafeValue(in T? initialValue = default) : base(initialValue) { }
-
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {

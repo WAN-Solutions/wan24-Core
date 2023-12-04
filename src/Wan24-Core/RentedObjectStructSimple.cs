@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace wan24.Core
 {
     /// <summary>
-    /// Rented object (returns the rented object to the pool when diposing; not thread-safe)
+    /// Rented object (returns the rented object to the pool when disposing; not thread-safe)
     /// </summary>
     /// <typeparam name="T">Rented object type</typeparam>
     [StructLayout(LayoutKind.Auto)]

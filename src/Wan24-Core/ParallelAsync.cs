@@ -26,7 +26,7 @@ namespace wan24.Core
             CancellationToken cancellationToken = default
             )
         {
-            if (queueCapacity < 1) throw new ArgumentOutOfRangeException(nameof(queueCapacity));
+            ArgumentOutOfRangeException.ThrowIfLessThan(queueCapacity, 1);
             threads ??= Math.Min(queueCapacity, Environment.ProcessorCount);
             if (threads < 1) throw new ArgumentOutOfRangeException(nameof(threads));
             if (queueCapacity < threads) throw new ArgumentOutOfRangeException(nameof(queueCapacity));
@@ -72,7 +72,7 @@ namespace wan24.Core
             CancellationToken cancellationToken = default
             )
         {
-            if (queueCapacity < 1) throw new ArgumentOutOfRangeException(nameof(queueCapacity));
+            ArgumentOutOfRangeException.ThrowIfLessThan(queueCapacity, 1);
             threads ??= Math.Min(queueCapacity, Environment.ProcessorCount);
             if (threads < 1) throw new ArgumentOutOfRangeException(nameof(threads));
             if (queueCapacity < threads) throw new ArgumentOutOfRangeException(nameof(queueCapacity));

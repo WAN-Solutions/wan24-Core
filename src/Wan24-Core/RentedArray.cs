@@ -25,7 +25,7 @@ namespace wan24.Core
         /// <param name="clean">Clean the rented array?</param>
         public RentedArray(in int len, in ArrayPool<T>? pool = null, in bool clean = true) : base()
         {
-            if (len < 1) throw new ArgumentOutOfRangeException(nameof(len));
+            ArgumentOutOfRangeException.ThrowIfLessThan(len, 1);
             Pool = pool ?? ArrayPool<T>.Shared;
             Length = len;
             _Array = clean ? Pool.RentClean(len) : Pool.Rent(len);
@@ -140,7 +140,7 @@ namespace wan24.Core
         protected override void Dispose(bool disposing)
         {
             T[] arr = _Array;
-            _Array = System.Array.Empty<T>();
+            _Array = [];
             if (Clear)
             {
                 bool clear = true;

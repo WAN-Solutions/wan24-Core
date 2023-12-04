@@ -3,27 +3,24 @@
     /// <summary>
     /// Throttled stream
     /// </summary>
-    public class ThrottledStream : ThrottledStream<Stream>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="baseStream">Base stream</param>
+    /// <param name="readCount">Read count (zero to disable read throttling)</param>
+    /// <param name="readTime">Read time</param>
+    /// <param name="writeCount">Write count (zero to disable write throttling)</param>
+    /// <param name="writeTime">Write time</param>
+    /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
+    public class ThrottledStream(
+        in Stream baseStream,
+        in int readCount = 0,
+        in TimeSpan? readTime = null,
+        in int writeCount = 0,
+        in TimeSpan? writeTime = null,
+        in bool leaveOpen = false
+            ) : ThrottledStream<Stream>(baseStream, readCount, readTime, writeCount, writeTime, leaveOpen)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="baseStream">Base stream</param>
-        /// <param name="readCount">Read count (zero to disable read throttling)</param>
-        /// <param name="readTime">Read time</param>
-        /// <param name="writeCount">Write count (zero to disable write throttling)</param>
-        /// <param name="writeTime">Write time</param>
-        /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public ThrottledStream(
-            in Stream baseStream, 
-            in int readCount = 0, 
-            in TimeSpan? readTime = null, 
-            in int writeCount = 0, 
-            in TimeSpan? writeTime = null, 
-            in bool leaveOpen = false
-            )
-            : base(baseStream, readCount, readTime, writeCount, writeTime, leaveOpen)
-        { }
     }
 
     /// <summary>

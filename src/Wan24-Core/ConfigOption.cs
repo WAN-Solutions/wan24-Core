@@ -7,7 +7,7 @@ namespace wan24.Core
     /// </summary>
     /// <typeparam name="tValue">Value type</typeparam>
     /// <typeparam name="tConfig">Configuration type</typeparam>
-    public sealed class ConfigOption<tValue, tConfig> : IConfigOption where tConfig : OverrideableConfig<tConfig>, new()
+    public sealed class ConfigOption<tValue, tConfig> : IConfigOption where tConfig : OverridableConfig<tConfig>, new()
     {
         /// <summary>
         /// Change token
@@ -127,15 +127,15 @@ namespace wan24.Core
                     IsSet = true;
                     IsChanged = true;
                 }
-                if (oldValue is IOverrideableConfig oldConfig) oldConfig.OnChange -= HandleConfigValueChange;
-                if (value is IOverrideableConfig newConfig) newConfig.OnChange += HandleConfigValueChange;
+                if (oldValue is IOverridableConfig oldConfig) oldConfig.OnChange -= HandleConfigValueChange;
+                if (value is IOverridableConfig newConfig) newConfig.OnChange += HandleConfigValueChange;
                 RaiseOnChange(oldValue);
                 Configuration.RaiseOnChangeInt(this, oldValue);
             }
         }
 
         /// <summary>
-        /// Dynamic value converter callbak
+        /// Dynamic value converter callback
         /// </summary>
         public Func<dynamic?,object?>? DynamicValueConverter { get; set; }
 
@@ -195,7 +195,7 @@ namespace wan24.Core
 
         #region IConfigOption properties
         /// <inheritdoc/>
-        IOverrideableConfig IConfigOption.Configuration => Configuration;
+        IOverridableConfig IConfigOption.Configuration => Configuration;
 
         /// <inheritdoc/>
         IConfigOption IConfigOption.MasterOption => MasterOption;
@@ -248,7 +248,7 @@ namespace wan24.Core
                 _Value = default;
                 IsChanged = true;
             }
-            if (oldValue is IOverrideableConfig oldConfig) oldConfig.OnChange -= HandleConfigValueChange;
+            if (oldValue is IOverridableConfig oldConfig) oldConfig.OnChange -= HandleConfigValueChange;
             RaiseOnChange(oldValue);
             Configuration.RaiseOnChangeInt(this, oldValue);
             if (recursive) UnsetOverrides();
@@ -262,7 +262,7 @@ namespace wan24.Core
         {
             lock (SyncObject)
             {
-                if (_Value is IOverrideableConfig config) config.ResetChanged();
+                if (_Value is IOverridableConfig config) config.ResetChanged();
                 IsChanged = false;
             }
             if (recursive) SubOption?.ResetChanged(recursive);
@@ -286,11 +286,11 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Handle a value change of a overrideable configuration value
+        /// Handle a value change of a overridable configuration value
         /// </summary>
         /// <param name="sender">Sender</param>
         /// <param name="e">EventArguments</param>
-        private void HandleConfigValueChange(IOverrideableConfig sender, ConfigEventArgs e)
+        private void HandleConfigValueChange(IOverridableConfig sender, ConfigEventArgs e)
         {
             lock (SyncObject) IsChanged = true;
             Configuration.RaiseOnChangeInt(this, e.OldValue);

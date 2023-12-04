@@ -24,11 +24,11 @@ namespace wan24.Core
         {
             // Create the singleton instance with all known assemblies
             Instance = new();
-            Instance._Assemblies.AddRange(new KeyValuePair<string, Assembly>[]
-            {
+            Instance._Assemblies.AddRange(
+            [
                 new(typeof(string).Assembly.GetName().FullName, typeof(string).Assembly),
                 new(typeof(TypeHelper).Assembly.GetName().FullName, typeof(TypeHelper).Assembly)
-            });
+            ]);
             if (Assembly.GetEntryAssembly() is Assembly entry) Instance._Assemblies[entry.GetName().FullName] = entry;
             if (Assembly.GetCallingAssembly() is Assembly calling) Instance._Assemblies[calling.GetName().FullName] = calling;
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()) Instance._Assemblies[assembly.GetName().FullName] = assembly;
@@ -39,7 +39,7 @@ namespace wan24.Core
             {
                 await Task.Yield();
                 Logging.WriteDebug($"Scanning and booting late loaded assembly {e.LoadedAssembly.GetName().FullName}");
-                List<Task> tasks = new();
+                List<Task> tasks = [];
                 foreach (Assembly ass in Instance.ScanAssemblies(e.LoadedAssembly))
                     if (ass.GetCustomAttributeCached<BootstrapperAttribute>() is not null)
                         tasks.Add(Bootstrap.AssemblyAsync(ass, Bootstrap.FindClasses, Bootstrap.FindMethods));
@@ -60,7 +60,7 @@ namespace wan24.Core
         /// <summary>
         /// Assemblies
         /// </summary>
-        public Assembly[] Assemblies => _Assemblies.Values.ToArray();
+        public Assembly[] Assemblies => [.. _Assemblies.Values];
 
         /// <summary>
         /// Scan all referenced assemblies
@@ -74,12 +74,12 @@ namespace wan24.Core
             if (reference is null)
             {
                 Logging.WriteWarning("No reference assembly for scanning");
-                return Array.Empty<Assembly>();
+                return [];
             }
             // Scan referenced assemblies recursive
             Logging.WriteDebug($"Scanning reference assembly {reference.GetName().FullName}");
-            HashSet<Assembly> added = new(),// Added assemblies (the return value)
-                seen = new();// Seen assemblies (avoid recursion)
+            HashSet<Assembly> added = [],// Added assemblies (the return value)
+                seen = [];// Seen assemblies (avoid recursion)
             Queue<Assembly> queue = new();// Assemblies to scan
             added.Add(reference);
             queue.Enqueue(reference);
@@ -101,7 +101,7 @@ namespace wan24.Core
                         Logging.WriteWarning($"Found new referenced assembly {assembly.GetName().FullName}, but failed to load: {ex}");
                     }
             }
-            return AddAssemblies(added.ToArray());
+            return AddAssemblies([.. added]);
         }
 
         /// <summary>

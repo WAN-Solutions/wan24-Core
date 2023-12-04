@@ -144,7 +144,7 @@ namespace wan24.Core
                 par = parameters.GetDiObjects(param, serviceProvider, nic, throwOnMissing: false);
                 if (par.Length != parameters.Length) continue;
                 usedConstructor = ci;
-                return ci.Invoke(par.ToArray());
+                return ci.Invoke([.. par]);
             }
             throw new InvalidOperationException($"{type} can't be instanced (private: {usePrivate}) with the given parameters");
         }
@@ -191,7 +191,7 @@ namespace wan24.Core
                 parameters = ci.GetParametersCached();
                 par = await parameters.GetDiObjectsAsync(param, serviceProvider, nic, throwOnMissing: false).DynamicContext();
                 if (par.Length != parameters.Length) continue;
-                return (ci.Invoke(par.ToArray()), ci);
+                return (ci.Invoke([.. par]), ci);
             }
             throw new InvalidOperationException($"{type} can't be instanced (private: {usePrivate}) with the given parameters");
         }

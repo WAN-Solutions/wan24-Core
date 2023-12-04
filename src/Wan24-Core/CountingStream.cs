@@ -3,29 +3,26 @@
     /// <summary>
     /// Counting stream counts red/written bytes
     /// </summary>
-    public class CountingStream : CountingStream<Stream>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="baseStream">Base stream</param>
+    /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
+    public class CountingStream(in Stream baseStream, in bool leaveOpen = false) : CountingStream<Stream>(baseStream, leaveOpen)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="baseStream">Base stream</param>
-        /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public CountingStream(in Stream baseStream, in bool leaveOpen = false) : base(baseStream, leaveOpen) { }
     }
-    
+
     /// <summary>
     /// Counting stream counts red/written bytes
     /// </summary>
     /// <typeparam name="T">Wrapped stream type</typeparam>
-    public class CountingStream<T> : WrapperStream<T>, IStatusProvider where T : Stream
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="baseStream">Base stream</param>
+    /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
+    public class CountingStream<T>(in T baseStream, in bool leaveOpen = false) : WrapperStream<T>(baseStream, leaveOpen), IStatusProvider where T : Stream
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="baseStream">Base stream</param>
-        /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public CountingStream(in T baseStream, in bool leaveOpen = false) : base(baseStream, leaveOpen) { }
-
         /// <summary>
         /// Number of bytes red
         /// </summary>

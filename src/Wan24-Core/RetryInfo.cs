@@ -3,7 +3,7 @@
 namespace wan24.Core
 {
     /// <summary>
-    /// Retry informations
+    /// Retry information
     /// </summary>
     /// <typeparam name="T">Result type</typeparam>
     public sealed class RetryInfo<T>
@@ -36,7 +36,7 @@ namespace wan24.Core
         /// <summary>
         /// Exceptions
         /// </summary>
-        public List<Exception> Exceptions { get; } = new();
+        public List<Exception> Exceptions { get; } = [];
 
         /// <summary>
         /// Succeed?

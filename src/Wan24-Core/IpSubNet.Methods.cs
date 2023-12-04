@@ -87,10 +87,10 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Get all matching unicast IP address configuration informations
+        /// Get all matching unicast IP address configuration information
         /// </summary>
         /// <param name="adapter">Ethernet adapter</param>
-        /// <returns>Unicast IP address configuration informations</returns>
+        /// <returns>Unicast IP address configuration information</returns>
         public IEnumerable<UnicastIPAddressInformation> GetUnicastAddresses(NetworkInterface adapter)
         {
             AddressFamily addressFamily = AddressFamily;
@@ -157,7 +157,7 @@ namespace wan24.Core
         IEnumerator IEnumerable.GetEnumerator() => IPAddresses.GetEnumerator();
 
         /// <summary>
-        /// Compare this instance mask bits lengh with another instances mask bits length
+        /// Compare this instance mask bits length with another instances mask bits length
         /// </summary>
         /// <param name="other">Other</param>
         /// <returns>Result</returns>
@@ -241,10 +241,10 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static RentedArrayRefStruct<byte> GetBytes(in IPAddress ip)
+        private static RentedArrayStructSimple<byte> GetBytes(in IPAddress ip)
         {
             int len = ip.AddressFamily == AddressFamily.InterNetwork ? IPV4_BYTES : IPV6_BYTES;
-            RentedArrayRefStruct<byte> res = new(len, clean: false);
+            RentedArrayStructSimple<byte> res = new(len, clean: false);
             try
             {
                 if (ip.TryWriteBytes(res.Span, out int written) && len == written) return res;

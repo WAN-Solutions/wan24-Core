@@ -12,7 +12,7 @@
         public SensitiveDataAttribute() : base() { }
 
         /// <summary>
-        /// Can this attribute senitize a sensitive value?
+        /// Can this attribute sanitize a sensitive value?
         /// </summary>
         public virtual bool CanSanitizeValue => false;
 

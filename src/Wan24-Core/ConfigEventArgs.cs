@@ -3,27 +3,21 @@
     /// <summary>
     /// Configuration event arguments
     /// </summary>
-    public sealed class ConfigEventArgs : EventArgs
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="option">Option</param>
+    /// <param name="oldValue">Old value</param>
+    public sealed class ConfigEventArgs(in IConfigOption option, in object? oldValue) : EventArgs()
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="option">Option</param>
-        /// <param name="oldValue">Old value</param>
-        public ConfigEventArgs(in IConfigOption option, in object? oldValue) : base()
-        {
-            Option = option;
-            OldValue = oldValue;
-        }
-
         /// <summary>
         /// Option
         /// </summary>
-        public IConfigOption Option { get; }
+        public IConfigOption Option { get; } = option;
 
         /// <summary>
         /// Old value
         /// </summary>
-        public object? OldValue { get; }
+        public object? OldValue { get; } = oldValue;
     }
 }

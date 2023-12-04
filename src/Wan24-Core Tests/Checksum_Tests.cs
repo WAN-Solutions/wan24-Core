@@ -22,7 +22,7 @@ namespace Wan24_Core_Tests
             // Test transform after reset and ensure equal checksum
             transform.Initialize();
             Assert.AreEqual(temp.LongLength, transform.TransformBlock(data, 0, data.Length, temp, 0));
-            Assert.AreEqual(0, transform.TransformFinalBlock(Array.Empty<byte>(), 0, 0).Length);
+            Assert.AreEqual(0, transform.TransformFinalBlock([], 0, 0).Length);
             ulong cs2 = transform.Hash.AsSpan().ToULong();
             Assert.AreEqual(cs1, cs2);
 

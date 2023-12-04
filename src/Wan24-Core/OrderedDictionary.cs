@@ -5,8 +5,6 @@ using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
-//TODO .NET 8: Get as frozen dictionary
-
 namespace wan24.Core
 {
     /// <summary>
@@ -306,7 +304,7 @@ namespace wan24.Core
         public virtual void Clear()
         {
             EnsureWritable();
-            KeyValuePair<tKey, tValue>[] prev = Items.ToArray();
+            KeyValuePair<tKey, tValue>[] prev = [.. Items];
             Items.Clear();
             for (int i = 0, len = prev.Length; i < len; i++) RaiseOnRemoved(i, prev[i].Key, prev[i].Value);
         }
@@ -514,18 +512,16 @@ namespace wan24.Core
         /// <summary>
         /// Dictionary enumerator
         /// </summary>
-        protected class DictionaryEnumerator : IDictionaryEnumerator
+        /// <remarks>
+        /// Constructor
+        /// </remarks>
+        /// <param name="enumerator">Enumerator</param>
+        protected class DictionaryEnumerator(in IEnumerator<KeyValuePair<tKey, tValue>> enumerator) : IDictionaryEnumerator
         {
             /// <summary>
             /// Enumerator
             /// </summary>
-            protected readonly IEnumerator<KeyValuePair<tKey, tValue>> Enumerator;
-
-            /// <summary>
-            /// Constructor
-            /// </summary>
-            /// <param name="enumerator">Enumerator</param>
-            public DictionaryEnumerator(in IEnumerator<KeyValuePair<tKey, tValue>> enumerator) => Enumerator = enumerator;
+            protected readonly IEnumerator<KeyValuePair<tKey, tValue>> Enumerator = enumerator;
 
             /// <inheritdoc/>
             public DictionaryEntry Entry => new(Enumerator.Current.Key, Enumerator.Current.Value);

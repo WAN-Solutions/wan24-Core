@@ -156,7 +156,7 @@ namespace wan24.Core
             EnsureUndisposed();
             Detached = true;
             char[] res = Array;
-            Array = System.Array.Empty<char>();
+            Array = [];
             Dispose();
             return res;
         }

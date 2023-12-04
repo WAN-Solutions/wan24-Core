@@ -3,9 +3,9 @@
 namespace wan24.Core
 {
     /// <summary>
-    /// Interface for an overrideable configuration
+    /// Interface for an overridable configuration
     /// </summary>
-    public interface IOverrideableConfig : IChangeToken
+    public interface IOverridableConfig : IChangeToken
     {
         /// <summary>
         /// An object for thread synchronization
@@ -18,11 +18,11 @@ namespace wan24.Core
         /// <summary>
         /// Master configuration
         /// </summary>
-        IOverrideableConfig MasterConfig { get; }
+        IOverridableConfig MasterConfig { get; }
         /// <summary>
         /// Overridden parent configuration
         /// </summary>
-        IOverrideableConfig? ParentConfig { get; }
+        IOverridableConfig? ParentConfig { get; }
         /// <summary>
         /// Configuration level (starts at <c>1</c>)
         /// </summary>
@@ -30,7 +30,7 @@ namespace wan24.Core
         /// <summary>
         /// Overriding sub-configuration
         /// </summary>
-        IOverrideableConfig? SubConfig { get; }
+        IOverridableConfig? SubConfig { get; }
         /// <summary>
         /// Property names
         /// </summary>
@@ -108,30 +108,30 @@ namespace wan24.Core
         /// <param name="reset">Reset first?</param>
         /// <param name="recursive">Reset recursive?</param>
         /// <returns>This</returns>
-        IOverrideableConfig SetConfig(in Dictionary<string, object?> config, in bool reset = false, in bool recursive = false);
+        IOverridableConfig SetConfig(in Dictionary<string, object?> config, in bool reset = false, in bool recursive = false);
         /// <summary>
         /// Unset all option values
         /// </summary>
         /// <param name="recursive">Recursive?</param>
         /// <returns>This</returns>
-        IOverrideableConfig UnsetAll(in bool recursive = false);
+        IOverridableConfig UnsetAll(in bool recursive = false);
         /// <summary>
         /// Unset all option overrides (recursive!)
         /// </summary>
         /// <returns>This</returns>
-        IOverrideableConfig UnsetAllOverrides();
+        IOverridableConfig UnsetAllOverrides();
         /// <summary>
         /// Reset the changed state
         /// </summary>
         /// <param name="recursive">Recursive?</param>
         /// <returns>This</returns>
-        IOverrideableConfig ResetChanged(in bool recursive = true);
+        IOverridableConfig ResetChanged(in bool recursive = true);
         /// <summary>
         /// Delegate for configuration events
         /// </summary>
         /// <param name="sender">Sender</param>
         /// <param name="e">Event arguments</param>
-        public delegate void Config_Delegate(IOverrideableConfig sender, ConfigEventArgs e);
+        public delegate void Config_Delegate(IOverridableConfig sender, ConfigEventArgs e);
         /// <summary>
         /// Raised when an option was changed (bubbles to the master configuration)
         /// </summary>

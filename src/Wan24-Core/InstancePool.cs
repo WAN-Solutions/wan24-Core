@@ -47,7 +47,7 @@ namespace wan24.Core
         /// <param name="factory">Instance factory</param>
         public InstancePool(in int capacity, in IInstancePool<T>.Instance_Delegate factory) : this(capacity, intern: true)
         {
-            if (capacity < 1) throw new ArgumentOutOfRangeException(nameof(capacity));
+            ArgumentOutOfRangeException.ThrowIfLessThan(capacity, 1);
             SyncFactory = factory;
             AsyncFactory = null;
         }
@@ -59,7 +59,7 @@ namespace wan24.Core
         /// <param name="factory">Instance factory</param>
         public InstancePool(in int capacity, in IInstancePool<T>.InstanceAsync_Delegate factory) : this(capacity, intern: true)
         {
-            if (capacity < 1) throw new ArgumentOutOfRangeException(nameof(capacity));
+            ArgumentOutOfRangeException.ThrowIfLessThan(capacity, 1);
             SyncFactory = null;
             AsyncFactory = factory;
         }

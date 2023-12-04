@@ -45,26 +45,26 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// COnstructor
+        /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
         /// <param name="factory">Factory</param>
         public BlockingObjectPool(in int capacity, in Func<T> factory) : base()
         {
-            if (capacity < 1) throw new ArgumentOutOfRangeException(nameof(capacity));
+            ArgumentOutOfRangeException.ThrowIfLessThan(capacity, 1);
             Factory = factory;
             AsyncFactory = null;
             Pool = new(capacity);
         }
 
         /// <summary>
-        /// COnstructor
+        /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
         /// <param name="factory">Factory</param>
         public BlockingObjectPool(in int capacity, in Func<Task<T>> factory) : base()
         {
-            if (capacity < 1) throw new ArgumentOutOfRangeException(nameof(capacity));
+            ArgumentOutOfRangeException.ThrowIfLessThan(capacity, 1);
             Factory = null;
             AsyncFactory = factory;
             Pool = new(capacity);

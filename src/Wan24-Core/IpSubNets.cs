@@ -495,7 +495,7 @@ namespace wan24.Core
         public static IpSubNets operator |(in IpSubNets subNets, in IpSubNets other)
         {
             if (other.Count == 0) return subNets;
-            List<int> unknown = new();
+            List<int> unknown = [];
             for (int i = 0; i < other.Count; i++)
                 if (!subNets.Contains(other.SubNets[i]))
                     unknown.Add(i);
@@ -547,7 +547,7 @@ namespace wan24.Core
         public static IpSubNets operator -(in IpSubNets subNets, in IpSubNet subNet)
         {
             if (!subNets.Contains(subNet)) return subNets;
-            if (subNets.Count == 1) return new(Array.Empty<IpSubNet>());
+            if (subNets.Count == 1) return new([]);
             IpSubNet[] newSubNets = new IpSubNet[subNets.Count - 1];
             for (int i = 0, j = 0; i < subNets.Count; i++)
             {
@@ -566,13 +566,13 @@ namespace wan24.Core
         /// <returns><see cref="IpSubNets"/></returns>
         public static IpSubNets operator -(in IpSubNets subNets, in IpSubNets other)
         {
-            if (subNets == other) return new(Array.Empty<IpSubNet>());
-            List<int> remove = new();
+            if (subNets == other) return new([]);
+            List<int> remove = [];
             for (int i = 0, len = subNets.Count; i < len; i++)
                 if (other.Contains(subNets.SubNets[i]))
                     remove.Add(i);
             if (remove.Count == 0) return subNets;
-            if (remove.Count == subNets.Count) return new(Array.Empty<IpSubNet>());
+            if (remove.Count == subNets.Count) return new([]);
             IpSubNet[] newSubNets = new IpSubNet[subNets.Count - remove.Count];
             for (int i = 0, j = 0; i < subNets.Count; i++)
             {

@@ -39,7 +39,7 @@ namespace wan24.Core
         /// <summary>
         /// Remaining time
         /// </summary>
-        public TimeSpan RemainingTime => IsRunning && DateTime.Now > Sheduled ? DateTime.Now - Sheduled : TimeSpan.Zero;
+        public TimeSpan RemainingTime => IsRunning && DateTime.Now > Scheduled ? DateTime.Now - Scheduled : TimeSpan.Zero;
 
         /// <summary>
         /// Auto-reset?
@@ -50,12 +50,12 @@ namespace wan24.Core
         public DateTime LastElapsed { get; private set; } = DateTime.MinValue;
 
         /// <inheritdoc/>
-        public DateTime Sheduled { get; private set; } = DateTime.MinValue;
+        public DateTime Scheduled { get; private set; } = DateTime.MinValue;
 
         /// <inheritdoc/>
         protected override async Task WorkerAsync()
         {
-            Sheduled = DateTime.Now + Interval;
+            Scheduled = DateTime.Now + Interval;
             for (; !Cancellation!.IsCancellationRequested;)
             {
                 await Task.Delay(Interval, Cancellation!.Token).DynamicContext();
@@ -63,7 +63,7 @@ namespace wan24.Core
                 LastElapsed = DateTime.Now;
                 await Handler(this).DynamicContext();
                 if (!AutoReset) return;
-                Sheduled = DateTime.Now + Interval;
+                Scheduled = DateTime.Now + Interval;
             }
         }
 

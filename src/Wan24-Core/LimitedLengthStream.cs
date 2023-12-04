@@ -3,15 +3,14 @@
     /// <summary>
     /// Limited length stream wrapper
     /// </summary>
-    public class LimitedLengthStream : LimitedLengthStream<Stream>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="baseStream">Base stream</param>
+    /// <param name="maxLength">Maximum length in bytes</param>
+    /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
+    public class LimitedLengthStream(in Stream baseStream, in long maxLength, in bool leaveOpen = false) : LimitedLengthStream<Stream>(baseStream, maxLength, leaveOpen)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="baseStream">Base stream</param>
-        /// <param name="maxLength">Maximum length in bytes</param>
-        /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public LimitedLengthStream(in Stream baseStream, in long maxLength, in bool leaveOpen = false) : base(baseStream, maxLength, leaveOpen) { }
     }
 
     /// <summary>
@@ -37,7 +36,7 @@
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
         public LimitedLengthStream(in T baseStream, in long maxLength, in bool leaveOpen = false) : base(baseStream, leaveOpen)
         {
-            if (maxLength < 0) throw new ArgumentOutOfRangeException(nameof(maxLength));
+            ArgumentOutOfRangeException.ThrowIfNegative(maxLength);
             _MaxLength = maxLength;
             UseOriginalBeginWrite = true;
             UseOriginalBeginRead = true;
@@ -55,7 +54,7 @@
             set
             {
                 EnsureUndisposed();
-                if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
+                ArgumentOutOfRangeException.ThrowIfNegative(value);
                 _MaxLength = value;
                 if (UsedPosition > MaxLength) throw new OverflowException("Maximum length exceeded");
             }

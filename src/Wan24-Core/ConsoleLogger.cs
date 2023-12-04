@@ -5,15 +5,13 @@ namespace wan24.Core
     /// <summary>
     /// Console logger
     /// </summary>
-    public sealed class ConsoleLogger : LoggerBase
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="level">Log level</param>
+    /// <param name="next">Next logger which should receive the message</param>
+    public sealed class ConsoleLogger(in LogLevel level = Logging.DEFAULT_LOGLEVEL, in ILogger? next = null) : LoggerBase(level, next)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="level">Log level</param>
-        /// <param name="next">Next logger which should receive the message</param>
-        public ConsoleLogger(in LogLevel level = Logging.DEFAULT_LOGLEVEL, in ILogger? next = null) : base(level, next) { }
-
         /// <summary>
         /// Write to STDERR?
         /// </summary>

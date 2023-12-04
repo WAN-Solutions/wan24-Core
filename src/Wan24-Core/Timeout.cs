@@ -51,7 +51,7 @@ namespace wan24.Core
         DateTime ITimer.LastElapsed => LastTimeout;
 
         /// <inheritdoc/>
-        DateTime ITimer.Sheduled => DateTime.Now + RemainingTime;
+        DateTime ITimer.Scheduled => DateTime.Now + RemainingTime;
 
         /// <summary>
         /// Timeout time (setting will reset the timeout)
@@ -365,7 +365,7 @@ namespace wan24.Core
         public static bool operator >=(in Timeout a, in TimeSpan b) => a.Time >= b;
 
         /// <summary>
-        /// Run an acion
+        /// Run an action
         /// </summary>
         /// <param name="delay">Delay</param>
         /// <param name="action">Action</param>
@@ -386,7 +386,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Run an asynchronous acion
+        /// Run an asynchronous action
         /// </summary>
         /// <param name="delay">Delay</param>
         /// <param name="action">Action</param>

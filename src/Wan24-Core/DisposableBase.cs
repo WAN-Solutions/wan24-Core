@@ -93,8 +93,7 @@ namespace wan24.Core
         {
             if (!IsDisposing) return true;
             if (allowDisposing && !IsDisposed) return true;
-            if (throwException) throw new ObjectDisposedException(GetType().ToString());
-            return false;
+            return throwException ? throw new ObjectDisposedException(GetType().ToString()) : false;
         }
 
         /// <summary>

@@ -5,19 +5,16 @@ namespace wan24.Core
     /// <summary>
     /// Secure byte array (will delete its contents when disposing)
     /// </summary>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="array">Array</param>
 #if NO_UNSAFE
     public sealed class SecureByteArray : SecureArrayBase<byte>
 #else
-    public sealed unsafe class SecureByteArray : SecureArrayBase<byte>
+    public sealed unsafe class SecureByteArray(in byte[] array) : SecureArrayBase<byte>(array)
 #endif
     {
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="array">Array</param>
-        public SecureByteArray(in byte[] array) : base(array) { }
-
         /// <summary>
         /// Constructor
         /// </summary>

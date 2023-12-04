@@ -40,7 +40,14 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="len">Length in chars</param>
-        public SecureCharArrayRefStruct(in long len) : this(new char[len]) { }
+        public SecureCharArrayRefStruct(in long len)
+        {
+            Array = new char[len];
+            Handle = GCHandle.Alloc(Array, GCHandleType.Pinned);
+#if !NO_UNSAFE
+            Ptr = (char*)Handle.AddrOfPinnedObject();
+#endif
+        }
 
         /// <summary>
         /// Get/set an element
@@ -164,7 +171,7 @@ namespace wan24.Core
             if (Detached) throw new InvalidOperationException();
             Detached = true;
             char[] res = Array;
-            Array = System.Array.Empty<char>();
+            Array = [];
             Dispose();
             return res;
         }

@@ -8,7 +8,7 @@ namespace Wan24_Core_Tests
         [TestMethod, Timeout(3000)]
         public void General_Tests()
         {
-            using PauseableStream stream = new(new MemoryPoolStream());
+            using PausableStream stream = new(new MemoryPoolStream());
             stream.WriteByte(1);
             stream.Pause = true;
             Task task = Task.Run(() => stream.WriteByte(1));
@@ -35,7 +35,7 @@ namespace Wan24_Core_Tests
         public async Task GeneralAsync_Tests()
         {
             byte[] buffer = new byte[] { 1 };
-            using PauseableStream stream = new(new MemoryPoolStream());
+            using PausableStream stream = new(new MemoryPoolStream());
             await stream.WriteAsync(buffer);
             stream.Pause = true;
             Task task = Task.Run(async () => await stream.WriteAsync(buffer));

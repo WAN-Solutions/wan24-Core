@@ -3,28 +3,38 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
 
+//FIXME Encoding not working
+
 namespace wan24.Core
 {
-    // AVX2 intrinsics
+    // AVX-512 intrinsics
     public static partial class ByteEncoding
     {
         /// <summary>
-        /// Group for right-shifting during AVX2 encoding
+        /// Group for right-shifting during AVX-512 encoding
         /// </summary>
-        private static readonly byte[] Encoding2GroupRight = [
+        private static readonly byte[] Encoding512GroupRight = [
                 0, 3, 6, 9,// >> 0
                 0, 3, 6, 9,// >> 6
                 1, 4, 7, 10,// >> 4
                 2, 5, 8, 11,// >> 2
+                12, 15, 18, 21,
+                12, 15, 18, 21,
+                13, 16, 19, 22,
+                14, 17, 20, 23,
                 0, 3, 6, 9,
                 0, 3, 6, 9,
                 1, 4, 7, 10,
-                2, 5, 8, 11
+                2, 5, 8, 11,
+                12, 15, 18, 21,
+                12, 15, 18, 21,
+                13, 16, 19, 22,
+                14, 17, 20, 23
             ];
         /// <summary>
-        /// Mask the used bits after right-shifting during AVX2 encoding
+        /// Mask the used bits after right-shifting during AVX-512 encoding
         /// </summary>
-        private static readonly byte[] Encoding2MaskRightBits = [
+        private static readonly byte[] Encoding512MaskRightBits = [
                 63, 63, 63, 63,// Bits 1..6 of 0
                 3, 3, 3, 3,// Bits 7..8 of 0
                 15, 15, 15, 15,// Bits 5..8 of 1
@@ -32,38 +42,62 @@ namespace wan24.Core
                 63, 63, 63, 63,
                 3, 3, 3, 3,
                 15, 15, 15, 15,
+                63, 63, 63, 63,
+                63, 63, 63, 63,
+                3, 3, 3, 3,
+                15, 15, 15, 15,
+                63, 63, 63, 63,
+                63, 63, 63, 63,
+                3, 3, 3, 3,
+                15, 15, 15, 15,
                 63, 63, 63, 63
             ];
         /// <summary>
-        /// Order the masked bits after right-shifting during AVX2 encoding
+        /// Order the masked bits after right-shifting during AVX-512 encoding
         /// </summary>
-        private static readonly byte[] Encoding2OrderRight = [
+        private static readonly byte[] Encoding512OrderRight = [
                 0, 4, 8, 12,
                 1, 5, 9, 13,
                 2, 6, 10, 14,
                 3, 7, 11, 15,
+                16, 20, 24, 28,
+                17, 21, 25, 29,
+                18, 22, 26, 30,
+                19, 23, 27, 31,
                 0, 4, 8, 12,
                 1, 5, 9, 13,
                 2, 6, 10, 14,
-                3, 7, 11, 15
+                3, 7, 11, 15,
+                16, 20, 24, 28,
+                17, 21, 25, 29,
+                18, 22, 26, 30,
+                19, 23, 27, 31
             ];
         /// <summary>
-        /// Group for left-shifting during AVX2 encoding
+        /// Group for left-shifting during AVX-512 encoding
         /// </summary>
-        private static readonly byte[] Encoding2GroupLeft = [
+        private static readonly byte[] Encoding512GroupLeft = [
                 0, 0, 0, 0,
                 0, 0, 0, 0,
                 1, 4, 7, 10,// << 2
                 2, 5, 8, 11,// << 4
                 0, 0, 0, 0,
                 0, 0, 0, 0,
+                13, 16, 19, 22,
+                14, 17, 20, 23,
+                0, 0, 0, 0,
+                0, 0, 0, 0,
                 1, 4, 7, 10,
-                2, 5, 8, 11
+                2, 5, 8, 11,
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+                13, 16, 19, 22,
+                14, 17, 20, 23
             ];
         /// <summary>
-        /// Mask the used bits after left-shifting during AVX2 encoding
+        /// Mask the used bits after left-shifting during AVX-512 encoding
         /// </summary>
-        private static readonly byte[] Encoding2MaskLeftBits = [
+        private static readonly byte[] Encoding512MaskLeftBits = [
                 0, 0, 0, 0,
                 0, 0, 0, 0,
                 60, 60, 60, 60,// Bits 1..4 of 1
@@ -71,46 +105,70 @@ namespace wan24.Core
                 0, 0, 0, 0,
                 0, 0, 0, 0,
                 60, 60, 60, 60,
+                48, 48, 48, 48,
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+                60, 60, 60, 60,
+                48, 48, 48, 48,
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+                60, 60, 60, 60,
                 48, 48, 48, 48
             ];
         /// <summary>
-        /// Order the masked bits after left-shifting during AVX2 encoding
+        /// Order the masked bits after left-shifting during AVX-512 encoding
         /// </summary>
-        private static readonly byte[] Encoding2OrderLeft = [
+        private static readonly byte[] Encoding512OrderLeft = [
                 0, 8, 12, 0,
                 0, 9, 13, 0,
                 0, 10, 14, 0,
                 0, 11, 15, 0,
+                0, 24, 28, 0,
+                0, 25, 29, 0,
+                0, 26, 30, 0,
+                0, 27, 31, 0,
                 0, 8, 12, 0,
                 0, 9, 13, 0,
                 0, 10, 14, 0,
-                0, 11, 15, 0
+                0, 11, 15, 0,
+                0, 24, 28, 0,
+                0, 25, 29, 0,
+                0, 26, 30, 0,
+                0, 27, 31, 0
             ];
         /// <summary>
-        /// Right shift steps during AVX2 encoding
+        /// Right shift steps during AVX-512 encoding
         /// </summary>
-        private static readonly uint[] Encoding2ShiftRight = [0, 6, 4, 2, 0, 6, 4, 2];
+        private static readonly uint[] Encoding512ShiftRight = [0, 6, 4, 2, 0, 6, 4, 2, 0, 6, 4, 2, 0, 6, 4, 2];
         /// <summary>
-        /// Left shift steps during AVX2 encoding
+        /// Left shift steps during AVX-512 encoding
         /// </summary>
-        private static readonly uint[] Encoding2ShiftLeft = [0, 0, 2, 4, 0, 0, 2, 4];
+        private static readonly uint[] Encoding512ShiftLeft = [0, 0, 2, 4, 0, 0, 2, 4, 0, 0, 2, 4, 0, 0, 2, 4];
         /// <summary>
-        /// Group for right-shifting during AVX2 decoding
+        /// Group for right-shifting during AVX-512 decoding
         /// </summary>
-        private static readonly byte[] Decoding2GroupRight = [
+        private static readonly byte[] Decoding512GroupRight = [
                 0, 4, 8, 12,// << 0
                 1, 5, 9, 13,// << 2
                 2, 6, 10, 14,// << 4
                 0, 0, 0, 0,
+                16, 20, 24, 28,
+                17, 21, 25, 29,
+                18, 22, 26, 30,
+                16, 16, 16, 16,
                 0, 4, 8, 12,
                 1, 5, 9, 13,
                 2, 6, 10, 14,
-                0, 0, 0, 0
+                0, 0, 0, 0,
+                16, 20, 24, 28,
+                17, 21, 25, 29,
+                18, 22, 26, 30,
+                16, 16, 16, 16
             ];
         /// <summary>
-        /// Mask the used bits after right-shifting during AVX2 decoding
+        /// Mask the used bits after right-shifting during AVX-512 decoding
         /// </summary>
-        private static readonly byte[] Decoding2MaskRightBits = [
+        private static readonly byte[] Decoding512MaskRightBits = [
                 63, 63, 63, 63,// Bits 1..6 of 0
                 15, 15, 15, 15,// Bits 1..4 of 1
                 3, 3, 3, 3,// Bits 1..2 of 2
@@ -118,38 +176,62 @@ namespace wan24.Core
                 63, 63, 63, 63,
                 15, 15, 15, 15,
                 3, 3, 3, 3,
+                0, 0, 0, 0,
+                63, 63, 63, 63,
+                15, 15, 15, 15,
+                3, 3, 3, 3,
+                0, 0, 0, 0,
+                63, 63, 63, 63,
+                15, 15, 15, 15,
+                3, 3, 3, 3,
                 0, 0, 0, 0
             ];
         /// <summary>
-        /// Order the masked bits after right-shifting (every 4th byte will be skipped) during AVX2 decoding
+        /// Order the masked bits after right-shifting (every 4th byte will be skipped) during AVX-512 decoding
         /// </summary>
-        private static readonly byte[] Decoding2OrderRight = [
+        private static readonly byte[] Decoding512OrderRight = [
                 0, 4, 8, 12,
                 1, 5, 9, 13,
                 2, 6, 10, 14,
                 3, 7, 11, 15,
+                16, 20, 24, 28,
+                17, 21, 25, 29,
+                18, 22, 26, 30,
+                19, 23, 27, 31,
                 0, 4, 8, 12,
                 1, 5, 9, 13,
                 2, 6, 10, 14,
-                3, 7, 11, 15
+                3, 7, 11, 15,
+                16, 20, 24, 28,
+                17, 21, 25, 29,
+                18, 22, 26, 30,
+                19, 23, 27, 31
             ];
         /// <summary>
-        /// Group for left-shifting during AVX2 decoding
+        /// Group for left-shifting during AVX-512 decoding
         /// </summary>
-        private static readonly byte[] Decoding2GroupLeft = [
+        private static readonly byte[] Decoding512GroupLeft = [
                 0, 0, 0, 0,
                 1, 5, 9, 13,// << 6
                 2, 6, 10, 14,// << 4
                 3, 7, 11, 15,// << 2
+                16, 16, 16, 16,
+                17, 21, 25, 29,
+                18, 22, 26, 30,
+                19, 23, 27, 31,
                 0, 0, 0, 0,
                 1, 5, 9, 13,
                 2, 6, 10, 14,
-                3, 7, 11, 15
+                3, 7, 11, 15,
+                16, 16, 16, 16,
+                17, 21, 25, 29,
+                18, 22, 26, 30,
+                19, 23, 27, 31
             ];
         /// <summary>
-        /// Mask the used bits after left-shifting during AVX2 decoding
+        /// Mask the used bits after left-shifting during AVX-512 decoding
         /// </summary>
-        private static readonly byte[] Decoding2MaskLeftBits = [
+        private static readonly byte[] Decoding512MaskLeftBits = [
                 0, 0, 0, 0,
                 192, 192, 192, 192,// Bits 7..8 of 0
                 240, 240, 240, 240,// Bits 5..8 of 1
@@ -157,81 +239,96 @@ namespace wan24.Core
                 0, 0, 0, 0,
                 192, 192, 192, 192,
                 240, 240, 240, 240,
+                252, 252, 252, 252,
+                0, 0, 0, 0,
+                192, 192, 192, 192,
+                240, 240, 240, 240,
+                252, 252, 252, 252,
+                0, 0, 0, 0,
+                192, 192, 192, 192,
+                240, 240, 240, 240,
                 252, 252, 252, 252
             ];
         /// <summary>
-        /// Order the masked bits after left-shifting (every 4th byte will be skipped) during AVX2 decoding
+        /// Order the masked bits after left-shifting (every 4th byte will be skipped) during AVX-512 decoding
         /// </summary>
-        private static readonly byte[] Decoding2OrderLeft = [
+        private static readonly byte[] Decoding512OrderLeft = [
                 4, 8, 12, 0,
                 5, 9, 13, 0,
                 6, 10, 14, 0,
                 7, 11, 15, 0,
+                20, 24, 28, 16,
+                21, 25, 29, 16,
+                22, 26, 30, 16,
+                23, 27, 31, 16,
                 4, 8, 12, 0,
                 5, 9, 13, 0,
                 6, 10, 14, 0,
-                7, 11, 15, 0
+                7, 11, 15, 0,
+                20, 24, 28, 16,
+                21, 25, 29, 16,
+                22, 26, 30, 16,
+                23, 27, 31, 16
             ];
         /// <summary>
-        /// Right shift steps during AVX2 decoding
+        /// Right shift steps during AVX-512 decoding
         /// </summary>
-        private static readonly uint[] Decoding2ShiftRight = [0, 2, 4, 0, 0, 2, 4, 0];
+        private static readonly uint[] Decoding512ShiftRight = [0, 2, 4, 0, 0, 2, 4, 0, 0, 2, 4, 0, 0, 2, 4, 0];
         /// <summary>
-        /// Left shift steps during AVX2 decoding
+        /// Left shift steps during AVX-512 decoding
         /// </summary>
-        private static readonly uint[] Decoding2ShiftLeft = [0, 6, 4, 2, 0, 6, 4, 2];
+        private static readonly uint[] Decoding512ShiftLeft = [0, 6, 4, 2, 0, 6, 4, 2, 0, 6, 4, 2, 0, 6, 4, 2];
 
         /// <summary>
-        /// Encode using AVX2 intrinsics
+        /// Encode using AVX-512 intrinsics
         /// </summary>
-        /// <param name="len">Length in bytes (must be a multiple of 24)</param>
+        /// <param name="len">Length in bytes (must be a multiple of 48)</param>
         /// <param name="charMap">Character map</param>
-        /// <param name="data">Raw data (4 spare bytes at the end are required to avoid a segmentation fault)</param>
+        /// <param name="data">Raw data (8 spare bytes at the end are required to avoid a segmentation fault)</param>
         /// <param name="result">Encoded data</param>
         /// <param name="resOffset">Result byte offset</param>
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static unsafe void EncodeAvx2(in int len, in char* charMap, byte* data, char* result, ref int resOffset)
+        private static unsafe void EncodeAvx512(in int len, in char* charMap, byte* data, char* result, ref int resOffset)
         {
-            // Let's close one eye and hope everything will become better with AVX 512...
             unchecked
             {
-                Vector256<byte> groupRight = Vector256.Create(Encoding2GroupRight),
-                    maskRightBits = Vector256.Create(Encoding2MaskRightBits),
-                    orderRight = Vector256.Create(Encoding2OrderRight),
-                    groupLeft = Vector256.Create(Encoding2GroupLeft),
-                    maskLeftBits = Vector256.Create(Encoding2MaskLeftBits),
-                    orderLeft = Vector256.Create(Encoding2OrderLeft),
+                Vector512<byte> groupRight = Vector512.Create(Encoding512GroupRight),
+                    maskRightBits = Vector512.Create(Encoding512MaskRightBits),
+                    orderRight = Vector512.Create(Encoding512OrderRight),
+                    groupLeft = Vector512.Create(Encoding512GroupLeft),
+                    maskLeftBits = Vector512.Create(Encoding512MaskLeftBits),
+                    orderLeft = Vector512.Create(Encoding512OrderLeft),
                     dataVector,// Processing data chunk
                     dataVectorRight,// Data chunk for partial processing of right aligned bytes
                     dataVectorLeft;// Data chunk for partial processing of left aligned bytes
-                Vector256<uint> shiftRight = Vector256.Create(Encoding2ShiftRight),
-                    shiftLeft = Vector256.Create(Encoding2ShiftLeft);
+                Vector512<uint> shiftRight = Vector512.Create(Encoding512ShiftRight),
+                    shiftLeft = Vector512.Create(Encoding512ShiftLeft);
                 char* resultStart = result;// Result start pointer
-                using RentedArrayRefStruct<byte> charMapIndex = new(len: 32, clean: false);// Character map index buffer
+                using RentedArrayRefStruct<byte> charMapIndex = new(len: 64, clean: false);// Character map index buffer
                 fixed (byte* charMapIndexPtr = charMapIndex.Span)
-                    // Process data in 24 byte chunks (which results in a 32 byte chunk each 24 byte chunk)
-                    for (byte* dataEnd = data + len; data < dataEnd; data += 24, result += 32)
+                    // Process data in 48 byte chunks (which results in a 64 byte chunk each 48 byte chunk)
+                    for (byte* dataEnd = data + len; data < dataEnd; data += 48, result += 64)
                     {
-                        // Load 28 bytes from the input data (only 24 bytes from that are going to be used)
-                        dataVector = Vector256.Create(Sse2.LoadVector128(data), Sse2.LoadVector128(data + 12));
+                        // Load 56 bytes from the input data (only 48 bytes from that are going to be used)
+                        dataVector = Vector512.Create(Avx.LoadVector256(data), Avx.LoadVector256(data + 24));
                         // Process bytes which are right aligned in the resulting byte (low bits)
-                        dataVectorRight = Avx2.Shuffle(dataVector, groupRight);// Group for shifting
-                        dataVectorRight = Avx2.ShiftRightLogicalVariable(dataVectorRight.AsUInt32(), shiftRight).AsByte();// Shift
-                        dataVectorRight = Avx2.And(dataVectorRight, maskRightBits);// Mask used bits
-                        dataVectorRight = Avx2.Shuffle(dataVectorRight, orderRight);// Order the partial result
+                        dataVectorRight = Avx512BW.Shuffle(dataVector, groupRight);// Group for shifting
+                        dataVectorRight = Avx512F.ShiftRightLogicalVariable(dataVectorRight.AsUInt32(), shiftRight).AsByte();// Shift
+                        dataVectorRight = Avx512F.And(dataVectorRight, maskRightBits);// Mask used bits
+                        dataVectorRight = Avx512BW.Shuffle(dataVectorRight, orderRight);// Order the partial result
                         // Process bytes which are left shifted in the resulting byte (high bits)
-                        dataVectorLeft = Avx2.Shuffle(dataVector, groupLeft);// Group for shifting
-                        dataVectorLeft = Avx2.ShiftLeftLogicalVariable(dataVectorLeft.AsUInt32(), shiftLeft).AsByte();// Shift
-                        dataVectorLeft = Avx2.And(dataVectorLeft, maskLeftBits);// Mask used bits
-                        dataVectorLeft = Avx2.Shuffle(dataVectorLeft, orderLeft);// Order the partial result
+                        dataVectorLeft = Avx512BW.Shuffle(dataVector, groupLeft);// Group for shifting
+                        dataVectorLeft = Avx512F.ShiftLeftLogicalVariable(dataVectorLeft.AsUInt32(), shiftLeft).AsByte();// Shift
+                        dataVectorLeft = Avx512F.And(dataVectorLeft, maskLeftBits);// Mask used bits
+                        dataVectorLeft = Avx512BW.Shuffle(dataVectorLeft, orderLeft);// Order the partial result
                         // Merge the partial results to get the full character map index
-                        dataVector = Avx2.Or(dataVectorRight, dataVectorLeft);
+                        dataVector = Avx512F.Or(dataVectorLeft, dataVectorRight);
                         // Store the result in a temporary buffer
-                        Avx.Store(charMapIndexPtr, dataVector);
+                        Avx512BW.Store(charMapIndexPtr, dataVector);
                         // Map the characters to the result
-                        result[0] = charMap[charMapIndexPtr[0]];// Saved ~1ms
+                        result[0] = charMap[charMapIndexPtr[0]];
                         result[1] = charMap[charMapIndexPtr[1]];
                         result[2] = charMap[charMapIndexPtr[2]];
                         result[3] = charMap[charMapIndexPtr[3]];
@@ -263,16 +360,48 @@ namespace wan24.Core
                         result[29] = charMap[charMapIndexPtr[29]];
                         result[30] = charMap[charMapIndexPtr[30]];
                         result[31] = charMap[charMapIndexPtr[31]];
+                        result[32] = charMap[charMapIndexPtr[32]];
+                        result[33] = charMap[charMapIndexPtr[33]];
+                        result[34] = charMap[charMapIndexPtr[34]];
+                        result[35] = charMap[charMapIndexPtr[35]];
+                        result[36] = charMap[charMapIndexPtr[36]];
+                        result[37] = charMap[charMapIndexPtr[37]];
+                        result[38] = charMap[charMapIndexPtr[38]];
+                        result[39] = charMap[charMapIndexPtr[39]];
+                        result[40] = charMap[charMapIndexPtr[40]];
+                        result[41] = charMap[charMapIndexPtr[41]];
+                        result[42] = charMap[charMapIndexPtr[42]];
+                        result[43] = charMap[charMapIndexPtr[43]];
+                        result[44] = charMap[charMapIndexPtr[44]];
+                        result[45] = charMap[charMapIndexPtr[45]];
+                        result[46] = charMap[charMapIndexPtr[46]];
+                        result[47] = charMap[charMapIndexPtr[47]];
+                        result[48] = charMap[charMapIndexPtr[48]];
+                        result[49] = charMap[charMapIndexPtr[49]];
+                        result[50] = charMap[charMapIndexPtr[50]];
+                        result[51] = charMap[charMapIndexPtr[51]];
+                        result[52] = charMap[charMapIndexPtr[52]];
+                        result[53] = charMap[charMapIndexPtr[53]];
+                        result[54] = charMap[charMapIndexPtr[54]];
+                        result[55] = charMap[charMapIndexPtr[55]];
+                        result[56] = charMap[charMapIndexPtr[56]];
+                        result[57] = charMap[charMapIndexPtr[57]];
+                        result[58] = charMap[charMapIndexPtr[58]];
+                        result[59] = charMap[charMapIndexPtr[59]];
+                        result[60] = charMap[charMapIndexPtr[60]];
+                        result[61] = charMap[charMapIndexPtr[61]];
+                        result[62] = charMap[charMapIndexPtr[62]];
+                        result[63] = charMap[charMapIndexPtr[63]];
                     }
                 resOffset += (int)(result - resultStart);
             }
         }
 
         /// <summary>
-        /// Decode using AVX2 intrinsics
+        /// Decode using AVX-512 intrinsics
         /// </summary>
         /// <param name="dataOffset">Outer raw data byte offset</param>
-        /// <param name="len">Length in bytes (must be a multiple of 32)</param>
+        /// <param name="len">Length in bytes (must be a multiple of 64)</param>
         /// <param name="charMap">Character map</param>
         /// <param name="data">Encoded data</param>
         /// <param name="result">Raw data</param>
@@ -281,30 +410,30 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static unsafe void DecodeAvx2(in int dataOffset, in int len, in char* charMap, char* data, byte* result, ref int resOffset)
+        private static unsafe void DecodeAvx512(in int dataOffset, in int len, in char* charMap, char* data, byte* result, ref int resOffset)
         {
             unchecked
             {
-                Vector256<byte> groupRight = Vector256.Create(Decoding2GroupRight),
-                    maskRightBits = Vector256.Create(Decoding2MaskRightBits),
-                    orderRight = Vector256.Create(Decoding2OrderRight),
-                    groupLeft = Vector256.Create(Decoding2GroupLeft),
-                    maskLeftBits = Vector256.Create(Decoding2MaskLeftBits),
-                    orderLeft = Vector256.Create(Decoding2OrderLeft),
+                Vector512<byte> groupRight = Vector512.Create(Decoding512GroupRight),
+                    maskRightBits = Vector512.Create(Decoding512MaskRightBits),
+                    orderRight = Vector512.Create(Decoding512OrderRight),
+                    groupLeft = Vector512.Create(Decoding512GroupLeft),
+                    maskLeftBits = Vector512.Create(Decoding512MaskLeftBits),
+                    orderLeft = Vector512.Create(Decoding512OrderLeft),
                     dataVector,// Processing data chunk
                     dataVectorRight,// Data chunk for partial processing of right aligned bytes
                     dataVectorLeft;// Data chunk for partial processing of left aligned bytes
-                Vector256<uint> shiftLeft = Vector256.Create(Decoding2ShiftLeft),
-                    shiftRight = Vector256.Create(Decoding2ShiftRight);
+                Vector512<uint> shiftLeft = Vector512.Create(Decoding512ShiftLeft),
+                    shiftRight = Vector512.Create(Decoding512ShiftRight);
                 int i;// Loop index
-                using RentedArrayRefStruct<byte> charBytes = new(len: 32, clean: false);// Character byte buffer
+                using RentedArrayRefStruct<byte> charBytes = new(len: 64, clean: false);// Character byte buffer
                 fixed (byte* charBytesPtr = charBytes.Span)
-                    // Process data in 32 byte chunks (which results in a 24 byte chunk each 32 byte chunk)
-                    for (char* dataEnd = data + len; data < dataEnd; data += 32, result += 24)
+                    // Process data in 64 byte chunks (which results in a 48 byte chunk each 64 byte chunk)
+                    for (char* dataEnd = data + len; data < dataEnd; data += 64, result += 48)
                     {
-                        // Map the 32 ASCII characters chunk to character map index bytes
-                        for (i = 0; i < 32; i++)
-                            if (data[i] == charMap[0]) charBytesPtr[i] = 0;// Saved ~140ms
+                        // Map the 64 ASCII characters chunk to character map index bytes
+                        for (i = 0; i < 64; i++)
+                            if (data[i] == charMap[0]) charBytesPtr[i] = 0;
                             else if (data[i] == charMap[1]) charBytesPtr[i] = 1;
                             else if (data[i] == charMap[2]) charBytesPtr[i] = 2;
                             else if (data[i] == charMap[3]) charBytesPtr[i] = 3;
@@ -369,23 +498,23 @@ namespace wan24.Core
                             else if (data[i] == charMap[62]) charBytesPtr[i] = 62;
                             else if (data[i] == charMap[63]) charBytesPtr[i] = 63;
                             else throw new InvalidDataException($"Found invalid character \"{data[i]}\" ({(int)data[i]}) at offset #{dataOffset + (int)(data - dataEnd) + i}");
-                        dataVector = Avx.LoadVector256(charBytesPtr);
+                        dataVector = Avx512F.LoadVector512(charBytesPtr);
                         // Process bytes which are right aligned in the result byte (low bits)
-                        dataVectorRight = Avx2.Shuffle(dataVector, groupRight);// Group
-                        dataVectorRight = Avx2.ShiftRightLogicalVariable(dataVectorRight.AsUInt32(), shiftRight).AsByte();// Shift
-                        dataVectorRight = Avx2.And(dataVectorRight, maskRightBits);// Mask relevant bits
-                        dataVectorRight = Avx2.Shuffle(dataVectorRight, orderRight);// Order the partial result
+                        dataVectorRight = Avx512BW.Shuffle(dataVector, groupRight);// Group
+                        dataVectorRight = Avx512F.ShiftRightLogicalVariable(dataVectorRight.AsUInt32(), shiftRight).AsByte();// Shift
+                        dataVectorRight = Avx512F.And(dataVectorRight, maskRightBits);// Mask relevant bits
+                        dataVectorRight = Avx512BW.Shuffle(dataVectorRight, orderRight);// Order the partial result
                         // Process bytes which are left shifted in the result byte (high bits)
-                        dataVectorLeft = Avx2.Shuffle(dataVector, groupLeft);// Group
-                        dataVectorLeft = Avx2.ShiftLeftLogicalVariable(dataVectorLeft.AsUInt32(), shiftLeft).AsByte();// Shift
-                        dataVectorLeft = Avx2.And(dataVectorLeft, maskLeftBits);// Mask relevant bits
-                        dataVectorLeft = Avx2.Shuffle(dataVectorLeft, orderLeft);// Order the partial result
+                        dataVectorLeft = Avx512BW.Shuffle(dataVector, groupLeft);// Group
+                        dataVectorLeft = Avx512F.ShiftLeftLogicalVariable(dataVectorLeft.AsUInt32(), shiftLeft).AsByte();// Shift
+                        dataVectorLeft = Avx512F.And(dataVectorLeft, maskLeftBits);// Mask relevant bits
+                        dataVectorLeft = Avx512BW.Shuffle(dataVectorLeft, orderLeft);// Order the partial result
                         // Merge the partial results to get the full result
-                        dataVector = Avx2.Or(dataVectorRight, dataVectorLeft);
+                        dataVector = Avx512F.Or(dataVectorLeft, dataVectorRight);
                         // Store the result in a temporary buffer
-                        Avx.Store(charBytesPtr, dataVector);
+                        Avx512BW.Store(charBytesPtr, dataVector);
                         // Copy the result bytes to the output
-                        result[0] = charBytesPtr[0];// Saved ~1ms
+                        result[0] = charBytesPtr[0];
                         result[1] = charBytesPtr[1];
                         result[2] = charBytesPtr[2];
                         result[3] = charBytesPtr[4];
@@ -409,8 +538,32 @@ namespace wan24.Core
                         result[21] = charBytesPtr[28];
                         result[22] = charBytesPtr[29];
                         result[23] = charBytesPtr[30];
+                        result[24] = charBytesPtr[32];
+                        result[25] = charBytesPtr[33];
+                        result[26] = charBytesPtr[34];
+                        result[27] = charBytesPtr[36];
+                        result[28] = charBytesPtr[37];
+                        result[29] = charBytesPtr[38];
+                        result[30] = charBytesPtr[40];
+                        result[31] = charBytesPtr[41];
+                        result[32] = charBytesPtr[42];
+                        result[33] = charBytesPtr[44];
+                        result[34] = charBytesPtr[45];
+                        result[35] = charBytesPtr[46];
+                        result[36] = charBytesPtr[48];
+                        result[37] = charBytesPtr[49];
+                        result[38] = charBytesPtr[50];
+                        result[39] = charBytesPtr[52];
+                        result[40] = charBytesPtr[53];
+                        result[41] = charBytesPtr[54];
+                        result[42] = charBytesPtr[56];
+                        result[43] = charBytesPtr[57];
+                        result[44] = charBytesPtr[58];
+                        result[45] = charBytesPtr[60];
+                        result[46] = charBytesPtr[61];
+                        result[47] = charBytesPtr[62];
                     }
-                resOffset += (len >> 1) + (len >> 2);// <-- ((len >> 5) << 4) + ((len >> 5) << 3) <-- len / 32 * 16 + len / 32 * 8 <-- len / 32 * 24 (len % 32 == 0!)
+                resOffset += (len >> 2) + (len >> 1);// <-- ((len >> 6) << 4) + ((len >> 6) << 5) <-- len / 64 * 16 + len / 64 * 32 <-- len / 64 * 48 (len % 64 == 0!)
             }
         }
     }

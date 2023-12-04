@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 namespace wan24.Core
 {
     /// <summary>
-    /// String parser context informations
+    /// String parser context information
     /// </summary>
     public sealed class StringParserContext
     {
@@ -113,7 +113,7 @@ namespace wan24.Core
         /// <returns>Succeed?</returns>
         public bool TryGetData(in string key, [NotNullWhen(true)] out string? value)
         {
-            if (!key.StartsWith("$"))
+            if (!key.StartsWith('$'))
             {
                 value = key;
                 return true;

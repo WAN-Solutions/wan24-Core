@@ -6,12 +6,12 @@ namespace wan24.Core
     /// <summary>
     /// Base class for a logger
     /// </summary>
-    public abstract class LoggerBase : ILogger
+    public abstract partial class LoggerBase : ILogger
     {
         /// <summary>
         /// Regular expression to match a new line
         /// </summary>
-        internal static readonly Regex RX_NL = new(@"\r?\n\t?", RegexOptions.Singleline | RegexOptions.Compiled);
+        internal static readonly Regex RX_NL = RX_NL_Generated();
 
         /// <summary>
         /// Constructor
@@ -60,7 +60,7 @@ namespace wan24.Core
         protected abstract void LogInt<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter);
 
         /// <summary>
-        /// Get the mesage to log
+        /// Get the message to log
         /// </summary>
         /// <typeparam name="TState">State type</typeparam>
         /// <param name="logLevel">Level</param>
@@ -79,5 +79,11 @@ namespace wan24.Core
             bool nl = false
             )
             => $"{DateTime.Now}\t{logLevel}\t{RX_NL.Replace(formatter(state, exception), $"{Environment.NewLine}\t")}{(nl ? Environment.NewLine : string.Empty)}";
+
+        /// <summary>
+        /// Regular expression to match a new line
+        /// </summary>
+        [GeneratedRegex(@"\r?\n\t?", RegexOptions.Compiled | RegexOptions.Singleline)]
+        private static partial Regex RX_NL_Generated();
     }
 }

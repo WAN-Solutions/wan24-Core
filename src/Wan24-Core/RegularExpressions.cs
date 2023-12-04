@@ -6,7 +6,7 @@ namespace wan24.Core
     /// <summary>
     /// Regular expressions
     /// </summary>
-    public static class RegularExpressions
+    public static partial class RegularExpressions
     {
         /// <summary>
         /// MIME type (<c>$1</c> contains the part before the slash, <c>$2</c> the part after the slash)
@@ -52,36 +52,36 @@ namespace wan24.Core
         /// <summary>
         /// MIME type (<c>$1</c> contains the part before the slash, <c>$2</c> the part after the slash)
         /// </summary>
-        public static readonly Regex RX_MIME_TYPE = new(MIME_TYPE, RegexOptions.Compiled | RegexOptions.Singleline);
+        public static readonly Regex RX_MIME_TYPE = RX_MIME_TYPE_Generated();
         /// <summary>
         /// New line (<c>$1</c> contains the new line control characters)
         /// </summary>
-        public static readonly Regex RX_NEW_LINE = new(NEW_LINE, RegexOptions.Compiled | RegexOptions.Singleline);
+        public static readonly Regex RX_NEW_LINE = RX_NEW_LINE_Generated();
         /// <summary>
         /// No new line
         /// </summary>
-        public static readonly Regex RX_NO_NEW_LINE = new(NO_NEW_LINE, RegexOptions.Compiled | RegexOptions.Singleline);
+        public static readonly Regex RX_NO_NEW_LINE = RX_NO_NEW_LINE_Generated();
         /// <summary>
         /// Locale using a dash or underscore (<c>$1</c> contains the first part, <c>$2</c> the second part)
         /// </summary>
-        public static readonly Regex RX_LOCALE = new(LOCALE, RegexOptions.Compiled | RegexOptions.Singleline);
+        public static readonly Regex RX_LOCALE = RX_LOCALE_Generated();
         /// <summary>
         /// Locale using a dash (<c>$1</c> contains the first part, <c>$2</c> the second part)
         /// </summary>
-        public static readonly Regex RX_LOCALE_WITH_DASH = new(LOCALE_WITH_DASH, RegexOptions.Compiled | RegexOptions.Singleline);
+        public static readonly Regex RX_LOCALE_WITH_DASH = RX_LOCALE_WITH_DASH_Generated();
         /// <summary>
         /// Locale using an underscore (<c>$1</c> contains the first part, <c>$2</c> the second part)
         /// </summary>
-        public static readonly Regex RX_LOCALE_WITH_UNDERSCORE = new(LOCALE_WITH_UNDERSCORE, RegexOptions.Compiled | RegexOptions.Singleline);
+        public static readonly Regex RX_LOCALE_WITH_UNDERSCORE = RX_LOCALE_WITH_UNDERSCORE_Generated();
         /// <summary>
         /// GUID
         /// </summary>
-        public static readonly Regex RX_GUID = new(GUID, RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.IgnoreCase);
+        public static readonly Regex RX_GUID = RX_GUID_Generated();
 
         /// <summary>
         /// Named expression names
         /// </summary>
-        public static string[] NamedExpressionNames => _NamedExpressions.Keys.ToArray();
+        public static string[] NamedExpressionNames => [.. _NamedExpressions.Keys];
 
         /// <summary>
         /// Number of named expressions
@@ -147,5 +147,47 @@ namespace wan24.Core
         /// <param name="name">Name</param>
         /// <returns>If the expression exists</returns>
         public static bool Contains(string name) => _NamedRegex.ContainsKey(name);
+
+        /// <summary>
+        /// MIME type (<c>$1</c> contains the part before the slash, <c>$2</c> the part after the slash)
+        /// </summary>
+        [GeneratedRegex(MIME_TYPE, RegexOptions.Compiled | RegexOptions.Singleline)]
+        private static partial Regex RX_MIME_TYPE_Generated();
+
+        /// <summary>
+        /// New line (<c>$1</c> contains the new line control characters)
+        /// </summary>
+        [GeneratedRegex(NEW_LINE, RegexOptions.Compiled | RegexOptions.Singleline)]
+        private static partial Regex RX_NEW_LINE_Generated();
+
+        /// <summary>
+        /// No new line
+        /// </summary>
+        [GeneratedRegex(NO_NEW_LINE, RegexOptions.Compiled | RegexOptions.Singleline)]
+        private static partial Regex RX_NO_NEW_LINE_Generated();
+
+        /// <summary>
+        /// Locale using a dash or underscore (<c>$1</c> contains the first part, <c>$2</c> the second part)
+        /// </summary>
+        [GeneratedRegex(LOCALE, RegexOptions.Compiled | RegexOptions.Singleline)]
+        private static partial Regex RX_LOCALE_Generated();
+
+        /// <summary>
+        /// Locale using a dash (<c>$1</c> contains the first part, <c>$2</c> the second part)
+        /// </summary>
+        [GeneratedRegex(LOCALE_WITH_DASH, RegexOptions.Compiled | RegexOptions.Singleline)]
+        private static partial Regex RX_LOCALE_WITH_DASH_Generated();
+
+        /// <summary>
+        /// Locale using an underscore (<c>$1</c> contains the first part, <c>$2</c> the second part)
+        /// </summary>
+        [GeneratedRegex(LOCALE_WITH_UNDERSCORE, RegexOptions.Compiled | RegexOptions.Singleline)]
+        private static partial Regex RX_LOCALE_WITH_UNDERSCORE_Generated();
+
+        /// <summary>
+        /// GUID
+        /// </summary>
+        [GeneratedRegex(GUID, RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.Singleline, "de-DE")]
+        private static partial Regex RX_GUID_Generated();
     }
 }

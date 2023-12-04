@@ -3,18 +3,16 @@
     /// <summary>
     /// Display text
     /// </summary>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="displayText">Display text</param>
     [AttributeUsage(AttributeTargets.All)]
-    public sealed class DisplayTextAttribute : Attribute
+    public sealed class DisplayTextAttribute(string displayText) : Attribute()
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="displayText">Display text</param>
-        public DisplayTextAttribute(string displayText) : base() => DisplayText = displayText;
-
         /// <summary>
         /// Display text
         /// </summary>
-        public string DisplayText { get; }
+        public string DisplayText { get; } = displayText;
     }
 }

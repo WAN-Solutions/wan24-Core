@@ -3,7 +3,12 @@
     /// <summary>
     /// Multiple combined throttled streams (will balance a total read/write limit to all hosted streams, based on quotas; all streams need to use the same time restrictions for this)
     /// </summary>
-    public class MultiThrottledStream : DisposableBase, IStatusProvider, IStreamThrottle
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="totalReadLimit">Reading count total limit</param>
+    /// <param name="totalWriteLimit">Writing count total limit</param>
+    public class MultiThrottledStream(in int totalReadLimit, in int totalWriteLimit) : DisposableBase(), IStatusProvider, IStreamThrottle
     {
         /// <summary>
         /// Thread synchronization
@@ -12,7 +17,7 @@
         /// <summary>
         /// Streams
         /// </summary>
-        protected readonly HashSet<IStreamThrottle> _Streams = new();
+        protected readonly HashSet<IStreamThrottle> _Streams = [];
         /// <summary>
         /// Parent <see cref="MultiThrottledStream"/>
         /// </summary>
@@ -20,22 +25,11 @@
         /// <summary>
         /// Read count total limit
         /// </summary>
-        protected int _TotalReadLimit;
+        protected int _TotalReadLimit = totalReadLimit;
         /// <summary>
         /// Write count total limit
         /// </summary>
-        protected int _TotalWriteLimit;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="totalReadLimit">Reading count total limit</param>
-        /// <param name="totalWriteLimit">Writing count total limit</param>
-        public MultiThrottledStream(in int totalReadLimit, in int totalWriteLimit) : base()
-        {
-            _TotalReadLimit = totalReadLimit;
-            _TotalWriteLimit = totalWriteLimit;
-        }
+        protected int _TotalWriteLimit = totalWriteLimit;
 
         /// <summary>
         /// Root <see cref="MultiThrottledStream"/>
@@ -104,7 +98,7 @@
             {
                 EnsureUndisposed();
                 using SemaphoreSyncContext ssc = Sync;
-                return _Streams.ToArray();
+                return [.. _Streams];
             }
         }
 
@@ -372,7 +366,7 @@
         /// <returns>Removed streams</returns>
         protected IStreamThrottle[] ClearUnblocked()
         {
-            IStreamThrottle[] res = _Streams.ToArray();
+            IStreamThrottle[] res = [.. _Streams];
             foreach (IStreamThrottle stream in res)
             {
                 if (stream is MultiThrottledStream mt) mt._Parent = null;

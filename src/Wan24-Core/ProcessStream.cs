@@ -19,17 +19,17 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="stdout">STDOUT (used for reading)</param>
+        /// <param name="stdOut">STDOUT (used for reading)</param>
         /// <param name="stdin">STDIN (used for writing)</param>
         /// <param name="leaveOpen">Leave the streams open when disposing?</param>
-        public ProcessStream(in StreamReader? stdout, in StreamWriter? stdin = null, in bool leaveOpen = false)
-            : base(new BiDirectionalStream(stdout?.BaseStream ?? Null, stdin?.BaseStream ?? Null, leaveOpen))
+        public ProcessStream(in StreamReader? stdOut, in StreamWriter? stdin = null, in bool leaveOpen = false)
+            : base(new BiDirectionalStream(stdOut?.BaseStream ?? Null, stdin?.BaseStream ?? Null, leaveOpen))
         {
-            if (stdin is null && stdout is null) throw new ArgumentNullException(nameof(stdout));
-            _CanRead = stdout is not null;
+            if (stdin is null && stdOut is null) throw new ArgumentNullException(nameof(stdOut));
+            _CanRead = stdOut is not null;
             _CanWrite = stdin is not null;
             StdIn = stdin;
-            StdOut = stdout;
+            StdOut = stdOut;
             UseOriginalBeginRead = true;
             UseOriginalBeginWrite = true;
             UseOriginalByteIO = true;
@@ -99,14 +99,14 @@ namespace wan24.Core
         /// Create a process stream
         /// </summary>
         /// <param name="cmd">Command</param>
-        /// <param name="useStdout">Use STDOUT for reading?</param>
+        /// <param name="useStdOut">Use STDOUT for reading?</param>
         /// <param name="useStdin">Use STDIN for writing?</param>
         /// <param name="killOnDispose">Kill the process when disposing?</param>
         /// <param name="args">Arguments</param>
         /// <returns>Process stream</returns>
-        public static ProcessStream Create(in string cmd, in bool useStdout = true, in bool useStdin = false, in bool killOnDispose = true, params string[] args)
+        public static ProcessStream Create(in string cmd, in bool useStdOut = true, in bool useStdin = false, in bool killOnDispose = true, params string[] args)
         {
-            if (!useStdin && !useStdout) throw new ArgumentException("STDIN/OUT must be used for streaming anything", nameof(useStdin));
+            if (!useStdin && !useStdOut) throw new ArgumentException("STDIN/OUT must be used for streaming anything", nameof(useStdin));
             Process proc = new();
             try
             {
@@ -115,9 +115,9 @@ namespace wan24.Core
                 proc.StartInfo.FileName = cmd;
                 proc.StartInfo.ArgumentList.AddRange(args);
                 proc.StartInfo.RedirectStandardInput = useStdin;
-                proc.StartInfo.RedirectStandardOutput = useStdout;
+                proc.StartInfo.RedirectStandardOutput = useStdOut;
                 proc.Start();
-                return new(useStdout ? proc.StandardOutput : null, useStdin ? proc.StandardInput : null)
+                return new(useStdOut ? proc.StandardOutput : null, useStdin ? proc.StandardInput : null)
                 {
                     KillOnDispose = killOnDispose
                 };

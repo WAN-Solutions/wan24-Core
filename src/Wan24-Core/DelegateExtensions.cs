@@ -29,7 +29,7 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         public static IEnumerable<tResult?> InvokeAll<tDelegate, tResult>(this IEnumerable<tDelegate> delegates, params object?[] param) where tDelegate : Delegate
         {
-            List<tResult?> res = new();
+            List<tResult?> res = [];
             foreach (tDelegate d in delegates)
             {
                 if (!d.Method.ReturnType.IsAssignableFrom(typeof(tResult)))

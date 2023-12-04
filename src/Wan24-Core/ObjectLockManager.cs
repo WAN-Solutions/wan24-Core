@@ -256,7 +256,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Delegte for locking events
+        /// Delegate for locking events
         /// </summary>
         /// <param name="manager">Manager</param>
         /// <param name="key">Object key</param>

@@ -70,7 +70,7 @@ namespace wan24.Core
         DateTime ITimer.LastElapsed => LastRun;
 
         /// <inheritdoc/>
-        DateTime ITimer.Sheduled => NextRun;
+        DateTime ITimer.Scheduled => NextRun;
 
         /// <inheritdoc/>
         bool ITimer.AutoReset => true;
@@ -85,7 +85,7 @@ namespace wan24.Core
                 yield return new("Timer type", TimerType, "Type of the timer");
                 yield return new("Interval", TimeSpan.FromMilliseconds(Interval), "Timer interval");
                 yield return new("Last duration", LastDuration, "Last run duration");
-                yield return new("Sheduled next run", NextRun, "Next sheduled run time");
+                yield return new("Scheduled next run", NextRun, "Next scheduled run time");
                 yield return new("Run once", RunOnce, "Run once, then stop and wait for the next start?");
             }
         }
@@ -130,7 +130,7 @@ namespace wan24.Core
         public async Task SetTimerAsync(double interval, HostedServiceTimers? timer = null, DateTime? nextRun = null, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            if (interval <= 0) throw new ArgumentOutOfRangeException(nameof(interval));
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(interval);
             timer ??= TimerType;
             // Handle fixed next run time
             if (nextRun is not null)
@@ -177,7 +177,7 @@ namespace wan24.Core
                 nextRun = (LastRun + LastDuration).AddMilliseconds(interval);
                 if (nextRun <= DateTime.Now)
                 {
-                    await RunningEvent.SetAsync().DynamicContext();
+                    await RunningEvent.SetAsync(CancellationToken.None).DynamicContext();
                     return;
                 }
                 NextRun = nextRun.Value;
@@ -219,7 +219,7 @@ namespace wan24.Core
             {
                 LastRun = DateTime.MinValue;
                 LastDuration = TimeSpan.Zero;
-                await RunningEvent.ResetAsync().DynamicContext();
+                await RunningEvent.ResetAsync(CancellationToken.None).DynamicContext();
             }
             await EnableTimerAsync().DynamicContext();
         }
@@ -230,7 +230,7 @@ namespace wan24.Core
             using (SemaphoreSyncContext ssc = await WorkerSync.SyncContextAsync(cancellationToken).DynamicContext())
                 Timer.Stop();
             NextRun = DateTime.MinValue;
-            await RunningEvent.SetAsync().DynamicContext();
+            await RunningEvent.SetAsync(CancellationToken.None).DynamicContext();
         }
 
         /// <inheritdoc/>
@@ -239,7 +239,7 @@ namespace wan24.Core
             using (SemaphoreSyncContext ssc = await WorkerSync.SyncContextAsync(cancellationToken).DynamicContext())
                 Timer.Stop();
             NextRun = DateTime.MinValue;
-            await RunningEvent.SetAsync().DynamicContext();
+            await RunningEvent.SetAsync(CancellationToken.None).DynamicContext();
         }
 
         /// <inheritdoc/>

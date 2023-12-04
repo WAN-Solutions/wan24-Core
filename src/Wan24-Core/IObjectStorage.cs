@@ -44,7 +44,7 @@
         /// <param name="key">Key</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Object</returns>
-        Task<StoredObject<tKey, tObj>?> GetObjectAsnc(tKey key, CancellationToken cancellationToken = default);
+        Task<StoredObject<tKey, tObj>?> GetObjectAsync(tKey key, CancellationToken cancellationToken = default);
         /// <summary>
         /// Release an object
         /// </summary>

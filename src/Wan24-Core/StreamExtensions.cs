@@ -28,7 +28,7 @@ namespace wan24.Core
         /// <returns>Number of left bytes ('cause the source stream didn't deliver enough data)</returns>
         public static long CopyPartialTo(this Stream stream, in Stream target, long count, int? bufferSize = null, ProcessingProgress? progress = null)
         {
-            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
             if (count == 0) return 0;
             bufferSize ??= Settings.BufferSize;
             bufferSize = (int)Math.Min(count, bufferSize.Value);
@@ -64,7 +64,7 @@ namespace wan24.Core
             CancellationToken cancellationToken = default
             )
         {
-            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
             if (count == 0) return 0;
             if (progress is not null) cancellationToken = progress.GetCancellationToken(cancellationToken);
             bufferSize ??= Settings.BufferSize;
@@ -105,7 +105,7 @@ namespace wan24.Core
         /// <param name="count">Number of bytes</param>
         public static void WriteZero(this Stream stream, in long count)
         {
-            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
             if (count == 0) return;
             using ZeroStream zero = new();
             zero.SetLength(count);
@@ -120,7 +120,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         public static async Task WriteZeroAsync(this Stream stream, long count, CancellationToken cancellationToken = default)
         {
-            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
             if (count == 0) return;
             using ZeroStream zero = new();
             zero.SetLength(count);
@@ -134,7 +134,7 @@ namespace wan24.Core
         /// <param name="count">Number of bytes</param>
         public static void WriteRandom(this Stream stream, in long count)
         {
-            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
             if (count == 0) return;
             RandomStream.Instance.CopyPartialTo(stream, count);
         }
@@ -147,7 +147,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         public static async Task WriteRandomAsync(this Stream stream, long count, CancellationToken cancellationToken = default)
         {
-            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
             if (count == 0) return;
             await RandomStream.Instance.CopyPartialToAsync(stream, count, cancellationToken: cancellationToken).DynamicContext();
         }
@@ -161,7 +161,7 @@ namespace wan24.Core
         /// <param name="progress">Progress</param>
         public static void GenericCopyTo(this Stream stream, in Stream destination, in int bufferSize = 81_920, ProcessingProgress? progress = null)
         {
-            if (bufferSize < 1) throw new ArgumentOutOfRangeException(nameof(bufferSize));
+            ArgumentOutOfRangeException.ThrowIfLessThan(bufferSize, 1);
             using RentedArrayRefStruct<byte> buffer = new(bufferSize, clean: false);
             for (int red = bufferSize; red == bufferSize;)
             {
@@ -190,7 +190,7 @@ namespace wan24.Core
             CancellationToken cancellationToken = default
             )
         {
-            if (bufferSize < 1) throw new ArgumentOutOfRangeException(nameof(bufferSize));
+            ArgumentOutOfRangeException.ThrowIfLessThan(bufferSize, 1);
             if (progress is not null) cancellationToken = progress.GetCancellationToken(cancellationToken);
             using RentedArrayStructSimple<byte> buffer = new(bufferSize, clean: false);
             for (int red = bufferSize; red == bufferSize;)
@@ -238,8 +238,7 @@ namespace wan24.Core
             buffer[0] = value;
             stream.Write(buffer.Span);
 #else
-            Span<byte> buffer = stackalloc byte[1];
-            buffer[0] = value;
+            Span<byte> buffer = [value];
             stream.Write(buffer);
 #endif
         }
@@ -252,7 +251,7 @@ namespace wan24.Core
         /// <returns>Chunks (should be used directly, and the yielded partial chunk streams, too (their position will change as soon as a new stream was yielded)!)</returns>
         public static IEnumerable<StreamBase> Chunk(this Stream stream, in long chunkSize)
         {
-            if (chunkSize < 1) throw new ArgumentOutOfRangeException(nameof(chunkSize));
+            ArgumentOutOfRangeException.ThrowIfLessThan(chunkSize, 1);
             return new StreamChunkEnumerator(stream, chunkSize);
         }
 

@@ -24,8 +24,8 @@ namespace wan24.Core
             bool throwOnMissing = true
             )
         {
-            List<object?> valueList = new(values ?? Array.Empty<object?>());
-            List<object?> res = new();
+            List<object?> valueList = new(values ?? []);
+            List<object?> res = [];
             int i,
                 len = valueList.Count;
 #pragma warning disable IDE0018 // Declare inline
@@ -50,7 +50,7 @@ namespace wan24.Core
                     else if (pi.HasDefaultValue) res.Add(pi.DefaultValue);
                     else if (throwOnMissing) throw new ArgumentException($"Can't get value of type {pi.ParameterType}", pi.Name);
             }
-            return res.ToArray();
+            return [.. res];
         }
 
         /// <summary>
@@ -72,8 +72,8 @@ namespace wan24.Core
             CancellationToken cancellationToken = default
             )
         {
-            List<object?> valueList = new(values ?? Array.Empty<object?>());
-            List<object?> res = new();
+            List<object?> valueList = new(values ?? []);
+            List<object?> res = [];
             int i,
                 len = valueList.Count;
             DiHelper.AsyncResult di;
@@ -97,7 +97,7 @@ namespace wan24.Core
                 else if (pi.HasDefaultValue) res.Add(pi.DefaultValue);
                 else if (throwOnMissing) throw new ArgumentException($"Can't get value of type {pi.ParameterType}", pi.Name);
             }
-            return res.ToArray();
+            return [.. res];
         }
 
         /// <summary>
@@ -119,8 +119,8 @@ namespace wan24.Core
             CancellationToken cancellationToken = default
             )
         {
-            List<object?> valueList = new(values ?? Array.Empty<object?>());
-            List<object?> res = new();
+            List<object?> valueList = new(values ?? []);
+            List<object?> res = [];
             int i,
                 len = valueList.Count;
             object? value;
@@ -144,7 +144,7 @@ namespace wan24.Core
                 else if (pi.HasDefaultValue) res.Add(pi.DefaultValue);
                 else if (throwOnMissing) throw new ArgumentException($"Can't get value of type {pi.ParameterType}", pi.Name);
             }
-            return res.ToArray();
+            return [.. res];
         }
 
         /// <summary>
@@ -157,8 +157,8 @@ namespace wan24.Core
         /// <returns>DI objects (if the length doesn't match the number of types, DI failed)</returns>
         public static object?[] GetDiObjects(this IEnumerable<Type> types, object?[]? values = null, IServiceProvider? serviceProvider = null, bool throwOnMissing = true)
         {
-            List<object?> valueList = new(values ?? Array.Empty<object?>());
-            List<object?> res = new();
+            List<object?> valueList = new(values ?? []);
+            List<object?> res = [];
             int i,
                 len = valueList.Count,
                 index = 0;
@@ -184,7 +184,7 @@ namespace wan24.Core
                     else if (throwOnMissing) throw new ArgumentException($"Missing value #{index} of type {type}", nameof(values));
                 index++;
             }
-            return res.ToArray();
+            return [.. res];
         }
 
         /// <summary>
@@ -204,8 +204,8 @@ namespace wan24.Core
             CancellationToken cancellationToken = default
             )
         {
-            List<object?> valueList = new(values ?? Array.Empty<object?>());
-            List<object?> res = new();
+            List<object?> valueList = new(values ?? []);
+            List<object?> res = [];
             int i,
                 len = valueList.Count,
                 index = 0;
@@ -234,7 +234,7 @@ namespace wan24.Core
                 else if (throwOnMissing) throw new ArgumentException($"Missing value #{index} of type {type}", nameof(values));
                 index++;
             }
-            return res.ToArray();
+            return [.. res];
         }
 
         /// <summary>
@@ -254,8 +254,8 @@ namespace wan24.Core
             CancellationToken cancellationToken = default
             )
         {
-            List<object?> valueList = new(values ?? Array.Empty<object?>());
-            List<object?> res = new();
+            List<object?> valueList = new(values ?? []);
+            List<object?> res = [];
             int i,
                 len = valueList.Count,
                 index = 0;
@@ -284,7 +284,7 @@ namespace wan24.Core
                 else if (throwOnMissing) throw new ArgumentException($"Missing value #{index} of type {type}", nameof(values));
                 index++;
             }
-            return res.ToArray();
+            return [.. res];
         }
     }
 }

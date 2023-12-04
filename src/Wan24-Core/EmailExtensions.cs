@@ -90,7 +90,7 @@ namespace wan24.Core
         /// <summary>
         /// Send an email
         /// </summary>
-        /// <param name="tmpl">Email template</param>
+        /// <param name="template">Email template</param>
         /// <param name="fromEmail">Sender email address</param>
         /// <param name="toEmail">Recipient email address</param>
         /// <param name="parserData">Parser data</param>
@@ -99,19 +99,19 @@ namespace wan24.Core
         /// <returns>If succeed</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static bool Send(
-            this IEmailTemplate tmpl, 
+            this IEmailTemplate template, 
             string fromEmail, 
             string toEmail, 
             Dictionary<string, string>? parserData = null, 
             IMta? mta = null, 
             params IEmailAttachment[] attachments
             )
-            => Send(tmpl.CreateEmail(fromEmail, toEmail, parserData, attachments), mta);
+            => Send(template.CreateEmail(fromEmail, toEmail, parserData, attachments), mta);
 
         /// <summary>
         /// Send an email
         /// </summary>
-        /// <param name="tmpl">Email template</param>
+        /// <param name="template">Email template</param>
         /// <param name="fromEmail">Sender email address</param>
         /// <param name="toEmail">Recipient email address</param>
         /// <param name="connection">Connection</param>
@@ -120,19 +120,19 @@ namespace wan24.Core
         /// <returns>If succeed</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static bool Send(
-            this IEmailTemplate tmpl,
+            this IEmailTemplate template,
             string fromEmail,
             string toEmail,
             IMtaConnection connection,
             Dictionary<string, string>? parserData = null,
             params IEmailAttachment[] attachments
             )
-            => Send(tmpl.CreateEmail(fromEmail, toEmail, parserData, attachments), connection);
+            => Send(template.CreateEmail(fromEmail, toEmail, parserData, attachments), connection);
 
         /// <summary>
         /// Send an email
         /// </summary>
-        /// <param name="tmpl">Email template</param>
+        /// <param name="template">Email template</param>
         /// <param name="fromEmail">Sender email address</param>
         /// <param name="toEmail">Recipient email address</param>
         /// <param name="parserData">Parser data</param>
@@ -142,7 +142,7 @@ namespace wan24.Core
         /// <returns>If succeed</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static async Task<bool> SendAsync(
-            this IEmailTemplate tmpl, 
+            this IEmailTemplate template, 
             string fromEmail, 
             string toEmail,
             Dictionary<string, string>? parserData = null,
@@ -150,13 +150,13 @@ namespace wan24.Core
             CancellationToken cancellationToken = default,
             params IEmailAttachment[] attachments
             )
-            => await SendAsync(await tmpl.CreateEmailAsync(fromEmail, toEmail, parserData, cancellationToken, attachments).DynamicContext(), mta, cancellationToken)
+            => await SendAsync(await template.CreateEmailAsync(fromEmail, toEmail, parserData, cancellationToken, attachments).DynamicContext(), mta, cancellationToken)
                 .DynamicContext();
 
         /// <summary>
         /// Send an email
         /// </summary>
-        /// <param name="tmpl">Email template</param>
+        /// <param name="template">Email template</param>
         /// <param name="fromEmail">Sender email address</param>
         /// <param name="toEmail">Recipient email address</param>
         /// <param name="connection">Connection</param>
@@ -166,7 +166,7 @@ namespace wan24.Core
         /// <returns>If succeed</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static async Task<bool> SendAsync(
-            this IEmailTemplate tmpl,
+            this IEmailTemplate template,
             string fromEmail,
             string toEmail,
             IMtaConnection connection,
@@ -174,7 +174,7 @@ namespace wan24.Core
             CancellationToken cancellationToken = default,
             params IEmailAttachment[] attachments
             )
-            => await SendAsync(await tmpl.CreateEmailAsync(fromEmail, toEmail, parserData, cancellationToken, attachments).DynamicContext(), connection, cancellationToken)
+            => await SendAsync(await template.CreateEmailAsync(fromEmail, toEmail, parserData, cancellationToken, attachments).DynamicContext(), connection, cancellationToken)
                 .DynamicContext();
     }
 }

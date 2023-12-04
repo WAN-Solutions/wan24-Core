@@ -3,18 +3,16 @@
     /// <summary>
     /// Timeout stream (async reading/writing methods can timeout)
     /// </summary>
-    public class TimeoutStream : TimeoutStream<Stream>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="baseStream">Base stream</param>
+    /// <param name="readTimeout">Read timeout (<see cref="TimeSpan.Zero"/> to disable)</param>
+    /// <param name="writeTimeout">Write timeout (<see cref="TimeSpan.Zero"/> to disable)</param>
+    /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
+    public class TimeoutStream(in Stream baseStream, in TimeSpan readTimeout, in TimeSpan? writeTimeout = null, in bool leaveOpen = false)
+        : TimeoutStream<Stream>(baseStream, readTimeout, writeTimeout, leaveOpen)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="baseStream">Base stream</param>
-        /// <param name="readTimeout">Read timeout (<see cref="TimeSpan.Zero"/> to disable)</param>
-        /// <param name="writeTimeout">Write timeout (<see cref="TimeSpan.Zero"/> to disable)</param>
-        /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public TimeoutStream(in Stream baseStream, in TimeSpan readTimeout, in TimeSpan? writeTimeout = null, in bool leaveOpen = false)
-            : base(baseStream, readTimeout, writeTimeout, leaveOpen)
-        { }
     }
 
     /// <summary>

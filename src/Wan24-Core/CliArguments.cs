@@ -23,7 +23,7 @@ namespace wan24.Core
         /// <summary>
         /// Arguments
         /// </summary>
-        protected readonly OrderedDictionary<string, ReadOnlyCollection<string>> _Arguments = new();
+        protected readonly OrderedDictionary<string, ReadOnlyCollection<string>> _Arguments = [];
         /// <summary>
         /// Read-only arguments
         /// </summary>
@@ -225,11 +225,9 @@ namespace wan24.Core
         /// <param name="key">Key (case insensitive handling)</param>
         /// <returns>Existing case sensitive key or <see langword="null"/>, if the key wasn't found</returns>
         public string? GetExistingKey(string key)
-        {
-            key = key.ToLower();
-            return (from k in _Arguments.Keys
-                    where k.ToLower() == key
-                    select k).FirstOrDefault();
-        }
+            => (from k in _Arguments.Keys
+                where k.Equals(key, StringComparison.CurrentCultureIgnoreCase)
+                select k)
+                .FirstOrDefault();
     }
 }

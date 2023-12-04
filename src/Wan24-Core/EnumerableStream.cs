@@ -3,12 +3,16 @@
     /// <summary>
     /// Enumerable source stream
     /// </summary>
-    public class EnumerableStream : StreamBase
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="enumerator">Enumerator</param>
+    public class EnumerableStream(in IEnumerator<byte> enumerator) : StreamBase()
     {
         /// <summary>
         /// Enumerator
         /// </summary>
-        protected readonly IEnumerator<byte> Enumerator;
+        protected readonly IEnumerator<byte> Enumerator = enumerator;
         /// <summary>
         /// Position byte offset
         /// </summary>
@@ -19,12 +23,6 @@
         /// </summary>
         /// <param name="enumerable">Enumerable</param>
         public EnumerableStream(in IEnumerable<byte> enumerable) : this(enumerable.GetEnumerator()) { }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="enumerator">Enumerator</param>
-        public EnumerableStream(in IEnumerator<byte> enumerator) : base() => Enumerator = enumerator;
 
         /// <inheritdoc/>
         public bool EndOfStream { get; protected set; }

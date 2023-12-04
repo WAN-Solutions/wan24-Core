@@ -20,7 +20,7 @@ namespace wan24.Core
         /// <summary>
         /// Not cached types
         /// </summary>
-        private static readonly HashSet<Type> _NotCachedTypes = new();
+        private static readonly HashSet<Type> _NotCachedTypes = [];
         /// <summary>
         /// Default instance
         /// </summary>
@@ -235,9 +235,9 @@ namespace wan24.Core
         public static void ClearObjectCache()
         {
             using SemaphoreSyncContext ssc = StaticSync.SyncContext();
-            object[] objs = Objects.Values.ToArray();
+            object[] objects = [.. Objects.Values];
             Objects.Clear();
-            objs.TryDisposeAll();
+            objects.TryDisposeAll();
         }
 
         /// <summary>
@@ -247,9 +247,9 @@ namespace wan24.Core
         public static async Task ClearObjectCacheAsync(CancellationToken cancellationToken = default)
         {
             using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
-            object[] objs = Objects.Values.ToArray();
+            object[] objects = [.. Objects.Values];
             Objects.Clear();
-            await objs.TryDisposeAllAsync().DynamicContext();
+            await objects.TryDisposeAllAsync().DynamicContext();
         }
 
         /// <summary>

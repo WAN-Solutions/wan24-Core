@@ -3,34 +3,29 @@
     /// <summary>
     /// Disposable adapter
     /// </summary>
-    public sealed class DisposableAdapter : DisposableBase
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="disposer">Disposer</param>
+    /// <param name="asyncDisposer">Asynchronous disposer</param>
+    public sealed class DisposableAdapter(
+        in DisposableWrapper<DisposableAdapter>.Dispose_Delegate disposer,
+        in DisposableWrapper<DisposableAdapter>.DisposeAsync_Delegate? asyncDisposer = null
+            )
+        : DisposableBase(asyncDisposing: asyncDisposer is not null)
     {
         /// <summary>
         /// Disposer
         /// </summary>
-        private readonly DisposableWrapper<DisposableAdapter>.Dispose_Delegate Disposer;
+        private readonly DisposableWrapper<DisposableAdapter>.Dispose_Delegate Disposer = disposer;
         /// <summary>
         /// Asynchronous disposer
         /// </summary>
-        private readonly DisposableWrapper<DisposableAdapter>.DisposeAsync_Delegate? AsyncDisposer;
+        private readonly DisposableWrapper<DisposableAdapter>.DisposeAsync_Delegate? AsyncDisposer = asyncDisposer;
         /// <summary>
         /// Disposed from the destructor?
         /// </summary>
         private bool DisposedFromDestructor = false;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="disposer">Disposer</param>
-        /// <param name="asyncDisposer">Asynchronous disposer</param>
-        public DisposableAdapter(
-            in DisposableWrapper<DisposableAdapter>.Dispose_Delegate disposer,
-            in DisposableWrapper<DisposableAdapter>.DisposeAsync_Delegate? asyncDisposer = null
-            ) : base(asyncDisposing: asyncDisposer is not null)
-        {
-            Disposer = disposer;
-            AsyncDisposer = asyncDisposer;
-        }
 
         /// <summary>
         /// Dispose at destruction time

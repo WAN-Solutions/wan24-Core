@@ -294,7 +294,12 @@ namespace wan24.Core
         /// <summary>
         /// Synchronized object information
         /// </summary>
-        internal sealed class ObjectInfo : DisposableBase
+        /// <remarks>
+        /// Constructor
+        /// </remarks>
+        /// <param name="obj">Object</param>
+        /// <param name="hashCode">Hash code</param>
+        internal sealed class ObjectInfo(in object obj, in int hashCode) : DisposableBase()
         {
             /// <summary>
             /// Synchronization instance count
@@ -306,25 +311,14 @@ namespace wan24.Core
             private SemaphoreSlim? _Semaphore = null;
 
             /// <summary>
-            /// Constructor
-            /// </summary>
-            /// <param name="obj">Object</param>
-            /// <param name="hashCode">Hash code</param>
-            public ObjectInfo(in object obj, in int hashCode) : base()
-            {
-                Object = obj;
-                HashCode = hashCode;
-            }
-
-            /// <summary>
             /// Object
             /// </summary>
-            public object Object { get; }
+            public object Object { get; } = obj;
 
             /// <summary>
             /// Hash code
             /// </summary>
-            public int HashCode { get; }
+            public int HashCode { get; } = hashCode;
 
             /// <summary>
             /// Synchronization count

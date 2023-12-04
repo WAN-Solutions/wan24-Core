@@ -99,7 +99,7 @@ namespace wan24.Core
         protected override async Task DisposeCore() => await Stream.DisposeAsync().DynamicContext();
 
         /// <summary>
-        /// Copy an existng email attachment
+        /// Copy an existing email attachment
         /// </summary>
         /// <param name="attachment">Attachment to copy</param>
         /// <param name="fileName">New filename</param>

@@ -143,7 +143,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static async Task WaitAll(this IEnumerable<Task> tasks)
         {
-            List<Exception> exceptions = new();
+            List<Exception> exceptions = [];
             foreach (Task task in tasks)
                 try
                 {
@@ -165,8 +165,8 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static async Task<T[]> WaitAll<T>(this IEnumerable<Task<T>> tasks)
         {
-            List<Exception> exceptions = new();
-            List<T> res = new();
+            List<Exception> exceptions = [];
+            List<T> res = [];
             foreach (Task<T> task in tasks)
                 try
                 {
@@ -177,7 +177,7 @@ namespace wan24.Core
                     exceptions.Add(ex);
                 }
             if (exceptions.Count != 0) throw new AggregateException(exceptions);
-            return res.ToArray();
+            return [.. res];
         }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static async Task WaitAll(this IEnumerable<ValueTask> tasks)
         {
-            List<Exception> exceptions = new();
+            List<Exception> exceptions = [];
             foreach (ValueTask task in tasks)
                 try
                 {
@@ -209,8 +209,8 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static async Task<T[]> WaitAll<T>(this IEnumerable<ValueTask<T>> tasks)
         {
-            List<Exception> exceptions = new();
-            List<T> res = new();
+            List<Exception> exceptions = [];
+            List<T> res = [];
             foreach (ValueTask<T> task in tasks)
                 try
                 {
@@ -221,7 +221,7 @@ namespace wan24.Core
                     exceptions.Add(ex);
                 }
             if (exceptions.Count != 0) throw new AggregateException(exceptions);
-            return res.ToArray();
+            return [.. res];
         }
 
         /// <summary>

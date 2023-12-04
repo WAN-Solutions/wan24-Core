@@ -81,8 +81,8 @@ namespace wan24.Core
         public void SetLimit(in int limit, in double timeout)
         {
             EnsureUndisposed();
-            if (limit < 1) throw new ArgumentOutOfRangeException(nameof(limit));
-            if (timeout <= 0) throw new ArgumentOutOfRangeException(nameof(timeout));
+            ArgumentOutOfRangeException.ThrowIfLessThan(limit, 1);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(timeout);
             Limit = limit;
             Timeout = timeout;
         }
@@ -176,7 +176,7 @@ namespace wan24.Core
             }
             finally
             {
-                await Processing.SetAsync().DynamicContext();
+                await Processing.SetAsync(CancellationToken.None).DynamicContext();
             }
         }
 

@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     // Set methods
     public partial class Bitmap

@@ -10,7 +10,7 @@ namespace wan24.Core
     public abstract class AutoValueObjectBase<T> : ValueObjectBase<T> where T : AutoValueObjectBase<T>
     {
         /// <summary>
-        /// Value property infos
+        /// Value property information
         /// </summary>
         internal static readonly ReadOnlyCollection<PropertyInfoExt> ValuePropertyInfos =
             (from pi in typeof(T).GetPropertiesCached(BindingFlags.Public | BindingFlags.Instance)

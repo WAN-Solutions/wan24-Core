@@ -18,10 +18,8 @@ namespace Wan24_Core_Tests
             Assert.IsTrue((DateTime.Now - started).TotalMilliseconds >= 75);
         }
 
-        private sealed class CancellationStream : WrapperStream<Stream>
+        private sealed class CancellationStream(Stream stream) : WrapperStream<Stream>(stream)
         {
-            public CancellationStream(Stream stream) : base(stream) { }
-
             public override async ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
             {
                 await cancellationToken;

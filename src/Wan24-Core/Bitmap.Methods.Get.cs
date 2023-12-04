@@ -11,7 +11,7 @@
         /// <returns>Bits</returns>
         public virtual bool[] GetBits(long offset, in long count)
         {
-            if (count < 1) return Array.Empty<bool>();
+            if (count < 1) return [];
             lock (SyncObject)
             {
                 if (offset < 0 || offset >= BitCount) throw new ArgumentOutOfRangeException(nameof(offset));

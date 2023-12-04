@@ -7,7 +7,13 @@ namespace wan24.Core
     /// </summary>
     /// <typeparam name="tSender">Sender type</typeparam>
     /// <typeparam name="tArgs">Arguments type</typeparam>
-    public sealed class AsyncEvent<tSender, tArgs> : IAsyncEvent<tSender, tArgs>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="sender">Sender</param>
+    /// <param name="timeout">Event handler timeout</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    public sealed class AsyncEvent<tSender, tArgs>(in tSender? sender = null, in TimeSpan? timeout = null, in CancellationToken? cancellationToken = null) : IAsyncEvent<tSender, tArgs>
         where tSender : class
         where tArgs : EventArgs, new()
     {
@@ -18,40 +24,27 @@ namespace wan24.Core
         /// <summary>
         /// Event handlers
         /// </summary>
-        private readonly HashSet<IAsyncEvent<tSender, tArgs>.EventHandler_Delegate> EventHandlers = new();
+        private readonly HashSet<IAsyncEvent<tSender, tArgs>.EventHandler_Delegate> EventHandlers = [];
         /// <summary>
         /// Event handlers
         /// </summary>
-        private readonly HashSet<IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate> AsyncEventHandlers = new();
+        private readonly HashSet<IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate> AsyncEventHandlers = [];
         /// <summary>
         /// Sender
         /// </summary>
-        private readonly tSender? Sender;
+        private readonly tSender? Sender = sender;
         /// <summary>
         /// Event handler timeout
         /// </summary>
-        private TimeSpan? Timeout;
+        private TimeSpan? Timeout = timeout;
         /// <summary>
         /// Cancellation
         /// </summary>
-        private CancellationToken? Cancellation;
+        private CancellationToken? Cancellation = cancellationToken;
         /// <summary>
         /// Number of times the event was raised
         /// </summary>
         private volatile int _RaiseCount = 0;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="sender">Sender</param>
-        /// <param name="timeout">Event handler timeout</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        public AsyncEvent(in tSender? sender = null, in TimeSpan? timeout = null, in CancellationToken? cancellationToken = null)
-        {
-            Sender = sender;
-            Timeout = timeout;
-            Cancellation = cancellationToken;
-        }
 
         /// <summary>
         /// First raised
@@ -200,7 +193,7 @@ namespace wan24.Core
             }
             {
                 IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate[] handlers;
-                lock (SyncObject) handlers = AsyncEventHandlers.ToArray();
+                lock (SyncObject) handlers = [.. AsyncEventHandlers];
                 foreach (IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate handler in handlers)
                 {
                     cancellationToken.ThrowIfCancellationRequested();
@@ -218,7 +211,7 @@ namespace wan24.Core
             }
             {
                 IAsyncEvent<tSender, tArgs>.EventHandler_Delegate[] handlers;
-                lock (SyncObject) handlers = EventHandlers.ToArray();
+                lock (SyncObject) handlers = [.. EventHandlers];
                 foreach (IAsyncEvent<tSender, tArgs>.EventHandler_Delegate handler in handlers)
                 {
                     cancellationToken.ThrowIfCancellationRequested();

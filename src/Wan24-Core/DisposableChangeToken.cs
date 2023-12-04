@@ -3,14 +3,12 @@
     /// <summary>
     /// Disposable change token
     /// </summary>
-    public class DisposableChangeToken : ChangeToken, IDisposable
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="changeIdentifier">Change identifier</param>
+    public class DisposableChangeToken(in Func<bool> changeIdentifier) : ChangeToken(changeIdentifier), IDisposable
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="changeIdentifier">Change identifier</param>
-        public DisposableChangeToken(in Func<bool> changeIdentifier) : base(changeIdentifier) { }
-
         /// <summary>
         /// Destructor
         /// </summary>

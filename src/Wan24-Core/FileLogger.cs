@@ -19,11 +19,19 @@ namespace wan24.Core
         /// <param name="level">Log level</param>
         /// <param name="next">Next logger which should receive the message</param>
         /// <param name="maxQueue">Maximum number of queued messages before blocking</param>
-        protected FileLogger(in string fileName, in LogLevel level = Logging.DEFAULT_LOGLEVEL, in ILogger? next = null, in int maxQueue = int.MaxValue) : base(level, next)
+        /// <param name="mode">Create file mode</param>
+        protected FileLogger(
+            in string fileName, 
+            in LogLevel level = Logging.DEFAULT_LOGLEVEL, 
+            in ILogger? next = null, 
+            in int maxQueue = int.MaxValue,
+            in UnixFileMode? mode = null
+            )
+            : base(level, next)
         {
             try
             {
-                Worker = new(fileName, maxQueue);
+                Worker = new(fileName, maxQueue, mode);
                 FileName = fileName;
             }
             catch
@@ -54,16 +62,18 @@ namespace wan24.Core
         /// <param name="fileName">Filename</param>
         /// <param name="level">Log level</param>
         /// <param name="next">Next logger which should receive the message</param>
+        /// <param name="mode">Create file mode</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>File logger</returns>
         public static async Task<FileLogger> CreateAsync(
             string fileName, 
             LogLevel level = LogLevel.Information, 
             ILogger? next = null, 
+            UnixFileMode? mode = null,
             CancellationToken cancellationToken = default
             )
         {
-            FileLogger res = new(fileName, level, next);
+            FileLogger res = new(fileName, level, next, mode: mode);
             try
             {
                 await res.Worker.StartAsync(cancellationToken).DynamicContext();
@@ -95,9 +105,19 @@ namespace wan24.Core
             /// </summary>
             /// <param name="fileName">Filename</param>
             /// <param name="maxQueue">Maximum number of queued messages before blocking</param>
-            public LogQueueWorker(in string fileName, in int maxQueue) : base(maxQueue)
+            /// <param name="mode">Create file mode</param>
+            public LogQueueWorker(in string fileName, in int maxQueue, UnixFileMode? mode) : base(maxQueue)
             {
-                Stream = new(fileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read);
+                FileStreamOptions fileOptions = new()
+                {
+                    Mode = FileMode.OpenOrCreate,
+                    Access = FileAccess.Write,
+                    Share = FileShare.Read,
+                };
+#pragma warning disable CA1416 // Platform specific
+                if (ENV.IsLinux) fileOptions.UnixCreateMode = mode ?? Settings.CreateFileMode;
+#pragma warning restore CA1416 // Platform specific
+                Stream = new(fileName, fileOptions);
                 if (Stream.Length != 0) Stream.Position = Stream.Length;
             }
 

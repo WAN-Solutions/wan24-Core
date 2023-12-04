@@ -3,15 +3,14 @@
     /// <summary>
     /// Partial stream
     /// </summary>
-    public class PartialStream : PartialStream<Stream>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="baseStream">Base stream</param>
+    /// <param name="length">Length in bytes</param>
+    /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
+    public class PartialStream(in Stream baseStream, in long length, in bool leaveOpen = false) : PartialStream<Stream>(baseStream, length, leaveOpen)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="baseStream">Base stream</param>
-        /// <param name="length">Length in bytes</param>
-        /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public PartialStream(in Stream baseStream, in long length, in bool leaveOpen = false) : base(baseStream, length, leaveOpen) { }
     }
 
     /// <summary>
