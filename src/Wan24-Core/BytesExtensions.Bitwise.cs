@@ -60,6 +60,12 @@ namespace wan24.Core
             {
                 unsafe
                 {
+                    if (len >= 64 && Avx512F.IsSupported)
+                    {
+                        for (byte* ptrAEnd = ptrA + (len & ~63); ptrA < ptrAEnd; ptrA += 64, ptrB += 64)
+                            Avx512F.Store(ptrA, Avx512F.Xor(Avx512F.LoadVector512(ptrA), Avx512F.LoadVector512(ptrB)));
+                        len &= 63;
+                    }
                     if (len >= 32 && Avx2.IsSupported)
                     {
                         for (byte* ptrAEnd = ptrA + (len & ~31); ptrA < ptrAEnd; ptrA += 32, ptrB += 32)
@@ -139,6 +145,12 @@ namespace wan24.Core
                     {
                         byte* ptrA = aPtr,
                             ptrB = bPtr;
+                        if (len >= 64 && Avx512F.IsSupported)
+                        {
+                            for (byte* ptrAEnd = ptrA + (len & ~63); ptrA < ptrAEnd; ptrA += 64, ptrB += 64)
+                                Avx512F.Store(ptrA, Avx512F.And(Avx512F.LoadVector512(ptrA), Avx512F.LoadVector512(ptrB)));
+                            len &= 63;
+                        }
                         if (len >= 32 && Avx2.IsSupported)
                         {
                             for (byte* ptrAEnd = ptrA + (len & ~31); ptrA < ptrAEnd; ptrA += 32, ptrB += 32)
@@ -219,6 +231,12 @@ namespace wan24.Core
                     {
                         byte* ptrA = aPtr,
                             ptrB = bPtr;
+                        if (len >= 64 && Avx512F.IsSupported)
+                        {
+                            for (byte* ptrAEnd = ptrA + (len & ~63); ptrA < ptrAEnd; ptrA += 64, ptrB += 64)
+                                Avx512F.Store(ptrA, Avx512F.Or(Avx512F.LoadVector512(ptrA), Avx512F.LoadVector512(ptrB)));
+                            len &= 63;
+                        }
                         if (len >= 32 && Avx2.IsSupported)
                         {
                             for (byte* ptrAEnd = ptrA + (len & ~31); ptrA < ptrAEnd; ptrA += 32, ptrB += 32)
