@@ -479,5 +479,23 @@ namespace wan24.Core
         /// <param name="sender">Sender</param>
         /// <param name="e">Event arguments</param>
         protected async void HandleBaseStreamDisposed(IDisposableObject sender, EventArgs e) => await DisposeAsync().DynamicContext();
+
+        /// <summary>
+        /// Cast as base stream
+        /// </summary>
+        /// <param name="wrapperStream">Wrapper stream</param>
+        public static implicit operator T(WrapperStream<T> wrapperStream) => wrapperStream.BaseStream;
+
+        /// <summary>
+        /// Cast as open status
+        /// </summary>
+        /// <param name="wrapperStream">Wrapper stream</param>
+        public static implicit operator bool(WrapperStream<T> wrapperStream) => !wrapperStream.IsDisposing && !wrapperStream.IsClosed;
+
+        /// <summary>
+        /// Cast as length
+        /// </summary>
+        /// <param name="wrapperStream">Wrapper stream</param>
+        public static implicit operator long(WrapperStream<T> wrapperStream) => wrapperStream.Length;
     }
 }

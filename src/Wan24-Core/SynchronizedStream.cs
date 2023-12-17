@@ -90,6 +90,7 @@
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
             return BaseStream.Read(buffer);
         }
+
         /// <summary>
         /// Read from a byte offset
         /// </summary>

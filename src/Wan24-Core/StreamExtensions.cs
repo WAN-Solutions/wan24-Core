@@ -83,6 +83,69 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Copy partial to another stream
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="target">Target stream</param>
+        /// <param name="count">Number of bytes to copy</param>
+        /// <param name="bufferSize">Buffer size in bytes</param>
+        /// <param name="progress">Progress</param>
+        public static void CopyExactlyPartialTo(this Stream stream, in Stream target, long count, int? bufferSize = null, ProcessingProgress? progress = null)
+        {
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
+            if (count == 0) return;
+            bufferSize ??= Settings.BufferSize;
+            bufferSize = (int)Math.Min(count, bufferSize.Value);
+            using RentedArrayRefStruct<byte> buffer = new(bufferSize.Value, clean: false);
+            for (int red = 1; count > 0 && red > 0; count -= red)
+            {
+                red = stream.Read(buffer.Span[..(int)Math.Min(count, bufferSize.Value)]);
+                if (red != 0)
+                {
+                    target.Write(buffer.Span[..red]);
+                    progress?.Update(red);
+                }
+            }
+            if (count != 0) throw new IOException("Not enough data");
+        }
+
+        /// <summary>
+        /// Copy partial to another stream
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="target">Target stream</param>
+        /// <param name="count">Number of bytes to copy</param>
+        /// <param name="bufferSize">Buffer size in bytes</param>
+        /// <param name="progress">Progress</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public static async Task CopyExactlyPartialToAsync(
+            this Stream stream,
+            Stream target,
+            long count,
+            int? bufferSize = null,
+            ProcessingProgress? progress = null,
+            CancellationToken cancellationToken = default
+            )
+        {
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
+            if (count == 0) return;
+            if (progress is not null) cancellationToken = progress.GetCancellationToken(cancellationToken);
+            bufferSize ??= Settings.BufferSize;
+            bufferSize = (int)Math.Min(count, bufferSize.Value);
+            using RentedArrayStructSimple<byte> buffer = new(bufferSize.Value, clean: false);
+            for (int red = 1; count > 0 && red > 0; count -= red)
+            {
+                red = await stream.ReadAsync(buffer.Memory[..(int)Math.Min(count, bufferSize.Value)], cancellationToken).DynamicContext();
+                if (red != 0)
+                {
+                    await target.WriteAsync(buffer.Memory[..red], cancellationToken).DynamicContext();
+                    progress?.Update(red);
+                }
+            }
+            if (count != 0) throw new IOException("Not enough data");
+        }
+
+        /// <summary>
         /// Seek
         /// </summary>
         /// <param name="stream">Stream</param>
