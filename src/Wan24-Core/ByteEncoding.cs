@@ -11,8 +11,8 @@ namespace wan24.Core
         /// <summary>
         /// Encoding character map (characters 0-9, a-z, A-Z, dash and underscore)
         /// </summary>
-        private static readonly char[] _DefaultCharMap = new char[]
-        {
+        private static readonly char[] _DefaultCharMap =
+        [
             '0','1','2','3','4','5','6','7',
             '8','9','a','b','c','d','e','f',
             'g','h','i','j','k','l','m','n',
@@ -21,11 +21,11 @@ namespace wan24.Core
             'E','F','G','H','I','J','K','L',
             'M','N','O','P','Q','R','S','T',
             'U','V','W','X','Y','Z','-','_'
-        };
+        ];
         /// <summary>
         /// Bit rotation lookup table
         /// </summary>
-        private static readonly int[] BitRotation = new int[] { 8, 7, 6, 5, 4, 3, 2, 1 };
+        private static readonly int[] BitRotation = [8, 7, 6, 5, 4, 3, 2, 1];
 
         /// <summary>
         /// Encoding character map (characters 0-9, a-z, A-Z, dash and underscore)
@@ -36,6 +36,16 @@ namespace wan24.Core
         /// Skip checking the used character map?
         /// </summary>
         public static bool SkipCharMapCheck { get; set; }
+
+        /// <summary>
+        /// Use CPU commands?
+        /// </summary>
+        public static bool UseCpuCmd { get; set; } = true;
+
+        /// <summary>
+        /// AVX command sets to use
+        /// </summary>
+        public static AvxCmd UseAvx { get; set; } = AvxCmd.Avx2 | AvxCmd.Avx512;
 
         /// <summary>
         /// Get the encoded character array length
@@ -144,7 +154,7 @@ namespace wan24.Core
         public static int GetDecodedLength(this int len)
         {
             if (len == 0) return 0;
-            if (len < 0) throw new ArgumentOutOfRangeException(nameof(len));
+            ArgumentOutOfRangeException.ThrowIfNegative(len);
             long longLen = len;
             return (int)(((longLen << 2) + (len << 1)) >> 3);
         }

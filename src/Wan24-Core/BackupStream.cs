@@ -3,48 +3,43 @@
     /// <summary>
     /// Backup stream (writes red data into another stream)
     /// </summary>
-    public class BackupStream : BackupStream<Stream>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="baseStream">Base stream</param>
+    /// <param name="backupStream">Backup stream (red data from the base stream will be written to this stream)</param>
+    /// <param name="leaveBaseOpen">Leave the base stream open when disposing?</param>
+    /// <param name="leaveBackupOpen">Leave the backup stream open when disposing?</param>
+    public class BackupStream(in Stream baseStream, in Stream backupStream, in bool leaveBaseOpen = false, in bool leaveBackupOpen = false)
+        : BackupStream<Stream>(baseStream, backupStream, leaveBaseOpen, leaveBackupOpen)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="baseStream">Base stream</param>
-        /// <param name="backupStream">Backup stream (red data from the base stream will be written to this stream)</param>
-        /// <param name="leaveBaseOpen">Leave the base stream open when disposing?</param>
-        /// <param name="leaveBackupOpen">Leave the backup stream open when disposing?</param>
-        public BackupStream(in Stream baseStream, in Stream backupStream, in bool leaveBaseOpen = false, in bool leaveBackupOpen = false)
-            : base(baseStream, backupStream, leaveBaseOpen, leaveBackupOpen)
-        { }
     }
 
     /// <summary>
     /// Backup stream (writes red data into another stream)
     /// </summary>
     /// <typeparam name="T">Base stream type</typeparam>
-    public class BackupStream<T> : WrapperStream<T> where T : Stream
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="baseStream">Base stream</param>
+    /// <param name="backupStream">Backup stream (red data from the base stream will be written to this stream)</param>
+    /// <param name="leaveBaseOpen">Leave the base stream open when disposing?</param>
+    /// <param name="leaveBackupOpen">Leave the backup stream open when disposing?</param>
+    public class BackupStream<T>(in T baseStream, in Stream backupStream, in bool leaveBaseOpen = false, in bool leaveBackupOpen = false)
+        : WrapperStream<T>(baseStream, leaveBaseOpen)
+        where T : Stream
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="baseStream">Base stream</param>
-        /// <param name="backupStream">Backup stream (red data from the base stream will be written to this stream)</param>
-        /// <param name="leaveBaseOpen">Leave the base stream open when disposing?</param>
-        /// <param name="leaveBackupOpen">Leave the backup stream open when disposing?</param>
-        public BackupStream(in T baseStream, in Stream backupStream, in bool leaveBaseOpen = false, in bool leaveBackupOpen = false) : base(baseStream, leaveBaseOpen)
-        {
-            Backup = backupStream;
-            LeaveBackupOpen = leaveBackupOpen;
-        }
 
         /// <summary>
         /// Backup stream (red data from the base stream will be written to this stream)
         /// </summary>
-        public Stream Backup { get; }
+        public Stream Backup { get; } = backupStream;
 
         /// <summary>
         /// Leave the backup stream open when disposing?
         /// </summary>
-        public bool LeaveBackupOpen { get; set; }
+        public bool LeaveBackupOpen { get; set; } = leaveBackupOpen;
 
         /// <inheritdoc/>
         public override int Read(byte[] buffer, int offset, int count)

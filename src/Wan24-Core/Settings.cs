@@ -1,6 +1,4 @@
-﻿//TODO .NET 8: Default folder and file Unix modes
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Settings
@@ -38,7 +36,7 @@ namespace wan24.Core
             get => _BufferSize;
             set
             {
-                if (value < 1) throw new ArgumentOutOfRangeException(nameof(value));
+                ArgumentOutOfRangeException.ThrowIfLessThan(value, 1);
                 _BufferSize = value;
             }
         }
@@ -70,7 +68,7 @@ namespace wan24.Core
             get => _StackAllocBorder;
             set
             {
-                if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
+                ArgumentOutOfRangeException.ThrowIfNegative(value);
                 _StackAllocBorder = value;
             }
         }
@@ -85,5 +83,18 @@ namespace wan24.Core
         /// </summary>
         [CliConfig]
         public static string? ProcessId { get; set; }
+
+        /// <summary>
+        /// Default file create mode
+        /// </summary>
+        [CliConfig]
+        public static UnixFileMode CreateFileMode { get; set; } = UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.GroupRead | UnixFileMode.OtherRead;
+
+        /// <summary>
+        /// Default folder create mode
+        /// </summary>
+        [CliConfig]
+        public static UnixFileMode CreateFolderMode { get; set; }
+            = UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute | UnixFileMode.GroupRead | UnixFileMode.GroupExecute | UnixFileMode.OtherRead | UnixFileMode.OtherExecute;
     }
 }

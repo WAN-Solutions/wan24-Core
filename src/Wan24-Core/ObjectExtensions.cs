@@ -14,19 +14,19 @@ namespace wan24.Core
         /// Determine if an object is within an object list
         /// </summary>
         /// <param name="obj">Object</param>
-        /// <param name="objs">Object list</param>
+        /// <param name="objects">Object list</param>
         /// <returns>Is within the object list?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool In(this object obj, params object?[] objs) => objs.Contains(obj);
+        public static bool In(this object obj, params object?[] objects) => objects.Contains(obj);
 
         /// <summary>
         /// Determine if an object is within an object list
         /// </summary>
         /// <param name="obj">Object</param>
-        /// <param name="objs">Object list</param>
+        /// <param name="objects">Object list</param>
         /// <returns>Is within the object list?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool In<T>(this T obj, in IEnumerable<T?> objs) => objs.Contains(obj);
+        public static bool In<T>(this T obj, in IEnumerable<T?> objects) => objects.Contains(obj);
 
         /// <summary>
         /// Change the type of an object
@@ -93,7 +93,7 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="maxRecursionDepth">Maximum recursion depth</param>
         /// <returns>Dictionary</returns>
-        public static Dictionary<string, object?> ToDictionary<T>(this T obj, in int maxRecursionDepth = 32) => ToDictionary(new(), obj, new(), maxRecursionDepth);
+        public static Dictionary<string, object?> ToDictionary<T>(this T obj, in int maxRecursionDepth = 32) => ToDictionary([], obj, [], maxRecursionDepth);
 
         /// <summary>
         /// Create a dictionary from an object only using basic types which are JSON compatible (hides <see cref="SensitiveDataAttribute"/> marked property values)
@@ -103,7 +103,7 @@ namespace wan24.Core
         /// <param name="maxRecursionDepth">Maximum recursion depth</param>
         /// <returns>Dictionary</returns>
         public static OrderedDictionary<string, object?> ToOrderedDictionary<T>(this T obj, in int maxRecursionDepth = 32)
-            => ToOrderedDictionary(new(), obj, new(), maxRecursionDepth);
+            => ToOrderedDictionary([], obj, [], maxRecursionDepth);
 
         /// <summary>
         /// Create a dictionary from an object
@@ -242,7 +242,7 @@ namespace wan24.Core
             if (newMaxDepth < 0) throw new StackOverflowException();
             seen.Add(arr);
             string jsonValue;
-            List<object?> res = new();
+            List<object?> res = [];
             foreach (object? item in arr)
                 if (item is null)
                 {
@@ -277,7 +277,7 @@ namespace wan24.Core
                     }
                 }
             seen.Remove(arr);
-            return res.ToArray();
+            return [.. res];
         }
 
         /// <summary>
@@ -293,7 +293,7 @@ namespace wan24.Core
             if (newMaxDepth < 0) throw new StackOverflowException();
             seen.Add(arr);
             string jsonValue;
-            List<object?> res = new();
+            List<object?> res = [];
             foreach (object? item in arr)
                 if (item is null)
                 {
@@ -328,7 +328,7 @@ namespace wan24.Core
                     }
                 }
             seen.Remove(arr);
-            return res.ToArray();
+            return [.. res];
         }
     }
 }

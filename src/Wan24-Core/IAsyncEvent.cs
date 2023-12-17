@@ -1,7 +1,7 @@
 ﻿namespace wan24.Core
 {
     /// <summary>
-    /// Asynchronousevent interface
+    /// Asynchronous event interface
     /// </summary>
     /// <typeparam name="tSender">Sender type</typeparam>
     /// <typeparam name="tArgs">Arguments type</typeparam>

@@ -519,28 +519,28 @@ namespace wan24.Core
         /// <summary>
         /// Try to dispose disposable objects
         /// </summary>
-        /// <param name="objs">Objects</param>
+        /// <param name="objects">Objects</param>
         [TargetedPatchingOptOut("Tiny method")]
-        public static void TryDisposeAll(this IEnumerable<object> objs)
+        public static void TryDisposeAll(this IEnumerable<object> objects)
         {
-            foreach (object obj in objs) obj.TryDispose();
+            foreach (object obj in objects) obj.TryDispose();
         }
 
         /// <summary>
         /// Try to dispose disposable objects
         /// </summary>
-        /// <param name="objs">Objects</param>
+        /// <param name="objects">Objects</param>
         /// <param name="parallel">Dispose parallel?</param>
         [TargetedPatchingOptOut("Tiny method")]
-        public static async Task TryDisposeAllAsync(this IEnumerable<object> objs, bool parallel = true)
+        public static async Task TryDisposeAllAsync(this IEnumerable<object> objects, bool parallel = true)
         {
             if (parallel)
             {
-                await (from obj in objs select obj.TryDisposeAsync()).WaitAll().DynamicContext();
+                await (from obj in objects select obj.TryDisposeAsync()).WaitAll().DynamicContext();
             }
             else
             {
-                foreach (object obj in objs) await obj.TryDisposeAsync().DynamicContext();
+                foreach (object obj in objects) await obj.TryDisposeAsync().DynamicContext();
             }
         }
     }

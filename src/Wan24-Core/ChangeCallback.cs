@@ -5,28 +5,22 @@ namespace wan24.Core
     /// <summary>
     /// Change callback
     /// </summary>
-    public class ChangeCallback : DisposableBase
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="callback">Callback</param>
+    /// <param name="state">State</param>
+    public class ChangeCallback(in Action<object?> callback, in object? state) : DisposableBase()
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="callback">Callback</param>
-        /// <param name="state">State</param>
-        public ChangeCallback(in Action<object?> callback, in object? state) : base()
-        {
-            Callback = callback;
-            State = state;
-        }
-
         /// <summary>
         /// Callback
         /// </summary>
-        public Action<object?> Callback { get; }
+        public Action<object?> Callback { get; } = callback;
 
         /// <summary>
         /// State
         /// </summary>
-        public object? State { get; }
+        public object? State { get; } = state;
 
         /// <summary>
         /// Invoke the callback

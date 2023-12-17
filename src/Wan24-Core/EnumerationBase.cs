@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Frozen;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace wan24.Core
@@ -55,19 +56,19 @@ namespace wan24.Core
         /// <summary>
         /// All values
         /// </summary>
-        private static IReadOnlyCollection<T>? _AllValues = null;
+        private static FrozenSet<T>? _AllValues = null;
         /// <summary>
         /// All values
         /// </summary>
-        private static IReadOnlyCollection<IEnumeration>? _AllEnumerationValues = null;
+        private static FrozenSet<IEnumeration>? _AllEnumerationValues = null;
         /// <summary>
         /// Keys of values
         /// </summary>
-        private static IReadOnlyDictionary<int, string>? _ValueKeys = null;
+        private static FrozenDictionary<int, string>? _ValueKeys = null;
         /// <summary>
         /// Values of keys
         /// </summary>
-        private static IReadOnlyDictionary<string, int>? _KeyValues = null;
+        private static FrozenDictionary<string, int>? _KeyValues = null;
 
         /// <summary>
         /// Constructor
@@ -251,7 +252,7 @@ namespace wan24.Core
         [MemberNotNull(nameof(_AllValues), nameof(_AllEnumerationValues), nameof(_KeyValues), nameof(_ValueKeys))]
         private static void Init()
         {
-            List<T> allValues = new();
+            List<T> allValues = [];
             T value;
             foreach(FieldInfo fi in from fi in typeof(T).GetFieldsCached(BindingFlags.Static | BindingFlags.Public)
                                     where fi.FieldType == typeof(T)
@@ -262,11 +263,10 @@ namespace wan24.Core
                 allValues.Add(value);
             }
             if (allValues.Count == 0) throw new InvalidProgramException($"Empty enumeration class {typeof(T)}");
-            _AllValues = allValues.AsReadOnly();
-            _AllEnumerationValues = _AllValues;
-            //TODO .NET 8: Use frozen dictionary
-            _ValueKeys = new Dictionary<int, string>(allValues.Select(v => new KeyValuePair<int, string>(v.Value, v.Name)));
-            _KeyValues = new Dictionary<string, int>(allValues.Select(v => new KeyValuePair<string, int>(v.Name, v.Value)));
+            _AllValues = allValues.ToFrozenSet();
+            _AllEnumerationValues = _AllValues.Cast<IEnumeration>().ToFrozenSet();
+            _ValueKeys = new Dictionary<int, string>(allValues.Select(v => new KeyValuePair<int, string>(v.Value, v.Name))).ToFrozenDictionary();
+            _KeyValues = new Dictionary<string, int>(allValues.Select(v => new KeyValuePair<string, int>(v.Name, v.Value))).ToFrozenDictionary();
             if (_ValueKeys.Count != allValues.Count) throw new InvalidProgramException("Found double enumeration values");
             if (_KeyValues.Count != allValues.Count) throw new InvalidProgramException("Found double enumeration names");
         }

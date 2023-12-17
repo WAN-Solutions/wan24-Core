@@ -45,7 +45,14 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="len">Length in bytes</param>
-        public SecureByteArrayRefStruct(in long len) : this(new byte[len]) { }
+        public SecureByteArrayRefStruct(in long len)
+        {
+            Array = new byte[len];
+            Handle = GCHandle.Alloc(Array, GCHandleType.Pinned);
+#if !NO_UNSAFE
+            Ptr = (byte*)Handle.AddrOfPinnedObject();
+#endif
+        }
 
         /// <summary>
         /// Get/set an element
@@ -162,7 +169,7 @@ namespace wan24.Core
             if (Detached) throw new InvalidOperationException();
             Detached = true;
             byte[] res = Array;
-            Array = System.Array.Empty<byte>();
+            Array = [];
             Dispose();
             return res;
         }

@@ -6,12 +6,16 @@ namespace wan24.Core
     /// Lazy value
     /// </summary>
     /// <typeparam name="T">Value type</typeparam>
-    public sealed class LazyValue<T>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="factory">Factory</param>
+    public sealed class LazyValue<T>(in Func<T> factory)
     {
         /// <summary>
         /// Factory
         /// </summary>
-        private readonly Func<T> Factory;
+        private readonly Func<T> Factory = factory;
         /// <summary>
         /// An object for thread synchronization
         /// </summary>
@@ -24,12 +28,6 @@ namespace wan24.Core
         /// Has a value?
         /// </summary>
         private bool HasValue = false;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="factory">Factory</param>
-        public LazyValue(in Func<T> factory) => Factory = factory;
 
         /// <summary>
         /// Value

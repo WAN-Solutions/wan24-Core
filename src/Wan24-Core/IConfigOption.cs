@@ -14,7 +14,7 @@ namespace wan24.Core
         /// <summary>
         /// Hosting configuration
         /// </summary>
-        IOverrideableConfig Configuration { get; }
+        IOverridableConfig Configuration { get; }
         /// <summary>
         /// Property name
         /// </summary>

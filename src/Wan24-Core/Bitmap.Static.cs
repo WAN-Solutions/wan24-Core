@@ -74,14 +74,14 @@ namespace wan24.Core
         /// </summary>
         /// <param name="value">Value</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator Bitmap(in byte value) => new(new byte[] { value });
+        public static implicit operator Bitmap(in byte value) => new([value]);
 
         /// <summary>
         /// Cast from signed byte
         /// </summary>
         /// <param name="value">Value</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator Bitmap(in sbyte value) => new(new byte[] { (byte)value });
+        public static implicit operator Bitmap(in sbyte value) => new([(byte)value]);
 
         /// <summary>
         /// Cast from unsigned short

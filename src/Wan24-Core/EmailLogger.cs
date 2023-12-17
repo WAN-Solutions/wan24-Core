@@ -5,7 +5,25 @@ namespace wan24.Core
     /// <summary>
     /// Email logger
     /// </summary>
-    public class EmailLogger : DisposableLoggerBase
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="template">Email template (will be disposed!)</param>
+    /// <param name="fromEmail">Sender email address</param>
+    /// <param name="toEmail">Recipient email address</param>
+    /// <param name="level">Level</param>
+    /// <param name="emailLevel">Email logging level</param>
+    /// <param name="next">Next logger which should receive the message</param>
+    /// <param name="mta">MTA (won't be disposed)</param>
+    public class EmailLogger(
+        in IEmailTemplate template,
+        in string fromEmail,
+        in string toEmail,
+        in LogLevel level = Logging.DEFAULT_LOGLEVEL,
+        in LogLevel emailLevel = LogLevel.Warning,
+        in ILogger? next = null,
+        in IMta? mta = null
+            ) : DisposableLoggerBase(level, next)
     {
         /// <summary>
         /// An object for thread locking
@@ -13,62 +31,34 @@ namespace wan24.Core
         protected readonly object SyncObject = new();
 
         /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="tmpl">Email template (will be disposed!)</param>
-        /// <param name="fromEmail">Sender email address</param>
-        /// <param name="toEmail">Recipient email address</param>
-        /// <param name="level">Level</param>
-        /// <param name="emailLevel">Email logging level</param>
-        /// <param name="next">Next logger which should receive the message</param>
-        /// <param name="mta">MTA (won't be disposed)</param>
-        public EmailLogger(
-            in IEmailTemplate tmpl,
-            in string fromEmail,
-            in string toEmail,
-            in LogLevel level = Logging.DEFAULT_LOGLEVEL,
-            in LogLevel emailLevel = LogLevel.Warning,
-            in ILogger? next = null,
-            in IMta? mta = null
-            )
-            : base(level, next)
-        {
-            MTA = mta;
-            Template = tmpl;
-            FromEmail = fromEmail;
-            ToEmail = toEmail;
-            EmailLevel = emailLevel;
-        }
-
-        /// <summary>
         /// MTA (won't be disposed)
         /// </summary>
-        public IMta? MTA { get; }
+        public IMta? MTA { get; } = mta;
 
         /// <summary>
         /// Email template (will be disposed!)
         /// </summary>
-        public IEmailTemplate Template { get; }
+        public IEmailTemplate Template { get; } = template;
 
         /// <summary>
         /// Parser data
         /// </summary>
-        public Dictionary<string, string> ParserData { get; set; } = new();
+        public Dictionary<string, string> ParserData { get; set; } = [];
 
         /// <summary>
         /// Sender email address
         /// </summary>
-        public string FromEmail { get; set; }
+        public string FromEmail { get; set; } = fromEmail;
 
         /// <summary>
         /// Recipient email address
         /// </summary>
-        public string ToEmail { get; set; }
+        public string ToEmail { get; set; } = toEmail;
 
         /// <summary>
         /// Email logging level
         /// </summary>
-        public LogLevel EmailLevel { get; set; }
+        public LogLevel EmailLevel { get; set; } = emailLevel;
 
         /// <summary>
         /// Email sending frequency (set to <see cref="TimeSpan.Zero"/> for sending all emails)

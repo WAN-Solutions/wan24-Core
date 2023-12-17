@@ -21,7 +21,7 @@
             {
                 foreach (Status state in base.State) yield return state;
                 yield return new("User", Environment.UserName, "Current user name");
-                yield return new("Domain", Environment.UserDomainName, "Current user dmain");
+                yield return new("Domain", Environment.UserDomainName, "Current user domain");
                 yield return new("Interactive", Environment.UserInteractive, "Is the current user interactive?");
                 yield return new("Machine", Environment.MachineName, "Machine name");
                 yield return new("OS", Environment.OSVersion, "Operating system identifier");
@@ -32,6 +32,7 @@
                 yield return new("CPU cores", Environment.ProcessorCount, "Number of CPU cores");
                 yield return new("Process ID", Environment.ProcessId, "Current process ID");
                 yield return new("64bit process", Environment.Is64BitProcess, "Is a 64bit process?");
+                yield return new("Privileged", Environment.IsPrivilegedProcess, "Is the process privileged to perform security sensitive operations?");
                 yield return new("Process path", Environment.ProcessPath, "Current process path");
                 yield return new("System folder", Environment.SystemDirectory, "Operating system folder");
                 yield return new("Temp folder", Settings.TempFolder, "Temporary folder");
@@ -42,8 +43,8 @@
                 yield return new("Timers", TimerTable.Timers.Count, "Number of registered timer instances");
                 yield return new("Pools", PoolTable.Pools.Count, "Number of pools");
                 yield return new("Object lock managers", ObjectLockTable.ObjectLocks.Count, "Number of registered object lock manager instances");
-                yield return new("Active processes", ProcessTable.Processing.Count, "Number of active registered processings");
-                yield return new("Delayed processes", DelayTable.Delays.Count, "Number of delayed processings");
+                yield return new("Active processes", ProcessTable.Processing.Count, "Number of active registered processes");
+                yield return new("Delayed processes", DelayTable.Delays.Count, "Number of delayed processes");
                 if (!IncludeSummaries) yield break;
                 yield return new("Running services", ServiceWorkerTable.ServiceWorkers.Values.Count(s => s.IsRunning), "Number of running service workers");
                 yield return new("Queued items", ServiceWorkerTable.ServiceWorkers.Values.Sum(s => (long)(s is IQueueWorker qw ? qw.Queued : 0)), "Number of enqueued items to be processed by service workers");

@@ -7,7 +7,7 @@ using System.Threading.Channels;
 namespace wan24.Core
 {
     /// <summary>
-    /// Tracer (could be used to trace informations and flush them to the <see cref="Logging"/> in case of an error)
+    /// Tracer (could be used to trace information and flush them to the <see cref="Logging"/> in case of an error)
     /// </summary>
     public sealed class Tracer
     {

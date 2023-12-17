@@ -79,7 +79,7 @@
         public override void SetLength(long value)
         {
             EnsureUndisposed();
-            if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
+            ArgumentOutOfRangeException.ThrowIfNegative(value);
             _Length = value;
         }
 

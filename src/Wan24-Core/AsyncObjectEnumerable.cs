@@ -4,18 +4,17 @@
     /// Asynchronous object enumerable
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
-    public sealed class AsyncObjectEnumerable<T> : DisposableBase, IAsyncEnumerable<object>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="enumerable">Enumerable</param>
+    public sealed class AsyncObjectEnumerable<T>(in IAsyncEnumerable<T> enumerable) : DisposableBase(), IAsyncEnumerable<object>
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="enumerable">Enumerable</param>
-        public AsyncObjectEnumerable(in IAsyncEnumerable<T> enumerable) : base() => BaseEnumerable = enumerable;
 
         /// <summary>
         /// Enumerable
         /// </summary>
-        public IAsyncEnumerable<T> BaseEnumerable { get; }
+        public IAsyncEnumerable<T> BaseEnumerable { get; } = enumerable;
 
         /// <inheritdoc/>
         public IAsyncEnumerator<object> GetAsyncEnumerator(CancellationToken cancellationToken = default) => new AsyncObjectEnumerator<T>(BaseEnumerable);

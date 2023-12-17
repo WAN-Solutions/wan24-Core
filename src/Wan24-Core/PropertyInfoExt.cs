@@ -4,27 +4,20 @@ using System.Runtime;
 namespace wan24.Core
 {
     /// <summary>
-    /// Property informations
+    /// Property information
     /// </summary>
-    public sealed class PropertyInfoExt : ICustomAttributeProvider
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="Property">Property</param>
+    /// <param name="Getter">Getter</param>
+    /// <param name="Setter">Setter</param>
+    public sealed record class PropertyInfoExt(in PropertyInfo Property, in Func<object?, object?>? Getter, in Action<object?, object?>? Setter) : ICustomAttributeProvider
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="pi">Property</param>
-        /// <param name="getter">Getter</param>
-        /// <param name="setter">Setter</param>
-        public PropertyInfoExt(in PropertyInfo pi, in Func<object?, object?>? getter, in Action<object?, object?>? setter)
-        {
-            Property = pi;
-            Getter = getter;
-            Setter = setter;
-        }
-
         /// <summary>
         /// Property
         /// </summary>
-        public PropertyInfo Property { get; }
+        public PropertyInfo Property { get; } = Property;
 
         /// <summary>
         /// Property type
@@ -44,7 +37,7 @@ namespace wan24.Core
         /// <summary>
         /// Getter
         /// </summary>
-        public Func<object?, object?>? Getter { get; }
+        public Func<object?, object?>? Getter { get; } = Getter;
 
         /// <summary>
         /// Can read?
@@ -54,7 +47,7 @@ namespace wan24.Core
         /// <summary>
         /// Setter
         /// </summary>
-        public Action<object?, object?>? Setter { get; }
+        public Action<object?, object?>? Setter { get; } = Setter;
 
         /// <summary>
         /// Can write?

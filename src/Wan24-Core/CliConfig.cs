@@ -9,7 +9,7 @@ namespace wan24.Core
     public static class CliConfig
     {
         /// <summary>
-        /// Applya configuration from CLI arguments
+        /// Apply a configuration from CLI arguments
         /// </summary>
         /// <param name="ca">CLI arguments</param>
         public static void Apply(in CliArguments ca)

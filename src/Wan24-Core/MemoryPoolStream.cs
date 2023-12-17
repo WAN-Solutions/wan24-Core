@@ -61,10 +61,10 @@ namespace wan24.Core
         {
             Pool = pool ?? ArrayPool<byte>.Shared;
             if (bufferSize is not null) BufferSize = bufferSize.Value;
-            Buffers = new()
-            {
+            Buffers =
+            [
                 Pool.Rent(BufferSize)
-            };
+            ];
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace wan24.Core
             get => _DefaultBufferSize;
             set
             {
-                if (value < 1) throw new ArgumentOutOfRangeException(nameof(value));
+                ArgumentOutOfRangeException.ThrowIfLessThan(value, 1);
                 lock (StaticSyncObject) _DefaultBufferSize = value;
             }
         }
@@ -101,7 +101,7 @@ namespace wan24.Core
             set
             {
                 EnsureUndisposed();
-                if (value < 1) throw new ArgumentOutOfRangeException(nameof(value));
+                ArgumentOutOfRangeException.ThrowIfLessThan(value, 1);
                 _BufferSize = value;
             }
         }
@@ -194,7 +194,7 @@ namespace wan24.Core
         public byte[] ToArray()
         {
             EnsureUndisposed();
-            if (_Length == 0) return Array.Empty<byte>();
+            if (_Length == 0) return [];
             byte[] res = new byte[_Length];
             long pos = _Position;
             try
@@ -408,7 +408,7 @@ namespace wan24.Core
         protected void SetLength(in long value, in bool clear)
         {
             EnsureUndisposed();
-            if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
+            ArgumentOutOfRangeException.ThrowIfNegative(value);
             if (value == _Length) return;
             if (value == 0)
             {

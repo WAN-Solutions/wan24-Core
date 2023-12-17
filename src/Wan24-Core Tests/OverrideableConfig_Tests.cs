@@ -169,7 +169,7 @@ namespace Wan24_Core_Tests
             Assert.AreEqual(0, eventCount);
         }
 
-        public sealed class TestObject : OverrideableConfig<TestObject>, ITestObject
+        public sealed class TestObject : OverridableConfig<TestObject>, ITestObject
         {
             // 1st level constructor
             public TestObject() : base()
@@ -210,7 +210,7 @@ namespace Wan24_Core_Tests
             }
         }
 
-        public interface ITestObject : IOverrideableConfig
+        public interface ITestObject : IOverridableConfig
         {
             IConfigOption Value1 { get; }
             IConfigOption Value2 { get; }

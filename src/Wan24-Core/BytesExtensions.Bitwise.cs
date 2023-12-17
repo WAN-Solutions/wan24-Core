@@ -2,8 +2,6 @@
 using System.Runtime.Intrinsics.Arm;
 using System.Runtime.Intrinsics.X86;
 
-//TODO .NET 8: Support for AVX512
-
 namespace wan24.Core
 {
     // Bitwise
@@ -56,12 +54,18 @@ namespace wan24.Core
         /// <returns>A</returns>
         public static unsafe byte* Xor(byte* ptrA, byte* ptrB, int len)
         {
-            if (len < 1) throw new ArgumentOutOfRangeException(nameof(len));
+            ArgumentOutOfRangeException.ThrowIfLessThan(len, 1);
             if (len == 0) return ptrA;
             unchecked
             {
                 unsafe
                 {
+                    if (len >= 64 && Avx512F.IsSupported)
+                    {
+                        for (byte* ptrAEnd = ptrA + (len & ~63); ptrA < ptrAEnd; ptrA += 64, ptrB += 64)
+                            Avx512F.Store(ptrA, Avx512F.Xor(Avx512F.LoadVector512(ptrA), Avx512F.LoadVector512(ptrB)));
+                        len &= 63;
+                    }
                     if (len >= 32 && Avx2.IsSupported)
                     {
                         for (byte* ptrAEnd = ptrA + (len & ~31); ptrA < ptrAEnd; ptrA += 32, ptrB += 32)
@@ -141,6 +145,12 @@ namespace wan24.Core
                     {
                         byte* ptrA = aPtr,
                             ptrB = bPtr;
+                        if (len >= 64 && Avx512F.IsSupported)
+                        {
+                            for (byte* ptrAEnd = ptrA + (len & ~63); ptrA < ptrAEnd; ptrA += 64, ptrB += 64)
+                                Avx512F.Store(ptrA, Avx512F.And(Avx512F.LoadVector512(ptrA), Avx512F.LoadVector512(ptrB)));
+                            len &= 63;
+                        }
                         if (len >= 32 && Avx2.IsSupported)
                         {
                             for (byte* ptrAEnd = ptrA + (len & ~31); ptrA < ptrAEnd; ptrA += 32, ptrB += 32)
@@ -221,6 +231,12 @@ namespace wan24.Core
                     {
                         byte* ptrA = aPtr,
                             ptrB = bPtr;
+                        if (len >= 64 && Avx512F.IsSupported)
+                        {
+                            for (byte* ptrAEnd = ptrA + (len & ~63); ptrA < ptrAEnd; ptrA += 64, ptrB += 64)
+                                Avx512F.Store(ptrA, Avx512F.Or(Avx512F.LoadVector512(ptrA), Avx512F.LoadVector512(ptrB)));
+                            len &= 63;
+                        }
                         if (len >= 32 && Avx2.IsSupported)
                         {
                             for (byte* ptrAEnd = ptrA + (len & ~31); ptrA < ptrAEnd; ptrA += 32, ptrB += 32)

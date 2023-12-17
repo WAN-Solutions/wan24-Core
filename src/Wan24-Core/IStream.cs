@@ -90,6 +90,49 @@
         /// <returns>Number of bytes red</returns>
         ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default);
         /// <summary>
+        /// Read exactly the buffer length
+        /// </summary>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="count">Count</param>
+        void ReadExactly(byte[] buffer, int offset, int count);
+        /// <summary>
+        /// Read exactly the buffer length
+        /// </summary>
+        /// <param name="buffer">Buffer</param>
+        void ReadExactly(Span<byte> buffer);
+        /// <summary>
+        /// Read exactly the buffer length
+        /// </summary>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        ValueTask ReadExactlyAsync(Memory<byte> buffer, CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Read exactly the buffer length
+        /// </summary>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="count">Count</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        ValueTask ReadExactlyAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Read at least a min. of bytes
+        /// </summary>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="minimumBytes">Min. number of bytes to read</param>
+        /// <param name="throwOnEndOfStream">Throw an exception, if the min. number of bytes couldn't be red?</param>
+        /// <returns>Number of red bytes</returns>
+        int ReadAtLeast(Span<byte> buffer, int minimumBytes, bool throwOnEndOfStream = true);
+        /// <summary>
+        /// Read at least a min. of bytes
+        /// </summary>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="minimumBytes">Min. number of bytes to read</param>
+        /// <param name="throwOnEndOfStream">Throw an exception, if the min. number of bytes couldn't be red?</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Number of red bytes</returns>
+        ValueTask<int> ReadAtLeastAsync(Memory<byte> buffer, int minimumBytes, bool throwOnEndOfStream = true, CancellationToken cancellationToken = default);
+        /// <summary>
         /// Seek
         /// </summary>
         /// <param name="offset">Byte offset</param>

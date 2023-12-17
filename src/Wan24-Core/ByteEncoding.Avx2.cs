@@ -9,6 +9,179 @@ namespace wan24.Core
     public static partial class ByteEncoding
     {
         /// <summary>
+        /// Group for right-shifting during AVX2 encoding
+        /// </summary>
+        private static readonly byte[] Encoding2GroupRight = [
+                0, 3, 6, 9,// >> 0
+                0, 3, 6, 9,// >> 6
+                1, 4, 7, 10,// >> 4
+                2, 5, 8, 11,// >> 2
+                0, 3, 6, 9,
+                0, 3, 6, 9,
+                1, 4, 7, 10,
+                2, 5, 8, 11
+            ];
+        /// <summary>
+        /// Mask the used bits after right-shifting during AVX2 encoding
+        /// </summary>
+        private static readonly byte[] Encoding2MaskRightBits = [
+                63, 63, 63, 63,// Bits 1..6 of 0
+                3, 3, 3, 3,// Bits 7..8 of 0
+                15, 15, 15, 15,// Bits 5..8 of 1
+                63, 63, 63, 63,// Bits 3..8 of 2
+                63, 63, 63, 63,
+                3, 3, 3, 3,
+                15, 15, 15, 15,
+                63, 63, 63, 63
+            ];
+        /// <summary>
+        /// Order the masked bits after right-shifting during AVX2 encoding
+        /// </summary>
+        private static readonly byte[] Encoding2OrderRight = [
+                0, 4, 8, 12,
+                1, 5, 9, 13,
+                2, 6, 10, 14,
+                3, 7, 11, 15,
+                0, 4, 8, 12,
+                1, 5, 9, 13,
+                2, 6, 10, 14,
+                3, 7, 11, 15
+            ];
+        /// <summary>
+        /// Group for left-shifting during AVX2 encoding
+        /// </summary>
+        private static readonly byte[] Encoding2GroupLeft = [
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+                1, 4, 7, 10,// << 2
+                2, 5, 8, 11,// << 4
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+                1, 4, 7, 10,
+                2, 5, 8, 11
+            ];
+        /// <summary>
+        /// Mask the used bits after left-shifting during AVX2 encoding
+        /// </summary>
+        private static readonly byte[] Encoding2MaskLeftBits = [
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+                60, 60, 60, 60,// Bits 1..4 of 1
+                48, 48, 48, 48,// Bits 1..2 of 2
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+                60, 60, 60, 60,
+                48, 48, 48, 48
+            ];
+        /// <summary>
+        /// Order the masked bits after left-shifting during AVX2 encoding
+        /// </summary>
+        private static readonly byte[] Encoding2OrderLeft = [
+                0, 8, 12, 0,
+                0, 9, 13, 0,
+                0, 10, 14, 0,
+                0, 11, 15, 0,
+                0, 8, 12, 0,
+                0, 9, 13, 0,
+                0, 10, 14, 0,
+                0, 11, 15, 0
+            ];
+        /// <summary>
+        /// Right shift steps during AVX2 encoding
+        /// </summary>
+        private static readonly uint[] Encoding2ShiftRight = [0, 6, 4, 2, 0, 6, 4, 2];
+        /// <summary>
+        /// Left shift steps during AVX2 encoding
+        /// </summary>
+        private static readonly uint[] Encoding2ShiftLeft = [0, 0, 2, 4, 0, 0, 2, 4];
+        /// <summary>
+        /// Group for right-shifting during AVX2 decoding
+        /// </summary>
+        private static readonly byte[] Decoding2GroupRight = [
+                0, 4, 8, 12,// << 0
+                1, 5, 9, 13,// << 2
+                2, 6, 10, 14,// << 4
+                0, 0, 0, 0,
+                0, 4, 8, 12,
+                1, 5, 9, 13,
+                2, 6, 10, 14,
+                0, 0, 0, 0
+            ];
+        /// <summary>
+        /// Mask the used bits after right-shifting during AVX2 decoding
+        /// </summary>
+        private static readonly byte[] Decoding2MaskRightBits = [
+                63, 63, 63, 63,// Bits 1..6 of 0
+                15, 15, 15, 15,// Bits 1..4 of 1
+                3, 3, 3, 3,// Bits 1..2 of 2
+                0, 0, 0, 0,
+                63, 63, 63, 63,
+                15, 15, 15, 15,
+                3, 3, 3, 3,
+                0, 0, 0, 0
+            ];
+        /// <summary>
+        /// Order the masked bits after right-shifting (every 4th byte will be skipped) during AVX2 decoding
+        /// </summary>
+        private static readonly byte[] Decoding2OrderRight = [
+                0, 4, 8, 12,
+                1, 5, 9, 13,
+                2, 6, 10, 14,
+                3, 7, 11, 15,
+                0, 4, 8, 12,
+                1, 5, 9, 13,
+                2, 6, 10, 14,
+                3, 7, 11, 15
+            ];
+        /// <summary>
+        /// Group for left-shifting during AVX2 decoding
+        /// </summary>
+        private static readonly byte[] Decoding2GroupLeft = [
+                0, 0, 0, 0,
+                1, 5, 9, 13,// << 6
+                2, 6, 10, 14,// << 4
+                3, 7, 11, 15,// << 2
+                0, 0, 0, 0,
+                1, 5, 9, 13,
+                2, 6, 10, 14,
+                3, 7, 11, 15
+            ];
+        /// <summary>
+        /// Mask the used bits after left-shifting during AVX2 decoding
+        /// </summary>
+        private static readonly byte[] Decoding2MaskLeftBits = [
+                0, 0, 0, 0,
+                192, 192, 192, 192,// Bits 7..8 of 0
+                240, 240, 240, 240,// Bits 5..8 of 1
+                252, 252, 252, 252,// Bits 3..8 of 2
+                0, 0, 0, 0,
+                192, 192, 192, 192,
+                240, 240, 240, 240,
+                252, 252, 252, 252
+            ];
+        /// <summary>
+        /// Order the masked bits after left-shifting (every 4th byte will be skipped) during AVX2 decoding
+        /// </summary>
+        private static readonly byte[] Decoding2OrderLeft = [
+                4, 8, 12, 0,
+                5, 9, 13, 0,
+                6, 10, 14, 0,
+                7, 11, 15, 0,
+                4, 8, 12, 0,
+                5, 9, 13, 0,
+                6, 10, 14, 0,
+                7, 11, 15, 0
+            ];
+        /// <summary>
+        /// Right shift steps during AVX2 decoding
+        /// </summary>
+        private static readonly uint[] Decoding2ShiftRight = [0, 2, 4, 0, 0, 2, 4, 0];
+        /// <summary>
+        /// Left shift steps during AVX2 decoding
+        /// </summary>
+        private static readonly uint[] Decoding2ShiftLeft = [0, 6, 4, 2, 0, 6, 4, 2];
+
+        /// <summary>
         /// Encode using AVX2 intrinsics
         /// </summary>
         /// <param name="len">Length in bytes (must be a multiple of 24)</param>
@@ -24,75 +197,20 @@ namespace wan24.Core
             // Let's close one eye and hope everything will become better with AVX 512...
             unchecked
             {
-                Vector256<byte> groupRight = Vector256.Create(// Group for right-shifting
-                        (byte)0, 3, 6, 9,// >> 0
-                        0, 3, 6, 9,// >> 6
-                        1, 4, 7, 10,// >> 4
-                        2, 5, 8, 11,// >> 2
-                        0, 3, 6, 9,
-                        0, 3, 6, 9,
-                        1, 4, 7, 10,
-                        2, 5, 8, 11
-                    ),
-                    maskRightBits = Vector256.Create(// Mask the used bits after right-shifting
-                        (byte)63, 63, 63, 63,// Bits 1..6 of 0
-                        3, 3, 3, 3,// Bits 7..8 of 0
-                        15, 15, 15, 15,// Bits 5..8 of 1
-                        63, 63, 63, 63,// Bits 3..8 of 2
-                        63, 63, 63, 63,
-                        3, 3, 3, 3,
-                        15, 15, 15, 15,
-                        63, 63, 63, 63
-                    ),
-                    orderRight = Vector256.Create(// Order the masked bits after right-shifting
-                        (byte)0, 4, 8, 12,
-                        1, 5, 9, 13,
-                        2, 6, 10, 14,
-                        3, 7, 11, 15,
-                        0, 4, 8, 12,
-                        1, 5, 9, 13,
-                        2, 6, 10, 14,
-                        3, 7, 11, 15
-                    ),
-                    groupLeft = Vector256.Create(// Group for left-shifting
-                        (byte)0, 0, 0, 0,
-                        0, 0, 0, 0,
-                        1, 4, 7, 10,// << 2
-                        2, 5, 8, 11,// << 4
-                        0, 0, 0, 0,
-                        0, 0, 0, 0,
-                        1, 4, 7, 10,
-                        2, 5, 8, 11
-                    ),
-                    maskLeftBits = Vector256.Create(// Mask the used bits after left-shifting
-                        (byte)0, 0, 0, 0,
-                        0, 0, 0, 0,
-                        60, 60, 60, 60,// Bits 1..4 of 1
-                        48, 48, 48, 48,// Bits 1..2 of 2
-                        0, 0, 0, 0,
-                        0, 0, 0, 0,
-                        60, 60, 60, 60,
-                        48, 48, 48, 48
-                    ),
-                    orderLeft = Vector256.Create(// Order the masked bits after left-shifting
-                        (byte)0, 8, 12, 0,
-                        0, 9, 13, 0,
-                        0, 10, 14, 0,
-                        0, 11, 15, 0,
-                        0, 8, 12, 0,
-                        0, 9, 13, 0,
-                        0, 10, 14, 0,
-                        0, 11, 15, 0
-                    ),
+                Vector256<byte> groupRight = Vector256.Create(Encoding2GroupRight),
+                    maskRightBits = Vector256.Create(Encoding2MaskRightBits),
+                    orderRight = Vector256.Create(Encoding2OrderRight),
+                    groupLeft = Vector256.Create(Encoding2GroupLeft),
+                    maskLeftBits = Vector256.Create(Encoding2MaskLeftBits),
+                    orderLeft = Vector256.Create(Encoding2OrderLeft),
                     dataVector,// Processing data chunk
                     dataVectorRight,// Data chunk for partial processing of right aligned bytes
                     dataVectorLeft;// Data chunk for partial processing of left aligned bytes
-                Vector256<uint> shiftRight = Vector256.Create(0u, 6, 4, 2, 0, 6, 4, 2),// Right shift steps
-                    shiftLeft = Vector256.Create(0u, 0, 2, 4, 0, 0, 2, 4);// Left shift steps
+                Vector256<uint> shiftRight = Vector256.Create(Encoding2ShiftRight),
+                    shiftLeft = Vector256.Create(Encoding2ShiftLeft);
                 char* resultStart = result;// Result start pointer
                 using RentedArrayRefStruct<byte> charMapIndex = new(len: 32, clean: false);// Character map index buffer
                 fixed (byte* charMapIndexPtr = charMapIndex.Span)
-                {
                     // Process data in 24 byte chunks (which results in a 32 byte chunk each 24 byte chunk)
                     for (byte* dataEnd = data + len; data < dataEnd; data += 24, result += 32)
                     {
@@ -103,7 +221,7 @@ namespace wan24.Core
                         dataVectorRight = Avx2.ShiftRightLogicalVariable(dataVectorRight.AsUInt32(), shiftRight).AsByte();// Shift
                         dataVectorRight = Avx2.And(dataVectorRight, maskRightBits);// Mask used bits
                         dataVectorRight = Avx2.Shuffle(dataVectorRight, orderRight);// Order the partial result
-                        // Process bytes which are left shifted in the resulting bytes (high bits)
+                        // Process bytes which are left shifted in the resulting byte (high bits)
                         dataVectorLeft = Avx2.Shuffle(dataVector, groupLeft);// Group for shifting
                         dataVectorLeft = Avx2.ShiftLeftLogicalVariable(dataVectorLeft.AsUInt32(), shiftLeft).AsByte();// Shift
                         dataVectorLeft = Avx2.And(dataVectorLeft, maskLeftBits);// Mask used bits
@@ -146,7 +264,6 @@ namespace wan24.Core
                         result[30] = charMap[charMapIndexPtr[30]];
                         result[31] = charMap[charMapIndexPtr[31]];
                     }
-                }
                 resOffset += (int)(result - resultStart);
             }
         }
@@ -154,7 +271,7 @@ namespace wan24.Core
         /// <summary>
         /// Decode using AVX2 intrinsics
         /// </summary>
-        /// <param name="dataOffset">Outher raw data byte offset</param>
+        /// <param name="dataOffset">Outer raw data byte offset</param>
         /// <param name="len">Length in bytes (must be a multiple of 32)</param>
         /// <param name="charMap">Character map</param>
         /// <param name="data">Encoded data</param>
@@ -168,71 +285,17 @@ namespace wan24.Core
         {
             unchecked
             {
-                Vector256<byte> groupRight = Vector256.Create(// Group for right-shifting
-                        (byte)0, 4, 8, 12,// << 0
-                        1, 5, 9, 13,// << 2
-                        2, 6, 10, 14,// << 4
-                        0, 0, 0, 0,
-                        0, 4, 8, 12,
-                        1, 5, 9, 13,
-                        2, 6, 10, 14,
-                        0, 0, 0, 0
-                    ),
-                    maskRightBits = Vector256.Create(// Mask the used bits after right-shifting
-                        (byte)63, 63, 63, 63,// Bits 1..6 of 0
-                        15, 15, 15, 15,// Bits 1..4 of 1
-                        3, 3, 3, 3,// Bits 1..2 of 2
-                        0, 0, 0, 0,
-                        63, 63, 63, 63,
-                        15, 15, 15, 15,
-                        3, 3, 3, 3,
-                        0, 0, 0, 0
-                    ),
-                    orderRight = Vector256.Create(// Order the masked bits after right-shifting (every 4th byte will be skipped)
-                        (byte)0, 4, 8, 12,
-                        1, 5, 9, 13,
-                        2, 6, 10, 14,
-                        3, 7, 11, 15,
-                        0, 4, 8, 12,
-                        1, 5, 9, 13,
-                        2, 6, 10, 14,
-                        3, 7, 11, 15
-                    ),
-                    groupLeft = Vector256.Create(// Group for left-shifting
-                        (byte)0, 0, 0, 0,
-                        1, 5, 9, 13,// << 6
-                        2, 6, 10, 14,// << 4
-                        3, 7, 11, 15,// << 2
-                        0, 0, 0, 0,
-                        1, 5, 9, 13,
-                        2, 6, 10, 14,
-                        3, 7, 11, 15
-                    ),
-                    maskLeftBits = Vector256.Create(// Mask the used bits after left-shifting
-                        0, 0, 0, 0,
-                        192, 192, 192, 192,// Bits 7..8 of 0
-                        240, 240, 240, 240,// Bits 5..8 of 1
-                        252, 252, 252, 252,// Bits 3..8 of 2
-                        0, 0, 0, 0,
-                        192, 192, 192, 192,
-                        240, 240, 240, 240,
-                        252, 252, 252, 252
-                    ),
-                    orderLeft = Vector256.Create(// Order the masked bits after left-shifting (every 4th byte will be skipped)
-                        (byte)4, 8, 12, 0,
-                        5, 9, 13, 0,
-                        6, 10, 14, 0,
-                        7, 11, 15, 0,
-                        4, 8, 12, 0,
-                        5, 9, 13, 0,
-                        6, 10, 14, 0,
-                        7, 11, 15, 0
-                    ),
+                Vector256<byte> groupRight = Vector256.Create(Decoding2GroupRight),
+                    maskRightBits = Vector256.Create(Decoding2MaskRightBits),
+                    orderRight = Vector256.Create(Decoding2OrderRight),
+                    groupLeft = Vector256.Create(Decoding2GroupLeft),
+                    maskLeftBits = Vector256.Create(Decoding2MaskLeftBits),
+                    orderLeft = Vector256.Create(Decoding2OrderLeft),
                     dataVector,// Processing data chunk
                     dataVectorRight,// Data chunk for partial processing of right aligned bytes
                     dataVectorLeft;// Data chunk for partial processing of left aligned bytes
-                Vector256<uint> shiftLeft = Vector256.Create(0u, 6, 4, 2, 0, 6, 4, 2),// Left shift steps
-                    shiftRight = Vector256.Create(0u, 2, 4, 0, 0, 2, 4, 0);// Right shift steps
+                Vector256<uint> shiftLeft = Vector256.Create(Decoding2ShiftLeft),
+                    shiftRight = Vector256.Create(Decoding2ShiftRight);
                 int i;// Loop index
                 using RentedArrayRefStruct<byte> charBytes = new(len: 32, clean: false);// Character byte buffer
                 fixed (byte* charBytesPtr = charBytes.Span)
@@ -312,7 +375,7 @@ namespace wan24.Core
                         dataVectorRight = Avx2.ShiftRightLogicalVariable(dataVectorRight.AsUInt32(), shiftRight).AsByte();// Shift
                         dataVectorRight = Avx2.And(dataVectorRight, maskRightBits);// Mask relevant bits
                         dataVectorRight = Avx2.Shuffle(dataVectorRight, orderRight);// Order the partial result
-                        // Process bytes which are left shifted in the result bytes (high bits)
+                        // Process bytes which are left shifted in the result byte (high bits)
                         dataVectorLeft = Avx2.Shuffle(dataVector, groupLeft);// Group
                         dataVectorLeft = Avx2.ShiftLeftLogicalVariable(dataVectorLeft.AsUInt32(), shiftLeft).AsByte();// Shift
                         dataVectorLeft = Avx2.And(dataVectorLeft, maskLeftBits);// Mask relevant bits

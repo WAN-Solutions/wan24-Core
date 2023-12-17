@@ -4,10 +4,10 @@ using System.Runtime;
 namespace wan24.Core
 {
     /// <summary>
-    /// Base class for an overrideable configuration
+    /// Base class for an overridable configuration
     /// </summary>
     /// <typeparam name="tFinal">Final type</typeparam>
-    public abstract class OverrideableConfig<tFinal> : IOverrideableConfig where tFinal : OverrideableConfig<tFinal>, new()
+    public abstract class OverridableConfig<tFinal> : IOverridableConfig where tFinal : OverridableConfig<tFinal>, new()
     {
         /// <summary>
         /// Default sub-configuration tree key
@@ -30,15 +30,15 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        protected OverrideableConfig() => ChangeToken = new(() => ChangedValues.Any());
+        protected OverridableConfig() => ChangeToken = new(() => ChangedValues.Count != 0);
 
         /// <summary>
         /// Constructor
         /// </summary>
-        protected OverrideableConfig(in tFinal parent)
+        protected OverridableConfig(in tFinal parent)
         {
             ParentConfig = parent;
-            ChangeToken = new(() => ChangedValues.Any());
+            ChangeToken = new(() => ChangedValues.Count != 0);
         }
 
         /// <inheritdoc/>
@@ -167,8 +167,8 @@ namespace wan24.Core
                     if (!OptionProperties!.ContainsKey(kvp.Key)) continue;
                     GetOption(kvp.Value)!.SetDynamicValue(kvp.Value);
                 }
-                if (SubConfig is not null && value.ContainsKey(SubKey) && value[SubKey] is not null)
-                    SubConfig!.ConfigTree = value[SubKey]!;
+                if (SubConfig is not null && value.TryGetValue(SubKey, out dynamic? v) && v is not null)
+                    SubConfig!.ConfigTree = v;
             }
         }
 
@@ -180,13 +180,13 @@ namespace wan24.Core
 
         #region IOverrideableConfig properties
         /// <inheritdoc/>
-        IOverrideableConfig IOverrideableConfig.MasterConfig => MasterConfig;
+        IOverridableConfig IOverridableConfig.MasterConfig => MasterConfig;
 
         /// <inheritdoc/>
-        IOverrideableConfig? IOverrideableConfig.ParentConfig => ParentConfig;
+        IOverridableConfig? IOverridableConfig.ParentConfig => ParentConfig;
 
         /// <inheritdoc/>
-        IOverrideableConfig? IOverrideableConfig.SubConfig => SubConfig;
+        IOverridableConfig? IOverridableConfig.SubConfig => SubConfig;
         #endregion
 
         /// <summary>
@@ -220,7 +220,7 @@ namespace wan24.Core
             if (setCanBeOverridden)
                 foreach (IConfigOption option in AllOptions)
                     GetOption(option.PropertyName)!.CanBeOverridden = option.CanBeOverridden;
-            foreach (IConfigOption option in SetValues.Cast<IConfigOption>()) GetOption(option.PropertyName)!.Value = option.Value;
+            foreach (IConfigOption option in SetValues.Values.Cast<IConfigOption>()) GetOption(option.PropertyName)!.Value = option.Value;
             if (recursive && SubConfig is not null && config.SubConfig is not null) SubConfig.MergeTo(config.SubConfig, recursive);
             return (tFinal)this;
         }
@@ -300,20 +300,20 @@ namespace wan24.Core
 
         #region IOverrideableConfig methods
         /// <inheritdoc/>
-        IOverrideableConfig IOverrideableConfig.SetConfig(in Dictionary<string, object?> config, in bool reset, in bool recursive) => SetConfig(config, reset, recursive);
+        IOverridableConfig IOverridableConfig.SetConfig(in Dictionary<string, object?> config, in bool reset, in bool recursive) => SetConfig(config, reset, recursive);
 
         /// <inheritdoc/>
-        IOverrideableConfig IOverrideableConfig.UnsetAll(in bool recursive) => UnsetAll(recursive);
+        IOverridableConfig IOverridableConfig.UnsetAll(in bool recursive) => UnsetAll(recursive);
 
         /// <inheritdoc/>
-        IOverrideableConfig IOverrideableConfig.UnsetAllOverrides() => UnsetAllOverrides();
+        IOverridableConfig IOverridableConfig.UnsetAllOverrides() => UnsetAllOverrides();
 
         /// <inheritdoc/>
-        IOverrideableConfig IOverrideableConfig.ResetChanged(in bool recursive) => ResetChanged(recursive);
+        IOverridableConfig IOverridableConfig.ResetChanged(in bool recursive) => ResetChanged(recursive);
         #endregion
 
         /// <inheritdoc/>
-        public event IOverrideableConfig.Config_Delegate? OnChange;
+        public event IOverridableConfig.Config_Delegate? OnChange;
         /// <summary>
         /// Raise the <see cref="OnChange"/> event
         /// </summary>

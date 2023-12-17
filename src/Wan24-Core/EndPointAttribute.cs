@@ -7,19 +7,17 @@ namespace wan24.Core
     /// <summary>
     /// Endpoint validation attribute (for validating <see cref="string"/> as <see cref="IPEndPoint"/> or <see cref="HostEndPoint"/>)
     /// </summary>
-    public class EndPointAttribute : ValidationAttribute
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="allowedIpSubNets">Allowed IP sub-nets (CIDR notation; the value needs to fit into one of these; if none are given, the value only needs to be a valid 
+    /// sub-net)</param>
+    public class EndPointAttribute(params string[] allowedIpSubNets) : ValidationAttribute()
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="allowedIpSubNets">Allowed IP sub-nets (CIDR notation; the value needs to fit into one of these; if none are given, the value only needs to be a valid 
-        /// sub-net)</param>
-        public EndPointAttribute(params string[] allowedIpSubNets) : base() => AllowedIpSubnets = allowedIpSubNets.Select(subNet => new IpSubNet(subNet)).ToArray();
-
         /// <summary>
         /// Allowed IP sub-nets (CIDR notation; the value needs to fit into one of these; if none are given, the value only needs to be a valid sub-net)
         /// </summary>
-        public ReadOnlyMemory<IpSubNet> AllowedIpSubnets { get; }
+        public ReadOnlyMemory<IpSubNet> AllowedIpSubnets { get; } = allowedIpSubNets.Select(subNet => new IpSubNet(subNet)).ToArray();
 
         /// <summary>
         /// Allow an IPv4 sub-net?

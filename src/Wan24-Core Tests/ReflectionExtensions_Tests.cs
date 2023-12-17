@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using Newtonsoft.Json.Linq;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using wan24.Core;
 
@@ -192,6 +193,16 @@ namespace Wan24_Core_Tests
             }
         }
 
+        [TestMethod]
+        public void IsInitOnly_Tests()
+        {
+            Type type = typeof(ReflectionTestClass);
+            PropertyInfoExt initOnly = type.GetPropertyCached(nameof(ReflectionTestClass.InitOnlyProperty)) ?? throw new InvalidProgramException(),
+                getterSetter = type.GetPropertyCached(nameof(ReflectionTestClass.GetterSetterProperty)) ?? throw new InvalidProgramException();
+            Assert.IsTrue(initOnly.IsInitOnly());
+            Assert.IsFalse(getterSetter.IsInitOnly());
+        }
+
         public int? TestField = null;
 
         public int TestField2 = 0;
@@ -226,6 +237,10 @@ namespace Wan24_Core_Tests
             public ReflectionTestClass(bool param1, string? str, bool param2 = true) { }
 
             private ReflectionTestClass(bool param1) { }
+
+            public bool InitOnlyProperty { get; init; }
+
+            public bool GetterSetterProperty { get; set; }
         }
     }
 }

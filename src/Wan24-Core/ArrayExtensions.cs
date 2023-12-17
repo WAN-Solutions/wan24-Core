@@ -189,18 +189,18 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static bool ContainsAll<T>(this T[] arr, params T[] values)
         {
-            int vlen = values.Length;
-            if (vlen == 0) return true;
+            int valuesLen = values.Length;
+            if (valuesLen == 0) return true;
             int len = arr.Length;
-            if (len < vlen) return false;
-            bool[] found = new bool[vlen];
+            if (len < valuesLen) return false;
+            bool[] found = new bool[valuesLen];
             ReadOnlySpan<T> valuesSpan = values;
             for (int i = 0, index; i < len; i++)
             {
                 index = valuesSpan.IndexOf(arr[i]);
                 if (index != -1) found[index] = true;
             }
-            for (int i = 0; i < vlen; i++) if (!found[i]) return false;
+            for (int i = 0; i < valuesLen; i++) if (!found[i]) return false;
             return true;
         }
 
@@ -256,7 +256,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static T[] CloneArray<T>(this T[] arr)
         {
-            if (arr.Length == 0) return Array.Empty<T>();
+            if (arr.Length == 0) return [];
             T[] res = new T[arr.Length];
             Array.Copy(arr, res, arr.Length);
             return res;

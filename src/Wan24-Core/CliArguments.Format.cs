@@ -20,12 +20,12 @@ namespace wan24.Core
                 if (kvp.Value.Count == 0)
                 {
                     sb.Append('-');
-                    sb.Append(SanatizeValue(kvp.Key));
+                    sb.Append(SanitizeValue(kvp.Key));
                     sb.Append(' ');
                 }
                 else
                 {
-                    key = SanatizeValue(kvp.Key);
+                    key = SanitizeValue(kvp.Key);
                     sb.Append('-', 2);
                     sb.Append(key);
                     first = true;
@@ -38,7 +38,7 @@ namespace wan24.Core
                             sb.Append(key);
                             sb.Append(' ');
                         }
-                        sb.Append(SanatizeValue(kvp.Value[i]));
+                        sb.Append(SanitizeValue(kvp.Value[i]));
                         first = false;
                     }
                     sb.Append(' ');
@@ -55,8 +55,8 @@ namespace wan24.Core
         protected void Initialize(in ReadOnlySpan<string> args)
         {
             this.EnsureValidState(KeyLessArguments is null, "Initialized already");
-            Dictionary<string, List<string>> a = new();
-            List<string> keyLess = new();
+            Dictionary<string, List<string>> a = [];
+            List<string> keyLess = [];
             string? lastKey = null;
             bool requireValue = false;
             int i = 0;
@@ -65,15 +65,15 @@ namespace wan24.Core
 #endif
             void HandleDashFlag()
             {
-                if (a.ContainsKey("-"))
+                if (a.TryGetValue("-", out List<string>? v))
                 {
                     // Ensure the "dash-flag" isn't a value list
-                    if (a["-"].Count != 0) throw new FormatException($"Argument \"-\" was a value list first - can't convert to boolean (at #{i})");
+                    if (v.Count != 0) throw new FormatException($"Argument \"-\" was a value list first - can't convert to boolean (at #{i})");
                 }
                 else
                 {
                     // Add the "dash-flag"
-                    a["-"] = new();
+                    a["-"] = [];
                 }
                 a.Remove(string.Empty);// Remove the wrong entry
                 requireValue = false;
@@ -103,13 +103,13 @@ namespace wan24.Core
                     {
                         // New key/value(s)
                         lastKey = args[i][2..];
-                        if (!a.ContainsKey(lastKey))
+                        if (a.TryGetValue(lastKey, out List<string>? v))
                         {
-                            a[lastKey] = new();
+                            if (v.Count == 0) throw new FormatException($"Argument \"--{lastKey}\" was boolean first - can't convert to value list (at #{i})");
                         }
                         else
                         {
-                            if (a[lastKey].Count == 0) throw new FormatException($"Argument \"--{lastKey}\" was boolean first - can't convert to value list (at #{i})");
+                            a[lastKey] = [];
                         }
                         requireValue = true;
                     }
@@ -117,13 +117,13 @@ namespace wan24.Core
                     {
                         // New flag
                         lastKey = args[i][1..];
-                        if (!a.ContainsKey(lastKey))
+                        if (a.TryGetValue(lastKey, out List<string>? v))
                         {
-                            a[lastKey] = new();
+                            if (v.Count != 0) throw new FormatException($"Argument \"-{lastKey}\" was a value list first - can't convert to boolean (at #{i})");
                         }
                         else
                         {
-                            if (a[lastKey].Count != 0) throw new FormatException($"Argument \"-{lastKey}\" was a value list first - can't convert to boolean (at #{i})");
+                            a[lastKey] = [];
                         }
                     }
                 }
@@ -179,7 +179,7 @@ namespace wan24.Core
         public static string[] Split(in ReadOnlySpan<char> str)
         {
             // Return early, if empty
-            if (str.Length == 0) return Array.Empty<string>();
+            if (str.Length == 0) return [];
             // Prepare parsing
             using RentedArrayStruct<string> argsBuffer = new(Math.Max(1, str.Length >> 1));// Arguments
             using RentedArrayStruct<char> valueBuffer = new(str.Length);// Current value
@@ -325,18 +325,18 @@ namespace wan24.Core
                 if (isQuoted) throw new FormatException($"Last quoted argument is missing the closing quote \"{quote}\" (current value \"{valueBuffer.Span[..valueOffset]}\")");
                 AddValue();
             }
-            return argsOffset == 0 ? Array.Empty<string>() : argsBuffer.Span[..argsOffset].ToArray();
+            return argsOffset == 0 ? [] : argsBuffer.Span[..argsOffset].ToArray();
         }
 
         /// <summary>
-        /// Sanatize a string for use as a CLI command argument
+        /// Sanitize a string for use as a CLI command argument
         /// </summary>
         /// <param name="str">Raw string</param>
         /// <param name="quote">Quote character</param>
         /// <returns>Raw (if encoding isn't required) or encoded string (will be quoted, JSON encoded and properly escaped for use as a CLI command argument and with 
         /// <see cref="CliArguments"/>)</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static string SanatizeValue(in string str, in char quote = '\'')
+        public static string SanitizeValue(in string str, in char quote = '\'')
             => NeedsEncoding(str) ? $"{quote}{JsonHelper.Encode(str)[1..^1].Replace(BACKSLASH, ESCAPED_BACKSLASH)}{quote}" : str;
 
         /// <summary>

@@ -6,7 +6,7 @@
     public interface IStatusProvider
     {
         /// <summary>
-        /// Status informations
+        /// Status information
         /// </summary>
         IEnumerable<Status> State { get; }
     }

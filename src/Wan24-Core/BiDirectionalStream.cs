@@ -3,15 +3,14 @@
     /// <summary>
     /// Bi-directional stream
     /// </summary>
-    public class BiDirectionalStream : BiDirectionalStream<Stream, Stream>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="readable">Readable source stream</param>
+    /// <param name="writable">Writable target stream</param>
+    /// <param name="leaveOpen">Leave the streams open when disposing?</param>
+    public class BiDirectionalStream(Stream readable, Stream writable, bool leaveOpen = false) : BiDirectionalStream<Stream, Stream>(readable, writable, leaveOpen)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="readable">Readable source stream</param>
-        /// <param name="writable">Writable target stream</param>
-        /// <param name="leaveOpen">Leave the streams open when disposing?</param>
-        public BiDirectionalStream(Stream readable, Stream writable, bool leaveOpen = false) : base(readable, writable, leaveOpen) { }
     }
 
     /// <summary>

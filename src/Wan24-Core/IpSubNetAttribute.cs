@@ -5,18 +5,16 @@ namespace wan24.Core
     /// <summary>
     /// IP sub-net validation attribute (for validating <see cref="string"/> or <see cref="IpSubNet"/> value properties)
     /// </summary>
-    public class IpSubNetAttribute : ValidationAttribute
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="allowedIpSubNets">Allowed IP sub-nets (CIDR notation; the value needs to fit into one of these; if none are given, the value only needs to be a valid sub-net)</param>
+    public class IpSubNetAttribute(params string[] allowedIpSubNets) : ValidationAttribute()
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="allowedIpSubNets">Allowed IP sub-nets (CIDR notation; the value needs to fit into one of these; if none are given, the value only needs to be a valid sub-net)</param>
-        public IpSubNetAttribute(params string[] allowedIpSubNets) : base() => AllowedIpSubnets = allowedIpSubNets.Select(subNet => new IpSubNet(subNet)).ToArray();
-
         /// <summary>
         /// Allowed IP sub-nets (CIDR notation; the value needs to fit into one of these; if none are given, the value only needs to be a valid sub-net)
         /// </summary>
-        public ReadOnlyMemory<IpSubNet> AllowedIpSubnets { get; }
+        public ReadOnlyMemory<IpSubNet> AllowedIpSubnets { get; } = allowedIpSubNets.Select(subNet => new IpSubNet(subNet)).ToArray();
 
         /// <summary>
         /// Allow an IPv4 sub-net?

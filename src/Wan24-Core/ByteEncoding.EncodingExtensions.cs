@@ -29,8 +29,7 @@ namespace wan24.Core
             buffer[0] = value;
             return buffer.Span.Encode(charMap, res);
 #else
-            Span<byte> buffer = stackalloc byte[1];
-            buffer[0] = value;
+            Span<byte> buffer = [value];
             return buffer.Encode(charMap, res);
 #endif
         }
@@ -76,8 +75,7 @@ namespace wan24.Core
             buffer[0] = (byte)value;
             return buffer.Span.Encode(charMap, res);
 #else
-            Span<byte> buffer = stackalloc byte[1];
-            buffer[0] = (byte)value;
+            Span<byte> buffer = [(byte)value];
             return buffer.Encode(charMap, res);
 #endif
         }

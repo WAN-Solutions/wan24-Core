@@ -1,7 +1,7 @@
 ﻿namespace wan24.Core
 {
     /// <summary>
-    /// Intrface for an object pool
+    /// Interface for an object pool
     /// </summary>
     public interface IObjectPool : IPool
     {

@@ -85,7 +85,7 @@ namespace wan24.Core
 #endif
             set
             {
-                if (value is null) throw new ArgumentNullException(nameof(value));
+                ArgumentNullException.ThrowIfNull(value);
                 Data[index] = (char)Convert.ChangeType(value, typeof(char));
             }
         }

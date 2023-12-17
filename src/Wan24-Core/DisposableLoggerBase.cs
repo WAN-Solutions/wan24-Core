@@ -55,7 +55,7 @@ namespace wan24.Core
         protected abstract void LogInt<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter);
 
         /// <summary>
-        /// Get the mesage to log
+        /// Get the message to log
         /// </summary>
         /// <typeparam name="TState">State type</typeparam>
         /// <param name="logLevel">Level</param>

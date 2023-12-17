@@ -68,6 +68,7 @@ namespace wan24.Core
             => PropertyInfoCache.GetOrAdd(
                 type.GetHashCode(),
                 (key) => new()).GetOrAdd(bindingFlags, (key) => (from pi in type.GetProperties(bindingFlags)
+                                                                 where !pi.PropertyType.IsByRef
                                                                  select new PropertyInfoExt(pi, pi.CanRead ? pi.GetGetterDelegate() : null, pi.CanWrite ? pi.GetSetterDelegate() : null))
                 .ToArray());
 
@@ -135,7 +136,7 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <returns>Generic arguments</returns>
         public static Type[] GetGenericArgumentsCached(this Type type)
-            => GenericArgumentsCache.GetOrAdd(type.GetHashCode(), (key) => type.IsGenericType ? type.GetGenericArguments() : Array.Empty<Type>());
+            => GenericArgumentsCache.GetOrAdd(type.GetHashCode(), (key) => type.IsGenericType ? type.GetGenericArguments() : []);
 
         /// <summary>
         /// Get an attribute (inherited)

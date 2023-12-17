@@ -48,7 +48,7 @@ namespace wan24.Core
         /// <param name="inMemoryLimit">Max. number of objects to hold in memory</param>
         public ObjectStorageBase(in int inMemoryLimit) : base()
         {
-            if (inMemoryLimit < 1) throw new ArgumentOutOfRangeException(nameof(inMemoryLimit));
+            ArgumentOutOfRangeException.ThrowIfLessThan(inMemoryLimit, 1);
             InMemoryLimit = inMemoryLimit;
         }
 
@@ -100,7 +100,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public virtual async Task<StoredObject<tKey, tObj>?> GetObjectAsnc(tKey key, CancellationToken cancellationToken = default)
+        public virtual async Task<StoredObject<tKey, tObj>?> GetObjectAsync(tKey key, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
             if (Storage.TryGetValue(key, out StoredObject? res)) return new(this, res.Object);
@@ -111,7 +111,7 @@ namespace wan24.Core
             if (obj is null) return null;
             Storage[key] = new(obj);
             if (Storage.Count > _StoredPeak) _StoredPeak = Storage.Count;
-            if (Storage.Count > InMemoryLimit) await CleanEvent.SetAsync().DynamicContext();
+            if (Storage.Count > InMemoryLimit) await CleanEvent.SetAsync(CancellationToken.None).DynamicContext();
             return new(this, obj);
         }
 
@@ -221,7 +221,11 @@ namespace wan24.Core
         /// <summary>
         /// Stored object
         /// </summary>
-        protected sealed class StoredObject
+        /// <remarks>
+        /// Constructor
+        /// </remarks>
+        /// <param name="obj">Object</param>
+        protected sealed class StoredObject(tObj obj)
         {
             /// <summary>
             /// An object for thread synchronization
@@ -230,21 +234,11 @@ namespace wan24.Core
             /// <summary>
             /// Object
             /// </summary>
-            private readonly tObj _Object;
+            private readonly tObj _Object = obj;
             /// <summary>
             /// Usage counter
             /// </summary>
             private volatile int _UsageCount = 1;
-
-            /// <summary>
-            /// Constructor
-            /// </summary>
-            /// <param name="obj">Object</param>
-            public StoredObject(tObj obj)
-            {
-                _Object = obj;
-                Key = obj.ObjectKey;
-            }
 
             /// <summary>
             /// Object (when accessing the getter, the <see cref="UsageCount"/> will be increased by one)
@@ -262,7 +256,7 @@ namespace wan24.Core
             /// <summary>
             /// Object key
             /// </summary>
-            public tKey Key { get; }
+            public tKey Key { get; } = obj.ObjectKey;
 
             /// <summary>
             /// Stored time

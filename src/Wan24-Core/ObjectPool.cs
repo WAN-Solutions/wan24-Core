@@ -12,7 +12,7 @@ namespace wan24.Core
         /// <summary>
         /// Pool
         /// </summary>
-        protected readonly ConcurrentBag<T> Pool = new();
+        protected readonly ConcurrentBag<T> Pool = [];
         /// <summary>
         /// Factory
         /// </summary>

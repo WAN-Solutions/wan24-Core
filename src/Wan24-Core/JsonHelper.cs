@@ -39,7 +39,7 @@ namespace wan24.Core
                     await JsonSerializer.SerializeAsync(ms, obj, obj?.GetType() ?? typeof(string), prettify ? IntendedOptions : NotIntendedOptions, ct).DynamicContext();
                     using RentedArrayStructSimple<byte> buffer = new((int)ms.Length, clean: false);
                     ms.Position = 0;
-                    ms.Read(buffer.Span);
+                    ms.ReadExactly(buffer.Span);
                     return Encoding.UTF8.GetString(buffer.Span);
                 }
                 await JsonSerializer.SerializeAsync(target, obj, obj?.GetType() ?? typeof(string), prettify ? IntendedOptions : NotIntendedOptions, ct).DynamicContext();
@@ -165,7 +165,7 @@ namespace wan24.Core
         /// <param name="target">Target stream</param>
         /// <param name="prettify">Prettify?</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>JSON string or emptym if <c>target</c> was given</returns>
+        /// <returns>JSON string or empty if <c>target</c> was given</returns>
         public delegate Task<string> EncoderAsync_Delegate(object? obj, Stream? target, bool prettify, CancellationToken cancellationToken);
         /// <summary>
         /// Delegate for a JSON decoder

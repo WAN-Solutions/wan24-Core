@@ -14,7 +14,7 @@ namespace wan24.Core
         /// <summary>
         /// Booted assemblies
         /// </summary>
-        private static readonly HashSet<int> BootedAssemblies = new();
+        private static readonly HashSet<int> BootedAssemblies = [];
         /// <summary>
         /// Thread synchronization
         /// </summary>
@@ -199,7 +199,7 @@ namespace wan24.Core
                                                       )
                         ?? throw new InvalidProgramException($"Bootstrapper method {assembly.GetCustomAttributeCached<BootstrapperAttribute>()!.Type}.{assembly.GetCustomAttributeCached<BootstrapperAttribute>()!.Method} not found")
                 }
-                : Array.Empty<MethodInfo>();
+                : [];
             // Fixed type
             if (findClasses)
                 methods = methods.Concat(from ass in new Assembly[] { assembly }

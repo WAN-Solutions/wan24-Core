@@ -60,7 +60,7 @@ namespace wan24.Core
         {
             lock (SyncObject)
             {
-                if (key != BitCount) throw new ArgumentOutOfRangeException(nameof(key));
+                ArgumentOutOfRangeException.ThrowIfNotEqual(key, BitCount);
                 AddBits(value);
             }
         }
@@ -98,7 +98,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        void ICollection<KeyValuePair<long, bool>>.Clear() => ExchangeBitmap(Array.Empty<byte>());
+        void ICollection<KeyValuePair<long, bool>>.Clear() => ExchangeBitmap([]);
 
         /// <inheritdoc/>
         bool ICollection<KeyValuePair<long, bool>>.Contains(KeyValuePair<long, bool> item) => this[item.Key] == item.Value;

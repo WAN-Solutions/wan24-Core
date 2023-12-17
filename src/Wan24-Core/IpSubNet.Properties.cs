@@ -348,7 +348,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Get all matching unicast IP address configuration informations
+        /// Get all matching unicast IP address configuration information
         /// </summary>
         public IEnumerable<UnicastIPAddressInformation> UnicastAddresses
         {
@@ -365,5 +365,10 @@ namespace wan24.Core
                     }
             }
         }
+
+        /// <summary>
+        /// Get as <see cref="IPNetwork"/>
+        /// </summary>
+        public IPNetwork AsIpNetwork => new(NetworkIPAddress, MaskBits);
     }
 }

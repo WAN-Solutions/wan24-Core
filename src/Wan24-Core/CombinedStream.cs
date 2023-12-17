@@ -96,7 +96,7 @@ namespace wan24.Core
         public int GetStreamIndex(in long position)
         {
             EnsureUndisposed();
-            if (position < 0) throw new ArgumentOutOfRangeException(nameof(position));
+            ArgumentOutOfRangeException.ThrowIfNegative(position);
             if (position > _Length) return -1;
             if (position == _Length) return Streams.Count - 1;
             long len = 0;
@@ -129,7 +129,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             int res = 0;
-            for(int read = 1, red; buffer.Length > 0 && read > 0;)
+            for(int read = 1; buffer.Length > 0 && read > 0;)
             {
                 read = (int)Math.Min(buffer.Length, CurrentStream.GetRemainingBytes());
                 if (read == 0)
@@ -140,11 +140,10 @@ namespace wan24.Core
                     read = 1;
                     continue;
                 }
-                red = CurrentStream.Read(buffer[..read]);
-                if (red != read) throw new IOException($"Failed to read {read} bytes from stream #{CurrentStreamIndex} - got only {red} bytes");
-                res += red;
-                _Position += red;
-                buffer = buffer[red..];
+                CurrentStream.ReadExactly(buffer[..read]);
+                res += read;
+                _Position += read;
+                buffer = buffer[read..];
             }
             return res;
         }
@@ -158,7 +157,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             int res = 0;
-            for (int read = 1, red; buffer.Length > 0 && read > 0;)
+            for (int read = 1; buffer.Length > 0 && read > 0;)
             {
                 read = (int)Math.Min(buffer.Length, CurrentStream.GetRemainingBytes());
                 if (read == 0)
@@ -169,11 +168,10 @@ namespace wan24.Core
                     read = 1;
                     continue;
                 }
-                red = await CurrentStream.ReadAsync(buffer[..read], cancellationToken).DynamicContext();
-                if (red != read) throw new IOException($"Failed to read {read} bytes from stream #{CurrentStreamIndex} - got only {red} bytes");
-                res += red;
-                _Position += red;
-                buffer = buffer[red..];
+                await CurrentStream.ReadExactlyAsync(buffer[..read], cancellationToken).DynamicContext();
+                res += read;
+                _Position += read;
+                buffer = buffer[read..];
             }
             return res;
         }

@@ -137,7 +137,7 @@ namespace wan24.Core
                         mutex.Dispose();
                         return;
                     }
-                    // Wait for our task to become available in the scope from the outher thread
+                    // Wait for our task to become available in the scope from the outer thread
                     try
                     {
                         taskEvent.Wait();
@@ -159,7 +159,7 @@ namespace wan24.Core
                         }
                         return;
                     }
-                    // Create the global lock object and send it to the waiting outher thread
+                    // Create the global lock object and send it to the waiting outer thread
                     GlobalLockAsync res = new(guid, task, createdNew);
                     try
                     {

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 
 namespace wan24.Core
 {
@@ -76,23 +77,23 @@ namespace wan24.Core
                     pi.PropertyType
                     ).Invoke(
                     obj: null,
-                    new object?[] {
+                    [
                         pi.GetMethod!.CreateDelegate(typeof(Func<>).MakeGenericType(
                             pi.PropertyType
                             ))
-                    }
+                    ]
                     )!
                 : GetterDelegateMethod2.MakeGenericMethod(
                     pi.DeclaringType!,
                     pi.PropertyType
                     ).Invoke(
                     obj: null,
-                    new object?[] {
+                    [
                         pi.GetMethod!.CreateDelegate(typeof(Func<,>).MakeGenericType(
                             pi.DeclaringType!,
                             pi.PropertyType
                             ))
-                    }
+                    ]
                     )!);
         }
 
@@ -111,11 +112,11 @@ namespace wan24.Core
                     typeof(T)
                     ).Invoke(
                     obj: null,
-                    new object?[] {
+                    [
                         pi.GetMethod!.CreateDelegate(typeof(Func<>).MakeGenericType(
                             pi.PropertyType
                             ))
-                    }
+                    ]
                     )!
                 : GetterDelegateMethod3.MakeGenericMethod(
                     pi.DeclaringType!,
@@ -123,12 +124,12 @@ namespace wan24.Core
                     typeof(T)
                     ).Invoke(
                     obj: null,
-                    new object?[] {
+                    [
                         pi.GetMethod!.CreateDelegate(typeof(Func<,>).MakeGenericType(
                             pi.DeclaringType!,
                             pi.PropertyType
                             ))
-                    }
+                    ]
                     )!);
         }
 
@@ -145,23 +146,23 @@ namespace wan24.Core
                     pi.PropertyType
                     ).Invoke(
                     obj: null,
-                    new object?[] {
+                    [
                     pi.GetMethod!.CreateDelegate(typeof(Func<>).MakeGenericType(
                         pi.PropertyType
                         ))
-                    }
+                    ]
                     )!
                 : GetterDelegateMethod.MakeGenericMethod(
                     pi.DeclaringType!,
                     pi.PropertyType
                     ).Invoke(
                     obj: null,
-                    new object?[] {
+                    [
                     pi.GetMethod!.CreateDelegate(typeof(Func<,>).MakeGenericType(
                         pi.DeclaringType!,
                         pi.PropertyType
                         ))
-                    }
+                    ]
                     )!);
         }
 
@@ -193,23 +194,23 @@ namespace wan24.Core
                     pi.PropertyType
                     ).Invoke(
                     obj: null,
-                    new object?[] {
+                    [
                     pi.SetMethod!.CreateDelegate(typeof(Action<>).MakeGenericType(
                         pi.PropertyType
                         ))
-                    }
+                    ]
                     )!
                 : SetterDelegateMethod.MakeGenericMethod(
                     pi.DeclaringType!,
                     pi.PropertyType
                     ).Invoke(
                     obj: null,
-                    new object?[] {
+                    [
                     pi.SetMethod!.CreateDelegate(typeof(Action<,>).MakeGenericType(
                         pi.DeclaringType!,
                         pi.PropertyType
                         ))
-                    }
+                    ]
                     )!);
         }
 

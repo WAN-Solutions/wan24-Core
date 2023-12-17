@@ -6,7 +6,11 @@ namespace wan24.Core
     /// Thread-safe value
     /// </summary>
     /// <typeparam name="T">Value type</typeparam>
-    public class ThreadSafeValue<T> : DisposableBase
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="initialValue">Initial value</param>
+    public class ThreadSafeValue<T>(in T? initialValue = default) : DisposableBase()
     {
         /// <summary>
         /// Thread synchronization
@@ -15,13 +19,7 @@ namespace wan24.Core
         /// <summary>
         /// Value
         /// </summary>
-        protected T? _Value;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="initialValue">Initial value</param>
-        public ThreadSafeValue(in T? initialValue = default) : base() => _Value = initialValue;
+        protected T? _Value = initialValue;
 
         /// <summary>
         /// Value

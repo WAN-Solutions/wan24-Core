@@ -51,7 +51,7 @@
         {
             EnsureUndisposed();
             EnsureWritable();
-            if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
+            ArgumentOutOfRangeException.ThrowIfNegative(value);
             if (value == _Length) return;
             if (value == 0)
             {
@@ -97,7 +97,7 @@
         {
             EnsureUndisposed();
             EnsureWritable();
-            if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
+            ArgumentOutOfRangeException.ThrowIfNegative(value);
             if (value == _Length) return;
             if (value == 0)
             {
@@ -145,15 +145,14 @@
             int res = 0;
             Stream chunk;
             long pos;
-            for (int read, red; buffer.Length > 0 && _Position < _Length; _Position += red, buffer = buffer[red..], res += red)
+            for (int read; buffer.Length > 0 && _Position < _Length; _Position += read, buffer = buffer[read..], res += read)
             {
                 chunk = GetChunkStream(CurrentChunk);
                 pos = CurrentChunkPosition;
                 chunk.Position = pos;
                 read = (int)Math.Min(buffer.Length, chunk.Length - pos);
                 if (read == 0) return res;
-                red = chunk.Read(buffer[..read]);
-                if (red != read) throw new IOException($"Failed to read {read} bytes (got only {red} bytes)");
+                chunk.ReadExactly(buffer[..read]);
             }
             return res;
         }
@@ -169,15 +168,14 @@
             int res = 0;
             Stream chunk;
             long pos;
-            for (int read, red; buffer.Length > 0 && _Position < _Length; _Position += red, buffer = buffer[red..], res += red)
+            for (int read; buffer.Length > 0 && _Position < _Length; _Position += read, buffer = buffer[read..], res += read)
             {
                 chunk = await GetChunkStreamAsync(CurrentChunk, cancellationToken).DynamicContext();
                 pos = CurrentChunkPosition;
                 chunk.Position = pos;
                 read = (int)Math.Min(buffer.Length, chunk.Length - pos);
                 if (read == 0) return res;
-                red = await chunk.ReadAsync(buffer[..read], cancellationToken).DynamicContext();
-                if (red != read) throw new IOException($"Failed to read {read} bytes (got only {red} bytes)");
+                await chunk.ReadExactlyAsync(buffer[..read], cancellationToken).DynamicContext();
             }
             return res;
         }

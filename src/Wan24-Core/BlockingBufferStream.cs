@@ -12,7 +12,7 @@
         /// <param name="clear">Clear the buffer when disposing?</param>
         public BlockingBufferStream(in int bufferSize, in bool clear = false) : base()
         {
-            if (bufferSize < 1) throw new ArgumentOutOfRangeException(nameof(bufferSize));
+            ArgumentOutOfRangeException.ThrowIfLessThan(bufferSize, 1);
             BufferSize = bufferSize;
             Buffer = new(bufferSize, clean: false)
             {

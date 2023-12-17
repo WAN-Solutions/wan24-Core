@@ -20,6 +20,7 @@ namespace wan24.Core
 #else
             IsDebug = false;
 #endif
+            IsPrivileged = Environment.IsPrivilegedProcess;
         }
 
         /// <summary>
@@ -41,5 +42,10 @@ namespace wan24.Core
         /// Is a <c>DEBUG</c> build?
         /// </summary>
         public static bool IsDebug { get; }
+
+        /// <summary>
+        /// Is this process privileged to perform security sensitive actions?
+        /// </summary>
+        public static bool IsPrivileged { get; }
     }
 }

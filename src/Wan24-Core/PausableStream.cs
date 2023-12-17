@@ -1,35 +1,32 @@
 ﻿namespace wan24.Core
 {
     /// <summary>
-    /// Pauseable stream wrapper (will pause reading/writing)
+    /// Pausable stream wrapper (will pause reading/writing)
     /// </summary>
-    public class PauseableStream : PauseableStream<Stream>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="baseStream">Base stream</param>
+    /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
+    public class PausableStream(in Stream baseStream, in bool leaveOpen = false) : PausableStream<Stream>(baseStream, leaveOpen)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="baseStream">Base stream</param>
-        /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public PauseableStream(in Stream baseStream, in bool leaveOpen = false) : base(baseStream, leaveOpen) { }
     }
 
     /// <summary>
-    /// Pauseable stream wrapper (will pause reading/writing)
+    /// Pausable stream wrapper (will pause reading/writing)
     /// </summary>
     /// <typeparam name="T">Wrapped stream type</typeparam>
-    public class PauseableStream<T> : WrapperStream<T> where T : Stream
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="baseStream">Base stream</param>
+    /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
+    public class PausableStream<T>(in T baseStream, in bool leaveOpen = false) : WrapperStream<T>(baseStream, leaveOpen) where T : Stream
     {
         /// <summary>
         /// Pause event (raised when not paused)
         /// </summary>
         protected readonly ResetEvent _Pause = new(initialState: true);
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="baseStream">Base stream</param>
-        /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public PauseableStream(in T baseStream, in bool leaveOpen = false) : base(baseStream, leaveOpen) { }
 
         /// <summary>
         /// Pause

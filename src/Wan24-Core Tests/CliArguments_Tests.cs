@@ -10,9 +10,9 @@ namespace Wan24_Core_Tests
         public void General_Tests()
         {
             // Sanatizing
-            Assert.AreEqual("test", CliArguments.SanatizeValue("test"));
-            Assert.AreEqual("'test test'", CliArguments.SanatizeValue("test test"));
-            Assert.AreEqual("'test test\\\\\\\\\\\\u0022\\\\u0027'", CliArguments.SanatizeValue("test test\\\"'"));
+            Assert.AreEqual("test", CliArguments.SanitizeValue("test"));
+            Assert.AreEqual("'test test'", CliArguments.SanitizeValue("test test"));
+            Assert.AreEqual("'test test\\\\\\\\\\\\u0022\\\\u0027'", CliArguments.SanitizeValue("test test\\\"'"));
             // Parsing
             CliArguments ca = CliArguments.Parse("-flag1 '-flag2' \"-flag3\" --key1 value1 'value2' \"value3\" --key2 'value 1\\\\\\\\'\\\"' \"value 2\\\\\\\\'\\\"\" --key3 -value1 --key3 -value2");
             Assert.AreEqual(6, ca.Count);

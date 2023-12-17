@@ -3,7 +3,7 @@
 namespace wan24.Core
 {
     /// <summary>
-    /// Current stack informations
+    /// Current stack information
     /// </summary>
     /// <typeparam name="T">Object type</typeparam>
     public class StackInfo<T> : IStackInfo

@@ -18,8 +18,8 @@
         /// </summary>
         DateTime LastElapsed { get; }
         /// <summary>
-        /// Shedules
+        /// Scheduled
         /// </summary>
-        DateTime Sheduled { get; }
+        DateTime Scheduled { get; }
     }
 }

@@ -98,7 +98,7 @@ namespace wan24.Core
             ConfigureBroadcastListener(listener);
             using CancellationTokenSource cts = new(timeout);
             using Cancellations cancellations = new(cancellationToken, cts.Token);
-            List<T?> res = new();
+            List<T?> res = [];
             Func<Task> receiver = async () =>
             {
                 try
@@ -120,7 +120,7 @@ namespace wan24.Core
             Task receiverTask = receiver.StartLongRunningTask(cancellationToken: cancellations);
             await listener.SendAsync(payload, new IPEndPoint(IPAddress.Broadcast, port != 0 ? port : BroadcastPort), cancellations).DynamicContext();
             await receiverTask.DynamicContext();
-            return res.Count == 0 ? Array.Empty<T>() : res.ToArray();
+            return res.Count == 0 ? [] : [.. res];
         }
 
         /// <summary>

@@ -7,24 +7,17 @@ namespace wan24.Core
     /// <summary>
     /// Translation
     /// </summary>
-    public sealed class Translation
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="terms">Terms</param>
+    /// <param name="locale">Locale</param>
+    public sealed class Translation(in IReadOnlyDictionary<string, string> terms, in string? locale = null)
     {
         /// <summary>
         /// Current translation
         /// </summary>
         private static Translation? _Current = null;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="terms">Terms</param>
-        /// <param name="locale">Locale</param>
-        public Translation(in IReadOnlyDictionary<string, string> terms, in string? locale = null)
-        {
-            Terms = terms;
-            Locale = locale;
-            TranslationTerms = terms as ITranslationTerms;
-        }
 
         /// <summary>
         /// Current translation
@@ -43,7 +36,7 @@ namespace wan24.Core
         /// <summary>
         /// Available locales
         /// </summary>
-        public static Dictionary<string, Translation> Locales { get; } = new();
+        public static Dictionary<string, Translation> Locales { get; } = [];
 
         /// <summary>
         /// Require an existing translation?
@@ -119,18 +112,18 @@ namespace wan24.Core
         /// <summary>
         /// Terms
         /// </summary>
-        public IReadOnlyDictionary<string, string> Terms { get; }
+        public IReadOnlyDictionary<string, string> Terms { get; } = terms;
 
         /// <summary>
         /// Translation terms
         /// </summary>
-        public ITranslationTerms? TranslationTerms { get; }
+        public ITranslationTerms? TranslationTerms { get; } = terms as ITranslationTerms;
 
         /// <summary>
         /// Locale
         /// </summary>
         [RegularExpression(RegularExpressions.LOCALE_WITH_DASH)]
-        public string? Locale { get; }
+        public string? Locale { get; } = locale;
 
         /// <summary>
         /// Does support plural?

@@ -131,7 +131,7 @@ namespace wan24.Core
             if (!context.EnsureValidParameterCount(Enumerable.Range(2, 10).ToArray())) return context.Value;
             int index;
             string[] items = context.Param.AsSpan(1).ToArray();
-            if (context.Param[0].StartsWith("$"))
+            if (context.Param[0].StartsWith('$'))
             {
                 if (!context.TryGetData(context.Param[0], out string? value)) return context.Value;
                 index = int.Parse(value);
@@ -145,10 +145,10 @@ namespace wan24.Core
                 context.Error = $"Item index #{index} is out of range (0..{items.Length - 1})";
                 return context.Value;
             }
-            if (items[0].StartsWith("$"))
+            if (items[0].StartsWith('$'))
             {
                 if (!context.TryGetData(items[0], out string? value)) return context.Value;
-                items = value.Split('|').Concat(items.Skip(1)).ToArray();
+                items = [.. value.Split('|'), .. items.Skip(1)];
             }
             if (index >= items.Length)
             {
@@ -231,7 +231,7 @@ namespace wan24.Core
         public static string Parser_Concat(StringParserContext context)
         {
             if (!context.EnsureValidParameterCount(Enumerable.Range(2, 10).ToArray())) return context.Value;
-            string[] values = context.Param.ToArray();
+            string[] values = [.. context.Param];
             string? str;
             for (int i = 0, len = values.Length; i < len; i++)
             {
@@ -252,7 +252,7 @@ namespace wan24.Core
             if (!context.EnsureValidParameterCount(Enumerable.Range(3, 10).ToArray())) return context.Value;
             string? value = context.Param[0];
             if (value.Length != 1 && !context.TryGetData(value, out value)) return context.Value;
-            string[] values = context.Param[1..].ToArray();
+            string[] values = [.. context.Param[1..]];
             string? str;
             for (int i = 0, len = values.Length; i < len; i++)
             {
@@ -379,7 +379,7 @@ namespace wan24.Core
         {
             if (!context.EnsureValidParameterCount(Enumerable.Range(0, 10).ToArray())) return context.Value;
             string? value;
-            string[] values = context.Param.ToArray();
+            string[] values = [.. context.Param];
             for (int i = 0, len = values.Length; i < len; i++)
             {
                 value = values[i];
@@ -419,7 +419,7 @@ namespace wan24.Core
                 context.Error = $"Invalid index #{index}";
                 return context.Value;
             }
-            if (!context.Param[1].StartsWith("$"))
+            if (!context.Param[1].StartsWith('$'))
             {
                 context.Error = "Parameter 2 must be a parser data variable name";
                 return context.Value;
@@ -430,11 +430,11 @@ namespace wan24.Core
             string[] values = value.Split('|');
             if (index == 0)
             {
-                values = new string[] { context.Value }.Concat(values).ToArray();
+                values = [context.Value, .. values];
             }
             else if (index >= values.Length)
             {
-                values = values.Append(value).ToArray();
+                values = [.. values, value];
             }
             else
             {
@@ -496,7 +496,7 @@ namespace wan24.Core
         {
             if (!context.EnsureValidParameterCount(1)) return context.Value;
             string? value = context.Param[0];
-            if (!value.StartsWith("$"))
+            if (!value.StartsWith('$'))
             {
                 context.Error = "Parameter must be a parser data variable name";
                 return context.Value;
@@ -578,7 +578,7 @@ namespace wan24.Core
         public static string Parser_Split(StringParserContext context)
         {
             if (!context.EnsureValidParameterCount(1)) return context.Value;
-            if (context.Param[0].StartsWith("$"))
+            if (context.Param[0].StartsWith('$'))
             {
                 context.Error = "No variable name allowed";
                 return context.Value;

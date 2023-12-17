@@ -14,7 +14,7 @@ namespace wan24.Core
         /// <summary>
         /// Sub-progresses
         /// </summary>
-        private readonly HashSet<ProcessingProgress> _SubProgress = new();
+        private readonly HashSet<ProcessingProgress> _SubProgress = [];
         /// <summary>
         /// Cancellation
         /// </summary>
@@ -87,10 +87,10 @@ namespace wan24.Core
         {
             get
             {
-                if (!EnsureUndisposed(allowDisposing: false, throwException: false)) return new();
+                if (!EnsureUndisposed(allowDisposing: false, throwException: false)) return [];
                 using SemaphoreSyncContext ssc = Sync.SyncContext();
-                if (_Total != 0) return new() { this };
-                List<ProcessingProgress> res = new();
+                if (_Total != 0) return [this];
+                List<ProcessingProgress> res = [];
                 foreach (ProcessingProgress progress in _SubProgress)
                     if (progress._Total != 0)
                     {
@@ -130,7 +130,7 @@ namespace wan24.Core
                 using (SemaphoreSyncContext ssc = Sync.SyncContext())
                 {
                     if (IsDone || IsCanceled || _SubProgress.Count != 0) throw new InvalidOperationException();
-                    if (value < 1) throw new ArgumentOutOfRangeException(nameof(value));
+                    ArgumentOutOfRangeException.ThrowIfLessThan(value, 1);
                     if (value == _Total) return;
                     _Total = value;
                     changed = UpdateProgress();
@@ -194,7 +194,7 @@ namespace wan24.Core
             using (SemaphoreSyncContext ssc = Sync.SyncContext())
             {
                 if (IsDone || IsCanceled || _Total < 1) throw new InvalidOperationException();
-                if (addCurrent < 1) throw new ArgumentOutOfRangeException(nameof(addCurrent));
+                ArgumentOutOfRangeException.ThrowIfLessThan(addCurrent, 1);
                 Current += addCurrent;
                 changed = UpdateProgress();
             }
@@ -243,7 +243,7 @@ namespace wan24.Core
                 if (IsCanceled) throw new InvalidOperationException();
                 IsCanceled = true;
                 Cancellation.Cancel();
-                subProgress = _SubProgress.ToArray();
+                subProgress = [.. _SubProgress];
             }
             foreach (ProcessingProgress progress in subProgress) progress.Cancel();
             RaiseOnDone();
@@ -296,7 +296,7 @@ namespace wan24.Core
         protected override void Dispose(bool disposing)
         {
             ProcessingProgress[] subProgress;
-            using (SemaphoreSyncContext ssc = Sync.SyncContext()) subProgress = _SubProgress.ToArray();
+            using (SemaphoreSyncContext ssc = Sync.SyncContext()) subProgress = [.. _SubProgress];
             foreach (ProcessingProgress progress in subProgress) RemoveSubProgressInt(progress);
             Info?.Dispose();
             Info = null;

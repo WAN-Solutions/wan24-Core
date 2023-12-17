@@ -15,22 +15,22 @@ namespace wan24.Core
         /// <summary>
         /// LAN sub-nets
         /// </summary>
-        public static readonly IpSubNets LAN = new(new IpSubNet[]
-        {
+        public static readonly IpSubNets LAN = new(
+        [
             new("10.0.0.0/8"),
             new("172.16.0.0/12"),
             new("192.168.0.0/16"),
             new("fd00::/8")
-        }, isLoopBack: false, isLan: true);
+        ], isLoopBack: false, isLan: true);
 
         /// <summary>
         /// Loopback sub-nets
         /// </summary>
-        public static readonly IpSubNets LoopBack = new(new IpSubNet[]
-        {
+        public static readonly IpSubNets LoopBack = new(
+        [
             IpSubNet.LoopbackIPv4,
             IpSubNet.LoopbackIPv6
-        }, isLoopBack: true, isLan: false);
+        ], isLoopBack: true, isLan: false);
 
         /// <summary>
         /// Get all (real) online ethernet adapters
@@ -402,10 +402,10 @@ namespace wan24.Core
         {
             if (ip.AddressFamily != AddressFamily.InterNetwork) throw new ArgumentException("An IPv4 IP address is required", nameof(ip));
             if (mask.AddressFamily != AddressFamily.InterNetwork) throw new ArgumentException("An IPv4 IP address is required", nameof(mask));
-            uint ipAddr = BinaryPrimitives.ReadUInt32BigEndian(ip.GetAddressBytes()),
-                maskAddr = BinaryPrimitives.ReadUInt32BigEndian(mask.GetAddressBytes());
+            uint ipAddress = BinaryPrimitives.ReadUInt32BigEndian(ip.GetAddressBytes()),
+                maskAddress = BinaryPrimitives.ReadUInt32BigEndian(mask.GetAddressBytes());
             RentedArrayStruct<byte> buffer = new(len: sizeof(uint));
-            BinaryPrimitives.WriteUInt32BigEndian(buffer.Span, (ipAddr & maskAddr) | ~maskAddr);
+            BinaryPrimitives.WriteUInt32BigEndian(buffer.Span, (ipAddress & maskAddress) | ~maskAddress);
             return new(buffer.Span);
         }
 
@@ -418,7 +418,7 @@ namespace wan24.Core
         public static IPAddress GetBroadcastAddress(this UnicastIPAddressInformation ip) => GetBroadcastAddress(ip.Address, ip.IPv4Mask);
 
         /// <summary>
-        /// Get the unicast IP addres informations
+        /// Get the unicast IP address information
         /// </summary>
         /// <param name="ip">IP address</param>
         /// <returns>Unicast IP address information</returns>

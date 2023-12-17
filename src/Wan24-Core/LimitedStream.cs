@@ -1,55 +1,47 @@
 ﻿namespace wan24.Core
 {
     /// <summary>
-    /// Limited stream limits reading/writing/seeking (which can't be overridden from an iheriting or wrapped stream)
+    /// Limited stream limits reading/writing/seeking (which can't be overridden from an inheriting or wrapped stream)
     /// </summary>
-    public class LimitedStream : LimitedStream<Stream>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="baseStream">Base stream</param>
+    /// <param name="canRead">Can read?</param>
+    /// <param name="canWrite">Can write?</param>
+    /// <param name="canSeek">Can seek?</param>
+    /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
+    public class LimitedStream(in Stream baseStream, in bool canRead, in bool canWrite, in bool canSeek, in bool leaveOpen = false)
+        : LimitedStream<Stream>(baseStream, canRead, canWrite, canSeek, leaveOpen)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="baseStream">Base stream</param>
-        /// <param name="canRead">Can read?</param>
-        /// <param name="canWrite">Can write?</param>
-        /// <param name="canSeek">Can seek?</param>
-        /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public LimitedStream(in Stream baseStream, in bool canRead, in bool canWrite, in bool canSeek, in bool leaveOpen = false)
-            : base(baseStream, canRead, canWrite, canSeek, leaveOpen) { }
     }
 
     /// <summary>
-    /// Limited stream limits reading/writing/seeking (which can't be overridden from an iheriting or wrapped stream)
+    /// Limited stream limits reading/writing/seeking (which can't be overridden from an inheriting or wrapped stream)
     /// </summary>
     /// <typeparam name="T">Wrapped stream type</typeparam>
-    public class LimitedStream<T> : WrapperStream<T> where T:Stream
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="baseStream">Base stream</param>
+    /// <param name="canRead">Can read?</param>
+    /// <param name="canWrite">Can write?</param>
+    /// <param name="canSeek">Can seek?</param>
+    /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
+    public class LimitedStream<T>(in T baseStream, in bool canRead, in bool canWrite, in bool canSeek, in bool leaveOpen = false) : WrapperStream<T>(baseStream, leaveOpen) where T:Stream
     {
         /// <summary>
         /// Can read?
         /// </summary>
-        protected readonly bool _CanRead;
+        protected readonly bool _CanRead = canRead;
         /// <summary>
         /// Can write?
         /// </summary>
-        protected readonly bool _CanWrite;
+        protected readonly bool _CanWrite = canWrite;
         /// <summary>
         /// Can seek?
         /// </summary>
-        protected readonly bool _CanSeek;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="baseStream">Base stream</param>
-        /// <param name="canRead">Can read?</param>
-        /// <param name="canWrite">Can write?</param>
-        /// <param name="canSeek">Can seek?</param>
-        /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public LimitedStream(in T baseStream, in bool canRead, in bool canWrite, in bool canSeek, in bool leaveOpen = false) : base(baseStream, leaveOpen)
-        {
-            _CanRead = canRead;
-            _CanWrite = canWrite;
-            _CanSeek = canSeek;
-        }
+        protected readonly bool _CanSeek = canSeek;
 
         /// <inheritdoc/>
         public sealed override bool CanRead => _CanRead;

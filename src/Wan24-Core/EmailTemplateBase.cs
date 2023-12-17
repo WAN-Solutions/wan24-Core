@@ -31,7 +31,7 @@ namespace wan24.Core
         /// <summary>
         /// Attachments
         /// </summary>
-        protected readonly HashSet<IEmailAttachment> _Attachments = new();
+        protected readonly HashSet<IEmailAttachment> _Attachments = [];
 
         /// <summary>
         /// Constructor

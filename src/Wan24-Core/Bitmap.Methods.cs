@@ -15,11 +15,11 @@ namespace wan24.Core
 #endif
         public virtual void SetSize(in int count)
         {
-            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            ArgumentOutOfRangeException.ThrowIfNegative(count);
             if (count == _Map.LongLength) return;
             lock (SyncObject)
             {
-                byte[] map = count == 0 ? Array.Empty<byte>() : new byte[count];
+                byte[] map = count == 0 ? [] : new byte[count];
                 if (count > 0) _Map.AsSpan(0, Math.Min(_Map.Length, map.Length)).CopyTo(map.AsSpan());
                 _Map = map;
                 if (_Map.Length < GetByteCount(BitCount)) BitCount = _Map.Length << 3;

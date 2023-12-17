@@ -5,15 +5,13 @@ namespace wan24.Core
     /// <summary>
     /// Logger (adopts to <see cref="Logging"/> - NEVER use this as <see cref="Logging.Logger"/>!)
     /// </summary>
-    public class Logger : LoggerBase
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="level">Log level</param>
+    /// <param name="next">Next logger which should receive the message</param>
+    public class Logger(in LogLevel level = Logging.DEFAULT_LOGLEVEL, in ILogger? next = null) : LoggerBase(level, next)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="level">Log level</param>
-        /// <param name="next">Next logger which should receive the message</param>
-        public Logger(in LogLevel level = Logging.DEFAULT_LOGLEVEL, in ILogger? next = null) :base(level, next) { }
-
         /// <inheritdoc/>
         protected override void LogInt<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
         {

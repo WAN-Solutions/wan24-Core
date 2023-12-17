@@ -22,7 +22,7 @@ namespace wan24.Core
         /// <param name="timeout">Timeout in ms</param>
         protected EventThrottle(in int timeout) : base()
         {
-            if (timeout < 1) throw new ArgumentOutOfRangeException(nameof(timeout));
+            ArgumentOutOfRangeException.ThrowIfLessThan(timeout, 1);
             _Timeout = timeout;
             Timer = new()
             {
@@ -61,7 +61,7 @@ namespace wan24.Core
             get => _Timeout;
             set
             {
-                if (value < 1) throw new ArgumentOutOfRangeException(nameof(value));
+                ArgumentOutOfRangeException.ThrowIfLessThan(value, 1);
                 _Timeout = value;
                 bool restart = Timer.Enabled;
                 if (restart) Timer.Stop();
@@ -76,7 +76,7 @@ namespace wan24.Core
         public DateTime LastRaised { get; protected set; } = DateTime.MinValue;
 
         /// <summary>
-        /// First raised time during throttling (or <see cref="DateTime.MinValue"/> when not raised during throttline)
+        /// First raised time during throttling (or <see cref="DateTime.MinValue"/> when not raised during throttling)
         /// </summary>
         public DateTime RaisedTime { get; protected set; } = DateTime.MinValue;
 

@@ -41,7 +41,7 @@ namespace wan24.Core
         /// <param name="clean">Clean the rented array?</param>
         public RentedArrayRefStruct(in int len, in ArrayPool<T>? pool = null, in bool clean = true)
         {
-            if (len < 1) throw new ArgumentOutOfRangeException(nameof(len));
+            ArgumentOutOfRangeException.ThrowIfLessThan(len, 1);
             Pool = pool ?? ArrayPool<T>.Shared;
             Array = clean ? Pool.RentClean(len) : Pool.Rent(len);
             Span = Array.AsSpan(0, len);

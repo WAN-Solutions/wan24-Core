@@ -4,14 +4,13 @@
     /// Synchronized stream (synchronizes reading/writing/seeking operations; the base stream should implement each single asynchronous reading/writing method! Any asynchronous 
     /// reading/writing method which adopts or calls to another asynchronous reading/writing or any seeking method will cause a dead-lock!)
     /// </summary>
-    public class SynchronizedStream : SynchronizedStream<Stream>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="baseStream">Base stream</param>
+    /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
+    public class SynchronizedStream(in Stream baseStream, in bool leaveOpen = false) : SynchronizedStream<Stream>(baseStream, leaveOpen)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="baseStream">Base stream</param>
-        /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public SynchronizedStream(in Stream baseStream, in bool leaveOpen = false) : base(baseStream, leaveOpen) { }
     }
 
     /// <summary>
@@ -19,14 +18,13 @@
     /// reading/writing method which adopts or calls to another asynchronous reading/writing or any seeking method will cause a dead-lock!)
     /// </summary>
     /// <typeparam name="T">Wrapped stream type</typeparam>
-    public class SynchronizedStream<T> : WrapperStream<T> where T : Stream
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="baseStream">Base stream</param>
+    /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
+    public class SynchronizedStream<T>(in T baseStream, in bool leaveOpen = false) : WrapperStream<T>(baseStream, leaveOpen) where T : Stream
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="baseStream">Base stream</param>
-        /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public SynchronizedStream(in T baseStream, in bool leaveOpen = false) : base(baseStream, leaveOpen) { }
 
         /// <summary>
         /// I/O synchronization
@@ -92,6 +90,7 @@
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
             return BaseStream.Read(buffer);
         }
+
         /// <summary>
         /// Read from a byte offset
         /// </summary>

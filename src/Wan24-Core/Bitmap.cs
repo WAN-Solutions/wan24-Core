@@ -20,10 +20,10 @@ namespace wan24.Core
         /// <param name="bitCount">Initial bit count</param>
         public Bitmap(in long initialSize = ushort.MaxValue, in int increaseSize = ushort.MaxValue, in int bitCount = 0)
         {
-            if (initialSize < 0) throw new ArgumentOutOfRangeException(nameof(initialSize));
-            if (increaseSize < 1) throw new ArgumentOutOfRangeException(nameof(increaseSize));
-            if (GetByteCount(bitCount) > initialSize) throw new ArgumentOutOfRangeException(nameof(bitCount));
-            _Map = initialSize == 0 ? Array.Empty<byte>() : new byte[initialSize];
+            ArgumentOutOfRangeException.ThrowIfNegative(initialSize);
+            ArgumentOutOfRangeException.ThrowIfLessThan(increaseSize, 1);
+            ArgumentOutOfRangeException.ThrowIfLessThan(initialSize, GetByteCount(bitCount));
+            _Map = initialSize == 0 ? [] : new byte[initialSize];
             IncreaseSize = increaseSize;
             BitCount = bitCount;
         }
@@ -36,7 +36,7 @@ namespace wan24.Core
         /// <param name="bitCount">Initial bit count (if <see langword="null"/>, the initial bit count will be the number of bits in the given initial bitmap)</param>
         public Bitmap(in byte[] bitmap, in int increaseSize = ushort.MaxValue, in int? bitCount = null)
         {
-            if (increaseSize < 1) throw new ArgumentOutOfRangeException(nameof(increaseSize));
+            ArgumentOutOfRangeException.ThrowIfLessThan(increaseSize, 1);
             if (bitCount is not null && GetByteCount(bitCount.Value) > bitmap.LongLength) throw new ArgumentOutOfRangeException(nameof(bitCount));
             _Map = bitmap;
             IncreaseSize = increaseSize;
@@ -173,7 +173,7 @@ namespace wan24.Core
             {
                 long bitCount = BitCount;
                 if (bitCount > int.MaxValue) throw new InvalidOperationException("The bitmap is too huge for getting a key collection");
-                return bitCount == 0 ? new List<long>() : Enumerable.Range(0, (int)bitCount).Cast<long>().ToList();
+                return bitCount == 0 ? [] : Enumerable.Range(0, (int)bitCount).Select(n => (long)n).ToList();
             }
         }
     }

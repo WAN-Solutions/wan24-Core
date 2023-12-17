@@ -3,41 +3,33 @@
     /// <summary>
     /// Status
     /// </summary>
-    public sealed class Status
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="name">Name</param>
+    /// <param name="state">State</param>
+    /// <param name="description">Description</param>
+    /// <param name="group">Group name</param>
+    public sealed class Status(in string name, in object? state, in string? description = null, in string? group = null)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="name">Name</param>
-        /// <param name="state">State</param>
-        /// <param name="description">Description</param>
-        /// <param name="group">Group name</param>
-        public Status(in string name, in object? state, in string? description = null, in string? group = null)
-        {
-            Name = name;
-            Group = group;
-            State = state;
-            Description = description;
-        }
-
         /// <summary>
         /// Name
         /// </summary>
-        public string Name { get; }
+        public string Name { get; } = name;
 
         /// <summary>
         /// Group
         /// </summary>
-        public string? Group { get; }
+        public string? Group { get; } = group;
 
         /// <summary>
         /// State
         /// </summary>
-        public object? State { get; }
+        public object? State { get; } = state;
 
         /// <summary>
         /// Description
         /// </summary>
-        public string? Description { get; }
+        public string? Description { get; } = description;
     }
 }

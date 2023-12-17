@@ -7,17 +7,16 @@ namespace wan24.Core
     /// <summary>
     /// Secure char array (will delete its contents when disposing)
     /// </summary>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="array">Array</param>
 #if NO_UNSAFE
     public sealed class SecureCharArray : SecureArrayBase<char>
 #else
-    public sealed unsafe class SecureCharArray : SecureArrayBase<char>
+    public sealed unsafe class SecureCharArray(in char[] array) : SecureArrayBase<char>(array)
 #endif
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="array">Array</param>
-        public SecureCharArray(in char[] array) : base(array) { }
 
         /// <summary>
         /// Constructor

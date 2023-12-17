@@ -83,31 +83,28 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         public override object? GetService(Type serviceType)
-        {
-            if (DisposableAdapter.IsDisposing) throw new ObjectDisposedException(GetType().ToString());
-            return GetDiObject(serviceType, out object? res) ? res : null;
-        }
+            => DisposableAdapter.IsDisposing
+                ? throw new ObjectDisposedException(GetType().ToString())
+                : GetDiObject(serviceType, out object? res) ? res : null;
 
         /// <inheritdoc/>
         public override async Task<object?> GetServiceAsync(Type serviceType, CancellationToken cancellationToken = default)
-        {
-            if (DisposableAdapter.IsDisposing) throw new ObjectDisposedException(GetType().ToString());
-            return (await GetDiObjectAsync(serviceType, serviceProvider: null, cancellationToken).DynamicContext()).Object;
-        }
+            => DisposableAdapter.IsDisposing
+                ? throw new ObjectDisposedException(GetType().ToString())
+                : (await GetDiObjectAsync(serviceType, serviceProvider: null, cancellationToken).DynamicContext()).Object;
 
         /// <inheritdoc/>
         public override bool IsService(Type serviceType)
-        {
-            if (DisposableAdapter.IsDisposing) throw new ObjectDisposedException(GetType().ToString());
-            return ((ServiceProvider as IServiceProviderIsService)?.IsService(serviceType) ?? false) ||
+            => DisposableAdapter.IsDisposing
+                ? throw new ObjectDisposedException(GetType().ToString())
+                : ((ServiceProvider as IServiceProviderIsService)?.IsService(serviceType) ?? false) ||
                 GetFactory(serviceType) is not null ||
                 GetAsyncFactory(serviceType) is not null;
-        }
 
         /// <inheritdoc/>
         new public void AddNotCachedTypes(params Type[] types)
         {
-            if (DisposableAdapter.IsDisposing) throw new ObjectDisposedException(GetType().ToString());
+            ObjectDisposedException.ThrowIf(DisposableAdapter.IsDisposing, this);
             using SemaphoreSyncContext ssc = Sync.SyncContext();
             foreach (Type type in types)
             {
@@ -119,7 +116,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         new public async Task AddNotCachedTypesAsync(CancellationToken cancellationToken = default, params Type[] types)
         {
-            if (DisposableAdapter.IsDisposing) throw new ObjectDisposedException(GetType().ToString());
+            ObjectDisposedException.ThrowIf(DisposableAdapter.IsDisposing, this);
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             foreach (Type type in types)
             {
@@ -131,7 +128,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         new public T AddDiObject<T>(T obj)
         {
-            if (DisposableAdapter.IsDisposing) throw new ObjectDisposedException(GetType().ToString());
+            ObjectDisposedException.ThrowIf(DisposableAdapter.IsDisposing, this);
             Contract.Assert(obj is not null);
             using SemaphoreSyncContext ssc = Sync.SyncContext();
             Type type = obj.GetType();
@@ -143,7 +140,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         new public async Task<T> AddDiObjectAsync<T>(T obj, CancellationToken cancellationToken = default)
         {
-            if (DisposableAdapter.IsDisposing) throw new ObjectDisposedException(GetType().ToString());
+            ObjectDisposedException.ThrowIf(DisposableAdapter.IsDisposing, this);
             Contract.Assert(obj is not null);
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             Type type = obj.GetType();
@@ -155,7 +152,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         new public object? RemoveDiObject(int type)
         {
-            if (DisposableAdapter.IsDisposing) throw new ObjectDisposedException(GetType().ToString());
+            ObjectDisposedException.ThrowIf(DisposableAdapter.IsDisposing, this);
             using SemaphoreSyncContext ssc = Sync.SyncContext();
             ScopeObjects.TryGetValue(type, out object? res);
             object? baseObj = DiHelper.RemoveDiObject(type);
@@ -174,7 +171,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         new public async Task<object?> RemoveDiObjectAsync(int type, CancellationToken cancellationToken = default)
         {
-            if (DisposableAdapter.IsDisposing) throw new ObjectDisposedException(GetType().ToString());
+            ObjectDisposedException.ThrowIf(DisposableAdapter.IsDisposing, this);
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             ScopeObjects.TryGetValue(type, out object? res);
             object? baseObj = await DiHelper.RemoveDiObjectAsync(type, cancellationToken).DynamicContext();
@@ -195,27 +192,27 @@ namespace wan24.Core
         /// <inheritdoc/>
         new public void ClearObjectCache()
         {
-            if (DisposableAdapter.IsDisposing) throw new ObjectDisposedException(GetType().ToString());
+            ObjectDisposedException.ThrowIf(DisposableAdapter.IsDisposing, this);
             using SemaphoreSyncContext ssc = Sync.SyncContext();
-            object[] objs = ScopeObjects.Values.ToArray();
+            object[] objects = [.. ScopeObjects.Values];
             ScopeObjects.Clear();
-            objs.TryDisposeAll();
+            objects.TryDisposeAll();
         }
 
         /// <inheritdoc/>
         new public async Task ClearObjectCacheAsync(CancellationToken cancellationToken = default)
         {
-            if (DisposableAdapter.IsDisposing) throw new ObjectDisposedException(GetType().ToString());
+            ObjectDisposedException.ThrowIf(DisposableAdapter.IsDisposing, this);
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
-            object[] objs = ScopeObjects.Values.ToArray();
+            object[] objects = [.. ScopeObjects.Values];
             ScopeObjects.Clear();
-            await objs.TryDisposeAllAsync().DynamicContext();
+            await objects.TryDisposeAllAsync().DynamicContext();
         }
 
         /// <inheritdoc/>
         new public bool GetDiObject(in Type type, [NotNullWhen(returnValue: true)] out object? obj, IServiceProvider? serviceProvider = null)
         {
-            if (DisposableAdapter.IsDisposing) throw new ObjectDisposedException(GetType().ToString());
+            ObjectDisposedException.ThrowIf(DisposableAdapter.IsDisposing, this);
             int typeHashCode = type.GetHashCode();
             if (ScopeObjects.TryGetValue(typeHashCode, out obj)) return true;
             obj = serviceProvider?.GetService(type) ?? ServiceProvider?.GetService(type);
@@ -272,21 +269,19 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         new public Di_Delegate? GetFactory(Type type)
-        {
-            if (DisposableAdapter.IsDisposing) throw new ObjectDisposedException(GetType().ToString());
-            return GetFactoryInt(type) is Di_Delegate res
-                ? res
-                : DiHelper.GetFactory(type);
-        }
+            => DisposableAdapter.IsDisposing
+                ? throw new ObjectDisposedException(GetType().ToString())
+                : GetFactoryInt(type) is Di_Delegate res
+                    ? res
+                    : DiHelper.GetFactory(type);
 
         /// <inheritdoc/>
         new public DiAsync_Delegate? GetAsyncFactory(Type type)
-        {
-            if (DisposableAdapter.IsDisposing) throw new ObjectDisposedException(GetType().ToString());
-            return GetAsyncFactoryInt(type) is DiAsync_Delegate res
-                ? res
-                : DiHelper.GetAsyncFactory(type);
-        }
+            => DisposableAdapter.IsDisposing
+                ? throw new ObjectDisposedException(GetType().ToString())
+                : GetAsyncFactoryInt(type) is DiAsync_Delegate res
+                    ? res
+                    : DiHelper.GetAsyncFactory(type);
 
         /// <inheritdoc/>
         public void Dispose()
@@ -309,7 +304,7 @@ namespace wan24.Core
         /// <returns>Factory</returns>
         protected virtual Di_Delegate? GetFactoryInt(Type type)
         {
-            if (DisposableAdapter.IsDisposing) throw new ObjectDisposedException(GetType().ToString());
+            ObjectDisposedException.ThrowIf(DisposableAdapter.IsDisposing, this);
             if (ScopeObjectFactories.TryGetValue(type, out Di_Delegate? res)) return res;
             res = (from kvp in ScopeObjectFactories
                    where type.IsAssignableFrom(kvp.Key)
@@ -331,7 +326,7 @@ namespace wan24.Core
         /// <returns>Factory</returns>
         protected virtual DiAsync_Delegate? GetAsyncFactoryInt(Type type)
         {
-            if (DisposableAdapter.IsDisposing) throw new ObjectDisposedException(GetType().ToString());
+            ObjectDisposedException.ThrowIf(DisposableAdapter.IsDisposing, this);
             if (ScopeAsyncObjectFactories.TryGetValue(type, out DiAsync_Delegate? res)) return res;
             res = (from kvp in ScopeAsyncObjectFactories
                    where type.IsAssignableFrom(kvp.Key)

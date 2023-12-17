@@ -3,30 +3,24 @@
     /// <summary>
     /// Stored object
     /// </summary>
-    public sealed class StoredObject<tKey, tObj> : DisposableBase
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="storage">Storage</param>
+    /// <param name="obj">Object</param>
+    public sealed class StoredObject<tKey, tObj>(in IObjectStorage<tKey, tObj> storage, in tObj obj) : DisposableBase(asyncDisposing: false)
         where tKey : notnull
         where tObj : class, IStoredObject<tKey>
     {
         /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="storage">Storage</param>
-        /// <param name="obj">Object</param>
-        public StoredObject(in IObjectStorage<tKey, tObj> storage, in tObj obj) : base(asyncDisposing: false)
-        {
-            Storage = storage;
-            Object = obj;
-        }
-
-        /// <summary>
         /// Storage
         /// </summary>
-        public IObjectStorage<tKey, tObj> Storage { get; }
+        public IObjectStorage<tKey, tObj> Storage { get; } = storage;
 
         /// <summary>
         /// Object
         /// </summary>
-        public tObj Object { get; }
+        public tObj Object { get; } = obj;
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing) => Storage.Release(Object);

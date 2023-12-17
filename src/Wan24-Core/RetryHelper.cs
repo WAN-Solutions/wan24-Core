@@ -15,7 +15,7 @@
         /// <param name="delay">Delay between retries</param>
         /// <param name="retryOnError">Delegate to determine if to retry after an error</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Retry informations, which include the result</returns>
+        /// <returns>Retry information, which include the result</returns>
         public static RetryInfo<T> TryAction<T>(
             in Try_Delegate<T> action,
             in int maxNumberOfTries,
@@ -25,7 +25,7 @@
             in CancellationToken cancellationToken = default
             )
         {
-            if (maxNumberOfTries < 1) throw new ArgumentOutOfRangeException(nameof(maxNumberOfTries));
+            ArgumentOutOfRangeException.ThrowIfLessThan(maxNumberOfTries, 1);
             RetryInfo<T> res = new();
             DateTime started = res.Started;
             TimeSpan to = timeout ?? TimeSpan.Zero;
@@ -84,7 +84,7 @@
         /// <param name="delay">Delay between retries</param>
         /// <param name="retryOnError">Delegate to determine if to retry after an error</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Retry informations, which include the result</returns>
+        /// <returns>Retry information, which include the result</returns>
         public static RetryInfo<object> TryAction(
             in Try_Delegate action,
             in int maxNumberOfTries,
@@ -94,7 +94,7 @@
             in CancellationToken cancellationToken = default
             )
         {
-            if (maxNumberOfTries < 1) throw new ArgumentOutOfRangeException(nameof(maxNumberOfTries));
+            ArgumentOutOfRangeException.ThrowIfLessThan(maxNumberOfTries, 1);
             RetryInfo<object> res = new();
             DateTime started = res.Started;
             TimeSpan to = timeout ?? TimeSpan.Zero;
@@ -154,7 +154,7 @@
         /// <param name="delay">Delay between retries</param>
         /// <param name="retryOnError">Delegate to determine if to retry after an error</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Retry informations, which include the result</returns>
+        /// <returns>Retry information, which include the result</returns>
         public static async Task<RetryInfo<T>> TryActionAsync<T>(
             TryAsync_Delegate<T> action, 
             int maxNumberOfTries, 
@@ -164,7 +164,7 @@
             CancellationToken cancellationToken = default
             )
         {
-            if (maxNumberOfTries < 1) throw new ArgumentOutOfRangeException(nameof(maxNumberOfTries));
+            ArgumentOutOfRangeException.ThrowIfLessThan(maxNumberOfTries, 1);
             RetryInfo<T> res = new();
             DateTime started = res.Started;
             TimeSpan to = timeout ?? TimeSpan.Zero;
@@ -225,7 +225,7 @@
         /// <param name="delay">Delay between retries</param>
         /// <param name="retryOnError">Delegate to determine if to retry after an error</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Retry informations, which include the result</returns>
+        /// <returns>Retry information, which include the result</returns>
         public static async Task<RetryInfo<object>> TryActionAsync(
             TryAsync_Delegate action,
             int maxNumberOfTries,
@@ -235,7 +235,7 @@
             CancellationToken cancellationToken = default
             )
         {
-            if (maxNumberOfTries < 1) throw new ArgumentOutOfRangeException(nameof(maxNumberOfTries));
+            ArgumentOutOfRangeException.ThrowIfLessThan(maxNumberOfTries, 1);
             RetryInfo<object> res = new();
             DateTime started = res.Started;
             TimeSpan to = timeout ?? TimeSpan.Zero;
@@ -342,7 +342,7 @@
         /// Finalize tries
         /// </summary>
         /// <typeparam name="T">Result type</typeparam>
-        /// <param name="info">Retry informations</param>
+        /// <param name="info">Retry information</param>
         /// <param name="currentTry">Current try number</param>
         private static void Finalize<T>(in RetryInfo<T> info, in int currentTry)
         {

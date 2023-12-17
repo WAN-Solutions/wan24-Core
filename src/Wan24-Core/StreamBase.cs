@@ -150,8 +150,7 @@ namespace wan24.Core
         {
             if (!IsDisposing && !IsClosed) return true;
             if (allowDisposing && !IsDisposed) return true;
-            if (throwException) throw new ObjectDisposedException(GetType().ToString());
-            return false;
+            return throwException ? throw new ObjectDisposedException(GetType().ToString()) : false;
         }
 
         /// <summary>
@@ -209,7 +208,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Ensure seekability
+        /// Ensure seek ability
         /// </summary>
         /// <exception cref="NotSupportedException">Not seekable</exception>
         [TargetedPatchingOptOut("Tiny method")]

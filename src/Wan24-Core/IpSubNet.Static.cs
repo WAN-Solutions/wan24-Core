@@ -59,6 +59,18 @@ namespace wan24.Core
         public static readonly IpSubNet ZeroV4 = new(0u, IPV4_BITS);
 
         /// <summary>
+        /// Cast as <see cref="IPNetwork"/>
+        /// </summary>
+        /// <param name="net">Sub-net</param>
+        public static implicit operator IPNetwork(in IpSubNet net) => net.AsIpNetwork;
+
+        /// <summary>
+        /// Cast from a <see cref="IPNetwork"/>
+        /// </summary>
+        /// <param name="net"><see cref="IPNetwork"/></param>
+        public static implicit operator IpSubNet(in IPNetwork net) => new(net.BaseAddress, net.PrefixLength);
+
+        /// <summary>
         /// Cast as IP address list
         /// </summary>
         /// <param name="net">Sub-net</param>

@@ -14,7 +14,7 @@ namespace wan24.Core
         /// <summary>
         /// Asynchronous chunk stream factory
         /// </summary>
-        protected readonly AsyncStreamactory_Delegate? AsyncChunkStreamFactory;
+        protected readonly AsyncStreamFactory_Delegate? AsyncChunkStreamFactory;
         /// <summary>
         /// Delete a chunk
         /// </summary>
@@ -34,7 +34,7 @@ namespace wan24.Core
         /// <summary>
         /// Modified chunk indexes
         /// </summary>
-        protected readonly HashSet<int> _ModifiedChunks = new();
+        protected readonly HashSet<int> _ModifiedChunks = [];
         /// <summary>
         /// Length in bytes
         /// </summary>
@@ -60,17 +60,17 @@ namespace wan24.Core
             in long chunkSize,
             in StreamFactory_Delegate? chunkStreamFactory,
             in DeleteChunk_Delegate? deleteChunk,
-            in AsyncStreamactory_Delegate? asyncChunkStreamFactory = null,
+            in AsyncStreamFactory_Delegate? asyncChunkStreamFactory = null,
             in AsyncDeleteChunk_Delegate? asyncDeleteChunk = null,
             in int numberOfChunks = 0,
             in long lastChunkLength = 0
             ) : base()
         {
-            if (chunkSize < 1) throw new ArgumentOutOfRangeException(nameof(chunkSize));
+            ArgumentOutOfRangeException.ThrowIfLessThan(chunkSize, 1);
             if (chunkStreamFactory is null && asyncChunkStreamFactory is null) throw new ArgumentNullException(nameof(chunkStreamFactory));
             if (deleteChunk is null && asyncDeleteChunk is null) throw new ArgumentNullException(nameof(deleteChunk));
-            if (numberOfChunks < 0) throw new ArgumentOutOfRangeException(nameof(numberOfChunks));
-            if (lastChunkLength < 0) throw new ArgumentOutOfRangeException(nameof(lastChunkLength));
+            ArgumentOutOfRangeException.ThrowIfNegative(numberOfChunks);
+            ArgumentOutOfRangeException.ThrowIfNegative(lastChunkLength);
             ChunkStreamFactory = chunkStreamFactory;
             AsyncChunkStreamFactory = asyncChunkStreamFactory;
             DeleteChunk = deleteChunk;
@@ -162,7 +162,7 @@ namespace wan24.Core
         protected Stream GetChunkStream(in int index)
         {
             EnsureUndisposed();
-            if (index < 0) throw new ArgumentOutOfRangeException(nameof(index));
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
             if (ChunkStreams.TryGetValue(index, out Stream? res)) return res;
             return ChunkStreams[index] = ChunkStreamFactory is null ? AsyncChunkStreamFactory!(this, index, default).Result : ChunkStreamFactory(this, index);
         }
@@ -176,7 +176,7 @@ namespace wan24.Core
         protected async Task<Stream> GetChunkStreamAsync(int index, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            if (index < 0) throw new ArgumentOutOfRangeException(nameof(index));
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
             if (ChunkStreams.TryGetValue(index, out Stream? res)) return res;
             return ChunkStreams[index] = ChunkStreamFactory is null
                 ? await AsyncChunkStreamFactory!(this, index, cancellationToken).DynamicContext()
@@ -246,7 +246,7 @@ namespace wan24.Core
         /// <param name="chunk">Chunk index</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Chunk stream</returns>
-        public delegate Task<Stream> AsyncStreamactory_Delegate(ChunkedStream stream, int chunk, CancellationToken cancellationToken);
+        public delegate Task<Stream> AsyncStreamFactory_Delegate(ChunkedStream stream, int chunk, CancellationToken cancellationToken);
         /// <summary>
         /// Delegate for deleting a chunk
         /// </summary>

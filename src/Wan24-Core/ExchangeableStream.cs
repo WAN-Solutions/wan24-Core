@@ -3,29 +3,26 @@
     /// <summary>
     /// Exchangeable stream
     /// </summary>
-    public class ExchangeableStream : ExchangeableStream<Stream>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="baseStream">Base stream</param>
+    /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
+    public class ExchangeableStream(Stream baseStream, bool leaveOpen = false) : ExchangeableStream<Stream>(baseStream, leaveOpen)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="baseStream">Base stream</param>
-        /// <param name="leavepen">Leave the base stream open when disposing?</param>
-        public ExchangeableStream(Stream baseStream, bool leavepen = false) : base(baseStream, leavepen) { }
     }
 
     /// <summary>
     /// Exchangeable stream
     /// </summary>
     /// <typeparam name="T">Base stream type</typeparam>
-    public class ExchangeableStream<T> : WrapperStream<T> where T : Stream
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="baseStream">Base stream</param>
+    /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
+    public class ExchangeableStream<T>(T baseStream, bool leaveOpen = false) : WrapperStream<T>(baseStream, leaveOpen) where T : Stream
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="baseStream">Base stream</param>
-        /// <param name="leavepen">Leave the base stream open when disposing?</param>
-        public ExchangeableStream(T baseStream, bool leavepen = false) : base(baseStream, leavepen) { }
-
         /// <summary>
         /// Set a new base stream
         /// </summary>

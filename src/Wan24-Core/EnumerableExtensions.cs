@@ -29,7 +29,7 @@ namespace wan24.Core
         /// <returns>Chunks</returns>
         public static IEnumerable<T[]> ChunkEnum<T>(this IEnumerable<T> enumerable, int chunkSize)
         {
-            if (chunkSize < 1) throw new ArgumentOutOfRangeException(nameof(chunkSize));
+            ArgumentOutOfRangeException.ThrowIfLessThan(chunkSize, 1);
             List<T> res = new(chunkSize);
             foreach(T item in enumerable)
             {
@@ -50,18 +50,18 @@ namespace wan24.Core
         /// <returns>All contained?</returns>
         public static bool ContainsAll<T>(this IEnumerable<T> enumerable, params T[] values)
         {
-            int vlen = values.Length;
-            if (vlen == 0) return true;
+            int valuesLen = values.Length;
+            if (valuesLen == 0) return true;
             T[] arr = enumerable.ToArray();
             int len = arr.Length;
-            if (len < vlen) return false;
-            bool[] found = new bool[vlen];
+            if (len < valuesLen) return false;
+            bool[] found = new bool[valuesLen];
             for (int i = 0, index; i < len; i++)
             {
                 index = values.IndexOf(arr[i]);
                 if (index != -1) found[index] = true;
             }
-            for (int i = 0; i < vlen; i++) if (!found[i]) return false;
+            for (int i = 0; i < valuesLen; i++) if (!found[i]) return false;
             return true;
         }
 

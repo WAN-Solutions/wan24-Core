@@ -52,10 +52,10 @@ namespace wan24.Core
                 await proc.WaitForExitAsync(cancellationToken).DynamicContext();
                 cancellationToken.ThrowIfCancellationRequested();
                 if (proc.ExitCode != 0) throw new IOException($"Process did exit with an exit code != 0 (exit code is #{proc.ExitCode})");
-                if (!returnStdOut) return Array.Empty<byte>();
+                if (!returnStdOut) return [];
                 using MemoryPoolStream ms = new();
-                using StreamReader stdout = proc.StandardOutput;
-                await stdout.BaseStream.CopyToAsync(ms, cancellationToken).DynamicContext();
+                using StreamReader stdOut = proc.StandardOutput;
+                await stdOut.BaseStream.CopyToAsync(ms, cancellationToken).DynamicContext();
                 return ms.ToArray();
             }
             catch

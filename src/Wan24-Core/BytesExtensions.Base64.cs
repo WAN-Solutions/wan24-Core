@@ -94,7 +94,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">base64 UTF-8 bytes</param>
         /// <param name="buffer">Buffer</param>
-        /// <returns>Number ofdecoded bytes written to <c>buffer</c></returns>
+        /// <returns>Number of decoded bytes written to <c>buffer</c></returns>
         public static int DecodeBase64(this byte[] bytes, byte[] buffer) => DecodeBase64((ReadOnlySpan<byte>)bytes, buffer);
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">base64 UTF-8 bytes</param>
         /// <param name="buffer">Buffer</param>
-        /// <returns>Number ofdecoded bytes written to <c>buffer</c></returns>
+        /// <returns>Number of decoded bytes written to <c>buffer</c></returns>
         public static int DecodeBase64(this Span<byte> bytes, Span<byte> buffer) => DecodeBase64((ReadOnlySpan<byte>)bytes, buffer);
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">base64 UTF-8 bytes</param>
         /// <param name="buffer">Buffer</param>
-        /// <returns>Number ofdecoded bytes written to <c>buffer</c></returns>
+        /// <returns>Number of decoded bytes written to <c>buffer</c></returns>
         public static int DecodeBase64(this ReadOnlySpan<byte> bytes, Span<byte> buffer)
         {
             OperationStatus status = Base64.DecodeFromUtf8(bytes, buffer, out _, out int written);
