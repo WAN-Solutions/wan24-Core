@@ -193,6 +193,7 @@ including extensions for numeric type encoding/decoding)
     - `ExchangeableStream` wraps an exchangeable base stream
     - `BackupStream` writes all red data to another stream
     - `ProcessStream` uses STDIN/OUT of a process
+    - `AcidStream` for ACID stream IO
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context
