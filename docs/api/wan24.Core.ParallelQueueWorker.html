@@ -87,6 +87,7 @@
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></div>
     <div><a class="xref" href="wan24.Core.IParallelQueueWorker.html">IParallelQueueWorker</a></div>
     <div><a class="xref" href="wan24.Core.IQueueWorker.html">IQueueWorker</a></div>
     <div><a class="xref" href="wan24.Core.IServiceWorkerStatus.html">IServiceWorkerStatus</a></div>
@@ -265,6 +266,9 @@
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AllowFinalizer">DisposableBase.AllowFinalizer</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeObjects">DisposableBase.DisposeObjects</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_StackInfo">DisposableBase.StackInfo</a>
     </div>
     <div>
@@ -275,6 +279,9 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposed">DisposableBase.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_RegisterForDispose__1___0__">DisposableBase.RegisterForDispose&lt;T&gt;(T)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_EnsureUndisposed_System_Boolean__System_Boolean__">DisposableBase.EnsureUndisposed(Boolean, Boolean)</a>
@@ -332,7 +339,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_ParallelQueueWorker_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ParallelQueueWorker : QueueWorker, IParallelQueueWorker, IQueueWorker, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class ParallelQueueWorker : QueueWorker, IWillDispose, IParallelQueueWorker, IQueueWorker, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IStatusProvider</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -975,6 +982,9 @@
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="wan24.Core.QueueWorker.html#wan24_Core_QueueWorker_WorkerAsync">QueueWorker.WorkerAsync()</a></div>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a>
+  </div>
   <div>
       <a class="xref" href="wan24.Core.IParallelQueueWorker.html">IParallelQueueWorker</a>
   </div>

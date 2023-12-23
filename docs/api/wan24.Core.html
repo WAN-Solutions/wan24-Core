@@ -443,11 +443,17 @@ the first stream per default)</p>
       <h4><a class="xref" href="wan24.Core.LoggerBase.html">LoggerBase</a></h4>
       <section><p>Base class for a logger</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.LoggerExtensions.html">LoggerExtensions</a></h4>
+      <section><p><span class="xref">Microsoft.Extensions.Logging.ILogger</span> extensions</p>
+</section>
       <h4><a class="xref" href="wan24.Core.LoggerProvider.html">LoggerProvider</a></h4>
       <section><p>Logger provider</p>
 </section>
       <h4><a class="xref" href="wan24.Core.Logging.html">Logging</a></h4>
       <section><p>Logging</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.LogLevelExtensions.html">LogLevelExtensions</a></h4>
+      <section><p><span class="xref">Microsoft.Extensions.Logging.LogLevel</span> extensions</p>
 </section>
       <h4><a class="xref" href="wan24.Core.MemoryPoolStream.html">MemoryPoolStream</a></h4>
       <section><p>Memory pool stream (stores in arrays from an <span class="xref">System.Buffers.ArrayPool&lt;T&gt;</span>)</p>
@@ -505,6 +511,12 @@ the first stream per default)</p>
 </section>
       <h4><a class="xref" href="wan24.Core.ParallelQueueWorker.html">ParallelQueueWorker</a></h4>
       <section><p>Parallel queue worker</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ParallelTransaction.html">ParallelTransaction</a></h4>
+      <section><p>Parallel transaction</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ParallelTransaction.ErrorEventArgs.html">ParallelTransaction.ErrorEventArgs</a></h4>
+      <section><p>Error event arguments</p>
 </section>
       <h4><a class="xref" href="wan24.Core.PartialStream.html">PartialStream</a></h4>
       <section><p>Partial stream</p>
@@ -635,6 +647,9 @@ the first stream per default)</p>
       <h4><a class="xref" href="wan24.Core.StringParserOptions.html">StringParserOptions</a></h4>
       <section><p>String parser options</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.StringValueConverter.html">StringValueConverter</a></h4>
+      <section><p>(Display) String to value conversion</p>
+</section>
       <h4><a class="xref" href="wan24.Core.SynchronizedStream.html">SynchronizedStream</a></h4>
       <section><p>Synchronized stream (synchronizes reading/writing/seeking operations; the base stream should implement each single asynchronous reading/writing method! Any asynchronous
 reading/writing method which adopts or calls to another asynchronous reading/writing or any seeking method will cause a dead-lock!)</p>
@@ -674,6 +689,9 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
 </section>
       <h4><a class="xref" href="wan24.Core.Tracer..html">Tracer.</a></h4>
       <section><p>Entry</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.Transaction.html">Transaction</a></h4>
+      <section><p>Transaction</p>
 </section>
       <h4><a class="xref" href="wan24.Core.Translation.html">Translation</a></h4>
       <section><p>Translation</p>
@@ -884,6 +902,12 @@ texts in your source code)</p>
       <h4><a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a></h4>
       <section><p>Interface for a stream wrapper</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.IStringValueConverter.html">IStringValueConverter</a></h4>
+      <section><p>Interface for a type which supports display string/value conversion</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.IStringValueConverter-1.html">IStringValueConverter&lt;T&gt;</a></h4>
+      <section><p>Interface for a type which supports display string/value conversion</p>
+</section>
       <h4><a class="xref" href="wan24.Core.IThrottledStream.html">IThrottledStream</a></h4>
       <section><p>Interface for a throttled stream</p>
 </section>
@@ -892,6 +916,9 @@ texts in your source code)</p>
 </section>
       <h4><a class="xref" href="wan24.Core.ITranslationTerms.html">ITranslationTerms</a></h4>
       <section><p>Interface for a translation</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></h4>
+      <section><p>Interface for a disposable object which will dispose foreign disposables when disposing</p>
 </section>
     <h3 id="enums">Enums
   </h3>
@@ -912,6 +939,9 @@ texts in your source code)</p>
 </section>
     <h3 id="delegates">Delegates
   </h3>
+      <h4><a class="xref" href="wan24.Core.AcidStream-1.AcidStreamEvent_Delegate.html">AcidStream&lt;T&gt;.AcidStreamEvent_Delegate</a></h4>
+      <section><p>Delegate for an ACID stream event handler</p>
+</section>
       <h4><a class="xref" href="wan24.Core.Action_Delegate.html">Action_Delegate</a></h4>
       <section><p>Delegate for an action</p>
 </section>
@@ -1011,6 +1041,21 @@ texts in your source code)</p>
       <h4><a class="xref" href="wan24.Core.OrderedDictionary-2.OrderedDictionary_Delegate.html">OrderedDictionary&lt;tKey, tValue&gt;.OrderedDictionary_Delegate</a></h4>
       <section><p>Delegate for an <a class="xref" href="wan24.Core.OrderedDictionary-2.html">OrderedDictionary&lt;tKey, tValue&gt;</a> event</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.ParallelTransaction.Action_Delegate.html">ParallelTransaction.Action_Delegate</a></h4>
+      <section><p>Delegate for an action</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ParallelTransaction.Done_Delegate.html">ParallelTransaction.Done_Delegate</a></h4>
+      <section><p>Delegate for an <a class="xref" href="wan24.Core.ParallelTransaction.html#wan24_Core_ParallelTransaction_OnDone">OnDone</a> handler</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ParallelTransaction.Error_Delegate.html">ParallelTransaction.Error_Delegate</a></h4>
+      <section><p>Delegate for an <a class="xref" href="wan24.Core.ParallelTransaction.html#wan24_Core_ParallelTransaction_OnError">OnError</a> handler</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ParallelTransaction.ReturningAction_Delegate.html">ParallelTransaction.ReturningAction_Delegate</a></h4>
+      <section><p>Delegate for an action which returns a value</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ParallelTransaction.Rollback_Delegate.html">ParallelTransaction.Rollback_Delegate</a></h4>
+      <section><p>Delegate for a rollback action</p>
+</section>
       <h4><a class="xref" href="wan24.Core.ProcessingProgress.Progress_Delegate.html">ProcessingProgress.Progress_Delegate</a></h4>
       <section><p>Delegate for progress events</p>
 </section>
@@ -1044,11 +1089,23 @@ texts in your source code)</p>
       <h4><a class="xref" href="wan24.Core.StringExtensions.Parser_Delegate.html">StringExtensions.Parser_Delegate</a></h4>
       <section><p>Delegate for a string parser function handler</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.StringValueConverter.StringConverter_Delegate.html">StringValueConverter.StringConverter_Delegate</a></h4>
+      <section><p>Value to display string converter</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.StringValueConverter.ValueConverter_Delegate.html">StringValueConverter.ValueConverter_Delegate</a></h4>
+      <section><p>Display string to value converter delegate</p>
+</section>
       <h4><a class="xref" href="wan24.Core.TimedHostedServiceBase.TimedHostedService_Delegate.html">TimedHostedServiceBase.TimedHostedService_Delegate</a></h4>
       <section><p>Delegate for a hosted service event</p>
 </section>
       <h4><a class="xref" href="wan24.Core.Timeout.Timeout_Delegate.html">Timeout.Timeout_Delegate</a></h4>
       <section><p>Delegate for timeout events</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.Transaction.AsyncRollback_Delegate.html">Transaction.AsyncRollback_Delegate</a></h4>
+      <section><p>Delegate for a rollback action</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.Transaction.SyncRollback_Delegate.html">Transaction.SyncRollback_Delegate</a></h4>
+      <section><p>Delegate for a rollback action</p>
 </section>
       <h4><a class="xref" href="wan24.Core.TypeHelper.LoadType_Delegate.html">TypeHelper.LoadType_Delegate</a></h4>
       <section><p>Delegate for the type loader event</p>

@@ -85,6 +85,7 @@
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><span class="xref">IDisposable</span></div>
     <div><span class="xref">IAsyncDisposable</span></div>
@@ -102,6 +103,9 @@
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AllowFinalizer">DisposableBase.AllowFinalizer</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeObjects">DisposableBase.DisposeObjects</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_StackInfo">DisposableBase.StackInfo</a>
     </div>
     <div>
@@ -112,6 +116,9 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposed">DisposableBase.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_RegisterForDispose__1___0__">DisposableBase.RegisterForDispose&lt;T&gt;(T)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_EnsureUndisposed_System_Boolean__System_Boolean__">DisposableBase.EnsureUndisposed(Boolean, Boolean)</a>
@@ -178,25 +185,25 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_DisposableLoggerBase_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class DisposableLoggerBase : DisposableBase, IDisposableObject, ILogger</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class DisposableLoggerBase : DisposableBase, IWillDispose, IDisposableObject, ILogger</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableLoggerBase__ctor_Microsoft_Extensions_Logging_LogLevel__Microsoft_Extensions_Logging_ILogger__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableLoggerBase.%23ctor(Microsoft.Extensions.Logging.LogLevel%40%2CMicrosoft.Extensions.Logging.ILogger%40%2CSystem.Boolean%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableLoggerBase__ctor_System_Nullable_Microsoft_Extensions_Logging_LogLevel___Microsoft_Extensions_Logging_ILogger__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableLoggerBase.%23ctor(System.Nullable%7BMicrosoft.Extensions.Logging.LogLevel%7D%40%2CMicrosoft.Extensions.Logging.ILogger%40%2CSystem.Boolean%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableLoggerBase.cs/#L16">View Source</a>
   </span>
   <a id="wan24_Core_DisposableLoggerBase__ctor_" data-uid="wan24.Core.DisposableLoggerBase.#ctor*"></a>
-  <h4 id="wan24_Core_DisposableLoggerBase__ctor_Microsoft_Extensions_Logging_LogLevel__Microsoft_Extensions_Logging_ILogger__System_Boolean__" data-uid="wan24.Core.DisposableLoggerBase.#ctor(Microsoft.Extensions.Logging.LogLevel@,Microsoft.Extensions.Logging.ILogger@,System.Boolean@)">DisposableLoggerBase(in LogLevel, in ILogger, in Boolean)</h4>
+  <h4 id="wan24_Core_DisposableLoggerBase__ctor_System_Nullable_Microsoft_Extensions_Logging_LogLevel___Microsoft_Extensions_Logging_ILogger__System_Boolean__" data-uid="wan24.Core.DisposableLoggerBase.#ctor(System.Nullable{Microsoft.Extensions.Logging.LogLevel}@,Microsoft.Extensions.Logging.ILogger@,System.Boolean@)">DisposableLoggerBase(in Nullable&lt;LogLevel&gt;, in ILogger, in Boolean)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected DisposableLoggerBase(in LogLevel level = LogLevel.Information, in ILogger next = null, in bool asyncDisposing = true)</code></pre>
+    <pre><code class="lang-csharp hljs">protected DisposableLoggerBase(in LogLevel? level = null, in ILogger next = null, in bool asyncDisposing = true)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -209,7 +216,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Microsoft.Extensions.Logging.LogLevel</span></td>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Microsoft.Extensions.Logging.LogLevel</span>&gt;</td>
         <td><span class="parametername">level</span></td>
         <td><p>Level</p>
 </td>
@@ -642,6 +649,9 @@
   </table>
   <h3 id="implements">Implements</h3>
   <div>
+      <a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
   </div>
   <div>
@@ -665,6 +675,9 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean__">JsonExtensions.ToJson(Object, in Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.LoggerExtensions.html#wan24_Core_LoggerExtensions_GetLogLevel_Microsoft_Extensions_Logging_ILogger_">LoggerExtensions.GetLogLevel(ILogger)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(Object, Object[])</a>

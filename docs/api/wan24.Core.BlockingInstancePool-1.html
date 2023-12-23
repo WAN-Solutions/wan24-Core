@@ -86,6 +86,7 @@
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></div>
     <div><a class="xref" href="wan24.Core.IInstancePool-1.html">IInstancePool</a>&lt;T&gt;</div>
     <div><a class="xref" href="wan24.Core.IInstancePool.html">IInstancePool</a></div>
     <div><a class="xref" href="wan24.Core.IServiceWorkerStatus.html">IServiceWorkerStatus</a></div>
@@ -306,6 +307,9 @@
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AllowFinalizer">DisposableBase.AllowFinalizer</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeObjects">DisposableBase.DisposeObjects</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_StackInfo">DisposableBase.StackInfo</a>
     </div>
     <div>
@@ -316,6 +320,9 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposed">DisposableBase.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_RegisterForDispose__1___0__">DisposableBase.RegisterForDispose&lt;T&gt;(T)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_EnsureUndisposed_System_Boolean__System_Boolean__">DisposableBase.EnsureUndisposed(Boolean, Boolean)</a>
@@ -373,7 +380,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_BlockingInstancePool_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class BlockingInstancePool&lt;T&gt; : InstancePool&lt;T&gt;, IInstancePool&lt;T&gt;, IInstancePool, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IStatusProvider where T : class</code></pre>
+    <pre><code class="lang-csharp hljs">public class BlockingInstancePool&lt;T&gt; : InstancePool&lt;T&gt;, IWillDispose, IInstancePool&lt;T&gt;, IInstancePool, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IStatusProvider where T : class</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -694,6 +701,9 @@
   <h5 class="overrides">Overrides</h5>
   <div><span class="xref">wan24.Core.InstancePool&lt;T&gt;.GetOneAsync(CancellationToken)</span></div>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a>
+  </div>
   <div>
       <a class="xref" href="wan24.Core.IInstancePool-1.html">IInstancePool&lt;T&gt;</a>
   </div>

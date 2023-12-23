@@ -111,6 +111,38 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static class AcidFileStream</code></pre>
   </div>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidFileStream_ACID_PREFIX.md&amp;value=---%0Auid%3A%20wan24.Core.AcidFileStream.ACID_PREFIX%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidFileStream.cs/#L11">View Source</a>
+  </span>
+  <h4 id="wan24_Core_AcidFileStream_ACID_PREFIX" data-uid="wan24.Core.AcidFileStream.ACID_PREFIX">ACID_PREFIX</h4>
+  <div class="markdown level1 summary"><p>ACID backup filename prefix</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string ACID_PREFIX = &quot;.acid.&quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
@@ -118,7 +150,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidFileStream_Create_FileStream__System_Boolean__System_Nullable_UnixFileMode___.md&amp;value=---%0Auid%3A%20wan24.Core.AcidFileStream.Create(FileStream%40%2CSystem.Boolean%40%2CSystem.Nullable%7BUnixFileMode%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidFileStream.cs/#L15">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidFileStream.cs/#L20">View Source</a>
   </span>
   <a id="wan24_Core_AcidFileStream_Create_" data-uid="wan24.Core.AcidFileStream.Create*"></a>
   <h4 id="wan24_Core_AcidFileStream_Create_FileStream__System_Boolean__System_Nullable_UnixFileMode___" data-uid="wan24.Core.AcidFileStream.Create(FileStream@,System.Boolean@,System.Nullable{UnixFileMode}@)">Create(in FileStream, in Boolean, in Nullable&lt;UnixFileMode&gt;)</h4>
@@ -142,7 +174,7 @@
       <tr>
         <td><span class="xref">FileStream</span></td>
         <td><span class="parametername">stream</span></td>
-        <td><p>File stream</p>
+        <td><p>File stream (will be disposed!)</p>
 </td>
       </tr>
       <tr>
@@ -180,7 +212,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidFileStream_CreateAsync_FileStream_System_Boolean_System_Nullable_UnixFileMode__CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidFileStream.CreateAsync(FileStream%2CSystem.Boolean%2CSystem.Nullable%7BUnixFileMode%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidFileStream.cs/#L66">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidFileStream.cs/#L79">View Source</a>
   </span>
   <a id="wan24_Core_AcidFileStream_CreateAsync_" data-uid="wan24.Core.AcidFileStream.CreateAsync*"></a>
   <h4 id="wan24_Core_AcidFileStream_CreateAsync_FileStream_System_Boolean_System_Nullable_UnixFileMode__CancellationToken_" data-uid="wan24.Core.AcidFileStream.CreateAsync(FileStream,System.Boolean,System.Nullable{UnixFileMode},CancellationToken)">CreateAsync(FileStream, Boolean, Nullable&lt;UnixFileMode&gt;, CancellationToken)</h4>
@@ -204,7 +236,7 @@
       <tr>
         <td><span class="xref">FileStream</span></td>
         <td><span class="parametername">stream</span></td>
-        <td><p>File stream</p>
+        <td><p>File stream (will be disposed!)</p>
 </td>
       </tr>
       <tr>
@@ -248,7 +280,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidFileStream_GetBackupFileName_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.AcidFileStream.GetBackupFileName(System.String%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidFileStream.cs/#L114">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidFileStream.cs/#L135">View Source</a>
   </span>
   <a id="wan24_Core_AcidFileStream_GetBackupFileName_" data-uid="wan24.Core.AcidFileStream.GetBackupFileName*"></a>
   <h4 id="wan24_Core_AcidFileStream_GetBackupFileName_System_String__" data-uid="wan24.Core.AcidFileStream.GetBackupFileName(System.String@)">GetBackupFileName(in String)</h4>
@@ -298,7 +330,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidFileStream_NeedsRollback_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.AcidFileStream.NeedsRollback(System.String%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidFileStream.cs/#L121">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidFileStream.cs/#L142">View Source</a>
   </span>
   <a id="wan24_Core_AcidFileStream_NeedsRollback_" data-uid="wan24.Core.AcidFileStream.NeedsRollback*"></a>
   <h4 id="wan24_Core_AcidFileStream_NeedsRollback_System_String__" data-uid="wan24.Core.AcidFileStream.NeedsRollback(System.String@)">NeedsRollback(in String)</h4>

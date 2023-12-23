@@ -84,6 +84,7 @@
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><span class="xref">IDisposable</span></div>
     <div><span class="xref">IAsyncDisposable</span></div>
@@ -100,6 +101,9 @@
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AllowFinalizer">DisposableBase.AllowFinalizer</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeObjects">DisposableBase.DisposeObjects</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_StackInfo">DisposableBase.StackInfo</a>
     </div>
     <div>
@@ -110,6 +114,9 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposed">DisposableBase.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_RegisterForDispose__1___0__">DisposableBase.RegisterForDispose&lt;T&gt;(T)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_EnsureUndisposed_System_Boolean__System_Boolean__">DisposableBase.EnsureUndisposed(Boolean, Boolean)</a>
@@ -170,7 +177,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_SemaphoreSync_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class SemaphoreSync : DisposableBase, IDisposableObject</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class SemaphoreSync : DisposableBase, IWillDispose, IDisposableObject</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -179,7 +186,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L24">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L25">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync__ctor_" data-uid="wan24.Core.SemaphoreSync.#ctor*"></a>
   <h4 id="wan24_Core_SemaphoreSync__ctor" data-uid="wan24.Core.SemaphoreSync.#ctor">SemaphoreSync()</h4>
@@ -195,7 +202,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync__ctor_System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.%23ctor(System.Object%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L34">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L35">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync__ctor_" data-uid="wan24.Core.SemaphoreSync.#ctor*"></a>
   <h4 id="wan24_Core_SemaphoreSync__ctor_System_Object__" data-uid="wan24.Core.SemaphoreSync.#ctor(System.Object@)">SemaphoreSync(in Object)</h4>
@@ -231,7 +238,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_HashCode.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.HashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L321">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L322">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_HashCode_" data-uid="wan24.Core.SemaphoreSync.HashCode*"></a>
   <h4 id="wan24_Core_SemaphoreSync_HashCode" data-uid="wan24.Core.SemaphoreSync.HashCode">HashCode</h4>
@@ -262,7 +269,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_InstanceCount.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.InstanceCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L326">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L327">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_InstanceCount_" data-uid="wan24.Core.SemaphoreSync.InstanceCount*"></a>
   <h4 id="wan24_Core_SemaphoreSync_InstanceCount" data-uid="wan24.Core.SemaphoreSync.InstanceCount">InstanceCount</h4>
@@ -293,7 +300,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_IsSynchronized.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.IsSynchronized%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L61">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L62">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_IsSynchronized_" data-uid="wan24.Core.SemaphoreSync.IsSynchronized*"></a>
   <h4 id="wan24_Core_SemaphoreSync_IsSynchronized" data-uid="wan24.Core.SemaphoreSync.IsSynchronized">IsSynchronized</h4>
@@ -324,7 +331,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_Object.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.Object%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L316">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L317">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_Object_" data-uid="wan24.Core.SemaphoreSync.Object*"></a>
   <h4 id="wan24_Core_SemaphoreSync_Object" data-uid="wan24.Core.SemaphoreSync.Object">Object</h4>
@@ -355,7 +362,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_Semaphore.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.Semaphore%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L331">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L332">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_Semaphore_" data-uid="wan24.Core.SemaphoreSync.Semaphore*"></a>
   <h4 id="wan24_Core_SemaphoreSync_Semaphore" data-uid="wan24.Core.SemaphoreSync.Semaphore">Semaphore</h4>
@@ -386,7 +393,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_Semaphore.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.Semaphore%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L331">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L332">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_Semaphore_" data-uid="wan24.Core.SemaphoreSync.Semaphore*"></a>
   <h4 id="wan24_Core_SemaphoreSync_Semaphore" data-uid="wan24.Core.SemaphoreSync.Semaphore">Semaphore</h4>
@@ -417,7 +424,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_SynchronizedObjectCount.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.SynchronizedObjectCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L51">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L52">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_SynchronizedObjectCount_" data-uid="wan24.Core.SemaphoreSync.SynchronizedObjectCount*"></a>
   <h4 id="wan24_Core_SemaphoreSync_SynchronizedObjectCount" data-uid="wan24.Core.SemaphoreSync.SynchronizedObjectCount">SynchronizedObjectCount</h4>
@@ -450,7 +457,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_AddInstance.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.AddInstance%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L337">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L338">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_AddInstance_" data-uid="wan24.Core.SemaphoreSync.AddInstance*"></a>
   <h4 id="wan24_Core_SemaphoreSync_AddInstance" data-uid="wan24.Core.SemaphoreSync.AddInstance">AddInstance()</h4>
@@ -482,7 +489,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L388">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L389">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_Dispose_" data-uid="wan24.Core.SemaphoreSync.Dispose*"></a>
   <h4 id="wan24_Core_SemaphoreSync_Dispose_System_Boolean_" data-uid="wan24.Core.SemaphoreSync.Dispose(System.Boolean)">Dispose(Boolean)</h4>
@@ -518,7 +525,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L388">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L389">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_Dispose_" data-uid="wan24.Core.SemaphoreSync.Dispose*"></a>
   <h4 id="wan24_Core_SemaphoreSync_Dispose_System_Boolean_" data-uid="wan24.Core.SemaphoreSync.Dispose(System.Boolean)">Dispose(Boolean)</h4>
@@ -554,7 +561,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.DisposeCore%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L396">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L398">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_DisposeCore_" data-uid="wan24.Core.SemaphoreSync.DisposeCore*"></a>
   <h4 id="wan24_Core_SemaphoreSync_DisposeCore" data-uid="wan24.Core.SemaphoreSync.DisposeCore">DisposeCore()</h4>
@@ -587,7 +594,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_Execute_Action__CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.Execute(Action%40%2CCancellationToken%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L176">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L177">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_Execute_" data-uid="wan24.Core.SemaphoreSync.Execute*"></a>
   <h4 id="wan24_Core_SemaphoreSync_Execute_Action__CancellationToken__" data-uid="wan24.Core.SemaphoreSync.Execute(Action@,CancellationToken@)">Execute(in Action, in CancellationToken)</h4>
@@ -628,7 +635,7 @@ public void Execute(in Action action, in CancellationToken cancellationToken = n
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_Execute_Action__TimeSpan__CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.Execute(Action%40%2CTimeSpan%40%2CCancellationToken%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L164">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L165">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_Execute_" data-uid="wan24.Core.SemaphoreSync.Execute*"></a>
   <h4 id="wan24_Core_SemaphoreSync_Execute_Action__TimeSpan__CancellationToken__" data-uid="wan24.Core.SemaphoreSync.Execute(Action@,TimeSpan@,CancellationToken@)">Execute(in Action, in TimeSpan, in CancellationToken)</h4>
@@ -675,7 +682,7 @@ public void Execute(in Action action, in TimeSpan timeout, in CancellationToken 
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_Execute__1_Func___0___CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.Execute%60%601(Func%7B%60%600%7D%40%2CCancellationToken%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L205">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L206">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_Execute_" data-uid="wan24.Core.SemaphoreSync.Execute*"></a>
   <h4 id="wan24_Core_SemaphoreSync_Execute__1_Func___0___CancellationToken__" data-uid="wan24.Core.SemaphoreSync.Execute``1(Func{``0}@,CancellationToken@)">Execute&lt;T&gt;(in Func&lt;T&gt;, in CancellationToken)</h4>
@@ -748,7 +755,7 @@ public T Execute&lt;T&gt;(in Func&lt;T&gt; action, in CancellationToken cancella
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_Execute__1_Func___0___TimeSpan__CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.Execute%60%601(Func%7B%60%600%7D%40%2CTimeSpan%40%2CCancellationToken%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L191">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L192">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_Execute_" data-uid="wan24.Core.SemaphoreSync.Execute*"></a>
   <h4 id="wan24_Core_SemaphoreSync_Execute__1_Func___0___TimeSpan__CancellationToken__" data-uid="wan24.Core.SemaphoreSync.Execute``1(Func{``0}@,TimeSpan@,CancellationToken@)">Execute&lt;T&gt;(in Func&lt;T&gt;, in TimeSpan, in CancellationToken)</h4>
@@ -827,7 +834,7 @@ public T Execute&lt;T&gt;(in Func&lt;T&gt; action, in TimeSpan timeout, in Cance
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_ExecuteAsync_Func_Task__CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.ExecuteAsync(Func%7BTask%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L230">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L231">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_ExecuteAsync_" data-uid="wan24.Core.SemaphoreSync.ExecuteAsync*"></a>
   <h4 id="wan24_Core_SemaphoreSync_ExecuteAsync_Func_Task__CancellationToken_" data-uid="wan24.Core.SemaphoreSync.ExecuteAsync(Func{Task},CancellationToken)">ExecuteAsync(Func&lt;Task&gt;, CancellationToken)</h4>
@@ -883,7 +890,7 @@ public async Task ExecuteAsync(Func&lt;Task&gt; action, CancellationToken cancel
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_ExecuteAsync_Func_Task__TimeSpan_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.ExecuteAsync(Func%7BTask%7D%2CTimeSpan%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L218">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L219">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_ExecuteAsync_" data-uid="wan24.Core.SemaphoreSync.ExecuteAsync*"></a>
   <h4 id="wan24_Core_SemaphoreSync_ExecuteAsync_Func_Task__TimeSpan_CancellationToken_" data-uid="wan24.Core.SemaphoreSync.ExecuteAsync(Func{Task},TimeSpan,CancellationToken)">ExecuteAsync(Func&lt;Task&gt;, TimeSpan, CancellationToken)</h4>
@@ -945,7 +952,7 @@ public async Task ExecuteAsync(Func&lt;Task&gt; action, TimeSpan timeout, Cancel
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_ExecuteAsync__1_Func_Task___0___CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.ExecuteAsync%60%601(Func%7BTask%7B%60%600%7D%7D%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L259">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L260">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_ExecuteAsync_" data-uid="wan24.Core.SemaphoreSync.ExecuteAsync*"></a>
   <h4 id="wan24_Core_SemaphoreSync_ExecuteAsync__1_Func_Task___0___CancellationToken_" data-uid="wan24.Core.SemaphoreSync.ExecuteAsync``1(Func{Task{``0}},CancellationToken)">ExecuteAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt;, CancellationToken)</h4>
@@ -1018,7 +1025,7 @@ public async Task&lt;T&gt; ExecuteAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; actio
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_ExecuteAsync__1_Func_Task___0___TimeSpan_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.ExecuteAsync%60%601(Func%7BTask%7B%60%600%7D%7D%2CTimeSpan%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L245">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L246">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_ExecuteAsync_" data-uid="wan24.Core.SemaphoreSync.ExecuteAsync*"></a>
   <h4 id="wan24_Core_SemaphoreSync_ExecuteAsync__1_Func_Task___0___TimeSpan_CancellationToken_" data-uid="wan24.Core.SemaphoreSync.ExecuteAsync``1(Func{Task{``0}},TimeSpan,CancellationToken)">ExecuteAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt;, TimeSpan, CancellationToken)</h4>
@@ -1097,7 +1104,7 @@ public async Task&lt;T&gt; ExecuteAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; actio
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_GetSynchronizationInstanceCount_System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.GetSynchronizationInstanceCount(System.Object%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L291">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L292">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_GetSynchronizationInstanceCount_" data-uid="wan24.Core.SemaphoreSync.GetSynchronizationInstanceCount*"></a>
   <h4 id="wan24_Core_SemaphoreSync_GetSynchronizationInstanceCount_System_Object__" data-uid="wan24.Core.SemaphoreSync.GetSynchronizationInstanceCount(System.Object@)">GetSynchronizationInstanceCount(in Object)</h4>
@@ -1147,7 +1154,7 @@ public async Task&lt;T&gt; ExecuteAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; actio
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_Release.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.Release%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L151">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L152">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_Release_" data-uid="wan24.Core.SemaphoreSync.Release*"></a>
   <h4 id="wan24_Core_SemaphoreSync_Release" data-uid="wan24.Core.SemaphoreSync.Release">Release()</h4>
@@ -1164,7 +1171,7 @@ public void Release()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_RemoveInstance.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.RemoveInstance%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L363">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L364">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_RemoveInstance_" data-uid="wan24.Core.SemaphoreSync.RemoveInstance*"></a>
   <h4 id="wan24_Core_SemaphoreSync_RemoveInstance" data-uid="wan24.Core.SemaphoreSync.RemoveInstance">RemoveInstance()</h4>
@@ -1180,7 +1187,7 @@ public void Release()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_Sync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.Sync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L129">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L130">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_Sync_" data-uid="wan24.Core.SemaphoreSync.Sync*"></a>
   <h4 id="wan24_Core_SemaphoreSync_Sync_CancellationToken_" data-uid="wan24.Core.SemaphoreSync.Sync(CancellationToken)">Sync(CancellationToken)</h4>
@@ -1215,7 +1222,7 @@ public void Sync(CancellationToken cancellationToken = null)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_Sync_TimeSpan_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.Sync(TimeSpan%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L122">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L123">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_Sync_" data-uid="wan24.Core.SemaphoreSync.Sync*"></a>
   <h4 id="wan24_Core_SemaphoreSync_Sync_TimeSpan_CancellationToken_" data-uid="wan24.Core.SemaphoreSync.Sync(TimeSpan,CancellationToken)">Sync(TimeSpan, CancellationToken)</h4>
@@ -1256,7 +1263,7 @@ public void Sync(TimeSpan timeout, CancellationToken cancellationToken = null)</
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_SyncAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.SyncAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L145">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L146">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_SyncAsync_" data-uid="wan24.Core.SemaphoreSync.SyncAsync*"></a>
   <h4 id="wan24_Core_SemaphoreSync_SyncAsync_CancellationToken_" data-uid="wan24.Core.SemaphoreSync.SyncAsync(CancellationToken)">SyncAsync(CancellationToken)</h4>
@@ -1306,7 +1313,7 @@ public async Task SyncAsync(CancellationToken cancellationToken = null)</code></
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_SyncAsync_TimeSpan_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.SyncAsync(TimeSpan%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L137">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L138">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_SyncAsync_" data-uid="wan24.Core.SemaphoreSync.SyncAsync*"></a>
   <h4 id="wan24_Core_SemaphoreSync_SyncAsync_TimeSpan_CancellationToken_" data-uid="wan24.Core.SemaphoreSync.SyncAsync(TimeSpan,CancellationToken)">SyncAsync(TimeSpan, CancellationToken)</h4>
@@ -1362,7 +1369,7 @@ public async Task SyncAsync(TimeSpan timeout, CancellationToken cancellationToke
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_SyncContext_CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.SyncContext(CancellationToken%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L82">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L83">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_SyncContext_" data-uid="wan24.Core.SemaphoreSync.SyncContext*"></a>
   <h4 id="wan24_Core_SemaphoreSync_SyncContext_CancellationToken__" data-uid="wan24.Core.SemaphoreSync.SyncContext(CancellationToken@)">SyncContext(in CancellationToken)</h4>
@@ -1413,7 +1420,7 @@ public SemaphoreSyncContext SyncContext(in CancellationToken cancellationToken =
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_SyncContext_TimeSpan__CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.SyncContext(TimeSpan%40%2CCancellationToken%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L69">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L70">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_SyncContext_" data-uid="wan24.Core.SemaphoreSync.SyncContext*"></a>
   <h4 id="wan24_Core_SemaphoreSync_SyncContext_TimeSpan__CancellationToken__" data-uid="wan24.Core.SemaphoreSync.SyncContext(TimeSpan@,CancellationToken@)">SyncContext(in TimeSpan, in CancellationToken)</h4>
@@ -1470,7 +1477,7 @@ public SemaphoreSyncContext SyncContext(in TimeSpan timeout, in CancellationToke
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_SyncContextAsync_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.SyncContextAsync(CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L109">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L110">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_SyncContextAsync_" data-uid="wan24.Core.SemaphoreSync.SyncContextAsync*"></a>
   <h4 id="wan24_Core_SemaphoreSync_SyncContextAsync_CancellationToken_" data-uid="wan24.Core.SemaphoreSync.SyncContextAsync(CancellationToken)">SyncContextAsync(CancellationToken)</h4>
@@ -1521,7 +1528,7 @@ public async Task&lt;SemaphoreSyncContext&gt; SyncContextAsync(CancellationToken
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_SyncContextAsync_TimeSpan_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.SyncContextAsync(TimeSpan%2CCancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L96">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L97">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_SyncContextAsync_" data-uid="wan24.Core.SemaphoreSync.SyncContextAsync*"></a>
   <h4 id="wan24_Core_SemaphoreSync_SyncContextAsync_TimeSpan_CancellationToken_" data-uid="wan24.Core.SemaphoreSync.SyncContextAsync(TimeSpan,CancellationToken)">SyncContextAsync(TimeSpan, CancellationToken)</h4>
@@ -1580,7 +1587,7 @@ public async Task&lt;SemaphoreSyncContext&gt; SyncContextAsync(TimeSpan timeout,
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync_op_Implicit_wan24_Core_SemaphoreSync___wan24_Core_SemaphoreSyncContext.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync.op_Implicit(wan24.Core.SemaphoreSync%40)~wan24.Core.SemaphoreSyncContext%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L283">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L284">View Source</a>
   </span>
   <a id="wan24_Core_SemaphoreSync_op_Implicit_" data-uid="wan24.Core.SemaphoreSync.op_Implicit*"></a>
   <h4 id="wan24_Core_SemaphoreSync_op_Implicit_wan24_Core_SemaphoreSync___wan24_Core_SemaphoreSyncContext" data-uid="wan24.Core.SemaphoreSync.op_Implicit(wan24.Core.SemaphoreSync@)~wan24.Core.SemaphoreSyncContext">Implicit(in SemaphoreSync to SemaphoreSyncContext)</h4>
@@ -1626,6 +1633,9 @@ public static implicit operator SemaphoreSyncContext(in SemaphoreSync sync)</cod
     </tbody>
   </table>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a>
+  </div>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
   </div>
@@ -1683,7 +1693,7 @@ public static implicit operator SemaphoreSyncContext(in SemaphoreSync sync)</cod
                     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SemaphoreSync.md&amp;value=---%0Auid%3A%20wan24.Core.SemaphoreSync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SemaphoreSync.cs/#L10" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

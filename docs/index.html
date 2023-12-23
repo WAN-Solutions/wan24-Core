@@ -371,6 +371,7 @@ including extensions for numeric type encoding/decoding)</li>
 <li>Localization support</li>
 <li>Email sending abstractions</li>
 <li>Commonly used regular expressions and global named expression collection</li>
+<li>Transactions</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
@@ -1668,6 +1669,52 @@ like this:</p>
 <li>Your type must be sealed and use private construction</li>
 <li>Your type must extend <code>EnumerationBase&lt;T&gt;</code> (not <code>EnumerationBase</code> directly)</li>
 </ol>
+<h2 id="transactions">Transactions</h2>
+<p>You can choose between sequential transactions (<code>Transaction</code>) and parallel
+action executing transactions (<code>ParallelTransaction</code>):</p>
+<h3 id="sequential">Sequential</h3>
+<pre><code class="lang-cs">using Transaction transaction = new();
+object? returnValue = transaction.Execute(
+    ()=&gt; /* Perform the action here and return a value (optional) */, 
+    (transaction, returnValue) =&gt; /* Rollback for the action */
+    );
+returnValue = await transaction.ExecuteAsync(
+    async (cancelToken)=&gt; /* Perform the action here and return a value (optional) */, 
+    async (transaction, returnValue. cancelToken) =&gt; /* Rollback for the action */
+    );
+// Commit the actions (if disposing, uncommitted actions will be rolled back!)
+transaction.Commit();
+</code></pre>
+<h3 id="parallel">Parallel</h3>
+<pre><code class="lang-cs">ParallelTransaction transaction = new();
+await using(transaction)
+{
+    // The Execute methods will synchronize enqueueing the action asynchronous
+    (int index, Task task) = await transaction.ExecuteAsync(
+        async (cancelToken) =&gt; /* Perform the action here */, 
+        async (transaction, returnValue, cancelToken) =&gt; /* Rollback for the action */
+        );
+    // index has the action index which allows to retrieve the return value or the exception later
+    (index, Task&lt;object?&gt; resultTask) = await transaction.ExecuteAsync(
+        async (cancelToken) =&gt; /* Perform the action here and return a value */, 
+        async (transaction, returnValue, cancelToken) =&gt; /* Rollback for the action */
+        );
+    object? returnValue = await resultTask;// Get the return value from the action task
+    await transaction.WaitDoneAsync();// Will throw if any action failed
+    // Commit the actions (if disposing, uncommitted actions will be rolled back!)
+    transaction.Commit();
+}
+</code></pre>
+<p>You can cancel pending actions using the <code>CancelAsync</code> method. A canceled
+transaction needs to be rolled back before reuse. If an action failed, the
+transaction can be canceled by setting <code>CancelOnError</code> to <code>true</code> (which is the
+default). Committing an undone or canceled transaction will throw.</p>
+<p>Using the <code>OnError/Done</code> events you may become informed on error, or if all
+pending actions are done (<code>OnDone</code> may be called multiple times).</p>
+<h3 id="nested-transactions">Nested transactions</h3>
+<p>Using the <code>Append(Async)</code> methods of a transaction, you may nest in any other
+transaction (which won't be disposed, if the hosting transaction is
+disposing!).</p>
 </article>
           </div>
           
