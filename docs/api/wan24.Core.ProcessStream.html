@@ -237,7 +237,7 @@
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseEndWrite_IAsyncResult__">WrapperStream&lt;Stream&gt;.BaseEndWrite(IAsyncResult)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_HandlebaseStreamDisposed_wan24_Core_IDisposableObject_EventArgs_">WrapperStream&lt;Stream&gt;.HandlebaseStreamDisposed(IDisposableObject, EventArgs)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_HandleBaseStreamDisposed_wan24_Core_IDisposableObject_EventArgs_">WrapperStream&lt;Stream&gt;.HandleBaseStreamDisposed(IDisposableObject, EventArgs)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_SyncObject">StreamBase.SyncObject</a>
@@ -313,7 +313,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ProcessStream(in StreamReader? stdout, in StreamWriter? stdin = null, in bool leaveOpen = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public ProcessStream(in StreamReader? stdOut, in StreamWriter? stdin = null, in bool leaveOpen = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -327,7 +327,7 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Nullable</span>&lt;<span class="xref">StreamReader</span>&gt;</td>
-        <td><span class="parametername">stdout</span></td>
+        <td><span class="parametername">stdOut</span></td>
         <td><p>STDOUT (used for reading)</p>
 </td>
       </tr>
@@ -648,7 +648,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ProcessStream Create(in string cmd, in bool useStdout = true, in bool useStdin = false, in bool killOnDispose = true, params string[] args)</code></pre>
+    <pre><code class="lang-csharp hljs">public static ProcessStream Create(in string cmd, in bool useStdOut = true, in bool useStdin = false, in bool killOnDispose = true, params string[] args)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -668,7 +668,7 @@
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><span class="parametername">useStdout</span></td>
+        <td><span class="parametername">useStdOut</span></td>
         <td><p>Use STDOUT for reading?</p>
 </td>
       </tr>

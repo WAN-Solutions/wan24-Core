@@ -242,7 +242,7 @@ public static bool Send(this IEmail email, IMtaConnection connection)</code></pr
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
-public static bool Send(this IEmailTemplate tmpl, string fromEmail, string toEmail, Dictionary&lt;string, string&gt;? parserData = null, IMta mta = null, params IEmailAttachment[] attachments)</code></pre>
+public static bool Send(this IEmailTemplate template, string fromEmail, string toEmail, Dictionary&lt;string, string&gt;? parserData = null, IMta mta = null, params IEmailAttachment[] attachments)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -256,7 +256,7 @@ public static bool Send(this IEmailTemplate tmpl, string fromEmail, string toEma
     <tbody>
       <tr>
         <td><a class="xref" href="wan24.Core.IEmailTemplate.html">IEmailTemplate</a></td>
-        <td><span class="parametername">tmpl</span></td>
+        <td><span class="parametername">template</span></td>
         <td><p>Email template</p>
 </td>
       </tr>
@@ -323,7 +323,7 @@ public static bool Send(this IEmailTemplate tmpl, string fromEmail, string toEma
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
-public static bool Send(this IEmailTemplate tmpl, string fromEmail, string toEmail, IMtaConnection connection, Dictionary&lt;string, string&gt;? parserData = null, params IEmailAttachment[] attachments)</code></pre>
+public static bool Send(this IEmailTemplate template, string fromEmail, string toEmail, IMtaConnection connection, Dictionary&lt;string, string&gt;? parserData = null, params IEmailAttachment[] attachments)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -337,7 +337,7 @@ public static bool Send(this IEmailTemplate tmpl, string fromEmail, string toEma
     <tbody>
       <tr>
         <td><a class="xref" href="wan24.Core.IEmailTemplate.html">IEmailTemplate</a></td>
-        <td><span class="parametername">tmpl</span></td>
+        <td><span class="parametername">template</span></td>
         <td><p>Email template</p>
 </td>
       </tr>
@@ -530,7 +530,7 @@ public static async Task&lt;bool&gt; SendAsync(this IEmail email, IMtaConnection
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
-public static async Task&lt;bool&gt; SendAsync(this IEmailTemplate tmpl, string fromEmail, string toEmail, Dictionary&lt;string, string&gt;? parserData = null, IMta mta = null, CancellationToken cancellationToken = null, params IEmailAttachment[] attachments)</code></pre>
+public static async Task&lt;bool&gt; SendAsync(this IEmailTemplate template, string fromEmail, string toEmail, Dictionary&lt;string, string&gt;? parserData = null, IMta mta = null, CancellationToken cancellationToken = null, params IEmailAttachment[] attachments)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -544,7 +544,7 @@ public static async Task&lt;bool&gt; SendAsync(this IEmailTemplate tmpl, string 
     <tbody>
       <tr>
         <td><a class="xref" href="wan24.Core.IEmailTemplate.html">IEmailTemplate</a></td>
-        <td><span class="parametername">tmpl</span></td>
+        <td><span class="parametername">template</span></td>
         <td><p>Email template</p>
 </td>
       </tr>
@@ -617,7 +617,7 @@ public static async Task&lt;bool&gt; SendAsync(this IEmailTemplate tmpl, string 
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
-public static async Task&lt;bool&gt; SendAsync(this IEmailTemplate tmpl, string fromEmail, string toEmail, IMtaConnection connection, Dictionary&lt;string, string&gt;? parserData = null, CancellationToken cancellationToken = null, params IEmailAttachment[] attachments)</code></pre>
+public static async Task&lt;bool&gt; SendAsync(this IEmailTemplate template, string fromEmail, string toEmail, IMtaConnection connection, Dictionary&lt;string, string&gt;? parserData = null, CancellationToken cancellationToken = null, params IEmailAttachment[] attachments)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -631,7 +631,7 @@ public static async Task&lt;bool&gt; SendAsync(this IEmailTemplate tmpl, string 
     <tbody>
       <tr>
         <td><a class="xref" href="wan24.Core.IEmailTemplate.html">IEmailTemplate</a></td>
-        <td><span class="parametername">tmpl</span></td>
+        <td><span class="parametername">template</span></td>
         <td><p>Email template</p>
 </td>
       </tr>

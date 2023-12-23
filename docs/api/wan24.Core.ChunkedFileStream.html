@@ -115,19 +115,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChunkedFileStream_Create_System_String_System_Int64__FileMode_FileAccess_FileShare_FileMode_FileOptions_.md&amp;value=---%0Auid%3A%20wan24.Core.ChunkedFileStream.Create(System.String%2CSystem.Int64%40%2CFileMode%2CFileAccess%2CFileShare%2CFileMode%2CFileOptions)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChunkedFileStream_Create_System_String_System_Int64__FileMode_FileAccess_FileShare_FileMode_FileOptions_System_Nullable_UnixFileMode__.md&amp;value=---%0Auid%3A%20wan24.Core.ChunkedFileStream.Create(System.String%2CSystem.Int64%40%2CFileMode%2CFileAccess%2CFileShare%2CFileMode%2CFileOptions%2CSystem.Nullable%7BUnixFileMode%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChunkedFileStream.cs/#L20">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChunkedFileStream.cs/#L21">View Source</a>
   </span>
   <a id="wan24_Core_ChunkedFileStream_Create_" data-uid="wan24.Core.ChunkedFileStream.Create*"></a>
-  <h4 id="wan24_Core_ChunkedFileStream_Create_System_String_System_Int64__FileMode_FileAccess_FileShare_FileMode_FileOptions_" data-uid="wan24.Core.ChunkedFileStream.Create(System.String,System.Int64@,FileMode,FileAccess,FileShare,FileMode,FileOptions)">Create(String, in Int64, FileMode, FileAccess, FileShare, FileMode, FileOptions)</h4>
+  <h4 id="wan24_Core_ChunkedFileStream_Create_System_String_System_Int64__FileMode_FileAccess_FileShare_FileMode_FileOptions_System_Nullable_UnixFileMode__" data-uid="wan24.Core.ChunkedFileStream.Create(System.String,System.Int64@,FileMode,FileAccess,FileShare,FileMode,FileOptions,System.Nullable{UnixFileMode})">Create(String, in Int64, FileMode, FileAccess, FileShare, FileMode, FileOptions, Nullable&lt;UnixFileMode&gt;)</h4>
   <div class="markdown level1 summary"><p>Create a chunked file stream</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ChunkedStream Create(string fileName, in long chunkSize, FileMode openMode = null, FileAccess access = null, FileShare share = null, FileMode createMode = null, FileOptions options = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static ChunkedStream Create(string fileName, in long chunkSize, FileMode openMode = null, FileAccess access = null, FileShare share = null, FileMode createMode = null, FileOptions options = null, UnixFileMode? mode = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -180,6 +180,12 @@
         <td><span class="xref">FileOptions</span></td>
         <td><span class="parametername">options</span></td>
         <td><p>File options</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">UnixFileMode</span>&gt;</td>
+        <td><span class="parametername">mode</span></td>
+        <td><p>File create mode</p>
 </td>
       </tr>
     </tbody>

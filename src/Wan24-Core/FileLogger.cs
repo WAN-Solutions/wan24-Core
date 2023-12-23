@@ -22,7 +22,7 @@ namespace wan24.Core
         /// <param name="mode">Create file mode</param>
         protected FileLogger(
             in string fileName, 
-            in LogLevel level = Logging.DEFAULT_LOGLEVEL, 
+            in LogLevel? level = null, 
             in ILogger? next = null, 
             in int maxQueue = int.MaxValue,
             in UnixFileMode? mode = null

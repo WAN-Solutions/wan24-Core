@@ -79,30 +79,10 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><a class="xref" href="wan24.Core.LoggerBase.html">LoggerBase</a></div>
-    <div class="level2"><span class="xref">CategoryLogger</span></div>
-  </div>
-  <div class="implements">
-    <h5>Implements</h5>
-    <div><span class="xref">Microsoft.Extensions.Logging.ILogger</span></div>
+    <div class="level1"><span class="xref">CategoryLogger</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="wan24.Core.LoggerBase.html#wan24_Core_LoggerBase_Level">LoggerBase.Level</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.LoggerBase.html#wan24_Core_LoggerBase_Next">LoggerBase.Next</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.LoggerBase.html#wan24_Core_LoggerBase_BeginScope__1___0_">LoggerBase.BeginScope&lt;TState&gt;(TState)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.LoggerBase.html#wan24_Core_LoggerBase_IsEnabled_Microsoft_Extensions_Logging_LogLevel_">LoggerBase.IsEnabled(LogLevel)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.LoggerBase.html#wan24_Core_LoggerBase_GetMessage__1_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_EventId___0_System_Nullable_Exception__Func___0_System_Nullable_Exception__System_String__System_Boolean_">LoggerBase.GetMessage&lt;TState&gt;(LogLevel, EventId, TState, Nullable&lt;Exception&gt;, Func&lt;TState, Nullable&lt;Exception&gt;, String&gt;, Boolean)</a>
-    </div>
     <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
     </div>
@@ -129,240 +109,11 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_CategoryLogger_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class CategoryLogger : LoggerBase, ILogger</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class CategoryLogger</code></pre>
   </div>
-  <h3 id="constructors">Constructors
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CategoryLogger__ctor_System_String__Microsoft_Extensions_Logging_ILogger__Microsoft_Extensions_Logging_LogLevel__.md&amp;value=---%0Auid%3A%20wan24.Core.CategoryLogger.%23ctor(System.String%40%2CMicrosoft.Extensions.Logging.ILogger%40%2CMicrosoft.Extensions.Logging.LogLevel%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CategoryLogger.cs/#L16">View Source</a>
-  </span>
-  <a id="wan24_Core_CategoryLogger__ctor_" data-uid="wan24.Core.CategoryLogger.#ctor*"></a>
-  <h4 id="wan24_Core_CategoryLogger__ctor_System_String__Microsoft_Extensions_Logging_ILogger__Microsoft_Extensions_Logging_LogLevel__" data-uid="wan24.Core.CategoryLogger.#ctor(System.String@,Microsoft.Extensions.Logging.ILogger@,Microsoft.Extensions.Logging.LogLevel@)">CategoryLogger(in String, in ILogger, in LogLevel)</h4>
-  <div class="markdown level1 summary"><p>Constructor</p>
+  <h5 id="wan24_Core_CategoryLogger_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Constructor</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public CategoryLogger(in string category, in ILogger next, in LogLevel level = LogLevel.Information)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">category</span></td>
-        <td><p>Category</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">Microsoft.Extensions.Logging.ILogger</span></td>
-        <td><span class="parametername">next</span></td>
-        <td><p>Next logger which should receive the message (including the category prefix)</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">Microsoft.Extensions.Logging.LogLevel</span></td>
-        <td><span class="parametername">level</span></td>
-        <td><p>Level</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="properties">Properties
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CategoryLogger_Category.md&amp;value=---%0Auid%3A%20wan24.Core.CategoryLogger.Category%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CategoryLogger.cs/#L21">View Source</a>
-  </span>
-  <a id="wan24_Core_CategoryLogger_Category_" data-uid="wan24.Core.CategoryLogger.Category*"></a>
-  <h4 id="wan24_Core_CategoryLogger_Category" data-uid="wan24.Core.CategoryLogger.Category">Category</h4>
-  <div class="markdown level1 summary"><p>Category</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Category { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CategoryLogger_Log__1_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_EventId___0_System_Nullable_Exception__Func___0_System_Nullable_Exception__System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.CategoryLogger.Log%60%601(Microsoft.Extensions.Logging.LogLevel%2CMicrosoft.Extensions.Logging.EventId%2C%60%600%2CSystem.Nullable%7BException%7D%2CFunc%7B%60%600%2CSystem.Nullable%7BException%7D%2CSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CategoryLogger.cs/#L24">View Source</a>
-  </span>
-  <a id="wan24_Core_CategoryLogger_Log_" data-uid="wan24.Core.CategoryLogger.Log*"></a>
-  <h4 id="wan24_Core_CategoryLogger_Log__1_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_EventId___0_System_Nullable_Exception__Func___0_System_Nullable_Exception__System_String__" data-uid="wan24.Core.CategoryLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Nullable{Exception},Func{``0,System.Nullable{Exception},System.String})">Log&lt;TState&gt;(LogLevel, EventId, TState, Nullable&lt;Exception&gt;, Func&lt;TState, Nullable&lt;Exception&gt;, String&gt;)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Log&lt;TState&gt;(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func&lt;TState, Exception?, string&gt; formatter)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Microsoft.Extensions.Logging.LogLevel</span></td>
-        <td><span class="parametername">logLevel</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">Microsoft.Extensions.Logging.EventId</span></td>
-        <td><span class="parametername">eventId</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">TState</span></td>
-        <td><span class="parametername">state</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Exception</span>&gt;</td>
-        <td><span class="parametername">exception</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">Func</span>&lt;TState, <span class="xref">System.Nullable</span>&lt;<span class="xref">Exception</span>&gt;, <span class="xref">System.String</span>&gt;</td>
-        <td><span class="parametername">formatter</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TState</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">wan24.Core.LoggerBase.Log&lt;TState&gt;(Microsoft.Extensions.Logging.LogLevel, Microsoft.Extensions.Logging.EventId, TState, System.Nullable&lt;Exception&gt;, Func&lt;TState, System.Nullable&lt;Exception&gt;, System.String&gt;)</span></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CategoryLogger_LogInt__1_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_EventId___0_System_Nullable_Exception__Func___0_System_Nullable_Exception__System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.CategoryLogger.LogInt%60%601(Microsoft.Extensions.Logging.LogLevel%2CMicrosoft.Extensions.Logging.EventId%2C%60%600%2CSystem.Nullable%7BException%7D%2CFunc%7B%60%600%2CSystem.Nullable%7BException%7D%2CSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CategoryLogger.cs/#L28">View Source</a>
-  </span>
-  <a id="wan24_Core_CategoryLogger_LogInt_" data-uid="wan24.Core.CategoryLogger.LogInt*"></a>
-  <h4 id="wan24_Core_CategoryLogger_LogInt__1_Microsoft_Extensions_Logging_LogLevel_Microsoft_Extensions_Logging_EventId___0_System_Nullable_Exception__Func___0_System_Nullable_Exception__System_String__" data-uid="wan24.Core.CategoryLogger.LogInt``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Nullable{Exception},Func{``0,System.Nullable{Exception},System.String})">LogInt&lt;TState&gt;(LogLevel, EventId, TState, Nullable&lt;Exception&gt;, Func&lt;TState, Nullable&lt;Exception&gt;, String&gt;)</h4>
-  <div class="markdown level1 summary"><p>Writes a log entry</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void LogInt&lt;TState&gt;(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func&lt;TState, Exception?, string&gt; formatter)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Microsoft.Extensions.Logging.LogLevel</span></td>
-        <td><span class="parametername">logLevel</span></td>
-        <td><p>Level</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">Microsoft.Extensions.Logging.EventId</span></td>
-        <td><span class="parametername">eventId</span></td>
-        <td><p>Event ID</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">TState</span></td>
-        <td><span class="parametername">state</span></td>
-        <td><p>State</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">Exception</span>&gt;</td>
-        <td><span class="parametername">exception</span></td>
-        <td><p>Exception</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">Func</span>&lt;TState, <span class="xref">System.Nullable</span>&lt;<span class="xref">Exception</span>&gt;, <span class="xref">System.String</span>&gt;</td>
-        <td><span class="parametername">formatter</span></td>
-        <td><p>Formatter</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TState</span></td>
-        <td><p>State type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">wan24.Core.LoggerBase.LogInt&lt;TState&gt;(Microsoft.Extensions.Logging.LogLevel, Microsoft.Extensions.Logging.EventId, TState, System.Nullable&lt;Exception&gt;, Func&lt;TState, System.Nullable&lt;Exception&gt;, System.String&gt;)</span></div>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <span class="xref">Microsoft.Extensions.Logging.ILogger</span>
-  </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
@@ -411,7 +162,7 @@
                     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CategoryLogger.md&amp;value=---%0Auid%3A%20wan24.Core.CategoryLogger%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CategoryLogger.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CategoryLogger.cs/#L14" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -11,7 +11,7 @@ namespace wan24.Core
     /// <param name="category">Category</param>
     /// <param name="next">Next logger which should receive the message (including the category prefix)</param>
     /// <param name="level">Level</param>
-    public sealed class CategoryLogger(in string category, in ILogger next, in LogLevel level = Logging.DEFAULT_LOGLEVEL) : LoggerBase(level, next)
+    public sealed class CategoryLogger(in string category, in ILogger next, in LogLevel? level = null) : LoggerBase(level, next)
     {
 
         /// <summary>

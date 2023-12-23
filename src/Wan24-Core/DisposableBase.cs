@@ -1,14 +1,14 @@
 ﻿using System.Collections;
-using System.Diagnostics;
 using System.Reflection;
 using System.Runtime;
+using static wan24.Core.Logging;
 
 namespace wan24.Core
 {
     /// <summary>
     /// Base class for a disposable type
     /// </summary>
-    public abstract class DisposableBase : IDisposableObject
+    public abstract class DisposableBase : IWillDispose
     {
         /// <summary>
         /// An object for thread synchronization during disposing
@@ -22,6 +22,10 @@ namespace wan24.Core
         /// Don't count running the finalizer as an error?
         /// </summary>
         protected readonly bool AllowFinalizer;
+        /// <summary>
+        /// Objects to dispose when disposing
+        /// </summary>
+        protected readonly HashSet<object> DisposeObjects = [];
         /// <summary>
         /// Stack information
         /// </summary>
@@ -51,18 +55,18 @@ namespace wan24.Core
         {
             if (!AllowFinalizer)
             {
-                Logging.WriteWarning($"Disposing {GetType()} from finalizer (shouldn't happen!)");
-                Debugger.Break();
+                if (Warning) Logging.WriteWarning($"Disposing {GetType()} from finalizer (shouldn't happen!)");
+                System.Diagnostics.Debugger.Break();
                 if (StackInfo is not null)
                     ErrorHandling.Handle(new StackInfoException(StackInfo, "Destructor called"));
             }
             else
             {
-                Logging.WriteTrace($"Disposing {GetType()} from finalizer");
+                if (Trace) Logging.WriteTrace($"Disposing {GetType()} from finalizer");
             }
             if (!DoDispose())
             {
-                Logging.WriteWarning($"Destructor on {GetType()} called, but seems to be disposed already");
+                if (Warning) Logging.WriteWarning($"Destructor on {GetType()} called, but seems to be disposed already");
                 return;
             }
             Dispose(disposing: false);
@@ -81,6 +85,24 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         public bool IsDisposed { get; private set; }
+
+        /// <inheritdoc/>
+        public virtual void RegisterForDispose<T>(in T disposable)
+        {
+            EnsureUndisposed();
+            if (disposable is not IDisposable && disposable is not IAsyncDisposable)
+                throw new ArgumentException($"Disposable object required ({typeof(T)} doesn't implement {typeof(IDisposable)} or {typeof(IAsyncDisposable)})", nameof(disposable));
+            DisposeSyncObject.Wait();
+            try
+            {
+                EnsureUndisposed();
+                DisposeObjects.Add(disposable);
+            }
+            finally
+            {
+                DisposeSyncObject.Release();
+            }
+        }
 
         /// <summary>
         /// Ensure an undisposed object state
@@ -388,6 +410,7 @@ namespace wan24.Core
         {
             if (!DoDispose()) return;
             Dispose(disposing: true);
+            DisposeObjects.TryDisposeAll();
             DisposeSyncObject.Dispose();
             IsDisposed = true;
             GC.SuppressFinalize(this);
@@ -404,6 +427,7 @@ namespace wan24.Core
             }
             if (!await DoDisposeAsync().DynamicContext()) return;
             await DisposeCore().DynamicContext();
+            await DisposeObjects.TryDisposeAllAsync().DynamicContext();
             DisposeSyncObject.Dispose();
             IsDisposed = true;
             GC.SuppressFinalize(this);

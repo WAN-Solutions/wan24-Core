@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using static wan24.Core.Logging;
 
 //TODO Use ArrayIndexOutOfBoundException
 
@@ -122,7 +123,7 @@ namespace wan24.Core
                     .ThenByDescending(mi => mi.GetCustomAttributeCached<BootstrapperAttribute>()?.Priority ?? 0)
                     .ThenBy(mi => mi.Name))
                 {
-                    Logging.WriteDebug($"Calling bootstrapper {mi.DeclaringType}.{mi.Name}");
+                    if (Debug) Logging.WriteDebug($"Calling bootstrapper {mi.DeclaringType}.{mi.Name}");
                     if (mi.DeclaringType is not null)
                     {
                         using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
@@ -184,7 +185,7 @@ namespace wan24.Core
         {
             using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext())
                 if (!BootedAssemblies.Add(assembly.GetHashCode())) return;
-            Logging.WriteDebug($"Single bootstrapping of assembly {assembly.GetName().FullName}");
+            if (Debug) Logging.WriteDebug($"Single bootstrapping of assembly {assembly.GetName().FullName}");
             if (!DidBoot && !IsBooting) await Async(cancellationToken: cancellationToken).DynamicContext();
             TypeHelper.Instance.ScanAssemblies(assembly);
             // Fixed type and method
@@ -231,7 +232,7 @@ namespace wan24.Core
                 .ThenByDescending(mi => mi.GetCustomAttributeCached<BootstrapperAttribute>()?.Priority ?? 0)
                 .ThenBy(mi => mi.Name))
             {
-                Logging.WriteDebug($"Calling bootstrapper {mi.DeclaringType}.{mi.Name}");
+                if (Debug) Logging.WriteDebug($"Calling bootstrapper {mi.DeclaringType}.{mi.Name}");
                 cancellationToken.ThrowIfCancellationRequested();
                 if (mi.ReturnType != typeof(void) && (typeof(Task).IsAssignableFrom(mi.ReturnType) || typeof(ValueTask).IsAssignableFrom(mi.ReturnType)))
                 {

@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using static wan24.Core.Logging;
+
+namespace wan24.Core
 {
     /// <summary>
     /// ACID stream (IO is synchronized)
@@ -8,7 +10,7 @@
     /// </remarks>
     /// <param name="stream">Target stream (will be disposed!)</param>
     /// <param name="backup">Backup stream (will be disposed!)</param>
-    public sealed class AcidStream(in Stream stream, in Stream? backup = null) : AcidStream<Stream>(stream, backup)
+    public class AcidStream(in Stream stream, in Stream? backup = null) : AcidStream<Stream>(stream, backup)
     {
     }
 
@@ -42,56 +44,15 @@
         }
 
         /// <summary>
-        /// IO synchronization
+        /// Set a new position
         /// </summary>
-        public SemaphoreSync SyncIO { get; } = new();
-
-        /// <summary>
-        /// Backup stream (will be disposed!)
-        /// </summary>
-        public Stream Backup { get; }
-
-        /// <summary>
-        /// Needs a commit?
-        /// </summary>
-        public bool NeedsCommit { get; protected set; }
-
-        /// <summary>
-        /// Automatic commit each writing operation?
-        /// </summary>
-        public bool AutoCommit { get; set; }
-
-        /// <summary>
-        /// Automatic rollback on error?
-        /// </summary>
-        public bool AutoRollback { get; set; } = true;
-
-        /// <summary>
-        /// Automatic flush after each write operation?
-        /// </summary>
-        public bool AutoFlush { get; set; }
-
-        /// <summary>
-        /// Automatic flush the backup stream after each write operation?
-        /// </summary>
-        public bool AutoFlushBackup { get; set; }
-
-        /// <summary>
-        /// Leave the base stream open when disposing (returns <see langword="false"/> always, setter will throw!)
-        /// </summary>
-        /// <exception cref="NotSupportedException">Setter isn't supported</exception>
-        public override bool LeaveOpen { get => base.LeaveOpen; set => throw new NotSupportedException(); }
-
-        /// <inheritdoc/>
-        public override long Position
+        /// <param name="value">Offset</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public virtual async Task SetPositionAsync(long value, CancellationToken cancellationToken = default)
         {
-            get => BaseStream.Position;
-            set
-            {
-                EnsureUndisposed();
-                using SemaphoreSyncContext ssc = SyncIO;
-                BaseStream.Position = value;
-            }
+            EnsureUndisposed();
+            using SemaphoreSyncContext ssc = await SyncIO.SyncContextAsync(cancellationToken).DynamicContext();
+            BaseStream.Position = value;
         }
 
         /// <inheritdoc/>
@@ -136,24 +97,7 @@
             if (buffer.Length == 0) return;
             // Write rollback information
             using SemaphoreSyncContext ssc = SyncIO;
-            int len = (int)Math.Min(BaseStream.Length - BaseStream.Position, buffer.Length);
-            if (len > 0)
-            {
-                Logging.WriteTrace($"{this} writing {len} byte overwritten data backup at offset {Backup.Position}");
-                long pos = BaseStream.Position;
-                Backup.WriteByte((byte)IoTypes.Write);
-                Backup.Write(DateTime.UtcNow.Ticks.GetBytes(SerializationBuffer.Span));
-                Backup.Write(pos.GetBytes(SerializationBuffer.Span));
-                Backup.Write(len.GetBytes(SerializationBuffer.Span[..sizeof(int)]));
-                BaseStream.CopyExactlyPartialTo(Backup, len);
-                Backup.Write(len.GetBytes(SerializationBuffer.Span[..sizeof(int)]));
-                Backup.Write(pos.GetBytes(SerializationBuffer.Span));
-                Backup.WriteByte((byte)IoTypes.Write);
-                Logging.WriteTrace($"{this} overwritten data backup done at offset {Backup.Position}");
-                if (AutoFlushBackup) Backup.Flush();
-                BaseStream.Position = pos;
-            }
-            NeedsCommit = true;
+            bool commitRequired = WriteWriteBackupRecord(buffer);
             // Try to write the buffer
             try
             {
@@ -165,6 +109,7 @@
                 if (AutoRollback)
                     try
                     {
+                        if (Warning) Logging.WriteWarning($"{this} rolling back after writing exception: {ex.Message}");
                         RollbackInt();
                     }
                     catch (Exception ex2)
@@ -174,7 +119,14 @@
                 throw;
             }
             // Commit
-            if (AutoCommit) CommitInt();
+            if (AutoCommit)
+            {
+                CommitInt();
+            }
+            else if (!commitRequired)
+            {
+                RaiseOnNeedCommit();
+            }
         }
 
         /// <inheritdoc/>
@@ -188,24 +140,7 @@
             if (buffer.Length == 0) return;
             // Write rollback information
             using SemaphoreSyncContext ssc = await SyncIO.SyncContextAsync(cancellationToken).DynamicContext();
-            int len = (int)Math.Min(BaseStream.Length - BaseStream.Position, buffer.Length);
-            if (len > 0)
-            {
-                Logging.WriteTrace($"{this} writing {len} byte overwritten data backup at offset {Backup.Position}");
-                long pos = BaseStream.Position;
-                Backup.WriteByte((byte)IoTypes.Write);
-                await Backup.WriteAsync(DateTime.UtcNow.Ticks.GetBytes(SerializationBuffer.Memory), cancellationToken).DynamicContext();
-                await Backup.WriteAsync(pos.GetBytes(SerializationBuffer.Memory), cancellationToken).DynamicContext();
-                await Backup.WriteAsync(len.GetBytes(SerializationBuffer.Memory[..sizeof(int)]), cancellationToken).DynamicContext();
-                await BaseStream.CopyExactlyPartialToAsync(Backup, len, cancellationToken: cancellationToken).DynamicContext();
-                await Backup.WriteAsync(len.GetBytes(SerializationBuffer.Memory[..sizeof(int)]), cancellationToken).DynamicContext();
-                await Backup.WriteAsync(pos.GetBytes(SerializationBuffer.Memory), cancellationToken).DynamicContext();
-                Backup.WriteByte((byte)IoTypes.Write);
-                Logging.WriteTrace($"{this} overwritten data backup done at offset {Backup.Position}");
-                if (AutoFlushBackup) await Backup.FlushAsync(cancellationToken).DynamicContext();
-                BaseStream.Position = pos;
-            }
-            NeedsCommit = true;
+            bool commitRequired = await WriteWriteBackupRecordAsync(buffer, cancellationToken).DynamicContext();
             // Try to write the buffer
             try
             {
@@ -217,6 +152,7 @@
                 if (AutoRollback)
                     try
                     {
+                        if (Warning) Logging.WriteWarning($"{this} rolling back after writing exception: {ex.Message}");
                         await RollbackIntAsync(cancellationToken).DynamicContext();
                     }
                     catch (Exception ex2)
@@ -226,7 +162,14 @@
                 throw;
             }
             // Commit
-            if (AutoCommit) await CommitIntAsync(cancellationToken).DynamicContext();
+            if (AutoCommit)
+            {
+                await CommitIntAsync(cancellationToken).DynamicContext();
+            }
+            else if (!commitRequired)
+            {
+                RaiseOnNeedCommit();
+            }
         }
 
         /// <inheritdoc/>
@@ -238,30 +181,7 @@
             if (len == value) return;
             // Write rollback information
             using SemaphoreSyncContext ssc = SyncIO;
-            Logging.WriteTrace($"{this} applying new length at offset {Backup.Position}");
-            Backup.WriteByte((byte)IoTypes.Length);
-            Backup.Write(DateTime.UtcNow.Ticks.GetBytes(SerializationBuffer.Span));
-            Backup.Write(len.GetBytes(SerializationBuffer.Span));
-            Backup.Write(value.GetBytes(SerializationBuffer.Span));
-            long dataLen = Math.Max(0, len - value);
-            if (dataLen != 0)
-            {
-                Logging.WriteTrace($"{this} writing {len} byte cutted off data backup (setting new length to {value} byte)");
-                long pos = BaseStream.Position;
-                BaseStream.Position = value;
-                BaseStream.CopyPartialTo(Backup, dataLen);
-                BaseStream.Position = pos;
-            }
-            else
-            {
-                Logging.WriteTrace($"{this} setting new length to {value} byte");
-            }
-            Backup.Write(value.GetBytes(SerializationBuffer.Span));
-            Backup.Write(len.GetBytes(SerializationBuffer.Span));
-            Backup.WriteByte((byte)IoTypes.Length);
-            Logging.WriteTrace($"{this} applying new length done at offset {Backup.Position}");
-            if (AutoFlushBackup) Backup.Flush();
-            NeedsCommit = true;
+            bool commitRequired = WriteLengthBackupRecord(len, value);
             // Try to set the length
             try
             {
@@ -273,6 +193,7 @@
                 if (AutoRollback)
                     try
                     {
+                        if (Warning) Logging.WriteWarning($"{this} rolling back after setting length exception: {ex.Message}");
                         RollbackInt();
                     }
                     catch (Exception ex2)
@@ -282,7 +203,58 @@
                 throw;
             }
             // Commit
-            if (AutoCommit) CommitInt();
+            if (AutoCommit)
+            {
+                CommitInt();
+            }
+            else if (!commitRequired)
+            {
+                RaiseOnNeedCommit();
+            }
+        }
+
+        /// <summary>
+        /// Set a new stream length
+        /// </summary>
+        /// <param name="value">New length in byte</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public virtual async Task SetLengthAsync(long value, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            ArgumentOutOfRangeException.ThrowIfNegative(value);
+            long len = BaseStream.Length;
+            if (len == value) return;
+            // Write rollback information
+            using SemaphoreSyncContext ssc = await SyncIO.SyncContextAsync(cancellationToken).DynamicContext();
+            bool commitRequired = await WriteLengthBackupRecordAsync(len, value, cancellationToken).DynamicContext();
+            // Try to set the length
+            try
+            {
+                BaseStream.SetLength(value);
+                if (AutoFlush) await BaseStream.FlushAsync(cancellationToken).DynamicContext();
+            }
+            catch (Exception ex)
+            {
+                if (AutoRollback)
+                    try
+                    {
+                        await RollbackIntAsync(cancellationToken).DynamicContext();
+                    }
+                    catch (Exception ex2)
+                    {
+                        throw new AcidException("Rollback during failed new length IO operation failed, too", new AggregateException(ex, ex2));
+                    }
+                throw;
+            }
+            // Commit
+            if (AutoCommit)
+            {
+                await CommitIntAsync(cancellationToken).DynamicContext();
+            }
+            else if (!commitRequired)
+            {
+                RaiseOnNeedCommit();
+            }
         }
 
         /// <inheritdoc/>
@@ -294,45 +266,33 @@
         }
 
         /// <summary>
-        /// Commit the changes since the last commit
+        /// Seek to a relative byte offset
         /// </summary>
-        public virtual void Commit()
-        {
-            EnsureUndisposed();
-            using SemaphoreSyncContext ssc = SyncIO;
-            CommitInt();
-        }
-
-        /// <summary>
-        /// Commit the changes since the last commit
-        /// </summary>
+        /// <param name="offset">Offset</param>
+        /// <param name="origin">Origin</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        public virtual async Task CommitAsync(CancellationToken cancellationToken = default)
+        /// <returns>New offset</returns>
+        public virtual async Task<long> SeekAsync(long offset, SeekOrigin origin, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = await SyncIO.SyncContextAsync(cancellationToken).DynamicContext();
-            await CommitIntAsync(cancellationToken).DynamicContext();
+            return BaseStream.Seek(offset, origin);
         }
 
-        /// <summary>
-        /// Perform a rollback
-        /// </summary>
-        public virtual void Rollback()
+        /// <inheritdoc/>
+        public override void Flush()
         {
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = SyncIO;
-            RollbackInt();
+            BaseStream.Flush();
         }
 
-        /// <summary>
-        /// Perform a rollback
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
-        public virtual async Task RollbackAsync(CancellationToken cancellationToken = default)
+        /// <inheritdoc/>
+        public override async Task FlushAsync(CancellationToken cancellationToken)
         {
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = await SyncIO.SyncContextAsync(cancellationToken).DynamicContext();
-            await RollbackIntAsync(cancellationToken).DynamicContext();
+            await BaseStream.FlushAsync(cancellationToken).DynamicContext();
         }
     }
 }
