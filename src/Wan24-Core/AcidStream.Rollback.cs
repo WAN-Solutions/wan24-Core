@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using static wan24.Core.Logging;
+
+namespace wan24.Core
 {
     // Backup stream rollback functionality
     public partial class AcidStream<T> where T : Stream
@@ -11,26 +13,26 @@
         public static void PerformRollback(in AcidStream<T> stream, in bool sync = true)
         {
             using SemaphoreSyncContext? ssc = sync ? stream.SyncIO.SyncContext() : null;
-            Logging.WriteDebug($"Performing rollback for ACID stream {stream}");
+            if (Debug) Logging.WriteDebug($"Performing rollback for ACID stream {stream}");
             stream.Backup.Position = 0;
             long len = ReadLengthFromBackup(stream.Backup, stream.SerializationBuffer),
                 records = InvestigateBackup(stream.Backup, stream.SerializationBuffer);
-            Logging.WriteTrace($"Original ACID target stream length in byte: {len}");
-            Logging.WriteTrace($"Number of ACID records: {records}");
+            if (Trace) Logging.WriteTrace($"Original ACID target stream length in byte: {len}");
+            if (Trace) Logging.WriteTrace($"Number of ACID records: {records}");
             try
             {
                 for (; records > 0; records--)
                 {
-                    Logging.WriteTrace($"ACID stream rolling back record {records}");
+                    if (Trace) Logging.WriteTrace($"ACID stream rolling back record {records}");
                     if (ReadBackupRecordBackward(stream.Backup, stream.SerializationBuffer) is not BackupRecordBase record) throw new IOException($"Failed to read backup record #{records}");
                     PerformRollback(stream, record, sync: false);
                     stream.Backup.Position = record.Offset;
                 }
-                Logging.WriteTrace($"ACID stream rollback setting original target stream length of {len} byte");
+                if (Trace) Logging.WriteTrace($"ACID stream rollback setting original target stream length of {len} byte");
                 stream.BaseStream.SetLength(len);
                 if (stream.AutoFlush) stream.BaseStream.Flush();
                 stream.NeedsCommit = false;
-                Logging.WriteTrace("Resetting ACID backup stream");
+                if (Trace) Logging.WriteTrace("Resetting ACID backup stream");
                 stream.Backup.SetLength(0);
                 InitializeBackupStream(stream.BaseStream, stream.Backup, stream.SerializationBuffer, stream.AutoFlushBackup);
             }
@@ -49,27 +51,27 @@
         public static async Task PerformRollbackAsync(AcidStream<T> stream, bool sync = true, CancellationToken cancellationToken = default)
         {
             using SemaphoreSyncContext? ssc = sync ? await stream.SyncIO.SyncContextAsync(cancellationToken).DynamicContext() : null;
-            Logging.WriteDebug($"Performing rollback for ACID stream {stream}");
+            if (Debug) Logging.WriteDebug($"Performing rollback for ACID stream {stream}");
             stream.Backup.Position = 0;
             long len = await ReadLengthFromBackupAsync(stream.Backup, stream.SerializationBuffer, cancellationToken).DynamicContext(),
                 records = await InvestigateBackupAsync(stream.Backup, stream.SerializationBuffer, cancellationToken).DynamicContext();
-            Logging.WriteTrace($"Original ACID target stream length in byte: {len}");
-            Logging.WriteTrace($"Number of ACID records: {records}");
+            if (Trace) Logging.WriteTrace($"Original ACID target stream length in byte: {len}");
+            if (Trace) Logging.WriteTrace($"Number of ACID records: {records}");
             try
             {
                 for (; records > 0; records--)
                 {
-                    Logging.WriteTrace($"ACID stream rolling back record {records}");
+                    if (Trace) Logging.WriteTrace($"ACID stream rolling back record {records}");
                     if (await ReadBackupRecordBackwardAsync(stream.Backup, stream.SerializationBuffer, cancellationToken).DynamicContext() is not BackupRecordBase record)
                         throw new IOException($"Failed to read backup record #{records}");
                     await PerformRollbackAsync(stream, record, sync: false, cancellationToken).DynamicContext();
                     stream.Backup.Position = record.Offset;
                 }
-                Logging.WriteTrace($"ACID stream rollback setting original target stream length of {len} byte");
+                if (Trace) Logging.WriteTrace($"ACID stream rollback setting original target stream length of {len} byte");
                 stream.BaseStream.SetLength(len);
                 if (stream.AutoFlush) await stream.BaseStream.FlushAsync(cancellationToken).DynamicContext();
                 stream.NeedsCommit = false;
-                Logging.WriteTrace("Resetting ACID backup stream");
+                if (Trace) Logging.WriteTrace("Resetting ACID backup stream");
                 stream.Backup.SetLength(0);
                 await InitializeBackupStreamAsync(stream.BaseStream, stream.Backup, stream.SerializationBuffer, stream.AutoFlushBackup, cancellationToken).DynamicContext();
             }
@@ -88,12 +90,12 @@
         public static void PerformRollback(in AcidStream<T> stream, in BackupRecordBase record, in bool sync = true)
         {
             using SemaphoreSyncContext? ssc = sync ? stream.SyncIO.SyncContext() : null;
-            Logging.WriteDebug($"ACID stream {stream} rolling back record {record}");
+            if (Debug) Logging.WriteDebug($"ACID stream {stream} rolling back record {record}");
             switch (record)
             {
                 case BackupWriteRecord writeRecord:
                     // Restore overwritten data
-                    Logging.WriteTrace($"ACID stream restoring {writeRecord.Length} byte overwritten data");
+                    if (Trace) Logging.WriteTrace($"ACID stream restoring {writeRecord.Length} byte overwritten data");
                     if (writeRecord.Position > stream.BaseStream.Length) throw new InvalidDataException($"Invalid backup data offset {writeRecord.Position}");
                     stream.Backup.Position = record.Offset + WRITE_META_LEN + TIME_META_LEN;
                     stream.BaseStream.Position = writeRecord.Position;
@@ -101,11 +103,11 @@
                     break;
                 case BackupLengthRecord lengthRecord:
                     // Restore the old stream length
-                    Logging.WriteTrace($"ACID stream restoring {lengthRecord.OldLength} byte length from {lengthRecord.NewLength} byte length");
+                    if (Trace) Logging.WriteTrace($"ACID stream restoring {lengthRecord.OldLength} byte length from {lengthRecord.NewLength} byte length");
                     if (lengthRecord.DataLength != 0)
                     {
                         // Old stream length was larger
-                        Logging.WriteTrace($"ACID stream restoring {lengthRecord.DataLength} byte cutted off data");
+                        if (Trace) Logging.WriteTrace($"ACID stream restoring {lengthRecord.DataLength} byte cutted off data");
                         stream.Backup.Position = record.Offset + LENGTH_META_LEN + TIME_META_LEN;
                         stream.BaseStream.Position = lengthRecord.NewLength;
                         stream.Backup.CopyExactlyPartialTo(stream.BaseStream, lengthRecord.DataLength);
@@ -113,7 +115,7 @@
                     else
                     {
                         // Old stream length was smaller
-                        Logging.WriteTrace($"ACID stream rollback cutting target stream to {lengthRecord.OldLength} byte");
+                        if (Trace) Logging.WriteTrace($"ACID stream rollback cutting target stream to {lengthRecord.OldLength} byte");
                         stream.BaseStream.SetLength(lengthRecord.OldLength);
                     }
                     break;
@@ -132,12 +134,12 @@
         public static async Task PerformRollbackAsync(AcidStream<T> stream, BackupRecordBase record, bool sync = true, CancellationToken cancellationToken = default)
         {
             using SemaphoreSyncContext? ssc = sync ? await stream.SyncIO.SyncContextAsync(cancellationToken).DynamicContext() : null;
-            Logging.WriteDebug($"ACID stream {stream} rolling back record {record}");
+            if (Debug) Logging.WriteDebug($"ACID stream {stream} rolling back record {record}");
             switch (record)
             {
                 case BackupWriteRecord writeRecord:
                     // Restore overwritten data
-                    Logging.WriteTrace($"ACID stream restoring {writeRecord.Length} byte overwritten data");
+                    if (Trace) Logging.WriteTrace($"ACID stream restoring {writeRecord.Length} byte overwritten data");
                     if (writeRecord.Position > stream.BaseStream.Length) throw new InvalidDataException($"Invalid backup data offset {writeRecord.Position}");
                     stream.Backup.Position = record.Offset + WRITE_META_LEN + TIME_META_LEN;
                     stream.BaseStream.Position = writeRecord.Position;
@@ -145,11 +147,11 @@
                     break;
                 case BackupLengthRecord lengthRecord:
                     // Restore the old stream length
-                    Logging.WriteTrace($"ACID stream restoring {lengthRecord.OldLength} byte length from {lengthRecord.NewLength} byte length");
+                    if (Trace) Logging.WriteTrace($"ACID stream restoring {lengthRecord.OldLength} byte length from {lengthRecord.NewLength} byte length");
                     if (lengthRecord.DataLength != 0)
                     {
                         // Old stream length was larger
-                        Logging.WriteTrace($"ACID stream restoring {lengthRecord.DataLength} byte cutted off data");
+                        if (Trace) Logging.WriteTrace($"ACID stream restoring {lengthRecord.DataLength} byte cutted off data");
                         stream.Backup.Position = record.Offset + LENGTH_META_LEN + TIME_META_LEN;
                         stream.BaseStream.Position = lengthRecord.NewLength;
                         await stream.Backup.CopyExactlyPartialToAsync(stream.BaseStream, lengthRecord.DataLength, cancellationToken: cancellationToken).DynamicContext();
@@ -157,7 +159,7 @@
                     else
                     {
                         // Old stream length was smaller
-                        Logging.WriteTrace($"ACID stream rollback cutting target stream to {lengthRecord.OldLength} byte");
+                        if (Trace) Logging.WriteTrace($"ACID stream rollback cutting target stream to {lengthRecord.OldLength} byte");
                         stream.BaseStream.SetLength(lengthRecord.OldLength);
                     }
                     break;

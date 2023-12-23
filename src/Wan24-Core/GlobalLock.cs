@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using static wan24.Core.Logging;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Global lock using <see cref="Mutex"/> (requires to be disposed by the same thread that created the mutex!)
@@ -55,7 +57,7 @@
             }
             catch (Exception ex)
             {
-                Logging.WriteError($"Failed to release the mutex {ID}, finally: {ex.Message}");
+                if (Error) Logging.WriteError($"Failed to release the mutex {ID}, finally: {ex.Message}");
             }
             finally
             {

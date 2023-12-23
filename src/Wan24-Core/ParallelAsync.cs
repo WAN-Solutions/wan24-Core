@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
+using static wan24.Core.Logging;
 
 namespace wan24.Core
 {
@@ -47,8 +47,8 @@ namespace wan24.Core
             }
             if (processor.Processed != enqueued)//FIXME Happens during running the tests on Linux from time to time!?
             {
-                Debugger.Break();
-                Logging.WriteError($"{enqueued} items enqueued, but only {processor.Processed} processed");
+                System.Diagnostics.Debugger.Break();
+                if (Error) Logging.WriteError($"{enqueued} items enqueued, but only {processor.Processed} processed");
                 throw new InvalidProgramException($"{enqueued} items enqueued, but only {processor.Processed} processed");
             }
             return processor.Processed;
@@ -93,8 +93,8 @@ namespace wan24.Core
             }
             if (processor.Processed != enqueued)//FIXME Happens during running the tests on Linux from time to time!?
             {
-                Debugger.Break();
-                Logging.WriteError($"{enqueued} items enqueued, but only {processor.Processed} processed");
+                System.Diagnostics.Debugger.Break();
+                if (Error) Logging.WriteError($"{enqueued} items enqueued, but only {processor.Processed} processed");
                 throw new InvalidProgramException($"{enqueued} items enqueued, but only {processor.Processed} processed");
             }
             return processor.Processed;

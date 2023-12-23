@@ -10,7 +10,6 @@
     /// <param name="enumerable">Enumerable</param>
     public sealed class AsyncObjectEnumerable<T>(in IAsyncEnumerable<T> enumerable) : DisposableBase(), IAsyncEnumerable<object>
     {
-
         /// <summary>
         /// Enumerable
         /// </summary>

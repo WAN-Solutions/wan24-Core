@@ -1,4 +1,5 @@
 ﻿using System.Runtime;
+using static wan24.Core.Logging;
 
 namespace wan24.Core
 {
@@ -54,12 +55,12 @@ namespace wan24.Core
                 ))
                 try
                 {
-                    Logging.WriteDebug($"Deleting previously pooled temporary file \"{file}\"");
+                    if (Debug) Logging.WriteDebug($"Deleting previously pooled temporary file \"{file}\"");
                     File.Delete(file);
                 }
                 catch (Exception ex)
                 {
-                    Logging.WriteWarning($"Failed to delete \"{file}\": {ex.Message}");
+                    if (Warning) Logging.WriteWarning($"Failed to delete \"{file}\": {ex.Message}");
                 }
         }
 

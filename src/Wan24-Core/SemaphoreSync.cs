@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Runtime;
+using static wan24.Core.Logging;
 
 namespace wan24.Core
 {
@@ -389,7 +390,8 @@ namespace wan24.Core
             {
                 _Semaphore?.Dispose();
                 if (_InstanceCount != 0)
-                    Logging.WriteWarning($"{GetType()} counts {_InstanceCount} synchronization instances for {Object.GetType()} when disposed");
+                    if (Warning) 
+                        Logging.WriteWarning($"{GetType()} counts {_InstanceCount} synchronization instances for {Object.GetType()} when disposed");
             }
 
             /// <inheritdoc/>

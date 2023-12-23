@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Hosting;
 using System.Runtime;
+using static wan24.Core.Logging;
 
 namespace wan24.Core
 {
@@ -106,7 +107,7 @@ namespace wan24.Core
             if (IsRunning) return;
             try
             {
-                Logging.WriteDebug($"Starting {this}");
+                if (Debug) Logging.WriteDebug($"Starting {this}");
                 IsRunning = true;
                 await BeforeStartAsync(cancellationToken).DynamicContext();
                 Cancellation = new();
@@ -115,7 +116,7 @@ namespace wan24.Core
                 ServiceTask = ((Func<Task>)RunServiceAsync).StartLongRunningTask(cancellationToken: CancellationToken.None);
                 await AfterStartAsync(cancellationToken).DynamicContext();
                 RunEvent.Set(cancellationToken);
-                Logging.WriteDebug($"Started {this}");
+                if (Debug) Logging.WriteDebug($"Started {this}");
             }
             catch
             {
@@ -140,7 +141,7 @@ namespace wan24.Core
                 if (!IsRunning) return;
                 if (StopTask is null)
                 {
-                    Logging.WriteDebug($"Stopping {this}");
+                    if (Debug) Logging.WriteDebug($"Stopping {this}");
                     isStopping = true;
                     await BeforeStopAsync(CancellationToken.None).DynamicContext();
                     StopTask = new(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -162,7 +163,7 @@ namespace wan24.Core
             if (isStopping)
             {
                 await AfterStopAsync(CancellationToken.None).DynamicContext();
-                Logging.WriteDebug($"Stopped {this}");
+                if (Debug) Logging.WriteDebug($"Stopped {this}");
             }
         }
 
@@ -174,12 +175,12 @@ namespace wan24.Core
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             if (IsPaused || !IsRunning) return;
             Paused = DateTime.Now;
-            Logging.WriteDebug($"Pausing {this}");
+            if (Debug) Logging.WriteDebug($"Pausing {this}");
             await BeforePauseAsync(CancellationToken.None).DynamicContext();
             await PausingAsync(CancellationToken.None).DynamicContext();
             await PauseEvent.ResetAsync(CancellationToken.None).DynamicContext();
             await AfterPauseAsync(CancellationToken.None).DynamicContext();
-            Logging.WriteDebug($"Paused {this}");
+            if (Debug) Logging.WriteDebug($"Paused {this}");
         }
 
         /// <inheritdoc/>
@@ -190,12 +191,12 @@ namespace wan24.Core
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             if (!IsPaused) return;
             Paused = DateTime.MinValue;
-            Logging.WriteDebug($"Resuming {this}");
+            if (Debug) Logging.WriteDebug($"Resuming {this}");
             await BeforeResumeAsync(CancellationToken.None).DynamicContext();
             await ResumingAsync(CancellationToken.None).DynamicContext();
             await PauseEvent.SetAsync(CancellationToken.None).DynamicContext();
             await AfterResumeAsync(CancellationToken.None).DynamicContext();
-            Logging.WriteDebug($"Resumed {this}");
+            if (Debug) Logging.WriteDebug($"Resumed {this}");
         }
 
         /// <inheritdoc/>

@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using static wan24.Core.Logging;
 
 namespace wan24.Core
 {
@@ -65,22 +66,22 @@ namespace wan24.Core
         public static void Handle(in ErrorInfo ex)
         {
             if (DebugOnError)
-                Debugger.Break();
+                System.Diagnostics.Debugger.Break();
             bool loggerDone = false;
             try
             {
-                if (Logging.Logger is not null) Debug.WriteLine(ex);
-                Logging.WriteError(ex);
+                if (Logging.Logger is not null) System.Diagnostics.Debug.WriteLine(ex);
+                if (Error) Logging.WriteError(ex);
                 loggerDone = true;
                 ErrorHandler?.Invoke(ex);
                 RaiseOnError(ex);
             }
             catch(Exception ex2)
             {
-                Debugger.Break();
-                if (!loggerDone && Logging.Logger is null) Debug.WriteLine(ex);
+                System.Diagnostics.Debugger.Break();
+                if (!loggerDone && Logging.Logger is null) System.Diagnostics.Debug.WriteLine(ex);
                 string message = $"Uncatched exception during error handling{(ex.Info is null ? string.Empty : $" ({ex.Info})")}";
-                Debug.Fail(message, ex2.ToString());
+                System.Diagnostics.Debug.Fail(message, ex2.ToString());
                 Console.Error.WriteLine($"{message}: {new AggregateException(ex.Exception, ex2)}");
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Reflection;
+using static wan24.Core.Logging;
 
 namespace wan24.Core
 {
@@ -38,7 +39,7 @@ namespace wan24.Core
             AppDomain.CurrentDomain.AssemblyLoad += async (s, e) =>
             {
                 await Task.Yield();
-                Logging.WriteDebug($"Scanning and booting late loaded assembly {e.LoadedAssembly.GetName().FullName}");
+                if (Debug) Logging.WriteDebug($"Scanning and booting late loaded assembly {e.LoadedAssembly.GetName().FullName}");
                 List<Task> tasks = [];
                 foreach (Assembly ass in Instance.ScanAssemblies(e.LoadedAssembly))
                     if (ass.GetCustomAttributeCached<BootstrapperAttribute>() is not null)
@@ -73,11 +74,11 @@ namespace wan24.Core
             reference ??= Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly();
             if (reference is null)
             {
-                Logging.WriteWarning("No reference assembly for scanning");
+                if (Warning) Logging.WriteWarning("No reference assembly for scanning");
                 return [];
             }
             // Scan referenced assemblies recursive
-            Logging.WriteDebug($"Scanning reference assembly {reference.GetName().FullName}");
+            if (Debug) Logging.WriteDebug($"Scanning reference assembly {reference.GetName().FullName}");
             HashSet<Assembly> added = [],// Added assemblies (the return value)
                 seen = [];// Seen assemblies (avoid recursion)
             Queue<Assembly> queue = new();// Assemblies to scan
@@ -86,19 +87,19 @@ namespace wan24.Core
             while (queue.TryDequeue(out Assembly? assembly))
             {
                 if (!seen.Add(assembly)) continue;
-                Logging.WriteTrace($"\tScanning assembly {assembly.GetName().FullName}");
+                if (Trace) Logging.WriteTrace($"\tScanning assembly {assembly.GetName().FullName}");
                 foreach (AssemblyName name in assembly.GetReferencedAssemblies())
                     try
                     {
                         if (added.Add(assembly = Assembly.Load(name)))
                         {
-                            Logging.WriteTrace($"\t\tFound new referenced assembly {assembly.GetName().FullName}");
+                            if (Trace) Logging.WriteTrace($"\t\tFound new referenced assembly {assembly.GetName().FullName}");
                             queue.Enqueue(assembly);
                         }
                     }
                     catch(Exception ex)
                     {
-                        Logging.WriteWarning($"Found new referenced assembly {assembly.GetName().FullName}, but failed to load: {ex}");
+                        if (Warning) Logging.WriteWarning($"Found new referenced assembly {assembly.GetName().FullName}, but failed to load: {ex}");
                     }
             }
             return AddAssemblies([.. added]);
@@ -112,7 +113,7 @@ namespace wan24.Core
         public Assembly[] AddAssemblies(params Assembly[] assemblies)
         {
             foreach (Assembly assembly in assemblies.Distinct())
-                if (_Assemblies.TryAdd(assembly.GetName().FullName, assembly))
+                if (_Assemblies.TryAdd(assembly.GetName().FullName, assembly) && Debug)
                     Logging.WriteDebug($"Added assembly {assembly.GetName().FullName}");
             return assemblies;
         }

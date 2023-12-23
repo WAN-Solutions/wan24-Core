@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using static wan24.Core.Logging;
 
 namespace wan24.Core
 {
@@ -68,7 +69,7 @@ namespace wan24.Core
             }
             catch (Exception ex)
             {
-                Logging.WriteError($"Error in global lock {ID} thread: {ex}");
+                if (Error) Logging.WriteError($"Error in global lock {ID} thread: {ex}");
             }
             ActionEvent.Dispose();
             // Cancel all eventually pending actions
@@ -90,7 +91,7 @@ namespace wan24.Core
             }
             catch (Exception ex)
             {
-                Logging.WriteError($"Error in global lock {ID} thread: {ex}");
+                if (Error) Logging.WriteError($"Error in global lock {ID} thread: {ex}");
             }
             await ActionEvent.DisposeAsync().DynamicContext();
             // Cancel all eventually pending actions
@@ -151,7 +152,8 @@ namespace wan24.Core
                         }
                         catch (Exception ex2)
                         {
-                            Logging.WriteError($"Failed to release the mutex Global\\{guid} after an error during construction: {ex2.Message}");
+                            if (Error)
+                                Logging.WriteError($"Failed to release the mutex Global\\{guid} after an error during construction: {ex2.Message}");
                         }
                         finally
                         {
@@ -184,7 +186,7 @@ namespace wan24.Core
                     }
                     catch (Exception ex)
                     {
-                        Logging.WriteError($"Failed to process injected actions and waiting mutex {res.ID} to be disposed: {ex}");
+                        if (Error) Logging.WriteError($"Failed to process injected actions and waiting mutex {res.ID} to be disposed: {ex}");
                     }
                     finally
                     {
@@ -195,7 +197,7 @@ namespace wan24.Core
                         }
                         catch (Exception ex)
                         {
-                            Logging.WriteError($"Failed to release the mutex {res.ID}, finally: {ex.Message}");
+                            if (Error) Logging.WriteError($"Failed to release the mutex {res.ID}, finally: {ex.Message}");
                         }
                         finally
                         {
