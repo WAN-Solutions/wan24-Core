@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using Microsoft.Extensions.Logging;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Settings
@@ -96,5 +98,11 @@
         [CliConfig]
         public static UnixFileMode CreateFolderMode { get; set; }
             = UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute | UnixFileMode.GroupRead | UnixFileMode.GroupExecute | UnixFileMode.OtherRead | UnixFileMode.OtherExecute;
+
+        /// <summary>
+        /// Default log level
+        /// </summary>
+        [CliConfig]
+        public static LogLevel LogLevel { get; set; } = Logging.DEFAULT_LOGLEVEL;
     }
 }

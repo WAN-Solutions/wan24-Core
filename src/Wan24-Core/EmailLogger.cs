@@ -19,7 +19,7 @@ namespace wan24.Core
         in IEmailTemplate template,
         in string fromEmail,
         in string toEmail,
-        in LogLevel level = Logging.DEFAULT_LOGLEVEL,
+        in LogLevel? level = null,
         in LogLevel emailLevel = LogLevel.Warning,
         in ILogger? next = null,
         in IMta? mta = null

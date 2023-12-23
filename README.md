@@ -224,6 +224,7 @@ including extensions for numeric type encoding/decoding)
 - Localization support
 - Email sending abstractions
 - Commonly used regular expressions and global named expression collection
+- Transactions
 
 ## How to get it
 
@@ -1575,3 +1576,61 @@ Your implementation needs to fit some restrictions:
 2. Names must match their readonly-field name
 3. Your type must be sealed and use private construction
 4. Your type must extend `EnumerationBase<T>` (not `EnumerationBase` directly)
+
+## Transactions
+
+You can choose between sequential transactions (`Transaction`) and parallel 
+action executing transactions (`ParallelTransaction`):
+
+### Sequential
+
+```cs
+using Transaction transaction = new();
+object? returnValue = transaction.Execute(
+    ()=> /* Perform the action here and return a value (optional) */, 
+    (transaction, returnValue) => /* Rollback for the action */
+    );
+returnValue = await transaction.ExecuteAsync(
+    async (cancelToken)=> /* Perform the action here and return a value (optional) */, 
+    async (transaction, returnValue. cancelToken) => /* Rollback for the action */
+    );
+// Commit the actions (if disposing, uncommitted actions will be rolled back!)
+transaction.Commit();
+```
+
+### Parallel
+
+```cs
+ParallelTransaction transaction = new();
+await using(transaction)
+{
+    // The Execute methods will synchronize enqueueing the action asynchronous
+    (int index, Task task) = await transaction.ExecuteAsync(
+        async (cancelToken) => /* Perform the action here */, 
+        async (transaction, returnValue, cancelToken) => /* Rollback for the action */
+        );
+    // index has the action index which allows to retrieve the return value or the exception later
+    (index, Task<object?> resultTask) = await transaction.ExecuteAsync(
+        async (cancelToken) => /* Perform the action here and return a value */, 
+        async (transaction, returnValue, cancelToken) => /* Rollback for the action */
+        );
+    object? returnValue = await resultTask;// Get the return value from the action task
+    await transaction.WaitDoneAsync();// Will throw if any action failed
+    // Commit the actions (if disposing, uncommitted actions will be rolled back!)
+    transaction.Commit();
+}
+```
+
+You can cancel pending actions using the `CancelAsync` method. A canceled 
+transaction needs to be rolled back before reuse. If an action failed, the 
+transaction can be canceled by setting `CancelOnError` to `true` (which is the 
+default). Committing an undone or canceled transaction will throw.
+
+Using the `OnError/Done` events you may become informed on error, or if all 
+pending actions are done (`OnDone` may be called multiple times).
+
+### Nested transactions
+
+Using the `Append(Async)` methods of a transaction, you may nest in any other 
+transaction (which won't be disposed, if the hosting transaction is 
+disposing!).

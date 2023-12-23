@@ -11,7 +11,7 @@ namespace wan24.Core
     /// </remarks>
     /// <param name="level">Log level</param>
     /// <param name="next">Next logger which should receive the message</param>
-    public sealed class DebugLogger(in LogLevel level = Logging.DEFAULT_LOGLEVEL, in ILogger? next = null) : LoggerBase(level, next)
+    public sealed class DebugLogger(in LogLevel? level = null, in ILogger? next = null) : LoggerBase(level, next)
     {
         /// <inheritdoc/>
         protected override void LogInt<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)

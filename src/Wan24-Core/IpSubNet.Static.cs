@@ -2,6 +2,7 @@
 using System.Net.Sockets;
 using System.Numerics;
 using System.Runtime;
+using static wan24.Core.Logging;
 
 namespace wan24.Core
 {
@@ -302,11 +303,11 @@ namespace wan24.Core
                     bool isIPv4 = networkIp.AddressFamily == AddressFamily.InterNetwork;
                     if (!isIPv4 && networkIp.AddressFamily != AddressFamily.InterNetworkV6)
                     {
-                        Logging.WriteTrace($"Sub-net \"{subNet}\" has an unsupported IP address family");
+                        if (Trace) Logging.WriteTrace($"Sub-net \"{subNet}\" has an unsupported IP address family");
                     }
                     else if (bits < 0 || bits > (isIPv4 ? IPV4_BITS : IPV6_BITS))
                     {
-                        Logging.WriteTrace($"Sub-net \"{subNet}\" bit component exceeds the allowed range of the IP address family");
+                        if (Trace) Logging.WriteTrace($"Sub-net \"{subNet}\" bit component exceeds the allowed range of the IP address family");
                     }
                     else
                     {
@@ -316,12 +317,12 @@ namespace wan24.Core
                 }
                 else
                 {
-                    Logging.WriteTrace($"Sub-net \"{subNet}\" component parsing failed");
+                    if (Trace) Logging.WriteTrace($"Sub-net \"{subNet}\" component parsing failed");
                 }
             }
             catch (Exception ex)
             {
-                Logging.WriteDebug($"IP sub-net parsing failed with an exception: {ex}");
+                if (Debug) Logging.WriteDebug($"IP sub-net parsing failed with an exception: {ex}");
             }
             result = default;
             return false;

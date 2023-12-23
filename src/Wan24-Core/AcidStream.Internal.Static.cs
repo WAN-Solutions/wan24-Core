@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using static wan24.Core.Logging;
+
+namespace wan24.Core
 {
     // Internal static methods
     public partial class AcidStream<T> where T : Stream
@@ -33,7 +35,7 @@
         /// <returns>Record type</returns>
         protected static IoTypes? ReadRecordType(in Stream backup, in bool allowEof)
         {
-            Logging.WriteTrace($"Reading ACID record type from offset {backup.Position}");
+            if (Trace) Logging.WriteTrace($"Reading ACID record type from offset {backup.Position}");
             int ioType = backup.ReadByte();
             if (ioType == -1)
             {
@@ -41,7 +43,7 @@
                 return null;
             }
             IoTypes type = (IoTypes)ioType;
-            Logging.WriteTrace($"Red ACID record type {type} (#{ioType})");
+            if (Trace) Logging.WriteTrace($"Red ACID record type {type} (#{ioType})");
             return type switch
             {
                 IoTypes.Write or IoTypes.Length => (AcidStream<T>.IoTypes?)type,
@@ -57,7 +59,7 @@
         /// <returns>Timestamp</returns>
         protected static DateTime ReadTimestamp(in Stream backup, in RentedArray<byte> buffer)
         {
-            Logging.WriteTrace("Going to read ACID record time");
+            if (Trace) Logging.WriteTrace("Going to read ACID record time");
             DateTime res = new(ReadPositiveLong(backup, buffer), DateTimeKind.Utc);
             if (res > DateTime.UtcNow) throw new InvalidDataException($"Timestamp {res} in the future");
             return res;
@@ -72,7 +74,7 @@
         /// <returns>Timestamp</returns>
         protected static async Task<DateTime> ReadTimestampAsync(Stream backup, RentedArray<byte> buffer, CancellationToken cancellationToken)
         {
-            Logging.WriteTrace("Going to read ACID record time");
+            if (Trace) Logging.WriteTrace("Going to read ACID record time");
             DateTime res = new(await ReadPositiveLongAsync(backup, buffer, cancellationToken).DynamicContext(), DateTimeKind.Utc);
             if (res > DateTime.UtcNow) throw new InvalidDataException($"Timestamp {res} in the future");
             return res;
@@ -86,10 +88,10 @@
         /// <returns>Timestamp</returns>
         protected static long ReadPositiveLong(in Stream backup, in RentedArray<byte> buffer)
         {
-            Logging.WriteTrace($"Going to read positive 64 bit integer from ACID record from offset {backup.Position}");
+            if (Trace) Logging.WriteTrace($"Going to read positive 64 bit integer from ACID record from offset {backup.Position}");
             backup.ReadExactly(buffer.Span);
             long res = buffer.Span.ToLong();
-            Logging.WriteTrace($"Red positive 64 bit integer {res} from ACID record");
+            if (Trace) Logging.WriteTrace($"Red positive 64 bit integer {res} from ACID record");
             if (res < 0) throw new InvalidDataException($"Invalid negative 64 bit integer {res}");
             return res;
         }
@@ -103,10 +105,10 @@
         /// <returns>Timestamp</returns>
         protected static async Task<long> ReadPositiveLongAsync(Stream backup, RentedArray<byte> buffer, CancellationToken cancellationToken)
         {
-            Logging.WriteTrace($"Going to read positive 64 bit integer from ACID record from offset {backup.Position}");
+            if (Trace) Logging.WriteTrace($"Going to read positive 64 bit integer from ACID record from offset {backup.Position}");
             await backup.ReadExactlyAsync(buffer.Memory, cancellationToken).DynamicContext();
             long res = buffer.Span.ToLong();
-            Logging.WriteTrace($"Red positive 64 bit integer {res} from ACID record");
+            if (Trace) Logging.WriteTrace($"Red positive 64 bit integer {res} from ACID record");
             if (res < 0) throw new InvalidDataException($"Invalid negative 64 bit integer {res}");
             return res;
         }
@@ -119,10 +121,10 @@
         /// <returns>Timestamp</returns>
         protected static int ReadPositiveInt(in Stream backup, in RentedArray<byte> buffer)
         {
-            Logging.WriteTrace($"Going to read positive 32 bit integer from ACID record from offset {backup.Position}");
+            if (Trace) Logging.WriteTrace($"Going to read positive 32 bit integer from ACID record from offset {backup.Position}");
             backup.ReadExactly(buffer.Span[..sizeof(int)]);
             int res = buffer.Span.ToInt();
-            Logging.WriteTrace($"Red positive 32 bit integer {res} from ACID record");
+            if (Trace) Logging.WriteTrace($"Red positive 32 bit integer {res} from ACID record");
             if (res < 0) throw new InvalidDataException($"Invalid negative 32 bit integer {res}");
             return res;
         }
@@ -136,10 +138,10 @@
         /// <returns>Timestamp</returns>
         protected static async Task<int> ReadPositiveIntAsync(Stream backup, RentedArray<byte> buffer, CancellationToken cancellationToken)
         {
-            Logging.WriteTrace($"Going to read positive 32 bit integer from ACID record from offset {backup.Position}");
+            if (Trace) Logging.WriteTrace($"Going to read positive 32 bit integer from ACID record from offset {backup.Position}");
             await backup.ReadExactlyAsync(buffer.Memory[..sizeof(int)], cancellationToken).DynamicContext();
             int res = buffer.Span.ToInt();
-            Logging.WriteTrace($"Red positive 32 bit integer {res} from ACID record");
+            if (Trace) Logging.WriteTrace($"Red positive 32 bit integer {res} from ACID record");
             if (res < 0) throw new InvalidDataException($"Invalid negative 32 bit integer {res}");
             return res;
         }

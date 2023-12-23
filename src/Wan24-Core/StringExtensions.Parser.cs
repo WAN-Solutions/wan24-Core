@@ -2,6 +2,7 @@
 using System.Runtime;
 using System.Text;
 using System.Text.RegularExpressions;
+using static wan24.Core.Logging;
 
 namespace wan24.Core
 {
@@ -118,7 +119,8 @@ namespace wan24.Core
                                     }
                                     else
                                     {
-                                        Logging.WriteWarning($"Ignoring unexpected opening bracket in \"{m.Groups[rxGroup].Value}\" in round {round}");
+                                        if (Warning)
+                                            Logging.WriteWarning($"Ignoring unexpected opening bracket in \"{m.Groups[rxGroup].Value}\" in round {round}");
                                         continue;
                                     }
                                 sb.Append(c);
@@ -136,7 +138,8 @@ namespace wan24.Core
                             }
                             else
                             {
-                                Logging.WriteWarning($"Missing closing bracket for function call in \"{parts[0]}\" near \"{sb}\" in round {round}");
+                                if (Warning)
+                                    Logging.WriteWarning($"Missing closing bracket for function call in \"{parts[0]}\" near \"{sb}\" in round {round}");
                             }
                         if (sb.Length != 0) parts.Add(sb.ToString());
                         parts.RemoveAt(0);
@@ -157,7 +160,7 @@ namespace wan24.Core
                             }
                             else
                             {
-                                Logging.WriteWarning($"Missing parser data \"{key}\" in round {round}");
+                                if (Warning) Logging.WriteWarning($"Missing parser data \"{key}\" in round {round}");
                             }
                         value = key;
                     }
@@ -203,7 +206,8 @@ namespace wan24.Core
                                 }
                                 else
                                 {
-                                    Logging.WriteError($"Unknown parser function \"{func}\" in \"{m.Groups[rxGroup].Value}\" in round {round}");
+                                    if (Error)
+                                        Logging.WriteError($"Unknown parser function \"{func}\" in \"{m.Groups[rxGroup].Value}\" in round {round}");
                                 }
                                 continue;
                             }
@@ -224,7 +228,8 @@ namespace wan24.Core
                                     }
                                     else
                                     {
-                                        Logging.WriteError($"Failed to execute function \"{match[index]}\" in \"{m.Groups[rxGroup].Value}\" in round {round}: {context.Error}");
+                                        if (Error)
+                                            Logging.WriteError($"Failed to execute function \"{match[index]}\" in \"{m.Groups[rxGroup].Value}\" in round {round}: {context.Error}");
                                     }
                             }
                             catch (InvalidDataException)
@@ -239,7 +244,8 @@ namespace wan24.Core
                                 }
                                 else
                                 {
-                                    Logging.WriteError($"Failed to handle function call \"{match[index]}\" in \"{m.Groups[rxGroup].Value}\" in round {round}: {ex.Message}");
+                                    if (Error)
+                                        Logging.WriteError($"Failed to handle function call \"{match[index]}\" in \"{m.Groups[rxGroup].Value}\" in round {round}: {ex.Message}");
                                 }
                             }
                             // Apply new settings
@@ -265,7 +271,8 @@ namespace wan24.Core
                 }
                 else
                 {
-                    Logging.WriteWarning($"String not fully parsed (after {round} rounds there are still {matches.Count} placeholders left)");
+                    if (Warning)
+                        Logging.WriteWarning($"String not fully parsed (after {round} rounds there are still {matches.Count} placeholders left)");
                 }
             return str;
         }
