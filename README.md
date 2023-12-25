@@ -194,6 +194,7 @@ including extensions for numeric type encoding/decoding)
     - `BackupStream` writes all red data to another stream
     - `ProcessStream` uses STDIN/OUT of a process
     - `AcidStream` for ACID stream IO
+    - `BackgroundStream` for fast writing in background
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context
