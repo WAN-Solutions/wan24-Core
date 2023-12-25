@@ -42,11 +42,12 @@ namespace wan24.Core
         /// </summary>
         /// <param name="value">Value</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        public void SetCounter(in int value, in CancellationToken cancellationToken = default)
+        /// <returns>Old counter value</returns>
+        public int SetCounter(in int value, in CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = Sync.SyncContext(cancellationToken);
-            SetCounterInt(value, throwOnError: true, fitNewValue: false);
+            return SetCounterInt(value, throwOnError: true, fitNewValue: false)!.Value;
         }
 
         /// <summary>
@@ -54,11 +55,12 @@ namespace wan24.Core
         /// </summary>
         /// <param name="value">Value</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        public async Task SetCounterAsync(int value, CancellationToken cancellationToken = default)
+        /// <returns>Old counter value</returns>
+        public async Task<int> SetCounterAsync(int value, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
-            SetCounterInt(value, throwOnError: true, fitNewValue: false);
+            return SetCounterInt(value, throwOnError: true, fitNewValue: false)!.Value;
         }
 
         /// <summary>
@@ -72,7 +74,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = Sync.SyncContext(cancellationToken);
-            return SetCounterInt(value, throwOnError: false, fitNewValue) is int res ? res + value : null;
+            return SetCounterInt(_Counter + value, throwOnError: false, fitNewValue).HasValue ? _Counter : null;
         }
 
         /// <summary>
@@ -86,7 +88,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
-            return SetCounterInt(value, throwOnError: false, fitNewValue) is int res ? res + value : null;
+            return SetCounterInt(_Counter + value, throwOnError: false, fitNewValue).HasValue ? _Counter : null;
         }
 
         /// <summary>
@@ -100,8 +102,7 @@ namespace wan24.Core
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = Sync.SyncContext(cancellationToken);
             int newValue = _Counter + value;
-            if (newValue < MinCounter || newValue > MaxCounter) return null;
-            return SetCounterInt(value, throwOnError: false, fitNewValue: false) is int res ? res + value : null;
+            return newValue >= MinCounter && newValue <= MaxCounter && SetCounterInt(newValue, throwOnError: false, fitNewValue: false).HasValue ? _Counter : null;
         }
 
         /// <summary>
@@ -115,8 +116,7 @@ namespace wan24.Core
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             int newValue = _Counter + value;
-            if (newValue < MinCounter || newValue > MaxCounter) return null;
-            return SetCounterInt(value, throwOnError: false, fitNewValue: false) is int res ? res + value : null;
+            return newValue >= MinCounter && newValue <= MaxCounter && SetCounterInt(newValue, throwOnError: false, fitNewValue: false).HasValue ? _Counter : null;
         }
 
         /// <summary>
@@ -328,7 +328,8 @@ namespace wan24.Core
 #endif
         private void RaiseOnCount(int oldValue)
         {
-            for (CountEventArgs e = new(oldValue, _Counter); ; e = new(oldValue, _Counter))
+            if (OnCount is null) return;
+            for (CountEventArgs e = new(oldValue, _Counter); OnCount is not null ; e = new(oldValue, _Counter))
             {
                 OnCount?.Invoke(this, e);
                 if (!e.SetValue.HasValue) return;
