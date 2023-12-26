@@ -9,7 +9,7 @@ namespace Wan24_Core_Tests
         public void General_Tests()
         {
             using ZeroStream zero = new();
-            using ThrottledStream throttle = new(zero, writeCount: 100, writeTime: TimeSpan.FromMilliseconds(200));
+            using ThrottledStream throttle = new(zero, writeCount: 100, writeTime: TimeSpan.FromMilliseconds(400));
             using CountingStream counter = new(throttle);
             using BackgroundStream stream = new(counter, maxMemory: 100, queueSize: 2);
             byte[] data = new byte[100];
@@ -38,7 +38,7 @@ namespace Wan24_Core_Tests
         public async Task GeneralAsync_Tests()
         {
             using ZeroStream zero = new();
-            using ThrottledStream throttle = new(zero, writeCount: 100, writeTime: TimeSpan.FromMilliseconds(200));
+            using ThrottledStream throttle = new(zero, writeCount: 100, writeTime: TimeSpan.FromMilliseconds(400));
             using CountingStream counter = new(throttle);
             using BackgroundStream stream = new(counter, maxMemory: 100, queueSize: 2);
             byte[] data = new byte[100];
