@@ -59,25 +59,24 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private int WaitCounter(Condition_Delegate condition, CancellationToken cancellationToken)
+        private int WaitCounterCondition(Condition_Delegate condition, CancellationToken cancellationToken)
         {
             EnsureUndisposed();
             cancellationToken.ThrowIfCancellationRequested();
-            int? res = null;
-            res = condition();
+            int? res = condition();
             if (res.HasValue) return res.Value;
-            using Barrier barrier = new(participantCount: 2);
-            void HandleCount(CounterEvent counter, EventArgs e)
+            using ResetEvent resultEvent = new(initialState: false);
+            void HandleCount(CounterEvent counter, CountEventArgs e)
             {
-                res = condition();
-                if (res.HasValue) barrier.SignalAndWait(cancellationToken);
+                if (!resultEvent.IsSet && condition() is int ret && resultEvent.Set(CancellationToken.None))
+                    res = ret;
             }
-            void HandleDisposing(IDisposableObject sender, EventArgs e) => barrier.SignalAndWait(cancellationToken);
+            void HandleDisposing(IDisposableObject sender, EventArgs e) => resultEvent.Set(CancellationToken.None);
             OnCount += HandleCount;
             OnDisposing += HandleDisposing;
             try
             {
-                barrier.SignalAndWait(cancellationToken);
+                resultEvent.Wait(cancellationToken);
                 return res ?? throw new ObjectDisposedException(GetType().ToString());
             }
             finally
@@ -96,13 +95,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private async Task<int> WaitCounterAsync(Condition_Delegate condition, CancellationToken cancellationToken)
+        private async Task<int> WaitCounterConditionAsync(Condition_Delegate condition, CancellationToken cancellationToken)
         {
             EnsureUndisposed();
             cancellationToken.ThrowIfCancellationRequested();
             if (condition() is int res) return res;
-            TaskCompletionSource<int> tcs = new();
-            void HandleCount(CounterEvent counter, EventArgs e)
+            TaskCompletionSource<int> tcs = new(TaskCreationOptions.RunContinuationsAsynchronously);
+            void HandleCount(CounterEvent counter, CountEventArgs e)
             {
                 if (condition() is int res) tcs.TrySetResult(res);
             }

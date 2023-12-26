@@ -125,7 +125,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="cancellationToken">Cancellation token</param>
         public void WaitCounterEquals(int value, CancellationToken cancellationToken = default)
-            => WaitCounter(() =>
+            => WaitCounterCondition(() =>
             {
                 int counter = _Counter;
                 return counter == value ? counter : null;
@@ -137,7 +137,7 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="cancellationToken">Cancellation token</param>
         public Task WaitCounterEqualsAsync(int value, CancellationToken cancellationToken = default)
-            => WaitCounterAsync(() =>
+            => WaitCounterConditionAsync(() =>
             {
                 int counter = _Counter;
                 return counter == value ? counter : null;
@@ -150,7 +150,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Counter value</returns>
         public int WaitCounterNotEquals(int value, CancellationToken cancellationToken = default)
-            => WaitCounter(() =>
+            => WaitCounterCondition(() =>
             {
                 int counter = _Counter;
                 return counter != value ? counter : null;
@@ -163,7 +163,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Counter value</returns>
         public Task<int> WaitCounterNotEqualsAsync(int value, CancellationToken cancellationToken = default)
-            => WaitCounterAsync(() =>
+            => WaitCounterConditionAsync(() =>
             {
                 int counter = _Counter;
                 return counter != value ? counter : null;
@@ -176,7 +176,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Counter value</returns>
         public int WaitCounterGreaterOrEquals(int value, CancellationToken cancellationToken = default)
-            => WaitCounter(() =>
+            => WaitCounterCondition(() =>
             {
                 int counter = _Counter;
                 return counter >= value ? counter : null;
@@ -189,7 +189,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Counter value</returns>
         public Task<int> WaitCounterGreaterOrEqualsAsync(int value, CancellationToken cancellationToken = default)
-            => WaitCounterAsync(() =>
+            => WaitCounterConditionAsync(() =>
             {
                 int counter = _Counter;
                 return counter >= value ? counter : null;
@@ -202,7 +202,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Counter value</returns>
         public int WaitCounterLowerOrEquals(int value, CancellationToken cancellationToken = default)
-            => WaitCounter(() =>
+            => WaitCounterCondition(() =>
             {
                 int counter = _Counter;
                 return counter <= value ? counter : null;
@@ -215,7 +215,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Counter value</returns>
         public Task<int> WaitCounterLowerOrEqualsAsync(int value, CancellationToken cancellationToken = default)
-            => WaitCounterAsync(() =>
+            => WaitCounterConditionAsync(() =>
             {
                 int counter = _Counter;
                 return counter <= value ? counter : null;
@@ -228,7 +228,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Counter value</returns>
         public int WaitCounterGreater(int value, CancellationToken cancellationToken = default)
-            => WaitCounter(() =>
+            => WaitCounterCondition(() =>
             {
                 int counter = _Counter;
                 return counter > value ? counter : null;
@@ -241,7 +241,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Counter value</returns>
         public Task<int> WaitCounterGreaterAsync(int value, CancellationToken cancellationToken = default)
-            => WaitCounterAsync(() =>
+            => WaitCounterConditionAsync(() =>
             {
                 int counter = _Counter;
                 return counter > value ? counter : null;
@@ -254,7 +254,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Counter value</returns>
         public int WaitCounterLower(int value, CancellationToken cancellationToken = default)
-            => WaitCounter(() =>
+            => WaitCounterCondition(() =>
             {
                 int counter = _Counter;
                 return counter < value ? counter : null;
@@ -267,7 +267,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Counter value</returns>
         public Task<int> WaitCounterLowerAsync(int value, CancellationToken cancellationToken = default)
-            => WaitCounterAsync(() =>
+            => WaitCounterConditionAsync(() =>
             {
                 int counter = _Counter;
                 return counter < value ? counter : null;
@@ -293,7 +293,7 @@ namespace wan24.Core
         /// <param name="condition">Condition (<see cref="CounterEvent"/> instance is locked during the condition is evaluated)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Counter value</returns>
-        public int WaitCondition(in Condition_Delegate condition, CancellationToken cancellationToken = default) => WaitCounter(condition, cancellationToken);
+        public int WaitCondition(in Condition_Delegate condition, CancellationToken cancellationToken = default) => WaitCounterCondition(condition, cancellationToken);
 
         /// <summary>
         /// Wait for a condition
@@ -301,7 +301,7 @@ namespace wan24.Core
         /// <param name="condition">Condition (<see cref="CounterEvent"/> instance is locked during the condition is evaluated)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Counter value</returns>
-        public Task<int> WaitConditionAsync(Condition_Delegate condition, CancellationToken cancellationToken = default) => WaitCounterAsync(condition, cancellationToken);
+        public Task<int> WaitConditionAsync(Condition_Delegate condition, CancellationToken cancellationToken = default) => WaitCounterConditionAsync(condition, cancellationToken);
 
         /// <summary>
         /// Delegate for a condition (<see cref="CounterEvent"/> instance is locked during the condition is evaluated)

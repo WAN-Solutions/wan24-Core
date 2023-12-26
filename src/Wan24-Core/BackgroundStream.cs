@@ -1,7 +1,5 @@
 ﻿using static wan24.Core.Logging;
 
-//TODO Write tests for BackgroundStream
-
 namespace wan24.Core
 {
     /// <summary>
@@ -38,8 +36,7 @@ namespace wan24.Core
         /// </summary>
         protected readonly CounterEvent QueueCounter = new()
         {
-            MinCounter = 0,
-            FitNewValue = true
+            MinCounter = 0
         };
 
         /// <summary>
@@ -55,17 +52,19 @@ namespace wan24.Core
             ArgumentOutOfRangeException.ThrowIfLessThan(maxMemory, 1);
             MaxMemory = maxMemory;
             UseOriginalByteIO = true;
+            UseOriginalCopyTo = true;
+            UseOriginalBeginWrite = true;
             Queue.OnException += (s, e) => RaiseOnError();
             Queue.StartAsync().Wait();
         }
 
         /// <summary>
-        /// Max. memory for the background service in byte (will block, if exceeded; may overflow!)
+        /// Max. memory for the background service in byte (<see cref="BackgroundStream"/> will block, if exceeded; may overflow!)
         /// </summary>
         public int MaxMemory { get; }
 
         /// <summary>
-        /// Current background service memory usage in byte
+        /// Current background service memory usage in byte (may be larger than <see cref="MaxMemory"/>)
         /// </summary>
         public int CurrentMemory => QueueCounter.Counter;
 
