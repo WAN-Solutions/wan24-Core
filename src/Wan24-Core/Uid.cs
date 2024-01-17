@@ -68,7 +68,7 @@ namespace wan24.Core
             else
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(len: RANDOM_LEN);
+                using RentedArrayRefStruct<byte> buffer = new(len: RANDOM_LEN, clean: false);
                 RandomNumberGenerator.Fill(buffer.Span);
                 Random = buffer.Span.ToLong();
 #if !NO_UNSAFE
@@ -96,7 +96,7 @@ namespace wan24.Core
             else
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(len: RANDOM_LEN);
+                using RentedArrayRefStruct<byte> buffer = new(len: RANDOM_LEN, clean: false);
                 RandomNumberGenerator.Fill(buffer.Span);
                 Random = buffer.Span.ToLong();
 #if !NO_UNSAFE
@@ -293,13 +293,33 @@ namespace wan24.Core
             else
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE);
+                using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE, clean: false);
                 uid.GetBytes(buffer.Span);
                 return new(buffer.Span);
 #if !NO_UNSAFE
             }
 #endif
         }
+
+        /// <summary>
+        /// Cast as <see cref="DateTime"/> (<see cref="Time"/>)
+        /// </summary>
+        /// <param name="uid">UID</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static implicit operator DateTime(in Uid uid) => uid.Time;
+
+        /// <summary>
+        /// Cast from <see cref="DateTime"/>
+        /// </summary>
+        /// <param name="dt"><see cref="DateTime"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static implicit operator Uid(in DateTime dt) => new(dt);
 
         /// <summary>
         /// Cast from <see cref="UidExt"/>
@@ -324,7 +344,7 @@ namespace wan24.Core
             else
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE);
+                using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE, clean: false);
                 uid.GetBytes(buffer.Span);
                 return new(buffer.Span);
 #if !NO_UNSAFE
@@ -357,7 +377,7 @@ namespace wan24.Core
             else
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE);
+                using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE, clean: false);
                 str.Decode(res: buffer.Array);
                 return new(buffer.Span);
 #if !NO_UNSAFE
@@ -397,7 +417,7 @@ namespace wan24.Core
                 else
                 {
 #endif
-                    using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE);
+                    using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE, clean: false);
                     str.Decode(res: buffer.Array);
                     result = new(buffer.Span);
 #if !NO_UNSAFE

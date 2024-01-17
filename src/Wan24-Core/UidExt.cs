@@ -342,7 +342,7 @@ namespace wan24.Core
             else
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE);
+                using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE, clean: false);
                 uid.GetBytes(buffer.Span);
                 return new(buffer.Span);
 #if !NO_UNSAFE
@@ -373,13 +373,33 @@ namespace wan24.Core
             else
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE);
+                using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE, clean: false);
                 uid.GetBytes(buffer.Span);
                 return new(buffer.Span);
 #if !NO_UNSAFE
             }
 #endif
         }
+
+        /// <summary>
+        /// Cast as <see cref="DateTime"/> (<see cref="Time"/>)
+        /// </summary>
+        /// <param name="uid">UID</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static implicit operator DateTime(in UidExt uid) => uid.Time;
+
+        /// <summary>
+        /// Cast as <see cref="int"/> (<see cref="Id"/>)
+        /// </summary>
+        /// <param name="uid">UID</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static implicit operator int(in UidExt uid) => uid.Id;
 
         /// <summary>
         /// Parse from a string
@@ -406,7 +426,7 @@ namespace wan24.Core
             else
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE);
+                using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE, clean: false);
                 str.Decode(res: buffer.Array);
                 return new(buffer.Span);
 #if !NO_UNSAFE
@@ -446,7 +466,7 @@ namespace wan24.Core
                 else
                 {
 #endif
-                    using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE);
+                    using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE, clean: false);
                     str.Decode(res: buffer.Array);
                     result = new(buffer.Span);
 #if !NO_UNSAFE
