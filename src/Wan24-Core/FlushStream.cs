@@ -1,4 +1,5 @@
-﻿namespace wan24.Core
+﻿
+namespace wan24.Core
 {
     /// <summary>
     /// Flush stream (writes to a buffer and requires a flush to write the buffer to the base stream)
@@ -62,6 +63,18 @@
         /// If the buffer was flushed (is empty)
         /// </summary>
         public bool IsFlushed => Buffer.Length == 0;
+
+        /// <inheritdoc/>
+        public override IEnumerable<Status> State
+        {
+            get
+            {
+                foreach (Status status in base.State) yield return status;
+                yield return new("Max. buffer", MaxBuffer, "Maximum buffer size in bytes (or <1 for no limit)");
+                yield return new("Current buffer", BufferSize, "Current buffer size in bytes");
+                yield return new("Is flushed", IsFlushed, "If the buffer was flushed (is empty)");
+            }
+        }
 
         /// <inheritdoc/>
         public override bool CanSeek => false;
