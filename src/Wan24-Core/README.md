@@ -195,6 +195,7 @@ including extensions for numeric type encoding/decoding)
     - `ProcessStream` uses STDIN/OUT of a process
     - `AcidStream` for ACID stream IO
     - `BackgroundStream` for fast writing in background
+    - `FlushStream` for writing to a buffer until a call to flush
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context

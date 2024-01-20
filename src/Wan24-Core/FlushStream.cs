@@ -97,6 +97,7 @@ namespace wan24.Core
             EnsureUndisposed();
             if (Buffer.Length > 0)
             {
+                Buffer.Position = 0;
                 Buffer.CopyTo(BaseStream);
                 Buffer.SetLength(0);
             }
@@ -109,6 +110,7 @@ namespace wan24.Core
             EnsureUndisposed();
             if (Buffer.Length > 0)
             {
+                Buffer.Position = 0;
                 await Buffer.CopyToAsync(BaseStream, cancellationToken).DynamicContext();
                 Buffer.SetLength(0);
             }
