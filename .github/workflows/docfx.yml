@@ -21,7 +21,7 @@ jobs:
     - name: Setup docfx
       run: dotnet tool update -g docfx
     - name: Choose docs folder
-      run: cd "./src/wan24-Core Docs"
+      run: cd "./src/Wan24-Core Docs"
     - name: Build docs
       run: docfx docfx.json
     - name: Commit
