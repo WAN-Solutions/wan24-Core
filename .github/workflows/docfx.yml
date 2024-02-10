@@ -23,6 +23,6 @@ jobs:
     - name: Choose docs folder
       run: cd "./src/Wan24-Core Docs"
     - name: Build docs
-      run: docfx ./docfx.json
+      run: docfx "./src/Wan24-Core Docs/docfx.json"
     - name: Commit
       uses: stefanzweifel/git-auto-commit-action@v5
