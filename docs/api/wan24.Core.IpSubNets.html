@@ -1,0 +1,2676 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Struct IpSubNets | wan24-Core </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Struct IpSubNets | wan24-Core ">
+    
+    <meta name="description" content="Read-only IP sub-net list">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.IpSubNets">
+
+
+
+  <h1 id="wan24_Core_IpSubNets" data-uid="wan24.Core.IpSubNets" class="text-break">Struct IpSubNets</h1>
+  <div class="markdown level0 summary"><p>Read-only IP sub-net list</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a>&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a>&gt;</div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.equals">ValueType.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode">ValueType.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.tostring">ValueType.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_IpSubNets_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly record struct IpSubNets : IEnumerable&lt;IpSubNet&gt;, IEnumerable, IEquatable&lt;IpSubNets&gt;</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets__ctor_wan24_Core_IpSubNet___.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.%23ctor(wan24.Core.IpSubNet%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L54">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets__ctor_" data-uid="wan24.Core.IpSubNets.#ctor*"></a>
+  <h4 id="wan24_Core_IpSubNets__ctor_wan24_Core_IpSubNet___" data-uid="wan24.Core.IpSubNets.#ctor(wan24.Core.IpSubNet[])">IpSubNets(params IpSubNet[])</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IpSubNets(params IpSubNet[] subNets)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a>[]</td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p>IP sub-nets</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets__ctor_wan24_Core_IpSubNet____.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.%23ctor(wan24.Core.IpSubNet%5B%5D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L48">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets__ctor_" data-uid="wan24.Core.IpSubNets.#ctor*"></a>
+  <h4 id="wan24_Core_IpSubNets__ctor_wan24_Core_IpSubNet____" data-uid="wan24.Core.IpSubNets.#ctor(wan24.Core.IpSubNet[]@)">IpSubNets(in IpSubNet[])</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IpSubNets(in IpSubNet[] subNets)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a>[]</td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p>IP sub-nets</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_AddressFamily.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.AddressFamily%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L38">View Source</a>
+  </span>
+  <h4 id="wan24_Core_IpSubNets_AddressFamily" data-uid="wan24.Core.IpSubNets.AddressFamily">AddressFamily</h4>
+  <div class="markdown level1 summary"><p>IP sub-nets address family (<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.sockets.addressfamily#system-net-sockets-addressfamily-unknown">Unknown</a>, if empty, or <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.sockets.addressfamily#system-net-sockets-addressfamily-unspecified">Unspecified</a> if mixed)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly AddressFamily AddressFamily</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.sockets.addressfamily">AddressFamily</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_Count.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.Count%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L22">View Source</a>
+  </span>
+  <h4 id="wan24_Core_IpSubNets_Count" data-uid="wan24.Core.IpSubNets.Count">Count</h4>
+  <div class="markdown level1 summary"><p>Number of IP sub-nets</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Count</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_IsLan.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.IsLan%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L30">View Source</a>
+  </span>
+  <h4 id="wan24_Core_IpSubNets_IsLan" data-uid="wan24.Core.IpSubNets.IsLan">IsLan</h4>
+  <div class="markdown level1 summary"><p>Are all contained IP sub-nets LAN sub-nets?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly bool IsLan</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_IsLoopback.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.IsLoopback%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L26">View Source</a>
+  </span>
+  <h4 id="wan24_Core_IpSubNets_IsLoopback" data-uid="wan24.Core.IpSubNets.IsLoopback">IsLoopback</h4>
+  <div class="markdown level1 summary"><p>Are all contained IP sub-nets loopback sub-nets?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly bool IsLoopback</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_IsWan.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.IsWan%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L34">View Source</a>
+  </span>
+  <h4 id="wan24_Core_IpSubNets_IsWan" data-uid="wan24.Core.IpSubNets.IsWan">IsWan</h4>
+  <div class="markdown level1 summary"><p>Are all contained IP sub-nets WAN sub-nets?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly bool IsWan</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_NetworkKind.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.NetworkKind%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L42">View Source</a>
+  </span>
+  <h4 id="wan24_Core_IpSubNets_NetworkKind" data-uid="wan24.Core.IpSubNets.NetworkKind">NetworkKind</h4>
+  <div class="markdown level1 summary"><p>Contained IP network kinds</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly IpNetworkKind NetworkKind</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpNetworkKind.html">IpNetworkKind</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_Item_System_Index__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.Item(System.Index%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L116">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_Item_" data-uid="wan24.Core.IpSubNets.Item*"></a>
+  <h4 id="wan24_Core_IpSubNets_Item_System_Index__" data-uid="wan24.Core.IpSubNets.Item(System.Index@)">this[Index]</h4>
+  <div class="markdown level1 summary"><p>Get an IP sub-net</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IpSubNet this[in Index index] { get; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.index">Index</a></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_Item_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.Item(System.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L109">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_Item_" data-uid="wan24.Core.IpSubNets.Item*"></a>
+  <h4 id="wan24_Core_IpSubNets_Item_System_Int32__" data-uid="wan24.Core.IpSubNets.Item(System.Int32@)">this[int]</h4>
+  <div class="markdown level1 summary"><p>Get an IP sub-net</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IpSubNet this[in int index] { get; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_AreAllCoveredByAnyOf_wan24_Core_IpSubNets__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.AreAllCoveredByAnyOf(wan24.Core.IpSubNets%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L292">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_AreAllCoveredByAnyOf_" data-uid="wan24.Core.IpSubNets.AreAllCoveredByAnyOf*"></a>
+  <h4 id="wan24_Core_IpSubNets_AreAllCoveredByAnyOf_wan24_Core_IpSubNets__" data-uid="wan24.Core.IpSubNets.AreAllCoveredByAnyOf(wan24.Core.IpSubNets@)">AreAllCoveredByAnyOf(in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Determine if all contained IP sub-nets are covered by any of the given sub-nets</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AreAllCoveredByAnyOf(in IpSubNets subNets)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If all are covered</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_Contains_wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.Contains(wan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L123">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_Contains_" data-uid="wan24.Core.IpSubNets.Contains*"></a>
+  <h4 id="wan24_Core_IpSubNets_Contains_wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNets.Contains(wan24.Core.IpSubNet@)">Contains(in IpSubNet)</h4>
+  <div class="markdown level1 summary"><p>Determine if an IP sub-net is contained</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(in IpSubNet subNet)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">subNet</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If contained</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_GetAllIntersecting_wan24_Core_IpSubNet_.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.GetAllIntersecting(wan24.Core.IpSubNet)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L207">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_GetAllIntersecting_" data-uid="wan24.Core.IpSubNets.GetAllIntersecting*"></a>
+  <h4 id="wan24_Core_IpSubNets_GetAllIntersecting_wan24_Core_IpSubNet_" data-uid="wan24.Core.IpSubNets.GetAllIntersecting(wan24.Core.IpSubNet)">GetAllIntersecting(IpSubNet)</h4>
+  <div class="markdown level1 summary"><p>Get all intersecting IP sub-nets</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;IpSubNet&gt; GetAllIntersecting(IpSubNet subNet)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">subNet</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a>&gt;</td>
+        <td><p>The intersecting IP sub-nets</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_GetAllMatching_wan24_Core_IpSubNet_.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.GetAllMatching(wan24.Core.IpSubNet)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L242">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_GetAllMatching_" data-uid="wan24.Core.IpSubNets.GetAllMatching*"></a>
+  <h4 id="wan24_Core_IpSubNets_GetAllMatching_wan24_Core_IpSubNet_" data-uid="wan24.Core.IpSubNets.GetAllMatching(wan24.Core.IpSubNet)">GetAllMatching(IpSubNet)</h4>
+  <div class="markdown level1 summary"><p>Get all matching IP sub-nets</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;IpSubNet&gt; GetAllMatching(IpSubNet subNet)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">subNet</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a>&gt;</td>
+        <td><p>The matching IP sub-nets</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_GetEnumerator.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.GetEnumerator%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L309">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_GetEnumerator_" data-uid="wan24.Core.IpSubNets.GetEnumerator*"></a>
+  <h4 id="wan24_Core_IpSubNets_GetEnumerator" data-uid="wan24.Core.IpSubNets.GetEnumerator">GetEnumerator()</h4>
+  <div class="markdown level1 summary"><p>Get an IP sub-net enumerator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator&lt;IpSubNet&gt; GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1">IEnumerator</a>&lt;<a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a>&gt;</td>
+        <td><p>Enumerator</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_GetIntersecting_wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.GetIntersecting(wan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L195">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_GetIntersecting_" data-uid="wan24.Core.IpSubNets.GetIntersecting*"></a>
+  <h4 id="wan24_Core_IpSubNets_GetIntersecting_wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNets.GetIntersecting(wan24.Core.IpSubNet@)">GetIntersecting(in IpSubNet)</h4>
+  <div class="markdown level1 summary"><p>Get the intersecting IP sub-net</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IpSubNet? GetIntersecting(in IpSubNet subNet)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">subNet</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a>?</td>
+        <td><p>The intersecting IP sub-net</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_GetMatching_wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.GetMatching(wan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L230">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_GetMatching_" data-uid="wan24.Core.IpSubNets.GetMatching*"></a>
+  <h4 id="wan24_Core_IpSubNets_GetMatching_wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNets.GetMatching(wan24.Core.IpSubNet@)">GetMatching(in IpSubNet)</h4>
+  <div class="markdown level1 summary"><p>Get the matching IP sub-net</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IpSubNet? GetMatching(in IpSubNet subNet)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">subNet</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a>?</td>
+        <td><p>The matching IP sub-net</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_Includes_System_Net_IPAddress__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.Includes(System.Net.IPAddress%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L147">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_Includes_" data-uid="wan24.Core.IpSubNets.Includes*"></a>
+  <h4 id="wan24_Core_IpSubNets_Includes_System_Net_IPAddress__" data-uid="wan24.Core.IpSubNets.Includes(System.Net.IPAddress@)">Includes(in IPAddress)</h4>
+  <div class="markdown level1 summary"><p>Determine if an IP address is included in any IP sub-net</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Includes(in IPAddress ip)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a></td>
+        <td><span class="parametername">ip</span></td>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If included in any IP sub-net</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_Including_System_Net_IPAddress__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.Including(System.Net.IPAddress%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L159">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_Including_" data-uid="wan24.Core.IpSubNets.Including*"></a>
+  <h4 id="wan24_Core_IpSubNets_Including_System_Net_IPAddress__" data-uid="wan24.Core.IpSubNets.Including(System.Net.IPAddress@)">Including(in IPAddress)</h4>
+  <div class="markdown level1 summary"><p>Get the IP sub-net which includes an IP address</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IpSubNet? Including(in IPAddress ip)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a></td>
+        <td><span class="parametername">ip</span></td>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a>?</td>
+        <td><p>The including IP sub-net</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_IndexOf_wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.IndexOf(wan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L135">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_IndexOf_" data-uid="wan24.Core.IpSubNets.IndexOf*"></a>
+  <h4 id="wan24_Core_IpSubNets_IndexOf_wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNets.IndexOf(wan24.Core.IpSubNet@)">IndexOf(in IpSubNet)</h4>
+  <div class="markdown level1 summary"><p>Get the index of an IP sub-net</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int IndexOf(in IpSubNet subNet)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">subNet</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>Index or <code>-1</code>, if not contained</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_IntersectsWith_wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.IntersectsWith(wan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L171">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_IntersectsWith_" data-uid="wan24.Core.IpSubNets.IntersectsWith*"></a>
+  <h4 id="wan24_Core_IpSubNets_IntersectsWith_wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNets.IntersectsWith(wan24.Core.IpSubNet@)">IntersectsWith(in IpSubNet)</h4>
+  <div class="markdown level1 summary"><p>Determine if an IP sub-net is intersecting with any IP sub-net</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IntersectsWith(in IpSubNet subNet)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">subNet</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If included in any IP sub-net</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_IntersectsWith_wan24_Core_IpSubNets__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.IntersectsWith(wan24.Core.IpSubNets%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L183">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_IntersectsWith_" data-uid="wan24.Core.IpSubNets.IntersectsWith*"></a>
+  <h4 id="wan24_Core_IpSubNets_IntersectsWith_wan24_Core_IpSubNets__" data-uid="wan24.Core.IpSubNets.IntersectsWith(wan24.Core.IpSubNets@)">IntersectsWith(in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Determine if the given IP sub-nets intersect any contained sub-nets</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IntersectsWith(in IpSubNets subNets)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If it intersects</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_IsAnyCoveredBy_wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.IsAnyCoveredBy(wan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L267">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_IsAnyCoveredBy_" data-uid="wan24.Core.IpSubNets.IsAnyCoveredBy*"></a>
+  <h4 id="wan24_Core_IpSubNets_IsAnyCoveredBy_wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNets.IsAnyCoveredBy(wan24.Core.IpSubNet@)">IsAnyCoveredBy(in IpSubNet)</h4>
+  <div class="markdown level1 summary"><p>Determine if an IP sub-net covers all contained sub-nets</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsAnyCoveredBy(in IpSubNet subNet)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">subNet</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If it covers</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_IsAnyCoveredByAnyOf_wan24_Core_IpSubNets__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.IsAnyCoveredByAnyOf(wan24.Core.IpSubNets%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L280">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_IsAnyCoveredByAnyOf_" data-uid="wan24.Core.IpSubNets.IsAnyCoveredByAnyOf*"></a>
+  <h4 id="wan24_Core_IpSubNets_IsAnyCoveredByAnyOf_wan24_Core_IpSubNets__" data-uid="wan24.Core.IpSubNets.IsAnyCoveredByAnyOf(wan24.Core.IpSubNets@)">IsAnyCoveredByAnyOf(in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Determine if any of the given IP sub-nets covers any of the contained sub-nets</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsAnyCoveredByAnyOf(in IpSubNets subNets)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If any covers</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_IsCoveredBy_wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.IsCoveredBy(wan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L253">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_IsCoveredBy_" data-uid="wan24.Core.IpSubNets.IsCoveredBy*"></a>
+  <h4 id="wan24_Core_IpSubNets_IsCoveredBy_wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNets.IsCoveredBy(wan24.Core.IpSubNet@)">IsCoveredBy(in IpSubNet)</h4>
+  <div class="markdown level1 summary"><p>Determine if an IP sub-net covers all contained sub-nets</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsCoveredBy(in IpSubNet subNet)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">subNet</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If it covers</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_Matches_wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.Matches(wan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L218">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_Matches_" data-uid="wan24.Core.IpSubNets.Matches*"></a>
+  <h4 id="wan24_Core_IpSubNets_Matches_wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNets.Matches(wan24.Core.IpSubNet@)">Matches(in IpSubNet)</h4>
+  <div class="markdown level1 summary"><p>Determine if an IP sub-net is matching into any IP sub-net</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Matches(in IpSubNet subNet)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">subNet</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If matching into any IP sub-net</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_ToArray.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.ToArray%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L303">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_ToArray_" data-uid="wan24.Core.IpSubNets.ToArray*"></a>
+  <h4 id="wan24_Core_IpSubNets_ToArray" data-uid="wan24.Core.IpSubNets.ToArray">ToArray()</h4>
+  <div class="markdown level1 summary"><p>Get this as array</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IpSubNet[] ToArray()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a>[]</td>
+        <td><p>IP sub-net array</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="operators">Operators
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_Addition_wan24_Core_IpSubNets__wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_Addition(wan24.Core.IpSubNets%40%2Cwan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L516">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_Addition_" data-uid="wan24.Core.IpSubNets.op_Addition*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_Addition_wan24_Core_IpSubNets__wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNets.op_Addition(wan24.Core.IpSubNets@,wan24.Core.IpSubNet@)">operator +(in IpSubNets, in IpSubNet)</h4>
+  <div class="markdown level1 summary"><p>Add an IP sub-net</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IpSubNets operator +(in IpSubNets subNets, in IpSubNet subNet)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">subNet</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><p>New <a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_Addition_wan24_Core_IpSubNets__wan24_Core_IpSubNets__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_Addition(wan24.Core.IpSubNets%40%2Cwan24.Core.IpSubNets%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L531">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_Addition_" data-uid="wan24.Core.IpSubNets.op_Addition*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_Addition_wan24_Core_IpSubNets__wan24_Core_IpSubNets__" data-uid="wan24.Core.IpSubNets.op_Addition(wan24.Core.IpSubNets@,wan24.Core.IpSubNets@)">operator +(in IpSubNets, in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Add IP sub-nets</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IpSubNets operator +(in IpSubNets subNets, in IpSubNets other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_BitwiseAnd_System_Net_IPAddress__wan24_Core_IpSubNets__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_BitwiseAnd(System.Net.IPAddress%40%2Cwan24.Core.IpSubNets%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L436">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_BitwiseAnd_" data-uid="wan24.Core.IpSubNets.op_BitwiseAnd*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_BitwiseAnd_System_Net_IPAddress__wan24_Core_IpSubNets__" data-uid="wan24.Core.IpSubNets.op_BitwiseAnd(System.Net.IPAddress@,wan24.Core.IpSubNets@)">operator &amp;(in IPAddress, in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Get the IP sub-net which includes an IP address</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static IpSubNet operator &amp;(in IPAddress ip, in IpSubNets subNets)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a></td>
+        <td><span class="parametername">ip</span></td>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><p>The including IP sub-net or <a class="xref" href="wan24.Core.IpSubNet.html#wan24_Core_IpSubNet_ZeroV4">ZeroV4</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_BitwiseAnd_wan24_Core_IpSubNet__wan24_Core_IpSubNets__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_BitwiseAnd(wan24.Core.IpSubNet%40%2Cwan24.Core.IpSubNets%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L454">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_BitwiseAnd_" data-uid="wan24.Core.IpSubNets.op_BitwiseAnd*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_BitwiseAnd_wan24_Core_IpSubNet__wan24_Core_IpSubNets__" data-uid="wan24.Core.IpSubNets.op_BitwiseAnd(wan24.Core.IpSubNet@,wan24.Core.IpSubNets@)">operator &amp;(in IpSubNet, in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Get the matching or intersecting IP sub-net</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static IpSubNet operator &amp;(in IpSubNet subNet, in IpSubNets subNets)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">subNet</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><p>The matching or intersecting IP sub-net, or <a class="xref" href="wan24.Core.IpSubNet.html#wan24_Core_IpSubNet_ZeroV4">ZeroV4</a>, if not intersecting at al</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_BitwiseAnd_wan24_Core_IpSubNets__System_Net_IPAddress__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_BitwiseAnd(wan24.Core.IpSubNets%40%2CSystem.Net.IPAddress%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L427">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_BitwiseAnd_" data-uid="wan24.Core.IpSubNets.op_BitwiseAnd*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_BitwiseAnd_wan24_Core_IpSubNets__System_Net_IPAddress__" data-uid="wan24.Core.IpSubNets.op_BitwiseAnd(wan24.Core.IpSubNets@,System.Net.IPAddress@)">operator &amp;(in IpSubNets, in IPAddress)</h4>
+  <div class="markdown level1 summary"><p>Get the IP sub-net which includes an IP address</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static IpSubNet operator &amp;(in IpSubNets subNets, in IPAddress ip)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a></td>
+        <td><span class="parametername">ip</span></td>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><p>The including IP sub-net or <a class="xref" href="wan24.Core.IpSubNet.html#wan24_Core_IpSubNet_ZeroV4">ZeroV4</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_BitwiseAnd_wan24_Core_IpSubNets__wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_BitwiseAnd(wan24.Core.IpSubNets%40%2Cwan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L445">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_BitwiseAnd_" data-uid="wan24.Core.IpSubNets.op_BitwiseAnd*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_BitwiseAnd_wan24_Core_IpSubNets__wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNets.op_BitwiseAnd(wan24.Core.IpSubNets@,wan24.Core.IpSubNet@)">operator &amp;(in IpSubNets, in IpSubNet)</h4>
+  <div class="markdown level1 summary"><p>Get the matching or intersecting IP sub-net</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static IpSubNet operator &amp;(in IpSubNets subNets, in IpSubNet subNet)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">subNet</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><p>The matching or intersecting IP sub-net, or <a class="xref" href="wan24.Core.IpSubNet.html#wan24_Core_IpSubNet_ZeroV4">ZeroV4</a>, if not intersecting at al</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_BitwiseOr_wan24_Core_IpSubNet__wan24_Core_IpSubNets__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_BitwiseOr(wan24.Core.IpSubNet%40%2Cwan24.Core.IpSubNets%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L479">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_BitwiseOr_" data-uid="wan24.Core.IpSubNets.op_BitwiseOr*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_BitwiseOr_wan24_Core_IpSubNet__wan24_Core_IpSubNets__" data-uid="wan24.Core.IpSubNets.op_BitwiseOr(wan24.Core.IpSubNet@,wan24.Core.IpSubNets@)">operator |(in IpSubNet, in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Add an IP sub-net (if it doesn't exist!)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IpSubNets operator |(in IpSubNet subNet, in IpSubNets subNets)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">subNet</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_BitwiseOr_wan24_Core_IpSubNets__wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_BitwiseOr(wan24.Core.IpSubNets%40%2Cwan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L463">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_BitwiseOr_" data-uid="wan24.Core.IpSubNets.op_BitwiseOr*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_BitwiseOr_wan24_Core_IpSubNets__wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNets.op_BitwiseOr(wan24.Core.IpSubNets@,wan24.Core.IpSubNet@)">operator |(in IpSubNets, in IpSubNet)</h4>
+  <div class="markdown level1 summary"><p>Add an IP sub-net (if it doesn't exist!)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IpSubNets operator |(in IpSubNets subNets, in IpSubNet subNet)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">subNet</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><p>New <a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_BitwiseOr_wan24_Core_IpSubNets__wan24_Core_IpSubNets__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_BitwiseOr(wan24.Core.IpSubNets%40%2Cwan24.Core.IpSubNets%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L495">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_BitwiseOr_" data-uid="wan24.Core.IpSubNets.op_BitwiseOr*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_BitwiseOr_wan24_Core_IpSubNets__wan24_Core_IpSubNets__" data-uid="wan24.Core.IpSubNets.op_BitwiseOr(wan24.Core.IpSubNets@,wan24.Core.IpSubNets@)">operator |(in IpSubNets, in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Merge two IP sub-net lists</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IpSubNets operator |(in IpSubNets subNets, in IpSubNets other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_Equality_System_Net_IPAddress__wan24_Core_IpSubNets__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_Equality(System.Net.IPAddress%40%2Cwan24.Core.IpSubNets%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L373">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_Equality_" data-uid="wan24.Core.IpSubNets.op_Equality*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_Equality_System_Net_IPAddress__wan24_Core_IpSubNets__" data-uid="wan24.Core.IpSubNets.op_Equality(System.Net.IPAddress@,wan24.Core.IpSubNets@)">operator ==(in IPAddress, in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Determine if an IP address is included in any IP sub-net</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static bool operator ==(in IPAddress ip, in IpSubNets subNets)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a></td>
+        <td><span class="parametername">ip</span></td>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If included in any IP sub-net</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_Equality_wan24_Core_IpSubNets__System_Net_IPAddress__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_Equality(wan24.Core.IpSubNets%40%2CSystem.Net.IPAddress%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L355">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_Equality_" data-uid="wan24.Core.IpSubNets.op_Equality*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_Equality_wan24_Core_IpSubNets__System_Net_IPAddress__" data-uid="wan24.Core.IpSubNets.op_Equality(wan24.Core.IpSubNets@,System.Net.IPAddress@)">operator ==(in IpSubNets, in IPAddress)</h4>
+  <div class="markdown level1 summary"><p>Determine if an IP address is included in any IP sub-net</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static bool operator ==(in IpSubNets subNets, in IPAddress ip)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a></td>
+        <td><span class="parametername">ip</span></td>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If included in any IP sub-net</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_Explicit_wan24_Core_IpSubNets___wan24_Core_IpSubNet.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_Explicit(wan24.Core.IpSubNets%40)~wan24.Core.IpSubNet%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L339">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_Explicit_" data-uid="wan24.Core.IpSubNets.op_Explicit*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_Explicit_wan24_Core_IpSubNets___wan24_Core_IpSubNet" data-uid="wan24.Core.IpSubNets.op_Explicit(wan24.Core.IpSubNets@)~wan24.Core.IpSubNet">explicit operator IpSubNet(in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Cast as combined IP sub-net</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static explicit operator IpSubNet(in IpSubNets subNets)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_GreaterThan_wan24_Core_IpSubNets__wan24_Core_IpSubNets__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_GreaterThan(wan24.Core.IpSubNets%40%2Cwan24.Core.IpSubNets%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L400">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_GreaterThan_" data-uid="wan24.Core.IpSubNets.op_GreaterThan*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_GreaterThan_wan24_Core_IpSubNets__wan24_Core_IpSubNets__" data-uid="wan24.Core.IpSubNets.op_GreaterThan(wan24.Core.IpSubNets@,wan24.Core.IpSubNets@)">operator &gt;(in IpSubNets, in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Count is greater</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static bool operator &gt;(in IpSubNets a, in IpSubNets b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>A</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>B</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If greater</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_GreaterThanOrEqual_wan24_Core_IpSubNets__wan24_Core_IpSubNets__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_GreaterThanOrEqual(wan24.Core.IpSubNets%40%2Cwan24.Core.IpSubNets%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L418">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_GreaterThanOrEqual_" data-uid="wan24.Core.IpSubNets.op_GreaterThanOrEqual*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_GreaterThanOrEqual_wan24_Core_IpSubNets__wan24_Core_IpSubNets__" data-uid="wan24.Core.IpSubNets.op_GreaterThanOrEqual(wan24.Core.IpSubNets@,wan24.Core.IpSubNets@)">operator &gt;=(in IpSubNets, in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Count is greater or equal</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static bool operator &gt;=(in IpSubNets a, in IpSubNets b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>A</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>B</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If greater or equal</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_Implicit_wan24_Core_IpSubNets___System_Int32.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_Implicit(wan24.Core.IpSubNets%40)~System.Int32%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L318">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_Implicit_" data-uid="wan24.Core.IpSubNets.op_Implicit*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_Implicit_wan24_Core_IpSubNets___System_Int32" data-uid="wan24.Core.IpSubNets.op_Implicit(wan24.Core.IpSubNets@)~System.Int32">implicit operator int(in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Cast as IP sub-net count</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static implicit operator int(in IpSubNets subNets)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_Implicit_wan24_Core_IpSubNets___System_Net_Sockets_AddressFamily.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_Implicit(wan24.Core.IpSubNets%40)~System.Net.Sockets.AddressFamily%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L332">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_Implicit_" data-uid="wan24.Core.IpSubNets.op_Implicit*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_Implicit_wan24_Core_IpSubNets___System_Net_Sockets_AddressFamily" data-uid="wan24.Core.IpSubNets.op_Implicit(wan24.Core.IpSubNets@)~System.Net.Sockets.AddressFamily">implicit operator AddressFamily(in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Cast as IP address family</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static implicit operator AddressFamily(in IpSubNets subNets)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.sockets.addressfamily">AddressFamily</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_Implicit_wan24_Core_IpSubNets___wan24_Core_IpNetworkKind.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_Implicit(wan24.Core.IpSubNets%40)~wan24.Core.IpNetworkKind%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L325">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_Implicit_" data-uid="wan24.Core.IpSubNets.op_Implicit*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_Implicit_wan24_Core_IpSubNets___wan24_Core_IpNetworkKind" data-uid="wan24.Core.IpSubNets.op_Implicit(wan24.Core.IpSubNets@)~wan24.Core.IpNetworkKind">implicit operator IpNetworkKind(in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Cast as IP network kind</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static implicit operator IpNetworkKind(in IpSubNets subNets)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpNetworkKind.html">IpNetworkKind</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_Inequality_System_Net_IPAddress__wan24_Core_IpSubNets__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_Inequality(System.Net.IPAddress%40%2Cwan24.Core.IpSubNets%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L382">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_Inequality_" data-uid="wan24.Core.IpSubNets.op_Inequality*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_Inequality_System_Net_IPAddress__wan24_Core_IpSubNets__" data-uid="wan24.Core.IpSubNets.op_Inequality(System.Net.IPAddress@,wan24.Core.IpSubNets@)">operator !=(in IPAddress, in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Determine if an IP address is not included in any IP sub-net</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static bool operator !=(in IPAddress ip, in IpSubNets subNets)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a></td>
+        <td><span class="parametername">ip</span></td>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If not included in any IP sub-net</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_Inequality_wan24_Core_IpSubNets__System_Net_IPAddress__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_Inequality(wan24.Core.IpSubNets%40%2CSystem.Net.IPAddress%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L364">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_Inequality_" data-uid="wan24.Core.IpSubNets.op_Inequality*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_Inequality_wan24_Core_IpSubNets__System_Net_IPAddress__" data-uid="wan24.Core.IpSubNets.op_Inequality(wan24.Core.IpSubNets@,System.Net.IPAddress@)">operator !=(in IpSubNets, in IPAddress)</h4>
+  <div class="markdown level1 summary"><p>Determine if an IP address is not included in any IP sub-net</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static bool operator !=(in IpSubNets subNets, in IPAddress ip)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a></td>
+        <td><span class="parametername">ip</span></td>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If not included in any IP sub-net</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_LessThan_wan24_Core_IpSubNets__wan24_Core_IpSubNets__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_LessThan(wan24.Core.IpSubNets%40%2Cwan24.Core.IpSubNets%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L391">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_LessThan_" data-uid="wan24.Core.IpSubNets.op_LessThan*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_LessThan_wan24_Core_IpSubNets__wan24_Core_IpSubNets__" data-uid="wan24.Core.IpSubNets.op_LessThan(wan24.Core.IpSubNets@,wan24.Core.IpSubNets@)">operator &lt;(in IpSubNets, in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Count is lower</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static bool operator &lt;(in IpSubNets a, in IpSubNets b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>A</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>B</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If lower</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_LessThanOrEqual_wan24_Core_IpSubNets__wan24_Core_IpSubNets__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_LessThanOrEqual(wan24.Core.IpSubNets%40%2Cwan24.Core.IpSubNets%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L409">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_LessThanOrEqual_" data-uid="wan24.Core.IpSubNets.op_LessThanOrEqual*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_LessThanOrEqual_wan24_Core_IpSubNets__wan24_Core_IpSubNets__" data-uid="wan24.Core.IpSubNets.op_LessThanOrEqual(wan24.Core.IpSubNets@,wan24.Core.IpSubNets@)">operator &lt;=(in IpSubNets, in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Count is lower or equal</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static bool operator &lt;=(in IpSubNets a, in IpSubNets b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>A</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>B</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If lower or equal</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_Subtraction_wan24_Core_IpSubNets__wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_Subtraction(wan24.Core.IpSubNets%40%2Cwan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L547">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_Subtraction_" data-uid="wan24.Core.IpSubNets.op_Subtraction*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_Subtraction_wan24_Core_IpSubNets__wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNets.op_Subtraction(wan24.Core.IpSubNets@,wan24.Core.IpSubNet@)">operator -(in IpSubNets, in IpSubNet)</h4>
+  <div class="markdown level1 summary"><p>Remove an IP sub-net</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IpSubNets operator -(in IpSubNets subNets, in IpSubNet subNet)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">subNet</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets_op_Subtraction_wan24_Core_IpSubNets__wan24_Core_IpSubNets__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets.op_Subtraction(wan24.Core.IpSubNets%40%2Cwan24.Core.IpSubNets%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L567">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNets_op_Subtraction_" data-uid="wan24.Core.IpSubNets.op_Subtraction*"></a>
+  <h4 id="wan24_Core_IpSubNets_op_Subtraction_wan24_Core_IpSubNets__wan24_Core_IpSubNets__" data-uid="wan24.Core.IpSubNets.op_Subtraction(wan24.Core.IpSubNets@,wan24.Core.IpSubNets@)">operator -(in IpSubNets, in IpSubNets)</h4>
+  <div class="markdown level1 summary"><p>Remove IP sub-nets</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IpSubNets operator -(in IpSubNets subNets, in IpSubNets other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">subNets</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></td>
+        <td><p><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable&lt;T&gt;</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.ArrayExtensions.html#wan24_Core_ArrayExtensions_AsReadOnly__1_System_Collections_Generic_IEnumerable___0__">ArrayExtensions.AsReadOnly&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ChunkEnum__1_System_Collections_Generic_IEnumerable___0__System_Int32_">EnumerableExtensions.ChunkEnum&lt;T&gt;(IEnumerable&lt;T&gt;, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAll__1_System_Collections_Generic_IEnumerable___0____0___">EnumerableExtensions.ContainsAll&lt;T&gt;(IEnumerable&lt;T&gt;, params T[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAny__1_System_Collections_Generic_IEnumerable___0____0___">EnumerableExtensions.ContainsAny&lt;T&gt;(IEnumerable&lt;T&gt;, params T[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_FilterAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_ValueTuple_System_Boolean___1____System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">ParallelAsync.FilterAsync&lt;tInput, tOutput&gt;(IEnumerable&lt;tInput&gt;, Func&lt;tInput, CancellationToken, Task&lt;(bool Yield, tOutput Output)&gt;&gt;, int, int?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_FilterAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_ValueTuple_System_Boolean___1___System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">ParallelAsync.FilterAsync&lt;tInput, tOutput&gt;(IEnumerable&lt;tInput&gt;, Func&lt;tInput, CancellationToken, (bool Yield, tOutput Output)&gt;, int, int?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_Filter__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_Tasks_ParallelLoopState_System_Threading_CancellationToken_System_ValueTuple_System_Boolean___1___System_Threading_Tasks_ParallelOptions_System_Threading_CancellationToken_">ParallelAsync.Filter&lt;tInput, tOutput&gt;(IEnumerable&lt;tInput&gt;, Func&lt;tInput, ParallelLoopState, CancellationToken, (bool Yield, tOutput Output)&gt;, ParallelOptions?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_ForEachAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task__System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">ParallelAsync.ForEachAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&gt;, int, int?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean__">JsonExtensions.ToJson(object, in bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(object, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_System_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean__System_String__">ObjectExtensions.EnsureValidState&lt;T&gt;(T, in bool, in string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText__1___0_">ObjectExtensions.GetDisplayText&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_System_Collections_Generic_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T?&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNets.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNets%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNets.cs/#L12" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      (c) 2023 Andreas Zimmermann, wan24.de
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
