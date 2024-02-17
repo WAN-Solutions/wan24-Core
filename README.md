@@ -227,6 +227,7 @@ including extensions for numeric type encoding/decoding)
 - Email sending abstractions
 - Commonly used regular expressions and global named expression collection
 - Transactions
+- TCP and UDP port knocking
 
 ## How to get it
 
