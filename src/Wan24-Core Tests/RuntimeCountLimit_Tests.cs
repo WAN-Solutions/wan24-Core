@@ -5,14 +5,16 @@ namespace Wan24_Core_Tests
     [TestClass]
     public class RuntimeCountLimit_Tests
     {
-        public static int Limit { get; set; } = 123;
+        public static int MinLimit { get; set; } = 123;
+
+        public static int MaxLimit { get; set; } = 999;
 
         [TestMethod]
         public void General_Tests()
         {
-            RuntimeCountLimitAttribute attr = new("Wan24_Core_Tests.RuntimeCountLimit_Tests.Limit", "Wan24_Core_Tests.RuntimeCountLimit_Tests.Limit");
-            Assert.AreEqual(Limit, attr.Min);
-            Assert.AreEqual(Limit, attr.Max);
+            RuntimeCountLimitAttribute attr = new("Wan24_Core_Tests.RuntimeCountLimit_Tests.MaxLimit", "Wan24_Core_Tests.RuntimeCountLimit_Tests.MinLimit");
+            Assert.AreEqual(MinLimit, attr.Min);
+            Assert.AreEqual(MaxLimit, attr.Max);
         }
     }
 }

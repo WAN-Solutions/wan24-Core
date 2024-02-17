@@ -19,7 +19,7 @@ jobs:
     - name: Setup docfx
       run: dotnet tool update -g docfx
     - name: Copy README
-      run: cp README.md "./src/Wan24-Core Docs/"
+      run: cp README.md "./src/Wan24-Core Docs/index.md"
     - name: Build docs
       run: docfx "./src/Wan24-Core Docs/docfx.json"
     - name: Commit
