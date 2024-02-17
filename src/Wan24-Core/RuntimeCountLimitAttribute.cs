@@ -28,14 +28,14 @@ namespace wan24.Core
         /// </summary>
         /// <param name="maxGetter">Maximum getter static property</param>
         /// <param name="minGetter">Minimum getter static property</param>
-        public RuntimeCountLimitAttribute(in string maxGetter, in string? minGetter = null) : this(maxGetter, minGetter, min: null) { }
+        public RuntimeCountLimitAttribute(string maxGetter, string? minGetter = null) : this(maxGetter, minGetter, min: null) { }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="maxGetter">Maximum getter static property</param>
         /// <param name="min">Minimum</param>
-        public RuntimeCountLimitAttribute(in string maxGetter, in long min) : this(maxGetter, minGetter: null, min) { }
+        public RuntimeCountLimitAttribute(string maxGetter, long min) : this(maxGetter, minGetter: null, min) { }
 
         /// <summary>
         /// Constructor
