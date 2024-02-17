@@ -21,7 +21,21 @@ namespace wan24.Core
         /// <summary>
         /// Maximum getter
         /// </summary>
-        protected readonly PropertyInfoExt _MaxGetter = null;
+        protected readonly PropertyInfoExt _MaxGetter = null!;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="maxGetter">Maximum getter static property</param>
+        /// <param name="minGetter">Minimum getter static property</param>
+        public RuntimeCountLimitAttribute(in string maxGetter, in string? minGetter = null) : this(maxGetter, minGetter, min: null) { }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="maxGetter">Maximum getter static property</param>
+        /// <param name="min">Minimum</param>
+        public RuntimeCountLimitAttribute(in string maxGetter, in long min) : this(maxGetter, minGetter: null, min) { }
 
         /// <summary>
         /// Constructor
@@ -29,7 +43,7 @@ namespace wan24.Core
         /// <param name="maxGetter">Maximum getter static property</param>
         /// <param name="minGetter">Minimum getter static property</param>
         /// <param name="min">Minimum</param>
-        public RuntimeCountLimitAttribute(string maxGetter, string? minGetter = null, long? min = null) : base()
+        protected RuntimeCountLimitAttribute(in string maxGetter, in string? minGetter, in long? min) : base()
         {
             _Min = min;
             MinGetter = minGetter;
