@@ -68,7 +68,8 @@ namespace wan24.Core
             => PropertyInfoCache.GetOrAdd(
                 type.GetHashCode(),
                 (key) => new()).GetOrAdd(bindingFlags, (key) => (from pi in type.GetProperties(bindingFlags)
-                                                                 where !pi.PropertyType.IsByRef
+                                                                 where !pi.PropertyType.IsByRef && 
+                                                                    pi.GetIndexParameters().Length == 0
                                                                  select new PropertyInfoExt(pi, pi.CanRead ? pi.GetGetterDelegate() : null, pi.CanWrite ? pi.GetSetterDelegate() : null))
                 .ToArray());
 
@@ -190,6 +191,8 @@ namespace wan24.Core
                 PropertyInfoCache.GetOrAdd(pi.GetHashCode(), (key) => new()).GetOrAdd(
                     bindingFlags,
                     (key) => (from p in pi.DeclaringType!.GetProperties(bindingFlags)
+                              where !pi.PropertyType.IsByRef && 
+                                pi.GetIndexParameters().Length == 0
                               select new PropertyInfoExt(p, p.CanRead ? p.GetGetterDelegate() : null, p.CanWrite ? pi.GetSetterDelegate() : null)).ToArray());
             PropertyInfoExt? prop = null;
             for (int i = 0, len = info.Length; i < len; i++)
@@ -234,6 +237,8 @@ namespace wan24.Core
                 PropertyInfoCache.GetOrAdd(pi.GetHashCode(), (key) => new()).GetOrAdd(
                     bindingFlags,
                     (key) => (from p in pi.DeclaringType!.GetProperties(bindingFlags)
+                              where !p.PropertyType.IsByRef && 
+                                p.GetIndexParameters().Length == 0
                               select new PropertyInfoExt(p, p.CanRead ? p.GetGetterDelegate() : null, p.CanWrite ? pi.GetSetterDelegate() : null)).ToArray());
             PropertyInfoExt? prop = null;
             for (int i = 0, len = info.Length; i < len; i++)
