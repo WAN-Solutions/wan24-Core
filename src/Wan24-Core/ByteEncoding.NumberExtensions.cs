@@ -1,4 +1,5 @@
 ﻿using System.Buffers;
+using System.Collections.Frozen;
 using System.Runtime;
 using System.Runtime.CompilerServices;
 
@@ -10,13 +11,13 @@ namespace wan24.Core
         /// <summary>
         /// Denied numeric type hash codes
         /// </summary>
-        private static readonly int[] DeniedNumericTypes =
-        [
-            typeof(float).GetHashCode(), 
-            typeof(double).GetHashCode(), 
-            typeof(decimal).GetHashCode(), 
-            typeof(Half).GetHashCode() 
-        ];
+        private static readonly FrozenSet<int> DeniedNumericTypes = new int[]
+        {
+            typeof(float).GetHashCode(),
+            typeof(double).GetHashCode(),
+            typeof(decimal).GetHashCode(),
+            typeof(Half).GetHashCode()
+        }.ToFrozenSet();
 
         /// <summary>
         /// Encode a numeric value as compact as possible
@@ -191,7 +192,7 @@ namespace wan24.Core
         private static Type EnsureValidNumericType<T>()
         {
             Type res = typeof(T);
-            if (DeniedNumericTypes.IndexOf(res.GetHashCode()) != -1) throw new NotSupportedException("Unsupported numeric type");
+            if (DeniedNumericTypes.Contains(res.GetHashCode())) throw new NotSupportedException("Unsupported numeric type");
             return res;
         }
     }

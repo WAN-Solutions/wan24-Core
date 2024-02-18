@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Collections.Frozen;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Disposing asynchronous enumerator (disposes tagged objects when disposing)
@@ -13,7 +15,7 @@
         /// <summary>
         /// Disposables
         /// </summary>
-        private readonly object?[] Disposables;
+        private readonly FrozenSet<object?> Disposables;
         /// <summary>
         /// Cancellation
         /// </summary>
@@ -36,7 +38,7 @@
         {
             Enumerable = enumerable;
             Enumerator = null;
-            Disposables = disposables;
+            Disposables = disposables.ToFrozenSet();
         }
 
         /// <summary>
@@ -57,7 +59,7 @@
         {
             Enumerable = null;
             Enumerator = enumerator;
-            Disposables = disposables;
+            Disposables = disposables.ToFrozenSet();
             Started = true;
         }
 

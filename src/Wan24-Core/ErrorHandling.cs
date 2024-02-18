@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using static wan24.Core.Logging;
+﻿using static wan24.Core.Logging;
 
 namespace wan24.Core
 {

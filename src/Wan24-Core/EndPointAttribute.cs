@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Frozen;
+using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Net.Sockets;
 
@@ -17,7 +18,7 @@ namespace wan24.Core
         /// <summary>
         /// Allowed IP sub-nets (CIDR notation; the value needs to fit into one of these; if none are given, the value only needs to be a valid sub-net)
         /// </summary>
-        public ReadOnlyMemory<IpSubNet> AllowedIpSubnets { get; } = allowedIpSubNets.Select(subNet => new IpSubNet(subNet)).ToArray();
+        public FrozenSet<IpSubNet> AllowedIpSubnets { get; } = allowedIpSubNets.Select(subNet => new IpSubNet(subNet)).ToFrozenSet();
 
         /// <summary>
         /// Allow an IPv4 sub-net?
@@ -55,14 +56,13 @@ namespace wan24.Core
                     ErrorMessage ?? (validationContext.MemberName is null ? $"IPv4 endpoint required" : $"{validationContext.MemberName}: IPv4 endpoint required"),
                     validationContext.MemberName is null ? null : new string[] { validationContext.MemberName }
                     );
-            else if (AllowedIpSubnets.Length != 0)
+            else if (AllowedIpSubnets.Count != 0)
             {
-                ReadOnlySpan<IpSubNet> subNets = AllowedIpSubnets.Span;
                 int denied = 0;
-                for (int i = 0, len = AllowedIpSubnets.Length; i < len; i++)
-                    if (ipEndpoint.Address != subNets[i])
+                for (int i = 0, len = AllowedIpSubnets.Count; i < len; i++)
+                    if (ipEndpoint.Address != AllowedIpSubnets.Items[i])
                         denied++;
-                if (denied == subNets.Length)
+                if (denied == AllowedIpSubnets.Count)
                     return new(
                         ErrorMessage ?? (validationContext.MemberName is null ? $"IP endpoint is in denied sub-net" : $"{validationContext.MemberName}: IP endpoint is in denied sub-net"),
                         validationContext.MemberName is null ? null : new string[] { validationContext.MemberName }

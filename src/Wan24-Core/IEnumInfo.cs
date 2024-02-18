@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Frozen;
+using System.Collections.ObjectModel;
 
 namespace wan24.Core
 {
@@ -30,15 +31,15 @@ namespace wan24.Core
         /// <summary>
         /// Enumeration names
         /// </summary>
-        ReadOnlyCollection<string> EnumNames { get; }
+        FrozenSet<string> EnumNames { get; }
         /// <summary>
         /// All enumeration values and their numeric values as dictionary
         /// </summary>
-        IReadOnlyDictionary<string, object> NumericEnumValues { get; }
+        FrozenDictionary<string, object> NumericEnumValues { get; }
         /// <summary>
         /// Value display texts
         /// </summary>
-        IReadOnlyDictionary<string, string> ValueDisplayTexts { get; }
+        FrozenDictionary<string, string> ValueDisplayTexts { get; }
         /// <summary>
         /// Determine if the enumeration value is valid
         /// </summary>
@@ -56,15 +57,15 @@ namespace wan24.Core
         /// <summary>
         /// All enumeration keys and their enumeration values
         /// </summary>
-        IReadOnlyDictionary<string, T> EnumKeyValues { get; }
+        FrozenDictionary<string, T> EnumKeyValues { get; }
         /// <summary>
         /// Enumeration values
         /// </summary>
-        ReadOnlyCollection<T> EnumValues { get; }
+        FrozenSet<T> EnumValues { get; }
         /// <summary>
         /// Flag values
         /// </summary>
-        ReadOnlyCollection<T> EnumFlagValues { get; }
+        FrozenSet<T> EnumFlagValues { get; }
         /// <summary>
         /// Determine if the enumeration value is valid
         /// </summary>

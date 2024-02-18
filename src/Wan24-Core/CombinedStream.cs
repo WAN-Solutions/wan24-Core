@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Frozen;
+using System.Collections.ObjectModel;
 
 namespace wan24.Core
 {
@@ -10,7 +11,7 @@ namespace wan24.Core
         /// <summary>
         /// Stream lengths in bytes
         /// </summary>
-        protected readonly ReadOnlyCollection<long> Lengths;
+        protected readonly FrozenSet<long> Lengths;
         /// <summary>
         /// Combined length in bytes
         /// </summary>
@@ -35,7 +36,7 @@ namespace wan24.Core
         {
             if (streams.Length == 0) throw new ArgumentOutOfRangeException(nameof(streams));
             if (streams.Any(s => !s.CanSeek || !s.CanRead)) throw new ArgumentException("Read- and seekable streams required", nameof(streams));
-            Lengths = streams.Select(s => s.Length).AsReadOnly();
+            Lengths = streams.Select(s => s.Length).ToFrozenSet();
             _Length = Lengths.Sum();
             Streams = streams.AsReadOnly();
             LeaveOpen = leaveOpen;
@@ -102,7 +103,7 @@ namespace wan24.Core
             long len = 0;
             for (int i = 0; i < Lengths.Count; i++)
             {
-                len += Lengths[i];
+                len += Lengths.Items[i];
                 if (len >= position) return i;
             }
             return -1;

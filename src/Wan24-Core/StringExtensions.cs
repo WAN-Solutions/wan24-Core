@@ -14,8 +14,8 @@ namespace wan24.Core
         /// </summary>
         static StringExtensions()
         {
-            ParserFunctionHandlers = new(new KeyValuePair<string, Parser_Delegate>[]
-            {
+            ParserFunctionHandlers = new(
+            [
                 new("sub", Parser_SubString),
                 new("left", Parser_Left),
                 new("right", Parser_Right),
@@ -47,7 +47,7 @@ namespace wan24.Core
                 new("split", Parser_Split),
                 new("range", Parser_Range),
                 new("dummy", Parser_Dummy)
-            });
+            ]);
         }
 
         /// <summary>
