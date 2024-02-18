@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System.Collections.Frozen;
+using System.Collections.ObjectModel;
+using System.Net;
 using System.Net.Sockets;
 using System.Net.WebSockets;
 using System.Runtime.CompilerServices;
@@ -10,6 +12,15 @@ namespace wan24.Core
     /// </summary>
     public static class PortKnocking
     {
+        /// <summary>
+        /// WebSocket URI schemes
+        /// </summary>
+        private static readonly FrozenSet<string> WebSocketSchemes = new string[] { "ws", "wss" }.ToFrozenSet();
+        /// <summary>
+        /// http(s) URI schemes
+        /// </summary>
+        private static readonly FrozenSet<string> HttpSchemes = new string[] { "http", "https" }.ToFrozenSet();
+
         /// <summary>
         /// Call a TCP port sequence by sending SYN packets
         /// </summary>
@@ -89,7 +100,7 @@ namespace wan24.Core
             params Uri[] uris
             )
         {
-            EnsureValidUris(uris, "ws", "wss");
+            EnsureValidUris(uris, WebSocketSchemes);
             cancellationToken.ThrowIfCancellationRequested();
             if (delay <= TimeSpan.Zero) delay = TimeSpan.FromMilliseconds(20);
             using CancellationTokenSource processing = new();
@@ -143,6 +154,7 @@ namespace wan24.Core
         /// <param name="requestFactory">http request mesage factory</param>
         /// <param name="delay">Delay between connecion attempts</param>
         /// <param name="progress">Progress (updated after each http(s) URI was contacted)</param>
+        /// <param name="serviceProvider">Service provider to use for getting the <see cref="HttpClient"/> instance</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="uris">http(s) URI sequence</param>
         public static async Task CallHttpSequenceAsync(
@@ -150,19 +162,21 @@ namespace wan24.Core
             RequestMessageFactory_Delegate? requestFactory = null,
             TimeSpan delay = default,
             ProcessingProgress? progress = null,
+            IAsyncServiceProvider? serviceProvider = null,
             CancellationToken cancellationToken = default,
             params Uri[] uris
             )
         {
-            EnsureValidUris(uris, "http", "https");
+            EnsureValidUris(uris, HttpSchemes);
             cancellationToken.ThrowIfCancellationRequested();
             if (delay <= TimeSpan.Zero) delay = TimeSpan.FromMilliseconds(20);
             using CancellationTokenSource processing = new();
             using BoundCancellationTokenSource cancellation = new(cancellationToken, processing.Token);
             bool disposeClient = client is null;
+            if (disposeClient) serviceProvider ??= DiHelper.Instance;
             TimeSpan waitTime;
             DateTime continueAt = DateTime.Now;
-            client ??= new();
+            client ??= await serviceProvider!.GetServiceAsync(typeof(HttpClient), cancellationToken).DynamicContext() as HttpClient ?? new();
             try
             {
                 foreach (Uri uri in uris)
@@ -209,6 +223,7 @@ namespace wan24.Core
         /// <param name="delay">Delay between packets</param>
         /// <param name="payload">Payload to send with an UDP packet (empty per default)</param>
         /// <param name="progress">Progress (updated after each port was contacted)</param>
+        /// <param name="serviceProvider">Service provider to use for getting the <see cref="UdpClient"/> instance</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="ports">UDP port sequence</param>
         public static async Task CallUdpSequenceAsync(
@@ -216,7 +231,8 @@ namespace wan24.Core
             UdpClient? client = null,
             TimeSpan delay = default, 
             ReadOnlyMemory<byte>? payload = null,
-            ProcessingProgress? progress = null, 
+            ProcessingProgress? progress = null,
+            IAsyncServiceProvider? serviceProvider = null,
             CancellationToken cancellationToken = default, 
             params int[] ports
             )
@@ -226,7 +242,8 @@ namespace wan24.Core
             cancellationToken.ThrowIfCancellationRequested();
             payload ??= Array.Empty<byte>();
             bool disposeClient = client is null;
-            client ??= new(target.AddressFamily);
+            if (disposeClient) serviceProvider ??= DiHelper.Instance;
+            client ??= await serviceProvider!.GetServiceAsync(typeof(UdpClient), cancellationToken).DynamicContext() as UdpClient ?? new(target.AddressFamily);
             try
             {
                 foreach (int port in ports)
@@ -274,7 +291,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static void EnsureValidUris(in Uri[] uris, params string[] allowedSchemes)
+        private static void EnsureValidUris(in Uri[] uris, FrozenSet<string> allowedSchemes)
         {
             if (uris.Length < 1 || uris.Any(u => !u.Scheme.In(allowedSchemes)))
                 throw new ArgumentException($"Require at last one and only {string.Join('/', allowedSchemes)} URI(s)", nameof(uris));

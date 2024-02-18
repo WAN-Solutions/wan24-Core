@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Frozen;
+using System.Collections.ObjectModel;
 
 namespace wan24.Core
 {
@@ -27,14 +28,14 @@ namespace wan24.Core
         public HubStream(in bool leaveOpen, params Stream[] targets) : base()
         {
             if (targets.Length == 0) throw new ArgumentOutOfRangeException(nameof(targets));
-            Targets = targets.AsReadOnly();
+            Targets = targets.ToFrozenSet();
             LeaveOpen = leaveOpen;
         }
 
         /// <summary>
         /// Target streams
         /// </summary>
-        public ReadOnlyCollection<Stream> Targets { get; }
+        public FrozenSet<Stream> Targets { get; }
 
         /// <summary>
         /// Leave the target streams open when disposing?
@@ -70,7 +71,7 @@ namespace wan24.Core
             get
             {
                 EnsureUndisposed();
-                return Targets[0].Length;
+                return Targets.Items[0].Length;
             }
         }
 
@@ -80,7 +81,7 @@ namespace wan24.Core
             get
             {
                 EnsureUndisposed();
-                return Targets[0].Position;
+                return Targets.Items[0].Position;
             }
             set
             {

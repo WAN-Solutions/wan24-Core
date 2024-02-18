@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
 
 namespace wan24.Core
@@ -15,7 +16,7 @@ namespace wan24.Core
         /// <summary>
         /// Terms
         /// </summary>
-        public IReadOnlyDictionary<string, string> Terms { get; } = terms;
+        public FrozenDictionary<string, string> Terms { get; } = terms.ToFrozenDictionary();
 
         /// <inheritdoc/>
         public virtual bool PluralSupport => false;

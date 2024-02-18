@@ -10,9 +10,7 @@ namespace wan24.Core
     /// </remarks>
     /// <param name="stream">Target stream (will be disposed!)</param>
     /// <param name="backup">Backup stream (will be disposed!)</param>
-    public class AcidStream(in Stream stream, in Stream? backup = null) : AcidStream<Stream>(stream, backup)
-    {
-    }
+    public class AcidStream(in Stream stream, in Stream? backup = null) : AcidStream<Stream>(stream, backup) { }
 
     /// <summary>
     /// ACID stream (IO is synchronized)
