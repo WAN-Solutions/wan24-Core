@@ -1617,10 +1617,15 @@ Translation.Current = Translation.Locales[&quot;de-DE&quot;];
 </code></pre>
 <p>This initializes English and German translations, where English is always the
 main locale. To translate a text:</p>
-<pre><code class="lang-cs">using static wan24.Translation;
+<pre><code class="lang-cs">using static wan24.TranslationHelper;
 
-string translated = Translate(&quot;Hello&quot;);
+string translated = _(&quot;Hello&quot;);
 </code></pre>
+<p><strong>TIP</strong>: If you'd like to enable a parser like the Poedit source code parser
+to find texts, which will be stored as variable and translated from there
+later, when the locale is known, you can use the <code>variable = __(&quot;Text&quot;);</code>
+syntax. The double score method returns the given string value 1:1 and is only
+being used as parser hint.</p>
 <p>Or for a specific locale:</p>
 <pre><code class="lang-cs">using static wan24.Translation;
 
@@ -1640,6 +1645,8 @@ string translated = Localize(&quot;de-DE&quot;, &quot;Hello&quot;);
 }
 </code></pre>
 <p><strong>NOTE</strong>: <code>Translation</code> supports string parser usage.</p>
+<p>To combine multiple translations for a single locale into one, you can use the
+<code>CombinedTranslationTerms</code> type.</p>
 <p>You may also use localized filenames. For this you'll need to store files as</p>
 <ul>
 <li><code>filename.ext</code> (fallback, if a known locale or an existing file isn't
@@ -1653,6 +1660,22 @@ required)</li>
 string fn = LocalizedFileName(&quot;de-DE&quot;, &quot;/path/to/filename.ext&quot;);
 Assert.AreEqual(&quot;/path/to/filename.de-DE.ext&quot;, fn);
 </code></pre>
+<h3 id="informations-for-translators">Informations for translators</h3>
+<p>A string to translate may contain placeholders like <code>%{N}</code>, where <code>N</code> is any
+number. These placeholders address variables and may occur in any order in the
+translation, as long as the original <code>N</code> value is being used (the placeholders
+must not be re-numbered in the translation). Also placeholders with a name
+instead of a numeric value are possible and should be used 1:1 within the
+translation (but may be reordered, if the grammatics require it).</p>
+<p>The escape sequence <code>\n</code> or <code>\r\n</code> is a line break which must be used for a
+line break in the translation, too.</p>
+<p>The escape sequence <code>\t</code> is a tabulator which must be used for a tabulator
+in the translation, too.</p>
+<p>The escape sequence <code>\&quot;</code> is a double-quote. Double-quotes should be escaped
+that way.</p>
+<p>If a filename is localized using a locale code like <code>en-US</code>, the translation
+must use its new locale code instead - example: <code>filename.en-US.ext</code> becomes
+to <code>filename.de-DE.ext</code> in a German translation.</p>
 <h2 id="enumeration-classes">Enumeration classes</h2>
 <p>Using the <code>EnumerationBase&lt;T&gt;</code> base type you can implement enumeration classes
 like this:</p>

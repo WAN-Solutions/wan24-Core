@@ -2165,6 +2165,25 @@ references:
   isSpec: "True"
   fullName: Wan24_Core_Tests.FlushStream_Tests.General_Tests
   nameWithType: FlushStream_Tests.General_Tests
+- uid: Wan24_Core_Tests.FsHelper_Tests
+  name: FsHelper_Tests
+  href: api/Wan24_Core_Tests.FsHelper_Tests.html
+  commentId: T:Wan24_Core_Tests.FsHelper_Tests
+  fullName: Wan24_Core_Tests.FsHelper_Tests
+  nameWithType: FsHelper_Tests
+- uid: Wan24_Core_Tests.FsHelper_Tests.General_Tests
+  name: General_Tests()
+  href: api/Wan24_Core_Tests.FsHelper_Tests.html#Wan24_Core_Tests_FsHelper_Tests_General_Tests
+  commentId: M:Wan24_Core_Tests.FsHelper_Tests.General_Tests
+  fullName: Wan24_Core_Tests.FsHelper_Tests.General_Tests()
+  nameWithType: FsHelper_Tests.General_Tests()
+- uid: Wan24_Core_Tests.FsHelper_Tests.General_Tests*
+  name: General_Tests
+  href: api/Wan24_Core_Tests.FsHelper_Tests.html#Wan24_Core_Tests_FsHelper_Tests_General_Tests_
+  commentId: Overload:Wan24_Core_Tests.FsHelper_Tests.General_Tests
+  isSpec: "True"
+  fullName: Wan24_Core_Tests.FsHelper_Tests.General_Tests
+  nameWithType: FsHelper_Tests.General_Tests
 - uid: Wan24_Core_Tests.GenericHelper_Tests
   name: GenericHelper_Tests
   href: api/Wan24_Core_Tests.GenericHelper_Tests.html
@@ -17446,14 +17465,14 @@ references:
   commentId: T:wan24.Core.CliConfig
   fullName: wan24.Core.CliConfig
   nameWithType: CliConfig
-- uid: wan24.Core.CliConfig.Apply(wan24.Core.CliArguments@)
-  name: Apply(in CliArguments)
-  href: api/wan24.Core.CliConfig.html#wan24_Core_CliConfig_Apply_wan24_Core_CliArguments__
-  commentId: M:wan24.Core.CliConfig.Apply(wan24.Core.CliArguments@)
+- uid: wan24.Core.CliConfig.Apply(wan24.Core.CliArguments)
+  name: Apply(CliArguments?)
+  href: api/wan24.Core.CliConfig.html#wan24_Core_CliConfig_Apply_wan24_Core_CliArguments_
+  commentId: M:wan24.Core.CliConfig.Apply(wan24.Core.CliArguments)
   name.vb: Apply(CliArguments)
-  fullName: wan24.Core.CliConfig.Apply(in wan24.Core.CliArguments)
+  fullName: wan24.Core.CliConfig.Apply(wan24.Core.CliArguments?)
   fullName.vb: wan24.Core.CliConfig.Apply(wan24.Core.CliArguments)
-  nameWithType: CliConfig.Apply(in CliArguments)
+  nameWithType: CliConfig.Apply(CliArguments?)
   nameWithType.vb: CliConfig.Apply(CliArguments)
 - uid: wan24.Core.CliConfig.Apply*
   name: Apply
@@ -17948,6 +17967,203 @@ references:
   commentId: F:wan24.Core.CombinedStream._Position
   fullName: wan24.Core.CombinedStream._Position
   nameWithType: CombinedStream._Position
+- uid: wan24.Core.CombinedTranslationTerms
+  name: CombinedTranslationTerms
+  href: api/wan24.Core.CombinedTranslationTerms.html
+  commentId: T:wan24.Core.CombinedTranslationTerms
+  fullName: wan24.Core.CombinedTranslationTerms
+  nameWithType: CombinedTranslationTerms
+- uid: wan24.Core.CombinedTranslationTerms.#ctor(System.Collections.Generic.List{wan24.Core.ITranslationTerms}@)
+  name: CombinedTranslationTerms(in List<ITranslationTerms>)
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms__ctor_System_Collections_Generic_List_wan24_Core_ITranslationTerms___
+  commentId: M:wan24.Core.CombinedTranslationTerms.#ctor(System.Collections.Generic.List{wan24.Core.ITranslationTerms}@)
+  name.vb: New(List(Of ITranslationTerms))
+  fullName: wan24.Core.CombinedTranslationTerms.CombinedTranslationTerms(in System.Collections.Generic.List<wan24.Core.ITranslationTerms>)
+  fullName.vb: wan24.Core.CombinedTranslationTerms.New(System.Collections.Generic.List(Of wan24.Core.ITranslationTerms))
+  nameWithType: CombinedTranslationTerms.CombinedTranslationTerms(in List<ITranslationTerms>)
+  nameWithType.vb: CombinedTranslationTerms.New(List(Of ITranslationTerms))
+- uid: wan24.Core.CombinedTranslationTerms.#ctor(wan24.Core.ITranslationTerms[])
+  name: CombinedTranslationTerms(params ITranslationTerms[])
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms__ctor_wan24_Core_ITranslationTerms___
+  commentId: M:wan24.Core.CombinedTranslationTerms.#ctor(wan24.Core.ITranslationTerms[])
+  name.vb: New(ParamArray ITranslationTerms())
+  fullName: wan24.Core.CombinedTranslationTerms.CombinedTranslationTerms(params wan24.Core.ITranslationTerms[])
+  fullName.vb: wan24.Core.CombinedTranslationTerms.New(ParamArray wan24.Core.ITranslationTerms())
+  nameWithType: CombinedTranslationTerms.CombinedTranslationTerms(params ITranslationTerms[])
+  nameWithType.vb: CombinedTranslationTerms.New(ParamArray ITranslationTerms())
+- uid: wan24.Core.CombinedTranslationTerms.#ctor*
+  name: CombinedTranslationTerms
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms__ctor_
+  commentId: Overload:wan24.Core.CombinedTranslationTerms.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: wan24.Core.CombinedTranslationTerms.CombinedTranslationTerms
+  fullName.vb: wan24.Core.CombinedTranslationTerms.New
+  nameWithType: CombinedTranslationTerms.CombinedTranslationTerms
+  nameWithType.vb: CombinedTranslationTerms.New
+- uid: wan24.Core.CombinedTranslationTerms.ContainsKey(System.String)
+  name: ContainsKey(string)
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_ContainsKey_System_String_
+  commentId: M:wan24.Core.CombinedTranslationTerms.ContainsKey(System.String)
+  name.vb: ContainsKey(String)
+  fullName: wan24.Core.CombinedTranslationTerms.ContainsKey(string)
+  fullName.vb: wan24.Core.CombinedTranslationTerms.ContainsKey(String)
+  nameWithType: CombinedTranslationTerms.ContainsKey(string)
+  nameWithType.vb: CombinedTranslationTerms.ContainsKey(String)
+- uid: wan24.Core.CombinedTranslationTerms.ContainsKey*
+  name: ContainsKey
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_ContainsKey_
+  commentId: Overload:wan24.Core.CombinedTranslationTerms.ContainsKey
+  isSpec: "True"
+  fullName: wan24.Core.CombinedTranslationTerms.ContainsKey
+  nameWithType: CombinedTranslationTerms.ContainsKey
+- uid: wan24.Core.CombinedTranslationTerms.Count
+  name: Count
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_Count
+  commentId: P:wan24.Core.CombinedTranslationTerms.Count
+  fullName: wan24.Core.CombinedTranslationTerms.Count
+  nameWithType: CombinedTranslationTerms.Count
+- uid: wan24.Core.CombinedTranslationTerms.Count*
+  name: Count
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_Count_
+  commentId: Overload:wan24.Core.CombinedTranslationTerms.Count
+  isSpec: "True"
+  fullName: wan24.Core.CombinedTranslationTerms.Count
+  nameWithType: CombinedTranslationTerms.Count
+- uid: wan24.Core.CombinedTranslationTerms.GetEnumerator
+  name: GetEnumerator()
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_GetEnumerator
+  commentId: M:wan24.Core.CombinedTranslationTerms.GetEnumerator
+  fullName: wan24.Core.CombinedTranslationTerms.GetEnumerator()
+  nameWithType: CombinedTranslationTerms.GetEnumerator()
+- uid: wan24.Core.CombinedTranslationTerms.GetEnumerator*
+  name: GetEnumerator
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_GetEnumerator_
+  commentId: Overload:wan24.Core.CombinedTranslationTerms.GetEnumerator
+  isSpec: "True"
+  fullName: wan24.Core.CombinedTranslationTerms.GetEnumerator
+  nameWithType: CombinedTranslationTerms.GetEnumerator
+- uid: wan24.Core.CombinedTranslationTerms.GetTerm(System.String@)
+  name: GetTerm(in string)
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_GetTerm_System_String__
+  commentId: M:wan24.Core.CombinedTranslationTerms.GetTerm(System.String@)
+  name.vb: GetTerm(String)
+  fullName: wan24.Core.CombinedTranslationTerms.GetTerm(in string)
+  fullName.vb: wan24.Core.CombinedTranslationTerms.GetTerm(String)
+  nameWithType: CombinedTranslationTerms.GetTerm(in string)
+  nameWithType.vb: CombinedTranslationTerms.GetTerm(String)
+- uid: wan24.Core.CombinedTranslationTerms.GetTerm(System.String@,System.Int32@)
+  name: GetTerm(in string, in int)
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_GetTerm_System_String__System_Int32__
+  commentId: M:wan24.Core.CombinedTranslationTerms.GetTerm(System.String@,System.Int32@)
+  name.vb: GetTerm(String, Integer)
+  fullName: wan24.Core.CombinedTranslationTerms.GetTerm(in string, in int)
+  fullName.vb: wan24.Core.CombinedTranslationTerms.GetTerm(String, Integer)
+  nameWithType: CombinedTranslationTerms.GetTerm(in string, in int)
+  nameWithType.vb: CombinedTranslationTerms.GetTerm(String, Integer)
+- uid: wan24.Core.CombinedTranslationTerms.GetTerm*
+  name: GetTerm
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_GetTerm_
+  commentId: Overload:wan24.Core.CombinedTranslationTerms.GetTerm
+  isSpec: "True"
+  fullName: wan24.Core.CombinedTranslationTerms.GetTerm
+  nameWithType: CombinedTranslationTerms.GetTerm
+- uid: wan24.Core.CombinedTranslationTerms.Item(System.String)
+  name: this[string]
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_Item_System_String_
+  commentId: P:wan24.Core.CombinedTranslationTerms.Item(System.String)
+  name.vb: this[](String)
+  fullName: wan24.Core.CombinedTranslationTerms.this[string]
+  fullName.vb: wan24.Core.CombinedTranslationTerms.this[](String)
+  nameWithType: CombinedTranslationTerms.this[string]
+  nameWithType.vb: CombinedTranslationTerms.this[](String)
+- uid: wan24.Core.CombinedTranslationTerms.Item(System.String@,System.Int32@)
+  name: this[string, int]
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_Item_System_String__System_Int32__
+  commentId: P:wan24.Core.CombinedTranslationTerms.Item(System.String@,System.Int32@)
+  name.vb: this[](String, Integer)
+  fullName: wan24.Core.CombinedTranslationTerms.this[string, int]
+  fullName.vb: wan24.Core.CombinedTranslationTerms.this[](String, Integer)
+  nameWithType: CombinedTranslationTerms.this[string, int]
+  nameWithType.vb: CombinedTranslationTerms.this[](String, Integer)
+- uid: wan24.Core.CombinedTranslationTerms.Item*
+  name: this
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_Item_
+  commentId: Overload:wan24.Core.CombinedTranslationTerms.Item
+  isSpec: "True"
+  name.vb: this[]
+  fullName: wan24.Core.CombinedTranslationTerms.this
+  fullName.vb: wan24.Core.CombinedTranslationTerms.this[]
+  nameWithType: CombinedTranslationTerms.this
+  nameWithType.vb: CombinedTranslationTerms.this[]
+- uid: wan24.Core.CombinedTranslationTerms.Keys
+  name: Keys
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_Keys
+  commentId: P:wan24.Core.CombinedTranslationTerms.Keys
+  fullName: wan24.Core.CombinedTranslationTerms.Keys
+  nameWithType: CombinedTranslationTerms.Keys
+- uid: wan24.Core.CombinedTranslationTerms.Keys*
+  name: Keys
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_Keys_
+  commentId: Overload:wan24.Core.CombinedTranslationTerms.Keys
+  isSpec: "True"
+  fullName: wan24.Core.CombinedTranslationTerms.Keys
+  nameWithType: CombinedTranslationTerms.Keys
+- uid: wan24.Core.CombinedTranslationTerms.PluralSupport
+  name: PluralSupport
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_PluralSupport
+  commentId: P:wan24.Core.CombinedTranslationTerms.PluralSupport
+  fullName: wan24.Core.CombinedTranslationTerms.PluralSupport
+  nameWithType: CombinedTranslationTerms.PluralSupport
+- uid: wan24.Core.CombinedTranslationTerms.PluralSupport*
+  name: PluralSupport
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_PluralSupport_
+  commentId: Overload:wan24.Core.CombinedTranslationTerms.PluralSupport
+  isSpec: "True"
+  fullName: wan24.Core.CombinedTranslationTerms.PluralSupport
+  nameWithType: CombinedTranslationTerms.PluralSupport
+- uid: wan24.Core.CombinedTranslationTerms.Terms
+  name: Terms
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_Terms
+  commentId: P:wan24.Core.CombinedTranslationTerms.Terms
+  fullName: wan24.Core.CombinedTranslationTerms.Terms
+  nameWithType: CombinedTranslationTerms.Terms
+- uid: wan24.Core.CombinedTranslationTerms.Terms*
+  name: Terms
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_Terms_
+  commentId: Overload:wan24.Core.CombinedTranslationTerms.Terms
+  isSpec: "True"
+  fullName: wan24.Core.CombinedTranslationTerms.Terms
+  nameWithType: CombinedTranslationTerms.Terms
+- uid: wan24.Core.CombinedTranslationTerms.TryGetValue(System.String,System.String@)
+  name: TryGetValue(string, out string)
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_TryGetValue_System_String_System_String__
+  commentId: M:wan24.Core.CombinedTranslationTerms.TryGetValue(System.String,System.String@)
+  name.vb: TryGetValue(String, String)
+  fullName: wan24.Core.CombinedTranslationTerms.TryGetValue(string, out string)
+  fullName.vb: wan24.Core.CombinedTranslationTerms.TryGetValue(String, String)
+  nameWithType: CombinedTranslationTerms.TryGetValue(string, out string)
+  nameWithType.vb: CombinedTranslationTerms.TryGetValue(String, String)
+- uid: wan24.Core.CombinedTranslationTerms.TryGetValue*
+  name: TryGetValue
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_TryGetValue_
+  commentId: Overload:wan24.Core.CombinedTranslationTerms.TryGetValue
+  isSpec: "True"
+  fullName: wan24.Core.CombinedTranslationTerms.TryGetValue
+  nameWithType: CombinedTranslationTerms.TryGetValue
+- uid: wan24.Core.CombinedTranslationTerms.Values
+  name: Values
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_Values
+  commentId: P:wan24.Core.CombinedTranslationTerms.Values
+  fullName: wan24.Core.CombinedTranslationTerms.Values
+  nameWithType: CombinedTranslationTerms.Values
+- uid: wan24.Core.CombinedTranslationTerms.Values*
+  name: Values
+  href: api/wan24.Core.CombinedTranslationTerms.html#wan24_Core_CombinedTranslationTerms_Values_
+  commentId: Overload:wan24.Core.CombinedTranslationTerms.Values
+  isSpec: "True"
+  fullName: wan24.Core.CombinedTranslationTerms.Values
+  nameWithType: CombinedTranslationTerms.Values
 - uid: wan24.Core.ConfigEventArgs
   name: ConfigEventArgs
   href: api/wan24.Core.ConfigEventArgs.html
@@ -19592,6 +19808,19 @@ references:
   fullName.vb: wan24.Core.DebugLogger.New
   nameWithType: DebugLogger.DebugLogger
   nameWithType.vb: DebugLogger.New
+- uid: wan24.Core.DebugLogger.BreakDebuggerOnLevel
+  name: BreakDebuggerOnLevel
+  href: api/wan24.Core.DebugLogger.html#wan24_Core_DebugLogger_BreakDebuggerOnLevel
+  commentId: P:wan24.Core.DebugLogger.BreakDebuggerOnLevel
+  fullName: wan24.Core.DebugLogger.BreakDebuggerOnLevel
+  nameWithType: DebugLogger.BreakDebuggerOnLevel
+- uid: wan24.Core.DebugLogger.BreakDebuggerOnLevel*
+  name: BreakDebuggerOnLevel
+  href: api/wan24.Core.DebugLogger.html#wan24_Core_DebugLogger_BreakDebuggerOnLevel_
+  commentId: Overload:wan24.Core.DebugLogger.BreakDebuggerOnLevel
+  isSpec: "True"
+  fullName: wan24.Core.DebugLogger.BreakDebuggerOnLevel
+  nameWithType: DebugLogger.BreakDebuggerOnLevel
 - uid: wan24.Core.DebugLogger.LogInt*
   name: LogInt
   href: api/wan24.Core.DebugLogger.html#wan24_Core_DebugLogger_LogInt_
@@ -27391,6 +27620,92 @@ references:
   fullName.vb: wan24.Core.FlushStream(Of T).WriteByte
   nameWithType: FlushStream<T>.WriteByte
   nameWithType.vb: FlushStream(Of T).WriteByte
+- uid: wan24.Core.FsHelper
+  name: FsHelper
+  href: api/wan24.Core.FsHelper.html
+  commentId: T:wan24.Core.FsHelper
+  fullName: wan24.Core.FsHelper
+  nameWithType: FsHelper
+- uid: wan24.Core.FsHelper.CreateFileStream(System.String@,System.IO.FileMode@,System.IO.FileAccess@,System.IO.FileShare@,System.IO.FileOptions@,System.Nullable{System.IO.UnixFileMode},System.Boolean@,System.Int32@)
+  name: CreateFileStream(in string, in FileMode, in FileAccess, in FileShare, in FileOptions, UnixFileMode?, in bool, in int)
+  href: api/wan24.Core.FsHelper.html#wan24_Core_FsHelper_CreateFileStream_System_String__System_IO_FileMode__System_IO_FileAccess__System_IO_FileShare__System_IO_FileOptions__System_Nullable_System_IO_UnixFileMode__System_Boolean__System_Int32__
+  commentId: M:wan24.Core.FsHelper.CreateFileStream(System.String@,System.IO.FileMode@,System.IO.FileAccess@,System.IO.FileShare@,System.IO.FileOptions@,System.Nullable{System.IO.UnixFileMode},System.Boolean@,System.Int32@)
+  name.vb: CreateFileStream(String, FileMode, FileAccess, FileShare, FileOptions, UnixFileMode?, Boolean, Integer)
+  fullName: wan24.Core.FsHelper.CreateFileStream(in string, in System.IO.FileMode, in System.IO.FileAccess, in System.IO.FileShare, in System.IO.FileOptions, System.IO.UnixFileMode?, in bool, in int)
+  fullName.vb: wan24.Core.FsHelper.CreateFileStream(String, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, System.IO.FileOptions, System.IO.UnixFileMode?, Boolean, Integer)
+  nameWithType: FsHelper.CreateFileStream(in string, in FileMode, in FileAccess, in FileShare, in FileOptions, UnixFileMode?, in bool, in int)
+  nameWithType.vb: FsHelper.CreateFileStream(String, FileMode, FileAccess, FileShare, FileOptions, UnixFileMode?, Boolean, Integer)
+- uid: wan24.Core.FsHelper.CreateFileStream*
+  name: CreateFileStream
+  href: api/wan24.Core.FsHelper.html#wan24_Core_FsHelper_CreateFileStream_
+  commentId: Overload:wan24.Core.FsHelper.CreateFileStream
+  isSpec: "True"
+  fullName: wan24.Core.FsHelper.CreateFileStream
+  nameWithType: FsHelper.CreateFileStream
+- uid: wan24.Core.FsHelper.CreateFolder(System.String@,System.Nullable{System.IO.UnixFileMode})
+  name: CreateFolder(in string, UnixFileMode?)
+  href: api/wan24.Core.FsHelper.html#wan24_Core_FsHelper_CreateFolder_System_String__System_Nullable_System_IO_UnixFileMode__
+  commentId: M:wan24.Core.FsHelper.CreateFolder(System.String@,System.Nullable{System.IO.UnixFileMode})
+  name.vb: CreateFolder(String, UnixFileMode?)
+  fullName: wan24.Core.FsHelper.CreateFolder(in string, System.IO.UnixFileMode?)
+  fullName.vb: wan24.Core.FsHelper.CreateFolder(String, System.IO.UnixFileMode?)
+  nameWithType: FsHelper.CreateFolder(in string, UnixFileMode?)
+  nameWithType.vb: FsHelper.CreateFolder(String, UnixFileMode?)
+- uid: wan24.Core.FsHelper.CreateFolder*
+  name: CreateFolder
+  href: api/wan24.Core.FsHelper.html#wan24_Core_FsHelper_CreateFolder_
+  commentId: Overload:wan24.Core.FsHelper.CreateFolder
+  isSpec: "True"
+  fullName: wan24.Core.FsHelper.CreateFolder
+  nameWithType: FsHelper.CreateFolder
+- uid: wan24.Core.FsHelper.EnsureFolder(System.String@,System.Nullable{System.IO.UnixFileMode}@)
+  name: EnsureFolder(in string, in UnixFileMode?)
+  href: api/wan24.Core.FsHelper.html#wan24_Core_FsHelper_EnsureFolder_System_String__System_Nullable_System_IO_UnixFileMode___
+  commentId: M:wan24.Core.FsHelper.EnsureFolder(System.String@,System.Nullable{System.IO.UnixFileMode}@)
+  name.vb: EnsureFolder(String, UnixFileMode?)
+  fullName: wan24.Core.FsHelper.EnsureFolder(in string, in System.IO.UnixFileMode?)
+  fullName.vb: wan24.Core.FsHelper.EnsureFolder(String, System.IO.UnixFileMode?)
+  nameWithType: FsHelper.EnsureFolder(in string, in UnixFileMode?)
+  nameWithType.vb: FsHelper.EnsureFolder(String, UnixFileMode?)
+- uid: wan24.Core.FsHelper.EnsureFolder*
+  name: EnsureFolder
+  href: api/wan24.Core.FsHelper.html#wan24_Core_FsHelper_EnsureFolder_
+  commentId: Overload:wan24.Core.FsHelper.EnsureFolder
+  isSpec: "True"
+  fullName: wan24.Core.FsHelper.EnsureFolder
+  nameWithType: FsHelper.EnsureFolder
+- uid: wan24.Core.FsHelper.FindFiles(System.String@,System.Text.RegularExpressions.Regex,System.String@,System.Boolean@,System.StringComparison,System.String[])
+  name: FindFiles(in string, Regex?, in string?, in bool, StringComparison, params string[])
+  href: api/wan24.Core.FsHelper.html#wan24_Core_FsHelper_FindFiles_System_String__System_Text_RegularExpressions_Regex_System_String__System_Boolean__System_StringComparison_System_String___
+  commentId: M:wan24.Core.FsHelper.FindFiles(System.String@,System.Text.RegularExpressions.Regex,System.String@,System.Boolean@,System.StringComparison,System.String[])
+  name.vb: FindFiles(String, Regex, String, Boolean, StringComparison, ParamArray String())
+  fullName: wan24.Core.FsHelper.FindFiles(in string, System.Text.RegularExpressions.Regex?, in string?, in bool, System.StringComparison, params string[])
+  fullName.vb: wan24.Core.FsHelper.FindFiles(String, System.Text.RegularExpressions.Regex, String, Boolean, System.StringComparison, ParamArray String())
+  nameWithType: FsHelper.FindFiles(in string, Regex?, in string?, in bool, StringComparison, params string[])
+  nameWithType.vb: FsHelper.FindFiles(String, Regex, String, Boolean, StringComparison, ParamArray String())
+- uid: wan24.Core.FsHelper.FindFiles*
+  name: FindFiles
+  href: api/wan24.Core.FsHelper.html#wan24_Core_FsHelper_FindFiles_
+  commentId: Overload:wan24.Core.FsHelper.FindFiles
+  isSpec: "True"
+  fullName: wan24.Core.FsHelper.FindFiles
+  nameWithType: FsHelper.FindFiles
+- uid: wan24.Core.FsHelper.FindFolders(System.String@,System.Text.RegularExpressions.Regex,System.String@,System.Boolean@)
+  name: FindFolders(in string, Regex?, in string?, in bool)
+  href: api/wan24.Core.FsHelper.html#wan24_Core_FsHelper_FindFolders_System_String__System_Text_RegularExpressions_Regex_System_String__System_Boolean__
+  commentId: M:wan24.Core.FsHelper.FindFolders(System.String@,System.Text.RegularExpressions.Regex,System.String@,System.Boolean@)
+  name.vb: FindFolders(String, Regex, String, Boolean)
+  fullName: wan24.Core.FsHelper.FindFolders(in string, System.Text.RegularExpressions.Regex?, in string?, in bool)
+  fullName.vb: wan24.Core.FsHelper.FindFolders(String, System.Text.RegularExpressions.Regex, String, Boolean)
+  nameWithType: FsHelper.FindFolders(in string, Regex?, in string?, in bool)
+  nameWithType.vb: FsHelper.FindFolders(String, Regex, String, Boolean)
+- uid: wan24.Core.FsHelper.FindFolders*
+  name: FindFolders
+  href: api/wan24.Core.FsHelper.html#wan24_Core_FsHelper_FindFolders_
+  commentId: Overload:wan24.Core.FsHelper.FindFolders
+  isSpec: "True"
+  fullName: wan24.Core.FsHelper.FindFolders
+  nameWithType: FsHelper.FindFolders
 - uid: wan24.Core.GenericHelper
   name: GenericHelper
   href: api/wan24.Core.GenericHelper.html
@@ -60566,6 +60881,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.Translation.Current
   nameWithType: Translation.Current
+- uid: wan24.Core.Translation.Dummy
+  name: Dummy
+  href: api/wan24.Core.Translation.html#wan24_Core_Translation_Dummy
+  commentId: P:wan24.Core.Translation.Dummy
+  fullName: wan24.Core.Translation.Dummy
+  nameWithType: Translation.Dummy
+- uid: wan24.Core.Translation.Dummy*
+  name: Dummy
+  href: api/wan24.Core.Translation.html#wan24_Core_Translation_Dummy_
+  commentId: Overload:wan24.Core.Translation.Dummy
+  isSpec: "True"
+  fullName: wan24.Core.Translation.Dummy
+  nameWithType: Translation.Dummy
 - uid: wan24.Core.Translation.EnsureValidLocale(System.String@,System.Boolean@,System.Boolean@)
   name: EnsureValidLocale(in string, in bool, in bool)
   href: api/wan24.Core.Translation.html#wan24_Core_Translation_EnsureValidLocale_System_String__System_Boolean__System_Boolean__
@@ -60928,6 +61256,22 @@ references:
   isSpec: "True"
   fullName: wan24.Core.TranslationHelper._
   nameWithType: TranslationHelper._
+- uid: wan24.Core.TranslationHelper.__(System.String)
+  name: __(string)
+  href: api/wan24.Core.TranslationHelper.html#wan24_Core_TranslationHelper____System_String_
+  commentId: M:wan24.Core.TranslationHelper.__(System.String)
+  name.vb: __(String)
+  fullName: wan24.Core.TranslationHelper.__(string)
+  fullName.vb: wan24.Core.TranslationHelper.__(String)
+  nameWithType: TranslationHelper.__(string)
+  nameWithType.vb: TranslationHelper.__(String)
+- uid: wan24.Core.TranslationHelper.__*
+  name: __
+  href: api/wan24.Core.TranslationHelper.html#wan24_Core_TranslationHelper____
+  commentId: Overload:wan24.Core.TranslationHelper.__
+  isSpec: "True"
+  fullName: wan24.Core.TranslationHelper.__
+  nameWithType: TranslationHelper.__
 - uid: wan24.Core.TranslationTerms
   name: TranslationTerms
   href: api/wan24.Core.TranslationTerms.html
