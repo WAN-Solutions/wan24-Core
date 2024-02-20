@@ -1510,10 +1510,16 @@ This initializes English and German translations, where English is always the
 main locale. To translate a text:
 
 ```cs
-using static wan24.Translation;
+using static wan24.TranslationHelper;
 
-string translated = Translate("Hello");
+string translated = _("Hello");
 ```
+
+**TIP**: If you'd like to enable a parser like the Poedit source code parser 
+to find texts, which will be stored as variable and translated from there 
+later, when the locale is known, you can use the `variable = __("Text");` 
+syntax. The double score method returns the given string value 1:1 and is only 
+being used as parser hint.
 
 Or for a specific locale:
 
@@ -1541,6 +1547,9 @@ public sealed class YourTerms : TranslationTermsBase// Implements IReadOnlyDicti
 
 **NOTE**: `Translation` supports string parser usage.
 
+To combine multiple translations for a single locale into one, you can use the 
+`CombinedTranslationTerms` type.
+
 You may also use localized filenames. For this you'll need to store files as 
 
 - `filename.ext` (fallback, if a known locale or an existing file isn't 
@@ -1556,6 +1565,28 @@ using static wan24.Translation;
 string fn = LocalizedFileName("de-DE", "/path/to/filename.ext");
 Assert.AreEqual("/path/to/filename.de-DE.ext", fn);
 ```
+
+### Informations for translators
+
+A string to translate may contain placeholders like `%{N}`, where `N` is any 
+number. These placeholders address variables and may occur in any order in the 
+translation, as long as the original `N` value is being used (the placeholders 
+must not be re-numbered in the translation). Also placeholders with a name 
+instead of a numeric value are possible and should be used 1:1 within the 
+translation (but may be reordered, if the grammatics require it).
+
+The escape sequence `\n` or `\r\n` is a line break which must be used for a 
+line break in the translation, too.
+
+The escape sequence `\t` is a tabulator which must be used for a tabulator 
+in the translation, too.
+
+The escape sequence `\"` is a double-quote. Double-quotes should be escaped 
+that way.
+
+If a filename is localized using a locale code like `en-US`, the translation 
+must use its new locale code instead - example: `filename.en-US.ext` becomes 
+to `filename.de-DE.ext` in a German translation.
 
 ## Enumeration classes
 

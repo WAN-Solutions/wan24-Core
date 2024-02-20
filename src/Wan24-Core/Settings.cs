@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Reflection;
 
 namespace wan24.Core
 {
@@ -78,13 +79,13 @@ namespace wan24.Core
         /// <summary>
         /// An unique app ID ("myapp" f.e.; will be used in filenames!)
         /// </summary>
-        public static string? AppId { get; set; }
+        public static string AppId { get; set; } = Assembly.GetEntryAssembly()?.Location is string path ? Path.GetFileNameWithoutExtension(path) : "app";
 
         /// <summary>
         /// An unique process ID ("service" f.e.; only one process with this ID should run at once and have a specific order; will be used in filenames!)
         /// </summary>
         [CliConfig]
-        public static string? ProcessId { get; set; }
+        public static string ProcessId { get; set; } = "main";
 
         /// <summary>
         /// Default file create mode

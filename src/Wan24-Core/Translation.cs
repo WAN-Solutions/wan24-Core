@@ -34,6 +34,11 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Empty dummy translation
+        /// </summary>
+        public static Translation Dummy { get; } = new(new Dictionary<string, string>(), "en-US");
+
+        /// <summary>
         /// Available locales
         /// </summary>
         public static Dictionary<string, Translation> Locales { get; } = [];
