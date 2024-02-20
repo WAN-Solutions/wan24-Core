@@ -12,8 +12,9 @@ namespace wan24.Core
         /// Apply a configuration from CLI arguments
         /// </summary>
         /// <param name="ca">CLI arguments</param>
-        public static void Apply(in CliArguments ca)
+        public static void Apply(CliArguments? ca = null)
         {
+            ca ??= new(Environment.GetCommandLineArgs());
             string[] temp;
             ReadOnlyCollection<string> values;
             string typeName,
