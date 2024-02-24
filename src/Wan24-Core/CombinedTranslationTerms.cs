@@ -41,9 +41,10 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         public IEnumerable<string> Values
-            => from term in Terms
-               from value in term.Values
-               select value;
+            => (from term in Terms
+                from value in term.Values
+                select value)
+                .Distinct();
 
         /// <inheritdoc/>
         public int Count => Keys.Count();
@@ -55,10 +56,10 @@ namespace wan24.Core
         public virtual string GetTerm(in string key, in int count)
         {
             if (!PluralSupport) throw new NotSupportedException();
-            foreach (ITranslationTerms term in Terms)
+            foreach (ITranslationTerms terms in Terms)
             {
-                if (!term.PluralSupport) continue;
-                string res = term.GetTerm(key, count);
+                if (!terms.PluralSupport) continue;
+                string res = terms.GetTerm(key, count);
                 if (res != key) return res;
             }
             return key;
@@ -71,8 +72,8 @@ namespace wan24.Core
         public virtual bool TryGetValue(string key, [MaybeNullWhen(returnValue: false)] out string value)
         {
             value = null;
-            foreach (ITranslationTerms term in Terms)
-                if (term.TryGetValue(key, out value))
+            foreach (ITranslationTerms terms in Terms)
+                if (terms.TryGetValue(key, out value))
                     return true;
             return false;
         }
@@ -81,8 +82,8 @@ namespace wan24.Core
         public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
         {
             HashSet<string> seenKeys = [];
-            foreach (ITranslationTerms term in Terms)
-                foreach (KeyValuePair<string, string> kvp in term)
+            foreach (ITranslationTerms terms in Terms)
+                foreach (KeyValuePair<string, string> kvp in terms)
                 {
                     if (seenKeys.Contains(kvp.Key)) continue;
                     seenKeys.Add(kvp.Key);
@@ -91,6 +92,6 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)Terms).GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

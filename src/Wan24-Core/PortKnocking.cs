@@ -1,5 +1,4 @@
 ﻿using System.Collections.Frozen;
-using System.Collections.ObjectModel;
 using System.Net;
 using System.Net.Sockets;
 using System.Net.WebSockets;
@@ -15,11 +14,11 @@ namespace wan24.Core
         /// <summary>
         /// WebSocket URI schemes
         /// </summary>
-        private static readonly FrozenSet<string> WebSocketSchemes = new string[] { "ws", "wss" }.ToFrozenSet();
+        private static readonly FrozenSet<string> WebSocketSchemes = new string[] { "wss", "ws" }.ToFrozenSet();
         /// <summary>
         /// http(s) URI schemes
         /// </summary>
-        private static readonly FrozenSet<string> HttpSchemes = new string[] { "http", "https" }.ToFrozenSet();
+        private static readonly FrozenSet<string> HttpSchemes = new string[] { "https", "http" }.ToFrozenSet();
 
         /// <summary>
         /// Call a TCP port sequence by sending SYN packets
@@ -27,12 +26,14 @@ namespace wan24.Core
         /// <param name="target">Target IP address</param>
         /// <param name="delay">Delay between packets</param>
         /// <param name="progress">Progress (updated after each port was contacted)</param>
+        /// <param name="serviceProvider">Service provider to use for getting the <see cref="TcpClient"/> instance</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="ports">TCP port sequence</param>
         public static async Task CallTcpSynSequenceAsync(
             IPAddress target, 
             TimeSpan delay = default, 
-            ProcessingProgress? progress = null, 
+            ProcessingProgress? progress = null,
+            IAsyncServiceProvider? serviceProvider = null,
             CancellationToken cancellationToken = default, 
             params int[] ports
             )
@@ -45,7 +46,7 @@ namespace wan24.Core
             using BoundCancellationTokenSource cancellation = new(cancellationToken, processing.Token);
             TimeSpan waitTime;
             DateTime continueAt = DateTime.Now;
-            TcpClient client = new();
+            TcpClient client = await serviceProvider!.GetServiceAsync(typeof(TcpClient), cancellationToken).DynamicContext() as TcpClient ?? new();
             try
             {
                 foreach (int port in ports)
@@ -60,10 +61,10 @@ namespace wan24.Core
                             // Can't use raw sockets here 'cause of possible OS restrictions
                             await client.ConnectAsync(new(target, port), cancellation.Token).DynamicContext();
                         }
-                        catch (OperationCanceledException)
+                        catch (OperationCanceledException ex)
                         {
                             // Throw, if canceled - otherwise continue the port knocking sequence
-                            cancellationToken.ThrowIfCancellationRequested();
+                            if (ex.CancellationToken == cancellationToken) throw;
                             continue;
                         }
                         catch
@@ -71,7 +72,7 @@ namespace wan24.Core
                         }
                         // Usually a firewall will swallow the SYN packet silently and the connect operation fails with timeout - this only in case if not:
                         client.Dispose();
-                        client = new();
+                        client = await serviceProvider!.GetServiceAsync(typeof(TcpClient), cancellationToken).DynamicContext() as TcpClient ?? new();
                         waitTime = continueAt - DateTime.Now;
                         if (waitTime > TimeSpan.Zero) await Task.Delay(waitTime, cancellationToken).DynamicContext();
                     }
@@ -90,12 +91,16 @@ namespace wan24.Core
         /// Call a WebSocket URI sequence
         /// </summary>
         /// <param name="delay">Delay between connecion attempts</param>
+        /// <param name="clientFactory">WebSocket client factory</param>
         /// <param name="progress">Progress (updated after each WebSocket URI was contacted)</param>
+        /// <param name="serviceProvider">Service provider to use for getting the <see cref="ClientWebSocket"/> instance</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="uris">WebSocket URI sequence</param>
         public static async Task CallWebSocketSequenceAsync(
             TimeSpan delay = default,
+            ClientWebSocketFactory_Delegate? clientFactory = null,
             ProcessingProgress? progress = null,
+            IAsyncServiceProvider? serviceProvider = null,
             CancellationToken cancellationToken = default,
             params Uri[] uris
             )
@@ -107,12 +112,13 @@ namespace wan24.Core
             using BoundCancellationTokenSource cancellation = new(cancellationToken, processing.Token);
             TimeSpan waitTime;
             DateTime continueAt = DateTime.Now;
-            ClientWebSocket client = new();
+            ClientWebSocket? client = null;
             try
             {
                 foreach (Uri uri in uris)
                     try
                     {
+                        client ??= clientFactory?.Invoke(uri) ?? await serviceProvider!.GetServiceAsync(typeof(ClientWebSocket), cancellationToken).DynamicContext() as ClientWebSocket ?? new();
                         continueAt += delay;
                         cancellation.TryReset();
                         processing.TryReset();
@@ -121,10 +127,10 @@ namespace wan24.Core
                         {
                             await client.ConnectAsync(uri, cancellation.Token).DynamicContext();
                         }
-                        catch (OperationCanceledException)
+                        catch (OperationCanceledException ex)
                         {
                             // Throw, if canceled - otherwise continue the port knocking sequence
-                            cancellationToken.ThrowIfCancellationRequested();
+                            if (ex.CancellationToken == cancellationToken) throw;
                             continue;
                         }
                         catch
@@ -132,7 +138,7 @@ namespace wan24.Core
                         }
                         // Usually a firewall will swallow the connection attempts silently and the connect operation fails with timeout - this only in case if not:
                         client.Dispose();
-                        client = new();
+                        client = clientFactory?.Invoke(uri) ?? await serviceProvider!.GetServiceAsync(typeof(ClientWebSocket), cancellationToken).DynamicContext() as ClientWebSocket ?? new();
                         waitTime = continueAt - DateTime.Now;
                         if (waitTime > TimeSpan.Zero) await Task.Delay(waitTime, cancellationToken).DynamicContext();
                     }
@@ -143,7 +149,7 @@ namespace wan24.Core
             }
             finally
             {
-                client.Dispose();
+                client?.Dispose();
             }
         }
 
@@ -151,7 +157,7 @@ namespace wan24.Core
         /// Call a http(s) URI sequence
         /// </summary>
         /// <param name="client">http client to use (won't be disposed)</param>
-        /// <param name="requestFactory">http request mesage factory</param>
+        /// <param name="requestFactory">http request message factory</param>
         /// <param name="delay">Delay between connecion attempts</param>
         /// <param name="progress">Progress (updated after each http(s) URI was contacted)</param>
         /// <param name="serviceProvider">Service provider to use for getting the <see cref="HttpClient"/> instance</param>
@@ -191,10 +197,10 @@ namespace wan24.Core
                             using HttpRequestMessage request = requestFactory?.Invoke(uri) ?? new(HttpMethod.Get, uri);
                             using HttpResponseMessage response = await client.SendAsync(request, cancellation.Token).DynamicContext();
                         }
-                        catch (OperationCanceledException)
+                        catch (OperationCanceledException ex)
                         {
                             // Throw, if canceled - otherwise continue the port knocking sequence
-                            cancellationToken.ThrowIfCancellationRequested();
+                            if (ex.CancellationToken == cancellationToken) throw;
                             continue;
                         }
                         catch
@@ -242,20 +248,23 @@ namespace wan24.Core
             cancellationToken.ThrowIfCancellationRequested();
             payload ??= Array.Empty<byte>();
             bool disposeClient = client is null;
-            if (disposeClient) serviceProvider ??= DiHelper.Instance;
-            client ??= await serviceProvider!.GetServiceAsync(typeof(UdpClient), cancellationToken).DynamicContext() as UdpClient ?? new(target.AddressFamily);
+            if (disposeClient)
+            {
+                serviceProvider ??= DiHelper.Instance;
+                client = await serviceProvider!.GetServiceAsync(typeof(UdpClient), cancellationToken).DynamicContext() as UdpClient ?? new(target.AddressFamily);
+            }
             try
             {
                 foreach (int port in ports)
                 {
-                    await client.SendAsync(payload.Value, new(target, port), cancellationToken).DynamicContext();
+                    await client!.SendAsync(payload.Value, new(target, port), cancellationToken).DynamicContext();
                     if (delay > TimeSpan.Zero) await Task.Delay(delay, cancellationToken).DynamicContext();
                     progress?.Update();
                 }
             }
             finally
             {
-                if (disposeClient) client.Dispose();
+                if (disposeClient) client!.Dispose();
             }
         }
 
@@ -296,6 +305,13 @@ namespace wan24.Core
             if (uris.Length < 1 || uris.Any(u => !u.Scheme.In(allowedSchemes)))
                 throw new ArgumentException($"Require at last one and only {string.Join('/', allowedSchemes)} URI(s)", nameof(uris));
         }
+
+        /// <summary>
+        /// Delegate for a WebSocket client factory
+        /// </summary>
+        /// <param name="uri">Current URI</param>
+        /// <returns>WebSocket client (will be disposed!)</returns>
+        public delegate ClientWebSocket ClientWebSocketFactory_Delegate(Uri uri);
 
         /// <summary>
         /// Delegate for a http request message factory

@@ -15,7 +15,7 @@ namespace wan24.Core
         /// <summary>
         /// Description
         /// </summary>
-        public string Description { get; set; } = Settings.AppId ?? ".NET app";
+        public string Description { get; set; } = Settings.AppId;
 
         /// <summary>
         /// Working directory
@@ -30,7 +30,7 @@ namespace wan24.Core
         /// <summary>
         /// Syslog identifier
         /// </summary>
-        public string SyslogIdentifier { get; set; } = Settings.AppId ?? "net-app";
+        public string SyslogIdentifier { get; set; } = Settings.AppId;
 
         /// <summary>
         /// Username to run as

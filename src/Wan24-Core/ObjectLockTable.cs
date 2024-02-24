@@ -1,6 +1,4 @@
-﻿using System.Collections.Concurrent;
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Object locks table
@@ -10,6 +8,6 @@ namespace wan24.Core
         /// <summary>
         /// Object locks (key ia a GUID)
         /// </summary>
-        public static readonly ConcurrentDictionary<string, IObjectLockManager> ObjectLocks = new();
+        public static readonly ConcurrentChangeTokenDictionary<string, IObjectLockManager> ObjectLocks = new();
     }
 }

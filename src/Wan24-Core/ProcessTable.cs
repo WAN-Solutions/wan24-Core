@@ -1,6 +1,4 @@
-﻿using System.Collections.Concurrent;
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Process table
@@ -10,6 +8,6 @@ namespace wan24.Core
         /// <summary>
         /// Processes (key is a GUID)
         /// </summary>
-        public static readonly ConcurrentDictionary<string, IProcessingInfo> Processing = new();
+        public static readonly ConcurrentChangeTokenDictionary<string, IProcessingInfo> Processing = new();
     }
 }

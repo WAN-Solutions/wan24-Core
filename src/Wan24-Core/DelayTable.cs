@@ -1,6 +1,4 @@
-﻿using System.Collections.Concurrent;
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Delay table
@@ -10,6 +8,6 @@ namespace wan24.Core
         /// <summary>
         /// Delays (key is the GUID)
         /// </summary>
-        public static readonly ConcurrentDictionary<string, Delay> Delays = new();
+        public static readonly ConcurrentChangeTokenDictionary<string, Delay> Delays = new();
     }
 }

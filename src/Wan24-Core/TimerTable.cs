@@ -1,6 +1,4 @@
-﻿using System.Collections.Concurrent;
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Timer table
@@ -10,6 +8,6 @@ namespace wan24.Core
         /// <summary>
         /// Timer table (key is a GUID)
         /// </summary>
-        public static readonly ConcurrentDictionary<string, ITimer> Timers = new();
+        public static readonly ConcurrentChangeTokenDictionary<string, ITimer> Timers = new();
     }
 }

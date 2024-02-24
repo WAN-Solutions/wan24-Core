@@ -7,12 +7,8 @@ namespace wan24.Core
     /// </summary>
     /// <typeparam name="tValue">Value type</typeparam>
     /// <typeparam name="tConfig">Configuration type</typeparam>
-    public sealed class ConfigOption<tValue, tConfig> : IConfigOption where tConfig : OverridableConfig<tConfig>, new()
+    public sealed class ConfigOption<tValue, tConfig> : ChangeToken<ConfigOption<tValue, tConfig>>, IConfigOption where tConfig : OverridableConfig<tConfig>, new()
     {
-        /// <summary>
-        /// Change token
-        /// </summary>
-        private readonly ChangeToken ChangeToken;
         /// <summary>
         /// Parent configuration option
         /// </summary>
@@ -36,9 +32,9 @@ namespace wan24.Core
         /// <param name="config">Configuration</param>
         /// <param name="propertyName">Property name</param>
         /// <param name="canBeOverridden">Can be overridden?</param>
-        public ConfigOption(in tConfig config, in string propertyName, in bool canBeOverridden = true)
+        public ConfigOption(in tConfig config, in string propertyName, in bool canBeOverridden = true) : base()
         {
-            ChangeToken = new(() => IsSet);
+            ChangeIdentifier = () => IsChanged;
             Configuration = config;
             PropertyName = propertyName;
             _CanBeOverridden = canBeOverridden;
@@ -51,9 +47,9 @@ namespace wan24.Core
         /// <param name="propertyName">Property name</param>
         /// <param name="canBeOverridden">Can be overridden?</param>
         /// <param name="defaultValue">Default value</param>
-        public ConfigOption(in tConfig config, in string propertyName, in bool canBeOverridden, in tValue? defaultValue)
+        public ConfigOption(in tConfig config, in string propertyName, in bool canBeOverridden, in tValue? defaultValue) : base()
         {
-            ChangeToken = new(() => IsSet);
+            ChangeIdentifier = () => IsChanged;
             Configuration = config;
             PropertyName = propertyName;
             Default = defaultValue;
@@ -68,18 +64,15 @@ namespace wan24.Core
         /// <param name="canBeOverridden">Can be overridden?</param>
         /// <param name="value">Value to set</param>
         /// <param name="defaultValue">Default value</param>
-        public ConfigOption(in tConfig config, in string propertyName, in bool canBeOverridden, in tValue? value, in tValue? defaultValue)
+        public ConfigOption(in tConfig config, in string propertyName, in bool canBeOverridden, in tValue? value, in tValue? defaultValue) : base()
         {
-            ChangeToken = new(() => IsSet);
+            ChangeIdentifier = () => IsChanged;
             Configuration = config;
             PropertyName = propertyName;
             Default = defaultValue;
             _CanBeOverridden = canBeOverridden;
             Value = value;
         }
-
-        /// <inheritdoc/>
-        public object SyncObject { get; } = new();
 
         /// <summary>
         /// GUID
@@ -187,12 +180,6 @@ namespace wan24.Core
         /// <inheritdoc/>
         public bool IsOverridden => CanBeOverridden && (SubWantsOverride || (SubOption?.IsOverridden ?? false));
 
-        /// <inheritdoc/>
-        public bool HasChanged => ChangeToken.HasChanged;
-
-        /// <inheritdoc/>
-        public bool ActiveChangeCallbacks => ChangeToken.ActiveChangeCallbacks;
-
         #region IConfigOption properties
         /// <inheritdoc/>
         IOverridableConfig IConfigOption.Configuration => Configuration;
@@ -269,9 +256,6 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public IDisposable RegisterChangeCallback(Action<object?> callback, object? state) => ChangeToken.RegisterChangeCallback(callback, state);
-
-        /// <inheritdoc/>
         public event IConfigOption.Option_Delegate? OnChange;
         /// <summary>
         /// Raise the <see cref="OnChange"/> event
@@ -280,7 +264,11 @@ namespace wan24.Core
         /// <param name="changed">Was this instance changed?</param>
         private void RaiseOnChange(object? oldValue, bool changed = true)
         {
-            if (changed) ChangeToken.InvokeCallbacks();
+            if (changed)
+            {
+                InvokeCallbacks();
+                RaisePropertyChanged(nameof(Value));
+            }
             OnChange?.Invoke(this, oldValue);
             ParentOption?.RaiseOnChange(oldValue, changed: false);
         }
@@ -293,6 +281,8 @@ namespace wan24.Core
         private void HandleConfigValueChange(IOverridableConfig sender, ConfigEventArgs e)
         {
             lock (SyncObject) IsChanged = true;
+            InvokeCallbacks();
+            RaisePropertyChanged();
             Configuration.RaiseOnChangeInt(this, e.OldValue);
         }
 

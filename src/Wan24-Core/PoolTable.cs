@@ -1,6 +1,4 @@
-﻿using System.Collections.Concurrent;
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Pool table
@@ -10,6 +8,6 @@ namespace wan24.Core
         /// <summary>
         /// Pool table (key is a GUID)
         /// </summary>
-        public static readonly ConcurrentDictionary<string, IPool> Pools = new();
+        public static readonly ConcurrentChangeTokenDictionary<string, IPool> Pools = new();
     }
 }

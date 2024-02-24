@@ -7,17 +7,13 @@ namespace wan24.Core
     /// Base class for an overridable configuration
     /// </summary>
     /// <typeparam name="tFinal">Final type</typeparam>
-    public abstract class OverridableConfig<tFinal> : IOverridableConfig where tFinal : OverridableConfig<tFinal>, new()
+    public abstract class OverridableConfig<tFinal> : ChangeToken<tFinal>, IOverridableConfig where tFinal : OverridableConfig<tFinal>, new()
     {
         /// <summary>
         /// Default sub-configuration tree key
         /// </summary>
         public const string DEFAULT_SUB_KEY = "_sub";
 
-        /// <summary>
-        /// Change token
-        /// </summary>
-        protected readonly ChangeToken ChangeToken;
         /// <summary>
         /// Properties
         /// </summary>
@@ -30,19 +26,16 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        protected OverridableConfig() => ChangeToken = new(() => ChangedValues.Count != 0);
+        protected OverridableConfig() : base() => ChangeIdentifier = () => ChangedValues.Count != 0;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        protected OverridableConfig(in tFinal parent)
+        protected OverridableConfig(in tFinal parent) : base()
         {
             ParentConfig = parent;
-            ChangeToken = new(() => ChangedValues.Count != 0);
+            ChangeIdentifier = () => ChangedValues.Count != 0;
         }
-
-        /// <inheritdoc/>
-        public object SyncObject { get; } = new();
 
         /// <inheritdoc/>
         public Guid GUID { get; } = Guid.NewGuid();
@@ -172,12 +165,6 @@ namespace wan24.Core
             }
         }
 
-        /// <inheritdoc/>
-        public bool HasChanged => ChangeToken.HasChanged;
-
-        /// <inheritdoc/>
-        public bool ActiveChangeCallbacks => ChangeToken.ActiveChangeCallbacks;
-
         #region IOverrideableConfig properties
         /// <inheritdoc/>
         IOverridableConfig IOverridableConfig.MasterConfig => MasterConfig;
@@ -266,9 +253,6 @@ namespace wan24.Core
             return (tFinal)this;
         }
 
-        /// <inheritdoc/>
-        public IDisposable RegisterChangeCallback(Action<object?> callback, object? state) => ChangeToken.RegisterChangeCallback(callback, state);
-
         /// <summary>
         /// Get the option
         /// </summary>
@@ -322,7 +306,11 @@ namespace wan24.Core
         /// <param name="changed">Was this instance changed?</param>
         protected virtual void RaiseOnChange(in IConfigOption option, in object? oldValue, in bool changed = true)
         {
-            if (changed) ChangeToken.InvokeCallbacks();
+            if (changed)
+            {
+                InvokeCallbacks();
+                RaisePropertyChanged(option.Configuration == this ? option.PropertyName : null);
+            }
             ConfigEventArgs e = new(option, oldValue);
             OnChange?.Invoke(this, e);
             ParentConfig?.RaiseOnChange(option, oldValue, changed: false);

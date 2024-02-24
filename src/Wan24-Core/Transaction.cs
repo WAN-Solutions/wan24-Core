@@ -42,12 +42,12 @@ namespace wan24.Core
         /// <summary>
         /// Number of executed actions since the last commit
         /// </summary>
-        public int ActionCount { get; private set; }
+        public int ActionCount => ReturnValues.Count;
 
         /// <summary>
         /// Is committed?
         /// </summary>
-        public bool IsCommitted => ActionCount == 0;
+        public bool IsCommitted => ActionCount < 1;
 
         /// <summary>
         /// Execute an action
@@ -60,7 +60,6 @@ namespace wan24.Core
             using SemaphoreSyncContext ssc = Sync;
             SyncRollback[ActionCount] = rollback;
             ReturnValues.Add(null);
-            ActionCount++;
             action();
         }
 
@@ -76,9 +75,9 @@ namespace wan24.Core
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = Sync;
             SyncRollback[ActionCount] = rollback;
-            ActionCount++;
+            ReturnValues.Add(null);
             T res = action();
-            ReturnValues.Add(res);
+            ReturnValues[^1] = res;
             return res;
         }
 
@@ -94,7 +93,6 @@ namespace wan24.Core
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             AsyncRollback[ActionCount] = rollback;
             ReturnValues.Add(null);
-            ActionCount++;
             await action().DynamicContext();
         }
 
@@ -111,9 +109,9 @@ namespace wan24.Core
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             AsyncRollback[ActionCount] = rollback;
-            ActionCount++;
+            ReturnValues.Add(null);
             T res = await action().DynamicContext();
-            ReturnValues.Add(res);
+            ReturnValues[^1] = res;
             return res;
         }
 
@@ -149,7 +147,6 @@ namespace wan24.Core
             SyncRollback.Clear();
             AsyncRollback.Clear();
             ReturnValues.Clear();
-            ActionCount = 0;
         }
 
         /// <summary>
@@ -185,7 +182,6 @@ namespace wan24.Core
             SyncRollback.Clear();
             AsyncRollback.Clear();
             ReturnValues.Clear();
-            ActionCount = 0;
         }
 
         /// <summary>
@@ -201,13 +197,13 @@ namespace wan24.Core
             for (int i = ActionCount - 1; i >= 0; i--)
                 try
                 {
-                    if (SyncRollback.TryGetValue(i, out SyncRollback_Delegate? syncRollback))
-                    {
-                        syncRollback(this, ReturnValues.Count <= i ? null : ReturnValues[i]);
-                    }
-                    else if (AsyncRollback.TryGetValue(i, out AsyncRollback_Delegate? asyncRollback))
+                    if (AsyncRollback.TryGetValue(i, out AsyncRollback_Delegate? asyncRollback))
                     {
                         await asyncRollback(this, ReturnValues.Count <= i ? null : ReturnValues[i], cancellationToken).DynamicContext();
+                    }
+                    else if (SyncRollback.TryGetValue(i, out SyncRollback_Delegate? syncRollback))
+                    {
+                        syncRollback(this, ReturnValues.Count <= i ? null : ReturnValues[i]);
                     }
                     else
                     {
@@ -221,7 +217,7 @@ namespace wan24.Core
                 }
             SyncRollback.Clear();
             AsyncRollback.Clear();
-            ActionCount = 0;
+            ReturnValues.Clear();
         }
 
         /// <inheritdoc/>

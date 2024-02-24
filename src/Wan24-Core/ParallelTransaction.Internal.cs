@@ -38,7 +38,7 @@ namespace wan24.Core
             using SemaphoreSync sync = Sync;
             using SemaphoreSyncContext ssc = sync;
             CancelIntAsync(CancellationToken.None).Wait();
-            if (ActionCount != 0)
+            if (!IsCommitted)
             {
                 if (Warning) Logging.WriteWarning($"{this} rolling back during disposing");
                 try
@@ -59,7 +59,7 @@ namespace wan24.Core
             using SemaphoreSync sync = Sync;
             using SemaphoreSyncContext ssc = await sync.SyncContextAsync().DynamicContext();
             await CancelIntAsync(CancellationToken.None).DynamicContext();
-            if (ActionCount != 0)
+            if (!IsCommitted)
             {
                 if (Warning) Logging.WriteWarning($"{this} rolling back during disposing");
                 try
@@ -116,7 +116,7 @@ namespace wan24.Core
                 {
                     if (throwOnError) exceptions.Add(ex);
                 }
-            if (exceptions.Count != 0) throw new AggregateException(exceptions);
+            if (exceptions.Count > 0) throw new AggregateException(exceptions);
         }
 
         /// <summary>
@@ -166,11 +166,11 @@ namespace wan24.Core
             /// Constructor
             /// </summary>
             /// <param name="transaction">Transaction</param>
-            /// <param name="index">Action index</param>
-            public RunningAction(in ParallelTransaction transaction, in int index)
+            /// <param name="result">Running action result</param>
+            public RunningAction(in ParallelTransaction transaction, in RunningActionResult result)
             {
                 Transaction = transaction;
-                Index = index;
+                Result = result;
             }
 
             /// <summary>
@@ -181,7 +181,12 @@ namespace wan24.Core
             /// <summary>
             /// Action index
             /// </summary>
-            public int Index { get; }
+            public int Index => Result.Index;
+
+            /// <summary>
+            /// Result
+            /// </summary>
+            public RunningActionResult Result { get; }
 
             /// <summary>
             /// Inner action task
