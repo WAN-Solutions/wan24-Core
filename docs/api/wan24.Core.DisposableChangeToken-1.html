@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Class DisposableChangeToken | wan24-Core </title>
+      <title>Class DisposableChangeToken&lt;T&gt; | wan24-Core </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Class DisposableChangeToken | wan24-Core ">
+      <meta name="title" content="Class DisposableChangeToken&lt;T&gt; | wan24-Core ">
     
     <meta name="description" content="Disposable change token">
       <link rel="shortcut icon" href="../favicon.ico">
@@ -66,11 +66,11 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.DisposableChangeToken">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.DisposableChangeToken`1">
 
 
 
-  <h1 id="wan24_Core_DisposableChangeToken" data-uid="wan24.Core.DisposableChangeToken" class="text-break">Class DisposableChangeToken</h1>
+  <h1 id="wan24_Core_DisposableChangeToken_1" data-uid="wan24.Core.DisposableChangeToken`1" class="text-break">Class DisposableChangeToken&lt;T&gt;</h1>
   <div class="markdown level0 summary"><p>Disposable change token</p>
 </div>
   <div class="markdown level0 conceptual"></div>
@@ -78,16 +78,28 @@
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><a class="xref" href="wan24.Core.ChangeToken.html">ChangeToken</a></div>
-    <div class="level2"><span class="xref">DisposableChangeToken</span></div>
+    <div class="level2"><a class="xref" href="wan24.Core.ChangeToken-1.html">ChangeToken</a>&lt;T&gt;</div>
+    <div class="level3"><span class="xref">DisposableChangeToken&lt;T&gt;</span></div>
+      <div class="level4"><a class="xref" href="Wan24_Core_Tests.ChangeToken_Tests.DisposableChangeTokenTest.html">ChangeToken_Tests.DisposableChangeTokenTest</a></div>
+      <div class="level4"><a class="xref" href="wan24.Core.ChangeTokenCollection-1.html">ChangeTokenCollection&lt;T&gt;</a></div>
+      <div class="level4"><a class="xref" href="wan24.Core.ChangeTokenDictionary-2.html">ChangeTokenDictionary&lt;tKey, tValue&gt;</a></div>
+      <div class="level4"><a class="xref" href="wan24.Core.ConcurrentChangeTokenDictionary-2.html">ConcurrentChangeTokenDictionary&lt;tKey, tValue&gt;</a></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.ichangetoken">IChangeToken</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iobservable-1">IObservable</a>&lt;T&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken-1.html#wan24_Core_ChangeToken_1_Observers">ChangeToken&lt;T&gt;.Observers</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken-1.html#wan24_Core_ChangeToken_1_Subscribe_System_IObserver__0__">ChangeToken&lt;T&gt;.Subscribe(IObserver&lt;T&gt;)</a>
+    </div>
     <div>
       <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_Callbacks">ChangeToken.Callbacks</a>
     </div>
@@ -148,43 +160,59 @@
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_DisposableChangeToken_syntax">Syntax</h5>
+  <h5 id="wan24_Core_DisposableChangeToken_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class DisposableChangeToken : ChangeToken, IChangeToken, INotifyPropertyChanged, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class DisposableChangeToken&lt;T&gt; : ChangeToken&lt;T&gt;, IChangeToken, INotifyPropertyChanged, IObservable&lt;T&gt;, IDisposable where T : DisposableChangeToken&lt;T&gt;</code></pre>
   </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Final type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableChangeToken__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableChangeToken.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableChangeToken_1__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableChangeToken%601.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableChangeToken.cs/#L16">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableChangeToken.cs/#L53">View Source</a>
   </span>
-  <a id="wan24_Core_DisposableChangeToken__ctor_" data-uid="wan24.Core.DisposableChangeToken.#ctor*"></a>
-  <h4 id="wan24_Core_DisposableChangeToken__ctor" data-uid="wan24.Core.DisposableChangeToken.#ctor">DisposableChangeToken()</h4>
+  <a id="wan24_Core_DisposableChangeToken_1__ctor_" data-uid="wan24.Core.DisposableChangeToken`1.#ctor*"></a>
+  <h4 id="wan24_Core_DisposableChangeToken_1__ctor" data-uid="wan24.Core.DisposableChangeToken`1.#ctor">DisposableChangeToken()</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DisposableChangeToken()</code></pre>
+    <pre><code class="lang-csharp hljs">protected DisposableChangeToken()</code></pre>
   </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableChangeToken__ctor_System_Func_System_Boolean___.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableChangeToken.%23ctor(System.Func%7BSystem.Boolean%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableChangeToken_1__ctor_System_Func_System_Boolean___.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableChangeToken%601.%23ctor(System.Func%7BSystem.Boolean%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableChangeToken.cs/#L22">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableChangeToken.cs/#L59">View Source</a>
   </span>
-  <a id="wan24_Core_DisposableChangeToken__ctor_" data-uid="wan24.Core.DisposableChangeToken.#ctor*"></a>
-  <h4 id="wan24_Core_DisposableChangeToken__ctor_System_Func_System_Boolean___" data-uid="wan24.Core.DisposableChangeToken.#ctor(System.Func{System.Boolean}@)">DisposableChangeToken(in Func&lt;bool&gt;)</h4>
+  <a id="wan24_Core_DisposableChangeToken_1__ctor_" data-uid="wan24.Core.DisposableChangeToken`1.#ctor*"></a>
+  <h4 id="wan24_Core_DisposableChangeToken_1__ctor_System_Func_System_Boolean___" data-uid="wan24.Core.DisposableChangeToken`1.#ctor(System.Func{System.Boolean}@)">DisposableChangeToken(in Func&lt;bool&gt;)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DisposableChangeToken(in Func&lt;bool&gt; changeIdentifier)</code></pre>
+    <pre><code class="lang-csharp hljs">protected DisposableChangeToken(in Func&lt;bool&gt; changeIdentifier)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -208,12 +236,12 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableChangeToken_InvokeCallbacksOnDispose.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableChangeToken.InvokeCallbacksOnDispose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableChangeToken_1_InvokeCallbacksOnDispose.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableChangeToken%601.InvokeCallbacksOnDispose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableChangeToken.cs/#L11">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableChangeToken.cs/#L48">View Source</a>
   </span>
-  <h4 id="wan24_Core_DisposableChangeToken_InvokeCallbacksOnDispose" data-uid="wan24.Core.DisposableChangeToken.InvokeCallbacksOnDispose">InvokeCallbacksOnDispose</h4>
+  <h4 id="wan24_Core_DisposableChangeToken_1_InvokeCallbacksOnDispose" data-uid="wan24.Core.DisposableChangeToken`1.InvokeCallbacksOnDispose">InvokeCallbacksOnDispose</h4>
   <div class="markdown level1 summary"><p>Invoke callbacks when disposing?</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -240,13 +268,13 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableChangeToken_Dispose.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableChangeToken.Dispose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableChangeToken_1_Dispose.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableChangeToken%601.Dispose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableChangeToken.cs/#L30">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableChangeToken.cs/#L67">View Source</a>
   </span>
-  <a id="wan24_Core_DisposableChangeToken_Dispose_" data-uid="wan24.Core.DisposableChangeToken.Dispose*"></a>
-  <h4 id="wan24_Core_DisposableChangeToken_Dispose" data-uid="wan24.Core.DisposableChangeToken.Dispose">Dispose()</h4>
+  <a id="wan24_Core_DisposableChangeToken_1_Dispose_" data-uid="wan24.Core.DisposableChangeToken`1.Dispose*"></a>
+  <h4 id="wan24_Core_DisposableChangeToken_1_Dispose" data-uid="wan24.Core.DisposableChangeToken`1.Dispose">Dispose()</h4>
   <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -256,13 +284,13 @@
   </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableChangeToken_Finalize.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableChangeToken.Finalize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableChangeToken_1_Finalize.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableChangeToken%601.Finalize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableChangeToken.cs/#L27">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableChangeToken.cs/#L64">View Source</a>
   </span>
-  <a id="wan24_Core_DisposableChangeToken_Finalize_" data-uid="wan24.Core.DisposableChangeToken.Finalize*"></a>
-  <h4 id="wan24_Core_DisposableChangeToken_Finalize" data-uid="wan24.Core.DisposableChangeToken.Finalize">~DisposableChangeToken()</h4>
+  <a id="wan24_Core_DisposableChangeToken_1_Finalize_" data-uid="wan24.Core.DisposableChangeToken`1.Finalize*"></a>
+  <h4 id="wan24_Core_DisposableChangeToken_1_Finalize" data-uid="wan24.Core.DisposableChangeToken`1.Finalize">~DisposableChangeToken()</h4>
   <div class="markdown level1 summary"><p>Destructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -276,6 +304,9 @@
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iobservable-1">IObservable&lt;T&gt;</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
@@ -326,10 +357,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableChangeToken.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableChangeToken%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableChangeToken_1.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableChangeToken%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableChangeToken.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableChangeToken.cs/#L43" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

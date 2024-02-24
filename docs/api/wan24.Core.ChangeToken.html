@@ -78,11 +78,13 @@
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><span class="xref">ChangeToken</span></div>
+      <div class="level2"><a class="xref" href="wan24.Core.ChangeToken-1.html">ChangeToken&lt;T&gt;</a></div>
       <div class="level2"><a class="xref" href="wan24.Core.DisposableChangeToken.html">DisposableChangeToken</a></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.ichangetoken">IChangeToken</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -112,7 +114,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_ChangeToken_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ChangeToken : IChangeToken</code></pre>
+    <pre><code class="lang-csharp hljs">public class ChangeToken : IChangeToken, INotifyPropertyChanged</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -121,7 +123,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L25">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L24">View Source</a>
   </span>
   <a id="wan24_Core_ChangeToken__ctor_" data-uid="wan24.Core.ChangeToken.#ctor*"></a>
   <h4 id="wan24_Core_ChangeToken__ctor" data-uid="wan24.Core.ChangeToken.#ctor">ChangeToken()</h4>
@@ -130,14 +132,14 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected ChangeToken()</code></pre>
+    <pre><code class="lang-csharp hljs">public ChangeToken()</code></pre>
   </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken__ctor_System_Func_System_Boolean___.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken.%23ctor(System.Func%7BSystem.Boolean%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L20">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L30">View Source</a>
   </span>
   <a id="wan24_Core_ChangeToken__ctor_" data-uid="wan24.Core.ChangeToken.#ctor*"></a>
   <h4 id="wan24_Core_ChangeToken__ctor_System_Func_System_Boolean___" data-uid="wan24.Core.ChangeToken.#ctor(System.Func{System.Boolean}@)">ChangeToken(in Func&lt;bool&gt;)</h4>
@@ -173,7 +175,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken_Callbacks.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken.Callbacks%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L14">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L15">View Source</a>
   </span>
   <h4 id="wan24_Core_ChangeToken_Callbacks" data-uid="wan24.Core.ChangeToken.Callbacks">Callbacks</h4>
   <div class="markdown level1 summary"><p>Registered callbacks</p>
@@ -181,7 +183,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly List&lt;ChangeCallback&gt; Callbacks</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly HashSet&lt;ChangeCallback&gt; Callbacks</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
@@ -193,7 +195,37 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="wan24.Core.ChangeCallback.html">ChangeCallback</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="wan24.Core.ChangeCallback.html">ChangeCallback</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken__HasChanged.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken._HasChanged%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L19">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ChangeToken__HasChanged" data-uid="wan24.Core.ChangeToken._HasChanged">_HasChanged</h4>
+  <div class="markdown level1 summary"><p>Has changed?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _HasChanged</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -205,7 +237,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken_ActiveChangeCallbacks.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken.ActiveChangeCallbacks%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L41">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L56">View Source</a>
   </span>
   <a id="wan24_Core_ChangeToken_ActiveChangeCallbacks_" data-uid="wan24.Core.ChangeToken.ActiveChangeCallbacks*"></a>
   <h4 id="wan24_Core_ChangeToken_ActiveChangeCallbacks" data-uid="wan24.Core.ChangeToken.ActiveChangeCallbacks">ActiveChangeCallbacks</h4>
@@ -237,7 +269,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken_ChangeIdentifier.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken.ChangeIdentifier%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L35">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L40">View Source</a>
   </span>
   <a id="wan24_Core_ChangeToken_ChangeIdentifier_" data-uid="wan24.Core.ChangeToken.ChangeIdentifier*"></a>
   <h4 id="wan24_Core_ChangeToken_ChangeIdentifier" data-uid="wan24.Core.ChangeToken.ChangeIdentifier">ChangeIdentifier</h4>
@@ -268,7 +300,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken_HasChanged.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken.HasChanged%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L38">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L43">View Source</a>
   </span>
   <a id="wan24_Core_ChangeToken_HasChanged_" data-uid="wan24.Core.ChangeToken.HasChanged*"></a>
   <h4 id="wan24_Core_ChangeToken_HasChanged" data-uid="wan24.Core.ChangeToken.HasChanged">HasChanged</h4>
@@ -277,7 +309,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual bool HasChanged { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual bool HasChanged { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -299,7 +331,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken_SyncObject.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken.SyncObject%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L30">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L35">View Source</a>
   </span>
   <a id="wan24_Core_ChangeToken_SyncObject_" data-uid="wan24.Core.ChangeToken.SyncObject*"></a>
   <h4 id="wan24_Core_ChangeToken_SyncObject" data-uid="wan24.Core.ChangeToken.SyncObject">SyncObject</h4>
@@ -329,26 +361,118 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken_InvokeCallbacks.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken.InvokeCallbacks%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken_InvokeCallbacks_System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken.InvokeCallbacks(System.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L58">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L74">View Source</a>
   </span>
   <a id="wan24_Core_ChangeToken_InvokeCallbacks_" data-uid="wan24.Core.ChangeToken.InvokeCallbacks*"></a>
-  <h4 id="wan24_Core_ChangeToken_InvokeCallbacks" data-uid="wan24.Core.ChangeToken.InvokeCallbacks">InvokeCallbacks()</h4>
+  <h4 id="wan24_Core_ChangeToken_InvokeCallbacks_System_Object__" data-uid="wan24.Core.ChangeToken.InvokeCallbacks(System.Object@)">InvokeCallbacks(in object?)</h4>
   <div class="markdown level1 summary"><p>Invoke all registered callbacks</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual void InvokeCallbacks()</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void InvokeCallbacks(in object? state = null)</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">state</span></td>
+        <td><p>State</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken_RaisePropertyChanged_System_Object_System_ComponentModel_PropertyChangedEventArgs_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken.RaisePropertyChanged(System.Object%2CSystem.ComponentModel.PropertyChangedEventArgs)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L108">View Source</a>
+  </span>
+  <a id="wan24_Core_ChangeToken_RaisePropertyChanged_" data-uid="wan24.Core.ChangeToken.RaisePropertyChanged*"></a>
+  <h4 id="wan24_Core_ChangeToken_RaisePropertyChanged_System_Object_System_ComponentModel_PropertyChangedEventArgs_" data-uid="wan24.Core.ChangeToken.RaisePropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">RaisePropertyChanged(object, PropertyChangedEventArgs)</h4>
+  <div class="markdown level1 summary"><p>Raise the <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_PropertyChanged">PropertyChanged</a> event</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void RaisePropertyChanged(object sender, PropertyChangedEventArgs e)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">sender</span></td>
+        <td><p>Sender</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.propertychangedeventargs">PropertyChangedEventArgs</a></td>
+        <td><span class="parametername">e</span></td>
+        <td><p>Arguments</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken_RaisePropertyChanged_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken.RaisePropertyChanged(System.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L102">View Source</a>
+  </span>
+  <a id="wan24_Core_ChangeToken_RaisePropertyChanged_" data-uid="wan24.Core.ChangeToken.RaisePropertyChanged*"></a>
+  <h4 id="wan24_Core_ChangeToken_RaisePropertyChanged_System_String__" data-uid="wan24.Core.ChangeToken.RaisePropertyChanged(System.String@)">RaisePropertyChanged(in string?)</h4>
+  <div class="markdown level1 summary"><p>Raise the <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_PropertyChanged">PropertyChanged</a> event</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void RaisePropertyChanged(in string? name = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>Name of the changed property</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken_RegisterChangeCallback_System_Action_System_Object__System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken.RegisterChangeCallback(System.Action%7BSystem.Object%7D%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L44">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L59">View Source</a>
   </span>
   <a id="wan24_Core_ChangeToken_RegisterChangeCallback_" data-uid="wan24.Core.ChangeToken.RegisterChangeCallback*"></a>
   <h4 id="wan24_Core_ChangeToken_RegisterChangeCallback_System_Action_System_Object__System_Object_" data-uid="wan24.Core.ChangeToken.RegisterChangeCallback(System.Action{System.Object},System.Object)">RegisterChangeCallback(Action&lt;object?&gt;, object?)</h4>
@@ -400,6 +524,100 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken_SetNewPropertyValue__1___0____0__System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken.SetNewPropertyValue%60%601(%60%600%40%2C%60%600%40%2CSystem.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L89">View Source</a>
+  </span>
+  <a id="wan24_Core_ChangeToken_SetNewPropertyValue_" data-uid="wan24.Core.ChangeToken.SetNewPropertyValue*"></a>
+  <h4 id="wan24_Core_ChangeToken_SetNewPropertyValue__1___0____0__System_String__" data-uid="wan24.Core.ChangeToken.SetNewPropertyValue``1(``0@,``0@,System.String@)">SetNewPropertyValue&lt;T&gt;(ref T, in T, in string)</h4>
+  <div class="markdown level1 summary"><p>Set a new property value (will invoke callbacks and call <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_RaisePropertyChanged_System_String__">RaisePropertyChanged(in string?)</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void SetNewPropertyValue&lt;T&gt;(ref T field, in T value, in string propertyName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">field</span></td>
+        <td><p>Internal property field</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>New value</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>Property name</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Value type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken_PropertyChanged.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken.PropertyChanged%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L97">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ChangeToken_PropertyChanged" data-uid="wan24.Core.ChangeToken.PropertyChanged">PropertyChanged</h4>
+  <div class="markdown level1 summary"><p>Occurs when a property value changes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event PropertyChangedEventHandler? PropertyChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.propertychangedeventhandler">PropertyChangedEventHandler</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="operators">Operators
 </h3>
   <span class="small pull-right mobile-hide">
@@ -407,7 +625,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken_op_Implicit_wan24_Core_ChangeToken___System_Boolean.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken.op_Implicit(wan24.Core.ChangeToken%40)~System.Boolean%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L69">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L114">View Source</a>
   </span>
   <a id="wan24_Core_ChangeToken_op_Implicit_" data-uid="wan24.Core.ChangeToken.op_Implicit*"></a>
   <h4 id="wan24_Core_ChangeToken_op_Implicit_wan24_Core_ChangeToken___System_Boolean" data-uid="wan24.Core.ChangeToken.op_Implicit(wan24.Core.ChangeToken@)~System.Boolean">implicit operator bool(in ChangeToken)</h4>
@@ -455,6 +673,9 @@ public static implicit operator bool(in ChangeToken token)</code></pre>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.ichangetoken">IChangeToken</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
@@ -505,7 +726,7 @@ public static implicit operator bool(in ChangeToken token)</code></pre>
                     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L10" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

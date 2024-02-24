@@ -5,11 +5,11 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Class ParallelTransaction.ErrorEventArgs | wan24-Core </title>
+      <title>Class ChangeToken_Tests.DisposableChangeTokenTest | wan24-Core </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Class ParallelTransaction.ErrorEventArgs | wan24-Core ">
+      <meta name="title" content="Class ChangeToken_Tests.DisposableChangeTokenTest | wan24-Core ">
     
-    <meta name="description" content="Error event arguments">
+    
       <link rel="shortcut icon" href="../favicon.ico">
       <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../styles/docfx.css">
@@ -66,24 +66,59 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.ParallelTransaction.ErrorEventArgs">
+            <article class="content wrap" id="_content" data-uid="Wan24_Core_Tests.ChangeToken_Tests.DisposableChangeTokenTest">
 
 
 
-  <h1 id="wan24_Core_ParallelTransaction_ErrorEventArgs" data-uid="wan24.Core.ParallelTransaction.ErrorEventArgs" class="text-break">Class ParallelTransaction.ErrorEventArgs</h1>
-  <div class="markdown level0 summary"><p>Error event arguments</p>
-</div>
+  <h1 id="Wan24_Core_Tests_ChangeToken_Tests_DisposableChangeTokenTest" data-uid="Wan24_Core_Tests.ChangeToken_Tests.DisposableChangeTokenTest" class="text-break">Class ChangeToken_Tests.DisposableChangeTokenTest</h1>
+  <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventargs">EventArgs</a></div>
-    <div class="level2"><span class="xref">ParallelTransaction.ErrorEventArgs</span></div>
+    <div class="level1"><a class="xref" href="wan24.Core.ChangeToken.html">ChangeToken</a></div>
+    <div class="level2"><a class="xref" href="wan24.Core.ChangeToken-1.html">ChangeToken</a>&lt;<a class="xref" href="Wan24_Core_Tests.ChangeToken_Tests.html">ChangeToken_Tests</a>.<a class="xref" href="Wan24_Core_Tests.ChangeToken_Tests.DisposableChangeTokenTest.html">DisposableChangeTokenTest</a>&gt;</div>
+    <div class="level3"><a class="xref" href="wan24.Core.DisposableChangeToken-1.html">DisposableChangeToken</a>&lt;<a class="xref" href="Wan24_Core_Tests.ChangeToken_Tests.html">ChangeToken_Tests</a>.<a class="xref" href="Wan24_Core_Tests.ChangeToken_Tests.DisposableChangeTokenTest.html">DisposableChangeTokenTest</a>&gt;</div>
+    <div class="level4"><span class="xref">ChangeToken_Tests.DisposableChangeTokenTest</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.ichangetoken">IChangeToken</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iobservable-1">IObservable</a>&lt;<a class="xref" href="Wan24_Core_Tests.ChangeToken_Tests.html">ChangeToken_Tests</a>.<a class="xref" href="Wan24_Core_Tests.ChangeToken_Tests.DisposableChangeTokenTest.html">DisposableChangeTokenTest</a>&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventargs.empty">EventArgs.Empty</a>
+      <a class="xref" href="wan24.Core.DisposableChangeToken-1.html#wan24_Core_DisposableChangeToken_1_Dispose">DisposableChangeToken&lt;ChangeToken_Tests.DisposableChangeTokenTest&gt;.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken-1.html#wan24_Core_ChangeToken_1_Subscribe_System_IObserver__0__">ChangeToken&lt;ChangeToken_Tests.DisposableChangeTokenTest&gt;.Subscribe(IObserver&lt;ChangeToken_Tests.DisposableChangeTokenTest&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_SyncObject">ChangeToken.SyncObject</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_ChangeIdentifier">ChangeToken.ChangeIdentifier</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_HasChanged">ChangeToken.HasChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_ActiveChangeCallbacks">ChangeToken.ActiveChangeCallbacks</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_RegisterChangeCallback_System_Action_System_Object__System_Object_">ChangeToken.RegisterChangeCallback(Action&lt;object&gt;, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_InvokeCallbacks_System_Object__">ChangeToken.InvokeCallbacks(in object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_PropertyChanged">ChangeToken.PropertyChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_RaisePropertyChanged_System_String__">ChangeToken.RaisePropertyChanged(in string)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
@@ -104,77 +139,45 @@
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
-  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_ParallelTransaction_ErrorEventArgs_syntax">Syntax</h5>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Wan24_Core_Tests.html">Wan24_Core_Tests</a></h6>
+  <h6><strong>Assembly</strong>: Wan24-Core Tests - Backup.dll</h6>
+  <h5 id="Wan24_Core_Tests_ChangeToken_Tests_DisposableChangeTokenTest_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class ParallelTransaction.ErrorEventArgs : EventArgs</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class ChangeToken_Tests.DisposableChangeTokenTest : DisposableChangeToken&lt;ChangeToken_Tests.DisposableChangeTokenTest&gt;, IChangeToken, INotifyPropertyChanged, IObservable&lt;ChangeToken_Tests.DisposableChangeTokenTest&gt;, IDisposable</code></pre>
   </div>
-  <h5 id="wan24_Core_ParallelTransaction_ErrorEventArgs_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>Constructor</p>
-</div>
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ParallelTransaction_ErrorEventArgs__ctor_System_Int32__System_Exception__.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelTransaction.ErrorEventArgs.%23ctor(System.Int32%40%2CSystem.Exception%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=Wan24_Core_Tests_ChangeToken_Tests_DisposableChangeTokenTest__ctor.md&amp;value=---%0Auid%3A%20Wan24_Core_Tests.ChangeToken_Tests.DisposableChangeTokenTest.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ParallelTransaction.cs/#L397">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core Tests/ChangeToken_Tests.cs/#L97">View Source</a>
   </span>
-  <a id="wan24_Core_ParallelTransaction_ErrorEventArgs__ctor_" data-uid="wan24.Core.ParallelTransaction.ErrorEventArgs.#ctor*"></a>
-  <h4 id="wan24_Core_ParallelTransaction_ErrorEventArgs__ctor_System_Int32__System_Exception__" data-uid="wan24.Core.ParallelTransaction.ErrorEventArgs.#ctor(System.Int32@,System.Exception@)">ErrorEventArgs(in int, in Exception)</h4>
-  <div class="markdown level1 summary"><p>Error event arguments</p>
-</div>
+  <a id="Wan24_Core_Tests_ChangeToken_Tests_DisposableChangeTokenTest__ctor_" data-uid="Wan24_Core_Tests.ChangeToken_Tests.DisposableChangeTokenTest.#ctor*"></a>
+  <h4 id="Wan24_Core_Tests_ChangeToken_Tests_DisposableChangeTokenTest__ctor" data-uid="Wan24_Core_Tests.ChangeToken_Tests.DisposableChangeTokenTest.#ctor">DisposableChangeTokenTest()</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ErrorEventArgs(in int action, in Exception ex)</code></pre>
+    <pre><code class="lang-csharp hljs">public DisposableChangeTokenTest()</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">action</span></td>
-        <td><p>Action index</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></td>
-        <td><span class="parametername">ex</span></td>
-        <td><p>Exception</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="wan24_Core_ParallelTransaction_ErrorEventArgs__ctor_System_Int32__System_Exception___remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Constructor</p>
-</div>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ParallelTransaction_ErrorEventArgs_Action.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelTransaction.ErrorEventArgs.Action%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=Wan24_Core_Tests_ChangeToken_Tests_DisposableChangeTokenTest_Value.md&amp;value=---%0Auid%3A%20Wan24_Core_Tests.ChangeToken_Tests.DisposableChangeTokenTest.Value%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ParallelTransaction.cs/#L402">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core Tests/ChangeToken_Tests.cs/#L99">View Source</a>
   </span>
-  <a id="wan24_Core_ParallelTransaction_ErrorEventArgs_Action_" data-uid="wan24.Core.ParallelTransaction.ErrorEventArgs.Action*"></a>
-  <h4 id="wan24_Core_ParallelTransaction_ErrorEventArgs_Action" data-uid="wan24.Core.ParallelTransaction.ErrorEventArgs.Action">Action</h4>
-  <div class="markdown level1 summary"><p>Action index</p>
-</div>
+  <a id="Wan24_Core_Tests_ChangeToken_Tests_DisposableChangeTokenTest_Value_" data-uid="Wan24_Core_Tests.ChangeToken_Tests.DisposableChangeTokenTest.Value*"></a>
+  <h4 id="Wan24_Core_Tests_ChangeToken_Tests_DisposableChangeTokenTest_Value" data-uid="Wan24_Core_Tests.ChangeToken_Tests.DisposableChangeTokenTest.Value">Value</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Action { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int Value { set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -191,37 +194,19 @@
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ParallelTransaction_ErrorEventArgs_Exception.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelTransaction.ErrorEventArgs.Exception%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ParallelTransaction.cs/#L407">View Source</a>
-  </span>
-  <a id="wan24_Core_ParallelTransaction_ErrorEventArgs_Exception_" data-uid="wan24.Core.ParallelTransaction.ErrorEventArgs.Exception*"></a>
-  <h4 id="wan24_Core_ParallelTransaction_ErrorEventArgs_Exception" data-uid="wan24.Core.ParallelTransaction.ErrorEventArgs.Exception">Exception</h4>
-  <div class="markdown level1 summary"><p>Exception</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Exception Exception { get; }</code></pre>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.ichangetoken">IChangeToken</a>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iobservable-1">IObservable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
+  </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(object)</a>
@@ -268,10 +253,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ParallelTransaction_ErrorEventArgs.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelTransaction.ErrorEventArgs%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=Wan24_Core_Tests_ChangeToken_Tests_DisposableChangeTokenTest.md&amp;value=---%0Auid%3A%20Wan24_Core_Tests.ChangeToken_Tests.DisposableChangeTokenTest%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ParallelTransaction.cs/#L397" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core Tests/ChangeToken_Tests.cs/#L95" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -375,6 +375,13 @@ including extensions for numeric type encoding/decoding)</li>
 <li>Commonly used regular expressions and global named expression collection</li>
 <li>Transactions</li>
 <li>TCP, UDP, WebSocket and http(s) port knocking</li>
+<li>Observable collections
+<ul>
+<li><code>ChangeTokenCollection</code></li>
+<li><code>ChangeTokenDictionary</code></li>
+<li><code>ConcurrentChangeTokenDictionary</code></li>
+</ul>
+</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
@@ -703,48 +710,62 @@ processed now</li>
 <p>In short words: The throttle timer will not reset in an fixed interval, but
 the interval starts when processing items.</p>
 <h2 id="change-token">Change token</h2>
-<p>Implement by extending <code>ChangeToken</code>:</p>
+<p>Implement by extending <code>(Disposable)ChangeToken</code> (implements <code>IChangeToken</code>
+and <code>INotifyPropertyChanged</code>):</p>
 <pre><code class="lang-cs">public class YourObservableType : ChangeToken
 {
-    public YourObservableType() : base()
-    {
-        ChangeIdentifier = () =&gt; HasChanged;
-    }
+    private string _Value = string.Empty;
 
-    public bool HasChanged =&gt; ...;// Return if the object was changed
+    public YourObservableType() : base() { }
 
-    public void ChangeAction()
+    public string Value
     {
-        // Perform changes
-        InvokeCallbacks();
+        get =&gt; _Value;
+        set =&gt; SetNewPropertyValue(ref _Value, value, nameof(Value));
     }
 }
 </code></pre>
-<p>Or by using a <code>ChangeToken</code> instance:</p>
-<pre><code class="lang-cs">public class YourObservableType : IChangeToken
-{
-    public readonly ChangeToken ChangeToken;
-
-    public YourObservableType() =&gt; ChangeToken = new(() =&gt; HasChanged);
-
-    public bool HasChanged =&gt; ...;// Return if the object was changed
-
-    public void ChangeAction()
-    {
-        // Perform changes
-        ChangeToken.InvokeCallbacks();
-    }
-
-    // Implement the IChangeToken interface using our ChangeToken instance
-
-    bool IChangeToken.HasChanged =&gt; ChangeToken.HasChanged;
-
-    bool IChangeToken.ActiveChangeCallbacks =&gt; ChangeToken.ActiveChangeCallbacks;
-
-    IDisposable IChangeToken.RegisterChangeCallback(Action&lt;object?&gt; callback, object? state)
-        =&gt; ChangeToken.RegisterChangeCallback(callback, state);
-}
-</code></pre>
+<p>The <code>HasChanged</code> setter MAY be used. You can also set the <code>_HasChanged</code> field
+and call <code>InvokeCallbacks</code> any time later. If the default <code>HasChanged</code> setter
+was used with <code>true</code>, <code>RaisePropertyChanged</code> will be called without a property
+name. Instead of the <code>HasChanged</code> setter you can also call
+<code>SetNewPropertyValue</code> from a property setter.</p>
+<p>The <code>RaisePropertyChanged</code> and <code>InvokeCallbacks</code> method SHOULD be called each
+time a property changed (this will be done when calling <code>SetNewPropertyValue</code>
+also).</p>
+<p>By extending <code>(Disposable)ChangeToken&lt;T&gt;</code> your final type will also implement
+<code>IObservable&lt;T&gt;</code>.</p>
+<p>You may want to use the <code>(Concurrent)ChangeTokenCollection/Dictionary&lt;T&gt;</code> for
+observing an object list or a (concurrent) key/value dictionary. They
+implement</p>
+<ul>
+<li><code>IObservable&lt;T&gt;</code></li>
+<li><code>INotifyCollectionChanged</code></li>
+<li><code>INotifyPropertyChanged</code></li>
+</ul>
+<p>Observed are all</p>
+<ul>
+<li><code>IChangeProperty</code></li>
+<li><code>IObservable&lt;T&gt;</code></li>
+<li><code>INotifyPropertyChanged</code></li>
+</ul>
+<p>item events. You can also use a type which doesn't implement any of these
+interfaces - then only the collection itself (item adding/removing) is
+observed.</p>
+<p>An instance is pre-configured for use with a <code>ChangeToken</code>. For other objects
+(which implement <code>IChangeToken</code> and <code>INotifyPropertyChanged</code>) you can modify
+the</p>
+<ul>
+<li><code>IgnoreUnnamedPropertyNotifications</code> (default is <code>true</code>)</li>
+<li><code>InvokeCallbacksOnPropertyChange</code> (default is <code>false</code>)</li>
+</ul>
+<p>settings.</p>
+<p>The <code>ObserveCollection</code> setting defines, if you'd also like to observe item
+addings/removals (the collection itself). The default is <code>true</code>. If you set
+the <code>ObserveItems</code> property to <code>false</code> during the collection object
+initialization, only the item additions/removals will be observed. Of course
+you can set both properties to <code>false</code> - in this case the collection won't
+observe anything.</p>
 <h2 id="hierarchic-configuration">Hierarchic configuration</h2>
 <p>Assume this configuration hierarchy:</p>
 <table>

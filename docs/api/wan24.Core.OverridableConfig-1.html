@@ -77,16 +77,62 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">OverridableConfig&lt;tFinal&gt;</span></div>
-      <div class="level2"><a class="xref" href="Wan24_Core_Tests.OverrideableConfig_Tests.TestObject.html">OverrideableConfig_Tests.TestObject</a></div>
+    <div class="level1"><a class="xref" href="wan24.Core.ChangeToken.html">ChangeToken</a></div>
+    <div class="level2"><a class="xref" href="wan24.Core.ChangeToken-1.html">ChangeToken</a>&lt;tFinal&gt;</div>
+    <div class="level3"><span class="xref">OverridableConfig&lt;tFinal&gt;</span></div>
+      <div class="level4"><a class="xref" href="Wan24_Core_Tests.OverrideableConfig_Tests.TestObject.html">OverrideableConfig_Tests.TestObject</a></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iobservable-1">IObservable</a>&lt;tFinal&gt;</div>
     <div><a class="xref" href="wan24.Core.IOverridableConfig.html">IOverridableConfig</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.ichangetoken">IChangeToken</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken-1.html#wan24_Core_ChangeToken_1_Observers">ChangeToken&lt;tFinal&gt;.Observers</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken-1.html#wan24_Core_ChangeToken_1_Subscribe_System_IObserver__0__">ChangeToken&lt;tFinal&gt;.Subscribe(IObserver&lt;tFinal&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_Callbacks">ChangeToken.Callbacks</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken__HasChanged">ChangeToken._HasChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_SyncObject">ChangeToken.SyncObject</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_ChangeIdentifier">ChangeToken.ChangeIdentifier</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_HasChanged">ChangeToken.HasChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_ActiveChangeCallbacks">ChangeToken.ActiveChangeCallbacks</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_RegisterChangeCallback_System_Action_System_Object__System_Object_">ChangeToken.RegisterChangeCallback(Action&lt;object&gt;, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_InvokeCallbacks_System_Object__">ChangeToken.InvokeCallbacks(in object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_SetNewPropertyValue__1___0____0__System_String__">ChangeToken.SetNewPropertyValue&lt;T&gt;(ref T, in T, in string)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_PropertyChanged">ChangeToken.PropertyChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_RaisePropertyChanged_System_String__">ChangeToken.RaisePropertyChanged(in string)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_RaisePropertyChanged_System_Object_System_ComponentModel_PropertyChangedEventArgs_">ChangeToken.RaisePropertyChanged(object, PropertyChangedEventArgs)</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -113,7 +159,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_OverridableConfig_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class OverridableConfig&lt;tFinal&gt; : IOverridableConfig, IChangeToken where tFinal : OverridableConfig&lt;tFinal&gt;, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class OverridableConfig&lt;tFinal&gt; : ChangeToken&lt;tFinal&gt;, INotifyPropertyChanged, IObservable&lt;tFinal&gt;, IOverridableConfig, IChangeToken where tFinal : OverridableConfig&lt;tFinal&gt;, new()</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -138,7 +184,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L33">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L29">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1__ctor_" data-uid="wan24.Core.OverridableConfig`1.#ctor*"></a>
   <h4 id="wan24_Core_OverridableConfig_1__ctor" data-uid="wan24.Core.OverridableConfig`1.#ctor">OverridableConfig()</h4>
@@ -154,7 +200,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1__ctor__0__.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.%23ctor(%600%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L38">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L34">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1__ctor_" data-uid="wan24.Core.OverridableConfig`1.#ctor*"></a>
   <h4 id="wan24_Core_OverridableConfig_1__ctor__0__" data-uid="wan24.Core.OverridableConfig`1.#ctor(`0@)">OverridableConfig(in tFinal)</h4>
@@ -184,36 +230,6 @@
   </table>
   <h3 id="fields">Fields
 </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_ChangeToken.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.ChangeToken%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L20">View Source</a>
-  </span>
-  <h4 id="wan24_Core_OverridableConfig_1_ChangeToken" data-uid="wan24.Core.OverridableConfig`1.ChangeToken">ChangeToken</h4>
-  <div class="markdown level1 summary"><p>Change token</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly ChangeToken ChangeToken</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="wan24.Core.ChangeToken.html">ChangeToken</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_DEFAULT_SUB_KEY.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.DEFAULT_SUB_KEY%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
@@ -249,7 +265,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_OptionProperties.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.OptionProperties%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L24">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L20">View Source</a>
   </span>
   <h4 id="wan24_Core_OverridableConfig_1_OptionProperties" data-uid="wan24.Core.OverridableConfig`1.OptionProperties">OptionProperties</h4>
   <div class="markdown level1 summary"><p>Properties</p>
@@ -279,7 +295,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_SubKey.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.SubKey%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L28">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L24">View Source</a>
   </span>
   <h4 id="wan24_Core_OverridableConfig_1_SubKey" data-uid="wan24.Core.OverridableConfig`1.SubKey">SubKey</h4>
   <div class="markdown level1 summary"><p>Sub-configuration tree key</p>
@@ -308,42 +324,10 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_ActiveChangeCallbacks.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.ActiveChangeCallbacks%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L179">View Source</a>
-  </span>
-  <a id="wan24_Core_OverridableConfig_1_ActiveChangeCallbacks_" data-uid="wan24.Core.OverridableConfig`1.ActiveChangeCallbacks*"></a>
-  <h4 id="wan24_Core_OverridableConfig_1_ActiveChangeCallbacks" data-uid="wan24.Core.OverridableConfig`1.ActiveChangeCallbacks">ActiveChangeCallbacks</h4>
-  <div class="markdown level1 summary"><p>Indicates if this token will pro-actively raise callbacks. If <code>false</code>, the token consumer must
-poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.ichangetoken.haschanged">HasChanged</a> to detect changes.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ActiveChangeCallbacks { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_AllOptions.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.AllOptions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L132">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L125">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_AllOptions_" data-uid="wan24.Core.OverridableConfig`1.AllOptions*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_AllOptions" data-uid="wan24.Core.OverridableConfig`1.AllOptions">AllOptions</h4>
@@ -374,7 +358,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_AllOptionsDict.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.AllOptionsDict%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L143">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L136">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_AllOptionsDict_" data-uid="wan24.Core.OverridableConfig`1.AllOptionsDict*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_AllOptionsDict" data-uid="wan24.Core.OverridableConfig`1.AllOptionsDict">AllOptionsDict</h4>
@@ -405,7 +389,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_ChangedValues.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.ChangedValues%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L83">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L76">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_ChangedValues_" data-uid="wan24.Core.OverridableConfig`1.ChangedValues*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_ChangedValues" data-uid="wan24.Core.OverridableConfig`1.ChangedValues">ChangedValues</h4>
@@ -436,7 +420,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_ConfigLevel.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.ConfigLevel%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L61">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L54">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_ConfigLevel_" data-uid="wan24.Core.OverridableConfig`1.ConfigLevel*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_ConfigLevel" data-uid="wan24.Core.OverridableConfig`1.ConfigLevel">ConfigLevel</h4>
@@ -467,7 +451,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_ConfigTree.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.ConfigTree%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L154">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L147">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_ConfigTree_" data-uid="wan24.Core.OverridableConfig`1.ConfigTree*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_ConfigTree" data-uid="wan24.Core.OverridableConfig`1.ConfigTree">ConfigTree</h4>
@@ -498,7 +482,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_DynamicChangedValues.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.DynamicChangedValues%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L89">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L82">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_DynamicChangedValues_" data-uid="wan24.Core.OverridableConfig`1.DynamicChangedValues*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_DynamicChangedValues" data-uid="wan24.Core.OverridableConfig`1.DynamicChangedValues">DynamicChangedValues</h4>
@@ -529,7 +513,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_DynamicFinalConfig.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.DynamicFinalConfig%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L129">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L122">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_DynamicFinalConfig_" data-uid="wan24.Core.OverridableConfig`1.DynamicFinalConfig*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_DynamicFinalConfig" data-uid="wan24.Core.OverridableConfig`1.DynamicFinalConfig">DynamicFinalConfig</h4>
@@ -560,7 +544,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_DynamicLocalConfig.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.DynamicLocalConfig%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L104">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L97">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_DynamicLocalConfig_" data-uid="wan24.Core.OverridableConfig`1.DynamicLocalConfig*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_DynamicLocalConfig" data-uid="wan24.Core.OverridableConfig`1.DynamicLocalConfig">DynamicLocalConfig</h4>
@@ -591,7 +575,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_DynamicOverrides.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.DynamicOverrides%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L119">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L112">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_DynamicOverrides_" data-uid="wan24.Core.OverridableConfig`1.DynamicOverrides*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_DynamicOverrides" data-uid="wan24.Core.OverridableConfig`1.DynamicOverrides">DynamicOverrides</h4>
@@ -622,7 +606,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_DynamicSetValues.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.DynamicSetValues%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L80">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L73">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_DynamicSetValues_" data-uid="wan24.Core.OverridableConfig`1.DynamicSetValues*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_DynamicSetValues" data-uid="wan24.Core.OverridableConfig`1.DynamicSetValues">DynamicSetValues</h4>
@@ -653,7 +637,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_FinalConfig.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.FinalConfig%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L122">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L115">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_FinalConfig_" data-uid="wan24.Core.OverridableConfig`1.FinalConfig*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_FinalConfig" data-uid="wan24.Core.OverridableConfig`1.FinalConfig">FinalConfig</h4>
@@ -684,7 +668,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_GUID.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.GUID%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L48">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L41">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_GUID_" data-uid="wan24.Core.OverridableConfig`1.GUID*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_GUID" data-uid="wan24.Core.OverridableConfig`1.GUID">GUID</h4>
@@ -712,41 +696,10 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_HasChanged.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.HasChanged%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L176">View Source</a>
-  </span>
-  <a id="wan24_Core_OverridableConfig_1_HasChanged_" data-uid="wan24.Core.OverridableConfig`1.HasChanged*"></a>
-  <h4 id="wan24_Core_OverridableConfig_1_HasChanged" data-uid="wan24.Core.OverridableConfig`1.HasChanged">HasChanged</h4>
-  <div class="markdown level1 summary"><p>Gets a value that indicates if a change has occurred.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool HasChanged { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_LocalConfig.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.LocalConfig%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L92">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L85">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_LocalConfig_" data-uid="wan24.Core.OverridableConfig`1.LocalConfig*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_LocalConfig" data-uid="wan24.Core.OverridableConfig`1.LocalConfig">LocalConfig</h4>
@@ -777,7 +730,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_MasterConfig.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.MasterConfig%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L53">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L46">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_MasterConfig_" data-uid="wan24.Core.OverridableConfig`1.MasterConfig*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_MasterConfig" data-uid="wan24.Core.OverridableConfig`1.MasterConfig">MasterConfig</h4>
@@ -808,7 +761,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_MissingValues.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.MissingValues%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L148">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L141">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_MissingValues_" data-uid="wan24.Core.OverridableConfig`1.MissingValues*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_MissingValues" data-uid="wan24.Core.OverridableConfig`1.MissingValues">MissingValues</h4>
@@ -839,7 +792,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_Overrides.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.Overrides%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L107">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L100">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_Overrides_" data-uid="wan24.Core.OverridableConfig`1.Overrides*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_Overrides" data-uid="wan24.Core.OverridableConfig`1.Overrides">Overrides</h4>
@@ -870,7 +823,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_ParentConfig.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.ParentConfig%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L58">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L51">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_ParentConfig_" data-uid="wan24.Core.OverridableConfig`1.ParentConfig*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_ParentConfig" data-uid="wan24.Core.OverridableConfig`1.ParentConfig">ParentConfig</h4>
@@ -901,7 +854,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_Properties.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.Properties%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L69">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L62">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_Properties_" data-uid="wan24.Core.OverridableConfig`1.Properties*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_Properties" data-uid="wan24.Core.OverridableConfig`1.Properties">Properties</h4>
@@ -932,7 +885,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_SetOptions.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.SetOptions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L137">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L130">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_SetOptions_" data-uid="wan24.Core.OverridableConfig`1.SetOptions*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_SetOptions" data-uid="wan24.Core.OverridableConfig`1.SetOptions">SetOptions</h4>
@@ -963,7 +916,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_SetValues.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.SetValues%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L74">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L67">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_SetValues_" data-uid="wan24.Core.OverridableConfig`1.SetValues*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_SetValues" data-uid="wan24.Core.OverridableConfig`1.SetValues">SetValues</h4>
@@ -994,7 +947,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_SubConfig.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.SubConfig%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L66">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L59">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_SubConfig_" data-uid="wan24.Core.OverridableConfig`1.SubConfig*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_SubConfig" data-uid="wan24.Core.OverridableConfig`1.SubConfig">SubConfig</h4>
@@ -1020,37 +973,6 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_SyncObject.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.SyncObject%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L45">View Source</a>
-  </span>
-  <a id="wan24_Core_OverridableConfig_1_SyncObject_" data-uid="wan24.Core.OverridableConfig`1.SyncObject*"></a>
-  <h4 id="wan24_Core_OverridableConfig_1_SyncObject" data-uid="wan24.Core.OverridableConfig`1.SyncObject">SyncObject</h4>
-  <div class="markdown level1 summary"><p>An object for thread synchronization</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public object SyncObject { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
@@ -1058,7 +980,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_GetOption_System_Func_System_Object_wan24_Core_IConfigOption___.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.GetOption(System.Func%7BSystem.Object%2Cwan24.Core.IConfigOption%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L277">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L261">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_GetOption_" data-uid="wan24.Core.OverridableConfig`1.GetOption*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_GetOption_System_Func_System_Object_wan24_Core_IConfigOption___" data-uid="wan24.Core.OverridableConfig`1.GetOption(System.Func{System.Object,wan24.Core.IConfigOption}@)">GetOption(in Func&lt;object, IConfigOption?&gt;)</h4>
@@ -1109,7 +1031,7 @@ protected IConfigOption GetOption(in Func&lt;object, IConfigOption?&gt; getter)<
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_GetOption_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.GetOption(System.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L229">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L216">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_GetOption_" data-uid="wan24.Core.OverridableConfig`1.GetOption*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_GetOption_System_String__" data-uid="wan24.Core.OverridableConfig`1.GetOption(System.String@)">GetOption(in string)</h4>
@@ -1159,7 +1081,7 @@ protected IConfigOption GetOption(in Func&lt;object, IConfigOption?&gt; getter)<
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_GetOptionProperties.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.GetOptionProperties%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L284">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L268">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_GetOptionProperties_" data-uid="wan24.Core.OverridableConfig`1.GetOptionProperties*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_GetOptionProperties" data-uid="wan24.Core.OverridableConfig`1.GetOptionProperties">GetOptionProperties()</h4>
@@ -1191,7 +1113,7 @@ protected IConfigOption GetOption(in Func&lt;object, IConfigOption?&gt; getter)<
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_GetPropertyValue_System_Func_System_Object_wan24_Core_IConfigOption___System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.GetPropertyValue(System.Func%7BSystem.Object%2Cwan24.Core.IConfigOption%7D%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L298">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L282">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_GetPropertyValue_" data-uid="wan24.Core.OverridableConfig`1.GetPropertyValue*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_GetPropertyValue_System_Func_System_Object_wan24_Core_IConfigOption___System_Boolean__" data-uid="wan24.Core.OverridableConfig`1.GetPropertyValue(System.Func{System.Object,wan24.Core.IConfigOption}@,System.Boolean@)">GetPropertyValue(in Func&lt;object, IConfigOption?&gt;, in bool)</h4>
@@ -1248,7 +1170,7 @@ protected object? GetPropertyValue(in Func&lt;object, IConfigOption?&gt; getter,
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_MergeTo__0__System_Boolean__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.MergeTo(%600%40%2CSystem.Boolean%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L218">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L205">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_MergeTo_" data-uid="wan24.Core.OverridableConfig`1.MergeTo*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_MergeTo__0__System_Boolean__System_Boolean__" data-uid="wan24.Core.OverridableConfig`1.MergeTo(`0@,System.Boolean@,System.Boolean@)">MergeTo(in tFinal, in bool, in bool)</h4>
@@ -1310,7 +1232,7 @@ protected object? GetPropertyValue(in Func&lt;object, IConfigOption?&gt; getter,
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_RaiseOnChange_wan24_Core_IConfigOption__System_Object__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.RaiseOnChange(wan24.Core.IConfigOption%40%2CSystem.Object%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L323">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L307">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_RaiseOnChange_" data-uid="wan24.Core.OverridableConfig`1.RaiseOnChange*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_RaiseOnChange_wan24_Core_IConfigOption__System_Object__System_Boolean__" data-uid="wan24.Core.OverridableConfig`1.RaiseOnChange(wan24.Core.IConfigOption@,System.Object@,System.Boolean@)">RaiseOnChange(in IConfigOption, in object?, in bool)</h4>
@@ -1353,67 +1275,10 @@ protected object? GetPropertyValue(in Func&lt;object, IConfigOption?&gt; getter,
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_RegisterChangeCallback_System_Action_System_Object__System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.RegisterChangeCallback(System.Action%7BSystem.Object%7D%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L270">View Source</a>
-  </span>
-  <a id="wan24_Core_OverridableConfig_1_RegisterChangeCallback_" data-uid="wan24.Core.OverridableConfig`1.RegisterChangeCallback*"></a>
-  <h4 id="wan24_Core_OverridableConfig_1_RegisterChangeCallback_System_Action_System_Object__System_Object_" data-uid="wan24.Core.OverridableConfig`1.RegisterChangeCallback(System.Action{System.Object},System.Object)">RegisterChangeCallback(Action&lt;object?&gt;, object?)</h4>
-  <div class="markdown level1 summary"><p>Registers for a callback that will be invoked when the entry has changed.
-<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.ichangetoken.haschanged">HasChanged</a> MUST be set before the callback is invoked.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IDisposable RegisterChangeCallback(Action&lt;object?&gt; callback, object? state)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
-        <td><span class="parametername">callback</span></td>
-        <td><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action&lt;T&gt;</a> to invoke.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
-        <td><span class="parametername">state</span></td>
-        <td><p>State to be passed into the callback.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></td>
-        <td><p>An <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a> that is used to unregister the callback.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_ResetChanged_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.ResetChanged(System.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L259">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L246">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_ResetChanged_" data-uid="wan24.Core.OverridableConfig`1.ResetChanged*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_ResetChanged_System_Boolean__" data-uid="wan24.Core.OverridableConfig`1.ResetChanged(System.Boolean@)">ResetChanged(in bool)</h4>
@@ -1460,7 +1325,7 @@ protected object? GetPropertyValue(in Func&lt;object, IConfigOption?&gt; getter,
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_SetConfig_System_Collections_Generic_Dictionary_System_String_System_Object___System_Boolean__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.SetConfig(System.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%40%2CSystem.Boolean%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L199">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L186">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_SetConfig_" data-uid="wan24.Core.OverridableConfig`1.SetConfig*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_SetConfig_System_Collections_Generic_Dictionary_System_String_System_Object___System_Boolean__System_Boolean__" data-uid="wan24.Core.OverridableConfig`1.SetConfig(System.Collections.Generic.Dictionary{System.String,System.Object}@,System.Boolean@,System.Boolean@)">SetConfig(in Dictionary&lt;string, object?&gt;, in bool, in bool)</h4>
@@ -1522,7 +1387,7 @@ protected object? GetPropertyValue(in Func&lt;object, IConfigOption?&gt; getter,
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_UnsetAll_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.UnsetAll(System.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L242">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L229">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_UnsetAll_" data-uid="wan24.Core.OverridableConfig`1.UnsetAll*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_UnsetAll_System_Boolean__" data-uid="wan24.Core.OverridableConfig`1.UnsetAll(System.Boolean@)">UnsetAll(in bool)</h4>
@@ -1572,7 +1437,7 @@ protected object? GetPropertyValue(in Func&lt;object, IConfigOption?&gt; getter,
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_UnsetAllOverrides.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.UnsetAllOverrides%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L252">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L239">View Source</a>
   </span>
   <a id="wan24_Core_OverridableConfig_1_UnsetAllOverrides_" data-uid="wan24.Core.OverridableConfig`1.UnsetAllOverrides*"></a>
   <h4 id="wan24_Core_OverridableConfig_1_UnsetAllOverrides" data-uid="wan24.Core.OverridableConfig`1.UnsetAllOverrides">UnsetAllOverrides()</h4>
@@ -1606,7 +1471,7 @@ protected object? GetPropertyValue(in Func&lt;object, IConfigOption?&gt; getter,
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OverridableConfig_1_OnChange.md&amp;value=---%0Auid%3A%20wan24.Core.OverridableConfig%601.OnChange%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L316">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OverridableConfig.cs/#L300">View Source</a>
   </span>
   <h4 id="wan24_Core_OverridableConfig_1_OnChange" data-uid="wan24.Core.OverridableConfig`1.OnChange">OnChange</h4>
   <div class="markdown level1 summary"><p>Raised when an option was changed (bubbles to the master configuration)</p>
@@ -1632,6 +1497,12 @@ protected object? GetPropertyValue(in Func&lt;object, IConfigOption?&gt; getter,
     </tbody>
   </table>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iobservable-1">IObservable&lt;T&gt;</a>
+  </div>
   <div>
       <a class="xref" href="wan24.Core.IOverridableConfig.html">IOverridableConfig</a>
   </div>

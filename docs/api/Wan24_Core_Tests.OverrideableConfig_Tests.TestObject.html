@@ -76,11 +76,15 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><a class="xref" href="wan24.Core.OverridableConfig-1.html">OverridableConfig</a>&lt;<a class="xref" href="Wan24_Core_Tests.OverrideableConfig_Tests.html">OverrideableConfig_Tests</a>.<a class="xref" href="Wan24_Core_Tests.OverrideableConfig_Tests.TestObject.html">TestObject</a>&gt;</div>
-    <div class="level2"><span class="xref">OverrideableConfig_Tests.TestObject</span></div>
+    <div class="level1"><a class="xref" href="wan24.Core.ChangeToken.html">ChangeToken</a></div>
+    <div class="level2"><a class="xref" href="wan24.Core.ChangeToken-1.html">ChangeToken</a>&lt;<a class="xref" href="Wan24_Core_Tests.OverrideableConfig_Tests.html">OverrideableConfig_Tests</a>.<a class="xref" href="Wan24_Core_Tests.OverrideableConfig_Tests.TestObject.html">TestObject</a>&gt;</div>
+    <div class="level3"><a class="xref" href="wan24.Core.OverridableConfig-1.html">OverridableConfig</a>&lt;<a class="xref" href="Wan24_Core_Tests.OverrideableConfig_Tests.html">OverrideableConfig_Tests</a>.<a class="xref" href="Wan24_Core_Tests.OverrideableConfig_Tests.TestObject.html">TestObject</a>&gt;</div>
+    <div class="level4"><span class="xref">OverrideableConfig_Tests.TestObject</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iobservable-1">IObservable</a>&lt;<a class="xref" href="Wan24_Core_Tests.OverrideableConfig_Tests.html">OverrideableConfig_Tests</a>.<a class="xref" href="Wan24_Core_Tests.OverrideableConfig_Tests.TestObject.html">TestObject</a>&gt;</div>
     <div><a class="xref" href="Wan24_Core_Tests.OverrideableConfig_Tests.html">OverrideableConfig_Tests</a>.<a class="xref" href="Wan24_Core_Tests.OverrideableConfig_Tests.ITestObject.html">ITestObject</a></div>
     <div><a class="xref" href="wan24.Core.IOverridableConfig.html">IOverridableConfig</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.ichangetoken">IChangeToken</a></div>
@@ -89,9 +93,6 @@
     <h5>Inherited Members</h5>
     <div>
       <a class="xref" href="wan24.Core.OverridableConfig-1.html#wan24_Core_OverridableConfig_1_DEFAULT_SUB_KEY">OverridableConfig&lt;OverrideableConfig_Tests.TestObject&gt;.DEFAULT_SUB_KEY</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.OverridableConfig-1.html#wan24_Core_OverridableConfig_1_SyncObject">OverridableConfig&lt;OverrideableConfig_Tests.TestObject&gt;.SyncObject</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.OverridableConfig-1.html#wan24_Core_OverridableConfig_1_GUID">OverridableConfig&lt;OverrideableConfig_Tests.TestObject&gt;.GUID</a>
@@ -157,12 +158,6 @@
       <a class="xref" href="wan24.Core.OverridableConfig-1.html#wan24_Core_OverridableConfig_1_ConfigTree">OverridableConfig&lt;OverrideableConfig_Tests.TestObject&gt;.ConfigTree</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.OverridableConfig-1.html#wan24_Core_OverridableConfig_1_HasChanged">OverridableConfig&lt;OverrideableConfig_Tests.TestObject&gt;.HasChanged</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.OverridableConfig-1.html#wan24_Core_OverridableConfig_1_ActiveChangeCallbacks">OverridableConfig&lt;OverrideableConfig_Tests.TestObject&gt;.ActiveChangeCallbacks</a>
-    </div>
-    <div>
       <a class="xref" href="wan24.Core.OverridableConfig-1.html#wan24_Core_OverridableConfig_1_SetConfig_System_Collections_Generic_Dictionary_System_String_System_Object___System_Boolean__System_Boolean__">OverridableConfig&lt;OverrideableConfig_Tests.TestObject&gt;.SetConfig(in Dictionary&lt;string, object&gt;, in bool, in bool)</a>
     </div>
     <div>
@@ -181,10 +176,34 @@
       <a class="xref" href="wan24.Core.OverridableConfig-1.html#wan24_Core_OverridableConfig_1_ResetChanged_System_Boolean__">OverridableConfig&lt;OverrideableConfig_Tests.TestObject&gt;.ResetChanged(in bool)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.OverridableConfig-1.html#wan24_Core_OverridableConfig_1_RegisterChangeCallback_System_Action_System_Object__System_Object_">OverridableConfig&lt;OverrideableConfig_Tests.TestObject&gt;.RegisterChangeCallback(Action&lt;object&gt;, object)</a>
+      <a class="xref" href="wan24.Core.OverridableConfig-1.html#wan24_Core_OverridableConfig_1_OnChange">OverridableConfig&lt;OverrideableConfig_Tests.TestObject&gt;.OnChange</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.OverridableConfig-1.html#wan24_Core_OverridableConfig_1_OnChange">OverridableConfig&lt;OverrideableConfig_Tests.TestObject&gt;.OnChange</a>
+      <a class="xref" href="wan24.Core.ChangeToken-1.html#wan24_Core_ChangeToken_1_Subscribe_System_IObserver__0__">ChangeToken&lt;OverrideableConfig_Tests.TestObject&gt;.Subscribe(IObserver&lt;OverrideableConfig_Tests.TestObject&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_SyncObject">ChangeToken.SyncObject</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_ChangeIdentifier">ChangeToken.ChangeIdentifier</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_HasChanged">ChangeToken.HasChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_ActiveChangeCallbacks">ChangeToken.ActiveChangeCallbacks</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_RegisterChangeCallback_System_Action_System_Object__System_Object_">ChangeToken.RegisterChangeCallback(Action&lt;object&gt;, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_InvokeCallbacks_System_Object__">ChangeToken.InvokeCallbacks(in object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_PropertyChanged">ChangeToken.PropertyChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_RaisePropertyChanged_System_String__">ChangeToken.RaisePropertyChanged(in string)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
@@ -209,7 +228,7 @@
   <h6><strong>Assembly</strong>: Wan24-Core Tests - Backup.dll</h6>
   <h5 id="Wan24_Core_Tests_OverrideableConfig_Tests_TestObject_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class OverrideableConfig_Tests.TestObject : OverridableConfig&lt;OverrideableConfig_Tests.TestObject&gt;, OverrideableConfig_Tests.ITestObject, IOverridableConfig, IChangeToken</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class OverrideableConfig_Tests.TestObject : OverridableConfig&lt;OverrideableConfig_Tests.TestObject&gt;, INotifyPropertyChanged, IObservable&lt;OverrideableConfig_Tests.TestObject&gt;, OverrideableConfig_Tests.ITestObject, IOverridableConfig, IChangeToken</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -351,6 +370,12 @@
     </tbody>
   </table>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iobservable-1">IObservable&lt;T&gt;</a>
+  </div>
   <div>
       <a class="xref" href="Wan24_Core_Tests.OverrideableConfig_Tests.ITestObject.html">OverrideableConfig_Tests.ITestObject</a>
   </div>

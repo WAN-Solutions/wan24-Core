@@ -5,11 +5,11 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Delegate ParallelTransaction.Rollback_Delegate | wan24-Core </title>
+      <title>Struct ChangeToken&lt;T&gt;.DummySubscription | wan24-Core </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Delegate ParallelTransaction.Rollback_Delegate | wan24-Core ">
+      <meta name="title" content="Struct ChangeToken&lt;T&gt;.DummySubscription | wan24-Core ">
     
-    <meta name="description" content="Delegate for a rollback action">
+    <meta name="description" content="Dummy object notification subscription">
       <link rel="shortcut icon" href="../favicon.ico">
       <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../styles/docfx.css">
@@ -66,65 +66,71 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="wan24.Core.ParallelTransaction.Rollback_Delegate">
+            <article class="content wrap" id="_content" data-uid="wan24.Core.ChangeToken`1.DummySubscription">
 
 
 
-  <h1 id="wan24_Core_ParallelTransaction_Rollback_Delegate" data-uid="wan24.Core.ParallelTransaction.Rollback_Delegate" class="text-break">Delegate ParallelTransaction.Rollback_Delegate</h1>
-  <div class="markdown level0 summary"><p>Delegate for a rollback action</p>
+  <h1 id="wan24_Core_ChangeToken_1_DummySubscription" data-uid="wan24.Core.ChangeToken`1.DummySubscription" class="text-break">Struct ChangeToken&lt;T&gt;.DummySubscription</h1>
+  <div class="markdown level0 summary"><p>Dummy object notification subscription</p>
 </div>
   <div class="markdown level0 conceptual"></div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="wan24.Core.ChangeToken-1.html">ChangeToken</a>&lt;T&gt;.<a class="xref" href="wan24.Core.ChangeToken-1.DummySubscription.html">DummySubscription</a>&gt;</div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.equals">ValueType.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode">ValueType.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.tostring">ValueType.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_ParallelTransaction_Rollback_Delegate_syntax">Syntax</h5>
+  <h5 id="wan24_Core_ChangeToken_1_DummySubscription_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate Task ParallelTransaction.Rollback_Delegate(ParallelTransaction transaction, object? returnValue, CancellationToken cancellationToken)</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly record struct ChangeToken&lt;T&gt;.DummySubscription : IDisposable, IEquatable&lt;ChangeToken&lt;T&gt;.DummySubscription&gt;</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="wan24.Core.ParallelTransaction.html">ParallelTransaction</a></td>
-        <td><span class="parametername">transaction</span></td>
-        <td><p>Transaction</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
-        <td><span class="parametername">returnValue</span></td>
-        <td><p>Action return value</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>Cancellation token</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td>Delegate for a rollback action</td>
-      </tr>
-    </tbody>
-  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken_1_DummySubscription_Dispose.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken%601.DummySubscription.Dispose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L166">View Source</a>
+  </span>
+  <a id="wan24_Core_ChangeToken_1_DummySubscription_Dispose_" data-uid="wan24.Core.ChangeToken`1.DummySubscription.Dispose*"></a>
+  <h4 id="wan24_Core_ChangeToken_1_DummySubscription_Dispose" data-uid="wan24.Core.ChangeToken`1.DummySubscription.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable&lt;T&gt;</a>
+  </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(object)</a>
@@ -171,10 +177,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ParallelTransaction_Rollback_Delegate.md&amp;value=---%0Auid%3A%20wan24.Core.ParallelTransaction.Rollback_Delegate%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeToken_1_DummySubscription.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeToken%601.DummySubscription%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ParallelTransaction.cs/#L347" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeToken.cs/#L163" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
