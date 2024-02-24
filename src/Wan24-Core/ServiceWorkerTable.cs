@@ -1,6 +1,4 @@
-﻿using System.Collections.Concurrent;
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Service worker table
@@ -10,6 +8,6 @@ namespace wan24.Core
         /// <summary>
         /// Service workers (key is a GUID)
         /// </summary>
-        public static readonly ConcurrentDictionary<string, IServiceWorker> ServiceWorkers = new();
+        public static readonly ConcurrentChangeTokenDictionary<string, IServiceWorker> ServiceWorkers = new();
     }
 }

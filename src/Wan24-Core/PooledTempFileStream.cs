@@ -14,7 +14,7 @@ namespace wan24.Core
     public sealed class PooledTempFileStream(in string? folder, in UnixFileMode? mode = null) : FileStream(
           Path.Combine(
                       folder ?? Settings.TempFolder,
-                      $"{Guid.NewGuid()}{(Settings.AppId is null ? string.Empty : $"-{Settings.AppId}")}{(Settings.ProcessId is null ? string.Empty : $"-{Settings.ProcessId}")}.pooled"
+                      $"{Guid.NewGuid()}{$"-{Settings.AppId}"}{$"-{Settings.ProcessId}"}.pooled"
                       ),
           ENV.IsLinux
             ? new FileStreamOptions()
@@ -50,7 +50,7 @@ namespace wan24.Core
         {
             foreach (string file in Directory.GetFiles(
                 Settings.TempFolder,
-                $"*{(Settings.AppId is null ? string.Empty : $"-{Settings.AppId}")}{(Settings.ProcessId is null ? string.Empty : $"-{Settings.ProcessId}")}.pooled",
+                $"*{$"-{Settings.AppId}"}{$"-{Settings.ProcessId}"}.pooled",
                 SearchOption.TopDirectoryOnly
                 ))
                 try

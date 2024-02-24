@@ -91,14 +91,18 @@ namespace wan24.Core
         /// Default file create mode
         /// </summary>
         [CliConfig]
-        public static UnixFileMode CreateFileMode { get; set; } = UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.GroupRead | UnixFileMode.OtherRead;
+        public static UnixFileMode CreateFileMode { get; set; }
+            = UnixFileMode.UserRead | UnixFileMode.UserWrite | 
+                UnixFileMode.GroupRead | UnixFileMode.OtherRead;
 
         /// <summary>
         /// Default folder create mode
         /// </summary>
         [CliConfig]
         public static UnixFileMode CreateFolderMode { get; set; }
-            = UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute | UnixFileMode.GroupRead | UnixFileMode.GroupExecute | UnixFileMode.OtherRead | UnixFileMode.OtherExecute;
+            = UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute | 
+                UnixFileMode.GroupRead | UnixFileMode.GroupExecute | 
+                UnixFileMode.OtherRead | UnixFileMode.OtherExecute;
 
         /// <summary>
         /// Default log level

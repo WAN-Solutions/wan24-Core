@@ -228,6 +228,10 @@ including extensions for numeric type encoding/decoding)
 - Commonly used regular expressions and global named expression collection
 - Transactions
 - TCP, UDP, WebSocket and http(s) port knocking
+- Observable collections
+    - `ChangeTokenCollection`
+    - `ChangeTokenDictionary`
+    - `ConcurrentChangeTokenDictionary`
 
 ## How to get it
 
@@ -653,53 +657,70 @@ the interval starts when processing items.
 
 ## Change token
 
-Implement by extending `ChangeToken`:
+Implement by extending `(Disposable)ChangeToken` (implements `IChangeToken` 
+and `INotifyPropertyChanged`):
 
 ```cs
 public class YourObservableType : ChangeToken
 {
-    public YourObservableType() : base()
-    {
-        ChangeIdentifier = () => HasChanged;
-    }
+    private string _Value = string.Empty;
 
-    public bool HasChanged => ...;// Return if the object was changed
+    public YourObservableType() : base() { }
 
-    public void ChangeAction()
+    public string Value
     {
-        // Perform changes
-        InvokeCallbacks();
+        get => _Value;
+        set => SetNewPropertyValue(ref _Value, value, nameof(Value));
     }
 }
 ```
 
-Or by using a `ChangeToken` instance:
+The `HasChanged` setter MAY be used. You can also set the `_HasChanged` field 
+and call `InvokeCallbacks` any time later. If the default `HasChanged` setter 
+was used with `true`, `RaisePropertyChanged` will be called without a property 
+name. Instead of the `HasChanged` setter you can also call 
+`SetNewPropertyValue` from a property setter.
 
-```cs
-public class YourObservableType : IChangeToken
-{
-    public readonly ChangeToken ChangeToken;
+The `RaisePropertyChanged` and `InvokeCallbacks` method SHOULD be called each 
+time a property changed (this will be done when calling `SetNewPropertyValue` 
+also).
 
-    public YourObservableType() => ChangeToken = new(() => HasChanged);
+By extending `(Disposable)ChangeToken<T>` your final type will also implement 
+`IObservable<T>`.
 
-    public bool HasChanged => ...;// Return if the object was changed
+You may want to use the `(Concurrent)ChangeTokenCollection/Dictionary<T>` for 
+observing an object list or a (concurrent) key/value dictionary. They 
+implement
 
-    public void ChangeAction()
-    {
-        // Perform changes
-        ChangeToken.InvokeCallbacks();
-    }
+- `IObservable<T>`
+- `INotifyCollectionChanged`
+- `INotifyPropertyChanged`
 
-    // Implement the IChangeToken interface using our ChangeToken instance
+Observed are all
 
-    bool IChangeToken.HasChanged => ChangeToken.HasChanged;
+- `IChangeProperty`
+- `IObservable<T>`
+- `INotifyPropertyChanged`
 
-    bool IChangeToken.ActiveChangeCallbacks => ChangeToken.ActiveChangeCallbacks;
+item events. You can also use a type which doesn't implement any of these 
+interfaces - then only the collection itself (item adding/removing) is 
+observed.
 
-    IDisposable IChangeToken.RegisterChangeCallback(Action<object?> callback, object? state)
-        => ChangeToken.RegisterChangeCallback(callback, state);
-}
-```
+An instance is pre-configured for use with a `ChangeToken`. For other objects 
+(which implement `IChangeToken` and `INotifyPropertyChanged`) you can modify 
+the
+
+- `IgnoreUnnamedPropertyNotifications` (default is `true`)
+- `InvokeCallbacksOnPropertyChange` (default is `false`)
+
+settings.
+
+The `ObserveCollection` setting defines, if you'd also like to observe item 
+addings/removals (the collection itself). The default is `true`. If you set 
+the `ObserveItems` property to `false` during the collection object 
+initialization, only the item additions/removals will be observed. Of course 
+you can set both properties to `false` - in this case the collection won't 
+observe anything.
 
 ## Hierarchic configuration
 

@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Security;
+using System.Text.RegularExpressions;
 
 namespace wan24.Core
 {
@@ -53,12 +54,12 @@ namespace wan24.Core
         /// <param name="bufferSize">Buffer size in bytes (zero or one to disable)</param>
         /// <returns><see cref="FileStream"/> (don't forget to dispose!)</returns>
         public static FileStream CreateFileStream(
-            in string fileName, 
-            in FileMode mode = FileMode.CreateNew, 
-            in FileAccess access = FileAccess.ReadWrite, 
-            in FileShare share = FileShare.None, 
-            in FileOptions options = FileOptions.None, 
-            UnixFileMode? permissions = null, 
+            in string fileName,
+            in FileMode mode = FileMode.CreateNew,
+            in FileAccess access = FileAccess.ReadWrite,
+            in FileShare share = FileShare.None,
+            in FileOptions options = FileOptions.None,
+            UnixFileMode? permissions = null,
             in bool overwrite = false,
             in int bufferSize = 4096
             )
@@ -116,7 +117,7 @@ namespace wan24.Core
         /// Find folders in a folder
         /// </summary>
         /// <param name="path">Folder path</param>
-        /// <param name="rx">Regular expression</param>
+        /// <param name="rx">Regular expression for matching a folder name</param>
         /// <param name="searchPattern">Search pattern</param>
         /// <param name="recursive">Recursive?</param>
         /// <returns>Found folders</returns>
@@ -126,5 +127,183 @@ namespace wan24.Core
                 : from folder in Directory.EnumerateDirectories(path, searchPattern ?? "*", recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly)
                   where (rx?.IsMatch(folder) ?? true)
                   select folder;
+
+        /// <summary>
+        /// Find files in a folder backward to the root (or the first unreadable parent folder or I/O error)
+        /// </summary>
+        /// <param name="path">Folder path</param>
+        /// <param name="rx">Regular expression for matching a filename</param>
+        /// <param name="searchPattern">Search pattern</param>
+        /// <param name="stopPath">Parent path to stop at (won't go up more from that path)</param>
+        /// <param name="stopIfNotFound">Stop in the folder where no file was found (don't go up more)?</param>
+        /// <param name="extensionComparsion">File extension string comparsion</param>
+        /// <param name="extensions">File extensions</param>
+        /// <returns>Found files</returns>
+        public static IEnumerable<string> FindFilesBackward(
+            string path,
+            Regex? rx = null,
+            string? searchPattern = null,
+            string? stopPath = null,
+            bool stopIfNotFound = false,
+            StringComparison extensionComparsion = StringComparison.OrdinalIgnoreCase,
+            params string[] extensions
+            )
+        {
+            if (stopPath is not null) stopPath = Path.GetFullPath(stopPath);
+            string lastPath = string.Empty,
+                currentPath = Path.GetFullPath(path);
+            IEnumerable<string> files;
+            IEnumerator<string> filesEnumerator;
+            bool first;
+            while (!lastPath.Equals(currentPath))
+            {
+                // Find files in the current path
+                try
+                {
+                    files = FindFiles(currentPath, rx, searchPattern, recursive: false, extensionComparsion, extensions);
+                    filesEnumerator = files.GetEnumerator();
+                }
+                catch (SecurityException)
+                {
+                    break;
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    break;
+                }
+                // Yield the found files
+                first = true;
+                while (true)
+                {
+                    try
+                    {
+                        if (!filesEnumerator.MoveNext()) break;
+                        first = false;
+                    }
+                    catch (SecurityException)
+                    {
+                        filesEnumerator.Dispose();
+                        if (first) throw;
+                        yield break;
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        filesEnumerator.Dispose();
+                        if (first) throw;
+                        yield break;
+                    }
+                    catch (Exception)
+                    {
+                        filesEnumerator.Dispose();
+                        throw;
+                    }
+                    yield return filesEnumerator.Current;
+                }
+                filesEnumerator.Dispose();
+                if (first && stopIfNotFound) break;
+                // Move one folder up
+                if (stopPath is not null && stopPath.Equals(currentPath)) break;
+                lastPath = currentPath;
+                try
+                {
+                    currentPath = Path.GetFullPath(Path.Combine(lastPath, ".."));
+                }
+                catch (SecurityException)
+                {
+                    break;
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Find folders in a folder backward to the root (or the first unreadable parent folder or I/O error)
+        /// </summary>
+        /// <param name="path">Folder path</param>
+        /// <param name="rx">Regular expression for matching a foldername</param>
+        /// <param name="searchPattern">Search pattern</param>
+        /// <param name="stopPath">Parent path to stop at (won't go up more from that path)</param>
+        /// <param name="stopIfNotFound">Stop in the folder where no folder was found (don't go up more)?</param>
+        /// <returns>Found folders</returns>
+        public static IEnumerable<string> FindFoldersBackward(
+            string path,
+            Regex? rx = null,
+            string? searchPattern = null,
+            string? stopPath = null,
+            bool stopIfNotFound = false
+            )
+        {
+            if (stopPath is not null) stopPath = Path.GetFullPath(stopPath);
+            string lastPath = string.Empty,
+                currentPath = Path.GetFullPath(path);
+            IEnumerable<string> folders;
+            IEnumerator<string> foldersEnumerator;
+            bool first;
+            while (!lastPath.Equals(currentPath))
+            {
+                // Find folders in the current path
+                try
+                {
+                    folders = FindFolders(currentPath, rx, searchPattern, recursive: false);
+                    foldersEnumerator = folders.GetEnumerator();
+                }
+                catch (SecurityException)
+                {
+                    break;
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    break;
+                }
+                // Yield the found folders
+                first = true;
+                while (true)
+                {
+                    try
+                    {
+                        if (!foldersEnumerator.MoveNext()) break;
+                        first = false;
+                    }
+                    catch (SecurityException)
+                    {
+                        foldersEnumerator.Dispose();
+                        if (first) throw;
+                        yield break;
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        foldersEnumerator.Dispose();
+                        if (first) throw;
+                        yield break;
+                    }
+                    catch (Exception)
+                    {
+                        foldersEnumerator.Dispose();
+                        throw;
+                    }
+                    yield return foldersEnumerator.Current;
+                }
+                foldersEnumerator.Dispose();
+                if (first && stopIfNotFound) break;
+                // Move one folder up
+                if (stopPath is not null && stopPath.Equals(currentPath)) break;
+                lastPath = currentPath;
+                try
+                {
+                    currentPath = Path.GetFullPath(Path.Combine(lastPath, ".."));
+                }
+                catch (SecurityException)
+                {
+                    break;
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    break;
+                }
+            }
+        }
     }
 }

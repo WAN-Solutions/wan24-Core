@@ -28,6 +28,11 @@
         private bool DisposedFromDestructor = false;
 
         /// <summary>
+        /// Any tagged object
+        /// </summary>
+        public object? Tag { get; set; }
+
+        /// <summary>
         /// Dispose at destruction time
         /// </summary>
         public void DisposeFromDestructor()
@@ -48,6 +53,14 @@
                 Dispose();
             }
         }
+
+        /// <summary>
+        /// Ensure an undisposed state
+        /// </summary>
+        /// <param name="allowDisposing">Allow disposing?</param>
+        /// <param name="throwException">Throw an axception when disposing/disposed?</param>
+        /// <returns>if disposing/disposed</returns>
+        public bool EnsureNotDisposed(in bool allowDisposing = false, in bool throwException = true) => EnsureUndisposed(allowDisposing, throwException);
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)

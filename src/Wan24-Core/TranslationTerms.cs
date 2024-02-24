@@ -16,7 +16,7 @@ namespace wan24.Core
         /// <summary>
         /// Terms
         /// </summary>
-        public FrozenDictionary<string, string> Terms { get; } = terms.ToFrozenDictionary();
+        public FrozenDictionary<string, string> Terms { get; } = terms as FrozenDictionary<string, string> ?? terms.ToFrozenDictionary();
 
         /// <inheritdoc/>
         public virtual bool PluralSupport => false;
@@ -53,6 +53,6 @@ namespace wan24.Core
         public IEnumerator<KeyValuePair<string, string>> GetEnumerator() => Terms.GetEnumerator();
 
         /// <inheritdoc/>
-        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)Terms).GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }
