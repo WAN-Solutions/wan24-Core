@@ -7,7 +7,7 @@ namespace wan24.Core
     /// <summary>
     /// JSON helper
     /// </summary>
-    public static class JsonHelper
+    public static partial class JsonHelper
     {
         /// <summary>
         /// Non-intending options
@@ -152,12 +152,20 @@ namespace wan24.Core
             => StreamDecoderAsync(type, json, cancellationToken);
 
         /// <summary>
+        /// Determine if a string may be JSON
+        /// </summary>
+        /// <param name="json">JSON string</param>
+        /// <returns>If the string may be JSON (if <see langword="false"/>, it's not proper JSON for sure - if <see langword="true"/>, there is a possibility for false positives!)</returns>
+        public static bool MayBeJson(this string json) => !string.IsNullOrWhiteSpace(json) && RegularExpressions.RX_JSON.IsMatch(json);
+
+        /// <summary>
         /// Delegate for a JSON encoder
         /// </summary>
         /// <param name="obj">Object</param>
         /// <param name="prettify">Prettify?</param>
         /// <returns>JSON string</returns>
         public delegate string Encoder_Delegate(object? obj, bool prettify);
+
         /// <summary>
         /// Delegate for a JSON encoder
         /// </summary>
@@ -167,6 +175,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>JSON string or empty if <c>target</c> was given</returns>
         public delegate Task<string> EncoderAsync_Delegate(object? obj, Stream? target, bool prettify, CancellationToken cancellationToken);
+
         /// <summary>
         /// Delegate for a JSON decoder
         /// </summary>
@@ -174,6 +183,7 @@ namespace wan24.Core
         /// <param name="json">JSON string</param>
         /// <returns>Result</returns>
         public delegate object? Decoder_Delegate(Type type, string json);
+
         /// <summary>
         /// Delegate for a JSON decoder
         /// </summary>
@@ -182,6 +192,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result</returns>
         public delegate Task<object?> StringDecoderAsync_Delegate(Type type, string json, CancellationToken cancellationToken);
+
         /// <summary>
         /// Delegate for a JSON decoder
         /// </summary>

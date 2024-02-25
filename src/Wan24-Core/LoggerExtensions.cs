@@ -13,5 +13,24 @@ namespace wan24.Core
         /// <param name="logger">Logger</param>
         /// <returns>Log level</returns>
         public static LogLevel GetLogLevel(this ILogger logger) => (logger as LoggerBase)?.Level ?? Settings.LogLevel;
+
+        /// <summary>
+        /// Get the final logger
+        /// </summary>
+        /// <param name="logger">Logger</param>
+        /// <returns>Final logger</returns>
+        public static ILogger GetFinalLogger(this ILogger logger)
+        {
+            while (logger is LoggerBase baseLogger)
+                if (baseLogger.Next is not null)
+                {
+                    logger = baseLogger.Next;
+                }
+                else
+                {
+                    break;
+                }
+            return logger;
+        }
     }
 }

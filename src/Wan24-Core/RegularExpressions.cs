@@ -36,6 +36,10 @@ namespace wan24.Core
         /// GUID
         /// </summary>
         public const string GUID = @"^[0-9|a-f]{8}-([0-9|a-f]{4}-){3}[0-9|a-f]{12}$";
+        /// <summary>
+        /// Regular expression to match a possible JSON value
+        /// </summary>
+        public const string JSON = "^\\s*(null|true|false|\\d+(\\.\\d+)?|\\\"[^\\n]\\\"|\\[.*\\]|\\{.*\\})\\s*$";
 
         /// <summary>
         /// An object for thread synchronization
@@ -77,6 +81,10 @@ namespace wan24.Core
         /// GUID
         /// </summary>
         public static readonly Regex RX_GUID = RX_GUID_Generated();
+        /// <summary>
+        /// Regular expression to match a possible JSON value
+        /// </summary>
+        public static readonly Regex RX_JSON = RX_JSON_Generated();
 
         /// <summary>
         /// Named expression names
@@ -151,43 +159,57 @@ namespace wan24.Core
         /// <summary>
         /// MIME type (<c>$1</c> contains the part before the slash, <c>$2</c> the part after the slash)
         /// </summary>
+        /// <returns>Regular expression</returns>
         [GeneratedRegex(MIME_TYPE, RegexOptions.Compiled | RegexOptions.Singleline)]
         private static partial Regex RX_MIME_TYPE_Generated();
 
         /// <summary>
         /// New line (<c>$1</c> contains the new line control characters)
         /// </summary>
+        /// <returns>Regular expression</returns>
         [GeneratedRegex(NEW_LINE, RegexOptions.Compiled | RegexOptions.Singleline)]
         private static partial Regex RX_NEW_LINE_Generated();
 
         /// <summary>
         /// No new line
         /// </summary>
+        /// <returns>Regular expression</returns>
         [GeneratedRegex(NO_NEW_LINE, RegexOptions.Compiled | RegexOptions.Singleline)]
         private static partial Regex RX_NO_NEW_LINE_Generated();
 
         /// <summary>
         /// Locale using a dash or underscore (<c>$1</c> contains the first part, <c>$2</c> the second part)
         /// </summary>
+        /// <returns>Regular expression</returns>
         [GeneratedRegex(LOCALE, RegexOptions.Compiled | RegexOptions.Singleline)]
         private static partial Regex RX_LOCALE_Generated();
 
         /// <summary>
         /// Locale using a dash (<c>$1</c> contains the first part, <c>$2</c> the second part)
         /// </summary>
+        /// <returns>Regular expression</returns>
         [GeneratedRegex(LOCALE_WITH_DASH, RegexOptions.Compiled | RegexOptions.Singleline)]
         private static partial Regex RX_LOCALE_WITH_DASH_Generated();
 
         /// <summary>
         /// Locale using an underscore (<c>$1</c> contains the first part, <c>$2</c> the second part)
         /// </summary>
+        /// <returns>Regular expression</returns>
         [GeneratedRegex(LOCALE_WITH_UNDERSCORE, RegexOptions.Compiled | RegexOptions.Singleline)]
         private static partial Regex RX_LOCALE_WITH_UNDERSCORE_Generated();
 
         /// <summary>
         /// GUID
         /// </summary>
-        [GeneratedRegex(GUID, RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.Singleline, "de-DE")]
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex(GUID, RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.Singleline)]
         private static partial Regex RX_GUID_Generated();
+
+        /// <summary>
+        /// Regular expression to match a possible JSON value
+        /// </summary>
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex(JSON, RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled)]
+        private static partial Regex RX_JSON_Generated();
     }
 }

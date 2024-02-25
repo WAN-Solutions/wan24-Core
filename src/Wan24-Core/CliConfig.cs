@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using Microsoft.Extensions.Logging;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
 namespace wan24.Core
@@ -9,7 +11,81 @@ namespace wan24.Core
     public static class CliConfig
     {
         /// <summary>
-        /// Apply a configuration from CLI arguments
+        /// CLR type name of the logger to use (with or without namespace; may be appended to the configured logger)
+        /// </summary>
+        [CliConfig]
+        [StringLength(byte.MaxValue), Required]
+        public static string LoggerType
+        {
+            set
+            {
+                Type type = (value.Contains('.')
+                    ? TypeHelper.Instance.GetType(value)
+                    : (from ass in TypeHelper.Instance.Assemblies
+                       from t in ass.GetTypes()
+                       where t.CanConstruct() &&
+                        typeof(ILogger).IsAssignableFrom(t) &&
+                        t.Name.Equals(value, StringComparison.OrdinalIgnoreCase)
+                       select t).FirstOrDefault())
+                    ?? throw new ArgumentException("Logger type not found", $"{typeof(CliConfig)}.{nameof(LoggerType)}");
+                if (!typeof(ILogger).IsAssignableFrom(type)) throw new ArgumentException($"{type} isn't an {typeof(ILogger)}", $"{typeof(CliConfig)}.{nameof(LoggerType)}");
+                ILogger logger = Activator.CreateInstance(type) as ILogger ?? throw new ArgumentException($"Failed to instance logger {type}", $"{typeof(CliConfig)}.{nameof(LoggerType)}");
+                if(Logging.Logger?.GetFinalLogger() is LoggerBase parentLogger)
+                {
+                    parentLogger.Next = parentLogger;
+                }
+                else
+                {
+                    Logging.Logger?.TryDispose();
+                    Logging.Logger = logger;
+                }
+            }
+        }
+
+        /// <summary>
+        /// The path to the logfile to use (file logger may be appended to the configured logger)
+        /// </summary>
+        [CliConfig]
+        [StringLength(short.MaxValue), Required]
+        public static string LogFile
+        {
+            set
+            {
+                FileLogger logger = FileLogger.CreateAsync(value).Result;
+                if (Logging.Logger?.GetFinalLogger() is LoggerBase parentLogger)
+                {
+                    parentLogger.Next = logger;
+                }
+                else
+                {
+                    Logging.Logger?.TryDispose();
+                    Logging.Logger = logger;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Log level for the last <see cref="Logging.Logger"/> (must be a <see cref="LoggerBase"/>)
+        /// </summary>
+        [CliConfig]
+        public static LogLevel LogLevel
+        {
+            set
+            {
+                if (Logging.Logger is null) throw new InvalidOperationException("No logger configured");
+                if (Logging.Logger?.GetFinalLogger() is LoggerBase logger)
+                {
+                    logger.Level = value;
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Configured logger {Logging.Logger!.GetType()} can't be configured with another log level");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Apply a configuration from CLI arguments to public static properties with a <see cref="CliConfigAttribute"/> attribute
         /// </summary>
         /// <param name="ca">CLI arguments</param>
         public static void Apply(CliArguments? ca = null)
@@ -25,6 +101,9 @@ namespace wan24.Core
             PropertyInfo pi;
             Action<object?, object?> setter;
             Array arr;
+            object? value;
+            List<ValidationResult?> validationResults = [];
+            ValidationContext vc = new(new object());
             foreach (string key in ca.Arguments.Keys)
             {
                 if (key.IndexOf('.') < 0) continue;
@@ -35,24 +114,26 @@ namespace wan24.Core
                 if (type is null) continue;
                 prop = type.GetPropertyCached(propertyName, BindingFlags.Static | BindingFlags.Public);
                 if (prop is null) continue;
-                (setter, pi) = (prop.Setter ?? throw new InvalidProgramException($"{prop.Property.DeclaringType}.{prop.Property.Name} has no setter"), prop.Property);
+                (setter, pi) = (prop.Setter ?? throw new InvalidProgramException($"{type}.{prop.Property.Name} has no setter"), prop.Property);
                 if (pi.GetCustomAttributeCached<CliConfigAttribute>() is null)
                     throw new ArgumentException($"{type}.{pi.Name} is missing the {typeof(CliConfigAttribute)}", key);
                 if (pi.PropertyType == typeof(bool))
                 {
                     if (!ca.IsBoolean(key)) throw new ArgumentException("Value expected", key);
-                    setter(null, true);
-                    continue;
+                    value = true;
                 }
-                if (ca.IsBoolean(key)) throw new ArgumentException("Flag expected", key);
-                if (pi.PropertyType == typeof(string))
+                else if (ca.IsBoolean(key))
+                {
+                    throw new ArgumentException("Flag expected", key);
+                }
+                else if (pi.PropertyType == typeof(string))
                 {
                     if (ca.ValueCount(key) != 1) throw new ArgumentException("Single value expected", key);
-                    setter(null, ca.Single(key));
+                    value = ca.Single(key);
                 }
                 else if (pi.PropertyType == typeof(string[]))
                 {
-                    setter(null, ca.All(key).ToArray());
+                    value = ca.All(key).ToArray();
                 }
                 else if (pi.PropertyType.IsArray)
                 {
@@ -60,13 +141,19 @@ namespace wan24.Core
                     et = pi.PropertyType.GetElementType()!;
                     arr = Array.CreateInstance(et, values.Count);
                     for (int i = 0, len = values.Count; i < len; arr.SetValue(JsonHelper.DecodeObject(et, values[i]), i), i++) ;
-                    setter(null, arr);
+                    value = arr;
                 }
                 else
                 {
                     if (ca.ValueCount(key) != 1) throw new ArgumentException("Single value expected", key);
-                    setter(null, JsonHelper.DecodeObject(pi.PropertyType, ca.Single(key)));
+                    value = JsonHelper.DecodeObject(pi.PropertyType, ca.Single(key));
                 }
+                vc.MemberName = $"{type}.{pi.Name}";
+                validationResults.Clear();
+                validationResults.AddRange(pi.GetCustomAttributesCached<ValidationAttribute>().Select(a => a.GetValidationResult(value, vc)));
+                if (validationResults.Any(r => r is not null))
+                    throw new ArgumentException(validationResults.Where(r => r is not null).Select(r => r!.ErrorMessage ?? "Argument validation failed").First(), vc.MemberName);
+                setter(null, value);
             }
         }
     }

@@ -6,7 +6,12 @@ namespace wan24.Core
     /// <summary>
     /// Base class for a logger
     /// </summary>
-    public abstract partial class LoggerBase : ILogger
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="level">Level</param>
+    /// <param name="next">Next logger which should receive the message</param>
+    public abstract partial class LoggerBase(in LogLevel? level = null, in ILogger? next = null) : ILogger
     {
         /// <summary>
         /// Regular expression to match a new line
@@ -14,25 +19,14 @@ namespace wan24.Core
         internal static readonly Regex RX_NL = RX_NL_Generated();
 
         /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="level">Level</param>
-        /// <param name="next">Next logger which should receive the message</param>
-        protected LoggerBase(in LogLevel? level = null, in ILogger? next = null)
-        {
-            Level = level ?? Settings.LogLevel;
-            Next = next;
-        }
-
-        /// <summary>
         /// Log level
         /// </summary>
-        public LogLevel Level { get; set; }
+        public LogLevel Level { get; set; } = level ?? Settings.LogLevel;
 
         /// <summary>
         /// Next logger which should receive the message
         /// </summary>
-        public ILogger? Next { get; set; }
+        public ILogger? Next { get; set; } = next;
 
         /// <inheritdoc/>
         public IDisposable? BeginScope<TState>(TState state) where TState : notnull => null;
