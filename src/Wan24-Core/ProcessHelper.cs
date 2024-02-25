@@ -18,6 +18,7 @@ namespace wan24.Core
             using Process proc = new();
             proc.StartInfo.UseShellExecute = true;
             proc.StartInfo.CreateNoWindow = true;
+            proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             proc.StartInfo.FileName = cmd;
             proc.StartInfo.ArgumentList.AddRange(args);
             return proc.Start() ? proc.Id : -1;
@@ -43,6 +44,7 @@ namespace wan24.Core
             using Process proc = new();
             proc.StartInfo.UseShellExecute = true;
             proc.StartInfo.CreateNoWindow = true;
+            proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             proc.StartInfo.FileName = cmd;
             proc.StartInfo.ArgumentList.AddRange(args);
             proc.StartInfo.RedirectStandardOutput = returnStdOut;

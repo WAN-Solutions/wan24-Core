@@ -21,13 +21,15 @@ namespace wan24.Core
         /// </summary>
         /// <param name="stdOut">STDOUT (used for reading)</param>
         /// <param name="stdin">STDIN (used for writing)</param>
+        /// <param name="process">Process</param>
         /// <param name="leaveOpen">Leave the streams open when disposing?</param>
-        public ProcessStream(in StreamReader? stdOut, in StreamWriter? stdin = null, in bool leaveOpen = false)
+        public ProcessStream(in StreamReader? stdOut, in StreamWriter? stdin = null, in Process? process = null, in bool leaveOpen = false)
             : base(new BiDirectionalStream(stdOut?.BaseStream ?? Null, stdin?.BaseStream ?? Null, leaveOpen))
         {
             if (stdin is null && stdOut is null) throw new ArgumentNullException(nameof(stdOut));
             _CanRead = stdOut is not null;
             _CanWrite = stdin is not null;
+            Process = process;
             StdIn = stdin;
             StdOut = stdOut;
             UseOriginalBeginRead = true;
@@ -39,7 +41,12 @@ namespace wan24.Core
         /// <summary>
         /// Process (will be disposed)
         /// </summary>
-        public Process? Process { get; protected set; }
+        public Process? Process { get; set; }
+
+        /// <summary>
+        /// Process exit code
+        /// </summary>
+        public int? ExitCode { get; protected set; }
 
         /// <summary>
         /// Kill the process when disposing?
@@ -57,10 +64,10 @@ namespace wan24.Core
         public StreamReader? StdOut { get; }
 
         /// <inheritdoc/>
-        public override bool CanRead => _CanRead;
+        public override bool CanRead => _CanRead && (!Process?.HasExited ?? true);
 
         /// <inheritdoc/>
-        public override bool CanWrite => _CanWrite;
+        public override bool CanWrite => _CanWrite && (!Process?.HasExited ?? true);
 
         /// <inheritdoc/>
         public override bool LeaveOpen
@@ -76,6 +83,7 @@ namespace wan24.Core
             if (Process is not null)
             {
                 if (KillOnDispose && !Process.HasExited) Process.Kill(entireProcessTree: true);
+                ExitCode = Process.HasExited ? Process.ExitCode : null;
                 Process.Dispose();
             }
             StdIn?.Dispose();
@@ -89,6 +97,7 @@ namespace wan24.Core
             if (Process is not null)
             {
                 if (KillOnDispose && !Process.HasExited) Process.Kill(entireProcessTree: true);
+                ExitCode = Process.HasExited ? Process.ExitCode : null;
                 Process.Dispose();
             }
             if (StdIn is not null) await StdIn.DisposeAsync().DynamicContext();
@@ -119,6 +128,7 @@ namespace wan24.Core
                 proc.Start();
                 return new(useStdOut ? proc.StandardOutput : null, useStdin ? proc.StandardInput : null)
                 {
+                    Process = proc,
                     KillOnDispose = killOnDispose
                 };
             }
