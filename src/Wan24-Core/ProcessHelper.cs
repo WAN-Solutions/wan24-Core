@@ -42,7 +42,7 @@ namespace wan24.Core
             )
         {
             using Process proc = new();
-            proc.StartInfo.UseShellExecute = true;
+            proc.StartInfo.UseShellExecute = !returnStdOut;
             proc.StartInfo.CreateNoWindow = true;
             proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             proc.StartInfo.FileName = cmd;
@@ -53,7 +53,7 @@ namespace wan24.Core
             {
                 await proc.WaitForExitAsync(cancellationToken).DynamicContext();
                 cancellationToken.ThrowIfCancellationRequested();
-                if (proc.ExitCode != 0) throw new IOException($"Process did exit with an exit code != 0 (exit code is #{proc.ExitCode})");
+                if (proc.ExitCode != 0) throw new IOException($"Process did exit with an exit code #{proc.ExitCode}");
                 if (!returnStdOut) return [];
                 using MemoryPoolStream ms = new();
                 using StreamReader stdOut = proc.StandardOutput;
