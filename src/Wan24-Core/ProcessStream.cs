@@ -119,8 +119,9 @@ namespace wan24.Core
             Process proc = new();
             try
             {
-                proc.StartInfo.UseShellExecute = true;
+                proc.StartInfo.UseShellExecute = !useStdin && !useStdOut;
                 proc.StartInfo.CreateNoWindow = true;
+                proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 proc.StartInfo.FileName = cmd;
                 proc.StartInfo.ArgumentList.AddRange(args);
                 proc.StartInfo.RedirectStandardInput = useStdin;
