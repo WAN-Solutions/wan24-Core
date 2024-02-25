@@ -1,13 +1,14 @@
 ﻿using System.Runtime;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace wan24.Core
 {
     /// <summary>
     /// JSON helper
     /// </summary>
-    public static class JsonHelper
+    public static partial class JsonHelper
     {
         /// <summary>
         /// Non-intending options
@@ -20,6 +21,22 @@ namespace wan24.Core
         {
             WriteIndented = true
         };
+        /// <summary>
+        /// Regular expression to match a possible JSON array
+        /// </summary>
+        private static readonly Regex RxJsonArray = RxJsonArray_Generator();
+        /// <summary>
+        /// Regular expression to match a possible JSON object
+        /// </summary>
+        private static readonly Regex RxJsonObject = RxJsonObject_Generator();
+        /// <summary>
+        /// Regular expression to match a possible JSON NULL, numeric or boolean value
+        /// </summary>
+        private static readonly Regex RxJsonNullNumericBoolean = RxJsonNullNumericBoolean_Generator();
+        /// <summary>
+        /// Regular expression to match a possible JSON string
+        /// </summary>
+        private static readonly Regex RxJsonString = RxJsonString_Generator();
 
         /// <summary>
         /// JSON encoder
@@ -152,6 +169,14 @@ namespace wan24.Core
             => StreamDecoderAsync(type, json, cancellationToken);
 
         /// <summary>
+        /// Determine if a string may be JSON
+        /// </summary>
+        /// <param name="json">JSON string</param>
+        /// <returns>If the string may be JSON (if <see langword="false"/>, it's not proper JSON for sure - if <see langword="true"/>, there is a possibility for false positives)</returns>
+        public static bool MayBeJson(this ReadOnlySpan<char> json)
+            => RxJsonNullNumericBoolean.IsMatch(json) || RxJsonObject.IsMatch(json) || RxJsonString.IsMatch(json) || RxJsonArray.IsMatch(json);
+
+        /// <summary>
         /// Delegate for a JSON encoder
         /// </summary>
         /// <param name="obj">Object</param>
@@ -190,5 +215,33 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result</returns>
         public delegate Task<object?> StreamDecoderAsync_Delegate(Type type, Stream source, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Regular expression to match a possible JSON value
+        /// </summary>
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex(@"^\s*\[.*\]\s*$", RegexOptions.Singleline | RegexOptions.Compiled)]
+        private static partial Regex RxJsonArray_Generator();
+
+        /// <summary>
+        /// Regular expression to match a possible JSON value
+        /// </summary>
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex(@"^\s*\{.*\}\s*$", RegexOptions.Singleline | RegexOptions.Compiled)]
+        private static partial Regex RxJsonObject_Generator();
+
+        /// <summary>
+        /// Regular expression to match a possible JSON value
+        /// </summary>
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex(@"^\s*(null|\d+(\.\d+)?|true|false)\s*$", RegexOptions.IgnoreCase | RegexOptions.Compiled)]
+        private static partial Regex RxJsonNullNumericBoolean_Generator();
+
+        /// <summary>
+        /// Regular expression to match a possible JSON string
+        /// </summary>
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex("^\\s*\\\"[^\\\n]\\\"\\s*$", RegexOptions.Compiled)]
+        private static partial Regex RxJsonString_Generator();
     }
 }

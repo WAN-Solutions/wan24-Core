@@ -187,7 +187,7 @@ namespace wan24.Core
         /// <summary>
         /// GUID
         /// </summary>
-        [GeneratedRegex(GUID, RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.Singleline, "de-DE")]
+        [GeneratedRegex(GUID, RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.Singleline)]
         private static partial Regex RX_GUID_Generated();
     }
 }
