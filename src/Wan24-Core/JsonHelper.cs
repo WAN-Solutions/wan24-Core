@@ -1,7 +1,9 @@
 ﻿using System.Runtime;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 
 namespace wan24.Core
 {
@@ -10,6 +12,19 @@ namespace wan24.Core
     /// </summary>
     public static partial class JsonHelper
     {
+        /// <summary>
+        /// JSON <see langword="null"/> value
+        /// </summary>
+        public const string NULL = "null";
+        /// <summary>
+        /// JSON <see langword="true"/> value
+        /// </summary>
+        public const string TRUE = "true";
+        /// <summary>
+        /// JSON <see langword="false"/> value
+        /// </summary>
+        public const string FALSE = "false";
+
         /// <summary>
         /// Non-intending options
         /// </summary>
@@ -24,7 +39,27 @@ namespace wan24.Core
         /// <summary>
         /// Decoder options
         /// </summary>
-        private static readonly JsonSerializerOptions DecoderOptions = new();
+        private static readonly JsonSerializerOptions DecoderOptions;
+        /// <summary>
+        /// Regular expression to match a JSON integer value
+        /// </summary>
+        private static readonly Regex RxJsonInt = RxJsonInt_Generator();
+        /// <summary>
+        /// Regular expression to match a JSON float value
+        /// </summary>
+        private static readonly Regex RxJsonFloat = RxJsonFloat_Generator();
+        /// <summary>
+        /// Regular expression to match a JSON string value
+        /// </summary>
+        private static readonly Regex RxJsonString = RxJsonString_Generator();
+        /// <summary>
+        /// Regular expression to match a JSON object value
+        /// </summary>
+        private static readonly Regex RxJsonObject = RxJsonObject_Generator();
+        /// <summary>
+        /// Regular expression to match a JSON array value
+        /// </summary>
+        private static readonly Regex RxJsonArray = RxJsonArray_Generator();
 
         /// <summary>
         /// Constructor
@@ -173,6 +208,62 @@ namespace wan24.Core
         public static bool MayBeJson(this string json) => !string.IsNullOrWhiteSpace(json) && RegularExpressions.RX_JSON.IsMatch(json);
 
         /// <summary>
+        /// Determine if a string is a JSON <see langword="null"/> value
+        /// </summary>
+        /// <param name="json">JSON string</param>
+        /// <returns>Is <see langword="null"/>?</returns>
+        public static bool IsJsonNull(this string json) => json.Equals(NULL, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Determine if a string is a JSON <see cref="bool"/> value
+        /// </summary>
+        /// <param name="json">JSON string</param>
+        /// <returns>Is <see cref="bool"/>?</returns>
+        public static bool IsJsonBoolean(this string json) => json.Trim().ToLower().In([TRUE, FALSE]);
+
+        /// <summary>
+        /// Determine if a string is a JSON <see cref="int"/> value
+        /// </summary>
+        /// <param name="json">JSON string</param>
+        /// <returns>Is <see cref="int"/>?</returns>
+        public static bool IsJsonInt(this string json) => RxJsonInt.IsMatch(json);
+
+        /// <summary>
+        /// Determine if a string is a JSON <see cref="float"/> value
+        /// </summary>
+        /// <param name="json">JSON string</param>
+        /// <returns>Is <see cref="float"/>?</returns>
+        public static bool IsJsonFloat(this string json) => RxJsonFloat.IsMatch(json);
+
+        /// <summary>
+        /// Determine if a string is a JSON numeric (<see cref="int"/>/<see cref="float"/>) value
+        /// </summary>
+        /// <param name="json">JSON string</param>
+        /// <returns>Is numeric?</returns>
+        public static bool IsJsonNumeric(this string json) => IsJsonInt(json) || IsJsonFloat(json);
+
+        /// <summary>
+        /// Determine if a string is a JSON <see cref="float"/> value
+        /// </summary>
+        /// <param name="json">JSON string</param>
+        /// <returns>Is an <see cref="float"/> (may return false positives)?</returns>
+        public static bool IsJsonString(this string json) => RxJsonString.IsMatch(json);
+
+        /// <summary>
+        /// Determine if a string is a JSON object value
+        /// </summary>
+        /// <param name="json">JSON string</param>
+        /// <returns>Is an object (may return false positives)?</returns>
+        public static bool IsJsonObject(this string json) => RxJsonObject.IsMatch(json);
+
+        /// <summary>
+        /// Determine if a string is a JSON array value
+        /// </summary>
+        /// <param name="json">JSON string</param>
+        /// <returns>Is an array (may return false positives)?</returns>
+        public static bool IsJsonArray(this string json) => RxJsonArray.IsMatch(json);
+
+        /// <summary>
         /// Delegate for a JSON encoder
         /// </summary>
         /// <param name="obj">Object</param>
@@ -215,5 +306,40 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result</returns>
         public delegate Task<object?> StreamDecoderAsync_Delegate(Type type, Stream source, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Regular expression to match a JSON integer value
+        /// </summary>
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex(@"^\s*\d+\s*$", RegexOptions.Singleline | RegexOptions.Compiled)]
+        private static partial Regex RxJsonInt_Generator();
+
+        /// <summary>
+        /// Regular expression to match a JSON float value
+        /// </summary>
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex(@"^\s*\d+(\.\d+)?\s*$", RegexOptions.Compiled | RegexOptions.Singleline)]
+        private static partial Regex RxJsonFloat_Generator();
+
+        /// <summary>
+        /// Regular expression to match a JSON string value
+        /// </summary>
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex("^\\s*\\\"[^\\n]*\\\"\\s*$", RegexOptions.Compiled | RegexOptions.Singleline)]
+        private static partial Regex RxJsonString_Generator();
+
+        /// <summary>
+        /// Regular expression to match a JSON object value
+        /// </summary>
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex(@"^\s*\{.*\}\s*$", RegexOptions.Compiled | RegexOptions.Singleline)]
+        private static partial Regex RxJsonObject_Generator();
+
+        /// <summary>
+        /// Regular expression to match a JSON array value
+        /// </summary>
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex(@"^\s*\[.*\]\s*$", RegexOptions.Compiled | RegexOptions.Singleline)]
+        private static partial Regex RxJsonArray_Generator();
     }
 }
