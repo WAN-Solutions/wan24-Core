@@ -48372,15 +48372,15 @@ references:
   commentId: T:wan24.Core.ProcessStream
   fullName: wan24.Core.ProcessStream
   nameWithType: ProcessStream
-- uid: wan24.Core.ProcessStream.#ctor(System.IO.StreamReader@,System.IO.StreamWriter@,System.Diagnostics.Process@,System.Boolean@)
-  name: ProcessStream(in StreamReader?, in StreamWriter?, in Process?, in bool)
-  href: api/wan24.Core.ProcessStream.html#wan24_Core_ProcessStream__ctor_System_IO_StreamReader__System_IO_StreamWriter__System_Diagnostics_Process__System_Boolean__
-  commentId: M:wan24.Core.ProcessStream.#ctor(System.IO.StreamReader@,System.IO.StreamWriter@,System.Diagnostics.Process@,System.Boolean@)
-  name.vb: New(StreamReader, StreamWriter, Process, Boolean)
-  fullName: wan24.Core.ProcessStream.ProcessStream(in System.IO.StreamReader?, in System.IO.StreamWriter?, in System.Diagnostics.Process?, in bool)
-  fullName.vb: wan24.Core.ProcessStream.New(System.IO.StreamReader, System.IO.StreamWriter, System.Diagnostics.Process, Boolean)
-  nameWithType: ProcessStream.ProcessStream(in StreamReader?, in StreamWriter?, in Process?, in bool)
-  nameWithType.vb: ProcessStream.New(StreamReader, StreamWriter, Process, Boolean)
+- uid: wan24.Core.ProcessStream.#ctor(System.IO.StreamReader@,System.IO.StreamWriter@,System.IO.StreamReader@,System.Diagnostics.Process@,System.Boolean@)
+  name: ProcessStream(in StreamReader?, in StreamWriter?, in StreamReader?, in Process?, in bool)
+  href: api/wan24.Core.ProcessStream.html#wan24_Core_ProcessStream__ctor_System_IO_StreamReader__System_IO_StreamWriter__System_IO_StreamReader__System_Diagnostics_Process__System_Boolean__
+  commentId: M:wan24.Core.ProcessStream.#ctor(System.IO.StreamReader@,System.IO.StreamWriter@,System.IO.StreamReader@,System.Diagnostics.Process@,System.Boolean@)
+  name.vb: New(StreamReader, StreamWriter, StreamReader, Process, Boolean)
+  fullName: wan24.Core.ProcessStream.ProcessStream(in System.IO.StreamReader?, in System.IO.StreamWriter?, in System.IO.StreamReader?, in System.Diagnostics.Process?, in bool)
+  fullName.vb: wan24.Core.ProcessStream.New(System.IO.StreamReader, System.IO.StreamWriter, System.IO.StreamReader, System.Diagnostics.Process, Boolean)
+  nameWithType: ProcessStream.ProcessStream(in StreamReader?, in StreamWriter?, in StreamReader?, in Process?, in bool)
+  nameWithType.vb: ProcessStream.New(StreamReader, StreamWriter, StreamReader, Process, Boolean)
 - uid: wan24.Core.ProcessStream.#ctor*
   name: ProcessStream
   href: api/wan24.Core.ProcessStream.html#wan24_Core_ProcessStream__ctor_
@@ -48417,15 +48417,15 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ProcessStream.CanWrite
   nameWithType: ProcessStream.CanWrite
-- uid: wan24.Core.ProcessStream.Create(System.String@,System.Boolean@,System.Boolean@,System.Boolean@,System.String[])
-  name: Create(in string, in bool, in bool, in bool, params string[])
-  href: api/wan24.Core.ProcessStream.html#wan24_Core_ProcessStream_Create_System_String__System_Boolean__System_Boolean__System_Boolean__System_String___
-  commentId: M:wan24.Core.ProcessStream.Create(System.String@,System.Boolean@,System.Boolean@,System.Boolean@,System.String[])
-  name.vb: Create(String, Boolean, Boolean, Boolean, ParamArray String())
-  fullName: wan24.Core.ProcessStream.Create(in string, in bool, in bool, in bool, params string[])
-  fullName.vb: wan24.Core.ProcessStream.Create(String, Boolean, Boolean, Boolean, ParamArray String())
-  nameWithType: ProcessStream.Create(in string, in bool, in bool, in bool, params string[])
-  nameWithType.vb: ProcessStream.Create(String, Boolean, Boolean, Boolean, ParamArray String())
+- uid: wan24.Core.ProcessStream.Create(System.String@,System.Boolean@,System.Boolean@,System.Boolean@,System.Boolean@,System.String[])
+  name: Create(in string, in bool, in bool, in bool, in bool, params string[])
+  href: api/wan24.Core.ProcessStream.html#wan24_Core_ProcessStream_Create_System_String__System_Boolean__System_Boolean__System_Boolean__System_Boolean__System_String___
+  commentId: M:wan24.Core.ProcessStream.Create(System.String@,System.Boolean@,System.Boolean@,System.Boolean@,System.Boolean@,System.String[])
+  name.vb: Create(String, Boolean, Boolean, Boolean, Boolean, ParamArray String())
+  fullName: wan24.Core.ProcessStream.Create(in string, in bool, in bool, in bool, in bool, params string[])
+  fullName.vb: wan24.Core.ProcessStream.Create(String, Boolean, Boolean, Boolean, Boolean, ParamArray String())
+  nameWithType: ProcessStream.Create(in string, in bool, in bool, in bool, in bool, params string[])
+  nameWithType.vb: ProcessStream.Create(String, Boolean, Boolean, Boolean, Boolean, ParamArray String())
 - uid: wan24.Core.ProcessStream.Create*
   name: Create
   href: api/wan24.Core.ProcessStream.html#wan24_Core_ProcessStream_Create_
@@ -48514,6 +48514,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ProcessStream.Process
   nameWithType: ProcessStream.Process
+- uid: wan24.Core.ProcessStream.StdErr
+  name: StdErr
+  href: api/wan24.Core.ProcessStream.html#wan24_Core_ProcessStream_StdErr
+  commentId: P:wan24.Core.ProcessStream.StdErr
+  fullName: wan24.Core.ProcessStream.StdErr
+  nameWithType: ProcessStream.StdErr
+- uid: wan24.Core.ProcessStream.StdErr*
+  name: StdErr
+  href: api/wan24.Core.ProcessStream.html#wan24_Core_ProcessStream_StdErr_
+  commentId: Overload:wan24.Core.ProcessStream.StdErr
+  isSpec: "True"
+  fullName: wan24.Core.ProcessStream.StdErr
+  nameWithType: ProcessStream.StdErr
 - uid: wan24.Core.ProcessStream.StdIn
   name: StdIn
   href: api/wan24.Core.ProcessStream.html#wan24_Core_ProcessStream_StdIn
