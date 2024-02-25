@@ -1,6 +1,7 @@
 ﻿using System.Runtime;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace wan24.Core
 {
@@ -20,6 +21,19 @@ namespace wan24.Core
         {
             WriteIndented = true
         };
+        /// <summary>
+        /// Decoder options
+        /// </summary>
+        private static readonly JsonSerializerOptions DecoderOptions = new();
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        static JsonHelper()
+        {
+            DecoderOptions = new();
+            DecoderOptions.Converters.Add(new JsonStringEnumConverter());
+        }
 
         /// <summary>
         /// JSON encoder
@@ -49,7 +63,7 @@ namespace wan24.Core
         /// <summary>
         /// JSON decoder
         /// </summary>
-        public static Decoder_Delegate Decoder { get; set; } = (type, json) => JsonSerializer.Deserialize(json, type);
+        public static Decoder_Delegate Decoder { get; set; } = (type, json) => JsonSerializer.Deserialize(json, type, DecoderOptions);
 
         /// <summary>
         /// JSON decoder
@@ -59,14 +73,14 @@ namespace wan24.Core
             {
                 using RentedArrayStructSimple<byte> buffer = new(Encoding.UTF8.GetByteCount(json), clean: false);
                 using MemoryStream ms = new(buffer.Array);
-                return await JsonSerializer.DeserializeAsync(ms, type, cancellationToken: ct).DynamicContext();
+                return await JsonSerializer.DeserializeAsync(ms, type, DecoderOptions, ct).DynamicContext();
             };
 
         /// <summary>
         /// JSON decoder
         /// </summary>
         public static StreamDecoderAsync_Delegate StreamDecoderAsync { get; set; }
-            = async (type, json, ct) => await JsonSerializer.DeserializeAsync(json, type, cancellationToken: ct).DynamicContext();
+            = async (type, json, ct) => await JsonSerializer.DeserializeAsync(json, type, DecoderOptions, ct).DynamicContext();
 
         /// <summary>
         /// Encode

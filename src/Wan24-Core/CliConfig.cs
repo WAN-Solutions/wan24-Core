@@ -27,9 +27,9 @@ namespace wan24.Core
                         typeof(ILogger).IsAssignableFrom(t) &&
                         t.Name.Equals(value, StringComparison.OrdinalIgnoreCase)
                        select t).FirstOrDefault())
-                    ?? throw new ArgumentException("Logger type not found", $"{typeof(CliConfig)}.{nameof(LoggerType)}");
+                    ?? throw new ArgumentException($"Logger type not found: {value}", $"{typeof(CliConfig)}.{nameof(LoggerType)}");
                 if (!typeof(ILogger).IsAssignableFrom(type)) throw new ArgumentException($"{type} isn't an {typeof(ILogger)}", $"{typeof(CliConfig)}.{nameof(LoggerType)}");
-                ILogger logger = Activator.CreateInstance(type) as ILogger ?? throw new ArgumentException($"Failed to instance logger {type}", $"{typeof(CliConfig)}.{nameof(LoggerType)}");
+                ILogger logger = type.ConstructAuto() as ILogger ?? throw new ArgumentException($"Failed to instance logger {type}", $"{typeof(CliConfig)}.{nameof(LoggerType)}");
                 if(Logging.Logger?.GetFinalLogger() is LoggerBase parentLogger)
                 {
                     parentLogger.Next = parentLogger;
@@ -106,7 +106,7 @@ namespace wan24.Core
             ValidationContext vc = new(new object());
             foreach (string key in ca.Arguments.Keys)
             {
-                if (key.IndexOf('.') < 0) continue;
+                if (!key.Contains('.')) continue;
                 temp = key.Split('.');
                 propertyName = temp[^1];
                 typeName = string.Join('.', temp[0..^1]);
