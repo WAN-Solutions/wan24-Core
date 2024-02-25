@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Text;
 
 namespace wan24.Core
 {
@@ -21,9 +22,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="stdOut">STDOUT (used for reading)</param>
         /// <param name="stdin">STDIN (used for writing)</param>
+        /// <param name="stdErr">STDERR</param>
         /// <param name="process">Process</param>
         /// <param name="leaveOpen">Leave the streams open when disposing?</param>
-        public ProcessStream(in StreamReader? stdOut, in StreamWriter? stdin = null, in Process? process = null, in bool leaveOpen = false)
+        public ProcessStream(in StreamReader? stdOut, in StreamWriter? stdin = null, in StreamReader? stdErr = null, in Process? process = null, in bool leaveOpen = false)
             : base(new BiDirectionalStream(stdOut?.BaseStream ?? Null, stdin?.BaseStream ?? Null, leaveOpen))
         {
             if (stdin is null && stdOut is null) throw new ArgumentNullException(nameof(stdOut));
@@ -32,6 +34,7 @@ namespace wan24.Core
             Process = process;
             StdIn = stdin;
             StdOut = stdOut;
+            StdErr = stdErr;
             UseOriginalBeginRead = true;
             UseOriginalBeginWrite = true;
             UseOriginalByteIO = true;
@@ -63,6 +66,11 @@ namespace wan24.Core
         /// </summary>
         public StreamReader? StdOut { get; }
 
+        /// <summary>
+        /// STDERR
+        /// </summary>
+        public StreamReader? StdErr { get; }
+
         /// <inheritdoc/>
         public override bool CanRead => _CanRead && (!Process?.HasExited ?? true);
 
@@ -88,6 +96,7 @@ namespace wan24.Core
             }
             StdIn?.Dispose();
             StdOut?.Dispose();
+            StdErr?.Dispose();
         }
 
         /// <inheritdoc/>
@@ -102,6 +111,7 @@ namespace wan24.Core
             }
             if (StdIn is not null) await StdIn.DisposeAsync().DynamicContext();
             StdOut?.Dispose();
+            StdErr?.Dispose();
         }
 
         /// <summary>
@@ -109,25 +119,30 @@ namespace wan24.Core
         /// </summary>
         /// <param name="cmd">Command</param>
         /// <param name="useStdOut">Use STDOUT for reading?</param>
-        /// <param name="useStdin">Use STDIN for writing?</param>
+        /// <param name="useStdIn">Use STDIN for writing?</param>
+        /// <param name="useStdErr">Use STDERR?</param>
         /// <param name="killOnDispose">Kill the process when disposing?</param>
         /// <param name="args">Arguments</param>
         /// <returns>Process stream</returns>
-        public static ProcessStream Create(in string cmd, in bool useStdOut = true, in bool useStdin = false, in bool killOnDispose = true, params string[] args)
+        public static ProcessStream Create(in string cmd, in bool useStdOut = true, in bool useStdIn = false, in bool useStdErr = true, in bool killOnDispose = true, params string[] args)
         {
-            if (!useStdin && !useStdOut) throw new ArgumentException("STDIN/OUT must be used for streaming anything", nameof(useStdin));
+            if (!useStdIn && !useStdOut) throw new ArgumentException("STDIN/OUT must be used for streaming anything", nameof(useStdIn));
             Process proc = new();
             try
             {
-                proc.StartInfo.UseShellExecute = !useStdin && !useStdOut;
+                proc.StartInfo.UseShellExecute = !useStdIn && !useStdOut && !useStdErr;
                 proc.StartInfo.CreateNoWindow = true;
                 proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 proc.StartInfo.FileName = cmd;
                 proc.StartInfo.ArgumentList.AddRange(args);
-                proc.StartInfo.RedirectStandardInput = useStdin;
+                proc.StartInfo.RedirectStandardInput = useStdIn;
                 proc.StartInfo.RedirectStandardOutput = useStdOut;
+                proc.StartInfo.RedirectStandardError = useStdErr;
+                if (useStdIn) proc.StartInfo.StandardInputEncoding = Encoding.UTF8;
+                if (useStdOut) proc.StartInfo.StandardOutputEncoding = Encoding.UTF8;
+                if (useStdErr) proc.StartInfo.StandardErrorEncoding = Encoding.UTF8;
                 proc.Start();
-                return new(useStdOut ? proc.StandardOutput : null, useStdin ? proc.StandardInput : null)
+                return new(useStdOut ? proc.StandardOutput : null, useStdIn ? proc.StandardInput : null, useStdErr ? proc.StandardError : null)
                 {
                     Process = proc,
                     KillOnDispose = killOnDispose

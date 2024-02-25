@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Text;
+using static wan24.Core.Logger;
 
 namespace wan24.Core
 {
@@ -48,12 +50,19 @@ namespace wan24.Core
             proc.StartInfo.FileName = cmd;
             proc.StartInfo.ArgumentList.AddRange(args);
             proc.StartInfo.RedirectStandardOutput = returnStdOut;
+            proc.StartInfo.RedirectStandardError = returnStdOut;
+            if (returnStdOut) proc.StartInfo.StandardErrorEncoding = Encoding.UTF8;
             proc.Start();
             try
             {
                 await proc.WaitForExitAsync(cancellationToken).DynamicContext();
                 cancellationToken.ThrowIfCancellationRequested();
-                if (proc.ExitCode != 0) throw new IOException($"Process did exit with an exit code #{proc.ExitCode}");
+                if (proc.ExitCode != 0)
+                {
+                    if (returnStdOut && Logging.Trace)
+                        WriteTrace($"STDERR of \"{cmd}{(args.Length == 0 ? string.Empty : $" {(string.IsNullOrWhiteSpace(proc.StartInfo.Arguments) ? string.Join(' ', proc.StartInfo.ArgumentList) : proc.StartInfo.Arguments)}")}\" exit code #{proc.ExitCode}: {proc.StandardError.ReadToEnd()}");
+                    throw new IOException($"Process did exit with an exit code #{proc.ExitCode}");
+                }
                 if (!returnStdOut) return [];
                 using MemoryPoolStream ms = new();
                 using StreamReader stdOut = proc.StandardOutput;
