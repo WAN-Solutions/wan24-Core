@@ -379,19 +379,19 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ProcessStream__ctor_System_IO_StreamReader__System_IO_StreamWriter__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.ProcessStream.%23ctor(System.IO.StreamReader%40%2CSystem.IO.StreamWriter%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ProcessStream__ctor_System_IO_StreamReader__System_IO_StreamWriter__System_Diagnostics_Process__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.ProcessStream.%23ctor(System.IO.StreamReader%40%2CSystem.IO.StreamWriter%40%2CSystem.Diagnostics.Process%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L25">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L26">View Source</a>
   </span>
   <a id="wan24_Core_ProcessStream__ctor_" data-uid="wan24.Core.ProcessStream.#ctor*"></a>
-  <h4 id="wan24_Core_ProcessStream__ctor_System_IO_StreamReader__System_IO_StreamWriter__System_Boolean__" data-uid="wan24.Core.ProcessStream.#ctor(System.IO.StreamReader@,System.IO.StreamWriter@,System.Boolean@)">ProcessStream(in StreamReader?, in StreamWriter?, in bool)</h4>
+  <h4 id="wan24_Core_ProcessStream__ctor_System_IO_StreamReader__System_IO_StreamWriter__System_Diagnostics_Process__System_Boolean__" data-uid="wan24.Core.ProcessStream.#ctor(System.IO.StreamReader@,System.IO.StreamWriter@,System.Diagnostics.Process@,System.Boolean@)">ProcessStream(in StreamReader?, in StreamWriter?, in Process?, in bool)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ProcessStream(in StreamReader? stdOut, in StreamWriter? stdin = null, in bool leaveOpen = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public ProcessStream(in StreamReader? stdOut, in StreamWriter? stdin = null, in Process? process = null, in bool leaveOpen = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -413,6 +413,12 @@
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.streamwriter">StreamWriter</a></td>
         <td><span class="parametername">stdin</span></td>
         <td><p>STDIN (used for writing)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.diagnostics.process">Process</a></td>
+        <td><span class="parametername">process</span></td>
+        <td><p>Process</p>
 </td>
       </tr>
       <tr>
@@ -492,7 +498,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ProcessStream_CanRead.md&amp;value=---%0Auid%3A%20wan24.Core.ProcessStream.CanRead%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L60">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L67">View Source</a>
   </span>
   <a id="wan24_Core_ProcessStream_CanRead_" data-uid="wan24.Core.ProcessStream.CanRead*"></a>
   <h4 id="wan24_Core_ProcessStream_CanRead" data-uid="wan24.Core.ProcessStream.CanRead">CanRead</h4>
@@ -526,7 +532,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ProcessStream_CanWrite.md&amp;value=---%0Auid%3A%20wan24.Core.ProcessStream.CanWrite%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L63">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L70">View Source</a>
   </span>
   <a id="wan24_Core_ProcessStream_CanWrite_" data-uid="wan24.Core.ProcessStream.CanWrite*"></a>
   <h4 id="wan24_Core_ProcessStream_CanWrite" data-uid="wan24.Core.ProcessStream.CanWrite">CanWrite</h4>
@@ -557,10 +563,41 @@
   <div><a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanWrite">WrapperStream&lt;Stream&gt;.CanWrite</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ProcessStream_ExitCode.md&amp;value=---%0Auid%3A%20wan24.Core.ProcessStream.ExitCode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L49">View Source</a>
+  </span>
+  <a id="wan24_Core_ProcessStream_ExitCode_" data-uid="wan24.Core.ProcessStream.ExitCode*"></a>
+  <h4 id="wan24_Core_ProcessStream_ExitCode" data-uid="wan24.Core.ProcessStream.ExitCode">ExitCode</h4>
+  <div class="markdown level1 summary"><p>Process exit code</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? ExitCode { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ProcessStream_KillOnDispose.md&amp;value=---%0Auid%3A%20wan24.Core.ProcessStream.KillOnDispose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L47">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L54">View Source</a>
   </span>
   <a id="wan24_Core_ProcessStream_KillOnDispose_" data-uid="wan24.Core.ProcessStream.KillOnDispose*"></a>
   <h4 id="wan24_Core_ProcessStream_KillOnDispose" data-uid="wan24.Core.ProcessStream.KillOnDispose">KillOnDispose</h4>
@@ -591,7 +628,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ProcessStream_LeaveOpen.md&amp;value=---%0Auid%3A%20wan24.Core.ProcessStream.LeaveOpen%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L66">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L73">View Source</a>
   </span>
   <a id="wan24_Core_ProcessStream_LeaveOpen_" data-uid="wan24.Core.ProcessStream.LeaveOpen*"></a>
   <h4 id="wan24_Core_ProcessStream_LeaveOpen" data-uid="wan24.Core.ProcessStream.LeaveOpen">LeaveOpen</h4>
@@ -624,7 +661,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ProcessStream_Process.md&amp;value=---%0Auid%3A%20wan24.Core.ProcessStream.Process%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L42">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L44">View Source</a>
   </span>
   <a id="wan24_Core_ProcessStream_Process_" data-uid="wan24.Core.ProcessStream.Process*"></a>
   <h4 id="wan24_Core_ProcessStream_Process" data-uid="wan24.Core.ProcessStream.Process">Process</h4>
@@ -633,7 +670,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Process? Process { get; protected set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Process? Process { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -655,7 +692,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ProcessStream_StdIn.md&amp;value=---%0Auid%3A%20wan24.Core.ProcessStream.StdIn%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L52">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L59">View Source</a>
   </span>
   <a id="wan24_Core_ProcessStream_StdIn_" data-uid="wan24.Core.ProcessStream.StdIn*"></a>
   <h4 id="wan24_Core_ProcessStream_StdIn" data-uid="wan24.Core.ProcessStream.StdIn">StdIn</h4>
@@ -686,7 +723,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ProcessStream_StdOut.md&amp;value=---%0Auid%3A%20wan24.Core.ProcessStream.StdOut%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L57">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L64">View Source</a>
   </span>
   <a id="wan24_Core_ProcessStream_StdOut_" data-uid="wan24.Core.ProcessStream.StdOut*"></a>
   <h4 id="wan24_Core_ProcessStream_StdOut" data-uid="wan24.Core.ProcessStream.StdOut">StdOut</h4>
@@ -719,7 +756,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ProcessStream_Create_System_String__System_Boolean__System_Boolean__System_Boolean__System_String___.md&amp;value=---%0Auid%3A%20wan24.Core.ProcessStream.Create(System.String%40%2CSystem.Boolean%40%2CSystem.Boolean%40%2CSystem.Boolean%40%2CSystem.String%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L107">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L116">View Source</a>
   </span>
   <a id="wan24_Core_ProcessStream_Create_" data-uid="wan24.Core.ProcessStream.Create*"></a>
   <h4 id="wan24_Core_ProcessStream_Create_System_String__System_Boolean__System_Boolean__System_Boolean__System_String___" data-uid="wan24.Core.ProcessStream.Create(System.String@,System.Boolean@,System.Boolean@,System.Boolean@,System.String[])">Create(in string, in bool, in bool, in bool, params string[])</h4>
@@ -793,7 +830,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ProcessStream_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.ProcessStream.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L73">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L80">View Source</a>
   </span>
   <a id="wan24_Core_ProcessStream_Dispose_" data-uid="wan24.Core.ProcessStream.Dispose*"></a>
   <h4 id="wan24_Core_ProcessStream_Dispose_System_Boolean_" data-uid="wan24.Core.ProcessStream.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -829,7 +866,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ProcessStream_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.ProcessStream.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L86">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ProcessStream.cs/#L94">View Source</a>
   </span>
   <a id="wan24_Core_ProcessStream_DisposeCore_" data-uid="wan24.Core.ProcessStream.DisposeCore*"></a>
   <h4 id="wan24_Core_ProcessStream_DisposeCore" data-uid="wan24.Core.ProcessStream.DisposeCore">DisposeCore()</h4>

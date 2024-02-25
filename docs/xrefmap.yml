@@ -19160,6 +19160,45 @@ references:
   isSpec: "True"
   fullName: wan24.Core.CliConfig.Apply
   nameWithType: CliConfig.Apply
+- uid: wan24.Core.CliConfig.LogFile
+  name: LogFile
+  href: api/wan24.Core.CliConfig.html#wan24_Core_CliConfig_LogFile
+  commentId: P:wan24.Core.CliConfig.LogFile
+  fullName: wan24.Core.CliConfig.LogFile
+  nameWithType: CliConfig.LogFile
+- uid: wan24.Core.CliConfig.LogFile*
+  name: LogFile
+  href: api/wan24.Core.CliConfig.html#wan24_Core_CliConfig_LogFile_
+  commentId: Overload:wan24.Core.CliConfig.LogFile
+  isSpec: "True"
+  fullName: wan24.Core.CliConfig.LogFile
+  nameWithType: CliConfig.LogFile
+- uid: wan24.Core.CliConfig.LogLevel
+  name: LogLevel
+  href: api/wan24.Core.CliConfig.html#wan24_Core_CliConfig_LogLevel
+  commentId: P:wan24.Core.CliConfig.LogLevel
+  fullName: wan24.Core.CliConfig.LogLevel
+  nameWithType: CliConfig.LogLevel
+- uid: wan24.Core.CliConfig.LogLevel*
+  name: LogLevel
+  href: api/wan24.Core.CliConfig.html#wan24_Core_CliConfig_LogLevel_
+  commentId: Overload:wan24.Core.CliConfig.LogLevel
+  isSpec: "True"
+  fullName: wan24.Core.CliConfig.LogLevel
+  nameWithType: CliConfig.LogLevel
+- uid: wan24.Core.CliConfig.LoggerType
+  name: LoggerType
+  href: api/wan24.Core.CliConfig.html#wan24_Core_CliConfig_LoggerType
+  commentId: P:wan24.Core.CliConfig.LoggerType
+  fullName: wan24.Core.CliConfig.LoggerType
+  nameWithType: CliConfig.LoggerType
+- uid: wan24.Core.CliConfig.LoggerType*
+  name: LoggerType
+  href: api/wan24.Core.CliConfig.html#wan24_Core_CliConfig_LoggerType_
+  commentId: Overload:wan24.Core.CliConfig.LoggerType
+  isSpec: "True"
+  fullName: wan24.Core.CliConfig.LoggerType
+  nameWithType: CliConfig.LoggerType
 - uid: wan24.Core.CliConfigAttribute
   name: CliConfigAttribute
   href: api/wan24.Core.CliConfigAttribute.html
@@ -38665,6 +38704,22 @@ references:
   commentId: T:wan24.Core.JsonHelper.Encoder_Delegate
   fullName: wan24.Core.JsonHelper.Encoder_Delegate
   nameWithType: JsonHelper.Encoder_Delegate
+- uid: wan24.Core.JsonHelper.MayBeJson(System.String)
+  name: MayBeJson(string)
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_MayBeJson_System_String_
+  commentId: M:wan24.Core.JsonHelper.MayBeJson(System.String)
+  name.vb: MayBeJson(String)
+  fullName: wan24.Core.JsonHelper.MayBeJson(string)
+  fullName.vb: wan24.Core.JsonHelper.MayBeJson(String)
+  nameWithType: JsonHelper.MayBeJson(string)
+  nameWithType.vb: JsonHelper.MayBeJson(String)
+- uid: wan24.Core.JsonHelper.MayBeJson*
+  name: MayBeJson
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_MayBeJson_
+  commentId: Overload:wan24.Core.JsonHelper.MayBeJson
+  isSpec: "True"
+  fullName: wan24.Core.JsonHelper.MayBeJson
+  nameWithType: JsonHelper.MayBeJson
 - uid: wan24.Core.JsonHelper.StreamDecoderAsync
   name: StreamDecoderAsync
   href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_StreamDecoderAsync
@@ -39953,6 +40008,19 @@ references:
   commentId: T:wan24.Core.LoggerExtensions
   fullName: wan24.Core.LoggerExtensions
   nameWithType: LoggerExtensions
+- uid: wan24.Core.LoggerExtensions.GetFinalLogger(Microsoft.Extensions.Logging.ILogger)
+  name: GetFinalLogger(ILogger)
+  href: api/wan24.Core.LoggerExtensions.html#wan24_Core_LoggerExtensions_GetFinalLogger_Microsoft_Extensions_Logging_ILogger_
+  commentId: M:wan24.Core.LoggerExtensions.GetFinalLogger(Microsoft.Extensions.Logging.ILogger)
+  fullName: wan24.Core.LoggerExtensions.GetFinalLogger(Microsoft.Extensions.Logging.ILogger)
+  nameWithType: LoggerExtensions.GetFinalLogger(ILogger)
+- uid: wan24.Core.LoggerExtensions.GetFinalLogger*
+  name: GetFinalLogger
+  href: api/wan24.Core.LoggerExtensions.html#wan24_Core_LoggerExtensions_GetFinalLogger_
+  commentId: Overload:wan24.Core.LoggerExtensions.GetFinalLogger
+  isSpec: "True"
+  fullName: wan24.Core.LoggerExtensions.GetFinalLogger
+  nameWithType: LoggerExtensions.GetFinalLogger
 - uid: wan24.Core.LoggerExtensions.GetLogLevel(Microsoft.Extensions.Logging.ILogger)
   name: GetLogLevel(ILogger)
   href: api/wan24.Core.LoggerExtensions.html#wan24_Core_LoggerExtensions_GetLogLevel_Microsoft_Extensions_Logging_ILogger_
@@ -48304,15 +48372,15 @@ references:
   commentId: T:wan24.Core.ProcessStream
   fullName: wan24.Core.ProcessStream
   nameWithType: ProcessStream
-- uid: wan24.Core.ProcessStream.#ctor(System.IO.StreamReader@,System.IO.StreamWriter@,System.Boolean@)
-  name: ProcessStream(in StreamReader?, in StreamWriter?, in bool)
-  href: api/wan24.Core.ProcessStream.html#wan24_Core_ProcessStream__ctor_System_IO_StreamReader__System_IO_StreamWriter__System_Boolean__
-  commentId: M:wan24.Core.ProcessStream.#ctor(System.IO.StreamReader@,System.IO.StreamWriter@,System.Boolean@)
-  name.vb: New(StreamReader, StreamWriter, Boolean)
-  fullName: wan24.Core.ProcessStream.ProcessStream(in System.IO.StreamReader?, in System.IO.StreamWriter?, in bool)
-  fullName.vb: wan24.Core.ProcessStream.New(System.IO.StreamReader, System.IO.StreamWriter, Boolean)
-  nameWithType: ProcessStream.ProcessStream(in StreamReader?, in StreamWriter?, in bool)
-  nameWithType.vb: ProcessStream.New(StreamReader, StreamWriter, Boolean)
+- uid: wan24.Core.ProcessStream.#ctor(System.IO.StreamReader@,System.IO.StreamWriter@,System.Diagnostics.Process@,System.Boolean@)
+  name: ProcessStream(in StreamReader?, in StreamWriter?, in Process?, in bool)
+  href: api/wan24.Core.ProcessStream.html#wan24_Core_ProcessStream__ctor_System_IO_StreamReader__System_IO_StreamWriter__System_Diagnostics_Process__System_Boolean__
+  commentId: M:wan24.Core.ProcessStream.#ctor(System.IO.StreamReader@,System.IO.StreamWriter@,System.Diagnostics.Process@,System.Boolean@)
+  name.vb: New(StreamReader, StreamWriter, Process, Boolean)
+  fullName: wan24.Core.ProcessStream.ProcessStream(in System.IO.StreamReader?, in System.IO.StreamWriter?, in System.Diagnostics.Process?, in bool)
+  fullName.vb: wan24.Core.ProcessStream.New(System.IO.StreamReader, System.IO.StreamWriter, System.Diagnostics.Process, Boolean)
+  nameWithType: ProcessStream.ProcessStream(in StreamReader?, in StreamWriter?, in Process?, in bool)
+  nameWithType.vb: ProcessStream.New(StreamReader, StreamWriter, Process, Boolean)
 - uid: wan24.Core.ProcessStream.#ctor*
   name: ProcessStream
   href: api/wan24.Core.ProcessStream.html#wan24_Core_ProcessStream__ctor_
@@ -48394,6 +48462,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.ProcessStream.DisposeCore
   nameWithType: ProcessStream.DisposeCore
+- uid: wan24.Core.ProcessStream.ExitCode
+  name: ExitCode
+  href: api/wan24.Core.ProcessStream.html#wan24_Core_ProcessStream_ExitCode
+  commentId: P:wan24.Core.ProcessStream.ExitCode
+  fullName: wan24.Core.ProcessStream.ExitCode
+  nameWithType: ProcessStream.ExitCode
+- uid: wan24.Core.ProcessStream.ExitCode*
+  name: ExitCode
+  href: api/wan24.Core.ProcessStream.html#wan24_Core_ProcessStream_ExitCode_
+  commentId: Overload:wan24.Core.ProcessStream.ExitCode
+  isSpec: "True"
+  fullName: wan24.Core.ProcessStream.ExitCode
+  nameWithType: ProcessStream.ExitCode
 - uid: wan24.Core.ProcessStream.KillOnDispose
   name: KillOnDispose
   href: api/wan24.Core.ProcessStream.html#wan24_Core_ProcessStream_KillOnDispose
@@ -50973,6 +51054,12 @@ references:
   isSpec: "True"
   fullName: wan24.Core.RegularExpressions.GetRegex
   nameWithType: RegularExpressions.GetRegex
+- uid: wan24.Core.RegularExpressions.JSON
+  name: JSON
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_JSON
+  commentId: F:wan24.Core.RegularExpressions.JSON
+  fullName: wan24.Core.RegularExpressions.JSON
+  nameWithType: RegularExpressions.JSON
 - uid: wan24.Core.RegularExpressions.LOCALE
   name: LOCALE
   href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_LOCALE
@@ -51067,6 +51154,12 @@ references:
   commentId: F:wan24.Core.RegularExpressions.RX_GUID
   fullName: wan24.Core.RegularExpressions.RX_GUID
   nameWithType: RegularExpressions.RX_GUID
+- uid: wan24.Core.RegularExpressions.RX_JSON
+  name: RX_JSON
+  href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_RX_JSON
+  commentId: F:wan24.Core.RegularExpressions.RX_JSON
+  fullName: wan24.Core.RegularExpressions.RX_JSON
+  nameWithType: RegularExpressions.RX_JSON
 - uid: wan24.Core.RegularExpressions.RX_LOCALE
   name: RX_LOCALE
   href: api/wan24.Core.RegularExpressions.html#wan24_Core_RegularExpressions_RX_LOCALE
