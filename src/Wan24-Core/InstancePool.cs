@@ -38,14 +38,17 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
-        public InstancePool(in int capacity) : this(capacity, async (pool, ct) => (T)(await typeof(T).ConstructAutoAsync(DiHelper.Instance).DynamicContext()).Object) { }
+        /// <param name="serviceProvider">Service provider</param>
+        public InstancePool(in int capacity, in IAsyncServiceProvider? serviceProvider = null) : this(capacity, (pool, ct) => null!, serviceProvider)
+            => AsyncFactory = async (pool, ct) => (T)(await typeof(T).ConstructAutoAsync(ServiceProvider).DynamicContext()).Object;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
         /// <param name="factory">Instance factory</param>
-        public InstancePool(in int capacity, in IInstancePool<T>.Instance_Delegate factory) : this(capacity, intern: true)
+        /// <param name="serviceProvider">Service provider</param>
+        public InstancePool(in int capacity, in IInstancePool<T>.Instance_Delegate factory, in IAsyncServiceProvider? serviceProvider = null) : this(intern: true, capacity, serviceProvider)
         {
             ArgumentOutOfRangeException.ThrowIfLessThan(capacity, 1);
             SyncFactory = factory;
@@ -57,7 +60,8 @@ namespace wan24.Core
         /// </summary>
         /// <param name="capacity">Capacity</param>
         /// <param name="factory">Instance factory</param>
-        public InstancePool(in int capacity, in IInstancePool<T>.InstanceAsync_Delegate factory) : this(capacity, intern: true)
+        /// <param name="serviceProvider">Service provider</param>
+        public InstancePool(in int capacity, in IInstancePool<T>.InstanceAsync_Delegate factory, in IAsyncServiceProvider? serviceProvider = null) : this(intern: true, capacity, serviceProvider)
         {
             ArgumentOutOfRangeException.ThrowIfLessThan(capacity, 1);
             SyncFactory = null;
@@ -69,8 +73,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="capacity">Capacity</param>
         /// <param name="intern">Intern construction</param>
+        /// <param name="serviceProvider">Service provider</param>
 #pragma warning disable IDE0060 // Remove unused parameter
-        protected InstancePool(in int capacity, in bool intern) : base()
+        protected InstancePool(in bool intern, in int capacity, in IAsyncServiceProvider? serviceProvider) : base()
 #pragma warning restore IDE0060 // Remove unused parameter
         {
             Capacity = capacity;
@@ -78,12 +83,18 @@ namespace wan24.Core
             {
                 FullMode = BoundedChannelFullMode.Wait
             });
+            ServiceProvider = serviceProvider ?? DiHelper.Instance;
         }
 
         /// <summary>
         /// GUID
         /// </summary>
         public string GUID { get; } = Guid.NewGuid().ToString();
+
+        /// <summary>
+        /// Service provider
+        /// </summary>
+        public IAsyncServiceProvider ServiceProvider { get; }
 
         /// <inheritdoc/>
         public int Capacity { get; }

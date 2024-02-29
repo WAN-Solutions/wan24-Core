@@ -1,5 +1,4 @@
 ﻿using System.Collections.Frozen;
-using System.Collections.ObjectModel;
 using System.Reflection;
 
 namespace wan24.Core
@@ -215,7 +214,7 @@ namespace wan24.Core
         public FrozenSet<T> EnumFlagValues => FlagValues;
 
         /// <summary>
-        /// Determine if a value is value
+        /// Determine if a value is valid
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns>Is valid?</returns>
