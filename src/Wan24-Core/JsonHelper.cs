@@ -1,7 +1,6 @@
 ﻿using System.Runtime;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
@@ -79,6 +78,12 @@ namespace wan24.Core
         /// <summary>
         /// JSON encoder
         /// </summary>
+        public static StreamEncoder_Delegate StreamEncoder { get; set; }
+            = (obj, stream, prettify) => JsonSerializer.Serialize(stream, obj, obj?.GetType() ?? typeof(string), prettify ? IntendedOptions : NotIntendedOptions);
+
+        /// <summary>
+        /// JSON encoder
+        /// </summary>
         public static EncoderAsync_Delegate EncoderAsync { get; set; }
             = async (obj, target, prettify, ct) =>
             {
@@ -99,6 +104,11 @@ namespace wan24.Core
         /// JSON decoder
         /// </summary>
         public static Decoder_Delegate Decoder { get; set; } = (type, json) => JsonSerializer.Deserialize(json, type, DecoderOptions);
+
+        /// <summary>
+        /// JSON decoder
+        /// </summary>
+        public static StreamDecoder_Delegate StreamDecoder { get; set; } = (type, stream) => JsonSerializer.Deserialize(stream, type, DecoderOptions);
 
         /// <summary>
         /// JSON decoder
@@ -132,6 +142,16 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="target">Target stream</param>
         /// <param name="prettify">Prettify?</param>
+        /// <returns>JSON string</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static void Encode(in object? obj, in Stream target, in bool prettify = false) => StreamEncoder(obj, target, prettify);
+
+        /// <summary>
+        /// Encode
+        /// </summary>
+        /// <param name="obj">Object</param>
+        /// <param name="target">Target stream</param>
+        /// <param name="prettify">Prettify?</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>JSON string or empty, when <c>target</c> was given</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
@@ -146,6 +166,15 @@ namespace wan24.Core
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static T? Decode<T>(in string json) => (T?)DecodeObject(typeof(T), json);
+
+        /// <summary>
+        /// Decode
+        /// </summary>
+        /// <typeparam name="T">Result type</typeparam>
+        /// <param name="source">Source stream</param>
+        /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static T? Decode<T>(in Stream source) => (T?)StreamDecoder(typeof(T), source);
 
         /// <summary>
         /// Decode
@@ -177,6 +206,15 @@ namespace wan24.Core
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static object? DecodeObject(in Type type, in string json) => Decoder(type, json);
+
+        /// <summary>
+        /// Decode an object
+        /// </summary>
+        /// <param name="type">Expected type</param>
+        /// <param name="source">Source stream</param>
+        /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static object? DecodeObject(in Type type, in Stream source) => StreamDecoder(type, source);
 
         /// <summary>
         /// Decode an object
@@ -277,6 +315,14 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="target">Target stream</param>
         /// <param name="prettify">Prettify?</param>
+        public delegate void StreamEncoder_Delegate(object? obj, Stream target, bool prettify);
+
+        /// <summary>
+        /// Delegate for a JSON encoder
+        /// </summary>
+        /// <param name="obj">Object</param>
+        /// <param name="target">Target stream</param>
+        /// <param name="prettify">Prettify?</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>JSON string or empty if <c>target</c> was given</returns>
         public delegate Task<string> EncoderAsync_Delegate(object? obj, Stream? target, bool prettify, CancellationToken cancellationToken);
@@ -288,6 +334,14 @@ namespace wan24.Core
         /// <param name="json">JSON string</param>
         /// <returns>Result</returns>
         public delegate object? Decoder_Delegate(Type type, string json);
+
+        /// <summary>
+        /// Delegate for a JSON decoder
+        /// </summary>
+        /// <param name="type">Expected type</param>
+        /// <param name="stream">Stream</param>
+        /// <returns>Result</returns>
+        public delegate object? StreamDecoder_Delegate(Type type, Stream stream);
 
         /// <summary>
         /// Delegate for a JSON decoder

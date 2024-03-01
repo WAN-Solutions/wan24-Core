@@ -305,5 +305,12 @@ namespace wan24.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Normalize a path (replace backslash with slash)
+        /// </summary>
+        /// <param name="path">Path</param>
+        /// <returns>Normalized path</returns>
+        public static string NormalizePath(in string path) => path.Replace('\\', '/');
     }
 }

@@ -4,13 +4,12 @@ Description=%{Description}
 [Service]
 WorkingDirectory=%{WorkingDirectory}
 ExecStart=%{ExecStart}
-Restart=always
-# Restart service after 10 seconds if the dotnet service crashes:
-RestartSec=10
-KillSignal=SIGINT
+Restart=%{Restart}
+RestartSec=%{RestartTimeout}
+KillSignal=%{KillSignal}
 SyslogIdentifier=%{SyslogIdentifier}
 User=%{User}
-Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=%{Environment}
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=%{WantedBy}

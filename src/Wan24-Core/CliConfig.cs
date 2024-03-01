@@ -2,6 +2,9 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
+using System.Runtime;
+using System.Runtime.CompilerServices;
+using static wan24.Core.Logging;
 
 namespace wan24.Core
 {
@@ -11,7 +14,7 @@ namespace wan24.Core
     public static class CliConfig
     {
         /// <summary>
-        /// CLR type name of the logger to use (with or without namespace; may be appended to the configured logger)
+        /// CLR type name of the logger to use (with or without namespace; may be appended to the configured <see cref="LoggerBase"/>)
         /// </summary>
         [CliConfig]
         [StringLength(byte.MaxValue), Required]
@@ -19,6 +22,7 @@ namespace wan24.Core
         {
             set
             {
+                // Load the type
                 Type type = (value.Contains('.')
                     ? TypeHelper.Instance.GetType(value)
                     : (from ass in TypeHelper.Instance.Assemblies
@@ -28,7 +32,7 @@ namespace wan24.Core
                         t.Name.Equals(value, StringComparison.OrdinalIgnoreCase)
                        select t).FirstOrDefault())
                     ?? throw new ArgumentException($"Logger type not found: {value}", $"{typeof(CliConfig)}.{nameof(LoggerType)}");
-                if (!typeof(ILogger).IsAssignableFrom(type)) throw new ArgumentException($"{type} isn't an {typeof(ILogger)}", $"{typeof(CliConfig)}.{nameof(LoggerType)}");
+                // Create and activate the logger
                 ILogger logger = type.ConstructAuto() as ILogger ?? throw new ArgumentException($"Failed to instance logger {type}", $"{typeof(CliConfig)}.{nameof(LoggerType)}");
                 if(Logging.Logger?.GetFinalLogger() is LoggerBase parentLogger)
                 {
@@ -36,14 +40,14 @@ namespace wan24.Core
                 }
                 else
                 {
-                    Logging.Logger?.TryDispose();
+                    ClearLogger();
                     Logging.Logger = logger;
                 }
             }
         }
 
         /// <summary>
-        /// The path to the logfile to use (file logger may be appended to the configured logger)
+        /// The path to the logfile to use (file logger may be appended to the configured <see cref="LoggerBase"/>)
         /// </summary>
         [CliConfig]
         [StringLength(short.MaxValue), Required]
@@ -58,7 +62,7 @@ namespace wan24.Core
                 }
                 else
                 {
-                    Logging.Logger?.TryDispose();
+                    ClearLogger();
                     Logging.Logger = logger;
                 }
             }
@@ -73,13 +77,13 @@ namespace wan24.Core
             set
             {
                 if (Logging.Logger is null) throw new InvalidOperationException("No logger configured");
-                if (Logging.Logger?.GetFinalLogger() is LoggerBase logger)
+                if (Logging.Logger.GetFinalLogger() is LoggerBase logger)
                 {
                     logger.Level = value;
                 }
                 else
                 {
-                    throw new InvalidOperationException($"Configured logger {Logging.Logger!.GetType()} can't be configured with another log level");
+                    throw new InvalidOperationException($"Last configured logger {Logging.Logger.GetFinalLogger().GetType()} can't be configured with another log level");
                 }
             }
         }
@@ -90,71 +94,101 @@ namespace wan24.Core
         /// <param name="ca">CLI arguments</param>
         public static void Apply(CliArguments? ca = null)
         {
-            ca ??= new(Environment.GetCommandLineArgs());
             string[] temp;
+            if(ca is null)
+            {
+                temp = ENV.CliArguments;
+                if (temp.Length > 0) temp = [.. temp.AsSpan(1)];
+                ca = new(temp);
+            }
             ReadOnlyCollection<string> values;
             string typeName,
                 propertyName;
             Type? type,
                 et;
             PropertyInfoExt? prop;
-            PropertyInfo pi;
-            Action<object?, object?> setter;
             Array arr;
             object? value;
             List<ValidationResult?> validationResults = [];
             ValidationContext vc = new(new object());
             foreach (string key in ca.Arguments.Keys)
             {
-                if (!key.Contains('.')) continue;
+                if (!key.Contains('.')) continue;// Fully qualified public static property name required
+                // Get type and property name
                 temp = key.Split('.');
                 propertyName = temp[^1];
                 typeName = string.Join('.', temp[0..^1]);
+                // Load the type
                 type = TypeHelper.Instance.GetType(typeName);
                 if (type is null) continue;
+                // Load and validate the property
                 prop = type.GetPropertyCached(propertyName, BindingFlags.Static | BindingFlags.Public);
                 if (prop is null) continue;
-                (setter, pi) = (prop.Setter ?? throw new InvalidProgramException($"{type}.{prop.Property.Name} has no setter"), prop.Property);
-                if (pi.GetCustomAttributeCached<CliConfigAttribute>() is null)
-                    throw new ArgumentException($"{type}.{pi.Name} is missing the {typeof(CliConfigAttribute)}", key);
-                if (pi.PropertyType == typeof(bool))
+                if (prop.GetCustomAttributeCached<CliConfigAttribute>() is null)
+                    throw new ArgumentException($"{type}.{prop.Name} is missing the {typeof(CliConfigAttribute)}", key);
+                if (prop.Setter is null) throw new InvalidProgramException($"{type}.{prop.Property.Name} has no setter");
+                // Get the property value to set
+                if (prop.PropertyType == typeof(bool))
                 {
+                    // Boolean
                     if (!ca.IsBoolean(key)) throw new ArgumentException("Value expected", key);
                     value = true;
                 }
                 else if (ca.IsBoolean(key))
                 {
+                    // Boolean required
                     throw new ArgumentException("Flag expected", key);
                 }
-                else if (pi.PropertyType == typeof(string))
+                else if (prop.PropertyType == typeof(string))
                 {
+                    // String
                     if (ca.ValueCount(key) != 1) throw new ArgumentException("Single value expected", key);
                     value = ca.Single(key);
                 }
-                else if (pi.PropertyType == typeof(string[]))
+                else if (prop.PropertyType == typeof(string[]))
                 {
+                    // String array
                     value = ca.All(key).ToArray();
                 }
-                else if (pi.PropertyType.IsArray)
+                else if (prop.PropertyType.IsArray)
                 {
+                    // Array of JSON encoded items
                     values = ca.All(key);
-                    et = pi.PropertyType.GetElementType()!;
+                    et = prop.PropertyType.GetElementType()!;
                     arr = Array.CreateInstance(et, values.Count);
                     for (int i = 0, len = values.Count; i < len; arr.SetValue(JsonHelper.DecodeObject(et, values[i]), i), i++) ;
                     value = arr;
                 }
                 else
                 {
+                    // JSON encoded value
                     if (ca.ValueCount(key) != 1) throw new ArgumentException("Single value expected", key);
-                    value = JsonHelper.DecodeObject(pi.PropertyType, ca.Single(key));
+                    value = JsonHelper.DecodeObject(prop.PropertyType, ca.Single(key));
                 }
-                vc.MemberName = $"{type}.{pi.Name}";
+                // Validate the value
+                vc.MemberName = $"{type}.{prop.Name}";
                 validationResults.Clear();
-                validationResults.AddRange(pi.GetCustomAttributesCached<ValidationAttribute>().Select(a => a.GetValidationResult(value, vc)));
+                validationResults.AddRange(prop.GetCustomAttributesCached<ValidationAttribute>().Select(a => a.GetValidationResult(value, vc)));
                 if (validationResults.Any(r => r is not null))
                     throw new ArgumentException(validationResults.Where(r => r is not null).Select(r => r!.ErrorMessage ?? "Argument validation failed").First(), vc.MemberName);
-                setter(null, value);
+                // Set the property value
+                if (Trace) Logging.WriteTrace($"Setting {prop.Property.DeclaringType}.{prop.Name} value from CLI configuration");
+                prop.Setter(null, value);
             }
+        }
+
+        /// <summary>
+        /// Clear the existing logger
+        /// </summary>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        private static void ClearLogger()
+        {
+            if (Logging.Logger is null) return;
+            if (Debug) Logging.WriteDebug($"Overriding {typeof(Logging)}.{nameof(Logging.Logger)} ({Logging.Logger.GetType()}) from CLI");
+            Logging.Logger.TryDispose();
         }
     }
 }
