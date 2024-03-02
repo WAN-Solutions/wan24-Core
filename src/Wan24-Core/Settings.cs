@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using System.Reflection;
+using System.ComponentModel.DataAnnotations;
 
 namespace wan24.Core
 {
@@ -16,6 +16,14 @@ namespace wan24.Core
         /// Default stack allocation border
         /// </summary>
         public const int DEFAULT_STACK_ALLOC_BORDER = 1_024;
+        /// <summary>
+        /// Default browser app ID
+        /// </summary>
+        public const string DEFAULT_BROWSER_APP_ID = "browserApp";
+        /// <summary>
+        /// Default process ID
+        /// </summary>
+        public const string DEFAULT_PROCESS_ID = "main";
 
         /// <summary>
         /// Buffer size in bytes
@@ -34,6 +42,7 @@ namespace wan24.Core
         /// Buffer size in bytes
         /// </summary>
         [CliConfig]
+        [Range(1, int.MaxValue)]
         public static int BufferSize
         {
             get => _BufferSize;
@@ -47,7 +56,8 @@ namespace wan24.Core
         /// <summary>
         /// Temporary folder (may be the customized value or the system users temporary folder)
         /// </summary>
-        public static string TempFolder => CustomTempFolder ?? Path.GetTempPath();//TODO How to do when running as WASM?
+        /// <exception cref="PlatformNotSupportedException">Not supported in a browser app</exception>
+        public static string TempFolder => ENV.IsBrowserApp ? throw new PlatformNotSupportedException("Browser app") : CustomTempFolder ?? Path.GetTempPath();
 
         /// <summary>
         /// Custom temporary folder
@@ -79,13 +89,14 @@ namespace wan24.Core
         /// <summary>
         /// An unique app ID ("myapp" f.e.; will be used in filenames!)
         /// </summary>
-        public static string AppId { get; set; } = Assembly.GetEntryAssembly()?.Location is string path ? Path.GetFileNameWithoutExtension(path) : "app";
+        public static string AppId { get; set; } = ENV.IsBrowserApp ? DEFAULT_BROWSER_APP_ID : Path.GetFileNameWithoutExtension(ENV.App);
 
         /// <summary>
         /// An unique process ID ("service" f.e.; only one process with this ID should run at once and have a specific order; will be used in filenames!)
         /// </summary>
         [CliConfig]
-        public static string ProcessId { get; set; } = "main";
+        [Required]
+        public static string ProcessId { get; set; } = DEFAULT_PROCESS_ID;
 
         /// <summary>
         /// Default file create mode

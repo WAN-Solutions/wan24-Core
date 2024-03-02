@@ -10,28 +10,36 @@
         /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
-        public BlockingInstancePool(in int capacity) : base(capacity, async (pool, ct) => (T)(await typeof(T).ConstructAutoAsync(DiHelper.Instance).DynamicContext()).Object) { }
+        /// <param name="serviceProvider">Service provider</param>
+        public BlockingInstancePool(in int capacity, in IAsyncServiceProvider? serviceProvider = null) : base(capacity, serviceProvider) { }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
         /// <param name="factory">Instance factory</param>
-        public BlockingInstancePool(in int capacity, in IInstancePool<T>.Instance_Delegate factory) : base(capacity, factory) { }
+        /// <param name="serviceProvider">Service provider</param>
+        public BlockingInstancePool(in int capacity, in IInstancePool<T>.Instance_Delegate factory, in IAsyncServiceProvider? serviceProvider = null)
+            : base(capacity, factory, serviceProvider)
+        { }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
         /// <param name="factory">Instance factory</param>
-        public BlockingInstancePool(in int capacity, in IInstancePool<T>.InstanceAsync_Delegate factory) : base(capacity, factory) { }
+        /// <param name="serviceProvider">Service provider</param>
+        public BlockingInstancePool(in int capacity, in IInstancePool<T>.InstanceAsync_Delegate factory, in IAsyncServiceProvider? serviceProvider = null)
+            : base(capacity, factory, serviceProvider)
+        { }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="capacity">Capacity</param>
         /// <param name="intern">Intern construction</param>
-        protected BlockingInstancePool(in int capacity, in bool intern) : base(capacity, intern) { }
+        /// <param name="capacity">Capacity</param>
+        /// <param name="serviceProvider">Service provider</param>
+        protected BlockingInstancePool(in bool intern, in int capacity, in IAsyncServiceProvider? serviceProvider = null) : base(intern, capacity, serviceProvider) { }
 
         /// <inheritdoc/>
         public sealed override T GetOne() => throw new NotSupportedException();

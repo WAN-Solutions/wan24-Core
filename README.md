@@ -232,6 +232,8 @@ including extensions for numeric type encoding/decoding)
     - `ChangeTokenCollection`
     - `ChangeTokenDictionary`
     - `ConcurrentChangeTokenDictionary`
+- App JSON configuration
+- Customizable object serialization helper
 
 ## How to get it
 
@@ -1689,3 +1691,58 @@ pending actions are done (`OnDone` may be called multiple times).
 Using the `Append(Async)` methods of a transaction, you may nest in any other 
 transaction (which won't be disposed, if the hosting transaction is 
 disposing!).
+
+## App JSON configuration
+
+Using the `AppConfig` you can easily implement a JSON configuration for your 
+app:
+
+```cs
+await AppConfig.LoadAsync();
+```
+
+This will load the `config.json`, apply configured settings (and also the 
+configuration from CLI arguments) and bootstrap your app.
+
+For implementing a customized configuration, you can extend `AppConfig` and 
+change the loading at your apps startup slightly:
+
+```cs
+await AppConfig.LoadAsync<YourAppConfig>();
+```
+
+**NOTE**: Use validation attributes on configuration properties! They'll be 
+used to validate the configured values during loading the JSON structure.
+
+`AppConfigBase` can be used as an app configuration object base class, which 
+provides support for the `AppConfigAttribute`, but doesn't include the 
+settings from `AppConfig`. You only need to implement the `Apply(Async)` 
+methods.
+
+The `AppConfigAttribute` should be used for every property which can store an 
+`IAppConfig` value and should be applied automatic. You can set a `Priority` 
+and specify that the configuration should only be applied `AfterBootstrap`. To 
+apply such sub-configurations, call the `ApplyProperties(Async)` methods from 
+your `Apply(Async)` method implementations.
+
+When using the `AppConfig`, this is the app configuration process:
+
+1. configure `Logging`
+1. configure `Settings` and `ENV`
+1. apply `DefaultCliArguments` to `ENV.CliArguments`
+1. configure static `[CliConfig]` properties from `Properties`
+1. apply custom `[AppConfig]` properties before bootstrapping
+1. apply CLI configuration arguments using `CliConfig.Apply`
+1. bootstrap using `Bootstrap.Async`
+1. apply custom `[AppConfig]` properties after bootstrapping
+
+This means:
+
+- you can define factory settings before applying a JSON configuration
+- the JSON configuration defines the app setup defaults, which override the 
+factory defaults
+- app setup defaults can be overridden with CLI arguments, if required
+
+You may disable CLI argument configuration and bootstrapping using the 
+`ApplyCliArguments` and `Bootstrap` properties (which can't be overridden by 
+the JSON configuration, but by extending `AppConfig`!).

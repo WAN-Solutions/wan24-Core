@@ -35,10 +35,11 @@
                 if (!needRollback && ENV.IsLinux) options.UnixCreateMode = mode ?? Settings.CreateFileMode;
 #pragma warning restore CA1416 // Platform specific
                 FileStream backup = new(backupFn, options);
+                AcidStream<FileStream> res = null!;
                 try
                 {
                     if (!needRollback) AcidStream.InitializeBackupStream(stream, backup, flush: true);
-                    AcidStream<FileStream> res = new(stream, backup)
+                    res = new(stream, backup)
                     {
                         AutoFlush = autoFlush,
                         AutoFlushBackup = true
@@ -58,6 +59,7 @@
                 {
                     backup.Dispose();
                     if (!needRollback && File.Exists(backupFn)) File.Delete(backupFn);
+                    res?.Dispose();
                     throw;
                 }
             }
@@ -94,10 +96,11 @@
                 if (!needRollback && ENV.IsLinux) options.UnixCreateMode = mode ?? Settings.CreateFileMode;
 #pragma warning restore CA1416 // Platform specific
                 FileStream backup = new(backupFn, options);
+                AcidStream<FileStream> res = null!;
                 try
                 {
                     if (!needRollback) await AcidStream.InitializeBackupStreamAsync(stream, backup, flush: true, cancellationToken: cancellationToken).DynamicContext();
-                    AcidStream<FileStream> res = new(stream, backup)
+                    res = new(stream, backup)
                     {
                         AutoFlush = autoFlush,
                         AutoFlushBackup = true
@@ -117,6 +120,7 @@
                 {
                     await backup.DisposeAsync().DynamicContext();
                     if (!needRollback && File.Exists(backupFn)) File.Delete(backupFn);
+                    if (res is not null) await res.DisposeAsync().DynamicContext();
                     throw;
                 }
             }
