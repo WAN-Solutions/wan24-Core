@@ -21,6 +21,6 @@ jobs:
     - name: Copy README
       run: cp README.md "./src/Wan24-Core Docs/index.md"
     - name: Build docs
-      run: docfx "./src/Wan24-Core Docs/docfx.json"
+      run: docfx "./src/Wan24-Core Docs/docfx.json" -t default,templates/singulinkfx
     - name: Commit
       uses: stefanzweifel/git-auto-commit-action@v5
