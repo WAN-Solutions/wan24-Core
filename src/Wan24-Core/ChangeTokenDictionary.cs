@@ -22,6 +22,7 @@ namespace wan24.Core
         IObserver<tValue>,
         IDisposableObject
         where tKey : notnull
+        where tValue : notnull
     {
         /// <summary>
         /// Disposable adapter
@@ -342,8 +343,7 @@ namespace wan24.Core
             if (!Disposable.EnsureNotDisposed(throwException: false)) return;
             if (IgnoreUnnamedPropertyNotifications && e.PropertyName is null) return;
             if (InvokeCallbacksOnPropertyChange) InvokeCallbacks(OverrideStateOnPropertyChange ? e.PropertyName : null);
-            tValue value = (tValue)sender!;
-            if (KeyOfValue(value) is not tKey key) return;
+            if (sender is not tValue value || KeyOfValue(value) is not tKey key) return;
             RaisePropertyChanged(new KeyValuePair<tKey, tValue>(key, value), e);
         }
 
