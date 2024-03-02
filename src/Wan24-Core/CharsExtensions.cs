@@ -120,7 +120,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static int DecodeBase64(this ReadOnlySpan<char> str, Span<byte> buffer)
         {
-            using RentedArrayRefStruct<byte> bytes = new(len: buffer.Length, clean: false);
+            using RentedArrayRefStruct<byte> bytes = new(len: Encoding.UTF8.GetMaxByteCount(str.Length), clean: false);
             return bytes.Span[..Encoding.UTF8.GetBytes(str, bytes.Span)].DecodeBase64(buffer);
         }
     }

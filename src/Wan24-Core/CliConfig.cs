@@ -156,14 +156,15 @@ namespace wan24.Core
                     values = ca.All(key);
                     et = prop.PropertyType.GetElementType()!;
                     arr = Array.CreateInstance(et, values.Count);
-                    for (int i = 0, len = values.Count; i < len; arr.SetValue(JsonHelper.DecodeObject(et, values[i]), i), i++) ;
+                    for (int i = 0, len = values.Count; i < len; arr.SetValue(JsonHelper.DecodeObject(et, JsonHelper.MayBeJson(values[i]) ? values[i] : JsonHelper.Encode(values[i])), i), i++) ;
                     value = arr;
                 }
                 else
                 {
                     // JSON encoded value
                     if (ca.ValueCount(key) != 1) throw new ArgumentException("Single value expected", key);
-                    value = JsonHelper.DecodeObject(prop.PropertyType, ca.Single(key));
+                    values = ca.All(key);
+                    value = JsonHelper.DecodeObject(prop.PropertyType, JsonHelper.MayBeJson(values[0]) ? values[0] : JsonHelper.Encode(values[0]));
                 }
                 // Validate the value
                 vc.MemberName = $"{type}.{prop.Name}";
