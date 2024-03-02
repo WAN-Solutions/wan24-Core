@@ -3,6 +3,14 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
       "type": "ManagedReference",
       "source_relative_path": "api/Wan24_Core_Tests.A_Initialization.yml",
       "output": {
@@ -1507,6 +1515,46 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.AppConfig.LoggerConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.AppConfig.LoggerConfiguration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.AppConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.AppConfig.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.AppConfigAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.AppConfigAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.AppConfigBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.AppConfigBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/wan24.Core.ArrayExtensions.yml",
       "output": {
         ".html": {
@@ -2817,6 +2865,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.EventWorkerBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.EventWorkerBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/wan24.Core.ExchangeableStream-1.yml",
       "output": {
         ".html": {
@@ -2907,6 +2965,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.GenericOptionalDisposer-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.GenericOptionalDisposer-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/wan24.Core.GlobalLock.yml",
       "output": {
         ".html": {
@@ -2981,6 +3049,16 @@
       "output": {
         ".html": {
           "relative_path": "api/wan24.Core.HubStream.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.IAppConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.IAppConfig.html"
         }
       },
       "version": ""
@@ -3677,6 +3755,26 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.JsonHelper.StreamDecoder_Delegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.JsonHelper.StreamDecoder_Delegate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.JsonHelper.StreamEncoder_Delegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.JsonHelper.StreamEncoder_Delegate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/wan24.Core.JsonHelper.StringDecoderAsync_Delegate.yml",
       "output": {
         ".html": {
@@ -3947,6 +4045,66 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.ObjectSerializer.AsyncCustomDeserializer_Delegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.ObjectSerializer.AsyncCustomDeserializer_Delegate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.ObjectSerializer.AsyncCustomSerializer_Delegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.ObjectSerializer.AsyncCustomSerializer_Delegate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.ObjectSerializer.CustomDeserializer_Delegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.ObjectSerializer.CustomDeserializer_Delegate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.ObjectSerializer.CustomSerializer_Delegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.ObjectSerializer.CustomSerializer_Delegate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.ObjectSerializer.Serializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.ObjectSerializer.Serializer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.ObjectSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.ObjectSerializer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/wan24.Core.ObjectStorageBase-2.StoredObject.yml",
       "output": {
         ".html": {
@@ -3961,6 +4119,26 @@
       "output": {
         ".html": {
           "relative_path": "api/wan24.Core.ObjectStorageBase-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.OptionalDisposeAction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.OptionalDisposeAction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.OptionalDisposer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.OptionalDisposer.html"
         }
       },
       "version": ""
@@ -5277,10 +5455,30 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.UidAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.UidAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/wan24.Core.UidExt.yml",
       "output": {
         ".html": {
           "relative_path": "api/wan24.Core.UidExt.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/wan24.Core.UidExtAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/wan24.Core.UidExtAttribute.html"
         }
       },
       "version": ""

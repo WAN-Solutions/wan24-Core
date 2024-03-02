@@ -17,7 +17,7 @@
       <meta property="docfx:navrel" content="../toc.html">
       <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     <meta property="docfx:newtab" content="true">
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -56,6 +56,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
 
         <div class="sidenav hide-when-search">
@@ -95,6 +105,18 @@ Classes
 </section>
       <h4><a class="xref" href="wan24.Core.AcidStream-1.BackupWriteRecord.html">AcidStream&lt;T&gt;.BackupWriteRecord</a></h4>
       <section><p>Write backup record</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.AppConfig.html">AppConfig</a></h4>
+      <section><p>App configuration</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.AppConfig.LoggerConfiguration.html">AppConfig.LoggerConfiguration</a></h4>
+      <section><p>Logger configuration</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.AppConfigAttribute.html">AppConfigAttribute</a></h4>
+      <section><p>Attribute for a <a class="xref" href="wan24.Core.AppConfig.html">AppConfig</a> property which contains a configuration with an <a class="xref" href="wan24.Core.IAppConfig.html">IAppConfig</a> to apply</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.AppConfigBase.html">AppConfigBase</a></h4>
+      <section><p>Base class for an app configuration</p>
 </section>
       <h4><a class="xref" href="wan24.Core.ArrayExtensions.html">ArrayExtensions</a></h4>
       <section><p>Array extensions</p>
@@ -423,6 +445,9 @@ Classes
       <h4><a class="xref" href="wan24.Core.EventThrottle.html">EventThrottle</a></h4>
       <section><p>Event throttle (allow to raise once within N ms)</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.EventWorkerBase.html">EventWorkerBase</a></h4>
+      <section><p>Base class for an event worker</p>
+</section>
       <h4><a class="xref" href="wan24.Core.ExchangeableStream.html">ExchangeableStream</a></h4>
       <section><p>Exchangeable stream</p>
 </section>
@@ -449,6 +474,9 @@ Classes
 </section>
       <h4><a class="xref" href="wan24.Core.GenericHelper.html">GenericHelper</a></h4>
       <section><p>Generic helper</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.GenericOptionalDisposer-1.html">GenericOptionalDisposer&lt;T&gt;</a></h4>
+      <section><p>Generic optional disposer</p>
 </section>
       <h4><a class="xref" href="wan24.Core.GlobalLock.html">GlobalLock</a></h4>
       <section><p>Global lock using <a class="xref" href="wan24.Core.GlobalLock.html#wan24_Core_GlobalLock_Mutex">Mutex</a> (requires to be disposed by the same thread that created the mutex!)</p>
@@ -550,11 +578,20 @@ the first stream per default)</p>
       <h4><a class="xref" href="wan24.Core.ObjectPool-1.html">ObjectPool&lt;T&gt;</a></h4>
       <section><p>Object pool</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.ObjectSerializer.html">ObjectSerializer</a></h4>
+      <section><p>Object serialization helper</p>
+</section>
       <h4><a class="xref" href="wan24.Core.ObjectStorageBase-2.html">ObjectStorageBase&lt;tKey, tObj&gt;</a></h4>
       <section><p>Base class for an object storage</p>
 </section>
       <h4><a class="xref" href="wan24.Core.ObjectStorageBase-2.StoredObject.html">ObjectStorageBase&lt;tKey, tObj&gt;.StoredObject</a></h4>
       <section><p>Stored object</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.OptionalDisposeAction.html">OptionalDisposeAction</a></h4>
+      <section><p>Optional dispose action</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.OptionalDisposer.html">OptionalDisposer</a></h4>
+      <section><p>Optional disposer</p>
 </section>
       <h4><a class="xref" href="wan24.Core.OrderedDictionary-2.html">OrderedDictionary&lt;tKey, tValue&gt;</a></h4>
       <section><p>Ordered dictionary</p>
@@ -802,6 +839,12 @@ texts in your source code)</p>
       <h4><a class="xref" href="wan24.Core.UdpBroadcast-1.html">UdpBroadcast&lt;T&gt;</a></h4>
       <section><p>UDP broadcast helper (broadcaster and listener)</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.UidAttribute.html">UidAttribute</a></h4>
+      <section><p><a class="xref" href="wan24.Core.Uid.html">Uid</a> validation attribute</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.UidExtAttribute.html">UidExtAttribute</a></h4>
+      <section><p><a class="xref" href="wan24.Core.UidExt.html">UidExt</a> validation attribute</p>
+</section>
       <h4><a class="xref" href="wan24.Core.ValueObjectBase-1.html">ValueObjectBase&lt;T&gt;</a></h4>
       <section><p>A base class for a value object</p>
 </section>
@@ -901,6 +944,9 @@ Structs
     <h3 id="interfaces">
 Interfaces
 </h3>
+      <h4><a class="xref" href="wan24.Core.IAppConfig.html">IAppConfig</a></h4>
+      <section><p>Interface for an app configuration</p>
+</section>
       <h4><a class="xref" href="wan24.Core.IArray-1.html">IArray&lt;T&gt;</a></h4>
       <section><p>Interface for an array</p>
 </section>
@@ -1069,6 +1115,9 @@ Enums
       <h4><a class="xref" href="wan24.Core.IpNetworkKind.html">IpNetworkKind</a></h4>
       <section><p>IP network kind enumeration</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.ObjectSerializer.Serializer.html">ObjectSerializer.Serializer</a></h4>
+      <section><p>Serializer enumeration</p>
+</section>
       <h4><a class="xref" href="wan24.Core.QueueEntryStates.html">QueueEntryStates</a></h4>
       <section><p>Queue entry states</p>
 </section>
@@ -1165,6 +1214,12 @@ Delegates
       <h4><a class="xref" href="wan24.Core.JsonHelper.StreamDecoderAsync_Delegate.html">JsonHelper.StreamDecoderAsync_Delegate</a></h4>
       <section><p>Delegate for a JSON decoder</p>
 </section>
+      <h4><a class="xref" href="wan24.Core.JsonHelper.StreamDecoder_Delegate.html">JsonHelper.StreamDecoder_Delegate</a></h4>
+      <section><p>Delegate for a JSON decoder</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.JsonHelper.StreamEncoder_Delegate.html">JsonHelper.StreamEncoder_Delegate</a></h4>
+      <section><p>Delegate for a JSON encoder</p>
+</section>
       <h4><a class="xref" href="wan24.Core.JsonHelper.StringDecoderAsync_Delegate.html">JsonHelper.StringDecoderAsync_Delegate</a></h4>
       <section><p>Delegate for a JSON decoder</p>
 </section>
@@ -1173,6 +1228,18 @@ Delegates
 </section>
       <h4><a class="xref" href="wan24.Core.ObjectLockManager-1.Lock_Delegate.html">ObjectLockManager&lt;T&gt;.Lock_Delegate</a></h4>
       <section><p>Delegate for locking events</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ObjectSerializer.AsyncCustomDeserializer_Delegate.html">ObjectSerializer.AsyncCustomDeserializer_Delegate</a></h4>
+      <section><p>Delegate for a custom deserializer</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ObjectSerializer.AsyncCustomSerializer_Delegate.html">ObjectSerializer.AsyncCustomSerializer_Delegate</a></h4>
+      <section><p>Delegate for a custom serializer</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ObjectSerializer.CustomDeserializer_Delegate.html">ObjectSerializer.CustomDeserializer_Delegate</a></h4>
+      <section><p>Delegate for a custom deserializer</p>
+</section>
+      <h4><a class="xref" href="wan24.Core.ObjectSerializer.CustomSerializer_Delegate.html">ObjectSerializer.CustomSerializer_Delegate</a></h4>
+      <section><p>Delegate for a custom serializer</p>
 </section>
       <h4><a class="xref" href="wan24.Core.OrderedDictionary-2.OrderedDictionary_Delegate.html">OrderedDictionary&lt;tKey, tValue&gt;.OrderedDictionary_Delegate</a></h4>
       <section><p>Delegate for an <a class="xref" href="wan24.Core.OrderedDictionary-2.html">OrderedDictionary&lt;tKey, tValue&gt;</a> event</p>

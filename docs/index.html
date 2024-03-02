@@ -17,7 +17,7 @@
       <meta property="docfx:navrel" content="toc.html">
       <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="">
     <meta property="docfx:newtab" content="true">
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -56,6 +56,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         <div class="article row grid">
           <div class="col-md-10">
@@ -382,6 +392,8 @@ including extensions for numeric type encoding/decoding)</li>
 <li><code>ConcurrentChangeTokenDictionary</code></li>
 </ul>
 </li>
+<li>App JSON configuration</li>
+<li>Customizable object serialization helper</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
@@ -1762,6 +1774,49 @@ pending actions are done (<code>OnDone</code> may be called multiple times).</p>
 <p>Using the <code>Append(Async)</code> methods of a transaction, you may nest in any other
 transaction (which won't be disposed, if the hosting transaction is
 disposing!).</p>
+<h2 id="app-json-configuration">App JSON configuration</h2>
+<p>Using the <code>AppConfig</code> you can easily implement a JSON configuration for your
+app:</p>
+<pre><code class="lang-cs">await AppConfig.LoadAsync();
+</code></pre>
+<p>This will load the <code>config.json</code>, apply configured settings (and also the
+configuration from CLI arguments) and bootstrap your app.</p>
+<p>For implementing a customized configuration, you can extend <code>AppConfig</code> and
+change the loading at your apps startup slightly:</p>
+<pre><code class="lang-cs">await AppConfig.LoadAsync&lt;YourAppConfig&gt;();
+</code></pre>
+<p><strong>NOTE</strong>: Use validation attributes on configuration properties! They'll be
+used to validate the configured values during loading the JSON structure.</p>
+<p><code>AppConfigBase</code> can be used as an app configuration object base class, which
+provides support for the <code>AppConfigAttribute</code>, but doesn't include the
+settings from <code>AppConfig</code>. You only need to implement the <code>Apply(Async)</code>
+methods.</p>
+<p>The <code>AppConfigAttribute</code> should be used for every property which can store an
+<code>IAppConfig</code> value and should be applied automatic. You can set a <code>Priority</code>
+and specify that the configuration should only be applied <code>AfterBootstrap</code>. To
+apply such sub-configurations, call the <code>ApplyProperties(Async)</code> methods from
+your <code>Apply(Async)</code> method implementations.</p>
+<p>When using the <code>AppConfig</code>, this is the app configuration process:</p>
+<ol>
+<li>configure <code>Logging</code></li>
+<li>configure <code>Settings</code> and <code>ENV</code></li>
+<li>apply <code>DefaultCliArguments</code> to <code>ENV.CliArguments</code></li>
+<li>configure static <code>[CliConfig]</code> properties from <code>Properties</code></li>
+<li>apply custom <code>[AppConfig]</code> properties before bootstrapping</li>
+<li>apply CLI configuration arguments using <code>CliConfig.Apply</code></li>
+<li>bootstrap using <code>Bootstrap.Async</code></li>
+<li>apply custom <code>[AppConfig]</code> properties after bootstrapping</li>
+</ol>
+<p>This means:</p>
+<ul>
+<li>you can define factory settings before applying a JSON configuration</li>
+<li>the JSON configuration defines the app setup defaults, which override the
+factory defaults</li>
+<li>app setup defaults can be overridden with CLI arguments, if required</li>
+</ul>
+<p>You may disable CLI argument configuration and bootstrapping using the
+<code>ApplyCliArguments</code> and <code>Bootstrap</code> properties (which can't be overridden by
+the JSON configuration, but by extending <code>AppConfig</code>!).</p>
 
 </article>
           </div>

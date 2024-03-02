@@ -17,7 +17,7 @@
       <meta property="docfx:navrel" content="../toc.html">
       <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     <meta property="docfx:newtab" content="true">
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -56,6 +56,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
 
         <div class="sidenav hide-when-search">
@@ -237,6 +247,281 @@ public static object? FromJson(this Type type, in string json)</code></pre>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_JsonExtensions_GetJsonValue__1_System_Collections_Generic_Dictionary_System_String_System_Object__System_String__System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.JsonExtensions.GetJsonValue%60%601(System.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.String%40%2CSystem.Char%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/JsonExtensions.cs/#L46">View Source</a>
+  </span>
+  <a id="wan24_Core_JsonExtensions_GetJsonValue_" data-uid="wan24.Core.JsonExtensions.GetJsonValue*"></a>
+  <h4 id="wan24_Core_JsonExtensions_GetJsonValue__1_System_Collections_Generic_Dictionary_System_String_System_Object__System_String__System_Char__" data-uid="wan24.Core.JsonExtensions.GetJsonValue``1(System.Collections.Generic.Dictionary{System.String,System.Object},System.String@,System.Char@)">GetJsonValue&lt;T&gt;(Dictionary&lt;string, object?&gt;, in string, in char)</h4>
+  <div class="markdown level1 summary"><p>Get a value from a deep JSON ditionary (an object)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static T? GetJsonValue&lt;T&gt;(this Dictionary&lt;string, object?&gt; jsonDict, in string path, in char pathSeparator = &#39;.&#39;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><span class="parametername">jsonDict</span></td>
+        <td><p>JSON dictionary</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>Path</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></td>
+        <td><span class="parametername">pathSeparator</span></td>
+        <td><p>Path property name separator</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Value (<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if the path doesn't exist or the value type doesn't match)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Value type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Invalid path</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_JsonExtensions_HasJsonValue_System_Collections_Generic_Dictionary_System_String_System_Object__System_String__System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.JsonExtensions.HasJsonValue(System.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.String%40%2CSystem.Char%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/JsonExtensions.cs/#L105">View Source</a>
+  </span>
+  <a id="wan24_Core_JsonExtensions_HasJsonValue_" data-uid="wan24.Core.JsonExtensions.HasJsonValue*"></a>
+  <h4 id="wan24_Core_JsonExtensions_HasJsonValue_System_Collections_Generic_Dictionary_System_String_System_Object__System_String__System_Char__" data-uid="wan24.Core.JsonExtensions.HasJsonValue(System.Collections.Generic.Dictionary{System.String,System.Object},System.String@,System.Char@)">HasJsonValue(Dictionary&lt;string, object?&gt;, in string, in char)</h4>
+  <div class="markdown level1 summary"><p>Determine if a deep JSON ditionary (an object) contains a value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static bool HasJsonValue(this Dictionary&lt;string, object?&gt; jsonDict, in string path, in char pathSeparator = &#39;.&#39;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><span class="parametername">jsonDict</span></td>
+        <td><p>JSON dictionary</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>Path (dot separated property names)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></td>
+        <td><span class="parametername">pathSeparator</span></td>
+        <td><p>Path property name separator</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If the given path has a value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Invalid path</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_JsonExtensions_SetJsonValue__1_System_Collections_Generic_Dictionary_System_String_System_Object__System_String____0__System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.JsonExtensions.SetJsonValue%60%601(System.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.String%40%2C%60%600%40%2CSystem.Char%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/JsonExtensions.cs/#L135">View Source</a>
+  </span>
+  <a id="wan24_Core_JsonExtensions_SetJsonValue_" data-uid="wan24.Core.JsonExtensions.SetJsonValue*"></a>
+  <h4 id="wan24_Core_JsonExtensions_SetJsonValue__1_System_Collections_Generic_Dictionary_System_String_System_Object__System_String____0__System_Char__" data-uid="wan24.Core.JsonExtensions.SetJsonValue``1(System.Collections.Generic.Dictionary{System.String,System.Object},System.String@,``0@,System.Char@)">SetJsonValue&lt;T&gt;(Dictionary&lt;string, object?&gt;, in string, in T, in char)</h4>
+  <div class="markdown level1 summary"><p>Set a value in a deep JSON dictionary (an object; missing sub-objects will be created)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static Dictionary&lt;string, object?&gt; SetJsonValue&lt;T&gt;(this Dictionary&lt;string, object?&gt; jsonDict, in string path, in T value, in char pathSeparator = &#39;.&#39;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><span class="parametername">jsonDict</span></td>
+        <td><p>JSON dictionary</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>Path (dot separated property names)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value to set to the path</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></td>
+        <td><span class="parametername">pathSeparator</span></td>
+        <td><p>Path property name separator</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><p>JSON dictionary</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Value type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>An element in the path is not a JSON dictionary, or the path is invalid</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.JsonExtensions.ToJson(System.Object%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -288,6 +573,208 @@ public static string ToJson(this object obj, in bool prettify = false)</code></p
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><p>JSON string</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_JsonExtensions_TryGetJsonValue__1_System_Collections_Generic_Dictionary_System_String_System_Object__System_String____0__System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.JsonExtensions.TryGetJsonValue%60%601(System.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.String%40%2C%60%600%40%2CSystem.Char%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/JsonExtensions.cs/#L75">View Source</a>
+  </span>
+  <a id="wan24_Core_JsonExtensions_TryGetJsonValue_" data-uid="wan24.Core.JsonExtensions.TryGetJsonValue*"></a>
+  <h4 id="wan24_Core_JsonExtensions_TryGetJsonValue__1_System_Collections_Generic_Dictionary_System_String_System_Object__System_String____0__System_Char__" data-uid="wan24.Core.JsonExtensions.TryGetJsonValue``1(System.Collections.Generic.Dictionary{System.String,System.Object},System.String@,``0@,System.Char@)">TryGetJsonValue&lt;T&gt;(Dictionary&lt;string, object?&gt;, in string, out T?, in char)</h4>
+  <div class="markdown level1 summary"><p>Get a value from a deep JSON ditionary (an object)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static bool TryGetJsonValue&lt;T&gt;(this Dictionary&lt;string, object?&gt; jsonDict, in string path, out T? result, in char pathSeparator = &#39;.&#39;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><span class="parametername">jsonDict</span></td>
+        <td><p>JSON dictionary</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>Path (dot separated property names)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Value</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></td>
+        <td><span class="parametername">pathSeparator</span></td>
+        <td><p>Path property name separator</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If the value was found (anyway, the value may be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Value type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Invalid path</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_JsonExtensions_TrySetJsonValue__1_System_Collections_Generic_Dictionary_System_String_System_Object__System_String____0__System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.JsonExtensions.TrySetJsonValue%60%601(System.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.String%40%2C%60%600%40%2CSystem.Char%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/JsonExtensions.cs/#L164">View Source</a>
+  </span>
+  <a id="wan24_Core_JsonExtensions_TrySetJsonValue_" data-uid="wan24.Core.JsonExtensions.TrySetJsonValue*"></a>
+  <h4 id="wan24_Core_JsonExtensions_TrySetJsonValue__1_System_Collections_Generic_Dictionary_System_String_System_Object__System_String____0__System_Char__" data-uid="wan24.Core.JsonExtensions.TrySetJsonValue``1(System.Collections.Generic.Dictionary{System.String,System.Object},System.String@,``0@,System.Char@)">TrySetJsonValue&lt;T&gt;(Dictionary&lt;string, object?&gt;, in string, in T, in char)</h4>
+  <div class="markdown level1 summary"><p>Set a value in a deep JSON dictionary (an object; missing sub-objects will be created)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static bool TrySetJsonValue&lt;T&gt;(this Dictionary&lt;string, object?&gt; jsonDict, in string path, in T value, in char pathSeparator = &#39;.&#39;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><span class="parametername">jsonDict</span></td>
+        <td><p>JSON dictionary</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>Path (dot separated property names)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value to set to the path</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></td>
+        <td><span class="parametername">pathSeparator</span></td>
+        <td><p>Path property name separator</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If the value was set</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Value type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Invalid path</p>
 </td>
       </tr>
     </tbody>

@@ -17,7 +17,7 @@
       <meta property="docfx:navrel" content="../toc.html">
       <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     <meta property="docfx:newtab" content="true">
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -56,6 +56,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
 
         <div class="sidenav hide-when-search">
@@ -322,19 +332,19 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1__ctor_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.%23ctor(System.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1__ctor_System_Boolean__System_Int32__wan24_Core_IAsyncServiceProvider__.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.%23ctor(System.Boolean%40%2CSystem.Int32%40%2Cwan24.Core.IAsyncServiceProvider%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L41">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L78">View Source</a>
   </span>
   <a id="wan24_Core_InstancePool_1__ctor_" data-uid="wan24.Core.InstancePool`1.#ctor*"></a>
-  <h4 id="wan24_Core_InstancePool_1__ctor_System_Int32__" data-uid="wan24.Core.InstancePool`1.#ctor(System.Int32@)">InstancePool(in int)</h4>
+  <h4 id="wan24_Core_InstancePool_1__ctor_System_Boolean__System_Int32__wan24_Core_IAsyncServiceProvider__" data-uid="wan24.Core.InstancePool`1.#ctor(System.Boolean@,System.Int32@,wan24.Core.IAsyncServiceProvider@)">InstancePool(in bool, in int, in IAsyncServiceProvider?)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public InstancePool(in int capacity)</code></pre>
+    <pre><code class="lang-csharp hljs">protected InstancePool(in bool intern, in int capacity, in IAsyncServiceProvider? serviceProvider)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -346,69 +356,81 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">capacity</span></td>
-        <td><p>Capacity</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1__ctor_System_Int32__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.%23ctor(System.Int32%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L73">View Source</a>
-  </span>
-  <a id="wan24_Core_InstancePool_1__ctor_" data-uid="wan24.Core.InstancePool`1.#ctor*"></a>
-  <h4 id="wan24_Core_InstancePool_1__ctor_System_Int32__System_Boolean__" data-uid="wan24.Core.InstancePool`1.#ctor(System.Int32@,System.Boolean@)">InstancePool(in int, in bool)</h4>
-  <div class="markdown level1 summary"><p>Constructor</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected InstancePool(in int capacity, in bool intern)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">capacity</span></td>
-        <td><p>Capacity</p>
-</td>
-      </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">intern</span></td>
         <td><p>Intern construction</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">capacity</span></td>
+        <td><p>Capacity</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IAsyncServiceProvider.html">IAsyncServiceProvider</a></td>
+        <td><span class="parametername">serviceProvider</span></td>
+        <td><p>Service provider</p>
+</td>
+      </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1__ctor_System_Int32__wan24_Core_IInstancePool__0__InstanceAsync_Delegate__.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.%23ctor(System.Int32%40%2Cwan24.Core.IInstancePool%7B%600%7D.InstanceAsync_Delegate%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1__ctor_System_Int32__wan24_Core_IAsyncServiceProvider__.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.%23ctor(System.Int32%40%2Cwan24.Core.IAsyncServiceProvider%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L60">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L42">View Source</a>
   </span>
   <a id="wan24_Core_InstancePool_1__ctor_" data-uid="wan24.Core.InstancePool`1.#ctor*"></a>
-  <h4 id="wan24_Core_InstancePool_1__ctor_System_Int32__wan24_Core_IInstancePool__0__InstanceAsync_Delegate__" data-uid="wan24.Core.InstancePool`1.#ctor(System.Int32@,wan24.Core.IInstancePool{`0}.InstanceAsync_Delegate@)">InstancePool(in int, in InstanceAsync_Delegate)</h4>
+  <h4 id="wan24_Core_InstancePool_1__ctor_System_Int32__wan24_Core_IAsyncServiceProvider__" data-uid="wan24.Core.InstancePool`1.#ctor(System.Int32@,wan24.Core.IAsyncServiceProvider@)">InstancePool(in int, in IAsyncServiceProvider?)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public InstancePool(in int capacity, in IInstancePool&lt;T&gt;.InstanceAsync_Delegate factory)</code></pre>
+    <pre><code class="lang-csharp hljs">public InstancePool(in int capacity, in IAsyncServiceProvider? serviceProvider = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">capacity</span></td>
+        <td><p>Capacity</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IAsyncServiceProvider.html">IAsyncServiceProvider</a></td>
+        <td><span class="parametername">serviceProvider</span></td>
+        <td><p>Service provider</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1__ctor_System_Int32__wan24_Core_IInstancePool__0__InstanceAsync_Delegate__wan24_Core_IAsyncServiceProvider__.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.%23ctor(System.Int32%40%2Cwan24.Core.IInstancePool%7B%600%7D.InstanceAsync_Delegate%40%2Cwan24.Core.IAsyncServiceProvider%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L64">View Source</a>
+  </span>
+  <a id="wan24_Core_InstancePool_1__ctor_" data-uid="wan24.Core.InstancePool`1.#ctor*"></a>
+  <h4 id="wan24_Core_InstancePool_1__ctor_System_Int32__wan24_Core_IInstancePool__0__InstanceAsync_Delegate__wan24_Core_IAsyncServiceProvider__" data-uid="wan24.Core.InstancePool`1.#ctor(System.Int32@,wan24.Core.IInstancePool{`0}.InstanceAsync_Delegate@,wan24.Core.IAsyncServiceProvider@)">InstancePool(in int, in InstanceAsync_Delegate, in IAsyncServiceProvider?)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public InstancePool(in int capacity, in IInstancePool&lt;T&gt;.InstanceAsync_Delegate factory, in IAsyncServiceProvider? serviceProvider = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -432,23 +454,29 @@
         <td><p>Instance factory</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IAsyncServiceProvider.html">IAsyncServiceProvider</a></td>
+        <td><span class="parametername">serviceProvider</span></td>
+        <td><p>Service provider</p>
+</td>
+      </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1__ctor_System_Int32__wan24_Core_IInstancePool__0__Instance_Delegate__.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.%23ctor(System.Int32%40%2Cwan24.Core.IInstancePool%7B%600%7D.Instance_Delegate%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1__ctor_System_Int32__wan24_Core_IInstancePool__0__Instance_Delegate__wan24_Core_IAsyncServiceProvider__.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.%23ctor(System.Int32%40%2Cwan24.Core.IInstancePool%7B%600%7D.Instance_Delegate%40%2Cwan24.Core.IAsyncServiceProvider%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L48">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L51">View Source</a>
   </span>
   <a id="wan24_Core_InstancePool_1__ctor_" data-uid="wan24.Core.InstancePool`1.#ctor*"></a>
-  <h4 id="wan24_Core_InstancePool_1__ctor_System_Int32__wan24_Core_IInstancePool__0__Instance_Delegate__" data-uid="wan24.Core.InstancePool`1.#ctor(System.Int32@,wan24.Core.IInstancePool{`0}.Instance_Delegate@)">InstancePool(in int, in Instance_Delegate)</h4>
+  <h4 id="wan24_Core_InstancePool_1__ctor_System_Int32__wan24_Core_IInstancePool__0__Instance_Delegate__wan24_Core_IAsyncServiceProvider__" data-uid="wan24.Core.InstancePool`1.#ctor(System.Int32@,wan24.Core.IInstancePool{`0}.Instance_Delegate@,wan24.Core.IAsyncServiceProvider@)">InstancePool(in int, in Instance_Delegate, in IAsyncServiceProvider?)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public InstancePool(in int capacity, in IInstancePool&lt;T&gt;.Instance_Delegate factory)</code></pre>
+    <pre><code class="lang-csharp hljs">public InstancePool(in int capacity, in IInstancePool&lt;T&gt;.Instance_Delegate factory, in IAsyncServiceProvider? serviceProvider = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -470,6 +498,12 @@
         <td><a class="xref" href="wan24.Core.IInstancePool-1.html">IInstancePool</a>&lt;T&gt;.<a class="xref" href="wan24.Core.IInstancePool-1.Instance_Delegate.html">Instance_Delegate</a></td>
         <td><span class="parametername">factory</span></td>
         <td><p>Instance factory</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IAsyncServiceProvider.html">IAsyncServiceProvider</a></td>
+        <td><span class="parametername">serviceProvider</span></td>
+        <td><p>Service provider</p>
 </td>
       </tr>
     </tbody>
@@ -663,7 +697,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1_Available.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.Available%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L92">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L103">View Source</a>
   </span>
   <a id="wan24_Core_InstancePool_1_Available_" data-uid="wan24.Core.InstancePool`1.Available*"></a>
   <h4 id="wan24_Core_InstancePool_1_Available" data-uid="wan24.Core.InstancePool`1.Available">Available</h4>
@@ -694,7 +728,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1_Capacity.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.Capacity%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L89">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L100">View Source</a>
   </span>
   <a id="wan24_Core_InstancePool_1_Capacity_" data-uid="wan24.Core.InstancePool`1.Capacity*"></a>
   <h4 id="wan24_Core_InstancePool_1_Capacity" data-uid="wan24.Core.InstancePool`1.Capacity">Capacity</h4>
@@ -725,7 +759,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1_Created.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.Created%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L95">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L106">View Source</a>
   </span>
   <a id="wan24_Core_InstancePool_1_Created_" data-uid="wan24.Core.InstancePool`1.Created*"></a>
   <h4 id="wan24_Core_InstancePool_1_Created" data-uid="wan24.Core.InstancePool`1.Created">Created</h4>
@@ -756,7 +790,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1_CreatedOnDemand.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.CreatedOnDemand%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L98">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L109">View Source</a>
   </span>
   <a id="wan24_Core_InstancePool_1_CreatedOnDemand_" data-uid="wan24.Core.InstancePool`1.CreatedOnDemand*"></a>
   <h4 id="wan24_Core_InstancePool_1_CreatedOnDemand" data-uid="wan24.Core.InstancePool`1.CreatedOnDemand">CreatedOnDemand</h4>
@@ -787,7 +821,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1_GUID.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.GUID%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L86">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L92">View Source</a>
   </span>
   <a id="wan24_Core_InstancePool_1_GUID_" data-uid="wan24.Core.InstancePool`1.GUID*"></a>
   <h4 id="wan24_Core_InstancePool_1_GUID" data-uid="wan24.Core.InstancePool`1.GUID">GUID</h4>
@@ -815,10 +849,41 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1_ServiceProvider.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.ServiceProvider%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L97">View Source</a>
+  </span>
+  <a id="wan24_Core_InstancePool_1_ServiceProvider_" data-uid="wan24.Core.InstancePool`1.ServiceProvider*"></a>
+  <h4 id="wan24_Core_InstancePool_1_ServiceProvider" data-uid="wan24.Core.InstancePool`1.ServiceProvider">ServiceProvider</h4>
+  <div class="markdown level1 summary"><p>Service provider</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IAsyncServiceProvider ServiceProvider { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IAsyncServiceProvider.html">IAsyncServiceProvider</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1_State.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.State%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L101">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L112">View Source</a>
   </span>
   <a id="wan24_Core_InstancePool_1_State_" data-uid="wan24.Core.InstancePool`1.State*"></a>
   <h4 id="wan24_Core_InstancePool_1_State" data-uid="wan24.Core.InstancePool`1.State">State</h4>
@@ -851,7 +916,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1_BeforeStopAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.BeforeStopAsync(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L170">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L181">View Source</a>
   </span>
   <a id="wan24_Core_InstancePool_1_BeforeStopAsync_" data-uid="wan24.Core.InstancePool`1.BeforeStopAsync*"></a>
   <h4 id="wan24_Core_InstancePool_1_BeforeStopAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.InstancePool`1.BeforeStopAsync(System.Threading.CancellationToken)">BeforeStopAsync(CancellationToken)</h4>
@@ -902,7 +967,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L193">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L204">View Source</a>
   </span>
   <a id="wan24_Core_InstancePool_1_Dispose_" data-uid="wan24.Core.InstancePool`1.Dispose*"></a>
   <h4 id="wan24_Core_InstancePool_1_Dispose_System_Boolean_" data-uid="wan24.Core.InstancePool`1.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -938,7 +1003,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L201">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L212">View Source</a>
   </span>
   <a id="wan24_Core_InstancePool_1_DisposeCore_" data-uid="wan24.Core.InstancePool`1.DisposeCore*"></a>
   <h4 id="wan24_Core_InstancePool_1_DisposeCore" data-uid="wan24.Core.InstancePool`1.DisposeCore">DisposeCore()</h4>
@@ -971,7 +1036,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1_GetMany_System_Int32_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.GetMany(System.Int32%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L144">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L155">View Source</a>
   </span>
   <a id="wan24_Core_InstancePool_1_GetMany_" data-uid="wan24.Core.InstancePool`1.GetMany*"></a>
   <h4 id="wan24_Core_InstancePool_1_GetMany_System_Int32_System_Threading_CancellationToken_" data-uid="wan24.Core.InstancePool`1.GetMany(System.Int32,System.Threading.CancellationToken)">GetMany(int, CancellationToken)</h4>
@@ -1027,7 +1092,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1_GetManyAsync_System_Int32_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.GetManyAsync(System.Int32%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L151">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L162">View Source</a>
   </span>
   <a id="wan24_Core_InstancePool_1_GetManyAsync_" data-uid="wan24.Core.InstancePool`1.GetManyAsync*"></a>
   <h4 id="wan24_Core_InstancePool_1_GetManyAsync_System_Int32_System_Threading_CancellationToken_" data-uid="wan24.Core.InstancePool`1.GetManyAsync(System.Int32,System.Threading.CancellationToken)">GetManyAsync(int, CancellationToken)</h4>
@@ -1083,7 +1148,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1_GetOne.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.GetOne%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L115">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L126">View Source</a>
   </span>
   <a id="wan24_Core_InstancePool_1_GetOne_" data-uid="wan24.Core.InstancePool`1.GetOne*"></a>
   <h4 id="wan24_Core_InstancePool_1_GetOne" data-uid="wan24.Core.InstancePool`1.GetOne">GetOne()</h4>
@@ -1115,7 +1180,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1_GetOneAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.GetOneAsync(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L126">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L137">View Source</a>
   </span>
   <a id="wan24_Core_InstancePool_1_GetOneAsync_" data-uid="wan24.Core.InstancePool`1.GetOneAsync*"></a>
   <h4 id="wan24_Core_InstancePool_1_GetOneAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.InstancePool`1.GetOneAsync(System.Threading.CancellationToken)">GetOneAsync(CancellationToken)</h4>
@@ -1165,7 +1230,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InstancePool_1_WorkerAsync.md&amp;value=---%0Auid%3A%20wan24.Core.InstancePool%601.WorkerAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L177">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InstancePool.cs/#L188">View Source</a>
   </span>
   <a id="wan24_Core_InstancePool_1_WorkerAsync_" data-uid="wan24.Core.InstancePool`1.WorkerAsync*"></a>
   <h4 id="wan24_Core_InstancePool_1_WorkerAsync" data-uid="wan24.Core.InstancePool`1.WorkerAsync">WorkerAsync()</h4>
