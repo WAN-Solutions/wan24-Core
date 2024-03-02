@@ -27,6 +27,7 @@ namespace wan24.Core
         IObserver<tValue>,
         IDisposableObject
         where tKey : notnull
+        where tValue : notnull
     {
         /// <summary>
         /// Disposable adapter
