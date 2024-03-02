@@ -178,47 +178,40 @@ namespace wan24.Core
             if (delay <= TimeSpan.Zero) delay = TimeSpan.FromMilliseconds(20);
             using CancellationTokenSource processing = new();
             using BoundCancellationTokenSource cancellation = new(cancellationToken, processing.Token);
-            bool disposeClient = client is null;
-            if (disposeClient) serviceProvider ??= DiHelper.Instance;
+            using OptionalDisposer clientDisposer = new(client, client is null);
+            if (client is null) serviceProvider ??= DiHelper.Instance;
             TimeSpan waitTime;
             DateTime continueAt = DateTime.Now;
             client ??= await serviceProvider!.GetServiceAsync(typeof(HttpClient), cancellationToken).DynamicContext() as HttpClient ?? new();
-            try
-            {
-                foreach (Uri uri in uris)
+            foreach (Uri uri in uris)
+                try
+                {
+                    continueAt += delay;
+                    cancellation.TryReset();
+                    processing.TryReset();
+                    processing.CancelAfter(delay);
                     try
                     {
-                        continueAt += delay;
-                        cancellation.TryReset();
-                        processing.TryReset();
-                        processing.CancelAfter(delay);
-                        try
-                        {
-                            using HttpRequestMessage request = requestFactory?.Invoke(uri) ?? new(HttpMethod.Get, uri);
-                            using HttpResponseMessage response = await client.SendAsync(request, cancellation.Token).DynamicContext();
-                        }
-                        catch (OperationCanceledException ex)
-                        {
-                            // Throw, if canceled - otherwise continue the port knocking sequence
-                            if (ex.CancellationToken == cancellationToken) throw;
-                            continue;
-                        }
-                        catch
-                        {
-                        }
-                        // Usually a firewall will swallow the requests silently and the send operation fails with timeout - this only in case if not:
-                        waitTime = continueAt - DateTime.Now;
-                        if (waitTime > TimeSpan.Zero) await Task.Delay(waitTime, cancellationToken).DynamicContext();
+                        using HttpRequestMessage request = requestFactory?.Invoke(uri) ?? new(HttpMethod.Get, uri);
+                        using HttpResponseMessage response = await client.SendAsync(request, cancellation.Token).DynamicContext();
                     }
-                    finally
+                    catch (OperationCanceledException ex)
                     {
-                        progress?.Update();
+                        // Throw, if canceled - otherwise continue the port knocking sequence
+                        if (ex.CancellationToken == cancellationToken) throw;
+                        continue;
                     }
-            }
-            finally
-            {
-                if (disposeClient) client.Dispose();
-            }
+                    catch
+                    {
+                    }
+                    // Usually a firewall will swallow the requests silently and the send operation fails with timeout - this only in case if not:
+                    waitTime = continueAt - DateTime.Now;
+                    if (waitTime > TimeSpan.Zero) await Task.Delay(waitTime, cancellationToken).DynamicContext();
+                }
+                finally
+                {
+                    progress?.Update();
+                }
         }
 
         /// <summary>
@@ -247,24 +240,17 @@ namespace wan24.Core
             EnsureValidPorts(ports);
             cancellationToken.ThrowIfCancellationRequested();
             payload ??= Array.Empty<byte>();
-            bool disposeClient = client is null;
-            if (disposeClient)
+            using OptionalDisposer clientDisposer = new(client, client is null);
+            if (client is null)
             {
                 serviceProvider ??= DiHelper.Instance;
                 client = await serviceProvider!.GetServiceAsync(typeof(UdpClient), cancellationToken).DynamicContext() as UdpClient ?? new(target.AddressFamily);
             }
-            try
+            foreach (int port in ports)
             {
-                foreach (int port in ports)
-                {
-                    await client!.SendAsync(payload.Value, new(target, port), cancellationToken).DynamicContext();
-                    if (delay > TimeSpan.Zero) await Task.Delay(delay, cancellationToken).DynamicContext();
-                    progress?.Update();
-                }
-            }
-            finally
-            {
-                if (disposeClient) client!.Dispose();
+                await client!.SendAsync(payload.Value, new(target, port), cancellationToken).DynamicContext();
+                if (delay > TimeSpan.Zero) await Task.Delay(delay, cancellationToken).DynamicContext();
+                progress?.Update();
             }
         }
 
