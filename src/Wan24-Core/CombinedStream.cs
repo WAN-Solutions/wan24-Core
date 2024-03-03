@@ -1,5 +1,4 @@
-﻿using System.Collections.Frozen;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace wan24.Core
 {
@@ -19,7 +18,7 @@ namespace wan24.Core
         /// <summary>
         /// Stream lengths in bytes
         /// </summary>
-        protected FrozenSet<long> Lengths;
+        protected long[] Lengths;
         /// <summary>
         /// Combined length in bytes
         /// </summary>
@@ -40,16 +39,25 @@ namespace wan24.Core
         /// </summary>
         /// <param name="leaveOpen">Leave the streams open when disposing?</param>
         /// <param name="streams">Streams</param>
-        public CombinedStream(in bool leaveOpen, params Stream[] streams) : base()
+        public CombinedStream(in bool leaveOpen, params Stream[] streams) : this(resetPosition: true, leaveOpen, streams) { }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="resetPosition">Reset the position when switching to the next stream?</param>
+        /// <param name="leaveOpen">Leave the streams open when disposing?</param>
+        /// <param name="streams">Streams</param>
+        public CombinedStream(in bool resetPosition, in bool leaveOpen, params Stream[] streams) : base()
         {
             if (streams.Length < 1) throw new ArgumentOutOfRangeException(nameof(streams));
             if (streams.Any(s => !s.CanRead)) throw new ArgumentException("Readable streams required", nameof(streams));
-            _CanSeek = streams.All(s => s.CanSeek);
+            _CanSeek = resetPosition && streams.All(s => s.CanSeek);
             _CanWrite = _CanSeek && streams.All(s => s.CanWrite);
-            Lengths = _CanSeek ? streams.Select(s => s.Length).ToFrozenSet() : Array.Empty<long>().ToFrozenSet();
+            Lengths = _CanSeek ? streams.Select(s => s.Length).ToArray() : [];
             _Length = _CanSeek ? Lengths.Sum() : -1;
             Streams = streams.AsReadOnly();
             LeaveOpen = leaveOpen;
+            ResetPosition = resetPosition;
             if (_CanSeek) _Position = CurrentStream.Position;
         }
 
@@ -67,6 +75,11 @@ namespace wan24.Core
         /// Leave the streams open when disposing?
         /// </summary>
         public bool LeaveOpen { get; set; }
+
+        /// <summary>
+        /// Reset the position when switching to the next stream?
+        /// </summary>
+        public bool ResetPosition { get; }
 
         /// <summary>
         /// Current stream index
@@ -127,9 +140,9 @@ namespace wan24.Core
             if (position > _Length) return -1;
             if (position == _Length) return Streams.Count - 1;
             long len = 0;
-            for (int i = 0; i < Lengths.Count; i++)
+            for (int i = 0; i < Lengths.Length; i++)
             {
-                len += Lengths.Items[i];
+                len += Lengths[i];
                 if (len >= position) return i;
             }
             return -1;
@@ -248,7 +261,7 @@ namespace wan24.Core
             }
             if (CurrentStreamIndex == Streams.Count - 1)
             {
-                Lengths = Streams.Select(s => s.Length).ToFrozenSet();
+                Lengths = Streams.Select(s => s.Length).ToArray();
                 _Length = Lengths.Sum();
             }
         }
@@ -279,7 +292,7 @@ namespace wan24.Core
             }
             if (CurrentStreamIndex == Streams.Count - 1)
             {
-                Lengths = Streams.Select(s => s.Length).ToFrozenSet();
+                Lengths = Streams.Select(s => s.Length).ToArray();
                 _Length = Lengths.Sum();
             }
         }
