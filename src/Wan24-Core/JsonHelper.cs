@@ -2,7 +2,6 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Text.RegularExpressions;
 
 namespace wan24.Core
 {
@@ -23,42 +22,10 @@ namespace wan24.Core
         /// JSON <see langword="false"/> value
         /// </summary>
         public const string FALSE = "false";
-
         /// <summary>
-        /// Non-intending options
+        /// JSON MIME type
         /// </summary>
-        private static readonly JsonSerializerOptions NotIntendedOptions = new();
-        /// <summary>
-        /// Intending options
-        /// </summary>
-        private static readonly JsonSerializerOptions IntendedOptions = new()
-        {
-            WriteIndented = true
-        };
-        /// <summary>
-        /// Decoder options
-        /// </summary>
-        private static readonly JsonSerializerOptions DecoderOptions;
-        /// <summary>
-        /// Regular expression to match a JSON integer value
-        /// </summary>
-        private static readonly Regex RxJsonInt = RxJsonInt_Generator();
-        /// <summary>
-        /// Regular expression to match a JSON float value
-        /// </summary>
-        private static readonly Regex RxJsonFloat = RxJsonFloat_Generator();
-        /// <summary>
-        /// Regular expression to match a JSON string value
-        /// </summary>
-        private static readonly Regex RxJsonString = RxJsonString_Generator();
-        /// <summary>
-        /// Regular expression to match a JSON object value
-        /// </summary>
-        private static readonly Regex RxJsonObject = RxJsonObject_Generator();
-        /// <summary>
-        /// Regular expression to match a JSON array value
-        /// </summary>
-        private static readonly Regex RxJsonArray = RxJsonArray_Generator();
+        public const string MIME_TYPE = "application/json";
 
         /// <summary>
         /// Constructor
@@ -300,100 +267,5 @@ namespace wan24.Core
         /// <param name="json">JSON string</param>
         /// <returns>Is an array (may return false positives)?</returns>
         public static bool IsJsonArray(this string json) => RxJsonArray.IsMatch(json);
-
-        /// <summary>
-        /// Delegate for a JSON encoder
-        /// </summary>
-        /// <param name="obj">Object</param>
-        /// <param name="prettify">Prettify?</param>
-        /// <returns>JSON string</returns>
-        public delegate string Encoder_Delegate(object? obj, bool prettify);
-
-        /// <summary>
-        /// Delegate for a JSON encoder
-        /// </summary>
-        /// <param name="obj">Object</param>
-        /// <param name="target">Target stream</param>
-        /// <param name="prettify">Prettify?</param>
-        public delegate void StreamEncoder_Delegate(object? obj, Stream target, bool prettify);
-
-        /// <summary>
-        /// Delegate for a JSON encoder
-        /// </summary>
-        /// <param name="obj">Object</param>
-        /// <param name="target">Target stream</param>
-        /// <param name="prettify">Prettify?</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>JSON string or empty if <c>target</c> was given</returns>
-        public delegate Task<string> EncoderAsync_Delegate(object? obj, Stream? target, bool prettify, CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Delegate for a JSON decoder
-        /// </summary>
-        /// <param name="type">Expected type</param>
-        /// <param name="json">JSON string</param>
-        /// <returns>Result</returns>
-        public delegate object? Decoder_Delegate(Type type, string json);
-
-        /// <summary>
-        /// Delegate for a JSON decoder
-        /// </summary>
-        /// <param name="type">Expected type</param>
-        /// <param name="stream">Stream</param>
-        /// <returns>Result</returns>
-        public delegate object? StreamDecoder_Delegate(Type type, Stream stream);
-
-        /// <summary>
-        /// Delegate for a JSON decoder
-        /// </summary>
-        /// <param name="type">Expected type</param>
-        /// <param name="json">JSON string</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Result</returns>
-        public delegate Task<object?> StringDecoderAsync_Delegate(Type type, string json, CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Delegate for a JSON decoder
-        /// </summary>
-        /// <param name="type">Expected type</param>
-        /// <param name="source">JSON stream</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Result</returns>
-        public delegate Task<object?> StreamDecoderAsync_Delegate(Type type, Stream source, CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Regular expression to match a JSON integer value
-        /// </summary>
-        /// <returns>Regular expression</returns>
-        [GeneratedRegex(@"^\s*\d+\s*$", RegexOptions.Singleline | RegexOptions.Compiled)]
-        private static partial Regex RxJsonInt_Generator();
-
-        /// <summary>
-        /// Regular expression to match a JSON float value
-        /// </summary>
-        /// <returns>Regular expression</returns>
-        [GeneratedRegex(@"^\s*\d+(\.\d+)?\s*$", RegexOptions.Compiled | RegexOptions.Singleline)]
-        private static partial Regex RxJsonFloat_Generator();
-
-        /// <summary>
-        /// Regular expression to match a JSON string value
-        /// </summary>
-        /// <returns>Regular expression</returns>
-        [GeneratedRegex("^\\s*\\\"[^\\n]*\\\"\\s*$", RegexOptions.Compiled | RegexOptions.Singleline)]
-        private static partial Regex RxJsonString_Generator();
-
-        /// <summary>
-        /// Regular expression to match a JSON object value
-        /// </summary>
-        /// <returns>Regular expression</returns>
-        [GeneratedRegex(@"^\s*\{.*\}\s*$", RegexOptions.Compiled | RegexOptions.Singleline)]
-        private static partial Regex RxJsonObject_Generator();
-
-        /// <summary>
-        /// Regular expression to match a JSON array value
-        /// </summary>
-        /// <returns>Regular expression</returns>
-        [GeneratedRegex(@"^\s*\[.*\]\s*$", RegexOptions.Compiled | RegexOptions.Singleline)]
-        private static partial Regex RxJsonArray_Generator();
     }
 }

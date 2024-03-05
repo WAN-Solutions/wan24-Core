@@ -89,6 +89,7 @@ namespace wan24.Core
             if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
             BaseStream.SetLength(Offset + value);
             _Length = value;
+            if (_Length < _Position) _Position = _Length;
         }
 
         /// <inheritdoc/>
@@ -141,7 +142,7 @@ namespace wan24.Core
             EnsureWritable();
             BaseStream.Write(buffer, offset, count);
             _Position += count;
-            if (_Length > -1 && _Position > _Length) _Length += count;
+            if (_Position > _Length) _Length = _Position;
         }
 
         /// <inheritdoc/>
@@ -151,7 +152,7 @@ namespace wan24.Core
             EnsureWritable();
             BaseStream.Write(buffer);
             _Position += buffer.Length;
-            if (_Length > -1 && _Position > _Length) _Length += buffer.Length;
+            if (_Position > _Length) _Length = _Position;
         }
 
         /// <inheritdoc/>
@@ -161,7 +162,7 @@ namespace wan24.Core
             EnsureWritable();
             await BaseStream.WriteAsync(buffer, offset, count, cancellationToken).DynamicContext();
             _Position += count;
-            if (_Length > -1 && _Position > _Length) _Length += count;
+            if (_Position > _Length) _Length = _Position;
         }
 
         /// <inheritdoc/>
@@ -171,7 +172,7 @@ namespace wan24.Core
             EnsureWritable();
             await BaseStream.WriteAsync(buffer, cancellationToken).DynamicContext();
             _Position += buffer.Length;
-            if (_Length > -1 && _Position > _Length) _Length += buffer.Length;
+            if (_Position > _Length) _Length = _Position;
         }
 
         /// <inheritdoc/>

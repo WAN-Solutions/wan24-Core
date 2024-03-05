@@ -178,5 +178,35 @@ namespace wan24.Core
             last[parts[^1]] = value;
             return true;
         }
+
+        /// <summary>
+        /// Create an object from a JSON dictionary
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="jsonDict">JSON dictionary</param>
+        /// <returns>Object</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static T ToObject<T>(this Dictionary<string, object?> jsonDict)
+        {
+            using MemoryPoolStream ms = new();
+            JsonHelper.Encode(jsonDict, ms);
+            ms.Position = 0;
+            return JsonHelper.Decode<T>(ms) ?? throw new InvalidDataException($"Failed to create a {typeof(T)} from a JSON dictionary");
+        }
+
+        /// <summary>
+        /// Create an object from a JSON dictionary
+        /// </summary>
+        /// <param name="jsonDict">JSON dictionary</param>
+        /// <param name="type">Object type</param>
+        /// <returns>Object</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static object ToObject(this Dictionary<string, object?> jsonDict, in Type type)
+        {
+            using MemoryPoolStream ms = new();
+            JsonHelper.Encode(jsonDict, ms);
+            ms.Position = 0;
+            return JsonHelper.DecodeObject(type, ms) ?? throw new InvalidDataException($"Failed to create a {type} from a JSON dictionary");
+        }
     }
 }
