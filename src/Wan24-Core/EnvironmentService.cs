@@ -39,6 +39,13 @@
                 yield return new("Current folder", Environment.CurrentDirectory, "Current folder");
                 yield return new("Page size", Environment.SystemPageSize, "Operating system memory page size in bytes");
                 yield return new("Working set", Environment.WorkingSet, "Physical memory mapped to the current process in bytes");
+                yield return new("Buffer size", Settings.BufferSize, "Default bufer size in bytes");
+                yield return new("stackalloc border", Settings.StackAllocBorder, "Stack allocation limitation border in bytes");
+                yield return new("App ID", Settings.AppId, "App ID");
+                yield return new("App process", Settings.ProcessId, "App process ID");
+                yield return new("Create file", Settings.CreateFileMode, "Linux create file mode");
+                yield return new("Create folder", Settings.CreateFolderMode, "Linux create folder mode");
+                yield return new("Log level", Settings.LogLevel, "Default log level");
                 yield return new("Services", ServiceWorkerTable.ServiceWorkers.Count, "Number of registered service worker instances");
                 yield return new("Timers", TimerTable.Timers.Count, "Number of registered timer instances");
                 yield return new("Pools", PoolTable.Pools.Count, "Number of pools");
