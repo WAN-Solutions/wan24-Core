@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using static wan24.Core.TranslationHelper;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Parallel queue worker
@@ -42,8 +44,8 @@
             get
             {
                 foreach (Status state in base.State) yield return state;
-                yield return new("Threads", Threads, "Number of threads");
-                yield return new("Active threads", ProcessCount, "Number of currently active threads");
+                yield return new(__("Threads"), Threads, __("Number of threads"));
+                yield return new(__("Active threads"), ProcessCount, __("Number of currently active threads"));
             }
         }
 
@@ -137,7 +139,9 @@
                     if (ProcessCount >= Threads) await Processing.ResetAsync().DynamicContext();
                     await Busy.ResetAsync().DynamicContext();
                 }
-                _ = Process(task, CancelToken).DynamicContext();
+#pragma warning disable CS4014 // Not waiting for the task
+                Process(task, CancelToken).DynamicContext();
+#pragma warning restore CS4014 // Not waiting for the task
             }
         }
 

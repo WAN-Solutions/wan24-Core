@@ -1,5 +1,6 @@
 ﻿using System.Runtime;
 using System.Threading.Channels;
+using static wan24.Core.TranslationHelper;
 
 namespace wan24.Core
 {
@@ -35,9 +36,9 @@ namespace wan24.Core
         {
             get
             {
-                yield return new("GUID", GUID, "Unique ID of the service object");
-                yield return new("Last exception", LastException?.Message, "Last exception message");
-                yield return new("Queued", Queued, "Number of queued items");
+                yield return new(__("GUID"), GUID, __("Unique ID of the service object"));
+                yield return new(__("Last exception"), LastException?.Message ?? LastException?.GetType().ToString(), __("Last exception message"));
+                yield return new(__("Queued"), Queued, __("Number of queued items"));
             }
         }
 

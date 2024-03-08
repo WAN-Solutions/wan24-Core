@@ -1,4 +1,5 @@
-﻿
+﻿using static wan24.Core.TranslationHelper;
+
 namespace wan24.Core
 {
     /// <summary>
@@ -70,9 +71,9 @@ namespace wan24.Core
             get
             {
                 foreach (Status status in base.State) yield return status;
-                yield return new("Max. buffer", MaxBuffer, "Maximum buffer size in bytes (or <1 for no limit)");
-                yield return new("Current buffer", BufferSize, "Current buffer size in bytes");
-                yield return new("Is flushed", IsFlushed, "If the buffer was flushed (is empty)");
+                yield return new(__("Max. buffer"), MaxBuffer, __("Maximum buffer size in bytes (or <1 for no limit)"));
+                yield return new(__("Current buffer"), BufferSize, __("Current buffer size in bytes"));
+                yield return new(__("Is flushed"), IsFlushed, __("If the buffer was flushed (is empty)"));
             }
         }
 

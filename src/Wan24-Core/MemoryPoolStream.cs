@@ -1,5 +1,6 @@
 ﻿using System.Buffers;
 using System.Runtime;
+using static wan24.Core.TranslationHelper;
 
 namespace wan24.Core
 {
@@ -135,9 +136,9 @@ namespace wan24.Core
         {
             get
             {
-                yield return new("Name", Name, "Name of the stream");
-                yield return new("Type", GetType().ToString(), "Stream type");
-                yield return new("Size", Length, "Length in bytes");
+                yield return new(__("Name"), Name, __("Name of the stream"));
+                yield return new(__("Type"), GetType().ToString(), __("Stream type"));
+                yield return new(__("Size"), Length, __("Length in bytes"));
             }
         }
 

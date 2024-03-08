@@ -1,5 +1,6 @@
 ﻿using System.Runtime;
 using System.Runtime.CompilerServices;
+using static wan24.Core.TranslationHelper;
 
 namespace wan24.Core
 {
@@ -80,13 +81,13 @@ namespace wan24.Core
         {
             get
             {
-                yield return new("GUID", GUID, "Unique ID of the service object");
-                yield return new("Last exception", LastException?.Message, "Last exception message");
-                yield return new("Timer type", TimerType, "Type of the timer");
-                yield return new("Interval", TimeSpan.FromMilliseconds(Interval), "Timer interval");
-                yield return new("Last duration", LastDuration, "Last run duration");
-                yield return new("Scheduled next run", NextRun, "Next scheduled run time");
-                yield return new("Run once", RunOnce, "Run once, then stop and wait for the next start?");
+                yield return new(__("GUID"), GUID, __("Unique ID of the service object"));
+                yield return new(__("Last exception"), LastException?.Message, __("Last exception message"));
+                yield return new(__("Timer type"), TimerType, __("Type of the timer"));
+                yield return new(__("Interval"), TimeSpan.FromMilliseconds(Interval), __("Timer interval"));
+                yield return new(__("Last duration"), LastDuration, __("Last run duration"));
+                yield return new(__("Scheduled next run"), NextRun, __("Next scheduled run time"));
+                yield return new(__("Run once"), RunOnce, __("Run once, then stop and wait for the next start?"));
             }
         }
 
@@ -287,7 +288,9 @@ namespace wan24.Core
             }
             finally
             {
-                if (RunOnce) _ = RaiseOnRan().DynamicContext();
+#pragma warning disable CS4014 // Not waiting for the task
+                if (RunOnce) RaiseOnRan().DynamicContext();
+#pragma warning restore CS4014 // Not waiting for the task
             }
         }
 
@@ -358,7 +361,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            TimerTable.Timers.Remove(GUID, out _);
+            TimerTable.Timers.Remove(GUID);
             base.Dispose(disposing);
             Timer.Dispose();
             RunningEvent.Dispose();
@@ -369,7 +372,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            TimerTable.Timers.Remove(GUID, out _);
+            TimerTable.Timers.Remove(GUID);
             await base.DisposeCore().DynamicContext();
             Timer.Dispose();
             RunningEvent.Dispose();

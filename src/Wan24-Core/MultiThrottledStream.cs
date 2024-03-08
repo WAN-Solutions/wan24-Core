@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using static wan24.Core.TranslationHelper;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Multiple combined throttled streams (will balance a total read/write limit to all hosted streams, based on quotas; all streams need to use the same time restrictions for this)
@@ -125,11 +127,11 @@
             get
             {
                 EnsureUndisposed();
-                yield return new("GUID", GUID, "Unique ID of the object");
-                yield return new("Name", Name, "Name of the object");
-                yield return new("Count", _Streams.Count, "Number of hosted streams");
-                yield return new("Total read limit", _TotalReadLimit, "Reading count total limit");
-                yield return new("Total write limit", _TotalWriteLimit, "Writing count total limit");
+                yield return new(__("GUID"), GUID, __("Unique ID of the object"));
+                yield return new(__("Name"), Name, __("Name of the object"));
+                yield return new(__("Count"), _Streams.Count, __("Number of hosted streams"));
+                yield return new(__("Total read limit"), _TotalReadLimit, __("Reading count total limit"));
+                yield return new(__("Total write limit"), _TotalWriteLimit, __("Writing count total limit"));
             }
         }
 

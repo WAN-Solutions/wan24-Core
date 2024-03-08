@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using static wan24.Core.TranslationHelper;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Bi-directional stream
@@ -105,14 +107,14 @@
         {
             get
             {
-                yield return new("Name", Name, "Name of the stream");
-                yield return new("Type", GetType().ToString(), "Stream type");
+                yield return new(__("Name"), Name, __("Name of the stream"));
+                yield return new(__("Type"), GetType().ToString(), __("Stream type"));
                 if (Readable is IStatusProvider rsp)
                     foreach (Status status in rsp.State)
-                        yield return new($"Readable: {status.Name}", status.State, status.Description);
+                        yield return new(status.Name, status.State, status.Description, __("Readable"));
                 if (Writable is IStatusProvider wsp)
                     foreach (Status status in wsp.State)
-                        yield return new($"Writable: {status.Name}", status.State, status.Description);
+                        yield return new(status.Name, status.State, status.Description, __("Writable"));
             }
         }
 
