@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using static wan24.Core.TranslationHelper;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Multiple combined process throttles (will balance a total limit to all hosted throttles; all throttles need to use the same time restriction for this)
@@ -96,11 +98,11 @@
             get
             {
                 EnsureUndisposed();
-                yield return new("GUID", GUID, "Unique ID of the object");
-                yield return new("Name", Name, "Name of the object");
-                yield return new("Count", _Throttles.Count, "Number of hosted streams");
-                yield return new("Total limit", _TotalLimit, "Processing count total limit");
-                yield return new("Current limit", CurrentLimit, "Processing count limit per throttle");
+                yield return new(__("GUID"), GUID, __("Unique ID of the object"));
+                yield return new(__("Name"), Name, __("Name of the object"));
+                yield return new(__("Count"), _Throttles.Count, __("Number of hosted streams"));
+                yield return new(__("Total limit"), _TotalLimit, __("Processing count total limit"));
+                yield return new(__("Current limit"), CurrentLimit, __("Processing count limit per throttle"));
             }
         }
 

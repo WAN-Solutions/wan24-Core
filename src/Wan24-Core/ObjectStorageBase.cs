@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using static wan24.Core.TranslationHelper;
 
 namespace wan24.Core
 {
@@ -74,12 +75,12 @@ namespace wan24.Core
         {
             get
             {
-                yield return new("GUID", GUID, "Unique ID of the service object");
-                yield return new("Last exception", LastException?.Message, "Last exception message");
-                yield return new("In-memory limit", InMemoryLimit, "Maximum number of objects hold in memory");
-                yield return new("Stored", Stored, "Number of objects hold in memory");
-                yield return new("Peak", StoredPeak, "Maximum number of objects hold in memory counted");
-                yield return new("References", ObjectReferences, "Number of currently used object references");
+                yield return new(__("GUID"), GUID, __("Unique ID of the service object"));
+                yield return new(__("Last exception"), LastException?.Message, __("Last exception message"));
+                yield return new(__("In-memory limit"), InMemoryLimit, __("Maximum number of objects hold in memory"));
+                yield return new(__("Stored"), Stored, __("Number of objects hold in memory"));
+                yield return new(__("Peak"), StoredPeak, __("Maximum number of objects hold in memory counted"));
+                yield return new(__("References"), ObjectReferences, __("Number of currently used object references"));
             }
         }
 
@@ -129,7 +130,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = WorkerSync.SyncContext();
-            Storage.TryRemove(obj.ObjectKey, out _);
+            Storage.TryRemove(obj.ObjectKey, out StoredObject? so);
             if (Storage.Count > InMemoryLimit) CleanEvent.Set();
             return obj;
         }
@@ -157,7 +158,7 @@ namespace wan24.Core
         protected virtual async Task RemoveAsync(StoredObject obj, bool sync = true)
         {
             using SemaphoreSyncContext? ssc = sync ? await WorkerSync.SyncContextAsync().DynamicContext() : null;
-            Storage.TryRemove(obj.Key, out _);
+            Storage.TryRemove(obj.Key, out StoredObject? so);
             if(CanDispose) await obj.TryDisposeAsync().DynamicContext();
         }
 

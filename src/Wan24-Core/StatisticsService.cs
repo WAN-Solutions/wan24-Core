@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using static wan24.Core.TranslationHelper;
 
 namespace wan24.Core
 {
@@ -15,7 +16,7 @@ namespace wan24.Core
         /// <param name="nextRun">Fixed next run time</param>
         public StatisticsService(in double interval, in HostedServiceTimers timer = HostedServiceTimers.ExactCatchingUp, in DateTime? nextRun = null)
             : base(interval, timer, nextRun)
-            => Name = "Periodical statistics";
+            => Name = __("Periodical statistics");
 
         /// <summary>
         /// Statistical values

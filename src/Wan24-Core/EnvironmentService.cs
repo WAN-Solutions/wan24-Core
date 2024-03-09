@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using static wan24.Core.TranslationHelper;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Environment metrics measuring service
@@ -20,39 +22,46 @@
             get
             {
                 foreach (Status state in base.State) yield return state;
-                yield return new("User", Environment.UserName, "Current user name");
-                yield return new("Domain", Environment.UserDomainName, "Current user domain");
-                yield return new("Interactive", Environment.UserInteractive, "Is the current user interactive?");
-                yield return new("Machine", Environment.MachineName, "Machine name");
-                yield return new("OS", Environment.OSVersion, "Operating system identifier");
-                yield return new("64bit OS", Environment.Is64BitOperatingSystem, "Is a 64bit operating system?");
-                yield return new("Browser", ENV.IsBrowserApp, "Is a browser app (WASM)?");
-                yield return new("Uptime", TimeSpan.FromMilliseconds(Environment.TickCount64), "Operating system uptime since the last restart");
-                yield return new(".NET CLR version", Environment.Version, ".NET CLR version");
-                yield return new("CPU cores", Environment.ProcessorCount, "Number of CPU cores");
-                yield return new("Process ID", Environment.ProcessId, "Current process ID");
-                yield return new("64bit process", Environment.Is64BitProcess, "Is a 64bit process?");
-                yield return new("Privileged", Environment.IsPrivilegedProcess, "Is the process privileged to perform security sensitive operations?");
-                yield return new("Process path", Environment.ProcessPath, "Current process path");
-                yield return new("System folder", Environment.SystemDirectory, "Operating system folder");
-                yield return new("Temp folder", Settings.TempFolder, "Temporary folder");
-                yield return new("Current folder", Environment.CurrentDirectory, "Current folder");
-                yield return new("Page size", Environment.SystemPageSize, "Operating system memory page size in bytes");
-                yield return new("Working set", Environment.WorkingSet, "Physical memory mapped to the current process in bytes");
-                yield return new("Services", ServiceWorkerTable.ServiceWorkers.Count, "Number of registered service worker instances");
-                yield return new("Timers", TimerTable.Timers.Count, "Number of registered timer instances");
-                yield return new("Pools", PoolTable.Pools.Count, "Number of pools");
-                yield return new("Object lock managers", ObjectLockTable.ObjectLocks.Count, "Number of registered object lock manager instances");
-                yield return new("Active processes", ProcessTable.Processing.Count, "Number of active registered processes");
-                yield return new("Delayed processes", DelayTable.Delays.Count, "Number of delayed processes");
+                yield return new(__("User"), Environment.UserName, __("Current user name"));
+                yield return new(__("Domain"), Environment.UserDomainName, __("Current user domain"));
+                yield return new(__("Interactive"), Environment.UserInteractive, __("Is the current user interactive?"));
+                yield return new(__("Machine"), Environment.MachineName, __("Machine name"));
+                yield return new(__("OS"), Environment.OSVersion, __("Operating system identifier"));
+                yield return new(__("64bit OS"), Environment.Is64BitOperatingSystem, __("Is a 64bit operating system?"));
+                yield return new(__("Browser"), ENV.IsBrowserApp, __("Is a browser app (WASM)?"));
+                yield return new(__("Uptime"), TimeSpan.FromMilliseconds(Environment.TickCount64), __("Operating system uptime since the last restart"));
+                yield return new(__(".NET CLR version"), Environment.Version, __(".NET CLR version"));
+                yield return new(__("CPU cores"), Environment.ProcessorCount, __("Number of CPU cores"));
+                yield return new(__("Process ID"), Environment.ProcessId, __("Current process ID"));
+                yield return new(__("64bit process"), Environment.Is64BitProcess, __("Is a 64bit process?"));
+                yield return new(__("Privileged"), Environment.IsPrivilegedProcess, __("Is the process privileged to perform security sensitive operations?"));
+                yield return new(__("Process path"), Environment.ProcessPath, __("Current process path"));
+                yield return new(__("System folder"), Environment.SystemDirectory, __("Operating system folder"));
+                yield return new(__("Temp folder"), Settings.TempFolder, __("Temporary folder"));
+                yield return new(__("Current folder"), Environment.CurrentDirectory, __("Current folder"));
+                yield return new(__("Page size"), Environment.SystemPageSize, __("Operating system memory page size in bytes"));
+                yield return new(__("Working set"), Environment.WorkingSet, __("Physical memory mapped to the current process in bytes"));
+                yield return new(__("Buffer size"), Settings.BufferSize, __("Default bufer size in bytes"));
+                yield return new(__("stackalloc border"), Settings.StackAllocBorder, __("Stack allocation limitation border in bytes"));
+                yield return new(__("App ID"), Settings.AppId, __("App ID"));
+                yield return new(__("App process"), Settings.ProcessId, __("App process ID"));
+                yield return new(__("Create file"), Settings.CreateFileMode, __("Linux create file mode"));
+                yield return new(__("Create folder"), Settings.CreateFolderMode, __("Linux create folder mode"));
+                yield return new(__("Log level"), Settings.LogLevel, __("Default log level"));
+                yield return new(__("Services"), ServiceWorkerTable.ServiceWorkers.Count, __("Number of registered service worker instances"));
+                yield return new(__("Timers"), TimerTable.Timers.Count, __("Number of registered timer instances"));
+                yield return new(__("Pools"), PoolTable.Pools.Count, __("Number of pools"));
+                yield return new(__("Object lock managers"), ObjectLockTable.ObjectLocks.Count, __("Number of registered object lock manager instances"));
+                yield return new(__("Active processes"), ProcessTable.Processing.Count, __("Number of active registered processes"));
+                yield return new(__("Delayed processes"), DelayTable.Delays.Count, __("Number of delayed processes"));
                 if (!IncludeSummaries) yield break;
-                yield return new("Running services", ServiceWorkerTable.ServiceWorkers.Values.Count(s => s.IsRunning), "Number of running service workers");
-                yield return new("Queued items", ServiceWorkerTable.ServiceWorkers.Values.Sum(s => (long)(s is IQueueWorker qw ? qw.Queued : 0)), "Number of enqueued items to be processed by service workers");
-                yield return new("Pre-forked", ServiceWorkerTable.ServiceWorkers.Values.Sum(s => (long)(s is IInstancePool ip ? ip.Available : 0)), "Number of pre-forked object instances");
-                yield return new("Objects", ServiceWorkerTable.ServiceWorkers.Values.Sum(s => (long)(s is IObjectStorage os ? os.Stored : 0)), "Number of stored object instances");
-                yield return new("References", ServiceWorkerTable.ServiceWorkers.Values.Sum(s => (double)(s is IObjectStorage os ? os.ObjectReferences : 0)), "Number of active stored object references");
-                yield return new("Running timers", TimerTable.Timers.Values.Count(t => t.IsRunning), "Number of running timers");
-                yield return new("Active object locks", ObjectLockTable.ObjectLocks.Values.Sum(l => (long)l.ActiveLocks), "Number of locked objects");
+                yield return new(__("Running services"), ServiceWorkerTable.ServiceWorkers.Values.Count(s => s.IsRunning), __("Number of running service workers"));
+                yield return new(__("Queued items"), ServiceWorkerTable.ServiceWorkers.Values.Sum(s => (long)(s is IQueueWorker qw ? qw.Queued : 0)), __("Number of enqueued items to be processed by service workers"));
+                yield return new(__("Pre-forked"), ServiceWorkerTable.ServiceWorkers.Values.Sum(s => (long)(s is IInstancePool ip ? ip.Available : 0)), __("Number of pre-forked object instances"));
+                yield return new(__("Objects"), ServiceWorkerTable.ServiceWorkers.Values.Sum(s => (long)(s is IObjectStorage os ? os.Stored : 0)), __("Number of stored object instances"));
+                yield return new(__("References"), ServiceWorkerTable.ServiceWorkers.Values.Sum(s => (double)(s is IObjectStorage os ? os.ObjectReferences : 0)), __("Number of active stored object references"));
+                yield return new(__("Running timers"), TimerTable.Timers.Values.Count(t => t.IsRunning), __("Number of running timers"));
+                yield return new(__("Active object locks"), ObjectLockTable.ObjectLocks.Values.Sum(l => (long)l.ActiveLocks), __("Number of locked objects"));
             }
         }
 

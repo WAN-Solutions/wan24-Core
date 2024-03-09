@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using static wan24.Core.TranslationHelper;
 
 namespace wan24.Core
 {
@@ -114,17 +115,17 @@ namespace wan24.Core
         {
             get
             {
-                yield return new("GUID", GUID, "GUID of this queue entry");
-                yield return new("Name", Name, "Name of this queue entry");
-                yield return new("Type", typeof(T), "Type of this queue entry");
-                yield return new("Created", Created, "Created time of this queue entry");
-                yield return new("Last processed", LastProcessed == DateTime.MinValue ? "-" : LastProcessed, "Last processing time");
-                yield return new("State", QueueState, "Current queue state");
-                yield return new("Changes", _Changes.Count, "Number of state changes");
-                yield return new("Done", Done == DateTime.MinValue ? "-" : Done, "Processing done time");
-                yield return new("Last processing", Done == DateTime.MinValue ? "-" : LastProcessingTime, "Last processing timespan");
-                yield return new("Total processing", Done == DateTime.MinValue ? "-" : TotalProcessingTime, "Total processing timespan");
-                yield return new("Waiting processing", LastProcessed == DateTime.MinValue ? "-" : WaitingProcessingTime, "Waiting for processing timespan");
+                yield return new(__("GUID"), GUID, __("GUID of this queue entry"));
+                yield return new(__("Name"), Name, __("Name of this queue entry"));
+                yield return new(__("Type"), typeof(T), __("Type of this queue entry"));
+                yield return new(__("Created"), Created, __("Created time of this queue entry"));
+                yield return new(__("Last processed"), LastProcessed == DateTime.MinValue ? "-" : LastProcessed, __("Last processing time"));
+                yield return new(__("State"), QueueState, __("Current queue state"));
+                yield return new(__("Changes"), _Changes.Count, __("Number of state changes"));
+                yield return new(__("Done"), Done == DateTime.MinValue ? "-" : Done, __("Processing done time"));
+                yield return new(__("Last processing"), Done == DateTime.MinValue ? "-" : LastProcessingTime, __("Last processing timespan"));
+                yield return new(__("Total processing"), Done == DateTime.MinValue ? "-" : TotalProcessingTime, __("Total processing timespan"));
+                yield return new(__("Waiting processing"), LastProcessed == DateTime.MinValue ? "-" : WaitingProcessingTime, __("Waiting for processing timespan"));
 
             }
         }

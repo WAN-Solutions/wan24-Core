@@ -3,6 +3,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Net.WebSockets;
 using System.Runtime.CompilerServices;
+using static wan24.Core.Logging;
+using static wan24.Core.Logger;
 
 namespace wan24.Core
 {
@@ -12,11 +14,11 @@ namespace wan24.Core
     public static class PortKnocking
     {
         /// <summary>
-        /// WebSocket URI schemes
+        /// Allowed WebSocket URI schemes
         /// </summary>
         private static readonly FrozenSet<string> WebSocketSchemes = new string[] { "wss", "ws" }.ToFrozenSet();
         /// <summary>
-        /// http(s) URI schemes
+        /// Allowed http(s) URI schemes
         /// </summary>
         private static readonly FrozenSet<string> HttpSchemes = new string[] { "https", "http" }.ToFrozenSet();
 
@@ -30,11 +32,11 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="ports">TCP port sequence</param>
         public static async Task CallTcpSynSequenceAsync(
-            IPAddress target, 
-            TimeSpan delay = default, 
+            IPAddress target,
+            TimeSpan delay = default,
             ProcessingProgress? progress = null,
             IAsyncServiceProvider? serviceProvider = null,
-            CancellationToken cancellationToken = default, 
+            CancellationToken cancellationToken = default,
             params int[] ports
             )
         {
@@ -46,6 +48,7 @@ namespace wan24.Core
             using BoundCancellationTokenSource cancellation = new(cancellationToken, processing.Token);
             TimeSpan waitTime;
             DateTime continueAt = DateTime.Now;
+            if (Trace) WriteTrace($"TCP port knocking to {target}:{string.Join('/', ports.Select(p => p.ToString()))}");
             TcpClient client = await serviceProvider!.GetServiceAsync(typeof(TcpClient), cancellationToken).DynamicContext() as TcpClient ?? new();
             try
             {
@@ -56,6 +59,7 @@ namespace wan24.Core
                         cancellation.TryReset();
                         processing.TryReset();
                         processing.CancelAfter(delay);
+                        if (Trace) WriteTrace($"Call TCP {target}:{port}");
                         try
                         {
                             // Can't use raw sockets here 'cause of possible OS restrictions
@@ -64,11 +68,12 @@ namespace wan24.Core
                         catch (OperationCanceledException ex)
                         {
                             // Throw, if canceled - otherwise continue the port knocking sequence
-                            if (ex.CancellationToken == cancellationToken) throw;
+                            if (ex.CancellationToken != cancellation.Token) throw;
                             continue;
                         }
-                        catch
+                        catch (Exception ex)
                         {
+                            if (Debug) WriteDebug($"Exception when knocking TCP {target}:{port}: ({ex.GetType().Name}) {ex.Message}");
                         }
                         // Usually a firewall will swallow the SYN packet silently and the connect operation fails with timeout - this only in case if not:
                         client.Dispose();
@@ -85,6 +90,7 @@ namespace wan24.Core
             {
                 client.Dispose();
             }
+            if (Trace) WriteTrace($"TCP port knocking to {target} done");
         }
 
         /// <summary>
@@ -113,6 +119,7 @@ namespace wan24.Core
             TimeSpan waitTime;
             DateTime continueAt = DateTime.Now;
             ClientWebSocket? client = null;
+            if (Trace) WriteTrace($"WebSocket knocking to {uris.Length} URIs");
             try
             {
                 foreach (Uri uri in uris)
@@ -123,6 +130,7 @@ namespace wan24.Core
                         cancellation.TryReset();
                         processing.TryReset();
                         processing.CancelAfter(delay);
+                        if (Trace) WriteTrace($"Call WebSocket \"{uri}\"");
                         try
                         {
                             await client.ConnectAsync(uri, cancellation.Token).DynamicContext();
@@ -130,11 +138,12 @@ namespace wan24.Core
                         catch (OperationCanceledException ex)
                         {
                             // Throw, if canceled - otherwise continue the port knocking sequence
-                            if (ex.CancellationToken == cancellationToken) throw;
+                            if (ex.CancellationToken != cancellation.Token) throw;
                             continue;
                         }
-                        catch
+                        catch (Exception ex)
                         {
+                            if (Debug) WriteDebug($"Exception when knocking WebSocket \"{uri}\": ({ex.GetType().Name}) {ex.Message}");
                         }
                         // Usually a firewall will swallow the connection attempts silently and the connect operation fails with timeout - this only in case if not:
                         client.Dispose();
@@ -151,6 +160,7 @@ namespace wan24.Core
             {
                 client?.Dispose();
             }
+            if (Trace) WriteTrace($"WebSocket knocking to {uris.Length} URIs done");
         }
 
         /// <summary>
@@ -182,6 +192,7 @@ namespace wan24.Core
             if (client is null) serviceProvider ??= DiHelper.Instance;
             TimeSpan waitTime;
             DateTime continueAt = DateTime.Now;
+            if (Trace) WriteTrace($"http knocking to {uris.Length} URIs");
             client ??= await serviceProvider!.GetServiceAsync(typeof(HttpClient), cancellationToken).DynamicContext() as HttpClient ?? new();
             foreach (Uri uri in uris)
                 try
@@ -190,6 +201,7 @@ namespace wan24.Core
                     cancellation.TryReset();
                     processing.TryReset();
                     processing.CancelAfter(delay);
+                    if (Trace) WriteTrace($"Call URI \"{uri}\"");
                     try
                     {
                         using HttpRequestMessage request = requestFactory?.Invoke(uri) ?? new(HttpMethod.Get, uri);
@@ -198,11 +210,12 @@ namespace wan24.Core
                     catch (OperationCanceledException ex)
                     {
                         // Throw, if canceled - otherwise continue the port knocking sequence
-                        if (ex.CancellationToken == cancellationToken) throw;
+                        if (ex.CancellationToken != cancellation.Token) throw;
                         continue;
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        if (Debug) WriteDebug($"Exception when knocking URI \"{uri}\": ({ex.GetType().Name}) {ex.Message}");
                     }
                     // Usually a firewall will swallow the requests silently and the send operation fails with timeout - this only in case if not:
                     waitTime = continueAt - DateTime.Now;
@@ -212,6 +225,7 @@ namespace wan24.Core
                 {
                     progress?.Update();
                 }
+            if (Trace) WriteTrace($"http knocking to {uris.Length} URIs done");
         }
 
         /// <summary>
@@ -226,13 +240,13 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="ports">UDP port sequence</param>
         public static async Task CallUdpSequenceAsync(
-            IPAddress target, 
+            IPAddress target,
             UdpClient? client = null,
-            TimeSpan delay = default, 
+            TimeSpan delay = default,
             ReadOnlyMemory<byte>? payload = null,
             ProcessingProgress? progress = null,
             IAsyncServiceProvider? serviceProvider = null,
-            CancellationToken cancellationToken = default, 
+            CancellationToken cancellationToken = default,
             params int[] ports
             )
         {
@@ -246,12 +260,15 @@ namespace wan24.Core
                 serviceProvider ??= DiHelper.Instance;
                 client = await serviceProvider!.GetServiceAsync(typeof(UdpClient), cancellationToken).DynamicContext() as UdpClient ?? new(target.AddressFamily);
             }
+            if (Trace) WriteTrace($"UDP port knocking to {target}:{string.Join('/', ports.Select(p => p.ToString()))}");
             foreach (int port in ports)
             {
+                if (Trace) WriteTrace($"Call UDP {target}:{port}");
                 await client!.SendAsync(payload.Value, new(target, port), cancellationToken).DynamicContext();
                 if (delay > TimeSpan.Zero) await Task.Delay(delay, cancellationToken).DynamicContext();
                 progress?.Update();
             }
+            if (Trace) WriteTrace($"UDP port knocking to {target} done");
         }
 
         /// <summary>

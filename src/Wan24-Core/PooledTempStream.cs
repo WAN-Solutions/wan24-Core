@@ -1,4 +1,5 @@
 ﻿using System.Runtime;
+using static wan24.Core.TranslationHelper;
 
 namespace wan24.Core
 {
@@ -122,7 +123,7 @@ namespace wan24.Core
             get
             {
                 foreach (Status status in base.State) yield return status;
-                yield return new("In memory", IsInMemory, "Is the data hosted in memory?");
+                yield return new(__("In memory"), IsInMemory, __("Is the data hosted in memory?"));
             }
         }
 

@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using static wan24.Core.TranslationHelper;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Counting stream counts red/written bytes
@@ -39,8 +41,8 @@
             get
             {
                 foreach (Status status in base.State) yield return status;
-                yield return new("Red", Red, "Number of red bytes");
-                yield return new("Written", Written, "Number of written bytes");
+                yield return new(__("Red"), Red, __("Number of red bytes"));
+                yield return new(__("Written"), Written, __("Number of written bytes"));
             }
         }
 

@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using static wan24.Core.TranslationHelper;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Pausable stream wrapper (will pause reading/writing)
@@ -54,7 +56,7 @@
             get
             {
                 foreach (Status status in base.State) yield return status;
-                yield return new("Paused", Pause, "Is paused?");
+                yield return new(__("Paused"), Pause, __("Is paused?"));
             }
         }
 

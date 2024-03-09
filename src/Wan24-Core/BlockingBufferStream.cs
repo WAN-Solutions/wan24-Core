@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using static wan24.Core.TranslationHelper;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Blocking buffer stream (reading blocks until (all, if aggressive) data is available, writing until the buffer was red completely; reading/writing is synchronized)
@@ -82,12 +84,12 @@
         {
             get
             {
-                yield return new("Name", Name, "Name of the stream");
-                yield return new("Type", GetType().ToString(), "Stream type");
-                yield return new("Available", Available, "Available number of bytes for reading");
-                yield return new("Space", SpaceLeft, "Space left in bytes for writing");
-                yield return new("Reading blocks", IsReadBlocked, "Is reading blocked?");
-                yield return new("Writing blocks", IsWriteBlocked, "Is writing blocked?");
+                yield return new(__("Name"), Name, __("Name of the stream"));
+                yield return new(__("Type"), GetType().ToString(), __("Stream type"));
+                yield return new(__("Available"), Available, __("Available number of bytes for reading"));
+                yield return new(__("Space"), SpaceLeft, __("Space left in bytes for writing"));
+                yield return new(__("Reading blocks"), IsReadBlocked, __("Is reading blocked?"));
+                yield return new(__("Writing blocks"), IsWriteBlocked, __("Is writing blocked?"));
             }
         }
 
