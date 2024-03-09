@@ -5,9 +5,9 @@
     <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Class FlushStream | wan24-Core </title>
+      <title>Class CutStream | wan24-Core </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Class FlushStream | wan24-Core ">
+      <meta name="title" content="Class CutStream | wan24-Core ">
       <meta name="generator" content="docfx ">
   
       <link rel="shortcut icon" href="../favicon.ico">
@@ -93,15 +93,15 @@
                         </div>
 
                          <div id="contribution">
-                               <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FlushStream.md&amp;value=---%0Auid%3A%20wan24.Core.FlushStream%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                               <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                          </div>
 
-                    <article class="content wrap" id="_content" data-uid="wan24.Core.FlushStream">
+                    <article class="content wrap" id="_content" data-uid="wan24.Core.CutStream">
 
 
 
-  <h1 id="wan24_Core_FlushStream" data-uid="wan24.Core.FlushStream" class="text-break">Class FlushStream</h1>
-  <div class="markdown level0 summary"><p>Flush stream (writes to a buffer and requires a flush to write the buffer to the base stream)</p>
+  <h1 id="wan24_Core_CutStream" data-uid="wan24.Core.CutStream" class="text-break">Class CutStream</h1>
+  <div class="markdown level0 summary"><p>Cut stream (cuts the base stream at its position)</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -111,8 +111,8 @@
     <div class="level2"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></div>
     <div class="level3"><a class="xref" href="wan24.Core.StreamBase.html">StreamBase</a></div>
     <div class="level4"><a class="xref" href="wan24.Core.WrapperStream-1.html">WrapperStream</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a>&gt;</div>
-    <div class="level5"><a class="xref" href="wan24.Core.FlushStream-1.html">FlushStream</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a>&gt;</div>
-    <div class="level6"><span class="xref">FlushStream</span></div>
+    <div class="level5"><a class="xref" href="wan24.Core.CutStream-1.html">CutStream</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a>&gt;</div>
+    <div class="level6"><span class="xref">CutStream</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
@@ -126,61 +126,55 @@
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_MaxBuffer">FlushStream&lt;Stream&gt;.MaxBuffer</a>
+      <a class="xref" href="wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Offset">CutStream&lt;Stream&gt;.Offset</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_FlushOnWrite">FlushStream&lt;Stream&gt;.FlushOnWrite</a>
+      <a class="xref" href="wan24.Core.CutStream-1.html#wan24_Core_CutStream_1__Length">CutStream&lt;Stream&gt;._Length</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_BufferSize">FlushStream&lt;Stream&gt;.BufferSize</a>
+      <a class="xref" href="wan24.Core.CutStream-1.html#wan24_Core_CutStream_1__Position">CutStream&lt;Stream&gt;._Position</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_IsFlushed">FlushStream&lt;Stream&gt;.IsFlushed</a>
+      <a class="xref" href="wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Length">CutStream&lt;Stream&gt;.Length</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_State">FlushStream&lt;Stream&gt;.State</a>
+      <a class="xref" href="wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Position">CutStream&lt;Stream&gt;.Position</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_CanSeek">FlushStream&lt;Stream&gt;.CanSeek</a>
+      <a class="xref" href="wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Seek_System_Int64_System_IO_SeekOrigin_">CutStream&lt;Stream&gt;.Seek(long, SeekOrigin)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_CanRead">FlushStream&lt;Stream&gt;.CanRead</a>
+      <a class="xref" href="wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_SetLength_System_Int64_">CutStream&lt;Stream&gt;.SetLength(long)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_ClearBuffer">FlushStream&lt;Stream&gt;.ClearBuffer()</a>
+      <a class="xref" href="wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Read_System_Byte___System_Int32_System_Int32_">CutStream&lt;Stream&gt;.Read(byte[], int, int)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_Flush">FlushStream&lt;Stream&gt;.Flush()</a>
+      <a class="xref" href="wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Read_System_Span_System_Byte__">CutStream&lt;Stream&gt;.Read(Span&lt;byte&gt;)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_FlushAsync_System_Threading_CancellationToken_">FlushStream&lt;Stream&gt;.FlushAsync(CancellationToken)</a>
+      <a class="xref" href="wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_">CutStream&lt;Stream&gt;.ReadAsync(byte[], int, int, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_SetLength_System_Int64_">FlushStream&lt;Stream&gt;.SetLength(long)</a>
+      <a class="xref" href="wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_ReadAsync_System_Memory_System_Byte__System_Threading_CancellationToken_">CutStream&lt;Stream&gt;.ReadAsync(Memory&lt;byte&gt;, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_Write_System_Byte___System_Int32_System_Int32_">FlushStream&lt;Stream&gt;.Write(byte[], int, int)</a>
+      <a class="xref" href="wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_ReadByte">CutStream&lt;Stream&gt;.ReadByte()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_Write_System_ReadOnlySpan_System_Byte__">FlushStream&lt;Stream&gt;.Write(ReadOnlySpan&lt;byte&gt;)</a>
+      <a class="xref" href="wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Write_System_Byte___System_Int32_System_Int32_">CutStream&lt;Stream&gt;.Write(byte[], int, int)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_WriteAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_">FlushStream&lt;Stream&gt;.WriteAsync(byte[], int, int, CancellationToken)</a>
+      <a class="xref" href="wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Write_System_ReadOnlySpan_System_Byte__">CutStream&lt;Stream&gt;.Write(ReadOnlySpan&lt;byte&gt;)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_">FlushStream&lt;Stream&gt;.WriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</a>
+      <a class="xref" href="wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_WriteAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_">CutStream&lt;Stream&gt;.WriteAsync(byte[], int, int, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_WriteByte_System_Byte_">FlushStream&lt;Stream&gt;.WriteByte(byte)</a>
+      <a class="xref" href="wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_">CutStream&lt;Stream&gt;.WriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_EnsureBufferLimit_System_Int32__">FlushStream&lt;Stream&gt;.EnsureBufferLimit(in int)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_Dispose_System_Boolean_">FlushStream&lt;Stream&gt;.Dispose(bool)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_DisposeCore">FlushStream&lt;Stream&gt;.DisposeCore()</a>
+      <a class="xref" href="wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_WriteByte_System_Byte_">CutStream&lt;Stream&gt;.WriteByte(byte)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1__BaseStream">WrapperStream&lt;Stream&gt;._BaseStream</a>
@@ -213,16 +207,19 @@
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_LeaveOpen">WrapperStream&lt;Stream&gt;.LeaveOpen</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_State">WrapperStream&lt;Stream&gt;.State</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanRead">WrapperStream&lt;Stream&gt;.CanRead</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanSeek">WrapperStream&lt;Stream&gt;.CanSeek</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanWrite">WrapperStream&lt;Stream&gt;.CanWrite</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanTimeout">WrapperStream&lt;Stream&gt;.CanTimeout</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Length">WrapperStream&lt;Stream&gt;.Length</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Position">WrapperStream&lt;Stream&gt;.Position</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_ReadTimeout">WrapperStream&lt;Stream&gt;.ReadTimeout</a>
@@ -231,22 +228,10 @@
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_WriteTimeout">WrapperStream&lt;Stream&gt;.WriteTimeout</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Read_System_Byte___System_Int32_System_Int32_">WrapperStream&lt;Stream&gt;.Read(byte[], int, int)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Flush">WrapperStream&lt;Stream&gt;.Flush()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Read_System_Span_System_Byte__">WrapperStream&lt;Stream&gt;.Read(Span&lt;byte&gt;)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_ReadByte">WrapperStream&lt;Stream&gt;.ReadByte()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_">WrapperStream&lt;Stream&gt;.ReadAsync(byte[], int, int, CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_ReadAsync_System_Memory_System_Byte__System_Threading_CancellationToken_">WrapperStream&lt;Stream&gt;.ReadAsync(Memory&lt;byte&gt;, CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Seek_System_Int64_System_IO_SeekOrigin_">WrapperStream&lt;Stream&gt;.Seek(long, SeekOrigin)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_FlushAsync_System_Threading_CancellationToken_">WrapperStream&lt;Stream&gt;.FlushAsync(CancellationToken)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CopyTo_System_IO_Stream_System_Int32_">WrapperStream&lt;Stream&gt;.CopyTo(Stream, int)</a>
@@ -277,6 +262,12 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Close">WrapperStream&lt;Stream&gt;.Close()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Dispose_System_Boolean_">WrapperStream&lt;Stream&gt;.Dispose(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_DisposeCore">WrapperStream&lt;Stream&gt;.DisposeCore()</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseCopyTo_System_IO_Stream__System_Int32__">WrapperStream&lt;Stream&gt;.BaseCopyTo(in Stream, in int)</a>
@@ -434,30 +425,27 @@
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_FlushStream_syntax">Syntax</h5>
+  <h5 id="wan24_Core_CutStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class FlushStream : FlushStream&lt;Stream&gt;, IStreamWrapper, IStream, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class CutStream : CutStream&lt;Stream&gt;, IStreamWrapper, IStream, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
   </div>
-  <h5 id="wan24_Core_FlushStream_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>Constructor</p>
-</div>
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FlushStream__ctor_System_IO_Stream__System_Boolean__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.FlushStream.%23ctor(System.IO.Stream%40%2CSystem.Boolean%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream__ctor_System_IO_Stream__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream.%23ctor(System.IO.Stream%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FlushStream.cs/#L14">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L14">View Source</a>
   </span>
-  <a id="wan24_Core_FlushStream__ctor_" data-uid="wan24.Core.FlushStream.#ctor*"></a>
-  <h4 id="wan24_Core_FlushStream__ctor_System_IO_Stream__System_Boolean__System_Boolean__" data-uid="wan24.Core.FlushStream.#ctor(System.IO.Stream@,System.Boolean@,System.Boolean@)">FlushStream(in Stream, in bool, in bool)</h4>
-  <div class="markdown level1 summary"><p>Flush stream (writes to a buffer and requires a flush to write the buffer to the base stream)</p>
+  <a id="wan24_Core_CutStream__ctor_" data-uid="wan24.Core.CutStream.#ctor*"></a>
+  <h4 id="wan24_Core_CutStream__ctor_System_IO_Stream__System_Boolean__" data-uid="wan24.Core.CutStream.#ctor(System.IO.Stream@,System.Boolean@)">CutStream(in Stream, in bool)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public FlushStream(in Stream baseStream, in bool clearBufferMemory = false, in bool leaveOpen = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public CutStream(in Stream baseStream, in bool leaveOpen = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -477,21 +465,12 @@
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">clearBufferMemory</span></td>
-        <td><p>Clear the buffer memory, when the buffer is being cleared?)</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">leaveOpen</span></td>
         <td><p>Leave the base stream open when disposing?</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="wan24_Core_FlushStream__ctor_System_IO_Stream__System_Boolean__System_Boolean___remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Constructor</p>
-</div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a>

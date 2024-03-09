@@ -4739,6 +4739,38 @@ references:
   isSpec: "True"
   fullName: Wan24_Core_Tests.StreamExtensions_Tests.GetRemainingBytes_Tests
   nameWithType: StreamExtensions_Tests.GetRemainingBytes_Tests
+- uid: Wan24_Core_Tests.StreamProxy_Tests
+  name: StreamProxy_Tests
+  href: api/Wan24_Core_Tests.StreamProxy_Tests.html
+  commentId: T:Wan24_Core_Tests.StreamProxy_Tests
+  fullName: Wan24_Core_Tests.StreamProxy_Tests
+  nameWithType: StreamProxy_Tests
+- uid: Wan24_Core_Tests.StreamProxy_Tests.GeneralAsync_Tests
+  name: GeneralAsync_Tests()
+  href: api/Wan24_Core_Tests.StreamProxy_Tests.html#Wan24_Core_Tests_StreamProxy_Tests_GeneralAsync_Tests
+  commentId: M:Wan24_Core_Tests.StreamProxy_Tests.GeneralAsync_Tests
+  fullName: Wan24_Core_Tests.StreamProxy_Tests.GeneralAsync_Tests()
+  nameWithType: StreamProxy_Tests.GeneralAsync_Tests()
+- uid: Wan24_Core_Tests.StreamProxy_Tests.GeneralAsync_Tests*
+  name: GeneralAsync_Tests
+  href: api/Wan24_Core_Tests.StreamProxy_Tests.html#Wan24_Core_Tests_StreamProxy_Tests_GeneralAsync_Tests_
+  commentId: Overload:Wan24_Core_Tests.StreamProxy_Tests.GeneralAsync_Tests
+  isSpec: "True"
+  fullName: Wan24_Core_Tests.StreamProxy_Tests.GeneralAsync_Tests
+  nameWithType: StreamProxy_Tests.GeneralAsync_Tests
+- uid: Wan24_Core_Tests.StreamProxy_Tests.General_Tests
+  name: General_Tests()
+  href: api/Wan24_Core_Tests.StreamProxy_Tests.html#Wan24_Core_Tests_StreamProxy_Tests_General_Tests
+  commentId: M:Wan24_Core_Tests.StreamProxy_Tests.General_Tests
+  fullName: Wan24_Core_Tests.StreamProxy_Tests.General_Tests()
+  nameWithType: StreamProxy_Tests.General_Tests()
+- uid: Wan24_Core_Tests.StreamProxy_Tests.General_Tests*
+  name: General_Tests
+  href: api/Wan24_Core_Tests.StreamProxy_Tests.html#Wan24_Core_Tests_StreamProxy_Tests_General_Tests_
+  commentId: Overload:Wan24_Core_Tests.StreamProxy_Tests.General_Tests
+  isSpec: "True"
+  fullName: Wan24_Core_Tests.StreamProxy_Tests.General_Tests
+  nameWithType: StreamProxy_Tests.General_Tests
 - uid: Wan24_Core_Tests.StringExtensions_Tests
   name: StringExtensions_Tests
   href: api/Wan24_Core_Tests.StringExtensions_Tests.html
@@ -19823,6 +19855,15 @@ references:
   commentId: T:wan24.Core.CombinedStream
   fullName: wan24.Core.CombinedStream
   nameWithType: CombinedStream
+- uid: wan24.Core.CombinedStream.#ctor(System.Boolean@,System.Boolean@,System.IO.Stream[])
+  name: CombinedStream(in bool, in bool, params Stream[])
+  href: api/wan24.Core.CombinedStream.html#wan24_Core_CombinedStream__ctor_System_Boolean__System_Boolean__System_IO_Stream___
+  commentId: M:wan24.Core.CombinedStream.#ctor(System.Boolean@,System.Boolean@,System.IO.Stream[])
+  name.vb: New(Boolean, Boolean, ParamArray Stream())
+  fullName: wan24.Core.CombinedStream.CombinedStream(in bool, in bool, params System.IO.Stream[])
+  fullName.vb: wan24.Core.CombinedStream.New(Boolean, Boolean, ParamArray System.IO.Stream())
+  nameWithType: CombinedStream.CombinedStream(in bool, in bool, params Stream[])
+  nameWithType.vb: CombinedStream.New(Boolean, Boolean, ParamArray Stream())
 - uid: wan24.Core.CombinedStream.#ctor(System.Boolean@,System.IO.Stream[])
   name: CombinedStream(in bool, params Stream[])
   href: api/wan24.Core.CombinedStream.html#wan24_Core_CombinedStream__ctor_System_Boolean__System_IO_Stream___
@@ -20108,6 +20149,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.CombinedStream.ReadByte
   nameWithType: CombinedStream.ReadByte
+- uid: wan24.Core.CombinedStream.ResetPosition
+  name: ResetPosition
+  href: api/wan24.Core.CombinedStream.html#wan24_Core_CombinedStream_ResetPosition
+  commentId: P:wan24.Core.CombinedStream.ResetPosition
+  fullName: wan24.Core.CombinedStream.ResetPosition
+  nameWithType: CombinedStream.ResetPosition
+- uid: wan24.Core.CombinedStream.ResetPosition*
+  name: ResetPosition
+  href: api/wan24.Core.CombinedStream.html#wan24_Core_CombinedStream_ResetPosition_
+  commentId: Overload:wan24.Core.CombinedStream.ResetPosition
+  isSpec: "True"
+  fullName: wan24.Core.CombinedStream.ResetPosition
+  nameWithType: CombinedStream.ResetPosition
 - uid: wan24.Core.CombinedStream.Seek(System.Int64,System.IO.SeekOrigin)
   name: Seek(long, SeekOrigin)
   href: api/wan24.Core.CombinedStream.html#wan24_Core_CombinedStream_Seek_System_Int64_System_IO_SeekOrigin_
@@ -20219,6 +20273,18 @@ references:
   isSpec: "True"
   fullName: wan24.Core.CombinedStream.WriteByte
   nameWithType: CombinedStream.WriteByte
+- uid: wan24.Core.CombinedStream._CanSeek
+  name: _CanSeek
+  href: api/wan24.Core.CombinedStream.html#wan24_Core_CombinedStream__CanSeek
+  commentId: F:wan24.Core.CombinedStream._CanSeek
+  fullName: wan24.Core.CombinedStream._CanSeek
+  nameWithType: CombinedStream._CanSeek
+- uid: wan24.Core.CombinedStream._CanWrite
+  name: _CanWrite
+  href: api/wan24.Core.CombinedStream.html#wan24_Core_CombinedStream__CanWrite
+  commentId: F:wan24.Core.CombinedStream._CanWrite
+  fullName: wan24.Core.CombinedStream._CanWrite
+  nameWithType: CombinedStream._CanWrite
 - uid: wan24.Core.CombinedStream._Length
   name: _Length
   href: api/wan24.Core.CombinedStream.html#wan24_Core_CombinedStream__Length
@@ -22693,6 +22759,296 @@ references:
   fullName.vb: wan24.Core.CountingStream(Of T).Written
   nameWithType: CountingStream<T>.Written
   nameWithType.vb: CountingStream(Of T).Written
+- uid: wan24.Core.CutStream
+  name: CutStream
+  href: api/wan24.Core.CutStream.html
+  commentId: T:wan24.Core.CutStream
+  fullName: wan24.Core.CutStream
+  nameWithType: CutStream
+- uid: wan24.Core.CutStream.#ctor(System.IO.Stream@,System.Boolean@)
+  name: CutStream(in Stream, in bool)
+  href: api/wan24.Core.CutStream.html#wan24_Core_CutStream__ctor_System_IO_Stream__System_Boolean__
+  commentId: M:wan24.Core.CutStream.#ctor(System.IO.Stream@,System.Boolean@)
+  name.vb: New(Stream, Boolean)
+  fullName: wan24.Core.CutStream.CutStream(in System.IO.Stream, in bool)
+  fullName.vb: wan24.Core.CutStream.New(System.IO.Stream, Boolean)
+  nameWithType: CutStream.CutStream(in Stream, in bool)
+  nameWithType.vb: CutStream.New(Stream, Boolean)
+- uid: wan24.Core.CutStream.#ctor*
+  name: CutStream
+  href: api/wan24.Core.CutStream.html#wan24_Core_CutStream__ctor_
+  commentId: Overload:wan24.Core.CutStream.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: wan24.Core.CutStream.CutStream
+  fullName.vb: wan24.Core.CutStream.New
+  nameWithType: CutStream.CutStream
+  nameWithType.vb: CutStream.New
+- uid: wan24.Core.CutStream`1
+  name: CutStream<T>
+  href: api/wan24.Core.CutStream-1.html
+  commentId: T:wan24.Core.CutStream`1
+  name.vb: CutStream(Of T)
+  fullName: wan24.Core.CutStream<T>
+  fullName.vb: wan24.Core.CutStream(Of T)
+  nameWithType: CutStream<T>
+  nameWithType.vb: CutStream(Of T)
+- uid: wan24.Core.CutStream`1.#ctor(`0@,System.Boolean@)
+  name: CutStream(in T, in bool)
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1__ctor__0__System_Boolean__
+  commentId: M:wan24.Core.CutStream`1.#ctor(`0@,System.Boolean@)
+  name.vb: New(T, Boolean)
+  fullName: wan24.Core.CutStream<T>.CutStream(in T, in bool)
+  fullName.vb: wan24.Core.CutStream(Of T).New(T, Boolean)
+  nameWithType: CutStream<T>.CutStream(in T, in bool)
+  nameWithType.vb: CutStream(Of T).New(T, Boolean)
+- uid: wan24.Core.CutStream`1.#ctor*
+  name: CutStream
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1__ctor_
+  commentId: Overload:wan24.Core.CutStream`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: wan24.Core.CutStream<T>.CutStream
+  fullName.vb: wan24.Core.CutStream(Of T).New
+  nameWithType: CutStream<T>.CutStream
+  nameWithType.vb: CutStream(Of T).New
+- uid: wan24.Core.CutStream`1.Length
+  name: Length
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Length
+  commentId: P:wan24.Core.CutStream`1.Length
+  fullName: wan24.Core.CutStream<T>.Length
+  fullName.vb: wan24.Core.CutStream(Of T).Length
+  nameWithType: CutStream<T>.Length
+  nameWithType.vb: CutStream(Of T).Length
+- uid: wan24.Core.CutStream`1.Length*
+  name: Length
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Length_
+  commentId: Overload:wan24.Core.CutStream`1.Length
+  isSpec: "True"
+  fullName: wan24.Core.CutStream<T>.Length
+  fullName.vb: wan24.Core.CutStream(Of T).Length
+  nameWithType: CutStream<T>.Length
+  nameWithType.vb: CutStream(Of T).Length
+- uid: wan24.Core.CutStream`1.Offset
+  name: Offset
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Offset
+  commentId: F:wan24.Core.CutStream`1.Offset
+  fullName: wan24.Core.CutStream<T>.Offset
+  fullName.vb: wan24.Core.CutStream(Of T).Offset
+  nameWithType: CutStream<T>.Offset
+  nameWithType.vb: CutStream(Of T).Offset
+- uid: wan24.Core.CutStream`1.Position
+  name: Position
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Position
+  commentId: P:wan24.Core.CutStream`1.Position
+  fullName: wan24.Core.CutStream<T>.Position
+  fullName.vb: wan24.Core.CutStream(Of T).Position
+  nameWithType: CutStream<T>.Position
+  nameWithType.vb: CutStream(Of T).Position
+- uid: wan24.Core.CutStream`1.Position*
+  name: Position
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Position_
+  commentId: Overload:wan24.Core.CutStream`1.Position
+  isSpec: "True"
+  fullName: wan24.Core.CutStream<T>.Position
+  fullName.vb: wan24.Core.CutStream(Of T).Position
+  nameWithType: CutStream<T>.Position
+  nameWithType.vb: CutStream(Of T).Position
+- uid: wan24.Core.CutStream`1.Read(System.Byte[],System.Int32,System.Int32)
+  name: Read(byte[], int, int)
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Read_System_Byte___System_Int32_System_Int32_
+  commentId: M:wan24.Core.CutStream`1.Read(System.Byte[],System.Int32,System.Int32)
+  name.vb: Read(Byte(), Integer, Integer)
+  fullName: wan24.Core.CutStream<T>.Read(byte[], int, int)
+  fullName.vb: wan24.Core.CutStream(Of T).Read(Byte(), Integer, Integer)
+  nameWithType: CutStream<T>.Read(byte[], int, int)
+  nameWithType.vb: CutStream(Of T).Read(Byte(), Integer, Integer)
+- uid: wan24.Core.CutStream`1.Read(System.Span{System.Byte})
+  name: Read(Span<byte>)
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Read_System_Span_System_Byte__
+  commentId: M:wan24.Core.CutStream`1.Read(System.Span{System.Byte})
+  name.vb: Read(Span(Of Byte))
+  fullName: wan24.Core.CutStream<T>.Read(System.Span<byte>)
+  fullName.vb: wan24.Core.CutStream(Of T).Read(System.Span(Of Byte))
+  nameWithType: CutStream<T>.Read(Span<byte>)
+  nameWithType.vb: CutStream(Of T).Read(Span(Of Byte))
+- uid: wan24.Core.CutStream`1.Read*
+  name: Read
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Read_
+  commentId: Overload:wan24.Core.CutStream`1.Read
+  isSpec: "True"
+  fullName: wan24.Core.CutStream<T>.Read
+  fullName.vb: wan24.Core.CutStream(Of T).Read
+  nameWithType: CutStream<T>.Read
+  nameWithType.vb: CutStream(Of T).Read
+- uid: wan24.Core.CutStream`1.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)
+  name: ReadAsync(byte[], int, int, CancellationToken)
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_
+  commentId: M:wan24.Core.CutStream`1.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)
+  name.vb: ReadAsync(Byte(), Integer, Integer, CancellationToken)
+  fullName: wan24.Core.CutStream<T>.ReadAsync(byte[], int, int, System.Threading.CancellationToken)
+  fullName.vb: wan24.Core.CutStream(Of T).ReadAsync(Byte(), Integer, Integer, System.Threading.CancellationToken)
+  nameWithType: CutStream<T>.ReadAsync(byte[], int, int, CancellationToken)
+  nameWithType.vb: CutStream(Of T).ReadAsync(Byte(), Integer, Integer, CancellationToken)
+- uid: wan24.Core.CutStream`1.ReadAsync(System.Memory{System.Byte},System.Threading.CancellationToken)
+  name: ReadAsync(Memory<byte>, CancellationToken)
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_ReadAsync_System_Memory_System_Byte__System_Threading_CancellationToken_
+  commentId: M:wan24.Core.CutStream`1.ReadAsync(System.Memory{System.Byte},System.Threading.CancellationToken)
+  name.vb: ReadAsync(Memory(Of Byte), CancellationToken)
+  fullName: wan24.Core.CutStream<T>.ReadAsync(System.Memory<byte>, System.Threading.CancellationToken)
+  fullName.vb: wan24.Core.CutStream(Of T).ReadAsync(System.Memory(Of Byte), System.Threading.CancellationToken)
+  nameWithType: CutStream<T>.ReadAsync(Memory<byte>, CancellationToken)
+  nameWithType.vb: CutStream(Of T).ReadAsync(Memory(Of Byte), CancellationToken)
+- uid: wan24.Core.CutStream`1.ReadAsync*
+  name: ReadAsync
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_ReadAsync_
+  commentId: Overload:wan24.Core.CutStream`1.ReadAsync
+  isSpec: "True"
+  fullName: wan24.Core.CutStream<T>.ReadAsync
+  fullName.vb: wan24.Core.CutStream(Of T).ReadAsync
+  nameWithType: CutStream<T>.ReadAsync
+  nameWithType.vb: CutStream(Of T).ReadAsync
+- uid: wan24.Core.CutStream`1.ReadByte
+  name: ReadByte()
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_ReadByte
+  commentId: M:wan24.Core.CutStream`1.ReadByte
+  fullName: wan24.Core.CutStream<T>.ReadByte()
+  fullName.vb: wan24.Core.CutStream(Of T).ReadByte()
+  nameWithType: CutStream<T>.ReadByte()
+  nameWithType.vb: CutStream(Of T).ReadByte()
+- uid: wan24.Core.CutStream`1.ReadByte*
+  name: ReadByte
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_ReadByte_
+  commentId: Overload:wan24.Core.CutStream`1.ReadByte
+  isSpec: "True"
+  fullName: wan24.Core.CutStream<T>.ReadByte
+  fullName.vb: wan24.Core.CutStream(Of T).ReadByte
+  nameWithType: CutStream<T>.ReadByte
+  nameWithType.vb: CutStream(Of T).ReadByte
+- uid: wan24.Core.CutStream`1.Seek(System.Int64,System.IO.SeekOrigin)
+  name: Seek(long, SeekOrigin)
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Seek_System_Int64_System_IO_SeekOrigin_
+  commentId: M:wan24.Core.CutStream`1.Seek(System.Int64,System.IO.SeekOrigin)
+  name.vb: Seek(Long, SeekOrigin)
+  fullName: wan24.Core.CutStream<T>.Seek(long, System.IO.SeekOrigin)
+  fullName.vb: wan24.Core.CutStream(Of T).Seek(Long, System.IO.SeekOrigin)
+  nameWithType: CutStream<T>.Seek(long, SeekOrigin)
+  nameWithType.vb: CutStream(Of T).Seek(Long, SeekOrigin)
+- uid: wan24.Core.CutStream`1.Seek*
+  name: Seek
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Seek_
+  commentId: Overload:wan24.Core.CutStream`1.Seek
+  isSpec: "True"
+  fullName: wan24.Core.CutStream<T>.Seek
+  fullName.vb: wan24.Core.CutStream(Of T).Seek
+  nameWithType: CutStream<T>.Seek
+  nameWithType.vb: CutStream(Of T).Seek
+- uid: wan24.Core.CutStream`1.SetLength(System.Int64)
+  name: SetLength(long)
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_SetLength_System_Int64_
+  commentId: M:wan24.Core.CutStream`1.SetLength(System.Int64)
+  name.vb: SetLength(Long)
+  fullName: wan24.Core.CutStream<T>.SetLength(long)
+  fullName.vb: wan24.Core.CutStream(Of T).SetLength(Long)
+  nameWithType: CutStream<T>.SetLength(long)
+  nameWithType.vb: CutStream(Of T).SetLength(Long)
+- uid: wan24.Core.CutStream`1.SetLength*
+  name: SetLength
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_SetLength_
+  commentId: Overload:wan24.Core.CutStream`1.SetLength
+  isSpec: "True"
+  fullName: wan24.Core.CutStream<T>.SetLength
+  fullName.vb: wan24.Core.CutStream(Of T).SetLength
+  nameWithType: CutStream<T>.SetLength
+  nameWithType.vb: CutStream(Of T).SetLength
+- uid: wan24.Core.CutStream`1.Write(System.Byte[],System.Int32,System.Int32)
+  name: Write(byte[], int, int)
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Write_System_Byte___System_Int32_System_Int32_
+  commentId: M:wan24.Core.CutStream`1.Write(System.Byte[],System.Int32,System.Int32)
+  name.vb: Write(Byte(), Integer, Integer)
+  fullName: wan24.Core.CutStream<T>.Write(byte[], int, int)
+  fullName.vb: wan24.Core.CutStream(Of T).Write(Byte(), Integer, Integer)
+  nameWithType: CutStream<T>.Write(byte[], int, int)
+  nameWithType.vb: CutStream(Of T).Write(Byte(), Integer, Integer)
+- uid: wan24.Core.CutStream`1.Write(System.ReadOnlySpan{System.Byte})
+  name: Write(ReadOnlySpan<byte>)
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Write_System_ReadOnlySpan_System_Byte__
+  commentId: M:wan24.Core.CutStream`1.Write(System.ReadOnlySpan{System.Byte})
+  name.vb: Write(ReadOnlySpan(Of Byte))
+  fullName: wan24.Core.CutStream<T>.Write(System.ReadOnlySpan<byte>)
+  fullName.vb: wan24.Core.CutStream(Of T).Write(System.ReadOnlySpan(Of Byte))
+  nameWithType: CutStream<T>.Write(ReadOnlySpan<byte>)
+  nameWithType.vb: CutStream(Of T).Write(ReadOnlySpan(Of Byte))
+- uid: wan24.Core.CutStream`1.Write*
+  name: Write
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_Write_
+  commentId: Overload:wan24.Core.CutStream`1.Write
+  isSpec: "True"
+  fullName: wan24.Core.CutStream<T>.Write
+  fullName.vb: wan24.Core.CutStream(Of T).Write
+  nameWithType: CutStream<T>.Write
+  nameWithType.vb: CutStream(Of T).Write
+- uid: wan24.Core.CutStream`1.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)
+  name: WriteAsync(byte[], int, int, CancellationToken)
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_WriteAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_
+  commentId: M:wan24.Core.CutStream`1.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)
+  name.vb: WriteAsync(Byte(), Integer, Integer, CancellationToken)
+  fullName: wan24.Core.CutStream<T>.WriteAsync(byte[], int, int, System.Threading.CancellationToken)
+  fullName.vb: wan24.Core.CutStream(Of T).WriteAsync(Byte(), Integer, Integer, System.Threading.CancellationToken)
+  nameWithType: CutStream<T>.WriteAsync(byte[], int, int, CancellationToken)
+  nameWithType.vb: CutStream(Of T).WriteAsync(Byte(), Integer, Integer, CancellationToken)
+- uid: wan24.Core.CutStream`1.WriteAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)
+  name: WriteAsync(ReadOnlyMemory<byte>, CancellationToken)
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_
+  commentId: M:wan24.Core.CutStream`1.WriteAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)
+  name.vb: WriteAsync(ReadOnlyMemory(Of Byte), CancellationToken)
+  fullName: wan24.Core.CutStream<T>.WriteAsync(System.ReadOnlyMemory<byte>, System.Threading.CancellationToken)
+  fullName.vb: wan24.Core.CutStream(Of T).WriteAsync(System.ReadOnlyMemory(Of Byte), System.Threading.CancellationToken)
+  nameWithType: CutStream<T>.WriteAsync(ReadOnlyMemory<byte>, CancellationToken)
+  nameWithType.vb: CutStream(Of T).WriteAsync(ReadOnlyMemory(Of Byte), CancellationToken)
+- uid: wan24.Core.CutStream`1.WriteAsync*
+  name: WriteAsync
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_WriteAsync_
+  commentId: Overload:wan24.Core.CutStream`1.WriteAsync
+  isSpec: "True"
+  fullName: wan24.Core.CutStream<T>.WriteAsync
+  fullName.vb: wan24.Core.CutStream(Of T).WriteAsync
+  nameWithType: CutStream<T>.WriteAsync
+  nameWithType.vb: CutStream(Of T).WriteAsync
+- uid: wan24.Core.CutStream`1.WriteByte(System.Byte)
+  name: WriteByte(byte)
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_WriteByte_System_Byte_
+  commentId: M:wan24.Core.CutStream`1.WriteByte(System.Byte)
+  name.vb: WriteByte(Byte)
+  fullName: wan24.Core.CutStream<T>.WriteByte(byte)
+  fullName.vb: wan24.Core.CutStream(Of T).WriteByte(Byte)
+  nameWithType: CutStream<T>.WriteByte(byte)
+  nameWithType.vb: CutStream(Of T).WriteByte(Byte)
+- uid: wan24.Core.CutStream`1.WriteByte*
+  name: WriteByte
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1_WriteByte_
+  commentId: Overload:wan24.Core.CutStream`1.WriteByte
+  isSpec: "True"
+  fullName: wan24.Core.CutStream<T>.WriteByte
+  fullName.vb: wan24.Core.CutStream(Of T).WriteByte
+  nameWithType: CutStream<T>.WriteByte
+  nameWithType.vb: CutStream(Of T).WriteByte
+- uid: wan24.Core.CutStream`1._Length
+  name: _Length
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1__Length
+  commentId: F:wan24.Core.CutStream`1._Length
+  fullName: wan24.Core.CutStream<T>._Length
+  fullName.vb: wan24.Core.CutStream(Of T)._Length
+  nameWithType: CutStream<T>._Length
+  nameWithType.vb: CutStream(Of T)._Length
+- uid: wan24.Core.CutStream`1._Position
+  name: _Position
+  href: api/wan24.Core.CutStream-1.html#wan24_Core_CutStream_1__Position
+  commentId: F:wan24.Core.CutStream`1._Position
+  fullName: wan24.Core.CutStream<T>._Position
+  fullName.vb: wan24.Core.CutStream(Of T)._Position
+  nameWithType: CutStream<T>._Position
+  nameWithType.vb: CutStream(Of T)._Position
 - uid: wan24.Core.DateTimeExtensions
   name: DateTimeExtensions
   href: api/wan24.Core.DateTimeExtensions.html
@@ -39568,6 +39924,31 @@ references:
   isSpec: "True"
   fullName: wan24.Core.JsonExtensions.ToJson
   nameWithType: JsonExtensions.ToJson
+- uid: wan24.Core.JsonExtensions.ToObject(System.Collections.Generic.Dictionary{System.String,System.Object},System.Type@)
+  name: ToObject(Dictionary<string, object?>, in Type)
+  href: api/wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToObject_System_Collections_Generic_Dictionary_System_String_System_Object__System_Type__
+  commentId: M:wan24.Core.JsonExtensions.ToObject(System.Collections.Generic.Dictionary{System.String,System.Object},System.Type@)
+  name.vb: ToObject(Dictionary(Of String, Object), Type)
+  fullName: wan24.Core.JsonExtensions.ToObject(System.Collections.Generic.Dictionary<string, object?>, in System.Type)
+  fullName.vb: wan24.Core.JsonExtensions.ToObject(System.Collections.Generic.Dictionary(Of String, Object), System.Type)
+  nameWithType: JsonExtensions.ToObject(Dictionary<string, object?>, in Type)
+  nameWithType.vb: JsonExtensions.ToObject(Dictionary(Of String, Object), Type)
+- uid: wan24.Core.JsonExtensions.ToObject*
+  name: ToObject
+  href: api/wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToObject_
+  commentId: Overload:wan24.Core.JsonExtensions.ToObject
+  isSpec: "True"
+  fullName: wan24.Core.JsonExtensions.ToObject
+  nameWithType: JsonExtensions.ToObject
+- uid: wan24.Core.JsonExtensions.ToObject``1(System.Collections.Generic.Dictionary{System.String,System.Object})
+  name: ToObject<T>(Dictionary<string, object?>)
+  href: api/wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToObject__1_System_Collections_Generic_Dictionary_System_String_System_Object__
+  commentId: M:wan24.Core.JsonExtensions.ToObject``1(System.Collections.Generic.Dictionary{System.String,System.Object})
+  name.vb: ToObject(Of T)(Dictionary(Of String, Object))
+  fullName: wan24.Core.JsonExtensions.ToObject<T>(System.Collections.Generic.Dictionary<string, object?>)
+  fullName.vb: wan24.Core.JsonExtensions.ToObject(Of T)(System.Collections.Generic.Dictionary(Of String, Object))
+  nameWithType: JsonExtensions.ToObject<T>(Dictionary<string, object?>)
+  nameWithType.vb: JsonExtensions.ToObject(Of T)(Dictionary(Of String, Object))
 - uid: wan24.Core.JsonExtensions.TryGetJsonValue*
   name: TryGetJsonValue
   href: api/wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_TryGetJsonValue_
@@ -39935,6 +40316,12 @@ references:
   isSpec: "True"
   fullName: wan24.Core.JsonHelper.IsJsonString
   nameWithType: JsonHelper.IsJsonString
+- uid: wan24.Core.JsonHelper.MIME_TYPE
+  name: MIME_TYPE
+  href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_MIME_TYPE
+  commentId: F:wan24.Core.JsonHelper.MIME_TYPE
+  fullName: wan24.Core.JsonHelper.MIME_TYPE
+  nameWithType: JsonHelper.MIME_TYPE
 - uid: wan24.Core.JsonHelper.MayBeJson(System.String)
   name: MayBeJson(string)
   href: api/wan24.Core.JsonHelper.html#wan24_Core_JsonHelper_MayBeJson_System_String_
@@ -60001,6 +60388,44 @@ references:
   isSpec: "True"
   fullName: wan24.Core.Status.State
   nameWithType: Status.State
+- uid: wan24.Core.Status.ToString
+  name: ToString()
+  href: api/wan24.Core.Status.html#wan24_Core_Status_ToString
+  commentId: M:wan24.Core.Status.ToString
+  fullName: wan24.Core.Status.ToString()
+  nameWithType: Status.ToString()
+- uid: wan24.Core.Status.ToString*
+  name: ToString
+  href: api/wan24.Core.Status.html#wan24_Core_Status_ToString_
+  commentId: Overload:wan24.Core.Status.ToString
+  isSpec: "True"
+  fullName: wan24.Core.Status.ToString
+  nameWithType: Status.ToString
+- uid: wan24.Core.StatusProviderTable
+  name: StatusProviderTable
+  href: api/wan24.Core.StatusProviderTable.html
+  commentId: T:wan24.Core.StatusProviderTable
+  fullName: wan24.Core.StatusProviderTable
+  nameWithType: StatusProviderTable
+- uid: wan24.Core.StatusProviderTable.Providers
+  name: Providers
+  href: api/wan24.Core.StatusProviderTable.html#wan24_Core_StatusProviderTable_Providers
+  commentId: F:wan24.Core.StatusProviderTable.Providers
+  fullName: wan24.Core.StatusProviderTable.Providers
+  nameWithType: StatusProviderTable.Providers
+- uid: wan24.Core.StatusProviderTable.State
+  name: State
+  href: api/wan24.Core.StatusProviderTable.html#wan24_Core_StatusProviderTable_State
+  commentId: P:wan24.Core.StatusProviderTable.State
+  fullName: wan24.Core.StatusProviderTable.State
+  nameWithType: StatusProviderTable.State
+- uid: wan24.Core.StatusProviderTable.State*
+  name: State
+  href: api/wan24.Core.StatusProviderTable.html#wan24_Core_StatusProviderTable_State_
+  commentId: Overload:wan24.Core.StatusProviderTable.State
+  isSpec: "True"
+  fullName: wan24.Core.StatusProviderTable.State
+  nameWithType: StatusProviderTable.State
 - uid: wan24.Core.StoredObject`2
   name: StoredObject<tKey, tObj>
   href: api/wan24.Core.StoredObject-2.html
@@ -60671,6 +61096,381 @@ references:
   fullName.vb: wan24.Core.StreamPool(Of T).Return
   nameWithType: StreamPool<T>.Return
   nameWithType.vb: StreamPool(Of T).Return
+- uid: wan24.Core.StreamProxy
+  name: StreamProxy
+  href: api/wan24.Core.StreamProxy.html
+  commentId: T:wan24.Core.StreamProxy
+  fullName: wan24.Core.StreamProxy
+  nameWithType: StreamProxy
+- uid: wan24.Core.StreamProxy.#ctor(System.IO.Stream@,System.IO.Stream@,System.Boolean@)
+  name: StreamProxy(in Stream, in Stream, in bool)
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy__ctor_System_IO_Stream__System_IO_Stream__System_Boolean__
+  commentId: M:wan24.Core.StreamProxy.#ctor(System.IO.Stream@,System.IO.Stream@,System.Boolean@)
+  name.vb: New(Stream, Stream, Boolean)
+  fullName: wan24.Core.StreamProxy.StreamProxy(in System.IO.Stream, in System.IO.Stream, in bool)
+  fullName.vb: wan24.Core.StreamProxy.New(System.IO.Stream, System.IO.Stream, Boolean)
+  nameWithType: StreamProxy.StreamProxy(in Stream, in Stream, in bool)
+  nameWithType.vb: StreamProxy.New(Stream, Stream, Boolean)
+- uid: wan24.Core.StreamProxy.#ctor*
+  name: StreamProxy
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy__ctor_
+  commentId: Overload:wan24.Core.StreamProxy.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: wan24.Core.StreamProxy.StreamProxy
+  fullName.vb: wan24.Core.StreamProxy.New
+  nameWithType: StreamProxy.StreamProxy
+  nameWithType.vb: StreamProxy.New
+- uid: wan24.Core.StreamProxy.A
+  name: A
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_A
+  commentId: P:wan24.Core.StreamProxy.A
+  fullName: wan24.Core.StreamProxy.A
+  nameWithType: StreamProxy.A
+- uid: wan24.Core.StreamProxy.A*
+  name: A
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_A_
+  commentId: Overload:wan24.Core.StreamProxy.A
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.A
+  nameWithType: StreamProxy.A
+- uid: wan24.Core.StreamProxy.A2B
+  name: A2B
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_A2B
+  commentId: F:wan24.Core.StreamProxy.A2B
+  fullName: wan24.Core.StreamProxy.A2B
+  nameWithType: StreamProxy.A2B
+- uid: wan24.Core.StreamProxy.A2BException
+  name: A2BException
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_A2BException
+  commentId: P:wan24.Core.StreamProxy.A2BException
+  fullName: wan24.Core.StreamProxy.A2BException
+  nameWithType: StreamProxy.A2BException
+- uid: wan24.Core.StreamProxy.A2BException*
+  name: A2BException
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_A2BException_
+  commentId: Overload:wan24.Core.StreamProxy.A2BException
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.A2BException
+  nameWithType: StreamProxy.A2BException
+- uid: wan24.Core.StreamProxy.B
+  name: B
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_B
+  commentId: P:wan24.Core.StreamProxy.B
+  fullName: wan24.Core.StreamProxy.B
+  nameWithType: StreamProxy.B
+- uid: wan24.Core.StreamProxy.B*
+  name: B
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_B_
+  commentId: Overload:wan24.Core.StreamProxy.B
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.B
+  nameWithType: StreamProxy.B
+- uid: wan24.Core.StreamProxy.B2A
+  name: B2A
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_B2A
+  commentId: F:wan24.Core.StreamProxy.B2A
+  fullName: wan24.Core.StreamProxy.B2A
+  nameWithType: StreamProxy.B2A
+- uid: wan24.Core.StreamProxy.B2AException
+  name: B2AException
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_B2AException
+  commentId: P:wan24.Core.StreamProxy.B2AException
+  fullName: wan24.Core.StreamProxy.B2AException
+  nameWithType: StreamProxy.B2AException
+- uid: wan24.Core.StreamProxy.B2AException*
+  name: B2AException
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_B2AException_
+  commentId: Overload:wan24.Core.StreamProxy.B2AException
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.B2AException
+  nameWithType: StreamProxy.B2AException
+- uid: wan24.Core.StreamProxy.BufferSize
+  name: BufferSize
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_BufferSize
+  commentId: P:wan24.Core.StreamProxy.BufferSize
+  fullName: wan24.Core.StreamProxy.BufferSize
+  nameWithType: StreamProxy.BufferSize
+- uid: wan24.Core.StreamProxy.BufferSize*
+  name: BufferSize
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_BufferSize_
+  commentId: Overload:wan24.Core.StreamProxy.BufferSize
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.BufferSize
+  nameWithType: StreamProxy.BufferSize
+- uid: wan24.Core.StreamProxy.Cancel(System.Threading.CancellationToken@)
+  name: Cancel(in CancellationToken)
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_Cancel_System_Threading_CancellationToken__
+  commentId: M:wan24.Core.StreamProxy.Cancel(System.Threading.CancellationToken@)
+  name.vb: Cancel(CancellationToken)
+  fullName: wan24.Core.StreamProxy.Cancel(in System.Threading.CancellationToken)
+  fullName.vb: wan24.Core.StreamProxy.Cancel(System.Threading.CancellationToken)
+  nameWithType: StreamProxy.Cancel(in CancellationToken)
+  nameWithType.vb: StreamProxy.Cancel(CancellationToken)
+- uid: wan24.Core.StreamProxy.Cancel*
+  name: Cancel
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_Cancel_
+  commentId: Overload:wan24.Core.StreamProxy.Cancel
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.Cancel
+  nameWithType: StreamProxy.Cancel
+- uid: wan24.Core.StreamProxy.CancelAsync(System.Threading.CancellationToken)
+  name: CancelAsync(CancellationToken)
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_CancelAsync_System_Threading_CancellationToken_
+  commentId: M:wan24.Core.StreamProxy.CancelAsync(System.Threading.CancellationToken)
+  fullName: wan24.Core.StreamProxy.CancelAsync(System.Threading.CancellationToken)
+  nameWithType: StreamProxy.CancelAsync(CancellationToken)
+- uid: wan24.Core.StreamProxy.CancelAsync*
+  name: CancelAsync
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_CancelAsync_
+  commentId: Overload:wan24.Core.StreamProxy.CancelAsync
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.CancelAsync
+  nameWithType: StreamProxy.CancelAsync
+- uid: wan24.Core.StreamProxy.Cancellation
+  name: Cancellation
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_Cancellation
+  commentId: F:wan24.Core.StreamProxy.Cancellation
+  fullName: wan24.Core.StreamProxy.Cancellation
+  nameWithType: StreamProxy.Cancellation
+- uid: wan24.Core.StreamProxy.DataDelay
+  name: DataDelay
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_DataDelay
+  commentId: P:wan24.Core.StreamProxy.DataDelay
+  fullName: wan24.Core.StreamProxy.DataDelay
+  nameWithType: StreamProxy.DataDelay
+- uid: wan24.Core.StreamProxy.DataDelay*
+  name: DataDelay
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_DataDelay_
+  commentId: Overload:wan24.Core.StreamProxy.DataDelay
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.DataDelay
+  nameWithType: StreamProxy.DataDelay
+- uid: wan24.Core.StreamProxy.Dispose(System.Boolean)
+  name: Dispose(bool)
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_Dispose_System_Boolean_
+  commentId: M:wan24.Core.StreamProxy.Dispose(System.Boolean)
+  name.vb: Dispose(Boolean)
+  fullName: wan24.Core.StreamProxy.Dispose(bool)
+  fullName.vb: wan24.Core.StreamProxy.Dispose(Boolean)
+  nameWithType: StreamProxy.Dispose(bool)
+  nameWithType.vb: StreamProxy.Dispose(Boolean)
+- uid: wan24.Core.StreamProxy.Dispose*
+  name: Dispose
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_Dispose_
+  commentId: Overload:wan24.Core.StreamProxy.Dispose
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.Dispose
+  nameWithType: StreamProxy.Dispose
+- uid: wan24.Core.StreamProxy.DisposeCore
+  name: DisposeCore()
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_DisposeCore
+  commentId: M:wan24.Core.StreamProxy.DisposeCore
+  fullName: wan24.Core.StreamProxy.DisposeCore()
+  nameWithType: StreamProxy.DisposeCore()
+- uid: wan24.Core.StreamProxy.DisposeCore*
+  name: DisposeCore
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_DisposeCore_
+  commentId: Overload:wan24.Core.StreamProxy.DisposeCore
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.DisposeCore
+  nameWithType: StreamProxy.DisposeCore
+- uid: wan24.Core.StreamProxy.Error_Delegate
+  name: StreamProxy.Error_Delegate
+  href: api/wan24.Core.StreamProxy.Error_Delegate.html
+  commentId: T:wan24.Core.StreamProxy.Error_Delegate
+  fullName: wan24.Core.StreamProxy.Error_Delegate
+  nameWithType: StreamProxy.Error_Delegate
+- uid: wan24.Core.StreamProxy.IsExceptional
+  name: IsExceptional
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_IsExceptional
+  commentId: P:wan24.Core.StreamProxy.IsExceptional
+  fullName: wan24.Core.StreamProxy.IsExceptional
+  nameWithType: StreamProxy.IsExceptional
+- uid: wan24.Core.StreamProxy.IsExceptional*
+  name: IsExceptional
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_IsExceptional_
+  commentId: Overload:wan24.Core.StreamProxy.IsExceptional
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.IsExceptional
+  nameWithType: StreamProxy.IsExceptional
+- uid: wan24.Core.StreamProxy.IsRunning
+  name: IsRunning
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_IsRunning
+  commentId: P:wan24.Core.StreamProxy.IsRunning
+  fullName: wan24.Core.StreamProxy.IsRunning
+  nameWithType: StreamProxy.IsRunning
+- uid: wan24.Core.StreamProxy.IsRunning*
+  name: IsRunning
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_IsRunning_
+  commentId: Overload:wan24.Core.StreamProxy.IsRunning
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.IsRunning
+  nameWithType: StreamProxy.IsRunning
+- uid: wan24.Core.StreamProxy.LeaveOpen
+  name: LeaveOpen
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_LeaveOpen
+  commentId: P:wan24.Core.StreamProxy.LeaveOpen
+  fullName: wan24.Core.StreamProxy.LeaveOpen
+  nameWithType: StreamProxy.LeaveOpen
+- uid: wan24.Core.StreamProxy.LeaveOpen*
+  name: LeaveOpen
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_LeaveOpen_
+  commentId: Overload:wan24.Core.StreamProxy.LeaveOpen
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.LeaveOpen
+  nameWithType: StreamProxy.LeaveOpen
+- uid: wan24.Core.StreamProxy.Observer
+  name: Observer
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_Observer
+  commentId: F:wan24.Core.StreamProxy.Observer
+  fullName: wan24.Core.StreamProxy.Observer
+  nameWithType: StreamProxy.Observer
+- uid: wan24.Core.StreamProxy.OnError
+  name: OnError
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_OnError
+  commentId: E:wan24.Core.StreamProxy.OnError
+  fullName: wan24.Core.StreamProxy.OnError
+  nameWithType: StreamProxy.OnError
+- uid: wan24.Core.StreamProxy.PermanentCopyNonBlockingAsync(System.IO.Stream,System.IO.Stream)
+  name: PermanentCopyNonBlockingAsync(Stream, Stream)
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_PermanentCopyNonBlockingAsync_System_IO_Stream_System_IO_Stream_
+  commentId: M:wan24.Core.StreamProxy.PermanentCopyNonBlockingAsync(System.IO.Stream,System.IO.Stream)
+  fullName: wan24.Core.StreamProxy.PermanentCopyNonBlockingAsync(System.IO.Stream, System.IO.Stream)
+  nameWithType: StreamProxy.PermanentCopyNonBlockingAsync(Stream, Stream)
+- uid: wan24.Core.StreamProxy.PermanentCopyNonBlockingAsync*
+  name: PermanentCopyNonBlockingAsync
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_PermanentCopyNonBlockingAsync_
+  commentId: Overload:wan24.Core.StreamProxy.PermanentCopyNonBlockingAsync
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.PermanentCopyNonBlockingAsync
+  nameWithType: StreamProxy.PermanentCopyNonBlockingAsync
+- uid: wan24.Core.StreamProxy.RaiseOnError
+  name: RaiseOnError()
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_RaiseOnError
+  commentId: M:wan24.Core.StreamProxy.RaiseOnError
+  fullName: wan24.Core.StreamProxy.RaiseOnError()
+  nameWithType: StreamProxy.RaiseOnError()
+- uid: wan24.Core.StreamProxy.RaiseOnError*
+  name: RaiseOnError
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_RaiseOnError_
+  commentId: Overload:wan24.Core.StreamProxy.RaiseOnError
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.RaiseOnError
+  nameWithType: StreamProxy.RaiseOnError
+- uid: wan24.Core.StreamProxy.Run(System.Threading.CancellationToken@)
+  name: Run(in CancellationToken)
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_Run_System_Threading_CancellationToken__
+  commentId: M:wan24.Core.StreamProxy.Run(System.Threading.CancellationToken@)
+  name.vb: Run(CancellationToken)
+  fullName: wan24.Core.StreamProxy.Run(in System.Threading.CancellationToken)
+  fullName.vb: wan24.Core.StreamProxy.Run(System.Threading.CancellationToken)
+  nameWithType: StreamProxy.Run(in CancellationToken)
+  nameWithType.vb: StreamProxy.Run(CancellationToken)
+- uid: wan24.Core.StreamProxy.Run*
+  name: Run
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_Run_
+  commentId: Overload:wan24.Core.StreamProxy.Run
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.Run
+  nameWithType: StreamProxy.Run
+- uid: wan24.Core.StreamProxy.RunAsync(System.Threading.CancellationToken)
+  name: RunAsync(CancellationToken)
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_RunAsync_System_Threading_CancellationToken_
+  commentId: M:wan24.Core.StreamProxy.RunAsync(System.Threading.CancellationToken)
+  fullName: wan24.Core.StreamProxy.RunAsync(System.Threading.CancellationToken)
+  nameWithType: StreamProxy.RunAsync(CancellationToken)
+- uid: wan24.Core.StreamProxy.RunAsync*
+  name: RunAsync
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_RunAsync_
+  commentId: Overload:wan24.Core.StreamProxy.RunAsync
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.RunAsync
+  nameWithType: StreamProxy.RunAsync
+- uid: wan24.Core.StreamProxy.RunCommunication
+  name: RunCommunication()
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_RunCommunication
+  commentId: M:wan24.Core.StreamProxy.RunCommunication
+  fullName: wan24.Core.StreamProxy.RunCommunication()
+  nameWithType: StreamProxy.RunCommunication()
+- uid: wan24.Core.StreamProxy.RunCommunication*
+  name: RunCommunication
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_RunCommunication_
+  commentId: Overload:wan24.Core.StreamProxy.RunCommunication
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.RunCommunication
+  nameWithType: StreamProxy.RunCommunication
+- uid: wan24.Core.StreamProxy.RunObserverAsync
+  name: RunObserverAsync()
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_RunObserverAsync
+  commentId: M:wan24.Core.StreamProxy.RunObserverAsync
+  fullName: wan24.Core.StreamProxy.RunObserverAsync()
+  nameWithType: StreamProxy.RunObserverAsync()
+- uid: wan24.Core.StreamProxy.RunObserverAsync*
+  name: RunObserverAsync
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_RunObserverAsync_
+  commentId: Overload:wan24.Core.StreamProxy.RunObserverAsync
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.RunObserverAsync
+  nameWithType: StreamProxy.RunObserverAsync
+- uid: wan24.Core.StreamProxy.Started
+  name: Started
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_Started
+  commentId: P:wan24.Core.StreamProxy.Started
+  fullName: wan24.Core.StreamProxy.Started
+  nameWithType: StreamProxy.Started
+- uid: wan24.Core.StreamProxy.Started*
+  name: Started
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_Started_
+  commentId: Overload:wan24.Core.StreamProxy.Started
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.Started
+  nameWithType: StreamProxy.Started
+- uid: wan24.Core.StreamProxy.Stopped
+  name: Stopped
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_Stopped
+  commentId: P:wan24.Core.StreamProxy.Stopped
+  fullName: wan24.Core.StreamProxy.Stopped
+  nameWithType: StreamProxy.Stopped
+- uid: wan24.Core.StreamProxy.Stopped*
+  name: Stopped
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_Stopped_
+  commentId: Overload:wan24.Core.StreamProxy.Stopped
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.Stopped
+  nameWithType: StreamProxy.Stopped
+- uid: wan24.Core.StreamProxy.Sync
+  name: Sync
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_Sync
+  commentId: F:wan24.Core.StreamProxy.Sync
+  fullName: wan24.Core.StreamProxy.Sync
+  nameWithType: StreamProxy.Sync
+- uid: wan24.Core.StreamProxy.ThrowIfExceptional
+  name: ThrowIfExceptional()
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_ThrowIfExceptional
+  commentId: M:wan24.Core.StreamProxy.ThrowIfExceptional
+  fullName: wan24.Core.StreamProxy.ThrowIfExceptional()
+  nameWithType: StreamProxy.ThrowIfExceptional()
+- uid: wan24.Core.StreamProxy.ThrowIfExceptional*
+  name: ThrowIfExceptional
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_ThrowIfExceptional_
+  commentId: Overload:wan24.Core.StreamProxy.ThrowIfExceptional
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.ThrowIfExceptional
+  nameWithType: StreamProxy.ThrowIfExceptional
+- uid: wan24.Core.StreamProxy.WaitAsync(System.Threading.CancellationToken)
+  name: WaitAsync(CancellationToken)
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_WaitAsync_System_Threading_CancellationToken_
+  commentId: M:wan24.Core.StreamProxy.WaitAsync(System.Threading.CancellationToken)
+  fullName: wan24.Core.StreamProxy.WaitAsync(System.Threading.CancellationToken)
+  nameWithType: StreamProxy.WaitAsync(CancellationToken)
+- uid: wan24.Core.StreamProxy.WaitAsync*
+  name: WaitAsync
+  href: api/wan24.Core.StreamProxy.html#wan24_Core_StreamProxy_WaitAsync_
+  commentId: Overload:wan24.Core.StreamProxy.WaitAsync
+  isSpec: "True"
+  fullName: wan24.Core.StreamProxy.WaitAsync
+  nameWithType: StreamProxy.WaitAsync
 - uid: wan24.Core.StringExtensions
   name: StringExtensions
   href: api/wan24.Core.StringExtensions.html

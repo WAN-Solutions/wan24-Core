@@ -5,9 +5,9 @@
     <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Class CountingStream&lt;T&gt; | wan24-Core </title>
+      <title>Class CutStream&lt;T&gt; | wan24-Core </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Class CountingStream&lt;T&gt; | wan24-Core ">
+      <meta name="title" content="Class CutStream&lt;T&gt; | wan24-Core ">
       <meta name="generator" content="docfx ">
   
       <link rel="shortcut icon" href="../favicon.ico">
@@ -93,15 +93,15 @@
                         </div>
 
                          <div id="contribution">
-                               <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                               <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                          </div>
 
-                    <article class="content wrap" id="_content" data-uid="wan24.Core.CountingStream`1">
+                    <article class="content wrap" id="_content" data-uid="wan24.Core.CutStream`1">
 
 
 
-  <h1 id="wan24_Core_CountingStream_1" data-uid="wan24.Core.CountingStream`1" class="text-break">Class CountingStream&lt;T&gt;</h1>
-  <div class="markdown level0 summary"><p>Counting stream counts red/written bytes</p>
+  <h1 id="wan24_Core_CutStream_1" data-uid="wan24.Core.CutStream`1" class="text-break">Class CutStream&lt;T&gt;</h1>
+  <div class="markdown level0 summary"><p>Cut stream (cuts the base stream at its position)</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -111,8 +111,8 @@
     <div class="level2"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></div>
     <div class="level3"><a class="xref" href="wan24.Core.StreamBase.html">StreamBase</a></div>
     <div class="level4"><a class="xref" href="wan24.Core.WrapperStream-1.html">WrapperStream</a>&lt;T&gt;</div>
-    <div class="level5"><span class="xref">CountingStream&lt;T&gt;</span></div>
-      <div class="level6"><a class="xref" href="wan24.Core.CountingStream.html">CountingStream</a></div>
+    <div class="level5"><span class="xref">CutStream&lt;T&gt;</span></div>
+      <div class="level6"><a class="xref" href="wan24.Core.CutStream.html">CutStream</a></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
@@ -156,6 +156,9 @@
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_LeaveOpen">WrapperStream&lt;T&gt;.LeaveOpen</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_State">WrapperStream&lt;T&gt;.State</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanRead">WrapperStream&lt;T&gt;.CanRead</a>
     </div>
     <div>
@@ -166,12 +169,6 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanTimeout">WrapperStream&lt;T&gt;.CanTimeout</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Length">WrapperStream&lt;T&gt;.Length</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Position">WrapperStream&lt;T&gt;.Position</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_ReadTimeout">WrapperStream&lt;T&gt;.ReadTimeout</a>
@@ -186,10 +183,10 @@
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_FlushAsync_System_Threading_CancellationToken_">WrapperStream&lt;T&gt;.FlushAsync(CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Seek_System_Int64_System_IO_SeekOrigin_">WrapperStream&lt;T&gt;.Seek(long, SeekOrigin)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CopyTo_System_IO_Stream_System_Int32_">WrapperStream&lt;T&gt;.CopyTo(Stream, int)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_SetLength_System_Int64_">WrapperStream&lt;T&gt;.SetLength(long)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CopyToAsync_System_IO_Stream_System_Int32_System_Threading_CancellationToken_">WrapperStream&lt;T&gt;.CopyToAsync(Stream, int, CancellationToken)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BeginRead_System_Byte___System_Int32_System_Int32_System_AsyncCallback_System_Object_">WrapperStream&lt;T&gt;.BeginRead(byte[], int, int, AsyncCallback, object)</a>
@@ -377,9 +374,9 @@
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_CountingStream_1_syntax">Syntax</h5>
+  <h5 id="wan24_Core_CutStream_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class CountingStream&lt;T&gt; : WrapperStream&lt;T&gt;, IStreamWrapper, IStream, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider where T : Stream</code></pre>
+    <pre><code class="lang-csharp hljs">public class CutStream&lt;T&gt; : WrapperStream&lt;T&gt;, IStreamWrapper, IStream, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider where T : Stream</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -392,31 +389,28 @@
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td><p>Wrapped stream type</p>
+        <td><p>Base stream type</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="wan24_Core_CountingStream_1_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>Constructor</p>
-</div>
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1__ctor__0__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.%23ctor(%600%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1__ctor__0__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601.%23ctor(%600%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L26">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L41">View Source</a>
   </span>
-  <a id="wan24_Core_CountingStream_1__ctor_" data-uid="wan24.Core.CountingStream`1.#ctor*"></a>
-  <h4 id="wan24_Core_CountingStream_1__ctor__0__System_Boolean__" data-uid="wan24.Core.CountingStream`1.#ctor(`0@,System.Boolean@)">CountingStream(in T, in bool)</h4>
-  <div class="markdown level1 summary"><p>Counting stream counts red/written bytes</p>
+  <a id="wan24_Core_CutStream_1__ctor_" data-uid="wan24.Core.CutStream`1.#ctor*"></a>
+  <h4 id="wan24_Core_CutStream_1__ctor__0__System_Boolean__" data-uid="wan24.Core.CutStream`1.#ctor(`0@,System.Boolean@)">CutStream(in T, in bool)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public CountingStream(in T baseStream, in bool leaveOpen = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public CutStream(in T baseStream, in bool leaveOpen = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -442,26 +436,115 @@
       </tr>
     </tbody>
   </table>
-  <h5 id="wan24_Core_CountingStream_1__ctor__0__System_Boolean___remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Constructor</p>
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1_Offset.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601.Offset%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L26">View Source</a>
+  </span>
+  <h4 id="wan24_Core_CutStream_1_Offset" data-uid="wan24.Core.CutStream`1.Offset">Offset</h4>
+  <div class="markdown level1 summary"><p>Start byte offset</p>
 </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly long Offset</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1__Length.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601._Length%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L30">View Source</a>
+  </span>
+  <h4 id="wan24_Core_CutStream_1__Length" data-uid="wan24.Core.CutStream`1._Length">_Length</h4>
+  <div class="markdown level1 summary"><p>Length in bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected long _Length</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1__Position.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601._Position%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L34">View Source</a>
+  </span>
+  <h4 id="wan24_Core_CutStream_1__Position" data-uid="wan24.Core.CutStream`1._Position">_Position</h4>
+  <div class="markdown level1 summary"><p>Position byte offset</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected long _Position</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_Red.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.Red%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1_Length.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601.Length%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L31">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L51">View Source</a>
   </span>
-  <a id="wan24_Core_CountingStream_1_Red_" data-uid="wan24.Core.CountingStream`1.Red*"></a>
-  <h4 id="wan24_Core_CountingStream_1_Red" data-uid="wan24.Core.CountingStream`1.Red">Red</h4>
-  <div class="markdown level1 summary"><p>Number of bytes red</p>
+  <a id="wan24_Core_CutStream_1_Length_" data-uid="wan24.Core.CutStream`1.Length*"></a>
+  <h4 id="wan24_Core_CutStream_1_Length" data-uid="wan24.Core.CutStream`1.Length">Length</h4>
+  <div class="markdown level1 summary"><p>When overridden in a derived class, gets the length in bytes of the stream.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual long Red { get; protected set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public override long Length { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -474,58 +557,49 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_State.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.State%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L39">View Source</a>
-  </span>
-  <a id="wan24_Core_CountingStream_1_State_" data-uid="wan24.Core.CountingStream`1.State*"></a>
-  <h4 id="wan24_Core_CountingStream_1_State" data-uid="wan24.Core.CountingStream`1.State">State</h4>
-  <div class="markdown level1 summary"><p>Status information</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;Status&gt; State { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="wan24.Core.Status.html">Status</a>&gt;</td>
-        <td></td>
+        <td><p>A long value representing the length of the stream in bytes.</p>
+</td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_State">WrapperStream&lt;T&gt;.State</a></div>
+  <div><a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Length">WrapperStream&lt;T&gt;.Length</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>A class derived from <code>Stream</code> does not support seeking and the length is unknown.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>Methods were called after the stream was closed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_Written.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.Written%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1_Position.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601.Position%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L36">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L62">View Source</a>
   </span>
-  <a id="wan24_Core_CountingStream_1_Written_" data-uid="wan24.Core.CountingStream`1.Written*"></a>
-  <h4 id="wan24_Core_CountingStream_1_Written" data-uid="wan24.Core.CountingStream`1.Written">Written</h4>
-  <div class="markdown level1 summary"><p>Number of bytes written</p>
+  <a id="wan24_Core_CutStream_1_Position_" data-uid="wan24.Core.CutStream`1.Position*"></a>
+  <h4 id="wan24_Core_CutStream_1_Position" data-uid="wan24.Core.CutStream`1.Position">Position</h4>
+  <div class="markdown level1 summary"><p>When overridden in a derived class, gets or sets the position within the current stream.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual long Written { get; protected set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public override long Position { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -538,7 +612,36 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
-        <td></td>
+        <td><p>The current position within the stream.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Position">WrapperStream&lt;T&gt;.Position</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><p>An I/O error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>The stream does not support seeking.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>Methods were called after the stream was closed.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -546,188 +649,13 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_CopyTo_System_IO_Stream_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.CopyTo(System.IO.Stream%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1_Read_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601.Read(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L154">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L96">View Source</a>
   </span>
-  <a id="wan24_Core_CountingStream_1_CopyTo_" data-uid="wan24.Core.CountingStream`1.CopyTo*"></a>
-  <h4 id="wan24_Core_CountingStream_1_CopyTo_System_IO_Stream_System_Int32_" data-uid="wan24.Core.CountingStream`1.CopyTo(System.IO.Stream,System.Int32)">CopyTo(Stream, int)</h4>
-  <div class="markdown level1 summary"><p>Reads the bytes from the current stream and writes them to another stream, using a specified buffer size. Both streams positions are advanced by the number of bytes copied.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void CopyTo(Stream destination, int bufferSize)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
-        <td><span class="parametername">destination</span></td>
-        <td><p>The stream to which the contents of the current stream will be copied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">bufferSize</span></td>
-        <td><p>The size of the buffer. This value must be greater than zero. The default size is 81920.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CopyTo_System_IO_Stream_System_Int32_">WrapperStream&lt;T&gt;.CopyTo(Stream, int)</a></div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code class="paramref">destination</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code class="paramref">bufferSize</code> is negative or zero.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>The current stream does not support reading.</p>
-<p>-or-</p>
-<p><code class="paramref">destination</code> does not support writing.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>Either the current stream or <code class="paramref">destination</code> were closed before the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.copyto#system-io-stream-copyto(system-io-stream)">CopyTo(Stream)</a> method was called.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>An I/O error occurred.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_CopyToAsync_System_IO_Stream_System_Int32_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.CopyToAsync(System.IO.Stream%2CSystem.Int32%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L162">View Source</a>
-  </span>
-  <a id="wan24_Core_CountingStream_1_CopyToAsync_" data-uid="wan24.Core.CountingStream`1.CopyToAsync*"></a>
-  <h4 id="wan24_Core_CountingStream_1_CopyToAsync_System_IO_Stream_System_Int32_System_Threading_CancellationToken_" data-uid="wan24.Core.CountingStream`1.CopyToAsync(System.IO.Stream,System.Int32,System.Threading.CancellationToken)">CopyToAsync(Stream, int, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Asynchronously reads the bytes from the current stream and writes them to another stream, using a specified buffer size and cancellation token. Both streams positions are advanced by the number of bytes copied.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override Task CopyToAsync(Stream destination, int bufferSize, CancellationToken cancellationToken)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
-        <td><span class="parametername">destination</span></td>
-        <td><p>The stream to which the contents of the current stream will be copied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">bufferSize</span></td>
-        <td><p>The size, in bytes, of the buffer. This value must be greater than zero. The default size is 81920.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>The token to monitor for cancellation requests. The default value is <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken.none">None</a>.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td><p>A task that represents the asynchronous copy operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CopyToAsync_System_IO_Stream_System_Int32_System_Threading_CancellationToken_">WrapperStream&lt;T&gt;.CopyToAsync(Stream, int, CancellationToken)</a></div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code class="paramref">destination</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code class="paramref">buffersize</code> is negative or zero.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>Either the current stream or the destination stream is disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>The current stream does not support reading, or the destination stream does not support writing.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_Read_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.Read(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L114">View Source</a>
-  </span>
-  <a id="wan24_Core_CountingStream_1_Read_" data-uid="wan24.Core.CountingStream`1.Read*"></a>
-  <h4 id="wan24_Core_CountingStream_1_Read_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.CountingStream`1.Read(System.Byte[],System.Int32,System.Int32)">Read(byte[], int, int)</h4>
+  <a id="wan24_Core_CutStream_1_Read_" data-uid="wan24.Core.CutStream`1.Read*"></a>
+  <h4 id="wan24_Core_CutStream_1_Read_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.CutStream`1.Read(System.Byte[],System.Int32,System.Int32)">Read(byte[], int, int)</h4>
   <div class="markdown level1 summary"><p>When overridden in a derived class, reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -826,13 +754,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_Read_System_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.Read(System.Span%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1_Read_System_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601.Read(System.Span%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L122">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L106">View Source</a>
   </span>
-  <a id="wan24_Core_CountingStream_1_Read_" data-uid="wan24.Core.CountingStream`1.Read*"></a>
-  <h4 id="wan24_Core_CountingStream_1_Read_System_Span_System_Byte__" data-uid="wan24.Core.CountingStream`1.Read(System.Span{System.Byte})">Read(Span&lt;byte&gt;)</h4>
+  <a id="wan24_Core_CutStream_1_Read_" data-uid="wan24.Core.CutStream`1.Read*"></a>
+  <h4 id="wan24_Core_CutStream_1_Read_System_Span_System_Byte__" data-uid="wan24.Core.CutStream`1.Read(System.Span{System.Byte})">Read(Span&lt;byte&gt;)</h4>
   <div class="markdown level1 summary"><p>When overridden in a derived class, reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -878,13 +806,13 @@
   <div><a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Read_System_Span_System_Byte__">WrapperStream&lt;T&gt;.Read(Span&lt;byte&gt;)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.ReadAsync(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601.ReadAsync(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L130">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L116">View Source</a>
   </span>
-  <a id="wan24_Core_CountingStream_1_ReadAsync_" data-uid="wan24.Core.CountingStream`1.ReadAsync*"></a>
-  <h4 id="wan24_Core_CountingStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="wan24.Core.CountingStream`1.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">ReadAsync(byte[], int, int, CancellationToken)</h4>
+  <a id="wan24_Core_CutStream_1_ReadAsync_" data-uid="wan24.Core.CutStream`1.ReadAsync*"></a>
+  <h4 id="wan24_Core_CutStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="wan24.Core.CutStream`1.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">ReadAsync(byte[], int, int, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Asynchronously reads a sequence of bytes from the current stream, advances the position within the stream by the number of bytes read, and monitors cancellation requests.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -989,13 +917,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_ReadAsync_System_Memory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.ReadAsync(System.Memory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1_ReadAsync_System_Memory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601.ReadAsync(System.Memory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L138">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L126">View Source</a>
   </span>
-  <a id="wan24_Core_CountingStream_1_ReadAsync_" data-uid="wan24.Core.CountingStream`1.ReadAsync*"></a>
-  <h4 id="wan24_Core_CountingStream_1_ReadAsync_System_Memory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.CountingStream`1.ReadAsync(System.Memory{System.Byte},System.Threading.CancellationToken)">ReadAsync(Memory&lt;byte&gt;, CancellationToken)</h4>
+  <a id="wan24_Core_CutStream_1_ReadAsync_" data-uid="wan24.Core.CutStream`1.ReadAsync*"></a>
+  <h4 id="wan24_Core_CutStream_1_ReadAsync_System_Memory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.CutStream`1.ReadAsync(System.Memory{System.Byte},System.Threading.CancellationToken)">ReadAsync(Memory&lt;byte&gt;, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Asynchronously reads a sequence of bytes from the current stream, advances the position within the stream by the number of bytes read, and monitors cancellation requests.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1047,13 +975,13 @@
   <div><a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_ReadAsync_System_Memory_System_Byte__System_Threading_CancellationToken_">WrapperStream&lt;T&gt;.ReadAsync(Memory&lt;byte&gt;, CancellationToken)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_ReadByte.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.ReadByte%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1_ReadByte.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601.ReadByte%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L146">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L136">View Source</a>
   </span>
-  <a id="wan24_Core_CountingStream_1_ReadByte_" data-uid="wan24.Core.CountingStream`1.ReadByte*"></a>
-  <h4 id="wan24_Core_CountingStream_1_ReadByte" data-uid="wan24.Core.CountingStream`1.ReadByte">ReadByte()</h4>
+  <a id="wan24_Core_CutStream_1_ReadByte_" data-uid="wan24.Core.CutStream`1.ReadByte*"></a>
+  <h4 id="wan24_Core_CutStream_1_ReadByte" data-uid="wan24.Core.CutStream`1.ReadByte">ReadByte()</h4>
   <div class="markdown level1 summary"><p>Reads a byte from the stream and advances the position within the stream by one byte, or returns -1 if at the end of the stream.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1102,61 +1030,159 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_ResetCounter.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.ResetCounter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1_Seek_System_Int64_System_IO_SeekOrigin_.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601.Seek(System.Int64%2CSystem.IO.SeekOrigin)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L70">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L76">View Source</a>
   </span>
-  <a id="wan24_Core_CountingStream_1_ResetCounter_" data-uid="wan24.Core.CountingStream`1.ResetCounter*"></a>
-  <h4 id="wan24_Core_CountingStream_1_ResetCounter" data-uid="wan24.Core.CountingStream`1.ResetCounter">ResetCounter()</h4>
-  <div class="markdown level1 summary"><p>Reset the red/written counters</p>
+  <a id="wan24_Core_CutStream_1_Seek_" data-uid="wan24.Core.CutStream`1.Seek*"></a>
+  <h4 id="wan24_Core_CutStream_1_Seek_System_Int64_System_IO_SeekOrigin_" data-uid="wan24.Core.CutStream`1.Seek(System.Int64,System.IO.SeekOrigin)">Seek(long, SeekOrigin)</h4>
+  <div class="markdown level1 summary"><p>When overridden in a derived class, sets the position within the current stream.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual void ResetCounter()</code></pre>
+    <pre><code class="lang-csharp hljs">public override long Seek(long offset, SeekOrigin origin)</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>A byte offset relative to the <code class="paramref">origin</code> parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.seekorigin">SeekOrigin</a></td>
+        <td><span class="parametername">origin</span></td>
+        <td><p>A value of type <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.seekorigin">SeekOrigin</a> indicating the reference point used to obtain the new position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><p>The new position within the current stream.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Seek_System_Int64_System_IO_SeekOrigin_">WrapperStream&lt;T&gt;.Seek(long, SeekOrigin)</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><p>An I/O error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>The stream does not support seeking, such as if the stream is constructed from a pipe or console output.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>Methods were called after the stream was closed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_ResetRed.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.ResetRed%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1_SetLength_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601.SetLength(System.Int64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L52">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L84">View Source</a>
   </span>
-  <a id="wan24_Core_CountingStream_1_ResetRed_" data-uid="wan24.Core.CountingStream`1.ResetRed*"></a>
-  <h4 id="wan24_Core_CountingStream_1_ResetRed" data-uid="wan24.Core.CountingStream`1.ResetRed">ResetRed()</h4>
-  <div class="markdown level1 summary"><p>Reset the red bytes counter</p>
+  <a id="wan24_Core_CutStream_1_SetLength_" data-uid="wan24.Core.CutStream`1.SetLength*"></a>
+  <h4 id="wan24_Core_CutStream_1_SetLength_System_Int64_" data-uid="wan24.Core.CutStream`1.SetLength(System.Int64)">SetLength(long)</h4>
+  <div class="markdown level1 summary"><p>When overridden in a derived class, sets the length of the current stream.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual void ResetRed()</code></pre>
+    <pre><code class="lang-csharp hljs">public override void SetLength(long value)</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The desired length of the current stream in bytes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_SetLength_System_Int64_">WrapperStream&lt;T&gt;.SetLength(long)</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><p>An I/O error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>The stream does not support both writing and seeking, such as if the stream is constructed from a pipe or console output.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>Methods were called after the stream was closed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_ResetWritten.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.ResetWritten%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1_Write_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601.Write(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L61">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L139">View Source</a>
   </span>
-  <a id="wan24_Core_CountingStream_1_ResetWritten_" data-uid="wan24.Core.CountingStream`1.ResetWritten*"></a>
-  <h4 id="wan24_Core_CountingStream_1_ResetWritten" data-uid="wan24.Core.CountingStream`1.ResetWritten">ResetWritten()</h4>
-  <div class="markdown level1 summary"><p>Reset the written bytes counter</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual void ResetWritten()</code></pre>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_Write_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.Write(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L78">View Source</a>
-  </span>
-  <a id="wan24_Core_CountingStream_1_Write_" data-uid="wan24.Core.CountingStream`1.Write*"></a>
-  <h4 id="wan24_Core_CountingStream_1_Write_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.CountingStream`1.Write(System.Byte[],System.Int32,System.Int32)">Write(byte[], int, int)</h4>
+  <a id="wan24_Core_CutStream_1_Write_" data-uid="wan24.Core.CutStream`1.Write*"></a>
+  <h4 id="wan24_Core_CutStream_1_Write_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.CutStream`1.Write(System.Byte[],System.Int32,System.Int32)">Write(byte[], int, int)</h4>
   <div class="markdown level1 summary"><p>When overridden in a derived class, writes a sequence of bytes to the current stream and advances the current position within this stream by the number of bytes written.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1239,13 +1265,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_Write_System_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.Write(System.ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1_Write_System_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601.Write(System.ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L85">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L149">View Source</a>
   </span>
-  <a id="wan24_Core_CountingStream_1_Write_" data-uid="wan24.Core.CountingStream`1.Write*"></a>
-  <h4 id="wan24_Core_CountingStream_1_Write_System_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.CountingStream`1.Write(System.ReadOnlySpan{System.Byte})">Write(ReadOnlySpan&lt;byte&gt;)</h4>
+  <a id="wan24_Core_CutStream_1_Write_" data-uid="wan24.Core.CutStream`1.Write*"></a>
+  <h4 id="wan24_Core_CutStream_1_Write_System_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.CutStream`1.Write(System.ReadOnlySpan{System.Byte})">Write(ReadOnlySpan&lt;byte&gt;)</h4>
   <div class="markdown level1 summary"><p>When overridden in a derived class, writes a sequence of bytes to the current stream and advances the current position within this stream by the number of bytes written.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1275,13 +1301,13 @@
   <div><a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Write_System_ReadOnlySpan_System_Byte__">WrapperStream&lt;T&gt;.Write(ReadOnlySpan&lt;byte&gt;)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_WriteAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.WriteAsync(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1_WriteAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601.WriteAsync(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L92">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L159">View Source</a>
   </span>
-  <a id="wan24_Core_CountingStream_1_WriteAsync_" data-uid="wan24.Core.CountingStream`1.WriteAsync*"></a>
-  <h4 id="wan24_Core_CountingStream_1_WriteAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="wan24.Core.CountingStream`1.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">WriteAsync(byte[], int, int, CancellationToken)</h4>
+  <a id="wan24_Core_CutStream_1_WriteAsync_" data-uid="wan24.Core.CutStream`1.WriteAsync*"></a>
+  <h4 id="wan24_Core_CutStream_1_WriteAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="wan24.Core.CutStream`1.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">WriteAsync(byte[], int, int, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Asynchronously writes a sequence of bytes to the current stream, advances the current position within this stream by the number of bytes written, and monitors cancellation requests.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1386,13 +1412,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.WriteAsync(System.ReadOnlyMemory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601.WriteAsync(System.ReadOnlyMemory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L99">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L169">View Source</a>
   </span>
-  <a id="wan24_Core_CountingStream_1_WriteAsync_" data-uid="wan24.Core.CountingStream`1.WriteAsync*"></a>
-  <h4 id="wan24_Core_CountingStream_1_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.CountingStream`1.WriteAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">WriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</h4>
+  <a id="wan24_Core_CutStream_1_WriteAsync_" data-uid="wan24.Core.CutStream`1.WriteAsync*"></a>
+  <h4 id="wan24_Core_CutStream_1_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.CutStream`1.WriteAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">WriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Asynchronously writes a sequence of bytes to the current stream, advances the current position within this stream by the number of bytes written, and monitors cancellation requests.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1444,13 +1470,13 @@
   <div><a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_">WrapperStream&lt;T&gt;.WriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CountingStream_1_WriteByte_System_Byte_.md&amp;value=---%0Auid%3A%20wan24.Core.CountingStream%601.WriteByte(System.Byte)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream_1_WriteByte_System_Byte_.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream%601.WriteByte(System.Byte)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CountingStream.cs/#L106">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L179">View Source</a>
   </span>
-  <a id="wan24_Core_CountingStream_1_WriteByte_" data-uid="wan24.Core.CountingStream`1.WriteByte*"></a>
-  <h4 id="wan24_Core_CountingStream_1_WriteByte_System_Byte_" data-uid="wan24.Core.CountingStream`1.WriteByte(System.Byte)">WriteByte(byte)</h4>
+  <a id="wan24_Core_CutStream_1_WriteByte_" data-uid="wan24.Core.CutStream`1.WriteByte*"></a>
+  <h4 id="wan24_Core_CutStream_1_WriteByte_System_Byte_" data-uid="wan24.Core.CutStream`1.WriteByte(System.Byte)">WriteByte(byte)</h4>
   <div class="markdown level1 summary"><p>Writes a byte to the current position in the stream and advances the position within the stream by one byte.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
