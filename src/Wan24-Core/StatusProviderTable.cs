@@ -143,6 +143,12 @@ namespace wan24.Core
                         yield return new(__("GUID"), kvp.Key, __("Process GUID"), group);
                         yield return new(__("Started"), kvp.Value.Started, __("Processing start time"), group);
                     }
+                // Named object serializers
+                foreach (string name in ObjectSerializer.NamedSerializers.Keys)
+                    yield return new(__("Serializer"), name, __("Object serializer name"), __("Object serializers"));
+                // Regular expressions
+                foreach (var kvp in RegularExpressions.NamedExpressions)
+                    yield return new(kvp.Key, kvp.Value, __("Named regular expression"), __("Regular expressions"));
                 // Other states
                 foreach (KeyValuePair<string, IEnumerable<Status>> kvp in Providers)
                     foreach (Status status in kvp.Value)
