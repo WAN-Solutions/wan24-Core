@@ -58,11 +58,11 @@ namespace wan24.Core
                     if (kvp.Value is IStatusProvider sp)
                     {
                         foreach (Status status in sp.State)
-                            yield return new(status.Name, status.State, status.Description, $"Core\\{__("Services")}\\{(kvp.Value.Name ?? kvp.Key).Replace('\\', '/')}");
+                            yield return new(status.Name, status.State, status.Description, $"Core\\{__("Services")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName().CombineStatusGroupNames(status.Group)}");
                     }
                     else
                     {
-                        string group = $"Core\\{__("Services")}\\{(kvp.Value.Name ?? kvp.Key).Replace('\\', '/')}";
+                        string group = $"Core\\{__("Services")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName()}";
                         yield return new(__("Type"), kvp.Value.GetType(), __("Service worker CLR type"), group);
                         yield return new(__("Name"), kvp.Value.Name, __("Service worker name"), group);
                         yield return new(__("GUID"), kvp.Key, __("Service worker GUID"), group);
@@ -77,11 +77,11 @@ namespace wan24.Core
                     if (kvp.Value is IStatusProvider sp)
                     {
                         foreach (Status status in sp.State)
-                            yield return new(status.Name, status.State, status.Description, $"Core\\{__("Timers")}\\{(kvp.Value.Name ?? kvp.Key).Replace('\\', '/')}");
+                            yield return new(status.Name, status.State, status.Description, $"Core\\{__("Timers")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName().CombineStatusGroupNames(status.Group)}");
                     }
                     else
                     {
-                        string group = $"Core\\{__("Timers")}\\{(kvp.Value.Name ?? kvp.Key).Replace('\\', '/')}";
+                        string group = $"Core\\{__("Timers")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName()}";
                         yield return new(__("Type"), kvp.Value.GetType(), __("Timer CLR type"), group);
                         yield return new(__("Name"), kvp.Value.Name, __("Timer name"), group);
                         yield return new(__("GUID"), kvp.Key, __("Timer GUID"), group);
@@ -100,11 +100,11 @@ namespace wan24.Core
                     if (kvp.Value is IStatusProvider sp)
                     {
                         foreach (Status status in sp.State)
-                            yield return new(status.Name, status.State, status.Description, $"Core\\{__("Pools")}\\{(kvp.Value.Name ?? kvp.Key).Replace('\\', '/')}");
+                            yield return new(status.Name, status.State, status.Description, $"Core\\{__("Pools")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName().CombineStatusGroupNames(status.Group)}");
                     }
                     else
                     {
-                        string group = $"Core\\{__("Pools")}\\{(kvp.Value.Name ?? kvp.Key).Replace('\\', '/')}";
+                        string group = $"Core\\{__("Pools")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName()}";
                         yield return new(__("Type"), kvp.Value.GetType(), __("Pool CLR type"), group);
                         yield return new(__("Name"), kvp.Value.Name, __("Pool name"), group);
                         yield return new(__("GUID"), kvp.Key, __("Pool GUID"), group);
@@ -117,11 +117,11 @@ namespace wan24.Core
                     if (kvp.Value is IStatusProvider sp)
                     {
                         foreach (Status status in sp.State)
-                            yield return new(status.Name, status.State, status.Description, $"Core\\{__("Object lock managers")}\\{(kvp.Value.Name ?? kvp.Key).Replace('\\', '/')}");
+                            yield return new(status.Name, status.State, status.Description, $"Core\\{__("Object lock managers")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName().CombineStatusGroupNames(status.Group)}");
                     }
                     else
                     {
-                        string group = $"Core\\{__("Object lock managers")}\\{(kvp.Value.Name ?? kvp.Key).Replace('\\', '/')}";
+                        string group = $"Core\\{__("Object lock managers")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName()}";
                         yield return new(__("Type"), kvp.Value.GetType(), __("Object lock manager CLR type"), group);
                         yield return new(__("Name"), kvp.Value.Name, __("Object lock manager name"), group);
                         yield return new(__("GUID"), kvp.Key, __("Object lock manager GUID"), group);
@@ -133,11 +133,11 @@ namespace wan24.Core
                     if (kvp.Value is IStatusProvider sp)
                     {
                         foreach (Status status in sp.State)
-                            yield return new(status.Name, status.State, status.Description, $"Core\\{__("Processes")}\\{kvp.Value.Description.Replace('\\', '/')}");
+                            yield return new(status.Name, status.State, status.Description, $"Core\\{__("Processes")}\\{kvp.Value.Description.NormalizeStatusGroupName().CombineStatusGroupNames(status.Group)}");
                     }
                     else
                     {
-                        string group = $"Core\\{__("Processes")}\\{kvp.Value.Description.Replace('\\', '/')}";
+                        string group = $"Core\\{__("Processes")}\\{kvp.Value.Description.NormalizeStatusGroupName()}";
                         yield return new(__("Type"), kvp.Value.GetType(), __("Process CLR type"), group);
                         yield return new(__("Description"), kvp.Value.Description, __("Process description"), group);
                         yield return new(__("GUID"), kvp.Key, __("Process GUID"), group);
@@ -152,8 +152,24 @@ namespace wan24.Core
                 // Other states
                 foreach (KeyValuePair<string, IEnumerable<Status>> kvp in Providers)
                     foreach (Status status in kvp.Value)
-                        yield return new(status.Name, status.State, status.Description, status.Group is null ? kvp.Key : $"{kvp.Key}\\{status.Group}");
+                        yield return new(status.Name, status.State, status.Description, kvp.Key.CombineStatusGroupNames(status.Group));
             }
         }
+
+        /// <summary>
+        /// Normalize a status group name
+        /// </summary>
+        /// <param name="name">Status group name</param>
+        /// <returns>Normalized name</returns>
+        public static string NormalizeStatusGroupName(this string name) => name.Replace('\\', '/');
+
+        /// <summary>
+        /// Combine status group names
+        /// </summary>
+        /// <param name="name">Status group name (should be normalized!)</param>
+        /// <param name="names">Additional status group names (should be normalized!)</param>
+        /// <returns>Combined name</returns>
+        public static string CombineStatusGroupNames(this string name, params string?[] names)
+            => string.Join('\\', [name, .. names.Where(n => !string.IsNullOrWhiteSpace(n))]);
     }
 }
