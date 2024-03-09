@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace wan24.Core
 {
@@ -148,8 +147,8 @@ namespace wan24.Core
                     obj: null,
                     [
                     pi.GetMethod!.CreateDelegate(typeof(Func<>).MakeGenericType(
-                        pi.PropertyType
-                        ))
+                    pi.PropertyType
+                    ))
                     ]
                     )!
                 : GetterDelegateMethod.MakeGenericMethod(
@@ -159,9 +158,9 @@ namespace wan24.Core
                     obj: null,
                     [
                     pi.GetMethod!.CreateDelegate(typeof(Func<,>).MakeGenericType(
-                        pi.DeclaringType!,
-                        pi.PropertyType
-                        ))
+                    pi.DeclaringType!,
+                    pi.PropertyType
+                    ))
                     ]
                     )!);
         }
@@ -196,8 +195,8 @@ namespace wan24.Core
                     obj: null,
                     [
                     pi.SetMethod!.CreateDelegate(typeof(Action<>).MakeGenericType(
-                        pi.PropertyType
-                        ))
+                    pi.PropertyType
+                    ))
                     ]
                     )!
                 : SetterDelegateMethod.MakeGenericMethod(
@@ -207,9 +206,9 @@ namespace wan24.Core
                     obj: null,
                     [
                     pi.SetMethod!.CreateDelegate(typeof(Action<,>).MakeGenericType(
-                        pi.DeclaringType!,
-                        pi.PropertyType
-                        ))
+                    pi.DeclaringType!,
+                    pi.PropertyType
+                    ))
                     ]
                     )!);
         }

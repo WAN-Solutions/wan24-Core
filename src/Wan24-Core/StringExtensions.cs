@@ -1,6 +1,7 @@
 ﻿using System.Runtime;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace wan24.Core
 {
@@ -287,6 +288,15 @@ namespace wan24.Core
         /// <param name="options">Regular expression options</param>
         /// <returns>If the pattern does match the given string</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static bool IsMatch(this string str, string pattern, int start, RegexOptions options = RegexOptions.None) => new Regex(pattern, options).IsMatch(str, start);
+        public static bool IsMatch(this string str, string pattern, int start, RegexOptions options = RegexOptions.None)
+            => new Regex(pattern, options).IsMatch(str, start);
+
+        /// <summary>
+        /// Convert to a literal string
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <returns>Literal string</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static string ToLiteral(this string str) => HttpUtility.JavaScriptStringEncode(str, addDoubleQuotes: true);
     }
 }
