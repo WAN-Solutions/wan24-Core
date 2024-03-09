@@ -179,6 +179,19 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Remove CLI arguments
+        /// </summary>
+        /// <param name="args">Arguments</param>
+        /// <returns>Arguments</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static CliArguments RemoveCliConfigArguments(this CliArguments args)
+        {
+            foreach (string key in args.Arguments.Keys.Where(k => k.Contains('.') && TypeHelper.Instance.GetType(string.Join('.', k.Split('.')[0..^1])) is not null).ToArray())
+                args.Arguments.Remove(key);
+            return args;
+        }
+
+        /// <summary>
         /// Clear the existing logger
         /// </summary>
         [TargetedPatchingOptOut("Tiny method")]
