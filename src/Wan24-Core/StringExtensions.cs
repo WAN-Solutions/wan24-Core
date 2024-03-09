@@ -1,7 +1,7 @@
-﻿using System.Runtime;
+﻿using System.Collections.Frozen;
+using System.Runtime;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Web;
 
 namespace wan24.Core
 {
@@ -10,6 +10,11 @@ namespace wan24.Core
     /// </summary>
     public static partial class StringExtensions
     {
+        /// <summary>
+        /// Literal string replacements
+        /// </summary>
+        private static readonly FrozenDictionary<string, string> LiteralReplacements;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -49,6 +54,20 @@ namespace wan24.Core
                 new("range", Parser_Range),
                 new("dummy", Parser_Dummy)
             ]);
+            LiteralReplacements = new Dictionary<string, string>()
+            {
+                {"\'", "\\'" },
+                {"\"", "\\\"" },
+                {"\\", "\\" },
+                {"\0", "\\0" },
+                {"\a", "\\a" },
+                {"\b", "\\b" },
+                {"\f", "\\f" },
+                {"\n", "\\n" },
+                {"\r", "\\r" },
+                {"\t", "\\t" },
+                {"\v", "\\v" }
+            }.ToFrozenDictionary();
         }
 
         /// <summary>
@@ -292,11 +311,15 @@ namespace wan24.Core
             => new Regex(pattern, options).IsMatch(str, start);
 
         /// <summary>
-        /// Convert to a literal string
+        /// Convert to a literal string (escape special characters)
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Literal string</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static string ToLiteral(this string str) => HttpUtility.JavaScriptStringEncode(str, addDoubleQuotes: true);
+        public static string ToLiteral(this string str)
+        {
+            foreach (var kvp in LiteralReplacements) str = str.Replace(kvp.Key, kvp.Value);
+            return str;
+        }
     }
 }
