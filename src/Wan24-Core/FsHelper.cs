@@ -350,12 +350,36 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// File a file in several folders
+        /// </summary>
+        /// <param name="fileName">Filename (or an absolute path)</param>
+        /// <param name="includeCurrentDirectory">Include the current directory?</param>
+        /// <param name="folders">Folders for file lookup (if not given, the <see cref="SearchFolders"/> are being used per default)</param>
+        /// <returns>Existing filename (absolute path) or <see langword="null"/>, if not found</returns>
+        public static string? FindFile(in string fileName, in bool includeCurrentDirectory, params string[] folders)
+        {
+            if (folders.Length < 1)
+            {
+                folders = GetSearchFolders(includeCurrentDirectory);
+            }
+            else if (includeCurrentDirectory && !folders.Contains(Environment.CurrentDirectory))
+            {
+                folders = [.. folders, Environment.CurrentDirectory];
+            }
+            return FindFile(fileName, folders);
+        }
+
+        /// <summary>
         /// Get the search folders
         /// </summary>
+        /// <param name="includeCurrentDirectory">Include the current directory?</param>
         /// <returns>Search folders</returns>
-        public static string[] GetSearchFolders()
+        public static string[] GetSearchFolders(in bool includeCurrentDirectory = false)
         {
-            lock (SyncObject) return [.. SearchFolders];
+            lock (SyncObject)
+                return includeCurrentDirectory && !SearchFolders.Contains(Environment.CurrentDirectory)
+                    ? [.. SearchFolders, Environment.CurrentDirectory]
+                    : [.. SearchFolders];
         }
     }
 }
