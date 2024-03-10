@@ -62,6 +62,11 @@ namespace wan24.Core
         public string[]? DefaultCliArguments { get; set; }
 
         /// <summary>
+        /// Value for <see cref="FsHelper.SearchFolders"/>
+        /// </summary>
+        public string[]? SearchFolders { get; set; }
+
+        /// <summary>
         /// Apply a CLI configuration from CLI arguments, too?
         /// </summary>
         [JsonIgnore]
@@ -113,6 +118,12 @@ namespace wan24.Core
                     }
                 }
             if (args.Count > 0) CliConfig.Apply(new(args));
+            if (SearchFolders is not null)
+                lock (FsHelper.SyncObject)
+                {
+                    FsHelper.SearchFolders.Clear();
+                    FsHelper.SearchFolders.AddRange(SearchFolders);
+                }
             ApplyProperties(afterBootstrap: false);
             if (ApplyCliArguments) CliConfig.Apply();
             if (Bootstrap) Core.Bootstrap.Async().Wait();
@@ -159,6 +170,12 @@ namespace wan24.Core
                     }
                 }
             if (args.Count > 0) CliConfig.Apply(new(args));
+            if (SearchFolders is not null)
+                lock (FsHelper.SyncObject)
+                {
+                    FsHelper.SearchFolders.Clear();
+                    FsHelper.SearchFolders.AddRange(SearchFolders);
+                }
             await ApplyPropertiesAsync(afterBootstrap: false, cancellationToken).DynamicContext();
             if (ApplyCliArguments) CliConfig.Apply();
             if (Bootstrap) await Core.Bootstrap.Async(cancellationToken: cancellationToken).DynamicContext();

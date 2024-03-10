@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.Extensions.Localization;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 
@@ -12,7 +13,7 @@ namespace wan24.Core
     /// </remarks>
     /// <param name="terms">Terms</param>
     /// <param name="locale">Locale</param>
-    public sealed class Translation(in IReadOnlyDictionary<string, string> terms, in string? locale = null)
+    public sealed class Translation(in IReadOnlyDictionary<string, string> terms, in string? locale = null) : IStringLocalizer
     {
         /// <summary>
         /// Current translation
@@ -114,6 +115,12 @@ namespace wan24.Core
             }
         }
 
+        /// <inheritdoc/>
+        LocalizedString IStringLocalizer.this[string name, params object[] arguments] => new(name,this[name, [..arguments.Select(a=>a.ToString())]]);
+
+        /// <inheritdoc/>
+        LocalizedString IStringLocalizer.this[string name] => new(name, this[name]);
+
         /// <summary>
         /// Terms
         /// </summary>
@@ -176,6 +183,9 @@ namespace wan24.Core
             if (values.Count != 0) term = term.Parse(values, ParserOptions);
             return term;
         }
+
+        /// <inheritdoc/>
+        IEnumerable<LocalizedString> IStringLocalizer.GetAllStrings(bool includeParentCultures) => Terms.Keys.Select(k => new LocalizedString(k, this[k]));
 
         /// <summary>
         /// Translate a term

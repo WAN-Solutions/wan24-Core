@@ -56,7 +56,7 @@ namespace wan24.Core
                             {
                                 app = null;
                             }
-                            if (string.IsNullOrWhiteSpace(app)) throw new InvalidProgramException("Faied to determine app path and filename");
+                            if (string.IsNullOrWhiteSpace(app)) throw new InvalidProgramException("Failed to determine app path and filename");
                         }
                     }
                 }
