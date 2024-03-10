@@ -1,4 +1,5 @@
-﻿using System.Runtime;
+﻿using System.Collections.Frozen;
+using System.Runtime;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -9,6 +10,11 @@ namespace wan24.Core
     /// </summary>
     public static partial class StringExtensions
     {
+        /// <summary>
+        /// Literal string replacements
+        /// </summary>
+        private static readonly FrozenDictionary<string, string> LiteralReplacements;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -48,6 +54,20 @@ namespace wan24.Core
                 new("range", Parser_Range),
                 new("dummy", Parser_Dummy)
             ]);
+            LiteralReplacements = new Dictionary<string, string>()
+            {
+                {"\'", "\\'" },
+                {"\"", "\\\"" },
+                {"\\", "\\" },
+                {"\0", "\\0" },
+                {"\a", "\\a" },
+                {"\b", "\\b" },
+                {"\f", "\\f" },
+                {"\n", "\\n" },
+                {"\r", "\\r" },
+                {"\t", "\\t" },
+                {"\v", "\\v" }
+            }.ToFrozenDictionary();
         }
 
         /// <summary>
@@ -287,6 +307,19 @@ namespace wan24.Core
         /// <param name="options">Regular expression options</param>
         /// <returns>If the pattern does match the given string</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static bool IsMatch(this string str, string pattern, int start, RegexOptions options = RegexOptions.None) => new Regex(pattern, options).IsMatch(str, start);
+        public static bool IsMatch(this string str, string pattern, int start, RegexOptions options = RegexOptions.None)
+            => new Regex(pattern, options).IsMatch(str, start);
+
+        /// <summary>
+        /// Convert to a literal string (escape special characters)
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <returns>Literal string</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static string ToLiteral(this string str)
+        {
+            foreach (var kvp in LiteralReplacements) str = str.Replace(kvp.Key, kvp.Value);
+            return str;
+        }
     }
 }
