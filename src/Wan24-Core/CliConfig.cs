@@ -89,6 +89,15 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Current locale to set to <see cref="Translation.Current"/>
+        /// </summary>
+        [CliConfig]
+        public static string Locale
+        {
+            set => Translation.Current = Translation.Locales[value];
+        }
+
+        /// <summary>
         /// Apply a configuration from CLI arguments to public static properties with a <see cref="CliConfigAttribute"/> attribute
         /// </summary>
         /// <param name="ca">CLI arguments</param>
