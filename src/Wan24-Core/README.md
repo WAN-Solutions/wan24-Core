@@ -1534,7 +1534,7 @@ This initializes English and German translations, where English is always the
 main locale. To translate a text:
 
 ```cs
-using static wan24.TranslationHelper;
+using static wan24.TranslationHelper.Exi;
 
 string translated = _("Hello");
 ```
@@ -1542,8 +1542,8 @@ string translated = _("Hello");
 **TIP**: If you'd like to enable a parser like the Poedit source code parser 
 to find texts, which will be stored as variable and translated from there 
 later, when the locale is known, you can use the `variable = __("Text");` 
-syntax. The double score method returns the given string value 1:1 and is only 
-being used as parser hint.
+syntax (when `using static wan24.TranslationHelper;`). The double score method 
+returns the given string value 1:1 and is only being used as parser hint.
 
 Or for a specific locale:
 
@@ -1553,10 +1553,10 @@ using static wan24.Translation;
 string translated = Localize("de-DE", "Hello");
 ```
 
-To implement plural support, you can extend the `TranslationTermsBase` type:
+To implement plural support, you can extend the `TranslationTerms` type:
 
 ```cs
-public sealed class YourTerms : TranslationTermsBase// Implements IReadOnlyDictionary<string, string>
+public sealed class YourTerms : TranslationTerms// Implements IReadOnlyDictionary<string, string>
 {
     public YourTerms(IReadOnlyDictionary<string, string> terms) : base(terms) { }
 
@@ -1589,6 +1589,20 @@ using static wan24.Translation;
 string fn = LocalizedFileName("de-DE", "/path/to/filename.ext");
 Assert.AreEqual("/path/to/filename.de-DE.ext", fn);
 ```
+
+### `IStringLocalizer` interface
+
+Using the .NET `IStringLocalizer` interface you can use the `wan24-Core` 
+localization like this:
+
+```cs
+// After setting a Translation.Current as described above
+builder.Services.AddSingleton<IStringLocalizerFactory, StringLocalizerFactory>();
+builder.Services.AddTransient(typeof(IStringSerializer<>), typeof(GenericTranslation<>));
+```
+
+The `StringLocalizerFactory` and `GenericTranslation<>` will fall back to 
+`Translation.Current`.
 
 ### Informations for translators
 

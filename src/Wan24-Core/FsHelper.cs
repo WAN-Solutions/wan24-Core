@@ -9,6 +9,21 @@ namespace wan24.Core
     public static class FsHelper
     {
         /// <summary>
+        /// An object for static thread locking
+        /// </summary>
+        public static readonly object SyncObject = new();
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        static FsHelper() => SearchFolders = ENV.IsBrowserApp ? [] : [Environment.CurrentDirectory, ENV.AppFolder, Settings.TempFolder];
+
+        /// <summary>
+        /// Search folders (lock <see cref="SyncObject"/> for modifying and <see cref="GetSearchFolders"/> for getting thems during locked for modifications)
+        /// </summary>
+        public static HashSet<string> SearchFolders { get; }
+
+        /// <summary>
         /// Ensure a folder exists
         /// </summary>
         /// <param name="path">Path</param>
@@ -312,5 +327,35 @@ namespace wan24.Core
         /// <param name="path">Path</param>
         /// <returns>Normalized path</returns>
         public static string NormalizePath(in string path) => path.Replace('\\', '/');
+
+        /// <summary>
+        /// File a file in several folders
+        /// </summary>
+        /// <param name="fileName">Filename (or an absolute path)</param>
+        /// <param name="folders">Folders for file lookup (if not given, the <see cref="SearchFolders"/> are being used per default)</param>
+        /// <returns>Existing filename (absolute path) or <see langword="null"/>, if not found</returns>
+        public static string? FindFile(in string fileName, params string[] folders)
+        {
+            string fn = Path.GetFileName(fileName);
+            if (fn != fileName) return File.Exists(fileName) ? Path.GetFullPath(fileName) : null;
+            if (folders.Length < 1) folders = GetSearchFolders();
+            string res;
+            foreach(string folder in folders)
+            {
+                if (!Directory.Exists(folder)) continue;
+                res = Path.Combine(Path.GetFullPath(folder), fn);
+                if (File.Exists(res)) return res;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Get the search folders
+        /// </summary>
+        /// <returns>Search folders</returns>
+        public static string[] GetSearchFolders()
+        {
+            lock (SyncObject) return [.. SearchFolders];
+        }
     }
 }
