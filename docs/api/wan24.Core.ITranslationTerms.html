@@ -130,30 +130,39 @@
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable.getenumerator">IEnumerable.GetEnumerator()</a>
     </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.localization.istringlocalizer.getallstrings">IStringLocalizer.GetAllStrings(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">IStringLocalizer.this[string]</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">IStringLocalizer.this[string, object[]]</a>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_ITranslationTerms_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface ITranslationTerms : IReadOnlyDictionary&lt;string, string&gt;, IReadOnlyCollection&lt;KeyValuePair&lt;string, string&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, string&gt;&gt;, IEnumerable</code></pre>
+    <pre><code class="lang-csharp hljs">public interface ITranslationTerms : IReadOnlyDictionary&lt;string, string&gt;, IReadOnlyCollection&lt;KeyValuePair&lt;string, string&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, string&gt;&gt;, IEnumerable, IStringLocalizer</code></pre>
   </div>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITranslationTerms_Item_System_String__System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.ITranslationTerms.Item(System.String%40%2CSystem.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITranslationTerms_Item_System_String__System_Int32__System_String___.md&amp;value=---%0Auid%3A%20wan24.Core.ITranslationTerms.Item(System.String%40%2CSystem.Int32%40%2CSystem.String%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITranslationTerms.cs/#L14">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITranslationTerms.cs/#L27">View Source</a>
   </span>
   <a id="wan24_Core_ITranslationTerms_Item_" data-uid="wan24.Core.ITranslationTerms.Item*"></a>
-  <h4 id="wan24_Core_ITranslationTerms_Item_System_String__System_Int32__" data-uid="wan24.Core.ITranslationTerms.Item(System.String@,System.Int32@)">this[string, int]</h4>
+  <h4 id="wan24_Core_ITranslationTerms_Item_System_String__System_Int32__System_String___" data-uid="wan24.Core.ITranslationTerms.Item(System.String@,System.Int32@,System.String[])">this[string, int, string[]]</h4>
   <div class="markdown level1 summary"><p>Get a term</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string this[in string key, in int count] { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">string this[in string key, in int count, params string[] values] { get; }</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -175,6 +184,84 @@
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">count</span></td>
         <td><p>Count (for plural translation)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Parser values</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>Term</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Plural terms are not supported</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITranslationTerms_Item_System_String__System_String___.md&amp;value=---%0Auid%3A%20wan24.Core.ITranslationTerms.Item(System.String%40%2CSystem.String%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITranslationTerms.cs/#L18">View Source</a>
+  </span>
+  <a id="wan24_Core_ITranslationTerms_Item_" data-uid="wan24.Core.ITranslationTerms.Item*"></a>
+  <h4 id="wan24_Core_ITranslationTerms_Item_System_String__System_String___" data-uid="wan24.Core.ITranslationTerms.Item(System.String@,System.String[])">this[string, string[]]</h4>
+  <div class="markdown level1 summary"><p>Get a term</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string this[in string key, params string[] values] { get; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Term key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Parser values</p>
 </td>
       </tr>
     </tbody>
@@ -200,7 +287,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITranslationTerms_PluralSupport.md&amp;value=---%0Auid%3A%20wan24.Core.ITranslationTerms.PluralSupport%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITranslationTerms.cs/#L18">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITranslationTerms.cs/#L31">View Source</a>
   </span>
   <a id="wan24_Core_ITranslationTerms_PluralSupport_" data-uid="wan24.Core.ITranslationTerms.PluralSupport*"></a>
   <h4 id="wan24_Core_ITranslationTerms_PluralSupport" data-uid="wan24.Core.ITranslationTerms.PluralSupport">PluralSupport</h4>
@@ -230,19 +317,19 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITranslationTerms_GetTerm_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.ITranslationTerms.GetTerm(System.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITranslationTerms_GetTerm_System_String__System_Int32__System_String___.md&amp;value=---%0Auid%3A%20wan24.Core.ITranslationTerms.GetTerm(System.String%40%2CSystem.Int32%40%2CSystem.String%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITranslationTerms.cs/#L24">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITranslationTerms.cs/#L46">View Source</a>
   </span>
   <a id="wan24_Core_ITranslationTerms_GetTerm_" data-uid="wan24.Core.ITranslationTerms.GetTerm*"></a>
-  <h4 id="wan24_Core_ITranslationTerms_GetTerm_System_String__" data-uid="wan24.Core.ITranslationTerms.GetTerm(System.String@)">GetTerm(in string)</h4>
+  <h4 id="wan24_Core_ITranslationTerms_GetTerm_System_String__System_Int32__System_String___" data-uid="wan24.Core.ITranslationTerms.GetTerm(System.String@,System.Int32@,System.String[])">GetTerm(in string, in int, params string[])</h4>
   <div class="markdown level1 summary"><p>Get a term</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string GetTerm(in string key)</code></pre>
+    <pre><code class="lang-csharp hljs">string GetTerm(in string key, in int count, params string[] values)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -258,6 +345,18 @@
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">key</span></td>
         <td><p>Term key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>Count (for plural translation)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Parser values</p>
 </td>
       </tr>
     </tbody>
@@ -280,19 +379,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITranslationTerms_GetTerm_System_String__System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.ITranslationTerms.GetTerm(System.String%40%2CSystem.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ITranslationTerms_GetTerm_System_String__System_String___.md&amp;value=---%0Auid%3A%20wan24.Core.ITranslationTerms.GetTerm(System.String%40%2CSystem.String%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITranslationTerms.cs/#L31">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ITranslationTerms.cs/#L38">View Source</a>
   </span>
   <a id="wan24_Core_ITranslationTerms_GetTerm_" data-uid="wan24.Core.ITranslationTerms.GetTerm*"></a>
-  <h4 id="wan24_Core_ITranslationTerms_GetTerm_System_String__System_Int32__" data-uid="wan24.Core.ITranslationTerms.GetTerm(System.String@,System.Int32@)">GetTerm(in string, in int)</h4>
+  <h4 id="wan24_Core_ITranslationTerms_GetTerm_System_String__System_String___" data-uid="wan24.Core.ITranslationTerms.GetTerm(System.String@,System.String[])">GetTerm(in string, params string[])</h4>
   <div class="markdown level1 summary"><p>Get a term</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string GetTerm(in string key, in int count)</code></pre>
+    <pre><code class="lang-csharp hljs">string GetTerm(in string key, params string[] values)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -311,9 +410,9 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">count</span></td>
-        <td><p>Count (for plural translation)</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Parser values</p>
 </td>
       </tr>
     </tbody>

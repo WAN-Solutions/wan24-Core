@@ -1674,22 +1674,22 @@ Translation.Current = Translation.Locales[&quot;de-DE&quot;];
 </code></pre>
 <p>This initializes English and German translations, where English is always the
 main locale. To translate a text:</p>
-<pre><code class="lang-cs">using static wan24.TranslationHelper;
+<pre><code class="lang-cs">using static wan24.TranslationHelper.Exi;
 
 string translated = _(&quot;Hello&quot;);
 </code></pre>
 <p><strong>TIP</strong>: If you'd like to enable a parser like the Poedit source code parser
 to find texts, which will be stored as variable and translated from there
 later, when the locale is known, you can use the <code>variable = __(&quot;Text&quot;);</code>
-syntax. The double score method returns the given string value 1:1 and is only
-being used as parser hint.</p>
+syntax (when <code>using static wan24.TranslationHelper;</code>). The double score method
+returns the given string value 1:1 and is only being used as parser hint.</p>
 <p>Or for a specific locale:</p>
 <pre><code class="lang-cs">using static wan24.Translation;
 
 string translated = Localize(&quot;de-DE&quot;, &quot;Hello&quot;);
 </code></pre>
-<p>To implement plural support, you can extend the <code>TranslationTermsBase</code> type:</p>
-<pre><code class="lang-cs">public sealed class YourTerms : TranslationTermsBase// Implements IReadOnlyDictionary&lt;string, string&gt;
+<p>To implement plural support, you can extend the <code>TranslationTerms</code> type:</p>
+<pre><code class="lang-cs">public sealed class YourTerms : TranslationTerms// Implements IReadOnlyDictionary&lt;string, string&gt;
 {
     public YourTerms(IReadOnlyDictionary&lt;string, string&gt; terms) : base(terms) { }
 
@@ -1717,6 +1717,15 @@ required)</li>
 string fn = LocalizedFileName(&quot;de-DE&quot;, &quot;/path/to/filename.ext&quot;);
 Assert.AreEqual(&quot;/path/to/filename.de-DE.ext&quot;, fn);
 </code></pre>
+<h3 id="istringlocalizer-interface"><code>IStringLocalizer</code> interface</h3>
+<p>Using the .NET <code>IStringLocalizer</code> interface you can use the <code>wan24-Core</code>
+localization like this:</p>
+<pre><code class="lang-cs">// After setting a Translation.Current as described above
+builder.Services.AddSingleton&lt;IStringLocalizerFactory, StringLocalizerFactory&gt;();
+builder.Services.AddTransient(typeof(IStringSerializer&lt;&gt;), typeof(GenericTranslation&lt;&gt;));
+</code></pre>
+<p>The <code>StringLocalizerFactory</code> and <code>GenericTranslation&lt;&gt;</code> will fall back to
+<code>Translation.Current</code>.</p>
 <h3 id="informations-for-translators">Informations for translators</h3>
 <p>A string to translate may contain placeholders like <code>%{N}</code>, where <code>N</code> is any
 number. These placeholders address variables and may occur in any order in the
