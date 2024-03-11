@@ -19,7 +19,7 @@ namespace wan24.Core
         static FsHelper() => SearchFolders = ENV.IsBrowserApp ? [] : [Environment.CurrentDirectory, ENV.AppFolder, Settings.TempFolder];
 
         /// <summary>
-        /// Search folders (lock <see cref="SyncObject"/> for modifying and <see cref="GetSearchFolders"/> for getting thems during locked for modifications)
+        /// Search folders (lock <see cref="SyncObject"/> for modifying and <see cref="GetSearchFolders"/> for getting them during locked for modifications)
         /// </summary>
         public static HashSet<string> SearchFolders { get; }
 
@@ -362,7 +362,7 @@ namespace wan24.Core
             {
                 folders = GetSearchFolders(includeCurrentDirectory);
             }
-            else if (includeCurrentDirectory && !folders.Contains(Environment.CurrentDirectory))
+            else if (includeCurrentDirectory && !folders.ContainsAny(Environment.CurrentDirectory, "./", "."))
             {
                 folders = [.. folders, Environment.CurrentDirectory];
             }
@@ -376,9 +376,10 @@ namespace wan24.Core
         /// <returns>Search folders</returns>
         public static string[] GetSearchFolders(in bool includeCurrentDirectory = false)
         {
+            if (ENV.IsBrowserApp) return [];
             lock (SyncObject)
-                return includeCurrentDirectory && !SearchFolders.Contains(Environment.CurrentDirectory)
-                    ? [.. SearchFolders, Environment.CurrentDirectory]
+                return includeCurrentDirectory && !SearchFolders.ContainsAny(Environment.CurrentDirectory, "./", ".")
+                    ? [Environment.CurrentDirectory, .. SearchFolders]
                     : [.. SearchFolders];
         }
     }

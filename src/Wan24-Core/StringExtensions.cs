@@ -13,7 +13,7 @@ namespace wan24.Core
         /// <summary>
         /// Literal string replacements
         /// </summary>
-        private static readonly FrozenDictionary<string, string> LiteralReplacements;
+        private static readonly FrozenDictionary<char, string> LiteralReplacements;
 
         /// <summary>
         /// Constructor
@@ -54,19 +54,18 @@ namespace wan24.Core
                 new("range", Parser_Range),
                 new("dummy", Parser_Dummy)
             ]);
-            LiteralReplacements = new Dictionary<string, string>()
+            LiteralReplacements = new Dictionary<char, string>()
             {
-                {"\'", "\\'" },
-                {"\"", "\\\"" },
-                {"\\", "\\" },
-                {"\0", "\\0" },
-                {"\a", "\\a" },
-                {"\b", "\\b" },
-                {"\f", "\\f" },
-                {"\n", "\\n" },
-                {"\r", "\\r" },
-                {"\t", "\\t" },
-                {"\v", "\\v" }
+                {'\"', "\\\"" },
+                {'\\', "\\" },
+                {'\0', "\\0" },
+                {'\a', "\\a" },
+                {'\b', "\\b" },
+                {'\f', "\\f" },
+                {'\n', "\\n" },
+                {'\r', "\\r" },
+                {'\t', "\\t" },
+                {'\v', "\\v" }
             }.ToFrozenDictionary();
         }
 
@@ -311,15 +310,131 @@ namespace wan24.Core
             => new Regex(pattern, options).IsMatch(str, start);
 
         /// <summary>
-        /// Convert to a literal string (escape special characters)
+        /// Convert to a double quoted literal string (escape special characters)
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Literal string</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-        public static string ToLiteral(this string str)
+        [TargetedPatchingOptOut("Tiny method")]
+        public static string ToQuotedLiteral(this string str) => ToLiteral(str, withinDoubleQuotes: true);
+
+        /// <summary>
+        /// Convert to a literal string (escape special characters)
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="withinDoubleQuotes">Return within double quotes?</param>
+        /// <returns>Literal string</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static string ToLiteral(this string str, in bool withinDoubleQuotes = false)
         {
-            foreach (var kvp in LiteralReplacements) str = str.Replace(kvp.Key, kvp.Value);
-            return str;
+            if (str.Length < 1) return withinDoubleQuotes ? "\"\"" : str;
+            StringBuilder sb = new(str.Length << 1);
+            if (withinDoubleQuotes) sb.Append('\"');
+#if NO_UNSAFE
+            for (int i = 0, len = str.Length; i < len; i++)
+                if (LiteralReplacements.TryGetValue(str[i], out string? replace))
+                {
+                    sb.Append(replace);
+                }
+                else
+                {
+                    sb.Append(str[i]);
+                }
+#else
+            unsafe
+            {
+                fixed(char* c = str)
+                {
+                    unchecked
+                    {
+                        for (int i = 0, len = str.Length; i < len; i++)
+                            if (LiteralReplacements.TryGetValue(c[i], out string? replace))
+                            {
+                                sb.Append(replace);
+                            }
+                            else
+                            {
+                                sb.Append(c[i]);
+                            }
+                    }
+                }
+            }
+#endif
+            if (withinDoubleQuotes) sb.Append('\"');
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Replace multiple characters
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="characters">Characters to replace</param>
+        /// <returns>String</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static string ReplaceCharacters(this string str, in IReadOnlyDictionary<char, char> characters)
+        {
+            if (str.Length < 1 || characters.Count < 1) return str;
+            StringBuilder sb = new(str.Length);
+#if NO_UNSAFE
+            for (int i = 0, len = str.Length; i < len; i++)
+                sb.Append(characters.TryGetValue(str[i], out char replace) ? replace : str[i]);
+#else
+            unsafe
+            {
+                fixed (char* c = str)
+                {
+                    unchecked
+                    {
+                        for (int i = 0, len = str.Length; i < len; i++)
+                            sb.Append(characters.TryGetValue(c[i], out char replace) ? replace : c[i]);
+                    }
+                }
+            }
+#endif
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Replace multiple characters
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="characters">Characters to replace</param>
+        /// <returns>String</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static string ReplaceCharacters(this string str, in IReadOnlyDictionary<char, string> characters)
+        {
+            if (str.Length < 1 || characters.Count < 1) return str;
+            StringBuilder sb = new(str.Length << 1);
+#if NO_UNSAFE
+            for (int i = 0, len = str.Length; i < len; i++)
+                if (characters.TryGetValue(str[i], out string? replace))
+                {
+                    sb.Append(replace);
+                }
+                else
+                {
+                    sb.Append(str[i]);
+                }
+#else
+            unsafe
+            {
+                fixed (char* c = str)
+                {
+                    unchecked
+                    {
+                        for (int i = 0, len = str.Length; i < len; i++)
+                            if (characters.TryGetValue(c[i], out string? replace))
+                            {
+                                sb.Append(replace);
+                            }
+                            else
+                            {
+                                sb.Append(c[i]);
+                            }
+                    }
+                }
+            }
+#endif
+            return sb.ToString();
         }
     }
 }
