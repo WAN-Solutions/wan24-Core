@@ -6,21 +6,21 @@ using System.Diagnostics.CodeAnalysis;
 namespace wan24.Core
 {
     /// <summary>
-    /// Simple dictionary based translation
+    /// Simple dictionary based translation with plural support
     /// </summary>
     /// <remarks>
     /// Constructor
     /// </remarks>
     /// <param name="terms">Terms</param>
-    public class TranslationTerms(IReadOnlyDictionary<string, string> terms) : ITranslationTerms
+    public class PluralTranslationTerms(IReadOnlyDictionary<string, string[]> terms) : ITranslationTerms
     {
         /// <summary>
         /// Terms
         /// </summary>
-        public virtual FrozenDictionary<string, string> Terms { get; } = terms as FrozenDictionary<string, string> ?? terms.ToFrozenDictionary();
+        public virtual FrozenDictionary<string, string[]> Terms { get; } = terms as FrozenDictionary<string, string[]> ?? terms.ToFrozenDictionary();
 
         /// <inheritdoc/>
-        public virtual bool PluralSupport => false;
+        public virtual bool PluralSupport => true;
 
         /// <inheritdoc/>
         public virtual string this[in string key, params string[] values] => GetTerm(key, values);
@@ -41,27 +41,45 @@ namespace wan24.Core
         public virtual IEnumerable<string> Keys => Terms.Keys;
 
         /// <inheritdoc/>
-        public virtual IEnumerable<string> Values => Terms.Values;
+        public virtual IEnumerable<string> Values => Terms.Values.Select(v => v.Length > 0 ? v[0] : string.Empty);
 
         /// <inheritdoc/>
         public virtual int Count => Terms.Count;
 
         /// <inheritdoc/>
         public virtual string GetTerm(in string key, params string[] values)
-            => ParseTerm(TryGetValue(key, out string? term) ? term : key, values);
+            => TranslationTerms.ParseTerm(TryGetValue(key, out string? term) ? term : key, values);
 
         /// <inheritdoc/>
         public virtual string GetTerm(in string key, in int count, params string[] values)
-            => PluralSupport ? throw new NotImplementedException() : throw new NotSupportedException();
+        {
+            string[] terms = Terms.TryGetValue(key, out string[]? term) ? term : [key];
+            int plural = Math.Abs(count);
+            string res = plural >= terms.Length
+                ? terms.Length > 0
+                    ? terms[^1]
+                    : string.Empty
+                : terms[plural];
+            return TranslationTerms.ParseTerm(res, values);
+        }
 
         /// <inheritdoc/>
         public virtual bool ContainsKey(string key) => Terms.ContainsKey(key);
 
         /// <inheritdoc/>
-        public virtual bool TryGetValue(string key, [MaybeNullWhen(returnValue: false)] out string value) => Terms.TryGetValue(key, out value);
+        public virtual bool TryGetValue(string key, [MaybeNullWhen(returnValue: false)] out string value)
+        {
+            value = Terms.TryGetValue(key, out string[]? terms)
+                ? terms.Length > 0
+                    ? terms[0]
+                    : string.Empty
+                : null;
+            return value is not null;
+        }
 
         /// <inheritdoc/>
-        public IEnumerator<KeyValuePair<string, string>> GetEnumerator() => Terms.GetEnumerator();
+        public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
+            => Terms.Select(kvp => new KeyValuePair<string, string>(kvp.Key, kvp.Value.Length > 0 ? kvp.Value[0] : string.Empty)).GetEnumerator();
 
         /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -77,20 +95,5 @@ namespace wan24.Core
         /// <returns>Localized string</returns>
         protected virtual LocalizedString StringLocalizer(string name, object[] arguments)
             => new(name, GetTerm(name, arguments.Length > 0 ? [.. arguments.Select(a => a.ToString() ?? string.Empty)] : []));
-
-        /// <summary>
-        /// Parse a term
-        /// </summary>
-        /// <param name="term">Term</param>
-        /// <param name="args">Arguments</param>
-        /// <returns>Parsed term</returns>
-        public static string ParseTerm(in string term, in string[] args)
-        {
-            if (args.Length < 1) return term;
-            int len = args.Length;
-            Dictionary<string, string> valuesDict = new(len);
-            for (int i = 0; i < len; valuesDict[i.ToString()] = args[i], i++) ;
-            return term.Parse(valuesDict, Translation.ParserOptions);
-        }
     }
 }
