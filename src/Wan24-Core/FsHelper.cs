@@ -382,5 +382,33 @@ namespace wan24.Core
                     ? [Environment.CurrentDirectory, .. SearchFolders]
                     : [.. SearchFolders];
         }
+
+        /// <summary>
+        /// Hide a file
+        /// </summary>
+        /// <param name="fileName">Filename</param>
+        /// <returns>If hidden</returns>
+        public static bool HideFile(in string fileName)
+        {
+            FileInfo fi = new(fileName);
+            if (!fi.Exists) throw new FileNotFoundException("File not found", fileName);
+            fi.Attributes |= FileAttributes.Hidden;
+            fi.Refresh();
+            return (fi.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden;
+        }
+
+        /// <summary>
+        /// Unhide a file
+        /// </summary>
+        /// <param name="fileName">Filename</param>
+        /// <returns>If unhidden</returns>
+        public static bool UnhideFile(in string fileName)
+        {
+            FileInfo fi = new(fileName);
+            if (!fi.Exists) throw new FileNotFoundException("File not found", fileName);
+            fi.Attributes &= ~FileAttributes.Hidden;
+            fi.Refresh();
+            return (fi.Attributes & FileAttributes.Hidden) != FileAttributes.Hidden;
+        }
     }
 }
