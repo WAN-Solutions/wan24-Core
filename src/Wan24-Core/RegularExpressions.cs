@@ -40,6 +40,14 @@ namespace wan24.Core
         /// Regular expression to match a possible JSON value
         /// </summary>
         public const string JSON = "^\\s*(null|true|false|\\d+(\\.\\d+)?|\\\"[^\\n]\\\"|\\[.*\\]|\\{.*\\})\\s*$";
+        /// <summary>
+        /// Regular expression to match a possible Windows path (won't validate!)
+        /// </summary>
+        public const string WINDOWS_PATH = "^([a-z][\\/\\\\]\\:?|[\\/\\\\]?[a-z][\\/\\\\])[\\/\\\\]";
+        /// <summary>
+        /// Regular expression to match a possible Linux path (won't validate!)
+        /// </summary>
+        public const string LINUX_PATH = "^\\/?[^\\/]+(\\/[^\\/]+){1,}\\/?$";
 
         /// <summary>
         /// An object for thread synchronization
@@ -85,6 +93,14 @@ namespace wan24.Core
         /// Regular expression to match a possible JSON value
         /// </summary>
         public static readonly Regex RX_JSON = RX_JSON_Generated();
+        /// <summary>
+        /// Regular expression to match a possible Windows path (won't validate!)
+        /// </summary>
+        public static readonly Regex RX_WINDOWS_PATH = RX_WINDOWS_PATH_Generated();
+        /// <summary>
+        /// Regular expression to match a possible Linux path (won't validate!)
+        /// </summary>
+        public static readonly Regex RX_LINUX_PATH = RX_LINUX_PATH_Generated();
 
         /// <summary>
         /// Named expression names
@@ -211,5 +227,19 @@ namespace wan24.Core
         /// <returns>Regular expression</returns>
         [GeneratedRegex(JSON, RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled)]
         private static partial Regex RX_JSON_Generated();
+
+        /// <summary>
+        /// Regular expression to match a possible Windows path (won't validate!)
+        /// </summary>
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex(WINDOWS_PATH, RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled)]
+        private static partial Regex RX_WINDOWS_PATH_Generated();
+
+        /// <summary>
+        /// Regular expression to match a possible Linux path (won't validate!)
+        /// </summary>
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex(LINUX_PATH, RegexOptions.Singleline | RegexOptions.Compiled)]
+        private static partial Regex RX_LINUX_PATH_Generated();
     }
 }
