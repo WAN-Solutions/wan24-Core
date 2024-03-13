@@ -1534,16 +1534,16 @@ This initializes English and German translations, where English is always the
 main locale. To translate a text:
 
 ```cs
-using static wan24.TranslationHelper.Exi;
+using static wan24.TranslationHelper.Ext;
 
 string translated = _("Hello");
 ```
 
-**TIP**: If you'd like to enable a parser like the Poedit source code parser 
-to find texts, which will be stored as variable and translated from there 
-later, when the locale is known, you can use the `variable = __("Text");` 
-syntax (when `using static wan24.TranslationHelper;`). The double score method 
-returns the given string value 1:1 and is only being used as parser hint.
+**TIP**: If you'd like to enable a keyword extractor to find texts, which will 
+be stored as variable and translated from there later, when the locale is 
+known, you can use the `variable = __("Text");` syntax (when 
+`using static wan24.TranslationHelper;`). The double score method returns the 
+given string value 1:1 and is only being used as parser hint.
 
 Or for a specific locale:
 

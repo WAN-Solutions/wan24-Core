@@ -3,13 +3,13 @@
 namespace wan24.Core
 {
     /// <summary>
-    /// Translation helper (use <c>using static wan24.Core.TranslationHelper;</c> for getting <c>_</c> as translation method, which will help a Poedit parser to find translation 
-    /// texts in your source code)
+    /// Translation helper (use <c>using static wan24.Core.TranslationHelper.Ext;</c> for getting <c>_</c> as translation method, which will help a keyword extractor to find 
+    /// translation texts in your source code)
     /// </summary>
     public static class TranslationHelper
     {
         /// <summary>
-        /// Dummy translate method for the Poedit source code parser
+        /// Dummy translate method for a keyword extractor
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>String</returns>
