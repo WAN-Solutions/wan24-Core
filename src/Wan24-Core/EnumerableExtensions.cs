@@ -79,5 +79,28 @@ namespace wan24.Core
             foreach (T value in enumerable) if (values.IndexOf(value) != -1) return true;
             return false;
         }
+
+        /// <summary>
+        /// Get the element index
+        /// </summary>
+        /// <typeparam name="T">Element type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="value">Element</param>
+        /// <returns>Element index or <c>-1</c>, if not enumerated</returns>
+        public static int ElementIndex<T>(this IEnumerable<T> enumerable, in T value)
+        {
+            int res = 0;
+            bool found = false;
+            foreach (T item in enumerable)
+            {
+                if (item?.Equals(value) ?? false)
+                {
+                    found = true;
+                    break;
+                }
+                res++;
+            }
+            return found ? res : -1;
+        }
     }
 }

@@ -7,7 +7,7 @@ using static wan24.Core.Logging;
 namespace wan24.Core
 {
     /// <summary>
-    /// Path matching helper
+    /// Path matching helper (path separator will be normalized to <c>/</c>)
     /// </summary>
     public partial record class PathMatching : IEqualityComparer<string>
     {
@@ -19,19 +19,19 @@ namespace wan24.Core
         /// <summary>
         /// Names
         /// </summary>
-        protected readonly FrozenSet<string>? Names;
+        protected readonly FrozenSet<string>? Names = null;
         /// <summary>
         /// Partials
         /// </summary>
-        protected readonly FrozenSet<string>? Partials;
+        protected readonly FrozenSet<string>? Partials = null;
         /// <summary>
         /// Paths
         /// </summary>
-        protected readonly FrozenSet<string>? Paths;
+        protected readonly FrozenSet<string>? Paths = null;
         /// <summary>
         /// Regular expression
         /// </summary>
-        protected readonly Regex? Expression;
+        protected readonly Regex? Expression = null;
         /// <summary>
         /// If there are any matchings
         /// </summary>
@@ -40,7 +40,8 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="patterns">Patterns (absolute or partial path or file-/foldername only (\"*\" (any or none) and \"+\" (one or many) may be used as wildcard); case insensitive)</param>
+        /// <param name="patterns">Patterns (absolute or partial path or file-/foldername only (\"*\" (any or none) and \"+\" (one or many) may be used as wildcard); 
+        /// case insensitive)</param>
         public PathMatching(in string[] patterns)
         {
             if (patterns.Length > 0)
@@ -51,20 +52,20 @@ namespace wan24.Core
                     partials = [],
                     paths = [];
                 foreach (string expression in patterns)
-                    if (expression.Contains('*'))
+                    if (expression.ContainsAny('*','+'))
                     {
                         if (Trace) WriteTrace($"Adding \"{expression}\" to the regular expression");
-                        rx.Add(expression);
+                        rx.Add(FsHelper.NormalizeLinuxDisplayPath(expression));
                     }
                     else if (expression.StartsWith('/') || RegularExpressions.RX_WINDOWS_PATH.IsMatch(expression))
                     {
                         if (Trace) WriteTrace($"Adding \"{expression}\" to the paths");
-                        paths.Add($"{Path.GetFullPath(expression)}{(ENV.IsWindows ? "\\" : "/")}");
+                        paths.Add(FsHelper.NormalizeLinuxDisplayPath($"{Path.GetFullPath(expression)}/"));
                     }
                     else if (expression.ContainsAny('/', '\\'))
                     {
                         if (Trace) WriteTrace($"Adding \"{expression}\" to the partials");
-                        partials.Add(expression);
+                        partials.Add(FsHelper.NormalizeLinuxDisplayPath(expression));
                     }
                     else
                     {
@@ -77,24 +78,19 @@ namespace wan24.Core
                 if (rx.Count > 0)
                 {
                     if (Trace) WriteTrace($"Building regular expression from {rx.Count} patterns");
-                    string regex = Regex.Escape(string.Join('|', rx)).Replace("\\*", ".*").Replace("\\|", "|");
-                    regex = RxOneOrMany.Replace(regex, "$1.$2");
-                    Expression = new(regex, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+                    string pattern = $"^{string.Join('|', rx.Select(Regex.Escape))}$";
+                    while (RxOneOrMany.IsMatch(pattern)) pattern = RxOneOrMany.Replace(pattern, "$1.$2");
+                    Expression = new(pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
                 }
-                else
+                else if(Trace)
                 {
-                    if (Trace) WriteTrace("No regular expression");
-                    Expression = null;
+                    WriteTrace("No regular expression");
                 }
                 AnyMatchings = true;
             }
             else
             {
                 if (Trace) WriteTrace("No paths will be matched");
-                Names = null;
-                Partials = null;
-                Paths = null;
-                Expression = null;
                 AnyMatchings = false;
             }
         }
@@ -120,16 +116,22 @@ namespace wan24.Core
         /// <param name="path">Path</param>
         /// <returns>If matched</returns>
         public virtual bool IsMatch(string path)
-            => AnyMatchings &&
-                (
-                    (MatchFileName && (Names?.Contains(Path.GetFileName(path), this) ?? false)) ||
-                    (Paths?.Any(p => path.StartsWith(path, StringComparison.OrdinalIgnoreCase)) ?? false) ||
-                    (MatchPartialPaths && (Partials?.Any(p => path.Contains(p, StringComparison.OrdinalIgnoreCase)) ?? false)) ||
-                    (AllowWildcards && (Expression?.IsMatch(path) ?? false))
-                );
+        {
+            if (!AnyMatchings) return false;
+            path = FsHelper.NormalizeLinuxDisplayPath(path);
+            return (MatchFileName && (Names?.Contains(Path.GetFileName(path), this) ?? false)) ||
+                (Paths?.Any(p => path.StartsWith(path, StringComparison.OrdinalIgnoreCase)) ?? false) ||
+                (MatchPartialPaths && (Partials?.Any(p => path.Contains(p, StringComparison.OrdinalIgnoreCase)) ?? false)) ||
+                (AllowWildcards && (Expression?.IsMatch(path) ?? false));
+        }
 
-        /// <inheritdoc/>
-        public virtual bool Equals(string? x, string? y)
+        /// <summary>
+        /// Compare two strings
+        /// </summary>
+        /// <param name="x">X</param>
+        /// <param name="y">Y</param>
+        /// <returns>If the strings are equal (ignoring the case)</returns>
+        protected virtual bool Equals(string? x, string? y)
             => (x is null && y is null) ||
                 (
                     x is not null &&
@@ -138,8 +140,18 @@ namespace wan24.Core
                     x.Equals(y, StringComparison.OrdinalIgnoreCase)
                 );
 
+        /// <summary>
+        /// Get the hash code for a string (case ignoring)
+        /// </summary>
+        /// <param name="obj">String</param>
+        /// <returns>Hash code</returns>
+        protected virtual int GetHashCode([DisallowNull] string obj) => obj.ToLower().GetHashCode();
+
         /// <inheritdoc/>
-        public virtual int GetHashCode([DisallowNull] string obj) => obj.ToLower().GetHashCode();
+        bool IEqualityComparer<string>.Equals(string? x, string? y) => Equals(x, y);
+
+        /// <inheritdoc/>
+        int IEqualityComparer<string>.GetHashCode(string obj) => GetHashCode(obj);
 
         /// <summary>
         /// Regular expression to match a one or many wildcard (<c>$1</c> is the prefix, <c>$2</c> the postfix)
