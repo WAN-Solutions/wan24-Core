@@ -1674,15 +1674,15 @@ Translation.Current = Translation.Locales[&quot;de-DE&quot;];
 </code></pre>
 <p>This initializes English and German translations, where English is always the
 main locale. To translate a text:</p>
-<pre><code class="lang-cs">using static wan24.TranslationHelper.Exi;
+<pre><code class="lang-cs">using static wan24.TranslationHelper.Ext;
 
 string translated = _(&quot;Hello&quot;);
 </code></pre>
-<p><strong>TIP</strong>: If you'd like to enable a parser like the Poedit source code parser
-to find texts, which will be stored as variable and translated from there
-later, when the locale is known, you can use the <code>variable = __(&quot;Text&quot;);</code>
-syntax (when <code>using static wan24.TranslationHelper;</code>). The double score method
-returns the given string value 1:1 and is only being used as parser hint.</p>
+<p><strong>TIP</strong>: If you'd like to enable a keyword extractor to find texts, which will
+be stored as variable and translated from there later, when the locale is
+known, you can use the <code>variable = __(&quot;Text&quot;);</code> syntax (when
+<code>using static wan24.TranslationHelper;</code>). The double score method returns the
+given string value 1:1 and is only being used as parser hint.</p>
 <p>Or for a specific locale:</p>
 <pre><code class="lang-cs">using static wan24.Translation;
 
