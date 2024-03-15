@@ -1,4 +1,7 @@
-﻿using System.Security;
+﻿using System.Globalization;
+using System.Runtime.CompilerServices;
+using System.Security;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace wan24.Core
@@ -19,7 +22,7 @@ namespace wan24.Core
         static FsHelper() => SearchFolders = ENV.IsBrowserApp ? [] : [Environment.CurrentDirectory, ENV.AppFolder, Settings.TempFolder];
 
         /// <summary>
-        /// Search folders (lock <see cref="SyncObject"/> for modifying and <see cref="GetSearchFolders"/> for getting thems during locked for modifications)
+        /// Search folders (lock <see cref="SyncObject"/> for modifying and <see cref="GetSearchFolders"/> for getting them during locked for modifications)
         /// </summary>
         public static HashSet<string> SearchFolders { get; }
 
@@ -340,7 +343,7 @@ namespace wan24.Core
             if (fn != fileName) return File.Exists(fileName) ? Path.GetFullPath(fileName) : null;
             if (folders.Length < 1) folders = GetSearchFolders();
             string res;
-            foreach(string folder in folders)
+            foreach (string folder in folders)
             {
                 if (!Directory.Exists(folder)) continue;
                 res = Path.Combine(Path.GetFullPath(folder), fn);
@@ -350,12 +353,137 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// File a file in several folders
+        /// </summary>
+        /// <param name="fileName">Filename (or an absolute path)</param>
+        /// <param name="includeCurrentDirectory">Include the current directory?</param>
+        /// <param name="folders">Folders for file lookup (if not given, the <see cref="SearchFolders"/> are being used per default)</param>
+        /// <returns>Existing filename (absolute path) or <see langword="null"/>, if not found</returns>
+        public static string? FindFile(in string fileName, in bool includeCurrentDirectory, params string[] folders)
+        {
+            if (folders.Length < 1)
+            {
+                folders = GetSearchFolders(includeCurrentDirectory);
+            }
+            else if (includeCurrentDirectory && !folders.ContainsAny(Environment.CurrentDirectory, "./", "."))
+            {
+                folders = [.. folders, Environment.CurrentDirectory];
+            }
+            return FindFile(fileName, folders);
+        }
+
+        /// <summary>
         /// Get the search folders
         /// </summary>
+        /// <param name="includeCurrentDirectory">Include the current directory?</param>
         /// <returns>Search folders</returns>
-        public static string[] GetSearchFolders()
+        public static string[] GetSearchFolders(in bool includeCurrentDirectory = false)
         {
-            lock (SyncObject) return [.. SearchFolders];
+            if (ENV.IsBrowserApp) return [];
+            lock (SyncObject)
+                return includeCurrentDirectory && !SearchFolders.ContainsAny(Environment.CurrentDirectory, "./", ".")
+                    ? [Environment.CurrentDirectory, .. SearchFolders]
+                    : [.. SearchFolders];
+        }
+
+        /// <summary>
+        /// Hide a file
+        /// </summary>
+        /// <param name="fileName">Filename</param>
+        /// <returns>If hidden</returns>
+        public static bool HideFile(in string fileName)
+        {
+            FileInfo fi = new(fileName);
+            if (!fi.Exists) throw new FileNotFoundException("File not found", fileName);
+            fi.Attributes |= FileAttributes.Hidden;
+            fi.Refresh();
+            return (fi.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden;
+        }
+
+        /// <summary>
+        /// Unhide a file
+        /// </summary>
+        /// <param name="fileName">Filename</param>
+        /// <returns>If unhidden</returns>
+        public static bool UnhideFile(in string fileName)
+        {
+            FileInfo fi = new(fileName);
+            if (!fi.Exists) throw new FileNotFoundException("File not found", fileName);
+            fi.Attributes &= ~FileAttributes.Hidden;
+            fi.Refresh();
+            return (fi.Attributes & FileAttributes.Hidden) != FileAttributes.Hidden;
+        }
+
+        /// <summary>
+        /// Normalize a path for display (current OS style; default is Linux; won't validate)
+        /// </summary>
+        /// <param name="path">Path</param>
+        /// <returns>Normalized display path</returns>
+        public static string NormalizeDisplayPath(in string path) => ENV.IsWindows ? NormalizeWindowsDisplayPath(path) : NormalizeLinuxDisplayPath(path);
+
+        /// <summary>
+        /// Normalize a Windows path for display (format drive letter and path separator; won't validate!)
+        /// </summary>
+        /// <param name="path">Path</param>
+        /// <returns>Normalized display path</returns>
+#if !NO_UNSAFE
+        [SkipLocalsInit]
+#endif
+        public static string NormalizeWindowsDisplayPath(in string path)
+        {
+            int len = path.Length;
+            if (len < 1 || !path.TryFindPathSeparator(out _)) return path;
+            StringBuilder res = new(len);
+            int i;
+            if (len > 1 && (path[0] != '/' || path[0] != '\\') && (path[1] == '/' || path[1] == '\\' || (len > 2 && path[1] == ':' && (path[2] == '/' || path[2] == '\\'))))
+            {
+                // c/... or c\... or c:/... or c:\... -> C...
+#if NO_UNSAFE
+                using RentedArrayRefStruct<char> buffer = new(len: 1, clean: false);
+                Span<char> driveLetter = buffer.Span;
+#else
+                Span<char> driveLetter = stackalloc char[1];
+#endif
+                if (path.AsSpan(0, 1).ToUpper(driveLetter, CultureInfo.InvariantCulture) != 1)
+                    throw new InvalidProgramException();
+                res.Append(driveLetter);
+                i = 1;
+            }
+            else if (len > 2 && (path[0] == '/' || path[0] == '\\') && path[1] != '/' && path[1] != '\\' && (path[1] == '/' || path[1] == '\\' || (len > 3 && (path[2] == '/' || path[2] == '\\'))))
+            {
+                // /c/... or \c\... or /c:/... or \c:\... or /c\... or \c/... or \c:/... or /c:\... -> C...
+#if NO_UNSAFE
+                using RentedArrayRefStruct<char> buffer = new(len: 1, clean: false);
+                Span<char> driveLetter = buffer.Span;
+#else
+                Span<char> driveLetter = stackalloc char[1];
+#endif
+                if (path.AsSpan(1, 1).ToUpper(driveLetter, CultureInfo.InvariantCulture) != 1)
+                    throw new InvalidProgramException();
+                res.Append(driveLetter);
+                i = 2;
+            }
+            else
+            {
+                i = 0;
+            }
+            if (i > 0 && len < i && path[i] != ':') res.Append(':');
+            for (; i < len; res.Append(path[i] == '/' ? '\\' : path[i]), i++) ;
+            return res.ToString();
+        }
+
+        /// <summary>
+        /// Normalize a Linux path for display (format path separator; won't validate!)
+        /// </summary>
+        /// <param name="path">Path</param>
+        /// <returns>Normalized display path</returns>
+        public static string NormalizeLinuxDisplayPath(in string path)
+        {
+            int len = path.Length;
+            if (len < 1 || !path.TryFindPathSeparator(out _)) return path;
+            StringBuilder res = new(len);
+            for (int i = 0; i < len; res.Append(path[i] == '\\' ? '/' : path[i]), i++) ;
+            return res.ToString();
         }
     }
 }

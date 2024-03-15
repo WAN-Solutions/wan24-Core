@@ -13,7 +13,7 @@ namespace wan24.Core
         /// <summary>
         /// Literal string replacements
         /// </summary>
-        private static readonly FrozenDictionary<string, string> LiteralReplacements;
+        private static readonly FrozenDictionary<char, string> LiteralReplacements;
 
         /// <summary>
         /// Constructor
@@ -54,19 +54,18 @@ namespace wan24.Core
                 new("range", Parser_Range),
                 new("dummy", Parser_Dummy)
             ]);
-            LiteralReplacements = new Dictionary<string, string>()
+            LiteralReplacements = new Dictionary<char, string>()
             {
-                {"\'", "\\'" },
-                {"\"", "\\\"" },
-                {"\\", "\\" },
-                {"\0", "\\0" },
-                {"\a", "\\a" },
-                {"\b", "\\b" },
-                {"\f", "\\f" },
-                {"\n", "\\n" },
-                {"\r", "\\r" },
-                {"\t", "\\t" },
-                {"\v", "\\v" }
+                {'\"', "\\\"" },
+                {'\\', "\\" },
+                {'\0', "\\0" },
+                {'\a', "\\a" },
+                {'\b', "\\b" },
+                {'\f', "\\f" },
+                {'\n', "\\n" },
+                {'\r', "\\r" },
+                {'\t', "\\t" },
+                {'\v', "\\v" }
             }.ToFrozenDictionary();
         }
 
@@ -311,15 +310,187 @@ namespace wan24.Core
             => new Regex(pattern, options).IsMatch(str, start);
 
         /// <summary>
-        /// Convert to a literal string (escape special characters)
+        /// Convert to a double quoted literal string (escape special characters)
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Literal string</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-        public static string ToLiteral(this string str)
+        [TargetedPatchingOptOut("Tiny method")]
+        public static string ToQuotedLiteral(this string str) => ToLiteral(str, withinDoubleQuotes: true);
+
+        /// <summary>
+        /// Convert to a literal string (escape special characters)
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="withinDoubleQuotes">Return within double quotes?</param>
+        /// <returns>Literal string</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static string ToLiteral(this string str, in bool withinDoubleQuotes = false)
         {
-            foreach (var kvp in LiteralReplacements) str = str.Replace(kvp.Key, kvp.Value);
-            return str;
+            if (str.Length < 1) return withinDoubleQuotes ? "\"\"" : str;
+            StringBuilder sb = new(str.Length << 1);
+            if (withinDoubleQuotes) sb.Append('\"');
+#if NO_UNSAFE
+            for (int i = 0, len = str.Length; i < len; i++)
+                if (LiteralReplacements.TryGetValue(str[i], out string? replace))
+                {
+                    sb.Append(replace);
+                }
+                else
+                {
+                    sb.Append(str[i]);
+                }
+#else
+            unsafe
+            {
+                fixed (char* c = str)
+                {
+                    unchecked
+                    {
+                        for (int i = 0, len = str.Length; i < len; i++)
+                            if (LiteralReplacements.TryGetValue(c[i], out string? replace))
+                            {
+                                sb.Append(replace);
+                            }
+                            else
+                            {
+                                sb.Append(c[i]);
+                            }
+                    }
+                }
+            }
+#endif
+            if (withinDoubleQuotes) sb.Append('\"');
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Replace multiple characters
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="characters">Characters to replace</param>
+        /// <returns>String</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static string ReplaceCharacters(this string str, in IReadOnlyDictionary<char, char> characters)
+        {
+            if (str.Length < 1 || characters.Count < 1) return str;
+            StringBuilder sb = new(str.Length);
+#if NO_UNSAFE
+            for (int i = 0, len = str.Length; i < len; i++)
+                sb.Append(characters.TryGetValue(str[i], out char replace) ? replace : str[i]);
+#else
+            unsafe
+            {
+                fixed (char* c = str)
+                {
+                    unchecked
+                    {
+                        for (int i = 0, len = str.Length; i < len; i++)
+                            sb.Append(characters.TryGetValue(c[i], out char replace) ? replace : c[i]);
+                    }
+                }
+            }
+#endif
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Replace multiple characters
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="characters">Characters to replace</param>
+        /// <returns>String</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static string ReplaceCharacters(this string str, in IReadOnlyDictionary<char, string> characters)
+        {
+            if (str.Length < 1 || characters.Count < 1) return str;
+            StringBuilder sb = new(str.Length << 1);
+#if NO_UNSAFE
+            for (int i = 0, len = str.Length; i < len; i++)
+                if (characters.TryGetValue(str[i], out string? replace))
+                {
+                    sb.Append(replace);
+                }
+                else
+                {
+                    sb.Append(str[i]);
+                }
+#else
+            unsafe
+            {
+                fixed (char* c = str)
+                {
+                    unchecked
+                    {
+                        for (int i = 0, len = str.Length; i < len; i++)
+                            if (characters.TryGetValue(c[i], out string? replace))
+                            {
+                                sb.Append(replace);
+                            }
+                            else
+                            {
+                                sb.Append(c[i]);
+                            }
+                    }
+                }
+            }
+#endif
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Find the used comma character for separating decimals used in a numeric string representation (which may contain a thousands separator, also)
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="defaultReturn">Default return vaue (if no dot or comma was found)</param>
+        /// <returns>Comma character</returns>
+        public static char FindComma(this string str, in char defaultReturn = '.')
+        {
+            int dotIndex = str.LastIndexOf('.'),
+                commaIndex = str.LastIndexOf(',');
+            if (dotIndex == -1 && commaIndex == -1) return defaultReturn;
+            return dotIndex > commaIndex ? '.' : ',';
+        }
+
+        /// <summary>
+        /// Find the used comma character for separating decimals used in a numeric string representation (which may contain a thousands separator, also)
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="result">Comma character</param>
+        /// <returns>If a comma character was found</returns>
+        public static bool TryFindComma(this string str, out char result)
+        {
+            int dotIndex = str.LastIndexOf('.'),
+                commaIndex = str.LastIndexOf(',');
+            if (dotIndex == -1 && commaIndex == -1) result = default;
+            else if (dotIndex > commaIndex) result = '.';
+            else result = ',';
+            return result != default;
+        }
+
+        /// <summary>
+        /// Find the used path separator
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="defaultSeparator">Default return value (if no (back)slash was found)</param>
+        /// <returns>Path separator</returns>
+        public static char FindPathSeparator(this string str, in char defaultSeparator = '/')
+        {
+            if (str.Contains('\\')) return '\\';
+            return str.Contains('/') ? '/' : defaultSeparator;
+        }
+
+        /// <summary>
+        /// Find the used path separator
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="result">>Path separator</param>
+        /// <returns>If a comma character was found</returns>
+        public static bool TryFindPathSeparator(this string str, out char result)
+        {
+            if (str.Contains('\\')) result = '\\';
+            else if (str.Contains('/')) result = '/';
+            else result = default;
+            return result != default;
         }
     }
 }
