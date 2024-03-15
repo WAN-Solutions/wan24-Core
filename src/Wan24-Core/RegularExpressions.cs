@@ -48,6 +48,10 @@ namespace wan24.Core
         /// Regular expression to match a possible Linux path (won't validate!)
         /// </summary>
         public const string LINUX_PATH = "^\\/?[^\\/]+(\\/[^\\/]+){1,}\\/?$";
+        /// <summary>
+        /// Regular expression to match a string literal
+        /// </summary>
+        public const string STRING_LITERAL = @"^\""(\\.|[^\\\""])*[^\\]\""$";
 
         /// <summary>
         /// An object for thread synchronization
@@ -101,6 +105,10 @@ namespace wan24.Core
         /// Regular expression to match a possible Linux path (won't validate!)
         /// </summary>
         public static readonly Regex RX_LINUX_PATH = RX_LINUX_PATH_Generated();
+        /// <summary>
+        /// Regular expression to match a string literal
+        /// </summary>
+        public static readonly Regex RX_STRING_LITERAL = RX_STRING_LITERAL_Generated();
 
         /// <summary>
         /// Named expression names
@@ -241,5 +249,12 @@ namespace wan24.Core
         /// <returns>Regular expression</returns>
         [GeneratedRegex(LINUX_PATH, RegexOptions.Singleline | RegexOptions.Compiled)]
         private static partial Regex RX_LINUX_PATH_Generated();
+
+        /// <summary>
+        /// Regular expression to match a string literal
+        /// </summary>
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex(STRING_LITERAL, RegexOptions.Singleline | RegexOptions.Compiled)]
+        private static partial Regex RX_STRING_LITERAL_Generated();
     }
 }
