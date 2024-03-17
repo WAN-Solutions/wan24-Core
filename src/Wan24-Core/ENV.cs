@@ -113,7 +113,7 @@ namespace wan24.Core
         /// <summary>
         /// Is a browser app?
         /// </summary>
-        public static bool IsBrowserApp { get; }
+        public static bool IsBrowserApp { get; set; }
 
         /// <summary>
         /// Is a Windows OS?
