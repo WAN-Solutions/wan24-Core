@@ -16,7 +16,7 @@ namespace wan24.Core
         /// <summary>
         /// Regular expression to match a new line
         /// </summary>
-        internal static readonly Regex RX_NL = RX_NL_Generated();
+        protected static readonly Regex RX_NL = RX_NL_Generated();
 
         /// <summary>
         /// Log level

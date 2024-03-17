@@ -23,7 +23,8 @@ namespace wan24.Core
                 yield return new(__("App folder"), ENV.AppFolder, __("App folder"), "Core");
                 yield return new(__("App command"), ENV.AppCommand, __("App command"), "Core");
                 yield return new(__("CLI arguments"), ENV.CliArguments.Length, __("Number of CLI arguments"), "Core");
-                yield return new(__("Browser app"), ENV.IsBrowserApp, __("If this is a browser app"), "Core");
+                yield return new(__("Browser"), ENV.IsBrowserApp, __("Is an app running in a browser?"));
+                yield return new(__("Browser environment"), ENV.IsBrowserEnvironment, __("Is a browser app environment (WASM)?"));
                 yield return new(__("Windows"), ENV.IsWindows, __("If the executing platform is Windows"), "Core");
                 yield return new(__("Linux"), ENV.IsLinux, __("If the executing platform is Linux"), "Core");
                 yield return new(__("OS"), Environment.OSVersion, __("Operating system identifier"), "Core");

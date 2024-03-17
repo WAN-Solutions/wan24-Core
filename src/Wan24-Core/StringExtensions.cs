@@ -293,9 +293,13 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="pattern">Regular expression pattern</param>
         /// <param name="options">Regular expression options</param>
+        /// <param name="timeout">Timeout</param>
         /// <returns>If the pattern does match the given string</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static bool IsMatch(this string str, string pattern, RegexOptions options = RegexOptions.None) => new Regex(pattern, options).IsMatch(str);
+        public static bool IsMatch(this string str, in string pattern, in RegexOptions options = RegexOptions.None, in TimeSpan timeout = default)
+            => timeout == default
+                ? new Regex(pattern, options).IsMatch(str)
+                : new Regex(pattern, options, timeout).IsMatch(str);
 
         /// <summary>
         /// Try to match a string with a regular expression
@@ -304,10 +308,13 @@ namespace wan24.Core
         /// <param name="pattern">Regular expression pattern</param>
         /// <param name="start">Start offset</param>
         /// <param name="options">Regular expression options</param>
+        /// <param name="timeout">Timeout</param>
         /// <returns>If the pattern does match the given string</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static bool IsMatch(this string str, string pattern, int start, RegexOptions options = RegexOptions.None)
-            => new Regex(pattern, options).IsMatch(str, start);
+        public static bool IsMatch(this string str, in string pattern, in int start, in RegexOptions options = RegexOptions.None, in TimeSpan timeout = default)
+            => timeout == default
+                ? new Regex(pattern, options).IsMatch(str, start)
+                : new Regex(pattern, options, timeout).IsMatch(str, start);
 
         /// <summary>
         /// Convert to a double quoted literal string (escape special characters)

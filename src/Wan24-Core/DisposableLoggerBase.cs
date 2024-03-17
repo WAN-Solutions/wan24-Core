@@ -1,33 +1,34 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Text.RegularExpressions;
 
 namespace wan24.Core
 {
     /// <summary>
     /// Base class for a disposable logger
     /// </summary>
-    public abstract class DisposableLoggerBase : DisposableBase, ILogger
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="level">Level</param>
+    /// <param name="next">Next logger which should receive the message</param>
+    /// <param name="asyncDisposing">Asynchronous disposing?</param>
+    public abstract partial class DisposableLoggerBase(in LogLevel? level = null, in ILogger? next = null, in bool asyncDisposing = true)
+        : DisposableBase(asyncDisposing), ILogger
     {
         /// <summary>
-        /// Constructor
+        /// Regular expression to match a new line
         /// </summary>
-        /// <param name="level">Level</param>
-        /// <param name="next">Next logger which should receive the message</param>
-        /// <param name="asyncDisposing">Asynchronous disposing?</param>
-        protected DisposableLoggerBase(in LogLevel? level = null, in ILogger? next = null, in bool asyncDisposing = true) : base(asyncDisposing)
-        {
-            Level = level ?? Settings.LogLevel;
-            Next = next;
-        }
+        protected static readonly Regex RX_NL = RX_NL_Generated();
 
         /// <summary>
         /// Log level
         /// </summary>
-        public LogLevel Level { get; set; }
+        public LogLevel Level { get; set; } = level ?? Settings.LogLevel;
 
         /// <summary>
         /// Next logger which should receive the message
         /// </summary>
-        public ILogger? Next { get; set; }
+        public ILogger? Next { get; set; } = next;
 
         /// <inheritdoc/>
         public IDisposable? BeginScope<TState>(TState state) where TState : notnull => null;
@@ -73,6 +74,12 @@ namespace wan24.Core
             Func<TState, Exception?, string> formatter,
             bool nl = false
             )
-            => $"{DateTime.Now}\t{logLevel}\t{LoggerBase.RX_NL.Replace(formatter(state, exception), $"{Environment.NewLine}\t")}{(nl ? Environment.NewLine : string.Empty)}";
+            => $"{DateTime.Now}\t{logLevel}\t{RX_NL.Replace(formatter(state, exception), $"{Environment.NewLine}\t")}{(nl ? Environment.NewLine : string.Empty)}";
+
+        /// <summary>
+        /// Regular expression to match a new line
+        /// </summary>
+        [GeneratedRegex(@"\r?\n\t?", RegexOptions.Compiled | RegexOptions.Singleline)]
+        private static partial Regex RX_NL_Generated();
     }
 }

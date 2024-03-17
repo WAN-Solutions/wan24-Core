@@ -19,7 +19,7 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        static FsHelper() => SearchFolders = ENV.IsBrowserApp ? [] : [Environment.CurrentDirectory, ENV.AppFolder, Settings.TempFolder];
+        static FsHelper() => SearchFolders = ENV.IsBrowserEnvironment ? [] : [Environment.CurrentDirectory, ENV.AppFolder, Settings.TempFolder];
 
         /// <summary>
         /// Search folders (lock <see cref="SyncObject"/> for modifying and <see cref="GetSearchFolders"/> for getting them during locked for modifications)
@@ -379,7 +379,7 @@ namespace wan24.Core
         /// <returns>Search folders</returns>
         public static string[] GetSearchFolders(in bool includeCurrentDirectory = false)
         {
-            if (ENV.IsBrowserApp) return [];
+            if (ENV.IsBrowserEnvironment) return [];
             lock (SyncObject)
                 return includeCurrentDirectory && !SearchFolders.ContainsAny(Environment.CurrentDirectory, "./", ".")
                     ? [Environment.CurrentDirectory, .. SearchFolders]

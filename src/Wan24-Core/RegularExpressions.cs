@@ -39,19 +39,23 @@ namespace wan24.Core
         /// <summary>
         /// Regular expression to match a possible JSON value
         /// </summary>
-        public const string JSON = "^\\s*(null|true|false|\\d+(\\.\\d+)?|\\\"[^\\n]\\\"|\\[.*\\]|\\{.*\\})\\s*$";
+        public const string JSON = @"^\s*(null|true|false|\d+(\.\d+)?|\""(\\.|[^\\\""])*[^\\]\""|\[.*\]|\{.*\})\s*$";
         /// <summary>
         /// Regular expression to match a possible Windows path (won't validate!)
         /// </summary>
-        public const string WINDOWS_PATH = "^([a-z][\\/\\\\]\\:?|[\\/\\\\]?[a-z][\\/\\\\])[\\/\\\\]";
+        public const string WINDOWS_PATH = @"^([a-z][\/\\]\:?|[\/\\]?[a-z][\/\\])[\/\\]";
         /// <summary>
         /// Regular expression to match a possible Linux path (won't validate!)
         /// </summary>
-        public const string LINUX_PATH = "^\\/?[^\\/]+(\\/[^\\/]+){1,}\\/?$";
+        public const string LINUX_PATH = @"^\/?[^\/]+(\/[^\/]+){1,}\/?$";
         /// <summary>
         /// Regular expression to match a string literal
         /// </summary>
         public const string STRING_LITERAL = @"^\""(\\.|[^\\\""])*[^\\]\""$";
+        /// <summary>
+        /// Regular expression to match a string which may contain a string parser variable
+        /// </summary>
+        public const string PARSER_VAR = @"\%\{[^\r\n]+\}";
 
         /// <summary>
         /// An object for thread synchronization
@@ -109,6 +113,10 @@ namespace wan24.Core
         /// Regular expression to match a string literal
         /// </summary>
         public static readonly Regex RX_STRING_LITERAL = RX_STRING_LITERAL_Generated();
+        /// <summary>
+        /// Regular expression to match a string which may contain a string parser variable
+        /// </summary>
+        public static readonly Regex RX_PARSER_VAR = RX_PARSER_VAR_Generated();
 
         /// <summary>
         /// Named expression names
@@ -184,77 +192,84 @@ namespace wan24.Core
         /// MIME type (<c>$1</c> contains the part before the slash, <c>$2</c> the part after the slash)
         /// </summary>
         /// <returns>Regular expression</returns>
-        [GeneratedRegex(MIME_TYPE, RegexOptions.Compiled | RegexOptions.Singleline)]
+        [GeneratedRegex(MIME_TYPE, RegexOptions.Compiled | RegexOptions.Singleline, 3000)]
         private static partial Regex RX_MIME_TYPE_Generated();
 
         /// <summary>
         /// New line (<c>$1</c> contains the new line control characters)
         /// </summary>
         /// <returns>Regular expression</returns>
-        [GeneratedRegex(NEW_LINE, RegexOptions.Compiled | RegexOptions.Singleline)]
+        [GeneratedRegex(NEW_LINE, RegexOptions.Compiled | RegexOptions.Singleline, 3000)]
         private static partial Regex RX_NEW_LINE_Generated();
 
         /// <summary>
         /// No new line
         /// </summary>
         /// <returns>Regular expression</returns>
-        [GeneratedRegex(NO_NEW_LINE, RegexOptions.Compiled | RegexOptions.Singleline)]
+        [GeneratedRegex(NO_NEW_LINE, RegexOptions.Compiled | RegexOptions.Singleline, 3000)]
         private static partial Regex RX_NO_NEW_LINE_Generated();
 
         /// <summary>
         /// Locale using a dash or underscore (<c>$1</c> contains the first part, <c>$2</c> the second part)
         /// </summary>
         /// <returns>Regular expression</returns>
-        [GeneratedRegex(LOCALE, RegexOptions.Compiled | RegexOptions.Singleline)]
+        [GeneratedRegex(LOCALE, RegexOptions.Compiled | RegexOptions.Singleline, 3000)]
         private static partial Regex RX_LOCALE_Generated();
 
         /// <summary>
         /// Locale using a dash (<c>$1</c> contains the first part, <c>$2</c> the second part)
         /// </summary>
         /// <returns>Regular expression</returns>
-        [GeneratedRegex(LOCALE_WITH_DASH, RegexOptions.Compiled | RegexOptions.Singleline)]
+        [GeneratedRegex(LOCALE_WITH_DASH, RegexOptions.Compiled | RegexOptions.Singleline, 3000)]
         private static partial Regex RX_LOCALE_WITH_DASH_Generated();
 
         /// <summary>
         /// Locale using an underscore (<c>$1</c> contains the first part, <c>$2</c> the second part)
         /// </summary>
         /// <returns>Regular expression</returns>
-        [GeneratedRegex(LOCALE_WITH_UNDERSCORE, RegexOptions.Compiled | RegexOptions.Singleline)]
+        [GeneratedRegex(LOCALE_WITH_UNDERSCORE, RegexOptions.Compiled | RegexOptions.Singleline, 3000)]
         private static partial Regex RX_LOCALE_WITH_UNDERSCORE_Generated();
 
         /// <summary>
         /// GUID
         /// </summary>
         /// <returns>Regular expression</returns>
-        [GeneratedRegex(GUID, RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.Singleline)]
+        [GeneratedRegex(GUID, RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.Singleline, 3000)]
         private static partial Regex RX_GUID_Generated();
 
         /// <summary>
         /// Regular expression to match a possible JSON value
         /// </summary>
         /// <returns>Regular expression</returns>
-        [GeneratedRegex(JSON, RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled)]
+        [GeneratedRegex(JSON, RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled, 3000)]
         private static partial Regex RX_JSON_Generated();
 
         /// <summary>
         /// Regular expression to match a possible Windows path (won't validate!)
         /// </summary>
         /// <returns>Regular expression</returns>
-        [GeneratedRegex(WINDOWS_PATH, RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled)]
+        [GeneratedRegex(WINDOWS_PATH, RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled, 3000)]
         private static partial Regex RX_WINDOWS_PATH_Generated();
 
         /// <summary>
         /// Regular expression to match a possible Linux path (won't validate!)
         /// </summary>
         /// <returns>Regular expression</returns>
-        [GeneratedRegex(LINUX_PATH, RegexOptions.Singleline | RegexOptions.Compiled)]
+        [GeneratedRegex(LINUX_PATH, RegexOptions.Singleline | RegexOptions.Compiled, 3000)]
         private static partial Regex RX_LINUX_PATH_Generated();
 
         /// <summary>
         /// Regular expression to match a string literal
         /// </summary>
         /// <returns>Regular expression</returns>
-        [GeneratedRegex(STRING_LITERAL, RegexOptions.Singleline | RegexOptions.Compiled)]
+        [GeneratedRegex(STRING_LITERAL, RegexOptions.Singleline | RegexOptions.Compiled, 3000)]
         private static partial Regex RX_STRING_LITERAL_Generated();
+
+        /// <summary>
+        /// Regular expression to match a string which may contain a string parser variable
+        /// </summary>
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex(PARSER_VAR, RegexOptions.Singleline | RegexOptions.Compiled, 3000)]
+        private static partial Regex RX_PARSER_VAR_Generated();
     }
 }

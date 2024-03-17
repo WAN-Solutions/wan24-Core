@@ -28,7 +28,8 @@ namespace wan24.Core
                 yield return new(__("Machine"), Environment.MachineName, __("Machine name"));
                 yield return new(__("OS"), Environment.OSVersion, __("Operating system identifier"));
                 yield return new(__("64bit OS"), Environment.Is64BitOperatingSystem, __("Is a 64bit operating system?"));
-                yield return new(__("Browser"), ENV.IsBrowserApp, __("Is a browser app (WASM)?"));
+                yield return new(__("Browser"), ENV.IsBrowserApp, __("Is an app running in a browser?"));
+                yield return new(__("Browser environment"), ENV.IsBrowserEnvironment, __("Is a browser app environment (WASM)?"));
                 yield return new(__("Uptime"), TimeSpan.FromMilliseconds(Environment.TickCount64), __("Operating system uptime since the last restart"));
                 yield return new(__(".NET CLR version"), Environment.Version, __(".NET CLR version"));
                 yield return new(__("CPU cores"), Environment.ProcessorCount, __("Number of CPU cores"));
