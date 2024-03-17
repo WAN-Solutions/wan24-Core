@@ -183,7 +183,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const string JSON = &quot;^\\s*(null|true|false|\\d+(\\.\\d+)?|\\\&quot;[^\\n]\\\&quot;|\\[.*\\]|\\{.*\\})\\s*$&quot;</code></pre>
+    <pre><code class="lang-csharp hljs">public const string JSON = &quot;^\\s*(null|true|false|\\d+(\\.\\d+)?|\\\&quot;(\\\\.|[^\\\\\\\&quot;])*[^\\\\]\\\&quot;|\\[.*\\]|\\{.*\\})\\s*$&quot;</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
@@ -412,10 +412,40 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_PARSER_VAR.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.PARSER_VAR%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L58">View Source</a>
+  </span>
+  <h4 id="wan24_Core_RegularExpressions_PARSER_VAR" data-uid="wan24.Core.RegularExpressions.PARSER_VAR">PARSER_VAR</h4>
+  <div class="markdown level1 summary"><p>Regular expression to match a string which may contain a string parser variable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string PARSER_VAR = &quot;\\%\\{[^\\r\\n]+\\}&quot;</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_RX_GUID.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.RX_GUID%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L95">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L99">View Source</a>
   </span>
   <h4 id="wan24_Core_RegularExpressions_RX_GUID" data-uid="wan24.Core.RegularExpressions.RX_GUID">RX_GUID</h4>
   <div class="markdown level1 summary"><p>GUID</p>
@@ -445,7 +475,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_RX_JSON.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.RX_JSON%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L99">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L103">View Source</a>
   </span>
   <h4 id="wan24_Core_RegularExpressions_RX_JSON" data-uid="wan24.Core.RegularExpressions.RX_JSON">RX_JSON</h4>
   <div class="markdown level1 summary"><p>Regular expression to match a possible JSON value</p>
@@ -475,7 +505,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_RX_LINUX_PATH.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.RX_LINUX_PATH%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L107">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L111">View Source</a>
   </span>
   <h4 id="wan24_Core_RegularExpressions_RX_LINUX_PATH" data-uid="wan24.Core.RegularExpressions.RX_LINUX_PATH">RX_LINUX_PATH</h4>
   <div class="markdown level1 summary"><p>Regular expression to match a possible Linux path (won't validate!)</p>
@@ -505,7 +535,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_RX_LOCALE.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.RX_LOCALE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L83">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L87">View Source</a>
   </span>
   <h4 id="wan24_Core_RegularExpressions_RX_LOCALE" data-uid="wan24.Core.RegularExpressions.RX_LOCALE">RX_LOCALE</h4>
   <div class="markdown level1 summary"><p>Locale using a dash or underscore (<code>$1</code> contains the first part, <code>$2</code> the second part)</p>
@@ -535,7 +565,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_RX_LOCALE_WITH_DASH.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.RX_LOCALE_WITH_DASH%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L87">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L91">View Source</a>
   </span>
   <h4 id="wan24_Core_RegularExpressions_RX_LOCALE_WITH_DASH" data-uid="wan24.Core.RegularExpressions.RX_LOCALE_WITH_DASH">RX_LOCALE_WITH_DASH</h4>
   <div class="markdown level1 summary"><p>Locale using a dash (<code>$1</code> contains the first part, <code>$2</code> the second part)</p>
@@ -565,7 +595,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_RX_LOCALE_WITH_UNDERSCORE.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.RX_LOCALE_WITH_UNDERSCORE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L91">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L95">View Source</a>
   </span>
   <h4 id="wan24_Core_RegularExpressions_RX_LOCALE_WITH_UNDERSCORE" data-uid="wan24.Core.RegularExpressions.RX_LOCALE_WITH_UNDERSCORE">RX_LOCALE_WITH_UNDERSCORE</h4>
   <div class="markdown level1 summary"><p>Locale using an underscore (<code>$1</code> contains the first part, <code>$2</code> the second part)</p>
@@ -595,7 +625,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_RX_MIME_TYPE.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.RX_MIME_TYPE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L71">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L75">View Source</a>
   </span>
   <h4 id="wan24_Core_RegularExpressions_RX_MIME_TYPE" data-uid="wan24.Core.RegularExpressions.RX_MIME_TYPE">RX_MIME_TYPE</h4>
   <div class="markdown level1 summary"><p>MIME type (<code>$1</code> contains the part before the slash, <code>$2</code> the part after the slash)</p>
@@ -625,7 +655,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_RX_NEW_LINE.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.RX_NEW_LINE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L75">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L79">View Source</a>
   </span>
   <h4 id="wan24_Core_RegularExpressions_RX_NEW_LINE" data-uid="wan24.Core.RegularExpressions.RX_NEW_LINE">RX_NEW_LINE</h4>
   <div class="markdown level1 summary"><p>New line (<code>$1</code> contains the new line control characters)</p>
@@ -655,7 +685,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_RX_NO_NEW_LINE.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.RX_NO_NEW_LINE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L79">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L83">View Source</a>
   </span>
   <h4 id="wan24_Core_RegularExpressions_RX_NO_NEW_LINE" data-uid="wan24.Core.RegularExpressions.RX_NO_NEW_LINE">RX_NO_NEW_LINE</h4>
   <div class="markdown level1 summary"><p>No new line</p>
@@ -682,10 +712,40 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_RX_PARSER_VAR.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.RX_PARSER_VAR%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L119">View Source</a>
+  </span>
+  <h4 id="wan24_Core_RegularExpressions_RX_PARSER_VAR" data-uid="wan24.Core.RegularExpressions.RX_PARSER_VAR">RX_PARSER_VAR</h4>
+  <div class="markdown level1 summary"><p>Regular expression to match a string which may contain a string parser variable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Regex RX_PARSER_VAR</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.regularexpressions.regex">Regex</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_RX_STRING_LITERAL.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.RX_STRING_LITERAL%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L111">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L115">View Source</a>
   </span>
   <h4 id="wan24_Core_RegularExpressions_RX_STRING_LITERAL" data-uid="wan24.Core.RegularExpressions.RX_STRING_LITERAL">RX_STRING_LITERAL</h4>
   <div class="markdown level1 summary"><p>Regular expression to match a string literal</p>
@@ -715,7 +775,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_RX_WINDOWS_PATH.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.RX_WINDOWS_PATH%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L103">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L107">View Source</a>
   </span>
   <h4 id="wan24_Core_RegularExpressions_RX_WINDOWS_PATH" data-uid="wan24.Core.RegularExpressions.RX_WINDOWS_PATH">RX_WINDOWS_PATH</h4>
   <div class="markdown level1 summary"><p>Regular expression to match a possible Windows path (won't validate!)</p>
@@ -807,7 +867,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_NamedExpressionCount.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.NamedExpressionCount%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L121">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L129">View Source</a>
   </span>
   <a id="wan24_Core_RegularExpressions_NamedExpressionCount_" data-uid="wan24.Core.RegularExpressions.NamedExpressionCount*"></a>
   <h4 id="wan24_Core_RegularExpressions_NamedExpressionCount" data-uid="wan24.Core.RegularExpressions.NamedExpressionCount">NamedExpressionCount</h4>
@@ -838,7 +898,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_NamedExpressionNames.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.NamedExpressionNames%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L116">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L124">View Source</a>
   </span>
   <a id="wan24_Core_RegularExpressions_NamedExpressionNames_" data-uid="wan24.Core.RegularExpressions.NamedExpressionNames*"></a>
   <h4 id="wan24_Core_RegularExpressions_NamedExpressionNames" data-uid="wan24.Core.RegularExpressions.NamedExpressionNames">NamedExpressionNames</h4>
@@ -869,7 +929,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_NamedExpressions.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.NamedExpressions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L126">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L134">View Source</a>
   </span>
   <a id="wan24_Core_RegularExpressions_NamedExpressions_" data-uid="wan24.Core.RegularExpressions.NamedExpressions*"></a>
   <h4 id="wan24_Core_RegularExpressions_NamedExpressions" data-uid="wan24.Core.RegularExpressions.NamedExpressions">NamedExpressions</h4>
@@ -900,7 +960,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_NamedRegex.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.NamedRegex%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L131">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L139">View Source</a>
   </span>
   <a id="wan24_Core_RegularExpressions_NamedRegex_" data-uid="wan24.Core.RegularExpressions.NamedRegex*"></a>
   <h4 id="wan24_Core_RegularExpressions_NamedRegex" data-uid="wan24.Core.RegularExpressions.NamedRegex">NamedRegex</h4>
@@ -933,7 +993,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_Add_System_String_System_String_System_Text_RegularExpressions_RegexOptions_.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.Add(System.String%2CSystem.String%2CSystem.Text.RegularExpressions.RegexOptions)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L140">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L148">View Source</a>
   </span>
   <a id="wan24_Core_RegularExpressions_Add_" data-uid="wan24.Core.RegularExpressions.Add*"></a>
   <h4 id="wan24_Core_RegularExpressions_Add_System_String_System_String_System_Text_RegularExpressions_RegexOptions_" data-uid="wan24.Core.RegularExpressions.Add(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">Add(string, string, RegexOptions)</h4>
@@ -995,7 +1055,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_Contains_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.Contains(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L181">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L189">View Source</a>
   </span>
   <a id="wan24_Core_RegularExpressions_Contains_" data-uid="wan24.Core.RegularExpressions.Contains*"></a>
   <h4 id="wan24_Core_RegularExpressions_Contains_System_String_" data-uid="wan24.Core.RegularExpressions.Contains(System.String)">Contains(string)</h4>
@@ -1045,7 +1105,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_GetPattern_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.GetPattern(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L167">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L175">View Source</a>
   </span>
   <a id="wan24_Core_RegularExpressions_GetPattern_" data-uid="wan24.Core.RegularExpressions.GetPattern*"></a>
   <h4 id="wan24_Core_RegularExpressions_GetPattern_System_String_" data-uid="wan24.Core.RegularExpressions.GetPattern(System.String)">GetPattern(string)</h4>
@@ -1095,7 +1155,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_GetRegex_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.GetRegex(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L174">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L182">View Source</a>
   </span>
   <a id="wan24_Core_RegularExpressions_GetRegex_" data-uid="wan24.Core.RegularExpressions.GetRegex*"></a>
   <h4 id="wan24_Core_RegularExpressions_GetRegex_System_String_" data-uid="wan24.Core.RegularExpressions.GetRegex(System.String)">GetRegex(string)</h4>
@@ -1145,7 +1205,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RegularExpressions_Remove_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.RegularExpressions.Remove(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L153">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RegularExpressions.cs/#L161">View Source</a>
   </span>
   <a id="wan24_Core_RegularExpressions_Remove_" data-uid="wan24.Core.RegularExpressions.Remove*"></a>
   <h4 id="wan24_Core_RegularExpressions_Remove_System_String_" data-uid="wan24.Core.RegularExpressions.Remove(System.String)">Remove(string)</h4>
