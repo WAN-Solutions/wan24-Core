@@ -20,7 +20,8 @@ namespace wan24.Core
         /// </summary>
         static ENV()
         {
-            IsBrowserApp = IsBrowserEnvironment = RuntimeInformation.OSDescription == "web";
+            IsBrowserApp = IsBrowserEnvironment = RuntimeInformation.OSDescription.Equals("web", StringComparison.OrdinalIgnoreCase) ||
+                RuntimeInformation.OSDescription.Equals("Browser", StringComparison.OrdinalIgnoreCase);
             IsWindows = Environment.OSVersion.Platform == PlatformID.Win32NT;
             IsLinux = Environment.OSVersion.Platform == PlatformID.Unix;
 #if !RELEASE
@@ -29,7 +30,7 @@ namespace wan24.Core
             IsDebug = false;
 #endif
             IsPrivileged = Environment.IsPrivilegedProcess;
-            if (!IsBrowserApp)
+            if (!IsBrowserEnvironment)
             {
                 string? app = Assembly.GetEntryAssembly()?.Location;
                 if (string.IsNullOrWhiteSpace(app))
@@ -118,7 +119,7 @@ namespace wan24.Core
         /// <summary>
         /// Is a browser environment?
         /// </summary>
-        public static bool IsBrowserEnvironment { get; set; }
+        public static bool IsBrowserEnvironment { get; }
 
         /// <summary>
         /// Is a Windows OS?

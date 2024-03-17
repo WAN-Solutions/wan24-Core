@@ -28,15 +28,35 @@ namespace wan24.Core
         /// <summary>
         /// Buffer size in bytes
         /// </summary>
-        private static int _BufferSize = DEFAULT_BUFFER_SIZE;
+        private static int _BufferSize;
         /// <summary>
         /// Custom temporary folder
         /// </summary>
-        private static string? _CustomTempFolder = null;
+        private static string? _CustomTempFolder;
         /// <summary>
         /// Stack allocation border in bytes
         /// </summary>
-        private static int _StackAllocBorder = DEFAULT_STACK_ALLOC_BORDER;
+        private static int _StackAllocBorder;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        static Settings()
+        {
+            _BufferSize = DEFAULT_BUFFER_SIZE;
+            _CustomTempFolder = null;
+            _StackAllocBorder = DEFAULT_STACK_ALLOC_BORDER;
+            AppId = ENV.IsBrowserEnvironment
+                ? DEFAULT_BROWSER_APP_ID
+                : Path.GetFileNameWithoutExtension(ENV.App);
+            ProcessId = DEFAULT_PROCESS_ID;
+            CreateFileMode = UnixFileMode.UserRead | UnixFileMode.UserWrite |
+                UnixFileMode.GroupRead | UnixFileMode.OtherRead;
+            CreateFolderMode = UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute |
+                UnixFileMode.GroupRead | UnixFileMode.GroupExecute |
+                UnixFileMode.OtherRead | UnixFileMode.OtherExecute;
+            LogLevel = Logging.DEFAULT_LOGLEVEL;
+        }
 
         /// <summary>
         /// Buffer size in bytes
@@ -57,7 +77,9 @@ namespace wan24.Core
         /// Temporary folder (may be the customized value or the system users temporary folder)
         /// </summary>
         /// <exception cref="PlatformNotSupportedException">Not supported in a browser app</exception>
-        public static string TempFolder => ENV.IsBrowserApp ? throw new PlatformNotSupportedException("Browser app") : CustomTempFolder ?? Path.GetTempPath();
+        public static string TempFolder => ENV.IsBrowserApp 
+            ? throw new PlatformNotSupportedException("Browser app") 
+            : CustomTempFolder ?? Path.GetTempPath();
 
         /// <summary>
         /// Custom temporary folder
@@ -89,36 +111,31 @@ namespace wan24.Core
         /// <summary>
         /// An unique app ID ("myapp" f.e.; will be used in filenames!)
         /// </summary>
-        public static string AppId { get; set; } = ENV.IsBrowserApp ? DEFAULT_BROWSER_APP_ID : Path.GetFileNameWithoutExtension(ENV.App);
+        public static string AppId { get; set; }
 
         /// <summary>
         /// An unique process ID ("service" f.e.; only one process with this ID should run at once and have a specific order; will be used in filenames!)
         /// </summary>
         [CliConfig]
         [Required]
-        public static string ProcessId { get; set; } = DEFAULT_PROCESS_ID;
+        public static string ProcessId { get; set; }
 
         /// <summary>
         /// Default file create mode
         /// </summary>
         [CliConfig]
         public static UnixFileMode CreateFileMode { get; set; }
-            = UnixFileMode.UserRead | UnixFileMode.UserWrite | 
-                UnixFileMode.GroupRead | UnixFileMode.OtherRead;
 
         /// <summary>
         /// Default folder create mode
         /// </summary>
         [CliConfig]
         public static UnixFileMode CreateFolderMode { get; set; }
-            = UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute | 
-                UnixFileMode.GroupRead | UnixFileMode.GroupExecute | 
-                UnixFileMode.OtherRead | UnixFileMode.OtherExecute;
 
         /// <summary>
         /// Default log level
         /// </summary>
         [CliConfig]
-        public static LogLevel LogLevel { get; set; } = Logging.DEFAULT_LOGLEVEL;
+        public static LogLevel LogLevel { get; set; }
     }
 }
