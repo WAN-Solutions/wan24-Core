@@ -20,7 +20,7 @@ namespace wan24.Core
         /// </summary>
         static ENV()
         {
-            IsBrowserApp = RuntimeInformation.OSDescription == "web";
+            IsBrowserApp = IsBrowserEnvironment = RuntimeInformation.OSDescription == "web";
             IsWindows = Environment.OSVersion.Platform == PlatformID.Win32NT;
             IsLinux = Environment.OSVersion.Platform == PlatformID.Unix;
 #if !RELEASE
@@ -114,6 +114,11 @@ namespace wan24.Core
         /// Is a browser app?
         /// </summary>
         public static bool IsBrowserApp { get; set; }
+
+        /// <summary>
+        /// Is a browser environment?
+        /// </summary>
+        public static bool IsBrowserEnvironment { get; set; }
 
         /// <summary>
         /// Is a Windows OS?
