@@ -20,13 +20,27 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override void LogInt<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
         {
-            if (WriteToStdErr)
+            if (ENV.IsBrowserApp)
             {
-                Console.Error.WriteLine(GetMessage(logLevel, eventId, state, exception, formatter));
+                if (logLevel < LogLevel.Warning)
+                {
+                    Console.WriteLine($"{logLevel.ToString().ToUpper()}\t{formatter(state, exception)}");
+                }
+                else
+                {
+                    Console.Error.WriteLine($"{logLevel.ToString().ToUpper()}\t{formatter(state, exception)}");
+                }
             }
             else
             {
-                Console.WriteLine(GetMessage(logLevel, eventId, state, exception, formatter));
+                if (WriteToStdErr)
+                {
+                    Console.Error.WriteLine(GetMessage(logLevel, eventId, state, exception, formatter));
+                }
+                else
+                {
+                    Console.WriteLine(GetMessage(logLevel, eventId, state, exception, formatter));
+                }
             }
         }
     }

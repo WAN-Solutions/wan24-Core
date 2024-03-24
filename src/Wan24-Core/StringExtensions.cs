@@ -499,5 +499,18 @@ namespace wan24.Core
             else result = default;
             return result != default;
         }
+
+        /// <summary>
+        /// Ensure a maximum string length (including ellipsis length)
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="maxLength">Max. length</param>
+        /// <param name="ellipsis">Ellipsis</param>
+        /// <returns>String</returns>
+        public static string MaxLength(this string str, in int maxLength, in string? ellipsis = null)
+        {
+            if (ellipsis is not null && ellipsis.Length > maxLength) throw new ArgumentOutOfRangeException(nameof(ellipsis));
+            return str.Length <= maxLength ? str : $"{str[0..(maxLength - (ellipsis?.Length ?? 0))]}{ellipsis}";
+        }
     }
 }

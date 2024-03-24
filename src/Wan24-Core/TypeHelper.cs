@@ -88,19 +88,20 @@ namespace wan24.Core
             {
                 if (!seen.Add(assembly)) continue;
                 if (Trace) Logging.WriteTrace($"\tScanning assembly {assembly.GetName().FullName}");
-                foreach (AssemblyName name in assembly.GetReferencedAssemblies())
-                    try
-                    {
-                        if (added.Add(assembly = Assembly.Load(name)))
+                if (!ENV.IsBrowserApp)
+                    foreach (AssemblyName name in assembly.GetReferencedAssemblies())
+                        try
                         {
-                            if (Trace) Logging.WriteTrace($"\t\tFound new referenced assembly {assembly.GetName().FullName}");
-                            queue.Enqueue(assembly);
+                            if (added.Add(assembly = Assembly.Load(name)))
+                            {
+                                if (Trace) Logging.WriteTrace($"\t\tFound new referenced assembly {assembly.GetName().FullName}");
+                                queue.Enqueue(assembly);
+                            }
                         }
-                    }
-                    catch(Exception ex)
-                    {
-                        if (Warning) Logging.WriteWarning($"Found new referenced assembly {assembly.GetName().FullName}, but failed to load: {ex}");
-                    }
+                        catch (Exception ex)
+                        {
+                            if (Warning) Logging.WriteWarning($"Found new referenced assembly {assembly.GetName().FullName}, but failed to load: {ex}");
+                        }
             }
             return AddAssemblies([.. added]);
         }
