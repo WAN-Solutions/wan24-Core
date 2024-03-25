@@ -15,12 +15,31 @@ namespace wan24.Core
         /// <param name="other">Source</param>
         /// <param name="prefix">Key prefix</param>
         /// <param name="existingOnly">Existing keys only?</param>
+        /// <param name="overwrite">Overwrite existing keys?</param>
         /// <returns>Input</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Dictionary<string, T> Merge<T>(this Dictionary<string, T> dict, in Dictionary<string, T> other, string? prefix = null, in bool existingOnly = false)
+        public static Dictionary<string, T> Merge<T>(
+            this Dictionary<string, T> dict, 
+            in Dictionary<string, T> other, 
+            string? prefix = null, 
+            in bool existingOnly = false,
+            in bool overwrite = true
+            )
         {
             prefix ??= string.Empty;
-            foreach (var kvp in other) if (!existingOnly || dict.ContainsKey($"{prefix}{kvp.Key}")) dict[$"{prefix}{kvp.Key}"] = kvp.Value;
+            string key;
+            foreach (var kvp in other)
+            {
+                key = $"{prefix}{kvp.Key}";
+                if (overwrite)
+                {
+                    if (!existingOnly || dict.ContainsKey(key)) dict[key] = kvp.Value;
+                }
+                else if (!dict.ContainsKey(key))
+                {
+                    dict[key] = kvp.Value;
+                }
+            }
             return dict;
         }
 
@@ -32,16 +51,31 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="prefix">Key prefix</param>
         /// <param name="existingOnly">Existing keys only?</param>
+        /// <param name="overwrite">Overwrite existing keys?</param>
         /// <returns>Input</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Dictionary<string, T> Merge<T>(this Dictionary<string, T> dict, in IEnumerable<T> enumerable, string? prefix = null, in bool existingOnly = false)
+        public static Dictionary<string, T> Merge<T>(
+            this Dictionary<string, T> dict, 
+            in IEnumerable<T> enumerable, 
+            string? prefix = null, 
+            in bool existingOnly = false,
+            in bool overwrite = true
+            )
         {
             prefix ??= string.Empty;
             int index = 0;
+            string key;
             foreach (T item in enumerable)
             {
-                if (!existingOnly || dict.ContainsKey($"{prefix}{index}"))
-                    dict[$"{prefix}{index}"] = item;
+                key = $"{prefix}{index}";
+                if (overwrite)
+                {
+                    if (!existingOnly || dict.ContainsKey(key)) dict[key] = item;
+                }
+                else if (!dict.ContainsKey(key))
+                {
+                    dict[key] = item;
+                }
                 index++;
             }
             return dict;
