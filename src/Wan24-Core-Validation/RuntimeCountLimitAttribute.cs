@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
+using wan24.ObjectValidation;
 
 namespace wan24.Core
 {
@@ -8,7 +9,7 @@ namespace wan24.Core
     /// Runtime count limitation attribute
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class RuntimeCountLimitAttribute : ValidationAttribute
+    public class RuntimeCountLimitAttribute : ValidationAttributeBase
     {
         /// <summary>
         /// Minimum
@@ -131,7 +132,7 @@ namespace wan24.Core
                     },
                     validationContext.MemberName
                     ) is string error
-                ? new ValidationResult(error, validationContext.MemberName is null ? null : new string[] { validationContext.MemberName })
+                ? this.CreateValidationResult(error, validationContext)
                 : null;
     }
 }

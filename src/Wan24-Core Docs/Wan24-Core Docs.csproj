@@ -5,6 +5,7 @@
     <RootNamespace>Wan24_Core_Docs</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Configurations>Debug;Release;Trunk</Configurations>
   </PropertyGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(OS)' == 'Windows_NT'">

@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Net.Sockets;
+using wan24.ObjectValidation;
 
 namespace wan24.Core
 {
@@ -13,7 +14,7 @@ namespace wan24.Core
     /// </remarks>
     /// <param name="allowedIpSubNets">Allowed IP sub-nets (CIDR notation; the value needs to fit into one of these; if none are given, the value only needs to be a valid 
     /// sub-net)</param>
-    public class EndPointAttribute(params string[] allowedIpSubNets) : ValidationAttribute()
+    public class EndPointAttribute(params string[] allowedIpSubNets) : ValidationAttributeBase()
     {
         /// <summary>
         /// Allowed IP sub-nets (CIDR notation; the value needs to fit into one of these; if none are given, the value only needs to be a valid sub-net)
@@ -35,38 +36,21 @@ namespace wan24.Core
         {
             if (!AllowIPv4 && !AllowIPv6) throw new InvalidOperationException();
             if (value is null) return null;
-            if (value is not string endpoint)
-                return new(
-                    ErrorMessage ?? (validationContext.MemberName is null ? $"Endpoint value as {typeof(string)} expected" : $"{validationContext.MemberName}: Endpoint value as {typeof(string)} expected"),
-                    validationContext.MemberName is null ? null : new string[] { validationContext.MemberName }
-                    );
+            if (value is not string endpoint) return this.CreateValidationResult($"Endpoint value as {typeof(string)} expected", validationContext);
             if (!IPEndPoint.TryParse(endpoint, out IPEndPoint? ipEndpoint) && !HostEndPoint.TryParse(endpoint, out _))
-                return new(
-                    ErrorMessage ?? (validationContext.MemberName is null ? $"Invalid host/IP endpoint value" : $"{validationContext.MemberName}: Invalid host/IP endpoint value"),
-                    validationContext.MemberName is null ? null : new string[] { validationContext.MemberName }
-                    );
+                return this.CreateValidationResult($"Invalid host/IP endpoint value", validationContext);
             if (ipEndpoint is null) return null;
             if (!AllowIPv4 && ipEndpoint.Address.AddressFamily == AddressFamily.InterNetwork)
-                return new(
-                    ErrorMessage ?? (validationContext.MemberName is null ? $"IPv6 endpoint required" : $"{validationContext.MemberName}: IPv6 endpoint required"),
-                    validationContext.MemberName is null ? null : new string[] { validationContext.MemberName }
-                    );
+                return this.CreateValidationResult($"IPv6 endpoint required", validationContext);
             else if (!AllowIPv6 && ipEndpoint.Address.AddressFamily == AddressFamily.InterNetworkV6)
-                return new(
-                    ErrorMessage ?? (validationContext.MemberName is null ? $"IPv4 endpoint required" : $"{validationContext.MemberName}: IPv4 endpoint required"),
-                    validationContext.MemberName is null ? null : new string[] { validationContext.MemberName }
-                    );
+                return this.CreateValidationResult($"IPv4 endpoint required", validationContext);
             else if (AllowedIpSubnets.Count != 0)
             {
                 int denied = 0;
                 for (int i = 0, len = AllowedIpSubnets.Count; i < len; i++)
                     if (ipEndpoint.Address != AllowedIpSubnets.Items[i])
                         denied++;
-                if (denied == AllowedIpSubnets.Count)
-                    return new(
-                        ErrorMessage ?? (validationContext.MemberName is null ? $"IP endpoint is in denied sub-net" : $"{validationContext.MemberName}: IP endpoint is in denied sub-net"),
-                        validationContext.MemberName is null ? null : new string[] { validationContext.MemberName }
-                        );
+                if (denied == AllowedIpSubnets.Count) return this.CreateValidationResult($"IP endpoint is in denied sub-net", validationContext);
             }
             return null;
         }

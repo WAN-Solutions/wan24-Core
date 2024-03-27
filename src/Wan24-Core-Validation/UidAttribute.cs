@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using wan24.ObjectValidation;
 
 namespace wan24.Core
 {
@@ -6,7 +7,7 @@ namespace wan24.Core
     /// <see cref="Uid"/> validation attribute
     /// </summary>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Parameter)]
-    public class UidAttribute : ValidationAttribute
+    public class UidAttribute : ValidationAttributeBase
     {
         /// <summary>
         /// Constructor
@@ -33,37 +34,25 @@ namespace wan24.Core
                     (memory.HasValue && memory.Value.Length < Uid.STRUCTURE_SIZE) ||
                     (roMemory.HasValue && roMemory.Value.Length < Uid.STRUCTURE_SIZE)
                     )
-                    return new(
-                        ErrorMessage ?? (validationContext.MemberName is null ? $"Invalid length" : $"{validationContext.MemberName}: Invalid length"),
-                        validationContext.MemberName is null ? null : new string[] { validationContext.MemberName }
-                        );
+                    return this.CreateValidationResult($"Invalid length", validationContext);
                 if (binary is not null) uid = binary;
                 else if (memory.HasValue) uid = memory.Value.Span;
                 else uid = roMemory!.Value.Span;
             }
             else if (value is string str && !Uid.TryParse(str, out uid))
             {
-                return new(
-                    ErrorMessage ?? (validationContext.MemberName is null ? $"Invalid UID string format" : $"{validationContext.MemberName}: Invalid UID string format"),
-                    validationContext.MemberName is null ? null : new string[] { validationContext.MemberName }
-                    );
+                return this.CreateValidationResult($"Invalid UID string format", validationContext);
             }
             else if (value is not Uid)
             {
-                return new(
-                    ErrorMessage ?? (validationContext.MemberName is null ? $"Invalid value ({typeof(Uid)} expected, {value.GetType()} given)" : $"{validationContext.MemberName}: Invalid value ({typeof(Uid)} expected, {value.GetType()} given)"),
-                    validationContext.MemberName is null ? null : new string[] { validationContext.MemberName }
-                    );
+                return this.CreateValidationResult($"Invalid value ({typeof(Uid)} expected, {value.GetType()} given)", validationContext);
             }
             else if (!uid.HasValue)
             {
                 uid = (Uid)value;
             }
             if (!AllowFutureTime && uid.Value.Time > DateTime.UtcNow)
-                return new(
-                    ErrorMessage ?? (validationContext.MemberName is null ? $"Invalid future time" : $"{validationContext.MemberName}: Invalid future time"),
-                    validationContext.MemberName is null ? null : new string[] { validationContext.MemberName }
-                    );
+                return this.CreateValidationResult($"Invalid future time", validationContext);
             return null;
         }
     }

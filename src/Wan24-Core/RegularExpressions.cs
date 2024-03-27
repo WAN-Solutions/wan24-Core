@@ -56,6 +56,10 @@ namespace wan24.Core
         /// Regular expression to match a string which may contain a string parser variable
         /// </summary>
         public const string PARSER_VAR = @"\%\{[^\r\n]+\}";
+        /// <summary>
+        /// Regular expression to match a hex string
+        /// </summary>
+        public const string HEX_STRING = @"^[a-f|0-9]+$";
 
         /// <summary>
         /// An object for thread synchronization
@@ -117,6 +121,10 @@ namespace wan24.Core
         /// Regular expression to match a string which may contain a string parser variable
         /// </summary>
         public static readonly Regex RX_PARSER_VAR = RX_PARSER_VAR_Generated();
+        /// <summary>
+        /// Regular expression to match a hex string
+        /// </summary>
+        public static readonly Regex RX_HEX_STRING = RX_HEX_STRING_Generated();
 
         /// <summary>
         /// Named expression names
@@ -271,5 +279,12 @@ namespace wan24.Core
         /// <returns>Regular expression</returns>
         [GeneratedRegex(PARSER_VAR, RegexOptions.Singleline | RegexOptions.Compiled, 3000)]
         private static partial Regex RX_PARSER_VAR_Generated();
+
+        /// <summary>
+        /// Regular expression to match a hex string
+        /// </summary>
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex(HEX_STRING, RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.Compiled, 3000)]
+        private static partial Regex RX_HEX_STRING_Generated();
     }
 }

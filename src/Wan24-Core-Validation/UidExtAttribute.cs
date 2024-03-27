@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using wan24.ObjectValidation;
 
 namespace wan24.Core
 {
@@ -43,20 +44,13 @@ namespace wan24.Core
             };
             if (uid == default)
             {
-                if (!AllowUid)
-                    return new(
-                        ErrorMessage ?? (validationContext.MemberName is null ? $"UID not allowed" : $"{validationContext.MemberName}: UID not allowed"),
-                        validationContext.MemberName is null ? null : new string[] { validationContext.MemberName }
-                        );
+                if (!AllowUid) return this.CreateValidationResult($"UID not allowed", validationContext);
                 using RentedArrayRefStruct<byte> buffer = new(UidExt.STRUCTURE_SIZE);
                 ((Uid)value).GetBytes(buffer.Span);
                 uid = buffer.Span;
             }
             if ((MaxRequiredId.HasValue && (uid.Id < RequiredId || uid.Id > MaxRequiredId.Value)) || (!MaxRequiredId.HasValue && uid.Id != RequiredId))
-                return new(
-                    ErrorMessage ?? (validationContext.MemberName is null ? $"Invalid ID" : $"{validationContext.MemberName}: Invalid ID"),
-                    validationContext.MemberName is null ? null : new string[] { validationContext.MemberName }
-                    );
+                return this.CreateValidationResult($"Invalid ID", validationContext);
             return null;
         }
     }
