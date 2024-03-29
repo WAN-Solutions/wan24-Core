@@ -68,7 +68,7 @@
         /// <returns>RGB bytes</returns>
         public Span<byte> GetBytes(in Span<byte> buffer)
         {
-            if (buffer.Length < 3) throw new ArgumentOutOfRangeException(nameof(buffer));
+            if (buffer.Length < BINARY_SIZE) throw new ArgumentOutOfRangeException(nameof(buffer));
             buffer[0] = (byte)R;
             buffer[1] = (byte)G;
             buffer[2] = (byte)B;
@@ -81,7 +81,7 @@
         /// <returns>Hex string (upper case)</returns>
         public string ToHexString()
         {
-            using RentedArrayRefStruct<byte> buffer = new(len: 3, clean: false);
+            using RentedArrayRefStruct<byte> buffer = new(len: BINARY_SIZE, clean: false);
             return Convert.ToHexString(GetBytes(buffer.Span));
         }
 

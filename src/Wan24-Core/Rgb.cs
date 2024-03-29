@@ -18,6 +18,10 @@ namespace wan24.Core
         /// </summary>
         public const int STUCTURE_SIZE = sizeof(int) * 3;
         /// <summary>
+        /// Binary structure size in bytes (returned from <see cref="GetBytes()"/>)
+        /// </summary>
+        public const int BINARY_SIZE = 3;
+        /// <summary>
         /// Red value byte offset
         /// </summary>
         public const int R_FIELD_OFFSET = 0;
@@ -34,7 +38,7 @@ namespace wan24.Core
         /// Regular expression to match a CSS RGB string (single line)
         /// </summary>
         private static readonly Regex RX_CSS = new(
-            @"^\s*rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*(\d+)\s+)?\)\s*$", 
+            @"^\s*rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*(\d+)\s*)?\)\s*$", 
             RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.Compiled, 
             TimeSpan.FromMilliseconds(3000)
             );
@@ -107,7 +111,7 @@ namespace wan24.Core
         /// <param name="rgb">RGB bytes</param>
         public Rgb(in ReadOnlySpan<byte> rgb)
         {
-            if (rgb.Length < 3) throw new ArgumentOutOfRangeException(nameof(rgb));
+            if (rgb.Length < BINARY_SIZE) throw new ArgumentOutOfRangeException(nameof(rgb));
             R = rgb[0];
             G = rgb[1];
             B = rgb[2];
