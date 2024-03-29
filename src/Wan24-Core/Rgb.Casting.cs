@@ -13,13 +13,19 @@
         /// Cast as <see cref="int"/> (24 bit unsigned integer value)
         /// </summary>
         /// <param name="rgb"><see cref="Rgb"/></param>
-        public static implicit operator int(in Rgb rgb) => rgb.ToInt24();
+        public static implicit operator int(in Rgb rgb) => rgb.ToUInt24();
 
         /// <summary>
         /// Cast as byte array
         /// </summary>
         /// <param name="rgb"><see cref="Rgb"/></param>
         public static implicit operator byte[](in Rgb rgb) => rgb.GetBytes();
+
+        /// <summary>
+        /// Cast from <see cref="string"/>
+        /// </summary>
+        /// <param name="rgb"><see cref="string"/></param>
+        public static implicit operator Rgb(in string rgb) => Parse(rgb);
 
         /// <summary>
         /// Cast from <see cref="int"/> 24 bit unsigned integer value

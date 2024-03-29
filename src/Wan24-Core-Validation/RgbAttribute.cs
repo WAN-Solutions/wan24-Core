@@ -29,7 +29,7 @@ namespace wan24.Core
         {
             if (value is null) return null;
             if (value is not int rgb) return this.CreateValidationResult($"24 bit integer ({typeof(int)}) value expected ({value.GetType()} given)", validationContext);
-            if (!Sanitize && !Rgb.IsValidRgbInt24(rgb)) return this.CreateValidationResult($"24 bit integer value 0-{Rgb.MAX_24BIT_RGB} required", validationContext);
+            if (!Sanitize && !Rgb.IsValidRgbUInt24(rgb)) return this.CreateValidationResult($"24 bit integer value 0-{Rgb.MAX_24BIT_RGB} required", validationContext);
             return null;
         }
     }
