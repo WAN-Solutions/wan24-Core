@@ -241,7 +241,6 @@ namespace wan24.Core
         /// <returns><see cref="RgbA"/></returns>
         public static RgbA ParseCss(in string css)
         {
-            Logging.WriteInfo($"PARSE CSS {css}");
             if (!RX_CSS.IsMatch(css)) throw new ArgumentException("Invalid CSS RGBA string", nameof(css));
             string[] rgb = RX_CSS.Replace(css, "$1\t$2\t$3\t$4").Split('\t');
             return new(new Rgb(int.Parse(rgb[0]), int.Parse(rgb[1]), int.Parse(rgb[2])), float.Parse(rgb[3].Replace('.', ',')));
