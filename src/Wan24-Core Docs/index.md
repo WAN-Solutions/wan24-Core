@@ -1,9 +1,5 @@
 # wan24-Core
 
-**CAUTION**: The latest release 2.15.* may cause a dependency conflict with 
-referenced Microsoft NuGet packages. This is going to be solved as soon as the 
-Microsoft dependencies are resolvable again.
-
 This core library contains some .NET extensions and boiler plate avoiding 
 helpers. It's designed as core library for a long running process and 
 optimized for that purpose. The code tries to cache agressive whereever it's 
