@@ -22,9 +22,11 @@ jobs:
         dotnet-version: 8.0.x
     - name: Restore dependencies
       run: dotnet restore ./src/Wan24-Core.sln --ignore-failed-sources
-    - name: Build lib
+    - name: Build wan24-Core
       run: dotnet build ./src/Wan24-Core/Wan24-Core.csproj --no-restore
+    - name: Build wan24-Core-Validation
+      run: dotnet build ./src/Wan24-Core-Validation/Wan24-Core-Validation.csproj --no-restore
     - name: Build tests
       run: dotnet build "./src/Wan24-Core Tests/Wan24-Core Tests.csproj" --no-restore
     - name: Test
-      run: dotnet test ./src/Wan24-Core.sln --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal

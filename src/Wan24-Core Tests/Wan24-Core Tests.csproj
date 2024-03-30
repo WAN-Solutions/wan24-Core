@@ -9,6 +9,8 @@
     <IsPackable>false</IsPackable>
 
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+
+    <Configurations>Debug;Release;Trunk</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Wan24-Core-Validation\Wan24-Core-Validation.csproj" />
     <ProjectReference Include="..\Wan24-Core\Wan24-Core.csproj" />
   </ItemGroup>
 

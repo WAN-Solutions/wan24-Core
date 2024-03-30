@@ -67,7 +67,7 @@ namespace wan24.Core
             {
                 string str = value.ToString() ?? throw new ArgumentException("Not an enumeration value", nameof(value));
                 IEnumInfo info = EnumExtensions.GetEnumInfo(t);
-                return info.ValueDisplayTexts.ContainsKey(str) ? info.ValueDisplayTexts[str] : str;
+                return info.ValueDisplayTexts.TryGetValue(str, out string? text) ? text : str;
             }
             else
             {

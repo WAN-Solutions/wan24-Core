@@ -112,6 +112,13 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Get the group name (see <see cref="GroupAttribute"/>)
+        /// </summary>
+        /// <param name="pi">Property</param>
+        /// <returns>Group name</returns>
+        public static string? GetGroupName(this PropertyInfo pi) => pi.GetCustomAttributeCached<GroupAttribute>()?.Name;
+
+        /// <summary>
         /// Get a method which matches the given filter parameters
         /// </summary>
         /// <param name="type">Type</param>
