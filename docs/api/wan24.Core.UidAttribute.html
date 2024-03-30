@@ -109,11 +109,18 @@
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.attribute">Attribute</a></div>
     <div class="level2"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.dataannotations.validationattribute">ValidationAttribute</a></div>
-    <div class="level3"><span class="xref">UidAttribute</span></div>
-      <div class="level4"><a class="xref" href="wan24.Core.UidExtAttribute.html">UidExtAttribute</a></div>
+    <div class="level3"><span class="xref">ValidationAttributeBase</span></div>
+    <div class="level4"><span class="xref">UidAttribute</span></div>
+      <div class="level5"><a class="xref" href="wan24.Core.UidExtAttribute.html">UidExtAttribute</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.dataannotations.validationcontext">ValidationAttributeBase.GetErrorMessage(in ValidationContext, in string)</a>
+    </div>
+    <div>
+      <span class="xref">ValidationAttributeBase.ErrorMessageFormatter</span>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.dataannotations.validationattribute.formaterrormessage">ValidationAttribute.FormatErrorMessage(string)</a>
     </div>
@@ -272,11 +279,11 @@
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
-  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h6><strong>Assembly</strong>: wan24CoreValidation.dll</h6>
   <h5 id="wan24_Core_UidAttribute_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[AttributeUsage(AttributeTargets.Property|AttributeTargets.Parameter)]
-public class UidAttribute : ValidationAttribute</code></pre>
+public class UidAttribute : ValidationAttributeBase</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -285,7 +292,7 @@ public class UidAttribute : ValidationAttribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UidAttribute__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.UidAttribute.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UidAttribute.cs/#L14">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/UidAttribute.cs/#L15">View Source</a>
   </span>
   <a id="wan24_Core_UidAttribute__ctor_" data-uid="wan24.Core.UidAttribute.#ctor*"></a>
   <h4 id="wan24_Core_UidAttribute__ctor" data-uid="wan24.Core.UidAttribute.#ctor">UidAttribute()</h4>
@@ -303,7 +310,7 @@ public class UidAttribute : ValidationAttribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UidAttribute_AllowFutureTime.md&amp;value=---%0Auid%3A%20wan24.Core.UidAttribute.AllowFutureTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UidAttribute.cs/#L19">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/UidAttribute.cs/#L20">View Source</a>
   </span>
   <a id="wan24_Core_UidAttribute_AllowFutureTime_" data-uid="wan24.Core.UidAttribute.AllowFutureTime*"></a>
   <h4 id="wan24_Core_UidAttribute_AllowFutureTime" data-uid="wan24.Core.UidAttribute.AllowFutureTime">AllowFutureTime</h4>
@@ -336,7 +343,7 @@ public class UidAttribute : ValidationAttribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UidAttribute_IsValid_System_Object_System_ComponentModel_DataAnnotations_ValidationContext_.md&amp;value=---%0Auid%3A%20wan24.Core.UidAttribute.IsValid(System.Object%2CSystem.ComponentModel.DataAnnotations.ValidationContext)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UidAttribute.cs/#L22">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/UidAttribute.cs/#L23">View Source</a>
   </span>
   <a id="wan24_Core_UidAttribute_IsValid_" data-uid="wan24.Core.UidAttribute.IsValid*"></a>
   <h4 id="wan24_Core_UidAttribute_IsValid_System_Object_System_ComponentModel_DataAnnotations_ValidationContext_" data-uid="wan24.Core.UidAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)">IsValid(object?, ValidationContext)</h4>

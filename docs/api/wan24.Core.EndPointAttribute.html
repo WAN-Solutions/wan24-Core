@@ -109,10 +109,17 @@
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.attribute">Attribute</a></div>
     <div class="level2"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.dataannotations.validationattribute">ValidationAttribute</a></div>
-    <div class="level3"><span class="xref">EndPointAttribute</span></div>
+    <div class="level3"><span class="xref">ValidationAttributeBase</span></div>
+    <div class="level4"><span class="xref">EndPointAttribute</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.dataannotations.validationcontext">ValidationAttributeBase.GetErrorMessage(in ValidationContext, in string)</a>
+    </div>
+    <div>
+      <span class="xref">ValidationAttributeBase.ErrorMessageFormatter</span>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.dataannotations.validationattribute.formaterrormessage">ValidationAttribute.FormatErrorMessage(string)</a>
     </div>
@@ -271,10 +278,10 @@
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
-  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h6><strong>Assembly</strong>: wan24CoreValidation.dll</h6>
   <h5 id="wan24_Core_EndPointAttribute_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class EndPointAttribute : ValidationAttribute</code></pre>
+    <pre><code class="lang-csharp hljs">public class EndPointAttribute : ValidationAttributeBase</code></pre>
   </div>
   <h5 id="wan24_Core_EndPointAttribute_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Constructor</p>
@@ -286,7 +293,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EndPointAttribute__ctor_System_String___.md&amp;value=---%0Auid%3A%20wan24.Core.EndPointAttribute.%23ctor(System.String%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EndPointAttribute.cs/#L16">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/EndPointAttribute.cs/#L17">View Source</a>
   </span>
   <a id="wan24_Core_EndPointAttribute__ctor_" data-uid="wan24.Core.EndPointAttribute.#ctor*"></a>
   <h4 id="wan24_Core_EndPointAttribute__ctor_System_String___" data-uid="wan24.Core.EndPointAttribute.#ctor(System.String[])">EndPointAttribute(params string[])</h4>
@@ -326,7 +333,7 @@ sub-net)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EndPointAttribute_AllowIPv4.md&amp;value=---%0Auid%3A%20wan24.Core.EndPointAttribute.AllowIPv4%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EndPointAttribute.cs/#L26">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/EndPointAttribute.cs/#L27">View Source</a>
   </span>
   <a id="wan24_Core_EndPointAttribute_AllowIPv4_" data-uid="wan24.Core.EndPointAttribute.AllowIPv4*"></a>
   <h4 id="wan24_Core_EndPointAttribute_AllowIPv4" data-uid="wan24.Core.EndPointAttribute.AllowIPv4">AllowIPv4</h4>
@@ -357,7 +364,7 @@ sub-net)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EndPointAttribute_AllowIPv6.md&amp;value=---%0Auid%3A%20wan24.Core.EndPointAttribute.AllowIPv6%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EndPointAttribute.cs/#L31">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/EndPointAttribute.cs/#L32">View Source</a>
   </span>
   <a id="wan24_Core_EndPointAttribute_AllowIPv6_" data-uid="wan24.Core.EndPointAttribute.AllowIPv6*"></a>
   <h4 id="wan24_Core_EndPointAttribute_AllowIPv6" data-uid="wan24.Core.EndPointAttribute.AllowIPv6">AllowIPv6</h4>
@@ -388,7 +395,7 @@ sub-net)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EndPointAttribute_AllowedIpSubnets.md&amp;value=---%0Auid%3A%20wan24.Core.EndPointAttribute.AllowedIpSubnets%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EndPointAttribute.cs/#L21">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/EndPointAttribute.cs/#L22">View Source</a>
   </span>
   <a id="wan24_Core_EndPointAttribute_AllowedIpSubnets_" data-uid="wan24.Core.EndPointAttribute.AllowedIpSubnets*"></a>
   <h4 id="wan24_Core_EndPointAttribute_AllowedIpSubnets" data-uid="wan24.Core.EndPointAttribute.AllowedIpSubnets">AllowedIpSubnets</h4>
@@ -421,7 +428,7 @@ sub-net)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EndPointAttribute_IsValid_System_Object_System_ComponentModel_DataAnnotations_ValidationContext_.md&amp;value=---%0Auid%3A%20wan24.Core.EndPointAttribute.IsValid(System.Object%2CSystem.ComponentModel.DataAnnotations.ValidationContext)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EndPointAttribute.cs/#L34">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/EndPointAttribute.cs/#L35">View Source</a>
   </span>
   <a id="wan24_Core_EndPointAttribute_IsValid_" data-uid="wan24.Core.EndPointAttribute.IsValid*"></a>
   <h4 id="wan24_Core_EndPointAttribute_IsValid_System_Object_System_ComponentModel_DataAnnotations_ValidationContext_" data-uid="wan24.Core.EndPointAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)">IsValid(object?, ValidationContext)</h4>

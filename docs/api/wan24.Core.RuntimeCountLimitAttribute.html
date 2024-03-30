@@ -109,10 +109,17 @@
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.attribute">Attribute</a></div>
     <div class="level2"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.dataannotations.validationattribute">ValidationAttribute</a></div>
-    <div class="level3"><span class="xref">RuntimeCountLimitAttribute</span></div>
+    <div class="level3"><span class="xref">ValidationAttributeBase</span></div>
+    <div class="level4"><span class="xref">RuntimeCountLimitAttribute</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.dataannotations.validationcontext">ValidationAttributeBase.GetErrorMessage(in ValidationContext, in string)</a>
+    </div>
+    <div>
+      <span class="xref">ValidationAttributeBase.ErrorMessageFormatter</span>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.dataannotations.validationattribute.formaterrormessage">ValidationAttribute.FormatErrorMessage(string)</a>
     </div>
@@ -271,11 +278,11 @@
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
-  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h6><strong>Assembly</strong>: wan24CoreValidation.dll</h6>
   <h5 id="wan24_Core_RuntimeCountLimitAttribute_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[AttributeUsage(AttributeTargets.Property)]
-public class RuntimeCountLimitAttribute : ValidationAttribute</code></pre>
+public class RuntimeCountLimitAttribute : ValidationAttributeBase</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -284,7 +291,7 @@ public class RuntimeCountLimitAttribute : ValidationAttribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RuntimeCountLimitAttribute__ctor_System_String_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.RuntimeCountLimitAttribute.%23ctor(System.String%2CSystem.Int64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RuntimeCountLimitAttribute.cs/#L38">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/RuntimeCountLimitAttribute.cs/#L39">View Source</a>
   </span>
   <a id="wan24_Core_RuntimeCountLimitAttribute__ctor_" data-uid="wan24.Core.RuntimeCountLimitAttribute.#ctor*"></a>
   <h4 id="wan24_Core_RuntimeCountLimitAttribute__ctor_System_String_System_Int64_" data-uid="wan24.Core.RuntimeCountLimitAttribute.#ctor(System.String,System.Int64)">RuntimeCountLimitAttribute(string, long)</h4>
@@ -324,7 +331,7 @@ public class RuntimeCountLimitAttribute : ValidationAttribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RuntimeCountLimitAttribute__ctor_System_String_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.RuntimeCountLimitAttribute.%23ctor(System.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RuntimeCountLimitAttribute.cs/#L31">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/RuntimeCountLimitAttribute.cs/#L32">View Source</a>
   </span>
   <a id="wan24_Core_RuntimeCountLimitAttribute__ctor_" data-uid="wan24.Core.RuntimeCountLimitAttribute.#ctor*"></a>
   <h4 id="wan24_Core_RuntimeCountLimitAttribute__ctor_System_String_System_String_" data-uid="wan24.Core.RuntimeCountLimitAttribute.#ctor(System.String,System.String)">RuntimeCountLimitAttribute(string, string?)</h4>
@@ -364,7 +371,7 @@ public class RuntimeCountLimitAttribute : ValidationAttribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RuntimeCountLimitAttribute__ctor_System_String__System_String__System_Nullable_System_Int64___.md&amp;value=---%0Auid%3A%20wan24.Core.RuntimeCountLimitAttribute.%23ctor(System.String%40%2CSystem.String%40%2CSystem.Nullable%7BSystem.Int64%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RuntimeCountLimitAttribute.cs/#L46">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/RuntimeCountLimitAttribute.cs/#L47">View Source</a>
   </span>
   <a id="wan24_Core_RuntimeCountLimitAttribute__ctor_" data-uid="wan24.Core.RuntimeCountLimitAttribute.#ctor*"></a>
   <h4 id="wan24_Core_RuntimeCountLimitAttribute__ctor_System_String__System_String__System_Nullable_System_Int64___" data-uid="wan24.Core.RuntimeCountLimitAttribute.#ctor(System.String@,System.String@,System.Nullable{System.Int64}@)">RuntimeCountLimitAttribute(in string, in string?, in long?)</h4>
@@ -412,7 +419,7 @@ public class RuntimeCountLimitAttribute : ValidationAttribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RuntimeCountLimitAttribute__MaxGetter.md&amp;value=---%0Auid%3A%20wan24.Core.RuntimeCountLimitAttribute._MaxGetter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RuntimeCountLimitAttribute.cs/#L24">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/RuntimeCountLimitAttribute.cs/#L25">View Source</a>
   </span>
   <h4 id="wan24_Core_RuntimeCountLimitAttribute__MaxGetter" data-uid="wan24.Core.RuntimeCountLimitAttribute._MaxGetter">_MaxGetter</h4>
   <div class="markdown level1 summary"><p>Maximum getter</p>
@@ -442,7 +449,7 @@ public class RuntimeCountLimitAttribute : ValidationAttribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RuntimeCountLimitAttribute__Min.md&amp;value=---%0Auid%3A%20wan24.Core.RuntimeCountLimitAttribute._Min%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RuntimeCountLimitAttribute.cs/#L16">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/RuntimeCountLimitAttribute.cs/#L17">View Source</a>
   </span>
   <h4 id="wan24_Core_RuntimeCountLimitAttribute__Min" data-uid="wan24.Core.RuntimeCountLimitAttribute._Min">_Min</h4>
   <div class="markdown level1 summary"><p>Minimum</p>
@@ -472,7 +479,7 @@ public class RuntimeCountLimitAttribute : ValidationAttribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RuntimeCountLimitAttribute__MinGetter.md&amp;value=---%0Auid%3A%20wan24.Core.RuntimeCountLimitAttribute._MinGetter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RuntimeCountLimitAttribute.cs/#L20">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/RuntimeCountLimitAttribute.cs/#L21">View Source</a>
   </span>
   <h4 id="wan24_Core_RuntimeCountLimitAttribute__MinGetter" data-uid="wan24.Core.RuntimeCountLimitAttribute._MinGetter">_MinGetter</h4>
   <div class="markdown level1 summary"><p>Minimum getter</p>
@@ -504,7 +511,7 @@ public class RuntimeCountLimitAttribute : ValidationAttribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RuntimeCountLimitAttribute_Max.md&amp;value=---%0Auid%3A%20wan24.Core.RuntimeCountLimitAttribute.Max%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RuntimeCountLimitAttribute.cs/#L88">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/RuntimeCountLimitAttribute.cs/#L89">View Source</a>
   </span>
   <a id="wan24_Core_RuntimeCountLimitAttribute_Max_" data-uid="wan24.Core.RuntimeCountLimitAttribute.Max*"></a>
   <h4 id="wan24_Core_RuntimeCountLimitAttribute_Max" data-uid="wan24.Core.RuntimeCountLimitAttribute.Max">Max</h4>
@@ -535,7 +542,7 @@ public class RuntimeCountLimitAttribute : ValidationAttribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RuntimeCountLimitAttribute_MaxGetter.md&amp;value=---%0Auid%3A%20wan24.Core.RuntimeCountLimitAttribute.MaxGetter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RuntimeCountLimitAttribute.cs/#L98">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/RuntimeCountLimitAttribute.cs/#L99">View Source</a>
   </span>
   <a id="wan24_Core_RuntimeCountLimitAttribute_MaxGetter_" data-uid="wan24.Core.RuntimeCountLimitAttribute.MaxGetter*"></a>
   <h4 id="wan24_Core_RuntimeCountLimitAttribute_MaxGetter" data-uid="wan24.Core.RuntimeCountLimitAttribute.MaxGetter">MaxGetter</h4>
@@ -566,7 +573,7 @@ public class RuntimeCountLimitAttribute : ValidationAttribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RuntimeCountLimitAttribute_Min.md&amp;value=---%0Auid%3A%20wan24.Core.RuntimeCountLimitAttribute.Min%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RuntimeCountLimitAttribute.cs/#L74">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/RuntimeCountLimitAttribute.cs/#L75">View Source</a>
   </span>
   <a id="wan24_Core_RuntimeCountLimitAttribute_Min_" data-uid="wan24.Core.RuntimeCountLimitAttribute.Min*"></a>
   <h4 id="wan24_Core_RuntimeCountLimitAttribute_Min" data-uid="wan24.Core.RuntimeCountLimitAttribute.Min">Min</h4>
@@ -597,7 +604,7 @@ public class RuntimeCountLimitAttribute : ValidationAttribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RuntimeCountLimitAttribute_MinGetter.md&amp;value=---%0Auid%3A%20wan24.Core.RuntimeCountLimitAttribute.MinGetter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RuntimeCountLimitAttribute.cs/#L93">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/RuntimeCountLimitAttribute.cs/#L94">View Source</a>
   </span>
   <a id="wan24_Core_RuntimeCountLimitAttribute_MinGetter_" data-uid="wan24.Core.RuntimeCountLimitAttribute.MinGetter*"></a>
   <h4 id="wan24_Core_RuntimeCountLimitAttribute_MinGetter" data-uid="wan24.Core.RuntimeCountLimitAttribute.MinGetter">MinGetter</h4>
@@ -630,7 +637,7 @@ public class RuntimeCountLimitAttribute : ValidationAttribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RuntimeCountLimitAttribute_GetErrorMessage_System_Nullable_System_Int64__System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.RuntimeCountLimitAttribute.GetErrorMessage(System.Nullable%7BSystem.Int64%7D%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RuntimeCountLimitAttribute.cs/#L106">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/RuntimeCountLimitAttribute.cs/#L107">View Source</a>
   </span>
   <a id="wan24_Core_RuntimeCountLimitAttribute_GetErrorMessage_" data-uid="wan24.Core.RuntimeCountLimitAttribute.GetErrorMessage*"></a>
   <h4 id="wan24_Core_RuntimeCountLimitAttribute_GetErrorMessage_System_Nullable_System_Int64__System_String_" data-uid="wan24.Core.RuntimeCountLimitAttribute.GetErrorMessage(System.Nullable{System.Int64},System.String)">GetErrorMessage(long?, string?)</h4>
@@ -686,7 +693,7 @@ public class RuntimeCountLimitAttribute : ValidationAttribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RuntimeCountLimitAttribute_IsValid_System_Object_System_ComponentModel_DataAnnotations_ValidationContext_.md&amp;value=---%0Auid%3A%20wan24.Core.RuntimeCountLimitAttribute.IsValid(System.Object%2CSystem.ComponentModel.DataAnnotations.ValidationContext)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RuntimeCountLimitAttribute.cs/#L122">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/RuntimeCountLimitAttribute.cs/#L123">View Source</a>
   </span>
   <a id="wan24_Core_RuntimeCountLimitAttribute_IsValid_" data-uid="wan24.Core.RuntimeCountLimitAttribute.IsValid*"></a>
   <h4 id="wan24_Core_RuntimeCountLimitAttribute_IsValid_System_Object_System_ComponentModel_DataAnnotations_ValidationContext_" data-uid="wan24.Core.RuntimeCountLimitAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)">IsValid(object?, ValidationContext)</h4>

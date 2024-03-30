@@ -146,7 +146,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_CanConstruct_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.CanConstruct(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.cs/#L231">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.cs/#L238">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_CanConstruct_" data-uid="wan24.Core.ReflectionExtensions.CanConstruct*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_CanConstruct_System_Type_" data-uid="wan24.Core.ReflectionExtensions.CanConstruct(System.Type)">CanConstruct(Type)</h4>
@@ -670,7 +670,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetConstructor_System_Type_System_Reflection_BindingFlags__System_Func_System_Reflection_ConstructorInfo_System_Boolean___System_Boolean__System_Type___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetConstructor(System.Type%2CSystem.Reflection.BindingFlags%40%2CSystem.Func%7BSystem.Reflection.ConstructorInfo%2CSystem.Boolean%7D%40%2CSystem.Boolean%40%2CSystem.Type%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.cs/#L179">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.cs/#L186">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetConstructor_" data-uid="wan24.Core.ReflectionExtensions.GetConstructor*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetConstructor_System_Type_System_Reflection_BindingFlags__System_Func_System_Reflection_ConstructorInfo_System_Boolean___System_Boolean__System_Type___" data-uid="wan24.Core.ReflectionExtensions.GetConstructor(System.Type,System.Reflection.BindingFlags@,System.Func{System.Reflection.ConstructorInfo,System.Boolean}@,System.Boolean@,System.Type[])">GetConstructor(Type, in BindingFlags, in Func&lt;ConstructorInfo, bool&gt;?, in bool, params Type?[]?)</h4>
@@ -1336,10 +1336,60 @@ public static Type GetFinalElementType(this Type type)</code></pre>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetGroupName_System_Reflection_PropertyInfo_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetGroupName(System.Reflection.PropertyInfo)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.cs/#L119">View Source</a>
+  </span>
+  <a id="wan24_Core_ReflectionExtensions_GetGroupName_" data-uid="wan24.Core.ReflectionExtensions.GetGroupName*"></a>
+  <h4 id="wan24_Core_ReflectionExtensions_GetGroupName_System_Reflection_PropertyInfo_" data-uid="wan24.Core.ReflectionExtensions.GetGroupName(System.Reflection.PropertyInfo)">GetGroupName(PropertyInfo)</h4>
+  <div class="markdown level1 summary"><p>Get the group name (see <a class="xref" href="wan24.Core.GroupAttribute.html">GroupAttribute</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? GetGroupName(this PropertyInfo pi)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo">PropertyInfo</a></td>
+        <td><span class="parametername">pi</span></td>
+        <td><p>Property</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>Group name</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetMethod_System_Type_System_String__System_Reflection_BindingFlags__System_Func_System_Reflection_MethodInfo_System_Boolean___System_Nullable_System_Int32___System_Boolean__System_Type__System_Type___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetMethod(System.Type%2CSystem.String%40%2CSystem.Reflection.BindingFlags%40%2CSystem.Func%7BSystem.Reflection.MethodInfo%2CSystem.Boolean%7D%40%2CSystem.Nullable%7BSystem.Int32%7D%40%2CSystem.Boolean%40%2CSystem.Type%40%2CSystem.Type%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.cs/#L127">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.cs/#L134">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetMethod_" data-uid="wan24.Core.ReflectionExtensions.GetMethod*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetMethod_System_Type_System_String__System_Reflection_BindingFlags__System_Func_System_Reflection_MethodInfo_System_Boolean___System_Nullable_System_Int32___System_Boolean__System_Type__System_Type___" data-uid="wan24.Core.ReflectionExtensions.GetMethod(System.Type,System.String@,System.Reflection.BindingFlags@,System.Func{System.Reflection.MethodInfo,System.Boolean}@,System.Nullable{System.Int32}@,System.Boolean@,System.Type@,System.Type[])">GetMethod(Type, in string?, in BindingFlags, in Func&lt;MethodInfo, bool&gt;?, in int?, in bool, in Type?, params Type?[]?)</h4>
@@ -3732,7 +3782,7 @@ public static void SetValueFast(this PropertyInfoExt pi, in object? obj, in obje
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_UnwrapFinalTaskResultType_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.UnwrapFinalTaskResultType(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.cs/#L216">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.cs/#L223">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_UnwrapFinalTaskResultType_" data-uid="wan24.Core.ReflectionExtensions.UnwrapFinalTaskResultType*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_UnwrapFinalTaskResultType_System_Type_" data-uid="wan24.Core.ReflectionExtensions.UnwrapFinalTaskResultType(System.Type)">UnwrapFinalTaskResultType(Type)</h4>
