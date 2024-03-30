@@ -15,7 +15,7 @@ namespace Wan24_Core_Tests
             Assert.AreEqual("000000", Rgb.Black.ToHexString());
             Assert.AreEqual("#000000", Rgb.Black.ToHtmlString());
             Assert.AreEqual("rgb(0, 0, 0)", Rgb.Black.ToCssString());
-            Assert.AreEqual("rgba(0, 0, 0, 0.5)", Rgb.Black.ToCssString(50));
+            Assert.AreEqual("rgba(0, 0, 0, 0.5)", Rgb.Black.ToCssString(0.5f));
             Assert.AreEqual(0, Rgb.Black.ToUInt24());
             Assert.AreEqual(Rgb.Black, Rgb.Parse(Rgb.Black));
             Assert.AreEqual(Rgb.Black, Rgb.ParseHtml(Rgb.Black.ToHtmlString()));
@@ -29,7 +29,7 @@ namespace Wan24_Core_Tests
             Assert.AreEqual("FFFFFF", Rgb.White.ToHexString());
             Assert.AreEqual("#ffffff", Rgb.White.ToHtmlString());
             Assert.AreEqual("rgb(255, 255, 255)", Rgb.White.ToCssString());
-            Assert.AreEqual("rgba(255, 255, 255, 0.5)", Rgb.White.ToCssString(50));
+            Assert.AreEqual("rgba(255, 255, 255, 0.5)", Rgb.White.ToCssString(0.5f));
             Assert.AreEqual(Rgb.MAX_24BIT_RGB, Rgb.White.ToUInt24());
             Assert.AreEqual(Rgb.White, Rgb.Parse(Rgb.White));
             Assert.AreEqual(Rgb.White, Rgb.ParseHtml(Rgb.White.ToHtmlString()));
@@ -44,7 +44,7 @@ namespace Wan24_Core_Tests
             Assert.AreEqual("000000", rgb.ToHexString());
             Assert.AreEqual("#000000", rgb.ToHtmlString());
             Assert.AreEqual("rgb(0, 0, 0)", rgb.ToCssString());
-            Assert.AreEqual("rgba(0, 0, 0, 0.5)", rgb.ToCssString(50));
+            Assert.AreEqual("rgba(0, 0, 0, 0.5)", rgb.ToCssString(0.5f));
             Assert.AreEqual(0, rgb.ToUInt24());
             Assert.AreEqual(rgb, Rgb.Parse(rgb));
             Assert.AreEqual(rgb, Rgb.ParseHtml(rgb.ToHtmlString()));
@@ -60,7 +60,7 @@ namespace Wan24_Core_Tests
             Assert.AreEqual("010203", rgb.ToHexString());
             Assert.AreEqual("#010203", rgb.ToHtmlString());
             Assert.AreEqual("rgb(1, 2, 3)", rgb.ToCssString());
-            Assert.AreEqual("rgba(1, 2, 3, 0.5)", rgb.ToCssString(50));
+            Assert.AreEqual("rgba(1, 2, 3, 0.5)", rgb.ToCssString(0.5f));
             Assert.AreEqual(1 | (2 << 8) | (3 << 16), rgb.ToUInt24());
             Assert.AreEqual(rgb, Rgb.Parse(rgb));
             Assert.AreEqual(rgb, Rgb.ParseHtml(rgb.ToHtmlString()));

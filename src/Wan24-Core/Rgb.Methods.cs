@@ -104,7 +104,7 @@
         /// <returns>CSS RGB color value with alpha</returns>
         public string ToCssString(in float alpha)
         {
-            if (alpha < 0 || alpha > 100) throw new ArgumentOutOfRangeException(nameof(alpha));
+            if (alpha < 0 || alpha > 1) throw new ArgumentOutOfRangeException(nameof(alpha));
             return $"rgba({this}, {alpha.ToString().Replace(',', '.')})";
         }
 
