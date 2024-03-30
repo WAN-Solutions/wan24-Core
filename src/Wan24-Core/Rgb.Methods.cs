@@ -57,6 +57,13 @@
         public Rgb Invert() => new(byte.MaxValue - R, byte.MaxValue - G, byte.MaxValue - B);
 
         /// <summary>
+        /// Mix with another color
+        /// </summary>
+        /// <param name="other">Other color</param>
+        /// <returns>Mixed color</returns>
+        public Rgb Mix(in Rgb other) => new((R + other.R) >> 1, (G + other.G) >> 1, (B + other.B) >> 1);
+
+        /// <summary>
         /// Get the bytes of this RGB value
         /// </summary>
         /// <returns>RGB bytes</returns>

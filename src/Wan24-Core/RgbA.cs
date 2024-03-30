@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
 namespace wan24.Core
@@ -30,7 +31,7 @@ namespace wan24.Core
         /// Regular expression to match a CSS RGBA string (single line)
         /// </summary>
         public static readonly Regex RX_CSS = new(
-            @"^\s*rgba\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)\s*$",
+            @"^\s*rgba\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+(\.\d+)?)\s*\)\s*$",
             RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.Compiled,
             TimeSpan.FromMilliseconds(3000)
             );
@@ -78,6 +79,20 @@ namespace wan24.Core
             Alpha = rgb[Rgb.BINARY_SIZE..].ToFloat();
             if (Alpha < 0 || Alpha > 1) throw new ArgumentException("Invalid alpha", nameof(rgb));
         }
+
+        /// <summary>
+        /// Mix with another color
+        /// </summary>
+        /// <param name="other">Other color</param>
+        /// <returns>Mixed color</returns>
+        public RgbA Mix(in RgbA other) => new(RGB.Mix(other.RGB), (Alpha + other.Alpha) / 2);
+
+        /// <summary>
+        /// Mix with another color
+        /// </summary>
+        /// <param name="other">Other color</param>
+        /// <returns>Mixed color</returns>
+        public RgbA Mix(in Rgb other) => new(RGB.Mix(other), Alpha);
 
         /// <summary>
         /// Get the bytes of this RGB value
@@ -164,6 +179,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="rgb">RGB bytes</param>
         public static implicit operator RgbA(in ReadOnlyMemory<byte> rgb) => new(rgb.Span);
+
         /// <summary>
         /// Parse from a string
         /// </summary>
@@ -172,7 +188,7 @@ namespace wan24.Core
         public static RgbA Parse(in string str)
         {
             string[] rgb = str.Split(',', 4);
-            return new(new Rgb(int.Parse(rgb[0]), int.Parse(rgb[1]), int.Parse(rgb[2])), float.Parse(rgb[3]));
+            return new(new Rgb(int.Parse(rgb[0]), int.Parse(rgb[1]), int.Parse(rgb[2])), float.Parse(rgb[3].Replace('.', ',')));
         }
 
         /// <summary>
@@ -208,7 +224,7 @@ namespace wan24.Core
                 result = default;
                 return false;
             }
-            if (!float.TryParse(rgb[3], out float a) || a > 1)
+            if (!float.TryParse(rgb[3].Replace('.', ','), out float a) || a > 1)
             {
                 if (Logging.Debug) Logging.WriteDebug("String parsing failed: Invalid RGBA alpha value");
                 result = default;
@@ -227,7 +243,7 @@ namespace wan24.Core
         {
             if (!RX_CSS.IsMatch(css)) throw new ArgumentException("Invalid CSS RGBA string", nameof(css));
             string[] rgb = RX_CSS.Replace(css, "$1\t$2\t$3\t$4").Split('\t');
-            return new(new Rgb(int.Parse(rgb[0]), int.Parse(rgb[1]), int.Parse(rgb[2])), float.Parse(rgb[3]));
+            return new(new Rgb(int.Parse(rgb[0]), int.Parse(rgb[1]), int.Parse(rgb[2])), float.Parse(rgb[3].Replace('.', ',')));
         }
 
         /// <summary>
@@ -263,7 +279,7 @@ namespace wan24.Core
                 result = default;
                 return false;
             }
-            if (!float.TryParse(rgb[3], out float a) || a > 1)
+            if (!float.TryParse(rgb[3].Replace('.',','), out float a) || a > 1)
             {
                 if (Logging.Debug) Logging.WriteDebug("CSS RGBA string parsing failed: Invalid CSS RGBA alpha value");
                 result = default;
