@@ -38,14 +38,14 @@ namespace wan24.Core
         /// Regular expression to match a CSS RGB string (single line)
         /// </summary>
         public static readonly Regex RX_CSS = new(
-            @"^\s*rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*(\d+)\s*)?\)\s*$", 
+            @"^\s*rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*(\d+(\.\d+)?)\s*)?\)\s*$", 
             RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.Compiled, 
             TimeSpan.FromMilliseconds(3000)
             );
         /// <summary>
         /// Black (min. value)
         /// </summary>
-        public static readonly Rgb Black = new();
+        public static readonly Rgb Black = default;
         /// <summary>
         /// White (max. value)
         /// </summary>
