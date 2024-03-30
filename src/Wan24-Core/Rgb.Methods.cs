@@ -100,12 +100,12 @@
         /// <summary>
         /// To CSS RGB color value with alpha
         /// </summary>
-        /// <param name="alpha">Alpha value (0..100%)</param>
+        /// <param name="alpha">Alpha value (%)</param>
         /// <returns>CSS RGB color value with alpha</returns>
-        public string ToCssString(in int alpha)
+        public string ToCssString(in float alpha)
         {
             if (alpha < 0 || alpha > 100) throw new ArgumentOutOfRangeException(nameof(alpha));
-            return $"rgba({this}, {((decimal)alpha / 100).ToString().Replace(',', '.')})";
+            return $"rgba({this}, {alpha.ToString().Replace(',', '.')})";
         }
 
         /// <summary>

@@ -37,7 +37,7 @@ namespace wan24.Core
         /// <summary>
         /// Regular expression to match a CSS RGB string (single line)
         /// </summary>
-        private static readonly Regex RX_CSS = new(
+        public static readonly Regex RX_CSS = new(
             @"^\s*rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*(\d+)\s*)?\)\s*$", 
             RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.Compiled, 
             TimeSpan.FromMilliseconds(3000)

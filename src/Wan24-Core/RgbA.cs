@@ -12,11 +12,11 @@ namespace wan24.Core
         /// <summary>
         /// Structure size in bytes
         /// </summary>
-        public const int STRUCTURE_SIZE = Rgb.STUCTURE_SIZE + sizeof(int);
+        public const int STRUCTURE_SIZE = Rgb.STUCTURE_SIZE + sizeof(float);
         /// <summary>
         /// Binary structure size in bytes (returned from <see cref="GetBytes()"/>)
         /// </summary>
-        public const int BINARY_SIZE = Rgb.BINARY_SIZE + sizeof(byte);
+        public const int BINARY_SIZE = Rgb.BINARY_SIZE + sizeof(float);
         /// <summary>
         /// RGB field byte offset
         /// </summary>
@@ -29,7 +29,7 @@ namespace wan24.Core
         /// <summary>
         /// Regular expression to match a CSS RGBA string (single line)
         /// </summary>
-        private static readonly Regex RX_CSS = new(
+        public static readonly Regex RX_CSS = new(
             @"^\s*rgba\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)\s*$",
             RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.Compiled,
             TimeSpan.FromMilliseconds(3000)
@@ -41,10 +41,10 @@ namespace wan24.Core
         [FieldOffset(RGB_FIELD_OFFSET)]
         public readonly Rgb RGB;
         /// <summary>
-        /// Alpha (0..100%)
+        /// Alpha (%)
         /// </summary>
         [FieldOffset(ALPHA_FIELD_OFFSET)]
-        public readonly int Alpha;
+        public readonly float Alpha;
 
         /// <summary>
         /// Constructor
@@ -52,17 +52,17 @@ namespace wan24.Core
         public RgbA()
         {
             RGB = default;
-            Alpha = default;
+            Alpha = 1;
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="rgb">RGB</param>
-        /// <param name="alpha">Alpha (0..100%)</param>
-        public RgbA(in Rgb rgb, in int alpha = 100)
+        /// <param name="alpha">Alpha (%)</param>
+        public RgbA(in Rgb rgb, in float alpha = 1)
         {
-            if (alpha < 0 || alpha > 100) throw new ArgumentOutOfRangeException(nameof(alpha));
+            if (alpha < 0 || alpha > 1) throw new ArgumentOutOfRangeException(nameof(alpha));
             RGB = rgb;
             Alpha = alpha;
         }
@@ -75,14 +75,20 @@ namespace wan24.Core
         {
             if (rgb.Length < BINARY_SIZE) throw new ArgumentOutOfRangeException(nameof(rgb));
             RGB = rgb;
-            Alpha = rgb[..BINARY_SIZE][^1];
+            Alpha = rgb[Rgb.BINARY_SIZE..].ToFloat();
+            if (Alpha < 0 || Alpha > 1) throw new ArgumentException("Invalid alpha", nameof(rgb));
         }
 
         /// <summary>
         /// Get the bytes of this RGB value
         /// </summary>
         /// <returns>RGB bytes</returns>
-        public byte[] GetBytes() => [..RGB.GetBytes(), (byte)Alpha];
+        public byte[] GetBytes()
+        {
+            byte[] res = new byte[BINARY_SIZE];
+            GetBytes(res);
+            return res;
+        }
 
         /// <summary>
         /// Get the bytes of this RGB value
@@ -92,7 +98,7 @@ namespace wan24.Core
         {
             if (buffer.Length < BINARY_SIZE) throw new ArgumentOutOfRangeException(nameof(buffer));
             RGB.GetBytes(buffer);
-            buffer[..BINARY_SIZE][^1] = (byte)Alpha;
+            Alpha.GetBytes(buffer[Rgb.BINARY_SIZE..]);
             return buffer;
         }
 
@@ -103,13 +109,19 @@ namespace wan24.Core
         public string ToCssString() => $"rgba({this})";
 
         /// <inheritdoc/>
-        public override string ToString() => $"{RGB}, {Alpha}";
+        public override string ToString() => $"{RGB}, {Alpha.ToString().Replace(',', '.')}";
 
         /// <summary>
         /// Cast as <see cref="string"/>
         /// </summary>
         /// <param name="rgb"><see cref="RgbA"/></param>
         public static implicit operator string(in RgbA rgb) => rgb.ToString();
+
+        /// <summary>
+        /// Cast as <see cref="Rgb"/>
+        /// </summary>
+        /// <param name="rgb"><see cref="Rgb"/></param>
+        public static implicit operator Rgb(in RgbA rgb) => rgb.RGB;
 
         /// <summary>
         /// Cast as byte array
@@ -160,7 +172,7 @@ namespace wan24.Core
         public static RgbA Parse(in string str)
         {
             string[] rgb = str.Split(',', 4);
-            return new(new Rgb(int.Parse(rgb[0]), int.Parse(rgb[1]), int.Parse(rgb[2])), int.Parse(rgb[3]));
+            return new(new Rgb(int.Parse(rgb[0]), int.Parse(rgb[1]), int.Parse(rgb[2])), float.Parse(rgb[3]));
         }
 
         /// <summary>
@@ -196,7 +208,7 @@ namespace wan24.Core
                 result = default;
                 return false;
             }
-            if (!int.TryParse(rgb[3], out int a) || a > 100)
+            if (!float.TryParse(rgb[3], out float a) || a > 1)
             {
                 if (Logging.Debug) Logging.WriteDebug("String parsing failed: Invalid RGBA alpha value");
                 result = default;
@@ -215,7 +227,7 @@ namespace wan24.Core
         {
             if (!RX_CSS.IsMatch(css)) throw new ArgumentException("Invalid CSS RGBA string", nameof(css));
             string[] rgb = RX_CSS.Replace(css, "$1\t$2\t$3\t$4").Split('\t');
-            return new(new Rgb(int.Parse(rgb[0]), int.Parse(rgb[1]), int.Parse(rgb[2])), int.Parse(rgb[3]));
+            return new(new Rgb(int.Parse(rgb[0]), int.Parse(rgb[1]), int.Parse(rgb[2])), float.Parse(rgb[3]));
         }
 
         /// <summary>
@@ -251,7 +263,7 @@ namespace wan24.Core
                 result = default;
                 return false;
             }
-            if (!int.TryParse(rgb[3], out int a) || a > 100)
+            if (!float.TryParse(rgb[3], out float a) || a > 1)
             {
                 if (Logging.Debug) Logging.WriteDebug("CSS RGBA string parsing failed: Invalid CSS RGBA alpha value");
                 result = default;
