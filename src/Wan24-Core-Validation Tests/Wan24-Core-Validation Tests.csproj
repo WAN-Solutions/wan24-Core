@@ -2,14 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>Wan24_Core_Tests</RootNamespace>
+    <RootNamespace>Wan24_Core_Validation_Tests</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
-    <Configurations>Debug;Release;Trunk</Configurations>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Wan24-Core\Wan24-Core.csproj" />
+    <ProjectReference Include="..\Wan24-Core-Validation\Wan24-Core-Validation.csproj" />
   </ItemGroup>
 
   <ItemGroup>
