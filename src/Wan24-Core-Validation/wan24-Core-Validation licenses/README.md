@@ -25,6 +25,10 @@ libraries:
 
 | Library | License |
 | ------- | ------- |
+| [`Microsoft.Extensions.DependencyInjection`](https://dot.net/) | [MIT](https://licenses.nuget.org/MIT) |
+| [`Microsoft.Extensions.Hosting.Abstractions`](https://dot.net/) | [MIT](https://licenses.nuget.org/MIT) |
+| [`Microsoft.Extensions.Localization.Abstractions`](https://asp.net/) | [MIT](https://licenses.nuget.org/MIT) |
+| [`Microsoft.Extensions.Logging.Abstractions`](https://dot.net/) | [MIT](https://licenses.nuget.org/MIT) |
 | [`Microsoft.Extensions.Configuration.Abstractions`](https://dot.net/) | [MIT](https://licenses.nuget.org/MIT) |
 | [`Microsoft.Extensions.DependencyInjection.Abstractions`](https://dot.net/) | [MIT](https://licenses.nuget.org/MIT) |
 | [`Microsoft.Extensions.Diagnostics.Abstractions`](https://dot.net/) | [MIT](https://licenses.nuget.org/MIT) |
