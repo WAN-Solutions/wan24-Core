@@ -10,7 +10,7 @@ Linked project and license URIs come from the referenced NuGet package meta
 data. None of these libraries have been modified and are being used in their 
 original published form.
 
-## wan24-Core referenced licenses
+## wan24-Core referenced libraries
 
 The published `wan24-Core` library uses the following referenced open source 
 libraries:
