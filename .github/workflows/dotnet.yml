@@ -26,7 +26,9 @@ jobs:
       run: dotnet build ./src/Wan24-Core/Wan24-Core.csproj --no-restore
     - name: Build wan24-Core-Validation
       run: dotnet build ./src/Wan24-Core-Validation/Wan24-Core-Validation.csproj --no-restore
-    - name: Build tests
+    - name: Build Core tests
       run: dotnet build "./src/Wan24-Core Tests/Wan24-Core Tests.csproj" --no-restore
+    - name: Build Validation Core tests
+      run: dotnet build "./src/Wan24-Core-Validation Tests/Wan24-Core-Validation Tests.csproj" --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
