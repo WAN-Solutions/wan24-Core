@@ -156,13 +156,13 @@
         }
 
         /// <inheritdoc/>
-        protected override async Task AfterPauseAsync(CancellationToken cancellationToken)
+        protected override async Task AfterResumeAsync(CancellationToken cancellationToken)
         {
             bool raise;
             using (SemaphoreSyncContext ssc = await EventSync.SyncContextAsync(cancellationToken).DynamicContext())
                 raise = Arguments.Count > 0;
             if (raise) Throttle.Raise();
-            await base.AfterPauseAsync(cancellationToken).DynamicContext();
+            await base.AfterResumeAsync(cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
