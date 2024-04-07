@@ -35,6 +35,14 @@ namespace wan24.Core
             RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.Compiled,
             TimeSpan.FromMilliseconds(3000)
             );
+        /// <summary>
+        /// Black
+        /// </summary>
+        public static readonly RgbA Black = new(Rgb.Black);
+        /// <summary>
+        /// Black
+        /// </summary>
+        public static readonly RgbA White = new(Rgb.White);
 
         /// <summary>
         /// RGB
