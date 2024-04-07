@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 
 namespace wan24.Core
 {
@@ -20,16 +21,37 @@ namespace wan24.Core
         /// <summary>
         /// Add a file system events watcher
         /// </summary>
-        /// <param name="watcher">File system events watcher (should be running; will be disposed, if not removed before disposing!)</param>
+        /// <param name="watcher">File system events watcher (will be disposed, if not removed before disposing!)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>ID</returns>
         public virtual string Add(in FileSystemEvents watcher, in CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
             string res = Guid.NewGuid().ToString();
-            RunEvent.Wait(cancellationToken);
-            EnsureUndisposed();
             Watchers[res] = watcher;
+            if (IsPaused && !watcher.IsPaused)
+            {
+                if (watcher.IsRunning)
+                {
+                    watcher.PauseAsync(cancellationToken).Wait(CancellationToken.None);
+                }
+                else
+                {
+                    watcher.StartAsync(cancellationToken).Wait(CancellationToken.None);
+                    watcher.PauseAsync(cancellationToken).Wait(CancellationToken.None);
+                }
+            }
+            else if (IsRunning)
+            {
+                if (watcher.IsPaused)
+                {
+                    watcher.ResumeAsync(cancellationToken).Wait(CancellationToken.None);
+                }
+                else if (!watcher.IsRunning)
+                {
+                    watcher.StartAsync(cancellationToken).Wait(CancellationToken.None);
+                }
+            }
             watcher.OnEvents += RaiseOnEvents;
             return res;
         }
@@ -37,16 +59,37 @@ namespace wan24.Core
         /// <summary>
         /// Add a file system events watcher
         /// </summary>
-        /// <param name="watcher">File system events watcher (should be running; will be disposed, if not removed before disposing!)</param>
+        /// <param name="watcher">File system events watcher (will be disposed, if not removed before disposing!)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>ID</returns>
         public virtual async Task<string> AddAsync(FileSystemEvents watcher, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
             string res = Guid.NewGuid().ToString();
-            await RunEvent.WaitAsync(cancellationToken).DynamicContext();
-            EnsureUndisposed();
             Watchers[res] = watcher;
+            if (IsPaused && !watcher.IsPaused)
+            {
+                if (watcher.IsRunning)
+                {
+                    await watcher.PauseAsync(cancellationToken).DynamicContext();
+                }
+                else
+                {
+                    await watcher.StartAsync(cancellationToken).DynamicContext();
+                    await watcher.PauseAsync(cancellationToken).DynamicContext();
+                }
+            }
+            else if (IsRunning)
+            {
+                if (watcher.IsPaused)
+                {
+                    await watcher.ResumeAsync(cancellationToken).DynamicContext();
+                }
+                else if (!watcher.IsRunning)
+                {
+                    await watcher.StartAsync(cancellationToken).DynamicContext();
+                }
+            }
             watcher.OnEvents += RaiseOnEvents;
             return res;
         }
@@ -62,6 +105,39 @@ namespace wan24.Core
             if (!Watchers.TryRemove(id, out FileSystemEvents? res)) throw new ArgumentException("ID not found", nameof(id));
             res.OnEvents -= RaiseOnEvents;
             return res;
+        }
+
+        /// <summary>
+        /// Remove a file system events watcher
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <param name="result">Removed file system events watcher (won'tbe disposed)</param>
+        /// <returns>If succeed</returns>
+        public virtual bool TryRemove(in string id, [NotNullWhen(returnValue: true)] out FileSystemEvents? result)
+        {
+            if (!EnsureUndisposed(throwException: false) || !Watchers.TryRemove(id, out result))
+            {
+                result = null;
+                return false;
+            }
+            result.OnEvents -= RaiseOnEvents;
+            return true;
+        }
+
+        /// <inheritdoc/>
+        protected override async Task AfterStartAsync(CancellationToken cancellationToken)
+        {
+            await base.AfterStartAsync(cancellationToken).DynamicContext();
+            List<Task> tasks = new(Watchers.Values.Select(w => !w.IsPaused ? w.StartAsync(CancellationToken.None) : Task.CompletedTask));
+            await tasks.WaitAll().WaitAsync(cancellationToken).DynamicContext();
+        }
+
+        /// <inheritdoc/>
+        protected override async Task BeforeStopAsync(CancellationToken cancellationToken)
+        {
+            await base.BeforeStopAsync(cancellationToken).DynamicContext();
+            List<Task> tasks = new(Watchers.Values.Select(w => w.StopAsync(CancellationToken.None)));
+            await tasks.WaitAll().WaitAsync(cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
