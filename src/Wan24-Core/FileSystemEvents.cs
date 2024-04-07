@@ -14,17 +14,17 @@
         /// </summary>
         protected readonly FileSystemWatcher Watcher;
         /// <summary>
+        /// Watcher event (raised when having an event)
+        /// </summary>
+        protected readonly ResetEvent WatcherEvent = new();
+        /// <summary>
         /// Events synchronization
         /// </summary>
         protected readonly SemaphoreSync EventSync = new();
         /// <summary>
-        /// Changed paths
+        /// File system event arguments
         /// </summary>
-        protected readonly HashSet<string> Paths = [];
-        /// <summary>
-        /// Changes
-        /// </summary>
-        protected WatcherChangeTypes Changes = default;
+        protected readonly List<FileSystemEventArgs> Arguments = [];
 
         /// <summary>
         /// Constructor
@@ -32,9 +32,18 @@
         /// <param name="folder">Folder</param>
         /// <param name="pattern">Pattern</param>
         /// <param name="filters">Filters</param>
+        /// <param name="events">Event types</param>
         /// <param name="throttle">Throttling time in ms</param>
         /// <param name="recursive">Watch recursive?</param>
-        public FileSystemEvents(in string folder, in string pattern, in NotifyFilters filters, in int throttle, in bool recursive = true) : base()
+        public FileSystemEvents(
+            in string folder,
+            in string pattern,
+            in NotifyFilters filters,
+            in int throttle,
+            in bool recursive = true,
+            in FileSystemEventTypes events = FileSystemEventTypes.All
+            )
+            : base()
         {
             CanPause = true;
             Throttle = new(throttle, this);
@@ -43,10 +52,96 @@
                 NotifyFilter = filters,
                 IncludeSubdirectories = recursive
             };
-            Watcher.Changed += HandleWatherEvent;
-            Watcher.Created += HandleWatherEvent;
-            Watcher.Deleted += HandleWatherEvent;
-            Watcher.Renamed += HandleWatherEvent;
+            Events = events;
+            if ((events & FileSystemEventTypes.Changes) == FileSystemEventTypes.Changes) Watcher.Changed += HandleWatcherEvent;
+            if ((events & FileSystemEventTypes.Created) == FileSystemEventTypes.Created) Watcher.Created += HandleWatcherEvent;
+            if ((events & FileSystemEventTypes.Deleted) == FileSystemEventTypes.Deleted) Watcher.Deleted += HandleWatcherEvent;
+            if ((events & FileSystemEventTypes.Renamed) == FileSystemEventTypes.Renamed) Watcher.Renamed += HandleWatcherEvent;
+        }
+
+        /// <summary>
+        /// Events
+        /// </summary>
+        public FileSystemEventTypes Events { get; }
+
+        /// <summary>
+        /// Watched folder
+        /// </summary>
+        public string Folder => Watcher.Path;
+
+        /// <summary>
+        /// Watched pattern
+        /// </summary>
+        public string Pattern => Watcher.Filter;
+
+        /// <summary>
+        /// Recursive?
+        /// </summary>
+        public bool Recursive => Watcher.IncludeSubdirectories;
+
+        /// <summary>
+        /// Filters
+        /// </summary>
+        public NotifyFilters Filters => Watcher.NotifyFilter;
+
+        /// <summary>
+        /// Event throttle timeout in ms
+        /// </summary>
+        public int ThrottleTimeout => Throttle.Timeout;
+
+        /// <summary>
+        /// Number of currently collected event arguments
+        /// </summary>
+        public int CurrentEvents
+        {
+            get
+            {
+                using SemaphoreSyncContext ssc = EventSync;
+                return Arguments.Count;
+            }
+        }
+
+        /// <summary>
+        /// Number of times events have been raised during throttline
+        /// </summary>
+        public int EventCount => Throttle.RaisedCount;
+
+        /// <summary>
+        /// Time when the first event was raised during throttling
+        /// </summary>
+        public DateTime EventRaised => Throttle.RaisedTime;
+
+        /// <summary>
+        /// Last event data
+        /// </summary>
+        public FileSystemEventsArgs? Last { get; protected set; }
+
+        /// <summary>
+        /// Wait for an event (canceled when the service is stopping)
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Event data</returns>
+        public virtual FileSystemEventsArgs WaitEvent(in CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            EnsureRunning();
+            using Cancellations cancellation = new(cancellationToken, CancelToken);
+            WatcherEvent.Wait(cancellation);
+            return Last ?? throw new InvalidProgramException();
+        }
+
+        /// <summary>
+        /// Wait for an event (canceled when the service is stopping)
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Event data</returns>
+        public virtual async Task<FileSystemEventsArgs> WaitEventAsync(CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            EnsureRunning();
+            using Cancellations cancellation = new(cancellationToken, CancelToken);
+            await WatcherEvent.WaitAsync(cancellation).DynamicContext();
+            return Last ?? throw new InvalidProgramException();
         }
 
         /// <summary>
@@ -54,14 +149,10 @@
         /// </summary>
         /// <param name="sender">Sender</param>
         /// <param name="e">Arguments</param>
-        protected virtual void HandleWatherEvent(object sender, FileSystemEventArgs e)
+        protected virtual void HandleWatcherEvent(object sender, FileSystemEventArgs e)
         {
-            using (SemaphoreSyncContext ssc = EventSync)
-            {
-                Changes |= e.ChangeType;
-                Paths.Add(e.FullPath);
-            }
-            Throttle.Raise();
+            using (SemaphoreSyncContext ssc = EventSync) Arguments.Add(e);
+            if (!IsPaused) Throttle.Raise();
         }
 
         /// <inheritdoc/>
@@ -69,7 +160,7 @@
         {
             bool raise;
             using (SemaphoreSyncContext ssc = await EventSync.SyncContextAsync(cancellationToken).DynamicContext())
-                raise = Paths.Count > 0;
+                raise = Arguments.Count > 0;
             if (raise) Throttle.Raise();
             await base.AfterPauseAsync(cancellationToken).DynamicContext();
         }
@@ -91,12 +182,13 @@
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            Watcher.Changed -= HandleWatherEvent;
-            Watcher.Created -= HandleWatherEvent;
-            Watcher.Deleted -= HandleWatherEvent;
-            Watcher.Renamed -= HandleWatherEvent;
+            Watcher.Changed -= HandleWatcherEvent;
+            Watcher.Created -= HandleWatcherEvent;
+            Watcher.Deleted -= HandleWatcherEvent;
+            Watcher.Renamed -= HandleWatcherEvent;
             base.Dispose(disposing);
             Watcher.Dispose();
+            WatcherEvent.Dispose();
             Throttle.Dispose();
             EventSync.Dispose();
         }
@@ -104,12 +196,13 @@
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            Watcher.Changed -= HandleWatherEvent;
-            Watcher.Created -= HandleWatherEvent;
-            Watcher.Deleted -= HandleWatherEvent;
-            Watcher.Renamed -= HandleWatherEvent;
+            Watcher.Changed -= HandleWatcherEvent;
+            Watcher.Created -= HandleWatcherEvent;
+            Watcher.Deleted -= HandleWatcherEvent;
+            Watcher.Renamed -= HandleWatcherEvent;
             await base.DisposeCore().DynamicContext();
             Watcher.Dispose();
+            await WatcherEvent.DisposeAsync().DynamicContext();
             await Throttle.DisposeAsync().DynamicContext();
             await EventSync.DisposeAsync().DynamicContext();
         }
@@ -128,25 +221,18 @@
         /// Raise the <see cref="OnEvents"/> event
         /// </summary>
         /// <param name="raised">Raised time</param>
-        /// <param name="raisedCount">Raised count</param>
-        protected virtual void RaiseOnEvents(in DateTime raised, in int raisedCount)
+        protected virtual void RaiseOnEvents(in DateTime raised)
         {
-            if (!IsRunning)
-            {
-                using SemaphoreSyncContext ssc = EventSync;
-                Changes = default;
-                Paths.Clear();
-                return;
-            }
-            FileSystemEventsArgs e;
             using (SemaphoreSyncContext ssc = EventSync)
             {
-                if (Paths.Count < 1) return;
-                e = new(Changes, [.. Paths], raised, raisedCount);
-                Changes = default;
-                Paths.Clear();
+                if (Arguments.Count < 1) return;
+                Last = new([.. Arguments], raised);
+                Arguments.Clear();
             }
-            OnEvents?.Invoke(this, e);
+            if (!IsRunning) return;
+            WatcherEvent.Set();
+            OnEvents?.Invoke(this, Last);
+            WatcherEvent.Reset();
         }
 
         /// <summary>
@@ -155,31 +241,19 @@
         /// <remarks>
         /// Constructor
         /// </remarks>
-        /// <param name="changes">Recorded changes</param>
-        /// <param name="paths">Changed paths</param>
+        /// <param name="arguments">File system event arguments</param>
         /// <param name="raised">Raised time</param>
-        /// <param name="raisedCount">Raised count</param>
-        public class FileSystemEventsArgs(in WatcherChangeTypes changes, in IReadOnlyList<string> paths, in DateTime raised, in int raisedCount) : EventArgs()
+        public class FileSystemEventsArgs(in IReadOnlyList<FileSystemEventArgs> arguments, in DateTime raised) : EventArgs()
         {
             /// <summary>
-            /// Reorded changes
+            /// File system event arguments
             /// </summary>
-            public WatcherChangeTypes Changes { get; } = changes;
-
-            /// <summary>
-            /// CHanged paths
-            /// </summary>
-            public IReadOnlyList<string> Paths { get; } = paths;
+            public IReadOnlyList<FileSystemEventArgs> Arguments { get; } = arguments;
 
             /// <summary>
             /// Raised time
             /// </summary>
             public DateTime Raised { get; } = raised;
-
-            /// <summary>
-            /// Raised count
-            /// </summary>
-            public int RaisedCount { get; } = raisedCount;
         }
 
         /// <summary>
@@ -198,7 +272,7 @@
             protected readonly FileSystemEvents Events = events;
 
             /// <inheritdoc/>
-            protected override void HandleEvent(in DateTime raised, in int raisedCount) => Events.RaiseOnEvents(raised, raisedCount);
+            protected override void HandleEvent(in DateTime raised, in int raisedCount) => Events.RaiseOnEvents(raised);
         }
     }
 }
