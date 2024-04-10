@@ -223,7 +223,7 @@ namespace wan24.Core
         #endregion
 
         /// <inheritdoc/>
-        public void SetDynamicValue(in dynamic? value) => Value = DynamicValueConverter?.Invoke(value);
+        public void SetDynamicValue(in dynamic? value) => Value = (tValue?)DynamicValueConverter?.Invoke(value);
 
         /// <inheritdoc/>
         public void Unset(in bool recursive = false)

@@ -75,5 +75,40 @@ namespace wan24.Core
                 throw;
             }
         }
+
+        /// <summary>
+        /// Run a command and wait for exit to get the exit code
+        /// </summary>
+        /// <param name="cmd">Command</param>
+        /// <param name="killOnError">Kill the process on error, if it didn't exit yet?</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <param name="args">Arguments</param>
+        /// <returns>Exit code</returns>
+        public static async Task<int> GetExitCodeAsync(
+            string cmd,
+            bool killOnError = true,
+            CancellationToken cancellationToken = default,
+            params string[] args
+            )
+        {
+            using Process proc = new();
+            proc.StartInfo.UseShellExecute = true;
+            proc.StartInfo.CreateNoWindow = true;
+            proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            proc.StartInfo.FileName = cmd;
+            proc.StartInfo.ArgumentList.AddRange(args);
+            proc.Start();
+            try
+            {
+                await proc.WaitForExitAsync(cancellationToken).DynamicContext();
+                cancellationToken.ThrowIfCancellationRequested();
+                return proc.ExitCode;
+            }
+            catch
+            {
+                if (killOnError && !proc.HasExited) proc.Kill(entireProcessTree: true);
+                throw;
+            }
+        }
     }
 }
