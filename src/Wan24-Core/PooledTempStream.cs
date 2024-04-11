@@ -183,6 +183,13 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        public override void Close()
+        {
+            if (!IsDisposing) return;
+            base.Close();
+        }
+
+        /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
             ReturnBaseStream();
@@ -262,7 +269,7 @@ namespace wan24.Core
         /// </summary>
         private void ReturnBaseStream()
         {
-            if (_BaseStream is null) return;
+            if (_BaseStream == Null) return;
             if (MemoryStream is not null)
             {
                 UsedMemoryStreamPool.Return(MemoryStream);
@@ -271,7 +278,7 @@ namespace wan24.Core
             {
                 UsedFileStreamPool.Return(FileStream!);
             }
-            _BaseStream = null!;
+            _BaseStream = Null;
         }
     }
 }
