@@ -108,17 +108,10 @@
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventargs">EventArgs</a></div>
-    <div class="level2"><a class="xref" href="wan24.Core.FileSystemEvents.html">FileSystemEvents</a>.<a class="xref" href="wan24.Core.FileSystemEvents.FileSystemEventsArgs.html">FileSystemEventsArgs</a></div>
-    <div class="level3"><span class="xref">MultiFileSystemEvents.MultiFileSystemEventsArgs</span></div>
+    <div class="level2"><span class="xref">MultiFileSystemEvents.MultiFileSystemEventsArgs</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="wan24.Core.FileSystemEvents.FileSystemEventsArgs.html#wan24_Core_FileSystemEvents_FileSystemEventsArgs_Arguments">FileSystemEvents.FileSystemEventsArgs.Arguments</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.FileSystemEvents.FileSystemEventsArgs.html#wan24_Core_FileSystemEvents_FileSystemEventsArgs_Raised">FileSystemEvents.FileSystemEventsArgs.Raised</a>
-    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventargs.empty">EventArgs.Empty</a>
     </div>
@@ -148,7 +141,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MultiFileSystemEvents.MultiFileSystemEventsArgs : FileSystemEvents.FileSystemEventsArgs</code></pre>
+    <pre><code class="lang-csharp hljs">public class MultiFileSystemEvents.MultiFileSystemEventsArgs : EventArgs</code></pre>
   </div>
   <h5 id="wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Constructor</p>
@@ -157,19 +150,19 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs__ctor_System_String__System_Collections_Generic_IReadOnlyList_System_IO_FileSystemEventArgs___System_DateTime__.md&amp;value=---%0Auid%3A%20wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.%23ctor(System.String%40%2CSystem.Collections.Generic.IReadOnlyList%7BSystem.IO.FileSystemEventArgs%7D%40%2CSystem.DateTime%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs__ctor_System_Collections_Generic_IReadOnlyList_System_ValueTuple_wan24_Core_FileSystemEvents_wan24_Core_FileSystemEvents_FileSystemEventsArgs____System_DateTime__.md&amp;value=---%0Auid%3A%20wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.%23ctor(System.Collections.Generic.IReadOnlyList%7BSystem.ValueTuple%7Bwan24.Core.FileSystemEvents%2Cwan24.Core.FileSystemEvents.FileSystemEventsArgs%7D%7D%40%2CSystem.DateTime%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiFileSystemEvents.cs/#L210">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiFileSystemEvents.cs/#L323">View Source</a>
   </span>
   <a id="wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs__ctor_" data-uid="wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.#ctor*"></a>
-  <h4 id="wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs__ctor_System_String__System_Collections_Generic_IReadOnlyList_System_IO_FileSystemEventArgs___System_DateTime__" data-uid="wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.#ctor(System.String@,System.Collections.Generic.IReadOnlyList{System.IO.FileSystemEventArgs}@,System.DateTime@)">MultiFileSystemEventsArgs(in string, in IReadOnlyList&lt;FileSystemEventArgs&gt;, in DateTime)</h4>
+  <h4 id="wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs__ctor_System_Collections_Generic_IReadOnlyList_System_ValueTuple_wan24_Core_FileSystemEvents_wan24_Core_FileSystemEvents_FileSystemEventsArgs____System_DateTime__" data-uid="wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.#ctor(System.Collections.Generic.IReadOnlyList{System.ValueTuple{wan24.Core.FileSystemEvents,wan24.Core.FileSystemEvents.FileSystemEventsArgs}}@,System.DateTime@)">MultiFileSystemEventsArgs(in IReadOnlyList&lt;(FileSystemEvents, FileSystemEventsArgs)&gt;, in DateTime)</h4>
   <div class="markdown level1 summary"><p>File system events <a class="xref" href="wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_OnEvents">OnEvents</a> arguments</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MultiFileSystemEventsArgs(in string id, in IReadOnlyList&lt;FileSystemEventArgs&gt; arguments, in DateTime raised)</code></pre>
+    <pre><code class="lang-csharp hljs">public MultiFileSystemEventsArgs(in IReadOnlyList&lt;(FileSystemEvents, FileSystemEvents.FileSystemEventsArgs)&gt; arguments, in DateTime raised)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -182,15 +175,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">id</span></td>
-        <td><p>Watcher ID</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filesystemeventargs">FileSystemEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;(<a class="xref" href="wan24.Core.FileSystemEvents.html">FileSystemEvents</a>, <a class="xref" href="wan24.Core.FileSystemEvents.html">FileSystemEvents</a>.<a class="xref" href="wan24.Core.FileSystemEvents.FileSystemEventsArgs.html">FileSystemEventsArgs</a>)&gt;</td>
         <td><span class="parametername">arguments</span></td>
-        <td><p>File system event arguments</p>
+        <td><p>File system event senders and arguments</p>
 </td>
       </tr>
       <tr>
@@ -201,26 +188,26 @@
       </tr>
     </tbody>
   </table>
-  <h5 id="wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs__ctor_System_String__System_Collections_Generic_IReadOnlyList_System_IO_FileSystemEventArgs___System_DateTime___remarks">Remarks</h5>
+  <h5 id="wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs__ctor_System_Collections_Generic_IReadOnlyList_System_ValueTuple_wan24_Core_FileSystemEvents_wan24_Core_FileSystemEvents_FileSystemEventsArgs____System_DateTime___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Constructor</p>
 </div>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs_Id.md&amp;value=---%0Auid%3A%20wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Id%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs_Arguments.md&amp;value=---%0Auid%3A%20wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Arguments%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiFileSystemEvents.cs/#L216">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiFileSystemEvents.cs/#L332">View Source</a>
   </span>
-  <a id="wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs_Id_" data-uid="wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Id*"></a>
-  <h4 id="wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs_Id" data-uid="wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Id">Id</h4>
-  <div class="markdown level1 summary"><p>Watcher ID</p>
+  <a id="wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs_Arguments_" data-uid="wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Arguments*"></a>
+  <h4 id="wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs_Arguments" data-uid="wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Arguments">Arguments</h4>
+  <div class="markdown level1 summary"><p>File system event senders and arguments</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Id { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;(FileSystemEvents, FileSystemEvents.FileSystemEventsArgs)&gt; Arguments { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -232,7 +219,38 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;(<a class="xref" href="wan24.Core.FileSystemEvents.html">FileSystemEvents</a>, <a class="xref" href="wan24.Core.FileSystemEvents.html">FileSystemEvents</a>.<a class="xref" href="wan24.Core.FileSystemEvents.FileSystemEventsArgs.html">FileSystemEventsArgs</a>)&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs_Raised.md&amp;value=---%0Auid%3A%20wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Raised%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiFileSystemEvents.cs/#L337">View Source</a>
+  </span>
+  <a id="wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs_Raised_" data-uid="wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Raised*"></a>
+  <h4 id="wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs_Raised" data-uid="wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Raised">Raised</h4>
+  <div class="markdown level1 summary"><p>Raised time</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime Raised { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
         <td></td>
       </tr>
     </tbody>

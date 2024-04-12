@@ -8366,12 +8366,6 @@ references:
   isSpec: "True"
   fullName: wan24.Core.Bootstrap.Async
   nameWithType: Bootstrap.Async
-- uid: wan24.Core.Bootstrap.BootStrapAsync_Delegate
-  name: Bootstrap.BootStrapAsync_Delegate
-  href: api/wan24.Core.Bootstrap.BootStrapAsync_Delegate.html
-  commentId: T:wan24.Core.Bootstrap.BootStrapAsync_Delegate
-  fullName: wan24.Core.Bootstrap.BootStrapAsync_Delegate
-  nameWithType: Bootstrap.BootStrapAsync_Delegate
 - uid: wan24.Core.Bootstrap.Bootstrap_Delegate
   name: Bootstrap.Bootstrap_Delegate
   href: api/wan24.Core.Bootstrap.Bootstrap_Delegate.html
@@ -24835,6 +24829,12 @@ references:
   commentId: F:wan24.Core.ErrorHandling.SERVICE_ERROR
   fullName: wan24.Core.ErrorHandling.SERVICE_ERROR
   nameWithType: ErrorHandling.SERVICE_ERROR
+- uid: wan24.Core.ErrorHandling.SHUTDOWN_ERROR
+  name: SHUTDOWN_ERROR
+  href: api/wan24.Core.ErrorHandling.html#wan24_Core_ErrorHandling_SHUTDOWN_ERROR
+  commentId: F:wan24.Core.ErrorHandling.SHUTDOWN_ERROR
+  fullName: wan24.Core.ErrorHandling.SHUTDOWN_ERROR
+  nameWithType: ErrorHandling.SHUTDOWN_ERROR
 - uid: wan24.Core.ErrorHandling.SyncObject
   name: SyncObject
   href: api/wan24.Core.ErrorHandling.html#wan24_Core_ErrorHandling_SyncObject
@@ -28297,6 +28297,221 @@ references:
   fullName.vb: wan24.Core.HostedServiceBase.CType
   nameWithType: HostedServiceBase.implicit operator
   nameWithType.vb: HostedServiceBase.CType
+- uid: wan24.Core.HostedServiceCollection
+  name: HostedServiceCollection
+  href: api/wan24.Core.HostedServiceCollection.html
+  commentId: T:wan24.Core.HostedServiceCollection
+  fullName: wan24.Core.HostedServiceCollection
+  nameWithType: HostedServiceCollection
+- uid: wan24.Core.HostedServiceCollection.#ctor
+  name: HostedServiceCollection()
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection__ctor
+  commentId: M:wan24.Core.HostedServiceCollection.#ctor
+  name.vb: New()
+  fullName: wan24.Core.HostedServiceCollection.HostedServiceCollection()
+  fullName.vb: wan24.Core.HostedServiceCollection.New()
+  nameWithType: HostedServiceCollection.HostedServiceCollection()
+  nameWithType.vb: HostedServiceCollection.New()
+- uid: wan24.Core.HostedServiceCollection.#ctor*
+  name: HostedServiceCollection
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection__ctor_
+  commentId: Overload:wan24.Core.HostedServiceCollection.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: wan24.Core.HostedServiceCollection.HostedServiceCollection
+  fullName.vb: wan24.Core.HostedServiceCollection.New
+  nameWithType: HostedServiceCollection.HostedServiceCollection
+  nameWithType.vb: HostedServiceCollection.New
+- uid: wan24.Core.HostedServiceCollection.Add(Microsoft.Extensions.Hosting.IHostedService@,System.Threading.CancellationToken@)
+  name: Add(in IHostedService, in CancellationToken)
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_Add_Microsoft_Extensions_Hosting_IHostedService__System_Threading_CancellationToken__
+  commentId: M:wan24.Core.HostedServiceCollection.Add(Microsoft.Extensions.Hosting.IHostedService@,System.Threading.CancellationToken@)
+  name.vb: Add(IHostedService, CancellationToken)
+  fullName: wan24.Core.HostedServiceCollection.Add(in Microsoft.Extensions.Hosting.IHostedService, in System.Threading.CancellationToken)
+  fullName.vb: wan24.Core.HostedServiceCollection.Add(Microsoft.Extensions.Hosting.IHostedService, System.Threading.CancellationToken)
+  nameWithType: HostedServiceCollection.Add(in IHostedService, in CancellationToken)
+  nameWithType.vb: HostedServiceCollection.Add(IHostedService, CancellationToken)
+- uid: wan24.Core.HostedServiceCollection.Add*
+  name: Add
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_Add_
+  commentId: Overload:wan24.Core.HostedServiceCollection.Add
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceCollection.Add
+  nameWithType: HostedServiceCollection.Add
+- uid: wan24.Core.HostedServiceCollection.AddAsync(Microsoft.Extensions.Hosting.IHostedService,System.Threading.CancellationToken)
+  name: AddAsync(IHostedService, CancellationToken)
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_AddAsync_Microsoft_Extensions_Hosting_IHostedService_System_Threading_CancellationToken_
+  commentId: M:wan24.Core.HostedServiceCollection.AddAsync(Microsoft.Extensions.Hosting.IHostedService,System.Threading.CancellationToken)
+  fullName: wan24.Core.HostedServiceCollection.AddAsync(Microsoft.Extensions.Hosting.IHostedService, System.Threading.CancellationToken)
+  nameWithType: HostedServiceCollection.AddAsync(IHostedService, CancellationToken)
+- uid: wan24.Core.HostedServiceCollection.AddAsync*
+  name: AddAsync
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_AddAsync_
+  commentId: Overload:wan24.Core.HostedServiceCollection.AddAsync
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceCollection.AddAsync
+  nameWithType: HostedServiceCollection.AddAsync
+- uid: wan24.Core.HostedServiceCollection.AfterPauseAsync(System.Threading.CancellationToken)
+  name: AfterPauseAsync(CancellationToken)
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_AfterPauseAsync_System_Threading_CancellationToken_
+  commentId: M:wan24.Core.HostedServiceCollection.AfterPauseAsync(System.Threading.CancellationToken)
+  fullName: wan24.Core.HostedServiceCollection.AfterPauseAsync(System.Threading.CancellationToken)
+  nameWithType: HostedServiceCollection.AfterPauseAsync(CancellationToken)
+- uid: wan24.Core.HostedServiceCollection.AfterPauseAsync*
+  name: AfterPauseAsync
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_AfterPauseAsync_
+  commentId: Overload:wan24.Core.HostedServiceCollection.AfterPauseAsync
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceCollection.AfterPauseAsync
+  nameWithType: HostedServiceCollection.AfterPauseAsync
+- uid: wan24.Core.HostedServiceCollection.AfterResumeAsync(System.Threading.CancellationToken)
+  name: AfterResumeAsync(CancellationToken)
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_AfterResumeAsync_System_Threading_CancellationToken_
+  commentId: M:wan24.Core.HostedServiceCollection.AfterResumeAsync(System.Threading.CancellationToken)
+  fullName: wan24.Core.HostedServiceCollection.AfterResumeAsync(System.Threading.CancellationToken)
+  nameWithType: HostedServiceCollection.AfterResumeAsync(CancellationToken)
+- uid: wan24.Core.HostedServiceCollection.AfterResumeAsync*
+  name: AfterResumeAsync
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_AfterResumeAsync_
+  commentId: Overload:wan24.Core.HostedServiceCollection.AfterResumeAsync
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceCollection.AfterResumeAsync
+  nameWithType: HostedServiceCollection.AfterResumeAsync
+- uid: wan24.Core.HostedServiceCollection.AfterStartAsync(System.Threading.CancellationToken)
+  name: AfterStartAsync(CancellationToken)
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_AfterStartAsync_System_Threading_CancellationToken_
+  commentId: M:wan24.Core.HostedServiceCollection.AfterStartAsync(System.Threading.CancellationToken)
+  fullName: wan24.Core.HostedServiceCollection.AfterStartAsync(System.Threading.CancellationToken)
+  nameWithType: HostedServiceCollection.AfterStartAsync(CancellationToken)
+- uid: wan24.Core.HostedServiceCollection.AfterStartAsync*
+  name: AfterStartAsync
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_AfterStartAsync_
+  commentId: Overload:wan24.Core.HostedServiceCollection.AfterStartAsync
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceCollection.AfterStartAsync
+  nameWithType: HostedServiceCollection.AfterStartAsync
+- uid: wan24.Core.HostedServiceCollection.AfterStopAsync(System.Threading.CancellationToken)
+  name: AfterStopAsync(CancellationToken)
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_AfterStopAsync_System_Threading_CancellationToken_
+  commentId: M:wan24.Core.HostedServiceCollection.AfterStopAsync(System.Threading.CancellationToken)
+  fullName: wan24.Core.HostedServiceCollection.AfterStopAsync(System.Threading.CancellationToken)
+  nameWithType: HostedServiceCollection.AfterStopAsync(CancellationToken)
+- uid: wan24.Core.HostedServiceCollection.AfterStopAsync*
+  name: AfterStopAsync
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_AfterStopAsync_
+  commentId: Overload:wan24.Core.HostedServiceCollection.AfterStopAsync
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceCollection.AfterStopAsync
+  nameWithType: HostedServiceCollection.AfterStopAsync
+- uid: wan24.Core.HostedServiceCollection.Count
+  name: Count
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_Count
+  commentId: P:wan24.Core.HostedServiceCollection.Count
+  fullName: wan24.Core.HostedServiceCollection.Count
+  nameWithType: HostedServiceCollection.Count
+- uid: wan24.Core.HostedServiceCollection.Count*
+  name: Count
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_Count_
+  commentId: Overload:wan24.Core.HostedServiceCollection.Count
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceCollection.Count
+  nameWithType: HostedServiceCollection.Count
+- uid: wan24.Core.HostedServiceCollection.Dispose(System.Boolean)
+  name: Dispose(bool)
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_Dispose_System_Boolean_
+  commentId: M:wan24.Core.HostedServiceCollection.Dispose(System.Boolean)
+  name.vb: Dispose(Boolean)
+  fullName: wan24.Core.HostedServiceCollection.Dispose(bool)
+  fullName.vb: wan24.Core.HostedServiceCollection.Dispose(Boolean)
+  nameWithType: HostedServiceCollection.Dispose(bool)
+  nameWithType.vb: HostedServiceCollection.Dispose(Boolean)
+- uid: wan24.Core.HostedServiceCollection.Dispose*
+  name: Dispose
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_Dispose_
+  commentId: Overload:wan24.Core.HostedServiceCollection.Dispose
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceCollection.Dispose
+  nameWithType: HostedServiceCollection.Dispose
+- uid: wan24.Core.HostedServiceCollection.DisposeCore
+  name: DisposeCore()
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_DisposeCore
+  commentId: M:wan24.Core.HostedServiceCollection.DisposeCore
+  fullName: wan24.Core.HostedServiceCollection.DisposeCore()
+  nameWithType: HostedServiceCollection.DisposeCore()
+- uid: wan24.Core.HostedServiceCollection.DisposeCore*
+  name: DisposeCore
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_DisposeCore_
+  commentId: Overload:wan24.Core.HostedServiceCollection.DisposeCore
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceCollection.DisposeCore
+  nameWithType: HostedServiceCollection.DisposeCore
+- uid: wan24.Core.HostedServiceCollection.Remove(Microsoft.Extensions.Hosting.IHostedService@,System.Threading.CancellationToken@)
+  name: Remove(in IHostedService, in CancellationToken)
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_Remove_Microsoft_Extensions_Hosting_IHostedService__System_Threading_CancellationToken__
+  commentId: M:wan24.Core.HostedServiceCollection.Remove(Microsoft.Extensions.Hosting.IHostedService@,System.Threading.CancellationToken@)
+  name.vb: Remove(IHostedService, CancellationToken)
+  fullName: wan24.Core.HostedServiceCollection.Remove(in Microsoft.Extensions.Hosting.IHostedService, in System.Threading.CancellationToken)
+  fullName.vb: wan24.Core.HostedServiceCollection.Remove(Microsoft.Extensions.Hosting.IHostedService, System.Threading.CancellationToken)
+  nameWithType: HostedServiceCollection.Remove(in IHostedService, in CancellationToken)
+  nameWithType.vb: HostedServiceCollection.Remove(IHostedService, CancellationToken)
+- uid: wan24.Core.HostedServiceCollection.Remove*
+  name: Remove
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_Remove_
+  commentId: Overload:wan24.Core.HostedServiceCollection.Remove
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceCollection.Remove
+  nameWithType: HostedServiceCollection.Remove
+- uid: wan24.Core.HostedServiceCollection.RemoveAsync(Microsoft.Extensions.Hosting.IHostedService,System.Threading.CancellationToken)
+  name: RemoveAsync(IHostedService, CancellationToken)
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_RemoveAsync_Microsoft_Extensions_Hosting_IHostedService_System_Threading_CancellationToken_
+  commentId: M:wan24.Core.HostedServiceCollection.RemoveAsync(Microsoft.Extensions.Hosting.IHostedService,System.Threading.CancellationToken)
+  fullName: wan24.Core.HostedServiceCollection.RemoveAsync(Microsoft.Extensions.Hosting.IHostedService, System.Threading.CancellationToken)
+  nameWithType: HostedServiceCollection.RemoveAsync(IHostedService, CancellationToken)
+- uid: wan24.Core.HostedServiceCollection.RemoveAsync*
+  name: RemoveAsync
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_RemoveAsync_
+  commentId: Overload:wan24.Core.HostedServiceCollection.RemoveAsync
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceCollection.RemoveAsync
+  nameWithType: HostedServiceCollection.RemoveAsync
+- uid: wan24.Core.HostedServiceCollection.Services
+  name: Services
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_Services
+  commentId: P:wan24.Core.HostedServiceCollection.Services
+  fullName: wan24.Core.HostedServiceCollection.Services
+  nameWithType: HostedServiceCollection.Services
+- uid: wan24.Core.HostedServiceCollection.Services*
+  name: Services
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_Services_
+  commentId: Overload:wan24.Core.HostedServiceCollection.Services
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceCollection.Services
+  nameWithType: HostedServiceCollection.Services
+- uid: wan24.Core.HostedServiceCollection.ServicesSync
+  name: ServicesSync
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_ServicesSync
+  commentId: F:wan24.Core.HostedServiceCollection.ServicesSync
+  fullName: wan24.Core.HostedServiceCollection.ServicesSync
+  nameWithType: HostedServiceCollection.ServicesSync
+- uid: wan24.Core.HostedServiceCollection.WorkerAsync
+  name: WorkerAsync()
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_WorkerAsync
+  commentId: M:wan24.Core.HostedServiceCollection.WorkerAsync
+  fullName: wan24.Core.HostedServiceCollection.WorkerAsync()
+  nameWithType: HostedServiceCollection.WorkerAsync()
+- uid: wan24.Core.HostedServiceCollection.WorkerAsync*
+  name: WorkerAsync
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection_WorkerAsync_
+  commentId: Overload:wan24.Core.HostedServiceCollection.WorkerAsync
+  isSpec: "True"
+  fullName: wan24.Core.HostedServiceCollection.WorkerAsync
+  nameWithType: HostedServiceCollection.WorkerAsync
+- uid: wan24.Core.HostedServiceCollection._Services
+  name: _Services
+  href: api/wan24.Core.HostedServiceCollection.html#wan24_Core_HostedServiceCollection__Services
+  commentId: F:wan24.Core.HostedServiceCollection._Services
+  fullName: wan24.Core.HostedServiceCollection._Services
+  nameWithType: HostedServiceCollection._Services
 - uid: wan24.Core.HostedServiceTimers
   name: HostedServiceTimers
   href: api/wan24.Core.HostedServiceTimers.html
@@ -38685,15 +38900,15 @@ references:
   commentId: T:wan24.Core.MultiFileSystemEvents
   fullName: wan24.Core.MultiFileSystemEvents
   nameWithType: MultiFileSystemEvents
-- uid: wan24.Core.MultiFileSystemEvents.#ctor
-  name: MultiFileSystemEvents()
-  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents__ctor
-  commentId: M:wan24.Core.MultiFileSystemEvents.#ctor
-  name.vb: New()
-  fullName: wan24.Core.MultiFileSystemEvents.MultiFileSystemEvents()
-  fullName.vb: wan24.Core.MultiFileSystemEvents.New()
-  nameWithType: MultiFileSystemEvents.MultiFileSystemEvents()
-  nameWithType.vb: MultiFileSystemEvents.New()
+- uid: wan24.Core.MultiFileSystemEvents.#ctor(System.Int32@)
+  name: MultiFileSystemEvents(in int)
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents__ctor_System_Int32__
+  commentId: M:wan24.Core.MultiFileSystemEvents.#ctor(System.Int32@)
+  name.vb: New(Integer)
+  fullName: wan24.Core.MultiFileSystemEvents.MultiFileSystemEvents(in int)
+  fullName.vb: wan24.Core.MultiFileSystemEvents.New(Integer)
+  nameWithType: MultiFileSystemEvents.MultiFileSystemEvents(in int)
+  nameWithType.vb: MultiFileSystemEvents.New(Integer)
 - uid: wan24.Core.MultiFileSystemEvents.#ctor*
   name: MultiFileSystemEvents
   href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents__ctor_
@@ -38772,6 +38987,12 @@ references:
   isSpec: "True"
   fullName: wan24.Core.MultiFileSystemEvents.AfterStartAsync
   nameWithType: MultiFileSystemEvents.AfterStartAsync
+- uid: wan24.Core.MultiFileSystemEvents.Arguments
+  name: Arguments
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_Arguments
+  commentId: F:wan24.Core.MultiFileSystemEvents.Arguments
+  fullName: wan24.Core.MultiFileSystemEvents.Arguments
+  nameWithType: MultiFileSystemEvents.Arguments
 - uid: wan24.Core.MultiFileSystemEvents.BeforeStopAsync(System.Threading.CancellationToken)
   name: BeforeStopAsync(CancellationToken)
   href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_BeforeStopAsync_System_Threading_CancellationToken_
@@ -38785,6 +39006,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.MultiFileSystemEvents.BeforeStopAsync
   nameWithType: MultiFileSystemEvents.BeforeStopAsync
+- uid: wan24.Core.MultiFileSystemEvents.Count
+  name: Count
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_Count
+  commentId: P:wan24.Core.MultiFileSystemEvents.Count
+  fullName: wan24.Core.MultiFileSystemEvents.Count
+  nameWithType: MultiFileSystemEvents.Count
+- uid: wan24.Core.MultiFileSystemEvents.Count*
+  name: Count
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_Count_
+  commentId: Overload:wan24.Core.MultiFileSystemEvents.Count
+  isSpec: "True"
+  fullName: wan24.Core.MultiFileSystemEvents.Count
+  nameWithType: MultiFileSystemEvents.Count
 - uid: wan24.Core.MultiFileSystemEvents.Dispose(System.Boolean)
   name: Dispose(bool)
   href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_Dispose_System_Boolean_
@@ -38814,21 +39048,132 @@ references:
   isSpec: "True"
   fullName: wan24.Core.MultiFileSystemEvents.DisposeCore
   nameWithType: MultiFileSystemEvents.DisposeCore
+- uid: wan24.Core.MultiFileSystemEvents.EventSync
+  name: EventSync
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_EventSync
+  commentId: F:wan24.Core.MultiFileSystemEvents.EventSync
+  fullName: wan24.Core.MultiFileSystemEvents.EventSync
+  nameWithType: MultiFileSystemEvents.EventSync
+- uid: wan24.Core.MultiFileSystemEvents.HandleEvent(wan24.Core.FileSystemEvents,wan24.Core.FileSystemEvents.FileSystemEventsArgs)
+  name: HandleEvent(FileSystemEvents, FileSystemEventsArgs)
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_HandleEvent_wan24_Core_FileSystemEvents_wan24_Core_FileSystemEvents_FileSystemEventsArgs_
+  commentId: M:wan24.Core.MultiFileSystemEvents.HandleEvent(wan24.Core.FileSystemEvents,wan24.Core.FileSystemEvents.FileSystemEventsArgs)
+  fullName: wan24.Core.MultiFileSystemEvents.HandleEvent(wan24.Core.FileSystemEvents, wan24.Core.FileSystemEvents.FileSystemEventsArgs)
+  nameWithType: MultiFileSystemEvents.HandleEvent(FileSystemEvents, FileSystemEvents.FileSystemEventsArgs)
+- uid: wan24.Core.MultiFileSystemEvents.HandleEvent*
+  name: HandleEvent
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_HandleEvent_
+  commentId: Overload:wan24.Core.MultiFileSystemEvents.HandleEvent
+  isSpec: "True"
+  fullName: wan24.Core.MultiFileSystemEvents.HandleEvent
+  nameWithType: MultiFileSystemEvents.HandleEvent
+- uid: wan24.Core.MultiFileSystemEvents.Ids
+  name: Ids
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_Ids
+  commentId: P:wan24.Core.MultiFileSystemEvents.Ids
+  fullName: wan24.Core.MultiFileSystemEvents.Ids
+  nameWithType: MultiFileSystemEvents.Ids
+- uid: wan24.Core.MultiFileSystemEvents.Ids*
+  name: Ids
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_Ids_
+  commentId: Overload:wan24.Core.MultiFileSystemEvents.Ids
+  isSpec: "True"
+  fullName: wan24.Core.MultiFileSystemEvents.Ids
+  nameWithType: MultiFileSystemEvents.Ids
+- uid: wan24.Core.MultiFileSystemEvents.Item(System.String)
+  name: this[string]
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_Item_System_String_
+  commentId: P:wan24.Core.MultiFileSystemEvents.Item(System.String)
+  name.vb: this[](String)
+  fullName: wan24.Core.MultiFileSystemEvents.this[string]
+  fullName.vb: wan24.Core.MultiFileSystemEvents.this[](String)
+  nameWithType: MultiFileSystemEvents.this[string]
+  nameWithType.vb: MultiFileSystemEvents.this[](String)
+- uid: wan24.Core.MultiFileSystemEvents.Item*
+  name: this
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_Item_
+  commentId: Overload:wan24.Core.MultiFileSystemEvents.Item
+  isSpec: "True"
+  name.vb: this[]
+  fullName: wan24.Core.MultiFileSystemEvents.this
+  fullName.vb: wan24.Core.MultiFileSystemEvents.this[]
+  nameWithType: MultiFileSystemEvents.this
+  nameWithType.vb: MultiFileSystemEvents.this[]
+- uid: wan24.Core.MultiFileSystemEvents.Last
+  name: Last
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_Last
+  commentId: P:wan24.Core.MultiFileSystemEvents.Last
+  fullName: wan24.Core.MultiFileSystemEvents.Last
+  nameWithType: MultiFileSystemEvents.Last
+- uid: wan24.Core.MultiFileSystemEvents.Last*
+  name: Last
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_Last_
+  commentId: Overload:wan24.Core.MultiFileSystemEvents.Last
+  isSpec: "True"
+  fullName: wan24.Core.MultiFileSystemEvents.Last
+  nameWithType: MultiFileSystemEvents.Last
+- uid: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle
+  name: MultiFileSystemEvents.MultiFileSystemEventThrottle
+  href: api/wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.html
+  commentId: T:wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle
+  fullName: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle
+  nameWithType: MultiFileSystemEvents.MultiFileSystemEventThrottle
+- uid: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.#ctor(System.Int32@,wan24.Core.MultiFileSystemEvents@)
+  name: MultiFileSystemEventThrottle(in int, in MultiFileSystemEvents)
+  href: api/wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.html#wan24_Core_MultiFileSystemEvents_MultiFileSystemEventThrottle__ctor_System_Int32__wan24_Core_MultiFileSystemEvents__
+  commentId: M:wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.#ctor(System.Int32@,wan24.Core.MultiFileSystemEvents@)
+  name.vb: New(Integer, MultiFileSystemEvents)
+  fullName: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.MultiFileSystemEventThrottle(in int, in wan24.Core.MultiFileSystemEvents)
+  fullName.vb: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.New(Integer, wan24.Core.MultiFileSystemEvents)
+  nameWithType: MultiFileSystemEvents.MultiFileSystemEventThrottle.MultiFileSystemEventThrottle(in int, in MultiFileSystemEvents)
+  nameWithType.vb: MultiFileSystemEvents.MultiFileSystemEventThrottle.New(Integer, MultiFileSystemEvents)
+- uid: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.#ctor*
+  name: MultiFileSystemEventThrottle
+  href: api/wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.html#wan24_Core_MultiFileSystemEvents_MultiFileSystemEventThrottle__ctor_
+  commentId: Overload:wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.MultiFileSystemEventThrottle
+  fullName.vb: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.New
+  nameWithType: MultiFileSystemEvents.MultiFileSystemEventThrottle.MultiFileSystemEventThrottle
+  nameWithType.vb: MultiFileSystemEvents.MultiFileSystemEventThrottle.New
+- uid: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.Events
+  name: Events
+  href: api/wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.html#wan24_Core_MultiFileSystemEvents_MultiFileSystemEventThrottle_Events
+  commentId: F:wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.Events
+  fullName: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.Events
+  nameWithType: MultiFileSystemEvents.MultiFileSystemEventThrottle.Events
+- uid: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.HandleEvent(System.DateTime@,System.Int32@)
+  name: HandleEvent(in DateTime, in int)
+  href: api/wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.html#wan24_Core_MultiFileSystemEvents_MultiFileSystemEventThrottle_HandleEvent_System_DateTime__System_Int32__
+  commentId: M:wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.HandleEvent(System.DateTime@,System.Int32@)
+  name.vb: HandleEvent(Date, Integer)
+  fullName: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.HandleEvent(in System.DateTime, in int)
+  fullName.vb: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.HandleEvent(Date, Integer)
+  nameWithType: MultiFileSystemEvents.MultiFileSystemEventThrottle.HandleEvent(in DateTime, in int)
+  nameWithType.vb: MultiFileSystemEvents.MultiFileSystemEventThrottle.HandleEvent(Date, Integer)
+- uid: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.HandleEvent*
+  name: HandleEvent
+  href: api/wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.html#wan24_Core_MultiFileSystemEvents_MultiFileSystemEventThrottle_HandleEvent_
+  commentId: Overload:wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.HandleEvent
+  isSpec: "True"
+  fullName: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventThrottle.HandleEvent
+  nameWithType: MultiFileSystemEvents.MultiFileSystemEventThrottle.HandleEvent
 - uid: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs
   name: MultiFileSystemEvents.MultiFileSystemEventsArgs
   href: api/wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.html
   commentId: T:wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs
   fullName: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs
   nameWithType: MultiFileSystemEvents.MultiFileSystemEventsArgs
-- uid: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.#ctor(System.String@,System.Collections.Generic.IReadOnlyList{System.IO.FileSystemEventArgs}@,System.DateTime@)
-  name: MultiFileSystemEventsArgs(in string, in IReadOnlyList<FileSystemEventArgs>, in DateTime)
-  href: api/wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.html#wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs__ctor_System_String__System_Collections_Generic_IReadOnlyList_System_IO_FileSystemEventArgs___System_DateTime__
-  commentId: M:wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.#ctor(System.String@,System.Collections.Generic.IReadOnlyList{System.IO.FileSystemEventArgs}@,System.DateTime@)
-  name.vb: New(String, IReadOnlyList(Of FileSystemEventArgs), Date)
-  fullName: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.MultiFileSystemEventsArgs(in string, in System.Collections.Generic.IReadOnlyList<System.IO.FileSystemEventArgs>, in System.DateTime)
-  fullName.vb: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.New(String, System.Collections.Generic.IReadOnlyList(Of System.IO.FileSystemEventArgs), Date)
-  nameWithType: MultiFileSystemEvents.MultiFileSystemEventsArgs.MultiFileSystemEventsArgs(in string, in IReadOnlyList<FileSystemEventArgs>, in DateTime)
-  nameWithType.vb: MultiFileSystemEvents.MultiFileSystemEventsArgs.New(String, IReadOnlyList(Of FileSystemEventArgs), Date)
+- uid: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.#ctor(System.Collections.Generic.IReadOnlyList{System.ValueTuple{wan24.Core.FileSystemEvents,wan24.Core.FileSystemEvents.FileSystemEventsArgs}}@,System.DateTime@)
+  name: MultiFileSystemEventsArgs(in IReadOnlyList<(FileSystemEvents, FileSystemEventsArgs)>, in DateTime)
+  href: api/wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.html#wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs__ctor_System_Collections_Generic_IReadOnlyList_System_ValueTuple_wan24_Core_FileSystemEvents_wan24_Core_FileSystemEvents_FileSystemEventsArgs____System_DateTime__
+  commentId: M:wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.#ctor(System.Collections.Generic.IReadOnlyList{System.ValueTuple{wan24.Core.FileSystemEvents,wan24.Core.FileSystemEvents.FileSystemEventsArgs}}@,System.DateTime@)
+  name.vb: New(IReadOnlyList(Of (FileSystemEvents, FileSystemEventsArgs)), Date)
+  fullName: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.MultiFileSystemEventsArgs(in System.Collections.Generic.IReadOnlyList<(wan24.Core.FileSystemEvents, wan24.Core.FileSystemEvents.FileSystemEventsArgs)>, in System.DateTime)
+  fullName.vb: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.New(System.Collections.Generic.IReadOnlyList(Of (wan24.Core.FileSystemEvents, wan24.Core.FileSystemEvents.FileSystemEventsArgs)), Date)
+  nameWithType: MultiFileSystemEvents.MultiFileSystemEventsArgs.MultiFileSystemEventsArgs(in IReadOnlyList<(FileSystemEvents, FileSystemEvents.FileSystemEventsArgs)>, in DateTime)
+  nameWithType.vb: MultiFileSystemEvents.MultiFileSystemEventsArgs.New(IReadOnlyList(Of (FileSystemEvents, FileSystemEvents.FileSystemEventsArgs)), Date)
 - uid: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.#ctor*
   name: MultiFileSystemEventsArgs
   href: api/wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.html#wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs__ctor_
@@ -38839,19 +39184,32 @@ references:
   fullName.vb: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.New
   nameWithType: MultiFileSystemEvents.MultiFileSystemEventsArgs.MultiFileSystemEventsArgs
   nameWithType.vb: MultiFileSystemEvents.MultiFileSystemEventsArgs.New
-- uid: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Id
-  name: Id
-  href: api/wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.html#wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs_Id
-  commentId: P:wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Id
-  fullName: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Id
-  nameWithType: MultiFileSystemEvents.MultiFileSystemEventsArgs.Id
-- uid: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Id*
-  name: Id
-  href: api/wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.html#wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs_Id_
-  commentId: Overload:wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Id
+- uid: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Arguments
+  name: Arguments
+  href: api/wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.html#wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs_Arguments
+  commentId: P:wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Arguments
+  fullName: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Arguments
+  nameWithType: MultiFileSystemEvents.MultiFileSystemEventsArgs.Arguments
+- uid: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Arguments*
+  name: Arguments
+  href: api/wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.html#wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs_Arguments_
+  commentId: Overload:wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Arguments
   isSpec: "True"
-  fullName: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Id
-  nameWithType: MultiFileSystemEvents.MultiFileSystemEventsArgs.Id
+  fullName: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Arguments
+  nameWithType: MultiFileSystemEvents.MultiFileSystemEventsArgs.Arguments
+- uid: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Raised
+  name: Raised
+  href: api/wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.html#wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs_Raised
+  commentId: P:wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Raised
+  fullName: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Raised
+  nameWithType: MultiFileSystemEvents.MultiFileSystemEventsArgs.Raised
+- uid: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Raised*
+  name: Raised
+  href: api/wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.html#wan24_Core_MultiFileSystemEvents_MultiFileSystemEventsArgs_Raised_
+  commentId: Overload:wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Raised
+  isSpec: "True"
+  fullName: wan24.Core.MultiFileSystemEvents.MultiFileSystemEventsArgs.Raised
+  nameWithType: MultiFileSystemEvents.MultiFileSystemEventsArgs.Raised
 - uid: wan24.Core.MultiFileSystemEvents.MultiFileSystemEvents_Delegate
   name: MultiFileSystemEvents.MultiFileSystemEvents_Delegate
   href: api/wan24.Core.MultiFileSystemEvents.MultiFileSystemEvents_Delegate.html
@@ -38864,12 +39222,15 @@ references:
   commentId: E:wan24.Core.MultiFileSystemEvents.OnEvents
   fullName: wan24.Core.MultiFileSystemEvents.OnEvents
   nameWithType: MultiFileSystemEvents.OnEvents
-- uid: wan24.Core.MultiFileSystemEvents.RaiseOnEvents(wan24.Core.FileSystemEvents,wan24.Core.FileSystemEvents.FileSystemEventsArgs)
-  name: RaiseOnEvents(FileSystemEvents, FileSystemEventsArgs)
-  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_RaiseOnEvents_wan24_Core_FileSystemEvents_wan24_Core_FileSystemEvents_FileSystemEventsArgs_
-  commentId: M:wan24.Core.MultiFileSystemEvents.RaiseOnEvents(wan24.Core.FileSystemEvents,wan24.Core.FileSystemEvents.FileSystemEventsArgs)
-  fullName: wan24.Core.MultiFileSystemEvents.RaiseOnEvents(wan24.Core.FileSystemEvents, wan24.Core.FileSystemEvents.FileSystemEventsArgs)
-  nameWithType: MultiFileSystemEvents.RaiseOnEvents(FileSystemEvents, FileSystemEvents.FileSystemEventsArgs)
+- uid: wan24.Core.MultiFileSystemEvents.RaiseOnEvents(System.DateTime@)
+  name: RaiseOnEvents(in DateTime)
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_RaiseOnEvents_System_DateTime__
+  commentId: M:wan24.Core.MultiFileSystemEvents.RaiseOnEvents(System.DateTime@)
+  name.vb: RaiseOnEvents(Date)
+  fullName: wan24.Core.MultiFileSystemEvents.RaiseOnEvents(in System.DateTime)
+  fullName.vb: wan24.Core.MultiFileSystemEvents.RaiseOnEvents(Date)
+  nameWithType: MultiFileSystemEvents.RaiseOnEvents(in DateTime)
+  nameWithType.vb: MultiFileSystemEvents.RaiseOnEvents(Date)
 - uid: wan24.Core.MultiFileSystemEvents.RaiseOnEvents*
   name: RaiseOnEvents
   href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_RaiseOnEvents_
@@ -38893,6 +39254,12 @@ references:
   isSpec: "True"
   fullName: wan24.Core.MultiFileSystemEvents.Remove
   nameWithType: MultiFileSystemEvents.Remove
+- uid: wan24.Core.MultiFileSystemEvents.Throttle
+  name: Throttle
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_Throttle
+  commentId: F:wan24.Core.MultiFileSystemEvents.Throttle
+  fullName: wan24.Core.MultiFileSystemEvents.Throttle
+  nameWithType: MultiFileSystemEvents.Throttle
 - uid: wan24.Core.MultiFileSystemEvents.TryRemove(System.String@,wan24.Core.FileSystemEvents@)
   name: TryRemove(in string, out FileSystemEvents?)
   href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_TryRemove_System_String__wan24_Core_FileSystemEvents__
@@ -38909,6 +39276,41 @@ references:
   isSpec: "True"
   fullName: wan24.Core.MultiFileSystemEvents.TryRemove
   nameWithType: MultiFileSystemEvents.TryRemove
+- uid: wan24.Core.MultiFileSystemEvents.WaitEvent(System.Threading.CancellationToken@)
+  name: WaitEvent(in CancellationToken)
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_WaitEvent_System_Threading_CancellationToken__
+  commentId: M:wan24.Core.MultiFileSystemEvents.WaitEvent(System.Threading.CancellationToken@)
+  name.vb: WaitEvent(CancellationToken)
+  fullName: wan24.Core.MultiFileSystemEvents.WaitEvent(in System.Threading.CancellationToken)
+  fullName.vb: wan24.Core.MultiFileSystemEvents.WaitEvent(System.Threading.CancellationToken)
+  nameWithType: MultiFileSystemEvents.WaitEvent(in CancellationToken)
+  nameWithType.vb: MultiFileSystemEvents.WaitEvent(CancellationToken)
+- uid: wan24.Core.MultiFileSystemEvents.WaitEvent*
+  name: WaitEvent
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_WaitEvent_
+  commentId: Overload:wan24.Core.MultiFileSystemEvents.WaitEvent
+  isSpec: "True"
+  fullName: wan24.Core.MultiFileSystemEvents.WaitEvent
+  nameWithType: MultiFileSystemEvents.WaitEvent
+- uid: wan24.Core.MultiFileSystemEvents.WaitEventAsync(System.Threading.CancellationToken)
+  name: WaitEventAsync(CancellationToken)
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_WaitEventAsync_System_Threading_CancellationToken_
+  commentId: M:wan24.Core.MultiFileSystemEvents.WaitEventAsync(System.Threading.CancellationToken)
+  fullName: wan24.Core.MultiFileSystemEvents.WaitEventAsync(System.Threading.CancellationToken)
+  nameWithType: MultiFileSystemEvents.WaitEventAsync(CancellationToken)
+- uid: wan24.Core.MultiFileSystemEvents.WaitEventAsync*
+  name: WaitEventAsync
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_WaitEventAsync_
+  commentId: Overload:wan24.Core.MultiFileSystemEvents.WaitEventAsync
+  isSpec: "True"
+  fullName: wan24.Core.MultiFileSystemEvents.WaitEventAsync
+  nameWithType: MultiFileSystemEvents.WaitEventAsync
+- uid: wan24.Core.MultiFileSystemEvents.WatcherEvent
+  name: WatcherEvent
+  href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_WatcherEvent
+  commentId: F:wan24.Core.MultiFileSystemEvents.WatcherEvent
+  fullName: wan24.Core.MultiFileSystemEvents.WatcherEvent
+  nameWithType: MultiFileSystemEvents.WatcherEvent
 - uid: wan24.Core.MultiFileSystemEvents.Watchers
   name: Watchers
   href: api/wan24.Core.MultiFileSystemEvents.html#wan24_Core_MultiFileSystemEvents_Watchers
@@ -46841,6 +47243,19 @@ references:
   fullName.vb: wan24.Core.PooledMemoryStream.New
   nameWithType: PooledMemoryStream.PooledMemoryStream
   nameWithType.vb: PooledMemoryStream.New
+- uid: wan24.Core.PooledMemoryStream.Close
+  name: Close()
+  href: api/wan24.Core.PooledMemoryStream.html#wan24_Core_PooledMemoryStream_Close
+  commentId: M:wan24.Core.PooledMemoryStream.Close
+  fullName: wan24.Core.PooledMemoryStream.Close()
+  nameWithType: PooledMemoryStream.Close()
+- uid: wan24.Core.PooledMemoryStream.Close*
+  name: Close
+  href: api/wan24.Core.PooledMemoryStream.html#wan24_Core_PooledMemoryStream_Close_
+  commentId: Overload:wan24.Core.PooledMemoryStream.Close
+  isSpec: "True"
+  fullName: wan24.Core.PooledMemoryStream.Close
+  nameWithType: PooledMemoryStream.Close
 - uid: wan24.Core.PooledMemoryStream.Reset
   name: Reset()
   href: api/wan24.Core.PooledMemoryStream.html#wan24_Core_PooledMemoryStream_Reset
@@ -46910,12 +47325,60 @@ references:
   isSpec: "True"
   fullName: wan24.Core.PooledTempFileStream.BufferSize
   nameWithType: PooledTempFileStream.BufferSize
+- uid: wan24.Core.PooledTempFileStream.Close
+  name: Close()
+  href: api/wan24.Core.PooledTempFileStream.html#wan24_Core_PooledTempFileStream_Close
+  commentId: M:wan24.Core.PooledTempFileStream.Close
+  fullName: wan24.Core.PooledTempFileStream.Close()
+  nameWithType: PooledTempFileStream.Close()
+- uid: wan24.Core.PooledTempFileStream.Close*
+  name: Close
+  href: api/wan24.Core.PooledTempFileStream.html#wan24_Core_PooledTempFileStream_Close_
+  commentId: Overload:wan24.Core.PooledTempFileStream.Close
+  isSpec: "True"
+  fullName: wan24.Core.PooledTempFileStream.Close
+  nameWithType: PooledTempFileStream.Close
 - uid: wan24.Core.PooledTempFileStream.DEFAULT_BUFFER_SIZE
   name: DEFAULT_BUFFER_SIZE
   href: api/wan24.Core.PooledTempFileStream.html#wan24_Core_PooledTempFileStream_DEFAULT_BUFFER_SIZE
   commentId: F:wan24.Core.PooledTempFileStream.DEFAULT_BUFFER_SIZE
   fullName: wan24.Core.PooledTempFileStream.DEFAULT_BUFFER_SIZE
   nameWithType: PooledTempFileStream.DEFAULT_BUFFER_SIZE
+- uid: wan24.Core.PooledTempFileStream.Dispose
+  name: Dispose()
+  href: api/wan24.Core.PooledTempFileStream.html#wan24_Core_PooledTempFileStream_Dispose
+  commentId: M:wan24.Core.PooledTempFileStream.Dispose
+  fullName: wan24.Core.PooledTempFileStream.Dispose()
+  nameWithType: PooledTempFileStream.Dispose()
+- uid: wan24.Core.PooledTempFileStream.Dispose(System.Boolean)
+  name: Dispose(bool)
+  href: api/wan24.Core.PooledTempFileStream.html#wan24_Core_PooledTempFileStream_Dispose_System_Boolean_
+  commentId: M:wan24.Core.PooledTempFileStream.Dispose(System.Boolean)
+  name.vb: Dispose(Boolean)
+  fullName: wan24.Core.PooledTempFileStream.Dispose(bool)
+  fullName.vb: wan24.Core.PooledTempFileStream.Dispose(Boolean)
+  nameWithType: PooledTempFileStream.Dispose(bool)
+  nameWithType.vb: PooledTempFileStream.Dispose(Boolean)
+- uid: wan24.Core.PooledTempFileStream.Dispose*
+  name: Dispose
+  href: api/wan24.Core.PooledTempFileStream.html#wan24_Core_PooledTempFileStream_Dispose_
+  commentId: Overload:wan24.Core.PooledTempFileStream.Dispose
+  isSpec: "True"
+  fullName: wan24.Core.PooledTempFileStream.Dispose
+  nameWithType: PooledTempFileStream.Dispose
+- uid: wan24.Core.PooledTempFileStream.DisposeAsync
+  name: DisposeAsync()
+  href: api/wan24.Core.PooledTempFileStream.html#wan24_Core_PooledTempFileStream_DisposeAsync
+  commentId: M:wan24.Core.PooledTempFileStream.DisposeAsync
+  fullName: wan24.Core.PooledTempFileStream.DisposeAsync()
+  nameWithType: PooledTempFileStream.DisposeAsync()
+- uid: wan24.Core.PooledTempFileStream.DisposeAsync*
+  name: DisposeAsync
+  href: api/wan24.Core.PooledTempFileStream.html#wan24_Core_PooledTempFileStream_DisposeAsync_
+  commentId: Overload:wan24.Core.PooledTempFileStream.DisposeAsync
+  isSpec: "True"
+  fullName: wan24.Core.PooledTempFileStream.DisposeAsync
+  nameWithType: PooledTempFileStream.DisposeAsync
 - uid: wan24.Core.PooledTempFileStream.Reset
   name: Reset()
   href: api/wan24.Core.PooledTempFileStream.html#wan24_Core_PooledTempFileStream_Reset
@@ -46993,6 +47456,19 @@ references:
   isSpec: "True"
   fullName: wan24.Core.PooledTempStream.CanWrite
   nameWithType: PooledTempStream.CanWrite
+- uid: wan24.Core.PooledTempStream.Close
+  name: Close()
+  href: api/wan24.Core.PooledTempStream.html#wan24_Core_PooledTempStream_Close
+  commentId: M:wan24.Core.PooledTempStream.Close
+  fullName: wan24.Core.PooledTempStream.Close()
+  nameWithType: PooledTempStream.Close()
+- uid: wan24.Core.PooledTempStream.Close*
+  name: Close
+  href: api/wan24.Core.PooledTempStream.html#wan24_Core_PooledTempStream_Close_
+  commentId: Overload:wan24.Core.PooledTempStream.Close
+  isSpec: "True"
+  fullName: wan24.Core.PooledTempStream.Close
+  nameWithType: PooledTempStream.Close
 - uid: wan24.Core.PooledTempStream.Dispose(System.Boolean)
   name: Dispose(bool)
   href: api/wan24.Core.PooledTempStream.html#wan24_Core_PooledTempStream_Dispose_System_Boolean_
@@ -47341,6 +47817,22 @@ references:
   commentId: T:wan24.Core.ProcessHelper
   fullName: wan24.Core.ProcessHelper
   nameWithType: ProcessHelper
+- uid: wan24.Core.ProcessHelper.GetExitCodeAsync(System.String,System.Boolean,System.Threading.CancellationToken,System.String[])
+  name: GetExitCodeAsync(string, bool, CancellationToken, params string[])
+  href: api/wan24.Core.ProcessHelper.html#wan24_Core_ProcessHelper_GetExitCodeAsync_System_String_System_Boolean_System_Threading_CancellationToken_System_String___
+  commentId: M:wan24.Core.ProcessHelper.GetExitCodeAsync(System.String,System.Boolean,System.Threading.CancellationToken,System.String[])
+  name.vb: GetExitCodeAsync(String, Boolean, CancellationToken, ParamArray String())
+  fullName: wan24.Core.ProcessHelper.GetExitCodeAsync(string, bool, System.Threading.CancellationToken, params string[])
+  fullName.vb: wan24.Core.ProcessHelper.GetExitCodeAsync(String, Boolean, System.Threading.CancellationToken, ParamArray String())
+  nameWithType: ProcessHelper.GetExitCodeAsync(string, bool, CancellationToken, params string[])
+  nameWithType.vb: ProcessHelper.GetExitCodeAsync(String, Boolean, CancellationToken, ParamArray String())
+- uid: wan24.Core.ProcessHelper.GetExitCodeAsync*
+  name: GetExitCodeAsync
+  href: api/wan24.Core.ProcessHelper.html#wan24_Core_ProcessHelper_GetExitCodeAsync_
+  commentId: Overload:wan24.Core.ProcessHelper.GetExitCodeAsync
+  isSpec: "True"
+  fullName: wan24.Core.ProcessHelper.GetExitCodeAsync
+  nameWithType: ProcessHelper.GetExitCodeAsync
 - uid: wan24.Core.ProcessHelper.Run(System.String@,System.String[])
   name: Run(in string, params string[])
   href: api/wan24.Core.ProcessHelper.html#wan24_Core_ProcessHelper_Run_System_String__System_String___
@@ -57802,6 +58294,117 @@ references:
   isSpec: "True"
   fullName: wan24.Core.Settings.TempFolder
   nameWithType: Settings.TempFolder
+- uid: wan24.Core.Shutdown
+  name: Shutdown
+  href: api/wan24.Core.Shutdown.html
+  commentId: T:wan24.Core.Shutdown
+  fullName: wan24.Core.Shutdown
+  nameWithType: Shutdown
+- uid: wan24.Core.Shutdown.Async
+  name: Async()
+  href: api/wan24.Core.Shutdown.html#wan24_Core_Shutdown_Async
+  commentId: M:wan24.Core.Shutdown.Async
+  fullName: wan24.Core.Shutdown.Async()
+  nameWithType: Shutdown.Async()
+- uid: wan24.Core.Shutdown.Async*
+  name: Async
+  href: api/wan24.Core.Shutdown.html#wan24_Core_Shutdown_Async_
+  commentId: Overload:wan24.Core.Shutdown.Async
+  isSpec: "True"
+  fullName: wan24.Core.Shutdown.Async
+  nameWithType: Shutdown.Async
+- uid: wan24.Core.Shutdown.DidShutdown
+  name: DidShutdown
+  href: api/wan24.Core.Shutdown.html#wan24_Core_Shutdown_DidShutdown
+  commentId: P:wan24.Core.Shutdown.DidShutdown
+  fullName: wan24.Core.Shutdown.DidShutdown
+  nameWithType: Shutdown.DidShutdown
+- uid: wan24.Core.Shutdown.DidShutdown*
+  name: DidShutdown
+  href: api/wan24.Core.Shutdown.html#wan24_Core_Shutdown_DidShutdown_
+  commentId: Overload:wan24.Core.Shutdown.DidShutdown
+  isSpec: "True"
+  fullName: wan24.Core.Shutdown.DidShutdown
+  nameWithType: Shutdown.DidShutdown
+- uid: wan24.Core.Shutdown.IsShuttingDown
+  name: IsShuttingDown
+  href: api/wan24.Core.Shutdown.html#wan24_Core_Shutdown_IsShuttingDown
+  commentId: P:wan24.Core.Shutdown.IsShuttingDown
+  fullName: wan24.Core.Shutdown.IsShuttingDown
+  nameWithType: Shutdown.IsShuttingDown
+- uid: wan24.Core.Shutdown.IsShuttingDown*
+  name: IsShuttingDown
+  href: api/wan24.Core.Shutdown.html#wan24_Core_Shutdown_IsShuttingDown_
+  commentId: Overload:wan24.Core.Shutdown.IsShuttingDown
+  isSpec: "True"
+  fullName: wan24.Core.Shutdown.IsShuttingDown
+  nameWithType: Shutdown.IsShuttingDown
+- uid: wan24.Core.Shutdown.OnShutdown
+  name: OnShutdown
+  href: api/wan24.Core.Shutdown.html#wan24_Core_Shutdown_OnShutdown
+  commentId: E:wan24.Core.Shutdown.OnShutdown
+  fullName: wan24.Core.Shutdown.OnShutdown
+  nameWithType: Shutdown.OnShutdown
+- uid: wan24.Core.Shutdown.OnShutdownAsync
+  name: OnShutdownAsync
+  href: api/wan24.Core.Shutdown.html#wan24_Core_Shutdown_OnShutdownAsync
+  commentId: P:wan24.Core.Shutdown.OnShutdownAsync
+  fullName: wan24.Core.Shutdown.OnShutdownAsync
+  nameWithType: Shutdown.OnShutdownAsync
+- uid: wan24.Core.Shutdown.OnShutdownAsync*
+  name: OnShutdownAsync
+  href: api/wan24.Core.Shutdown.html#wan24_Core_Shutdown_OnShutdownAsync_
+  commentId: Overload:wan24.Core.Shutdown.OnShutdownAsync
+  isSpec: "True"
+  fullName: wan24.Core.Shutdown.OnShutdownAsync
+  nameWithType: Shutdown.OnShutdownAsync
+- uid: wan24.Core.Shutdown.ShutdownEventArgs
+  name: Shutdown.ShutdownEventArgs
+  href: api/wan24.Core.Shutdown.ShutdownEventArgs.html
+  commentId: T:wan24.Core.Shutdown.ShutdownEventArgs
+  fullName: wan24.Core.Shutdown.ShutdownEventArgs
+  nameWithType: Shutdown.ShutdownEventArgs
+- uid: wan24.Core.Shutdown.ShutdownEventArgs.#ctor
+  name: ShutdownEventArgs()
+  href: api/wan24.Core.Shutdown.ShutdownEventArgs.html#wan24_Core_Shutdown_ShutdownEventArgs__ctor
+  commentId: M:wan24.Core.Shutdown.ShutdownEventArgs.#ctor
+  name.vb: New()
+  fullName: wan24.Core.Shutdown.ShutdownEventArgs.ShutdownEventArgs()
+  fullName.vb: wan24.Core.Shutdown.ShutdownEventArgs.New()
+  nameWithType: Shutdown.ShutdownEventArgs.ShutdownEventArgs()
+  nameWithType.vb: Shutdown.ShutdownEventArgs.New()
+- uid: wan24.Core.Shutdown.ShutdownEventArgs.#ctor*
+  name: ShutdownEventArgs
+  href: api/wan24.Core.Shutdown.ShutdownEventArgs.html#wan24_Core_Shutdown_ShutdownEventArgs__ctor_
+  commentId: Overload:wan24.Core.Shutdown.ShutdownEventArgs.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: wan24.Core.Shutdown.ShutdownEventArgs.ShutdownEventArgs
+  fullName.vb: wan24.Core.Shutdown.ShutdownEventArgs.New
+  nameWithType: Shutdown.ShutdownEventArgs.ShutdownEventArgs
+  nameWithType.vb: Shutdown.ShutdownEventArgs.New
+- uid: wan24.Core.Shutdown.ShutdownEventArgs.AddFinalizerTask(System.Threading.Tasks.Task@)
+  name: AddFinalizerTask(in Task)
+  href: api/wan24.Core.Shutdown.ShutdownEventArgs.html#wan24_Core_Shutdown_ShutdownEventArgs_AddFinalizerTask_System_Threading_Tasks_Task__
+  commentId: M:wan24.Core.Shutdown.ShutdownEventArgs.AddFinalizerTask(System.Threading.Tasks.Task@)
+  name.vb: AddFinalizerTask(Task)
+  fullName: wan24.Core.Shutdown.ShutdownEventArgs.AddFinalizerTask(in System.Threading.Tasks.Task)
+  fullName.vb: wan24.Core.Shutdown.ShutdownEventArgs.AddFinalizerTask(System.Threading.Tasks.Task)
+  nameWithType: Shutdown.ShutdownEventArgs.AddFinalizerTask(in Task)
+  nameWithType.vb: Shutdown.ShutdownEventArgs.AddFinalizerTask(Task)
+- uid: wan24.Core.Shutdown.ShutdownEventArgs.AddFinalizerTask*
+  name: AddFinalizerTask
+  href: api/wan24.Core.Shutdown.ShutdownEventArgs.html#wan24_Core_Shutdown_ShutdownEventArgs_AddFinalizerTask_
+  commentId: Overload:wan24.Core.Shutdown.ShutdownEventArgs.AddFinalizerTask
+  isSpec: "True"
+  fullName: wan24.Core.Shutdown.ShutdownEventArgs.AddFinalizerTask
+  nameWithType: Shutdown.ShutdownEventArgs.AddFinalizerTask
+- uid: wan24.Core.Shutdown.Shutdown_Delegate
+  name: Shutdown.Shutdown_Delegate
+  href: api/wan24.Core.Shutdown.Shutdown_Delegate.html
+  commentId: T:wan24.Core.Shutdown.Shutdown_Delegate
+  fullName: wan24.Core.Shutdown.Shutdown_Delegate
+  nameWithType: Shutdown.Shutdown_Delegate
 - uid: wan24.Core.SocketExtensions
   name: SocketExtensions
   href: api/wan24.Core.SocketExtensions.html
