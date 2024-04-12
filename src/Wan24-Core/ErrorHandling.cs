@@ -32,6 +32,10 @@ namespace wan24.Core
         /// Bootstrapper error source
         /// </summary>
         public const int BOOTSTRAPPER_ERROR = 6;
+        /// <summary>
+        /// Shutdown error source
+        /// </summary>
+        public const int SHUTDOWN_ERROR = 7;
 
         /// <summary>
         /// An object for thread synchronization

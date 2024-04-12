@@ -24,14 +24,18 @@ namespace wan24.Core
         /// <summary>
         /// Static constructor
         /// </summary>
-        static Bootstrap() => AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+        static Bootstrap()
+        {
+            AppDomain.CurrentDomain.UnhandledException += (s, e) =>
             {
                 ErrorHandling.Handle(
-                    e.ExceptionObject is Exception ex 
-                        ? new($"Catched unhandled exception from the current app domain (will terminate: {e.IsTerminating})", ex, ErrorHandling.UNHANDLED_EXCEPTION) 
+                    e.ExceptionObject is Exception ex
+                        ? new($"Catched unhandled exception from the current app domain (will terminate: {e.IsTerminating})", ex, ErrorHandling.UNHANDLED_EXCEPTION)
                         : new($"Catched unhandled exception without exception object from the current app domain (will terminate: {e.IsTerminating})", new Exception(), ErrorHandling.UNHANDLED_EXCEPTION)
                     );
             };
+            AppDomain.CurrentDomain.ProcessExit += (s, e) => Shutdown.Async().Wait();
+        }
 
         /// <summary>
         /// Asynchronous bootstrapper (executed in parallel at the end of the bootstrapper before raising <see cref="OnBootstrap"/>)
@@ -253,12 +257,5 @@ namespace wan24.Core
         /// Raised when bootstrapping (after running bootstrapper methods and the asynchronous bootstrapper delegates)
         /// </summary>
         public static event Bootstrap_Delegate? OnBootstrap;
-
-        /// <summary>
-        /// Delegate for asynchronous bootstrapper
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns></returns>
-        public delegate Task BootStrapAsync_Delegate(CancellationToken cancellationToken);
     }
 }

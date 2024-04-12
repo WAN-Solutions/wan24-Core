@@ -76,7 +76,7 @@ namespace wan24.Core
         /// <param name="arguments">Arguments</param>
         /// <returns>Localized string</returns>
         protected virtual LocalizedString StringLocalizer(string name, object[] arguments)
-            => new(name, GetTerm(name, arguments.Length > 0 ? [.. arguments.Select(a => a.ToString() ?? string.Empty)] : []));
+            => new(name, GetTerm(name, arguments.Length > 0 ? [.. arguments.Select(a => a as string ?? a.ToString() ?? string.Empty)] : []));
 
         /// <summary>
         /// Parse a term
