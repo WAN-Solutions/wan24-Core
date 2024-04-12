@@ -8,7 +8,7 @@
         /// <summary>
         /// Event throttle
         /// </summary>
-        protected readonly FileSystemEventThrottle Throttle;
+        protected readonly FileSystemEventThrottle? Throttle;
         /// <summary>
         /// File system watcher
         /// </summary>
@@ -37,16 +37,22 @@
         /// <param name="recursive">Watch recursive?</param>
         public FileSystemEvents(
             in string folder,
-            in string pattern,
-            in NotifyFilters filters,
-            in int throttle,
+            in string pattern = "*",
+            in NotifyFilters filters = NotifyFilters.Attributes |
+                NotifyFilters.FileName |
+                NotifyFilters.LastAccess |
+                NotifyFilters.LastWrite |
+                NotifyFilters.CreationTime |
+                NotifyFilters.Size |
+                NotifyFilters.Security,
+            in int throttle = 0,
             in bool recursive = true,
             in FileSystemEventTypes events = FileSystemEventTypes.All
             )
             : base()
         {
             CanPause = true;
-            Throttle = new(throttle, this);
+            Throttle = throttle < 1 ? null : new(throttle, this);
             Watcher = new(folder, pattern)
             {
                 NotifyFilter = filters,
@@ -87,7 +93,7 @@
         /// <summary>
         /// Event throttle timeout in ms
         /// </summary>
-        public int ThrottleTimeout => Throttle.Timeout;
+        public int ThrottleTimeout => Throttle?.Timeout ?? 0;
 
         /// <summary>
         /// Number of currently collected event arguments
@@ -104,12 +110,12 @@
         /// <summary>
         /// Number of times events have been raised during throttline
         /// </summary>
-        public int EventCount => Throttle.RaisedCount;
+        public int EventCount => Throttle?.RaisedCount ?? 0;
 
         /// <summary>
         /// Time when the first event was raised during throttling
         /// </summary>
-        public DateTime EventRaised => Throttle.RaisedTime;
+        public DateTime EventRaised => Throttle?.RaisedTime ?? default;
 
         /// <summary>
         /// Last event data
@@ -152,7 +158,15 @@
         protected virtual void HandleWatcherEvent(object sender, FileSystemEventArgs e)
         {
             using (SemaphoreSyncContext ssc = EventSync) Arguments.Add(e);
-            if (!IsPaused) Throttle.Raise();
+            if (!IsPaused)
+                if (Throttle is not null)
+                {
+                    Throttle.Raise();
+                }
+                else
+                {
+                    RaiseOnEvents(DateTime.Now);
+                }
         }
 
         /// <inheritdoc/>
@@ -161,7 +175,15 @@
             bool raise;
             using (SemaphoreSyncContext ssc = await EventSync.SyncContextAsync(cancellationToken).DynamicContext())
                 raise = Arguments.Count > 0;
-            if (raise) Throttle.Raise();
+            if (raise)
+                if (Throttle is not null)
+                {
+                    Throttle.Raise();
+                }
+                else
+                {
+                    RaiseOnEvents(DateTime.Now);
+                }
             await base.AfterResumeAsync(cancellationToken).DynamicContext();
         }
 
@@ -189,7 +211,7 @@
             base.Dispose(disposing);
             Watcher.Dispose();
             WatcherEvent.Dispose();
-            Throttle.Dispose();
+            Throttle?.Dispose();
             EventSync.Dispose();
         }
 
@@ -203,7 +225,7 @@
             await base.DisposeCore().DynamicContext();
             Watcher.Dispose();
             await WatcherEvent.DisposeAsync().DynamicContext();
-            await Throttle.DisposeAsync().DynamicContext();
+            if (Throttle is not null) await Throttle.DisposeAsync().DynamicContext();
             await EventSync.DisposeAsync().DynamicContext();
         }
 

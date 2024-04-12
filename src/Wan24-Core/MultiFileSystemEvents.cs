@@ -9,14 +9,84 @@ namespace wan24.Core
     public class MultiFileSystemEvents : HostedServiceBase
     {
         /// <summary>
+        /// Event throttle
+        /// </summary>
+        protected readonly MultiFileSystemEventThrottle? Throttle;
+        /// <summary>
         /// File system watchers
         /// </summary>
         protected readonly ConcurrentDictionary<string, FileSystemEvents> Watchers = [];
+        /// <summary>
+        /// Watcher event (raised when having an event)
+        /// </summary>
+        protected readonly ResetEvent WatcherEvent = new();
+        /// <summary>
+        /// Events synchronization
+        /// </summary>
+        protected readonly SemaphoreSync EventSync = new();
+        /// <summary>
+        /// File system event senders and arguments
+        /// </summary>
+        protected readonly List<(FileSystemEvents, FileSystemEvents.FileSystemEventsArgs)> Arguments = [];
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public MultiFileSystemEvents() : base() => CanPause = true;
+        public MultiFileSystemEvents(in int throttle = 0) : base()
+        {
+            CanPause = true;
+            Throttle = throttle < 1 ? null : new(throttle, this);
+        }
+
+        /// <summary>
+        /// Get a file system events watcher
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns>File system events watcher</returns>
+        public FileSystemEvents? this[string id] => IfUndisposed(() => Watchers.TryGetValue(id, out FileSystemEvents? res) ? res : null);
+
+        /// <summary>
+        /// Number of hosted file system events watchers
+        /// </summary>
+        public int Count => IfUndisposed(Watchers.Count);
+
+        /// <summary>
+        /// Hosted file system events watcher IDs
+        /// </summary>
+        public IEnumerable<string> Ids => IfUndisposed(() => Watchers.Keys);
+
+        /// <summary>
+        /// Last event data
+        /// </summary>
+        public MultiFileSystemEventsArgs? Last { get; protected set; }
+
+        /// <summary>
+        /// Wait for an event (canceled when the service is stopping)
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Event data</returns>
+        public virtual MultiFileSystemEventsArgs WaitEvent(in CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            EnsureRunning();
+            using Cancellations cancellation = new(cancellationToken, CancelToken);
+            WatcherEvent.Wait(cancellation);
+            return Last ?? throw new InvalidProgramException();
+        }
+
+        /// <summary>
+        /// Wait for an event (canceled when the service is stopping)
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Event data</returns>
+        public virtual async Task<MultiFileSystemEventsArgs> WaitEventAsync(CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            EnsureRunning();
+            using Cancellations cancellation = new(cancellationToken, CancelToken);
+            await WatcherEvent.WaitAsync(cancellation).DynamicContext();
+            return Last ?? throw new InvalidProgramException();
+        }
 
         /// <summary>
         /// Add a file system events watcher
@@ -52,7 +122,7 @@ namespace wan24.Core
                     watcher.StartAsync(cancellationToken).Wait(CancellationToken.None);
                 }
             }
-            watcher.OnEvents += RaiseOnEvents;
+            watcher.OnEvents += HandleEvent;
             return res;
         }
 
@@ -90,7 +160,7 @@ namespace wan24.Core
                     await watcher.StartAsync(cancellationToken).DynamicContext();
                 }
             }
-            watcher.OnEvents += RaiseOnEvents;
+            watcher.OnEvents += HandleEvent;
             return res;
         }
 
@@ -103,7 +173,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             if (!Watchers.TryRemove(id, out FileSystemEvents? res)) throw new ArgumentException("ID not found", nameof(id));
-            res.OnEvents -= RaiseOnEvents;
+            res.OnEvents -= HandleEvent;
             return res;
         }
 
@@ -120,8 +190,27 @@ namespace wan24.Core
                 result = null;
                 return false;
             }
-            result.OnEvents -= RaiseOnEvents;
+            result.OnEvents -= HandleEvent;
             return true;
+        }
+
+        /// <summary>
+        /// Handle an event
+        /// </summary>
+        /// <param name="watcher">Watcher</param>
+        /// <param name="e">Arguments</param>
+        protected virtual void HandleEvent(FileSystemEvents watcher, FileSystemEvents.FileSystemEventsArgs e)
+        {
+            using (SemaphoreSyncContext ssc = EventSync) Arguments.Add((watcher, e));
+            if (!IsPaused)
+                if (Throttle is not null)
+                {
+                    Throttle.Raise();
+                }
+                else
+                {
+                    RaiseOnEvents(DateTime.Now);
+                }
         }
 
         /// <inheritdoc/>
@@ -129,7 +218,7 @@ namespace wan24.Core
         {
             await base.AfterStartAsync(cancellationToken).DynamicContext();
             List<Task> tasks = new(Watchers.Values.Select(w => !w.IsPaused ? w.StartAsync(CancellationToken.None) : Task.CompletedTask));
-            await tasks.WaitAll().WaitAsync(cancellationToken).DynamicContext();
+            await Task.WhenAll(tasks).WaitAsync(cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
@@ -137,7 +226,7 @@ namespace wan24.Core
         {
             await base.BeforeStopAsync(cancellationToken).DynamicContext();
             List<Task> tasks = new(Watchers.Values.Select(w => w.StopAsync(CancellationToken.None)));
-            await tasks.WaitAll().WaitAsync(cancellationToken).DynamicContext();
+            await Task.WhenAll(tasks).WaitAsync(cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
@@ -145,15 +234,27 @@ namespace wan24.Core
         {
             await base.AfterPauseAsync(cancellationToken).DynamicContext();
             List<Task> tasks = new(Watchers.Values.Select(w => w.IsRunning && !w.IsPaused ? w.PauseAsync(CancellationToken.None) : Task.CompletedTask));
-            await tasks.WaitAll().WaitAsync(cancellationToken).DynamicContext();
+            await Task.WhenAll(tasks).WaitAsync(cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
         protected override async Task AfterResumeAsync(CancellationToken cancellationToken)
         {
             await base.AfterResumeAsync(cancellationToken).DynamicContext();
+            bool raise;
+            using (SemaphoreSyncContext ssc = await EventSync.SyncContextAsync(cancellationToken).DynamicContext())
+                raise = Arguments.Count > 0;
+            if (raise)
+                if (Throttle is not null)
+                {
+                    Throttle.Raise();
+                }
+                else
+                {
+                    RaiseOnEvents(DateTime.Now);
+                }
             List<Task> tasks = new(Watchers.Values.Select(w => w.IsPaused ? w.ResumeAsync(CancellationToken.None) : Task.CompletedTask));
-            await tasks.WaitAll().WaitAsync(cancellationToken).DynamicContext();
+            await Task.WhenAll(tasks).WaitAsync(cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
@@ -163,8 +264,11 @@ namespace wan24.Core
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
+            Throttle?.Dispose();
+            WatcherEvent.Dispose();
+            EventSync.Dispose();
             Watchers.Values.DisposeAll();
-            foreach (FileSystemEvents watcher in Watchers.Values) watcher.OnEvents -= RaiseOnEvents;
+            foreach (FileSystemEvents watcher in Watchers.Values) watcher.OnEvents -= HandleEvent;
             Watchers.Clear();
         }
 
@@ -172,8 +276,11 @@ namespace wan24.Core
         protected override async Task DisposeCore()
         {
             await base.DisposeCore().DynamicContext();
+            if (Throttle is not null) await Throttle.DisposeAsync().DynamicContext();
+            await WatcherEvent.DisposeAsync().DynamicContext();
+            await EventSync.DisposeAsync().DynamicContext();
             await Watchers.Values.DisposeAllAsync().DynamicContext();
-            foreach (FileSystemEvents watcher in Watchers.Values) watcher.OnEvents -= RaiseOnEvents;
+            foreach (FileSystemEvents watcher in Watchers.Values) watcher.OnEvents -= HandleEvent;
             Watchers.Clear();
         }
 
@@ -190,12 +297,19 @@ namespace wan24.Core
         /// <summary>
         /// Raise the <see cref="OnEvents"/> event
         /// </summary>
-        /// <param name="sender">Sender</param>
-        /// <param name="e">Arguments</param>
-        protected virtual void RaiseOnEvents(FileSystemEvents sender, FileSystemEvents.FileSystemEventsArgs e)
+        /// <param name="raised">Time when raised first</param>
+        protected virtual void RaiseOnEvents(in DateTime raised)
         {
-            if (Watchers.Where(kvp => kvp.Value == sender).Select(kvp => kvp.Key).FirstOrDefault() is not string id) return;
-            OnEvents?.Invoke(this, new(id, e.Arguments, e.Raised));
+            using (SemaphoreSyncContext ssc = EventSync)
+            {
+                if (Arguments.Count < 1) return;
+                Last = new([.. Arguments], raised);
+                Arguments.Clear();
+            }
+            if (!IsRunning) return;
+            WatcherEvent.Set();
+            OnEvents?.Invoke(this, Last);
+            WatcherEvent.Reset();
         }
 
         /// <summary>
@@ -204,16 +318,42 @@ namespace wan24.Core
         /// <remarks>
         /// Constructor
         /// </remarks>
-        /// <param name="id">Watcher ID</param>
-        /// <param name="arguments">File system event arguments</param>
+        /// <param name="arguments">File system event senders and arguments</param>
         /// <param name="raised">Raised time</param>
-        public class MultiFileSystemEventsArgs(in string id, in IReadOnlyList<FileSystemEventArgs> arguments, in DateTime raised)
-            : FileSystemEvents.FileSystemEventsArgs(arguments, raised)
+        public class MultiFileSystemEventsArgs(
+            in IReadOnlyList<(FileSystemEvents, FileSystemEvents.FileSystemEventsArgs)> arguments,
+            in DateTime raised
+            )
+            : EventArgs()
         {
             /// <summary>
-            /// Watcher ID
+            /// File system event senders and arguments
             /// </summary>
-            public string Id { get; } = id;
+            public IReadOnlyList<(FileSystemEvents, FileSystemEvents.FileSystemEventsArgs)> Arguments { get; } = arguments;
+
+            /// <summary>
+            /// Raised time
+            /// </summary>
+            public DateTime Raised { get; } = raised;
+        }
+
+        /// <summary>
+        /// Event throttle
+        /// </summary>
+        /// <remarks>
+        /// Constructor
+        /// </remarks>
+        /// <param name="throttle">Throttle time in ms</param>
+        /// <param name="events">Events</param>
+        protected class MultiFileSystemEventThrottle(in int throttle, in MultiFileSystemEvents events) : EventThrottle(throttle)
+        {
+            /// <summary>
+            /// Events
+            /// </summary>
+            protected readonly MultiFileSystemEvents Events = events;
+
+            /// <inheritdoc/>
+            protected override void HandleEvent(in DateTime raised, in int raisedCount) => Events.RaiseOnEvents(raised);
         }
     }
 }
