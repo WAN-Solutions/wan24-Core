@@ -95,7 +95,7 @@ namespace wan24.Core
         private static async Task<ConcurrentDictionary<string, Task>> RaiseOnShutdownAsync()
         {
             ShutdownEventArgs e = new();
-            await OnShutdownAsync.Abstract.RaiseEventAsync(e).DynamicContext();
+            await OnShutdownAsync.Abstract.RaiseEventAsync(new(), e).DynamicContext();
             OnShutdown?.Invoke(e);
             return e.FinalizerTasks;
         }
