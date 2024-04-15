@@ -36,7 +36,11 @@ namespace wan24.Core
         /// <param name="estimatedLength">Estimated length in bytes</param>
         /// <param name="memoryStreamPool">Memory stream pool to use</param>
         /// <param name="fileStreamPool">File stream pool to use</param>
-        public PooledTempStream(in long estimatedLength = 0, in StreamPool<PooledMemoryStream>? memoryStreamPool = null, in StreamPool<PooledTempFileStream>? fileStreamPool = null)
+        public PooledTempStream(
+            in long estimatedLength = 0, 
+            in StreamPool<PooledMemoryStream>? memoryStreamPool = null, 
+            in StreamPool<PooledTempFileStream>? fileStreamPool = null
+            )
             : base(leaveOpen: true)
         {
             UsedMemoryStreamPool = memoryStreamPool ?? MemoryStreamPool;
@@ -48,7 +52,7 @@ namespace wan24.Core
         /// <summary>
         /// Maximum number of bytes to store in a <see cref="MemoryStream"/>
         /// </summary>
-        public static int MaxLengthInMemory { get; set; } = Settings.BufferSize;
+        public static int MaxLengthInMemory { get; set; } = ENV.IsBrowserApp ? int.MaxValue : Settings.BufferSize;
 
         /// <summary>
         /// Memory stream pool capacity
@@ -147,7 +151,7 @@ namespace wan24.Core
         public override void SetLength(long value)
         {
             EnsureUndisposed();
-            if (IsInMemory && value > MaxLengthInMemory) CreateTempFile();
+            if (IsInMemory && value > MaxLengthInMemory && !ENV.IsBrowserApp) CreateTempFile();
             _BaseStream.SetLength(value);
         }
 
@@ -158,7 +162,7 @@ namespace wan24.Core
         public override void Write(ReadOnlySpan<byte> buffer)
         {
             EnsureUndisposed();
-            if (IsInMemory && Position + buffer.Length > MaxLengthInMemory) CreateTempFile();
+            if (IsInMemory && Position + buffer.Length > MaxLengthInMemory && !ENV.IsBrowserApp) CreateTempFile();
             _BaseStream.Write(buffer);
         }
 
@@ -166,7 +170,7 @@ namespace wan24.Core
         public override void WriteByte(byte value)
         {
             EnsureUndisposed();
-            if (IsInMemory && Position + 1 > MaxLengthInMemory) CreateTempFile();
+            if (IsInMemory && Position + 1 > MaxLengthInMemory && !ENV.IsBrowserApp) CreateTempFile();
             _BaseStream.WriteByte(value);
         }
 
@@ -178,7 +182,7 @@ namespace wan24.Core
         public override async ValueTask WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            if (IsInMemory && Position + buffer.Length > MaxLengthInMemory) await CreateTempFileAsync(cancellationToken).DynamicContext();
+            if (IsInMemory && Position + buffer.Length > MaxLengthInMemory && !ENV.IsBrowserApp) await CreateTempFileAsync(cancellationToken).DynamicContext();
             await _BaseStream.WriteAsync(buffer, cancellationToken).DynamicContext(); ;
         }
 
@@ -209,6 +213,7 @@ namespace wan24.Core
         private void CreateTempFile()
         {
             EnsureUndisposed();
+            if (ENV.IsBrowserApp) return;
             long offset = Position;
             try
             {
@@ -240,6 +245,7 @@ namespace wan24.Core
         private async Task CreateTempFileAsync(CancellationToken cancellationToken)
         {
             EnsureUndisposed();
+            if (ENV.IsBrowserApp) return;
             long offset = Position;
             try
             {
