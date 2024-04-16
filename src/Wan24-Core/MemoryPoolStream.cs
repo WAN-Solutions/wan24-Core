@@ -370,7 +370,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override void Close()
         {
-            if (!DoClose()) return;
+            if (IsClosed) return;
             if (SaveOnClose) SavedData ??= ToArray();
             base.Close();
         }
@@ -390,7 +390,6 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            Close();
             foreach (byte[] buffer in Buffers)
             {
                 if (CleanReturned) buffer.Clear();

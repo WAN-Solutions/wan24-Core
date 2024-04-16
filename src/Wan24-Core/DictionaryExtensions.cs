@@ -1,4 +1,6 @@
-﻿using System.Runtime;
+﻿using System.Collections.Specialized;
+using System.Runtime;
+using System.Web;
 
 namespace wan24.Core
 {
@@ -119,6 +121,18 @@ namespace wan24.Core
                     res[kvp.Key] = value!;
             }
             return res;
+        }
+
+        /// <summary>
+        /// Get as query string (http GET request parameters)
+        /// </summary>
+        /// <param name="dict">Dictionary</param>
+        /// <returns>Query string</returns>
+        public static string AsQueryString(this Dictionary<string, string> dict)
+        {
+            NameValueCollection nvc = HttpUtility.ParseQueryString(string.Empty);
+            foreach (var kvp in dict) nvc.Add(kvp.Key, kvp.Value);
+            return nvc.ToString()!;
         }
     }
 }

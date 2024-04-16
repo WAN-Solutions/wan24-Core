@@ -34,6 +34,7 @@
         {
             if(IsStreamBase && (item as StreamBase)!.IsClosed)
             {
+                Logging.WriteWarning($"Returned stream to {GetType()} was closed");
                 item.Dispose();
                 return;
             }

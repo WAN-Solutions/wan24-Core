@@ -74,7 +74,7 @@ namespace wan24.Core
                 if (_MemoryStreamPool is not null) return _MemoryStreamPool;
                 lock (StaticSyncObject) return _MemoryStreamPool ??= new(MemoryPoolCapacity)
                 {
-                    Name = "Temporary memory streams"
+                    Name = "Temporary memory stream"
                 };
             }
         }
@@ -89,7 +89,7 @@ namespace wan24.Core
                 if (_FileStreamPool is not null) return _FileStreamPool;
                 lock (StaticSyncObject) return _FileStreamPool ??= new(FileStreamCapacity)
                 {
-                    Name = "Temporary file streams"
+                    Name = "Temporary file stream"
                 };
             }
         }
@@ -276,13 +276,18 @@ namespace wan24.Core
         private void ReturnBaseStream()
         {
             if (_BaseStream == Null) return;
-            if (MemoryStream is not null)
+            if (MemoryStream is PooledMemoryStream ms)
             {
-                UsedMemoryStreamPool.Return(MemoryStream);
+                UsedMemoryStreamPool.Return(ms);
+            }
+            else if(FileStream is PooledTempFileStream fs)
+            {
+                UsedFileStreamPool.Return(fs);
             }
             else
             {
-                UsedFileStreamPool.Return(FileStream!);
+                _BaseStream?.Dispose();
+                Logging.WriteWarning($"Base stream \"{_BaseStream?.GetType()}\" of {GetType()} (\"{Name}\") couldn't be returned to the used pool");
             }
             _BaseStream = Null;
         }
