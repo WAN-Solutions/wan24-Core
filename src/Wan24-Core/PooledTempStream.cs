@@ -189,7 +189,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override void Close()
         {
-            if (!IsDisposing) return;
+            ReturnBaseStream();
             base.Close();
         }
 

@@ -27,7 +27,7 @@
         /// </summary>
         /// <param name="capacity">Capacity</param>
         /// <param name="factory">Stream factory</param>
-        public StreamPool(in int capacity, in Func<T> factory) : base(capacity, factory) => ResetOnRent = false;
+        public StreamPool(in int capacity, in Func<T> factory) : base(capacity, factory) { }
 
         /// <inheritdoc/>
         public override void Return(in T item, in bool reset = false)

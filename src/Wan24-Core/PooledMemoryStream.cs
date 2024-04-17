@@ -20,12 +20,5 @@ namespace wan24.Core
             Position = 0;
             Name = null;
         }
-
-        /// <inheritdoc/>
-        public override void Close()
-        {
-            if (!IsDisposing) return;
-            base.Close();
-        }
     }
 }

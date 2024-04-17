@@ -107,7 +107,10 @@ namespace wan24.Core
             /// <param name="maxQueue">Maximum number of queued messages before blocking</param>
             /// <param name="mode">Create file mode</param>
             public LogQueueWorker(in string fileName, in int maxQueue, UnixFileMode? mode) : base(maxQueue)
-                => Stream = FsHelper.CreateFileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Read, permissions: mode, overwrite: false);
+            {
+                Stream = FsHelper.CreateFileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Read, permissions: mode, overwrite: false);
+                Stream.Position = Stream.Length;
+            }
 
             /// <inheritdoc/>
             protected override async Task ProcessItem(string item, CancellationToken cancellationToken)
