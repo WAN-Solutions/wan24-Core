@@ -20,8 +20,8 @@ namespace wan24.Core
         /// </summary>
         static ENV()
         {
-            IsBrowserApp = IsBrowserEnvironment = RuntimeInformation.OSDescription.Equals("web", StringComparison.OrdinalIgnoreCase) ||
-                RuntimeInformation.OSDescription.Equals("Browser", StringComparison.OrdinalIgnoreCase);
+            IsBrowserApp = IsBrowserEnvironment = RuntimeInformation.OSDescription.IsLike("web") ||
+                RuntimeInformation.OSDescription.IsLike("Browser");
             IsWindows = Environment.OSVersion.Platform == PlatformID.Win32NT;
             IsLinux = Environment.OSVersion.Platform == PlatformID.Unix;
 #if !RELEASE

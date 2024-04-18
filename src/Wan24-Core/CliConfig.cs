@@ -29,7 +29,7 @@ namespace wan24.Core
                        from t in ass.GetTypes()
                        where t.CanConstruct() &&
                         typeof(ILogger).IsAssignableFrom(t) &&
-                        t.Name.Equals(value, StringComparison.OrdinalIgnoreCase)
+                        t.Name.IsLike(value)
                        select t).FirstOrDefault())
                     ?? throw new ArgumentException($"Logger type not found: {value}", $"{typeof(CliConfig)}.{nameof(LoggerType)}");
                 // Create and activate the logger

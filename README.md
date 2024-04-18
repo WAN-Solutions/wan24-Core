@@ -198,6 +198,8 @@ including extensions for numeric type encoding/decoding)
     - `FlushStream` for writing to a buffer until a call to flush
     - `CutStream` for cutting a stream from its position
     - `ExactStream` for reading exactly the number of given bytes, if possible
+    - `BackgroundProcessingStream` for a background stream buffer filling 
+    processor
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context
