@@ -63,14 +63,9 @@ namespace wan24.Core
                 }
                 App = app;
                 AppFolder = Path.GetDirectoryName(App) ?? throw new InvalidProgramException("Failed to get the app path");
-                if (app.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
-                {
-                    AppCommand = IsWindows ? $"dotnet {app}" : $"/usr/bin/dotnet {app}";
-                }
-                else
-                {
-                    AppCommand = app;
-                }
+                AppCommand = app.EndsWith(".dll", StringComparison.OrdinalIgnoreCase)
+                    ? IsWindows ? $"dotnet {app}" : $"/usr/bin/dotnet {app}"
+                    : app;
                 _CliArguments = Environment.GetCommandLineArgs();
             }
             else

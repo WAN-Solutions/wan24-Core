@@ -8,6 +8,6 @@
         /// <summary>
         /// Processes (key is a GUID)
         /// </summary>
-        public static readonly ConcurrentChangeTokenDictionary<string, IProcessingInfo> Processing = new();
+        public static readonly ConcurrentChangeTokenDictionary<string, IProcessingInfo> Processing = [];
     }
 }

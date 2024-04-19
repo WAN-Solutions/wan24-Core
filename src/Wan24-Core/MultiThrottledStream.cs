@@ -3,7 +3,8 @@
 namespace wan24.Core
 {
     /// <summary>
-    /// Multiple combined throttled streams (will balance a total read/write limit to all hosted streams, based on quotas; all streams need to use the same time restrictions for this)
+    /// Multiple combined throttled streams (will balance a total read/write limit to all hosted streams, based on quotas; all streams need to use the same time 
+    /// restrictions for this)
     /// </summary>
     /// <remarks>
     /// Constructor
