@@ -5,9 +5,9 @@
     <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Class PooledTempFileStream | wan24-Core </title>
+      <title>Class ExactStream | wan24-Core </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Class PooledTempFileStream | wan24-Core ">
+      <meta name="title" content="Class ExactStream | wan24-Core ">
       <meta name="generator" content="docfx ">
   
       <link rel="shortcut icon" href="../favicon.ico">
@@ -93,15 +93,15 @@
                         </div>
 
                          <div id="contribution">
-                               <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempFileStream.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempFileStream%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                               <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ExactStream.md&amp;value=---%0Auid%3A%20wan24.Core.ExactStream%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                          </div>
 
-                    <article class="content wrap" id="_content" data-uid="wan24.Core.PooledTempFileStream">
+                    <article class="content wrap" id="_content" data-uid="wan24.Core.ExactStream">
 
 
 
-  <h1 id="wan24_Core_PooledTempFileStream" data-uid="wan24.Core.PooledTempFileStream" class="text-break">Class PooledTempFileStream</h1>
-  <div class="markdown level0 summary"><p>Pooled temporary file stream</p>
+  <h1 id="wan24_Core_ExactStream" data-uid="wan24.Core.ExactStream" class="text-break">Class ExactStream</h1>
+  <div class="markdown level0 summary"><p>Exact stream (tries to read exactly the given number of bytes until no bytes were red)</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -109,124 +109,234 @@
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject">MarshalByRefObject</a></div>
     <div class="level2"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></div>
-    <div class="level3"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream">FileStream</a></div>
-    <div class="level4"><span class="xref">PooledTempFileStream</span></div>
+    <div class="level3"><a class="xref" href="wan24.Core.StreamBase.html">StreamBase</a></div>
+    <div class="level4"><a class="xref" href="wan24.Core.WrapperStream-1.html">WrapperStream</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a>&gt;</div>
+    <div class="level5"><a class="xref" href="wan24.Core.ExactStream-1.html">ExactStream</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a>&gt;</div>
+    <div class="level6"><span class="xref">ExactStream</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
-    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
+    <div><a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a></div>
+    <div><a class="xref" href="wan24.Core.IStream.html">IStream</a></div>
+    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
-    <div><a class="xref" href="wan24.Core.IObjectPoolItem.html">IObjectPoolItem</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
+    <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.beginread">FileStream.BeginRead(byte[], int, int, AsyncCallback, object)</a>
+      <a class="xref" href="wan24.Core.ExactStream-1.html#wan24_Core_ExactStream_1_Read_System_Byte___System_Int32_System_Int32_">ExactStream&lt;Stream&gt;.Read(byte[], int, int)</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.beginwrite">FileStream.BeginWrite(byte[], int, int, AsyncCallback, object)</a>
+      <a class="xref" href="wan24.Core.ExactStream-1.html#wan24_Core_ExactStream_1_Read_System_Span_System_Byte__">ExactStream&lt;Stream&gt;.Read(Span&lt;byte&gt;)</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.copytoasync">FileStream.CopyToAsync(Stream, int, CancellationToken)</a>
+      <a class="xref" href="wan24.Core.ExactStream-1.html#wan24_Core_ExactStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_">ExactStream&lt;Stream&gt;.ReadAsync(byte[], int, int, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.disposeasync">FileStream.DisposeAsync()</a>
+      <a class="xref" href="wan24.Core.ExactStream-1.html#wan24_Core_ExactStream_1_ReadAsync_System_Memory_System_Byte__System_Threading_CancellationToken_">ExactStream&lt;Stream&gt;.ReadAsync(Memory&lt;byte&gt;, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.endread">FileStream.EndRead(IAsyncResult)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1__BaseStream">WrapperStream&lt;Stream&gt;._BaseStream</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.endwrite">FileStream.EndWrite(IAsyncResult)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1__LeaveOpen">WrapperStream&lt;Stream&gt;._LeaveOpen</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.flush#system-io-filestream-flush">FileStream.Flush()</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseOriginalByteIO">WrapperStream&lt;Stream&gt;.UseOriginalByteIO</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.flush#system-io-filestream-flush(system-boolean)">FileStream.Flush(bool)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseOriginalCopyTo">WrapperStream&lt;Stream&gt;.UseOriginalCopyTo</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.flushasync">FileStream.FlushAsync(CancellationToken)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseOriginalBeginRead">WrapperStream&lt;Stream&gt;.UseOriginalBeginRead</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.lock">FileStream.Lock(long, long)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseOriginalBeginWrite">WrapperStream&lt;Stream&gt;.UseOriginalBeginWrite</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.read#system-io-filestream-read(system-byte()-system-int32-system-int32)">FileStream.Read(byte[], int, int)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_UseBaseStream">WrapperStream&lt;Stream&gt;.UseBaseStream</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.read#system-io-filestream-read(system-span((system-byte)))">FileStream.Read(Span&lt;byte&gt;)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Target">WrapperStream&lt;Stream&gt;.Target</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.readasync#system-io-filestream-readasync(system-byte()-system-int32-system-int32-system-threading-cancellationtoken)">FileStream.ReadAsync(byte[], int, int, CancellationToken)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseStream">WrapperStream&lt;Stream&gt;.BaseStream</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.readasync#system-io-filestream-readasync(system-memory((system-byte))-system-threading-cancellationtoken)">FileStream.ReadAsync(Memory&lt;byte&gt;, CancellationToken)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_LeaveOpen">WrapperStream&lt;Stream&gt;.LeaveOpen</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.readbyte">FileStream.ReadByte()</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_State">WrapperStream&lt;Stream&gt;.State</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.seek">FileStream.Seek(long, SeekOrigin)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanRead">WrapperStream&lt;Stream&gt;.CanRead</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.setlength">FileStream.SetLength(long)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanSeek">WrapperStream&lt;Stream&gt;.CanSeek</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.unlock">FileStream.Unlock(long, long)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanWrite">WrapperStream&lt;Stream&gt;.CanWrite</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.write#system-io-filestream-write(system-byte()-system-int32-system-int32)">FileStream.Write(byte[], int, int)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CanTimeout">WrapperStream&lt;Stream&gt;.CanTimeout</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.write#system-io-filestream-write(system-readonlyspan((system-byte)))">FileStream.Write(ReadOnlySpan&lt;byte&gt;)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Length">WrapperStream&lt;Stream&gt;.Length</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.writeasync#system-io-filestream-writeasync(system-byte()-system-int32-system-int32-system-threading-cancellationtoken)">FileStream.WriteAsync(byte[], int, int, CancellationToken)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Position">WrapperStream&lt;Stream&gt;.Position</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.writeasync#system-io-filestream-writeasync(system-readonlymemory((system-byte))-system-threading-cancellationtoken)">FileStream.WriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_ReadTimeout">WrapperStream&lt;Stream&gt;.ReadTimeout</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.writebyte">FileStream.WriteByte(byte)</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_WriteTimeout">WrapperStream&lt;Stream&gt;.WriteTimeout</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.canread">FileStream.CanRead</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Flush">WrapperStream&lt;Stream&gt;.Flush()</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.canseek">FileStream.CanSeek</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_FlushAsync_System_Threading_CancellationToken_">WrapperStream&lt;Stream&gt;.FlushAsync(CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.canwrite">FileStream.CanWrite</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_ReadByte">WrapperStream&lt;Stream&gt;.ReadByte()</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.handle">FileStream.Handle</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Seek_System_Int64_System_IO_SeekOrigin_">WrapperStream&lt;Stream&gt;.Seek(long, SeekOrigin)</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.isasync">FileStream.IsAsync</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_SetLength_System_Int64_">WrapperStream&lt;Stream&gt;.SetLength(long)</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.length">FileStream.Length</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Write_System_Byte___System_Int32_System_Int32_">WrapperStream&lt;Stream&gt;.Write(byte[], int, int)</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.name">FileStream.Name</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Write_System_ReadOnlySpan_System_Byte__">WrapperStream&lt;Stream&gt;.Write(ReadOnlySpan&lt;byte&gt;)</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.position">FileStream.Position</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_WriteByte_System_Byte_">WrapperStream&lt;Stream&gt;.WriteByte(byte)</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filestream.safefilehandle">FileStream.SafeFileHandle</a>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_WriteAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_">WrapperStream&lt;Stream&gt;.WriteAsync(byte[], int, int, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_">WrapperStream&lt;Stream&gt;.WriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CopyTo_System_IO_Stream_System_Int32_">WrapperStream&lt;Stream&gt;.CopyTo(Stream, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CopyToAsync_System_IO_Stream_System_Int32_System_Threading_CancellationToken_">WrapperStream&lt;Stream&gt;.CopyToAsync(Stream, int, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BeginRead_System_Byte___System_Int32_System_Int32_System_AsyncCallback_System_Object_">WrapperStream&lt;Stream&gt;.BeginRead(byte[], int, int, AsyncCallback, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_EndRead_System_IAsyncResult_">WrapperStream&lt;Stream&gt;.EndRead(IAsyncResult)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BeginWrite_System_Byte___System_Int32_System_Int32_System_AsyncCallback_System_Object_">WrapperStream&lt;Stream&gt;.BeginWrite(byte[], int, int, AsyncCallback, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_EndWrite_System_IAsyncResult_">WrapperStream&lt;Stream&gt;.EndWrite(IAsyncResult)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Equals_System_Object_">WrapperStream&lt;Stream&gt;.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_GetHashCode">WrapperStream&lt;Stream&gt;.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_ToString">WrapperStream&lt;Stream&gt;.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Close">WrapperStream&lt;Stream&gt;.Close()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Dispose_System_Boolean_">WrapperStream&lt;Stream&gt;.Dispose(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_DisposeCore">WrapperStream&lt;Stream&gt;.DisposeCore()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseCopyTo_System_IO_Stream__System_Int32__">WrapperStream&lt;Stream&gt;.BaseCopyTo(in Stream, in int)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseCopyToAsync_System_IO_Stream__System_Int32__System_Threading_CancellationToken__">WrapperStream&lt;Stream&gt;.BaseCopyToAsync(in Stream, in int, in CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseBeginRead_System_Byte____System_Int32__System_Int32__System_AsyncCallback__System_Object_">WrapperStream&lt;Stream&gt;.BaseBeginRead(in byte[], in int, in int, in AsyncCallback, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseEndRead_System_IAsyncResult__">WrapperStream&lt;Stream&gt;.BaseEndRead(in IAsyncResult)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseBeginWrite_System_Byte____System_Int32__System_Int32__System_AsyncCallback__System_Object__">WrapperStream&lt;Stream&gt;.BaseBeginWrite(in byte[], in int, in int, in AsyncCallback, in object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_BaseEndWrite_System_IAsyncResult__">WrapperStream&lt;Stream&gt;.BaseEndWrite(in IAsyncResult)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_HandleBaseStreamDisposed_wan24_Core_IDisposableObject_System_EventArgs_">WrapperStream&lt;Stream&gt;.HandleBaseStreamDisposed(IDisposableObject, EventArgs)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_SyncObject">StreamBase.SyncObject</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_Name">StreamBase.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsClosed">StreamBase.IsClosed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsDisposed">StreamBase.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsDisposing">StreamBase.IsDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_DisposeAsync">StreamBase.DisposeAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_DoClose">StreamBase.DoClose()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureUndisposed_System_Boolean__System_Boolean__">StreamBase.EnsureUndisposed(in bool, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed__1___0__System_Boolean__">StreamBase.IfUndisposed&lt;T&gt;(in T, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed_System_Action__System_Boolean__">StreamBase.IfUndisposed(in Action, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed__1_System_Func___0___System_Boolean__">StreamBase.IfUndisposed&lt;T&gt;(in Func&lt;T&gt;, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposedNullable__1_System_Func___0___System_Boolean__">StreamBase.IfUndisposedNullable&lt;T&gt;(in Func&lt;T&gt;, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureSeekable">StreamBase.EnsureSeekable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureWritable">StreamBase.EnsureWritable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureReadable">StreamBase.EnsureReadable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_OnDisposing">StreamBase.OnDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_OnDisposed">StreamBase.OnDisposed</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.null">Stream.Null</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.close">Stream.Close()</a>
-    </div>
-    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.copyto#system-io-stream-copyto(system-io-stream)">Stream.CopyTo(Stream)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.copyto#system-io-stream-copyto(system-io-stream-system-int32)">Stream.CopyTo(Stream, int)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.copytoasync#system-io-stream-copytoasync(system-io-stream)">Stream.CopyToAsync(Stream)</a>
@@ -238,10 +348,16 @@
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.copytoasync#system-io-stream-copytoasync(system-io-stream-system-threading-cancellationtoken)">Stream.CopyToAsync(Stream, CancellationToken)</a>
     </div>
     <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.createwaithandle">Stream.CreateWaitHandle()</a>
+    </div>
+    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.dispose#system-io-stream-dispose">Stream.Dispose()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.flushasync#system-io-stream-flushasync">Stream.FlushAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.objectinvariant">Stream.ObjectInvariant()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.readasync#system-io-stream-readasync(system-byte()-system-int32-system-int32)">Stream.ReadAsync(byte[], int, int)</a>
@@ -268,16 +384,13 @@
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.synchronized">Stream.Synchronized(Stream)</a>
     </div>
     <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.validatebufferarguments">Stream.ValidateBufferArguments(byte[], int, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.validatecopytoarguments">Stream.ValidateCopyToArguments(Stream, int)</a>
+    </div>
+    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.writeasync#system-io-stream-writeasync(system-byte()-system-int32-system-int32)">Stream.WriteAsync(byte[], int, int)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.cantimeout">Stream.CanTimeout</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.readtimeout">Stream.ReadTimeout</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.writetimeout">Stream.WriteTimeout</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.getlifetimeservice">MarshalByRefObject.GetLifetimeService()</a>
@@ -286,66 +399,47 @@
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.initializelifetimeservice">MarshalByRefObject.InitializeLifetimeService()</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.memberwiseclone">MarshalByRefObject.MemberwiseClone(bool)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
     </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
-    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
-  <h5 id="wan24_Core_PooledTempFileStream_syntax">Syntax</h5>
+  <h5 id="wan24_Core_ExactStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class PooledTempFileStream : FileStream, IAsyncDisposable, IDisposable, IObjectPoolItem</code></pre>
+    <pre><code class="lang-csharp hljs">public class ExactStream : ExactStream&lt;Stream&gt;, IStreamWrapper, IStream, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
   </div>
-  <h5 id="wan24_Core_PooledTempFileStream_remarks"><strong>Remarks</strong></h5>
+  <h5 id="wan24_Core_ExactStream_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Constructor</p>
 </div>
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempFileStream__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempFileStream.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ExactStream__ctor_System_IO_Stream__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.ExactStream.%23ctor(System.IO.Stream%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempFileStream.cs/#L76">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ExactStream.cs/#L11">View Source</a>
   </span>
-  <a id="wan24_Core_PooledTempFileStream__ctor_" data-uid="wan24.Core.PooledTempFileStream.#ctor*"></a>
-  <h4 id="wan24_Core_PooledTempFileStream__ctor" data-uid="wan24.Core.PooledTempFileStream.#ctor">PooledTempFileStream()</h4>
-  <div class="markdown level1 summary"><p>Constructor</p>
+  <a id="wan24_Core_ExactStream__ctor_" data-uid="wan24.Core.ExactStream.#ctor*"></a>
+  <h4 id="wan24_Core_ExactStream__ctor_System_IO_Stream__System_Boolean__" data-uid="wan24.Core.ExactStream.#ctor(System.IO.Stream@,System.Boolean@)">ExactStream(in Stream, in bool)</h4>
+  <div class="markdown level1 summary"><p>Exact stream (tries to read exactly the given number of bytes until no bytes were red)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PooledTempFileStream()</code></pre>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempFileStream__ctor_System_Nullable_System_IO_UnixFileMode___.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempFileStream.%23ctor(System.Nullable%7BSystem.IO.UnixFileMode%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempFileStream.cs/#L71">View Source</a>
-  </span>
-  <a id="wan24_Core_PooledTempFileStream__ctor_" data-uid="wan24.Core.PooledTempFileStream.#ctor*"></a>
-  <h4 id="wan24_Core_PooledTempFileStream__ctor_System_Nullable_System_IO_UnixFileMode___" data-uid="wan24.Core.PooledTempFileStream.#ctor(System.Nullable{System.IO.UnixFileMode}@)">PooledTempFileStream(in UnixFileMode?)</h4>
-  <div class="markdown level1 summary"><p>Constructor</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PooledTempFileStream(in UnixFileMode? mode)</code></pre>
+    <pre><code class="lang-csharp hljs">public ExactStream(in Stream baseStream, in bool leaveOpen = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -358,149 +452,40 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.unixfilemode">UnixFileMode</a>?</td>
-        <td><span class="parametername">mode</span></td>
-        <td><p>Unix create file mode</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">baseStream</span></td>
+        <td><p>Base stream</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">leaveOpen</span></td>
+        <td><p>Leave the base stream open when disposing?</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempFileStream__ctor_System_String__System_Nullable_System_IO_UnixFileMode___.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempFileStream.%23ctor(System.String%40%2CSystem.Nullable%7BSystem.IO.UnixFileMode%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempFileStream.cs/#L14">View Source</a>
-  </span>
-  <a id="wan24_Core_PooledTempFileStream__ctor_" data-uid="wan24.Core.PooledTempFileStream.#ctor*"></a>
-  <h4 id="wan24_Core_PooledTempFileStream__ctor_System_String__System_Nullable_System_IO_UnixFileMode___" data-uid="wan24.Core.PooledTempFileStream.#ctor(System.String@,System.Nullable{System.IO.UnixFileMode}@)">PooledTempFileStream(in string?, in UnixFileMode?)</h4>
-  <div class="markdown level1 summary"><p>Pooled temporary file stream</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PooledTempFileStream(in string? folder, in UnixFileMode? mode = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">folder</span></td>
-        <td><p>Temporary folder</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.unixfilemode">UnixFileMode</a>?</td>
-        <td><span class="parametername">mode</span></td>
-        <td><p>Unix create file mode</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="wan24_Core_PooledTempFileStream__ctor_System_String__System_Nullable_System_IO_UnixFileMode____remarks">Remarks</h5>
+  <h5 id="wan24_Core_ExactStream__ctor_System_IO_Stream__System_Boolean___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Constructor</p>
 </div>
-  <h3 id="fields">Fields
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempFileStream_DEFAULT_BUFFER_SIZE.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempFileStream.DEFAULT_BUFFER_SIZE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempFileStream.cs/#L44">View Source</a>
-  </span>
-  <h4 id="wan24_Core_PooledTempFileStream_DEFAULT_BUFFER_SIZE" data-uid="wan24.Core.PooledTempFileStream.DEFAULT_BUFFER_SIZE">DEFAULT_BUFFER_SIZE</h4>
-  <div class="markdown level1 summary"><p>Default buffer size in bytes</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const int DEFAULT_BUFFER_SIZE = 4096</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempFileStream_BufferSize.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempFileStream.BufferSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempFileStream.cs/#L81">View Source</a>
-  </span>
-  <a id="wan24_Core_PooledTempFileStream_BufferSize_" data-uid="wan24.Core.PooledTempFileStream.BufferSize*"></a>
-  <h4 id="wan24_Core_PooledTempFileStream_BufferSize" data-uid="wan24.Core.PooledTempFileStream.BufferSize">BufferSize</h4>
-  <div class="markdown level1 summary"><p>Buffer size in bytes</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int BufferSize { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempFileStream_Reset.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempFileStream.Reset%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempFileStream.cs/#L84">View Source</a>
-  </span>
-  <a id="wan24_Core_PooledTempFileStream_Reset_" data-uid="wan24.Core.PooledTempFileStream.Reset*"></a>
-  <h4 id="wan24_Core_PooledTempFileStream_Reset" data-uid="wan24.Core.PooledTempFileStream.Reset">Reset()</h4>
-  <div class="markdown level1 summary"><p>Reset the item for re-use</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public void Reset()</code></pre>
-  </div>
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a>
+      <a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IStream.html">IStream</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.IObjectPoolItem.html">IObjectPoolItem</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>

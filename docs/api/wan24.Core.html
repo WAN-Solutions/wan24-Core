@@ -170,6 +170,9 @@ Classes
       <h5><a class="xref" href="wan24.Core.AutoValueObjectBase-1.html">AutoValueObjectBase&lt;T&gt;</a></h5>
       <section><p>Base class for an automatic value object (uses properties with a public getter for building the objects hash code)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.BackgroundProcessingStream.html">BackgroundProcessingStream</a></h5>
+      <section><p>Background processing stream</p>
+</section>
       <h5><a class="xref" href="wan24.Core.BackgroundStream.html">BackgroundStream</a></h5>
       <section><p>Background stream (allows writing using a background service; will copy each chunk for writing; not seek- and readable!)</p>
 </section>
@@ -473,6 +476,12 @@ Classes
       <h5><a class="xref" href="wan24.Core.EventWorkerBase.html">EventWorkerBase</a></h5>
       <section><p>Base class for an event worker</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ExactStream.html">ExactStream</a></h5>
+      <section><p>Exact stream (tries to read exactly the given number of bytes until no bytes were red)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ExactStream-1.html">ExactStream&lt;T&gt;</a></h5>
+      <section><p>Exact stream (tries to read exactly the given number of bytes until no bytes were red)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ExchangeableStream.html">ExchangeableStream</a></h5>
       <section><p>Exchangeable stream</p>
 </section>
@@ -610,7 +619,8 @@ the first stream per default)</p>
       <section><p>Multiple combined process throttles (will balance a total limit to all hosted throttles; all throttles need to use the same time restriction for this)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.MultiThrottledStream.html">MultiThrottledStream</a></h5>
-      <section><p>Multiple combined throttled streams (will balance a total read/write limit to all hosted streams, based on quotas; all streams need to use the same time restrictions for this)</p>
+      <section><p>Multiple combined throttled streams (will balance a total read/write limit to all hosted streams, based on quotas; all streams need to use the same time
+restrictions for this)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.NetworkHelper.html">NetworkHelper</a></h5>
       <section><p>Network helper</p>
@@ -1233,6 +1243,9 @@ Delegates
 </section>
       <h5><a class="xref" href="wan24.Core.AsyncTimer.Elapsed_Delegate.html">AsyncTimer.Elapsed_Delegate</a></h5>
       <section><p>Delegate for an elapsed handler</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.BackgroundProcessingStream.Error_Delegate.html">BackgroundProcessingStream.Error_Delegate</a></h5>
+      <section><p>Delegate for an <a class="xref" href="wan24.Core.BackgroundProcessingStream.html#wan24_Core_BackgroundProcessingStream_OnError">OnError</a> event handler</p>
 </section>
       <h5><a class="xref" href="wan24.Core.BackgroundStream-1.Error_Delegate.html">BackgroundStream&lt;T&gt;.Error_Delegate</a></h5>
       <section><p>Delegate for an <a class="xref" href="wan24.Core.BackgroundStream-1.html#wan24_Core_BackgroundStream_1_OnError">OnError</a> event handler</p>
