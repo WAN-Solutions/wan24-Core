@@ -50,7 +50,7 @@ namespace wan24.Core
         /// <summary>
         /// Error handler (first chance before <see cref="OnError"/> event handlers)
         /// </summary>
-        public static ErrorHandler_Delegate? ErrorHandler { get; set; }
+        public static ErrorHandler_Delegate? ErrorHandler { get; set; } = DefaultErrorHandler;
 
         /// <summary>
         /// Break the attached debugger on error?
@@ -99,6 +99,24 @@ namespace wan24.Core
             {
                 for (int limit = ErrorCountLimit; limit > 0 && Errors.Count >= ErrorCountLimit; Errors.Dequeue()) ;
                 Errors.Enqueue(ex);
+            }
+        }
+
+        /// <summary>
+        /// Default error handler
+        /// </summary>
+        /// <param name="info">Error information</param>
+        public static void DefaultErrorHandler(ErrorInfo info)
+        {
+            if(info.Exception is StackInfoException ex)
+            {
+                Logging.WriteWarning($"Warning from source #{info.Source}: {info.Exception}");
+                if (Debug)
+                    Logging.WriteDebug($"Stack of {ex.StackInfo.Object.GetType()}: {ex.StackInfo.Stack}");
+            }
+            else
+            {
+                Logging.WriteError($"Error from source #{info.Source}: {info.Exception}");
             }
         }
 

@@ -46,7 +46,7 @@ namespace wan24.Core
         /// <param name="task">Task</param>
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
         public static object GetResult(this Task task, in Type type)
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
@@ -62,7 +62,7 @@ namespace wan24.Core
         /// <param name="task">Task</param>
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
         public static object? GetResultNullable(this Task task, in Type type)
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
@@ -110,7 +110,7 @@ namespace wan24.Core
         /// <param name="task">Task</param>
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
         public static object GetResult(this ValueTask task, in Type type)
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
@@ -126,7 +126,7 @@ namespace wan24.Core
         /// <param name="task">Task</param>
         /// <param name="type">Result type</param>
         /// <returns>Result</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
         public static object? GetResultNullable(this ValueTask task, in Type type)
         {
             PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")

@@ -137,7 +137,7 @@ namespace wan24.Core
                     x is not null &&
                     y is not null &&
                     x.Length == y.Length &&
-                    x.Equals(y, StringComparison.OrdinalIgnoreCase)
+                    x.IsLike(y)
                 );
 
         /// <summary>

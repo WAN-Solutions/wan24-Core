@@ -42,12 +42,12 @@ namespace wan24.Core
         /// <summary>
         /// Readable source stream
         /// </summary>
-        public tReadable Readable { get; }
+        public virtual tReadable Readable { get; }
 
         /// <summary>
         /// Writable target stream
         /// </summary>
-        public tWritable Writable { get; }
+        public virtual tWritable Writable { get; }
 
         /// <summary>
         /// Leave the streams open when disposing?

@@ -44,11 +44,6 @@ namespace wan24.Core
         public const int DEFAULT_BUFFER_SIZE = 4096;
 
         /// <summary>
-        /// Is disposing?
-        /// </summary>
-        private bool IsDisposing = false;
-
-        /// <summary>
         /// Static constructor
         /// </summary>
         static PooledTempFileStream()
@@ -91,34 +86,6 @@ namespace wan24.Core
         {
             SetLength(0);
             Position = 0;
-        }
-
-        /// <inheritdoc/>
-        public override void Close()
-        {
-            if (!IsDisposing) return;
-            base.Close();
-        }
-
-        /// <inheritdoc/>
-        protected override void Dispose(bool disposing)
-        {
-            IsDisposing = true;
-            base.Dispose(disposing);
-        }
-
-        /// <inheritdoc/>
-        new public void Dispose()
-        {
-            IsDisposing = true;
-            base.Dispose();
-        }
-
-        /// <inheritdoc/>
-        new public ValueTask DisposeAsync()
-        {
-            IsDisposing = true;
-            return base.DisposeAsync();
         }
     }
 }

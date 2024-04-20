@@ -59,7 +59,7 @@ namespace wan24.Core
             }
             catch (Exception ex)
             {
-                ErrorHandling.Handle(new("Exceptions during shutdown", ex, ErrorHandling.SHUTDOWN_ERROR));
+                ErrorHandling.Handle(new("Exception during shutdown", ex, ErrorHandling.SHUTDOWN_ERROR));
             }
             finally
             {

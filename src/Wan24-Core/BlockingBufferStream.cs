@@ -100,7 +100,7 @@ namespace wan24.Core
         public sealed override bool CanSeek => false;
 
         /// <inheritdoc/>
-        public sealed override bool CanWrite => true;
+        public override bool CanWrite => true;
 
         /// <inheritdoc/>
         public sealed override long Length => IfUndisposed(_Length);

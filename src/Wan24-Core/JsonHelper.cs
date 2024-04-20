@@ -217,7 +217,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="json">JSON string</param>
         /// <returns>Is <see langword="null"/>?</returns>
-        public static bool IsJsonNull(this string json) => json.Equals(NULL, StringComparison.OrdinalIgnoreCase);
+        public static bool IsJsonNull(this string json) => json.IsLike(NULL);
 
         /// <summary>
         /// Determine if a string is a JSON <see cref="bool"/> value

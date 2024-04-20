@@ -46,7 +46,7 @@ namespace wan24.Core
             if (!await DoDisposeAsync().DynamicContext()) return;
             await DisposeCore().DynamicContext();
             Close();
-            DisposeSyncObject.Dispose();
+            await DisposeSyncObject.DisposeAsync().DynamicContext();
             IsDisposed = true;
             GC.SuppressFinalize(this);
             OnDisposed?.Invoke(this, new());
@@ -214,7 +214,8 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         protected void EnsureSeekable()
         {
-            if (!CanSeek) throw new NotSupportedException("Not seekable");
+            if (!CanSeek)
+                throw new NotSupportedException("Not seekable");
         }
 
         /// <summary>
@@ -224,7 +225,8 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         protected void EnsureWritable()
         {
-            if (!CanWrite) throw new NotSupportedException("Not writable");
+            if (!CanWrite)
+                throw new NotSupportedException("Not writable");
         }
 
         /// <summary>
@@ -234,7 +236,8 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         protected void EnsureReadable()
         {
-            if (!CanRead) throw new NotSupportedException("Not readable");
+            if (!CanRead)
+                throw new NotSupportedException("Not readable");
         }
 
         /// <inheritdoc/>

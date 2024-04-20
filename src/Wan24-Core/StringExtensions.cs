@@ -512,5 +512,14 @@ namespace wan24.Core
             if (ellipsis is not null && ellipsis.Length > maxLength) throw new ArgumentOutOfRangeException(nameof(ellipsis));
             return str.Length <= maxLength ? str : $"{str[0..(maxLength - (ellipsis?.Length ?? 0))]}{ellipsis}";
         }
+
+        /// <summary>
+        /// Determine if a string is like another string (equals case insensitive)
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="other">Other string</param>
+        /// <returns>Is the <c>str</c> like the <c>other</c>?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static bool IsLike(this string str, in string other) => str.Length == other.Length && str.Equals(other, StringComparison.OrdinalIgnoreCase);
     }
 }

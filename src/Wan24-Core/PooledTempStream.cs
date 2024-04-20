@@ -36,7 +36,11 @@ namespace wan24.Core
         /// <param name="estimatedLength">Estimated length in bytes</param>
         /// <param name="memoryStreamPool">Memory stream pool to use</param>
         /// <param name="fileStreamPool">File stream pool to use</param>
-        public PooledTempStream(in long estimatedLength = 0, in StreamPool<PooledMemoryStream>? memoryStreamPool = null, in StreamPool<PooledTempFileStream>? fileStreamPool = null)
+        public PooledTempStream(
+            in long estimatedLength = 0, 
+            in StreamPool<PooledMemoryStream>? memoryStreamPool = null, 
+            in StreamPool<PooledTempFileStream>? fileStreamPool = null
+            )
             : base(leaveOpen: true)
         {
             UsedMemoryStreamPool = memoryStreamPool ?? MemoryStreamPool;
@@ -48,7 +52,7 @@ namespace wan24.Core
         /// <summary>
         /// Maximum number of bytes to store in a <see cref="MemoryStream"/>
         /// </summary>
-        public static int MaxLengthInMemory { get; set; } = Settings.BufferSize;
+        public static int MaxLengthInMemory { get; set; } = ENV.IsBrowserApp ? int.MaxValue : Settings.BufferSize;
 
         /// <summary>
         /// Memory stream pool capacity
@@ -70,7 +74,7 @@ namespace wan24.Core
                 if (_MemoryStreamPool is not null) return _MemoryStreamPool;
                 lock (StaticSyncObject) return _MemoryStreamPool ??= new(MemoryPoolCapacity)
                 {
-                    Name = "Temporary memory streams"
+                    Name = "Temporary memory stream"
                 };
             }
         }
@@ -85,7 +89,7 @@ namespace wan24.Core
                 if (_FileStreamPool is not null) return _FileStreamPool;
                 lock (StaticSyncObject) return _FileStreamPool ??= new(FileStreamCapacity)
                 {
-                    Name = "Temporary file streams"
+                    Name = "Temporary file stream"
                 };
             }
         }
@@ -147,7 +151,7 @@ namespace wan24.Core
         public override void SetLength(long value)
         {
             EnsureUndisposed();
-            if (IsInMemory && value > MaxLengthInMemory) CreateTempFile();
+            if (IsInMemory && value > MaxLengthInMemory && !ENV.IsBrowserApp) CreateTempFile();
             _BaseStream.SetLength(value);
         }
 
@@ -158,7 +162,7 @@ namespace wan24.Core
         public override void Write(ReadOnlySpan<byte> buffer)
         {
             EnsureUndisposed();
-            if (IsInMemory && Position + buffer.Length > MaxLengthInMemory) CreateTempFile();
+            if (IsInMemory && Position + buffer.Length > MaxLengthInMemory && !ENV.IsBrowserApp) CreateTempFile();
             _BaseStream.Write(buffer);
         }
 
@@ -166,7 +170,7 @@ namespace wan24.Core
         public override void WriteByte(byte value)
         {
             EnsureUndisposed();
-            if (IsInMemory && Position + 1 > MaxLengthInMemory) CreateTempFile();
+            if (IsInMemory && Position + 1 > MaxLengthInMemory && !ENV.IsBrowserApp) CreateTempFile();
             _BaseStream.WriteByte(value);
         }
 
@@ -178,14 +182,14 @@ namespace wan24.Core
         public override async ValueTask WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            if (IsInMemory && Position + buffer.Length > MaxLengthInMemory) await CreateTempFileAsync(cancellationToken).DynamicContext();
+            if (IsInMemory && Position + buffer.Length > MaxLengthInMemory && !ENV.IsBrowserApp) await CreateTempFileAsync(cancellationToken).DynamicContext();
             await _BaseStream.WriteAsync(buffer, cancellationToken).DynamicContext(); ;
         }
 
         /// <inheritdoc/>
         public override void Close()
         {
-            if (!IsDisposing) return;
+            ReturnBaseStream();
             base.Close();
         }
 
@@ -209,6 +213,7 @@ namespace wan24.Core
         private void CreateTempFile()
         {
             EnsureUndisposed();
+            if (ENV.IsBrowserApp) return;
             long offset = Position;
             try
             {
@@ -240,6 +245,7 @@ namespace wan24.Core
         private async Task CreateTempFileAsync(CancellationToken cancellationToken)
         {
             EnsureUndisposed();
+            if (ENV.IsBrowserApp) return;
             long offset = Position;
             try
             {
@@ -270,13 +276,18 @@ namespace wan24.Core
         private void ReturnBaseStream()
         {
             if (_BaseStream == Null) return;
-            if (MemoryStream is not null)
+            if (MemoryStream is PooledMemoryStream ms)
             {
-                UsedMemoryStreamPool.Return(MemoryStream);
+                UsedMemoryStreamPool.Return(ms);
+            }
+            else if(FileStream is PooledTempFileStream fs)
+            {
+                UsedFileStreamPool.Return(fs);
             }
             else
             {
-                UsedFileStreamPool.Return(FileStream!);
+                _BaseStream?.Dispose();
+                Logging.WriteWarning($"Base stream \"{_BaseStream?.GetType()}\" of {GetType()} (\"{Name}\") couldn't be returned to the used pool");
             }
             _BaseStream = Null;
         }

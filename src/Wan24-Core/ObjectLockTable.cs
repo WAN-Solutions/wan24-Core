@@ -8,6 +8,6 @@
         /// <summary>
         /// Object locks (key ia a GUID)
         /// </summary>
-        public static readonly ConcurrentChangeTokenDictionary<string, IObjectLockManager> ObjectLocks = new();
+        public static readonly ConcurrentChangeTokenDictionary<string, IObjectLockManager> ObjectLocks = [];
     }
 }

@@ -8,6 +8,6 @@
         /// <summary>
         /// Delays (key is the GUID)
         /// </summary>
-        public static readonly ConcurrentChangeTokenDictionary<string, Delay> Delays = new();
+        public static readonly ConcurrentChangeTokenDictionary<string, Delay> Delays = [];
     }
 }

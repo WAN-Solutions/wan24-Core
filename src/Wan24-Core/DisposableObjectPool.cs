@@ -79,6 +79,11 @@ namespace wan24.Core
         /// <inheritdoc/>
         public virtual void Return(in T item, in bool reset = false)
         {
+            if(item is IDisposableObject disposable && disposable.IsDisposing)
+            {
+                Logging.WriteWarning($"Returned item {typeof(T)} was disposed");
+                return;
+            }
             if (Pool.Count >= Capacity || !EnsureUndisposed(throwException: false))
             {
                 if (item is IObjectPoolItem opItem) opItem.Reset();

@@ -139,6 +139,9 @@ namespace wan24.Core
                 yield return new(__("Name"), Name, __("Name of the stream"));
                 yield return new(__("Type"), GetType().ToString(), __("Stream type"));
                 yield return new(__("Size"), Length, __("Length in bytes"));
+                yield return new(__("Buffers"), BufferCount, __("Number of buffers"));
+                yield return new(__("Buffer"), BufferLength, __("All buffer length in bytes"));
+                yield return new(__("Buffer size"), BufferSize, __("New buffer size in bytes"));
             }
         }
 
@@ -370,7 +373,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override void Close()
         {
-            if (!DoClose()) return;
+            if (IsClosed) return;
             if (SaveOnClose) SavedData ??= ToArray();
             base.Close();
         }
@@ -390,7 +393,6 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            Close();
             foreach (byte[] buffer in Buffers)
             {
                 if (CleanReturned) buffer.Clear();
