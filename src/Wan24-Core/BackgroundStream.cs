@@ -55,7 +55,7 @@ namespace wan24.Core
             UseOriginalCopyTo = true;
             UseOriginalBeginWrite = true;
             Queue.OnException += (s, e) => RaiseOnError();
-            Queue.StartAsync().Wait();
+            Queue.StartAsync().GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace wan24.Core
                 buffer.CopyTo(queuedBuffer.Span);
                 QueueCounter.Count(buffer.Length);
                 countMemory = true;
-                Queue.EnqueueAsync(queuedBuffer).AsTask().Wait();
+                Queue.EnqueueAsync(queuedBuffer).AsTask().GetAwaiter().GetResult();
             }
             catch
             {
@@ -254,7 +254,7 @@ namespace wan24.Core
                     if (Warning) Logging.WriteWarning($"{GetType()} of {Target.GetType()} had queued unwritten data which will be discarded due to early disposing");
                     RaiseOnException();
                 }
-                while (Queue.Reader.TryRead(out Task_Delegate? task)) task(CancellationToken.None).AsTask().Wait();
+                while (Queue.Reader.TryRead(out Task_Delegate? task)) task(CancellationToken.None).AsTask().GetAwaiter().GetResult();
             }
 
             /// <inheritdoc/>

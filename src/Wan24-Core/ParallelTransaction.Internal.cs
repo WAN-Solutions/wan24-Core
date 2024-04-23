@@ -37,13 +37,13 @@ namespace wan24.Core
             using CancellationTokenSource cts = Cancellation;
             using SemaphoreSync sync = Sync;
             using SemaphoreSyncContext ssc = sync;
-            CancelIntAsync(CancellationToken.None).Wait();
+            CancelIntAsync(CancellationToken.None).GetAwaiter().GetResult();
             if (!IsCommitted)
             {
                 if (Warning) Logging.WriteWarning($"{this} rolling back during disposing");
                 try
                 {
-                    RollbackIntAsync(CancellationToken.None).Wait();
+                    RollbackIntAsync(CancellationToken.None).GetAwaiter().GetResult();
                 }
                 catch (Exception ex)
                 {

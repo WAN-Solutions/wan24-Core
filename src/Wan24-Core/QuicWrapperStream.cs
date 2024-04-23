@@ -2,7 +2,7 @@
 using System.Net.Quic;
 using static wan24.Core.TranslationHelper;
 
-//TODO Enable for release builds as soon as it's not in .NET preview anymore
+//TODO Enable for release builds as soon as QUIC is not in .NET preview anymore
 
 #pragma warning disable CA1416 // Not available on all platforms
 namespace wan24.Core
@@ -15,7 +15,7 @@ namespace wan24.Core
         /// <summary>
         /// Cnstructor
         /// </summary>
-        /// <param name="baseStream">Bi-directional QUIC stream</param>
+        /// <param name="baseStream">QUIC stream</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
         /// <param name="autoDispose">If to dispose automatic when all channels are closed</param>
         public QuicWrapperStream(QuicStream baseStream, in bool leaveOpen = false, in bool autoDispose = true) : base(baseStream, leaveOpen)
@@ -30,7 +30,6 @@ namespace wan24.Core
                 PeerWriteClosedEvent = new();
                 PeerWriteClosedWatcher = PeerWriteClosedWatcherAsync();
             }
-            SilentWatcher = SilentWatcherAsync();
             AutoDispose = autoDispose;
         }
 
@@ -63,7 +62,7 @@ namespace wan24.Core
                 yield return new(__("ID"), BaseStream.Id, __("QUIC stream ID"));
                 yield return new(__("Bi-directional"), IsBiDirectional, __("If the QUIC connection is bi-directional"));
                 yield return new(__("Silent"), IsSilent, __("If all channels are closed"));
-                yield return new(__("Dispose"), AutoDispose, __("If the stream disposes automatic if all channels are closed"));
+                yield return new(__("Dispose"), AutoDispose, __("If the stream disposes automatic when all channels are closed"));
             }
         }
 
@@ -161,21 +160,27 @@ namespace wan24.Core
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <param name="e">Arguments</param>
-        public delegate void QuicWrapperStream_Delegate(QuicWrapperStream stream, EventArgs e);
+        public delegate void QuicWrapperStreamEvent_Delegate(QuicWrapperStream stream, EventArgs e);
+
+        /// <summary>
+        /// Raised when the peer closed any channel
+        /// </summary>
+        public event QuicWrapperStreamEvent_Delegate? OnPeerClosedAny;
 
         /// <summary>
         /// Raised when the peer closed the read channel (the peer can't read anymore, we can't write anymore)
         /// </summary>
-        public event QuicWrapperStream_Delegate? OnPeerReadClosed;
+        public event QuicWrapperStreamEvent_Delegate? OnPeerReadClosed;
 
         /// <summary>
         /// Raised when the peer closed the write channel (the peer can't write anymore, we can't read anymore)
         /// </summary>
-        public event QuicWrapperStream_Delegate? OnPeerWriteClosed;
+        public event QuicWrapperStreamEvent_Delegate? OnPeerWriteClosed;
+
         /// <summary>
         /// Raised when all channels are closed
         /// </summary>
-        public event QuicWrapperStream_Delegate? OnSilent;
+        public event QuicWrapperStreamEvent_Delegate? OnSilent;
     }
 }
 #pragma warning restore CA1416 // Not available on all platforms

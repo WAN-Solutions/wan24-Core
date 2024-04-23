@@ -1,7 +1,7 @@
 ﻿#if !RELEASE || PREVIEW
 using System.Net.Quic;
 
-//TODO Enable for release builds as soon as it's not in .NET preview anymore
+//TODO Enable for release builds as soon as QUIC is not in .NET preview anymore
 
 #pragma warning disable CA1416 // Not available on all platforms
 namespace wan24.Core
@@ -33,11 +33,6 @@ namespace wan24.Core
         /// Watches the peer writing channel closing (we can't read anymore)
         /// </summary>
         protected readonly Task? PeerWriteClosedWatcher = null;
-        /// <summary>
-        /// Watches any channel availability
-        /// </summary>
-        protected readonly Task SilentWatcher;
-
 
         /// <summary>
         /// Wait for an event
@@ -61,7 +56,7 @@ namespace wan24.Core
             catch (TimeoutException)
             {
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException ex) when (ex.CancellationToken == cancellationToken)
             {
             }
         }
@@ -77,7 +72,7 @@ namespace wan24.Core
             {
                 await BaseStream.ReadsClosed.WaitAsync(Cancellation.Token).DynamicContext();
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException ex) when (ex.CancellationToken == Cancellation.Token)
             {
             }
             catch (QuicException)
@@ -108,7 +103,7 @@ namespace wan24.Core
             {
                 await BaseStream.WritesClosed.WaitAsync(Cancellation.Token).DynamicContext();
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException ex) when (ex.CancellationToken == Cancellation.Token)
             {
             }
             catch (QuicException)
@@ -128,30 +123,6 @@ namespace wan24.Core
             }
         }
 
-        /// <summary>
-        /// Watch all channels closed
-        /// </summary>
-        protected virtual async Task SilentWatcherAsync()
-        {
-            List<Task> tasks = [];
-            if (PeerReadClosedWatcher is not null) tasks.Add(PeerReadClosedWatcher);
-            if (PeerWriteClosedWatcher is not null) tasks.Add(PeerWriteClosedWatcher);
-            try
-            {
-                await Task.WhenAll(tasks).DynamicContext();
-            }
-            catch
-            {
-            }
-            finally
-            {
-                if (Logging.Trace)
-                    Logging.WriteTrace($"{this} all channels closed by peer");
-                SilentEvent.Set();
-                RaiseOnSilent();
-            }
-        }
-
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
@@ -159,21 +130,14 @@ namespace wan24.Core
             Cancellation.Cancel();
             try
             {
-                PeerReadClosedWatcher?.Wait();
+                PeerReadClosedWatcher?.GetAwaiter().GetResult();
             }
             catch
             {
             }
             try
             {
-                PeerWriteClosedWatcher?.Wait();
-            }
-            catch
-            {
-            }
-            try
-            {
-                SilentWatcher.Wait();
+                PeerWriteClosedWatcher?.GetAwaiter().GetResult();
             }
             catch
             {
@@ -205,13 +169,6 @@ namespace wan24.Core
                 catch
                 {
                 }
-            try
-            {
-                await SilentWatcher.DynamicContext();
-            }
-            catch
-            {
-            }
             Cancellation.Dispose();
             if (PeerReadClosedEvent is not null) await PeerReadClosedEvent.DisposeAsync().DynamicContext();
             if (PeerWriteClosedEvent is not null) await PeerWriteClosedEvent.DisposeAsync().DynamicContext();
@@ -222,20 +179,39 @@ namespace wan24.Core
         /// Raise the <see cref="OnPeerReadClosed"/> event
         /// </summary>
         /// <param name="e">Arguments</param>
-        protected virtual void RaiseOnPeerReadClosed(in EventArgs? e = null) => OnPeerReadClosed?.Invoke(this, e ?? new());
+        protected virtual void RaiseOnPeerClosedAny(EventArgs? e = null) => OnPeerClosedAny?.Invoke(this, e ?? new());
+
+        /// <summary>
+        /// Raise the <see cref="OnPeerReadClosed"/> event
+        /// </summary>
+        /// <param name="e">Arguments</param>
+        protected virtual void RaiseOnPeerReadClosed(EventArgs? e = null)
+        {
+            e ??= new();
+            OnPeerReadClosed?.Invoke(this, e);
+            RaiseOnPeerClosedAny(e);
+            if (IsSilent) RaiseOnSilent(e);
+        }
 
         /// <summary>
         /// Raise the <see cref="OnPeerWriteClosed"/> event
         /// </summary>
         /// <param name="e">Arguments</param>
-        protected virtual void RaiseOnPeerWriteClosed(in EventArgs? e = null) => OnPeerWriteClosed?.Invoke(this, e ?? new());
+        protected virtual void RaiseOnPeerWriteClosed(EventArgs? e = null)
+        {
+            e ??= new();
+            OnPeerWriteClosed?.Invoke(this, e);
+            RaiseOnPeerClosedAny(e);
+            if (IsSilent) RaiseOnSilent(e);
+        }
 
         /// <summary>
         /// Raise the <see cref="OnSilent"/> event
         /// </summary>
         /// <param name="e">Arguments</param>
-        protected virtual void RaiseOnSilent(in EventArgs? e = null)
+        protected virtual void RaiseOnSilent(EventArgs? e = null)
         {
+            SilentEvent.Set();
             OnSilent?.Invoke(this, e ?? new());
             if (IsDisposing || !AutoDispose) return;
             if (Logging.Trace)

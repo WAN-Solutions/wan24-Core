@@ -65,7 +65,7 @@
             }
             else
             {
-                AsyncDisposeAction!().Wait();
+                AsyncDisposeAction!().GetAwaiter().GetResult();
             }
         }
 

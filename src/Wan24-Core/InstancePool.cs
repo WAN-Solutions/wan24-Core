@@ -128,7 +128,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             if (Instances.Reader.TryRead(out T? res)) return res;
-            res = SyncFactory?.Invoke(this) ?? AsyncFactory!(this, default).Result;
+            res = SyncFactory?.Invoke(this) ?? AsyncFactory!(this, default).GetAwaiter().GetResult();
             _Created++;
             _CreatedOnDemand++;
             return res;

@@ -260,7 +260,7 @@ namespace wan24.Core
             using (SemaphoreSyncContext ssc = Sync)
                 if (!Cancellation.IsCancellationRequested)
                     Cancellation.Cancel();
-            Observer?.Wait();
+            Observer?.GetAwaiter().GetResult();
             Cancellation.Dispose();
             Sync.Dispose();
             if (LeaveOpen) return;

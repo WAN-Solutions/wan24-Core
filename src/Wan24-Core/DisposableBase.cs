@@ -29,7 +29,7 @@ namespace wan24.Core
         /// <summary>
         /// Stack information
         /// </summary>
-        protected IStackInfo? StackInfo = null;
+        protected readonly IStackInfo? StackInfo = null;
 
         /// <summary>
         /// Constructor
@@ -53,6 +53,7 @@ namespace wan24.Core
         /// </summary>
         ~DisposableBase()
         {
+            DestructorDisposing = true;
             if (!AllowFinalizer)
             {
                 if (Warning) Logging.WriteWarning($"Disposing {GetType()} from finalizer (shouldn't happen!)");
@@ -79,6 +80,11 @@ namespace wan24.Core
         /// Create a <see cref="StackInfo"/> for every instance?
         /// </summary>
         public static bool CreateStackInfo { get; set; }
+
+        /// <summary>
+        /// Is disposing during object destruction?
+        /// </summary>
+        protected bool DestructorDisposing { get; private set; }
 
         /// <inheritdoc/>
         public bool IsDisposing { get; private set; }
@@ -112,10 +118,142 @@ namespace wan24.Core
         /// <returns>Is not disposing?</returns>
         [TargetedPatchingOptOut("Tiny method")]
         protected bool EnsureUndisposed(in bool allowDisposing = false, in bool throwException = true)
+            => !IsDisposing || (allowDisposing && !IsDisposed) || (throwException ? throw new ObjectDisposedException(GetType().ToString()) : false);
+
+        /// <summary>
+        /// Lock disposing
+        /// </summary>
+        /// <param name="timeout">Timeout</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Synchronization context (don't forget to dispose!)</returns>
+        protected SemaphoreSyncContext LockDisposing(in TimeSpan timeout = default, in CancellationToken cancellationToken = default)
         {
-            if (!IsDisposing) return true;
-            if (allowDisposing && !IsDisposed) return true;
-            return throwException ? throw new ObjectDisposedException(GetType().ToString()) : false;
+            EnsureUndisposed();
+            SemaphoreSyncContext res = new(DisposeSyncObject);
+            try
+            {
+                if (timeout == default)
+                {
+                    res.Sync(cancellationToken);
+                }
+                else
+                {
+                    res.Sync(timeout, cancellationToken);
+                }
+                EnsureUndisposed();
+                return res;
+            }
+            catch
+            {
+                res.Dispose();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Lock disposing
+        /// </summary>
+        /// <param name="timeout">Timeout</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Synchronization context (don't forget to dispose!)</returns>
+        protected async Task<SemaphoreSyncContext> LockDisposingAsync(TimeSpan timeout = default, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            SemaphoreSyncContext res = new(DisposeSyncObject);
+            try
+            {
+                if (timeout == default)
+                {
+                    await res.SyncAsync(cancellationToken).DynamicContext();
+                }
+                else
+                {
+                    await res.SyncAsync(timeout, cancellationToken).DynamicContext();
+                }
+                EnsureUndisposed();
+                return res;
+            }
+            catch
+            {
+                res.Dispose();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Lock disposing
+        /// </summary>
+        /// <param name="result">Result (don't forget to dispose!)</param>
+        /// <param name="timeout">Timeout</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Synchronization context</returns>
+        protected bool TryLockDisposing(out SemaphoreSyncContext result, in TimeSpan timeout = default, in CancellationToken cancellationToken = default)
+        {
+            if (!EnsureUndisposed(throwException: false))
+            {
+                result = default;
+                return false;
+            }
+            SemaphoreSyncContext res = new(DisposeSyncObject);
+            try
+            {
+                if (timeout == default)
+                {
+                    res.Sync(cancellationToken);
+                }
+                else
+                {
+                    res.Sync(timeout, cancellationToken);
+                }
+                if (!EnsureUndisposed(throwException: false))
+                {
+                    res.Dispose();
+                    result = default;
+                    return false;
+                }
+                result = res;
+                return true;
+            }
+            catch
+            {
+                res.Dispose();
+                result = default;
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Lock disposing
+        /// </summary>
+        /// <param name="timeout">Timeout</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Synchronization context (don't forget to dispose!)</returns>
+        protected async Task<TryAsyncResult<SemaphoreSyncContext>> TryLockDisposingAsync(TimeSpan timeout = default, CancellationToken cancellationToken = default)
+        {
+            if (!EnsureUndisposed(throwException: false)) return false;
+            SemaphoreSyncContext res = new(DisposeSyncObject);
+            try
+            {
+                if (timeout == default)
+                {
+                    await res.SyncAsync(cancellationToken).DynamicContext();
+                }
+                else
+                {
+                    await res.SyncAsync(timeout, cancellationToken).DynamicContext();
+                }
+                if (!EnsureUndisposed(throwException: false))
+                {
+                    res.Dispose();
+                    return false;
+                }
+                return res;
+            }
+            catch
+            {
+                res.Dispose();
+                return false;
+            }
         }
 
         /// <summary>
@@ -205,7 +343,7 @@ namespace wan24.Core
                         disposable.Dispose();
                         break;
                     case IAsyncDisposable asyncDisposable:
-                        asyncDisposable.DisposeAsync().AsTask().Wait();
+                        asyncDisposable.DisposeAsync().AsTask().GetAwaiter().GetResult();
                         break;
                     case byte[] bytes:
                         bytes.Clear();
@@ -230,7 +368,7 @@ namespace wan24.Core
                         disposable.Dispose();
                         break;
                     case IAsyncDisposable asyncDisposable:
-                        asyncDisposable.DisposeAsync().AsTask().Wait();
+                        asyncDisposable.DisposeAsync().AsTask().GetAwaiter().GetResult();
                         break;
                     case byte[] bytes:
                         bytes.Clear();
@@ -253,7 +391,7 @@ namespace wan24.Core
                             disposable.Dispose();
                             break;
                         case IAsyncDisposable asyncDisposable:
-                            asyncDisposable.DisposeAsync().AsTask().Wait();
+                            asyncDisposable.DisposeAsync().AsTask().GetAwaiter().GetResult();
                             break;
                         case byte[] bytes:
                             bytes.Clear();

@@ -41,7 +41,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public sealed override async ValueTask DisposeAsync()
+        public override async ValueTask DisposeAsync()
         {
             if (!await DoDisposeAsync().DynamicContext()) return;
             await DisposeCore().DynamicContext();

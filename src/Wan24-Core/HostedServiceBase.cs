@@ -377,7 +377,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            StopAsync().Wait();
+            StopAsync().GetAwaiter().GetResult();
             Sync.Dispose();
             RunEvent.Dispose();
             PauseEvent.Dispose();

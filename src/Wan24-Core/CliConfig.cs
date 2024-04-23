@@ -55,7 +55,7 @@ namespace wan24.Core
         {
             set
             {
-                FileLogger logger = FileLogger.CreateAsync(value).Result;
+                FileLogger logger = FileLogger.CreateAsync(value).GetAwaiter().GetResult();
                 if (Logging.Logger?.GetFinalLogger() is LoggerBase parentLogger)
                 {
                     parentLogger.Next = logger;

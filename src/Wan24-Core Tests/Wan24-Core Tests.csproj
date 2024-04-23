@@ -10,6 +10,7 @@
     <IsTestProject>true</IsTestProject>
     <Configurations>Debug;Release;Trunk</Configurations>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <EnablePreviewFeatures Condition="'$(Configuration)' != 'Release'">True</EnablePreviewFeatures>
   </PropertyGroup>
 
   <ItemGroup>

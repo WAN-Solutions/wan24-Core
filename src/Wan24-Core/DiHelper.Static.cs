@@ -276,7 +276,7 @@ namespace wan24.Core
             }
             if (GetAsyncFactory(type) is DiAsync_Delegate asyncFactory)
             {
-                obj = asyncFactory(type, default).Result.Object;
+                obj = asyncFactory(type, default).GetAwaiter().GetResult().Object;
                 if (obj is not null)
                 {
                     AddDiObject(obj);

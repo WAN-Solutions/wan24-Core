@@ -58,5 +58,15 @@ namespace wan24.Core
         /// </summary>
         /// <param name="result">Result</param>
         public static implicit operator TryAsyncResult<T>(T? result) => new(result);
+
+        /// <summary>
+        /// Cast failed result
+        /// </summary>
+        /// <param name="result"><see langword="false"/></param>
+        public static implicit operator TryAsyncResult<T>(in bool result)
+        {
+            if (result) throw new InvalidCastException($"{typeof(TryAsyncResult<T>)} can only be casted from FALSE");
+            return new(succeed: false);
+        }
     }
 }

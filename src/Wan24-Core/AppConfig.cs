@@ -126,7 +126,7 @@ namespace wan24.Core
                 }
             ApplyProperties(afterBootstrap: false);
             if (ApplyCliArguments) CliConfig.Apply();
-            if (Bootstrap) Core.Bootstrap.Async().Wait();
+            if (Bootstrap) Core.Bootstrap.Async().GetAwaiter().GetResult();
             ApplyProperties(afterBootstrap: true);
         }
 

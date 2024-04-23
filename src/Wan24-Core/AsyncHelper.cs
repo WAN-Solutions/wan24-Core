@@ -492,7 +492,7 @@ namespace wan24.Core
                 if (!dObj.IsDisposing) dObj.Dispose();
             }
             else if (obj is IDisposable disposable) disposable?.Dispose();
-            else if (obj is IAsyncDisposable asyncDisposable) asyncDisposable.DisposeAsync().AsTask().Wait();
+            else if (obj is IAsyncDisposable asyncDisposable) asyncDisposable.DisposeAsync().AsTask().GetAwaiter().GetResult();
             return obj;
         }
 
