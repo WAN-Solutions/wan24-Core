@@ -237,7 +237,7 @@ namespace wan24.Core
             switch (serializer)
             {
                 case Serializer.Json:
-                    return await JsonHelper.DecodeObjectAsync(type, source).DynamicContext();
+                    return await JsonHelper.DecodeObjectAsync(type, source, cancellationToken).DynamicContext();
                 case Serializer.Xml:
                     {
                         Stream stream;

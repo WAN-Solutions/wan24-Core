@@ -4,6 +4,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime;
 
+//TODO Add support for keyed services
+
 namespace wan24.Core
 {
     /// <summary>
@@ -20,7 +22,7 @@ namespace wan24.Core
         /// </summary>
         protected readonly SemaphoreSync Sync = new();
         /// <summary>
-        /// Objects
+        /// Objects (key is the type hash code)
         /// </summary>
         protected readonly ConcurrentDictionary<int, object> ScopeObjects = new();
 

@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 
+//TODO Add ordered parameter values support
+
 namespace wan24.Core
 {
     /// <summary>
@@ -24,6 +26,7 @@ namespace wan24.Core
             bool throwOnMissing = true
             )
         {
+            //TODO Support for keyed DI using the FromKeyedServicesAttribute of parameters and the IKeyedServiceProvider interface
             List<object?> valueList = new(values ?? []);
             List<object?> res = [];
             int i,
@@ -72,6 +75,7 @@ namespace wan24.Core
             CancellationToken cancellationToken = default
             )
         {
+            //TODO Support for keyed DI using the FromKeyedServicesAttribute of parameters and the IKeyedServiceProvider interface
             List<object?> valueList = new(values ?? []);
             List<object?> res = [];
             int i,
@@ -119,6 +123,7 @@ namespace wan24.Core
             CancellationToken cancellationToken = default
             )
         {
+            //TODO Support for keyed DI using the FromKeyedServicesAttribute of parameters and the IKeyedServiceProvider interface
             List<object?> valueList = new(values ?? []);
             List<object?> res = [];
             int i,
@@ -157,6 +162,7 @@ namespace wan24.Core
         /// <returns>DI objects (if the length doesn't match the number of types, DI failed)</returns>
         public static object?[] GetDiObjects(this IEnumerable<Type> types, object?[]? values = null, IServiceProvider? serviceProvider = null, bool throwOnMissing = true)
         {
+            //TODO Support for keyed DI using the FromKeyedServicesAttribute of parameters and the IKeyedServiceProvider interface
             List<object?> valueList = new(values ?? []);
             List<object?> res = [];
             int i,
@@ -204,6 +210,7 @@ namespace wan24.Core
             CancellationToken cancellationToken = default
             )
         {
+            //TODO Support for keyed DI using the FromKeyedServicesAttribute of parameters and the IKeyedServiceProvider interface
             List<object?> valueList = new(values ?? []);
             List<object?> res = [];
             int i,
@@ -254,6 +261,7 @@ namespace wan24.Core
             CancellationToken cancellationToken = default
             )
         {
+            //TODO Support for keyed DI using the FromKeyedServicesAttribute of parameters and the IKeyedServiceProvider interface
             List<object?> valueList = new(values ?? []);
             List<object?> res = [];
             int i,

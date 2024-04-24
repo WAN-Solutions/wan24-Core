@@ -14,7 +14,7 @@ namespace wan24.Core
         /// </summary>
         protected static readonly SemaphoreSync StaticSync = new();
         /// <summary>
-        /// Objects
+        /// Objects (key is the type hashcode)
         /// </summary>
         protected static readonly ConcurrentDictionary<int, object> Objects = new();
         /// <summary>

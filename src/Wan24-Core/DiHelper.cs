@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
 
+//TODO Implement IServiceCollection and use ServiceDescriptor
+//TODO Add IAsyncKeyedServiceProvider
+
 namespace wan24.Core
 {
     /// <summary>
