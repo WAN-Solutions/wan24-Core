@@ -1,26 +1,13 @@
 ﻿using System.Collections.Concurrent;
-using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
     // Static
     public partial class DiHelper
     {
-        /// <summary>
-        /// Static thread synchronization
-        /// </summary>
-        protected static readonly SemaphoreSync StaticSync = new();
-        /// <summary>
-        /// Objects (key is the type hashcode)
-        /// </summary>
-        protected static readonly ConcurrentDictionary<int, object> Objects = new();
-        /// <summary>
-        /// Not cached types
-        /// </summary>
-        private static readonly HashSet<Type> _NotCachedTypes = [];
         /// <summary>
         /// Default instance
         /// </summary>
@@ -30,6 +17,18 @@ namespace wan24.Core
         /// </summary>
         private static DiHelper? CustomInstance = null;
         /// <summary>
+        /// Static thread synchronization
+        /// </summary>
+        protected static readonly SemaphoreSync StaticSync = new();
+        /// <summary>
+        /// Objects
+        /// </summary>
+        protected static readonly ConcurrentDictionary<Type, object> Objects = new();
+        /// <summary>
+        /// Keyed objects
+        /// </summary>
+        protected static readonly ConcurrentDictionary<object, ConcurrentDictionary<Type, object>> KeyedObjects = [];
+        /// <summary>
         /// DI object factories
         /// </summary>
         public static readonly ConcurrentDictionary<Type, Di_Delegate> ObjectFactories = new();
@@ -37,9 +36,17 @@ namespace wan24.Core
         /// Asynchronous DI object factories
         /// </summary>
         public static readonly ConcurrentDictionary<Type, DiAsync_Delegate> AsyncObjectFactories = new();
+        /// <summary>
+        /// Keyed DI object factories
+        /// </summary>
+        public static readonly ConcurrentDictionary<object, ConcurrentDictionary<Type, Di_Delegate>> KeyedObjectFactories = new();
+        /// <summary>
+        /// Keyed asynchronous DI object factories
+        /// </summary>
+        public static readonly ConcurrentDictionary<object, ConcurrentDictionary<Type, DiAsync_Delegate>> KeyedAsyncObjectFactories = new();
 
         /// <summary>
-        /// Global singleton instance
+        /// Global instance
         /// </summary>
         public static DiHelper Instance
         {
@@ -53,157 +60,224 @@ namespace wan24.Core
         public static IServiceProvider? ServiceProvider { get; set; }
 
         /// <summary>
-        /// Not cached types
-        /// </summary>
-        public static ReadOnlyCollection<Type> NotCachedTypes
-        {
-            get
-            {
-                using SemaphoreSyncContext ssc = StaticSync.SyncContext();
-                return _NotCachedTypes.AsReadOnly();
-            }
-        }
-
-        /// <summary>
-        /// Add not cached types
-        /// </summary>
-        /// <param name="types">Types</param>
-        public static void AddNotCachedTypes(params Type[] types)
-        {
-            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
-            foreach (Type type in types)
-            {
-                _NotCachedTypes.Add(type);
-                if (Objects.TryRemove(type.GetHashCode(), out object? obj)) obj.TryDispose();
-            }
-        }
-
-        /// <summary>
-        /// Add not cached types
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <param name="types">Types</param>
-        public static async Task AddNotCachedTypesAsync(CancellationToken cancellationToken = default, params Type[] types)
-        {
-            using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
-            foreach (Type type in types)
-            {
-                _NotCachedTypes.Add(type);
-                if (Objects.TryRemove(type.GetHashCode(), out object? obj)) await obj.TryDisposeAsync().DynamicContext();
-            }
-        }
-
-        /// <summary>
-        /// Remove a not cached type
-        /// </summary>
-        /// <param name="type">Type</param>
-        public static void RemoveNotCachedType(Type type)
-        {
-            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
-            _NotCachedTypes.Remove(type);
-        }
-
-        /// <summary>
-        /// Remove a not cached type
-        /// </summary>
-        /// <param name="type">Type</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        public static async Task RemoveNotCachedTypeAsync(Type type, CancellationToken cancellationToken = default)
-        {
-            using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
-            _NotCachedTypes.Remove(type);
-        }
-
-        /// <summary>
-        /// Determine if an object of the given type will be cached
-        /// </summary>
-        /// <param name="type">Type</param>
-        /// <returns>Will be cached?</returns>
-        public static bool IsTypeCached(Type type)
-        {
-            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
-            return !_NotCachedTypes.Contains(type);
-        }
-
-        /// <summary>
-        /// Determine if an object of the given type will be cached
-        /// </summary>
-        /// <param name="type">Type</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Will be cached?</returns>
-        public static async Task<bool> IsTypeCachedAsync(Type type, CancellationToken cancellationToken = default)
-        {
-            using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
-            return !_NotCachedTypes.Contains(type);
-        }
-
-        /// <summary>
         /// Add a DI object to the cache
         /// </summary>
-        /// <typeparam name="T">Object type</typeparam>
+        /// <typeparam name="T">DI type</typeparam>
         /// <param name="obj">Object</param>
         /// <returns>Object</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T AddDiObject<T>(T obj)
         {
             Contract.Assert(obj is not null);
-            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
-            Type type = obj.GetType();
-            if (_NotCachedTypes.Contains(type)) return obj;
-            Objects.GetOrAdd(type.GetHashCode(), key => obj);
+            AddDiObject(obj, typeof(T));
             return obj;
         }
 
         /// <summary>
         /// Add a DI object to the cache
         /// </summary>
-        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="obj">Object</param>
+        /// <param name="type">DI type</param>
+        /// <returns>Object</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static object AddDiObject(object obj, Type type)
+        {
+            Contract.Assert(obj is not null);
+            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
+            if (_NotCachedTypes.Contains(obj.GetType())) return obj;
+            Objects.GetOrAdd(type, key => obj);
+            return obj;
+        }
+
+        /// <summary>
+        /// Add a keyed DI object to the cache
+        /// </summary>
+        /// <typeparam name="T">DI type</typeparam>
+        /// <param name="key">Key</param>
+        /// <param name="obj">Object</param>
+        /// <returns>Object</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static T AddKeyedDiObject<T>(object key, T obj)
+        {
+            Contract.Assert(obj is not null);
+            AddKeyedDiObject(key, obj, typeof(T));
+            return obj;
+        }
+
+        /// <summary>
+        /// Add a keyed DI object to the cache
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <param name="obj">Object</param>
+        /// <param name="type">DI type</param>
+        /// <returns>Object</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static object AddKeyedDiObject(object key, object obj, Type type)
+        {
+            Contract.Assert(obj is not null);
+            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
+            if (_NotCachedTypes.Contains(obj.GetType())) return obj;
+            var dict = KeyedObjects.GetOrAdd(key, _ => []);
+            dict.GetOrAdd(type, key => obj);
+            return obj;
+        }
+
+        /// <summary>
+        /// Add a DI object to the cache
+        /// </summary>
+        /// <typeparam name="T">DI type</typeparam>
         /// <param name="obj">Object</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Object</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<T> AddDiObjectAsync<T>(T obj, CancellationToken cancellationToken = default)
         {
             Contract.Assert(obj is not null);
+            await AddDiObjectAsync(obj, typeof(T), cancellationToken).DynamicContext();
+            return obj;
+        }
+
+        /// <summary>
+        /// Add a DI object to the cache
+        /// </summary>
+        /// <param name="obj">Object</param>
+        /// <param name="type">DI type</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Object</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static async Task<object> AddDiObjectAsync(object obj, Type type, CancellationToken cancellationToken = default)
+        {
+            Contract.Assert(obj is not null);
             using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
-            Type type = obj.GetType();
-            if (_NotCachedTypes.Contains(type)) return obj;
-            Objects.GetOrAdd(type.GetHashCode(), key => obj);
+            if (_NotCachedTypes.Contains(obj.GetType())) return obj;
+            Objects.GetOrAdd(type, key => obj);
+            return obj;
+        }
+
+        /// <summary>
+        /// Add a keyed DI object to the cache
+        /// </summary>
+        /// <typeparam name="T">DI type</typeparam>
+        /// <param name="key">Key</param>
+        /// <param name="obj">Object</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Object</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static async Task<T> AddKeyedDiObjectAsync<T>(object key, T obj, CancellationToken cancellationToken = default)
+        {
+            Contract.Assert(obj is not null);
+            await AddKeyedDiObjectAsync(key, obj, typeof(T), cancellationToken).DynamicContext();
+            return obj;
+        }
+
+        /// <summary>
+        /// Add a keyed DI object to the cache
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <param name="obj">Object</param>
+        /// <param name="type">DI type</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Object</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static async Task<object> AddKeyedDiObjectAsync(object key, object obj, Type type, CancellationToken cancellationToken = default)
+        {
+            Contract.Assert(obj is not null);
+            using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
+            if (_NotCachedTypes.Contains(obj.GetType())) return obj;
+            var dict = KeyedObjects.GetOrAdd(key, _ => []);
+            dict.GetOrAdd(type, key => obj);
             return obj;
         }
 
         /// <summary>
         /// Remove a DI object from the cache
         /// </summary>
-        /// <param name="type">Type hash code</param>
-        /// <returns>Object</returns>
-        public static object? RemoveDiObject(int type)
+        /// <param name="type">Type</param>
+        /// <returns>Object (needs to be disposed, if applicable!)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static object? RemoveDiObject(Type type)
         {
             using SemaphoreSyncContext ssc = StaticSync.SyncContext();
-            return Objects.TryGetValue(type, out object? res) ? res : null;
+            return Objects.TryRemove(type, out object? res) ? res : null;
         }
 
         /// <summary>
         /// Remove a DI object from the cache
         /// </summary>
+        /// <param name="key">Key</param>
         /// <param name="type">Type</param>
-        /// <returns>Object</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-        public static object? RemoveDiObject(Type type) => RemoveDiObject(type.GetHashCode());
+        /// <returns>Object (needs to be disposed, if applicable!)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static object? RemoveKeyedDiObject(object key, Type type)
+        {
+            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
+            return KeyedObjects.TryGetValue(key, out var dict) && dict.TryRemove(type, out object? res) ? res : null;
+        }
 
         /// <summary>
         /// Remove a DI object from the cache
         /// </summary>
-        /// <typeparam name="T">Object type</typeparam>
-        /// <returns>Object</returns>
+        /// <typeparam name="T">DI type</typeparam>
+        /// <returns>Object (needs to be disposed, if applicable!)</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static T? RemoveDiObject<T>() => (T?)RemoveDiObject(typeof(T).GetHashCode());
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static T? RemoveDiObject<T>() => (T?)RemoveDiObject(typeof(T));
+
+        /// <summary>
+        /// Remove a keyed DI object from the cache
+        /// </summary>
+        /// <typeparam name="T">DI type</typeparam>
+        /// <param name="key">Key</param>
+        /// <returns>Object (needs to be disposed, if applicable!)</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static T? RemoveKeyedDiObject<T>(object key) => (T?)RemoveKeyedDiObject(key, typeof(T));
 
         /// <summary>
         /// Remove a DI object from the cache
         /// </summary>
-        /// <param name="type">Type hash code</param>
+        /// <param name="type">Type</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Object</returns>
-        public static async Task<object?> RemoveDiObjectAsync(int type, CancellationToken cancellationToken = default)
+        /// <returns>Object (needs to be disposed, if applicable!)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static async Task<object?> RemoveDiObjectAsync(Type type, CancellationToken cancellationToken = default)
         {
             using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
             return Objects.TryGetValue(type, out object? res) ? res : null;
@@ -212,26 +286,186 @@ namespace wan24.Core
         /// <summary>
         /// Remove a DI object from the cache
         /// </summary>
+        /// <param name="key">Key</param>
         /// <param name="type">Type</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Object</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-        public static Task<object?> RemoveDiObjectAsync(Type type, CancellationToken cancellationToken = default)
-            => RemoveDiObjectAsync(type.GetHashCode(), cancellationToken);
+        /// <returns>Object (needs to be disposed, if applicable!)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static async Task<object?> RemoveKeyedDiObjectAsync(object key, Type type, CancellationToken cancellationToken = default)
+        {
+            using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
+            return KeyedObjects.TryGetValue(key, out var dict) && dict.TryRemove(type, out object? res) ? res : null;
+        }
 
         /// <summary>
         /// Remove a DI object from the cache
         /// </summary>
         /// <typeparam name="T">Object type</typeparam>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Object</returns>
+        /// <returns>Object (needs to be disposed, if applicable!)</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<T?> RemoveDiObjectAsync<T>(CancellationToken cancellationToken = default)
-            => (T?)await RemoveDiObjectAsync(typeof(T).GetHashCode(), cancellationToken).DynamicContext();
+            => (T?)await RemoveDiObjectAsync(typeof(T), cancellationToken).DynamicContext();
+
+        /// <summary>
+        /// Remove a DI object from the cache
+        /// </summary>
+        /// <typeparam name="T">DI type</typeparam>
+        /// <param name="key">Key</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Object (needs to be disposed, if applicable!)</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static async Task<T?> RemoveKeyedDiObjectAsync<T>(object key, CancellationToken cancellationToken = default)
+            => (T?)await RemoveKeyedDiObjectAsync(key, typeof(T), cancellationToken).DynamicContext();
+
+        /// <summary>
+        /// Remove all DI objects from the cache
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>Objects (needs to be disposed, if applicable!)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static object[] RemoveDiObjects(Type type)
+        {
+            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
+            List<object> res = [];
+            foreach (Type t in Objects.Keys)
+                if (type.IsAssignableFromExt(t) && Objects.TryRemove(t, out object? obj))
+                    res.Add(obj);
+            return [.. res];
+        }
+
+        /// <summary>
+        /// Remove all DI objects from the cache
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <param name="type">Type</param>
+        /// <returns>Objects (needs to be disposed, if applicable!)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static object[] RemoveKeyedDiObjects(object key, Type type)
+        {
+            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
+            if (!KeyedObjects.TryGetValue(key, out var dict)) return [];
+            List<object> res = [];
+            foreach (Type t in dict.Keys)
+                if (type.IsAssignableFromExt(t) && dict.TryRemove(t, out object? obj))
+                    res.Add(obj);
+            return [.. res];
+        }
+
+        /// <summary>
+        /// Remove a DI object from the cache
+        /// </summary>
+        /// <typeparam name="T">DI type</typeparam>
+        /// <returns>Object (needs to be disposed, if applicable!)</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static T[] RemoveDiObjects<T>() => [.. RemoveDiObjects(typeof(T)).Select(o => (T)o)];
+
+        /// <summary>
+        /// Remove a keyed DI object from the cache
+        /// </summary>
+        /// <typeparam name="T">DI type</typeparam>
+        /// <param name="key">Key</param>
+        /// <returns>Object (needs to be disposed, if applicable!)</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static T[] RemoveKeyedDiObjects<T>(object key) => [.. RemoveKeyedDiObjects(key, typeof(T)).Select(o => (T)o)];
+
+        /// <summary>
+        /// Remove all DI objects from the cache
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Object (needs to be disposed, if applicable!)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static async Task<object[]> RemoveDiObjectsAsync(Type type, CancellationToken cancellationToken = default)
+        {
+            using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
+            List<object> res = [];
+            foreach (Type t in Objects.Keys)
+                if (type.IsAssignableFromExt(t) && Objects.TryRemove(t, out object? obj))
+                    res.Add(obj);
+            return [.. res];
+        }
+
+        /// <summary>
+        /// Remove all DI objects from the cache
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <param name="type">Type</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Object (needs to be disposed, if applicable!)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static async Task<object[]> RemoveKeyedDiObjectsAsync(object key, Type type, CancellationToken cancellationToken = default)
+        {
+            using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
+            if (!KeyedObjects.TryGetValue(key, out var dict)) return [];
+            List<object> res = [];
+            foreach (Type t in dict.Keys)
+                if (type.IsAssignableFromExt(t) && dict.TryRemove(t, out object? obj))
+                    res.Add(obj);
+            return [.. res];
+        }
+
+        /// <summary>
+        /// Remove all DI objects from the cache
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Objects (needs to be disposed, if applicable!)</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static async Task<T[]> RemoveDiObjectsAsync<T>(CancellationToken cancellationToken = default)
+            => [.. (await RemoveDiObjectsAsync(typeof(T), cancellationToken).DynamicContext()).Select(o => (T)o)];
+
+        /// <summary>
+        /// Remove all DI objects from the cache
+        /// </summary>
+        /// <typeparam name="T">DI type</typeparam>
+        /// <param name="key">Key</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Objects (needs to be disposed, if applicable!)</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static async Task<T[]> RemoveKeyedDiObjectsAsync<T>(object key, CancellationToken cancellationToken = default)
+            => [.. (await RemoveKeyedDiObjectsAsync(key, typeof(T), cancellationToken).DynamicContext()).Select(o => (T)o)];
 
         /// <summary>
         /// Clear the object cache (will dispose cached objects, if possible)
         /// </summary>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void ClearObjectCache()
         {
             using SemaphoreSyncContext ssc = StaticSync.SyncContext();
@@ -241,9 +475,31 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Clear the keyed object cache (will dispose cached objects, if possible)
+        /// </summary>
+        /// <param name="key">Key</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void ClearKeyedObjectCache(object key)
+        {
+            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
+            if (!KeyedObjects.TryGetValue(key, out var dict)) return;
+            object[] objects = [.. dict.Values];
+            dict.Clear();
+            KeyedObjects.TryRemove(key, out _);
+            objects.TryDisposeAll();
+        }
+
+        /// <summary>
         /// Clear the object cache (will dispose cached objects, if possible)
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task ClearObjectCacheAsync(CancellationToken cancellationToken = default)
         {
             using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
@@ -253,129 +509,22 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Get a DI object
+        /// Clear the object cache (will dispose cached objects, if possible)
         /// </summary>
-        /// <param name="type">Type</param>
-        /// <param name="obj">Result</param>
-        /// <param name="serviceProvider">Service provider</param>
-        /// <returns>Use the result?</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static bool GetDiObject(in Type type, [NotNullWhen(returnValue: true)] out object? obj, IServiceProvider? serviceProvider = null)
-        {
-            if (Objects.TryGetValue(type.GetHashCode(), out obj)) return true;
-            obj = serviceProvider?.GetService(type) ?? ServiceProvider?.GetService(type);
-            if (obj is not null)
-            {
-                AddDiObject(obj);
-                return true;
-            }
-            if (GetFactory(type) is Di_Delegate factory && factory(type, out obj))
-            {
-                AddDiObject(type);
-                return true;
-            }
-            if (GetAsyncFactory(type) is DiAsync_Delegate asyncFactory)
-            {
-                obj = asyncFactory(type, default).GetAwaiter().GetResult().Object;
-                if (obj is not null)
-                {
-                    AddDiObject(obj);
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Get a DI object
-        /// </summary>
-        /// <typeparam name="T">Type</typeparam>
-        /// <param name="obj">Result</param>
-        /// <param name="serviceProvider">Service provider</param>
-        /// <returns>Use the result?</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static bool GetDiObject<T>([NotNullWhen(returnValue: true)] out T? obj, IServiceProvider? serviceProvider = null)
-        {
-            obj = GetDiObject(typeof(T), out object? res, serviceProvider) ? (T)res : default;
-            return obj is not null;
-        }
-
-        /// <summary>
-        /// Get a DI object
-        /// </summary>
-        /// <param name="type">Type</param>
-        /// <param name="serviceProvider">Service provider</param>
+        /// <param name="key">Key</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Result</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static async Task<AsyncResult> GetDiObjectAsync(Type type, IServiceProvider? serviceProvider = null, CancellationToken cancellationToken = default)
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static async Task ClearKeyedObjectCacheAsync(object key, CancellationToken cancellationToken = default)
         {
-            if (GetDiObject(type, out object? res, serviceProvider)) return new(res, true);
-            if (GetAsyncFactory(type) is DiAsync_Delegate factory)
-            {
-                AsyncResult result = await factory(type, cancellationToken).DynamicContext();
-                if (result.Use)
-                {
-                    await AddDiObjectAsync(result.Object, cancellationToken).DynamicContext();
-                    return result;
-                }
-            }
-            return new(res, false);
-        }
-
-        /// <summary>
-        /// Get a DI object
-        /// </summary>
-        /// <typeparam name="T">Type</typeparam>
-        /// <param name="serviceProvider">Service provider</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Result</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static async Task<AsyncResult<T>> GetDiObjectAsync<T>(IServiceProvider? serviceProvider = null, CancellationToken cancellationToken = default)
-            => (await GetDiObjectAsync(typeof(T), serviceProvider, cancellationToken).DynamicContext()).GetGeneric<T>();
-
-        /// <summary>
-        /// Get an object factory
-        /// </summary>
-        /// <param name="type">Type</param>
-        /// <returns>Factory</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static Di_Delegate? GetFactory(Type type)
-        {
-            if (ObjectFactories.TryGetValue(type, out Di_Delegate? res)) return res;
-            res = (from kvp in ObjectFactories
-                   where type.IsAssignableFrom(kvp.Key)
-                   select kvp.Value)
-                    .FirstOrDefault();
-            if (res is not null || !type.IsGenericType || type.IsGenericTypeDefinition) return res;
-            type = type.GetGenericTypeDefinition();
-            return (from kvp in ObjectFactories
-                    where kvp.Key.IsGenericTypeDefinition &&
-                        type.IsAssignableFrom(kvp.Key)
-                    select kvp.Value)
-                    .FirstOrDefault();
-        }
-
-        /// <summary>
-        /// Get an object factory
-        /// </summary>
-        /// <param name="type">Type</param>
-        /// <returns>Factory</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static DiAsync_Delegate? GetAsyncFactory(Type type)
-        {
-            if (AsyncObjectFactories.TryGetValue(type, out DiAsync_Delegate? res)) return res;
-            res = (from kvp in AsyncObjectFactories
-                   where type.IsAssignableFrom(kvp.Key)
-                   select kvp.Value)
-                    .FirstOrDefault();
-            if (res is not null || !type.IsGenericType || type.IsGenericTypeDefinition) return res;
-            type = type.GetGenericTypeDefinition();
-            return (from kvp in AsyncObjectFactories
-                    where kvp.Key.IsGenericTypeDefinition &&
-                        type.IsAssignableFrom(kvp.Key)
-                    select kvp.Value)
-                    .FirstOrDefault();
+            using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
+            if (!KeyedObjects.TryGetValue(key, out var dict)) return;
+            object[] objects = [.. dict.Values];
+            dict.Clear();
+            KeyedObjects.TryRemove(key, out _);
+            await objects.TryDisposeAllAsync().DynamicContext();
         }
     }
 }

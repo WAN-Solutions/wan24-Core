@@ -1,15 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
 
-//TODO Implement IServiceCollection and use ServiceDescriptor
-//TODO Add IAsyncKeyedServiceProvider
-
 namespace wan24.Core
 {
     /// <summary>
     /// DI helper
     /// </summary>
-    public partial class DiHelper : IAsyncServiceProvider, IServiceProviderIsService
+    public partial class DiHelper : IAsyncKeyedServiceProvider, IServiceProviderIsService, IServiceProviderIsKeyedService
     {
         /// <summary>
         /// Constructor
@@ -21,13 +18,75 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         public virtual async Task<object?> GetServiceAsync(Type serviceType, CancellationToken cancellationToken = default)
-            => (await GetDiObjectAsync(serviceType, serviceProvider: null, cancellationToken).DynamicContext()).Object;
+            => (await GetDiObjectAsync(serviceType, serviceProvider: null, cancellationToken).DynamicContext()).Result;
 
         /// <inheritdoc/>
         public virtual bool IsService(Type serviceType)
-            => ((ServiceProvider as IServiceProviderIsService)?.IsService(serviceType) ?? false) ||
-                GetFactory(serviceType) is not null ||
-                GetAsyncFactory(serviceType) is not null;
+        {
+            if (ServiceProvider is IServiceProviderIsService serviceProvider && serviceProvider.IsService(serviceType))
+                return true;
+            if (Objects.Keys.GetClosestType(serviceType) is not null)
+                return true;
+            if (ObjectFactories.Keys.GetClosestType(serviceType) is not null)
+                return true;
+            if (AsyncObjectFactories.Keys.GetClosestType(serviceType) is not null)
+                return true;
+            return false;
+        }
+
+        /// <inheritdoc/>
+        public object? GetKeyedService(Type serviceType, object? serviceKey)
+        {
+            if(serviceKey is null)
+            {
+                return GetDiObject(serviceType, out object? res) ? res : null;
+            }
+            else if(GetKeyedDiObject(serviceKey,serviceType, out object? res))
+            {
+                return res;
+            }
+            return null;
+        }
+
+        /// <inheritdoc/>
+        public async Task<object?> GetKeyedServiceAsync(Type serviceType, object? serviceKey, CancellationToken cancellationToken = default)
+        {
+            if (serviceKey is null)
+            {
+                ITryAsyncResult res = await GetDiObjectAsync(serviceType, cancellationToken: cancellationToken).DynamicContext();
+                return res.Succeed ? res.Result : null;
+            }
+            {
+                ITryAsyncResult res = await GetKeyedDiObjectAsync(serviceKey, serviceType, cancellationToken: cancellationToken).DynamicContext();
+                return res.Succeed ? res.Result : null;
+            }
+        }
+
+        /// <inheritdoc/>
+        public object GetRequiredKeyedService(Type serviceType, object? serviceKey)
+            => GetKeyedService(serviceType, serviceKey) is object res 
+                ? res 
+                : throw new InvalidOperationException($"Service {serviceType} (key \"{serviceKey}\") not found");
+
+        /// <inheritdoc/>
+        public async Task<object> GetRequiredKeyedServiceAsync(Type serviceType, object? serviceKey, CancellationToken cancellationToken = default)
+            => await GetKeyedServiceAsync(serviceType, serviceKey, cancellationToken).DynamicContext() is object res
+                ? res
+                : throw new InvalidOperationException($"Service {serviceType} (key \"{serviceKey}\") not found");
+
+        /// <inheritdoc/>
+        public bool IsKeyedService(Type serviceType, object? serviceKey)
+        {
+            if (ServiceProvider is IServiceProviderIsKeyedService keyedServiceProvider && keyedServiceProvider.IsKeyedService(serviceType, serviceKey))
+                return true;
+            if (serviceKey is null)
+                return false;
+            if (KeyedObjects.TryGetValue(serviceKey, out var dict) && dict.Keys.GetClosestType(serviceType) is not null)
+                return true;
+            if (KeyedObjectFactories.TryGetValue(serviceKey, out var factoryDict) && factoryDict.Keys.GetClosestType(serviceType) is not null)
+                return true;
+            return false;
+        }
 
         /// <summary>
         /// DI delegate
@@ -42,7 +101,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="type">Type</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>The object and if to use the result</returns>
-        public delegate Task<AsyncResult> DiAsync_Delegate(Type type, CancellationToken cancellationToken);
+        /// <returns>The result</returns>
+        public delegate Task<ITryAsyncResult> DiAsync_Delegate(Type type, CancellationToken cancellationToken);
     }
 }

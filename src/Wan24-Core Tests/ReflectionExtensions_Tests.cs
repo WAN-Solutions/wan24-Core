@@ -203,6 +203,13 @@ namespace Wan24_Core_Tests
             Assert.IsFalse(getterSetter.IsInitOnly());
         }
 
+        [TestMethod]
+        public void IsAssignableFromExt_Tests()
+        {
+            Assert.IsTrue(typeof(Dictionary<,>).IsAssignableFrom(typeof(Dictionary<string, string>)));
+            //TODO
+        }
+
         public int? TestField = null;
 
         public int TestField2 = 0;
@@ -229,8 +236,8 @@ namespace Wan24_Core_Tests
             return true;
         }
 
-        private static Task<DiHelper.AsyncResult> GetTrueAsync(Type type, CancellationToken cancellationToken)
-            => Task.FromResult(new DiHelper.AsyncResult(true, true));
+        private static Task<ITryAsyncResult> GetTrueAsync(Type type, CancellationToken cancellationToken)
+            => Task.FromResult<ITryAsyncResult>(new TryAsyncResult<bool>(true, true));
 
         public sealed class ReflectionTestClass
         {
