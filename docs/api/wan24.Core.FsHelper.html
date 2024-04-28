@@ -146,7 +146,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_SyncObject.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.SyncObject%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L17">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Find.cs/#L12">View Source</a>
   </span>
   <h4 id="wan24_Core_FsHelper_SyncObject" data-uid="wan24.Core.FsHelper.SyncObject">SyncObject</h4>
   <div class="markdown level1 summary"><p>An object for static thread locking</p>
@@ -175,10 +175,72 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_DeleteFileHandler.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.DeleteFileHandler%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Delete.cs/#L9">View Source</a>
+  </span>
+  <a id="wan24_Core_FsHelper_DeleteFileHandler_" data-uid="wan24.Core.FsHelper.DeleteFileHandler*"></a>
+  <h4 id="wan24_Core_FsHelper_DeleteFileHandler" data-uid="wan24.Core.FsHelper.DeleteFileHandler">DeleteFileHandler</h4>
+  <div class="markdown level1 summary"><p>Delete file handler</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FsHelper.DeleteFile_Delegate? DeleteFileHandler { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.FsHelper.html">FsHelper</a>.<a class="xref" href="wan24.Core.FsHelper.DeleteFile_Delegate.html">DeleteFile_Delegate</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_DeleteFolderHandler.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.DeleteFolderHandler%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Delete.cs/#L14">View Source</a>
+  </span>
+  <a id="wan24_Core_FsHelper_DeleteFolderHandler_" data-uid="wan24.Core.FsHelper.DeleteFolderHandler*"></a>
+  <h4 id="wan24_Core_FsHelper_DeleteFolderHandler" data-uid="wan24.Core.FsHelper.DeleteFolderHandler">DeleteFolderHandler</h4>
+  <div class="markdown level1 summary"><p>Delete folder handler (needs to delete recursive; files should be deleted already)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FsHelper.DeleteFolder_Delegate? DeleteFolderHandler { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.FsHelper.html">FsHelper</a>.<a class="xref" href="wan24.Core.FsHelper.DeleteFolder_Delegate.html">DeleteFolder_Delegate</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_SearchFolders.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.SearchFolders%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L27">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Find.cs/#L17">View Source</a>
   </span>
   <a id="wan24_Core_FsHelper_SearchFolders_" data-uid="wan24.Core.FsHelper.SearchFolders*"></a>
   <h4 id="wan24_Core_FsHelper_SearchFolders" data-uid="wan24.Core.FsHelper.SearchFolders">SearchFolders</h4>
@@ -211,7 +273,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_CreateFileStream_System_String__System_IO_FileMode__System_IO_FileAccess__System_IO_FileShare__System_IO_FileOptions__System_Nullable_System_IO_UnixFileMode__System_Boolean__System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.CreateFileStream(System.String%40%2CSystem.IO.FileMode%40%2CSystem.IO.FileAccess%40%2CSystem.IO.FileShare%40%2CSystem.IO.FileOptions%40%2CSystem.Nullable%7BSystem.IO.UnixFileMode%7D%2CSystem.Boolean%40%2CSystem.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L74">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L58">View Source</a>
   </span>
   <a id="wan24_Core_FsHelper_CreateFileStream_" data-uid="wan24.Core.FsHelper.CreateFileStream*"></a>
   <h4 id="wan24_Core_FsHelper_CreateFileStream_System_String__System_IO_FileMode__System_IO_FileAccess__System_IO_FileShare__System_IO_FileOptions__System_Nullable_System_IO_UnixFileMode__System_Boolean__System_Int32__" data-uid="wan24.Core.FsHelper.CreateFileStream(System.String@,System.IO.FileMode@,System.IO.FileAccess@,System.IO.FileShare@,System.IO.FileOptions@,System.Nullable{System.IO.UnixFileMode},System.Boolean@,System.Int32@)">CreateFileStream(in string, in FileMode, in FileAccess, in FileShare, in FileOptions, UnixFileMode?, in bool, in int)</h4>
@@ -303,7 +365,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_CreateFolder_System_String__System_Nullable_System_IO_UnixFileMode__.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.CreateFolder(System.String%40%2CSystem.Nullable%7BSystem.IO.UnixFileMode%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L48">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L32">View Source</a>
   </span>
   <a id="wan24_Core_FsHelper_CreateFolder_" data-uid="wan24.Core.FsHelper.CreateFolder*"></a>
   <h4 id="wan24_Core_FsHelper_CreateFolder_System_String__System_Nullable_System_IO_UnixFileMode__" data-uid="wan24.Core.FsHelper.CreateFolder(System.String@,System.Nullable{System.IO.UnixFileMode})">CreateFolder(in string, UnixFileMode?)</h4>
@@ -356,10 +418,321 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_DefaultDeleteFileHandlerAsync_System_String_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.DefaultDeleteFileHandlerAsync(System.String%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Delete.cs/#L167">View Source</a>
+  </span>
+  <a id="wan24_Core_FsHelper_DefaultDeleteFileHandlerAsync_" data-uid="wan24.Core.FsHelper.DefaultDeleteFileHandlerAsync*"></a>
+  <h4 id="wan24_Core_FsHelper_DefaultDeleteFileHandlerAsync_System_String_System_Threading_CancellationToken_" data-uid="wan24.Core.FsHelper.DefaultDeleteFileHandlerAsync(System.String,System.Threading.CancellationToken)">DefaultDeleteFileHandlerAsync(string, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Default delete file handler (see <a class="xref" href="wan24.Core.FsHelper.DeleteFile_Delegate.html">FsHelper.DeleteFile_Delegate</a>; overwrites with zero and then random data before deleting; won't check for SSD HDD)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task DefaultDeleteFileHandlerAsync(string fn, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">fn</span></td>
+        <td><p>Filename</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation tokens</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_DeleteFileAsync_System_String_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.DeleteFileAsync(System.String%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Delete.cs/#L21">View Source</a>
+  </span>
+  <a id="wan24_Core_FsHelper_DeleteFileAsync_" data-uid="wan24.Core.FsHelper.DeleteFileAsync*"></a>
+  <h4 id="wan24_Core_FsHelper_DeleteFileAsync_System_String_System_Threading_CancellationToken_" data-uid="wan24.Core.FsHelper.DeleteFileAsync(System.String,System.Threading.CancellationToken)">DeleteFileAsync(string, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Delete a file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task DeleteFileAsync(string fn, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">fn</span></td>
+        <td><p>Filename</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_DeleteFilesAsync_System_Collections_Generic_IAsyncEnumerable_System_String__System_Nullable_System_Int32__wan24_Core_ProcessingProgress_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.DeleteFilesAsync(System.Collections.Generic.IAsyncEnumerable%7BSystem.String%7D%2CSystem.Nullable%7BSystem.Int32%7D%2Cwan24.Core.ProcessingProgress%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Delete.cs/#L81">View Source</a>
+  </span>
+  <a id="wan24_Core_FsHelper_DeleteFilesAsync_" data-uid="wan24.Core.FsHelper.DeleteFilesAsync*"></a>
+  <h4 id="wan24_Core_FsHelper_DeleteFilesAsync_System_Collections_Generic_IAsyncEnumerable_System_String__System_Nullable_System_Int32__wan24_Core_ProcessingProgress_System_Threading_CancellationToken_" data-uid="wan24.Core.FsHelper.DeleteFilesAsync(System.Collections.Generic.IAsyncEnumerable{System.String},System.Nullable{System.Int32},wan24.Core.ProcessingProgress,System.Threading.CancellationToken)">DeleteFilesAsync(IAsyncEnumerable&lt;string&gt;, int?, ProcessingProgress?, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Delete many files</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task DeleteFilesAsync(IAsyncEnumerable&lt;string&gt; files, int? parallelDeleteFile = null, ProcessingProgress? progress = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td><span class="parametername">files</span></td>
+        <td><p>Filenames</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td><span class="parametername">parallelDeleteFile</span></td>
+        <td><p>Number of files to delete in parallel</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ProcessingProgress.html">ProcessingProgress</a></td>
+        <td><span class="parametername">progress</span></td>
+        <td><p>Progress (total will be updated with the number of files and counted)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_DeleteFilesAsync_System_Collections_Generic_IEnumerable_System_String__System_Nullable_System_Int32__wan24_Core_ProcessingProgress_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.DeleteFilesAsync(System.Collections.Generic.IEnumerable%7BSystem.String%7D%2CSystem.Nullable%7BSystem.Int32%7D%2Cwan24.Core.ProcessingProgress%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Delete.cs/#L40">View Source</a>
+  </span>
+  <a id="wan24_Core_FsHelper_DeleteFilesAsync_" data-uid="wan24.Core.FsHelper.DeleteFilesAsync*"></a>
+  <h4 id="wan24_Core_FsHelper_DeleteFilesAsync_System_Collections_Generic_IEnumerable_System_String__System_Nullable_System_Int32__wan24_Core_ProcessingProgress_System_Threading_CancellationToken_" data-uid="wan24.Core.FsHelper.DeleteFilesAsync(System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.Int32},wan24.Core.ProcessingProgress,System.Threading.CancellationToken)">DeleteFilesAsync(IEnumerable&lt;string&gt;, int?, ProcessingProgress?, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Delete many files</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task DeleteFilesAsync(IEnumerable&lt;string&gt; files, int? parallelDeleteFile = null, ProcessingProgress? progress = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td><span class="parametername">files</span></td>
+        <td><p>Filenames</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td><span class="parametername">parallelDeleteFile</span></td>
+        <td><p>Number of files to delete in parallel</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ProcessingProgress.html">ProcessingProgress</a></td>
+        <td><span class="parametername">progress</span></td>
+        <td><p>Progress (total will be updated with the number of files and counted)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_DeleteFolderAsync_System_String_System_Nullable_System_Int32__wan24_Core_ProcessingProgress_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.DeleteFolderAsync(System.String%2CSystem.Nullable%7BSystem.Int32%7D%2Cwan24.Core.ProcessingProgress%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Delete.cs/#L118">View Source</a>
+  </span>
+  <a id="wan24_Core_FsHelper_DeleteFolderAsync_" data-uid="wan24.Core.FsHelper.DeleteFolderAsync*"></a>
+  <h4 id="wan24_Core_FsHelper_DeleteFolderAsync_System_String_System_Nullable_System_Int32__wan24_Core_ProcessingProgress_System_Threading_CancellationToken_" data-uid="wan24.Core.FsHelper.DeleteFolderAsync(System.String,System.Nullable{System.Int32},wan24.Core.ProcessingProgress,System.Threading.CancellationToken)">DeleteFolderAsync(string, int?, ProcessingProgress?, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Delete a folder recursive</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task DeleteFolderAsync(string path, int? parallelDeleteFile = null, ProcessingProgress? progress = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>Path</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td><span class="parametername">parallelDeleteFile</span></td>
+        <td><p>Number of files to delete in parallel</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ProcessingProgress.html">ProcessingProgress</a></td>
+        <td><span class="parametername">progress</span></td>
+        <td><p>Progress (total will be updated with the number of files and counted)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_EnsureFolder_System_String__System_Nullable_System_IO_UnixFileMode___.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.EnsureFolder(System.String%40%2CSystem.Nullable%7BSystem.IO.UnixFileMode%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L35">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L19">View Source</a>
   </span>
   <a id="wan24_Core_FsHelper_EnsureFolder_" data-uid="wan24.Core.FsHelper.EnsureFolder*"></a>
   <h4 id="wan24_Core_FsHelper_EnsureFolder_System_String__System_Nullable_System_IO_UnixFileMode___" data-uid="wan24.Core.FsHelper.EnsureFolder(System.String@,System.Nullable{System.IO.UnixFileMode}@)">EnsureFolder(in string, in UnixFileMode?)</h4>
@@ -415,7 +788,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_FindFile_System_String__System_Boolean__System_String___.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.FindFile(System.String%40%2CSystem.Boolean%40%2CSystem.String%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L362">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Find.cs/#L265">View Source</a>
   </span>
   <a id="wan24_Core_FsHelper_FindFile_" data-uid="wan24.Core.FsHelper.FindFile*"></a>
   <h4 id="wan24_Core_FsHelper_FindFile_System_String__System_Boolean__System_String___" data-uid="wan24.Core.FsHelper.FindFile(System.String@,System.Boolean@,System.String[])">FindFile(in string, in bool, params string[])</h4>
@@ -477,7 +850,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_FindFile_System_String__System_String___.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.FindFile(System.String%40%2CSystem.String%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L340">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Find.cs/#L243">View Source</a>
   </span>
   <a id="wan24_Core_FsHelper_FindFile_" data-uid="wan24.Core.FsHelper.FindFile*"></a>
   <h4 id="wan24_Core_FsHelper_FindFile_System_String__System_String___" data-uid="wan24.Core.FsHelper.FindFile(System.String@,System.String[])">FindFile(in string, params string[])</h4>
@@ -533,7 +906,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_FindFiles_System_String__System_Text_RegularExpressions_Regex_System_String__System_Boolean__System_StringComparison_System_String___.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.FindFiles(System.String%40%2CSystem.Text.RegularExpressions.Regex%2CSystem.String%40%2CSystem.Boolean%40%2CSystem.StringComparison%2CSystem.String%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L119">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Find.cs/#L29">View Source</a>
   </span>
   <a id="wan24_Core_FsHelper_FindFiles_" data-uid="wan24.Core.FsHelper.FindFiles*"></a>
   <h4 id="wan24_Core_FsHelper_FindFiles_System_String__System_Text_RegularExpressions_Regex_System_String__System_Boolean__System_StringComparison_System_String___" data-uid="wan24.Core.FsHelper.FindFiles(System.String@,System.Text.RegularExpressions.Regex,System.String@,System.Boolean@,System.StringComparison,System.String[])">FindFiles(in string, Regex?, in string?, in bool, StringComparison, params string[])</h4>
@@ -613,7 +986,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_FindFilesBackward_System_String_System_Text_RegularExpressions_Regex_System_String_System_String_System_Boolean_System_StringComparison_System_String___.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.FindFilesBackward(System.String%2CSystem.Text.RegularExpressions.Regex%2CSystem.String%2CSystem.String%2CSystem.Boolean%2CSystem.StringComparison%2CSystem.String%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L160">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Find.cs/#L70">View Source</a>
   </span>
   <a id="wan24_Core_FsHelper_FindFilesBackward_" data-uid="wan24.Core.FsHelper.FindFilesBackward*"></a>
   <h4 id="wan24_Core_FsHelper_FindFilesBackward_System_String_System_Text_RegularExpressions_Regex_System_String_System_String_System_Boolean_System_StringComparison_System_String___" data-uid="wan24.Core.FsHelper.FindFilesBackward(System.String,System.Text.RegularExpressions.Regex,System.String,System.String,System.Boolean,System.StringComparison,System.String[])">FindFilesBackward(string, Regex?, string?, string?, bool, StringComparison, params string[])</h4>
@@ -699,7 +1072,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_FindFolders_System_String__System_Text_RegularExpressions_Regex_System_String__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.FindFolders(System.String%40%2CSystem.Text.RegularExpressions.Regex%2CSystem.String%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L142">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Find.cs/#L52">View Source</a>
   </span>
   <a id="wan24_Core_FsHelper_FindFolders_" data-uid="wan24.Core.FsHelper.FindFolders*"></a>
   <h4 id="wan24_Core_FsHelper_FindFolders_System_String__System_Text_RegularExpressions_Regex_System_String__System_Boolean__" data-uid="wan24.Core.FsHelper.FindFolders(System.String@,System.Text.RegularExpressions.Regex,System.String@,System.Boolean@)">FindFolders(in string, Regex?, in string?, in bool)</h4>
@@ -767,7 +1140,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_FindFoldersBackward_System_String_System_Text_RegularExpressions_Regex_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.FindFoldersBackward(System.String%2CSystem.Text.RegularExpressions.Regex%2CSystem.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L249">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Find.cs/#L159">View Source</a>
   </span>
   <a id="wan24_Core_FsHelper_FindFoldersBackward_" data-uid="wan24.Core.FsHelper.FindFoldersBackward*"></a>
   <h4 id="wan24_Core_FsHelper_FindFoldersBackward_System_String_System_Text_RegularExpressions_Regex_System_String_System_String_System_Boolean_" data-uid="wan24.Core.FsHelper.FindFoldersBackward(System.String,System.Text.RegularExpressions.Regex,System.String,System.String,System.Boolean)">FindFoldersBackward(string, Regex?, string?, string?, bool)</h4>
@@ -841,7 +1214,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_GetSearchFolders_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.GetSearchFolders(System.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L380">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Find.cs/#L283">View Source</a>
   </span>
   <a id="wan24_Core_FsHelper_GetSearchFolders_" data-uid="wan24.Core.FsHelper.GetSearchFolders*"></a>
   <h4 id="wan24_Core_FsHelper_GetSearchFolders_System_Boolean__" data-uid="wan24.Core.FsHelper.GetSearchFolders(System.Boolean@)">GetSearchFolders(in bool)</h4>
@@ -891,7 +1264,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_HideFile_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.HideFile(System.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L394">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L98">View Source</a>
   </span>
   <a id="wan24_Core_FsHelper_HideFile_" data-uid="wan24.Core.FsHelper.HideFile*"></a>
   <h4 id="wan24_Core_FsHelper_HideFile_System_String__" data-uid="wan24.Core.FsHelper.HideFile(System.String@)">HideFile(in string)</h4>
@@ -941,7 +1314,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_NormalizeDisplayPath_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.NormalizeDisplayPath(System.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L422">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Normalize.cs/#L22">View Source</a>
   </span>
   <a id="wan24_Core_FsHelper_NormalizeDisplayPath_" data-uid="wan24.Core.FsHelper.NormalizeDisplayPath*"></a>
   <h4 id="wan24_Core_FsHelper_NormalizeDisplayPath_System_String__" data-uid="wan24.Core.FsHelper.NormalizeDisplayPath(System.String@)">NormalizeDisplayPath(in string)</h4>
@@ -991,7 +1364,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_NormalizeLinuxDisplayPath_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.NormalizeLinuxDisplayPath(System.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L480">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Normalize.cs/#L80">View Source</a>
   </span>
   <a id="wan24_Core_FsHelper_NormalizeLinuxDisplayPath_" data-uid="wan24.Core.FsHelper.NormalizeLinuxDisplayPath*"></a>
   <h4 id="wan24_Core_FsHelper_NormalizeLinuxDisplayPath_System_String__" data-uid="wan24.Core.FsHelper.NormalizeLinuxDisplayPath(System.String@)">NormalizeLinuxDisplayPath(in string)</h4>
@@ -1041,7 +1414,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_NormalizePath_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.NormalizePath(System.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L332">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Normalize.cs/#L15">View Source</a>
   </span>
   <a id="wan24_Core_FsHelper_NormalizePath_" data-uid="wan24.Core.FsHelper.NormalizePath*"></a>
   <h4 id="wan24_Core_FsHelper_NormalizePath_System_String__" data-uid="wan24.Core.FsHelper.NormalizePath(System.String@)">NormalizePath(in string)</h4>
@@ -1091,7 +1464,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_NormalizeWindowsDisplayPath_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.NormalizeWindowsDisplayPath(System.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L430">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.Normalize.cs/#L30">View Source</a>
   </span>
   <a id="wan24_Core_FsHelper_NormalizeWindowsDisplayPath_" data-uid="wan24.Core.FsHelper.NormalizeWindowsDisplayPath*"></a>
   <h4 id="wan24_Core_FsHelper_NormalizeWindowsDisplayPath_System_String__" data-uid="wan24.Core.FsHelper.NormalizeWindowsDisplayPath(System.String@)">NormalizeWindowsDisplayPath(in string)</h4>
@@ -1141,7 +1514,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FsHelper_UnhideFile_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.FsHelper.UnhideFile(System.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L408">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FsHelper.cs/#L112">View Source</a>
   </span>
   <a id="wan24_Core_FsHelper_UnhideFile_" data-uid="wan24.Core.FsHelper.UnhideFile*"></a>
   <h4 id="wan24_Core_FsHelper_UnhideFile_System_String__" data-uid="wan24.Core.FsHelper.UnhideFile(System.String@)">UnhideFile(in string)</h4>

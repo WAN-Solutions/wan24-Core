@@ -108,7 +108,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_DiHelper_DiAsync_Delegate_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate Task&lt;DiHelper.AsyncResult&gt; DiHelper.DiAsync_Delegate(Type type, CancellationToken cancellationToken)</code></pre>
+    <pre><code class="lang-csharp hljs">public delegate Task&lt;ITryAsyncResult&gt; DiHelper.DiAsync_Delegate(Type type, CancellationToken cancellationToken)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -144,8 +144,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="wan24.Core.DiHelper.html">DiHelper</a>.<a class="xref" href="wan24.Core.DiHelper.AsyncResult.html">AsyncResult</a>&gt;</td>
-        <td><p>The object and if to use the result</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="wan24.Core.ITryAsyncResult.html">ITryAsyncResult</a>&gt;</td>
+        <td><p>The result</p>
 </td>
       </tr>
     </tbody>

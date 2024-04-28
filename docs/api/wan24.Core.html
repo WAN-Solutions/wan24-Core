@@ -347,12 +347,6 @@ Classes
       <h5><a class="xref" href="wan24.Core.DiHelper.html">DiHelper</a></h5>
       <section><p>DI helper</p>
 </section>
-      <h5><a class="xref" href="wan24.Core.DiHelper.AsyncResult.html">DiHelper.AsyncResult</a></h5>
-      <section><p>Asynchronous result</p>
-</section>
-      <h5><a class="xref" href="wan24.Core.DiHelper.AsyncResult-1.html">DiHelper.AsyncResult&lt;T&gt;</a></h5>
-      <section><p>Asynchronous result</p>
-</section>
       <h5><a class="xref" href="wan24.Core.DiHelper.DiServiceProviderFactory.html">DiHelper.DiServiceProviderFactory</a></h5>
       <section><p>DI helper service provider factory</p>
 </section>
@@ -511,6 +505,18 @@ Classes
 </section>
       <h5><a class="xref" href="wan24.Core.FlushStream-1.html">FlushStream&lt;T&gt;</a></h5>
       <section><p>Flush stream (writes to a buffer and requires a flush to write the buffer to the base stream)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ForceAsyncStream.html">ForceAsyncStream</a></h5>
+      <section><p>Forces all operations to be executed asynchronous</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ForceAsyncStream-1.html">ForceAsyncStream&lt;T&gt;</a></h5>
+      <section><p>Forces all operations to be executed asynchronous</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ForceSyncStream.html">ForceSyncStream</a></h5>
+      <section><p>Forces all operations to be performed synchronous</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ForceSyncStream-1.html">ForceSyncStream&lt;T&gt;</a></h5>
+      <section><p>Forces all operations to be performed synchronous</p>
 </section>
       <h5><a class="xref" href="wan24.Core.FsHelper.html">FsHelper</a></h5>
       <section><p>Filesystem helper</p>
@@ -828,7 +834,7 @@ restrictions for this)</p>
       <section><p>Current stack information</p>
 </section>
       <h5><a class="xref" href="wan24.Core.Statistics.html">Statistics</a></h5>
-      <section><p>Statistics</p>
+      <section><p>Statistics (provides the moving average)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.StatisticsService.html">StatisticsService</a></h5>
       <section><p>Statistics service</p>
@@ -1064,6 +1070,9 @@ Interfaces
       <h5><a class="xref" href="wan24.Core.IAsyncEvent-2.html">IAsyncEvent&lt;tSender, tArgs&gt;</a></h5>
       <section><p>Asynchronous event interface</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IAsyncKeyedServiceProvider.html">IAsyncKeyedServiceProvider</a></h5>
+      <section><p>Interface for an asynchronous keyed service provider</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IAsyncObjectPool-1.html">IAsyncObjectPool&lt;T&gt;</a></h5>
       <section><p>Interface for an object pool which supports asynchronous renting / returning</p>
 </section>
@@ -1208,6 +1217,9 @@ Interfaces
       <h5><a class="xref" href="wan24.Core.ITranslationTerms.html">ITranslationTerms</a></h5>
       <section><p>Interface for a translation</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ITryAsyncResult.html">ITryAsyncResult</a></h5>
+      <section><p>Interface for a <a class="xref" href="wan24.Core.TryAsyncResult-1.html">TryAsyncResult&lt;T&gt;</a></p>
+</section>
       <h5><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></h5>
       <section><p>Interface for a disposable object which will dispose foreign disposables when disposing</p>
 </section>
@@ -1234,6 +1246,9 @@ Enums
 </section>
       <h5><a class="xref" href="wan24.Core.QueueEntryStates.html">QueueEntryStates</a></h5>
       <section><p>Queue entry states</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.StatisticsValueModes.html">StatisticsValueModes</a></h5>
+      <section><p>Statistics value modes</p>
 </section>
     <h3 id="delegates">
 Delegates
@@ -1294,6 +1309,12 @@ Delegates
 </section>
       <h5><a class="xref" href="wan24.Core.FileSystemEvents.FileSystemEvents_Delegate.html">FileSystemEvents.FileSystemEvents_Delegate</a></h5>
       <section><p>Delegate for an event hander</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.FsHelper.DeleteFile_Delegate.html">FsHelper.DeleteFile_Delegate</a></h5>
+      <section><p>Delete file handler</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.FsHelper.DeleteFolder_Delegate.html">FsHelper.DeleteFolder_Delegate</a></h5>
+      <section><p>Delete folder handler (needs to delete recursive; files should be deleted already)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.HostedServiceBase.HostedService_Delegate.html">HostedServiceBase.HostedService_Delegate</a></h5>
       <section><p>Delegate for a hosted service event</p>

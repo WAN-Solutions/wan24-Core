@@ -143,19 +143,19 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DiHelperExtensions_GetDiObjects_System_Collections_Generic_IEnumerable_System_Reflection_ParameterInfo__System_Object___System_IServiceProvider_System_Reflection_NullabilityInfoContext_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.DiHelperExtensions.GetDiObjects(System.Collections.Generic.IEnumerable%7BSystem.Reflection.ParameterInfo%7D%2CSystem.Object%5B%5D%2CSystem.IServiceProvider%2CSystem.Reflection.NullabilityInfoContext%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DiHelperExtensions_GetDiObjects_System_Collections_Generic_IEnumerable_System_Reflection_ParameterInfo__System_Object___System_IServiceProvider_System_Reflection_NullabilityInfoContext_System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.DiHelperExtensions.GetDiObjects(System.Collections.Generic.IEnumerable%7BSystem.Reflection.ParameterInfo%7D%2CSystem.Object%5B%5D%2CSystem.IServiceProvider%2CSystem.Reflection.NullabilityInfoContext%2CSystem.Boolean%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DiHelperExtensions.cs/#L19">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DiHelperExtensions.cs/#L21">View Source</a>
   </span>
   <a id="wan24_Core_DiHelperExtensions_GetDiObjects_" data-uid="wan24.Core.DiHelperExtensions.GetDiObjects*"></a>
-  <h4 id="wan24_Core_DiHelperExtensions_GetDiObjects_System_Collections_Generic_IEnumerable_System_Reflection_ParameterInfo__System_Object___System_IServiceProvider_System_Reflection_NullabilityInfoContext_System_Boolean_" data-uid="wan24.Core.DiHelperExtensions.GetDiObjects(System.Collections.Generic.IEnumerable{System.Reflection.ParameterInfo},System.Object[],System.IServiceProvider,System.Reflection.NullabilityInfoContext,System.Boolean)">GetDiObjects(IEnumerable&lt;ParameterInfo&gt;, object?[]?, IServiceProvider?, NullabilityInfoContext?, bool)</h4>
+  <h4 id="wan24_Core_DiHelperExtensions_GetDiObjects_System_Collections_Generic_IEnumerable_System_Reflection_ParameterInfo__System_Object___System_IServiceProvider_System_Reflection_NullabilityInfoContext_System_Boolean_System_Boolean_" data-uid="wan24.Core.DiHelperExtensions.GetDiObjects(System.Collections.Generic.IEnumerable{System.Reflection.ParameterInfo},System.Object[],System.IServiceProvider,System.Reflection.NullabilityInfoContext,System.Boolean,System.Boolean)">GetDiObjects(IEnumerable&lt;ParameterInfo&gt;, object?[]?, IServiceProvider?, NullabilityInfoContext?, bool, bool)</h4>
   <div class="markdown level1 summary"><p>Get DI objects</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static object?[] GetDiObjects(this IEnumerable&lt;ParameterInfo&gt; parameters, object?[]? values = null, IServiceProvider? serviceProvider = null, NullabilityInfoContext? nic = null, bool throwOnMissing = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public static object?[] GetDiObjects(this IEnumerable&lt;ParameterInfo&gt; parameters, object?[]? values = null, IServiceProvider? serviceProvider = null, NullabilityInfoContext? nic = null, bool throwOnMissing = true, bool valuesAreOrdered = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -194,7 +194,13 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">throwOnMissing</span></td>
-        <td><p>Throw an exception on missing value?</p>
+        <td><p>Throw an exception on missing value? (will throw on missing keyed DI parameter anyway)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">valuesAreOrdered</span></td>
+        <td><p>If values are ordered in the order of the given parameters</p>
 </td>
       </tr>
     </tbody>
@@ -217,19 +223,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DiHelperExtensions_GetDiObjects_System_Collections_Generic_IEnumerable_System_Type__System_Object___System_IServiceProvider_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.DiHelperExtensions.GetDiObjects(System.Collections.Generic.IEnumerable%7BSystem.Type%7D%2CSystem.Object%5B%5D%2CSystem.IServiceProvider%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DiHelperExtensions_GetDiObjects_System_Collections_Generic_IEnumerable_System_Type__System_Object___System_IServiceProvider_System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.DiHelperExtensions.GetDiObjects(System.Collections.Generic.IEnumerable%7BSystem.Type%7D%2CSystem.Object%5B%5D%2CSystem.IServiceProvider%2CSystem.Boolean%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DiHelperExtensions.cs/#L158">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DiHelperExtensions.cs/#L181">View Source</a>
   </span>
   <a id="wan24_Core_DiHelperExtensions_GetDiObjects_" data-uid="wan24.Core.DiHelperExtensions.GetDiObjects*"></a>
-  <h4 id="wan24_Core_DiHelperExtensions_GetDiObjects_System_Collections_Generic_IEnumerable_System_Type__System_Object___System_IServiceProvider_System_Boolean_" data-uid="wan24.Core.DiHelperExtensions.GetDiObjects(System.Collections.Generic.IEnumerable{System.Type},System.Object[],System.IServiceProvider,System.Boolean)">GetDiObjects(IEnumerable&lt;Type&gt;, object?[]?, IServiceProvider?, bool)</h4>
+  <h4 id="wan24_Core_DiHelperExtensions_GetDiObjects_System_Collections_Generic_IEnumerable_System_Type__System_Object___System_IServiceProvider_System_Boolean_System_Boolean_" data-uid="wan24.Core.DiHelperExtensions.GetDiObjects(System.Collections.Generic.IEnumerable{System.Type},System.Object[],System.IServiceProvider,System.Boolean,System.Boolean)">GetDiObjects(IEnumerable&lt;Type&gt;, object?[]?, IServiceProvider?, bool, bool)</h4>
   <div class="markdown level1 summary"><p>Get DI objects</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static object?[] GetDiObjects(this IEnumerable&lt;Type&gt; types, object?[]? values = null, IServiceProvider? serviceProvider = null, bool throwOnMissing = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public static object?[] GetDiObjects(this IEnumerable&lt;Type&gt; types, object?[]? values = null, IServiceProvider? serviceProvider = null, bool throwOnMissing = true, bool valuesAreOrdered = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -263,6 +269,12 @@
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">throwOnMissing</span></td>
         <td><p>Throw an exception on missing value?</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">valuesAreOrdered</span></td>
+        <td><p>If values are ordered in the order of the given parameters</p>
 </td>
       </tr>
     </tbody>
@@ -285,19 +297,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DiHelperExtensions_GetDiObjectsAsync_System_Collections_Generic_IEnumerable_System_Reflection_ParameterInfo__System_Object___System_IServiceProvider_System_Reflection_NullabilityInfoContext_System_Boolean_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.DiHelperExtensions.GetDiObjectsAsync(System.Collections.Generic.IEnumerable%7BSystem.Reflection.ParameterInfo%7D%2CSystem.Object%5B%5D%2CSystem.IServiceProvider%2CSystem.Reflection.NullabilityInfoContext%2CSystem.Boolean%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DiHelperExtensions_GetDiObjectsAsync_System_Collections_Generic_IEnumerable_System_Reflection_ParameterInfo__System_Object___System_IServiceProvider_System_Reflection_NullabilityInfoContext_System_Boolean_System_Boolean_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.DiHelperExtensions.GetDiObjectsAsync(System.Collections.Generic.IEnumerable%7BSystem.Reflection.ParameterInfo%7D%2CSystem.Object%5B%5D%2CSystem.IServiceProvider%2CSystem.Reflection.NullabilityInfoContext%2CSystem.Boolean%2CSystem.Boolean%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DiHelperExtensions.cs/#L66">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DiHelperExtensions.cs/#L100">View Source</a>
   </span>
   <a id="wan24_Core_DiHelperExtensions_GetDiObjectsAsync_" data-uid="wan24.Core.DiHelperExtensions.GetDiObjectsAsync*"></a>
-  <h4 id="wan24_Core_DiHelperExtensions_GetDiObjectsAsync_System_Collections_Generic_IEnumerable_System_Reflection_ParameterInfo__System_Object___System_IServiceProvider_System_Reflection_NullabilityInfoContext_System_Boolean_System_Threading_CancellationToken_" data-uid="wan24.Core.DiHelperExtensions.GetDiObjectsAsync(System.Collections.Generic.IEnumerable{System.Reflection.ParameterInfo},System.Object[],System.IServiceProvider,System.Reflection.NullabilityInfoContext,System.Boolean,System.Threading.CancellationToken)">GetDiObjectsAsync(IEnumerable&lt;ParameterInfo&gt;, object?[]?, IServiceProvider?, NullabilityInfoContext?, bool, CancellationToken)</h4>
+  <h4 id="wan24_Core_DiHelperExtensions_GetDiObjectsAsync_System_Collections_Generic_IEnumerable_System_Reflection_ParameterInfo__System_Object___System_IServiceProvider_System_Reflection_NullabilityInfoContext_System_Boolean_System_Boolean_System_Threading_CancellationToken_" data-uid="wan24.Core.DiHelperExtensions.GetDiObjectsAsync(System.Collections.Generic.IEnumerable{System.Reflection.ParameterInfo},System.Object[],System.IServiceProvider,System.Reflection.NullabilityInfoContext,System.Boolean,System.Boolean,System.Threading.CancellationToken)">GetDiObjectsAsync(IEnumerable&lt;ParameterInfo&gt;, object?[]?, IServiceProvider?, NullabilityInfoContext?, bool, bool, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Get DI objects</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;object?[]&gt; GetDiObjectsAsync(this IEnumerable&lt;ParameterInfo&gt; parameters, object?[]? values = null, IServiceProvider? serviceProvider = null, NullabilityInfoContext? nic = null, bool throwOnMissing = true, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;object?[]&gt; GetDiObjectsAsync(this IEnumerable&lt;ParameterInfo&gt; parameters, object?[]? values = null, IServiceProvider? serviceProvider = null, NullabilityInfoContext? nic = null, bool throwOnMissing = true, bool valuesAreOrdered = false, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -336,87 +348,13 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">throwOnMissing</span></td>
-        <td><p>Throw an exception on missing value?</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>Cancellation token</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]&gt;</td>
-        <td><p>Parameters (if the length doesn't match the number of parameters, DI failed)</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DiHelperExtensions_GetDiObjectsAsync_System_Collections_Generic_IEnumerable_System_Reflection_ParameterInfo__wan24_Core_IAsyncServiceProvider_System_Object___System_Reflection_NullabilityInfoContext_System_Boolean_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.DiHelperExtensions.GetDiObjectsAsync(System.Collections.Generic.IEnumerable%7BSystem.Reflection.ParameterInfo%7D%2Cwan24.Core.IAsyncServiceProvider%2CSystem.Object%5B%5D%2CSystem.Reflection.NullabilityInfoContext%2CSystem.Boolean%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DiHelperExtensions.cs/#L113">View Source</a>
-  </span>
-  <a id="wan24_Core_DiHelperExtensions_GetDiObjectsAsync_" data-uid="wan24.Core.DiHelperExtensions.GetDiObjectsAsync*"></a>
-  <h4 id="wan24_Core_DiHelperExtensions_GetDiObjectsAsync_System_Collections_Generic_IEnumerable_System_Reflection_ParameterInfo__wan24_Core_IAsyncServiceProvider_System_Object___System_Reflection_NullabilityInfoContext_System_Boolean_System_Threading_CancellationToken_" data-uid="wan24.Core.DiHelperExtensions.GetDiObjectsAsync(System.Collections.Generic.IEnumerable{System.Reflection.ParameterInfo},wan24.Core.IAsyncServiceProvider,System.Object[],System.Reflection.NullabilityInfoContext,System.Boolean,System.Threading.CancellationToken)">GetDiObjectsAsync(IEnumerable&lt;ParameterInfo&gt;, IAsyncServiceProvider, object?[]?, NullabilityInfoContext?, bool, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Get DI objects</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;object?[]&gt; GetDiObjectsAsync(this IEnumerable&lt;ParameterInfo&gt; parameters, IAsyncServiceProvider serviceProvider, object?[]? values = null, NullabilityInfoContext? nic = null, bool throwOnMissing = true, CancellationToken cancellationToken = default)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.parameterinfo">ParameterInfo</a>&gt;</td>
-        <td><span class="parametername">parameters</span></td>
-        <td><p>Parameters</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="wan24.Core.IAsyncServiceProvider.html">IAsyncServiceProvider</a></td>
-        <td><span class="parametername">serviceProvider</span></td>
-        <td><p>Service provider</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</td>
-        <td><span class="parametername">values</span></td>
-        <td><p>Given values</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.nullabilityinfocontext">NullabilityInfoContext</a></td>
-        <td><span class="parametername">nic</span></td>
-        <td><p>Nullability info context</p>
+        <td><p>Throw an exception on missing value? (will throw on missing keyed DI parameter anyway)</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">throwOnMissing</span></td>
-        <td><p>Throw an exception on missing value?</p>
+        <td><span class="parametername">valuesAreOrdered</span></td>
+        <td><p>If values are ordered in the order of the given parameters</p>
 </td>
       </tr>
       <tr>
@@ -445,19 +383,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DiHelperExtensions_GetDiObjectsAsync_System_Collections_Generic_IEnumerable_System_Type__System_Object___System_IServiceProvider_System_Boolean_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.DiHelperExtensions.GetDiObjectsAsync(System.Collections.Generic.IEnumerable%7BSystem.Type%7D%2CSystem.Object%5B%5D%2CSystem.IServiceProvider%2CSystem.Boolean%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DiHelperExtensions_GetDiObjectsAsync_System_Collections_Generic_IEnumerable_System_Type__System_Object___System_IServiceProvider_System_Boolean_System_Boolean_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.DiHelperExtensions.GetDiObjectsAsync(System.Collections.Generic.IEnumerable%7BSystem.Type%7D%2CSystem.Object%5B%5D%2CSystem.IServiceProvider%2CSystem.Boolean%2CSystem.Boolean%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DiHelperExtensions.cs/#L249">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DiHelperExtensions.cs/#L244">View Source</a>
   </span>
   <a id="wan24_Core_DiHelperExtensions_GetDiObjectsAsync_" data-uid="wan24.Core.DiHelperExtensions.GetDiObjectsAsync*"></a>
-  <h4 id="wan24_Core_DiHelperExtensions_GetDiObjectsAsync_System_Collections_Generic_IEnumerable_System_Type__System_Object___System_IServiceProvider_System_Boolean_System_Threading_CancellationToken_" data-uid="wan24.Core.DiHelperExtensions.GetDiObjectsAsync(System.Collections.Generic.IEnumerable{System.Type},System.Object[],System.IServiceProvider,System.Boolean,System.Threading.CancellationToken)">GetDiObjectsAsync(IEnumerable&lt;Type&gt;, object?[]?, IServiceProvider?, bool, CancellationToken)</h4>
+  <h4 id="wan24_Core_DiHelperExtensions_GetDiObjectsAsync_System_Collections_Generic_IEnumerable_System_Type__System_Object___System_IServiceProvider_System_Boolean_System_Boolean_System_Threading_CancellationToken_" data-uid="wan24.Core.DiHelperExtensions.GetDiObjectsAsync(System.Collections.Generic.IEnumerable{System.Type},System.Object[],System.IServiceProvider,System.Boolean,System.Boolean,System.Threading.CancellationToken)">GetDiObjectsAsync(IEnumerable&lt;Type&gt;, object?[]?, IServiceProvider?, bool, bool, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Get DI objects</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;object?[]&gt; GetDiObjectsAsync(this IEnumerable&lt;Type&gt; types, object?[]? values = null, IServiceProvider? serviceProvider = null, bool throwOnMissing = true, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;object?[]&gt; GetDiObjectsAsync(this IEnumerable&lt;Type&gt; types, object?[]? values = null, IServiceProvider? serviceProvider = null, bool throwOnMissing = true, bool valuesAreOrdered = false, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -494,77 +432,9 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>Cancellation token</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]&gt;</td>
-        <td><p>DI objects (if the length doesn't match the number of types, DI failed)</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DiHelperExtensions_GetDiObjectsAsync_System_Collections_Generic_IEnumerable_System_Type__wan24_Core_IAsyncServiceProvider_System_Object___System_Boolean_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.DiHelperExtensions.GetDiObjectsAsync(System.Collections.Generic.IEnumerable%7BSystem.Type%7D%2Cwan24.Core.IAsyncServiceProvider%2CSystem.Object%5B%5D%2CSystem.Boolean%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DiHelperExtensions.cs/#L199">View Source</a>
-  </span>
-  <a id="wan24_Core_DiHelperExtensions_GetDiObjectsAsync_" data-uid="wan24.Core.DiHelperExtensions.GetDiObjectsAsync*"></a>
-  <h4 id="wan24_Core_DiHelperExtensions_GetDiObjectsAsync_System_Collections_Generic_IEnumerable_System_Type__wan24_Core_IAsyncServiceProvider_System_Object___System_Boolean_System_Threading_CancellationToken_" data-uid="wan24.Core.DiHelperExtensions.GetDiObjectsAsync(System.Collections.Generic.IEnumerable{System.Type},wan24.Core.IAsyncServiceProvider,System.Object[],System.Boolean,System.Threading.CancellationToken)">GetDiObjectsAsync(IEnumerable&lt;Type&gt;, IAsyncServiceProvider, object?[]?, bool, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Get DI objects</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;object?[]&gt; GetDiObjectsAsync(this IEnumerable&lt;Type&gt; types, IAsyncServiceProvider serviceProvider, object?[]? values = null, bool throwOnMissing = true, CancellationToken cancellationToken = default)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</td>
-        <td><span class="parametername">types</span></td>
-        <td><p>Types</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="wan24.Core.IAsyncServiceProvider.html">IAsyncServiceProvider</a></td>
-        <td><span class="parametername">serviceProvider</span></td>
-        <td><p>Service provider</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</td>
-        <td><span class="parametername">values</span></td>
-        <td><p>Given values</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">throwOnMissing</span></td>
-        <td><p>Throw an exception on missing value?</p>
+        <td><span class="parametername">valuesAreOrdered</span></td>
+        <td><p>If values are ordered in the order of the given parameters</p>
 </td>
       </tr>
       <tr>

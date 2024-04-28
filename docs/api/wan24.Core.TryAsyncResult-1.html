@@ -106,6 +106,7 @@
   <div class="markdown level0 conceptual"></div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.ITryAsyncResult.html">ITryAsyncResult</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="wan24.Core.TryAsyncResult-1.html">TryAsyncResult</a>&lt;T&gt;&gt;</div>
   </div>
   <div class="inheritedMembers">
@@ -133,7 +134,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_TryAsyncResult_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly record struct TryAsyncResult&lt;T&gt; : IEquatable&lt;TryAsyncResult&lt;T&gt;&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly record struct TryAsyncResult&lt;T&gt; : ITryAsyncResult, IEquatable&lt;TryAsyncResult&lt;T&gt;&gt;</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -200,7 +201,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_TryAsyncResult_1_Result.md&amp;value=---%0Auid%3A%20wan24.Core.TryAsyncResult%601.Result%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TryAsyncResult.cs/#L42">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TryAsyncResult.cs/#L40">View Source</a>
   </span>
   <a id="wan24_Core_TryAsyncResult_1_Result_" data-uid="wan24.Core.TryAsyncResult`1.Result*"></a>
   <h4 id="wan24_Core_TryAsyncResult_1_Result" data-uid="wan24.Core.TryAsyncResult`1.Result">Result</h4>
@@ -231,11 +232,11 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_TryAsyncResult_1_Succeed.md&amp;value=---%0Auid%3A%20wan24.Core.TryAsyncResult%601.Succeed%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TryAsyncResult.cs/#L36">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TryAsyncResult.cs/#L34">View Source</a>
   </span>
   <a id="wan24_Core_TryAsyncResult_1_Succeed_" data-uid="wan24.Core.TryAsyncResult`1.Succeed*"></a>
   <h4 id="wan24_Core_TryAsyncResult_1_Succeed" data-uid="wan24.Core.TryAsyncResult`1.Succeed">Succeed</h4>
-  <div class="markdown level1 summary"><p>Did the try-action succeed?</p>
+  <div class="markdown level1 summary"><p>If succeed (<a class="xref" href="wan24.Core.ITryAsyncResult.html#wan24_Core_ITryAsyncResult_Result">Result</a> isn't <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -261,19 +262,68 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_TryAsyncResult_1_op_Implicit__0__wan24_Core_TryAsyncResult__0_.md&amp;value=---%0Auid%3A%20wan24.Core.TryAsyncResult%601.op_Implicit(%600)~wan24.Core.TryAsyncResult%7B%600%7D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_TryAsyncResult_1_op_Implicit_System_Boolean___wan24_Core_TryAsyncResult__0_.md&amp;value=---%0Auid%3A%20wan24.Core.TryAsyncResult%601.op_Implicit(System.Boolean%40)~wan24.Core.TryAsyncResult%7B%600%7D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TryAsyncResult.cs/#L60">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TryAsyncResult.cs/#L61">View Source</a>
   </span>
   <a id="wan24_Core_TryAsyncResult_1_op_Implicit_" data-uid="wan24.Core.TryAsyncResult`1.op_Implicit*"></a>
-  <h4 id="wan24_Core_TryAsyncResult_1_op_Implicit__0__wan24_Core_TryAsyncResult__0_" data-uid="wan24.Core.TryAsyncResult`1.op_Implicit(`0)~wan24.Core.TryAsyncResult{`0}">implicit operator TryAsyncResult&lt;T&gt;(T?)</h4>
-  <div class="markdown level1 summary"><p>Cast as instance</p>
+  <h4 id="wan24_Core_TryAsyncResult_1_op_Implicit_System_Boolean___wan24_Core_TryAsyncResult__0_" data-uid="wan24.Core.TryAsyncResult`1.op_Implicit(System.Boolean@)~wan24.Core.TryAsyncResult{`0}">implicit operator TryAsyncResult&lt;T&gt;(in bool)</h4>
+  <div class="markdown level1 summary"><p>Cast failed result</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static implicit operator TryAsyncResult&lt;T&gt;(T? result)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator TryAsyncResult&lt;T&gt;(in bool result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.TryAsyncResult-1.html">TryAsyncResult</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_TryAsyncResult_1_op_Implicit__0___wan24_Core_TryAsyncResult__0_.md&amp;value=---%0Auid%3A%20wan24.Core.TryAsyncResult%601.op_Implicit(%600%40)~wan24.Core.TryAsyncResult%7B%600%7D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TryAsyncResult.cs/#L71">View Source</a>
+  </span>
+  <a id="wan24_Core_TryAsyncResult_1_op_Implicit_" data-uid="wan24.Core.TryAsyncResult`1.op_Implicit*"></a>
+  <h4 id="wan24_Core_TryAsyncResult_1_op_Implicit__0___wan24_Core_TryAsyncResult__0_" data-uid="wan24.Core.TryAsyncResult`1.op_Implicit(`0@)~wan24.Core.TryAsyncResult{`0}">implicit operator TryAsyncResult&lt;T&gt;(in T)</h4>
+  <div class="markdown level1 summary"><p>Cast from succeed result</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator TryAsyncResult&lt;T&gt;(in T result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -310,19 +360,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_TryAsyncResult_1_op_Implicit_wan24_Core_TryAsyncResult__0___System_Boolean.md&amp;value=---%0Auid%3A%20wan24.Core.TryAsyncResult%601.op_Implicit(wan24.Core.TryAsyncResult%7B%600%7D)~System.Boolean%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_TryAsyncResult_1_op_Implicit_wan24_Core_TryAsyncResult__0____System_Boolean.md&amp;value=---%0Auid%3A%20wan24.Core.TryAsyncResult%601.op_Implicit(wan24.Core.TryAsyncResult%7B%600%7D%40)~System.Boolean%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TryAsyncResult.cs/#L48">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TryAsyncResult.cs/#L49">View Source</a>
   </span>
   <a id="wan24_Core_TryAsyncResult_1_op_Implicit_" data-uid="wan24.Core.TryAsyncResult`1.op_Implicit*"></a>
-  <h4 id="wan24_Core_TryAsyncResult_1_op_Implicit_wan24_Core_TryAsyncResult__0___System_Boolean" data-uid="wan24.Core.TryAsyncResult`1.op_Implicit(wan24.Core.TryAsyncResult{`0})~System.Boolean">implicit operator bool(TryAsyncResult&lt;T&gt;)</h4>
+  <h4 id="wan24_Core_TryAsyncResult_1_op_Implicit_wan24_Core_TryAsyncResult__0____System_Boolean" data-uid="wan24.Core.TryAsyncResult`1.op_Implicit(wan24.Core.TryAsyncResult{`0}@)~System.Boolean">implicit operator bool(in TryAsyncResult&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Cast as succeed-flag</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static implicit operator bool(TryAsyncResult&lt;T&gt; instance)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator bool(in TryAsyncResult&lt;T&gt; instance)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -359,19 +409,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_TryAsyncResult_1_op_Implicit_wan24_Core_TryAsyncResult__0____0.md&amp;value=---%0Auid%3A%20wan24.Core.TryAsyncResult%601.op_Implicit(wan24.Core.TryAsyncResult%7B%600%7D)~%600%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_TryAsyncResult_1_op_Implicit_wan24_Core_TryAsyncResult__0_____0.md&amp;value=---%0Auid%3A%20wan24.Core.TryAsyncResult%601.op_Implicit(wan24.Core.TryAsyncResult%7B%600%7D%40)~%600%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TryAsyncResult.cs/#L54">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TryAsyncResult.cs/#L55">View Source</a>
   </span>
   <a id="wan24_Core_TryAsyncResult_1_op_Implicit_" data-uid="wan24.Core.TryAsyncResult`1.op_Implicit*"></a>
-  <h4 id="wan24_Core_TryAsyncResult_1_op_Implicit_wan24_Core_TryAsyncResult__0____0" data-uid="wan24.Core.TryAsyncResult`1.op_Implicit(wan24.Core.TryAsyncResult{`0})~`0">implicit operator T(TryAsyncResult&lt;T&gt;)</h4>
+  <h4 id="wan24_Core_TryAsyncResult_1_op_Implicit_wan24_Core_TryAsyncResult__0_____0" data-uid="wan24.Core.TryAsyncResult`1.op_Implicit(wan24.Core.TryAsyncResult{`0}@)~`0">implicit operator T(in TryAsyncResult&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Cast as non-<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> result</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static implicit operator T(TryAsyncResult&lt;T&gt; instance)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator T(in TryAsyncResult&lt;T&gt; instance)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -407,6 +457,9 @@
     </tbody>
   </table>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.ITryAsyncResult.html">ITryAsyncResult</a>
+  </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable&lt;T&gt;</a>
   </div>

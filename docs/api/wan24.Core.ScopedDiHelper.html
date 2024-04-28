@@ -112,8 +112,11 @@
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IAsyncKeyedServiceProvider.html">IAsyncKeyedServiceProvider</a></div>
     <div><a class="xref" href="wan24.Core.IAsyncServiceProvider.html">IAsyncServiceProvider</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ikeyedserviceprovider">IKeyedServiceProvider</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iserviceprovideriskeyedservice">IServiceProviderIsKeyedService</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iserviceproviderisservice">IServiceProviderIsService</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
@@ -122,10 +125,28 @@
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
+      <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_GetKeyedService_System_Type_System_Object_">DiHelper.GetKeyedService(Type, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_GetKeyedServiceAsync_System_Type_System_Object_System_Threading_CancellationToken_">DiHelper.GetKeyedServiceAsync(Type, object, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_GetRequiredKeyedService_System_Type_System_Object_">DiHelper.GetRequiredKeyedService(Type, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_GetRequiredKeyedServiceAsync_System_Type_System_Object_System_Threading_CancellationToken_">DiHelper.GetRequiredKeyedServiceAsync(Type, object, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_NotCachedTypes">DiHelper.NotCachedTypes</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_StaticSync">DiHelper.StaticSync</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_Objects">DiHelper.Objects</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_KeyedObjects">DiHelper.KeyedObjects</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_ObjectFactories">DiHelper.ObjectFactories</a>
@@ -134,22 +155,13 @@
       <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_AsyncObjectFactories">DiHelper.AsyncObjectFactories</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_KeyedObjectFactories">DiHelper.KeyedObjectFactories</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_KeyedAsyncObjectFactories">DiHelper.KeyedAsyncObjectFactories</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_Instance">DiHelper.Instance</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_NotCachedTypes">DiHelper.NotCachedTypes</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_RemoveNotCachedType_System_Type_">DiHelper.RemoveNotCachedType(Type)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_RemoveNotCachedTypeAsync_System_Type_System_Threading_CancellationToken_">DiHelper.RemoveNotCachedTypeAsync(Type, CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_IsTypeCached_System_Type_">DiHelper.IsTypeCached(Type)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_IsTypeCachedAsync_System_Type_System_Threading_CancellationToken_">DiHelper.IsTypeCachedAsync(Type, CancellationToken)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
@@ -177,7 +189,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_ScopedDiHelper_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ScopedDiHelper : DiHelper, IAsyncServiceProvider, IServiceProvider, IServiceProviderIsService, IDisposableObject, IDisposable, IAsyncDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class ScopedDiHelper : DiHelper, IAsyncKeyedServiceProvider, IAsyncServiceProvider, IKeyedServiceProvider, IServiceProvider, IServiceProviderIsKeyedService, IServiceProviderIsService, IDisposableObject, IDisposable, IAsyncDisposable</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -186,7 +198,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L30">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L26">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper__ctor_" data-uid="wan24.Core.ScopedDiHelper.#ctor*"></a>
   <h4 id="wan24_Core_ScopedDiHelper__ctor" data-uid="wan24.Core.ScopedDiHelper.#ctor">ScopedDiHelper()</h4>
@@ -202,7 +214,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper__ctor_System_IServiceProvider_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.%23ctor(System.IServiceProvider)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L57">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L71">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper__ctor_" data-uid="wan24.Core.ScopedDiHelper.#ctor*"></a>
   <h4 id="wan24_Core_ScopedDiHelper__ctor_System_IServiceProvider_" data-uid="wan24.Core.ScopedDiHelper.#ctor(System.IServiceProvider)">ScopedDiHelper(IServiceProvider)</h4>
@@ -238,7 +250,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_DisposableAdapter.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.DisposableAdapter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L17">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.IDisposableObject.cs/#L9">View Source</a>
   </span>
   <h4 id="wan24_Core_ScopedDiHelper_DisposableAdapter" data-uid="wan24.Core.ScopedDiHelper.DisposableAdapter">DisposableAdapter</h4>
   <div class="markdown level1 summary"><p>Disposable adapter</p>
@@ -265,10 +277,100 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_KeyedScopeAsyncObjectFactories.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.KeyedScopeAsyncObjectFactories%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L88">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ScopedDiHelper_KeyedScopeAsyncObjectFactories" data-uid="wan24.Core.ScopedDiHelper.KeyedScopeAsyncObjectFactories">KeyedScopeAsyncObjectFactories</h4>
+  <div class="markdown level1 summary"><p>Keyed asynchronous DI object factories</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly ConcurrentDictionary&lt;object, ConcurrentDictionary&lt;Type, DiHelper.DiAsync_Delegate&gt;&gt; KeyedScopeAsyncObjectFactories</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, <a class="xref" href="wan24.Core.DiHelper.html">DiHelper</a>.<a class="xref" href="wan24.Core.DiHelper.DiAsync_Delegate.html">DiAsync_Delegate</a>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_KeyedScopeObjectFactories.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.KeyedScopeObjectFactories%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L80">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ScopedDiHelper_KeyedScopeObjectFactories" data-uid="wan24.Core.ScopedDiHelper.KeyedScopeObjectFactories">KeyedScopeObjectFactories</h4>
+  <div class="markdown level1 summary"><p>Keyed DI object factories</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly ConcurrentDictionary&lt;object, ConcurrentDictionary&lt;Type, DiHelper.Di_Delegate&gt;&gt; KeyedScopeObjectFactories</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, <a class="xref" href="wan24.Core.DiHelper.html">DiHelper</a>.<a class="xref" href="wan24.Core.DiHelper.Di_Delegate.html">Di_Delegate</a>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_KeyedScopeObjects.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.KeyedScopeObjects%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L21">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ScopedDiHelper_KeyedScopeObjects" data-uid="wan24.Core.ScopedDiHelper.KeyedScopeObjects">KeyedScopeObjects</h4>
+  <div class="markdown level1 summary"><p>Keyed objects</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly ConcurrentDictionary&lt;object, ConcurrentDictionary&lt;Type, object&gt;&gt; KeyedScopeObjects</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_ScopeAsyncObjectFactories.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.ScopeAsyncObjectFactories%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L71">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L84">View Source</a>
   </span>
   <h4 id="wan24_Core_ScopedDiHelper_ScopeAsyncObjectFactories" data-uid="wan24.Core.ScopedDiHelper.ScopeAsyncObjectFactories">ScopeAsyncObjectFactories</h4>
   <div class="markdown level1 summary"><p>Asynchronous DI object factories</p>
@@ -298,7 +400,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_ScopeObjectFactories.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.ScopeObjectFactories%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L67">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L76">View Source</a>
   </span>
   <h4 id="wan24_Core_ScopedDiHelper_ScopeObjectFactories" data-uid="wan24.Core.ScopedDiHelper.ScopeObjectFactories">ScopeObjectFactories</h4>
   <div class="markdown level1 summary"><p>DI object factories</p>
@@ -328,7 +430,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_ScopeObjects.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.ScopeObjects%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L25">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L17">View Source</a>
   </span>
   <h4 id="wan24_Core_ScopedDiHelper_ScopeObjects" data-uid="wan24.Core.ScopedDiHelper.ScopeObjects">ScopeObjects</h4>
   <div class="markdown level1 summary"><p>Objects</p>
@@ -336,7 +438,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly ConcurrentDictionary&lt;int, object&gt; ScopeObjects</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly ConcurrentDictionary&lt;Type, object&gt; ScopeObjects</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
@@ -348,7 +450,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -358,7 +460,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_Sync.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.Sync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L21">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L13">View Source</a>
   </span>
   <h4 id="wan24_Core_ScopedDiHelper_Sync" data-uid="wan24.Core.ScopedDiHelper.Sync">Sync</h4>
   <div class="markdown level1 summary"><p>Thread synchronization</p>
@@ -383,6 +485,36 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper__ScopeNotCachedTypes.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper._ScopeNotCachedTypes%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.NotCached.cs/#L11">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ScopedDiHelper__ScopeNotCachedTypes" data-uid="wan24.Core.ScopedDiHelper._ScopeNotCachedTypes">_ScopeNotCachedTypes</h4>
+  <div class="markdown level1 summary"><p>Not cached types</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly HashSet&lt;Type&gt; _ScopeNotCachedTypes</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
@@ -390,7 +522,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_IsDisposed.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.IsDisposed%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L82">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.IDisposableObject.cs/#L20">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_IsDisposed_" data-uid="wan24.Core.ScopedDiHelper.IsDisposed*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_IsDisposed" data-uid="wan24.Core.ScopedDiHelper.IsDisposed">IsDisposed</h4>
@@ -421,7 +553,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_IsDisposing.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.IsDisposing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L79">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.IDisposableObject.cs/#L17">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_IsDisposing_" data-uid="wan24.Core.ScopedDiHelper.IsDisposing*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_IsDisposing" data-uid="wan24.Core.ScopedDiHelper.IsDisposing">IsDisposing</h4>
@@ -449,10 +581,41 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_ScopeNotCachedTypes.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.ScopeNotCachedTypes%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.NotCached.cs/#L16">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_ScopeNotCachedTypes_" data-uid="wan24.Core.ScopedDiHelper.ScopeNotCachedTypes*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_ScopeNotCachedTypes" data-uid="wan24.Core.ScopedDiHelper.ScopeNotCachedTypes">ScopeNotCachedTypes</h4>
+  <div class="markdown level1 summary"><p>Not cached types</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlyCollection&lt;Type&gt; ScopeNotCachedTypes { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1">ReadOnlyCollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_ServiceProvider.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.ServiceProvider%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L76">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.ServiceProvider.cs/#L9">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_ServiceProvider_" data-uid="wan24.Core.ScopedDiHelper.ServiceProvider*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_ServiceProvider" data-uid="wan24.Core.ScopedDiHelper.ServiceProvider">ServiceProvider</h4>
@@ -482,18 +645,140 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_AddDiObjectAsync__1___0_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.AddDiObjectAsync%60%601(%60%600%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_AddDiObject_System_Object_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.AddDiObject(System.Object%2CSystem.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L141">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L33">View Source</a>
   </span>
-  <a id="wan24_Core_ScopedDiHelper_AddDiObjectAsync_" data-uid="wan24.Core.ScopedDiHelper.AddDiObjectAsync*"></a>
-  <h4 id="wan24_Core_ScopedDiHelper_AddDiObjectAsync__1___0_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.AddDiObjectAsync``1(``0,System.Threading.CancellationToken)">AddDiObjectAsync&lt;T&gt;(T, CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="wan24_Core_ScopedDiHelper_AddDiObject_" data-uid="wan24.Core.ScopedDiHelper.AddDiObject*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_AddDiObject_System_Object_System_Type_" data-uid="wan24.Core.ScopedDiHelper.AddDiObject(System.Object,System.Type)">AddDiObject(object, Type)</h4>
+  <div class="markdown level1 summary"><p>Add a DI object to the cache</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;T&gt; AddDiObjectAsync&lt;T&gt;(T obj, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public object AddDiObject(object obj, Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>Object</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>DI type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_AddDiObjectAsync_System_Object_System_Type_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.AddDiObjectAsync(System.Object%2CSystem.Type%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L112">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_AddDiObjectAsync_" data-uid="wan24.Core.ScopedDiHelper.AddDiObjectAsync*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_AddDiObjectAsync_System_Object_System_Type_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.AddDiObjectAsync(System.Object,System.Type,System.Threading.CancellationToken)">AddDiObjectAsync(object, Type, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Add a DI object to the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public Task&lt;object&gt; AddDiObjectAsync(object obj, Type type, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>Object</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>DI type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_AddDiObjectAsync__1___0_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.AddDiObjectAsync%60%601(%60%600%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L94">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_AddDiObjectAsync_" data-uid="wan24.Core.ScopedDiHelper.AddDiObjectAsync*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_AddDiObjectAsync__1___0_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.AddDiObjectAsync``1(``0,System.Threading.CancellationToken)">AddDiObjectAsync&lt;T&gt;(T, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Add a DI object to the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public Task&lt;T&gt; AddDiObjectAsync&lt;T&gt;(T obj, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -508,12 +793,14 @@
       <tr>
         <td><span class="xref">T</span></td>
         <td><span class="parametername">obj</span></td>
-        <td></td>
+        <td><p>Object</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
         <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
+        <td><p>Cancellation token</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -528,7 +815,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</td>
-        <td></td>
+        <td><p>Object</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -543,7 +831,8 @@
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td></td>
+        <td><p>DI type</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -552,15 +841,17 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_AddDiObject__1___0_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.AddDiObject%60%601(%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L129">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L16">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_AddDiObject_" data-uid="wan24.Core.ScopedDiHelper.AddDiObject*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_AddDiObject__1___0_" data-uid="wan24.Core.ScopedDiHelper.AddDiObject``1(``0)">AddDiObject&lt;T&gt;(T)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Add a DI object to the cache</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public T AddDiObject&lt;T&gt;(T obj)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public T AddDiObject&lt;T&gt;(T obj)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -575,7 +866,8 @@
       <tr>
         <td><span class="xref">T</span></td>
         <td><span class="parametername">obj</span></td>
-        <td></td>
+        <td><p>Object</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -590,7 +882,8 @@
     <tbody>
       <tr>
         <td><span class="xref">T</span></td>
-        <td></td>
+        <td><p>Object</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -605,7 +898,292 @@
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td></td>
+        <td><p>DI type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_AddKeyedDiObject_System_Object_System_Object_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.AddKeyedDiObject(System.Object%2CSystem.Object%2CSystem.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L72">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_AddKeyedDiObject_" data-uid="wan24.Core.ScopedDiHelper.AddKeyedDiObject*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_AddKeyedDiObject_System_Object_System_Object_System_Type_" data-uid="wan24.Core.ScopedDiHelper.AddKeyedDiObject(System.Object,System.Object,System.Type)">AddKeyedDiObject(object, object, Type)</h4>
+  <div class="markdown level1 summary"><p>Add a keyed DI object to the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public object AddKeyedDiObject(object key, object obj, Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>Object</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>DI type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_AddKeyedDiObjectAsync_System_Object_System_Object_System_Type_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.AddKeyedDiObjectAsync(System.Object%2CSystem.Object%2CSystem.Type%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L153">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_AddKeyedDiObjectAsync_" data-uid="wan24.Core.ScopedDiHelper.AddKeyedDiObjectAsync*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_AddKeyedDiObjectAsync_System_Object_System_Object_System_Type_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.AddKeyedDiObjectAsync(System.Object,System.Object,System.Type,System.Threading.CancellationToken)">AddKeyedDiObjectAsync(object, object, Type, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Add a keyed DI object to the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public Task&lt;object&gt; AddKeyedDiObjectAsync(object key, object obj, Type type, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>Object</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>DI type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_AddKeyedDiObjectAsync__1_System_Object___0_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.AddKeyedDiObjectAsync%60%601(System.Object%2C%60%600%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L134">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_AddKeyedDiObjectAsync_" data-uid="wan24.Core.ScopedDiHelper.AddKeyedDiObjectAsync*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_AddKeyedDiObjectAsync__1_System_Object___0_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.AddKeyedDiObjectAsync``1(System.Object,``0,System.Threading.CancellationToken)">AddKeyedDiObjectAsync&lt;T&gt;(object, T, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Add a keyed DI object to the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public Task&lt;T&gt; AddKeyedDiObjectAsync&lt;T&gt;(object key, T obj, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>Object</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>DI type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_AddKeyedDiObject__1_System_Object___0_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.AddKeyedDiObject%60%601(System.Object%2C%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L54">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_AddKeyedDiObject_" data-uid="wan24.Core.ScopedDiHelper.AddKeyedDiObject*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_AddKeyedDiObject__1_System_Object___0_" data-uid="wan24.Core.ScopedDiHelper.AddKeyedDiObject``1(System.Object,``0)">AddKeyedDiObject&lt;T&gt;(object, T)</h4>
+  <div class="markdown level1 summary"><p>Add a keyed DI object to the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public T AddKeyedDiObject&lt;T&gt;(object key, T obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>DI type</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -614,11 +1192,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_AddNotCachedTypes_System_Type___.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.AddNotCachedTypes(System.Type%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L105">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.NotCached.cs/#L29">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_AddNotCachedTypes_" data-uid="wan24.Core.ScopedDiHelper.AddNotCachedTypes*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_AddNotCachedTypes_System_Type___" data-uid="wan24.Core.ScopedDiHelper.AddNotCachedTypes(System.Type[])">AddNotCachedTypes(params Type[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Add not cached types</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -637,7 +1216,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>[]</td>
         <td><span class="parametername">types</span></td>
-        <td></td>
+        <td><p>Types</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -646,11 +1226,12 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_AddNotCachedTypesAsync_System_Threading_CancellationToken_System_Type___.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.AddNotCachedTypesAsync(System.Threading.CancellationToken%2CSystem.Type%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L117">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.NotCached.cs/#L44">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_AddNotCachedTypesAsync_" data-uid="wan24.Core.ScopedDiHelper.AddNotCachedTypesAsync*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_AddNotCachedTypesAsync_System_Threading_CancellationToken_System_Type___" data-uid="wan24.Core.ScopedDiHelper.AddNotCachedTypesAsync(System.Threading.CancellationToken,System.Type[])">AddNotCachedTypesAsync(CancellationToken, params Type[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Add not cached types</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -669,12 +1250,105 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
         <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
+        <td><p>Cancellation token</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>[]</td>
         <td><span class="parametername">types</span></td>
+        <td><p>Types</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_ClearKeyedObjectCache_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.ClearKeyedObjectCache(System.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L433">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_ClearKeyedObjectCache_" data-uid="wan24.Core.ScopedDiHelper.ClearKeyedObjectCache*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_ClearKeyedObjectCache_System_Object_" data-uid="wan24.Core.ScopedDiHelper.ClearKeyedObjectCache(System.Object)">ClearKeyedObjectCache(object)</h4>
+  <div class="markdown level1 summary"><p>Clear the keyed object cache (will dispose cached objects, if possible)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public void ClearKeyedObjectCache(object key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_ClearKeyedObjectCacheAsync_System_Object_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.ClearKeyedObjectCacheAsync(System.Object%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L468">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_ClearKeyedObjectCacheAsync_" data-uid="wan24.Core.ScopedDiHelper.ClearKeyedObjectCacheAsync*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_ClearKeyedObjectCacheAsync_System_Object_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.ClearKeyedObjectCacheAsync(System.Object,System.Threading.CancellationToken)">ClearKeyedObjectCacheAsync(object, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Clear the object cache (will dispose cached objects, if possible)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public Task ClearKeyedObjectCacheAsync(object key, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -698,30 +1372,34 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_ClearObjectCache.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.ClearObjectCache%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L193">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L417">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_ClearObjectCache_" data-uid="wan24.Core.ScopedDiHelper.ClearObjectCache*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_ClearObjectCache" data-uid="wan24.Core.ScopedDiHelper.ClearObjectCache">ClearObjectCache()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Clear the object cache (will dispose cached objects, if possible)</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ClearObjectCache()</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public void ClearObjectCache()</code></pre>
   </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_ClearObjectCacheAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.ClearObjectCacheAsync(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L203">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L451">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_ClearObjectCacheAsync_" data-uid="wan24.Core.ScopedDiHelper.ClearObjectCacheAsync*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_ClearObjectCacheAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.ClearObjectCacheAsync(System.Threading.CancellationToken)">ClearObjectCacheAsync(CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Clear the object cache (will dispose cached objects, if possible)</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task ClearObjectCacheAsync(CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public Task ClearObjectCacheAsync(CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -736,7 +1414,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
         <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
+        <td><p>Cancellation token</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -760,7 +1439,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_Dispose.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.Dispose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L287">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.IDisposableObject.cs/#L23">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_Dispose_" data-uid="wan24.Core.ScopedDiHelper.Dispose*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_Dispose" data-uid="wan24.Core.ScopedDiHelper.Dispose">Dispose()</h4>
@@ -776,7 +1455,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_DisposeAsync.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.DisposeAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L294">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.IDisposableObject.cs/#L30">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_DisposeAsync_" data-uid="wan24.Core.ScopedDiHelper.DisposeAsync*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_DisposeAsync" data-uid="wan24.Core.ScopedDiHelper.DisposeAsync">DisposeAsync()</h4>
@@ -808,7 +1487,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_Finalize.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.Finalize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L62">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.IDisposableObject.cs/#L14">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_Finalize_" data-uid="wan24.Core.ScopedDiHelper.Finalize*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_Finalize" data-uid="wan24.Core.ScopedDiHelper.Finalize">~ScopedDiHelper()</h4>
@@ -824,63 +1503,17 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetAsyncFactory_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetAsyncFactory(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L279">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Getter.cs/#L359">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_GetAsyncFactory_" data-uid="wan24.Core.ScopedDiHelper.GetAsyncFactory*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_GetAsyncFactory_System_Type_" data-uid="wan24.Core.ScopedDiHelper.GetAsyncFactory(System.Type)">GetAsyncFactory(Type)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DiHelper.DiAsync_Delegate? GetAsyncFactory(Type type)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
-        <td><span class="parametername">type</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="wan24.Core.DiHelper.html">DiHelper</a>.<a class="xref" href="wan24.Core.DiHelper.DiAsync_Delegate.html">DiAsync_Delegate</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetAsyncFactoryInt_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetAsyncFactoryInt(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L327">View Source</a>
-  </span>
-  <a id="wan24_Core_ScopedDiHelper_GetAsyncFactoryInt_" data-uid="wan24.Core.ScopedDiHelper.GetAsyncFactoryInt*"></a>
-  <h4 id="wan24_Core_ScopedDiHelper_GetAsyncFactoryInt_System_Type_" data-uid="wan24.Core.ScopedDiHelper.GetAsyncFactoryInt(System.Type)">GetAsyncFactoryInt(Type)</h4>
   <div class="markdown level1 summary"><p>Get an object factory</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual DiHelper.DiAsync_Delegate? GetAsyncFactoryInt(Type type)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public DiHelper.DiAsync_Delegate? GetAsyncFactory(Type type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -918,18 +1551,20 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetDiObject_System_Type__System_Object__System_IServiceProvider_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetDiObject(System.Type%40%2CSystem.Object%40%2CSystem.IServiceProvider)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetDiObject_System_Type__System_Object__System_IServiceProvider__.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetDiObject(System.Type%40%2CSystem.Object%40%2CSystem.IServiceProvider%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L213">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Getter.cs/#L18">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_GetDiObject_" data-uid="wan24.Core.ScopedDiHelper.GetDiObject*"></a>
-  <h4 id="wan24_Core_ScopedDiHelper_GetDiObject_System_Type__System_Object__System_IServiceProvider_" data-uid="wan24.Core.ScopedDiHelper.GetDiObject(System.Type@,System.Object@,System.IServiceProvider)">GetDiObject(in Type, out object?, IServiceProvider?)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="wan24_Core_ScopedDiHelper_GetDiObject_System_Type__System_Object__System_IServiceProvider__" data-uid="wan24.Core.ScopedDiHelper.GetDiObject(System.Type@,System.Object@,System.IServiceProvider@)">GetDiObject(in Type, out object?, in IServiceProvider?)</h4>
+  <div class="markdown level1 summary"><p>Get a DI object</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool GetDiObject(in Type type, out object? obj, IServiceProvider? serviceProvider = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public bool GetDiObject(in Type type, out object? obj, in IServiceProvider? serviceProvider = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -944,17 +1579,20 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
         <td><span class="parametername">type</span></td>
-        <td></td>
+        <td><p>Type</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
         <td><span class="parametername">obj</span></td>
-        <td></td>
+        <td><p>Result</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></td>
         <td><span class="parametername">serviceProvider</span></td>
-        <td></td>
+        <td><p>Service provider</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -969,7 +1607,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p>Use the result?</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -978,15 +1617,17 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetDiObjectAsync_System_Type_System_IServiceProvider_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetDiObjectAsync(System.Type%2CSystem.IServiceProvider%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L244">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Getter.cs/#L172">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_GetDiObjectAsync_" data-uid="wan24.Core.ScopedDiHelper.GetDiObjectAsync*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_GetDiObjectAsync_System_Type_System_IServiceProvider_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.GetDiObjectAsync(System.Type,System.IServiceProvider,System.Threading.CancellationToken)">GetDiObjectAsync(Type, IServiceProvider?, CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Get a DI object</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;DiHelper.AsyncResult&gt; GetDiObjectAsync(Type type, IServiceProvider? serviceProvider = null, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public Task&lt;ITryAsyncResult&gt; GetDiObjectAsync(Type type, IServiceProvider? serviceProvider = null, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1001,17 +1642,20 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
         <td><span class="parametername">type</span></td>
-        <td></td>
+        <td><p>Type</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></td>
         <td><span class="parametername">serviceProvider</span></td>
-        <td></td>
+        <td><p>Service provider</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
         <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
+        <td><p>Cancellation token</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1025,8 +1669,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="wan24.Core.DiHelper.html">DiHelper</a>.<a class="xref" href="wan24.Core.DiHelper.AsyncResult.html">AsyncResult</a>&gt;</td>
-        <td></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="wan24.Core.ITryAsyncResult.html">ITryAsyncResult</a>&gt;</td>
+        <td><p>Result</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1035,16 +1680,17 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetDiObjectAsync__1_System_IServiceProvider_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetDiObjectAsync%60%601(System.IServiceProvider%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L266">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Getter.cs/#L278">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_GetDiObjectAsync_" data-uid="wan24.Core.ScopedDiHelper.GetDiObjectAsync*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_GetDiObjectAsync__1_System_IServiceProvider_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.GetDiObjectAsync``1(System.IServiceProvider,System.Threading.CancellationToken)">GetDiObjectAsync&lt;T&gt;(IServiceProvider?, CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Get a DI object</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public Task&lt;DiHelper.AsyncResult&lt;T&gt;&gt; GetDiObjectAsync&lt;T&gt;(IServiceProvider? serviceProvider = null, CancellationToken cancellationToken = default)</code></pre>
+public Task&lt;TryAsyncResult&lt;T&gt;&gt; GetDiObjectAsync&lt;T&gt;(IServiceProvider? serviceProvider = null, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1059,12 +1705,14 @@ public Task&lt;DiHelper.AsyncResult&lt;T&gt;&gt; GetDiObjectAsync&lt;T&gt;(IServ
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></td>
         <td><span class="parametername">serviceProvider</span></td>
-        <td></td>
+        <td><p>Service provider</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
         <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
+        <td><p>Cancellation token</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1078,8 +1726,9 @@ public Task&lt;DiHelper.AsyncResult&lt;T&gt;&gt; GetDiObjectAsync&lt;T&gt;(IServ
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="wan24.Core.DiHelper.html">DiHelper</a>.<a class="xref" href="wan24.Core.DiHelper.AsyncResult-1.html">AsyncResult</a>&lt;T&gt;&gt;</td>
-        <td></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="wan24.Core.TryAsyncResult-1.html">TryAsyncResult</a>&lt;T&gt;&gt;</td>
+        <td><p>Result</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1094,25 +1743,27 @@ public Task&lt;DiHelper.AsyncResult&lt;T&gt;&gt; GetDiObjectAsync&lt;T&gt;(IServ
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td></td>
+        <td><p>Type</p>
+</td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetDiObject__1___0__System_IServiceProvider_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetDiObject%60%601(%60%600%40%2CSystem.IServiceProvider)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetDiObject__1___0__System_IServiceProvider__.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetDiObject%60%601(%60%600%40%2CSystem.IServiceProvider%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L236">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Getter.cs/#L121">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_GetDiObject_" data-uid="wan24.Core.ScopedDiHelper.GetDiObject*"></a>
-  <h4 id="wan24_Core_ScopedDiHelper_GetDiObject__1___0__System_IServiceProvider_" data-uid="wan24.Core.ScopedDiHelper.GetDiObject``1(``0@,System.IServiceProvider)">GetDiObject&lt;T&gt;(out T?, IServiceProvider?)</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="wan24_Core_ScopedDiHelper_GetDiObject__1___0__System_IServiceProvider__" data-uid="wan24.Core.ScopedDiHelper.GetDiObject``1(``0@,System.IServiceProvider@)">GetDiObject&lt;T&gt;(out T?, in IServiceProvider?)</h4>
+  <div class="markdown level1 summary"><p>Get a DI object</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public bool GetDiObject&lt;T&gt;(out T? obj, IServiceProvider? serviceProvider = null)</code></pre>
+public bool GetDiObject&lt;T&gt;(out T? obj, in IServiceProvider? serviceProvider = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1127,12 +1778,14 @@ public bool GetDiObject&lt;T&gt;(out T? obj, IServiceProvider? serviceProvider =
       <tr>
         <td><span class="xref">T</span></td>
         <td><span class="parametername">obj</span></td>
-        <td></td>
+        <td><p>Result</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></td>
         <td><span class="parametername">serviceProvider</span></td>
-        <td></td>
+        <td><p>Service provider</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1147,7 +1800,8 @@ public bool GetDiObject&lt;T&gt;(out T? obj, IServiceProvider? serviceProvider =
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
+        <td><p>Use the result?</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1162,7 +1816,8 @@ public bool GetDiObject&lt;T&gt;(out T? obj, IServiceProvider? serviceProvider =
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td></td>
+        <td><p>Type</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1171,63 +1826,17 @@ public bool GetDiObject&lt;T&gt;(out T? obj, IServiceProvider? serviceProvider =
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetFactory_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetFactory(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L271">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Getter.cs/#L331">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_GetFactory_" data-uid="wan24.Core.ScopedDiHelper.GetFactory*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_GetFactory_System_Type_" data-uid="wan24.Core.ScopedDiHelper.GetFactory(System.Type)">GetFactory(Type)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DiHelper.Di_Delegate? GetFactory(Type type)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
-        <td><span class="parametername">type</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="wan24.Core.DiHelper.html">DiHelper</a>.<a class="xref" href="wan24.Core.DiHelper.Di_Delegate.html">Di_Delegate</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetFactoryInt_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetFactoryInt(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L305">View Source</a>
-  </span>
-  <a id="wan24_Core_ScopedDiHelper_GetFactoryInt_" data-uid="wan24.Core.ScopedDiHelper.GetFactoryInt*"></a>
-  <h4 id="wan24_Core_ScopedDiHelper_GetFactoryInt_System_Type_" data-uid="wan24.Core.ScopedDiHelper.GetFactoryInt(System.Type)">GetFactoryInt(Type)</h4>
   <div class="markdown level1 summary"><p>Get an object factory</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual DiHelper.Di_Delegate? GetFactoryInt(Type type)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public DiHelper.Di_Delegate? GetFactory(Type type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1265,10 +1874,550 @@ public bool GetDiObject&lt;T&gt;(out T? obj, IServiceProvider? serviceProvider =
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetKeyedAsyncFactory_System_Object_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetKeyedAsyncFactory(System.Object%2CSystem.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Getter.cs/#L374">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_GetKeyedAsyncFactory_" data-uid="wan24.Core.ScopedDiHelper.GetKeyedAsyncFactory*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_GetKeyedAsyncFactory_System_Object_System_Type_" data-uid="wan24.Core.ScopedDiHelper.GetKeyedAsyncFactory(System.Object,System.Type)">GetKeyedAsyncFactory(object, Type)</h4>
+  <div class="markdown level1 summary"><p>Get an object factory</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public DiHelper.DiAsync_Delegate? GetKeyedAsyncFactory(object key, Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.DiHelper.html">DiHelper</a>.<a class="xref" href="wan24.Core.DiHelper.DiAsync_Delegate.html">DiAsync_Delegate</a></td>
+        <td><p>Factory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetKeyedDiObject_System_Object__System_Type__System_Object__System_IServiceProvider__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetKeyedDiObject(System.Object%40%2CSystem.Type%40%2CSystem.Object%40%2CSystem.IServiceProvider%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Getter.cs/#L50">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_GetKeyedDiObject_" data-uid="wan24.Core.ScopedDiHelper.GetKeyedDiObject*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_GetKeyedDiObject_System_Object__System_Type__System_Object__System_IServiceProvider__System_Boolean__" data-uid="wan24.Core.ScopedDiHelper.GetKeyedDiObject(System.Object@,System.Type@,System.Object@,System.IServiceProvider@,System.Boolean@)">GetKeyedDiObject(in object, in Type, out object?, in IServiceProvider?, in bool)</h4>
+  <div class="markdown level1 summary"><p>Get a DI object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public bool GetKeyedDiObject(in object key, in Type type, out object? obj, in IServiceProvider? serviceProvider = null, in bool tryAll = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>Result</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></td>
+        <td><span class="parametername">serviceProvider</span></td>
+        <td><p>Service provider</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">tryAll</span></td>
+        <td><p>Try all sources (also unkeyed)?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>Use the result?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetKeyedDiObjectAsync_System_Object_System_Type_System_IServiceProvider_System_Boolean_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetKeyedDiObjectAsync(System.Object%2CSystem.Type%2CSystem.IServiceProvider%2CSystem.Boolean%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Getter.cs/#L206">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_GetKeyedDiObjectAsync_" data-uid="wan24.Core.ScopedDiHelper.GetKeyedDiObjectAsync*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_GetKeyedDiObjectAsync_System_Object_System_Type_System_IServiceProvider_System_Boolean_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.GetKeyedDiObjectAsync(System.Object,System.Type,System.IServiceProvider,System.Boolean,System.Threading.CancellationToken)">GetKeyedDiObjectAsync(object, Type, IServiceProvider?, bool, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Get a DI object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public Task&lt;ITryAsyncResult&gt; GetKeyedDiObjectAsync(object key, Type type, IServiceProvider? serviceProvider = null, bool tryAll = true, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></td>
+        <td><span class="parametername">serviceProvider</span></td>
+        <td><p>Service provider</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">tryAll</span></td>
+        <td><p>Try all sources (also unkeyed)?</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="wan24.Core.ITryAsyncResult.html">ITryAsyncResult</a>&gt;</td>
+        <td><p>Result</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetKeyedDiObjectAsync__1_System_Object_System_IServiceProvider_System_Boolean_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetKeyedDiObjectAsync%60%601(System.Object%2CSystem.IServiceProvider%2CSystem.Boolean%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Getter.cs/#L294">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_GetKeyedDiObjectAsync_" data-uid="wan24.Core.ScopedDiHelper.GetKeyedDiObjectAsync*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_GetKeyedDiObjectAsync__1_System_Object_System_IServiceProvider_System_Boolean_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.GetKeyedDiObjectAsync``1(System.Object,System.IServiceProvider,System.Boolean,System.Threading.CancellationToken)">GetKeyedDiObjectAsync&lt;T&gt;(object, IServiceProvider?, bool, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Get a DI object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public Task&lt;TryAsyncResult&lt;T&gt;&gt; GetKeyedDiObjectAsync&lt;T&gt;(object key, IServiceProvider? serviceProvider = null, bool tryAll = true, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></td>
+        <td><span class="parametername">serviceProvider</span></td>
+        <td><p>Service provider</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">tryAll</span></td>
+        <td><p>Try all sources (also unkeyed)?</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="wan24.Core.TryAsyncResult-1.html">TryAsyncResult</a>&lt;T&gt;&gt;</td>
+        <td><p>Result</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetKeyedDiObject__1_System_Object____0__System_IServiceProvider__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetKeyedDiObject%60%601(System.Object%40%2C%60%600%40%2CSystem.IServiceProvider%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Getter.cs/#L145">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_GetKeyedDiObject_" data-uid="wan24.Core.ScopedDiHelper.GetKeyedDiObject*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_GetKeyedDiObject__1_System_Object____0__System_IServiceProvider__System_Boolean__" data-uid="wan24.Core.ScopedDiHelper.GetKeyedDiObject``1(System.Object@,``0@,System.IServiceProvider@,System.Boolean@)">GetKeyedDiObject&lt;T&gt;(in object, out T?, in IServiceProvider?, in bool)</h4>
+  <div class="markdown level1 summary"><p>Get a DI object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public bool GetKeyedDiObject&lt;T&gt;(in object key, out T? obj, in IServiceProvider? serviceProvider = null, in bool tryAll = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>Result</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></td>
+        <td><span class="parametername">serviceProvider</span></td>
+        <td><p>Service provider</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">tryAll</span></td>
+        <td><p>Try all sources (also unkeyed)?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>Use the result?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetKeyedFactory_System_Object_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetKeyedFactory(System.Object%2CSystem.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Getter.cs/#L344">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_GetKeyedFactory_" data-uid="wan24.Core.ScopedDiHelper.GetKeyedFactory*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_GetKeyedFactory_System_Object_System_Type_" data-uid="wan24.Core.ScopedDiHelper.GetKeyedFactory(System.Object,System.Type)">GetKeyedFactory(object, Type)</h4>
+  <div class="markdown level1 summary"><p>Get an object factory</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public DiHelper.Di_Delegate? GetKeyedFactory(object key, Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.DiHelper.html">DiHelper</a>.<a class="xref" href="wan24.Core.DiHelper.Di_Delegate.html">Di_Delegate</a></td>
+        <td><p>Factory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetKeyedObject_System_Object__System_Type__.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetKeyedObject(System.Object%40%2CSystem.Type%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Getter.cs/#L320">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_GetKeyedObject_" data-uid="wan24.Core.ScopedDiHelper.GetKeyedObject*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_GetKeyedObject_System_Object__System_Type__" data-uid="wan24.Core.ScopedDiHelper.GetKeyedObject(System.Object@,System.Type@)">GetKeyedObject(in object, in Type)</h4>
+  <div class="markdown level1 summary"><p>Get a keyed object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object? GetKeyedObject(in object key, in Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetObject_System_Type__.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetObject(System.Type%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Getter.cs/#L311">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_GetObject_" data-uid="wan24.Core.ScopedDiHelper.GetObject*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_GetObject_System_Type__" data-uid="wan24.Core.ScopedDiHelper.GetObject(System.Type@)">GetObject(in Type)</h4>
+  <div class="markdown level1 summary"><p>Get an object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object? GetObject(in Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><p>Object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetService_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetService(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L85">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.ServiceProvider.cs/#L11">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_GetService_" data-uid="wan24.Core.ScopedDiHelper.GetService*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_GetService_System_Type_" data-uid="wan24.Core.ScopedDiHelper.GetService(System.Type)">GetService(Type)</h4>
@@ -1322,7 +2471,7 @@ public bool GetDiObject&lt;T&gt;(out T? obj, IServiceProvider? serviceProvider =
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_GetServiceAsync_System_Type_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.GetServiceAsync(System.Type%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L91">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.ServiceProvider.cs/#L14">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_GetServiceAsync_" data-uid="wan24.Core.ScopedDiHelper.GetServiceAsync*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_GetServiceAsync_System_Type_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.GetServiceAsync(System.Type,System.Threading.CancellationToken)">GetServiceAsync(Type, CancellationToken)</h4>
@@ -1377,10 +2526,69 @@ public bool GetDiObject&lt;T&gt;(out T? obj, IServiceProvider? serviceProvider =
   <div><a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_GetServiceAsync_System_Type_System_Threading_CancellationToken_">DiHelper.GetServiceAsync(Type, CancellationToken)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_IsKeyedService_System_Type_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.IsKeyedService(System.Type%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.ServiceProvider.cs/#L30">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_IsKeyedService_" data-uid="wan24.Core.ScopedDiHelper.IsKeyedService*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_IsKeyedService_System_Type_System_Object_" data-uid="wan24.Core.ScopedDiHelper.IsKeyedService(System.Type,System.Object)">IsKeyedService(Type, object?)</h4>
+  <div class="markdown level1 summary"><p>Determines if the specified service type with the specified service key is available from the
+<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool IsKeyedService(Type serviceType, object? serviceKey)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">serviceType</span></td>
+        <td><p>An object that specifies the type of service object to test.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">serviceKey</span></td>
+        <td><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicedescriptor.servicekey">ServiceKey</a> of the service.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>true if the specified service is a available, false if it is not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_IsKeyedService_System_Type_System_Object_">DiHelper.IsKeyedService(Type, object?)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_IsService_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.IsService(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L97">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.ServiceProvider.cs/#L18">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_IsService_" data-uid="wan24.Core.ScopedDiHelper.IsService*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_IsService_System_Type_" data-uid="wan24.Core.ScopedDiHelper.IsService(System.Type)">IsService(Type)</h4>
@@ -1429,18 +2637,19 @@ public bool GetDiObject&lt;T&gt;(out T? obj, IServiceProvider? serviceProvider =
   <div><a class="xref" href="wan24.Core.DiHelper.html#wan24_Core_DiHelper_IsService_System_Type_">DiHelper.IsService(Type)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveDiObject_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveDiObject(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_IsTypeCached_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.IsTypeCached(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L153">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.NotCached.cs/#L80">View Source</a>
   </span>
-  <a id="wan24_Core_ScopedDiHelper_RemoveDiObject_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObject*"></a>
-  <h4 id="wan24_Core_ScopedDiHelper_RemoveDiObject_System_Int32_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObject(System.Int32)">RemoveDiObject(int)</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="wan24_Core_ScopedDiHelper_IsTypeCached_" data-uid="wan24.Core.ScopedDiHelper.IsTypeCached*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_IsTypeCached_System_Type_" data-uid="wan24.Core.ScopedDiHelper.IsTypeCached(System.Type)">IsTypeCached(Type)</h4>
+  <div class="markdown level1 summary"><p>Determine if an object of the given type will be cached</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public object? RemoveDiObject(int type)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsTypeCached(Type type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1453,9 +2662,10 @@ public bool GetDiObject&lt;T&gt;(out T? obj, IServiceProvider? serviceProvider =
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
         <td><span class="parametername">type</span></td>
-        <td></td>
+        <td><p>Type</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1469,8 +2679,65 @@ public bool GetDiObject&lt;T&gt;(out T? obj, IServiceProvider? serviceProvider =
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
-        <td></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>Will be cached?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_IsTypeCachedAsync_System_Type_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.IsTypeCachedAsync(System.Type%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.NotCached.cs/#L92">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_IsTypeCachedAsync_" data-uid="wan24.Core.ScopedDiHelper.IsTypeCachedAsync*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_IsTypeCachedAsync_System_Type_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.IsTypeCachedAsync(System.Type,System.Threading.CancellationToken)">IsTypeCachedAsync(Type, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Determine if an object of the given type will be cached</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; IsTypeCachedAsync(Type type, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><p>Will be cached?</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1479,15 +2746,16 @@ public bool GetDiObject&lt;T&gt;(out T? obj, IServiceProvider? serviceProvider =
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveDiObject_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveDiObject(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L164">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L173">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_RemoveDiObject_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObject*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_RemoveDiObject_System_Type_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObject(System.Type)">RemoveDiObject(Type)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Remove a DI object from the cache</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public object? RemoveDiObject(Type type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1503,7 +2771,8 @@ public object? RemoveDiObject(Type type)</code></pre>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
         <td><span class="parametername">type</span></td>
-        <td></td>
+        <td><p>Type</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1518,59 +2787,8 @@ public object? RemoveDiObject(Type type)</code></pre>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveDiObjectAsync_System_Int32_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveDiObjectAsync(System.Int32%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L172">View Source</a>
-  </span>
-  <a id="wan24_Core_ScopedDiHelper_RemoveDiObjectAsync_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObjectAsync*"></a>
-  <h4 id="wan24_Core_ScopedDiHelper_RemoveDiObjectAsync_System_Int32_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObjectAsync(System.Int32,System.Threading.CancellationToken)">RemoveDiObjectAsync(int, CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;object?&gt; RemoveDiObjectAsync(int type, CancellationToken cancellationToken = default)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">type</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
-        <td></td>
+        <td><p>Object (needs to be disposed, if applicable!)</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1579,15 +2797,16 @@ public object? RemoveDiObject(Type type)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveDiObjectAsync_System_Type_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveDiObjectAsync(System.Type%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L183">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L228">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_RemoveDiObjectAsync_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObjectAsync*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_RemoveDiObjectAsync_System_Type_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObjectAsync(System.Type,System.Threading.CancellationToken)">RemoveDiObjectAsync(Type, CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Remove a DI object from the cache</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public Task&lt;object?&gt; RemoveDiObjectAsync(Type type, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1603,12 +2822,14 @@ public Task&lt;object?&gt; RemoveDiObjectAsync(Type type, CancellationToken canc
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
         <td><span class="parametername">type</span></td>
-        <td></td>
+        <td><p>Type</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
         <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
+        <td><p>Cancellation token</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1623,7 +2844,8 @@ public Task&lt;object?&gt; RemoveDiObjectAsync(Type type, CancellationToken canc
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
-        <td></td>
+        <td><p>Object (needs to be disposed, if applicable!)</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1632,11 +2854,12 @@ public Task&lt;object?&gt; RemoveDiObjectAsync(Type type, CancellationToken canc
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveDiObjectAsync__1_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveDiObjectAsync%60%601(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L188">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L261">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_RemoveDiObjectAsync_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObjectAsync*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_RemoveDiObjectAsync__1_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObjectAsync``1(System.Threading.CancellationToken)">RemoveDiObjectAsync&lt;T&gt;(CancellationToken)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Remove a DI object from the cache</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1656,7 +2879,8 @@ public Task&lt;T?&gt; RemoveDiObjectAsync&lt;T&gt;(CancellationToken cancellatio
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
         <td><span class="parametername">cancellationToken</span></td>
-        <td></td>
+        <td><p>Cancellation token</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1671,7 +2895,8 @@ public Task&lt;T?&gt; RemoveDiObjectAsync&lt;T&gt;(CancellationToken cancellatio
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</td>
-        <td></td>
+        <td><p>Object (needs to be disposed, if applicable!)</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1686,7 +2911,8 @@ public Task&lt;T?&gt; RemoveDiObjectAsync&lt;T&gt;(CancellationToken cancellatio
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td></td>
+        <td><p>Object type</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1695,11 +2921,12 @@ public Task&lt;T?&gt; RemoveDiObjectAsync&lt;T&gt;(CancellationToken cancellatio
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveDiObject__1.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveDiObject%60%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L168">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L204">View Source</a>
   </span>
   <a id="wan24_Core_ScopedDiHelper_RemoveDiObject_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObject*"></a>
   <h4 id="wan24_Core_ScopedDiHelper_RemoveDiObject__1" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObject``1">RemoveDiObject&lt;T&gt;()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Remove a DI object from the cache</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -1717,7 +2944,8 @@ public T? RemoveDiObject&lt;T&gt;()</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">T</span></td>
-        <td></td>
+        <td><p>Object (needs to be disposed, if applicable!)</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1732,6 +2960,840 @@ public T? RemoveDiObject&lt;T&gt;()</code></pre>
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
+        <td><p>DI type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveDiObjects_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveDiObjects(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L287">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_RemoveDiObjects_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObjects*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_RemoveDiObjects_System_Type_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObjects(System.Type)">RemoveDiObjects(Type)</h4>
+  <div class="markdown level1 summary"><p>Remove all DI objects from the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public object[] RemoveDiObjects(Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</td>
+        <td><p>Objects (needs to be disposed, if applicable!)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveDiObjectsAsync_System_Type_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveDiObjectsAsync(System.Type%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L351">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_RemoveDiObjectsAsync_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObjectsAsync*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_RemoveDiObjectsAsync_System_Type_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObjectsAsync(System.Type,System.Threading.CancellationToken)">RemoveDiObjectsAsync(Type, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Remove all DI objects from the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public Task&lt;object[]&gt; RemoveDiObjectsAsync(Type type, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]&gt;</td>
+        <td><p>Object (needs to be disposed, if applicable!)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveDiObjectsAsync__1_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveDiObjectsAsync%60%601(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L393">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_RemoveDiObjectsAsync_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObjectsAsync*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_RemoveDiObjectsAsync__1_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObjectsAsync``1(System.Threading.CancellationToken)">RemoveDiObjectsAsync&lt;T&gt;(CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Remove all DI objects from the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public Task&lt;T[]&gt; RemoveDiObjectsAsync&lt;T&gt;(CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T[]&gt;</td>
+        <td><p>Objects (needs to be disposed, if applicable!)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveDiObjects__1.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveDiObjects%60%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L327">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_RemoveDiObjects_" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObjects*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_RemoveDiObjects__1" data-uid="wan24.Core.ScopedDiHelper.RemoveDiObjects``1">RemoveDiObjects&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Remove a DI object from the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public T[] RemoveDiObjects&lt;T&gt;()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><p>Object (needs to be disposed, if applicable!)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>DI type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveKeyedDiObject_System_Object_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveKeyedDiObject(System.Object%2CSystem.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L189">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_RemoveKeyedDiObject_" data-uid="wan24.Core.ScopedDiHelper.RemoveKeyedDiObject*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_RemoveKeyedDiObject_System_Object_System_Type_" data-uid="wan24.Core.ScopedDiHelper.RemoveKeyedDiObject(System.Object,System.Type)">RemoveKeyedDiObject(object, Type)</h4>
+  <div class="markdown level1 summary"><p>Remove a DI object from the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public object? RemoveKeyedDiObject(object key, Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><p>Object (needs to be disposed, if applicable!)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveKeyedDiObjectAsync_System_Object_System_Type_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveKeyedDiObjectAsync(System.Object%2CSystem.Type%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L245">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_RemoveKeyedDiObjectAsync_" data-uid="wan24.Core.ScopedDiHelper.RemoveKeyedDiObjectAsync*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_RemoveKeyedDiObjectAsync_System_Object_System_Type_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.RemoveKeyedDiObjectAsync(System.Object,System.Type,System.Threading.CancellationToken)">RemoveKeyedDiObjectAsync(object, Type, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Remove a DI object from the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public Task&lt;object?&gt; RemoveKeyedDiObjectAsync(object key, Type type, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><p>Object (needs to be disposed, if applicable!)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveKeyedDiObjectAsync__1_System_Object_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveKeyedDiObjectAsync%60%601(System.Object%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L275">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_RemoveKeyedDiObjectAsync_" data-uid="wan24.Core.ScopedDiHelper.RemoveKeyedDiObjectAsync*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_RemoveKeyedDiObjectAsync__1_System_Object_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.RemoveKeyedDiObjectAsync``1(System.Object,System.Threading.CancellationToken)">RemoveKeyedDiObjectAsync&lt;T&gt;(object, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Remove a DI object from the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public Task&lt;T?&gt; RemoveKeyedDiObjectAsync&lt;T&gt;(object key, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</td>
+        <td><p>Object (needs to be disposed, if applicable!)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>DI type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveKeyedDiObject__1_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveKeyedDiObject%60%601(System.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L216">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_RemoveKeyedDiObject_" data-uid="wan24.Core.ScopedDiHelper.RemoveKeyedDiObject*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_RemoveKeyedDiObject__1_System_Object_" data-uid="wan24.Core.ScopedDiHelper.RemoveKeyedDiObject``1(System.Object)">RemoveKeyedDiObject&lt;T&gt;(object)</h4>
+  <div class="markdown level1 summary"><p>Remove a keyed DI object from the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public T? RemoveKeyedDiObject&lt;T&gt;(object key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Object (needs to be disposed, if applicable!)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>DI type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveKeyedDiObjects_System_Object_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveKeyedDiObjects(System.Object%2CSystem.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L307">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_RemoveKeyedDiObjects_" data-uid="wan24.Core.ScopedDiHelper.RemoveKeyedDiObjects*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_RemoveKeyedDiObjects_System_Object_System_Type_" data-uid="wan24.Core.ScopedDiHelper.RemoveKeyedDiObjects(System.Object,System.Type)">RemoveKeyedDiObjects(object, Type)</h4>
+  <div class="markdown level1 summary"><p>Remove all DI objects from the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public object[] RemoveKeyedDiObjects(object key, Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</td>
+        <td><p>Objects (needs to be disposed, if applicable!)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveKeyedDiObjectsAsync_System_Object_System_Type_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveKeyedDiObjectsAsync(System.Object%2CSystem.Type%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L372">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_RemoveKeyedDiObjectsAsync_" data-uid="wan24.Core.ScopedDiHelper.RemoveKeyedDiObjectsAsync*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_RemoveKeyedDiObjectsAsync_System_Object_System_Type_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.RemoveKeyedDiObjectsAsync(System.Object,System.Type,System.Threading.CancellationToken)">RemoveKeyedDiObjectsAsync(object, Type, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Remove all DI objects from the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public Task&lt;object[]&gt; RemoveKeyedDiObjectsAsync(object key, Type type, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]&gt;</td>
+        <td><p>Object (needs to be disposed, if applicable!)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveKeyedDiObjectsAsync__1_System_Object_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveKeyedDiObjectsAsync%60%601(System.Object%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L407">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_RemoveKeyedDiObjectsAsync_" data-uid="wan24.Core.ScopedDiHelper.RemoveKeyedDiObjectsAsync*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_RemoveKeyedDiObjectsAsync__1_System_Object_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.RemoveKeyedDiObjectsAsync``1(System.Object,System.Threading.CancellationToken)">RemoveKeyedDiObjectsAsync&lt;T&gt;(object, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Remove all DI objects from the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public Task&lt;T[]&gt; RemoveKeyedDiObjectsAsync&lt;T&gt;(object key, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T[]&gt;</td>
+        <td><p>Objects (needs to be disposed, if applicable!)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>DI type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveKeyedDiObjects__1_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveKeyedDiObjects%60%601(System.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.Objects.cs/#L339">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_RemoveKeyedDiObjects_" data-uid="wan24.Core.ScopedDiHelper.RemoveKeyedDiObjects*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_RemoveKeyedDiObjects__1_System_Object_" data-uid="wan24.Core.ScopedDiHelper.RemoveKeyedDiObjects``1(System.Object)">RemoveKeyedDiObjects&lt;T&gt;(object)</h4>
+  <div class="markdown level1 summary"><p>Remove a keyed DI object from the cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public T[] RemoveKeyedDiObjects&lt;T&gt;(object key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Key</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><p>Object (needs to be disposed, if applicable!)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>DI type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveNotCachedType_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveNotCachedType(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.NotCached.cs/#L58">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_RemoveNotCachedType_" data-uid="wan24.Core.ScopedDiHelper.RemoveNotCachedType*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_RemoveNotCachedType_System_Type_" data-uid="wan24.Core.ScopedDiHelper.RemoveNotCachedType(System.Type)">RemoveNotCachedType(Type)</h4>
+  <div class="markdown level1 summary"><p>Remove a not cached type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveNotCachedType(Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_RemoveNotCachedTypeAsync_System_Type_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.RemoveNotCachedTypeAsync(System.Type%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.NotCached.cs/#L69">View Source</a>
+  </span>
+  <a id="wan24_Core_ScopedDiHelper_RemoveNotCachedTypeAsync_" data-uid="wan24.Core.ScopedDiHelper.RemoveNotCachedTypeAsync*"></a>
+  <h4 id="wan24_Core_ScopedDiHelper_RemoveNotCachedTypeAsync_System_Type_System_Threading_CancellationToken_" data-uid="wan24.Core.ScopedDiHelper.RemoveNotCachedTypeAsync(System.Type,System.Threading.CancellationToken)">RemoveNotCachedTypeAsync(Type, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Remove a not cached type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task RemoveNotCachedTypeAsync(Type type, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -1743,7 +3805,7 @@ public T? RemoveDiObject&lt;T&gt;()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_OnDisposed.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.OnDisposed%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L352">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.IDisposableObject.cs/#L44">View Source</a>
   </span>
   <h4 id="wan24_Core_ScopedDiHelper_OnDisposed" data-uid="wan24.Core.ScopedDiHelper.OnDisposed">OnDisposed</h4>
   <div class="markdown level1 summary"><p>Raised when disposed</p>
@@ -1773,7 +3835,7 @@ public T? RemoveDiObject&lt;T&gt;()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ScopedDiHelper_OnDisposing.md&amp;value=---%0Auid%3A%20wan24.Core.ScopedDiHelper.OnDisposing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.cs/#L345">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ScopedDiHelper.IDisposableObject.cs/#L37">View Source</a>
   </span>
   <h4 id="wan24_Core_ScopedDiHelper_OnDisposing" data-uid="wan24.Core.ScopedDiHelper.OnDisposing">OnDisposing</h4>
   <div class="markdown level1 summary"><p>Raised when disposing</p>
@@ -1800,10 +3862,19 @@ public T? RemoveDiObject&lt;T&gt;()</code></pre>
   </table>
   <h3 id="implements">Implements</h3>
   <div>
+      <a class="xref" href="wan24.Core.IAsyncKeyedServiceProvider.html">IAsyncKeyedServiceProvider</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.IAsyncServiceProvider.html">IAsyncServiceProvider</a>
   </div>
   <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ikeyedserviceprovider">IKeyedServiceProvider</a>
+  </div>
+  <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iserviceprovideriskeyedservice">IServiceProviderIsKeyedService</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iserviceproviderisservice">IServiceProviderIsService</a>

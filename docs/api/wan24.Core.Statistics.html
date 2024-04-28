@@ -101,7 +101,7 @@
 
 
   <h1 id="wan24_Core_Statistics" data-uid="wan24.Core.Statistics" class="text-break">Class Statistics</h1>
-  <div class="markdown level0 summary"><p>Statistics</p>
+  <div class="markdown level0 summary"><p>Statistics (provides the moving average)</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -140,19 +140,19 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Statistics__ctor_System_String__System_Int32__wan24_Core_Statistics_Value_Delegate__.md&amp;value=---%0Auid%3A%20wan24.Core.Statistics.%23ctor(System.String%40%2CSystem.Int32%40%2Cwan24.Core.Statistics.Value_Delegate%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Statistics__ctor_System_String__System_Int32__wan24_Core_Statistics_Value_Delegate__wan24_Core_StatisticsValueModes__.md&amp;value=---%0Auid%3A%20wan24.Core.Statistics.%23ctor(System.String%40%2CSystem.Int32%40%2Cwan24.Core.Statistics.Value_Delegate%40%2Cwan24.Core.StatisticsValueModes%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L31">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L36">View Source</a>
   </span>
   <a id="wan24_Core_Statistics__ctor_" data-uid="wan24.Core.Statistics.#ctor*"></a>
-  <h4 id="wan24_Core_Statistics__ctor_System_String__System_Int32__wan24_Core_Statistics_Value_Delegate__" data-uid="wan24.Core.Statistics.#ctor(System.String@,System.Int32@,wan24.Core.Statistics.Value_Delegate@)">Statistics(in string, in int, in Value_Delegate)</h4>
+  <h4 id="wan24_Core_Statistics__ctor_System_String__System_Int32__wan24_Core_Statistics_Value_Delegate__wan24_Core_StatisticsValueModes__" data-uid="wan24.Core.Statistics.#ctor(System.String@,System.Int32@,wan24.Core.Statistics.Value_Delegate@,wan24.Core.StatisticsValueModes@)">Statistics(in string, in int, in Value_Delegate, in StatisticsValueModes)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Statistics(in string name, in int capacity, in Statistics.Value_Delegate valueGenerator)</code></pre>
+    <pre><code class="lang-csharp hljs">public Statistics(in string name, in int capacity, in Statistics.Value_Delegate valueGenerator, in StatisticsValueModes valueMode = StatisticsValueModes.PeriodCounter)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -182,6 +182,12 @@
         <td><p>Value generator</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StatisticsValueModes.html">StatisticsValueModes</a></td>
+        <td><span class="parametername">valueMode</span></td>
+        <td><p>Value mode</p>
+</td>
+      </tr>
     </tbody>
   </table>
   <h3 id="properties">Properties
@@ -191,7 +197,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Statistics_Average.md&amp;value=---%0Auid%3A%20wan24.Core.Statistics.Average%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L62">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L78">View Source</a>
   </span>
   <a id="wan24_Core_Statistics_Average_" data-uid="wan24.Core.Statistics.Average*"></a>
   <h4 id="wan24_Core_Statistics_Average" data-uid="wan24.Core.Statistics.Average">Average</h4>
@@ -222,7 +228,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Statistics_Description.md&amp;value=---%0Auid%3A%20wan24.Core.Statistics.Description%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L47">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L53">View Source</a>
   </span>
   <a id="wan24_Core_Statistics_Description_" data-uid="wan24.Core.Statistics.Description*"></a>
   <h4 id="wan24_Core_Statistics_Description" data-uid="wan24.Core.Statistics.Description">Description</h4>
@@ -253,7 +259,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Statistics_Group.md&amp;value=---%0Auid%3A%20wan24.Core.Statistics.Group%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L52">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L58">View Source</a>
   </span>
   <a id="wan24_Core_Statistics_Group_" data-uid="wan24.Core.Statistics.Group*"></a>
   <h4 id="wan24_Core_Statistics_Group" data-uid="wan24.Core.Statistics.Group">Group</h4>
@@ -281,10 +287,41 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Statistics_LastUpdate.md&amp;value=---%0Auid%3A%20wan24.Core.Statistics.LastUpdate%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L68">View Source</a>
+  </span>
+  <a id="wan24_Core_Statistics_LastUpdate_" data-uid="wan24.Core.Statistics.LastUpdate*"></a>
+  <h4 id="wan24_Core_Statistics_LastUpdate" data-uid="wan24.Core.Statistics.LastUpdate">LastUpdate</h4>
+  <div class="markdown level1 summary"><p>Last update</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime LastUpdate { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Statistics_LastValue.md&amp;value=---%0Auid%3A%20wan24.Core.Statistics.LastValue%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L57">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L73">View Source</a>
   </span>
   <a id="wan24_Core_Statistics_LastValue_" data-uid="wan24.Core.Statistics.LastValue*"></a>
   <h4 id="wan24_Core_Statistics_LastValue" data-uid="wan24.Core.Statistics.LastValue">LastValue</h4>
@@ -315,7 +352,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Statistics_MovingAverage.md&amp;value=---%0Auid%3A%20wan24.Core.Statistics.MovingAverage%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L67">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L83">View Source</a>
   </span>
   <a id="wan24_Core_Statistics_MovingAverage_" data-uid="wan24.Core.Statistics.MovingAverage*"></a>
   <h4 id="wan24_Core_Statistics_MovingAverage" data-uid="wan24.Core.Statistics.MovingAverage">MovingAverage</h4>
@@ -346,7 +383,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Statistics_Name.md&amp;value=---%0Auid%3A%20wan24.Core.Statistics.Name%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L42">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L48">View Source</a>
   </span>
   <a id="wan24_Core_Statistics_Name_" data-uid="wan24.Core.Statistics.Name*"></a>
   <h4 id="wan24_Core_Statistics_Name" data-uid="wan24.Core.Statistics.Name">Name</h4>
@@ -377,7 +414,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Statistics_State.md&amp;value=---%0Auid%3A%20wan24.Core.Statistics.State%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L72">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L88">View Source</a>
   </span>
   <a id="wan24_Core_Statistics_State_" data-uid="wan24.Core.Statistics.State*"></a>
   <h4 id="wan24_Core_Statistics_State" data-uid="wan24.Core.Statistics.State">State</h4>
@@ -403,6 +440,37 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Statistics_ValueMode.md&amp;value=---%0Auid%3A%20wan24.Core.Statistics.ValueMode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L63">View Source</a>
+  </span>
+  <a id="wan24_Core_Statistics_ValueMode_" data-uid="wan24.Core.Statistics.ValueMode*"></a>
+  <h4 id="wan24_Core_Statistics_ValueMode" data-uid="wan24.Core.Statistics.ValueMode">ValueMode</h4>
+  <div class="markdown level1 summary"><p>Value mode</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StatisticsValueModes ValueMode { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.StatisticsValueModes.html">StatisticsValueModes</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
@@ -410,7 +478,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Statistics_GenerateValue_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Statistics.GenerateValue(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L78">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Statistics.cs/#L94">View Source</a>
   </span>
   <a id="wan24_Core_Statistics_GenerateValue_" data-uid="wan24.Core.Statistics.GenerateValue*"></a>
   <h4 id="wan24_Core_Statistics_GenerateValue_System_Threading_CancellationToken_" data-uid="wan24.Core.Statistics.GenerateValue(System.Threading.CancellationToken)">GenerateValue(CancellationToken)</h4>
