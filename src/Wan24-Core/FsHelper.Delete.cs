@@ -31,28 +31,122 @@
         }
 
         /// <summary>
-        /// Delete a folder recursive
+        /// Delete many files
         /// </summary>
-        /// <param name="path">Path</param>
+        /// <param name="files">Filenames</param>
         /// <param name="parallelDeleteFile">Number of files to delete in parallel</param>
+        /// <param name="progress">Progress (total will be updated with the number of files and counted)</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        public static async Task DeleteFolderAsync(string path, int? parallelDeleteFile = null, CancellationToken cancellationToken = default)
+        public static async Task DeleteFilesAsync(
+            IEnumerable<string> files, 
+            int? parallelDeleteFile = null, 
+            ProcessingProgress? progress = null, 
+            CancellationToken cancellationToken = default
+            )
         {
+            if (progress is not null)
+            {
+                string[] temp = [.. files];
+                progress.Total += temp.Length;
+                files = temp;
+            }
             if (parallelDeleteFile.HasValue)
             {
-                DeleteFileQueue queue = new(parallelDeleteFile.Value, cancellationToken);
+                DeleteFileQueue queue = new(parallelDeleteFile.Value, progress, cancellationToken);
                 await using (queue.DynamicContext())
                 {
                     await queue.StartAsync(cancellationToken).DynamicContext();
-                    foreach (string fn in Directory.EnumerateFiles(path, "*", new EnumerationOptions() { RecurseSubdirectories = true }))
+                    foreach (string fn in files)
                         await queue.EnqueueAsync(fn, cancellationToken).DynamicContext();
                     await queue.WaitBoringAsync(cancellationToken).DynamicContext();
                 }
             }
             else
             {
-                foreach (string fn in Directory.EnumerateFiles(path, "*", new EnumerationOptions() { RecurseSubdirectories = true }))
+                foreach (string fn in files)
+                {
                     await DeleteFileAsync(fn, cancellationToken).DynamicContext();
+                    progress?.Update();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Delete many files
+        /// </summary>
+        /// <param name="files">Filenames</param>
+        /// <param name="parallelDeleteFile">Number of files to delete in parallel</param>
+        /// <param name="progress">Progress (total will be updated with the number of files and counted)</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public static async Task DeleteFilesAsync(
+            IAsyncEnumerable<string> files,
+            int? parallelDeleteFile = null,
+            ProcessingProgress? progress = null,
+            CancellationToken cancellationToken = default
+            )
+        {
+            if (progress is not null)
+            {
+                await DeleteFilesAsync(await files.ToListAsync(cancellationToken).DynamicContext(), parallelDeleteFile, progress, cancellationToken).DynamicContext();
+                return;
+            }
+            if (parallelDeleteFile.HasValue)
+            {
+                DeleteFileQueue queue = new(parallelDeleteFile.Value, progress, cancellationToken);
+                await using (queue.DynamicContext())
+                {
+                    await queue.StartAsync(cancellationToken).DynamicContext();
+                    await foreach (string fn in files.DynamicContext().WithCancellation(cancellationToken))
+                        await queue.EnqueueAsync(fn, cancellationToken).DynamicContext();
+                    await queue.WaitBoringAsync(cancellationToken).DynamicContext();
+                }
+            }
+            else
+            {
+                await foreach (string fn in files.DynamicContext().WithCancellation(cancellationToken))
+                    await DeleteFileAsync(fn, cancellationToken).DynamicContext();
+            }
+        }
+
+        /// <summary>
+        /// Delete a folder recursive
+        /// </summary>
+        /// <param name="path">Path</param>
+        /// <param name="parallelDeleteFile">Number of files to delete in parallel</param>
+        /// <param name="progress">Progress (total will be updated with the number of files and counted)</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public static async Task DeleteFolderAsync(
+            string path, 
+            int? parallelDeleteFile = null, 
+            ProcessingProgress? progress = null, 
+            CancellationToken cancellationToken = default
+            )
+        {
+            IEnumerable<string> files = Directory.EnumerateFiles(path, "*", new EnumerationOptions() { RecurseSubdirectories = true });
+            if (progress is not null)
+            {
+                string[] temp = [.. files];
+                progress.Total += temp.Length + 1;
+                files = temp;
+            }
+            if (parallelDeleteFile.HasValue)
+            {
+                DeleteFileQueue queue = new(parallelDeleteFile.Value, progress, cancellationToken);
+                await using (queue.DynamicContext())
+                {
+                    await queue.StartAsync(cancellationToken).DynamicContext();
+                    foreach (string fn in files)
+                        await queue.EnqueueAsync(fn, cancellationToken).DynamicContext();
+                    await queue.WaitBoringAsync(cancellationToken).DynamicContext();
+                }
+            }
+            else
+            {
+                foreach (string fn in files)
+                {
+                    await DeleteFileAsync(fn, cancellationToken).DynamicContext();
+                    progress?.Update();
+                }
             }
             if (DeleteFolderHandler is not DeleteFolder_Delegate deleteFolder)
             {
@@ -62,6 +156,7 @@
             {
                 await deleteFolder(path, cancellationToken).DynamicContext();
             }
+            progress?.Update();
         }
 
         /// <summary>
@@ -113,18 +208,29 @@
             /// Cancellation registration
             /// </summary>
             private readonly CancellationTokenRegistration Registration;
+            /// <summary>
+            /// Progress to update
+            /// </summary>
+            private readonly ProcessingProgress? Progress;
 
             /// <summary>
             /// Constructor
             /// </summary>
             /// <param name="threads">Number of threads</param>
+            /// <param name="progress">Progress</param>
             /// <param name="cancellationToken">Cancellation token</param>
-            public DeleteFileQueue(in int threads, in CancellationToken cancellationToken) : base(threads << 1, threads)
-                => Registration = cancellationToken.Register(async () => await DisposeAsync().DynamicContext());
+            public DeleteFileQueue(in int threads, in ProcessingProgress? progress, in CancellationToken cancellationToken) : base(threads << 1, threads)
+            {
+                Registration = cancellationToken.Register(async () => await DisposeAsync().DynamicContext());
+                Progress = progress;
+            }
 
             /// <inheritdoc/>
-            protected override Task ProcessItem(string item, CancellationToken cancellationToken)
-                => DeleteFileAsync(item, cancellationToken);
+            protected override async Task ProcessItem(string item, CancellationToken cancellationToken)
+            {
+                await DeleteFileAsync(item, cancellationToken).DynamicContext();
+                Progress?.Update();
+            }
 
             /// <inheritdoc/>
             protected override void Dispose(bool disposing)

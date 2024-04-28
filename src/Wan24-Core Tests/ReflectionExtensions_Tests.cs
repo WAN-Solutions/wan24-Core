@@ -206,8 +206,32 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public void IsAssignableFromExt_Tests()
         {
-            Assert.IsTrue(typeof(Dictionary<,>).IsAssignableFrom(typeof(Dictionary<string, string>)));
-            //TODO
+            Assert.IsFalse(typeof(Dictionary<,>).IsAssignableFrom(typeof(Dictionary<string, string>)));
+            Assert.IsTrue(typeof(Dictionary<,>).IsAssignableFromExt(typeof(Dictionary<string, string>)));
+        }
+
+        [TestMethod]
+        public void HasBaseType_Tests()
+        {
+            Assert.IsTrue(typeof(AcidStream).HasBaseType(typeof(Stream)));
+            Assert.IsFalse(typeof(AcidStream).HasBaseType(typeof(bool)));
+        }
+
+        [TestMethod]
+        public void EnsureGenericTypeDefinition_Tests()
+        {
+            Assert.AreEqual(typeof(Dictionary<,>), typeof(Dictionary<string, string>).EnsureGenericTypeDefinition());
+            Assert.AreEqual(typeof(Dictionary<,>), typeof(Dictionary<,>).EnsureGenericTypeDefinition());
+        }
+
+        [TestMethod]
+        public void GetBaseTypes_Tests()
+        {
+            Type[] baseTypes = [.. typeof(AcidStream).GetBaseTypes()];
+            Assert.IsTrue(baseTypes.Length > 0);
+            Assert.IsFalse(baseTypes.Contains(typeof(AcidStream)));
+            Assert.IsFalse(baseTypes.Contains(typeof(object)));
+            Assert.IsTrue(baseTypes.Contains(typeof(Stream)));
         }
 
         public int? TestField = null;
