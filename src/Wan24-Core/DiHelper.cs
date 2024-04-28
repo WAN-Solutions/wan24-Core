@@ -35,7 +35,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public object? GetKeyedService(Type serviceType, object? serviceKey)
+        public virtual object? GetKeyedService(Type serviceType, object? serviceKey)
         {
             if(serviceKey is null)
             {
@@ -49,7 +49,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public async Task<object?> GetKeyedServiceAsync(Type serviceType, object? serviceKey, CancellationToken cancellationToken = default)
+        public virtual async Task<object?> GetKeyedServiceAsync(Type serviceType, object? serviceKey, CancellationToken cancellationToken = default)
         {
             if (serviceKey is null)
             {
@@ -63,19 +63,19 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public object GetRequiredKeyedService(Type serviceType, object? serviceKey)
+        public virtual object GetRequiredKeyedService(Type serviceType, object? serviceKey)
             => GetKeyedService(serviceType, serviceKey) is object res 
                 ? res 
                 : throw new InvalidOperationException($"Service {serviceType} (key \"{serviceKey}\") not found");
 
         /// <inheritdoc/>
-        public async Task<object> GetRequiredKeyedServiceAsync(Type serviceType, object? serviceKey, CancellationToken cancellationToken = default)
+        public virtual async Task<object> GetRequiredKeyedServiceAsync(Type serviceType, object? serviceKey, CancellationToken cancellationToken = default)
             => await GetKeyedServiceAsync(serviceType, serviceKey, cancellationToken).DynamicContext() is object res
                 ? res
                 : throw new InvalidOperationException($"Service {serviceType} (key \"{serviceKey}\") not found");
 
         /// <inheritdoc/>
-        public bool IsKeyedService(Type serviceType, object? serviceKey)
+        public virtual bool IsKeyedService(Type serviceType, object? serviceKey)
         {
             if (ServiceProvider is IServiceProviderIsKeyedService keyedServiceProvider && keyedServiceProvider.IsKeyedService(serviceType, serviceKey))
                 return true;

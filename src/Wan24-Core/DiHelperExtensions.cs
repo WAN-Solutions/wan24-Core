@@ -1,6 +1,5 @@
-﻿using System.Reflection;
-
-//TODO Add ordered parameter values support
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace wan24.Core
 {
@@ -16,88 +15,71 @@ namespace wan24.Core
         /// <param name="values">Given values</param>
         /// <param name="serviceProvider">Service provider</param>
         /// <param name="nic">Nullability info context</param>
-        /// <param name="throwOnMissing">Throw an exception on missing value?</param>
+        /// <param name="throwOnMissing">Throw an exception on missing value? (will throw on missing keyed DI parameter anyway)</param>
+        /// <param name="valuesAreOrdered">If values are ordered in the order of the given parameters</param>
         /// <returns>Parameters (if the length doesn't match the number of parameters, DI failed)</returns>
         public static object?[] GetDiObjects(
             this IEnumerable<ParameterInfo> parameters,
             object?[]? values = null,
             IServiceProvider? serviceProvider = null,
             NullabilityInfoContext? nic = null,
-            bool throwOnMissing = true
-            )
-        {
-            //TODO Support for keyed DI using the FromKeyedServicesAttribute of parameters and the IKeyedServiceProvider interface
-            List<object?> valueList = new(values ?? []);
-            List<object?> res = [];
-            int i,
-                len = valueList.Count;
-#pragma warning disable IDE0018 // Declare inline
-            object? value;
-#pragma warning restore IDE0018 // Declare inline
-            bool found;
-            foreach (ParameterInfo pi in parameters)
-            {
-                found = false;
-                for (i = 0; i < len; i++)
-                {
-                    if (valueList[i] is null || !pi.ParameterType.IsAssignableFrom(valueList[i]!.GetType())) continue;
-                    res.Add(valueList[i]);
-                    valueList.RemoveAt(i);
-                    len--;
-                    found = true;
-                    break;
-                }
-                if (!found)
-                    if (DiHelper.GetDiObject(pi.ParameterType, out value, serviceProvider)) res.Add(value);
-                    else if (pi.IsNullable(nic ??= new()) && (!pi.HasDefaultValue || pi.DefaultValue is null)) res.Add(null);
-                    else if (pi.HasDefaultValue) res.Add(pi.DefaultValue);
-                    else if (throwOnMissing) throw new ArgumentException($"Can't get value of type {pi.ParameterType}", pi.Name);
-            }
-            return [.. res];
-        }
-
-        /// <summary>
-        /// Get DI objects
-        /// </summary>
-        /// <param name="parameters">Parameters</param>
-        /// <param name="values">Given values</param>
-        /// <param name="serviceProvider">Service provider</param>
-        /// <param name="nic">Nullability info context</param>
-        /// <param name="throwOnMissing">Throw an exception on missing value?</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Parameters (if the length doesn't match the number of parameters, DI failed)</returns>
-        public static async Task<object?[]> GetDiObjectsAsync(
-            this IEnumerable<ParameterInfo> parameters,
-            object?[]? values = null,
-            IServiceProvider? serviceProvider = null,
-            NullabilityInfoContext? nic = null,
             bool throwOnMissing = true,
-            CancellationToken cancellationToken = default
+            bool valuesAreOrdered = false
             )
         {
-            //TODO Support for keyed DI using the FromKeyedServicesAttribute of parameters and the IKeyedServiceProvider interface
+            if (valuesAreOrdered && values is null)
+                throw new ArgumentNullException(nameof(values));
             List<object?> valueList = new(values ?? []);
             List<object?> res = [];
             int i,
-                len = valueList.Count;
-            DiHelper.AsyncResult di;
-            bool found;
+                len = valueList.Count,
+                current = -1;
+            object? value;
+            bool found,
+                nullable;
             foreach (ParameterInfo pi in parameters)
             {
                 found = false;
-                for (i = 0; i < len; i++)
+                current++;
+                nullable = pi.IsNullable(nic ??= new());
+                if (valuesAreOrdered)
                 {
-                    if (valueList[i] is null || !pi.ParameterType.IsAssignableFrom(valueList[i]!.GetType())) continue;
-                    res.Add(valueList[i]);
-                    valueList.RemoveAt(i);
-                    len--;
-                    found = true;
-                    break;
+                    if (current < len)
+                    {
+                        if (valueList[current] is null)
+                        {
+                            if (!nullable)
+                                throw new ArgumentNullException(pi.Name);
+                        }
+                        else if (!pi.ParameterType.IsAssignableFrom(valueList[current]!.GetType()))
+                        {
+                            throw new ArgumentException($"{pi.ParameterType} value type expected ({valueList[current]!.GetType()} given)", pi.Name);
+                        }
+                        res.Add(valueList[current]);
+                        found = true;
+                    }
+                }
+                else
+                {
+                    for (i = 0; i < len; i++)
+                    {
+                        if (valueList[i] is null || !pi.ParameterType.IsAssignableFrom(valueList[i]!.GetType())) continue;
+                        res.Add(valueList[i]);
+                        valueList.RemoveAt(i);
+                        len--;
+                        found = true;
+                        break;
+                    }
                 }
                 if (found) continue;
-                di = await DiHelper.GetDiObjectAsync(pi.ParameterType, serviceProvider, cancellationToken).DynamicContext();
-                if (di.Use) res.Add(di.Object);
-                else if (pi.IsNullable(nic ??= new()) && (!pi.HasDefaultValue || pi.DefaultValue is null)) res.Add(null);
+                if (pi.GetCustomAttributeCached<FromKeyedServicesAttribute>() is FromKeyedServicesAttribute attr)
+                {
+                    if (DiHelper.GetKeyedDiObject(attr.Key, pi.ParameterType, out value, serviceProvider))
+                        throw new ArgumentException($"Can't get keyed DI value of type {pi.ParameterType}", pi.Name);
+                    res.Add(value);
+                }
+                else if (DiHelper.GetDiObject(pi.ParameterType, out value, serviceProvider)) res.Add(value);
+                else if (nullable && (!pi.HasDefaultValue || pi.DefaultValue is null)) res.Add(null);
                 else if (pi.HasDefaultValue) res.Add(pi.DefaultValue);
                 else if (throwOnMissing) throw new ArgumentException($"Can't get value of type {pi.ParameterType}", pi.Name);
             }
@@ -108,44 +90,79 @@ namespace wan24.Core
         /// Get DI objects
         /// </summary>
         /// <param name="parameters">Parameters</param>
-        /// <param name="serviceProvider">Service provider</param>
         /// <param name="values">Given values</param>
+        /// <param name="serviceProvider">Service provider</param>
         /// <param name="nic">Nullability info context</param>
-        /// <param name="throwOnMissing">Throw an exception on missing value?</param>
+        /// <param name="throwOnMissing">Throw an exception on missing value? (will throw on missing keyed DI parameter anyway)</param>
+        /// <param name="valuesAreOrdered">If values are ordered in the order of the given parameters</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Parameters (if the length doesn't match the number of parameters, DI failed)</returns>
         public static async Task<object?[]> GetDiObjectsAsync(
             this IEnumerable<ParameterInfo> parameters,
-            IAsyncServiceProvider serviceProvider,
             object?[]? values = null,
+            IServiceProvider? serviceProvider = null,
             NullabilityInfoContext? nic = null,
             bool throwOnMissing = true,
+            bool valuesAreOrdered = false,
             CancellationToken cancellationToken = default
             )
         {
-            //TODO Support for keyed DI using the FromKeyedServicesAttribute of parameters and the IKeyedServiceProvider interface
+            if (valuesAreOrdered && values is null)
+                throw new ArgumentNullException(nameof(values));
             List<object?> valueList = new(values ?? []);
             List<object?> res = [];
             int i,
-                len = valueList.Count;
-            object? value;
-            bool found;
+                len = valueList.Count,
+                current = -1;
+            ITryAsyncResult di;
+            bool found,
+                nullable;
             foreach (ParameterInfo pi in parameters)
             {
                 found = false;
-                for (i = 0; i < len; i++)
+                current++;
+                nullable = pi.IsNullable(nic ??= new());
+                if (valuesAreOrdered)
                 {
-                    if (valueList[i] is null || !pi.ParameterType.IsAssignableFrom(valueList[i]!.GetType())) continue;
-                    res.Add(valueList[i]);
-                    valueList.RemoveAt(i);
-                    len--;
-                    found = true;
-                    break;
+                    if (current < len)
+                    {
+                        if (valueList[current] is null)
+                        {
+                            if (!nullable)
+                                throw new ArgumentNullException(pi.Name);
+                        }
+                        else if (!pi.ParameterType.IsAssignableFrom(valueList[current]!.GetType()))
+                        {
+                            throw new ArgumentException($"{pi.ParameterType} value type expected ({valueList[current]!.GetType()} given)", pi.Name);
+                        }
+                        res.Add(valueList[current]);
+                        found = true;
+                    }
+                }
+                else
+                {
+                    for (i = 0; i < len; i++)
+                    {
+                        if (valueList[i] is null || !pi.ParameterType.IsAssignableFrom(valueList[i]!.GetType())) continue;
+                        res.Add(valueList[i]);
+                        valueList.RemoveAt(i);
+                        len--;
+                        found = true;
+                        break;
+                    }
                 }
                 if (found) continue;
-                value = await serviceProvider.GetServiceAsync(pi.ParameterType, cancellationToken).DynamicContext();
-                if (value is not null) res.Add(value);
-                else if (pi.IsNullable(nic ??= new()) && (!pi.HasDefaultValue || pi.DefaultValue is null)) res.Add(null);
+                if (pi.GetCustomAttributeCached<FromKeyedServicesAttribute>() is FromKeyedServicesAttribute attr)
+                {
+                    di = await DiHelper.GetKeyedDiObjectAsync(attr.Key, pi.ParameterType, serviceProvider, cancellationToken: cancellationToken).DynamicContext();
+                    if (!di.Succeed)
+                        throw new ArgumentException($"Can't get keyed DI value of type {pi.ParameterType}", pi.Name);
+                    res.Add(di.Result);
+                    continue;
+                }
+                di = await DiHelper.GetDiObjectAsync(pi.ParameterType, serviceProvider, cancellationToken).DynamicContext();
+                if (di.Succeed) res.Add(di.Result);
+                else if (nullable && (!pi.HasDefaultValue || pi.DefaultValue is null)) res.Add(null);
                 else if (pi.HasDefaultValue) res.Add(pi.DefaultValue);
                 else if (throwOnMissing) throw new ArgumentException($"Can't get value of type {pi.ParameterType}", pi.Name);
             }
@@ -159,10 +176,16 @@ namespace wan24.Core
         /// <param name="values">Given values</param>
         /// <param name="serviceProvider">Service provider</param>
         /// <param name="throwOnMissing">Throw an exception on missing value?</param>
+        /// <param name="valuesAreOrdered">If values are ordered in the order of the given parameters</param>
         /// <returns>DI objects (if the length doesn't match the number of types, DI failed)</returns>
-        public static object?[] GetDiObjects(this IEnumerable<Type> types, object?[]? values = null, IServiceProvider? serviceProvider = null, bool throwOnMissing = true)
+        public static object?[] GetDiObjects(
+            this IEnumerable<Type> types,
+            object?[]? values = null,
+            IServiceProvider? serviceProvider = null,
+            bool throwOnMissing = true,
+            bool valuesAreOrdered = false
+            )
         {
-            //TODO Support for keyed DI using the FromKeyedServicesAttribute of parameters and the IKeyedServiceProvider interface
             List<object?> valueList = new(values ?? []);
             List<object?> res = [];
             int i,
@@ -175,70 +198,34 @@ namespace wan24.Core
             foreach (Type type in types)
             {
                 found = false;
-                for (i = 0; i < len; i++)
+                if (valuesAreOrdered)
                 {
-                    if (valueList[i] is null || !type.IsAssignableFrom(valueList[i]!.GetType())) continue;
-                    res.Add(valueList[i]);
-                    valueList.RemoveAt(i);
-                    len--;
-                    found = true;
-                    break;
+                    if (index < len)
+                    {
+                        if (valueList[index] is not null && !type.IsAssignableFrom(valueList[index]!.GetType()))
+                            throw new ArgumentException($"{type} value type expected ({valueList[index]!.GetType()} given)", nameof(values));
+                        res.Add(valueList[index]);
+                        found = true;
+                    }
+                }
+                else
+                {
+                    for (i = 0; i < len; i++)
+                    {
+                        if (valueList[i] is null || !type.IsAssignableFrom(valueList[i]!.GetType())) continue;
+                        res.Add(valueList[i]);
+                        valueList.RemoveAt(i);
+                        len--;
+                        found = true;
+                        break;
+                    }
                 }
                 if (!found)
+                {
                     if (DiHelper.GetDiObject(type, out value, serviceProvider)) res.Add(value);
                     else if (type.IsNullable()) res.Add(null);
                     else if (throwOnMissing) throw new ArgumentException($"Missing value #{index} of type {type}", nameof(values));
-                index++;
-            }
-            return [.. res];
-        }
-
-        /// <summary>
-        /// Get DI objects
-        /// </summary>
-        /// <param name="types">Types</param>
-        /// <param name="serviceProvider">Service provider</param>
-        /// <param name="values">Given values</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <param name="throwOnMissing">Throw an exception on missing value?</param>
-        /// <returns>DI objects (if the length doesn't match the number of types, DI failed)</returns>
-        public static async Task<object?[]> GetDiObjectsAsync(
-            this IEnumerable<Type> types,
-            IAsyncServiceProvider serviceProvider,
-            object?[]? values = null,
-            bool throwOnMissing = true,
-            CancellationToken cancellationToken = default
-            )
-        {
-            //TODO Support for keyed DI using the FromKeyedServicesAttribute of parameters and the IKeyedServiceProvider interface
-            List<object?> valueList = new(values ?? []);
-            List<object?> res = [];
-            int i,
-                len = valueList.Count,
-                index = 0;
-            object? value;
-            bool found;
-            foreach (Type type in types)
-            {
-                found = false;
-                for (i = 0; i < len; i++)
-                {
-                    if (valueList[i] is null || !type.IsAssignableFrom(valueList[i]!.GetType())) continue;
-                    res.Add(valueList[i]);
-                    valueList.RemoveAt(i);
-                    len--;
-                    found = true;
-                    break;
                 }
-                if (found)
-                {
-                    index++;
-                    continue;
-                }
-                value = await serviceProvider.GetServiceAsync(type, cancellationToken).DynamicContext();
-                if (value is not null) res.Add(value);
-                else if (type.IsNullable()) res.Add(null);
-                else if (throwOnMissing) throw new ArgumentException($"Missing value #{index} of type {type}", nameof(values));
                 index++;
             }
             return [.. res];
@@ -252,34 +239,48 @@ namespace wan24.Core
         /// <param name="serviceProvider">Service provider</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="throwOnMissing">Throw an exception on missing value?</param>
+        /// <param name="valuesAreOrdered">If values are ordered in the order of the given parameters</param>
         /// <returns>DI objects (if the length doesn't match the number of types, DI failed)</returns>
         public static async Task<object?[]> GetDiObjectsAsync(
             this IEnumerable<Type> types,
             object?[]? values = null,
             IServiceProvider? serviceProvider = null,
             bool throwOnMissing = true,
+            bool valuesAreOrdered = false,
             CancellationToken cancellationToken = default
             )
         {
-            //TODO Support for keyed DI using the FromKeyedServicesAttribute of parameters and the IKeyedServiceProvider interface
             List<object?> valueList = new(values ?? []);
             List<object?> res = [];
             int i,
                 len = valueList.Count,
                 index = 0;
-            DiHelper.AsyncResult di;
+            ITryAsyncResult di;
             bool found;
             foreach (Type type in types)
             {
                 found = false;
-                for (i = 0; i < len; i++)
+                if (valuesAreOrdered)
                 {
-                    if (valueList[i] is null || !type.IsAssignableFrom(valueList[i]!.GetType())) continue;
-                    res.Add(valueList[i]);
-                    valueList.RemoveAt(i);
-                    len--;
-                    found = true;
-                    break;
+                    if (index < len)
+                    {
+                        if (valueList[index] is not null && !type.IsAssignableFrom(valueList[index]!.GetType()))
+                            throw new ArgumentException($"{type} value type expected ({valueList[index]!.GetType()} given)", nameof(values));
+                        res.Add(valueList[index]);
+                        found = true;
+                    }
+                }
+                else
+                {
+                    for (i = 0; i < len; i++)
+                    {
+                        if (valueList[i] is null || !type.IsAssignableFrom(valueList[i]!.GetType())) continue;
+                        res.Add(valueList[i]);
+                        valueList.RemoveAt(i);
+                        len--;
+                        found = true;
+                        break;
+                    }
                 }
                 if (found)
                 {
@@ -287,7 +288,7 @@ namespace wan24.Core
                     continue;
                 }
                 di = await DiHelper.GetDiObjectAsync(type, serviceProvider, cancellationToken).DynamicContext();
-                if (di.Use) res.Add(di.Object);
+                if (di.Succeed) res.Add(di.Result);
                 else if (type.IsNullable()) res.Add(null);
                 else if (throwOnMissing) throw new ArgumentException($"Missing value #{index} of type {type}", nameof(values));
                 index++;
