@@ -38,6 +38,10 @@ namespace wan24.Core
         public const int SHUTDOWN_ERROR = 7;
 
         /// <summary>
+        /// Exception counter
+        /// </summary>
+        private static volatile int _ExceptionCount = 0;
+        /// <summary>
         /// An object for thread synchronization
         /// </summary>
         public static readonly object SyncObject = new();
@@ -46,6 +50,11 @@ namespace wan24.Core
         /// <see cref="ErrorCollectingHandler(ErrorInfo)"/> from within your custom error handler)
         /// </summary>
         public static readonly Queue<ErrorInfo> Errors = new();
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        static ErrorHandling() => AppDomain.CurrentDomain.FirstChanceException += (s, e) => _ExceptionCount++;
 
         /// <summary>
         /// Error handler (first chance before <see cref="OnError"/> event handlers)
@@ -61,6 +70,15 @@ namespace wan24.Core
         /// <see cref="Errors"/> count limit (<c>0</c> for unlimited)
         /// </summary>
         public static int ErrorCountLimit { get; set; }
+
+        /// <summary>
+        /// Exception counter (volatile value)
+        /// </summary>
+        public static int ExceptionCount
+        {
+            get => _ExceptionCount;
+            set => _ExceptionCount = value;
+        }
 
         /// <summary>
         /// Handle an error (writes to the logging, too!)

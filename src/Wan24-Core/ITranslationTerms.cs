@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.Localization;
 
-//TODO Implement IHtmlLocalizer wrapper which HTML encodes parser values (but not the term)
-
 namespace wan24.Core
 {
     /// <summary>

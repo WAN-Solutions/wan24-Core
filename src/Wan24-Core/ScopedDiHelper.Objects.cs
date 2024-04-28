@@ -1,64 +1,12 @@
-﻿using System.Collections.Concurrent;
-using System.Diagnostics.Contracts;
+﻿using System.Diagnostics.Contracts;
 using System.Runtime;
 using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
-    // Static
-    public partial class DiHelper
+    // Objects
+    public partial class ScopedDiHelper
     {
-        /// <summary>
-        /// Default instance
-        /// </summary>
-        private static DiHelper? _Instance;
-        /// <summary>
-        /// Custom instance
-        /// </summary>
-        private static DiHelper? CustomInstance = null;
-        /// <summary>
-        /// Static thread synchronization
-        /// </summary>
-        protected static readonly SemaphoreSync StaticSync = new();
-        /// <summary>
-        /// Objects
-        /// </summary>
-        protected static readonly ConcurrentDictionary<Type, object> Objects = new();
-        /// <summary>
-        /// Keyed objects
-        /// </summary>
-        protected static readonly ConcurrentDictionary<object, ConcurrentDictionary<Type, object>> KeyedObjects = [];
-        /// <summary>
-        /// DI object factories
-        /// </summary>
-        public static readonly ConcurrentDictionary<Type, Di_Delegate> ObjectFactories = new();
-        /// <summary>
-        /// Asynchronous DI object factories
-        /// </summary>
-        public static readonly ConcurrentDictionary<Type, DiAsync_Delegate> AsyncObjectFactories = new();
-        /// <summary>
-        /// Keyed DI object factories
-        /// </summary>
-        public static readonly ConcurrentDictionary<object, ConcurrentDictionary<Type, Di_Delegate>> KeyedObjectFactories = new();
-        /// <summary>
-        /// Keyed asynchronous DI object factories
-        /// </summary>
-        public static readonly ConcurrentDictionary<object, ConcurrentDictionary<Type, DiAsync_Delegate>> KeyedAsyncObjectFactories = new();
-
-        /// <summary>
-        /// Global instance
-        /// </summary>
-        public static DiHelper Instance
-        {
-            get => CustomInstance ?? (_Instance ??= new());
-            set => CustomInstance = value;
-        }
-
-        /// <summary>
-        /// DI service provider
-        /// </summary>
-        public static IServiceProvider? ServiceProvider { get; set; }
-
         /// <summary>
         /// Add a DI object to the cache
         /// </summary>
@@ -69,7 +17,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static T AddDiObject<T>(T obj)
+        new public T AddDiObject<T>(T obj)
         {
             Contract.Assert(obj is not null);
             AddDiObject(obj, typeof(T));
@@ -86,12 +34,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static object AddDiObject(object obj, Type type)
+        new public object AddDiObject(object obj, Type type)
         {
             Contract.Assert(obj is not null);
-            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
-            if (_NotCachedTypes.Contains(obj.GetType())) return obj;
-            Objects.GetOrAdd(type, key => obj);
+            using SemaphoreSyncContext ssc = Sync.SyncContext();
+            Type objType = obj.GetType();
+            if (_ScopeNotCachedTypes.Contains(objType) || !IsTypeCached(objType)) return obj;
+            ScopeObjects.GetOrAdd(type, key => obj);
             return obj;
         }
 
@@ -106,7 +55,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static T AddKeyedDiObject<T>(object key, T obj)
+        new public T AddKeyedDiObject<T>(object key, T obj)
         {
             Contract.Assert(obj is not null);
             AddKeyedDiObject(key, obj, typeof(T));
@@ -124,12 +73,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static object AddKeyedDiObject(object key, object obj, Type type)
+        new public object AddKeyedDiObject(object key, object obj, Type type)
         {
             Contract.Assert(obj is not null);
-            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
-            if (_NotCachedTypes.Contains(obj.GetType())) return obj;
-            var dict = KeyedObjects.GetOrAdd(key, _ => []);
+            using SemaphoreSyncContext ssc = Sync.SyncContext();
+            Type objType = obj.GetType();
+            if (_ScopeNotCachedTypes.Contains(objType) || !IsTypeCached(objType)) return obj;
+            var dict = KeyedScopeObjects.GetOrAdd(key, _ => []);
             dict.GetOrAdd(type, key => obj);
             return obj;
         }
@@ -145,7 +95,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task<T> AddDiObjectAsync<T>(T obj, CancellationToken cancellationToken = default)
+        new public async Task<T> AddDiObjectAsync<T>(T obj, CancellationToken cancellationToken = default)
         {
             Contract.Assert(obj is not null);
             await AddDiObjectAsync(obj, typeof(T), cancellationToken).DynamicContext();
@@ -163,12 +113,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task<object> AddDiObjectAsync(object obj, Type type, CancellationToken cancellationToken = default)
+        new public async Task<object> AddDiObjectAsync(object obj, Type type, CancellationToken cancellationToken = default)
         {
             Contract.Assert(obj is not null);
-            using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
-            if (_NotCachedTypes.Contains(obj.GetType())) return obj;
-            Objects.GetOrAdd(type, key => obj);
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
+            Type objType = obj.GetType();
+            if (_ScopeNotCachedTypes.Contains(objType) || !IsTypeCached(objType)) return obj;
+            ScopeObjects.GetOrAdd(type, key => obj);
             return obj;
         }
 
@@ -184,7 +135,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task<T> AddKeyedDiObjectAsync<T>(object key, T obj, CancellationToken cancellationToken = default)
+        new public async Task<T> AddKeyedDiObjectAsync<T>(object key, T obj, CancellationToken cancellationToken = default)
         {
             Contract.Assert(obj is not null);
             await AddKeyedDiObjectAsync(key, obj, typeof(T), cancellationToken).DynamicContext();
@@ -203,12 +154,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task<object> AddKeyedDiObjectAsync(object key, object obj, Type type, CancellationToken cancellationToken = default)
+        new public async Task<object> AddKeyedDiObjectAsync(object key, object obj, Type type, CancellationToken cancellationToken = default)
         {
             Contract.Assert(obj is not null);
-            using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
-            if (_NotCachedTypes.Contains(obj.GetType())) return obj;
-            var dict = KeyedObjects.GetOrAdd(key, _ => []);
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
+            Type objType = obj.GetType();
+            if (_ScopeNotCachedTypes.Contains(objType) || !IsTypeCached(objType)) return obj;
+            var dict = KeyedScopeObjects.GetOrAdd(key, _ => []);
             dict.GetOrAdd(type, key => obj);
             return obj;
         }
@@ -222,10 +174,10 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static object? RemoveDiObject(Type type)
+        new public object? RemoveDiObject(Type type)
         {
-            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
-            return Objects.TryRemove(type, out object? res) ? res : null;
+            using SemaphoreSyncContext ssc = Sync.SyncContext();
+            return ScopeObjects.TryRemove(type, out object? res) ? res : null;
         }
 
         /// <summary>
@@ -238,10 +190,10 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static object? RemoveKeyedDiObject(object key, Type type)
+        new public object? RemoveKeyedDiObject(object key, Type type)
         {
-            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
-            return KeyedObjects.TryGetValue(key, out var dict) && dict.TryRemove(type, out object? res) ? res : null;
+            using SemaphoreSyncContext ssc = Sync.SyncContext();
+            return KeyedScopeObjects.TryGetValue(key, out var dict) && dict.TryRemove(type, out object? res) ? res : null;
         }
 
         /// <summary>
@@ -253,7 +205,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static T? RemoveDiObject<T>() => (T?)RemoveDiObject(typeof(T));
+        new public T? RemoveDiObject<T>() => (T?)RemoveDiObject(typeof(T));
 
         /// <summary>
         /// Remove a keyed DI object from the cache
@@ -265,7 +217,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static T? RemoveKeyedDiObject<T>(object key) => (T?)RemoveKeyedDiObject(key, typeof(T));
+        new public T? RemoveKeyedDiObject<T>(object key) => (T?)RemoveKeyedDiObject(key, typeof(T));
 
         /// <summary>
         /// Remove a DI object from the cache
@@ -277,10 +229,10 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task<object?> RemoveDiObjectAsync(Type type, CancellationToken cancellationToken = default)
+        new public async Task<object?> RemoveDiObjectAsync(Type type, CancellationToken cancellationToken = default)
         {
-            using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
-            return Objects.TryGetValue(type, out object? res) ? res : null;
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
+            return ScopeObjects.TryGetValue(type, out object? res) ? res : null;
         }
 
         /// <summary>
@@ -294,10 +246,10 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task<object?> RemoveKeyedDiObjectAsync(object key, Type type, CancellationToken cancellationToken = default)
+        new public async Task<object?> RemoveKeyedDiObjectAsync(object key, Type type, CancellationToken cancellationToken = default)
         {
-            using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
-            return KeyedObjects.TryGetValue(key, out var dict) && dict.TryRemove(type, out object? res) ? res : null;
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
+            return KeyedScopeObjects.TryGetValue(key, out var dict) && dict.TryRemove(type, out object? res) ? res : null;
         }
 
         /// <summary>
@@ -310,7 +262,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task<T?> RemoveDiObjectAsync<T>(CancellationToken cancellationToken = default)
+        new public async Task<T?> RemoveDiObjectAsync<T>(CancellationToken cancellationToken = default)
             => (T?)await RemoveDiObjectAsync(typeof(T), cancellationToken).DynamicContext();
 
         /// <summary>
@@ -324,7 +276,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task<T?> RemoveKeyedDiObjectAsync<T>(object key, CancellationToken cancellationToken = default)
+        new public async Task<T?> RemoveKeyedDiObjectAsync<T>(object key, CancellationToken cancellationToken = default)
             => (T?)await RemoveKeyedDiObjectAsync(key, typeof(T), cancellationToken).DynamicContext();
 
         /// <summary>
@@ -336,12 +288,12 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static object[] RemoveDiObjects(Type type)
+        new public object[] RemoveDiObjects(Type type)
         {
-            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
+            using SemaphoreSyncContext ssc = Sync.SyncContext();
             List<object> res = [];
-            foreach (Type t in Objects.Keys)
-                if (type.IsAssignableFromExt(t) && Objects.TryRemove(t, out object? obj))
+            foreach (Type t in ScopeObjects.Keys)
+                if (type.IsAssignableFromExt(t) && ScopeObjects.TryRemove(t, out object? obj))
                     res.Add(obj);
             return [.. res];
         }
@@ -356,10 +308,10 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static object[] RemoveKeyedDiObjects(object key, Type type)
+        new public object[] RemoveKeyedDiObjects(object key, Type type)
         {
-            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
-            if (!KeyedObjects.TryGetValue(key, out var dict)) return [];
+            using SemaphoreSyncContext ssc = Sync.SyncContext();
+            if (!KeyedScopeObjects.TryGetValue(key, out var dict)) return [];
             List<object> res = [];
             foreach (Type t in dict.Keys)
                 if (type.IsAssignableFromExt(t) && dict.TryRemove(t, out object? obj))
@@ -376,7 +328,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static T[] RemoveDiObjects<T>() => [.. RemoveDiObjects(typeof(T)).Select(o => (T)o)];
+        new public T[] RemoveDiObjects<T>() => [.. RemoveDiObjects(typeof(T)).Select(o => (T)o)];
 
         /// <summary>
         /// Remove a keyed DI object from the cache
@@ -388,7 +340,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static T[] RemoveKeyedDiObjects<T>(object key) => [.. RemoveKeyedDiObjects(key, typeof(T)).Select(o => (T)o)];
+        new public T[] RemoveKeyedDiObjects<T>(object key) => [.. RemoveKeyedDiObjects(key, typeof(T)).Select(o => (T)o)];
 
         /// <summary>
         /// Remove all DI objects from the cache
@@ -400,11 +352,11 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task<object[]> RemoveDiObjectsAsync(Type type, CancellationToken cancellationToken = default)
+        new public async Task<object[]> RemoveDiObjectsAsync(Type type, CancellationToken cancellationToken = default)
         {
-            using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             List<object> res = [];
-            foreach (Type t in Objects.Keys)
+            foreach (Type t in ScopeObjects.Keys)
                 if (type.IsAssignableFromExt(t) && Objects.TryRemove(t, out object? obj))
                     res.Add(obj);
             return [.. res];
@@ -421,10 +373,10 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task<object[]> RemoveKeyedDiObjectsAsync(object key, Type type, CancellationToken cancellationToken = default)
+        new public async Task<object[]> RemoveKeyedDiObjectsAsync(object key, Type type, CancellationToken cancellationToken = default)
         {
-            using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
-            if (!KeyedObjects.TryGetValue(key, out var dict)) return [];
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
+            if (!KeyedScopeObjects.TryGetValue(key, out var dict)) return [];
             List<object> res = [];
             foreach (Type t in dict.Keys)
                 if (type.IsAssignableFromExt(t) && dict.TryRemove(t, out object? obj))
@@ -442,7 +394,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task<T[]> RemoveDiObjectsAsync<T>(CancellationToken cancellationToken = default)
+        new public async Task<T[]> RemoveDiObjectsAsync<T>(CancellationToken cancellationToken = default)
             => [.. (await RemoveDiObjectsAsync(typeof(T), cancellationToken).DynamicContext()).Select(o => (T)o)];
 
         /// <summary>
@@ -456,7 +408,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task<T[]> RemoveKeyedDiObjectsAsync<T>(object key, CancellationToken cancellationToken = default)
+        new public async Task<T[]> RemoveKeyedDiObjectsAsync<T>(object key, CancellationToken cancellationToken = default)
             => [.. (await RemoveKeyedDiObjectsAsync(key, typeof(T), cancellationToken).DynamicContext()).Select(o => (T)o)];
 
         /// <summary>
@@ -466,10 +418,10 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static void ClearObjectCache()
+        new public void ClearObjectCache()
         {
-            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
-            object[] objects = [.. Objects.Values];
+            using SemaphoreSyncContext ssc = Sync.SyncContext();
+            object[] objects = [.. ScopeObjects.Values];
             Objects.Clear();
             objects.TryDisposeAll();
         }
@@ -482,13 +434,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static void ClearKeyedObjectCache(object key)
+        new public void ClearKeyedObjectCache(object key)
         {
-            using SemaphoreSyncContext ssc = StaticSync.SyncContext();
-            if (!KeyedObjects.TryGetValue(key, out var dict)) return;
+            using SemaphoreSyncContext ssc = Sync.SyncContext();
+            if (!KeyedScopeObjects.TryGetValue(key, out var dict)) return;
             object[] objects = [.. dict.Values];
             dict.Clear();
-            KeyedObjects.TryRemove(key, out _);
+            KeyedScopeObjects.TryRemove(key, out _);
             objects.TryDisposeAll();
         }
 
@@ -500,11 +452,11 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task ClearObjectCacheAsync(CancellationToken cancellationToken = default)
+        new public async Task ClearObjectCacheAsync(CancellationToken cancellationToken = default)
         {
-            using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
-            object[] objects = [.. Objects.Values];
-            Objects.Clear();
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
+            object[] objects = [.. ScopeObjects.Values];
+            ScopeObjects.Clear();
             await objects.TryDisposeAllAsync().DynamicContext();
         }
 
@@ -517,13 +469,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task ClearKeyedObjectCacheAsync(object key, CancellationToken cancellationToken = default)
+        new public async Task ClearKeyedObjectCacheAsync(object key, CancellationToken cancellationToken = default)
         {
-            using SemaphoreSyncContext ssc = await StaticSync.SyncContextAsync(cancellationToken).DynamicContext();
-            if (!KeyedObjects.TryGetValue(key, out var dict)) return;
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
+            if (!KeyedScopeObjects.TryGetValue(key, out var dict)) return;
             object[] objects = [.. dict.Values];
             dict.Clear();
-            KeyedObjects.TryRemove(key, out _);
+            KeyedScopeObjects.TryRemove(key, out _);
             await objects.TryDisposeAllAsync().DynamicContext();
         }
     }

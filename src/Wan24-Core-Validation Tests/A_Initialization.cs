@@ -12,7 +12,7 @@ namespace Wan24_Core_Tests
         public static void Init(TestContext tc)
         {
             if (File.Exists("tests.log")) File.Delete("tests.log");
-            Logging.Logger = new ConsoleLogger(LogLevel.Trace, next: FileLogger.CreateAsync("tests.log", LogLevel.Trace).Result);
+            Logging.Logger = new ConsoleLogger(LogLevel.Trace, next: FileLogger.CreateAsync("tests.log", LogLevel.Trace).GetAwaiter().GetResult());
             Logging.WriteInfo("wan24-Core-Validation Tests initialized");
             Bootstrap.Async().Wait();
         }

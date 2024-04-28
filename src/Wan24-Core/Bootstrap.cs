@@ -34,7 +34,7 @@ namespace wan24.Core
                         : new($"Catched unhandled exception without exception object from the current app domain (will terminate: {e.IsTerminating})", new Exception(), ErrorHandling.UNHANDLED_EXCEPTION)
                     );
             };
-            AppDomain.CurrentDomain.ProcessExit += (s, e) => Shutdown.Async().Wait();
+            AppDomain.CurrentDomain.ProcessExit += (s, e) => Shutdown.Async().GetAwaiter().GetResult();
         }
 
         /// <summary>

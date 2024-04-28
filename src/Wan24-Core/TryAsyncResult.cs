@@ -6,7 +6,7 @@ namespace wan24.Core
     /// Result of an asynchronous try-action
     /// </summary>
     /// <typeparam name="T">Result type</typeparam>
-    public readonly record struct TryAsyncResult<T>
+    public readonly record struct TryAsyncResult<T> : ITryAsyncResult
     {
         /// <summary>
         /// Constructor
@@ -30,9 +30,7 @@ namespace wan24.Core
             Result = result;
         }
 
-        /// <summary>
-        /// Did the try-action succeed?
-        /// </summary>
+        /// <inheritdoc/>
         [MemberNotNullWhen(returnValue: true, nameof(Result))]
         public bool Succeed { get; }
 
@@ -41,22 +39,35 @@ namespace wan24.Core
         /// </summary>
         public T? Result { get; }
 
+        /// <inheritdoc/>
+        object? ITryAsyncResult.Result => Result;
+
         /// <summary>
         /// Cast as succeed-flag
         /// </summary>
         /// <param name="instance">Instance</param>
-        public static implicit operator bool(TryAsyncResult<T> instance) => instance.Succeed;
+        public static implicit operator bool(in TryAsyncResult<T> instance) => instance.Succeed;
 
         /// <summary>
         /// Cast as non-<see langword="null"/> result
         /// </summary>
         /// <param name="instance">Instance</param>
-        public static implicit operator T(TryAsyncResult<T> instance) => instance.Result ?? throw new InvalidOperationException();
+        public static implicit operator T(in TryAsyncResult<T> instance) => instance.Result ?? throw new InvalidOperationException();
 
         /// <summary>
-        /// Cast as instance
+        /// Cast failed result
+        /// </summary>
+        /// <param name="result"><see langword="false"/></param>
+        public static implicit operator TryAsyncResult<T>(in bool result)
+        {
+            if (result) throw new InvalidCastException($"{typeof(TryAsyncResult<T>)} can only be casted from FALSE");
+            return new(succeed: false);
+        }
+
+        /// <summary>
+        /// Cast from succeed result
         /// </summary>
         /// <param name="result">Result</param>
-        public static implicit operator TryAsyncResult<T>(T? result) => new(result);
+        public static implicit operator TryAsyncResult<T>(in T result) => new(result, succeed: true);
     }
 }

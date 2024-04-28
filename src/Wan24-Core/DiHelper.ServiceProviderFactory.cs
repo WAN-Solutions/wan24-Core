@@ -16,7 +16,11 @@ namespace wan24.Core
             /// <param name="options">Options</param>
             /// <param name="scoped">Create scoped service providers?</param>
             /// <param name="defaultFactory">Default service provider factory</param>
-            public DiServiceProviderFactory(in ServiceProviderOptions? options = null, in bool scoped = true, in IServiceProviderFactory<IServiceCollection>? defaultFactory = null)
+            public DiServiceProviderFactory(
+                in ServiceProviderOptions? options = null, 
+                in bool scoped = true, 
+                in IServiceProviderFactory<IServiceCollection>? defaultFactory = null
+                )
             {
                 DefaultFactory = defaultFactory ?? new DefaultServiceProviderFactory(options ?? new()
                 {

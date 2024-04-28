@@ -164,7 +164,9 @@ namespace wan24.Core
             EnsureUndisposed();
             ArgumentOutOfRangeException.ThrowIfNegative(index);
             if (ChunkStreams.TryGetValue(index, out Stream? res)) return res;
-            return ChunkStreams[index] = ChunkStreamFactory is null ? AsyncChunkStreamFactory!(this, index, default).Result : ChunkStreamFactory(this, index);
+            return ChunkStreams[index] = ChunkStreamFactory is null 
+                ? AsyncChunkStreamFactory!(this, index, default).GetAwaiter().GetResult() 
+                : ChunkStreamFactory(this, index);
         }
 
         /// <summary>
@@ -202,7 +204,7 @@ namespace wan24.Core
             }
             else
             {
-                AsyncDeleteChunk!(this, index, default).Wait();
+                AsyncDeleteChunk!(this, index, default).GetAwaiter().GetResult();
             }
             _ModifiedChunks.Remove(index);
         }

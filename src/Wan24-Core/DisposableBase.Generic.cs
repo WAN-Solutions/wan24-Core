@@ -83,7 +83,7 @@ namespace wan24.Core
                         disposable.Dispose();
                         break;
                     case IAsyncDisposable asyncDisposable:
-                        asyncDisposable.DisposeAsync().AsTask().Wait();
+                        asyncDisposable.DisposeAsync().AsTask().GetAwaiter().GetResult();
                         break;
                     case byte[] bytes:
                         bytes.Clear();
@@ -108,7 +108,7 @@ namespace wan24.Core
                 }
             foreach (Func<T, IAsyncDisposable?> getter in AsyncDisposableProperties)
                 if (getter(self) is IAsyncDisposable asyncDisposable)
-                    asyncDisposable.DisposeAsync().AsTask().Wait();
+                    asyncDisposable.DisposeAsync().AsTask().GetAwaiter().GetResult();
             foreach (Func<T, object?> getter in OtherDisposableProperties)
                 switch (getter(self))
                 {
@@ -133,7 +133,7 @@ namespace wan24.Core
                             disposable.Dispose();
                             break;
                         case IAsyncDisposable asyncDisposable:
-                            asyncDisposable.DisposeAsync().AsTask().Wait();
+                            asyncDisposable.DisposeAsync().AsTask().GetAwaiter().GetResult();
                             break;
                         case byte[] bytes:
                             bytes.Clear();

@@ -54,6 +54,7 @@ namespace wan24.Core
                 yield return new(__("Create folder"), Settings.CreateFolderMode, __("Linux create folder mode"), "Core");
                 yield return new(__("Log level"), Settings.LogLevel, __("Default log level"), "Core");
                 yield return new(__("Delayed processes"), DelayTable.Delays.Count, __("Number of delayed processes"), "Core");
+                yield return new(__("Exceptions"), ErrorHandling.ExceptionCount, __("Total number of exceptions"), "Core");
                 // Services
                 foreach (var kvp in ServiceWorkerTable.ServiceWorkers)
                     if (kvp.Value is IStatusProvider sp)

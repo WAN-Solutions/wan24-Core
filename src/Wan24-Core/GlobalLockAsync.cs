@@ -65,7 +65,7 @@ namespace wan24.Core
             ActionEvent.Set();
             try
             {
-                Task.Wait();
+                Task.GetAwaiter().GetResult();
             }
             catch (Exception ex)
             {

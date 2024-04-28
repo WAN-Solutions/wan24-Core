@@ -78,7 +78,7 @@ namespace wan24.Core
         {
             if (DisposeAction is null)
             {
-                DisposeAsyncAction!().Wait();
+                DisposeAsyncAction!().GetAwaiter().GetResult();
             }
             else
             {

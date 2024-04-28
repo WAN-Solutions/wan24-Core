@@ -109,7 +109,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            Enumerator?.DisposeAsync().AsTask().Wait();
+            Enumerator?.DisposeAsync().AsTask().GetAwaiter().GetResult();
             foreach (object? obj in Disposables)
                     obj?.TryDispose();
         }

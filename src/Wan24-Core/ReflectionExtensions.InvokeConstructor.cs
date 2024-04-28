@@ -12,6 +12,7 @@ namespace wan24.Core
         /// <param name="ci">Constructor</param>
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static object InvokeAuto(this ConstructorInfo ci, params object?[] param) => ci.Invoke(ci.GetParametersCached().GetDiObjects(param));
 
         /// <summary>
@@ -21,6 +22,7 @@ namespace wan24.Core
         /// <param name="serviceProvider">Service provider</param>
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static object InvokeAuto(this ConstructorInfo ci, IServiceProvider serviceProvider, params object?[] param)
              => ci.Invoke(ci.GetParametersCached().GetDiObjects(param, serviceProvider));
 
@@ -52,6 +54,7 @@ namespace wan24.Core
         /// <param name="serviceProvider">Service provider</param>
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static async Task<object> InvokeAutoAsync(this ConstructorInfo ci, IAsyncServiceProvider serviceProvider, params object?[] param)
             => ci.Invoke(await ci.GetParametersCached().GetDiObjectsAsync(param,serviceProvider).DynamicContext());
 
@@ -74,6 +77,7 @@ namespace wan24.Core
         /// <param name="usePrivate">Use private constructors, too?</param>
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static object ConstructAuto(this Type type, in bool usePrivate = false, params object?[] param)
             => ConstructAuto(type, out _, usePrivate, param);
 
@@ -85,6 +89,7 @@ namespace wan24.Core
         /// <param name="usePrivate">Use private constructors, too?</param>
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static object ConstructAuto(this Type type, in IServiceProvider serviceProvider, in bool usePrivate = false, params object?[] param)
             => ConstructAuto(type, serviceProvider, out _, usePrivate, param);
 
@@ -157,6 +162,7 @@ namespace wan24.Core
         /// <param name="usePrivate">Use private constructors, too?</param>
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static async Task<object> ConstructInstanceAutoAsync(
             this Type type, 
             IAsyncServiceProvider serviceProvider, 

@@ -162,7 +162,7 @@
         protected override void Dispose(bool disposing)
         {
             Cancellation.Cancel();
-            ProcessorTask?.Wait();
+            ProcessorTask?.GetAwaiter().GetResult();
             base.Dispose(disposing);
             CombinedCancellation.Dispose();
             Cancellation.Dispose();

@@ -532,9 +532,7 @@ namespace wan24.Core
             finally
             {
                 syncYield.Dispose();
-#pragma warning disable CA2016 // Forward cancellation token
-                filter.Wait();
-#pragma warning restore CA2016 // Forward cancellation token
+                filter.GetAwaiter().GetResult();
             }
         }
 

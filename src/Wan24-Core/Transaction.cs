@@ -167,7 +167,7 @@ namespace wan24.Core
                     }
                     else if (AsyncRollback.TryGetValue(i, out AsyncRollback_Delegate? asyncRollback))
                     {
-                        asyncRollback(this, ReturnValues.Count <= i ? null : ReturnValues[i], CancellationToken.None).Wait();
+                        asyncRollback(this, ReturnValues.Count <= i ? null : ReturnValues[i], CancellationToken.None).GetAwaiter().GetResult();
                     }
                     else
                     {

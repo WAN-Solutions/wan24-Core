@@ -203,6 +203,37 @@ namespace Wan24_Core_Tests
             Assert.IsFalse(getterSetter.IsInitOnly());
         }
 
+        [TestMethod]
+        public void IsAssignableFromExt_Tests()
+        {
+            Assert.IsFalse(typeof(Dictionary<,>).IsAssignableFrom(typeof(Dictionary<string, string>)));
+            Assert.IsTrue(typeof(Dictionary<,>).IsAssignableFromExt(typeof(Dictionary<string, string>)));
+        }
+
+        [TestMethod]
+        public void HasBaseType_Tests()
+        {
+            Assert.IsTrue(typeof(AcidStream).HasBaseType(typeof(Stream)));
+            Assert.IsFalse(typeof(AcidStream).HasBaseType(typeof(bool)));
+        }
+
+        [TestMethod]
+        public void EnsureGenericTypeDefinition_Tests()
+        {
+            Assert.AreEqual(typeof(Dictionary<,>), typeof(Dictionary<string, string>).EnsureGenericTypeDefinition());
+            Assert.AreEqual(typeof(Dictionary<,>), typeof(Dictionary<,>).EnsureGenericTypeDefinition());
+        }
+
+        [TestMethod]
+        public void GetBaseTypes_Tests()
+        {
+            Type[] baseTypes = [.. typeof(AcidStream).GetBaseTypes()];
+            Assert.IsTrue(baseTypes.Length > 0);
+            Assert.IsFalse(baseTypes.Contains(typeof(AcidStream)));
+            Assert.IsFalse(baseTypes.Contains(typeof(object)));
+            Assert.IsTrue(baseTypes.Contains(typeof(Stream)));
+        }
+
         public int? TestField = null;
 
         public int TestField2 = 0;
@@ -229,8 +260,8 @@ namespace Wan24_Core_Tests
             return true;
         }
 
-        private static Task<DiHelper.AsyncResult> GetTrueAsync(Type type, CancellationToken cancellationToken)
-            => Task.FromResult(new DiHelper.AsyncResult(true, true));
+        private static Task<ITryAsyncResult> GetTrueAsync(Type type, CancellationToken cancellationToken)
+            => Task.FromResult<ITryAsyncResult>(new TryAsyncResult<bool>(true, true));
 
         public sealed class ReflectionTestClass
         {

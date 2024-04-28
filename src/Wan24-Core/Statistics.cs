@@ -1,7 +1,7 @@
 ﻿namespace wan24.Core
 {
     /// <summary>
-    /// Statistics
+    /// Statistics (provides the moving average)
     /// </summary>
     public sealed class Statistics
     {
@@ -13,6 +13,10 @@
         /// Values
         /// </summary>
         private readonly double[] Values;
+        /// <summary>
+        /// If there was no last value
+        /// </summary>
+        private bool IsFirstValue = true;
         /// <summary>
         /// Value count
         /// </summary>
@@ -28,11 +32,13 @@
         /// <param name="name">Display name</param>
         /// <param name="capacity">Capacity</param>
         /// <param name="valueGenerator">Value generator</param>
-        public Statistics(in string name, in int capacity, in Value_Delegate valueGenerator)
+        /// <param name="valueMode">Value mode</param>
+        public Statistics(in string name, in int capacity, in Value_Delegate valueGenerator, in StatisticsValueModes valueMode = StatisticsValueModes.PeriodCounter)
         {
             ArgumentOutOfRangeException.ThrowIfLessThan(capacity, 1);
             Name = name;
             ValueGenerator = valueGenerator;
+            ValueMode = valueMode;
             Values = new double[capacity];
         }
 
@@ -50,6 +56,16 @@
         /// Value group
         /// </summary>
         public string? Group { get; set; }
+
+        /// <summary>
+        /// Value mode
+        /// </summary>
+        public StatisticsValueModes ValueMode { get; }
+
+        /// <summary>
+        /// Last update
+        /// </summary>
+        public DateTime LastUpdate { get; private set; } = DateTime.MinValue;
 
         /// <summary>
         /// Last value
@@ -78,22 +94,42 @@
         public async Task GenerateValue(CancellationToken cancellationToken)
         {
             double value = await ValueGenerator(cancellationToken).DynamicContext();
-            LastValue = value;
-            Average = (Average + value) / 2;
-            Values[ValueOffset] = value;
-            ValueOffset++;
-            if (ValueOffset == Values.Length) ValueOffset = 0;
-            if (ValueCount < Values.Length) ValueCount++;
-            value = 0;
-            int i = 0;
-            if (ValueCount > 3)
-                for (
-                    int stop = ValueCount >> 2;
-                    i < stop;
-                    value += Values[i], value += Values[++i], value += Values[++i], value += Values[++i]
-                    ) ;
-            for (; i < ValueCount; value += Values[i], i++) ;
-            MovingAverage = value / ValueCount;
+            lock (Values)
+            {
+                if (IsFirstValue)
+                {
+                    IsFirstValue = false;
+                    Average = value;
+                }
+                else
+                {
+                    if (ValueMode == StatisticsValueModes.PeriodCounter)
+                    {
+                        Average = (Average + value) / 2;
+                    }
+                    else
+                    {
+                        if (value < LastValue) throw new InvalidDataException($"New total value {value} is smaller than the previous value {LastValue}");
+                        Average = (Average + (value - LastValue)) / 2;
+                    }
+                }
+                LastValue = value;
+                Values[ValueOffset] = value;
+                ValueOffset++;
+                if (ValueOffset == Values.Length) ValueOffset = 0;
+                if (ValueCount < Values.Length) ValueCount++;
+                value = 0;
+                int i = 0;
+                if (ValueCount > 3)
+                    for (
+                        int stop = ValueCount >> 2;
+                        i < stop;
+                        value += Values[i], value += Values[++i], value += Values[++i], value += Values[++i]
+                        ) ;
+                for (; i < ValueCount; value += Values[i], i++) ;
+                MovingAverage = value / ValueCount;
+                LastUpdate = DateTime.Now;
+            }
         }
 
         /// <summary>
