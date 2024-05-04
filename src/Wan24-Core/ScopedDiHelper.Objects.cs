@@ -38,7 +38,7 @@ namespace wan24.Core
         {
             using SemaphoreSyncContext ssc = Sync.SyncContext();
             Type objType = obj.GetType();
-            if (_ScopeNotCachedTypes.Contains(objType) || !IsTypeCachedInt(objType)) return obj;
+            if (!IsTypeCachedInt(objType)) return obj;
             ScopeObjects.GetOrAdd(type, key => obj);
             return obj;
         }
@@ -77,7 +77,7 @@ namespace wan24.Core
             Contract.Assert(obj is not null);
             using SemaphoreSyncContext ssc = Sync.SyncContext();
             Type objType = obj.GetType();
-            if (_ScopeNotCachedTypes.Contains(objType) || !IsTypeCachedInt(objType)) return obj;
+            if (!IsTypeCachedInt(objType)) return obj;
             var dict = KeyedScopeObjects.GetOrAdd(key, _ => []);
             dict.GetOrAdd(type, key => obj);
             return obj;
@@ -117,7 +117,7 @@ namespace wan24.Core
             Contract.Assert(obj is not null);
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             Type objType = obj.GetType();
-            if (_ScopeNotCachedTypes.Contains(objType) || !await IsTypeCachedIntAsync(objType, cancellationToken).DynamicContext()) return obj;
+            if (!await IsTypeCachedIntAsync(objType, cancellationToken).DynamicContext()) return obj;
             ScopeObjects.GetOrAdd(type, key => obj);
             return obj;
         }
@@ -158,7 +158,7 @@ namespace wan24.Core
             Contract.Assert(obj is not null);
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             Type objType = obj.GetType();
-            if (_ScopeNotCachedTypes.Contains(objType) || !await IsTypeCachedIntAsync(objType, cancellationToken).DynamicContext()) return obj;
+            if (!await IsTypeCachedIntAsync(objType, cancellationToken).DynamicContext()) return obj;
             var dict = KeyedScopeObjects.GetOrAdd(key, _ => []);
             dict.GetOrAdd(type, key => obj);
             return obj;

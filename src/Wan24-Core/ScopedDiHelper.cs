@@ -29,7 +29,8 @@ namespace wan24.Core
                 (disposing) =>
                 {
                     _ScopeNotCachedTypes.Clear();
-                    ServiceProvider?.TryDispose();
+                    if (DisposeServiceProvider)
+                        ServiceProvider?.TryDispose();
                     ScopeObjects.Values.TryDisposeAll();
                     ScopeObjects.Clear();
                     foreach (var dict in KeyedScopeObjects.Values)
@@ -47,7 +48,7 @@ namespace wan24.Core
                 async () =>
                 {
                     _ScopeNotCachedTypes.Clear();
-                    if (ServiceProvider is not null) await ServiceProvider.TryDisposeAsync().DynamicContext();
+                    if (DisposeServiceProvider && ServiceProvider is not null) await ServiceProvider.TryDisposeAsync().DynamicContext();
                     await ScopeObjects.Values.TryDisposeAllAsync().DynamicContext();
                     ScopeObjects.Clear();
                     foreach (var dict in KeyedScopeObjects.Values)

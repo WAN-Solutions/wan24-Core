@@ -101,7 +101,7 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <returns>Will be cached?</returns>
         protected virtual bool IsTypeCachedInt(Type type)
-            => !_ScopeNotCachedTypes.Contains(type) && !DiHelper.IsTypeCached(type);
+            => !_ScopeNotCachedTypes.Contains(type) && DiHelper.IsTypeCached(type);
 
         /// <summary>
         /// Determine if an object of the given type will be cached
@@ -110,6 +110,6 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Will be cached?</returns>
         protected virtual async Task<bool> IsTypeCachedIntAsync(Type type, CancellationToken cancellationToken = default)
-            => !_ScopeNotCachedTypes.Contains(type) && !await DiHelper.IsTypeCachedAsync(type, cancellationToken).DynamicContext();
+            => !_ScopeNotCachedTypes.Contains(type) && await DiHelper.IsTypeCachedAsync(type, cancellationToken).DynamicContext();
     }
 }
