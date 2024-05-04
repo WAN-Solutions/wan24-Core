@@ -2,6 +2,8 @@
 using System.Runtime;
 using static wan24.Core.Logging;
 
+//FIXME Disposing wan24.Core.SemaphoreSync from finalizer (shouldn't happen!) - only when not creating a DisposableBase stack info
+
 namespace wan24.Core
 {
     /// <summary>
@@ -50,6 +52,11 @@ namespace wan24.Core
         /// Number of managed object synchronizing instances
         /// </summary>
         public static int SynchronizedObjectCount => Instances.Count;
+
+        /// <summary>
+        /// Name
+        /// </summary>
+        public string? Name { get; set; }
 
         /// <summary>
         /// Semaphore
@@ -144,7 +151,8 @@ namespace wan24.Core
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public async Task SyncAsync(CancellationToken cancellationToken = default) => await IfUndisposed(async () => await Semaphore.WaitAsync(cancellationToken)).DynamicContext();
+        public async Task SyncAsync(CancellationToken cancellationToken = default)
+            => await IfUndisposed(async () => await Semaphore.WaitAsync(cancellationToken)).DynamicContext();
 
         /// <summary>
         /// Release the synchronization lock

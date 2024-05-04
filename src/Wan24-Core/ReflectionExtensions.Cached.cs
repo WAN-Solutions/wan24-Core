@@ -70,7 +70,15 @@ namespace wan24.Core
                 (key) => new()).GetOrAdd(bindingFlags, (key) => (from pi in type.GetProperties(bindingFlags)
                                                                  where !pi.PropertyType.IsByRef && 
                                                                     pi.GetIndexParameters().Length == 0
-                                                                 select new PropertyInfoExt(pi, pi.CanRead ? pi.GetGetterDelegate() : null, pi.CanWrite ? pi.GetSetterDelegate() : null))
+                                                                 select new PropertyInfoExt(
+                                                                     pi, 
+                                                                     pi.CanRead 
+                                                                        ? pi.GetGetterDelegate() 
+                                                                        : null, 
+                                                                     pi.CanWrite 
+                                                                        ? pi.GetSetterDelegate() 
+                                                                        : null
+                                                                     ))
                 .ToArray());
 
         /// <summary>
