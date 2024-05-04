@@ -22,6 +22,7 @@ namespace wan24.Core
             if (obj is not null) return true;
             if (GetFactory(type) is Di_Delegate factory && factory(type, out obj))
             {
+                DisposableAdapter.RegisterForDispose(obj);
                 AddDiObject(type);
                 return true;
             }
@@ -31,6 +32,7 @@ namespace wan24.Core
                 if (result.Succeed)
                 {
                     obj = result.Result;
+                    DisposableAdapter.RegisterForDispose(obj);
                     AddDiObject(obj);
                     return true;
                 }
@@ -77,6 +79,7 @@ namespace wan24.Core
             }
             if (GetKeyedFactory(key, type) is Di_Delegate keyedFactory && keyedFactory(type, out obj))
             {
+                DisposableAdapter.RegisterForDispose(obj);
                 AddKeyedDiObject(key, obj);
                 return true;
             }
@@ -86,6 +89,7 @@ namespace wan24.Core
                 if (result.Succeed)
                 {
                     obj = result.Result;
+                    DisposableAdapter.RegisterForDispose(obj);
                     AddKeyedDiObject(key, obj);
                     return true;
                 }
@@ -94,6 +98,7 @@ namespace wan24.Core
             {
                 if (GetFactory(type) is Di_Delegate factory && factory(type, out obj))
                 {
+                    DisposableAdapter.RegisterForDispose(obj);
                     AddDiObject(type);
                     return true;
                 }
@@ -103,6 +108,7 @@ namespace wan24.Core
                     if (result.Succeed)
                     {
                         obj = result.Result;
+                        DisposableAdapter.RegisterForDispose(obj);
                         AddDiObject(obj);
                         return true;
                     }
@@ -182,12 +188,14 @@ namespace wan24.Core
                 ITryAsyncResult result = await asyncFactory(type, cancellationToken).DynamicContext();
                 if (result.Succeed)
                 {
+                    DisposableAdapter.RegisterForDispose(result.Result);
                     await AddDiObjectAsync(result.Result!, type, cancellationToken).DynamicContext();
                     return result;
                 }
             }
             if (GetFactory(type) is Di_Delegate factory && factory(type, out res))
             {
+                DisposableAdapter.RegisterForDispose(res);
                 await AddDiObjectAsync(res, type, cancellationToken).DynamicContext();
                 return new TryAsyncResult<object>(res, succeed: true);
             }
@@ -239,12 +247,14 @@ namespace wan24.Core
                 ITryAsyncResult result = await keyedAsyncFactory(type, cancellationToken).DynamicContext();
                 if (result.Succeed)
                 {
+                    DisposableAdapter.RegisterForDispose(result.Result);
                     AddKeyedDiObject(key, result.Result);
                     return result;
                 }
             }
             if (GetKeyedFactory(key, type) is Di_Delegate keyedFactory && keyedFactory(type, out obj))
             {
+                DisposableAdapter.RegisterForDispose(obj);
                 AddKeyedDiObject(key, obj);
                 return new TryAsyncResult<object>(obj, succeed: true);
             }
@@ -255,12 +265,14 @@ namespace wan24.Core
                     ITryAsyncResult result = await asyncFactory(type, cancellationToken).DynamicContext();
                     if (result.Succeed)
                     {
+                        DisposableAdapter.RegisterForDispose(result.Result);
                         AddDiObject(result.Result);
                         return result;
                     }
                 }
                 if (GetFactory(type) is Di_Delegate factory && factory(type, out obj))
                 {
+                    DisposableAdapter.RegisterForDispose(obj);
                     AddDiObject(type);
                     return new TryAsyncResult<object>(obj, succeed: true);
                 }
