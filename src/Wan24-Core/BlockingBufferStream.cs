@@ -63,6 +63,11 @@ namespace wan24.Core
         public bool AutoReorg { get; set; } = true;
 
         /// <summary>
+        /// Use flush (if <see langword="true"/>, write methods will flush automatic, if the buffer is full)?
+        /// </summary>
+        public bool UseFlush { get; set; }
+
+        /// <summary>
         /// Is at the end of the file?
         /// </summary>
         public bool IsEndOfFile
@@ -75,7 +80,11 @@ namespace wan24.Core
                 if (_IsEndOfFile || !value) throw new InvalidOperationException();
                 _IsEndOfFile = value;
                 SpaceEvent.Set();
-                DataEvent.Set();
+                if (!DataEvent.IsSet)
+                {
+                    DataEvent.Set();
+                    RaiseOnDataAvailable();
+                }
             }
         }
 
@@ -124,7 +133,11 @@ namespace wan24.Core
             if (_IsEndOfFile) throw new InvalidOperationException();
             _IsEndOfFile = true;
             await SpaceEvent.SetAsync(CancellationToken.None).DynamicContext();
-            await DataEvent.SetAsync(CancellationToken.None).DynamicContext();
+            if (!DataEvent.IsSet)
+            {
+                await DataEvent.SetAsync(CancellationToken.None).DynamicContext();
+                RaiseOnDataAvailable();
+            }
         }
 
         /// <summary>
@@ -210,6 +223,26 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             await DataEvent.WaitAsync(cancellationToken).DynamicContext();
+        }
+
+        /// <inheritdoc/>
+        public sealed override void Flush()
+        {
+            EnsureUndisposed();
+            using SemaphoreSyncContext ssc = BufferSync;
+            if (!UseFlush || Available == 0 || DataEvent.IsSet) return;
+            DataEvent.Set();
+            RaiseOnDataAvailable();
+        }
+
+        /// <inheritdoc/>
+        public sealed override async Task FlushAsync(CancellationToken cancellationToken)
+        {
+            EnsureUndisposed();
+            using SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext();
+            if (!UseFlush || Available == 0 || DataEvent.IsSet) return;
+            await DataEvent.SetAsync(CancellationToken.None).DynamicContext();
+            RaiseOnDataAvailable();
         }
 
         /// <inheritdoc/>

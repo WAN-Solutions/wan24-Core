@@ -4,9 +4,6 @@
     public partial class BlockingBufferStream
     {
         /// <inheritdoc/>
-        public sealed override void Flush() => EnsureUndisposed();
-
-        /// <inheritdoc/>
         public sealed override void SetLength(long value) => throw new NotSupportedException();
 
         /// <inheritdoc/>
@@ -39,13 +36,12 @@
                         SpaceEvent.Reset();
                         RaiseOnNeedSpace();
                     }
-                    if (!DataEvent.IsSet)
+                    if (!DataEvent.IsSet && (!UseFlush || SpaceLeft == 0))
                     {
                         DataEvent.Set();
                         RaiseOnDataAvailable();
                     }
                 }
-                if (AutoReorg && SpaceLeft == 0) ReorganizeBuffer();
             }
         }
 
@@ -77,13 +73,12 @@
                         SpaceEvent.Reset();
                         RaiseOnNeedSpace();
                     }
-                    if (!DataEvent.IsSet)
+                    if (!DataEvent.IsSet && (!UseFlush || SpaceLeft == 0))
                     {
                         DataEvent.Set();
                         RaiseOnDataAvailable();
                     }
                 }
-                if (AutoReorg && SpaceLeft == 0) ReorganizeBuffer();
             }
             return res;
         }
@@ -116,13 +111,12 @@
                         SpaceEvent.Reset(CancellationToken.None);
                         RaiseOnNeedSpace();
                     }
-                    if (!DataEvent.IsSet)
+                    if (!DataEvent.IsSet && (!UseFlush || SpaceLeft == 0))
                     {
                         DataEvent.Set(CancellationToken.None);
                         RaiseOnDataAvailable();
                     }
                 }
-                if (AutoReorg && SpaceLeft == 0) await ReorganizeBufferAsync(cancellationToken).DynamicContext();
             }
         }
 
@@ -155,13 +149,12 @@
                         SpaceEvent.Reset(CancellationToken.None);
                         RaiseOnNeedSpace();
                     }
-                    if (!DataEvent.IsSet)
+                    if (!DataEvent.IsSet && (!UseFlush || SpaceLeft == 0))
                     {
                         DataEvent.Set(CancellationToken.None);
                         RaiseOnDataAvailable();
                     }
                 }
-                if (AutoReorg && SpaceLeft == 0) await ReorganizeBufferAsync(cancellationToken).DynamicContext();
             }
             return res;
         }

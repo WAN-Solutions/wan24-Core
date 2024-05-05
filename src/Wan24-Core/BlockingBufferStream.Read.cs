@@ -50,7 +50,7 @@
                 }
                 if (!AggressiveReadBlocking) break;
             }
-            if (Available == 0 && AutoReorg) ReorganizeBuffer();
+            if (((UseFlush && Available == 0) || (!UseFlush && res != 0)) && AutoReorg) ReorganizeBuffer();
             return res;
         }
 
@@ -93,7 +93,7 @@
                     }
                 }
             }
-            if (Available == 0 && AutoReorg) ReorganizeBuffer();
+            if (((UseFlush && Available == 0) || (!UseFlush && res != 0)) && AutoReorg) ReorganizeBuffer();
             return res;
         }
 
@@ -142,7 +142,7 @@
                 }
                 if (!AggressiveReadBlocking) break;
             }
-            if (Available == 0 && AutoReorg) await ReorganizeBufferAsync(cancellationToken).DynamicContext();
+            if (((UseFlush && Available == 0) || (!UseFlush && res != 0)) && AutoReorg) await ReorganizeBufferAsync(cancellationToken).DynamicContext();
             return res;
         }
 
@@ -186,7 +186,7 @@
                     }
                 }
             }
-            if (Available == 0 && AutoReorg) await ReorganizeBufferAsync(cancellationToken).DynamicContext();
+            if (((UseFlush && Available == 0) || (!UseFlush && res != 0)) && AutoReorg) await ReorganizeBufferAsync(cancellationToken).DynamicContext();
             return res;
         }
     }
