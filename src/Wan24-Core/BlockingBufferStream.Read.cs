@@ -15,7 +15,6 @@
             EnsureUndisposed();
             if (_IsEndOfFile && Available == 0) return 0;
             int res = 0;
-            bool blocking = false;
             for (int read = 1; buffer.Length > 0 && read > 0 && EnsureUndisposed();)
             {
                 DataEvent.Wait();
@@ -25,14 +24,10 @@
                 read = Math.Min(buffer.Length, Available);
                 if (read == 0)
                 {
-                    if (_IsEndOfFile || ((res != 0 || !ReadIncomplete) && !AggressiveReadBlocking))
-                    {
-                        blocking = true;
-                        break;
-                    }
                     DataEvent.Reset();
-                    ssc.Dispose();
                     RaiseOnNeedData();
+                    if (_IsEndOfFile || ((res != 0 || !ReadIncomplete) && !AggressiveReadBlocking))
+                        break;
                     read = 1;
                     continue;
                 }
@@ -49,17 +44,12 @@
                 {
                     if (Available == 0)
                     {
-                        blocking = true;
                         DataEvent.Reset();
-                    }
-                    else
-                    {
-                        blocking = false;
+                        RaiseOnNeedData();
                     }
                 }
                 if (!AggressiveReadBlocking) break;
             }
-            if (blocking) RaiseOnNeedData();
             if (Available == 0 && AutoReorg) ReorganizeBuffer();
             return res;
         }
@@ -74,13 +64,17 @@
             EnsureUndisposed();
             if (_IsEndOfFile && Available == 0) return 0;
             int res = 0;
-            bool blocking = false;
             for (int read = 1; buffer.Length > 0 && read > 0 && EnsureUndisposed();)
             {
                 using SemaphoreSyncContext ssc = BufferSync.SyncContext();
                 EnsureUndisposed();
                 read = Math.Min(buffer.Length, Available);
-                if (read == 0) break;
+                if (read == 0)
+                {
+                    DataEvent.Reset();
+                    RaiseOnNeedData();
+                    break;
+                }
                 try
                 {
                     Buffer.Span.Slice(ReadOffset, read).CopyTo(buffer);
@@ -94,16 +88,11 @@
                 {
                     if (Available == 0)
                     {
-                        blocking = true;
                         DataEvent.Reset();
-                    }
-                    else
-                    {
-                        blocking = false;
+                        RaiseOnNeedData();
                     }
                 }
             }
-            if (blocking) RaiseOnNeedData();
             if (Available == 0 && AutoReorg) ReorganizeBuffer();
             return res;
         }
@@ -118,7 +107,6 @@
             EnsureUndisposed();
             if (_IsEndOfFile && Available == 0) return 0;
             int res = 0;
-            bool blocking = false;
             for (int read = 1; buffer.Length > 0 && read > 0 && EnsureUndisposed();)
             {
                 await DataEvent.WaitAsync(cancellationToken).DynamicContext();
@@ -128,14 +116,10 @@
                 read = Math.Min(buffer.Length, Available);
                 if (read == 0)
                 {
-                    if (_IsEndOfFile || ((res != 0 || !ReadIncomplete) && !AggressiveReadBlocking))
-                    {
-                        blocking = true;
-                        break;
-                    }
-                    DataEvent.Reset(cancellationToken);
-                    ssc.Dispose();
+                    DataEvent.Reset(CancellationToken.None);
                     RaiseOnNeedData();
+                    if (_IsEndOfFile || ((res != 0 || !ReadIncomplete) && !AggressiveReadBlocking))
+                        break;
                     read = 1;
                     continue;
                 }
@@ -152,17 +136,12 @@
                 {
                     if (Available == 0)
                     {
-                        blocking = true;
-                        DataEvent.Reset(cancellationToken);
-                    }
-                    else
-                    {
-                        blocking = false;
+                        DataEvent.Reset(CancellationToken.None);
+                        RaiseOnNeedData();
                     }
                 }
                 if (!AggressiveReadBlocking) break;
             }
-            if (blocking) RaiseOnNeedData();
             if (Available == 0 && AutoReorg) await ReorganizeBufferAsync(cancellationToken).DynamicContext();
             return res;
         }
@@ -178,13 +157,17 @@
             EnsureUndisposed();
             if (_IsEndOfFile && Available == 0) return 0;
             int res = 0;
-            bool blocking = false;
             for (int read = 1; buffer.Length > 0 && read > 0 && EnsureUndisposed();)
             {
                 using SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext();
                 EnsureUndisposed();
                 read = Math.Min(buffer.Length, Available);
-                if (read == 0) break;
+                if (read == 0)
+                {
+                    DataEvent.Reset(CancellationToken.None);
+                    RaiseOnNeedData();
+                    break;
+                }
                 try
                 {
                     Buffer.Span.Slice(ReadOffset, read).CopyTo(buffer.Span);
@@ -198,16 +181,11 @@
                 {
                     if (Available == 0)
                     {
-                        blocking = true;
-                        DataEvent.Reset(cancellationToken);
-                    }
-                    else
-                    {
-                        blocking = false;
+                        DataEvent.Reset(CancellationToken.None);
+                        RaiseOnNeedData();
                     }
                 }
             }
-            if (blocking) RaiseOnNeedData();
             if (Available == 0 && AutoReorg) await ReorganizeBufferAsync(cancellationToken).DynamicContext();
             return res;
         }

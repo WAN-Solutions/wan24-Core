@@ -11,7 +11,7 @@
         public delegate void Event_Delegate(BlockingBufferStream stream, EventArgs e);
 
         /// <summary>
-        /// Raised when data is available for reading
+        /// Raised when data is available for reading (buffer access is locked)
         /// </summary>
         public event Event_Delegate? OnDataAvailable;
         /// <summary>
@@ -20,7 +20,7 @@
         protected virtual void RaiseOnDataAvailable() => OnDataAvailable?.Invoke(this, new());
 
         /// <summary>
-        /// Raised when reading is blocking
+        /// Raised when reading is blocking (buffer access is locked)
         /// </summary>
         public event Event_Delegate? OnNeedData;
         /// <summary>
@@ -29,7 +29,7 @@
         protected virtual void RaiseOnNeedData() => OnNeedData?.Invoke(this, new());
 
         /// <summary>
-        /// Raised when space for writing is available
+        /// Raised when space for writing is available (buffer access is locked)
         /// </summary>
         public event Event_Delegate? OnSpaceAvailable;
         /// <summary>
@@ -38,7 +38,7 @@
         protected virtual void RaiseOnSpaceAvailable() => OnSpaceAvailable?.Invoke(this, new());
 
         /// <summary>
-        /// Raised when writing is blocking
+        /// Raised when writing is blocking (buffer access is locked)
         /// </summary>
         public event Event_Delegate? OnNeedSpace;
         /// <summary>
