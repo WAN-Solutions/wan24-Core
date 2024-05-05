@@ -175,6 +175,8 @@ including extensions for numeric type encoding/decoding)
     - `StreamBase` as base class which implements some disposing logic
     - `WrapperStream` wraps a base stream and provides `LeaveOpen`
     - `PartialStream` wraps a part of a base stream (read-only)
+    - `NonSeekablePartialStream` wraps a part of a non-seekable base stream 
+    (read-only)
     - `LengthLimitedStream` ensures a maximum stream length (only writing)
     - `MemoryPoolStream` uses an `ArrayPool<byte>` for storing written data
     - `ThrottledStream` throttles reading/writing troughput
