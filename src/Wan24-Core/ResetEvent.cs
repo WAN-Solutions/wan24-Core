@@ -66,7 +66,7 @@ namespace wan24.Core
         public async Task<bool> SetAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken);
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             EnsureUndisposed();
             if (IsSet) return false;
             TaskCompletion.SetResult();
@@ -98,7 +98,7 @@ namespace wan24.Core
         public async Task<bool> ResetAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken);
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             EnsureUndisposed();
             if (!IsSet) return false;
             TaskCompletion = new(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -126,8 +126,7 @@ namespace wan24.Core
         public async Task WaitAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            async Task WaitAsyncInt() => await TaskCompletion.Task.WaitAsync(cancellationToken).DynamicContext();
-            await ((Func<Task>)WaitAsyncInt).StartFairTask(cancellationToken: cancellationToken).DynamicContext();
+            await TaskCompletion.Task.WaitAsync(cancellationToken).DynamicContext();
         }
 
         /// <summary>
@@ -150,12 +149,7 @@ namespace wan24.Core
         public async Task WaitAsync(TimeSpan timeout)
         {
             EnsureUndisposed();
-            using CancellationTokenSource cts = new();
-            Task task = TaskCompletion.Task,
-                delayTask = Task.Delay((int)timeout.TotalMilliseconds, cts.Token);
-            if (await Task.WhenAny(task, delayTask).DynamicContext() == delayTask) throw new TimeoutException();
-            cts.Cancel();
-            await task.DynamicContext();
+            await TaskCompletion.Task.WaitAsync(timeout).DynamicContext();
         }
 
         /// <summary>
@@ -165,12 +159,11 @@ namespace wan24.Core
         public void WaitAndReset(in CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            while (!cancellationToken.IsCancellationRequested)
+            while (true)
             {
                 Wait(cancellationToken);
                 if (Reset(cancellationToken)) return;
             }
-            cancellationToken.ThrowIfCancellationRequested();
         }
 
         /// <summary>
@@ -180,12 +173,11 @@ namespace wan24.Core
         public async Task WaitAndResetAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            while (!cancellationToken.IsCancellationRequested)
+            while (true)
             {
                 await WaitAsync(cancellationToken).DynamicContext();
                 if (await ResetAsync(cancellationToken).DynamicContext()) return;
             }
-            cancellationToken.ThrowIfCancellationRequested();
         }
 
         /// <summary>
@@ -225,7 +217,7 @@ namespace wan24.Core
         {
             using SemaphoreSyncContext ssc = Sync.SyncContext();
             using ManualResetEventSlim? syncSet = SyncSet;
-            if (IsSet) TaskCompletion = new();
+            if (IsSet) TaskCompletion = new(TaskCreationOptions.RunContinuationsAsynchronously);
             TaskCompletion.SetException(new ObjectDisposedException(GetType().ToString()));
             syncSet?.Set();
         }
@@ -233,9 +225,9 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync();
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync().DynamicContext();
             using ManualResetEventSlim? syncSet = SyncSet;
-            if (IsSet) TaskCompletion = new();
+            if (IsSet) TaskCompletion = new(TaskCreationOptions.RunContinuationsAsynchronously);
             TaskCompletion.SetException(new ObjectDisposedException(GetType().ToString()));
             syncSet?.Set();
         }

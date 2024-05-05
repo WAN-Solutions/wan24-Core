@@ -78,6 +78,7 @@
             DataEvent.Reset();
             SpaceEvent.Set();
             RaiseOnSpaceAvailable();
+            RaiseOnNeedData();
         }
     }
 }

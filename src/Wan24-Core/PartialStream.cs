@@ -36,6 +36,7 @@
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
         public PartialStream(in T baseStream, in long length, in bool leaveOpen = false) : base(baseStream, leaveOpen)
         {
+            EnsureReadable();
             EnsureSeekable();
             Offset = baseStream.Position;
             if (length < 0 || Offset + length > baseStream.Length) throw new ArgumentOutOfRangeException(nameof(length));

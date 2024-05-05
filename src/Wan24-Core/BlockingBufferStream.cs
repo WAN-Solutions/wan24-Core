@@ -63,6 +63,11 @@ namespace wan24.Core
         public bool AutoReorg { get; set; } = true;
 
         /// <summary>
+        /// Use flush (if <see langword="true"/>, write methods will flush automatic, if the buffer is full)?
+        /// </summary>
+        public bool UseFlush { get; set; }
+
+        /// <summary>
         /// Is at the end of the file?
         /// </summary>
         public bool IsEndOfFile
@@ -75,7 +80,11 @@ namespace wan24.Core
                 if (_IsEndOfFile || !value) throw new InvalidOperationException();
                 _IsEndOfFile = value;
                 SpaceEvent.Set();
-                DataEvent.Set();
+                if (!DataEvent.IsSet)
+                {
+                    DataEvent.Set();
+                    RaiseOnDataAvailable();
+                }
             }
         }
 
@@ -90,6 +99,7 @@ namespace wan24.Core
                 yield return new(__("Space"), SpaceLeft, __("Space left in bytes for writing"));
                 yield return new(__("Reading blocks"), IsReadBlocked, __("Is reading blocked?"));
                 yield return new(__("Writing blocks"), IsWriteBlocked, __("Is writing blocked?"));
+                yield return new(__("EOF"), _IsEndOfFile, __("If all data has been written (end of file)"));
             }
         }
 
@@ -122,8 +132,12 @@ namespace wan24.Core
             using SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext();
             if (_IsEndOfFile) throw new InvalidOperationException();
             _IsEndOfFile = true;
-            await SpaceEvent.SetAsync(cancellationToken).DynamicContext();
-            await DataEvent.SetAsync(cancellationToken).DynamicContext();
+            await SpaceEvent.SetAsync(CancellationToken.None).DynamicContext();
+            if (!DataEvent.IsSet)
+            {
+                await DataEvent.SetAsync(CancellationToken.None).DynamicContext();
+                RaiseOnDataAvailable();
+            }
         }
 
         /// <summary>
@@ -133,16 +147,13 @@ namespace wan24.Core
         public bool ReorganizeBuffer()
         {
             EnsureUndisposed();
-            bool hadSpace;
-            using (SemaphoreSyncContext ssc = BufferSync.SyncContext())
-            {
-                EnsureUndisposed();
-                hadSpace = !IsWriteBlocked;
-                if (ReadOffset == 0) return false;
-                Array.Copy(Buffer, ReadOffset, Buffer, 0, WriteOffset - ReadOffset);
-                WriteOffset -= ReadOffset;
-                ReadOffset = 0;
-            }
+            using SemaphoreSyncContext ssc = BufferSync.SyncContext();
+            EnsureUndisposed();
+            if (ReadOffset == 0) return false;
+            bool hadSpace = !IsWriteBlocked;
+            WriteOffset -= ReadOffset;
+            Array.Copy(Buffer, ReadOffset, Buffer, 0, WriteOffset);
+            ReadOffset = 0;
             if (!hadSpace)
             {
                 SpaceEvent.Set();
@@ -159,19 +170,16 @@ namespace wan24.Core
         public async Task<bool> ReorganizeBufferAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            bool hadSpace;
-            using (SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext())
-            {
-                EnsureUndisposed();
-                hadSpace = !IsWriteBlocked;
-                if (ReadOffset == 0) return false;
-                Array.Copy(Buffer, ReadOffset, Buffer, 0, WriteOffset - ReadOffset);
-                WriteOffset -= ReadOffset;
-                ReadOffset = 0;
-            }
+            using SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext();
+            EnsureUndisposed();
+            if (ReadOffset == 0) return false;
+            bool hadSpace = !IsWriteBlocked;
+            WriteOffset -= ReadOffset;
+            Array.Copy(Buffer, ReadOffset, Buffer, 0, WriteOffset);
+            ReadOffset = 0;
             if (!hadSpace)
             {
-                SpaceEvent.Set(cancellationToken);
+                SpaceEvent.Set(CancellationToken.None);
                 RaiseOnSpaceAvailable();
             }
             return true;
@@ -215,6 +223,26 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             await DataEvent.WaitAsync(cancellationToken).DynamicContext();
+        }
+
+        /// <inheritdoc/>
+        public sealed override void Flush()
+        {
+            EnsureUndisposed();
+            using SemaphoreSyncContext ssc = BufferSync;
+            if (!UseFlush || Available == 0 || DataEvent.IsSet) return;
+            DataEvent.Set();
+            RaiseOnDataAvailable();
+        }
+
+        /// <inheritdoc/>
+        public sealed override async Task FlushAsync(CancellationToken cancellationToken)
+        {
+            EnsureUndisposed();
+            using SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext();
+            if (!UseFlush || Available == 0 || DataEvent.IsSet) return;
+            await DataEvent.SetAsync(CancellationToken.None).DynamicContext();
+            RaiseOnDataAvailable();
         }
 
         /// <inheritdoc/>

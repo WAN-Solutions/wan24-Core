@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.Contracts;
+﻿using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Runtime;
 
 namespace wan24.Core
@@ -530,18 +531,8 @@ namespace wan24.Core
         /// Try to dispose disposable objects
         /// </summary>
         /// <param name="objects">Objects</param>
-        /// <param name="parallel">Dispose parallel?</param>
         [TargetedPatchingOptOut("Tiny method")]
-        public static async Task TryDisposeAllAsync(this IEnumerable<object> objects, bool parallel = true)
-        {
-            if (parallel)
-            {
-                await (from obj in objects select obj.TryDisposeAsync()).WaitAll().DynamicContext();
-            }
-            else
-            {
-                foreach (object obj in objects) await obj.TryDisposeAsync().DynamicContext();
-            }
-        }
+        public static Task TryDisposeAllAsync(this IEnumerable<object> objects)
+            => Task.WhenAll(from obj in objects select obj.TryDisposeAsync());
     }
 }

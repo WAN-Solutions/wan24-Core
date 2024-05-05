@@ -80,7 +80,7 @@ namespace wan24.Core
         new public bool IsTypeCached(Type type)
         {
             using SemaphoreSyncContext ssc = Sync.SyncContext();
-            return !_ScopeNotCachedTypes.Contains(type) && !DiHelper.IsTypeCached(type);
+            return IsTypeCachedInt(type);
         }
 
         /// <summary>
@@ -92,7 +92,24 @@ namespace wan24.Core
         new public async Task<bool> IsTypeCachedAsync(Type type, CancellationToken cancellationToken = default)
         {
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
-            return !_ScopeNotCachedTypes.Contains(type) && !await DiHelper.IsTypeCachedAsync(type, cancellationToken).DynamicContext();
+            return await IsTypeCachedIntAsync(type, cancellationToken).DynamicContext();
         }
+
+        /// <summary>
+        /// Determine if an object of the given type will be cached
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>Will be cached?</returns>
+        protected virtual bool IsTypeCachedInt(Type type)
+            => !_ScopeNotCachedTypes.Contains(type) && DiHelper.IsTypeCached(type);
+
+        /// <summary>
+        /// Determine if an object of the given type will be cached
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Will be cached?</returns>
+        protected virtual async Task<bool> IsTypeCachedIntAsync(Type type, CancellationToken cancellationToken = default)
+            => !_ScopeNotCachedTypes.Contains(type) && await DiHelper.IsTypeCachedAsync(type, cancellationToken).DynamicContext();
     }
 }

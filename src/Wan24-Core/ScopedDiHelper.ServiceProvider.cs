@@ -4,9 +4,15 @@
     public partial class ScopedDiHelper
     {
         /// <summary>
-        /// DI service provider (will be disposed!)
+        /// DI service provider (will be disposed, if possible!)
         /// </summary>
         new public IServiceProvider? ServiceProvider { get; set; }
+
+        /// <summary>
+        /// Dispose the <see cref="ServiceProvider"/> when disposing?
+        /// </summary>
+        public bool DisposeServiceProvider { get; set; } = true;
+
         /// <inheritdoc/>
         public override object? GetService(Type serviceType) => GetDiObject(serviceType, out object? res) ? res : null;
 

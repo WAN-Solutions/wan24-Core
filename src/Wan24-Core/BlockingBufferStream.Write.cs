@@ -4,9 +4,6 @@
     public partial class BlockingBufferStream
     {
         /// <inheritdoc/>
-        public sealed override void Flush() => EnsureUndisposed();
-
-        /// <inheritdoc/>
         public sealed override void SetLength(long value) => throw new NotSupportedException();
 
         /// <inheritdoc/>
@@ -20,8 +17,6 @@
         {
             EnsureUndisposed();
             if (_IsEndOfFile) throw new InvalidOperationException();
-            bool blocking = false,
-                haveData = false;
             for (int write; buffer.Length > 0 && EnsureUndisposed();)
             {
                 SpaceEvent.Wait();
@@ -29,6 +24,7 @@
                 EnsureUndisposed();
                 using (SemaphoreSyncContext ssc = BufferSync.SyncContext())
                 {
+                    if (_IsEndOfFile) throw new InvalidOperationException();
                     EnsureUndisposed();
                     write = Math.Min(SpaceLeft, buffer.Length);
                     buffer[..write].CopyTo(Buffer.Span[WriteOffset..]);
@@ -37,23 +33,15 @@
                     _Length += write;
                     if (SpaceLeft == 0)
                     {
-                        blocking = true;
                         SpaceEvent.Reset();
+                        RaiseOnNeedSpace();
                     }
-                    haveData = !DataEvent.IsSet;
-                    DataEvent.Set();
+                    if (!DataEvent.IsSet && (!UseFlush || SpaceLeft == 0))
+                    {
+                        DataEvent.Set();
+                        RaiseOnDataAvailable();
+                    }
                 }
-                if (haveData)
-                {
-                    RaiseOnDataAvailable();
-                    haveData = false;
-                }
-                if (blocking)
-                {
-                    RaiseOnNeedSpace();
-                    blocking = false;
-                }
-                if (AutoReorg && SpaceLeft == 0) ReorganizeBuffer();
             }
         }
 
@@ -67,12 +55,11 @@
             EnsureUndisposed();
             if (_IsEndOfFile) throw new InvalidOperationException();
             int res = 0;
-            bool blocking = false,
-                haveData = false;
             for (int write; buffer.Length > 0 && EnsureUndisposed();)
             {
                 using (SemaphoreSyncContext ssc = BufferSync.SyncContext())
                 {
+                    if (_IsEndOfFile) throw new InvalidOperationException();
                     EnsureUndisposed();
                     write = Math.Min(SpaceLeft, buffer.Length);
                     if (write == 0) return res;
@@ -83,23 +70,15 @@
                     res += write;
                     if (SpaceLeft == 0)
                     {
-                        blocking = true;
                         SpaceEvent.Reset();
+                        RaiseOnNeedSpace();
                     }
-                    haveData = !DataEvent.IsSet;
-                    DataEvent.Set();
+                    if (!DataEvent.IsSet && (!UseFlush || SpaceLeft == 0))
+                    {
+                        DataEvent.Set();
+                        RaiseOnDataAvailable();
+                    }
                 }
-                if (haveData)
-                {
-                    RaiseOnDataAvailable();
-                    haveData = false;
-                }
-                if (blocking)
-                {
-                    RaiseOnNeedSpace();
-                    blocking = false;
-                }
-                if (AutoReorg && SpaceLeft == 0) ReorganizeBuffer();
             }
             return res;
         }
@@ -113,8 +92,6 @@
         {
             EnsureUndisposed();
             if (_IsEndOfFile) throw new InvalidOperationException();
-            bool blocking = false,
-                haveData = false;
             for (int write; buffer.Length > 0 && EnsureUndisposed();)
             {
                 await SpaceEvent.WaitAsync(cancellationToken).DynamicContext();
@@ -122,6 +99,7 @@
                 EnsureUndisposed();
                 using (SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext())
                 {
+                    if (_IsEndOfFile) throw new InvalidOperationException();
                     EnsureUndisposed();
                     write = Math.Min(SpaceLeft, buffer.Length);
                     buffer.Span[..write].CopyTo(Buffer.Span[WriteOffset..]);
@@ -130,23 +108,15 @@
                     _Length += write;
                     if (SpaceLeft == 0)
                     {
-                        blocking = true;
-                        SpaceEvent.Reset(cancellationToken);
+                        SpaceEvent.Reset(CancellationToken.None);
+                        RaiseOnNeedSpace();
                     }
-                    haveData = !DataEvent.IsSet;
-                    DataEvent.Set(cancellationToken);
+                    if (!DataEvent.IsSet && (!UseFlush || SpaceLeft == 0))
+                    {
+                        DataEvent.Set(CancellationToken.None);
+                        RaiseOnDataAvailable();
+                    }
                 }
-                if (haveData)
-                {
-                    RaiseOnDataAvailable();
-                    haveData = false;
-                }
-                if (blocking)
-                {
-                    RaiseOnNeedSpace();
-                    blocking = false;
-                }
-                if (AutoReorg && SpaceLeft == 0) await ReorganizeBufferAsync(cancellationToken).DynamicContext();
             }
         }
 
@@ -161,12 +131,11 @@
             EnsureUndisposed();
             if (_IsEndOfFile) throw new InvalidOperationException();
             int res = 0;
-            bool blocking = false,
-                haveData = false;
             for (int write; buffer.Length > 0 && EnsureUndisposed();)
             {
                 using (SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext())
                 {
+                    if (_IsEndOfFile) throw new InvalidOperationException();
                     EnsureUndisposed();
                     write = Math.Min(SpaceLeft, buffer.Length);
                     if (write == 0) return res;
@@ -177,23 +146,15 @@
                     res += write;
                     if (SpaceLeft == 0)
                     {
-                        blocking = true;
-                        SpaceEvent.Reset(cancellationToken);
+                        SpaceEvent.Reset(CancellationToken.None);
+                        RaiseOnNeedSpace();
                     }
-                    haveData = !DataEvent.IsSet;
-                    DataEvent.Set(cancellationToken);
+                    if (!DataEvent.IsSet && (!UseFlush || SpaceLeft == 0))
+                    {
+                        DataEvent.Set(CancellationToken.None);
+                        RaiseOnDataAvailable();
+                    }
                 }
-                if (haveData)
-                {
-                    RaiseOnDataAvailable();
-                    haveData = false;
-                }
-                if (blocking)
-                {
-                    RaiseOnNeedSpace();
-                    blocking = false;
-                }
-                if (AutoReorg && SpaceLeft == 0) await ReorganizeBufferAsync(cancellationToken).DynamicContext();
             }
             return res;
         }
