@@ -1,4 +1,6 @@
-﻿using System.Runtime;
+﻿using System.Collections;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime;
 using System.Threading.Channels;
 using static wan24.Core.TranslationHelper;
 
@@ -43,6 +45,15 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        public int Count => Queued;
+
+        /// <inheritdoc/>
+        public bool IsSynchronized => false;
+
+        /// <inheritdoc/>
+        public object SyncRoot => throw new NotSupportedException();
+
+        /// <inheritdoc/>
         public async ValueTask EnqueueAsync(Task_Delegate task, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -83,6 +94,31 @@ namespace wan24.Core
             }
             return enqueued;
         }
+
+        /// <inheritdoc/>
+        public bool TryAdd(Task_Delegate item) => TryEnqueue(item);
+
+        /// <inheritdoc/>
+        public bool TryTake([MaybeNullWhen(false)] out Task_Delegate item)
+        {
+            EnsureUndisposed();
+            return Queue.Reader.TryRead(out item);
+        }
+
+        /// <inheritdoc/>
+        public void CopyTo(Task_Delegate[] array, int index) => throw new NotSupportedException();
+
+        /// <inheritdoc/>
+        public Task_Delegate[] ToArray() => throw new NotSupportedException();
+
+        /// <inheritdoc/>
+        public IEnumerator<Task_Delegate> GetEnumerator() => throw new NotSupportedException();
+
+        /// <inheritdoc/>
+        public void CopyTo(Array array, int index) => throw new NotSupportedException();
+
+        /// <inheritdoc/>
+        IEnumerator IEnumerable.GetEnumerator() => throw new NotSupportedException();
 
         /// <inheritdoc/>
         protected override async Task WorkerAsync()

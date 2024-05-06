@@ -6,15 +6,13 @@ namespace wan24.Core
     /// Base class for a parallel item queue worker
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
-    public abstract class ParallelItemQueueWorkerBase<T> : ParallelQueueWorker, IItemQueueWorker<T>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="capacity">Capacity</param>
+    /// <param name="threads">Number of threads</param>
+    public abstract class ParallelItemQueueWorkerBase<T>(in int capacity, in int threads) : ParallelQueueWorker(capacity, threads), IItemQueueWorker<T>
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="capacity">Capacity</param>
-        /// <param name="threads">Number of threads</param>
-        protected ParallelItemQueueWorkerBase(in int capacity, in int threads) : base(capacity, threads) { }
-
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
         public ValueTask EnqueueAsync(T item, CancellationToken cancellationToken = default)
