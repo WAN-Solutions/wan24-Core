@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading;
 
 namespace wan24.Core
 {
@@ -284,7 +285,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="token">Token</param>
         /// <returns>Token to use (is the given token, if it's not the default)</returns>
-        public CancellationToken GetCancellationToken(CancellationToken token) => token == default ? CancellationToken : token;
+        public CancellationToken GetCancellationToken(CancellationToken token) => Equals(token, default) ? CancellationToken : token;
 
         /// <inheritdoc/>
         public override string? ToString()

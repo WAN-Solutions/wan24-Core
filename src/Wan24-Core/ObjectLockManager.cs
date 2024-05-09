@@ -84,7 +84,7 @@ namespace wan24.Core
                     }
                     catch (TaskCanceledException ex)
                     {
-                        if (cancellationToken == default || ex.CancellationToken == cancellationToken) throw;
+                        if (Equals(cancellationToken, default) || Equals(cancellationToken, ex.CancellationToken)) throw;
                     }
                     catch
                     {
