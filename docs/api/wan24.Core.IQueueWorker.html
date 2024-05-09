@@ -169,12 +169,39 @@
     <div>
       <a class="xref" href="wan24.Core.IStatusProvider.html#wan24_Core_IStatusProvider_State">IStatusProvider.State</a>
     </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.iproducerconsumercollection-1.copyto">IProducerConsumerCollection&lt;QueueWorker.Task_Delegate&gt;.CopyTo(QueueWorker.Task_Delegate[], int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.iproducerconsumercollection-1.toarray">IProducerConsumerCollection&lt;QueueWorker.Task_Delegate&gt;.ToArray()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.iproducerconsumercollection-1.tryadd">IProducerConsumerCollection&lt;QueueWorker.Task_Delegate&gt;.TryAdd(QueueWorker.Task_Delegate)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.iproducerconsumercollection-1.trytake">IProducerConsumerCollection&lt;QueueWorker.Task_Delegate&gt;.TryTake(out QueueWorker.Task_Delegate)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator">IEnumerable&lt;QueueWorker.Task_Delegate&gt;.GetEnumerator()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.icollection.copyto">ICollection.CopyTo(Array, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.icollection.count">ICollection.Count</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.icollection.issynchronized">ICollection.IsSynchronized</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.icollection.syncroot">ICollection.SyncRoot</a>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_IQueueWorker_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IQueueWorker : IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IQueueWorker : IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider, IProducerConsumerCollection&lt;QueueWorker.Task_Delegate&gt;, IEnumerable&lt;QueueWorker.Task_Delegate&gt;, ICollection, IEnumerable</code></pre>
   </div>
   <h3 id="properties">Properties
 </h3>
@@ -183,7 +210,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueWorker_Queued.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueWorker.Queued%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueWorker.cs/#L13">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueWorker.cs/#L14">View Source</a>
   </span>
   <a id="wan24_Core_IQueueWorker_Queued_" data-uid="wan24.Core.IQueueWorker.Queued*"></a>
   <h4 id="wan24_Core_IQueueWorker_Queued" data-uid="wan24.Core.IQueueWorker.Queued">Queued</h4>
@@ -216,7 +243,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueWorker_EnqueueAsync_wan24_Core_QueueWorker_Task_Delegate_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueWorker.EnqueueAsync(wan24.Core.QueueWorker.Task_Delegate%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueWorker.cs/#L19">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueWorker.cs/#L20">View Source</a>
   </span>
   <a id="wan24_Core_IQueueWorker_EnqueueAsync_" data-uid="wan24.Core.IQueueWorker.EnqueueAsync*"></a>
   <h4 id="wan24_Core_IQueueWorker_EnqueueAsync_wan24_Core_QueueWorker_Task_Delegate_System_Threading_CancellationToken_" data-uid="wan24.Core.IQueueWorker.EnqueueAsync(wan24.Core.QueueWorker.Task_Delegate,System.Threading.CancellationToken)">EnqueueAsync(Task_Delegate, CancellationToken)</h4>
@@ -271,7 +298,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueWorker_EnqueueRangeAsync_System_Collections_Generic_IAsyncEnumerable_wan24_Core_QueueWorker_Task_Delegate__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueWorker.EnqueueRangeAsync(System.Collections.Generic.IAsyncEnumerable%7Bwan24.Core.QueueWorker.Task_Delegate%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueWorker.cs/#L40">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueWorker.cs/#L41">View Source</a>
   </span>
   <a id="wan24_Core_IQueueWorker_EnqueueRangeAsync_" data-uid="wan24.Core.IQueueWorker.EnqueueRangeAsync*"></a>
   <h4 id="wan24_Core_IQueueWorker_EnqueueRangeAsync_System_Collections_Generic_IAsyncEnumerable_wan24_Core_QueueWorker_Task_Delegate__System_Threading_CancellationToken_" data-uid="wan24.Core.IQueueWorker.EnqueueRangeAsync(System.Collections.Generic.IAsyncEnumerable{wan24.Core.QueueWorker.Task_Delegate},System.Threading.CancellationToken)">EnqueueRangeAsync(IAsyncEnumerable&lt;Task_Delegate&gt;, CancellationToken)</h4>
@@ -327,7 +354,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueWorker_EnqueueRangeAsync_System_Collections_Generic_IEnumerable_wan24_Core_QueueWorker_Task_Delegate__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueWorker.EnqueueRangeAsync(System.Collections.Generic.IEnumerable%7Bwan24.Core.QueueWorker.Task_Delegate%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueWorker.cs/#L33">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueWorker.cs/#L34">View Source</a>
   </span>
   <a id="wan24_Core_IQueueWorker_EnqueueRangeAsync_" data-uid="wan24.Core.IQueueWorker.EnqueueRangeAsync*"></a>
   <h4 id="wan24_Core_IQueueWorker_EnqueueRangeAsync_System_Collections_Generic_IEnumerable_wan24_Core_QueueWorker_Task_Delegate__System_Threading_CancellationToken_" data-uid="wan24.Core.IQueueWorker.EnqueueRangeAsync(System.Collections.Generic.IEnumerable{wan24.Core.QueueWorker.Task_Delegate},System.Threading.CancellationToken)">EnqueueRangeAsync(IEnumerable&lt;Task_Delegate&gt;, CancellationToken)</h4>
@@ -383,7 +410,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IQueueWorker_TryEnqueue_wan24_Core_QueueWorker_Task_Delegate_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.IQueueWorker.TryEnqueue(wan24.Core.QueueWorker.Task_Delegate%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueWorker.cs/#L26">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IQueueWorker.cs/#L27">View Source</a>
   </span>
   <a id="wan24_Core_IQueueWorker_TryEnqueue_" data-uid="wan24.Core.IQueueWorker.TryEnqueue*"></a>
   <h4 id="wan24_Core_IQueueWorker_TryEnqueue_wan24_Core_QueueWorker_Task_Delegate_System_Threading_CancellationToken_" data-uid="wan24.Core.IQueueWorker.TryEnqueue(wan24.Core.QueueWorker.Task_Delegate,System.Threading.CancellationToken)">TryEnqueue(Task_Delegate, CancellationToken)</h4>
@@ -435,6 +462,51 @@
     </tbody>
   </table>
   <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAll_System_Collections_Generic_IEnumerable_System_Object__">AsyncHelper.TryDisposeAll(IEnumerable&lt;object&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAllAsync_System_Collections_Generic_IEnumerable_System_Object__">AsyncHelper.TryDisposeAllAsync(IEnumerable&lt;object&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArrayExtensions.html#wan24_Core_ArrayExtensions_AsReadOnly__1_System_Collections_Generic_IEnumerable___0__">ArrayExtensions.AsReadOnly&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.DelegateExtensions.html#wan24_Core_DelegateExtensions_InvokeAllAsync__1_System_Collections_Generic_IEnumerable___0__System_Threading_CancellationToken_System_Object___">DelegateExtensions.InvokeAllAsync&lt;T&gt;(IEnumerable&lt;T&gt;, CancellationToken, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.DelegateExtensions.html#wan24_Core_DelegateExtensions_InvokeAllAsync__2_System_Collections_Generic_IEnumerable___0__System_Threading_CancellationToken_System_Object___">DelegateExtensions.InvokeAllAsync&lt;tDelegate, tResult&gt;(IEnumerable&lt;tDelegate&gt;, CancellationToken, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.DelegateExtensions.html#wan24_Core_DelegateExtensions_InvokeAll__1_System_Collections_Generic_IEnumerable___0__System_Object___">DelegateExtensions.InvokeAll&lt;T&gt;(IEnumerable&lt;T&gt;, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.DelegateExtensions.html#wan24_Core_DelegateExtensions_InvokeAll__2_System_Collections_Generic_IEnumerable___0__System_Object___">DelegateExtensions.InvokeAll&lt;tDelegate, tResult&gt;(IEnumerable&lt;tDelegate&gt;, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ChunkEnum__1_System_Collections_Generic_IEnumerable___0__System_Int32_">EnumerableExtensions.ChunkEnum&lt;T&gt;(IEnumerable&lt;T&gt;, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAll__1_System_Collections_Generic_IEnumerable___0____0___">EnumerableExtensions.ContainsAll&lt;T&gt;(IEnumerable&lt;T&gt;, params T[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAny__1_System_Collections_Generic_IEnumerable___0____0___">EnumerableExtensions.ContainsAny&lt;T&gt;(IEnumerable&lt;T&gt;, params T[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ElementIndex__1_System_Collections_Generic_IEnumerable___0____0__">EnumerableExtensions.ElementIndex&lt;T&gt;(IEnumerable&lt;T&gt;, in T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_FilterAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_ValueTuple_System_Boolean___1____System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">ParallelAsync.FilterAsync&lt;tInput, tOutput&gt;(IEnumerable&lt;tInput&gt;, Func&lt;tInput, CancellationToken, Task&lt;(bool Yield, tOutput Output)&gt;&gt;, int, int?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_FilterAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_ValueTuple_System_Boolean___1___System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">ParallelAsync.FilterAsync&lt;tInput, tOutput&gt;(IEnumerable&lt;tInput&gt;, Func&lt;tInput, CancellationToken, (bool Yield, tOutput Output)&gt;, int, int?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_Filter__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_Tasks_ParallelLoopState_System_Threading_CancellationToken_System_ValueTuple_System_Boolean___1___System_Threading_Tasks_ParallelOptions_System_Threading_CancellationToken_">ParallelAsync.Filter&lt;tInput, tOutput&gt;(IEnumerable&lt;tInput&gt;, Func&lt;tInput, ParallelLoopState, CancellationToken, (bool Yield, tOutput Output)&gt;, ParallelOptions?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_ForEachAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task__System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">ParallelAsync.ForEachAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&gt;, int, int?, CancellationToken)</a>
+  </div>
   <div>
       <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_DynamicContext_System_IAsyncDisposable_">AsyncDisposableExtensions.DynamicContext(IAsyncDisposable)</a>
   </div>

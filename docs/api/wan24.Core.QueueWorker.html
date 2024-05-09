@@ -124,6 +124,10 @@
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.iproducerconsumercollection-1">IProducerConsumerCollection</a>&lt;<a class="xref" href="wan24.Core.QueueWorker.html">QueueWorker</a>.<a class="xref" href="wan24.Core.QueueWorker.Task_Delegate.html">Task_Delegate</a>&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="wan24.Core.QueueWorker.html">QueueWorker</a>.<a class="xref" href="wan24.Core.QueueWorker.Task_Delegate.html">Task_Delegate</a>&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.icollection">ICollection</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -354,7 +358,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_QueueWorker_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class QueueWorker : HostedServiceBase, IWillDispose, IQueueWorker, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class QueueWorker : HostedServiceBase, IWillDispose, IQueueWorker, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider, IProducerConsumerCollection&lt;QueueWorker.Task_Delegate&gt;, IEnumerable&lt;QueueWorker.Task_Delegate&gt;, ICollection, IEnumerable</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -363,7 +367,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker__ctor_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.%23ctor(System.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L20">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L22">View Source</a>
   </span>
   <a id="wan24_Core_QueueWorker__ctor_" data-uid="wan24.Core.QueueWorker.#ctor*"></a>
   <h4 id="wan24_Core_QueueWorker__ctor_System_Int32__" data-uid="wan24.Core.QueueWorker.#ctor(System.Int32@)">QueueWorker(in int)</h4>
@@ -398,7 +402,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_Queue.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.Queue%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L15">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L17">View Source</a>
   </span>
   <h4 id="wan24_Core_QueueWorker_Queue" data-uid="wan24.Core.QueueWorker.Queue">Queue</h4>
   <div class="markdown level1 summary"><p>Queue</p>
@@ -427,10 +431,42 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_Count.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.Count%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L48">View Source</a>
+  </span>
+  <a id="wan24_Core_QueueWorker_Count_" data-uid="wan24.Core.QueueWorker.Count*"></a>
+  <h4 id="wan24_Core_QueueWorker_Count" data-uid="wan24.Core.QueueWorker.Count">Count</h4>
+  <div class="markdown level1 summary"><p>Gets the number of elements contained in the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.icollection">ICollection</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>The number of elements contained in the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.icollection">ICollection</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_GUID.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.GUID%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L29">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L31">View Source</a>
   </span>
   <a id="wan24_Core_QueueWorker_GUID_" data-uid="wan24.Core.QueueWorker.GUID*"></a>
   <h4 id="wan24_Core_QueueWorker_GUID" data-uid="wan24.Core.QueueWorker.GUID">GUID</h4>
@@ -458,10 +494,42 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_IsSynchronized.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.IsSynchronized%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L51">View Source</a>
+  </span>
+  <a id="wan24_Core_QueueWorker_IsSynchronized_" data-uid="wan24.Core.QueueWorker.IsSynchronized*"></a>
+  <h4 id="wan24_Core_QueueWorker_IsSynchronized" data-uid="wan24.Core.QueueWorker.IsSynchronized">IsSynchronized</h4>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether access to the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.icollection">ICollection</a> is synchronized (thread safe).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSynchronized { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if access to the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.icollection">ICollection</a> is synchronized (thread safe); otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_Queued.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.Queued%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L32">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L34">View Source</a>
   </span>
   <a id="wan24_Core_QueueWorker_Queued_" data-uid="wan24.Core.QueueWorker.Queued*"></a>
   <h4 id="wan24_Core_QueueWorker_Queued" data-uid="wan24.Core.QueueWorker.Queued">Queued</h4>
@@ -492,7 +560,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_State.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.State%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L35">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L37">View Source</a>
   </span>
   <a id="wan24_Core_QueueWorker_State_" data-uid="wan24.Core.QueueWorker.State*"></a>
   <h4 id="wan24_Core_QueueWorker_State" data-uid="wan24.Core.QueueWorker.State">State</h4>
@@ -518,14 +586,183 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_SyncRoot.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.SyncRoot%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L54">View Source</a>
+  </span>
+  <a id="wan24_Core_QueueWorker_SyncRoot_" data-uid="wan24.Core.QueueWorker.SyncRoot*"></a>
+  <h4 id="wan24_Core_QueueWorker_SyncRoot" data-uid="wan24.Core.QueueWorker.SyncRoot">SyncRoot</h4>
+  <div class="markdown level1 summary"><p>Gets an object that can be used to synchronize access to the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.icollection">ICollection</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object SyncRoot { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><p>An object that can be used to synchronize access to the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.icollection">ICollection</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
 </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_CopyTo_System_Array_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.CopyTo(System.Array%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L118">View Source</a>
+  </span>
+  <a id="wan24_Core_QueueWorker_CopyTo_" data-uid="wan24.Core.QueueWorker.CopyTo*"></a>
+  <h4 id="wan24_Core_QueueWorker_CopyTo_System_Array_System_Int32_" data-uid="wan24.Core.QueueWorker.CopyTo(System.Array,System.Int32)">CopyTo(Array, int)</h4>
+  <div class="markdown level1 summary"><p>Copies the elements of the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.icollection">ICollection</a> to an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.array">Array</a>, starting at a particular <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.array">Array</a> index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CopyTo(Array array, int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.array">Array</a></td>
+        <td><span class="parametername">array</span></td>
+        <td><p>The one-dimensional <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.array">Array</a> that is the destination of the elements copied from <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.icollection">ICollection</a>. The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.array">Array</a> must have zero-based indexing.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The zero-based index in <code class="paramref">array</code> at which copying begins.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code class="paramref">array</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p><code class="paramref">index</code> is less than zero.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p><code class="paramref">array</code> is multidimensional.</p>
+<p>-or-</p>
+<p>The number of elements in the source <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.icollection">ICollection</a> is greater than the available space from <code class="paramref">index</code> to the end of the destination <code class="paramref">array</code>.</p>
+<p>-or-</p>
+<p>The type of the source <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.icollection">ICollection</a> cannot be cast automatically to the type of the destination <code class="paramref">array</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_CopyTo_wan24_Core_QueueWorker_Task_Delegate___System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.CopyTo(wan24.Core.QueueWorker.Task_Delegate%5B%5D%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L109">View Source</a>
+  </span>
+  <a id="wan24_Core_QueueWorker_CopyTo_" data-uid="wan24.Core.QueueWorker.CopyTo*"></a>
+  <h4 id="wan24_Core_QueueWorker_CopyTo_wan24_Core_QueueWorker_Task_Delegate___System_Int32_" data-uid="wan24.Core.QueueWorker.CopyTo(wan24.Core.QueueWorker.Task_Delegate[],System.Int32)">CopyTo(Task_Delegate[], int)</h4>
+  <div class="markdown level1 summary"><p>Copies the elements of the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.iproducerconsumercollection-1">IProducerConsumerCollection&lt;T&gt;</a> to an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.array">Array</a>, starting at a specified index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CopyTo(QueueWorker.Task_Delegate[] array, int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.QueueWorker.Task_Delegate.html">Task_Delegate</a>[]</td>
+        <td><span class="parametername">array</span></td>
+        <td><p>The one-dimensional <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.array">Array</a> that is the destination of the elements copied from the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.iproducerconsumercollection-1">IProducerConsumerCollection&lt;T&gt;</a>.</p>
+<p>The array must have zero-based indexing.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The zero-based index in <code class="paramref">array</code> at which copying begins.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code class="paramref">array</code> is a null reference (Nothing in Visual Basic).</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p><code class="paramref">index</code> is less than zero.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p><code class="paramref">index</code> is equal to or greater than the length of the <code class="paramref">array</code> -or- The number of elements in the collection is greater than the available space from <code class="paramref">index</code> to the end of the destination <code class="paramref">array</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_EnqueueAsync_wan24_Core_QueueWorker_Task_Delegate_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.EnqueueAsync(wan24.Core.QueueWorker.Task_Delegate%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L46">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L57">View Source</a>
   </span>
   <a id="wan24_Core_QueueWorker_EnqueueAsync_" data-uid="wan24.Core.QueueWorker.EnqueueAsync*"></a>
   <h4 id="wan24_Core_QueueWorker_EnqueueAsync_wan24_Core_QueueWorker_Task_Delegate_System_Threading_CancellationToken_" data-uid="wan24.Core.QueueWorker.EnqueueAsync(wan24.Core.QueueWorker.Task_Delegate,System.Threading.CancellationToken)">EnqueueAsync(Task_Delegate, CancellationToken)</h4>
@@ -580,7 +817,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_EnqueueRangeAsync_System_Collections_Generic_IAsyncEnumerable_wan24_Core_QueueWorker_Task_Delegate__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.EnqueueRangeAsync(System.Collections.Generic.IAsyncEnumerable%7Bwan24.Core.QueueWorker.Task_Delegate%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L75">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L86">View Source</a>
   </span>
   <a id="wan24_Core_QueueWorker_EnqueueRangeAsync_" data-uid="wan24.Core.QueueWorker.EnqueueRangeAsync*"></a>
   <h4 id="wan24_Core_QueueWorker_EnqueueRangeAsync_System_Collections_Generic_IAsyncEnumerable_wan24_Core_QueueWorker_Task_Delegate__System_Threading_CancellationToken_" data-uid="wan24.Core.QueueWorker.EnqueueRangeAsync(System.Collections.Generic.IAsyncEnumerable{wan24.Core.QueueWorker.Task_Delegate},System.Threading.CancellationToken)">EnqueueRangeAsync(IAsyncEnumerable&lt;Task_Delegate&gt;, CancellationToken)</h4>
@@ -637,7 +874,7 @@ public ValueTask&lt;int&gt; EnqueueRangeAsync(IAsyncEnumerable&lt;QueueWorker.Ta
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_EnqueueRangeAsync_System_Collections_Generic_IEnumerable_wan24_Core_QueueWorker_Task_Delegate__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.EnqueueRangeAsync(System.Collections.Generic.IEnumerable%7Bwan24.Core.QueueWorker.Task_Delegate%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L62">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L73">View Source</a>
   </span>
   <a id="wan24_Core_QueueWorker_EnqueueRangeAsync_" data-uid="wan24.Core.QueueWorker.EnqueueRangeAsync*"></a>
   <h4 id="wan24_Core_QueueWorker_EnqueueRangeAsync_System_Collections_Generic_IEnumerable_wan24_Core_QueueWorker_Task_Delegate__System_Threading_CancellationToken_" data-uid="wan24.Core.QueueWorker.EnqueueRangeAsync(System.Collections.Generic.IEnumerable{wan24.Core.QueueWorker.Task_Delegate},System.Threading.CancellationToken)">EnqueueRangeAsync(IEnumerable&lt;Task_Delegate&gt;, CancellationToken)</h4>
@@ -691,10 +928,140 @@ public ValueTask&lt;int&gt; EnqueueRangeAsync(IEnumerable&lt;QueueWorker.Task_De
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_GetEnumerator.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.GetEnumerator%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L115">View Source</a>
+  </span>
+  <a id="wan24_Core_QueueWorker_GetEnumerator_" data-uid="wan24.Core.QueueWorker.GetEnumerator*"></a>
+  <h4 id="wan24_Core_QueueWorker_GetEnumerator" data-uid="wan24.Core.QueueWorker.GetEnumerator">GetEnumerator()</h4>
+  <div class="markdown level1 summary"><p>Returns an enumerator that iterates through the collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator&lt;QueueWorker.Task_Delegate&gt; GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1">IEnumerator</a>&lt;<a class="xref" href="wan24.Core.QueueWorker.html">QueueWorker</a>.<a class="xref" href="wan24.Core.QueueWorker.Task_Delegate.html">Task_Delegate</a>&gt;</td>
+        <td><p>An enumerator that can be used to iterate through the collection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_ToArray.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.ToArray%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L112">View Source</a>
+  </span>
+  <a id="wan24_Core_QueueWorker_ToArray_" data-uid="wan24.Core.QueueWorker.ToArray*"></a>
+  <h4 id="wan24_Core_QueueWorker_ToArray" data-uid="wan24.Core.QueueWorker.ToArray">ToArray()</h4>
+  <div class="markdown level1 summary"><p>Copies the elements contained in the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.iproducerconsumercollection-1">IProducerConsumerCollection&lt;T&gt;</a> to a new array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public QueueWorker.Task_Delegate[] ToArray()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.QueueWorker.Task_Delegate.html">Task_Delegate</a>[]</td>
+        <td><p>A new array containing the elements copied from the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.iproducerconsumercollection-1">IProducerConsumerCollection&lt;T&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_TryAdd_wan24_Core_QueueWorker_Task_Delegate_.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.TryAdd(wan24.Core.QueueWorker.Task_Delegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L99">View Source</a>
+  </span>
+  <a id="wan24_Core_QueueWorker_TryAdd_" data-uid="wan24.Core.QueueWorker.TryAdd*"></a>
+  <h4 id="wan24_Core_QueueWorker_TryAdd_wan24_Core_QueueWorker_Task_Delegate_" data-uid="wan24.Core.QueueWorker.TryAdd(wan24.Core.QueueWorker.Task_Delegate)">TryAdd(Task_Delegate)</h4>
+  <div class="markdown level1 summary"><p>Attempts to add an object to the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.iproducerconsumercollection-1">IProducerConsumerCollection&lt;T&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryAdd(QueueWorker.Task_Delegate item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.QueueWorker.html">QueueWorker</a>.<a class="xref" href="wan24.Core.QueueWorker.Task_Delegate.html">Task_Delegate</a></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The object to add to the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.iproducerconsumercollection-1">IProducerConsumerCollection&lt;T&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the object was added successfully; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>The <code class="paramref">item</code> was invalid for this collection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_TryEnqueue_wan24_Core_QueueWorker_Task_Delegate_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.TryEnqueue(wan24.Core.QueueWorker.Task_Delegate%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L54">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L65">View Source</a>
   </span>
   <a id="wan24_Core_QueueWorker_TryEnqueue_" data-uid="wan24.Core.QueueWorker.TryEnqueue*"></a>
   <h4 id="wan24_Core_QueueWorker_TryEnqueue_wan24_Core_QueueWorker_Task_Delegate_System_Threading_CancellationToken_" data-uid="wan24.Core.QueueWorker.TryEnqueue(wan24.Core.QueueWorker.Task_Delegate,System.Threading.CancellationToken)">TryEnqueue(Task_Delegate, CancellationToken)</h4>
@@ -747,10 +1114,60 @@ public ValueTask&lt;int&gt; EnqueueRangeAsync(IEnumerable&lt;QueueWorker.Task_De
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_TryTake_wan24_Core_QueueWorker_Task_Delegate__.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.TryTake(wan24.Core.QueueWorker.Task_Delegate%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L102">View Source</a>
+  </span>
+  <a id="wan24_Core_QueueWorker_TryTake_" data-uid="wan24.Core.QueueWorker.TryTake*"></a>
+  <h4 id="wan24_Core_QueueWorker_TryTake_wan24_Core_QueueWorker_Task_Delegate__" data-uid="wan24.Core.QueueWorker.TryTake(wan24.Core.QueueWorker.Task_Delegate@)">TryTake(out Task_Delegate)</h4>
+  <div class="markdown level1 summary"><p>Attempts to remove and return an object from the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.iproducerconsumercollection-1">IProducerConsumerCollection&lt;T&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryTake(out QueueWorker.Task_Delegate item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.QueueWorker.html">QueueWorker</a>.<a class="xref" href="wan24.Core.QueueWorker.Task_Delegate.html">Task_Delegate</a></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>When this method returns, if the object was removed and returned successfully, <code class="paramref">item</code> contains the removed object. If no object was available to be removed, the value is unspecified.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if an object was removed and returned successfully; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_WorkerAsync.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.WorkerAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L88">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L124">View Source</a>
   </span>
   <a id="wan24_Core_QueueWorker_WorkerAsync_" data-uid="wan24.Core.QueueWorker.WorkerAsync*"></a>
   <h4 id="wan24_Core_QueueWorker_WorkerAsync" data-uid="wan24.Core.QueueWorker.WorkerAsync">WorkerAsync()</h4>
@@ -785,7 +1202,7 @@ public ValueTask&lt;int&gt; EnqueueRangeAsync(IEnumerable&lt;QueueWorker.Task_De
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_QueueWorker_op_Implicit_wan24_Core_QueueWorker___System_Int32.md&amp;value=---%0Auid%3A%20wan24.Core.QueueWorker.op_Implicit(wan24.Core.QueueWorker%40)~System.Int32%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L104">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/QueueWorker.cs/#L140">View Source</a>
   </span>
   <a id="wan24_Core_QueueWorker_op_Implicit_" data-uid="wan24.Core.QueueWorker.op_Implicit*"></a>
   <h4 id="wan24_Core_QueueWorker_op_Implicit_wan24_Core_QueueWorker___System_Int32" data-uid="wan24.Core.QueueWorker.op_Implicit(wan24.Core.QueueWorker@)~System.Int32">implicit operator int(in QueueWorker)</h4>
@@ -858,7 +1275,64 @@ public static implicit operator int(in QueueWorker worker)</code></pre>
   <div>
       <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
   </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.iproducerconsumercollection-1">IProducerConsumerCollection&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.icollection">ICollection</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a>
+  </div>
   <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAll_System_Collections_Generic_IEnumerable_System_Object__">AsyncHelper.TryDisposeAll(IEnumerable&lt;object&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAllAsync_System_Collections_Generic_IEnumerable_System_Object__">AsyncHelper.TryDisposeAllAsync(IEnumerable&lt;object&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ArrayExtensions.html#wan24_Core_ArrayExtensions_AsReadOnly__1_System_Collections_Generic_IEnumerable___0__">ArrayExtensions.AsReadOnly&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.DelegateExtensions.html#wan24_Core_DelegateExtensions_InvokeAllAsync__1_System_Collections_Generic_IEnumerable___0__System_Threading_CancellationToken_System_Object___">DelegateExtensions.InvokeAllAsync&lt;T&gt;(IEnumerable&lt;T&gt;, CancellationToken, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.DelegateExtensions.html#wan24_Core_DelegateExtensions_InvokeAllAsync__2_System_Collections_Generic_IEnumerable___0__System_Threading_CancellationToken_System_Object___">DelegateExtensions.InvokeAllAsync&lt;tDelegate, tResult&gt;(IEnumerable&lt;tDelegate&gt;, CancellationToken, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.DelegateExtensions.html#wan24_Core_DelegateExtensions_InvokeAll__1_System_Collections_Generic_IEnumerable___0__System_Object___">DelegateExtensions.InvokeAll&lt;T&gt;(IEnumerable&lt;T&gt;, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.DelegateExtensions.html#wan24_Core_DelegateExtensions_InvokeAll__2_System_Collections_Generic_IEnumerable___0__System_Object___">DelegateExtensions.InvokeAll&lt;tDelegate, tResult&gt;(IEnumerable&lt;tDelegate&gt;, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ChunkEnum__1_System_Collections_Generic_IEnumerable___0__System_Int32_">EnumerableExtensions.ChunkEnum&lt;T&gt;(IEnumerable&lt;T&gt;, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAll__1_System_Collections_Generic_IEnumerable___0____0___">EnumerableExtensions.ContainsAll&lt;T&gt;(IEnumerable&lt;T&gt;, params T[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAny__1_System_Collections_Generic_IEnumerable___0____0___">EnumerableExtensions.ContainsAny&lt;T&gt;(IEnumerable&lt;T&gt;, params T[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ElementIndex__1_System_Collections_Generic_IEnumerable___0____0__">EnumerableExtensions.ElementIndex&lt;T&gt;(IEnumerable&lt;T&gt;, in T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_FilterAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_ValueTuple_System_Boolean___1____System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">ParallelAsync.FilterAsync&lt;tInput, tOutput&gt;(IEnumerable&lt;tInput&gt;, Func&lt;tInput, CancellationToken, Task&lt;(bool Yield, tOutput Output)&gt;&gt;, int, int?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_FilterAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_ValueTuple_System_Boolean___1___System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">ParallelAsync.FilterAsync&lt;tInput, tOutput&gt;(IEnumerable&lt;tInput&gt;, Func&lt;tInput, CancellationToken, (bool Yield, tOutput Output)&gt;, int, int?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_Filter__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_Tasks_ParallelLoopState_System_Threading_CancellationToken_System_ValueTuple_System_Boolean___1___System_Threading_Tasks_ParallelOptions_System_Threading_CancellationToken_">ParallelAsync.Filter&lt;tInput, tOutput&gt;(IEnumerable&lt;tInput&gt;, Func&lt;tInput, ParallelLoopState, CancellationToken, (bool Yield, tOutput Output)&gt;, ParallelOptions?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_ForEachAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task__System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">ParallelAsync.ForEachAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&gt;, int, int?, CancellationToken)</a>
+  </div>
   <div>
       <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_DynamicContext_System_IAsyncDisposable_">AsyncDisposableExtensions.DynamicContext(IAsyncDisposable)</a>
   </div>

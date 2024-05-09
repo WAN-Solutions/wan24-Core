@@ -1,0 +1,523 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Interface IPriorityItemQueueWorker&lt;tItem, tPriority&gt; | wan24-Core </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Interface IPriorityItemQueueWorker&lt;tItem, tPriority&gt; | wan24-Core ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <!-- Header required for docfx anchor scroll to work -->
+        <header id="head"></header>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../logo.svg" alt="" class="logomark">
+              <span class="brand-title"></span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../logo.svg" alt="" class="logomark">
+                          <span class="brand-title"></span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  (c) 2023 Andreas Zimmermann, wan24.de
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+ 
+
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                         <div id="contribution">
+                               <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IPriorityItemQueueWorker_2.md&amp;value=---%0Auid%3A%20wan24.Core.IPriorityItemQueueWorker%602%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                         </div>
+
+                    <article class="content wrap" id="_content" data-uid="wan24.Core.IPriorityItemQueueWorker`2">
+
+
+
+  <h1 id="wan24_Core_IPriorityItemQueueWorker_2" data-uid="wan24.Core.IPriorityItemQueueWorker`2" class="text-break">Interface IPriorityItemQueueWorker&lt;tItem, tPriority&gt;</h1>
+  <div class="markdown level0 summary"><p>Interface for a priority item queue worker</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.IPriorityQueueWorker-1.html#wan24_Core_IPriorityQueueWorker_1_Queued">IPriorityQueueWorker&lt;tPriority&gt;.Queued</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IPriorityQueueWorker-1.html#wan24_Core_IPriorityQueueWorker_1_EnqueueAsync_wan24_Core_PriorityQueueWorker__0__Task_Delegate__0_System_Threading_CancellationToken_">IPriorityQueueWorker&lt;tPriority&gt;.EnqueueAsync(PriorityQueueWorker&lt;tPriority&gt;.Task_Delegate, tPriority, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IPriorityQueueWorker-1.html#wan24_Core_IPriorityQueueWorker_1_TryEnqueue_wan24_Core_PriorityQueueWorker__0__Task_Delegate__0_System_Threading_CancellationToken_">IPriorityQueueWorker&lt;tPriority&gt;.TryEnqueue(PriorityQueueWorker&lt;tPriority&gt;.Task_Delegate, tPriority, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IPriorityQueueWorker-1.html#wan24_Core_IPriorityQueueWorker_1_EnqueueRangeAsync_System_Collections_Generic_IEnumerable_wan24_Core_PriorityQueueWorker__0__Task_Delegate___0_System_Threading_CancellationToken_">IPriorityQueueWorker&lt;tPriority&gt;.EnqueueRangeAsync(IEnumerable&lt;PriorityQueueWorker&lt;tPriority&gt;.Task_Delegate&gt;, tPriority, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IPriorityQueueWorker-1.html#wan24_Core_IPriorityQueueWorker_1_EnqueueRangeAsync_System_Collections_Generic_IAsyncEnumerable_wan24_Core_PriorityQueueWorker__0__Task_Delegate___0_System_Threading_CancellationToken_">IPriorityQueueWorker&lt;tPriority&gt;.EnqueueRangeAsync(IAsyncEnumerable&lt;PriorityQueueWorker&lt;tPriority&gt;.Task_Delegate&gt;, tPriority, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_Name">IServiceWorker.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_IsRunning">IServiceWorker.IsRunning</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_IsPaused">IServiceWorker.IsPaused</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_CanPause">IServiceWorker.CanPause</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_Started">IServiceWorker.Started</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_Paused">IServiceWorker.Paused</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_Stopped">IServiceWorker.Stopped</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_StartAsync">IServiceWorker.StartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_StopAsync">IServiceWorker.StopAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_RestartAsync">IServiceWorker.RestartAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_PauseAsync">IServiceWorker.PauseAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html#wan24_Core_IServiceWorker_ResumeAsync">IServiceWorker.ResumeAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.hosting.ihostedservice.startasync">IHostedService.StartAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.hosting.ihostedservice.stopasync">IHostedService.StopAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_IsDisposing">IDisposableObject.IsDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_IsDisposed">IDisposableObject.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_OnDisposing">IDisposableObject.OnDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html#wan24_Core_IDisposableObject_OnDisposed">IDisposableObject.OnDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable.dispose">IDisposable.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable.disposeasync">IAsyncDisposable.DisposeAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html#wan24_Core_IStatusProvider_State">IStatusProvider.State</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_IPriorityItemQueueWorker_2_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IPriorityItemQueueWorker&lt;tItem, tPriority&gt; : IPriorityQueueWorker&lt;tPriority&gt;, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tItem</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tPriority</span></td>
+        <td><p>Priority type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IPriorityItemQueueWorker_2_EnqueueAsync__0__1_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.IPriorityItemQueueWorker%602.EnqueueAsync(%600%2C%601%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IPriorityItemQueueWorker.cs/#L16">View Source</a>
+  </span>
+  <a id="wan24_Core_IPriorityItemQueueWorker_2_EnqueueAsync_" data-uid="wan24.Core.IPriorityItemQueueWorker`2.EnqueueAsync*"></a>
+  <h4 id="wan24_Core_IPriorityItemQueueWorker_2_EnqueueAsync__0__1_System_Threading_CancellationToken_" data-uid="wan24.Core.IPriorityItemQueueWorker`2.EnqueueAsync(`0,`1,System.Threading.CancellationToken)">EnqueueAsync(tItem, tPriority, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Enqueue an item to process</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ValueTask EnqueueAsync(tItem item, tPriority priority, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tItem</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>Item</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">tPriority</span></td>
+        <td><span class="parametername">priority</span></td>
+        <td><p>Priority</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IPriorityItemQueueWorker_2_EnqueueRangeAsync_System_Collections_Generic_IAsyncEnumerable__0___1_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.IPriorityItemQueueWorker%602.EnqueueRangeAsync(System.Collections.Generic.IAsyncEnumerable%7B%600%7D%2C%601%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IPriorityItemQueueWorker.cs/#L39">View Source</a>
+  </span>
+  <a id="wan24_Core_IPriorityItemQueueWorker_2_EnqueueRangeAsync_" data-uid="wan24.Core.IPriorityItemQueueWorker`2.EnqueueRangeAsync*"></a>
+  <h4 id="wan24_Core_IPriorityItemQueueWorker_2_EnqueueRangeAsync_System_Collections_Generic_IAsyncEnumerable__0___1_System_Threading_CancellationToken_" data-uid="wan24.Core.IPriorityItemQueueWorker`2.EnqueueRangeAsync(System.Collections.Generic.IAsyncEnumerable{`0},`1,System.Threading.CancellationToken)">EnqueueRangeAsync(IAsyncEnumerable&lt;tItem&gt;, tPriority, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Enqueue many items for processing</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ValueTask&lt;int&gt; EnqueueRangeAsync(IAsyncEnumerable&lt;tItem&gt; items, tPriority priority, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;tItem&gt;</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>Items</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">tPriority</span></td>
+        <td><span class="parametername">priority</span></td>
+        <td><p>Priority</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</td>
+        <td><p>Number of enqueued items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IPriorityItemQueueWorker_2_EnqueueRangeAsync_System_Collections_Generic_IEnumerable__0___1_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.IPriorityItemQueueWorker%602.EnqueueRangeAsync(System.Collections.Generic.IEnumerable%7B%600%7D%2C%601%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IPriorityItemQueueWorker.cs/#L31">View Source</a>
+  </span>
+  <a id="wan24_Core_IPriorityItemQueueWorker_2_EnqueueRangeAsync_" data-uid="wan24.Core.IPriorityItemQueueWorker`2.EnqueueRangeAsync*"></a>
+  <h4 id="wan24_Core_IPriorityItemQueueWorker_2_EnqueueRangeAsync_System_Collections_Generic_IEnumerable__0___1_System_Threading_CancellationToken_" data-uid="wan24.Core.IPriorityItemQueueWorker`2.EnqueueRangeAsync(System.Collections.Generic.IEnumerable{`0},`1,System.Threading.CancellationToken)">EnqueueRangeAsync(IEnumerable&lt;tItem&gt;, tPriority, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Enqueue many items for processing</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ValueTask&lt;int&gt; EnqueueRangeAsync(IEnumerable&lt;tItem&gt; items, tPriority priority, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;tItem&gt;</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>Items</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">tPriority</span></td>
+        <td><span class="parametername">priority</span></td>
+        <td><p>Priority</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</td>
+        <td><p>Number of enqueued items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IPriorityItemQueueWorker_2_TryEnqueue__0__1_.md&amp;value=---%0Auid%3A%20wan24.Core.IPriorityItemQueueWorker%602.TryEnqueue(%600%2C%601)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IPriorityItemQueueWorker.cs/#L23">View Source</a>
+  </span>
+  <a id="wan24_Core_IPriorityItemQueueWorker_2_TryEnqueue_" data-uid="wan24.Core.IPriorityItemQueueWorker`2.TryEnqueue*"></a>
+  <h4 id="wan24_Core_IPriorityItemQueueWorker_2_TryEnqueue__0__1_" data-uid="wan24.Core.IPriorityItemQueueWorker`2.TryEnqueue(`0,`1)">TryEnqueue(tItem, tPriority)</h4>
+  <div class="markdown level1 summary"><p>Try enqueueing an item to process</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool TryEnqueue(tItem item, tPriority priority)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tItem</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>Item</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">tPriority</span></td>
+        <td><span class="parametername">priority</span></td>
+        <td><p>Priority</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>Enqueued?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_DynamicContext_System_IAsyncDisposable_">AsyncDisposableExtensions.DynamicContext(IAsyncDisposable)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_FixedContext_System_IAsyncDisposable_">AsyncDisposableExtensions.FixedContext(IAsyncDisposable)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean__">JsonExtensions.ToJson(object, in bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(object, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_System_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean__System_String__">ObjectExtensions.EnsureValidState&lt;T&gt;(T, in bool, in string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText__1___0_">ObjectExtensions.GetDisplayText&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_System_Collections_Generic_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T?&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>(c) 2023 Andreas Zimmermann, wan24.de</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+</html>
