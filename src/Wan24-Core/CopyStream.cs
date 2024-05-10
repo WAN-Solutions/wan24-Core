@@ -51,7 +51,7 @@
     /// </summary>
     /// <typeparam name="tStream">Wrapped stream type</typeparam>
     /// <typeparam name="tTarget">Copy target stream type</typeparam>
-    public class CopyStream<tStream, tTarget> : WrapperStream<tStream>
+    public class CopyStream<tStream, tTarget> : WrapperStream<tStream>, ICopyStream
         where tStream : Stream
         where tTarget : Stream
     {
@@ -98,49 +98,34 @@
         /// </summary>
         public tTarget CopyTarget { get; }
 
-        /// <summary>
-        /// If to leave the target stream open when disposing
-        /// </summary>
+        /// <inheritdoc/>
+        Stream ICopyStream.CopyTarget => CopyTarget;
+
+        /// <inheritdoc/>
         public bool LeaveTargetOpen { get; set; }
 
-        /// <summary>
-        /// If to dispose when the copy task did finish
-        /// </summary>
+        /// <inheritdoc/>
         public bool AutoDispose { get; set; }
 
-        /// <summary>
-        /// Copy background task
-        /// </summary>
+        /// <inheritdoc/>
         public Task CopyTask { get; }
 
-        /// <summary>
-        /// Last copy background task exception
-        /// </summary>
+        /// <inheritdoc/>
         public Exception? LastException { get; protected set; }
 
-        /// <summary>
-        /// Cancellation token (as given to the constructor)
-        /// </summary>
+        /// <inheritdoc/>
         public CancellationToken CancelToken { get; }
 
-        /// <summary>
-        /// The copy cancellation token (canceled using <see cref="CancelCopy"/>)
-        /// </summary>
+        /// <inheritdoc/>
         public CancellationToken CopyCancellation => Cancellation.Token;
 
-        /// <summary>
-        /// Combined cancellation token (<see cref="CancelToken"/> and <see cref="CopyCancellation"/>)
-        /// </summary>
+        /// <inheritdoc/>
         public CancellationToken Cancellations => _Cancellations;
 
-        /// <summary>
-        /// If the copy did complete
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsCopyCompleted { get; protected set; }
 
-        /// <summary>
-        /// Cancel the copy background task
-        /// </summary>
+        /// <inheritdoc/>
         public virtual void CancelCopy() => Cancellation.Cancel();
 
         /// <summary>
@@ -186,26 +171,15 @@
                 await CopyTarget.DisposeAsync().DynamicContext();
         }
 
-        /// <summary>
-        /// Delegate for an event handler
-        /// </summary>
-        /// <param name="stream">Sender</param>
-        /// <param name="e">Arguments</param>
-        public delegate void CopyStream_Delegate(CopyStream<tStream, tTarget> stream, EventArgs e);
-
-        /// <summary>
-        /// Raised on error
-        /// </summary>
-        public event CopyStream_Delegate? OnError;
+        /// <inheritdoc/>
+        public event ICopyStream.CopyStream_Delegate? OnError;
         /// <summary>
         /// Raise the <see cref="OnError"/> event
         /// </summary>
         protected virtual void RaiseOnError() => OnError?.Invoke(this, new());
 
-        /// <summary>
-        /// Raised on completed
-        /// </summary>
-        public event CopyStream_Delegate? OnComplete;
+        /// <inheritdoc/>
+        public event ICopyStream.CopyStream_Delegate? OnComplete;
         /// <summary>
         /// Raise the <see cref="OnComplete"/> event
         /// </summary>
