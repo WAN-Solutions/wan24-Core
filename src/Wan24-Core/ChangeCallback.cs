@@ -28,7 +28,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Just a method adapter")]
         public virtual void Invoke(in object? state = null)
         {
-            if (!EnsureUndisposed(throwException: false)) return;
+            if (IsDisposing) return;
             Callback(state ?? State);
         }
 

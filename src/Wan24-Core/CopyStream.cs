@@ -87,7 +87,7 @@
                 throw new ArgumentException("Writable copy target stream required", nameof(copyTarget));
             CopyTarget = copyTarget;
             LeaveTargetOpen = leaveTargetStreamOpen;
-            _Cancellations = Equals(cancellationToken, default) 
+            _Cancellations = cancellationToken.IsEqualTo(default)
                 ? new(Cancellation.Token) 
                 : new(Cancellation.Token, cancellationToken);
             CopyTask = StartCopyAsync();
@@ -128,6 +128,9 @@
         /// <inheritdoc/>
         public virtual void CancelCopy() => Cancellation.Cancel();
 
+        /// <inheritdoc/>
+        public virtual Task CancelCopyAsync() => Cancellation.CancelAsync();
+
         /// <summary>
         /// Start the copy process
         /// </summary>
@@ -163,7 +166,7 @@
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            Cancellation.Cancel();
+            await Cancellation.CancelAsync().DynamicContext();
             await base.DisposeCore().DynamicContext();
             Cancellation.Dispose();
             await _Cancellations.DisposeAsync().DynamicContext();

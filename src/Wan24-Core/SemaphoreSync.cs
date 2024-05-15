@@ -345,13 +345,13 @@ namespace wan24.Core
             /// <returns>Instance added?</returns>
             public bool AddInstance()
             {
-                if (!EnsureUndisposed(throwException: false)) return false;
+                if (IsDisposing) return false;
                 try
                 {
                     DisposeSyncObject.Wait();
                     try
                     {
-                        if (!EnsureUndisposed(throwException: false)) return false;
+                        if (IsDisposing) return false;
                         _InstanceCount++;
                         return true;
                     }
@@ -371,13 +371,13 @@ namespace wan24.Core
             /// </summary>
             public void RemoveInstance()
             {
-                if (!EnsureUndisposed(throwException: false)) return;
+                if (IsDisposing) return;
                 try
                 {
                     DisposeSyncObject.Wait();
                     try
                     {
-                        if (!EnsureUndisposed(throwException: false)) return;
+                        if (IsDisposing) return;
                         _InstanceCount--;
                         if (_InstanceCount > 0) return;
                         Instances.TryRemove(HashCode, out _);

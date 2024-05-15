@@ -171,7 +171,7 @@
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            Cancellation.Cancel();
+            await Cancellation.CancelAsync().DynamicContext();
             if (ProcessorTask is Task processor) await processor.DynamicContext();
             await base.DisposeCore().DynamicContext();
             await CombinedCancellation.DisposeAsync().DynamicContext();

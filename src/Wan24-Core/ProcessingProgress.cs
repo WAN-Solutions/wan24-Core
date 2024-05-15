@@ -88,7 +88,7 @@ namespace wan24.Core
         {
             get
             {
-                if (!EnsureUndisposed(allowDisposing: false, throwException: false)) return [];
+                if (IsDisposing) return [];
                 using SemaphoreSyncContext ssc = Sync.SyncContext();
                 if (_Total != 0) return [this];
                 List<ProcessingProgress> res = [];
@@ -112,7 +112,7 @@ namespace wan24.Core
         {
             get
             {
-                if (!EnsureUndisposed(allowDisposing: false, throwException: false)) return 0;
+                if (IsDisposing) return 0;
                 using SemaphoreSyncContext ssc = Sync.SyncContext();
                 return Total != 0 ? 1 : _SubProgress.Sum(p => p.AllProgressCount);
             }
@@ -158,7 +158,7 @@ namespace wan24.Core
         {
             get
             {
-                if (!EnsureUndisposed(allowDisposing: false, throwException: false)) return 100;
+                if (IsDisposing) return 100;
                 using SemaphoreSyncContext ssc = Sync.SyncContext();
                 if (_Total == 0 && _SubProgress.Count == 0) return 100;
                 return _SubProgress.Count == 0 ? Progress : (float)_SubProgress.Sum(p => (double)p.AllProgress) / _SubProgress.Count;
@@ -177,7 +177,7 @@ namespace wan24.Core
         {
             get
             {
-                if (!EnsureUndisposed(allowDisposing: false, throwException: false)) return true;
+                if (IsDisposing) return true;
                 using SemaphoreSyncContext ssc = Sync.SyncContext();
                 return IsDone || IsCanceled || (_Total == 0 && (_SubProgress.Count == 0 || _SubProgress.All(p => p.AllDone)));
             }
@@ -210,7 +210,7 @@ namespace wan24.Core
         /// <param name="status">New status</param>
         public void SetStatus(string? status)
         {
-            if (!EnsureUndisposed(allowDisposing: false, throwException: false) || status == Status) return;
+            if (IsDisposing || status == Status) return;
             Status = status;
             RaiseOnStatus();
         }
@@ -220,7 +220,7 @@ namespace wan24.Core
         /// </summary>
         public void SetDone()
         {
-            if (!EnsureUndisposed(allowDisposing: false, throwException: false)) return;
+            if (IsDisposing) return;
             using (SemaphoreSyncContext ssc = Sync.SyncContext())
             {
                 if (IsDone) return;
@@ -236,7 +236,7 @@ namespace wan24.Core
         /// </summary>
         public void Cancel()
         {
-            if (!EnsureUndisposed(allowDisposing: false, throwException: false)) return;
+            if (IsDisposing) return;
             ProcessingProgress[] subProgress;
             using (SemaphoreSyncContext ssc = Sync.SyncContext())
             {
@@ -285,7 +285,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="token">Token</param>
         /// <returns>Token to use (is the given token, if it's not the default)</returns>
-        public CancellationToken GetCancellationToken(CancellationToken token) => Equals(token, default) ? CancellationToken : token;
+        public CancellationToken GetCancellationToken(CancellationToken token) => token.IsEqualTo(default) ? CancellationToken : token;
 
         /// <inheritdoc/>
         public override string? ToString()
@@ -339,7 +339,7 @@ namespace wan24.Core
         /// <param name="e">Arguments</param>
         private void HandleSubProgress(ProcessingProgress progress, EventArgs e)
         {
-            if (!EnsureUndisposed(allowDisposing: false, throwException: false) || IsDone || IsCanceled) return;
+            if (IsDisposing || IsDone || IsCanceled) return;
             RaiseOnProgress(progress);
             if (AllDone) SetDone();
         }
@@ -351,7 +351,7 @@ namespace wan24.Core
         /// <param name="e">Arguments</param>
         private async void HandleSubProgressDone(ProcessingProgress progress, EventArgs e)
         {
-            if (!EnsureUndisposed(allowDisposing: false, throwException: false) || IsDone || IsCanceled) return;
+            if (IsDisposing || IsDone || IsCanceled) return;
             await Task.Yield();
             RemoveSubProgressInt(progress);
             if (AllDone) SetDone();
@@ -381,7 +381,7 @@ namespace wan24.Core
         /// <param name="progress">Progress</param>
         private void RaiseOnProgress(ProcessingProgress? progress = null)
         {
-            if (!EnsureUndisposed(allowDisposing: false, throwException: false)) return;
+            if (IsDisposing) return;
             OnProgress?.Invoke(progress ?? this, new());
             RaiseOnAllProgress();
         }

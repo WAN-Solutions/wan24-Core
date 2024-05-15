@@ -180,7 +180,7 @@ namespace wan24.Core
         /// <returns>Synchronization context</returns>
         protected bool TryLockDisposing(out SemaphoreSyncContext result, in TimeSpan timeout = default, in CancellationToken cancellationToken = default)
         {
-            if (!EnsureUndisposed(throwException: false))
+            if (IsDisposing)
             {
                 result = default;
                 return false;
@@ -196,7 +196,7 @@ namespace wan24.Core
                 {
                     res.Sync(timeout, cancellationToken);
                 }
-                if (!EnsureUndisposed(throwException: false))
+                if (IsDisposing)
                 {
                     res.Dispose();
                     result = default;
@@ -221,7 +221,7 @@ namespace wan24.Core
         /// <returns>Synchronization context (don't forget to dispose!)</returns>
         protected async Task<TryAsyncResult<SemaphoreSyncContext>> TryLockDisposingAsync(TimeSpan timeout = default, CancellationToken cancellationToken = default)
         {
-            if (!EnsureUndisposed(throwException: false)) return false;
+            if (IsDisposing) return false;
             SemaphoreSyncContext res = new(DisposeSyncObject);
             try
             {
@@ -233,7 +233,7 @@ namespace wan24.Core
                 {
                     await res.SyncAsync(timeout, cancellationToken).DynamicContext();
                 }
-                if (!EnsureUndisposed(throwException: false))
+                if (IsDisposing)
                 {
                     res.Dispose();
                     return false;

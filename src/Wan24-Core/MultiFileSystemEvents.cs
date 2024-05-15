@@ -185,7 +185,7 @@ namespace wan24.Core
         /// <returns>If succeed</returns>
         public virtual bool TryRemove(in string id, [NotNullWhen(returnValue: true)] out FileSystemEvents? result)
         {
-            if (!EnsureUndisposed(throwException: false) || !Watchers.TryRemove(id, out result))
+            if (IsDisposing || !Watchers.TryRemove(id, out result))
             {
                 result = null;
                 return false;

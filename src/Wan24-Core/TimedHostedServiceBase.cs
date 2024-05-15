@@ -274,7 +274,7 @@ namespace wan24.Core
                         LastDuration = DateTime.Now - LastRun;
                         if (StopTask is not null || hadException || RunOnce || CancelToken.IsCancellationRequested)
                         {
-                            if (!CancelToken.IsCancellationRequested) Cancellation!.Cancel();
+                            if (!CancelToken.IsCancellationRequested) await Cancellation!.CancelAsync().DynamicContext();
                         }
                         else
                         {
