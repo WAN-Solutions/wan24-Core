@@ -14,7 +14,7 @@ namespace wan24.Core
         /// <param name="ex">Exception(s) to append</param>
         /// <returns>Aggregate exception</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static AggregateException AppendException(this Exception exception, params Exception[] ex)
+        public static AggregateException Append(this Exception exception, params Exception[] ex)
             => exception is AggregateException aex
                 ? new([.. aex.InnerExceptions, .. ex])
                 : new([exception, .. ex]);
