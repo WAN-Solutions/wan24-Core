@@ -330,5 +330,14 @@ namespace wan24.Core
             seen.Remove(arr);
             return [.. res];
         }
+
+        /// <summary>
+        /// Determine if an object is disposable
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="obj">Object</param>
+        /// <returns>If disposable</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static bool IsDisposable<T>(this T obj) => obj is IDisposable || obj is IAsyncDisposable;
     }
 }
