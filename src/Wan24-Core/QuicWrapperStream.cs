@@ -137,7 +137,7 @@ namespace wan24.Core
         /// <param name="errorCode">Error code</param>
         public virtual void Abort(QuicAbortDirection abortDirection, long errorCode)
         {
-            if (!EnsureUndisposed(throwException: false)) return;
+            if (IsDisposing) return;
             BaseStream.Abort(abortDirection, errorCode);
         }
 

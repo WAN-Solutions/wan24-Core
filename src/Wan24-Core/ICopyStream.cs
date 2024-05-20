@@ -46,6 +46,10 @@
         /// </summary>
         void CancelCopy();
         /// <summary>
+        /// Cancel the copy background task
+        /// </summary>
+        Task CancelCopyAsync();
+        /// <summary>
         /// Raised on error
         /// </summary>
         event CopyStream_Delegate? OnError;

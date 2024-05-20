@@ -123,7 +123,7 @@ namespace wan24.Core
                 IsRunning = false;
                 if(Cancellation is not null)
                 {
-                    if (!Cancellation.IsCancellationRequested) Cancellation.Cancel();
+                    if (!Cancellation.IsCancellationRequested) await Cancellation.CancelAsync().DynamicContext();
                     if (ServiceTask is not null) RunEvent.Set(cancellationToken);
                 }
                 throw;
@@ -145,7 +145,7 @@ namespace wan24.Core
                     isStopping = true;
                     await BeforeStopAsync(CancellationToken.None).DynamicContext();
                     StopTask = new(TaskCreationOptions.RunContinuationsAsynchronously);
-                    Cancellation!.Cancel();
+                    await Cancellation!.CancelAsync().DynamicContext();
                     RunEvent.Reset(CancellationToken.None);
                     if (IsPaused)
                     {

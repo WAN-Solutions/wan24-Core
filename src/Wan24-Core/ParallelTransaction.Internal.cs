@@ -81,7 +81,7 @@ namespace wan24.Core
         {
             if (Cancellation.IsCancellationRequested) return;
             if (Debug) Logging.WriteDebug($"{this} canceling pending actions");
-            Cancellation.Cancel();
+            await Cancellation.CancelAsync().DynamicContext();
             if (Debug) Logging.WriteDebug($"{this} waiting for actions after canceled");
             await WaitDoneIntAsync(throwOnError: false, cancellationToken).DynamicContext();
         }

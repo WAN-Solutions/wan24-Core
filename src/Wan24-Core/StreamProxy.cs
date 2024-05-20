@@ -167,7 +167,7 @@ namespace wan24.Core
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
             EnsureUndisposed();
             if (Observer is null) throw new InvalidOperationException();
-            if (!Cancellation.IsCancellationRequested) Cancellation.Cancel();
+            if (!Cancellation.IsCancellationRequested) await Cancellation.CancelAsync().DynamicContext();
         }
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace wan24.Core
             await Task.WhenAny(A2B, B2A).DynamicContext();
             using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(CancellationToken.None).DynamicContext())
                 if (!Cancellation.IsCancellationRequested)
-                    Cancellation.Cancel();
+                    await Cancellation.CancelAsync().DynamicContext();
             await Task.WhenAll(A2B, B2A).DynamicContext();
             Stopped = DateTime.Now;
             A2BException = A2B.Exception;
@@ -273,7 +273,7 @@ namespace wan24.Core
         {
             using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync().DynamicContext())
                 if (!Cancellation.IsCancellationRequested)
-                    Cancellation.Cancel();
+                    await Cancellation.CancelAsync().DynamicContext();
             if (Observer is not null) await Observer.DynamicContext();
             Cancellation.Dispose();
             await Sync.DisposeAsync().DynamicContext();

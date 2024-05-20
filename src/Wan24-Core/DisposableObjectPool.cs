@@ -84,7 +84,7 @@ namespace wan24.Core
                 Logging.WriteWarning($"Returned item {typeof(T)} was disposed");
                 return;
             }
-            if (Pool.Count >= Capacity || !EnsureUndisposed(throwException: false))
+            if (Pool.Count >= Capacity || IsDisposing)
             {
                 if (item is IObjectPoolItem opItem) opItem.Reset();
                 item.Dispose();

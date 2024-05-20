@@ -263,7 +263,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public virtual void Return(in T item, in bool reset = false)
         {
-            if (!EnsureUndisposed(throwException: false))
+            if (IsDisposing)
             {
                 if (item is IObjectPoolItem opItem) opItem.Reset();
                 item.TryDispose();
@@ -290,7 +290,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public virtual async Task ReturnAsync(T item, bool reset = false)
         {
-            if (!EnsureUndisposed(throwException: false))
+            if (IsDisposing)
             {
                 if (item is IObjectPoolItem opItem) opItem.Reset();
                 await item.TryDisposeAsync().DynamicContext();

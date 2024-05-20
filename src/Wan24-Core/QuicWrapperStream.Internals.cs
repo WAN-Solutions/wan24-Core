@@ -152,7 +152,7 @@ namespace wan24.Core
         protected override async Task DisposeCore()
         {
             await base.DisposeCore().DynamicContext();
-            Cancellation.Cancel();
+            await Cancellation.CancelAsync().DynamicContext();
             if (PeerReadClosedWatcher is not null)
                 try
                 {
