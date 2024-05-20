@@ -50,38 +50,42 @@
         /// <summary>
         /// Reset the current value
         /// </summary>
-        protected virtual void Reset()
+        /// <returns>Old value</returns>
+        protected virtual TaskCompletionSource<T> Reset()
         {
             EnsureUndisposed();
-            TaskCompletionSource<T> oldValue;
+            TaskCompletionSource<T> res;
             using (SemaphoreSyncContext ssc = Sync)
             {
                 EnsureUndisposed();
-                oldValue = _CurrentValue;
+                res = _CurrentValue;
                 _CurrentValue = new(TaskCreationOptions.RunContinuationsAsynchronously);
                 ValueReset = DateTime.Now;
             }
-            if (!oldValue.Task.IsCompleted)
-                oldValue.TrySetException(new InvalidOperationException("No current value"));
+            if (!res.Task.IsCompleted)
+                res.TrySetException(new InvalidOperationException("No current value"));
+            return res;
         }
 
         /// <summary>
         /// Reset the current value
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
-        protected virtual async Task ResetAsync(CancellationToken cancellationToken = default)
+        /// <returns>Old value</returns>
+        protected virtual async Task<TaskCompletionSource<T>> ResetAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            TaskCompletionSource<T> oldValue;
+            TaskCompletionSource<T> res;
             using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext())
             {
                 EnsureUndisposed();
-                oldValue = _CurrentValue;
+                res = _CurrentValue;
                 _CurrentValue = new(TaskCreationOptions.RunContinuationsAsynchronously);
                 ValueReset = DateTime.Now;
             }
-            if (!oldValue.Task.IsCompleted)
-                oldValue.TrySetException(new InvalidOperationException("No current value"));
+            if (!res.Task.IsCompleted)
+                res.TrySetException(new InvalidOperationException("No current value"));
+            return res;
         }
 
         /// <inheritdoc/>
