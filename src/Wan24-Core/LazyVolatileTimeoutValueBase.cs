@@ -37,7 +37,17 @@
         /// </summary>
         /// <param name="timer">Timer</param>
         /// <param name="e">Arguments</param>
-        protected virtual void HandleTimeout(Timeout timer, EventArgs e) => Reset();
+        protected virtual void HandleTimeout(Timeout timer, EventArgs e)
+        {
+            try
+            {
+                Reset();
+            }
+            catch(Exception ex)
+            {
+                ErrorHandling.Handle(new("Lazy volatile timeout value failed to handle a timeout", ex));
+            }
+        }
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)

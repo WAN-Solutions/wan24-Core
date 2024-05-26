@@ -43,7 +43,7 @@
         public DateTime ValueReset { get; protected set; } = DateTime.MinValue;
 
         /// <summary>
-        /// Set the current value to <see cref="_CurrentValue"/> (should use <see cref="Cancellation"/>, now throw and set <see cref="ValueCreated"/>)
+        /// Set the current value to <see cref="_CurrentValue"/> (should use <see cref="Cancellation"/>, not throw and set <see cref="ValueCreated"/>)
         /// </summary>
         protected abstract void SetCurrentValue();
 
