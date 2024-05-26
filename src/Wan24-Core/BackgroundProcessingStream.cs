@@ -1,9 +1,23 @@
 ﻿namespace wan24.Core
 {
     /// <summary>
-    /// Background processing stream
+    /// Base class for a background processing stream
     /// </summary>
-    public abstract class BackgroundProcessingStream : BlockingBufferStream
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="bufferSize">Buffer size in bytes</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    [Obsolete("Use BackgroundProcessingStreamBase instead")]//TODO Remove in v3
+    public abstract class BackgroundProcessingStream(in int bufferSize, in CancellationToken cancellationToken = default)
+        : BackgroundProcessingStreamBase(bufferSize, cancellationToken)
+    {
+    }
+
+    /// <summary>
+    /// Base class for a background processing stream
+    /// </summary>
+    public abstract class BackgroundProcessingStreamBase : BlockingBufferStream
     {
         /// <summary>
         /// Cancellation
@@ -35,7 +49,7 @@
         /// </summary>
         /// <param name="bufferSize">Buffer size in bytes</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        protected BackgroundProcessingStream(in int bufferSize, in CancellationToken cancellationToken = default) : base(bufferSize)
+        protected BackgroundProcessingStreamBase(in int bufferSize, in CancellationToken cancellationToken = default) : base(bufferSize)
             => CombinedCancellation = new(Cancellation.Token, cancellationToken);
 
         /// <summary>
@@ -82,7 +96,7 @@
         /// </summary>
         /// <param name="buffer">Buffer</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        public virtual ValueTask WriteIntAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
+        protected virtual ValueTask WriteIntAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
             => base.WriteAsync(buffer, cancellationToken);
 
         /// <summary>
@@ -91,7 +105,7 @@
         /// <param name="buffer">Buffer</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Number of written bytes</returns>
-        public virtual ValueTask<int> TryWriteIntAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
+        protected virtual ValueTask<int> TryWriteIntAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
             => base.TryWriteAsync(buffer, cancellationToken);
 
         /// <summary>
@@ -104,15 +118,11 @@
                 await ProcessAsync(CombinedCancellation.Cancellation).DynamicContext();
                 await SetIsEndOfFileAsync(CombinedCancellation).DynamicContext();
             }
-            catch(ObjectDisposedException ex)
+            catch(ObjectDisposedException) when (IsDisposing)
             {
-                if (!IsDisposing)
-                    SetLastException(ex);
             }
-            catch(OperationCanceledException ex)
+            catch(OperationCanceledException) when (CombinedCancellation.Cancellation.IsCancellationRequested)
             {
-                if (ex.CancellationToken != CombinedCancellation.Cancellation)
-                    SetLastException(ex);
             }
             catch(Exception ex)
             {
@@ -183,7 +193,7 @@
         /// </summary>
         /// <param name="stream">Sender</param>
         /// <param name="e">Arguments</param>
-        public delegate void Error_Delegate(BackgroundProcessingStream stream, EventArgs e);
+        public delegate void Error_Delegate(BackgroundProcessingStreamBase stream, EventArgs e);
         /// <summary>
         /// Raised on error (see <see cref="LastException"/>)
         /// </summary>

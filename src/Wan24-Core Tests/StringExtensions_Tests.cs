@@ -84,5 +84,14 @@ namespace Wan24_Core_Tests
             };
             foreach (var kvp in test) Assert.AreEqual(kvp.Value, kvp.Key.Parse(data), kvp.Key);
         }
+
+        [TestMethod]
+        public void IsLike_Tests()
+        {
+            Assert.IsTrue("TEST".IsLike("test"));
+            Assert.IsTrue("test".IsLike("test"));
+            Assert.IsTrue("test".IsLike("TEST"));
+            Assert.IsFalse("tset".IsLike("test"));
+        }
     }
 }

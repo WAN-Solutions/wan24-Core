@@ -90,10 +90,12 @@ namespace wan24.Core
         /// <typeparam name="tValue">Value type</typeparam>
         /// <param name="original">Original</param>
         /// <param name="other">Other (values which mismatch the source count)</param>
-        /// <param name="existingOriginalKeysOnly">Existing keys (in the original) only?</param>
-        /// <param name="existingOtherKeysOnly">Existing keys (in the other) only?</param>
-        /// <returns>New dictionary which contains the different key/values</returns>
-        public static Dictionary<tKey, tValue> Diff<tKey, tValue>(
+        /// <param name="existingOriginalKeysOnly">Existing keys (in the original) only? (the value of the result will be <see langword="null"/>, if the key wasn't 
+        /// found in the <c>other</c>)</param>
+        /// <param name="existingOtherKeysOnly">Existing keys (in the other) only? (the value of the result will be <see langword="null"/>, if the key wasn't found in the 
+        /// <c>original</c>)</param>
+        /// <returns>New dictionary which contains the different key/values (if the value is not <see langword="null"/>, it's the <c>other</c> different value)</returns>
+        public static Dictionary<tKey, tValue?> Diff<tKey, tValue>(
             this Dictionary<tKey, tValue> original, 
             in Dictionary<tKey, tValue> other, 
             in bool existingOriginalKeysOnly = false,
@@ -101,7 +103,7 @@ namespace wan24.Core
             )
             where tKey : notnull
         {
-            Dictionary<tKey, tValue> res = [];
+            Dictionary<tKey, tValue?> res = [];
             HashSet<tKey> seen = [];
             foreach (var kvp in original)
             {
@@ -109,7 +111,7 @@ namespace wan24.Core
                 if (!exists && existingOtherKeysOnly) continue;
                 if (!exists || (kvp.Value is null != value is null) || !(kvp.Value?.Equals(value) ?? true))
                 {
-                    res[kvp.Key] = value!;
+                    res[kvp.Key] = value;
                     seen.Add(kvp.Key);
                 }
             }
@@ -118,7 +120,7 @@ namespace wan24.Core
                 bool exists = original.TryGetValue(kvp.Key, out tValue? value);
                 if (!exists && existingOriginalKeysOnly) continue;
                 if (!exists || (kvp.Value is null != value is null) || !(kvp.Value?.Equals(value) ?? true))
-                    res[kvp.Key] = value!;
+                    res[kvp.Key] = value;
             }
             return res;
         }

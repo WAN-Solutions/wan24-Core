@@ -40,6 +40,6 @@
         /// <param name="other">Other cancellation token</param>
         /// <returns>If the cancellation tokens are equal</returns>
         public static bool IsEqualTo(this CancellationToken cancellationToken, CancellationToken other)
-            => Equals(cancellationToken, other);
+            => CancellationToken.Equals(cancellationToken, other);
     }
 }
