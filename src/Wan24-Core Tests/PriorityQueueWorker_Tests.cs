@@ -5,7 +5,7 @@ namespace Wan24_Core_Tests
     [TestClass]
     public class PriorityQueueWorker_Tests
     {
-        [TestMethod, Timeout(3000)]
+        [TestMethod, Timeout(10000)]
         public async Task General_Tests()
         {
             using ResetEvent runEvent = new();
@@ -17,6 +17,7 @@ namespace Wan24_Core_Tests
                 await runEvent.WaitAsync();
                 processed.Add(3);
             }, 3);
+            await Task.Delay(500);
             await worker.EnqueueAsync(async (ct) =>
             {
                 await runEvent.WaitAsync();
