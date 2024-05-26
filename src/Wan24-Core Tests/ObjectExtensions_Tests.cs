@@ -18,5 +18,13 @@ namespace Wan24_Core_Tests
         {
             Assert.AreEqual(1, ((ushort)1).ConvertType<int>());
         }
+
+        [TestMethod]
+        public void IsDisposable_Tests()
+        {
+            Assert.IsFalse(new object().IsDisposable());
+            using DisposableAdapter temp = new((a) => { });
+            Assert.IsTrue(temp.IsDisposable());
+        }
     }
 }
