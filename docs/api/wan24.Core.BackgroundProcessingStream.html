@@ -101,7 +101,7 @@
 
 
   <h1 id="wan24_Core_BackgroundProcessingStream" data-uid="wan24.Core.BackgroundProcessingStream" class="text-break">Class BackgroundProcessingStream</h1>
-  <div class="markdown level0 summary"><p>Background processing stream</p>
+  <div class="markdown level0 summary"><p>Base class for a background processing stream</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -111,7 +111,8 @@
     <div class="level2"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></div>
     <div class="level3"><a class="xref" href="wan24.Core.StreamBase.html">StreamBase</a></div>
     <div class="level4"><a class="xref" href="wan24.Core.BlockingBufferStream.html">BlockingBufferStream</a></div>
-    <div class="level5"><span class="xref">BackgroundProcessingStream</span></div>
+    <div class="level5"><a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html">BackgroundProcessingStreamBase</a></div>
+    <div class="level6"><span class="xref">BackgroundProcessingStream</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
@@ -123,6 +124,81 @@
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_Cancellation">BackgroundProcessingStreamBase.Cancellation</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_CombinedCancellation">BackgroundProcessingStreamBase.CombinedCancellation</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_Scheduler">BackgroundProcessingStreamBase.Scheduler</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_LongRunning">BackgroundProcessingStreamBase.LongRunning</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_DidProcess">BackgroundProcessingStreamBase.DidProcess</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_ProcessorTask">BackgroundProcessingStreamBase.ProcessorTask</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_LastException">BackgroundProcessingStreamBase.LastException</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_CanWrite">BackgroundProcessingStreamBase.CanWrite</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_Write_System_ReadOnlySpan_System_Byte__">BackgroundProcessingStreamBase.Write(ReadOnlySpan&lt;byte&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_">BackgroundProcessingStreamBase.WriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_WriteByte_System_Byte_">BackgroundProcessingStreamBase.WriteByte(byte)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_TryWrite_System_ReadOnlySpan_System_Byte__">BackgroundProcessingStreamBase.TryWrite(ReadOnlySpan&lt;byte&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_TryWriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_">BackgroundProcessingStreamBase.TryWriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_BeginWrite_System_Byte___System_Int32_System_Int32_System_AsyncCallback_System_Object_">BackgroundProcessingStreamBase.BeginWrite(byte[], int, int, AsyncCallback, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_ProcessAsync_System_Threading_CancellationToken_">BackgroundProcessingStreamBase.ProcessAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_WriteIntAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_">BackgroundProcessingStreamBase.WriteIntAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_TryWriteIntAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_">BackgroundProcessingStreamBase.TryWriteIntAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_ProcessorAsync">BackgroundProcessingStreamBase.ProcessorAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_StartProcessing">BackgroundProcessingStreamBase.StartProcessing()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_StartProcessingAsync">BackgroundProcessingStreamBase.StartProcessingAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_SetLastException_System_Exception__">BackgroundProcessingStreamBase.SetLastException(in Exception)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_Dispose_System_Boolean_">BackgroundProcessingStreamBase.Dispose(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_DisposeCore">BackgroundProcessingStreamBase.DisposeCore()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_OnError">BackgroundProcessingStreamBase.OnError</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_RaiseOnError">BackgroundProcessingStreamBase.RaiseOnError()</a>
+    </div>
     <div>
       <a class="xref" href="wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_BufferSize">BlockingBufferStream.BufferSize</a>
     </div>
@@ -455,8 +531,12 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_BackgroundProcessingStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class BackgroundProcessingStream : BlockingBufferStream, IStream, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Use BackgroundProcessingStreamBase instead&quot;)]
+public abstract class BackgroundProcessingStream : BackgroundProcessingStreamBase, IStream, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
   </div>
+  <h5 id="wan24_Core_BackgroundProcessingStream_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Constructor</p>
+</div>
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
@@ -464,11 +544,11 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream__ctor_System_Int32__System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.%23ctor(System.Int32%40%2CSystem.Threading.CancellationToken%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L38">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L11">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStream__ctor_" data-uid="wan24.Core.BackgroundProcessingStream.#ctor*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStream__ctor_System_Int32__System_Threading_CancellationToken__" data-uid="wan24.Core.BackgroundProcessingStream.#ctor(System.Int32@,System.Threading.CancellationToken@)">BackgroundProcessingStream(in int, in CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Constructor</p>
+  <div class="markdown level1 summary"><p>Base class for a background processing stream</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -499,1019 +579,9 @@
       </tr>
     </tbody>
   </table>
-  <h3 id="fields">Fields
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_Cancellation.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.Cancellation%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L11">View Source</a>
-  </span>
-  <h4 id="wan24_Core_BackgroundProcessingStream_Cancellation" data-uid="wan24.Core.BackgroundProcessingStream.Cancellation">Cancellation</h4>
-  <div class="markdown level1 summary"><p>Cancellation</p>
+  <h5 id="wan24_Core_BackgroundProcessingStream__ctor_System_Int32__System_Threading_CancellationToken___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Constructor</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly CancellationTokenSource Cancellation</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtokensource">CancellationTokenSource</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_CombinedCancellation.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.CombinedCancellation%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L15">View Source</a>
-  </span>
-  <h4 id="wan24_Core_BackgroundProcessingStream_CombinedCancellation" data-uid="wan24.Core.BackgroundProcessingStream.CombinedCancellation">CombinedCancellation</h4>
-  <div class="markdown level1 summary"><p>Combined cancellation tokens</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly Cancellations CombinedCancellation</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="wan24.Core.Cancellations.html">Cancellations</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_DidProcess.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.DidProcess%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L27">View Source</a>
-  </span>
-  <h4 id="wan24_Core_BackgroundProcessingStream_DidProcess" data-uid="wan24.Core.BackgroundProcessingStream.DidProcess">DidProcess</h4>
-  <div class="markdown level1 summary"><p>Did process already?</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected bool DidProcess</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_LongRunning.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.LongRunning%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L23">View Source</a>
-  </span>
-  <h4 id="wan24_Core_BackgroundProcessingStream_LongRunning" data-uid="wan24.Core.BackgroundProcessingStream.LongRunning">LongRunning</h4>
-  <div class="markdown level1 summary"><p>Is a long running process?</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected bool LongRunning</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_ProcessorTask.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.ProcessorTask%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L31">View Source</a>
-  </span>
-  <h4 id="wan24_Core_BackgroundProcessingStream_ProcessorTask" data-uid="wan24.Core.BackgroundProcessingStream.ProcessorTask">ProcessorTask</h4>
-  <div class="markdown level1 summary"><p>Processor task</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Task? ProcessorTask</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_Scheduler.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.Scheduler%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L19">View Source</a>
-  </span>
-  <h4 id="wan24_Core_BackgroundProcessingStream_Scheduler" data-uid="wan24.Core.BackgroundProcessingStream.Scheduler">Scheduler</h4>
-  <div class="markdown level1 summary"><p>Task scheduler to use for the processing background task</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected TaskScheduler? Scheduler</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.taskscheduler">TaskScheduler</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_CanWrite.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.CanWrite%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L47">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_CanWrite_" data-uid="wan24.Core.BackgroundProcessingStream.CanWrite*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_CanWrite" data-uid="wan24.Core.BackgroundProcessingStream.CanWrite">CanWrite</h4>
-  <div class="markdown level1 summary"><p>When overridden in a derived class, gets a value indicating whether the current stream supports writing.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override bool CanWrite { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the stream supports writing; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_CanWrite">BlockingBufferStream.CanWrite</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_LastException.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.LastException%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L44">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_LastException_" data-uid="wan24.Core.BackgroundProcessingStream.LastException*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_LastException" data-uid="wan24.Core.BackgroundProcessingStream.LastException">LastException</h4>
-  <div class="markdown level1 summary"><p>Last processing exception (may be set during disposing)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Exception? LastException { get; protected set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_BeginWrite_System_Byte___System_Int32_System_Int32_System_AsyncCallback_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.BeginWrite(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CSystem.AsyncCallback%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L70">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_BeginWrite_" data-uid="wan24.Core.BackgroundProcessingStream.BeginWrite*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_BeginWrite_System_Byte___System_Int32_System_Int32_System_AsyncCallback_System_Object_" data-uid="wan24.Core.BackgroundProcessingStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">BeginWrite(byte[], int, int, AsyncCallback?, object?)</h4>
-  <div class="markdown level1 summary"><p>Begins an asynchronous write operation. (Consider using <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.writeasync#system-io-stream-writeasync(system-byte()-system-int32-system-int32)">WriteAsync(byte[], int, int)</a> instead.)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback? callback, object? state)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
-        <td><span class="parametername">buffer</span></td>
-        <td><p>The buffer to write data from.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">offset</span></td>
-        <td><p>The byte offset in <code class="paramref">buffer</code> from which to begin writing.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">count</span></td>
-        <td><p>The maximum number of bytes to write.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.asynccallback">AsyncCallback</a></td>
-        <td><span class="parametername">callback</span></td>
-        <td><p>An optional asynchronous callback, to be called when the write is complete.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
-        <td><span class="parametername">state</span></td>
-        <td><p>A user-provided object that distinguishes this particular asynchronous write request from other requests.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncresult">IAsyncResult</a></td>
-        <td><p>An <code>IAsyncResult</code> that represents the asynchronous write, which could still be pending.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.beginwrite">Stream.BeginWrite(byte[], int, int, AsyncCallback, object)</a></div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Attempted an asynchronous write past the end of the stream, or a disk error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>One or more of the arguments is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>Methods were called after the stream was closed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>The current <code>Stream</code> implementation does not support the write operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L162">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_Dispose_" data-uid="wan24.Core.BackgroundProcessingStream.Dispose*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_Dispose_System_Boolean_" data-uid="wan24.Core.BackgroundProcessingStream.Dispose(System.Boolean)">Dispose(bool)</h4>
-  <div class="markdown level1 summary"><p>Releases the unmanaged resources used by the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a> and optionally releases the managed resources.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void Dispose(bool disposing)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">disposing</span></td>
-        <td><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to release both managed and unmanaged resources; <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> to release only unmanaged resources.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_Dispose_System_Boolean_">BlockingBufferStream.Dispose(bool)</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L172">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_DisposeCore_" data-uid="wan24.Core.BackgroundProcessingStream.DisposeCore*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_DisposeCore" data-uid="wan24.Core.BackgroundProcessingStream.DisposeCore">DisposeCore()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override Task DisposeCore()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_DisposeCore">BlockingBufferStream.DisposeCore()</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_ProcessAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.ProcessAsync(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L78">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_ProcessAsync_" data-uid="wan24.Core.BackgroundProcessingStream.ProcessAsync*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_ProcessAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.BackgroundProcessingStream.ProcessAsync(System.Threading.CancellationToken)">ProcessAsync(CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Process (must use <a class="xref" href="wan24.Core.BackgroundProcessingStream.html#wan24_Core_BackgroundProcessingStream_WriteIntAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_">WriteIntAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</a> or <a class="xref" href="wan24.Core.BackgroundProcessingStream.html#wan24_Core_BackgroundProcessingStream_TryWriteIntAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_">TryWriteIntAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</a>
-for writing to the buffer!)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected abstract Task ProcessAsync(CancellationToken cancellationToken)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>Cancellation token</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_ProcessorAsync.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.ProcessorAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L100">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_ProcessorAsync_" data-uid="wan24.Core.BackgroundProcessingStream.ProcessorAsync*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_ProcessorAsync" data-uid="wan24.Core.BackgroundProcessingStream.ProcessorAsync">ProcessorAsync()</h4>
-  <div class="markdown level1 summary"><p>Processor</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Task ProcessorAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_RaiseOnError.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.RaiseOnError%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L194">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_RaiseOnError_" data-uid="wan24.Core.BackgroundProcessingStream.RaiseOnError*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_RaiseOnError" data-uid="wan24.Core.BackgroundProcessingStream.RaiseOnError">RaiseOnError()</h4>
-  <div class="markdown level1 summary"><p>Raise the <a class="xref" href="wan24.Core.BackgroundProcessingStream.html#wan24_Core_BackgroundProcessingStream_OnError">OnError</a> event</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void RaiseOnError()</code></pre>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_SetLastException_System_Exception__.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.SetLastException(System.Exception%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L153">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_SetLastException_" data-uid="wan24.Core.BackgroundProcessingStream.SetLastException*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_SetLastException_System_Exception__" data-uid="wan24.Core.BackgroundProcessingStream.SetLastException(System.Exception@)">SetLastException(in Exception)</h4>
-  <div class="markdown level1 summary"><p>Set the last exception and start disposing</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void SetLastException(in Exception ex)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></td>
-        <td><span class="parametername">ex</span></td>
-        <td><p>Exception</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_StartProcessing.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.StartProcessing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L130">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_StartProcessing_" data-uid="wan24.Core.BackgroundProcessingStream.StartProcessing*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_StartProcessing" data-uid="wan24.Core.BackgroundProcessingStream.StartProcessing">StartProcessing()</h4>
-  <div class="markdown level1 summary"><p>Start processing (can only be called once!)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void StartProcessing()</code></pre>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_StartProcessingAsync.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.StartProcessingAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L143">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_StartProcessingAsync_" data-uid="wan24.Core.BackgroundProcessingStream.StartProcessingAsync*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_StartProcessingAsync" data-uid="wan24.Core.BackgroundProcessingStream.StartProcessingAsync">StartProcessingAsync()</h4>
-  <div class="markdown level1 summary"><p>Start processing (can only be called once!)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Task StartProcessingAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_TryWrite_System_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.TryWrite(System.ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L62">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_TryWrite_" data-uid="wan24.Core.BackgroundProcessingStream.TryWrite*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_TryWrite_System_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BackgroundProcessingStream.TryWrite(System.ReadOnlySpan{System.Byte})">TryWrite(ReadOnlySpan&lt;byte&gt;)</h4>
-  <div class="markdown level1 summary"><p>Try writing a buffer without blocking</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override int TryWrite(ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
-        <td><span class="parametername">buffer</span></td>
-        <td><p>Buffer</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><p>Number of bytes written</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_TryWrite_System_ReadOnlySpan_System_Byte__">BlockingBufferStream.TryWrite(ReadOnlySpan&lt;byte&gt;)</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_TryWriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.TryWriteAsync(System.ReadOnlyMemory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L66">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_TryWriteAsync_" data-uid="wan24.Core.BackgroundProcessingStream.TryWriteAsync*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_TryWriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.BackgroundProcessingStream.TryWriteAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">TryWriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Try writing a buffer without blocking</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override ValueTask&lt;int&gt; TryWriteAsync(ReadOnlyMemory&lt;byte&gt; buffer, CancellationToken cancellationToken = default)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
-        <td><span class="parametername">buffer</span></td>
-        <td><p>Buffer</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>Cancellation token</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</td>
-        <td><p>Number of bytes written</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_TryWriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_">BlockingBufferStream.TryWriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_TryWriteIntAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.TryWriteIntAsync(System.ReadOnlyMemory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L94">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_TryWriteIntAsync_" data-uid="wan24.Core.BackgroundProcessingStream.TryWriteIntAsync*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_TryWriteIntAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.BackgroundProcessingStream.TryWriteIntAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">TryWriteIntAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Internal try write (uses the base <a class="xref" href="wan24.Core.BackgroundProcessingStream.html#wan24_Core_BackgroundProcessingStream_TryWriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_">TryWriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</a>)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual ValueTask&lt;int&gt; TryWriteIntAsync(ReadOnlyMemory&lt;byte&gt; buffer, CancellationToken cancellationToken = default)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
-        <td><span class="parametername">buffer</span></td>
-        <td><p>Buffer</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>Cancellation token</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</td>
-        <td><p>Number of written bytes</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_Write_System_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.Write(System.ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L50">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_Write_" data-uid="wan24.Core.BackgroundProcessingStream.Write*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_Write_System_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BackgroundProcessingStream.Write(System.ReadOnlySpan{System.Byte})">Write(ReadOnlySpan&lt;byte&gt;)</h4>
-  <div class="markdown level1 summary"><p>When overridden in a derived class, writes a sequence of bytes to the current stream and advances the current position within this stream by the number of bytes written.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Write(ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
-        <td><span class="parametername">buffer</span></td>
-        <td><p>A region of memory. This method copies the contents of this region to the current stream.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_Write_System_ReadOnlySpan_System_Byte__">BlockingBufferStream.Write(ReadOnlySpan&lt;byte&gt;)</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.WriteAsync(System.ReadOnlyMemory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L54">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_WriteAsync_" data-uid="wan24.Core.BackgroundProcessingStream.WriteAsync*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.BackgroundProcessingStream.WriteAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">WriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Asynchronously writes a sequence of bytes to the current stream, advances the current position within this stream by the number of bytes written, and monitors cancellation requests.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override ValueTask WriteAsync(ReadOnlyMemory&lt;byte&gt; buffer, CancellationToken cancellationToken = default)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
-        <td><span class="parametername">buffer</span></td>
-        <td><p>The region of memory to write data from.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>The token to monitor for cancellation requests. The default value is <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken.none">None</a>.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></td>
-        <td><p>A task that represents the asynchronous write operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_">BlockingBufferStream.WriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_WriteByte_System_Byte_.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.WriteByte(System.Byte)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L58">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_WriteByte_" data-uid="wan24.Core.BackgroundProcessingStream.WriteByte*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_WriteByte_System_Byte_" data-uid="wan24.Core.BackgroundProcessingStream.WriteByte(System.Byte)">WriteByte(byte)</h4>
-  <div class="markdown level1 summary"><p>Writes a byte to the current position in the stream and advances the position within the stream by one byte.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void WriteByte(byte value)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></td>
-        <td><span class="parametername">value</span></td>
-        <td><p>The byte to write to the stream.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.BlockingBufferStream.html#wan24_Core_BlockingBufferStream_WriteByte_System_Byte_">BlockingBufferStream.WriteByte(byte)</a></div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>An I/O error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>The stream does not support writing, or the stream is already closed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>Methods were called after the stream was closed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_WriteIntAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.WriteIntAsync(System.ReadOnlyMemory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L85">View Source</a>
-  </span>
-  <a id="wan24_Core_BackgroundProcessingStream_WriteIntAsync_" data-uid="wan24.Core.BackgroundProcessingStream.WriteIntAsync*"></a>
-  <h4 id="wan24_Core_BackgroundProcessingStream_WriteIntAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.BackgroundProcessingStream.WriteIntAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">WriteIntAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Internal write (uses the base <a class="xref" href="wan24.Core.BackgroundProcessingStream.html#wan24_Core_BackgroundProcessingStream_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_">WriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</a>)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual ValueTask WriteIntAsync(ReadOnlyMemory&lt;byte&gt; buffer, CancellationToken cancellationToken = default)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
-        <td><span class="parametername">buffer</span></td>
-        <td><p>Buffer</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>Cancellation token</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="events">Events
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStream_OnError.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStream.OnError%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L190">View Source</a>
-  </span>
-  <h4 id="wan24_Core_BackgroundProcessingStream_OnError" data-uid="wan24.Core.BackgroundProcessingStream.OnError">OnError</h4>
-  <div class="markdown level1 summary"><p>Raised on error (see <a class="xref" href="wan24.Core.BackgroundProcessingStream.html#wan24_Core_BackgroundProcessingStream_LastException">LastException</a>)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event BackgroundProcessingStream.Error_Delegate? OnError</code></pre>
-  </div>
-  <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="wan24.Core.BackgroundProcessingStream.html">BackgroundProcessingStream</a>.<a class="xref" href="wan24.Core.BackgroundProcessingStream.Error_Delegate.html">Error_Delegate</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="wan24.Core.IStream.html">IStream</a>

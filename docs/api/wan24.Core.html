@@ -171,7 +171,10 @@ Classes
       <section><p>Base class for an automatic value object (uses properties with a public getter for building the objects hash code)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.BackgroundProcessingStream.html">BackgroundProcessingStream</a></h5>
-      <section><p>Background processing stream</p>
+      <section><p>Base class for a background processing stream</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html">BackgroundProcessingStreamBase</a></h5>
+      <section><p>Base class for a background processing stream</p>
 </section>
       <h5><a class="xref" href="wan24.Core.BackgroundStream.html">BackgroundStream</a></h5>
       <section><p>Background stream (allows writing using a background service; will copy each chunk for writing; not seek- and readable!)</p>
@@ -588,6 +591,12 @@ the first stream per default)</p>
       <h5><a class="xref" href="wan24.Core.LazyValue-1.html">LazyValue&lt;T&gt;</a></h5>
       <section><p>Lazy value</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.LazyVolatileTimeoutValueBase-1.html">LazyVolatileTimeoutValueBase&lt;T&gt;</a></h5>
+      <section><p>Base class for a lazy volatile value which will timeout</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.LazyVolatileValueBase-1.html">LazyVolatileValueBase&lt;T&gt;</a></h5>
+      <section><p>Base class for a lazy volatile value</p>
+</section>
       <h5><a class="xref" href="wan24.Core.LimitedLengthStream.html">LimitedLengthStream</a></h5>
       <section><p>Limited length stream wrapper</p>
 </section>
@@ -980,6 +989,9 @@ translation texts in your source code)</p>
       <h5><a class="xref" href="wan24.Core.ValueObjectBase-1.html">ValueObjectBase&lt;T&gt;</a></h5>
       <section><p>A base class for a value object</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.VolatileValueBase-1.html">VolatileValueBase&lt;T&gt;</a></h5>
+      <section><p>Base class for a volatile value</p>
+</section>
       <h5><a class="xref" href="wan24.Core.WrapperStream.html">WrapperStream</a></h5>
       <section><p>Stream wrapper (will dispose, if the base stream is a <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a> and has been disposed)</p>
 </section>
@@ -1292,8 +1304,8 @@ Delegates
       <h5><a class="xref" href="wan24.Core.AsyncTimer.Elapsed_Delegate.html">AsyncTimer.Elapsed_Delegate</a></h5>
       <section><p>Delegate for an elapsed handler</p>
 </section>
-      <h5><a class="xref" href="wan24.Core.BackgroundProcessingStream.Error_Delegate.html">BackgroundProcessingStream.Error_Delegate</a></h5>
-      <section><p>Delegate for an <a class="xref" href="wan24.Core.BackgroundProcessingStream.html#wan24_Core_BackgroundProcessingStream_OnError">OnError</a> event handler</p>
+      <h5><a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.Error_Delegate.html">BackgroundProcessingStreamBase.Error_Delegate</a></h5>
+      <section><p>Delegate for an <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_OnError">OnError</a> event handler</p>
 </section>
       <h5><a class="xref" href="wan24.Core.BackgroundStream-1.Error_Delegate.html">BackgroundStream&lt;T&gt;.Error_Delegate</a></h5>
       <section><p>Delegate for an <a class="xref" href="wan24.Core.BackgroundStream-1.html#wan24_Core_BackgroundStream_1_OnError">OnError</a> event handler</p>
