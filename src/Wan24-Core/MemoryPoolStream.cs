@@ -203,7 +203,7 @@ namespace wan24.Core
             try
             {
                 Position = 0;
-                Read(res);
+                ReadExactly(res);
             }
             finally
             {
