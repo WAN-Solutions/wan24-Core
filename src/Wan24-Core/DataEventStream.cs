@@ -36,6 +36,8 @@
         {
             if (!baseStream.CanRead)
                 throw new ArgumentException("Readable base stream required", nameof(baseStream));
+            _ = baseStream.Length;
+            _ = baseStream.Position;
             UseOriginalBeginRead = true;
             UseOriginalByteIO = true;
             UseOriginalCopyTo = true;
@@ -49,7 +51,7 @@
         /// <summary>
         /// If there's data available for reading
         /// </summary>
-        public bool IsDataAvailable => DataEvent.IsSet;
+        public bool IsDataAvailable => DataEvent.IsSet && (!IsEndOfStream || Position < Length);
 
         /// <inheritdoc/>
         public sealed override bool CanSeek => false;
@@ -114,8 +116,7 @@
                     if (buffer.Length <= red)
                         break;
                     buffer = buffer[red..];
-                    if (red > 0)
-                        continue;
+                    continue;
                 }
                 using (SemaphoreSyncContext ssc = Sync)
                 {
@@ -150,8 +151,7 @@
                     if (buffer.Length <= red)
                         break;
                     buffer = buffer[red..];
-                    if (red > 0)
-                        continue;
+                    continue;
                 }
                 using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext())
                 {

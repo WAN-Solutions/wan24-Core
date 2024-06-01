@@ -139,7 +139,6 @@ namespace wan24.Core
             get
             {
                 EnsureUndisposed();
-                EnsureSeekable();
                 return _BaseStream.Length;
             }
         }
@@ -150,7 +149,6 @@ namespace wan24.Core
             get
             {
                 EnsureUndisposed();
-                EnsureSeekable();
                 return _BaseStream.Position;
             }
             set

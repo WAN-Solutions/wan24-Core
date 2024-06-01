@@ -80,11 +80,7 @@ namespace wan24.Core
                 if (_IsEndOfFile || !value) throw new InvalidOperationException();
                 _IsEndOfFile = value;
                 SpaceEvent.Set();
-                if (!DataEvent.IsSet)
-                {
-                    DataEvent.Set();
-                    RaiseOnDataAvailable();
-                }
+                if (!DataEvent.IsSet) DataEvent.Set();
             }
         }
 
