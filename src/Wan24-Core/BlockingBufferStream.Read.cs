@@ -24,6 +24,8 @@
                 read = Math.Min(buffer.Length, Available);
                 if (read == 0)
                 {
+                    if (_IsEndOfFile)
+                        break;
                     DataEvent.Reset();
                     RaiseOnNeedData();
                     if (_IsEndOfFile || ((res != 0 || !ReadIncomplete) && !AggressiveReadBlocking))
@@ -42,13 +44,14 @@
                 }
                 finally
                 {
-                    if (Available == 0)
+                    if (Available == 0 && !_IsEndOfFile)
                     {
                         DataEvent.Reset();
                         RaiseOnNeedData();
                     }
                 }
-                if (!AggressiveReadBlocking) break;
+                if (!AggressiveReadBlocking ||(Available == 0 && _IsEndOfFile))
+                    break;
             }
             if (((UseFlush && Available == 0) || (!UseFlush && res != 0)) && AutoReorg) ReorganizeBuffer();
             return res;
@@ -71,6 +74,8 @@
                 read = Math.Min(buffer.Length, Available);
                 if (read == 0)
                 {
+                    if (_IsEndOfFile)
+                        break;
                     DataEvent.Reset();
                     RaiseOnNeedData();
                     break;
@@ -86,12 +91,14 @@
                 }
                 finally
                 {
-                    if (Available == 0)
+                    if (Available == 0 && !_IsEndOfFile)
                     {
                         DataEvent.Reset();
                         RaiseOnNeedData();
                     }
                 }
+                if (Available == 0 && _IsEndOfFile)
+                    break;
             }
             if (((UseFlush && Available == 0) || (!UseFlush && res != 0)) && AutoReorg) ReorganizeBuffer();
             return res;
@@ -116,6 +123,8 @@
                 read = Math.Min(buffer.Length, Available);
                 if (read == 0)
                 {
+                    if (_IsEndOfFile)
+                        break;
                     DataEvent.Reset(CancellationToken.None);
                     RaiseOnNeedData();
                     if (_IsEndOfFile || ((res != 0 || !ReadIncomplete) && !AggressiveReadBlocking))
@@ -134,13 +143,14 @@
                 }
                 finally
                 {
-                    if (Available == 0)
+                    if (Available == 0 && !_IsEndOfFile)
                     {
                         DataEvent.Reset(CancellationToken.None);
                         RaiseOnNeedData();
                     }
                 }
-                if (!AggressiveReadBlocking) break;
+                if (!AggressiveReadBlocking || (Available == 0 && _IsEndOfFile))
+                    break;
             }
             if (((UseFlush && Available == 0) || (!UseFlush && res != 0)) && AutoReorg) await ReorganizeBufferAsync(cancellationToken).DynamicContext();
             return res;
@@ -164,6 +174,8 @@
                 read = Math.Min(buffer.Length, Available);
                 if (read == 0)
                 {
+                    if (_IsEndOfFile)
+                        break;
                     DataEvent.Reset(CancellationToken.None);
                     RaiseOnNeedData();
                     break;
@@ -179,12 +191,14 @@
                 }
                 finally
                 {
-                    if (Available == 0)
+                    if (Available == 0 && !_IsEndOfFile)
                     {
                         DataEvent.Reset(CancellationToken.None);
                         RaiseOnNeedData();
                     }
                 }
+                if (Available == 0 && _IsEndOfFile)
+                    break;
             }
             if (((UseFlush && Available == 0) || (!UseFlush && res != 0)) && AutoReorg) await ReorganizeBufferAsync(cancellationToken).DynamicContext();
             return res;
