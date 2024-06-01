@@ -3,7 +3,7 @@
 namespace wan24.Core
 {
     /// <summary>
-    /// Unix timestamp
+    /// Unix timestamp (64 bit)
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
     [Serializable]

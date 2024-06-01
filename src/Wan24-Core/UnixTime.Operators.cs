@@ -12,12 +12,26 @@
         public static UnixTime operator +(in UnixTime ut, in int epochSeconds) => new(ut.EpochSeconds + epochSeconds);
 
         /// <summary>
+        /// Add one epoch second
+        /// </summary>
+        /// <param name="ut"><see cref="UnixTime"/></param>
+        /// <returns><see cref="UnixTime"/></returns>
+        public static UnixTime operator ++(in UnixTime ut) => ut + 1;
+
+        /// <summary>
         /// Remove epoch seconds
         /// </summary>
         /// <param name="ut"><see cref="UnixTime"/></param>
         /// <param name="epochSeconds">Epoch seconds</param>
         /// <returns><see cref="UnixTime"/></returns>
         public static UnixTime operator -(in UnixTime ut, in int epochSeconds) => new(ut.EpochSeconds - epochSeconds);
+
+        /// <summary>
+        /// Remove one epoch second
+        /// </summary>
+        /// <param name="ut"><see cref="UnixTime"/></param>
+        /// <returns><see cref="UnixTime"/></returns>
+        public static UnixTime operator --(in UnixTime ut) => ut - 1;
 
         /// <summary>
         /// Get the difference between two timestamps
