@@ -205,6 +205,8 @@ including extensions for numeric type encoding/decoding)
     - `ForceAsyncStream` forces all IO operations to be performed asynchronous
     - `ForceSyncStream` forces all IO operations to be performed synchronous
     - `CopyStream` does copy a stream to a target stream in a background task
+    - `DataEventStream` blocks reading of a wrapped stream until more input 
+    data is available
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context
