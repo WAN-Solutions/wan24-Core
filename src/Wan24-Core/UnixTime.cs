@@ -57,7 +57,7 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="epochSeconds">Epoch deconds (seconds since 1970-01-01 UTC)</param>
+        /// <param name="epochSeconds">Epoch seconds (seconds since 1970-01-01 UTC)</param>
         public UnixTime(in long epochSeconds)
         {
             ArgumentOutOfRangeException.ThrowIfNegative(epochSeconds);
@@ -67,7 +67,7 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="epochSeconds">Epoch deconds (seconds since 1970-01-01 UTC)</param>
+        /// <param name="epochSeconds">Epoch seconds (seconds since 1970-01-01 UTC)</param>
         public UnixTime(in int epochSeconds)
         {
             ArgumentOutOfRangeException.ThrowIfNegative(epochSeconds);
@@ -113,7 +113,7 @@ namespace wan24.Core
             get
             {
                 DateTime now = DateTime.Now;
-                return new(new DateTime(now.Year,now.Month,now.Day,0,0,0,DateTimeKind.Local));
+                return new(new DateTime(now.Year, now.Month, now.Day, 0, 0, 0, DateTimeKind.Local));
             }
         }
 
@@ -195,7 +195,7 @@ namespace wan24.Core
         /// <summary>
         /// If the timestamp is in the past
         /// </summary>
-        public bool IsPast => AsUtcDateTime < DateTime.UtcNow;
+        public bool IsPast => !IsNow && AsUtcDateTime < DateTime.UtcNow;
 
         /// <summary>
         /// If the timestamp is now (the current second)
@@ -208,14 +208,14 @@ namespace wan24.Core
                 DateOnly date = AsUtcDateOnly;
                 TimeOnly time = AsUtcTimeOnly;
                 return date.Year == now.Year && date.Month == now.Month && date.Day == now.Day &&
-                    time.Hour == now.Hour && time.Minute == now.Minute && time.Second == now.Second;
+                    time.Hour == now.Hour && time.Minute == now.Minute && (time.Second == now.Second || time.Second == now.Second + 1);
             }
         }
 
         /// <summary>
         /// If the timestamp is in the future
         /// </summary>
-        public bool IsFuture => AsUtcDateTime > DateTime.UtcNow;
+        public bool IsFuture => !IsNow && AsUtcDateTime > DateTime.UtcNow;
 
         /// <summary>
         /// Add sconds

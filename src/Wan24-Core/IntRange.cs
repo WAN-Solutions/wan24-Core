@@ -85,23 +85,45 @@ namespace wan24.Core
         /// </summary>
         /// <param name="index">Index</param>
         /// <returns>Value</returns>
-        public int this[in long index] => index >= 0 && index < Count ? (int)(From + index) : throw new ArgumentOutOfRangeException(nameof(index));
+        public int this[in long index]
+        {
+            get
+            {
+                if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException(nameof(index));
+                return (int)(From + index);
+            }
+        }
 
         /// <summary>
         /// Number of values in the range
         /// </summary>
-        public long Count => To - From + 1;
+        public long Count
+        {
+            get
+            {
+                if (From < 0 && To < 0) return 1L + (~From) - (~To);
+                if (From < 0) return 2L + (~From) + To;
+                return 1L + To - From;
+            }
+        }
 
         /// <summary>
         /// All numbers of the range
         /// </summary>
-        public IEnumerable<int> Range
+        public IEnumerable<int> EnumerableRange
         {
             get
             {
                 for (int i = From; i <= To; i++) yield return i;
             }
         }
+
+        /// <summary>
+        /// Get as <see cref="Range"/>
+        /// </summary>
+        public Range AsRange => From >= 0 && To < int.MaxValue 
+            ? new(new(From), new(To + 1)) 
+            : throw new InvalidOperationException("Invalid range values");
 
         /// <summary>
         /// Determine if this range fits another range
@@ -124,7 +146,7 @@ namespace wan24.Core
         /// <param name="count">Number of values to include</param>
         /// <param name="step">Stepping</param>
         /// <returns>Array</returns>
-        public int[] ToArray(in int start = 0, in long? count = null, in int step = 1)
+        public int[] ToArray(in long start = 0, in long? count = null, in int step = 1)
         {
             ArgumentOutOfRangeException.ThrowIfNegative(start);
             ArgumentOutOfRangeException.ThrowIfLessThan(step, 1);
@@ -134,8 +156,8 @@ namespace wan24.Core
                 ArgumentOutOfRangeException.ThrowIfGreaterThan(start + (count.Value * step), Count);
             }
             ArgumentOutOfRangeException.ThrowIfGreaterThan(start + (count ?? 0) * step, Count - 1);
-            int[] res = new int[count ?? Count];
-            for (int i = 0, len = res.Length; i < len; res[i] = From + start + i * step, i++) ;
+            int[] res = new int[(long)Math.Ceiling((decimal)((count ?? Count) - start) / step)];
+            for (int i = 0, len = res.Length; i < len; res[i] = this[start + i * step], i++) ;
             return res;
         }
 
@@ -146,15 +168,19 @@ namespace wan24.Core
         /// <param name="start">Start index</param>
         /// <param name="step">Stepping</param>
         /// <returns>Number of elements written to the array</returns>
-        public int ToArray(in Span<int> arr, in int start = 0, in int step = 1)
+        public int ToArray(in Span<int> arr, in long start = 0, in int step = 1)
         {
             ArgumentOutOfRangeException.ThrowIfNegative(start);
             ArgumentOutOfRangeException.ThrowIfLessThan(step, 1);
             ArgumentOutOfRangeException.ThrowIfGreaterThan(start, Count - 1);
             int res = 0;
+            long index,
+                count = Count;
             for (int i = 0, value; i < arr.Length; arr[i] = value, res++, i++)
             {
-                value = From + start + i * step;
+                index = start + i * step;
+                if (index >= Count) break;
+                value = this[index];
                 if (value > To) break;
             }
             return res;
@@ -167,7 +193,7 @@ namespace wan24.Core
         /// <param name="count">Number of values to include</param>
         /// <param name="step">Stepping</param>
         /// <returns>Array</returns>
-        public IEnumerable<int> AsEnumerable(int start = 0, long? count = null, int step = 1)
+        public IEnumerable<int> AsEnumerable(long start = 0, long? count = null, int step = 1)
         {
             ArgumentOutOfRangeException.ThrowIfNegative(start);
             ArgumentOutOfRangeException.ThrowIfLessThan(step, 1);
@@ -177,8 +203,14 @@ namespace wan24.Core
                 ArgumentOutOfRangeException.ThrowIfGreaterThan(start + (count.Value * step), Count);
             }
             ArgumentOutOfRangeException.ThrowIfGreaterThan(start + (count ?? 0) * step, Count - 1);
-            long len = count ?? Count;
-            for (int i = start; i < len; i++) yield return From + i * step;
+            long index,
+                total = Count;
+            for (long i = 0, len = (count ?? Count) - start; i < len; i++)
+            {
+                index = start + i * step;
+                if (index >= total) break;
+                yield return this[index];
+            }
         }
 
         /// <summary>
@@ -205,16 +237,16 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public IEnumerator<int> GetEnumerator() => Range.GetEnumerator();
+        public IEnumerator<int> GetEnumerator() => EnumerableRange.GetEnumerator();
 
         /// <inheritdoc/>
-        IEnumerator IEnumerable.GetEnumerator() => Range.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => EnumerableRange.GetEnumerator();
 
         /// <inheritdoc/>
         public int CompareTo(object? obj) => obj is IntRange range ? Count.CompareTo(range.Count) : -1;
 
         /// <inheritdoc/>
-        public override string ToString() => $"{From}-{To}";
+        public override string ToString() => $"{From};{To}";
 
         /// <summary>
         /// Count is lower than
@@ -271,7 +303,7 @@ namespace wan24.Core
         /// <returns>Range</returns>
         public static IntRange Parse(in string str)
         {
-            string[] temp = str.Split('-', 2);
+            string[] temp = str.Split(';', 2);
             if (temp.Length != 2) throw new FormatException("Invalid string format");
             return new(int.Parse(temp[0]), int.Parse(temp[1]));
         }
@@ -284,7 +316,7 @@ namespace wan24.Core
         /// <returns>If succeed</returns>
         public static bool TryParse(in string str, out IntRange result)
         {
-            string[] temp = str.Split('-', 2);
+            string[] temp = str.Split(';', 2);
             if (temp.Length != 2 || !int.TryParse(temp[0], out int from) || !int.TryParse(temp[1], out int to) || from > to)
             {
                 result = Zero;
