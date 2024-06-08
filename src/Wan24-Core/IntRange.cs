@@ -4,10 +4,10 @@ using System.Runtime.InteropServices;
 namespace wan24.Core
 {
     /// <summary>
-    /// 32 bit integer numeric range (from low to high)
+    /// 32 bit integer numeric range (increasing)
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public readonly partial record struct IntRange : IEnumerable<int>, IComparable
+    public readonly record struct IntRange : IEnumerable<int>, IComparable
     {
         /// <summary>
         /// Structure size in bytes
@@ -26,6 +26,14 @@ namespace wan24.Core
         /// Zero range
         /// </summary>
         public static readonly IntRange Zero = new();
+        /// <summary>
+        /// Negative
+        /// </summary>
+        public static readonly IntRange Negative = new(int.MinValue, -1);
+        /// <summary>
+        /// Positive
+        /// </summary>
+        public static readonly IntRange Positive = new(1, int.MaxValue);
         /// <summary>
         /// Max. value
         /// </summary>
@@ -121,8 +129,8 @@ namespace wan24.Core
         /// <summary>
         /// Get as <see cref="Range"/>
         /// </summary>
-        public Range AsRange => From >= 0 && To < int.MaxValue 
-            ? new(new(From), new(To + 1)) 
+        public Range AsRange => From >= 0 && To < int.MaxValue
+            ? new(new(From), new(To + 1))
             : throw new InvalidOperationException("Invalid range values");
 
         /// <summary>
@@ -146,20 +154,7 @@ namespace wan24.Core
         /// <param name="count">Number of values to include</param>
         /// <param name="step">Stepping</param>
         /// <returns>Array</returns>
-        public int[] ToArray(in long start = 0, in long? count = null, in int step = 1)
-        {
-            ArgumentOutOfRangeException.ThrowIfNegative(start);
-            ArgumentOutOfRangeException.ThrowIfLessThan(step, 1);
-            if (count.HasValue)
-            {
-                ArgumentOutOfRangeException.ThrowIfNegative(count.Value);
-                ArgumentOutOfRangeException.ThrowIfGreaterThan(start + (count.Value * step), Count);
-            }
-            ArgumentOutOfRangeException.ThrowIfGreaterThan(start + (count ?? 0) * step, Count - 1);
-            int[] res = new int[(long)Math.Ceiling((decimal)((count ?? Count) - start) / step)];
-            for (int i = 0, len = res.Length; i < len; res[i] = this[start + i * step], i++) ;
-            return res;
-        }
+        public int[] ToArray(in long start = 0, in long? count = null, in int step = 1) => [.. AsEnumerable(start, count, step)];
 
         /// <summary>
         /// Write to an array
@@ -171,18 +166,12 @@ namespace wan24.Core
         public int ToArray(in Span<int> arr, in long start = 0, in int step = 1)
         {
             ArgumentOutOfRangeException.ThrowIfNegative(start);
+            long total = Count;
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(start, total - 1);
             ArgumentOutOfRangeException.ThrowIfLessThan(step, 1);
-            ArgumentOutOfRangeException.ThrowIfGreaterThan(start, Count - 1);
-            int res = 0;
-            long index,
-                count = Count;
-            for (int i = 0, value; i < arr.Length; arr[i] = value, res++, i++)
-            {
-                index = start + i * step;
-                if (index >= Count) break;
-                value = this[index];
-                if (value > To) break;
-            }
+            int res = 0,
+                len = arr.Length;
+            for (long index = start; res < len && index < total; arr[res] = (int)(From + index), res++, index += step) ;
             return res;
         }
 
@@ -196,21 +185,23 @@ namespace wan24.Core
         public IEnumerable<int> AsEnumerable(long start = 0, long? count = null, int step = 1)
         {
             ArgumentOutOfRangeException.ThrowIfNegative(start);
+            long total = Count,
+                maxLen = total - 1;
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(start, maxLen);
             ArgumentOutOfRangeException.ThrowIfLessThan(step, 1);
+            long len;
             if (count.HasValue)
             {
                 ArgumentOutOfRangeException.ThrowIfNegative(count.Value);
-                ArgumentOutOfRangeException.ThrowIfGreaterThan(start + (count.Value * step), Count);
+                len = start + count.Value * step;
+                ArgumentOutOfRangeException.ThrowIfGreaterThan(len, maxLen);
             }
-            ArgumentOutOfRangeException.ThrowIfGreaterThan(start + (count ?? 0) * step, Count - 1);
-            long index,
-                total = Count;
-            for (long i = 0, len = (count ?? Count) - start; i < len; i++)
+            else
             {
-                index = start + i * step;
-                if (index >= total) break;
-                yield return this[index];
+                len = total;
             }
+            for (long index = start; index < len; index += step)
+                yield return (int)(From + index);
         }
 
         /// <summary>
@@ -247,6 +238,54 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         public override string ToString() => $"{From};{To}";
+
+        /// <summary>
+        /// Get as serialized data
+        /// </summary>
+        /// <param name="range"><see cref="IntRange"/></param>
+        public static implicit operator byte[](in IntRange range) => range.GetBytes();
+
+        /// <summary>
+        /// Cast from serialized data
+        /// </summary>
+        /// <param name="data">Serialized data</param>
+        public static implicit operator IntRange(in byte[] data) => new(data);
+
+        /// <summary>
+        /// Cast from serialized data
+        /// </summary>
+        /// <param name="data">Serialized data</param>
+        public static implicit operator IntRange(in Span<byte> data) => new(data);
+
+        /// <summary>
+        /// Cast from serialized data
+        /// </summary>
+        /// <param name="data">Serialized data</param>
+        public static implicit operator IntRange(in Memory<byte> data) => new(data.Span);
+
+        /// <summary>
+        /// Cast from serialized data
+        /// </summary>
+        /// <param name="data">Serialized data</param>
+        public static implicit operator IntRange(in ReadOnlySpan<byte> data) => new(data);
+
+        /// <summary>
+        /// Cast from serialized data
+        /// </summary>
+        /// <param name="data">Serialized data</param>
+        public static implicit operator IntRange(in ReadOnlyMemory<byte> data) => new(data.Span);
+
+        /// <summary>
+        /// Cast as <see cref="string"/>
+        /// </summary>
+        /// <param name="range"><see cref="IntRange"/></param>
+        public static implicit operator string(in IntRange range) => range.ToString();
+
+        /// <summary>
+        /// Cast from a <see cref="string"/>
+        /// </summary>
+        /// <param name="str"><see cref="string"/></param>
+        public static implicit operator IntRange(in string str) => Parse(str);
 
         /// <summary>
         /// Count is lower than
@@ -323,6 +362,24 @@ namespace wan24.Core
                 return false;
             }
             result = new(from, to);
+            return true;
+        }
+
+        /// <summary>
+        /// Determine if values of an array are a range
+        /// </summary>
+        /// <param name="arr">Array</param>
+        /// <returns>If the values in the given array are a range</returns>
+        public static bool IsRange(in Span<int> arr)
+        {
+            int len = arr.Length;
+            if (len < 2)
+                return true;
+            if ((long)arr[0] + len > int.MaxValue)
+                return false;
+            for (int i = 1, value = arr[0] + 1; i < len; i++, value++)
+                if (arr[i] != value)
+                    return false;
             return true;
         }
     }

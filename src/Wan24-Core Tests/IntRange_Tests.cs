@@ -228,6 +228,13 @@ namespace Wan24_Core_Tests
         }
 
         [TestMethod]
+        public void Casting_Tests()
+        {
+            Assert.AreEqual(IntRange.Zero, (IntRange)(string)IntRange.Zero);
+            Assert.AreEqual(IntRange.Zero, (IntRange)(byte[])IntRange.Zero);
+        }
+
+        [TestMethod]
         public void Parse_Tests()
         {
             string str = IntRange.Zero.ToString();
@@ -235,6 +242,15 @@ namespace Wan24_Core_Tests
             Assert.ThrowsException<FormatException>(() => IntRange.Parse(string.Empty));
             Assert.IsTrue(IntRange.TryParse(str, out _));
             Assert.IsFalse(IntRange.TryParse(string.Empty, out _));
+        }
+
+        [TestMethod]
+        public void IsRange_Tests()
+        {
+            int[] a = [0, 1, 2],
+                b = [1, 3, 5];
+            Assert.IsTrue(IntRange.IsRange(a));
+            Assert.IsFalse(IntRange.IsRange(b));
         }
     }
 }
