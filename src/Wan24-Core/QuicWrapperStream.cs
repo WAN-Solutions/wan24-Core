@@ -1,5 +1,6 @@
 ﻿#if !RELEASE || PREVIEW
 using System.Net.Quic;
+using System.Runtime.Versioning;
 using static wan24.Core.TranslationHelper;
 
 //TODO Enable for release builds as soon as QUIC is not in .NET preview anymore
@@ -10,6 +11,7 @@ namespace wan24.Core
     /// <summary>
     /// QUIC wrapper stream
     /// </summary>
+    [RequiresPreviewFeatures]
     public partial class QuicWrapperStream : WrapperStream<QuicStream>
     {
         /// <summary>
