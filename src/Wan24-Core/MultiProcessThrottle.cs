@@ -100,6 +100,11 @@ namespace wan24.Core
                 EnsureUndisposed();
                 yield return new(__("GUID"), GUID, __("Unique ID of the object"));
                 yield return new(__("Name"), Name, __("Name of the object"));
+                if (StackInfo is not null)
+                {
+                    yield return new(__("Stack"), StackInfo.Stack, __("Instance creation stack"));
+                    yield return new(__("Created"), StackInfo.Created, __("Instance creation time"));
+                }
                 yield return new(__("Count"), _Throttles.Count, __("Number of hosted streams"));
                 yield return new(__("Total limit"), _TotalLimit, __("Processing count total limit"));
                 yield return new(__("Current limit"), CurrentLimit, __("Processing count limit per throttle"));

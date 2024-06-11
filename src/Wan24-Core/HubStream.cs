@@ -49,6 +49,11 @@ namespace wan24.Core
             {
                 yield return new(__("Name"), Name, __("Name of the stream"));
                 yield return new(__("Type"), GetType().ToString(), __("Stream type"));
+                if (StackInfo is not null)
+                {
+                    yield return new(__("Stack"), StackInfo.Stack, __("Instance creation stack"));
+                    yield return new(__("Created"), StackInfo.Created, __("Instance creation time"));
+                }
                 foreach (Stream stream in Targets)
                     if (stream is IStatusProvider sp)
                         foreach (Status status in sp.State)
