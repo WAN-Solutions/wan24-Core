@@ -345,10 +345,10 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        protected override Task DisposeCore()
+        protected override async Task DisposeCore()
         {
             if (Disposed == DateTime.MinValue) Disposed = DateTime.Now;
-            return base.DisposeCore();
+            await base.DisposeCore().DynamicContext();
         }
     }
 }
