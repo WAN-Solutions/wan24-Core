@@ -189,7 +189,7 @@ namespace wan24.Core
             Stopwatch watch = new();
             watch.Start();
             int res = base.Read(buffer, offset, count);
-            if (res >= 0)
+            if (res > 0)
             {
                 TotalReadTime += watch.Elapsed;
                 TotalBytesRed += res;
@@ -207,7 +207,7 @@ namespace wan24.Core
             Stopwatch watch = new();
             watch.Start();
             int res = base.Read(buffer);
-            if (res >= 0)
+            if (res > 0)
             {
                 TotalReadTime += watch.Elapsed;
                 TotalBytesRed += res;
@@ -225,7 +225,7 @@ namespace wan24.Core
             Stopwatch watch = new();
             watch.Start();
             int res = await base.ReadAsync(buffer, offset, count, cancellationToken).DynamicContext();
-            if (res >= 0)
+            if (res > 0)
             {
                 TotalReadTime += watch.Elapsed;
                 TotalBytesRed += res;
@@ -243,7 +243,7 @@ namespace wan24.Core
             Stopwatch watch = new();
             watch.Start();
             int res = await base.ReadAsync(buffer, cancellationToken).DynamicContext();
-            if (res >= 0)
+            if (res > 0)
             {
                 TotalReadTime += watch.Elapsed;
                 TotalBytesRed += res;
