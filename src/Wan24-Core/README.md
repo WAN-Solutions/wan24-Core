@@ -186,6 +186,7 @@ including extensions for numeric type encoding/decoding)
     - `LimitedStream` limits reading/writing/seeking capabilities of a stream
     - `ZeroStream` reads zero bytes and writes to nowhere
     - `CountingStream` counts red/written bytes
+    - `PerformanceStream` counts red/written bytes and I/O time
     - `PauseableStream` is a stream which can temporary pause reading/writing
     - `EnumerableStream` streams an enumerable/enumerator
     - `CombinedStream` combines multiple streams into one stream (read-only)

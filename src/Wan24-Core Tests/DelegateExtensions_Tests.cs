@@ -13,30 +13,29 @@ namespace Wan24_Core_Tests
                 Void_Method,
                 Void_Method
             }.InvokeAll(true);
-            bool[] res = new Bool_Delegate[]
+            bool[] res = new Bool_Delegate[]//FIXME This fails on Windows 10 within Visual Studio when running all tests in RELEASE build ONLY
             {
                 Bool_Method,
                 Bool_Method
             }.InvokeAll<Bool_Delegate, bool>(true).ToArray();
-            Assert.IsFalse(res[0]);
+            Assert.IsFalse(res[0]);//FIXME This fails on Windows 10 within Visual Studio when running all tests in DEBUG build ONLY
             Assert.IsFalse(res[1]);
         }
 
         [TestMethod]
         public async Task InvokeAsync_Tests()
         {
-            return;
             await new VoidAsync_Delegate[]
             {
                 VoidAsync_Method,
                 VoidAsync_Method
             }.InvokeAllAsync(default, true);
-            bool[] res = await new BoolAsync_Delegate[]//FIXME Sometimes fails!?
+            bool[] res = await new BoolAsync_Delegate[]//FIXME This fails on Windows 10 within Visual Studio when running all tests in RELEASE build ONLY
             {
                 BoolAsync_Method,
                 BoolAsync_Method
             }.InvokeAllAsync<BoolAsync_Delegate, bool>(default, true).ToArrayAsync();
-            Assert.IsFalse(res[0]);
+            Assert.IsFalse(res[0]);//FIXME This fails on Windows 10 within Visual Studio when running all tests in DEBUG build ONLY
             Assert.IsFalse(res[1]);
             res = await AsyncEnumerable(new BoolAsync_Delegate[]
             {

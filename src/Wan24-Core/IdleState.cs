@@ -35,8 +35,8 @@
                 }
                 if (Logging.Debug)
                     Logging.WriteDebug($"{Name ?? GetType().ToString()} is idle after being busy for {LastBusyDuration}");
-                _IsBusy = false;
                 LastIdleStartTime = DateTime.Now;
+                _IsBusy = false;
                 RaiseOnIdle();
             };
         }
@@ -131,8 +131,8 @@
             if (_IsBusy) return;
             if (Logging.Debug)
                 Logging.WriteDebug($"{Name ?? GetType().ToString()} is busy after being idle for {LastIdleDuration}");
-            _IsBusy = true;
             LastBusyStartTime = now;
+            _IsBusy = true;
             RaiseOnBusy();
         }
 
