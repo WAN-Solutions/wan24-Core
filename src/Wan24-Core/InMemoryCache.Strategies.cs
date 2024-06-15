@@ -107,6 +107,27 @@
         }
 
         /// <summary>
+        /// Reduce the cache memory usage by removing entries until a maximum memory usage does match
+        /// </summary>
+        /// <param name="maxUsage">Max. memory usage in bytes</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public virtual async Task ReduceMemoryAsync(long maxUsage, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            if (Environment.WorkingSet < maxUsage)
+                return;
+            foreach (InMemoryCacheEntry<T> entry in ApplyStrategy(GetDefaultStrategy()))
+            {
+                EnsureUndisposed();
+                cancellationToken.ThrowIfCancellationRequested();
+                if (Environment.WorkingSet < maxUsage)
+                    return;
+                if (TryRemove(entry.Key) is InMemoryCacheEntry<T> removed && IsItemDisposable)
+                    await DisposeItemAsync(removed.Item).DynamicContext();
+            }
+        }
+
+        /// <summary>
         /// Reduce the number of cache entries by a custom strategy
         /// </summary>
         /// <param name="strategy">Strategy</param>
@@ -135,6 +156,8 @@
                 await ReduceCountAsync(Options.SoftCountLimit, cancellationToken).DynamicContext();
             if (Options.SoftSizeLimit > 0)
                 await ReduceSizeAsync(Options.SoftSizeLimit, cancellationToken).DynamicContext();
+            if (Options.MaxMemoryUsage.HasValue)
+                await ReduceMemoryAsync(Options.MaxMemoryUsage.Value, cancellationToken).DynamicContext();
         }
 
         /// <summary>

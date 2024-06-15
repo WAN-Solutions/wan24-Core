@@ -76,6 +76,11 @@
         public TimeSpan IdleLimit { get; init; }
 
         /// <summary>
+        /// Max. memory usage in bytes
+        /// </summary>
+        public long? MaxMemoryUsage { get; init; }
+
+        /// <summary>
         /// Try disposing cached items when auto-removing always?
         /// </summary>
         public bool TryDisposeItemsAlways { get; init; }
