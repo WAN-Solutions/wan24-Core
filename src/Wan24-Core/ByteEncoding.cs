@@ -1,5 +1,4 @@
-﻿using System.Collections.Frozen;
-using System.Runtime;
+﻿using System.Runtime;
 using System.Runtime.CompilerServices;
 
 namespace wan24.Core

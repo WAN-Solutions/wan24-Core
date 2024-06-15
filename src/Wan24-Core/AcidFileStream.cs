@@ -78,7 +78,12 @@
         /// <param name="mode">Backup file mode</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>ACID file stream (don't forget to commit and dispose!)</returns>
-        public static async Task<AcidStream<FileStream>> CreateAsync(FileStream stream, bool autoFlush = true, UnixFileMode? mode = null, CancellationToken cancellationToken = default)
+        public static async Task<AcidStream<FileStream>> CreateAsync(
+            FileStream stream, 
+            bool autoFlush = true, 
+            UnixFileMode? mode = null, 
+            CancellationToken cancellationToken = default
+            )
         {
             try
             {
@@ -136,7 +141,8 @@
         /// </summary>
         /// <param name="fileName">Filename</param>
         /// <returns>ACID backup filename</returns>
-        public static string GetBackupFileName(in string fileName) => Path.Combine(Path.GetFullPath(Path.GetDirectoryName(fileName)!), $"{ACID_PREFIX}{Path.GetFileName(fileName)}");
+        public static string GetBackupFileName(in string fileName)
+            => Path.Combine(Path.GetFullPath(Path.GetDirectoryName(fileName)!), $"{ACID_PREFIX}{Path.GetFileName(fileName)}");
 
         /// <summary>
         /// Determine if a file needs a rollback (ACID backup file still exists)

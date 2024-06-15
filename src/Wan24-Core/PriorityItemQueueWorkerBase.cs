@@ -6,12 +6,12 @@ namespace wan24.Core
     /// Base class for an item queue worker
     /// </summary>
     /// <typeparam name="tItem">Item type</typeparam>
-    /// <typeparam name="tPriority">Priority type</typeparam>
+    /// <typeparam name="tPriority">Priority type (may be a <see cref="IQueueItemPriority"/> also, for example)</typeparam>
     /// <remarks>
     /// Constructor
     /// </remarks>
     /// <param name="capacity">Capacity</param>
-    /// <param name="comparer">Comparer</param>
+    /// <param name="comparer">Comparer (may be a <see cref="QueueItemPriorityComparer"/>, if <c>tPriority</c> is an <see cref="IQueueItemPriority"/>)</param>
     public abstract class PriorityItemQueueWorkerBase<tItem, tPriority>(in int capacity, in IComparer<tPriority>? comparer = null)
         : PriorityQueueWorker<tPriority>(capacity, comparer), IPriorityItemQueueWorker<tItem, tPriority>
     {

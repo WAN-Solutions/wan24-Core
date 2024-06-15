@@ -19,7 +19,14 @@ namespace wan24.Core
             DateTime now = DateTime.Now;
             TimeSpan runTime = now - start;
             if (runTime > timeout) return false;
-            timeout -= runTime;
+            if (runTime >= timeout)
+            {
+                timeout = TimeSpan.Zero;
+            }
+            else
+            {
+                timeout -= runTime;
+            }
             start = now;
             return true;
         }

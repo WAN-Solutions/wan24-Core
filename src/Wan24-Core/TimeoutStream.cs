@@ -68,7 +68,11 @@
         {
             if (_WriteTimeout != TimeSpan.Zero)
             {
-                await Target.FlushAsync(cancellationToken).WaitAsync(_WriteTimeout, cancellationToken).DynamicContext();
+                using CancellationTokenSource cts = new(WriteTimeout);
+                List<CancellationToken> cancelToken = [cts.Token];
+                if (!cancellationToken.IsEqualTo(default)) cancelToken.Add(cancellationToken);
+                using Cancellations cancellation = new([.. cancelToken]);
+                await Target.FlushAsync(cancellation).DynamicContext();
             }
             else
             {
@@ -78,22 +82,48 @@
 
         /// <inheritdoc/>
         public override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
-            => _ReadTimeout != TimeSpan.Zero
-                ? await Target.ReadAsync(buffer, offset, count, cancellationToken).WaitAsync(_ReadTimeout, cancellationToken).DynamicContext()
-                : await Target.ReadAsync(buffer, offset, count, cancellationToken).DynamicContext();
+        {
+            if (_ReadTimeout != TimeSpan.Zero)
+            {
+                using CancellationTokenSource cts = new(WriteTimeout);
+                List<CancellationToken> cancelToken = [cts.Token];
+                if (!cancellationToken.IsEqualTo(default)) cancelToken.Add(cancellationToken);
+                using Cancellations cancellation = new([.. cancelToken]);
+                return await Target.ReadAsync(buffer, offset, count, cancellation).DynamicContext();
+            }
+            else
+            {
+                return await Target.ReadAsync(buffer, offset, count, cancellationToken).DynamicContext();
+            }
+        }
 
         /// <inheritdoc/>
         public override async ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
-            => _ReadTimeout != TimeSpan.Zero
-                ? await Target.ReadAsync(buffer, cancellationToken).AsTask().WaitAsync(_ReadTimeout, cancellationToken).DynamicContext()
-                : await Target.ReadAsync(buffer, cancellationToken).DynamicContext();
+        {
+            if (_ReadTimeout != TimeSpan.Zero)
+            {
+                using CancellationTokenSource cts = new(WriteTimeout);
+                List<CancellationToken> cancelToken = [cts.Token];
+                if (!cancellationToken.IsEqualTo(default)) cancelToken.Add(cancellationToken);
+                using Cancellations cancellation = new([.. cancelToken]);
+                return await Target.ReadAsync(buffer, cancellation).DynamicContext();
+            }
+            else
+            {
+                return await Target.ReadAsync(buffer, cancellationToken).DynamicContext();
+            }
+        }
 
         /// <inheritdoc/>
         public override async Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             if (_WriteTimeout != TimeSpan.Zero)
             {
-                await Target.WriteAsync(buffer, offset, count, cancellationToken).WaitAsync(_WriteTimeout, cancellationToken).DynamicContext();
+                using CancellationTokenSource cts = new(WriteTimeout);
+                List<CancellationToken> cancelToken = [cts.Token];
+                if (!cancellationToken.IsEqualTo(default)) cancelToken.Add(cancellationToken);
+                using Cancellations cancellation = new([.. cancelToken]);
+                await Target.WriteAsync(buffer, offset, count, cancellation).DynamicContext();
             }
             else
             {
@@ -106,7 +136,11 @@
         {
             if (_WriteTimeout != TimeSpan.Zero)
             {
-                await Target.WriteAsync(buffer, cancellationToken).AsTask().WaitAsync(_WriteTimeout, cancellationToken).DynamicContext();
+                using CancellationTokenSource cts = new(WriteTimeout);
+                List<CancellationToken> cancelToken = [cts.Token];
+                if (!cancellationToken.IsEqualTo(default)) cancelToken.Add(cancellationToken);
+                using Cancellations cancellation = new([.. cancelToken]);
+                await Target.WriteAsync(buffer, cancellation).DynamicContext();
             }
             else
             {

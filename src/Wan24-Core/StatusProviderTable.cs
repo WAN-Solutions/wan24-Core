@@ -154,7 +154,7 @@ namespace wan24.Core
                 // Other states
                 foreach (KeyValuePair<string, IEnumerable<Status>> kvp in Providers)
                     foreach (Status status in kvp.Value)
-                        yield return new(status.Name, status.State, status.Description, kvp.Key.CombineStatusGroupNames(status.Group));
+                        yield return new(status.Name, status.State, status.Description, kvp.Key.NormalizeStatusGroupName().CombineStatusGroupNames(status.Group));
             }
         }
 

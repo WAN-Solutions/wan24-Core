@@ -5,13 +5,11 @@ namespace wan24.Core
     /// <summary>
     /// String parser options
     /// </summary>
-    public sealed class StringParserOptions
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    public sealed record class StringParserOptions()
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public StringParserOptions() { }
-
         /// <summary>
         /// Maximum recursive parser rounds
         /// </summary>

@@ -68,7 +68,7 @@ namespace wan24.Core
         public virtual async Task<T?> ExecuteAsync(AsyncAction_Delegate action, CancellationToken cancellationToken = default)
         {
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
-            return await action(_Value).DynamicContext();
+            return _Value = await action(_Value).DynamicContext();
         }
 
         /// <inheritdoc/>

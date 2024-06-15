@@ -73,6 +73,7 @@ namespace wan24.Core
         {
             foreach (tDelegate d in delegates)
             {
+                cancellationToken.ThrowIfCancellationRequested();
                 if (!d.Method.ReturnType.IsAssignableFrom(typeof(Task<tResult>)))
                     throw new ArgumentException($"Result type {typeof(tResult)} doesn't match delegates return type {d.Method.ReturnType}", nameof(tResult));
                 yield return await d.Method.InvokeAutoAsync<tResult>(obj: null, param).DynamicContext();
