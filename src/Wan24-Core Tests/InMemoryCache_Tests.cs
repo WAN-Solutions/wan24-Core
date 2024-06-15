@@ -25,7 +25,7 @@ namespace Wan24_Core_Tests
                 cache.Add(item2);
                 cache.Add(item3, new() { ObserveDisposing = true });
                 Assert.AreEqual(3, cache.Count);
-                Assert.AreEqual(5, cache.Size);
+                Assert.AreEqual(8, cache.Size);
 
                 Assert.AreEqual(item1, cache.Get("1")?.Item);
                 Assert.AreEqual(item2, cache.Get("2")?.Item);
@@ -77,7 +77,7 @@ namespace Wan24_Core_Tests
                     await cache.AddAsync(item2);
                     await cache.AddAsync(item3, new() { ObserveDisposing = true });
                     Assert.AreEqual(3, cache.Count);
-                    Assert.AreEqual(5, cache.Size);
+                    Assert.AreEqual(8, cache.Size);
 
                     Assert.AreEqual(item1, (await cache.GetAsync("1"))?.Item);
                     Assert.AreEqual(item2, (await cache.GetAsync("2"))?.Item);

@@ -1822,7 +1822,7 @@ while auto-removing the cache is being done by a background job by
 
 in a fixed interval. An item may also be removed when disposing, if it's an 
 `IDisposableObject` and the cache entry was configured to observe the items 
-disposing.
+disposing (not recommended if avoidable).
 
 **NOTE**: The in-memory cache isn't too strict with limits, they might 
 overflow slightly.
@@ -1886,3 +1886,5 @@ By implementing the `IInMemoryCacheItem` interface a cacheable item can export
 its unique key and its size in the cache. While the key should never change 
 and is used for adding a new item only, the size property getter may return 
 variable values during runtime, which will be respected during a cache cleanup.
+
+Returning cache entry options is optional.
