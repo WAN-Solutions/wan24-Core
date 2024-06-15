@@ -6,18 +6,15 @@ namespace wan24.Core
     /// Base class for an email template
     /// </summary>
     /// <typeparam name="T">Email type</typeparam>
-    public abstract class EmailTemplateBase<T> : EmailTemplateBase where T : class, IEmail
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="subject">Subject</param>
+    /// <param name="text">Text body</param>
+    /// <param name="html">HTML body</param>
+    /// <param name="attachments">Attachments</param>
+    public abstract class EmailTemplateBase<T>(in string subject, in string? text = null, in string? html = null, params IEmailAttachment[] attachments) : EmailTemplateBase(subject, text, html, attachments) where T : class, IEmail
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="subject">Subject</param>
-        /// <param name="text">Text body</param>
-        /// <param name="html">HTML body</param>
-        /// <param name="attachments">Attachments</param>
-        protected EmailTemplateBase(in string subject, in string? text = null, in string? html = null, params IEmailAttachment[] attachments)
-            : base(subject, text, html, attachments) { }
-
         /// <inheritdoc/>
         protected override IEmail CreateEmail(string fromEmail, string toEmail, string subject, string? text, string? html, HashSet<IEmailAttachment> attachments)
             => (T)typeof(T).ConstructAuto(usePrivate: false, fromEmail, toEmail, subject, text, html, attachments);

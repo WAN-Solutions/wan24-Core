@@ -155,7 +155,7 @@ namespace wan24.Core
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            get => IsIPv4 ? Network | ((IsIPv4 ? MaxIPv4 : MaxIPv6) >> MaskBits) : throw new InvalidOperationException();
+            get => IsIPv4 ? Network | (MaxIPv4 >> MaskBits) : throw new InvalidOperationException();
         }
 
         /// <summary>

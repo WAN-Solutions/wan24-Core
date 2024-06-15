@@ -22,25 +22,23 @@
                 SpaceEvent.Wait();
                 if (_IsEndOfFile) throw new InvalidOperationException();
                 EnsureUndisposed();
-                using (SemaphoreSyncContext ssc = BufferSync.SyncContext())
+                using SemaphoreSyncContext ssc = BufferSync.SyncContext();
+                if (_IsEndOfFile) throw new InvalidOperationException();
+                EnsureUndisposed();
+                write = Math.Min(SpaceLeft, buffer.Length);
+                buffer[..write].CopyTo(Buffer.Span[WriteOffset..]);
+                buffer = buffer[write..];
+                WriteOffset += write;
+                _Length += write;
+                if (SpaceLeft == 0)
                 {
-                    if (_IsEndOfFile) throw new InvalidOperationException();
-                    EnsureUndisposed();
-                    write = Math.Min(SpaceLeft, buffer.Length);
-                    buffer[..write].CopyTo(Buffer.Span[WriteOffset..]);
-                    buffer = buffer[write..];
-                    WriteOffset += write;
-                    _Length += write;
-                    if (SpaceLeft == 0)
-                    {
-                        SpaceEvent.Reset();
-                        RaiseOnNeedSpace();
-                    }
-                    if (!DataEvent.IsSet && (!UseFlush || SpaceLeft == 0))
-                    {
-                        DataEvent.Set();
-                        RaiseOnDataAvailable();
-                    }
+                    SpaceEvent.Reset();
+                    RaiseOnNeedSpace();
+                }
+                if (!DataEvent.IsSet && (!UseFlush || SpaceLeft == 0))
+                {
+                    DataEvent.Set();
+                    RaiseOnDataAvailable();
                 }
             }
         }
@@ -57,27 +55,25 @@
             int res = 0;
             for (int write; buffer.Length > 0 && EnsureUndisposed();)
             {
-                using (SemaphoreSyncContext ssc = BufferSync.SyncContext())
+                using SemaphoreSyncContext ssc = BufferSync.SyncContext();
+                if (_IsEndOfFile) throw new InvalidOperationException();
+                EnsureUndisposed();
+                write = Math.Min(SpaceLeft, buffer.Length);
+                if (write == 0) return res;
+                buffer[..write].CopyTo(Buffer.Span[WriteOffset..]);
+                buffer = buffer[write..];
+                WriteOffset += write;
+                _Length += write;
+                res += write;
+                if (SpaceLeft == 0)
                 {
-                    if (_IsEndOfFile) throw new InvalidOperationException();
-                    EnsureUndisposed();
-                    write = Math.Min(SpaceLeft, buffer.Length);
-                    if (write == 0) return res;
-                    buffer[..write].CopyTo(Buffer.Span[WriteOffset..]);
-                    buffer = buffer[write..];
-                    WriteOffset += write;
-                    _Length += write;
-                    res += write;
-                    if (SpaceLeft == 0)
-                    {
-                        SpaceEvent.Reset();
-                        RaiseOnNeedSpace();
-                    }
-                    if (!DataEvent.IsSet && (!UseFlush || SpaceLeft == 0))
-                    {
-                        DataEvent.Set();
-                        RaiseOnDataAvailable();
-                    }
+                    SpaceEvent.Reset();
+                    RaiseOnNeedSpace();
+                }
+                if (!DataEvent.IsSet && (!UseFlush || SpaceLeft == 0))
+                {
+                    DataEvent.Set();
+                    RaiseOnDataAvailable();
                 }
             }
             return res;
@@ -97,25 +93,23 @@
                 await SpaceEvent.WaitAsync(cancellationToken).DynamicContext();
                 if (_IsEndOfFile) throw new InvalidOperationException();
                 EnsureUndisposed();
-                using (SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext())
+                using SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext();
+                if (_IsEndOfFile) throw new InvalidOperationException();
+                EnsureUndisposed();
+                write = Math.Min(SpaceLeft, buffer.Length);
+                buffer.Span[..write].CopyTo(Buffer.Span[WriteOffset..]);
+                buffer = buffer[write..];
+                WriteOffset += write;
+                _Length += write;
+                if (SpaceLeft == 0)
                 {
-                    if (_IsEndOfFile) throw new InvalidOperationException();
-                    EnsureUndisposed();
-                    write = Math.Min(SpaceLeft, buffer.Length);
-                    buffer.Span[..write].CopyTo(Buffer.Span[WriteOffset..]);
-                    buffer = buffer[write..];
-                    WriteOffset += write;
-                    _Length += write;
-                    if (SpaceLeft == 0)
-                    {
-                        SpaceEvent.Reset(CancellationToken.None);
-                        RaiseOnNeedSpace();
-                    }
-                    if (!DataEvent.IsSet && (!UseFlush || SpaceLeft == 0))
-                    {
-                        DataEvent.Set(CancellationToken.None);
-                        RaiseOnDataAvailable();
-                    }
+                    SpaceEvent.Reset(CancellationToken.None);
+                    RaiseOnNeedSpace();
+                }
+                if (!DataEvent.IsSet && (!UseFlush || SpaceLeft == 0))
+                {
+                    DataEvent.Set(CancellationToken.None);
+                    RaiseOnDataAvailable();
                 }
             }
         }
@@ -133,27 +127,25 @@
             int res = 0;
             for (int write; buffer.Length > 0 && EnsureUndisposed();)
             {
-                using (SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext())
+                using SemaphoreSyncContext ssc = await BufferSync.SyncContextAsync(cancellationToken).DynamicContext();
+                if (_IsEndOfFile) throw new InvalidOperationException();
+                EnsureUndisposed();
+                write = Math.Min(SpaceLeft, buffer.Length);
+                if (write == 0) return res;
+                buffer.Span[..write].CopyTo(Buffer.Span[WriteOffset..]);
+                buffer = buffer[write..];
+                WriteOffset += write;
+                _Length += write;
+                res += write;
+                if (SpaceLeft == 0)
                 {
-                    if (_IsEndOfFile) throw new InvalidOperationException();
-                    EnsureUndisposed();
-                    write = Math.Min(SpaceLeft, buffer.Length);
-                    if (write == 0) return res;
-                    buffer.Span[..write].CopyTo(Buffer.Span[WriteOffset..]);
-                    buffer = buffer[write..];
-                    WriteOffset += write;
-                    _Length += write;
-                    res += write;
-                    if (SpaceLeft == 0)
-                    {
-                        SpaceEvent.Reset(CancellationToken.None);
-                        RaiseOnNeedSpace();
-                    }
-                    if (!DataEvent.IsSet && (!UseFlush || SpaceLeft == 0))
-                    {
-                        DataEvent.Set(CancellationToken.None);
-                        RaiseOnDataAvailable();
-                    }
+                    SpaceEvent.Reset(CancellationToken.None);
+                    RaiseOnNeedSpace();
+                }
+                if (!DataEvent.IsSet && (!UseFlush || SpaceLeft == 0))
+                {
+                    DataEvent.Set(CancellationToken.None);
+                    RaiseOnDataAvailable();
                 }
             }
             return res;

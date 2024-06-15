@@ -47,6 +47,15 @@ namespace wan24.Core
                 return new Regex(info[1], (RegexOptions)int.Parse(info[0]));
             };
             ValueConverter[typeof(Enum)] = (t, s) => Enum.TryParse(t, s, out var res) ? res : null;
+            ValueConverter[typeof(IpSubNet)] = (t, s) => IpSubNet.TryParse(s, out var res) ? res : new Nullable<IpSubNet>();
+            ValueConverter[typeof(HostEndPoint)] = (t, s) => s is not null && HostEndPoint.TryParse(s, out var res) ? res : new Nullable<HostEndPoint>();
+            ValueConverter[typeof(UnixTime)] = (t, s) => UnixTime.TryParse(s, out var res) ? res : new Nullable<UnixTime>();
+            ValueConverter[typeof(Uid)] = (t, s) => Uid.TryParse(s, out var res) ? res : new Nullable<Uid>();
+            ValueConverter[typeof(UidExt)] = (t, s) => UidExt.TryParse(s, out var res) ? res : new Nullable<UidExt>();
+            ValueConverter[typeof(Rgb)] = (t, s) => s is not null && Rgb.TryParse(s, out var res) ? res : new Nullable<Rgb>();
+            ValueConverter[typeof(RgbA)] = (t, s) => s is not null && RgbA.TryParse(s, out var res) ? res : new Nullable<RgbA>();
+            ValueConverter[typeof(Hsb)] = (t, s) => s is not null && Hsb.TryParse(s, out var res) ? res : new Nullable<Hsb>();
+            ValueConverter[typeof(IntRange)] = (t, s) => s is not null && IntRange.TryParse(s, out var res) ? res : new Nullable<IntRange>();
             StringConverter[typeof(string)] = (t, v) => v as string;
             StringConverter[typeof(bool)] = (t, v) => v?.ToString();
             StringConverter[typeof(byte)] = (t, v) => v?.ToString();
@@ -66,6 +75,15 @@ namespace wan24.Core
             StringConverter[typeof(TimeOnly)] = (t, v) => v?.ToString();
             StringConverter[typeof(Regex)] = (t, v) => v is not Regex rx ? null : $"{(int)rx.Options} {rx}";
             StringConverter[typeof(Enum)] = (t, v) => v?.ToString();
+            StringConverter[typeof(IpSubNet)] = (t, v) => v?.ToString();
+            StringConverter[typeof(HostEndPoint)] = (t, v) => v?.ToString();
+            StringConverter[typeof(UnixTime)] = (t, v) => v?.ToString();
+            StringConverter[typeof(Uid)] = (t, v) => v?.ToString();
+            StringConverter[typeof(UidExt)] = (t, v) => v?.ToString();
+            StringConverter[typeof(Rgb)] = (t, v) => v?.ToString();
+            StringConverter[typeof(RgbA)] = (t, v) => v?.ToString();
+            StringConverter[typeof(Hsb)] = (t, v) => v?.ToString();
+            StringConverter[typeof(IntRange)] = (t, v) => v?.ToString();
         }
 
         /// <summary>
@@ -76,6 +94,7 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static object? Convert(Type type, in string? str)
         {
+            if (type == typeof(string)) return str;
             if (!ValueConverter.TryGetValue(type, out ValueConverter_Delegate? converter))
             {
                 converter = ValueConverter.FirstOrDefault(kvp => kvp.Key.IsAssignableFrom(type)).Value;
@@ -110,6 +129,7 @@ namespace wan24.Core
         /// <returns>String</returns>
         public static string? Convert(Type type, in object? value)
         {
+            if (value is string str) return str;
             if (!StringConverter.TryGetValue(type, out StringConverter_Delegate? converter))
             {
                 converter = StringConverter.FirstOrDefault(kvp => kvp.Key.IsAssignableFrom(type)).Value;
@@ -125,6 +145,37 @@ namespace wan24.Core
             }
             return converter(type, value);
         }
+
+        /// <summary>
+        /// Convert an object to a string
+        /// </summary>
+        /// <typeparam name="T">Object type (may be abstract)</typeparam>
+        /// <param name="obj">Object</param>
+        /// <returns>String</returns>
+        public static string? ConvertToString<T>(this T obj) => Convert(typeof(T), obj);
+
+        /// <summary>
+        /// Convert an object to a string
+        /// </summary>
+        /// <param name="obj">Object</param>
+        /// <returns>String</returns>
+        public static string? ConvertObjectToString(this object obj) => Convert(obj.GetType(), obj);
+
+        /// <summary>
+        /// Comvert a string to an object
+        /// </summary>
+        /// <typeparam name="T">Object type (may be abstract)</typeparam>
+        /// <param name="str">String</param>
+        /// <returns>Object</returns>
+        public static T? ConvertFromString<T>(this string str) => (T?)Convert(typeof(T), str);
+
+        /// <summary>
+        /// Convert a string to an object
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="type">Object type (may be abstract)</param>
+        /// <returns></returns>
+        public static object? ConvertObjectFromString(this string str, Type type) => Convert(type, str);
 
         /// <summary>
         /// Display string to value converter delegate

@@ -8,6 +8,6 @@
         /// <summary>
         /// Service workers (key is a GUID)
         /// </summary>
-        public static readonly ConcurrentChangeTokenDictionary<string, IServiceWorker> ServiceWorkers = new();
+        public static readonly ConcurrentChangeTokenDictionary<string, IServiceWorker> ServiceWorkers = [];
     }
 }

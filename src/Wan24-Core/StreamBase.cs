@@ -15,11 +15,23 @@ namespace wan24.Core
         /// An object for thread synchronization
         /// </summary>
         protected readonly object SyncObject = new();
+        /// <summary>
+        /// Stack information
+        /// </summary>
+        public readonly IStackInfo? StackInfo = null;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public StreamBase() : base() { }
+        protected StreamBase() : base()
+        {
+            if (CreateStackInfo) StackInfo = new StackInfo<StreamBase>(this);
+        }
+
+        /// <summary>
+        /// Create a <see cref="StackInfo"/> for every instance?
+        /// </summary>
+        public static bool CreateStackInfo { get; set; }
 
         /// <inheritdoc/>
         public string? Name { get; set; }

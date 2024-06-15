@@ -49,6 +49,11 @@ namespace wan24.Core
             {
                 yield return new(__("Name"), Name, __("Name of the stream"));
                 yield return new(__("Type"), GetType().ToString(), __("Stream type"));
+                if (StackInfo is not null)
+                {
+                    yield return new(__("Stack"), StackInfo.Stack, __("Instance creation stack"));
+                    yield return new(__("Created"), StackInfo.Created, __("Instance creation time"));
+                }
                 foreach (Stream stream in Targets)
                     if (stream is IStatusProvider sp)
                         foreach (Status status in sp.State)
@@ -101,20 +106,20 @@ namespace wan24.Core
         public override async Task FlushAsync(CancellationToken cancellationToken)
         {
             EnsureUndisposed();
-            await Targets.Select(s => s.FlushAsync(cancellationToken)).WaitAll().DynamicContext();
+            await Targets.Select(s => s.FlushAsync(cancellationToken)).ToArray().WaitAll().DynamicContext();
         }
 
         /// <inheritdoc/>
-        public override int Read(byte[] buffer, int offset, int count) => throw new NotSupportedException();
+        public sealed override int Read(byte[] buffer, int offset, int count) => throw new NotSupportedException();
 
         /// <inheritdoc/>
-        public override int Read(Span<byte> buffer) => throw new NotSupportedException();
+        public sealed override int Read(Span<byte> buffer) => throw new NotSupportedException();
 
         /// <inheritdoc/>
-        public override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken) => throw new NotSupportedException();
+        public sealed override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken) => throw new NotSupportedException();
 
         /// <inheritdoc/>
-        public override ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default) => throw new NotSupportedException();
+        public sealed override ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default) => throw new NotSupportedException();
 
         /// <inheritdoc/>
         public override long Seek(long offset, SeekOrigin origin)
@@ -148,7 +153,7 @@ namespace wan24.Core
         public override async ValueTask WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            await Targets.Select(s => s.WriteAsync(buffer, cancellationToken)).WaitAll().DynamicContext();
+            await Targets.Select(s => s.WriteAsync(buffer, cancellationToken)).ToArray().WaitAll().DynamicContext();
         }
 
         /// <inheritdoc/>

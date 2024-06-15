@@ -23,7 +23,7 @@ namespace wan24.Core
     /// </remarks>
     /// <param name="baseStream">Base stream</param>
     /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-    public class CountingStream<T>(in T baseStream, in bool leaveOpen = false) : WrapperStream<T>(baseStream, leaveOpen), IStatusProvider where T : Stream
+    public class CountingStream<T>(in T baseStream, in bool leaveOpen = false) : WrapperStream<T>(baseStream, leaveOpen) where T : Stream
     {
         /// <summary>
         /// Number of bytes red

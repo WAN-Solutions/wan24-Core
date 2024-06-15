@@ -6,7 +6,7 @@ namespace wan24.Core
     /// <summary>
     /// Priority queue worker
     /// </summary>
-    /// <typeparam name="T">Priority type</typeparam>
+    /// <typeparam name="T">Priority type (may be a <see cref="IQueueItemPriority"/> also, for example)</typeparam>
     public class PriorityQueueWorker<T> : HostedServiceBase, IPriorityQueueWorker<T>
     {
         /// <summary>
@@ -30,7 +30,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="capacity">Capacity</param>
-        /// <param name="comparer">Comparer</param>
+        /// <param name="comparer">Comparer (may be a <see cref="QueueItemPriorityComparer"/>, if <c>T</c> is an <see cref="IQueueItemPriority"/>)</param>
         public PriorityQueueWorker(in int capacity, in IComparer<T>? comparer = null) : base()
         {
             ArgumentOutOfRangeException.ThrowIfLessThan(capacity, 1);
@@ -91,8 +91,8 @@ namespace wan24.Core
                 return false;
             Queue.Enqueue(task, priority);
             if (Queue.Count >= Capacity)
-                SpaceEvent.Reset();
-            QueueEvent.Set();
+                SpaceEvent.Reset(CancellationToken.None);
+            QueueEvent.Set(CancellationToken.None);
             return true;
         }
 

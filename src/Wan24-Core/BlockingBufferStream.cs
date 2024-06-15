@@ -91,6 +91,11 @@ namespace wan24.Core
             {
                 yield return new(__("Name"), Name, __("Name of the stream"));
                 yield return new(__("Type"), GetType().ToString(), __("Stream type"));
+                if (StackInfo is not null)
+                {
+                    yield return new(__("Stack"), StackInfo.Stack, __("Instance creation stack"));
+                    yield return new(__("Created"), StackInfo.Created, __("Instance creation time"));
+                }
                 yield return new(__("Available"), Available, __("Available number of bytes for reading"));
                 yield return new(__("Space"), SpaceLeft, __("Space left in bytes for writing"));
                 yield return new(__("Reading blocks"), IsReadBlocked, __("Is reading blocked?"));

@@ -6,13 +6,11 @@ namespace wan24.Core
     /// <summary>
     /// DI helper
     /// </summary>
-    public partial class DiHelper : IAsyncKeyedServiceProvider, IServiceProviderIsService, IServiceProviderIsKeyedService
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    public partial class DiHelper() : IAsyncKeyedServiceProvider, IServiceProviderIsService, IServiceProviderIsKeyedService
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public DiHelper() { }
-
         /// <inheritdoc/>
         public virtual object? GetService(Type serviceType) => GetDiObject(serviceType, out object? res) ? res : null;
 

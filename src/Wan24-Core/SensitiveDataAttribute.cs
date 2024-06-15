@@ -3,14 +3,12 @@
     /// <summary>
     /// Attribute for sensitive data
     /// </summary>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
     [AttributeUsage(AttributeTargets.Property)]
-    public class SensitiveDataAttribute : Attribute
+    public class SensitiveDataAttribute() : Attribute()
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public SensitiveDataAttribute() : base() { }
-
         /// <summary>
         /// Can this attribute sanitize a sensitive value?
         /// </summary>

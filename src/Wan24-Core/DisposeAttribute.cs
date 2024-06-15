@@ -3,12 +3,11 @@
     /// <summary>
     /// Attribute for fields or properties to dispose automatic when disposing
     /// </summary>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-    public class DisposeAttribute : Attribute
+    public class DisposeAttribute() : Attribute()
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public DisposeAttribute() : base() { }
     }
 }

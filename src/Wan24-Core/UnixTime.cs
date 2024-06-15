@@ -142,50 +142,22 @@ namespace wan24.Core
         /// <summary>
         /// Get as <see cref="DateOnly"/>
         /// </summary>
-        public DateOnly AsDateOnly
-        {
-            get
-            {
-                DateTime dt = AsDateTime;
-                return new(dt.Year, dt.Month, dt.Day);
-            }
-        }
+        public DateOnly AsDateOnly => DateOnly.FromDateTime(AsDateTime);
 
         /// <summary>
         /// Get as UTC <see cref="DateOnly"/>
         /// </summary>
-        public DateOnly AsUtcDateOnly
-        {
-            get
-            {
-                DateTime dt = AsUtcDateTime;
-                return new(dt.Year, dt.Month, dt.Day);
-            }
-        }
+        public DateOnly AsUtcDateOnly => DateOnly.FromDateTime(AsUtcDateTime);
 
         /// <summary>
         /// Get as <see cref="TimeOnly"/>
         /// </summary>
-        public TimeOnly AsTimeOnly
-        {
-            get
-            {
-                DateTime dt = AsDateTime;
-                return new(dt.Hour, dt.Minute, dt.Second);
-            }
-        }
+        public TimeOnly AsTimeOnly => TimeOnly.FromDateTime(AsDateTime);
 
         /// <summary>
         /// Get as UTC <see cref="TimeOnly"/>
         /// </summary>
-        public TimeOnly AsUtcTimeOnly
-        {
-            get
-            {
-                DateTime dt = AsUtcDateTime;
-                return new(dt.Hour, dt.Minute, dt.Second);
-            }
-        }
+        public TimeOnly AsUtcTimeOnly => TimeOnly.FromDateTime(AsUtcDateTime);
 
         /// <summary>
         /// Difference from now

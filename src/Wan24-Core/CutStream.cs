@@ -4,14 +4,13 @@ namespace wan24.Core
     /// <summary>
     /// Cut stream (cuts the base stream at its position)
     /// </summary>
-    public class CutStream : CutStream<Stream>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="baseStream">Base stream</param>
+    /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
+    public class CutStream(in Stream baseStream, in bool leaveOpen = false) : CutStream<Stream>(baseStream, leaveOpen)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="baseStream">Base stream</param>
-        /// <param name="leaveOpen">Leave the base stream open when disposing?</param>
-        public CutStream(in Stream baseStream, in bool leaveOpen = false) : base(baseStream, leaveOpen) { }
     }
 
     /// <summary>
@@ -86,7 +85,7 @@ namespace wan24.Core
             EnsureUndisposed();
             EnsureWritable();
             EnsureSeekable();
-            if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
+            ArgumentOutOfRangeException.ThrowIfNegative(value);
             BaseStream.SetLength(Offset + value);
             _Length = value;
             if (_Length < _Position) _Position = _Length;

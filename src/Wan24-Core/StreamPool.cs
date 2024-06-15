@@ -4,7 +4,12 @@
     /// Stream pool
     /// </summary>
     /// <typeparam name="T">Stream type</typeparam>
-    public class StreamPool<T> : DisposableObjectPool<T> where T : Stream, IObjectPoolItem, new()
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="capacity">Capacity</param>
+    /// <param name="factory">Stream factory</param>
+    public class StreamPool<T>(in int capacity, in Func<T> factory) : DisposableObjectPool<T>(capacity, factory) where T : Stream, IObjectPoolItem, new()
     {
         /// <summary>
         /// Is a <see cref="StreamBase"/> stream?
@@ -21,13 +26,6 @@
         /// </summary>
         /// <param name="capacity">Capacity</param>
         public StreamPool(in int capacity) : this(capacity, () => new()) { }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="capacity">Capacity</param>
-        /// <param name="factory">Stream factory</param>
-        public StreamPool(in int capacity, in Func<T> factory) : base(capacity, factory) { }
 
         /// <inheritdoc/>
         public override void Return(in T item, in bool reset = false)

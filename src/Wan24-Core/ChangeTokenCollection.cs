@@ -50,6 +50,18 @@ namespace wan24.Core
             ChangeIdentifier = () => Items.Any(i => (i as IChangeToken)?.HasChanged ?? false);
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="items">Items to use</param>
+        public ChangeTokenCollection(in List<T> items) : base()
+        {
+            Disposable = new((disposing) => Clear());
+            Items = items;
+            Subscriptions = [];
+            ChangeIdentifier = () => Items.Any(i => (i as IChangeToken)?.HasChanged ?? false);
+        }
+
         /// <inheritdoc/>
         public T this[int index]
         {

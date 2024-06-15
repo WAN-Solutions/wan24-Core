@@ -49,6 +49,18 @@ namespace wan24.Core
             ChangeIdentifier = () => Dict.Values.Any(v => (v as IChangeToken)?.HasChanged ?? false);
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="dict">Dictionary to use</param>
+        public ChangeTokenDictionary(in Dictionary<tKey, tValue> dict) : base()
+        {
+            Disposable = new((disposing) => Clear());
+            Dict = dict;
+            Subscriptions = [];
+            ChangeIdentifier = () => Dict.Values.Any(v => (v as IChangeToken)?.HasChanged ?? false);
+        }
+
         /// <inheritdoc/>
         public tValue this[tKey key]
         {
