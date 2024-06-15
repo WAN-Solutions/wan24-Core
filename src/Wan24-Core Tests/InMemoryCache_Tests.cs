@@ -1,5 +1,6 @@
-﻿using Microsoft.Extensions.Primitives;
-using wan24.Core;
+﻿using wan24.Core;
+
+//TODO Write more tests
 
 namespace Wan24_Core_Tests
 {
