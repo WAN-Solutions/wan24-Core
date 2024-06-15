@@ -411,7 +411,7 @@
       </tr>
       <tr>
         <td><span class="parametername">tPriority</span></td>
-        <td><p>Priority type</p>
+        <td><p>Priority type (may be a <a class="xref" href="wan24.Core.IQueueItemPriority.html">IQueueItemPriority</a> also, for example)</p>
 </td>
       </tr>
     </tbody>
@@ -456,7 +456,7 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icomparer-1">IComparer</a>&lt;tPriority&gt;</td>
         <td><span class="parametername">comparer</span></td>
-        <td><p>Comparer</p>
+        <td><p>Comparer (may be a <a class="xref" href="wan24.Core.QueueItemPriorityComparer.html">QueueItemPriorityComparer</a>, if <code>tPriority</code> is an <a class="xref" href="wan24.Core.IQueueItemPriority.html">IQueueItemPriority</a>)</p>
 </td>
       </tr>
     </tbody>
@@ -817,6 +817,9 @@ public bool TryEnqueue(tItem item, tPriority priority)</code></pre>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(object, params object?[])</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_">StringValueConverter.ConvertObjectToString(object)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
@@ -842,6 +845,9 @@ public bool TryEnqueue(tItem item, tPriority priority)</code></pre>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>
   </div>
 
 </article>

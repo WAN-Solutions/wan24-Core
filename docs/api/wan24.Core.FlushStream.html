@@ -129,7 +129,22 @@
       <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_MaxBuffer">FlushStream&lt;Stream&gt;.MaxBuffer</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_MinBuffer">FlushStream&lt;Stream&gt;.MinBuffer</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_FlushOnWrite">FlushStream&lt;Stream&gt;.FlushOnWrite</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_FlushOnRead">FlushStream&lt;Stream&gt;.FlushOnRead</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_FlushOnSeek">FlushStream&lt;Stream&gt;.FlushOnSeek</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_ForceAllowReading">FlushStream&lt;Stream&gt;.ForceAllowReading</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_ForceAllowSeeking">FlushStream&lt;Stream&gt;.ForceAllowSeeking</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_BufferSize">FlushStream&lt;Stream&gt;.BufferSize</a>
@@ -150,6 +165,9 @@
       <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_ClearBuffer">FlushStream&lt;Stream&gt;.ClearBuffer()</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_GetBufferContents">FlushStream&lt;Stream&gt;.GetBufferContents()</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_Flush">FlushStream&lt;Stream&gt;.Flush()</a>
     </div>
     <div>
@@ -157,6 +175,24 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_SetLength_System_Int64_">FlushStream&lt;Stream&gt;.SetLength(long)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_Seek_System_Int64_System_IO_SeekOrigin_">FlushStream&lt;Stream&gt;.Seek(long, SeekOrigin)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_Read_System_Byte___System_Int32_System_Int32_">FlushStream&lt;Stream&gt;.Read(byte[], int, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_Read_System_Span_System_Byte__">FlushStream&lt;Stream&gt;.Read(Span&lt;byte&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_">FlushStream&lt;Stream&gt;.ReadAsync(byte[], int, int, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_ReadAsync_System_Memory_System_Byte__System_Threading_CancellationToken_">FlushStream&lt;Stream&gt;.ReadAsync(Memory&lt;byte&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_ReadByte">FlushStream&lt;Stream&gt;.ReadByte()</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_Write_System_Byte___System_Int32_System_Int32_">FlushStream&lt;Stream&gt;.Write(byte[], int, int)</a>
@@ -172,6 +208,12 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_WriteByte_System_Byte_">FlushStream&lt;Stream&gt;.WriteByte(byte)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_OnFlush">FlushStream&lt;Stream&gt;.OnFlush()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_OnFlushAsync_System_Threading_CancellationToken_">FlushStream&lt;Stream&gt;.OnFlushAsync(CancellationToken)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.FlushStream-1.html#wan24_Core_FlushStream_1_EnsureBufferLimit_System_Int32__">FlushStream&lt;Stream&gt;.EnsureBufferLimit(in int)</a>
@@ -231,24 +273,6 @@
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_WriteTimeout">WrapperStream&lt;Stream&gt;.WriteTimeout</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Read_System_Byte___System_Int32_System_Int32_">WrapperStream&lt;Stream&gt;.Read(byte[], int, int)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Read_System_Span_System_Byte__">WrapperStream&lt;Stream&gt;.Read(Span&lt;byte&gt;)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_ReadByte">WrapperStream&lt;Stream&gt;.ReadByte()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_ReadAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_">WrapperStream&lt;Stream&gt;.ReadAsync(byte[], int, int, CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_ReadAsync_System_Memory_System_Byte__System_Threading_CancellationToken_">WrapperStream&lt;Stream&gt;.ReadAsync(Memory&lt;byte&gt;, CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_Seek_System_Int64_System_IO_SeekOrigin_">WrapperStream&lt;Stream&gt;.Seek(long, SeekOrigin)</a>
-    </div>
-    <div>
       <a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_CopyTo_System_IO_Stream_System_Int32_">WrapperStream&lt;Stream&gt;.CopyTo(Stream, int)</a>
     </div>
     <div>
@@ -301,6 +325,12 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_SyncObject">StreamBase.SyncObject</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_StackInfo">StreamBase.StackInfo</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_CreateStackInfo">StreamBase.CreateStackInfo</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_Name">StreamBase.Name</a>
@@ -552,6 +582,18 @@
       <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_GetRemainingBytes_System_IO_Stream_">StreamExtensions.GetRemainingBytes(Stream)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_Read_System_IO_Stream_System_Int32__">StreamExtensions.Read(Stream, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_ReadAsync_System_IO_Stream_System_Int32_System_Threading_CancellationToken_">StreamExtensions.ReadAsync(Stream, int, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_ReadExactly_System_IO_Stream_System_Int32__">StreamExtensions.ReadExactly(Stream, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_ReadExactlyAsync_System_IO_Stream_System_Int32_System_Threading_CancellationToken_">StreamExtensions.ReadExactlyAsync(Stream, int, CancellationToken)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_WriteRandom_System_IO_Stream_System_Int64__">StreamExtensions.WriteRandom(Stream, in long)</a>
   </div>
   <div>
@@ -574,6 +616,9 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(object, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_">StringValueConverter.ConvertObjectToString(object)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
@@ -601,6 +646,9 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>
   </div>
 
 </article>

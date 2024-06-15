@@ -167,6 +167,12 @@ Classes
       <h5><a class="xref" href="wan24.Core.AsyncTimer.html">AsyncTimer</a></h5>
       <section><p>Asynchronous timer</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.AutoDisposer-1.html">AutoDisposer&lt;T&gt;</a></h5>
+      <section><p>Automatic disposer (disposes an object and itself after use)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.AutoDisposer-1.Context.html">AutoDisposer&lt;T&gt;.Context</a></h5>
+      <section><p>Usage context</p>
+</section>
       <h5><a class="xref" href="wan24.Core.AutoValueObjectBase-1.html">AutoValueObjectBase&lt;T&gt;</a></h5>
       <section><p>Base class for an automatic value object (uses properties with a public getter for building the objects hash code)</p>
 </section>
@@ -301,6 +307,9 @@ Classes
 </section>
       <h5><a class="xref" href="wan24.Core.ConcurrentChangeTokenDictionary-2.html">ConcurrentChangeTokenDictionary&lt;tKey, tValue&gt;</a></h5>
       <section><p>Concurrent change token dictionary (observes values; don't forget to dispose!)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ConcurrentObjectDictionary-1.html">ConcurrentObjectDictionary&lt;T&gt;</a></h5>
+      <section><p>Object dictionary</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ConfigEventArgs.html">ConfigEventArgs</a></h5>
       <section><p>Configuration event arguments</p>
@@ -576,6 +585,42 @@ Classes
       <section><p>Hub stream (write-only, all writing operations go to all target streams - in parallel, when using asynchronous methods; length/position targets
 the first stream per default)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IdleState.html">IdleState</a></h5>
+      <section><p>Timed idle state</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache.html">InMemoryCache</a></h5>
+      <section><p>In-memory cache</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCacheEntryOptions.html">InMemoryCacheEntryOptions</a></h5>
+      <section><p>In-memory cache entry options</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCacheEntry-1.html">InMemoryCacheEntry&lt;T&gt;</a></h5>
+      <section><p>In-memory cache entry</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCacheExtensions.html">InMemoryCacheExtensions</a></h5>
+      <section><p><a class="xref" href="wan24.Core.InMemoryCache.html">InMemoryCache</a> extensions</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCacheOptions.html">InMemoryCacheOptions</a></h5>
+      <section><p>In-memory cache options</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.html">InMemoryCache&lt;T&gt;</a></h5>
+      <section><p>In-memory cache</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.AccessTimeStrategy.html">InMemoryCache&lt;T&gt;.AccessTimeStrategy</a></h5>
+      <section><p>Access time strategy (higher idle time has lower priority)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.AgeStrategy.html">InMemoryCache&lt;T&gt;.AgeStrategy</a></h5>
+      <section><p>Age strategy (higher age has lower priority)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.LargerStrategy.html">InMemoryCache&lt;T&gt;.LargerStrategy</a></h5>
+      <section><p>Larger strategy (larger size has lower priority)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.SmallerStrategy.html">InMemoryCache&lt;T&gt;.SmallerStrategy</a></h5>
+      <section><p>Smaller strategy (smaller size has lower priority)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.TidyStrategy.html">InMemoryCache&lt;T&gt;.TidyStrategy</a></h5>
+      <section><p>Tidy strategy</p>
+</section>
       <h5><a class="xref" href="wan24.Core.InstancePool-1.html">InstancePool&lt;T&gt;</a></h5>
       <section><p>Instance pool</p>
 </section>
@@ -667,6 +712,9 @@ restrictions for this)</p>
       <h5><a class="xref" href="wan24.Core.NumberExtensions.html">NumberExtensions</a></h5>
       <section><p>Number extensions</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ObjectDictionary-1.html">ObjectDictionary&lt;T&gt;</a></h5>
+      <section><p>Object dictionary</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ObjectExtensions.html">ObjectExtensions</a></h5>
       <section><p>Object extensions</p>
 </section>
@@ -749,6 +797,12 @@ restrictions for this)</p>
       <h5><a class="xref" href="wan24.Core.PausableStream-1.html">PausableStream&lt;T&gt;</a></h5>
       <section><p>Pausable stream wrapper (will pause reading/writing)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.PerformanceStream.html">PerformanceStream</a></h5>
+      <section><p>Performance stream (stores time statistical information during I/O operations excluding seeking or stream length changes)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PerformanceStream-1.html">PerformanceStream&lt;T&gt;</a></h5>
+      <section><p>Performance stream (stores time statistical information during I/O operations excluding seeking or stream length changes)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.PluralTranslationTerms.html">PluralTranslationTerms</a></h5>
       <section><p>Simple dictionary based translation with plural support</p>
 </section>
@@ -799,6 +853,12 @@ restrictions for this)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.QueueEntry-1.html">QueueEntry&lt;T&gt;</a></h5>
       <section><p>Queue entry</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.QueueItemPriorityBase.html">QueueItemPriorityBase</a></h5>
+      <section><p>Base class for a <a class="xref" href="wan24.Core.PriorityQueueWorker-1.html">PriorityQueueWorker&lt;T&gt;</a> priority (to be compared using <a class="xref" href="wan24.Core.QueueItemPriorityComparer.html">QueueItemPriorityComparer</a>)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.QueueItemPriorityComparer.html">QueueItemPriorityComparer</a></h5>
+      <section><p>Queue item priority comparer</p>
 </section>
       <h5><a class="xref" href="wan24.Core.QueueWorker.html">QueueWorker</a></h5>
       <section><p>Queue worker</p>
@@ -1160,6 +1220,12 @@ Interfaces
       <h5><a class="xref" href="wan24.Core.IGlobalLock.html">IGlobalLock</a></h5>
       <section><p>Interface for a global lock</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IInMemoryCacheItem.html">IInMemoryCacheItem</a></h5>
+      <section><p>Interface for an in-memory cacheable item</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IInMemoryCacheStrategy-1.html">IInMemoryCacheStrategy&lt;T&gt;</a></h5>
+      <section><p>Interface for an in-memory cache management strategy</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IInstancePool.html">IInstancePool</a></h5>
       <section><p>Interface for an instance pool</p>
 </section>
@@ -1222,6 +1288,9 @@ Interfaces
 </section>
       <h5><a class="xref" href="wan24.Core.IQueueEntry.html">IQueueEntry</a></h5>
       <section><p>Interface for a queue entry</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IQueueItemPriority.html">IQueueItemPriority</a></h5>
+      <section><p>Interface for a queue item priority (see <a class="xref" href="wan24.Core.QueueItemPriorityBase.html">QueueItemPriorityBase</a>)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.IQueueWorker.html">IQueueWorker</a></h5>
       <section><p>Interface for a queue worker</p>
@@ -1294,6 +1363,12 @@ Enums
 </section>
       <h5><a class="xref" href="wan24.Core.HostedServiceTimers.html">HostedServiceTimers</a></h5>
       <section><p>Hosted service timer types</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCacheEntryTypes.html">InMemoryCacheEntryTypes</a></h5>
+      <section><p>In-memory cache entry types</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCacheStrategy.html">InMemoryCacheStrategy</a></h5>
+      <section><p>In-memory cache management strategies for automatic cache entry cleanup selection</p>
 </section>
       <h5><a class="xref" href="wan24.Core.IpNetworkKind.html">IpNetworkKind</a></h5>
       <section><p>IP network kind enumeration</p>
@@ -1402,6 +1477,12 @@ Delegates
 </section>
       <h5><a class="xref" href="wan24.Core.IOverridableConfig.Config_Delegate.html">IOverridableConfig.Config_Delegate</a></h5>
       <section><p>Delegate for configuration events</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IdleState.Idle_Delegate.html">IdleState.Idle_Delegate</a></h5>
+      <section><p>Delegate for an event handler</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.CacheEntryFactory_Delegate.html">InMemoryCache&lt;T&gt;.CacheEntryFactory_Delegate</a></h5>
+      <section><p>Delegate for a cache entry factory</p>
 </section>
       <h5><a class="xref" href="wan24.Core.JsonHelper.Decoder_Delegate.html">JsonHelper.Decoder_Delegate</a></h5>
       <section><p>Delegate for a JSON decoder</p>

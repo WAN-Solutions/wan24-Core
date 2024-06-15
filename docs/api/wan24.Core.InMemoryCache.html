@@ -1,0 +1,649 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class InMemoryCache | wan24-Core </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class InMemoryCache | wan24-Core ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <!-- Header required for docfx anchor scroll to work -->
+        <header id="head"></header>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../logo.svg" alt="" class="logomark">
+              <span class="brand-title"></span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../logo.svg" alt="" class="logomark">
+                          <span class="brand-title"></span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  (c) 2023 Andreas Zimmermann, wan24.de
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+ 
+
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                         <div id="contribution">
+                               <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                         </div>
+
+                    <article class="content wrap" id="_content" data-uid="wan24.Core.InMemoryCache">
+
+
+
+  <h1 id="wan24_Core_InMemoryCache" data-uid="wan24.Core.InMemoryCache" class="text-break">Class InMemoryCache</h1>
+  <div class="markdown level0 summary"><p>In-memory cache</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><a class="xref" href="wan24.Core.DisposableBase.html">DisposableBase</a></div>
+    <div class="level2"><a class="xref" href="wan24.Core.HostedServiceBase.html">HostedServiceBase</a></div>
+    <div class="level3"><a class="xref" href="wan24.Core.InMemoryCache-1.html">InMemoryCache</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</div>
+    <div class="level4"><span class="xref">InMemoryCache</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></div>
+    <div><a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a></div>
+    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.hosting.ihostedservice">IHostedService</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iobservable-1">IObservable</a>&lt;<a class="xref" href="wan24.Core.ConcurrentChangeTokenDictionary-2.html">ConcurrentChangeTokenDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="wan24.Core.InMemoryCacheEntry-1.html">InMemoryCacheEntry</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.ichangetoken">IChangeToken</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_HasChanged">InMemoryCache&lt;object&gt;.HasChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_ActiveChangeCallbacks">InMemoryCache&lt;object&gt;.ActiveChangeCallbacks</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_PropertyChanged">InMemoryCache&lt;object&gt;.PropertyChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_RegisterChangeCallback_System_Action_System_Object__System_Object_">InMemoryCache&lt;object&gt;.RegisterChangeCallback(Action&lt;object&gt;, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_Subscribe_System_IObserver_wan24_Core_ConcurrentChangeTokenDictionary_System_String_wan24_Core_InMemoryCacheEntry__0____">InMemoryCache&lt;object&gt;.Subscribe(IObserver&lt;ConcurrentChangeTokenDictionary&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_Options">InMemoryCache&lt;object&gt;.Options</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_Count">InMemoryCache&lt;object&gt;.Count</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_Keys">InMemoryCache&lt;object&gt;.Keys</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_Items">InMemoryCache&lt;object&gt;.Items</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_Size">InMemoryCache&lt;object&gt;.Size</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_IsItemAutoDisposer">InMemoryCache&lt;object&gt;.IsItemAutoDisposer</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_Add_System_String___0__wan24_Core_InMemoryCacheEntryOptions_System_Boolean__System_Boolean__">InMemoryCache&lt;object&gt;.Add(in string, in object, InMemoryCacheEntryOptions, in bool, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_AddAsync_System_String__0_wan24_Core_InMemoryCacheEntryOptions_System_Boolean_System_Boolean_System_Threading_CancellationToken_">InMemoryCache&lt;object&gt;.AddAsync(string, object, InMemoryCacheEntryOptions, bool, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_ContainsKey_System_String__">InMemoryCache&lt;object&gt;.ContainsKey(in string)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_Get_System_String__wan24_Core_InMemoryCache__0__CacheEntryFactory_Delegate__wan24_Core_InMemoryCacheEntryOptions__">InMemoryCache&lt;object&gt;.Get(in string, in InMemoryCache&lt;object&gt;.CacheEntryFactory_Delegate, in InMemoryCacheEntryOptions)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_GetAsync_System_String_wan24_Core_InMemoryCache__0__CacheEntryFactory_Delegate_wan24_Core_InMemoryCacheEntryOptions_System_Threading_CancellationToken_">InMemoryCache&lt;object&gt;.GetAsync(string, InMemoryCache&lt;object&gt;.CacheEntryFactory_Delegate, InMemoryCacheEntryOptions, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_TryRemove_System_String__">InMemoryCache&lt;object&gt;.TryRemove(in string)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_Clear">InMemoryCache&lt;object&gt;.Clear()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_IsItemTypeDisposable">InMemoryCache&lt;object&gt;.IsItemTypeDisposable</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_Cache">InMemoryCache&lt;object&gt;.Cache</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_IsItemDisposable">InMemoryCache&lt;object&gt;.IsItemDisposable</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_TidyTimer">InMemoryCache&lt;object&gt;.TidyTimer</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_HasHardLimits">InMemoryCache&lt;object&gt;.HasHardLimits</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_CreateCacheEntry_System_String___0__wan24_Core_InMemoryCacheEntryOptions__">InMemoryCache&lt;object&gt;.CreateCacheEntry(in string, in object, in InMemoryCacheEntryOptions)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_ApplyHardLimits_wan24_Core_InMemoryCacheEntry__0__System_Threading_CancellationToken_">InMemoryCache&lt;object&gt;.ApplyHardLimits(InMemoryCacheEntry&lt;object&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_DisposeItem__0_">InMemoryCache&lt;object&gt;.DisposeItem(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_DisposeItemAsync__0_">InMemoryCache&lt;object&gt;.DisposeItemAsync(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_WorkerAsync">InMemoryCache&lt;object&gt;.WorkerAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_StartingAsync_System_Threading_CancellationToken_">InMemoryCache&lt;object&gt;.StartingAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_StoppingAsync_System_Threading_CancellationToken_">InMemoryCache&lt;object&gt;.StoppingAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_Dispose_System_Boolean_">InMemoryCache&lt;object&gt;.Dispose(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_DisposeCore">InMemoryCache&lt;object&gt;.DisposeCore()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_TidyStrategyInstance">InMemoryCache&lt;object&gt;.TidyStrategyInstance</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_AgeStrategyInstance">InMemoryCache&lt;object&gt;.AgeStrategyInstance</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_AccessTimeStrategyInstance">InMemoryCache&lt;object&gt;.AccessTimeStrategyInstance</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_LargerStrategyInstance">InMemoryCache&lt;object&gt;.LargerStrategyInstance</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_SmallerStrategyInstance">InMemoryCache&lt;object&gt;.SmallerStrategyInstance</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_ReduceCountAsync_System_Int32_System_Threading_CancellationToken_">InMemoryCache&lt;object&gt;.ReduceCountAsync(int, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_ReduceSizeAsync_System_Int64_System_Threading_CancellationToken_">InMemoryCache&lt;object&gt;.ReduceSizeAsync(long, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_ReduceOldAsync_System_TimeSpan_System_Threading_CancellationToken_">InMemoryCache&lt;object&gt;.ReduceOldAsync(TimeSpan, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_ReduceUnpopularAsync_System_TimeSpan_System_Threading_CancellationToken_">InMemoryCache&lt;object&gt;.ReduceUnpopularAsync(TimeSpan, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_ReduceByAsync_wan24_Core_IInMemoryCacheStrategy__0__System_Threading_CancellationToken_">InMemoryCache&lt;object&gt;.ReduceByAsync(IInMemoryCacheStrategy&lt;object&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_TidyCacheAsync_System_Threading_CancellationToken_">InMemoryCache&lt;object&gt;.TidyCacheAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_GetDefaultStrategy">InMemoryCache&lt;object&gt;.GetDefaultStrategy()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_GetTidyStrategy">InMemoryCache&lt;object&gt;.GetTidyStrategy()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_GetAgeStrategy">InMemoryCache&lt;object&gt;.GetAgeStrategy()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_GetAccessTimeStrategy">InMemoryCache&lt;object&gt;.GetAccessTimeStrategy()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_GetLargestStrategy">InMemoryCache&lt;object&gt;.GetLargestStrategy()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_GetSmallestStrategy">InMemoryCache&lt;object&gt;.GetSmallestStrategy()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_GetCustom1Strategy">InMemoryCache&lt;object&gt;.GetCustom1Strategy()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_GetCustom2Strategy">InMemoryCache&lt;object&gt;.GetCustom2Strategy()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_GetCustom3Strategy">InMemoryCache&lt;object&gt;.GetCustom3Strategy()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_ApplyStrategy_wan24_Core_IInMemoryCacheStrategy__0__">InMemoryCache&lt;object&gt;.ApplyStrategy(IInMemoryCacheStrategy&lt;object&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Sync">HostedServiceBase.Sync</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_RunEvent">HostedServiceBase.RunEvent</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_PauseEvent">HostedServiceBase.PauseEvent</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_StopTask">HostedServiceBase.StopTask</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Cancellation">HostedServiceBase.Cancellation</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_ServiceTask">HostedServiceBase.ServiceTask</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase__LastException">HostedServiceBase._LastException</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_CanPause">HostedServiceBase.CanPause</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_IsRunning">HostedServiceBase.IsRunning</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_IsPaused">HostedServiceBase.IsPaused</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Started">HostedServiceBase.Started</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Paused">HostedServiceBase.Paused</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Stopped">HostedServiceBase.Stopped</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_IsStopping">HostedServiceBase.IsStopping</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_LastException">HostedServiceBase.LastException</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_StoppedExceptional">HostedServiceBase.StoppedExceptional</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_Name">HostedServiceBase.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_ErrorSource">HostedServiceBase.ErrorSource</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_CancelToken">HostedServiceBase.CancelToken</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_StartAsync_System_Threading_CancellationToken_">HostedServiceBase.StartAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_StopAsync_System_Threading_CancellationToken_">HostedServiceBase.StopAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_PauseAsync_System_Threading_CancellationToken_">HostedServiceBase.PauseAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_ResumeAsync_System_Threading_CancellationToken_">HostedServiceBase.ResumeAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_ToString">HostedServiceBase.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_BeforeStartAsync_System_Threading_CancellationToken_">HostedServiceBase.BeforeStartAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_AfterStartAsync_System_Threading_CancellationToken_">HostedServiceBase.AfterStartAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_BeforeStopAsync_System_Threading_CancellationToken_">HostedServiceBase.BeforeStopAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_AfterStopAsync_System_Threading_CancellationToken_">HostedServiceBase.AfterStopAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_BeforePauseAsync_System_Threading_CancellationToken_">HostedServiceBase.BeforePauseAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_PausingAsync_System_Threading_CancellationToken_">HostedServiceBase.PausingAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_AfterPauseAsync_System_Threading_CancellationToken_">HostedServiceBase.AfterPauseAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_BeforeResumeAsync_System_Threading_CancellationToken_">HostedServiceBase.BeforeResumeAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_ResumingAsync_System_Threading_CancellationToken_">HostedServiceBase.ResumingAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_AfterResumeAsync_System_Threading_CancellationToken_">HostedServiceBase.AfterResumeAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_RunServiceAsync">HostedServiceBase.RunServiceAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_EnsureNotCanceled_System_Boolean__">HostedServiceBase.EnsureNotCanceled(in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_EnsureRunning_System_Boolean__">HostedServiceBase.EnsureRunning(in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_OnException">HostedServiceBase.OnException</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_RaiseOnException">HostedServiceBase.RaiseOnException()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeSyncObject">DisposableBase.DisposeSyncObject</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AsyncDisposing">DisposableBase.AsyncDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AllowFinalizer">DisposableBase.AllowFinalizer</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeObjects">DisposableBase.DisposeObjects</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_StackInfo">DisposableBase.StackInfo</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_CreateStackInfo">DisposableBase.CreateStackInfo</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DestructorDisposing">DisposableBase.DestructorDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposing">DisposableBase.IsDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposed">DisposableBase.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_RegisterForDispose__1___0__">DisposableBase.RegisterForDispose&lt;T&gt;(in T)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_EnsureUndisposed_System_Boolean__System_Boolean__">DisposableBase.EnsureUndisposed(in bool, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_LockDisposing_System_TimeSpan__System_Threading_CancellationToken__">DisposableBase.LockDisposing(in TimeSpan, in CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_LockDisposingAsync_System_TimeSpan_System_Threading_CancellationToken_">DisposableBase.LockDisposingAsync(TimeSpan, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_TryLockDisposing_wan24_Core_SemaphoreSyncContext__System_TimeSpan__System_Threading_CancellationToken__">DisposableBase.TryLockDisposing(out SemaphoreSyncContext, in TimeSpan, in CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_TryLockDisposingAsync_System_TimeSpan_System_Threading_CancellationToken_">DisposableBase.TryLockDisposingAsync(TimeSpan, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed__1___0__System_Boolean__">DisposableBase.IfUndisposed&lt;T&gt;(in T, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed_System_Action__System_Boolean__">DisposableBase.IfUndisposed(in Action, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed__1_System_Func___0___System_Boolean__">DisposableBase.IfUndisposed&lt;T&gt;(in Func&lt;T&gt;, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposedNullable__1_System_Func___0___System_Boolean__">DisposableBase.IfUndisposedNullable&lt;T&gt;(in Func&lt;T&gt;, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributes">DisposableBase.DisposeAttributes()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributesAsync">DisposableBase.DisposeAttributesAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose">DisposableBase.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAsync">DisposableBase.DisposeAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposing">DisposableBase.OnDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposed">DisposableBase.OnDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_InMemoryCache_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class InMemoryCache : InMemoryCache&lt;object&gt;, IWillDispose, IServiceWorker, IDisposableObject, IDisposable, IAsyncDisposable, IHostedService, IObservable&lt;ConcurrentChangeTokenDictionary&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;&gt;, IChangeToken, INotifyPropertyChanged</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache__ctor_wan24_Core_InMemoryCacheOptions__.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache.%23ctor(wan24.Core.InMemoryCacheOptions%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.cs/#L7">View Source</a>
+  </span>
+  <a id="wan24_Core_InMemoryCache__ctor_" data-uid="wan24.Core.InMemoryCache.#ctor*"></a>
+  <h4 id="wan24_Core_InMemoryCache__ctor_wan24_Core_InMemoryCacheOptions__" data-uid="wan24.Core.InMemoryCache.#ctor(wan24.Core.InMemoryCacheOptions@)">InMemoryCache(in InMemoryCacheOptions)</h4>
+  <div class="markdown level1 summary"><p>In-memory cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public InMemoryCache(in InMemoryCacheOptions options)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.InMemoryCacheOptions.html">InMemoryCacheOptions</a></td>
+        <td><span class="parametername">options</span></td>
+        <td><p>Options</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.hosting.ihostedservice">IHostedService</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iobservable-1">IObservable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.ichangetoken">IChangeToken</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_DynamicContext_System_IAsyncDisposable_">AsyncDisposableExtensions.DynamicContext(IAsyncDisposable)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_FixedContext_System_IAsyncDisposable_">AsyncDisposableExtensions.FixedContext(IAsyncDisposable)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean__">JsonExtensions.ToJson(object, in bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(object, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_">StringValueConverter.ConvertObjectToString(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_System_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean__System_String__">ObjectExtensions.EnsureValidState&lt;T&gt;(T, in bool, in string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText__1___0_">ObjectExtensions.GetDisplayText&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_System_Collections_Generic_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T?&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsDisposable__1___0_">ObjectExtensions.IsDisposable&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.InMemoryCacheExtensions.html#wan24_Core_InMemoryCacheExtensions_AddAsync__2_wan24_Core_InMemoryCache___0____1_wan24_Core_InMemoryCacheEntryOptions_System_Boolean_System_Boolean_System_Threading_CancellationToken_">InMemoryCacheExtensions.AddAsync&lt;tEntry, tItem&gt;(InMemoryCache&lt;tEntry&gt;, tItem, InMemoryCacheEntryOptions?, bool, bool, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.InMemoryCacheExtensions.html#wan24_Core_InMemoryCacheExtensions_Add__2_wan24_Core_InMemoryCache___0____1__wan24_Core_InMemoryCacheEntryOptions_System_Boolean__System_Boolean__">InMemoryCacheExtensions.Add&lt;tEntry, tItem&gt;(InMemoryCache&lt;tEntry&gt;, in tItem, InMemoryCacheEntryOptions?, in bool, in bool)</a>
+  </div>
+
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>(c) 2023 Andreas Zimmermann, wan24.de</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+</html>

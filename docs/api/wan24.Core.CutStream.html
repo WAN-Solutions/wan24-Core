@@ -294,6 +294,12 @@
       <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_SyncObject">StreamBase.SyncObject</a>
     </div>
     <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_StackInfo">StreamBase.StackInfo</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_CreateStackInfo">StreamBase.CreateStackInfo</a>
+    </div>
+    <div>
       <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_Name">StreamBase.Name</a>
     </div>
     <div>
@@ -429,6 +435,9 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class CutStream : CutStream&lt;Stream&gt;, IStreamWrapper, IStream, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
   </div>
+  <h5 id="wan24_Core_CutStream_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Constructor</p>
+</div>
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
@@ -436,11 +445,11 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CutStream__ctor_System_IO_Stream__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.CutStream.%23ctor(System.IO.Stream%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L14">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CutStream.cs/#L12">View Source</a>
   </span>
   <a id="wan24_Core_CutStream__ctor_" data-uid="wan24.Core.CutStream.#ctor*"></a>
   <h4 id="wan24_Core_CutStream__ctor_System_IO_Stream__System_Boolean__" data-uid="wan24.Core.CutStream.#ctor(System.IO.Stream@,System.Boolean@)">CutStream(in Stream, in bool)</h4>
-  <div class="markdown level1 summary"><p>Constructor</p>
+  <div class="markdown level1 summary"><p>Cut stream (cuts the base stream at its position)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -471,6 +480,9 @@
       </tr>
     </tbody>
   </table>
+  <h5 id="wan24_Core_CutStream__ctor_System_IO_Stream__System_Boolean___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Constructor</p>
+</div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a>
@@ -531,6 +543,18 @@
       <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_GetRemainingBytes_System_IO_Stream_">StreamExtensions.GetRemainingBytes(Stream)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_Read_System_IO_Stream_System_Int32__">StreamExtensions.Read(Stream, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_ReadAsync_System_IO_Stream_System_Int32_System_Threading_CancellationToken_">StreamExtensions.ReadAsync(Stream, int, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_ReadExactly_System_IO_Stream_System_Int32__">StreamExtensions.ReadExactly(Stream, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_ReadExactlyAsync_System_IO_Stream_System_Int32_System_Threading_CancellationToken_">StreamExtensions.ReadExactlyAsync(Stream, int, CancellationToken)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_WriteRandom_System_IO_Stream_System_Int64__">StreamExtensions.WriteRandom(Stream, in long)</a>
   </div>
   <div>
@@ -553,6 +577,9 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(object, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_">StringValueConverter.ConvertObjectToString(object)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
@@ -580,6 +607,9 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>
   </div>
 
 </article>

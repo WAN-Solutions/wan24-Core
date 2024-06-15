@@ -352,6 +352,7 @@ including extensions for numeric type encoding/decoding)</li>
 <li><code>LimitedStream</code> limits reading/writing/seeking capabilities of a stream</li>
 <li><code>ZeroStream</code> reads zero bytes and writes to nowhere</li>
 <li><code>CountingStream</code> counts red/written bytes</li>
+<li><code>PerformanceStream</code> counts red/written bytes and I/O time</li>
 <li><code>PauseableStream</code> is a stream which can temporary pause reading/writing</li>
 <li><code>EnumerableStream</code> streams an enumerable/enumerator</li>
 <li><code>CombinedStream</code> combines multiple streams into one stream (read-only)</li>
@@ -428,6 +429,7 @@ data is available</li>
 </li>
 <li>App JSON configuration</li>
 <li>Customizable object serialization helper</li>
+<li>In-memory cache</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
@@ -1860,6 +1862,105 @@ factory defaults</li>
 <p>You may disable CLI argument configuration and bootstrapping using the
 <code>ApplyCliArguments</code> and <code>Bootstrap</code> properties (which can't be overridden by
 the JSON configuration, but by extending <code>AppConfig</code>!).</p>
+<h2 id="in-memory-cache">In-memory cache</h2>
+<p>The <code>InMemoryCache</code> can be used for caching any kind of object in memory:</p>
+<pre><code class="lang-cs">InMemoryCacheOptions options = new()
+{
+    SoftCountLimit = 1_000
+    // SoftCountLimit, SoftSizeLimit, AgeLimit or IdleLimit is required
+};
+using InMemoryCache cache = new(options);
+await cache.StartAsync();
+
+// Adding a new item to the cache
+cache.Add(&quot;key&quot;, item);
+await cache.AddAsync(&quot;key&quot;, item);
+
+// Get (or add) an item from the cache
+item = cache.Get(&quot;key&quot;)?.Item;
+item = (await cache.GetAsync(&quot;key&quot;))?.Item;
+
+// Remove an item from the cache
+cache.TryRemove(&quot;key&quot;);
+
+// Clear the cache while the cache is still serving items
+cache.Clear();
+</code></pre>
+<p><strong>NOTE</strong>: This in-memory cache implementation isn't compatible with the .NET
+built-in approaches. It implements <code>IHostedService</code> and needs to be started
+before it can be used! The asynchronous methods should be used where possible.</p>
+<p>The cache capacity can be limited by</p>
+<ul>
+<li>number of cache entries (hard limit)</li>
+<li>cached item size (hard limit)</li>
+</ul>
+<p>while auto-removing the cache is being done by a background job by</p>
+<ul>
+<li>cache entry timeout (removals won't be timed exactly!)</li>
+<li>cache entry age</li>
+<li>cache entry idle state</li>
+<li>number of cache entries (soft limit)</li>
+<li>cached item size (soft limit)</li>
+<li>optional custom management strategies</li>
+</ul>
+<p>in a fixed interval. An item may also be removed when disposing, if it's an
+<code>IDisposableObject</code> and the cache entry was configured to observe the items
+disposing (not recommended if avoidable).</p>
+<p><strong>NOTE</strong>: The in-memory cache isn't too strict with limits, they might
+overflow slightly.</p>
+<p>Hard limits are being applied when adding new items, while soft limits are
+being applied by the tidy process. The cache size can be manually reduced at
+any time by</p>
+<ul>
+<li>a max. number of cache entries</li>
+<li>a max. item size</li>
+<li>a max. cache entry age</li>
+<li>a max. cache entry idle time</li>
+<li>an optional custom cache entry reducing strategy</li>
+</ul>
+<p>The <code>GetAsync</code> method allows a delegate for creating a new cached item, which
+will be added to the cache in case there was no cache entry for the requested
+key already.</p>
+<p>Cached items which are being auto-removed from the cache will be disposed, if
+possible. To avoid disposing an item while it's still in use, you can wrap the
+item with an <code>AutoDisposer&lt;T&gt;</code>:</p>
+<pre><code class="lang-cs">InMemoryCacheOptions options = new()
+{
+    SoftCountLimit = 1_000
+    // SoftCountLimit, SoftSizeLimit, AgeLimit or IdleLimit is required
+};
+using InMemoryCache&lt;AutoDisposer&lt;ItemType&gt;&gt; cache = new(options);
+await cache.StartAsync();
+
+// Add a new item to the cache
+cache.Add(&quot;key&quot;, new(item));
+await cache.AddAsync(&quot;key&quot;, new(item));
+
+// Get (or add) an item from the cache
+using AutoDisposer&lt;ItemType&gt;.Context? itemContext = 
+    await cache.GetItemContext(&quot;key&quot;);
+using AutoDisposer&lt;ItemType&gt;.Context? itemContext = 
+    await cache.GetItemContextAsync(&quot;key&quot;);
+// Now itemContext.Object can be used while it's not being disposed for sure
+
+// Remove an item from the cache
+if(cache.TryRemove(&quot;key&quot;)?.Item is AutoDisposer&lt;ItemType&gt; removedItemDisposer)
+    await removedItemDisposer.SetShouldDisposeAsync();
+
+// Clear the cache while the cache is still serving items
+foreach(InMemoryCacheEntry&lt;AutoDisposer&lt;ItemType&gt;&gt; entry in cache.Clear())
+    await entry.Item.SetShouldDisposeAsync();
+</code></pre>
+<p><strong>WARNING</strong>: If the cache is being disposed, all cached items will be
+disposed, too, no matter if they're still in use or not!</p>
+<p><strong>CAUTION</strong>: If the <code>InMemoryCacheOptions.MaxItemSize</code> value was set, and an
+oversized item is being added, an <code>OutOfMemoryException</code> will be thrown.</p>
+<h3 id="iinmemorycacheitem-interface"><code>IInMemoryCacheItem</code> interface</h3>
+<p>By implementing the <code>IInMemoryCacheItem</code> interface a cacheable item can export
+its unique key and its size in the cache. While the key should never change
+and is used for adding a new item only, the size property getter may return
+variable values during runtime, which will be respected during a cache cleanup.</p>
+<p>Returning cache entry options is optional.</p>
 
 </article>
                 </div>
