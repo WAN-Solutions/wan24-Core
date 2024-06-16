@@ -6,23 +6,47 @@
         /// <summary>
         /// Tidy strategy instance
         /// </summary>
-        protected readonly IInMemoryCacheStrategy<T> TidyStrategyInstance;
+        protected IInMemoryCacheStrategy<T>? TidyStrategyInstance = null;
         /// <summary>
         /// Age strategy instance
         /// </summary>
-        protected readonly IInMemoryCacheStrategy<T> AgeStrategyInstance;
+        protected IInMemoryCacheStrategy<T>? AgeStrategyInstance = null;
         /// <summary>
         /// Access time strategy instance
         /// </summary>
-        protected readonly IInMemoryCacheStrategy<T> AccessTimeStrategyInstance;
+        protected IInMemoryCacheStrategy<T>? AccessTimeStrategyInstance = null;
         /// <summary>
         /// Larger strategy instance
         /// </summary>
-        protected readonly IInMemoryCacheStrategy<T> LargerStrategyInstance;
+        protected IInMemoryCacheStrategy<T>? LargerStrategyInstance = null;
         /// <summary>
         /// Smaller strategy instance
         /// </summary>
-        protected readonly IInMemoryCacheStrategy<T> SmallerStrategyInstance;
+        protected IInMemoryCacheStrategy<T>? SmallerStrategyInstance = null;
+
+        /// <summary>
+        /// Reduce the number of cache entries
+        /// </summary>
+        /// <param name="targetCount">Target count</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public virtual void ReduceCount(int targetCount, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            if (Count <= targetCount)
+                return;
+            foreach (InMemoryCacheEntry<T> entry in ApplyStrategy(GetDefaultStrategy()))
+            {
+                EnsureUndisposed();
+                cancellationToken.ThrowIfCancellationRequested();
+                if (Remove(entry))
+                {
+                    if (IsItemDisposable)
+                        DisposeItem(entry.Item);
+                    if (Count <= targetCount)
+                        return;
+                }
+            }
+        }
 
         /// <summary>
         /// Reduce the number of cache entries
@@ -43,6 +67,30 @@
                     if (IsItemDisposable)
                         await DisposeItemAsync(entry.Item).DynamicContext();
                     if (Count <= targetCount)
+                        return;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reduce the size of the cache
+        /// </summary>
+        /// <param name="targetSize">Target size</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public virtual void ReduceSize(long targetSize, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            if (Size <= targetSize)
+                return;
+            foreach (InMemoryCacheEntry<T> entry in ApplyStrategy(GetDefaultStrategy()))
+            {
+                EnsureUndisposed();
+                cancellationToken.ThrowIfCancellationRequested();
+                if (Remove(entry))
+                {
+                    if (IsItemDisposable)
+                        DisposeItem(entry.Item); ;
+                    if (Size <= targetSize)
                         return;
                 }
             }
@@ -77,6 +125,23 @@
         /// </summary>
         /// <param name="maxAge">Max. cache entry age</param>
         /// <param name="cancellationToken">Cancellation token</param>
+        public virtual void ReduceOld(TimeSpan maxAge, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            foreach (InMemoryCacheEntry<T> entry in Cache.Values.Where(e => e.Type != InMemoryCacheEntryTypes.Persistent && e.Age > maxAge).OrderByDescending(e => e.Age))
+            {
+                EnsureUndisposed();
+                cancellationToken.ThrowIfCancellationRequested();
+                if (Remove(entry) && IsItemDisposable)
+                    DisposeItem(entry.Item);
+            }
+        }
+
+        /// <summary>
+        /// Reduce the number of cache entries by removing the oldest entries
+        /// </summary>
+        /// <param name="maxAge">Max. cache entry age</param>
+        /// <param name="cancellationToken">Cancellation token</param>
         public virtual async Task ReduceOldAsync(TimeSpan maxAge, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -86,6 +151,23 @@
                 cancellationToken.ThrowIfCancellationRequested();
                 if (Remove(entry) && IsItemDisposable)
                     await DisposeItemAsync(entry.Item).DynamicContext();
+            }
+        }
+
+        /// <summary>
+        /// Reduce the number of cache entries by removing the least accessed entries
+        /// </summary>
+        /// <param name="maxIdle">Max. cache entry idle time</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public virtual void ReduceUnpopular(TimeSpan maxIdle, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            foreach (InMemoryCacheEntry<T> entry in Cache.Values.Where(e => e.Type != InMemoryCacheEntryTypes.Persistent && e.Idle > maxIdle).OrderByDescending(e => e.Idle))
+            {
+                EnsureUndisposed();
+                cancellationToken.ThrowIfCancellationRequested();
+                if (Remove(entry) && IsItemDisposable)
+                    DisposeItem(entry.Item);
             }
         }
 
@@ -111,6 +193,30 @@
         /// </summary>
         /// <param name="targetUsage">Target max. memory usage in bytes</param>
         /// <param name="cancellationToken">Cancellation token</param>
+        public virtual void ReduceMemory(long targetUsage, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            if (Environment.WorkingSet <= targetUsage)
+                return;
+            foreach (InMemoryCacheEntry<T> entry in ApplyStrategy(GetDefaultStrategy()))
+            {
+                EnsureUndisposed();
+                cancellationToken.ThrowIfCancellationRequested();
+                if (Remove(entry))
+                {
+                    if (IsItemDisposable)
+                        DisposeItem(entry.Item);
+                    if (Environment.WorkingSet <= targetUsage)
+                        return;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reduce the cache memory usage by removing entries until a maximum memory usage does match
+        /// </summary>
+        /// <param name="targetUsage">Target max. memory usage in bytes</param>
+        /// <param name="cancellationToken">Cancellation token</param>
         public virtual async Task ReduceMemoryAsync(long targetUsage, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -127,6 +233,25 @@
                     if (Environment.WorkingSet <= targetUsage)
                         return;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Reduce the number of cache entries by a custom strategy
+        /// </summary>
+        /// <param name="strategy">Strategy</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public virtual void ReduceBy(IInMemoryCacheStrategy<T> strategy, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            foreach (InMemoryCacheEntry<T> entry in ApplyStrategy(strategy))
+            {
+                EnsureUndisposed();
+                if (!strategy.IsConditionMet)
+                    return;
+                cancellationToken.ThrowIfCancellationRequested();
+                if (Remove(entry) && IsItemDisposable)
+                    DisposeItem(entry.Item);
             }
         }
 
@@ -185,31 +310,31 @@
         /// Get the tidy strategy
         /// </summary>
         /// <returns>Strategy</returns>
-        protected virtual IInMemoryCacheStrategy<T> GetTidyStrategy() => TidyStrategyInstance;
+        protected virtual IInMemoryCacheStrategy<T> GetTidyStrategy() => TidyStrategyInstance ??= new TidyStrategy(this);
 
         /// <summary>
         /// Get the age strategy
         /// </summary>
         /// <returns>Strategy</returns>
-        protected virtual IInMemoryCacheStrategy<T> GetAgeStrategy() => AgeStrategyInstance;
+        protected virtual IInMemoryCacheStrategy<T> GetAgeStrategy() => AgeStrategyInstance ??= new AgeStrategy(this);
 
         /// <summary>
         /// Get the access time strategy
         /// </summary>
         /// <returns>Strategy</returns>
-        protected virtual IInMemoryCacheStrategy<T> GetAccessTimeStrategy() => AccessTimeStrategyInstance;
+        protected virtual IInMemoryCacheStrategy<T> GetAccessTimeStrategy() => AccessTimeStrategyInstance ??= new AccessTimeStrategy(this);
 
         /// <summary>
         /// Get the largest entry strategy
         /// </summary>
         /// <returns>Strategy</returns>
-        protected virtual IInMemoryCacheStrategy<T> GetLargestStrategy() => LargerStrategyInstance;
+        protected virtual IInMemoryCacheStrategy<T> GetLargestStrategy() => LargerStrategyInstance ??= new LargerStrategy(this);
 
         /// <summary>
         /// Get the smallest entry strategy
         /// </summary>
         /// <returns>Strategy</returns>
-        protected virtual IInMemoryCacheStrategy<T> GetSmallestStrategy() => SmallerStrategyInstance;
+        protected virtual IInMemoryCacheStrategy<T> GetSmallestStrategy() => SmallerStrategyInstance ??= new SmallerStrategy(this);
 
         /// <summary>
         /// Get the custom strategy 1
@@ -237,182 +362,5 @@
         protected virtual IEnumerable<InMemoryCacheEntry<T>> ApplyStrategy(IInMemoryCacheStrategy<T> strategy)
             => strategy.PreFilterEntries(Cache.Values.Where(e => e.Type != InMemoryCacheEntryTypes.Persistent))
                 .Order(strategy);
-
-        /// <summary>
-        /// Tidy strategy
-        /// </summary>
-        /// <remarks>
-        /// Constructor
-        /// </remarks>
-        /// <param name="cache">Cache</param>
-        public class TidyStrategy(in InMemoryCache<T> cache) : IInMemoryCacheStrategy<T>
-        {
-            /// <summary>
-            /// Cache
-            /// </summary>
-            public InMemoryCache<T> Cache { get; } = cache;
-
-            /// <inheritdoc/>
-            public bool IsConditionMet => true;
-
-            /// <inheritdoc/>
-            public virtual int Compare(InMemoryCacheEntry<T>? x, InMemoryCacheEntry<T>? y)
-            {
-                if ((x is not null && y is not null) || (x is null && y is null)) return 0;
-                if (x is null) return -1;
-                if (y is null) return 1;
-                return 0;
-            }
-
-            /// <inheritdoc/>
-            public virtual IEnumerable<InMemoryCacheEntry<T>> PreFilterEntries(IEnumerable<InMemoryCacheEntry<T>> entries)
-                => entries.Where(e => !e.CanUse);
-        }
-
-        /// <summary>
-        /// Age strategy (higher age has lower priority)
-        /// </summary>
-        /// <remarks>
-        /// Constructor
-        /// </remarks>
-        /// <param name="cache">Cache</param>
-        public class AgeStrategy(in InMemoryCache<T> cache) : IInMemoryCacheStrategy<T>
-        {
-            /// <summary>
-            /// Cache
-            /// </summary>
-            public InMemoryCache<T> Cache { get; } = cache;
-
-            /// <inheritdoc/>
-            public bool IsConditionMet => true;
-
-            /// <inheritdoc/>
-            public virtual int Compare(InMemoryCacheEntry<T>? x, InMemoryCacheEntry<T>? y)
-            {
-                if (x is null && y is null) return 0;
-                if (x is null) return -1;
-                if (y is null) return 1;
-                if (!x.CanUse) return -1;
-                if (!y.CanUse) return 1;
-                return x.Age.CompareTo(y.Age) switch
-                {
-                    0 => 0,
-                    -1 => 1,
-                    1 => -1,
-                    _ => throw new InvalidProgramException()
-                };
-            }
-
-            /// <inheritdoc/>
-            public virtual IEnumerable<InMemoryCacheEntry<T>> PreFilterEntries(IEnumerable<InMemoryCacheEntry<T>> entries) => entries;
-        }
-
-        /// <summary>
-        /// Access time strategy (higher idle time has lower priority)
-        /// </summary>
-        /// <remarks>
-        /// Constructor
-        /// </remarks>
-        /// <param name="cache">Cache</param>
-        public class AccessTimeStrategy(in InMemoryCache<T> cache) : IInMemoryCacheStrategy<T>
-        {
-            /// <summary>
-            /// Cache
-            /// </summary>
-            public InMemoryCache<T> Cache { get; } = cache;
-
-            /// <inheritdoc/>
-            public bool IsConditionMet => true;
-
-            /// <inheritdoc/>
-            public virtual int Compare(InMemoryCacheEntry<T>? x, InMemoryCacheEntry<T>? y)
-            {
-                if (x is null && y is null) return 0;
-                if (x is null) return -1;
-                if (y is null) return 1;
-                if (!x.CanUse) return -1;
-                if (!y.CanUse) return 1;
-                return x.Idle.CompareTo(y.Idle) switch
-                {
-                    0 => 0,
-                    -1 => 1,
-                    1 => -1,
-                    _ => throw new InvalidProgramException()
-                };
-            }
-
-            /// <inheritdoc/>
-            public virtual IEnumerable<InMemoryCacheEntry<T>> PreFilterEntries(IEnumerable<InMemoryCacheEntry<T>> entries) => entries;
-        }
-
-        /// <summary>
-        /// Larger strategy (larger size has lower priority)
-        /// </summary>
-        /// <remarks>
-        /// Constructor
-        /// </remarks>
-        /// <param name="cache">Cache</param>
-        public class LargerStrategy(in InMemoryCache<T> cache) : IInMemoryCacheStrategy<T>
-        {
-            /// <summary>
-            /// Cache
-            /// </summary>
-            public InMemoryCache<T> Cache { get; } = cache;
-
-            /// <inheritdoc/>
-            public bool IsConditionMet => true;
-
-            /// <inheritdoc/>
-            public virtual int Compare(InMemoryCacheEntry<T>? x, InMemoryCacheEntry<T>? y)
-            {
-                if (x is null && y is null) return 0;
-                if (x is null) return -1;
-                if (y is null) return 1;
-                if (!x.CanUse) return -1;
-                if (!y.CanUse) return 1;
-                return x.Size.CompareTo(y.Size) switch
-                {
-                    0 => 0,
-                    -1 => 1,
-                    1 => -1,
-                    _ => throw new InvalidProgramException()
-                };
-            }
-
-            /// <inheritdoc/>
-            public virtual IEnumerable<InMemoryCacheEntry<T>> PreFilterEntries(IEnumerable<InMemoryCacheEntry<T>> entries) => entries;
-        }
-
-        /// <summary>
-        /// Smaller strategy (smaller size has lower priority)
-        /// </summary>
-        /// <remarks>
-        /// Constructor
-        /// </remarks>
-        /// <param name="cache">Cache</param>
-        public class SmallerStrategy(in InMemoryCache<T> cache) : IInMemoryCacheStrategy<T>
-        {
-            /// <summary>
-            /// Cache
-            /// </summary>
-            public InMemoryCache<T> Cache { get; } = cache;
-
-            /// <inheritdoc/>
-            public bool IsConditionMet => true;
-
-            /// <inheritdoc/>
-            public virtual int Compare(InMemoryCacheEntry<T>? x, InMemoryCacheEntry<T>? y)
-            {
-                if (x is null && y is null) return 0;
-                if (x is null) return -1;
-                if (y is null) return 1;
-                if (!x.CanUse) return -1;
-                if (!y.CanUse) return 1;
-                return x.Size.CompareTo(y.Size);
-            }
-
-            /// <inheritdoc/>
-            public virtual IEnumerable<InMemoryCacheEntry<T>> PreFilterEntries(IEnumerable<InMemoryCacheEntry<T>> entries) => entries;
-        }
     }
 }

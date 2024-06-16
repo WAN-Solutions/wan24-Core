@@ -111,7 +111,34 @@ namespace Wan24_Core_Tests
         }
 
         [TestMethod, Timeout(3000)]
-        public async Task ReduceCount_Tests()
+        public void ReduceCount_Tests()
+        {
+            using TestCache cache = new(new()
+            {
+                TidyTimeout = TimeSpan.FromMilliseconds(100),
+                SoftCountLimit = 2,
+                HardCountLimit = 3
+            });
+            cache.StartAsync().GetAwaiter().GetResult();
+            cache.StopTidyTimer();
+
+            cache.Add(new TestItem("1"));
+            cache.Add(new TestItem("2"));
+            cache.ReduceCount(1);
+            Assert.AreEqual(1, cache.Count);
+
+            cache.Add(new TestItem("3"));
+            cache.Add(new TestItem("4"));
+            cache.Add(new TestItem("5"));
+            Assert.AreEqual(3, cache.Count);// Hard limit in effect during adding
+            cache.StartTidyTimer();
+            Assert.AreEqual(3, cache.Count);
+            Thread.Sleep(500);
+            Assert.AreEqual(2, cache.Count);// Soft limit in effect during auto-cleanup
+        }
+
+        [TestMethod, Timeout(3000)]
+        public async Task ReduceCountAsync_Tests()
         {
             TestCache cache = new(new()
             {
@@ -141,7 +168,34 @@ namespace Wan24_Core_Tests
         }
 
         [TestMethod, Timeout(3000)]
-        public async Task ReduceSize_Tests()
+        public void ReduceSize_Tests()
+        {
+            using TestCache cache = new(new()
+            {
+                TidyTimeout = TimeSpan.FromMilliseconds(100),
+                SoftSizeLimit = 2,
+                HardSizeLimit = 3
+            });
+            cache.StartAsync().GetAwaiter().GetResult();
+            cache.StopTidyTimer();
+
+            cache.Add(new TestItem("1", size: 1));
+            cache.Add(new TestItem("2", size: 1));
+            cache.ReduceCount(1);
+            Assert.AreEqual(1, cache.Count);
+
+            cache.Add(new TestItem("3", size: 1));
+            cache.Add(new TestItem("4", size: 1));
+            cache.Add(new TestItem("5", size: 1));
+            Assert.AreEqual(3, cache.Size);// Hard limit in effect during adding
+            cache.StartTidyTimer();
+            Assert.AreEqual(3, cache.Size);
+            Thread.Sleep(500);
+            Assert.AreEqual(2, cache.Size);// Soft limit in effect during auto-cleanup
+        }
+
+        [TestMethod, Timeout(3000)]
+        public async Task ReduceSizeAsync_Tests()
         {
             TestCache cache = new(new()
             {
@@ -171,7 +225,23 @@ namespace Wan24_Core_Tests
         }
 
         [TestMethod, Timeout(3000)]
-        public async Task ReduceOld_Tests()
+        public void ReduceOld_Tests()
+        {
+            using TestCache cache = new(new()
+            {
+                TidyTimeout = TimeSpan.FromMilliseconds(100),
+                AgeLimit = TimeSpan.FromMilliseconds(200)
+            });
+            cache.StartAsync().GetAwaiter().GetResult();
+
+            cache.Add(new TestItem("1"));
+            Assert.AreEqual(1, cache.Count);
+            Thread.Sleep(500);
+            Assert.AreEqual(0, cache.Count);
+        }
+
+        [TestMethod, Timeout(3000)]
+        public async Task ReduceOldAsync_Tests()
         {
             TestCache cache = new(new()
             {
@@ -190,7 +260,30 @@ namespace Wan24_Core_Tests
         }
 
         [TestMethod, Timeout(3000)]
-        public async Task ReduceUnpopular_Tests()
+        public void ReduceUnpopular_Tests()
+        {
+            using TestCache cache = new(new()
+            {
+                TidyTimeout = TimeSpan.FromMilliseconds(100),
+                IdleLimit = TimeSpan.FromMilliseconds(500)
+            });
+            cache.StartAsync().GetAwaiter().GetResult();
+
+            cache.Add(new TestItem("1"));
+            cache.Add(new TestItem("2"));
+            Assert.AreEqual(2, cache.Count);
+            Thread.Sleep(200);
+            Assert.AreEqual(2, cache.Count);
+
+            InMemoryCacheEntry<TestItem>? entry1 = cache.Get("1");
+            Assert.IsNotNull(entry1);
+            entry1.Refresh();
+            Thread.Sleep(500);
+            Assert.AreEqual(1, cache.Count);// Idle limit in effect
+        }
+
+        [TestMethod, Timeout(3000)]
+        public async Task ReduceUnpopularAsync_Tests()
         {
             TestCache cache = new(new()
             {
@@ -216,7 +309,7 @@ namespace Wan24_Core_Tests
         }
 
         [TestMethod]
-        public async Task Persistent_tests()
+        public async Task Persistent_Tests()
         {
             TestCache cache = new(new()
             {

@@ -17,7 +17,7 @@
         /// </summary>
         protected readonly Timeout TidyTimer;
         /// <summary>
-        /// If cached items are disposable (is the case also, if <see cref="object"/> was used as value for <c>T</c>)
+        /// If cached items are disposable (is the case also, if <c>T</c> isn't sealed)
         /// </summary>
         protected readonly bool IsItemDisposable;
         /// <summary>
@@ -39,9 +39,10 @@
                 count = Options.HardCountLimit > 0 ? Count : 0, size = Options.HardSizeLimit > 0 ? Size : 0
                 )
             {
+                CancelToken.ThrowIfCancellationRequested();
                 if (Options.HardCountLimit > 0 && count >= Options.HardCountLimit)
                     await ReduceCountAsync(Options.HardCountLimit - 1, cancellationToken).DynamicContext();
-                if (Options.HardSizeLimit > 0 && size + entry.Size > Options.HardSizeLimit)
+                if (Options.HardSizeLimit > 0 && Size + entry.Size > Options.HardSizeLimit)
                     await ReduceSizeAsync(Options.HardSizeLimit - entry.Size, cancellationToken).DynamicContext();
             }
         }

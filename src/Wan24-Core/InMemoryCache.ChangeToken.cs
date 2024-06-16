@@ -16,7 +16,7 @@ namespace wan24.Core
         public event PropertyChangedEventHandler? PropertyChanged
         {
             add => IfUndisposed(() => Cache.PropertyChanged += value);
-            remove => IfUndisposed(() => Cache.PropertyChanged -= value);
+            remove => IfUndisposed(() => Cache.PropertyChanged -= value, allowDisposing: true);
         }
 
         /// <inheritdoc/>

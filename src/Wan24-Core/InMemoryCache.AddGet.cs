@@ -9,7 +9,7 @@
         /// <param name="key">Entry key</param>
         /// <param name="item">Cached item (will be disposed, if a newer revision can be returned)</param>
         /// <param name="options">Options</param>
-        /// <param name="removeExisting">Remove the existign entry?</param>
+        /// <param name="removeExisting">Remove the existing entry?</param>
         /// <param name="disposeUnused">Dispose the given <c>item</c>, if a newer item was found?</param>
         /// <returns>Cache entry (may be another revision, if not removing or a newer item revision has been cached during processing)</returns>
         /// <exception cref="OutOfMemoryException">Item exceeds the <see cref="InMemoryCacheOptions.MaxItemSize"/>, and type is disposable</exception>
@@ -68,8 +68,8 @@
                     // Add and return
                     if (isOverSize || Cache.TryAdd(key, entry))
                     {
-                        removeEntry = true;
-                        if (!isOverSize)
+                        removeEntry = !isOverSize;
+                        if (removeEntry)
                             entry.OnAdded();
                         return entry;
                     }
@@ -98,7 +98,7 @@
         /// <param name="key">Entry key</param>
         /// <param name="item">Cached item (will be disposed, if a newer revision can be returned)</param>
         /// <param name="options">Options</param>
-        /// <param name="removeExisting">Remove the existign entry?</param>
+        /// <param name="removeExisting">Remove the existing entry?</param>
         /// <param name="disposeUnused">Dispose the given <c>item</c>, if a newer item was found?</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Cache entry (may be another revision, if not removing or a newer item revision has been cached during processing)</returns>
@@ -159,8 +159,8 @@
                     // Add and return
                     if (isOverSize || Cache.TryAdd(key, entry))
                     {
-                        removeEntry = true;
-                        if (!isOverSize)
+                        removeEntry = !isOverSize;
+                        if (removeEntry)
                             entry.OnAdded();
                         return entry;
                     }
@@ -252,8 +252,8 @@
                     // Add and return
                     if (isOverSize || Cache.TryAdd(key, newEntry))
                     {
-                        removeEntry = true;
-                        if (!isOverSize)
+                        removeEntry = !isOverSize;
+                        if (removeEntry)
                             newEntry.OnAdded();
                         return newEntry;
                     }
@@ -337,8 +337,8 @@
                     // Add and return
                     if (isOverSize || Cache.TryAdd(key, newEntry))
                     {
-                        removeEntry = true;
-                        if (!isOverSize)
+                        removeEntry = !isOverSize;
+                        if (removeEntry)
                             newEntry.OnAdded();
                         return newEntry;
                     }
@@ -352,7 +352,7 @@
             finally
             {
                 // If the created item wasn't used, finally, dispose it
-                if (disposeItem && IsItemDisposable)
+                if (disposeItem)
                 {
                     if (removeEntry && !Remove(newEntry))
                         newEntry.OnRemoved();

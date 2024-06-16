@@ -27,7 +27,8 @@
         /// Constructor
         /// </summary>
         /// <param name="options">Options</param>
-        public InMemoryCache(in InMemoryCacheOptions options) : base()
+        /// <param name="cache">Cache dictionary to use</param>
+        public InMemoryCache(in InMemoryCacheOptions options, in ConcurrentChangeTokenDictionary<string, InMemoryCacheEntry<T>>? cache = null) : base()
         {
             // Validate options
             if (options.SoftCountLimit < 1 && options.SoftSizeLimit < 1 && options.AgeLimit <= TimeSpan.Zero && options.IdleLimit <= TimeSpan.Zero)
@@ -35,25 +36,15 @@
             if (options.ConcurrencyLevel.HasValue && options.SoftCountLimit < 1 && options.HardCountLimit < 1)
                 throw new ArgumentException("SoftCountLimit or HardCountLimit required, if ConcurrencyLevel was set", nameof(options));
             // Initialize this instance
-            Cache = options.ConcurrencyLevel.HasValue
+            Cache = cache ?? (options.ConcurrencyLevel.HasValue
                 ? new(options.ConcurrencyLevel.Value, Math.Max(options.SoftCountLimit, options.HardCountLimit))
-                {
-                    Tag = this
-                }
-                : new()
-                {
-                    Tag = this
-                };
+                : new());
+            Cache.Tag = this;
             IsItemAutoDisposer = typeof(T).HasBaseType(typeof(AutoDisposer<>));
             HasHardLimits = options.HardCountLimit > 0 || options.HardSizeLimit > 0;
             IsItemDisposable = options.TryDisposeItemsAlways || IsItemTypeDisposable;
             Options = options;
             TidyTimer = new(Options.TidyTimeout);
-            TidyStrategyInstance = new TidyStrategy(this);
-            AgeStrategyInstance = new AgeStrategy(this);
-            AccessTimeStrategyInstance = new AccessTimeStrategy(this);
-            LargerStrategyInstance = new LargerStrategy(this);
-            SmallerStrategyInstance = new SmallerStrategy(this);
             // Timed auto-cleanup processing
             TidyTimer.OnTimeout += async (s, e) =>
             {

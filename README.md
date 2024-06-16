@@ -1804,7 +1804,9 @@ cache.Clear();
 
 **NOTE**: This in-memory cache implementation isn't compatible with the .NET 
 built-in approaches. It implements `IHostedService` and needs to be started 
-before it can be used! The asynchronous methods should be used where possible.
+before it can be used! The asynchronous methods should be used where possible, 
+if the chached item type implements `IAsyncDisposable` - otherwise the 
+synchronous methods are fine, too.
 
 The cache capacity can be limited by
 

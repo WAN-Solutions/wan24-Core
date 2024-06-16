@@ -4,7 +4,7 @@
     /// In-memory cache entry
     /// </summary>
     /// <typeparam name="T">Cached item type</typeparam>
-    public record class InMemoryCacheEntry<T>
+    public class InMemoryCacheEntry<T>
     {
         /// <summary>
         /// An object for thread synchronization
