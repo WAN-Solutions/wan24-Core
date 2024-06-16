@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.ComponentModel;
+
+namespace wan24.Core
 {
     // Strategies
     public partial class InMemoryCache<T>
@@ -24,11 +26,7 @@
         /// </summary>
         protected IInMemoryCacheStrategy<T>? SmallerStrategyInstance = null;
 
-        /// <summary>
-        /// Reduce the number of cache entries
-        /// </summary>
-        /// <param name="targetCount">Target count</param>
-        /// <param name="cancellationToken">Cancellation token</param>
+        /// <inheritdoc/>
         public virtual void ReduceCount(int targetCount, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -48,12 +46,13 @@
             }
         }
 
-        /// <summary>
-        /// Reduce the number of cache entries
-        /// </summary>
-        /// <param name="targetCount">Target count</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        public virtual async Task ReduceCountAsync(int targetCount, CancellationToken cancellationToken = default)
+        /// <inheritdoc/>
+        [UserAction(), DisplayText("Reduce count"), Description("Reduce the cached entries to a target count")]
+        public virtual async Task ReduceCountAsync(
+            [DisplayText("Target"), Description("Target count")]
+            int targetCount, 
+            CancellationToken cancellationToken = default
+            )
         {
             EnsureUndisposed();
             if (Count <= targetCount)
@@ -72,11 +71,7 @@
             }
         }
 
-        /// <summary>
-        /// Reduce the size of the cache
-        /// </summary>
-        /// <param name="targetSize">Target size</param>
-        /// <param name="cancellationToken">Cancellation token</param>
+        /// <inheritdoc/>
         public virtual void ReduceSize(long targetSize, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -96,12 +91,13 @@
             }
         }
 
-        /// <summary>
-        /// Reduce the size of the cache
-        /// </summary>
-        /// <param name="targetSize">Target size</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        public virtual async Task ReduceSizeAsync(long targetSize, CancellationToken cancellationToken = default)
+        /// <inheritdoc/>
+        [UserAction(), DisplayText("Reduce size"), Description("Reduce the cached entries to a target size")]
+        public virtual async Task ReduceSizeAsync(
+            [DisplayText("Target"), Description("Target size")]
+            long targetSize, 
+            CancellationToken cancellationToken = default
+            )
         {
             EnsureUndisposed();
             if (Size <= targetSize)
@@ -120,11 +116,7 @@
             }
         }
 
-        /// <summary>
-        /// Reduce the number of cache entries by removing the oldest entries
-        /// </summary>
-        /// <param name="maxAge">Max. cache entry age</param>
-        /// <param name="cancellationToken">Cancellation token</param>
+        /// <inheritdoc/>
         public virtual void ReduceOld(TimeSpan maxAge, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -137,11 +129,7 @@
             }
         }
 
-        /// <summary>
-        /// Reduce the number of cache entries by removing the oldest entries
-        /// </summary>
-        /// <param name="maxAge">Max. cache entry age</param>
-        /// <param name="cancellationToken">Cancellation token</param>
+        /// <inheritdoc/>
         public virtual async Task ReduceOldAsync(TimeSpan maxAge, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -154,11 +142,7 @@
             }
         }
 
-        /// <summary>
-        /// Reduce the number of cache entries by removing the least accessed entries
-        /// </summary>
-        /// <param name="maxIdle">Max. cache entry idle time</param>
-        /// <param name="cancellationToken">Cancellation token</param>
+        /// <inheritdoc/>
         public virtual void ReduceUnpopular(TimeSpan maxIdle, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -171,11 +155,7 @@
             }
         }
 
-        /// <summary>
-        /// Reduce the number of cache entries by removing the least accessed entries
-        /// </summary>
-        /// <param name="maxIdle">Max. cache entry idle time</param>
-        /// <param name="cancellationToken">Cancellation token</param>
+        /// <inheritdoc/>
         public virtual async Task ReduceUnpopularAsync(TimeSpan maxIdle, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -188,11 +168,7 @@
             }
         }
 
-        /// <summary>
-        /// Reduce the cache memory usage by removing entries until a maximum memory usage does match
-        /// </summary>
-        /// <param name="targetUsage">Target max. memory usage in bytes</param>
-        /// <param name="cancellationToken">Cancellation token</param>
+        /// <inheritdoc/>
         public virtual void ReduceMemory(long targetUsage, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -212,12 +188,13 @@
             }
         }
 
-        /// <summary>
-        /// Reduce the cache memory usage by removing entries until a maximum memory usage does match
-        /// </summary>
-        /// <param name="targetUsage">Target max. memory usage in bytes</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        public virtual async Task ReduceMemoryAsync(long targetUsage, CancellationToken cancellationToken = default)
+        /// <inheritdoc/>
+        [UserAction(), DisplayText("Reduce memory usage"), Description("Reduce the cached entries until a target memory usage")]
+        public virtual async Task ReduceMemoryAsync(
+            [DisplayText("Target"), Description("Target memory usage in bytes")]
+            long targetUsage, 
+            CancellationToken cancellationToken = default
+            )
         {
             EnsureUndisposed();
             if (Environment.WorkingSet <= targetUsage)

@@ -97,6 +97,7 @@
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
+            InMemoryCacheTable.Caches.TryRemove(GUID, out _);
             base.Dispose(disposing);
             Clear().Select(e => e.Item).Cast<object>().TryDisposeAll();
             Cache.Dispose();
@@ -106,6 +107,7 @@
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
+            InMemoryCacheTable.Caches.TryRemove(GUID, out _);
             await base.DisposeCore().DynamicContext();
             await Clear().Select(e => e.Item).Cast<object>().TryDisposeAllAsync().DynamicContext();
             await Cache.DisposeAsync().DynamicContext();

@@ -1799,7 +1799,8 @@ item = (await cache.GetAsync("key"))?.Item;
 cache.TryRemove("key");
 
 // Clear the cache while the cache is still serving items
-cache.Clear();
+cache.Clear(disposeItems: true);
+await cache.ClearAsync(disposeItems: true);
 ```
 
 **NOTE**: This in-memory cache implementation isn't compatible with the .NET 
@@ -1873,12 +1874,6 @@ if(cache.TryRemove("key")?.Item is AutoDisposer<ItemType> removedItemDisposer)
     removedItemDisposer.ShouldDispose = true;
 if(cache.TryRemove("key")?.Item is AutoDisposer<ItemType> removedItemDisposer)
     await removedItemDisposer.SetShouldDisposeAsync();
-
-// Clear the cache while the cache is still serving items
-foreach(InMemoryCacheEntry<AutoDisposer<ItemType>> entry in cache.Clear())
-    entry.Item.ShouldDispose = true;
-foreach(InMemoryCacheEntry<AutoDisposer<ItemType>> entry in cache.Clear())
-    await entry.Item.SetShouldDisposeAsync();
 ```
 
 **WARNING**: If the cache is being disposed, all cached items will be 

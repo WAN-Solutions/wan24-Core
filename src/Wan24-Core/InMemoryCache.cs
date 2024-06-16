@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using static wan24.Core.TranslationHelper;
 
 namespace wan24.Core
 {
@@ -12,7 +13,7 @@ namespace wan24.Core
     /// In-memory cache
     /// </summary>
     /// <typeparam name="T">Cached item type</typeparam>
-    public partial class InMemoryCache<T> : HostedServiceBase
+    public partial class InMemoryCache<T> : HostedServiceBase, IInMemoryCache
     {
         /// <summary>
         /// Static constructor
@@ -75,21 +76,19 @@ namespace wan24.Core
                     }
                 }
             };
+            InMemoryCacheTable.Caches[GUID] = this;
         }
 
-        /// <summary>
-        /// Options
-        /// </summary>
+        /// <inheritdoc/>
+        public string GUID { get; } = Guid.NewGuid().ToString();
+
+        /// <inheritdoc/>
         public InMemoryCacheOptions Options { get; }
 
-        /// <summary>
-        /// Number of currently cached items
-        /// </summary>
+        /// <inheritdoc/>
         public int Count => Cache.Count;
 
-        /// <summary>
-        /// Cache entry keys
-        /// </summary>
+        /// <inheritdoc/>
         public IEnumerable<string> Keys => Cache.Keys;
 
         /// <summary>
@@ -97,21 +96,43 @@ namespace wan24.Core
         /// </summary>
         public IEnumerable<T> Items => Cache.Values.Select(e => e.Item);
 
-        /// <summary>
-        /// Size of all cache entries
-        /// </summary>
+        /// <inheritdoc/>
         public long Size => Cache.Values.Sum(e => e.Size);
 
-        /// <summary>
-        /// If the item is an <see cref="AutoDisposer{T}"/>
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsItemAutoDisposer { get; }
 
-        /// <summary>
-        /// Ensure cache entry options
-        /// </summary>
-        /// <param name="options">Options</param>
-        /// <returns>Options</returns>
+        /// <inheritdoc/>
+        public virtual IEnumerable<Status> State
+        {
+            get
+            {
+                yield return new(__("Type"), GetType(), __("CLR type"));
+                yield return new(__("Name"), Name, __("Name"));
+                yield return new(__("Item type"), typeof(T), __("Cached item CLR type"));
+                yield return new(__("Tidy"), Options.TidyTimeout, __("Tidy timer interval"));
+                yield return new(__("Management"), Options.DefaultStrategy, __("Default in-memory cache management strategy"));
+                yield return new(__("Soft count limit"), Options.SoftCountLimit, __("Soft cached item count limit"));
+                yield return new(__("Hard count limit"), Options.HardCountLimit, __("Hard cached item count limit"));
+                yield return new(__("Soft size limit"), Options.SoftSizeLimit, __("Soft cached item size limit"));
+                yield return new(__("Hard size limit"), Options.HardSizeLimit, __("Hard cached item size limit"));
+                yield return new(__("Size limit"), Options.MaxItemSize, __("Maximum cached item size limit"));
+                yield return new(__("Age limit"), Options.AgeLimit, __("Cached entry age limit"));
+                yield return new(__("Idle limit"), Options.IdleLimit, __("Cached entry idle time limit"));
+                yield return new(__("Memory limit"), Options.MaxMemoryUsage, __("App memory limit in bytes"));
+                yield return new(__("Dispose items"), Options.TryDisposeItemsAlways, __("If to dispose cached items on removal always"));
+                yield return new(__("Never dispose items"), Options.NeverDisposeItems, __("If to never dispose cached items on removal"));
+                yield return new(__("Count"), Count, __("Number of cached items"));
+                yield return new(__("Size"), Size, __("Current cached items total size"));
+                yield return new(__("Started"), Started, __("Service start time"));
+                yield return new(__("Paused"), Paused, __("Service pause time"));
+                yield return new(__("Stopped"), Stopped, __("Service stopped time"));
+                yield return new(__("Exception"), LastException, __("Last service exception"));
+                yield return new(__("Next tidy run"), TidyTimer.RemainingTime, __("Remaining time until the next cache tidy process"));
+            }
+        }
+
+        /// <inheritdoc/>
         public virtual InMemoryCacheEntryOptions EnsureEntryOptions(InMemoryCacheEntryOptions? options)
         {
             EnsureUndisposed();
@@ -182,7 +203,8 @@ namespace wan24.Core
             EnsureUndisposed(allowDisposing: true);
             InMemoryCacheEntry<T>[] res = [.. Cache.Values.Select(e => TryRemove(e.Key)).Where(e => e is not null)];
             if (disposeItems)
-                res.TryDisposeAll();
+                foreach (InMemoryCacheEntry<T> entry in res)
+                    DisposeItem(entry.Item);
             return res;
         }
 
@@ -200,7 +222,8 @@ namespace wan24.Core
             EnsureUndisposed(allowDisposing: true);
             InMemoryCacheEntry<T>[] res = [.. Cache.Values.Select(e => TryRemove(e.Key)).Where(e => e is not null)];
             if (disposeItems)
-                await res.TryDisposeAllAsync().DynamicContext();
+                foreach (InMemoryCacheEntry<T> entry in res)
+                    await DisposeItemAsync(entry.Item).DynamicContext();
             return res;
         }
 
