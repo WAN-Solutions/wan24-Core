@@ -7,24 +7,30 @@ namespace wan24.Core
     public partial class InMemoryCache<T> : IObservable<ConcurrentChangeTokenDictionary<string, InMemoryCacheEntry<T>>>, IChangeToken, INotifyPropertyChanged
     {
         /// <inheritdoc/>
-        public bool HasChanged => Cache.HasChanged;
+        public bool HasChanged => IfUndisposed(() => Cache.HasChanged);
 
         /// <inheritdoc/>
-        public bool ActiveChangeCallbacks => Cache.ActiveChangeCallbacks;
+        public bool ActiveChangeCallbacks => IfUndisposed(() => Cache.ActiveChangeCallbacks);
 
         /// <inheritdoc/>
         public event PropertyChangedEventHandler? PropertyChanged
         {
-            add => Cache.PropertyChanged += value;
-            remove => Cache.PropertyChanged -= value;
+            add => IfUndisposed(() => Cache.PropertyChanged += value);
+            remove => IfUndisposed(() => Cache.PropertyChanged -= value);
         }
 
         /// <inheritdoc/>
         public IDisposable RegisterChangeCallback(Action<object?> callback, object? state)
-            => Cache.RegisterChangeCallback(callback, state);
+        {
+            EnsureUndisposed();
+            return Cache.RegisterChangeCallback(callback, state);
+        }
 
         /// <inheritdoc/>
         public IDisposable Subscribe(IObserver<ConcurrentChangeTokenDictionary<string, InMemoryCacheEntry<T>>> observer)
-            => Cache.Subscribe(observer);
+        {
+            EnsureUndisposed();
+            return Cache.Subscribe(observer);
+        }
     }
 }

@@ -1818,6 +1818,7 @@ while auto-removing the cache is being done by a background job by
 - cache entry idle state
 - number of cache entries (soft limit)
 - cached item size (soft limit)
+- max. memory usage in bytes
 - optional custom management strategies
 
 in a fixed interval. An item may also be removed when disposing, if it's an 

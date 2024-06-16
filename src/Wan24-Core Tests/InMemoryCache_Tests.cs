@@ -321,6 +321,55 @@ namespace Wan24_Core_Tests
             }
         }
 
+        [TestMethod]
+        public void Oversize_Tests()
+        {
+            using TestCache cache = new(new()
+            {
+                SoftCountLimit = 1,
+                MaxItemSize = 1
+            });
+            cache.StartAsync().GetAwaiter().GetResult();
+
+            TestItem item1 = new("1", size: 2);
+            try
+            {
+                Assert.ThrowsException<OutOfMemoryException>(() => cache.Add(item1));
+                Assert.IsTrue(item1.IsDisposing);
+                Assert.IsNull(cache.Get("1", ItemFactory, new() { Size = 2 }));
+            }
+            finally
+            {
+                item1.Dispose();
+            }
+        }
+
+        [TestMethod]
+        public async Task OversizeAsync_Tests()
+        {
+            TestCache cache = new(new()
+            {
+                SoftCountLimit = 1,
+                MaxItemSize = 1
+            });
+            await using (cache)
+            {
+                await cache.StartAsync();
+
+                TestItem item1 = new("1", size: 2);
+                try
+                {
+                    await Assert.ThrowsExceptionAsync<OutOfMemoryException>(async () => await cache.AddAsync(item1));
+                    Assert.IsTrue(item1.IsDisposing);
+                    Assert.IsNull(await cache.GetAsync("1", ItemFactory, new() { Size = 2 }));
+                }
+                finally
+                {
+                    await item1.DisposeAsync().DynamicContext();
+                }
+            }
+        }
+
         public sealed class TestCache(InMemoryCacheOptions options) : InMemoryCache<TestItem>(options)
         {
             public void StartTidyTimer() => TidyTimer.Start();
@@ -328,13 +377,13 @@ namespace Wan24_Core_Tests
             public void StopTidyTimer() => TidyTimer.Stop();
         }
 
-        public static Task<InMemoryCacheEntry<TestItem>> ItemFactory(
+        public static Task<InMemoryCacheEntry<TestItem>?> ItemFactory(
             InMemoryCache<TestItem> cache, 
             string key, 
             InMemoryCacheEntryOptions? options,
             CancellationToken cancellationToken
             )
-            => Task.FromResult(new InMemoryCacheEntry<TestItem>(key, new(key)) { Cache = cache });
+            => Task.FromResult((InMemoryCacheEntry<TestItem>?)new InMemoryCacheEntry<TestItem>(key, new(key, options?.Size)) { Cache = cache });
 
         public sealed class TestItem(string key, int? size = null) : DisposableBase(asyncDisposing: false), IInMemoryCacheItem
         {

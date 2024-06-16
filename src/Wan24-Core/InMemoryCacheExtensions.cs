@@ -24,7 +24,7 @@
             )
             where tItem : tEntry, IInMemoryCacheItem
         {
-            options ??= item.Options ?? new();
+            options ??= item.Options ?? cache.EnsureEntryOptions(options);
             return cache.Add(item.Key, item, options, removeExisting, disposeUnused);
         }
 
@@ -49,7 +49,7 @@
             )
             where tItem : tEntry, IInMemoryCacheItem
         {
-            options ??= item.Options ?? new();
+            options ??= item.Options ?? cache.EnsureEntryOptions(options);
             return await cache.AddAsync(item.Key, item, options, removeExisting, disposeUnused, cancellationToken).DynamicContext();
         }
 

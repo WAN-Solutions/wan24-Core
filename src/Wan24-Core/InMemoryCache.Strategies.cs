@@ -38,10 +38,10 @@
             {
                 EnsureUndisposed();
                 cancellationToken.ThrowIfCancellationRequested();
-                if (TryRemove(entry.Key) is InMemoryCacheEntry<T> removed)
+                if (Remove(entry))
                 {
                     if (IsItemDisposable)
-                        await DisposeItemAsync(removed.Item).DynamicContext();
+                        await DisposeItemAsync(entry.Item).DynamicContext();
                     if (Count <= targetCount)
                         return;
                 }
@@ -62,10 +62,10 @@
             {
                 EnsureUndisposed();
                 cancellationToken.ThrowIfCancellationRequested();
-                if (TryRemove(entry.Key) is InMemoryCacheEntry<T> removed)
+                if (Remove(entry))
                 {
                     if (IsItemDisposable)
-                        await DisposeItemAsync(removed.Item).DynamicContext();
+                        await DisposeItemAsync(entry.Item).DynamicContext();
                     if (Size <= targetSize)
                         return;
                 }
@@ -80,12 +80,12 @@
         public virtual async Task ReduceOldAsync(TimeSpan maxAge, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            foreach (InMemoryCacheEntry<T> entry in Cache.Values.Where(e => e.Type != InMemoryCacheEntryTypes.Persistent && e.Age > maxAge))
+            foreach (InMemoryCacheEntry<T> entry in Cache.Values.Where(e => e.Type != InMemoryCacheEntryTypes.Persistent && e.Age > maxAge).OrderByDescending(e => e.Age))
             {
                 EnsureUndisposed();
                 cancellationToken.ThrowIfCancellationRequested();
-                if (TryRemove(entry.Key) is InMemoryCacheEntry<T> removed && IsItemDisposable)
-                    await DisposeItemAsync(removed.Item).DynamicContext();
+                if (Remove(entry) && IsItemDisposable)
+                    await DisposeItemAsync(entry.Item).DynamicContext();
             }
         }
 
@@ -97,33 +97,36 @@
         public virtual async Task ReduceUnpopularAsync(TimeSpan maxIdle, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            foreach (InMemoryCacheEntry<T> entry in Cache.Values.Where(e => e.Type != InMemoryCacheEntryTypes.Persistent && e.Idle > maxIdle))
+            foreach (InMemoryCacheEntry<T> entry in Cache.Values.Where(e => e.Type != InMemoryCacheEntryTypes.Persistent && e.Idle > maxIdle).OrderByDescending(e => e.Idle))
             {
                 EnsureUndisposed();
                 cancellationToken.ThrowIfCancellationRequested();
-                if (TryRemove(entry.Key) is InMemoryCacheEntry<T> removed && IsItemDisposable)
-                    await DisposeItemAsync(removed.Item).DynamicContext();
+                if (Remove(entry) && IsItemDisposable)
+                    await DisposeItemAsync(entry.Item).DynamicContext();
             }
         }
 
         /// <summary>
         /// Reduce the cache memory usage by removing entries until a maximum memory usage does match
         /// </summary>
-        /// <param name="maxUsage">Max. memory usage in bytes</param>
+        /// <param name="targetUsage">Target max. memory usage in bytes</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        public virtual async Task ReduceMemoryAsync(long maxUsage, CancellationToken cancellationToken = default)
+        public virtual async Task ReduceMemoryAsync(long targetUsage, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            if (Environment.WorkingSet < maxUsage)
+            if (Environment.WorkingSet <= targetUsage)
                 return;
             foreach (InMemoryCacheEntry<T> entry in ApplyStrategy(GetDefaultStrategy()))
             {
                 EnsureUndisposed();
                 cancellationToken.ThrowIfCancellationRequested();
-                if (Environment.WorkingSet < maxUsage)
-                    return;
-                if (TryRemove(entry.Key) is InMemoryCacheEntry<T> removed && IsItemDisposable)
-                    await DisposeItemAsync(removed.Item).DynamicContext();
+                if (Remove(entry))
+                {
+                    if (IsItemDisposable)
+                        await DisposeItemAsync(entry.Item).DynamicContext();
+                    if (Environment.WorkingSet <= targetUsage)
+                        return;
+                }
             }
         }
 
@@ -138,9 +141,11 @@
             foreach (InMemoryCacheEntry<T> entry in ApplyStrategy(strategy))
             {
                 EnsureUndisposed();
+                if (!strategy.IsConditionMet)
+                    return;
                 cancellationToken.ThrowIfCancellationRequested();
-                if (TryRemove(entry.Key) is InMemoryCacheEntry<T> removed && IsItemDisposable)
-                    await DisposeItemAsync(removed.Item).DynamicContext();
+                if (Remove(entry) && IsItemDisposable)
+                    await DisposeItemAsync(entry.Item).DynamicContext();
             }
         }
 
@@ -231,7 +236,6 @@
         /// <returns>Filtered cache entries sorted by the lowest priority ascending</returns>
         protected virtual IEnumerable<InMemoryCacheEntry<T>> ApplyStrategy(IInMemoryCacheStrategy<T> strategy)
             => strategy.PreFilterEntries(Cache.Values.Where(e => e.Type != InMemoryCacheEntryTypes.Persistent))
-                .OrderBy(e => !e.CanUse)
                 .Order(strategy);
 
         /// <summary>
@@ -249,6 +253,9 @@
             public InMemoryCache<T> Cache { get; } = cache;
 
             /// <inheritdoc/>
+            public bool IsConditionMet => true;
+
+            /// <inheritdoc/>
             public virtual int Compare(InMemoryCacheEntry<T>? x, InMemoryCacheEntry<T>? y)
             {
                 if ((x is not null && y is not null) || (x is null && y is null)) return 0;
@@ -259,11 +266,7 @@
 
             /// <inheritdoc/>
             public virtual IEnumerable<InMemoryCacheEntry<T>> PreFilterEntries(IEnumerable<InMemoryCacheEntry<T>> entries)
-                => entries.Where(
-                        e => !e.CanUse ||
-                            (Cache.Options.AgeLimit > TimeSpan.Zero && e.Age > Cache.Options.AgeLimit) ||
-                            (Cache.Options.IdleLimit > TimeSpan.Zero && e.Idle > Cache.Options.IdleLimit)
-                    );
+                => entries.Where(e => !e.CanUse);
         }
 
         /// <summary>
@@ -279,6 +282,9 @@
             /// Cache
             /// </summary>
             public InMemoryCache<T> Cache { get; } = cache;
+
+            /// <inheritdoc/>
+            public bool IsConditionMet => true;
 
             /// <inheritdoc/>
             public virtual int Compare(InMemoryCacheEntry<T>? x, InMemoryCacheEntry<T>? y)
@@ -316,6 +322,9 @@
             public InMemoryCache<T> Cache { get; } = cache;
 
             /// <inheritdoc/>
+            public bool IsConditionMet => true;
+
+            /// <inheritdoc/>
             public virtual int Compare(InMemoryCacheEntry<T>? x, InMemoryCacheEntry<T>? y)
             {
                 if (x is null && y is null) return 0;
@@ -351,6 +360,9 @@
             public InMemoryCache<T> Cache { get; } = cache;
 
             /// <inheritdoc/>
+            public bool IsConditionMet => true;
+
+            /// <inheritdoc/>
             public virtual int Compare(InMemoryCacheEntry<T>? x, InMemoryCacheEntry<T>? y)
             {
                 if (x is null && y is null) return 0;
@@ -384,6 +396,9 @@
             /// Cache
             /// </summary>
             public InMemoryCache<T> Cache { get; } = cache;
+
+            /// <inheritdoc/>
+            public bool IsConditionMet => true;
 
             /// <inheritdoc/>
             public virtual int Compare(InMemoryCacheEntry<T>? x, InMemoryCacheEntry<T>? y)
