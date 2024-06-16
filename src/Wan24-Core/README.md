@@ -1870,9 +1870,13 @@ using AutoDisposer<ItemType>.Context? itemContext =
 
 // Remove an item from the cache
 if(cache.TryRemove("key")?.Item is AutoDisposer<ItemType> removedItemDisposer)
+    removedItemDisposer.ShouldDispose = true;
+if(cache.TryRemove("key")?.Item is AutoDisposer<ItemType> removedItemDisposer)
     await removedItemDisposer.SetShouldDisposeAsync();
 
 // Clear the cache while the cache is still serving items
+foreach(InMemoryCacheEntry<AutoDisposer<ItemType>> entry in cache.Clear())
+    entry.Item.ShouldDispose = true;
 foreach(InMemoryCacheEntry<AutoDisposer<ItemType>> entry in cache.Clear())
     await entry.Item.SetShouldDisposeAsync();
 ```
@@ -1881,7 +1885,8 @@ foreach(InMemoryCacheEntry<AutoDisposer<ItemType>> entry in cache.Clear())
 disposed, too, no matter if they're still in use or not!
 
 **CAUTION**: If the `InMemoryCacheOptions.MaxItemSize` value was set, and an 
-oversized item is being added, an `OutOfMemoryException` will be thrown.
+oversized disposable item is being added, an `OutOfMemoryException` will be 
+thrown.
 
 ### `IInMemoryCacheItem` interface
 

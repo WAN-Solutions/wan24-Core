@@ -97,7 +97,7 @@ namespace wan24.Core
         /// <summary>
         /// Cancellation token
         /// </summary>
-        protected CancellationToken CancelToken { get; private set; }
+        protected CancellationToken CancelToken { get; set; }
 
         /// <inheritdoc/>
         public virtual async Task StartAsync(CancellationToken cancellationToken = default)
@@ -307,7 +307,7 @@ namespace wan24.Core
             }
             catch (OperationCanceledException ex)
             {
-                if (ex.CancellationToken != CancelToken)
+                if (!ex.CancellationToken.IsEqualTo(CancelToken))
                 {
                     StoppedExceptional = true;
                     LastException = ex;

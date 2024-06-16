@@ -86,6 +86,11 @@
         public bool TryDisposeItemsAlways { get; init; }
 
         /// <summary>
+        /// Do never dispose items?
+        /// </summary>
+        public bool NeverDisposeItems { get; init; }
+
+        /// <summary>
         /// Cache I/O concurrency level (if set, <see cref="SoftCountLimit"/> or <see cref="HardCountLimit"/> is required to be set, too!)
         /// </summary>
         public int? ConcurrencyLevel { get; init; }

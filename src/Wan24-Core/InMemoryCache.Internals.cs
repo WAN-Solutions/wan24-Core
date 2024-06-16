@@ -32,6 +32,8 @@
         /// <param name="cancellationToken">Cancellation token</param>
         protected virtual async Task ApplyHardLimits(InMemoryCacheEntry<T> entry, CancellationToken cancellationToken = default)
         {
+            if (!HasHardLimits)
+                return;
             long size = Options.HardSizeLimit > 0 ? Size : 0;
             for (
                 int count = Options.HardCountLimit > 0 ? Count : 0;

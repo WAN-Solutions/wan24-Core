@@ -4,7 +4,13 @@
     /// In-memory cache entry
     /// </summary>
     /// <typeparam name="T">Cached item type</typeparam>
-    public class InMemoryCacheEntry<T>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="key">Cache entry key</param>
+    /// <param name="item">Cached item</param>
+    /// <param name="size">Size (may be any number which indicates the <c>item</c> size, if you work with sizes)</param>
+    public class InMemoryCacheEntry<T>(in string key, in T item, in int size = 1)
     {
         /// <summary>
         /// An object for thread synchronization
@@ -13,26 +19,15 @@
         /// <summary>
         /// Size
         /// </summary>
-        protected readonly int _Size;
+        protected readonly int _Size = size;
         /// <summary>
-        /// If initialized
+        /// If added to the cache
         /// </summary>
-        protected bool IsInitialized = false;
-
-        /// <remarks>
-        /// Constructor
-        /// </remarks>
-        /// <param name="key">Cache item key</param>
-        /// <param name="item">Cached item</param>
-        /// <param name="size">Size</param>
-        /// <param name="timeout">Timeout</param>
-        public InMemoryCacheEntry(in string key, in T item, in int size = 1, in TimeSpan timeout = default)
-        {
-            _Size = size;
-            Timeout = timeout;
-            Key = key;
-            Item = item;
-        }
+        protected bool WasAdded = false;
+        /// <summary>
+        /// If removed from the cache
+        /// </summary>
+        protected bool WasRemoved = false;
 
         /// <summary>
         /// Hosting cache
@@ -66,18 +61,18 @@
         /// <summary>
         /// Timeout (if <see cref="Type"/> is <see cref="InMemoryCacheEntryTypes.Timeout"/>)
         /// </summary>
-        public TimeSpan Timeout { get; protected set; }
+        public TimeSpan Timeout { get; init; }
 
         /// <summary>
-        /// Is the <see cref="Timeout"/> a sliding timeout?
+        /// Is the <see cref="Timeout"/> a sliding timeout? (has only an effect if <see cref="Type"/> is <see cref="InMemoryCacheEntryTypes.Timeout"/>)
         /// </summary>
         public bool IsSlidingTimeout { get; init; }
 
         /// <summary>
-        /// If timeout
+        /// If timeout (cache entry defined <see cref="Timeout"/>/<see cref="AbsoluteTimeout"/> only (the cache configuration may limit the entries configuration))
         /// </summary>
         public bool IsTimeout
-            => (AbsoluteTimeout.HasValue && AbsoluteTimeout.Value < DateTime.Now) ||
+            => (AbsoluteTimeout.HasValue && AbsoluteTimeout.Value <= DateTime.Now) ||
                 (Type == InMemoryCacheEntryTypes.Timeout && (IsSlidingTimeout ? Idle > Timeout : Age > Timeout));
 
         /// <summary>
@@ -108,12 +103,12 @@
         /// <summary>
         /// Key
         /// </summary>
-        public string Key { get; }
+        public string Key { get; } = key;
 
         /// <summary>
         /// Item
         /// </summary>
-        public virtual T Item { get; }
+        public virtual T Item { get; } = item;
 
         /// <summary>
         /// Size
@@ -121,7 +116,7 @@
         public virtual int Size => (Item as IInMemoryCacheItem)?.Size ?? _Size;
 
         /// <summary>
-        /// Observe item disposing (works only for <see cref="IDisposableObject"/> types; disposing items will be removed)
+        /// Observe item disposing (works only for <see cref="IDisposableObject"/> types; disposing items will be removed from the cache automatic)
         /// </summary>
         public bool ObserveDisposing { get; init; }
 
@@ -132,9 +127,11 @@
         {
             lock (SyncObject)
             {
-                if (IsInitialized)
+                if (WasRemoved)
+                    throw new InvalidOperationException("Has been removed already");
+                if (WasAdded)
                     return;
-                IsInitialized = true;
+                WasAdded = true;
             }
             if (ObserveDisposing && Item is IDisposableObject disposable)
             {
@@ -159,13 +156,18 @@
         /// <summary>
         /// Refresh the entry (postporne timeouts; won't refresh if not usable already)
         /// </summary>
+        /// <param name="resetAccessCounter">If to reset the <see cref="AccessCount"/> to zero</param>
         /// <returns>If refreshed</returns>
-        public virtual bool Refresh()
+        public virtual bool Refresh(in bool resetAccessCounter = false)
         {
             if (!CanUse)
                 return false;
             lock (SyncObject)
+            {
                 Accessed = Created = DateTime.Now;
+                if (resetAccessCounter)
+                    AccessCount = 0;
+            }
             return true;
         }
 
@@ -174,7 +176,15 @@
         /// </summary>
         public virtual void OnRemoved()
         {
-            if (IsInitialized && ObserveDisposing && Item is IDisposableObject disposable)
+            lock (SyncObject)
+            {
+                if (WasRemoved)
+                    return;
+                WasRemoved = true;
+                if (!WasAdded)
+                    return;
+            }
+            if (ObserveDisposing && Item is IDisposableObject disposable)
                 disposable.OnDisposing -= HandleItemDisposing;
         }
 
@@ -183,7 +193,7 @@
         /// </summary>
         /// <param name="sender">Sender</param>
         /// <param name="e">Arguments</param>
-        protected virtual void HandleItemDisposing(IDisposableObject sender, EventArgs e) => Cache.TryRemove(Key);
+        protected virtual void HandleItemDisposing(IDisposableObject sender, EventArgs e) => Cache.Remove(this);
 
         /// <summary>
         /// Cast as item
@@ -195,13 +205,19 @@
         /// Cast as size
         /// </summary>
         /// <param name="entry">Cache entry</param>
-        public static implicit operator long(in InMemoryCacheEntry<T> entry) => entry.Size;
+        public static implicit operator int(in InMemoryCacheEntry<T> entry) => entry.Size;
 
         /// <summary>
-        /// Cast as access time
+        /// Cast as <see cref="CanUse"/> flag
         /// </summary>
         /// <param name="entry">Cache entry</param>
-        public static implicit operator DateTime(in InMemoryCacheEntry<T> entry) => entry.Accessed;
+        public static implicit operator bool(in InMemoryCacheEntry<T> entry) => entry.CanUse;
+
+        /// <summary>
+        /// Cast as created time
+        /// </summary>
+        /// <param name="entry">Cache entry</param>
+        public static implicit operator DateTime(in InMemoryCacheEntry<T> entry) => entry.Created;
 
         /// <summary>
         /// Cast as age

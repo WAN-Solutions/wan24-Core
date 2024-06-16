@@ -42,7 +42,7 @@
             Cache.Tag = this;
             IsItemAutoDisposer = typeof(T).HasBaseType(typeof(AutoDisposer<>));
             HasHardLimits = options.HardCountLimit > 0 || options.HardSizeLimit > 0;
-            IsItemDisposable = options.TryDisposeItemsAlways || IsItemTypeDisposable;
+            IsItemDisposable = !options.NeverDisposeItems && (options.TryDisposeItemsAlways || IsItemTypeDisposable);
             Options = options;
             TidyTimer = new(Options.TidyTimeout);
             // Timed auto-cleanup processing
@@ -57,12 +57,20 @@
                 }
                 catch (Exception ex)
                 {
-                    ErrorHandling.Handle(new("Tidy in-memory cache failed", ex, ErrorHandling.SERVICE_ERROR, this));
+                    ErrorHandling.Handle(new("Tidy in-memory cache failed", ex, ErrorSource, this));
                 }
                 finally
                 {
-                    if (!IsDisposing && IsRunning)
-                        TidyTimer.Start();
+                    try
+                    {
+                        using SemaphoreSyncContext ssc = Sync;
+                        if (!IsDisposing && IsRunning)
+                            TidyTimer.Start();
+                    }
+                    catch
+                    {
+                        // Sync/TidyTimer may be disposed from another thread - just ignore that
+                    }
                 }
             };
         }
@@ -105,7 +113,7 @@
         public virtual InMemoryCacheEntryOptions EnsureEntryOptions(InMemoryCacheEntryOptions? options)
         {
             EnsureUndisposed();
-            return options ?? (Options.DefaultEntryOptions is null ? null : Options.DefaultEntryOptions with { }) ?? new();
+            return options ?? (Options.DefaultEntryOptions is null ? new() : Options.DefaultEntryOptions with { });
         }
 
         /// <summary>
@@ -119,11 +127,12 @@
         {
             EnsureUndisposed();
             options = EnsureEntryOptions(options);
-            return new(key, item, (item as IInMemoryCacheItem)?.Size ?? options.Size, options.Timeout ?? InMemoryCacheOptions.DefaultEntryTimeout)
+            return new(key, item, (item as IInMemoryCacheItem)?.Size ?? options.Size)
             {
                 Cache = this,
                 ObserveDisposing = options.ObserveDisposing ?? InMemoryCacheOptions.DefaultObserveItemDisposing,
                 Type = options.Type ?? InMemoryCacheOptions.DefaultEntryType,
+                Timeout = options.Timeout ?? InMemoryCacheOptions.DefaultEntryTimeout,
                 IsSlidingTimeout = options.IsSlidingTimeout ?? InMemoryCacheOptions.DefaultEntrySlidingTimeout,
                 AbsoluteTimeout = options.AbsoluteTimeout
             };

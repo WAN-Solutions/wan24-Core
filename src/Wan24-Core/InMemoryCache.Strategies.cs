@@ -281,7 +281,7 @@
         protected virtual async Task TidyCacheAsync(CancellationToken cancellationToken = default)
         {
             cancellationToken = cancellationToken.EnsureNotDefault(CancelToken);
-            await ReduceByAsync(GetTidyStrategy(), CancelToken).DynamicContext();
+            await ReduceByAsync(GetTidyStrategy(), cancellationToken).DynamicContext();
             if (Options.SoftCountLimit > 0)
                 await ReduceCountAsync(Options.SoftCountLimit, cancellationToken).DynamicContext();
             if (Options.SoftSizeLimit > 0)
