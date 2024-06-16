@@ -76,6 +76,7 @@ namespace wan24.Core
                     }
                 }
             };
+            ServiceWorkerTable.ServiceWorkers[GUID] = this;
             InMemoryCacheTable.Caches[GUID] = this;
         }
 
@@ -110,12 +111,16 @@ namespace wan24.Core
                 yield return new(__("Type"), GetType(), __("CLR type"));
                 yield return new(__("Name"), Name, __("Name"));
                 yield return new(__("Item type"), typeof(T), __("Cached item CLR type"));
-                yield return new(__("Tidy"), Options.TidyTimeout, __("Tidy timer interval"));
+                yield return new(__("Pause"), CanPause, __("If the service worker can pause"));
+                yield return new(__("Paused"), IsPaused, __("If the service worker is paused"));
+                yield return new(__("Running"), IsRunning, __("If the service worker is running"));
+                yield return new(__("Started"), Started == DateTime.MinValue ? __("never") : Started.ToString(), __("Last service start time"));
+                yield return new(__("Stopped"), Stopped == DateTime.MinValue ? __("never") : Stopped.ToString(), __("Last service stop time"));
                 yield return new(__("Management"), Options.DefaultStrategy, __("Default in-memory cache management strategy"));
                 yield return new(__("Soft count limit"), Options.SoftCountLimit, __("Soft cached item count limit"));
                 yield return new(__("Hard count limit"), Options.HardCountLimit, __("Hard cached item count limit"));
-                yield return new(__("Soft size limit"), Options.SoftSizeLimit, __("Soft cached item size limit"));
-                yield return new(__("Hard size limit"), Options.HardSizeLimit, __("Hard cached item size limit"));
+                yield return new(__("Soft size limit"), Options.SoftSizeLimit, __("Soft cached item total size limit"));
+                yield return new(__("Hard size limit"), Options.HardSizeLimit, __("Hard cached item total size limit"));
                 yield return new(__("Size limit"), Options.MaxItemSize, __("Maximum cached item size limit"));
                 yield return new(__("Age limit"), Options.AgeLimit, __("Cached entry age limit"));
                 yield return new(__("Idle limit"), Options.IdleLimit, __("Cached entry idle time limit"));
@@ -124,10 +129,7 @@ namespace wan24.Core
                 yield return new(__("Never dispose items"), Options.NeverDisposeItems, __("If to never dispose cached items on removal"));
                 yield return new(__("Count"), Count, __("Number of cached items"));
                 yield return new(__("Size"), Size, __("Current cached items total size"));
-                yield return new(__("Started"), Started, __("Service start time"));
-                yield return new(__("Paused"), Paused, __("Service pause time"));
-                yield return new(__("Stopped"), Stopped, __("Service stopped time"));
-                yield return new(__("Exception"), LastException, __("Last service exception"));
+                yield return new(__("Tidy"), Options.TidyTimeout, __("Tidy timer interval"));
                 yield return new(__("Next tidy run"), TidyTimer.RemainingTime, __("Remaining time until the next cache tidy process"));
             }
         }
