@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.ComponentModel;
+
+namespace wan24.Core
 {
     /// <summary>
     /// In-memory cache
@@ -173,11 +175,33 @@
         /// <summary>
         /// Clear the cache
         /// </summary>
+        /// <param name="disposeItems">Dispose the items?</param>
         /// <returns>Removed cache entries (items are not yet disposed!)</returns>
-        public virtual InMemoryCacheEntry<T>[] Clear()
+        public virtual InMemoryCacheEntry<T>[] Clear(in bool disposeItems = false)
         {
             EnsureUndisposed(allowDisposing: true);
-            return [.. Cache.Values.Select(e => TryRemove(e.Key)).Where(e => e is not null)];
+            InMemoryCacheEntry<T>[] res = [.. Cache.Values.Select(e => TryRemove(e.Key)).Where(e => e is not null)];
+            if (disposeItems)
+                res.TryDisposeAll();
+            return res;
+        }
+
+        /// <summary>
+        /// Clear the cache
+        /// </summary>
+        /// <param name="disposeItems">Dispose the items?</param>
+        /// <returns>Removed cache entries (items are not yet disposed!)</returns>
+        [UserAction(), DisplayText("Clear"), Description("Clear the cache")]
+        public virtual async Task<InMemoryCacheEntry<T>[]> ClearAsync(
+            [DisplayText("Dispose items"), Description("If to dispose removed cached items")]
+            bool disposeItems = false
+            )
+        {
+            EnsureUndisposed(allowDisposing: true);
+            InMemoryCacheEntry<T>[] res = [.. Cache.Values.Select(e => TryRemove(e.Key)).Where(e => e is not null)];
+            if (disposeItems)
+                await res.TryDisposeAllAsync().DynamicContext();
+            return res;
         }
 
         /// <summary>
