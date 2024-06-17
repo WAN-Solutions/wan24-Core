@@ -8,6 +8,7 @@
         /// <summary>
         /// Service workers (key is a GUID)
         /// </summary>
+        [InstanceTable]
         public static readonly ConcurrentChangeTokenDictionary<string, IServiceWorker> ServiceWorkers = [];
     }
 }

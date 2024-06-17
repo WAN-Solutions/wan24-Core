@@ -8,7 +8,7 @@ namespace wan24.Core
     /// <summary>
     /// Timeout (when comparing instances, and not the timeout time, you should use the <see cref="Equals(object?)"/> method!)
     /// </summary>
-    public class Timeout : DisposableBase, ITimer
+    public class Timeout : DisposableBase, ITimer, IExportUserActions
     {
         /// <summary>
         /// Timer

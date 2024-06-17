@@ -16,6 +16,14 @@ namespace wan24.Core
         /// Value to display string converter
         /// </summary>
         public static readonly Dictionary<Type, StringConverter_Delegate> StringConverter = [];
+        /// <summary>
+        /// Named display string to value converter
+        /// </summary>
+        public static readonly Dictionary<string, ValueConverter_Delegate> NamedValueConverter = [];
+        /// <summary>
+        /// Named value to display string converter
+        /// </summary>
+        public static readonly Dictionary<string, StringConverter_Delegate> NamedStringConverter = [];
 
         /// <summary>
         /// Constructor
@@ -98,7 +106,7 @@ namespace wan24.Core
             if (!ValueConverter.TryGetValue(type, out ValueConverter_Delegate? converter))
             {
                 converter = ValueConverter.FirstOrDefault(kvp => kvp.Key.IsAssignableFrom(type)).Value;
-                if (converter == default)
+                if (converter is null)
                     if (typeof(IStringValueConverter).IsAssignableFrom(type))
                     {
                         object?[] param = [str, null];
@@ -133,7 +141,7 @@ namespace wan24.Core
             if (!StringConverter.TryGetValue(type, out StringConverter_Delegate? converter))
             {
                 converter = StringConverter.FirstOrDefault(kvp => kvp.Key.IsAssignableFrom(type)).Value;
-                if (converter == default)
+                if (converter is null)
                     if (typeof(IStringValueConverter).IsAssignableFrom(type))
                     {
                         return (value as IStringValueConverter)?.DisplayString;
@@ -174,8 +182,42 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <param name="type">Object type (may be abstract)</param>
-        /// <returns></returns>
+        /// <returns>Objct</returns>
         public static object? ConvertObjectFromString(this string str, Type type) => Convert(type, str);
+
+        /// <summary>
+        /// Named string to value converter
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="name">Conversion name</param>
+        /// <param name="type">Object type (may be abstract)</param>
+        /// <returns>Object</returns>
+        public static object? NamedObjectConversion(this string? str, in string name, in Type type)
+        {
+            if (!NamedValueConverter.TryGetValue(name, out ValueConverter_Delegate? converter))
+                throw new ArgumentException("Unknown conversion", nameof(name));
+            object? res = converter.Invoke(type, str);
+            if (res is not null && !type.IsAssignableFrom(res.GetType()))
+            {
+                res.TryDispose();
+                throw new InvalidDataException($"Converted value type {res.GetType()} doesn't match the expected type {type}");
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// Named value to string converter
+        /// </summary>
+        /// <param name="obj">Object</param>
+        /// <param name="name">Conversion name</param>
+        /// <param name="type">Object type (may be abstract)</param>
+        /// <returns>Object</returns>
+        public static string? NamedStringConversion(this object? obj, in string name, in Type type)
+        {
+            if (!NamedStringConverter.TryGetValue(name, out StringConverter_Delegate? converter))
+                throw new ArgumentException("Unknown conversion", nameof(name));
+            return converter.Invoke(type, obj);
+        }
 
         /// <summary>
         /// Display string to value converter delegate

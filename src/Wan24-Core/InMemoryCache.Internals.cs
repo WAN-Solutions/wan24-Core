@@ -24,6 +24,10 @@
         /// If hard limits are configured
         /// </summary>
         protected readonly bool HasHardLimits;
+        /// <summary>
+        /// Exported user actions
+        /// </summary>
+        protected readonly UserActionInfo[] UserActions;
 
         /// <summary>
         /// Apply hard limits for a new entry

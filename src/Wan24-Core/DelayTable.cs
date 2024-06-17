@@ -8,6 +8,7 @@
         /// <summary>
         /// Delays (key is the GUID)
         /// </summary>
+        [InstanceTable]
         public static readonly ConcurrentChangeTokenDictionary<string, Delay> Delays = [];
     }
 }

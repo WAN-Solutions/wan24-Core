@@ -8,6 +8,7 @@
         /// <summary>
         /// Pool table (key is a GUID)
         /// </summary>
+        [InstanceTable]
         public static readonly ConcurrentChangeTokenDictionary<string, IPool> Pools = [];
     }
 }

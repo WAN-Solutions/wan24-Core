@@ -8,6 +8,7 @@
         /// <summary>
         /// Object locks (key ia a GUID)
         /// </summary>
+        [InstanceTable]
         public static readonly ConcurrentChangeTokenDictionary<string, IObjectLockManager> ObjectLocks = [];
     }
 }

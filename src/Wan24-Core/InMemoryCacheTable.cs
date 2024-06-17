@@ -10,6 +10,7 @@ namespace wan24.Core
         /// <summary>
         /// In-memory caches (key is the GUID)
         /// </summary>
+        [InstanceTable]
         public static readonly ConcurrentDictionary<string, IInMemoryCache> Caches = [];
     }
 }

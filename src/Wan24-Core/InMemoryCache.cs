@@ -48,6 +48,7 @@ namespace wan24.Core
             IsItemDisposable = !options.NeverDisposeItems && (options.TryDisposeItemsAlways || IsItemTypeDisposable);
             Options = options;
             TidyTimer = new(Options.TidyTimeout);
+            UserActions = [.. this.GetUserActionInfos(GUID)];
             // Timed auto-cleanup processing
             TidyTimer.OnTimeout += async (s, e) =>
             {
@@ -108,9 +109,12 @@ namespace wan24.Core
         {
             get
             {
+                yield return new(UserActionInfo.STATE_KEY, UserActions);
                 yield return new(__("Type"), GetType(), __("CLR type"));
                 yield return new(__("Name"), Name, __("Name"));
                 yield return new(__("Item type"), typeof(T), __("Cached item CLR type"));
+                yield return new(__("Type disposable"), IsItemTypeDisposable, __("If the cached item type is or may be disposable"));
+                yield return new(__("Diposing"), IsItemDisposable, __("If cached items will be disposed on removal, if possible"));
                 yield return new(__("Pause"), CanPause, __("If the service worker can pause"));
                 yield return new(__("Paused"), IsPaused, __("If the service worker is paused"));
                 yield return new(__("Running"), IsRunning, __("If the service worker is running"));
@@ -125,8 +129,6 @@ namespace wan24.Core
                 yield return new(__("Age limit"), Options.AgeLimit, __("Cached entry age limit"));
                 yield return new(__("Idle limit"), Options.IdleLimit, __("Cached entry idle time limit"));
                 yield return new(__("Memory limit"), Options.MaxMemoryUsage, __("App memory limit in bytes"));
-                yield return new(__("Dispose items"), Options.TryDisposeItemsAlways, __("If to dispose cached items on removal always"));
-                yield return new(__("Never dispose items"), Options.NeverDisposeItems, __("If to never dispose cached items on removal"));
                 yield return new(__("Count"), Count, __("Number of cached items"));
                 yield return new(__("Size"), Size, __("Current cached items total size"));
                 yield return new(__("Tidy"), Options.TidyTimeout, __("Tidy timer interval"));

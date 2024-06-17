@@ -6,7 +6,7 @@ namespace wan24.Core
     /// <summary>
     /// Interface for an in-memory cache
     /// </summary>
-    public interface IInMemoryCache : IWillDispose, IServiceWorkerStatus, IChangeToken, INotifyPropertyChanged
+    public interface IInMemoryCache : IWillDispose, IServiceWorkerStatus, IChangeToken, INotifyPropertyChanged, IExportUserActions
     {
         /// <summary>
         /// GUID

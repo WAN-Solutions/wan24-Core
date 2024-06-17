@@ -8,7 +8,7 @@ namespace wan24.Core
     /// <summary>
     /// Base class for a hosted service
     /// </summary>
-    public abstract class HostedServiceBase : DisposableBase, IServiceWorker, IHostedService
+    public abstract class HostedServiceBase : DisposableBase, IServiceWorker, IHostedService, IExportUserActions
     {
         /// <summary>
         /// Thread synchronization
