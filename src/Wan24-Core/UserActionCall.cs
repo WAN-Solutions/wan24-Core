@@ -59,13 +59,10 @@ namespace wan24.Core
                 ?? throw new InvalidDataException($"Failed to find instance table field in {providerType}");
             if (fi.GetCustomAttributeCached<InstanceTableAttribute>() is null)
                 throw new InvalidDataException($"{providerType}.{fi.Name} is missing the {typeof(InstanceTableAttribute)}");
-            Type fieldType = typeof(ConcurrentDictionary<,>).IsAssignableFrom(fi.FieldType) && fi.FieldType.GetGenericArguments()[0] == typeof(string)
+            Type fieldType = InstanceTables.IsValidInstanceTableType(fi.FieldType)
                 ? fi.FieldType
-                : (from t in fi.FieldType.GetBaseTypes()
-                   where typeof(ConcurrentDictionary<,>).IsAssignableFrom(t) && t.GetGenericArguments()[0] == typeof(string)
-                   select t)
-                    .FirstOrDefault()
-                        ?? throw new InvalidProgramException($"Invalid instance table field type {fi.FieldType} for {providerType}"),
+                : fi.FieldType.GetBaseTypes().FirstOrDefault(t => InstanceTables.IsValidInstanceTableType(t))
+                    ?? throw new InvalidProgramException($"Invalid instance table field type {fi.FieldType} for {providerType}"),
                 valueType = fieldType.GetGenericArguments()[1];
             MethodInfo mi;
             if (ProviderKey.Length > 0)

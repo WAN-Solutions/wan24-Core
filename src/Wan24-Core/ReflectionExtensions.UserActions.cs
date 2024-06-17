@@ -28,13 +28,10 @@ namespace wan24.Core
                             .FirstOrDefault()
                                 ?? throw new InvalidProgramException($"Provider table type {providerType} for {obj.GetType()} has no field with an {typeof(InstanceTableAttribute)}");
             // Validate the instance table field and it's value type is matching for the given object
-            Type fieldType = typeof(ConcurrentDictionary<,>).IsAssignableFrom(fi.FieldType) && fi.FieldType.GetGenericArguments()[0] == typeof(string)
+            Type fieldType = InstanceTables.IsValidInstanceTableType(fi.FieldType)
                 ? fi.FieldType
-                : (from t in fi.FieldType.GetBaseTypes()
-                   where typeof(ConcurrentDictionary<,>).IsAssignableFrom(t) && t.GetGenericArguments()[0] == typeof(string)
-                   select t)
-                    .FirstOrDefault()
-                        ?? throw new InvalidProgramException($"Invalid instance table field type {fi.FieldType} for {obj.GetType()}"),
+                : fi.FieldType.GetBaseTypes().FirstOrDefault(t => InstanceTables.IsValidInstanceTableType(t))
+                    ?? throw new InvalidProgramException($"Invalid instance table field type {fi.FieldType} for {obj.GetType()}"),
                 valueType = fieldType.GetGenericArguments()[1];
             if (!valueType.IsAssignableFromExt(obj.GetType()))
                 throw new InvalidProgramException($"{obj.GetType()} can not be hosted by {providerType}.{fi.Name} ({valueType})");
