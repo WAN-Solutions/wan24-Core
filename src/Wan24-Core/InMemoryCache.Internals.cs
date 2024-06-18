@@ -13,10 +13,6 @@
         /// </summary>
         protected readonly ConcurrentChangeTokenDictionary<string, InMemoryCacheEntry<T>> Cache;
         /// <summary>
-        /// Tidy cache timer
-        /// </summary>
-        protected readonly Timeout TidyTimer;
-        /// <summary>
         /// If cached items are disposable (is the case also, if <c>T</c> isn't sealed)
         /// </summary>
         protected readonly bool IsItemDisposable;
@@ -28,6 +24,10 @@
         /// Exported user actions
         /// </summary>
         protected readonly UserActionInfo[] UserActions;
+        /// <summary>
+        /// Number of cache entries
+        /// </summary>
+        protected volatile int _Count = 0;
 
         /// <summary>
         /// Apply hard limits for a new entry
@@ -82,20 +82,13 @@
         }
 
         /// <inheritdoc/>
-        protected override async Task WorkerAsync() => await CancelToken.WaitHandle.WaitAsync().DynamicContext();
-
-        /// <inheritdoc/>
-        protected override async Task StartingAsync(CancellationToken cancellationToken)
+        protected override async Task WorkerAsync()
         {
-            TidyTimer.Start();
-            await base.StartingAsync(cancellationToken).DynamicContext();
-        }
-
-        /// <inheritdoc/>
-        protected override async Task StoppingAsync(CancellationToken cancellationToken)
-        {
-            TidyTimer.Stop();
-            await base.StoppingAsync(cancellationToken).DynamicContext();
+            while(EnsureNotCanceled(throwOnCancellation: false))
+            {
+                await Task.Delay((int)Options.TidyTimeout.TotalMilliseconds, CancelToken).DynamicContext();
+                await TidyCacheAsync().DynamicContext();
+            }
         }
 
         /// <inheritdoc/>
@@ -104,9 +97,8 @@
             ServiceWorkerTable.ServiceWorkers.TryRemove(GUID, out _);
             InMemoryCacheTable.Caches.TryRemove(GUID, out _);
             base.Dispose(disposing);
-            Clear().Select(e => e.Item).Cast<object>().TryDisposeAll();
+            Clear(disposeItems: true);
             Cache.Dispose();
-            TidyTimer.Dispose();
         }
 
         /// <inheritdoc/>
@@ -115,9 +107,8 @@
             ServiceWorkerTable.ServiceWorkers.TryRemove(GUID, out _);
             InMemoryCacheTable.Caches.TryRemove(GUID, out _);
             await base.DisposeCore().DynamicContext();
-            await Clear().Select(e => e.Item).Cast<object>().TryDisposeAllAsync().DynamicContext();
+            await ClearAsync(disposeItems: true).DynamicContext();
             await Cache.DisposeAsync().DynamicContext();
-            await TidyTimer.DisposeAsync().DynamicContext();
         }
     }
 }

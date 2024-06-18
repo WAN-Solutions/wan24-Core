@@ -9,7 +9,7 @@
     public record class InMemoryCacheEntryOptions()
     {
         /// <summary>
-        /// Item size
+        /// Item size (should be at last <c>1</c>)
         /// </summary>
         public int Size { get; set; } = 1;
 
@@ -19,12 +19,12 @@
         public InMemoryCacheEntryTypes? Type { get; set; }
 
         /// <summary>
-        /// Timeout
+        /// Timeout (if <see cref="Type"/> is <see cref="InMemoryCacheEntryTypes.Timeout"/>)
         /// </summary>
         public TimeSpan? Timeout { get; set; }
 
         /// <summary>
-        /// If <see cref="Timeout"/> is sliding
+        /// Is the <see cref="Timeout"/> a sliding timeout? (has only an effect if <see cref="Type"/> is <see cref="InMemoryCacheEntryTypes.Timeout"/>)
         /// </summary>
         public bool? IsSlidingTimeout { get; set; }
 
@@ -34,7 +34,7 @@
         public DateTime? AbsoluteTimeout { get; set; }
 
         /// <summary>
-        /// Observe cached item disposing (works only for <see cref="IDisposableObject"/> types; disposing items will be removed)
+        /// Observe item disposing (works only for <see cref="IDisposableObject"/> types; disposing items will be removed from the cache automatic)
         /// </summary>
         public bool? ObserveDisposing { get; set; }
     }

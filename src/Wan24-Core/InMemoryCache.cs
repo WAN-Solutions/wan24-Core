@@ -13,18 +13,13 @@ namespace wan24.Core
     /// In-memory cache
     /// </summary>
     /// <typeparam name="T">Cached item type</typeparam>
-    public partial class InMemoryCache<T> : HostedServiceBase, IInMemoryCache
+    public partial class InMemoryCache<T> : HostedServiceBase, IInMemoryCache<T>
     {
         /// <summary>
         /// Static constructor
         /// </summary>
-        static InMemoryCache()
-        {
-            Type type = typeof(T);
-            IsItemTypeDisposable = !type.IsSealed ||
-                typeof(IDisposable).IsAssignableFrom(type) ||
-                typeof(IAsyncDisposable).IsAssignableFrom(type);
-        }
+        static InMemoryCache() => IsItemTypeDisposable = typeof(IDisposable).IsAssignableFrom(typeof(T)) ||
+            typeof(IAsyncDisposable).IsAssignableFrom(typeof(T));
 
         /// <summary>
         /// Constructor
@@ -43,40 +38,17 @@ namespace wan24.Core
                 ? new(options.ConcurrencyLevel.Value, Math.Max(options.SoftCountLimit, options.HardCountLimit))
                 : new());
             Cache.Tag = this;
+            if (cache is not null) _Count = cache.Count;
             IsItemAutoDisposer = typeof(T).HasBaseType(typeof(AutoDisposer<>));
             HasHardLimits = options.HardCountLimit > 0 || options.HardSizeLimit > 0;
-            IsItemDisposable = !options.NeverDisposeItems && (options.TryDisposeItemsAlways || IsItemTypeDisposable);
+            IsItemDisposable = !options.NeverDisposeItems && 
+                (
+                    (options.TryDisposeItemsAlways && !typeof(T).IsSealed) || 
+                    typeof(IDisposable).IsAssignableFrom(typeof(T)) || 
+                    typeof(IAsyncDisposable).IsAssignableFrom(typeof(T))
+                );
             Options = options;
-            TidyTimer = new(Options.TidyTimeout);
             UserActions = [.. this.GetUserActionInfos(GUID)];
-            // Timed auto-cleanup processing
-            TidyTimer.OnTimeout += async (s, e) =>
-            {
-                try
-                {
-                    await TidyCacheAsync(CancelToken).DynamicContext();
-                }
-                catch (OperationCanceledException)
-                {
-                }
-                catch (Exception ex)
-                {
-                    ErrorHandling.Handle(new("Tidy in-memory cache failed", ex, ErrorSource, this));
-                }
-                finally
-                {
-                    try
-                    {
-                        using SemaphoreSyncContext ssc = Sync;
-                        if (!IsDisposing && IsRunning)
-                            TidyTimer.Start();
-                    }
-                    catch
-                    {
-                        // Sync/TidyTimer may be disposed from another thread - just ignore that
-                    }
-                }
-            };
             ServiceWorkerTable.ServiceWorkers[GUID] = this;
             InMemoryCacheTable.Caches[GUID] = this;
         }
@@ -88,7 +60,7 @@ namespace wan24.Core
         public InMemoryCacheOptions Options { get; }
 
         /// <inheritdoc/>
-        public int Count => Cache.Count;
+        public int Count => _Count;
 
         /// <inheritdoc/>
         public IEnumerable<string> Keys => Cache.Keys;
@@ -131,8 +103,7 @@ namespace wan24.Core
                 yield return new(__("Memory limit"), Options.MaxMemoryUsage, __("App memory limit in bytes"));
                 yield return new(__("Count"), Count, __("Number of cached items"));
                 yield return new(__("Size"), Size, __("Current cached items total size"));
-                yield return new(__("Tidy"), Options.TidyTimeout, __("Tidy timer interval"));
-                yield return new(__("Next tidy run"), TidyTimer.RemainingTime, __("Remaining time until the next cache tidy process"));
+                yield return new(__("Tidy"), Options.TidyTimeout, __("Tidy interval"));
             }
         }
 
@@ -143,13 +114,7 @@ namespace wan24.Core
             return options ?? (Options.DefaultEntryOptions is null ? new() : Options.DefaultEntryOptions with { });
         }
 
-        /// <summary>
-        /// Create a cache entry
-        /// </summary>
-        /// <param name="key">Key</param>
-        /// <param name="item">Item</param>
-        /// <param name="options">Options</param>
-        /// <returns>Cache entry</returns>
+        /// <inheritdoc/>
         public virtual InMemoryCacheEntry<T> CreateEntry(in string key, in T item, InMemoryCacheEntryOptions? options = null)
         {
             EnsureUndisposed();
@@ -165,25 +130,18 @@ namespace wan24.Core
             };
         }
 
-        /// <summary>
-        /// Try removing an entry
-        /// </summary>
-        /// <param name="key">Key</param>
-        /// <returns>Removed entry (items are not yet disposed!)</returns>
+        /// <inheritdoc/>
         public virtual InMemoryCacheEntry<T>? TryRemove(in string key)
         {
             EnsureUndisposed(allowDisposing: true);
             if (!Cache.TryRemove(key, out InMemoryCacheEntry<T>? res))
                 return null;
+            _Count--;
             res.OnRemoved();
             return res;
         }
 
-        /// <summary>
-        /// Remove an entry
-        /// </summary>
-        /// <param name="entry">Entry to remove</param>
-        /// <returns>If removed</returns>
+        /// <inheritdoc/>
         public virtual bool Remove(in InMemoryCacheEntry<T> entry)
         {
             EnsureUndisposed(allowDisposing: true);
@@ -191,17 +149,14 @@ namespace wan24.Core
                 throw new ArgumentException("Foreign cache entry", nameof(entry));
             if (Cache.Remove(new KeyValuePair<string, InMemoryCacheEntry<T>>(entry.Key, entry)))
             {
+                _Count--;
                 entry.OnRemoved();
                 return true;
             }
             return false;
         }
 
-        /// <summary>
-        /// Clear the cache
-        /// </summary>
-        /// <param name="disposeItems">Dispose the items?</param>
-        /// <returns>Removed cache entries (items are not yet disposed!)</returns>
+        /// <inheritdoc/>
         public virtual InMemoryCacheEntry<T>[] Clear(in bool disposeItems = false)
         {
             EnsureUndisposed(allowDisposing: true);
@@ -212,11 +167,7 @@ namespace wan24.Core
             return res;
         }
 
-        /// <summary>
-        /// Clear the cache
-        /// </summary>
-        /// <param name="disposeItems">Dispose the items?</param>
-        /// <returns>Removed cache entries (items are not yet disposed!)</returns>
+        /// <inheritdoc/>
         [UserAction(), DisplayText("Clear"), Description("Clear the cache")]
         public virtual async Task<InMemoryCacheEntry<T>[]> ClearAsync(
             [DisplayText("Dispose items"), Description("If to dispose removed cached items")]
@@ -230,20 +181,5 @@ namespace wan24.Core
                     await DisposeItemAsync(entry.Item).DynamicContext();
             return res;
         }
-
-        /// <summary>
-        /// Delegate for a cache entry factory
-        /// </summary>
-        /// <param name="cache">Cache</param>
-        /// <param name="key">Entry key</param>
-        /// <param name="options">Options</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Cache entry</returns>
-        public delegate Task<InMemoryCacheEntry<T>?> CacheEntryFactory_Delegate(
-            InMemoryCache<T> cache, 
-            string key, 
-            InMemoryCacheEntryOptions? options, 
-            CancellationToken cancellationToken
-            );
     }
 }

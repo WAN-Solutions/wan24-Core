@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace wan24.Core
 {
     // IObservable<ConcurrentChangeTokenDictionary<string, InMemoryCacheEntry<T>>>, IChangeToken and INotifyPropertyChanged implementation
-    public partial class InMemoryCache<T> : IObservable<ConcurrentChangeTokenDictionary<string, InMemoryCacheEntry<T>>>, IEnumerable
+    public partial class InMemoryCache<T>
     {
         /// <inheritdoc/>
         public bool HasChanged => IfUndisposed(() => Cache.HasChanged);

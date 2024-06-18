@@ -30,7 +30,7 @@ namespace wan24.Core
         public virtual void ReduceCount(int targetCount, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            if (Count <= targetCount)
+            if (_Count <= targetCount)
                 return;
             foreach (InMemoryCacheEntry<T> entry in ApplyStrategy(GetDefaultStrategy()))
             {
@@ -40,7 +40,7 @@ namespace wan24.Core
                 {
                     if (IsItemDisposable)
                         DisposeItem(entry.Item);
-                    if (Count <= targetCount)
+                    if (_Count <= targetCount)
                         return;
                 }
             }
@@ -55,7 +55,7 @@ namespace wan24.Core
             )
         {
             EnsureUndisposed();
-            if (Count <= targetCount)
+            if (_Count <= targetCount)
                 return;
             foreach (InMemoryCacheEntry<T> entry in ApplyStrategy(GetDefaultStrategy()))
             {
@@ -65,7 +65,7 @@ namespace wan24.Core
                 {
                     if (IsItemDisposable)
                         await DisposeItemAsync(entry.Item).DynamicContext();
-                    if (Count <= targetCount)
+                    if (_Count <= targetCount)
                         return;
                 }
             }

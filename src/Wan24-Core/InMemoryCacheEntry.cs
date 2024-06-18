@@ -7,9 +7,9 @@
     /// <remarks>
     /// Constructor
     /// </remarks>
-    /// <param name="key">Cache entry key</param>
+    /// <param name="key">Cache entry key (must be unique)</param>
     /// <param name="item">Cached item</param>
-    /// <param name="size">Size (may be any number which indicates the <c>item</c> size, if you work with sizes)</param>
+    /// <param name="size">Item size (should be at last <c>1</c>; may be any number which indicates the <c>item</c> size, if you work with sizes, which is optional)</param>
     public class InMemoryCacheEntry<T>(in string key, in T item, in int size = 1)
     {
         /// <summary>
@@ -17,7 +17,7 @@
         /// </summary>
         protected readonly object SyncObject = new();
         /// <summary>
-        /// Size
+        /// Item size
         /// </summary>
         protected readonly int _Size = size;
         /// <summary>
@@ -51,7 +51,7 @@
         /// <summary>
         /// Type
         /// </summary>
-        public InMemoryCacheEntryTypes Type { get; init; } = InMemoryCacheEntryTypes.Variable;
+        public InMemoryCacheEntryTypes Type { get; init; } = InMemoryCacheOptions.DefaultEntryType;
 
         /// <summary>
         /// Absolute timeout
@@ -61,12 +61,12 @@
         /// <summary>
         /// Timeout (if <see cref="Type"/> is <see cref="InMemoryCacheEntryTypes.Timeout"/>)
         /// </summary>
-        public TimeSpan Timeout { get; init; }
+        public TimeSpan Timeout { get; init; } = InMemoryCacheOptions.DefaultEntryTimeout;
 
         /// <summary>
         /// Is the <see cref="Timeout"/> a sliding timeout? (has only an effect if <see cref="Type"/> is <see cref="InMemoryCacheEntryTypes.Timeout"/>)
         /// </summary>
-        public bool IsSlidingTimeout { get; init; }
+        public bool IsSlidingTimeout { get; init; } = InMemoryCacheOptions.DefaultEntrySlidingTimeout;
 
         /// <summary>
         /// If timeout (cache entry defined <see cref="Timeout"/>/<see cref="AbsoluteTimeout"/> only (the cache configuration may limit the entries configuration))
@@ -101,7 +101,7 @@
         public long AccessCount { get; protected set; }
 
         /// <summary>
-        /// Key
+        /// Unique cache entry key
         /// </summary>
         public string Key { get; } = key;
 
@@ -111,7 +111,7 @@
         public virtual T Item { get; } = item;
 
         /// <summary>
-        /// Size
+        /// Item size
         /// </summary>
         public virtual int Size => (Item as IInMemoryCacheItem)?.Size ?? _Size;
 

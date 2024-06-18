@@ -52,7 +52,7 @@ namespace wan24.Core
         public async Task ExecuteAsync(string?[] parameters, CancellationToken cancellationToken = default)
         {
             await Task.Yield();
-            // Find the object instance and the object type (for static methods only)
+            // Find the object instance and the object type (for static methods only), then get the user action method
             object? instance = null;
             Type? providerType = Provider ?? throw new InvalidDataException("Failed to get the instance provider type");
             FieldInfo fi = providerType.GetFieldCached(ProviderField, BindingFlags.Public | BindingFlags.Static)
@@ -81,17 +81,15 @@ namespace wan24.Core
                 if (!valueType.IsAssignableFrom(instance.GetType()))
                     throw new InvalidProgramException($"{providerType}.{fi.Name} is hosting an incompatible {instance.GetType()} instance (value type is {valueType})");
                 mi = instance.GetType().GetMethodCached(Method, BindingFlags.Public | BindingFlags.Instance)
-                    ?? throw new InvalidDataException("User action method not found");
-                if (mi.GetCustomAttributeCached<UserActionAttribute>() is null)
-                    throw new UnauthorizedAccessException($"{instance.GetType()}.{mi.Name} isn't an user action method");
+                    ?? throw new InvalidDataException("User action instance method not found");
             }
             else
             {
                 mi = valueType.GetType().GetMethodCached(Method, BindingFlags.Public | BindingFlags.Static)
-                    ?? throw new InvalidDataException("User action method not found");
-                if (mi.GetCustomAttributeCached<UserActionAttribute>() is null)
-                    throw new UnauthorizedAccessException($"{valueType.GetType()}.{mi.Name} isn't an user action method");
+                    ?? throw new InvalidDataException("User action static method not found");
             }
+            if (mi.GetCustomAttributeCached<UserActionAttribute>() is null)
+                throw new UnauthorizedAccessException($"{valueType.GetType()}.{mi.Name} isn't an user action method");
             // Prepare execution parameters
             ParameterInfo[] pis = mi.GetParameters();
             List<object?> parameterList = new(pis.Length);

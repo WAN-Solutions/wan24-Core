@@ -65,7 +65,7 @@
         public static AutoDisposer<T>.Context? GetItemContext<T>(
             this InMemoryCache<AutoDisposer<T>> cache,
             string key,
-            InMemoryCache<AutoDisposer<T>>.CacheEntryFactory_Delegate? entryFactory = null,
+            IInMemoryCache<AutoDisposer<T>>.CacheEntryFactory_Delegate? entryFactory = null,
             InMemoryCacheEntryOptions? options = null
             )
         {
@@ -102,7 +102,7 @@
         public static async Task<AutoDisposer<T>.Context?> GetItemContextAsync<T>(
             this InMemoryCache<AutoDisposer<T>> cache,
             string key,
-            InMemoryCache<AutoDisposer<T>>.CacheEntryFactory_Delegate? entryFactory = null,
+            IInMemoryCache<AutoDisposer<T>>.CacheEntryFactory_Delegate? entryFactory = null,
             InMemoryCacheEntryOptions? options = null,
             CancellationToken cancellationToken = default
             )

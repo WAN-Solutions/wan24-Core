@@ -3,16 +3,7 @@
     // Add/get
     public partial class InMemoryCache<T>
     {
-        /// <summary>
-        /// Try adding an item
-        /// </summary>
-        /// <param name="key">Entry key</param>
-        /// <param name="item">Cached item (will be disposed, if a newer revision can be returned)</param>
-        /// <param name="options">Options</param>
-        /// <param name="removeExisting">Remove the existing entry?</param>
-        /// <param name="disposeUnused">Dispose the given <c>item</c>, if a newer item was found?</param>
-        /// <returns>Cache entry (may be another revision, if not removing or a newer item revision has been cached during processing)</returns>
-        /// <exception cref="OutOfMemoryException">Item exceeds the <see cref="InMemoryCacheOptions.MaxItemSize"/>, and type is disposable</exception>
+        /// <inheritdoc/>
         public virtual InMemoryCacheEntry<T> Add(
             in string key,
             in T item,
@@ -69,6 +60,8 @@
                     if (isOverSize || Cache.TryAdd(key, entry))
                     {
                         removeEntry = !isOverSize;
+                        if (!isOverSize)
+                            _Count++;
                         if (removeEntry)
                             entry.OnAdded();
                         return entry;
@@ -92,17 +85,7 @@
             }
         }
 
-        /// <summary>
-        /// Try adding an item
-        /// </summary>
-        /// <param name="key">Entry key</param>
-        /// <param name="item">Cached item (will be disposed, if a newer revision can be returned)</param>
-        /// <param name="options">Options</param>
-        /// <param name="removeExisting">Remove the existing entry?</param>
-        /// <param name="disposeUnused">Dispose the given <c>item</c>, if a newer item was found?</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Cache entry (may be another revision, if not removing or a newer item revision has been cached during processing)</returns>
-        /// <exception cref="OutOfMemoryException">Item exceeds the <see cref="InMemoryCacheOptions.MaxItemSize"/>, and type is disposable</exception>
+        /// <inheritdoc/>
         public virtual async Task<InMemoryCacheEntry<T>> AddAsync(
             string key,
             T item,
@@ -160,6 +143,8 @@
                     if (isOverSize || Cache.TryAdd(key, entry))
                     {
                         removeEntry = !isOverSize;
+                        if (!isOverSize)
+                            _Count++;
                         if (removeEntry)
                             entry.OnAdded();
                         return entry;
@@ -183,27 +168,17 @@
             }
         }
 
-        /// <summary>
-        /// Determine if a cache entry key is contained
-        /// </summary>
-        /// <param name="key">Key</param>
-        /// <returns>If contained</returns>
+        /// <inheritdoc/>
         public virtual bool ContainsKey(in string key)
         {
             EnsureUndisposed();
             return Cache.ContainsKey(key);
         }
 
-        /// <summary>
-        /// Get a cache entry
-        /// </summary>
-        /// <param name="key">Key</param>
-        /// <param name="entryFactory">Cache entry factory</param>
-        /// <param name="options">Options</param>
-        /// <returns>Cache entry</returns>
+        /// <inheritdoc/>
         public virtual InMemoryCacheEntry<T>? Get(
             in string key,
-            in CacheEntryFactory_Delegate? entryFactory = null,
+            in IInMemoryCache<T>.CacheEntryFactory_Delegate? entryFactory = null,
             in InMemoryCacheEntryOptions? options = null
             )
         {
@@ -253,6 +228,8 @@
                     if (isOverSize || Cache.TryAdd(key, newEntry))
                     {
                         removeEntry = !isOverSize;
+                        if (!isOverSize)
+                            _Count++;
                         if (removeEntry)
                             newEntry.OnAdded();
                         return newEntry;
@@ -277,17 +254,10 @@
             }
         }
 
-        /// <summary>
-        /// Get a cache entry
-        /// </summary>
-        /// <param name="key">Key</param>
-        /// <param name="entryFactory">Cache entry factory</param>
-        /// <param name="options">Options</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Cache entry</returns>
+        /// <inheritdoc/>
         public virtual async Task<InMemoryCacheEntry<T>?> GetAsync(
             string key,
-            CacheEntryFactory_Delegate? entryFactory = null,
+            IInMemoryCache<T>.CacheEntryFactory_Delegate? entryFactory = null,
             InMemoryCacheEntryOptions? options = null,
             CancellationToken cancellationToken = default
             )
@@ -338,6 +308,8 @@
                     if (isOverSize || Cache.TryAdd(key, newEntry))
                     {
                         removeEntry = !isOverSize;
+                        if (!isOverSize)
+                            _Count++;
                         if (removeEntry)
                             newEntry.OnAdded();
                         return newEntry;

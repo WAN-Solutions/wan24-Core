@@ -1,5 +1,4 @@
-﻿using System.Collections.Concurrent;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace wan24.Core
 {
@@ -22,11 +21,8 @@ namespace wan24.Core
             if (!InstanceTables.Registered.TryGetValue(instanceType, out Type? providerType))
                 throw new ArgumentException($"Failed to find provider table type for {obj.GetType()} in InstanceTables.Registered", nameof(obj));
             // Find the instance table field
-            FieldInfo fi = (from field in providerType.GetFieldsCached(BindingFlags.Public | BindingFlags.Static)
-                            where field.GetCustomAttributeCached<InstanceTableAttribute>() is not null
-                            select field)
-                            .FirstOrDefault()
-                                ?? throw new InvalidProgramException($"Provider table type {providerType} for {obj.GetType()} has no field with an {typeof(InstanceTableAttribute)}");
+            FieldInfo fi = InstanceTables.FindInstanceTableField(providerType)
+                ?? throw new InvalidProgramException($"Provider table type {providerType} for {obj.GetType()} has no field with an {typeof(InstanceTableAttribute)}");
             // Validate the instance table field and it's value type is matching for the given object
             Type fieldType = InstanceTables.IsValidInstanceTableType(fi.FieldType)
                 ? fi.FieldType

@@ -3,7 +3,7 @@
 namespace wan24.Core
 {
     // Enumerable
-    public partial class InMemoryCache<T> : IEnumerable<KeyValuePair<string, InMemoryCacheEntry<T>>>, IEnumerable<T>
+    public partial class InMemoryCache<T>
     {
         /// <inheritdoc/>
         public IEnumerator<KeyValuePair<string, InMemoryCacheEntry<T>>> GetEnumerator()
