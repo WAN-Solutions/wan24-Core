@@ -189,6 +189,21 @@
         }
 
         /// <summary>
+        /// Create options from this entry
+        /// </summary>
+        /// <returns>Options</returns>
+        public virtual InMemoryCacheEntryOptions CreateOptions()
+            => new()
+            {
+                Size = Size,
+                Type = Type,
+                Timeout = Timeout,
+                IsSlidingTimeout = IsSlidingTimeout,
+                AbsoluteTimeout = AbsoluteTimeout,
+                ObserveDisposing = ObserveDisposing
+            };
+
+        /// <summary>
         /// Handle the item disposing
         /// </summary>
         /// <param name="sender">Sender</param>

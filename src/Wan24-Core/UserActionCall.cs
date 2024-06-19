@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Concurrent;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text.Json.Serialization;
 
 namespace wan24.Core
@@ -59,23 +57,15 @@ namespace wan24.Core
                 ?? throw new InvalidDataException($"Failed to find instance table field in {providerType}");
             if (fi.GetCustomAttributeCached<InstanceTableAttribute>() is null)
                 throw new InvalidDataException($"{providerType}.{fi.Name} is missing the {typeof(InstanceTableAttribute)}");
-            Type fieldType = InstanceTables.IsValidInstanceTableType(fi.FieldType)
+            Type fieldType = InstanceTables.IsValidTableType(fi.FieldType)
                 ? fi.FieldType
-                : fi.FieldType.GetBaseTypes().FirstOrDefault(t => InstanceTables.IsValidInstanceTableType(t))
+                : fi.FieldType.GetBaseTypes().FirstOrDefault(t => InstanceTables.IsValidTableType(t))
                     ?? throw new InvalidProgramException($"Invalid instance table field type {fi.FieldType} for {providerType}"),
                 valueType = fieldType.GetGenericArguments()[1];
             MethodInfo mi;
             if (ProviderKey.Length > 0)
             {
-                object table = fi.GetValue(obj: null) as IDictionary
-                    ?? throw new InvalidProgramException($"{providerType}.{fi.Name} is not a dictionary");
-                object?[] param = [ProviderKey, null];
-                MethodInfo getValueMethod = typeof(ConcurrentDictionary<,>).MakeGenericType(typeof(string), valueType)
-                    .GetMethodCached(nameof(ConcurrentDictionary<string, object>.TryGetValue), BindingFlags.Public | BindingFlags.Instance)
-                        ?? throw new InvalidProgramException($"Failed to get the instance table {providerType}.{fi.Name} get value method");
-                object result = getValueMethod.Invoke(fi.GetValue(obj: null), param)
-                    ?? throw new InvalidProgramException($"{providerType}.{fi.Name} get value method returned no success flag");
-                instance = param[1];
+                instance = InstanceTables.FindInstance(fi, ProviderKey);
                 if (instance is null)
                     throw new InvalidOperationException("The object instance with the given key wasn't found in the instance provider table");
                 if (!valueType.IsAssignableFrom(instance.GetType()))

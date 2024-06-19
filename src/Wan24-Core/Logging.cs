@@ -202,54 +202,60 @@ namespace wan24.Core
         /// Determine if tracing
         /// </summary>
         /// <returns>If tracing</returns>
+        [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static bool IsTracing() => Logger?.GetLogLevel().IsTracing() ?? false;
+        public static bool IsTracing() => Logger?.GetLogLevel().IsTracing() ?? Settings.LogLevel.IsTracing();
 
         /// <summary>
         /// Determine if debugging
         /// </summary>
         /// <returns>If debugging</returns>
+        [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static bool IsDebugging() => Logger?.GetLogLevel().IsDebugging() ?? false;
+        public static bool IsDebugging() => Logger?.GetLogLevel().IsDebugging() ?? Settings.LogLevel.IsDebugging();
 
         /// <summary>
         /// Determine if informative
         /// </summary>
         /// <returns>If informative</returns>
+        [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static bool IsInformative() => Logger?.GetLogLevel().IsInformative() ?? false;
+        public static bool IsInformative() => Logger?.GetLogLevel().IsInformative() ?? Settings.LogLevel.IsInformative();
 
         /// <summary>
         /// Determine if warning
         /// </summary>
         /// <returns>If warning</returns>
+        [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static bool IsWarning() => Logger?.GetLogLevel().IsWarning() ?? false;
+        public static bool IsWarning() => Logger?.GetLogLevel().IsWarning() ?? Settings.LogLevel.IsWarning();
 
         /// <summary>
         /// Determine if error
         /// </summary>
         /// <returns>If error</returns>
+        [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static bool IsError() => Logger?.GetLogLevel().IsError() ?? false;
+        public static bool IsError() => Logger?.GetLogLevel().IsError() ?? Settings.LogLevel.IsError();
 
         /// <summary>
         /// Determine if critical
         /// </summary>
         /// <returns>If critical</returns>
+        [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static bool IsCritical() => Logger?.GetLogLevel().IsCritical() ?? false;
+        public static bool IsCritical() => Logger?.GetLogLevel().IsCritical() ?? Settings.LogLevel.IsCritical();
     }
 }

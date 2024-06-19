@@ -9,6 +9,7 @@
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
     <EnablePreviewFeatures Condition="'$(Configuration)' != 'Release'">True</EnablePreviewFeatures>
+    <Configurations>Debug;Release;Trunk</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

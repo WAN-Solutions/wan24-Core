@@ -115,7 +115,8 @@ namespace wan24.Core
         : IInMemoryCache, 
             IObservable<ConcurrentChangeTokenDictionary<string, InMemoryCacheEntry<T>>>, 
             IEnumerable<KeyValuePair<string, InMemoryCacheEntry<T>>>, 
-            IEnumerable<T>
+            IEnumerable<T>,
+            IDictionary<string, InMemoryCacheEntry<T>>
     {
         /// <summary>
         /// Create a cache entry

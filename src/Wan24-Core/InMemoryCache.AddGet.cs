@@ -13,6 +13,7 @@
             )
         {
             EnsureUndisposed();
+            ArgumentNullException.ThrowIfNull(item, nameof(item));
             options = EnsureEntryOptions(options);
             // Check item size
             bool isOverSize = Options.MaxItemSize > 0 && options.Size > Options.MaxItemSize;
@@ -96,6 +97,7 @@
             )
         {
             EnsureUndisposed();
+            ArgumentNullException.ThrowIfNull(item, nameof(item));
             options = EnsureEntryOptions(options);
             // Check item size
             bool isOverSize = Options.MaxItemSize > 0 && options.Size > Options.MaxItemSize;
@@ -199,6 +201,8 @@
             // Create the item
             InMemoryCacheEntry<T>? newEntry = entryFactory(this, key, options, CancelToken).GetAwaiter().GetResult();
             if (newEntry is null) return null;
+            if (newEntry.Item is null)
+                throw new InvalidProgramException("Entry factory created an entry with a NULL item");
             bool disposeItem = false,
                 removeEntry = false;
             try
@@ -279,6 +283,8 @@
             // Create the item
             InMemoryCacheEntry<T>? newEntry = await entryFactory(this, key, options, cancellationToken).DynamicContext();
             if (newEntry is null) return null;
+            if (newEntry.Item is null)
+                throw new InvalidProgramException("Entry factory created an entry with a NULL item");
             bool disposeItem = false,
                 removeEntry = false;
             try

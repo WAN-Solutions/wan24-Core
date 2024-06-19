@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics.Contracts;
+using System.Runtime;
+using System.Runtime.CompilerServices;
 using static wan24.Core.TranslationHelper;
 
 namespace wan24.Core
@@ -60,18 +63,54 @@ namespace wan24.Core
         public InMemoryCacheOptions Options { get; }
 
         /// <inheritdoc/>
-        public int Count => _Count;
+        public int Count
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get
+            {
+                EnsureUndisposed();
+                Contract.Assert(_Count >= 0);
+                return _Count;
+            }
+        }
 
         /// <inheritdoc/>
-        public IEnumerable<string> Keys => Cache.Keys;
+        public IEnumerable<string> Keys
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            get
+            {
+                EnsureUndisposed();
+                return Cache.Keys;
+            }
+        }
 
         /// <summary>
         /// Cached items
         /// </summary>
-        public IEnumerable<T> Items => Cache.Values.Select(e => e.Item);
+        public IEnumerable<T> Items
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            get
+            {
+                EnsureUndisposed();
+                return Cache.Values.Select(e => e.Item);
+            }
+        }
 
         /// <inheritdoc/>
-        public long Size => Cache.Values.Sum(e => e.Size);
+        public long Size
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            get
+            {
+                EnsureUndisposed();
+                return Cache.Values.Sum(e => e.Size);
+            }
+        }
 
         /// <inheritdoc/>
         public bool IsItemAutoDisposer { get; }

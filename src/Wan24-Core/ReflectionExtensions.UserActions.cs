@@ -14,28 +14,25 @@ namespace wan24.Core
         public static IEnumerable<UserActionInfo> GetUserActionInfos(this IExportUserActions obj, string? providerKey = null)
         {
             providerKey ??= string.Empty;
-            // Find the provider table instance type
-            Type instanceType = InstanceTables.Registered.Keys.FirstOrDefault(k=>k.IsAssignableFromExt(obj.GetType()))
-                ?? throw new ArgumentException($"Failed to find provider table object type for {obj.GetType()} in InstanceTables.Registered", nameof(obj));
             // Find the provider table type
-            if (!InstanceTables.Registered.TryGetValue(instanceType, out Type? providerType))
-                throw new ArgumentException($"Failed to find provider table type for {obj.GetType()} in InstanceTables.Registered", nameof(obj));
+            KeyValuePair<Type,Type> provider = InstanceTables.FindTableProviderInfo(obj.GetType())
+                ?? throw new ArgumentException($"Failed to find provider table object type for {obj.GetType()} in InstanceTables.Registered", nameof(obj));
             // Find the instance table field
-            FieldInfo fi = InstanceTables.FindInstanceTableField(providerType)
-                ?? throw new InvalidProgramException($"Provider table type {providerType} for {obj.GetType()} has no field with an {typeof(InstanceTableAttribute)}");
+            FieldInfo fi = InstanceTables.FindTableProviderField(provider.Value)
+                ?? throw new InvalidProgramException($"Provider table type {provider.Value} for {obj.GetType()} has no field with an {typeof(InstanceTableAttribute)}");
             // Validate the instance table field and it's value type is matching for the given object
-            Type fieldType = InstanceTables.IsValidInstanceTableType(fi.FieldType)
+            Type fieldType = InstanceTables.IsValidTableType(fi.FieldType)
                 ? fi.FieldType
-                : fi.FieldType.GetBaseTypes().FirstOrDefault(t => InstanceTables.IsValidInstanceTableType(t))
+                : fi.FieldType.GetBaseTypes().FirstOrDefault(t => InstanceTables.IsValidTableType(t))
                     ?? throw new InvalidProgramException($"Invalid instance table field type {fi.FieldType} for {obj.GetType()}"),
                 valueType = fieldType.GetGenericArguments()[1];
             if (!valueType.IsAssignableFromExt(obj.GetType()))
-                throw new InvalidProgramException($"{obj.GetType()} can not be hosted by {providerType}.{fi.Name} ({valueType})");
+                throw new InvalidProgramException($"{obj.GetType()} can not be hosted by {provider.Value}.{fi.Name} ({valueType})");
             // Find user action methods
             foreach (MethodInfo mi in from method in obj.GetType().GetMethodsCached(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)
                                       where method.GetCustomAttributeCached<UserActionAttribute>() is not null
                                       select method)
-                yield return UserActionInfo.FromMethod(mi, providerType.ToString(), fi.Name, mi.IsStatic ? string.Empty : providerKey);
+                yield return UserActionInfo.FromMethod(mi, provider.Value.ToString(), fi.Name, mi.IsStatic ? string.Empty : providerKey);
         }
     }
 }
