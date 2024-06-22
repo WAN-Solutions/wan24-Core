@@ -7,39 +7,27 @@
         /// If the cached items type is disposable (is the case also, if <see cref="object"/> was used as value for <c>T</c>)
         /// </summary>
         protected static readonly bool IsItemTypeDisposable;
+
         /// <summary>
         /// Cache (key is the entry key)
         /// </summary>
         protected readonly ConcurrentChangeTokenDictionary<string, InMemoryCacheEntry<T>> Cache;
         /// <summary>
-        /// If cached items are disposable (is the case also, if <see cref="object"/> was used as value for <c>T</c>)
+        /// If cached items are disposable (is the case also, if <c>T</c> isn't sealed)
         /// </summary>
         protected readonly bool IsItemDisposable;
-        /// <summary>
-        /// Tidy cache timer
-        /// </summary>
-        protected readonly Timeout TidyTimer;
         /// <summary>
         /// If hard limits are configured
         /// </summary>
         protected readonly bool HasHardLimits;
-
         /// <summary>
-        /// Create a cache entry
+        /// Exported user actions
         /// </summary>
-        /// <param name="key">Key</param>
-        /// <param name="item">Item</param>
-        /// <param name="options">Options</param>
-        /// <returns>Cache entry</returns>
-        protected virtual InMemoryCacheEntry<T> CreateCacheEntry(in string key, in T item, in InMemoryCacheEntryOptions options)
-            => new(key, item, (item as IInMemoryCacheItem)?.Size ?? options.Size, options.Timeout ?? InMemoryCacheOptions.DefaultEntryTimeout)
-            {
-                Cache = this,
-                ObserveDisposing = options.ObserveDisposing ?? InMemoryCacheOptions.DefaultObserveItemDisposing,
-                Type = options.Type ?? InMemoryCacheOptions.DefaultEntryType,
-                IsSlidingTimeout = options.IsSlidingTimeout ?? InMemoryCacheOptions.DefaultEntrySlidingTimeout,
-                AbsoluteTimeout = options.AbsoluteTimeout
-            };
+        protected readonly UserActionInfo[] UserActions;
+        /// <summary>
+        /// Number of cache entries
+        /// </summary>
+        protected volatile int _Count = 0;
 
         /// <summary>
         /// Apply hard limits for a new entry
@@ -48,10 +36,21 @@
         /// <param name="cancellationToken">Cancellation token</param>
         protected virtual async Task ApplyHardLimits(InMemoryCacheEntry<T> entry, CancellationToken cancellationToken = default)
         {
-            while (Options.HardCountLimit > 0 && Cache.Count >= Options.HardCountLimit)
-                await ReduceCountAsync(Options.HardCountLimit - 1, cancellationToken).DynamicContext();
-            while (Options.HardSizeLimit > 0 && Size + entry.Size > Options.HardSizeLimit)
-                await ReduceSizeAsync(Options.HardSizeLimit - entry.Size, cancellationToken).DynamicContext();
+            if (!HasHardLimits)
+                return;
+            long size = Options.HardSizeLimit > 0 ? Size : 0;
+            for (
+                int count = Options.HardCountLimit > 0 ? Count : 0;
+                (Options.HardCountLimit > 0 && count >= Options.HardCountLimit) || (Options.HardSizeLimit > 0 && size + entry.Size > Options.HardSizeLimit);
+                count = Options.HardCountLimit > 0 ? Count : 0, size = Options.HardSizeLimit > 0 ? Size : 0
+                )
+            {
+                CancelToken.ThrowIfCancellationRequested();
+                if (Options.HardCountLimit > 0 && count >= Options.HardCountLimit)
+                    await ReduceCountAsync(Options.HardCountLimit - 1, cancellationToken).DynamicContext();
+                if (Options.HardSizeLimit > 0 && Size + entry.Size > Options.HardSizeLimit)
+                    await ReduceSizeAsync(Options.HardSizeLimit - entry.Size, cancellationToken).DynamicContext();
+            }
         }
 
         /// <summary>
@@ -83,38 +82,33 @@
         }
 
         /// <inheritdoc/>
-        protected override async Task WorkerAsync() => await CancelToken.WaitHandle.WaitAsync().DynamicContext();
-
-        /// <inheritdoc/>
-        protected override async Task StartingAsync(CancellationToken cancellationToken)
+        protected override async Task WorkerAsync()
         {
-            TidyTimer.Start();
-            await base.StartingAsync(cancellationToken).DynamicContext();
-        }
-
-        /// <inheritdoc/>
-        protected override async Task StoppingAsync(CancellationToken cancellationToken)
-        {
-            TidyTimer.Stop();
-            await base.StoppingAsync(cancellationToken).DynamicContext();
+            while(EnsureNotCanceled(throwOnCancellation: false))
+            {
+                await Task.Delay((int)Options.TidyTimeout.TotalMilliseconds, CancelToken).DynamicContext();
+                await TidyCacheAsync().DynamicContext();
+            }
         }
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
+            ServiceWorkerTable.ServiceWorkers.TryRemove(GUID, out _);
+            InMemoryCacheTable.Caches.TryRemove(GUID, out _);
             base.Dispose(disposing);
-            Clear().Select(e => e.Item).Cast<object>().TryDisposeAll();
+            Clear(disposeItems: true);
             Cache.Dispose();
-            TidyTimer.Dispose();
         }
 
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
+            ServiceWorkerTable.ServiceWorkers.TryRemove(GUID, out _);
+            InMemoryCacheTable.Caches.TryRemove(GUID, out _);
             await base.DisposeCore().DynamicContext();
-            await Clear().Select(e => e.Item).Cast<object>().TryDisposeAllAsync().DynamicContext();
+            await ClearAsync(disposeItems: true).DynamicContext();
             await Cache.DisposeAsync().DynamicContext();
-            await TidyTimer.DisposeAsync().DynamicContext();
         }
     }
 }

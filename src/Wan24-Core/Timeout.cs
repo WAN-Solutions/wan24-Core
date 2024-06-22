@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime;
 
@@ -7,7 +8,7 @@ namespace wan24.Core
     /// <summary>
     /// Timeout (when comparing instances, and not the timeout time, you should use the <see cref="Equals(object?)"/> method!)
     /// </summary>
-    public class Timeout : DisposableBase, ITimer
+    public class Timeout : DisposableBase, ITimer, IExportUserActions
     {
         /// <summary>
         /// Timer
@@ -106,6 +107,7 @@ namespace wan24.Core
         /// <summary>
         /// Start
         /// </summary>
+        [UserAction(), DisplayText("Start"), Description("Start the timer")]
         public virtual void Start()
         {
             if (Timer.Enabled) return;
@@ -137,6 +139,7 @@ namespace wan24.Core
         /// <summary>
         /// Stop
         /// </summary>
+        [UserAction(), DisplayText("Stop"), Description("Stop the timer")]
         public virtual void Stop()
         {
             if (!Timer.Enabled) return;
@@ -161,6 +164,7 @@ namespace wan24.Core
         /// <summary>
         /// Reset
         /// </summary>
+        [UserAction(), DisplayText("Reset"), Description("Stop and start the timer")]
         public virtual void Reset()
         {
             Stop();

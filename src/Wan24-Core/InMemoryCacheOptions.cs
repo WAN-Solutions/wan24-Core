@@ -76,9 +76,19 @@
         public TimeSpan IdleLimit { get; init; }
 
         /// <summary>
+        /// Max. memory usage in bytes
+        /// </summary>
+        public long? MaxMemoryUsage { get; init; }
+
+        /// <summary>
         /// Try disposing cached items when auto-removing always?
         /// </summary>
         public bool TryDisposeItemsAlways { get; init; }
+
+        /// <summary>
+        /// Do never dispose items?
+        /// </summary>
+        public bool NeverDisposeItems { get; init; }
 
         /// <summary>
         /// Cache I/O concurrency level (if set, <see cref="SoftCountLimit"/> or <see cref="HardCountLimit"/> is required to be set, too!)

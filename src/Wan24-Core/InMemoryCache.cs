@@ -1,4 +1,10 @@
-﻿namespace wan24.Core
+﻿using System.ComponentModel;
+using System.Diagnostics.Contracts;
+using System.Runtime;
+using System.Runtime.CompilerServices;
+using static wan24.Core.TranslationHelper;
+
+namespace wan24.Core
 {
     /// <summary>
     /// In-memory cache
@@ -10,23 +16,20 @@
     /// In-memory cache
     /// </summary>
     /// <typeparam name="T">Cached item type</typeparam>
-    public partial class InMemoryCache<T> : HostedServiceBase
+    public partial class InMemoryCache<T> : HostedServiceBase, IInMemoryCache<T>
     {
         /// <summary>
         /// Static constructor
         /// </summary>
-        static InMemoryCache()
-        {
-            IsItemTypeDisposable = typeof(T) == typeof(object) ||
-                typeof(IDisposable).IsAssignableFrom(typeof(T)) ||
-                typeof(IAsyncDisposable).IsAssignableFrom(typeof(T));
-        }
+        static InMemoryCache() => IsItemTypeDisposable = typeof(IDisposable).IsAssignableFrom(typeof(T)) ||
+            typeof(IAsyncDisposable).IsAssignableFrom(typeof(T));
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="options">Options</param>
-        public InMemoryCache(in InMemoryCacheOptions options) : base()
+        /// <param name="cache">Cache dictionary to use</param>
+        public InMemoryCache(in InMemoryCacheOptions options, in ConcurrentChangeTokenDictionary<string, InMemoryCacheEntry<T>>? cache = null) : base()
         {
             // Validate options
             if (options.SoftCountLimit < 1 && options.SoftSizeLimit < 1 && options.AgeLimit <= TimeSpan.Zero && options.IdleLimit <= TimeSpan.Zero)
@@ -34,408 +37,188 @@
             if (options.ConcurrencyLevel.HasValue && options.SoftCountLimit < 1 && options.HardCountLimit < 1)
                 throw new ArgumentException("SoftCountLimit or HardCountLimit required, if ConcurrencyLevel was set", nameof(options));
             // Initialize this instance
-            Cache = options.ConcurrencyLevel.HasValue
+            Cache = cache ?? (options.ConcurrencyLevel.HasValue
                 ? new(options.ConcurrencyLevel.Value, Math.Max(options.SoftCountLimit, options.HardCountLimit))
-                {
-                    Tag = this
-                }
-                : new()
-                {
-                    Tag = this
-                };
+                : new());
+            Cache.Tag = this;
+            if (cache is not null) _Count = cache.Count;
             IsItemAutoDisposer = typeof(T).HasBaseType(typeof(AutoDisposer<>));
             HasHardLimits = options.HardCountLimit > 0 || options.HardSizeLimit > 0;
-            IsItemDisposable = options.TryDisposeItemsAlways || IsItemTypeDisposable;
+            IsItemDisposable = !options.NeverDisposeItems && 
+                (
+                    (options.TryDisposeItemsAlways && !typeof(T).IsSealed) || 
+                    typeof(IDisposable).IsAssignableFrom(typeof(T)) || 
+                    typeof(IAsyncDisposable).IsAssignableFrom(typeof(T))
+                );
             Options = options;
-            TidyTimer = new(Options.TidyTimeout);
-            TidyStrategyInstance = new TidyStrategy(this);
-            AgeStrategyInstance = new AgeStrategy(this);
-            AccessTimeStrategyInstance = new AccessTimeStrategy(this);
-            LargerStrategyInstance = new LargerStrategy(this);
-            SmallerStrategyInstance = new SmallerStrategy(this);
-            // Timed auto-cleanup processing
-            TidyTimer.OnTimeout += async (s, e) =>
-            {
-                try
-                {
-                    await TidyCacheAsync(CancelToken).DynamicContext();
-                }
-                catch (OperationCanceledException)
-                {
-                }
-                catch (Exception ex)
-                {
-                    ErrorHandling.Handle(new("Tidy in-memory cache failed", ex, ErrorHandling.SERVICE_ERROR, this));
-                }
-                finally
-                {
-                    if (!IsDisposing && IsRunning)
-                        TidyTimer.Start();
-                }
-            };
+            UserActions = [.. this.GetUserActionInfos(GUID)];
+            ServiceWorkerTable.ServiceWorkers[GUID] = this;
+            InMemoryCacheTable.Caches[GUID] = this;
         }
 
-        /// <summary>
-        /// Options
-        /// </summary>
+        /// <inheritdoc/>
+        public string GUID { get; } = Guid.NewGuid().ToString();
+
+        /// <inheritdoc/>
         public InMemoryCacheOptions Options { get; }
 
-        /// <summary>
-        /// Number of currently cached items
-        /// </summary>
-        public int Count => Cache.Count;
+        /// <inheritdoc/>
+        public int Count
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get
+            {
+                EnsureUndisposed();
+                Contract.Assert(_Count >= 0);
+                return _Count;
+            }
+        }
 
-        /// <summary>
-        /// Cache entry keys
-        /// </summary>
-        public IEnumerable<string> Keys => Cache.Keys;
+        /// <inheritdoc/>
+        public IEnumerable<string> Keys
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            get
+            {
+                EnsureUndisposed();
+                return Cache.Keys;
+            }
+        }
 
         /// <summary>
         /// Cached items
         /// </summary>
-        public IEnumerable<T> Items => Cache.Values.Select(e => e.Item);
+        public IEnumerable<T> Items
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            get
+            {
+                EnsureUndisposed();
+                return Cache.Values.Select(e => e.Item);
+            }
+        }
 
-        /// <summary>
-        /// Size of all cache entries
-        /// </summary>
-        public long Size => Cache.Values.Sum(e => e.Size);
+        /// <inheritdoc/>
+        public long Size
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+            get
+            {
+                EnsureUndisposed();
+                return Cache.Values.Sum(e => e.Size);
+            }
+        }
 
-        /// <summary>
-        /// If the item is an <see cref="AutoDisposer{T}"/>
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsItemAutoDisposer { get; }
 
-        /// <summary>
-        /// Try adding an item
-        /// </summary>
-        /// <param name="key">Entry key</param>
-        /// <param name="item">Cached item (will be disposed, if a newer revision can be returned)</param>
-        /// <param name="options">Options</param>
-        /// <param name="removeExisting">Remove the existign entry?</param>
-        /// <param name="disposeUnused">Dispose the given <c>item</c>, if a newer item was found?</param>
-        /// <returns>Cache entry (may be another revision, if not removing or a newer item revision has been cached during processing)</returns>
-        /// <exception cref="OutOfMemoryException">Item exceeds the <see cref="InMemoryCacheOptions.MaxItemSize"/>, and type is <see cref="AutoDisposer{T}"/></exception>
-        public virtual InMemoryCacheEntry<T> Add(
-            in string key,
-            in T item,
-            InMemoryCacheEntryOptions? options = null,
-            in bool removeExisting = true,
-            in bool disposeUnused = true
-            )
+        /// <inheritdoc/>
+        public virtual IEnumerable<Status> State
         {
-            EnsureUndisposed();
-            options ??= Options.DefaultEntryOptions ?? new();
-            // Check item size
-            bool isOverSize = Options.MaxItemSize > 0 && options.Size > Options.MaxItemSize;
-            if (isOverSize && IsItemAutoDisposer)
-                throw new OutOfMemoryException();
-            // Don't overwrite the existing item
-            if (!removeExisting && Cache.TryGetValue(key, out InMemoryCacheEntry<T>? older))
+            get
             {
-                if (disposeUnused && IsItemDisposable)
-                    item.TryDispose();
-                return older;
-            }
-            // Overwrite the existing item
-            if (removeExisting && Cache.TryRemove(key, out InMemoryCacheEntry<T>? existing) && IsItemDisposable)
-                DisposeItem(existing.Item);
-            // Add a new item
-            InMemoryCacheEntry<T> entry = CreateCacheEntry(key, item, options);
-            while (true)
-            {
-                CancelToken.ThrowIfCancellationRequested();
-                // Use the newer item
-                if (Cache.TryGetValue(key, out InMemoryCacheEntry<T>? newer))
-                {
-                    if (disposeUnused && IsItemDisposable)
-                        item.TryDispose();
-                    return newer;
-                }
-                // Respect hard limits
-                if (!isOverSize && HasHardLimits)
-                    ApplyHardLimits(entry, CancelToken).GetAwaiter().GetResult();
-                // Add and return
-                if (isOverSize || Cache.TryAdd(key, entry))
-                {
-                    if (!isOverSize)
-                        try
-                        {
-                            entry.OnAdded();
-                        }
-                        catch
-                        {
-                            if (TryRemove(key) is InMemoryCacheEntry<T> faulted && faulted != entry && IsItemDisposable)
-                                DisposeItem(faulted.Item);
-                            entry.OnRemoved();
-                            if (disposeUnused && IsItemDisposable)
-                                entry.Item.TryDispose();
-                            throw;
-                        }
-                    return entry;
-                }
+                yield return new(UserActionInfo.STATE_KEY, UserActions);
+                yield return new(__("Type"), GetType(), __("CLR type"));
+                yield return new(__("Name"), Name, __("Name"));
+                yield return new(__("Item type"), typeof(T), __("Cached item CLR type"));
+                yield return new(__("Type disposable"), IsItemTypeDisposable, __("If the cached item type is or may be disposable"));
+                yield return new(__("Diposing"), IsItemDisposable, __("If cached items will be disposed on removal, if possible"));
+                yield return new(__("Pause"), CanPause, __("If the service worker can pause"));
+                yield return new(__("Paused"), IsPaused, __("If the service worker is paused"));
+                yield return new(__("Running"), IsRunning, __("If the service worker is running"));
+                yield return new(__("Started"), Started == DateTime.MinValue ? __("never") : Started.ToString(), __("Last service start time"));
+                yield return new(__("Stopped"), Stopped == DateTime.MinValue ? __("never") : Stopped.ToString(), __("Last service stop time"));
+                yield return new(__("Management"), Options.DefaultStrategy, __("Default in-memory cache management strategy"));
+                yield return new(__("Soft count limit"), Options.SoftCountLimit, __("Soft cached item count limit"));
+                yield return new(__("Hard count limit"), Options.HardCountLimit, __("Hard cached item count limit"));
+                yield return new(__("Soft size limit"), Options.SoftSizeLimit, __("Soft cached item total size limit"));
+                yield return new(__("Hard size limit"), Options.HardSizeLimit, __("Hard cached item total size limit"));
+                yield return new(__("Size limit"), Options.MaxItemSize, __("Maximum cached item size limit"));
+                yield return new(__("Age limit"), Options.AgeLimit, __("Cached entry age limit"));
+                yield return new(__("Idle limit"), Options.IdleLimit, __("Cached entry idle time limit"));
+                yield return new(__("Memory limit"), Options.MaxMemoryUsage, __("App memory limit in bytes"));
+                yield return new(__("Count"), Count, __("Number of cached items"));
+                yield return new(__("Size"), Size, __("Current cached items total size"));
+                yield return new(__("Tidy"), Options.TidyTimeout, __("Tidy interval"));
             }
         }
 
-        /// <summary>
-        /// Try adding an item
-        /// </summary>
-        /// <param name="key">Entry key</param>
-        /// <param name="item">Cached item (will be disposed, if a newer revision can be returned)</param>
-        /// <param name="options">Options</param>
-        /// <param name="removeExisting">Remove the existign entry?</param>
-        /// <param name="disposeUnused">Dispose the given <c>item</c>, if a newer item was found?</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Cache entry (may be another revision, if not removing or a newer item revision has been cached during processing)</returns>
-        /// <exception cref="OutOfMemoryException">Item exceeds the <see cref="InMemoryCacheOptions.MaxItemSize"/>, and type is <see cref="AutoDisposer{T}"/></exception>
-        public virtual async Task<InMemoryCacheEntry<T>> AddAsync(
-            string key,
-            T item,
-            InMemoryCacheEntryOptions? options = null,
-            bool removeExisting = true,
-            bool disposeUnused = true,
-            CancellationToken cancellationToken = default
-            )
+        /// <inheritdoc/>
+        public virtual InMemoryCacheEntryOptions EnsureEntryOptions(InMemoryCacheEntryOptions? options)
         {
             EnsureUndisposed();
-            options ??= Options.DefaultEntryOptions ?? new();
-            // Check item size
-            bool isOverSize = Options.MaxItemSize > 0 && options.Size > Options.MaxItemSize;
-            if (isOverSize && IsItemAutoDisposer)
-                throw new OutOfMemoryException();
-            // Don't overwrite the existing item
-            if (!removeExisting && Cache.TryGetValue(key, out InMemoryCacheEntry<T>? older))
-            {
-                if (disposeUnused && IsItemDisposable)
-                    await item.TryDisposeAsync().DynamicContext();
-                return older;
-            }
-            // Overwrite the existing item
-            if (removeExisting && Cache.TryRemove(key, out InMemoryCacheEntry<T>? existing) && IsItemDisposable)
-                await DisposeItemAsync(existing.Item).DynamicContext();
-            // Add a new item
-            InMemoryCacheEntry<T> entry = CreateCacheEntry(key, item, options);
-            while (true)
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                // Use the newer item
-                if (Cache.TryGetValue(key, out InMemoryCacheEntry<T>? newer))
-                {
-                    if (disposeUnused && IsItemDisposable)
-                        await item.TryDisposeAsync().DynamicContext();
-                    return newer;
-                }
-                // Respect hard limits
-                if (!isOverSize && HasHardLimits)
-                    await ApplyHardLimits(entry, cancellationToken).DynamicContext();
-                // Add and return
-                if (isOverSize || Cache.TryAdd(key, entry))
-                {
-                    if (!isOverSize)
-                        try
-                        {
-                            entry.OnAdded();
-                        }
-                        catch
-                        {
-                            if (TryRemove(key) is InMemoryCacheEntry<T> faulted && faulted != entry && IsItemDisposable)
-                                await DisposeItemAsync(faulted.Item).DynamicContext();
-                            entry.OnRemoved();
-                            if (disposeUnused && IsItemDisposable)
-                                await entry.Item.TryDisposeAsync().DynamicContext();
-                            throw;
-                        }
-                    return entry;
-                }
-            }
+            return options ?? (Options.DefaultEntryOptions is null ? new() : Options.DefaultEntryOptions with { });
         }
 
-        /// <summary>
-        /// Determine if a cache entry key is contained
-        /// </summary>
-        /// <param name="key">Key</param>
-        /// <returns>If contained</returns>
-        public virtual bool ContainsKey(in string key)
+        /// <inheritdoc/>
+        public virtual InMemoryCacheEntry<T> CreateEntry(in string key, in T item, InMemoryCacheEntryOptions? options = null)
         {
             EnsureUndisposed();
-            return Cache.ContainsKey(key);
+            options = EnsureEntryOptions(options);
+            return new(key, item, (item as IInMemoryCacheItem)?.Size ?? options.Size)
+            {
+                Cache = this,
+                ObserveDisposing = options.ObserveDisposing ?? InMemoryCacheOptions.DefaultObserveItemDisposing,
+                Type = options.Type ?? InMemoryCacheOptions.DefaultEntryType,
+                Timeout = options.Timeout ?? InMemoryCacheOptions.DefaultEntryTimeout,
+                IsSlidingTimeout = options.IsSlidingTimeout ?? InMemoryCacheOptions.DefaultEntrySlidingTimeout,
+                AbsoluteTimeout = options.AbsoluteTimeout
+            };
         }
 
-        /// <summary>
-        /// Get a cache entry
-        /// </summary>
-        /// <param name="key">Key</param>
-        /// <param name="entryFactory">Cache entry factory</param>
-        /// <param name="options">Options</param>
-        /// <returns>Cache entry</returns>
-        public virtual InMemoryCacheEntry<T>? Get(
-            in string key,
-            in CacheEntryFactory_Delegate? entryFactory = null,
-            in InMemoryCacheEntryOptions? options = null
-            )
-        {
-            EnsureUndisposed();
-            // Use the existing item, if possible
-            if (Cache.TryGetValue(key, out InMemoryCacheEntry<T>? existing))
-                if (!existing.CanUse)
-                {
-                    if (TryRemove(key) is InMemoryCacheEntry<T> removed && IsItemDisposable)
-                        DisposeItem(removed.Item);
-                }
-                else
-                {
-                    existing.OnAccess();
-                    return existing;
-                }
-            if (entryFactory is null) return null;
-            // Create the item
-            InMemoryCacheEntry<T>? newEntry = entryFactory(this, key, options, CancelToken).GetAwaiter().GetResult();
-            if (newEntry is null) return null;
-            bool disposeItem = false;
-            try
-            {
-                // Check item size
-                bool isOverSize = Options.MaxItemSize > 0 && newEntry.Size > Options.MaxItemSize;
-                if (isOverSize && IsItemAutoDisposer)
-                {
-                    disposeItem = true;
-                    return null;
-                }
-                // Add the new item
-                while (true)
-                {
-                    CancelToken.ThrowIfCancellationRequested();
-                    // Use the newer item
-                    if (Cache.TryGetValue(key, out InMemoryCacheEntry<T>? newer))
-                    {
-                        disposeItem = true;
-                        newer.OnAccess();
-                        return newer;
-                    }
-                    // Respect hard limits
-                    if (!isOverSize && HasHardLimits)
-                        ApplyHardLimits(newEntry, CancelToken).GetAwaiter().GetResult();
-                    // Add and return
-                    if (isOverSize || Cache.TryAdd(key, newEntry)) return newEntry;
-                }
-            }
-            finally
-            {
-                // If the created item wasn't used, finally, dispose it
-                if (disposeItem && IsItemDisposable)
-                    newEntry.Item.TryDispose();
-            }
-        }
-
-        /// <summary>
-        /// Get a cache entry
-        /// </summary>
-        /// <param name="key">Key</param>
-        /// <param name="entryFactory">Cache entry factory</param>
-        /// <param name="options">Options</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Cache entry</returns>
-        public virtual async Task<InMemoryCacheEntry<T>?> GetAsync(
-            string key,
-            CacheEntryFactory_Delegate? entryFactory = null,
-            InMemoryCacheEntryOptions? options = null,
-            CancellationToken cancellationToken = default
-            )
-        {
-            EnsureUndisposed();
-            // Use the existing item, if possible
-            if (Cache.TryGetValue(key, out InMemoryCacheEntry<T>? existing))
-                if (!existing.CanUse)
-                {
-                    if (TryRemove(key) is InMemoryCacheEntry<T> removed && IsItemDisposable)
-                        await DisposeItemAsync(removed.Item).DynamicContext();
-                }
-                else
-                {
-                    existing.OnAccess();
-                    return existing;
-                }
-            if (entryFactory is null) return null;
-            // Create the item
-            InMemoryCacheEntry<T>? newEntry = await entryFactory(this, key, options, cancellationToken).DynamicContext();
-            if (newEntry is null) return null;
-            bool disposeItem = false;
-            try
-            {
-                // Check item size
-                bool isOverSize = Options.MaxItemSize > 0 && newEntry.Size > Options.MaxItemSize;
-                if (isOverSize && IsItemAutoDisposer)
-                {
-                    disposeItem = true;
-                    return null;
-                }
-                // Add the new item
-                while (true)
-                {
-                    cancellationToken.ThrowIfCancellationRequested();
-                    // Use the newer item
-                    if (Cache.TryGetValue(key, out InMemoryCacheEntry<T>? newer))
-                    {
-                        disposeItem = true;
-                        newer.OnAccess();
-                        return newer;
-                    }
-                    // Respect hard limits
-                    if (!isOverSize && HasHardLimits)
-                        await ApplyHardLimits(newEntry, cancellationToken).DynamicContext();
-                    // Add and return
-                    if (isOverSize || Cache.TryAdd(key, newEntry))
-                    {
-                        if (!isOverSize)
-                            newEntry.OnAdded();
-                        return newEntry;
-                    }
-                }
-            }
-            finally
-            {
-                // If the created item wasn't used, finally, dispose it
-                if (disposeItem && IsItemDisposable)
-                    await newEntry.Item.TryDisposeAsync().DynamicContext();
-            }
-        }
-
-        /// <summary>
-        /// Try removing an entry
-        /// </summary>
-        /// <param name="key">Key</param>
-        /// <returns>Removed entry (items are not yet disposed!)</returns>
+        /// <inheritdoc/>
         public virtual InMemoryCacheEntry<T>? TryRemove(in string key)
         {
             EnsureUndisposed(allowDisposing: true);
             if (!Cache.TryRemove(key, out InMemoryCacheEntry<T>? res))
                 return null;
+            _Count--;
             res.OnRemoved();
             return res;
         }
 
-        /// <summary>
-        /// Clear the cache
-        /// </summary>
-        /// <returns>Removed cache entries (items are not yet disposed!)</returns>
-        public virtual InMemoryCacheEntry<T>[] Clear()
+        /// <inheritdoc/>
+        public virtual bool Remove(in InMemoryCacheEntry<T> entry)
         {
             EnsureUndisposed(allowDisposing: true);
-            return [.. Cache.Values.Select(e => TryRemove(e.Key)).Where(e => e is not null)];
+            if (entry.Cache != this)
+                throw new ArgumentException("Foreign cache entry", nameof(entry));
+            if (Cache.Remove(new KeyValuePair<string, InMemoryCacheEntry<T>>(entry.Key, entry)))
+            {
+                _Count--;
+                entry.OnRemoved();
+                return true;
+            }
+            return false;
         }
 
-        /// <summary>
-        /// Delegate for a cache entry factory
-        /// </summary>
-        /// <param name="cache">Cache</param>
-        /// <param name="key">Entry key</param>
-        /// <param name="options">Options</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Cache entry</returns>
-        public delegate Task<InMemoryCacheEntry<T>?> CacheEntryFactory_Delegate(
-            InMemoryCache<T> cache, 
-            string key, 
-            InMemoryCacheEntryOptions? options, 
-            CancellationToken cancellationToken
-            );
+        /// <inheritdoc/>
+        public virtual InMemoryCacheEntry<T>[] Clear(in bool disposeItems = false)
+        {
+            EnsureUndisposed(allowDisposing: true);
+            InMemoryCacheEntry<T>[] res = [.. Cache.Values.Select(e => TryRemove(e.Key)).Where(e => e is not null)];
+            if (disposeItems)
+                foreach (InMemoryCacheEntry<T> entry in res)
+                    DisposeItem(entry.Item);
+            return res;
+        }
+
+        /// <inheritdoc/>
+        [UserAction(), DisplayText("Clear"), Description("Clear the cache")]
+        public virtual async Task<InMemoryCacheEntry<T>[]> ClearAsync(
+            [DisplayText("Dispose items"), Description("If to dispose removed cached items")]
+            bool disposeItems = false
+            )
+        {
+            EnsureUndisposed(allowDisposing: true);
+            InMemoryCacheEntry<T>[] res = [.. Cache.Values.Select(e => TryRemove(e.Key)).Where(e => e is not null)];
+            if (disposeItems)
+                foreach (InMemoryCacheEntry<T> entry in res)
+                    await DisposeItemAsync(entry.Item).DynamicContext();
+            return res;
+        }
     }
 }

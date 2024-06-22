@@ -12,7 +12,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="level">Log level</param>
         /// <returns>If tracing</returns>
-        public static bool IsTracing(this LogLevel level) => level == LogLevel.Trace && !level.IsNoLogging();
+        public static bool IsTracing(this LogLevel level) => level == LogLevel.Trace;
 
         /// <summary>
         /// Is debugging?

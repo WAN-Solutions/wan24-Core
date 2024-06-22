@@ -1799,12 +1799,15 @@ item = (await cache.GetAsync("key"))?.Item;
 cache.TryRemove("key");
 
 // Clear the cache while the cache is still serving items
-cache.Clear();
+cache.Clear(disposeItems: true);
+await cache.ClearAsync(disposeItems: true);
 ```
 
 **NOTE**: This in-memory cache implementation isn't compatible with the .NET 
 built-in approaches. It implements `IHostedService` and needs to be started 
-before it can be used! The asynchronous methods should be used where possible.
+before it can be used! The asynchronous methods should be used where possible, 
+if the chached item type implements `IAsyncDisposable` - otherwise the 
+synchronous methods are fine, too.
 
 The cache capacity can be limited by
 
@@ -1818,6 +1821,7 @@ while auto-removing the cache is being done by a background job by
 - cache entry idle state
 - number of cache entries (soft limit)
 - cached item size (soft limit)
+- max. memory usage in bytes
 - optional custom management strategies
 
 in a fixed interval. An item may also be removed when disposing, if it's an 
@@ -1867,18 +1871,17 @@ using AutoDisposer<ItemType>.Context? itemContext =
 
 // Remove an item from the cache
 if(cache.TryRemove("key")?.Item is AutoDisposer<ItemType> removedItemDisposer)
+    removedItemDisposer.ShouldDispose = true;
+if(cache.TryRemove("key")?.Item is AutoDisposer<ItemType> removedItemDisposer)
     await removedItemDisposer.SetShouldDisposeAsync();
-
-// Clear the cache while the cache is still serving items
-foreach(InMemoryCacheEntry<AutoDisposer<ItemType>> entry in cache.Clear())
-    await entry.Item.SetShouldDisposeAsync();
 ```
 
 **WARNING**: If the cache is being disposed, all cached items will be 
 disposed, too, no matter if they're still in use or not!
 
 **CAUTION**: If the `InMemoryCacheOptions.MaxItemSize` value was set, and an 
-oversized item is being added, an `OutOfMemoryException` will be thrown.
+oversized disposable item is being added, an `OutOfMemoryException` will be 
+thrown.
 
 ### `IInMemoryCacheItem` interface
 

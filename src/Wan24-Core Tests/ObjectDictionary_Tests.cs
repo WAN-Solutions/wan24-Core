@@ -221,8 +221,6 @@ namespace Wan24_Core_Tests
             Assert.IsTrue(TestDict.ContainsValueOfTypeNullable("test2", typeof(string)));
         }
 
-        //TODO Write more tests
-
         [TestMethod]
         public void Cast_Tests()
         {

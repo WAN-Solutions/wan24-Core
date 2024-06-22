@@ -114,6 +114,10 @@ namespace wan24.Core
                         yield return new(__("Capacity"), kvp.Value.Capacity, __("Pool item capacity"), group);
                         yield return new(__("Available"), kvp.Value.Available, __("Number of currently available items"), group);
                     }
+                // In-memory caches
+                foreach (var kvp in InMemoryCacheTable.Caches)
+                    foreach (Status status in kvp.Value.State)
+                        yield return new(status.Name, status.State, status.Description, $"Core\\{__("In-memory caches")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName().CombineStatusGroupNames(status.Group)}");
                 // Object lock managers
                 foreach (var kvp in ObjectLockTable.ObjectLocks)
                     if (kvp.Value is IStatusProvider sp)

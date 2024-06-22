@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
+using System.ComponentModel;
 using System.Runtime;
 using static wan24.Core.Logging;
 
@@ -7,7 +8,7 @@ namespace wan24.Core
     /// <summary>
     /// Base class for a hosted service
     /// </summary>
-    public abstract class HostedServiceBase : DisposableBase, IServiceWorker, IHostedService
+    public abstract class HostedServiceBase : DisposableBase, IServiceWorker, IHostedService, IExportUserActions
     {
         /// <summary>
         /// Thread synchronization
@@ -97,9 +98,10 @@ namespace wan24.Core
         /// <summary>
         /// Cancellation token
         /// </summary>
-        protected CancellationToken CancelToken { get; private set; }
+        protected CancellationToken CancelToken { get; set; }
 
         /// <inheritdoc/>
+        [UserAction(), DisplayText("Start"), Description("Start the service")]
         public virtual async Task StartAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -131,6 +133,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        [UserAction(), DisplayText("Stop"), Description("Stop the service")]
         public virtual async Task StopAsync(CancellationToken cancellationToken = default)
         {
             if (!EnsureUndisposed(allowDisposing: true)) return;
@@ -168,6 +171,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        [UserAction(), DisplayText("Pause"), Description("Pause the service")]
         public virtual async Task PauseAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -184,6 +188,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        [UserAction(), DisplayText("Resume"), Description("Resume the service")]
         public virtual async Task ResumeAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -307,7 +312,7 @@ namespace wan24.Core
             }
             catch (OperationCanceledException ex)
             {
-                if (ex.CancellationToken != CancelToken)
+                if (!ex.CancellationToken.IsEqualTo(CancelToken))
                 {
                     StoppedExceptional = true;
                     LastException = ex;

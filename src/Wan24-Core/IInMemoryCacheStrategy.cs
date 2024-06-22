@@ -7,6 +7,10 @@
     public interface IInMemoryCacheStrategy<T> : IComparer<InMemoryCacheEntry<T>>
     {
         /// <summary>
+        /// If the condition for this strategy is still met
+        /// </summary>
+        bool IsConditionMet { get; }
+        /// <summary>
         /// Pre-filter cache entries
         /// </summary>
         /// <param name="entries">Cache entries</param>

@@ -1,30 +1,35 @@
-﻿using Microsoft.Extensions.Primitives;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace wan24.Core
 {
     // IObservable<ConcurrentChangeTokenDictionary<string, InMemoryCacheEntry<T>>>, IChangeToken and INotifyPropertyChanged implementation
-    public partial class InMemoryCache<T> : IObservable<ConcurrentChangeTokenDictionary<string, InMemoryCacheEntry<T>>>, IChangeToken, INotifyPropertyChanged
+    public partial class InMemoryCache<T>
     {
         /// <inheritdoc/>
-        public bool HasChanged => Cache.HasChanged;
+        public bool HasChanged => IfUndisposed(() => Cache.HasChanged);
 
         /// <inheritdoc/>
-        public bool ActiveChangeCallbacks => Cache.ActiveChangeCallbacks;
+        public bool ActiveChangeCallbacks => IfUndisposed(() => Cache.ActiveChangeCallbacks);
 
         /// <inheritdoc/>
         public event PropertyChangedEventHandler? PropertyChanged
         {
-            add => Cache.PropertyChanged += value;
-            remove => Cache.PropertyChanged -= value;
+            add => IfUndisposed(() => Cache.PropertyChanged += value);
+            remove => IfUndisposed(() => Cache.PropertyChanged -= value, allowDisposing: true);
         }
 
         /// <inheritdoc/>
         public IDisposable RegisterChangeCallback(Action<object?> callback, object? state)
-            => Cache.RegisterChangeCallback(callback, state);
+        {
+            EnsureUndisposed();
+            return Cache.RegisterChangeCallback(callback, state);
+        }
 
         /// <inheritdoc/>
         public IDisposable Subscribe(IObserver<ConcurrentChangeTokenDictionary<string, InMemoryCacheEntry<T>>> observer)
-            => Cache.Subscribe(observer);
+        {
+            EnsureUndisposed();
+            return Cache.Subscribe(observer);
+        }
     }
 }
