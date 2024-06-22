@@ -1884,11 +1884,14 @@ item = (await cache.GetAsync(&quot;key&quot;))?.Item;
 cache.TryRemove(&quot;key&quot;);
 
 // Clear the cache while the cache is still serving items
-cache.Clear();
+cache.Clear(disposeItems: true);
+await cache.ClearAsync(disposeItems: true);
 </code></pre>
 <p><strong>NOTE</strong>: This in-memory cache implementation isn't compatible with the .NET
 built-in approaches. It implements <code>IHostedService</code> and needs to be started
-before it can be used! The asynchronous methods should be used where possible.</p>
+before it can be used! The asynchronous methods should be used where possible,
+if the chached item type implements <code>IAsyncDisposable</code> - otherwise the
+synchronous methods are fine, too.</p>
 <p>The cache capacity can be limited by</p>
 <ul>
 <li>number of cache entries (hard limit)</li>
@@ -1901,6 +1904,7 @@ before it can be used! The asynchronous methods should be used where possible.</
 <li>cache entry idle state</li>
 <li>number of cache entries (soft limit)</li>
 <li>cached item size (soft limit)</li>
+<li>max. memory usage in bytes</li>
 <li>optional custom management strategies</li>
 </ul>
 <p>in a fixed interval. An item may also be removed when disposing, if it's an
@@ -1945,16 +1949,15 @@ using AutoDisposer&lt;ItemType&gt;.Context? itemContext =
 
 // Remove an item from the cache
 if(cache.TryRemove(&quot;key&quot;)?.Item is AutoDisposer&lt;ItemType&gt; removedItemDisposer)
+    removedItemDisposer.ShouldDispose = true;
+if(cache.TryRemove(&quot;key&quot;)?.Item is AutoDisposer&lt;ItemType&gt; removedItemDisposer)
     await removedItemDisposer.SetShouldDisposeAsync();
-
-// Clear the cache while the cache is still serving items
-foreach(InMemoryCacheEntry&lt;AutoDisposer&lt;ItemType&gt;&gt; entry in cache.Clear())
-    await entry.Item.SetShouldDisposeAsync();
 </code></pre>
 <p><strong>WARNING</strong>: If the cache is being disposed, all cached items will be
 disposed, too, no matter if they're still in use or not!</p>
 <p><strong>CAUTION</strong>: If the <code>InMemoryCacheOptions.MaxItemSize</code> value was set, and an
-oversized item is being added, an <code>OutOfMemoryException</code> will be thrown.</p>
+oversized disposable item is being added, an <code>OutOfMemoryException</code> will be
+thrown.</p>
 <h3 id="iinmemorycacheitem-interface"><code>IInMemoryCacheItem</code> interface</h3>
 <p>By implementing the <code>IInMemoryCacheItem</code> interface a cacheable item can export
 its unique key and its size in the cache. While the key should never change

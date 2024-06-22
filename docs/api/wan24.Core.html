@@ -603,6 +603,9 @@ the first stream per default)</p>
       <h5><a class="xref" href="wan24.Core.InMemoryCacheOptions.html">InMemoryCacheOptions</a></h5>
       <section><p>In-memory cache options</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCacheTable.html">InMemoryCacheTable</a></h5>
+      <section><p>In-memory cache table</p>
+</section>
       <h5><a class="xref" href="wan24.Core.InMemoryCache-1.html">InMemoryCache&lt;T&gt;</a></h5>
       <section><p>In-memory cache</p>
 </section>
@@ -623,6 +626,12 @@ the first stream per default)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.InstancePool-1.html">InstancePool&lt;T&gt;</a></h5>
       <section><p>Instance pool</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InstanceTableAttribute.html">InstanceTableAttribute</a></h5>
+      <section><p>Attribute for an instance table static dictionary field (key must be a string)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InstanceTables.html">InstanceTables</a></h5>
+      <section><p>Instance tables</p>
 </section>
       <h5><a class="xref" href="wan24.Core.IpSubNetAttribute.html">IpSubNetAttribute</a></h5>
       <section><p>IP sub-net validation attribute (for validating <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> or <a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a> value properties)</p>
@@ -974,6 +983,9 @@ restrictions for this)</p>
       <h5><a class="xref" href="wan24.Core.StringValueConverter.html">StringValueConverter</a></h5>
       <section><p>(Display) String to value conversion</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.StringValueConverterAttribute.html">StringValueConverterAttribute</a></h5>
+      <section><p>Attribute for a property which has a value that supports display string conversion</p>
+</section>
       <h5><a class="xref" href="wan24.Core.SynchronizedStream.html">SynchronizedStream</a></h5>
       <section><p>Synchronized stream (synchronizes reading/writing/seeking operations; the base stream should implement each single asynchronous reading/writing method! Any asynchronous
 reading/writing method which adopts or calls to another asynchronous reading/writing or any seeking method will cause a dead-lock!)</p>
@@ -1051,6 +1063,25 @@ translation texts in your source code)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.UidExtAttribute.html">UidExtAttribute</a></h5>
       <section><p><a class="xref" href="wan24.Core.UidExt.html">UidExt</a> validation attribute</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.UserActionAttribute.html">UserActionAttribute</a></h5>
+      <section><p>Attribute for a method that can be executed from an user (only <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a> and <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a> parameters can
+be served, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> will be provided - other parameters need a default value; see <a class="xref" href="wan24.Core.IExportUserActions.html">IExportUserActions</a> also)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.UserActionCall.html">UserActionCall</a></h5>
+      <section><p>User action call</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.UserActionInfo.html">UserActionInfo</a></h5>
+      <section><p>User action information</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.UserActionInfo.UserActionParameterInfo.html">UserActionInfo.UserActionParameterInfo</a></h5>
+      <section><p>User action parameter information</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ValueConverter.html">ValueConverter</a></h5>
+      <section><p>Value conversion (see <a class="xref" href="wan24.Core.ValueConverterAttribute.html">ValueConverterAttribute</a>)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ValueConverterAttribute.html">ValueConverterAttribute</a></h5>
+      <section><p>Attribute for a property that supports value conversion (see <a class="xref" href="wan24.Core.ValueConverter.html">ValueConverter</a>)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ValueObjectBase-1.html">ValueObjectBase&lt;T&gt;</a></h5>
       <section><p>A base class for a value object</p>
@@ -1217,14 +1248,23 @@ Interfaces
       <h5><a class="xref" href="wan24.Core.IEventThrottle.html">IEventThrottle</a></h5>
       <section><p>Interface for an event throttle</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IExportUserActions.html">IExportUserActions</a></h5>
+      <section><p>Interface for a type which exports instance user actions (see <a class="xref" href="wan24.Core.UserActionAttribute.html">UserActionAttribute</a> also)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IGlobalLock.html">IGlobalLock</a></h5>
       <section><p>Interface for a global lock</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IInMemoryCache.html">IInMemoryCache</a></h5>
+      <section><p>Interface for an in-memory cache</p>
 </section>
       <h5><a class="xref" href="wan24.Core.IInMemoryCacheItem.html">IInMemoryCacheItem</a></h5>
       <section><p>Interface for an in-memory cacheable item</p>
 </section>
       <h5><a class="xref" href="wan24.Core.IInMemoryCacheStrategy-1.html">IInMemoryCacheStrategy&lt;T&gt;</a></h5>
       <section><p>Interface for an in-memory cache management strategy</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IInMemoryCache-1.html">IInMemoryCache&lt;T&gt;</a></h5>
+      <section><p>Interface for an in-memory cache</p>
 </section>
       <h5><a class="xref" href="wan24.Core.IInstancePool.html">IInstancePool</a></h5>
       <section><p>Interface for an instance pool</p>
@@ -1469,6 +1509,9 @@ Delegates
       <h5><a class="xref" href="wan24.Core.IDisposableObject.Dispose_Delegate.html">IDisposableObject.Dispose_Delegate</a></h5>
       <section><p>Delegate for the disposing events</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IInMemoryCache-1.CacheEntryFactory_Delegate.html">IInMemoryCache&lt;T&gt;.CacheEntryFactory_Delegate</a></h5>
+      <section><p>Delegate for a cache entry factory</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IInstancePool-1.InstanceAsync_Delegate.html">IInstancePool&lt;T&gt;.InstanceAsync_Delegate</a></h5>
       <section><p>Asynchronous instance factory delegate</p>
 </section>
@@ -1480,9 +1523,6 @@ Delegates
 </section>
       <h5><a class="xref" href="wan24.Core.IdleState.Idle_Delegate.html">IdleState.Idle_Delegate</a></h5>
       <section><p>Delegate for an event handler</p>
-</section>
-      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.CacheEntryFactory_Delegate.html">InMemoryCache&lt;T&gt;.CacheEntryFactory_Delegate</a></h5>
-      <section><p>Delegate for a cache entry factory</p>
 </section>
       <h5><a class="xref" href="wan24.Core.JsonHelper.Decoder_Delegate.html">JsonHelper.Decoder_Delegate</a></h5>
       <section><p>Delegate for a JSON decoder</p>
@@ -1624,6 +1664,9 @@ Delegates
 </section>
       <h5><a class="xref" href="wan24.Core.TypeHelper.LoadType_Delegate.html">TypeHelper.LoadType_Delegate</a></h5>
       <section><p>Delegate for the type loader event</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ValueConverter.Converter_Delegate.html">ValueConverter.Converter_Delegate</a></h5>
+      <section><p>Delegate for a converter</p>
 </section>
 
 
