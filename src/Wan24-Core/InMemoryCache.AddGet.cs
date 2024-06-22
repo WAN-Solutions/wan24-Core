@@ -37,6 +37,8 @@
                 if (IsItemDisposable)
                     DisposeItem(existing.Item);
                 existing.OnRemoved();
+                HandleEntryRemoved(existing);
+                RaiseOnEntryRemoved(existing);
             }
             // Add a new item
             InMemoryCacheEntry<T> entry = CreateEntry(key, item, options);
@@ -64,7 +66,11 @@
                         if (!isOverSize)
                             _Count++;
                         if (removeEntry)
+                        {
                             entry.OnAdded();
+                            HandleEntryAdded(entry);
+                            RaiseOnEntryAdded(entry);
+                        }
                         return entry;
                     }
                 }
@@ -121,6 +127,8 @@
                 if (IsItemDisposable)
                     await DisposeItemAsync(existing.Item).DynamicContext();
                 existing.OnRemoved();
+                await HandleEntryRemovedAsync(existing, cancellationToken).DynamicContext();
+                RaiseOnEntryRemoved(existing);
             }
             // Add a new item
             InMemoryCacheEntry<T> entry = CreateEntry(key, item, options);
@@ -148,7 +156,11 @@
                         if (!isOverSize)
                             _Count++;
                         if (removeEntry)
+                        {
                             entry.OnAdded();
+                            await HandleEntryAddedAsync(entry, cancellationToken).DynamicContext();
+                            RaiseOnEntryAdded(entry);
+                        }
                         return entry;
                     }
                 }
@@ -186,7 +198,7 @@
         {
             EnsureUndisposed();
             // Use the existing item, if possible
-            if (Cache.TryGetValue(key, out InMemoryCacheEntry<T>? existing))
+            if (Cache.TryGetValue(key, out InMemoryCacheEntry<T>? existing) || (existing = GetEntry(key)) is not null)
                 if (!existing.CanUse)
                 {
                     if (Remove(existing) && IsItemDisposable)
@@ -235,7 +247,11 @@
                         if (!isOverSize)
                             _Count++;
                         if (removeEntry)
+                        {
                             newEntry.OnAdded();
+                            HandleEntryAdded(newEntry);
+                            RaiseOnEntryAdded(newEntry);
+                        }
                         return newEntry;
                     }
                 }
@@ -268,7 +284,7 @@
         {
             EnsureUndisposed();
             // Use the existing item, if possible
-            if (Cache.TryGetValue(key, out InMemoryCacheEntry<T>? existing))
+            if (Cache.TryGetValue(key, out InMemoryCacheEntry<T>? existing) || (existing = await GetEntryAsync(key, cancellationToken).DynamicContext()) is not null)
                 if (!existing.CanUse)
                 {
                     if (Remove(existing) && IsItemDisposable)
@@ -317,7 +333,11 @@
                         if (!isOverSize)
                             _Count++;
                         if (removeEntry)
+                        {
                             newEntry.OnAdded();
+                            await HandleEntryAddedAsync(newEntry, cancellationToken).DynamicContext();
+                            RaiseOnEntryAdded(newEntry);
+                        }
                         return newEntry;
                     }
                 }
