@@ -315,9 +315,9 @@ namespace wan24.Core
                         return true;
                     }
                 }
-                else
+                else if(Trace)
                 {
-                    if (Trace) Logging.WriteTrace($"Sub-net \"{subNet}\" component parsing failed");
+                    Logging.WriteTrace($"Sub-net \"{subNet}\" component parsing failed");
                 }
             }
             catch (Exception ex)

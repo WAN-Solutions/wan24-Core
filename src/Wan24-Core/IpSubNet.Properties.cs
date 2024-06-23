@@ -147,7 +147,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Broadcast
+        /// Broadcast (IPv4 only!)
         /// </summary>
         public BigInteger Broadcast
         {
@@ -195,7 +195,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Get the broadcast IP address
+        /// Get the broadcast IP address (IPv4 only!)
         /// </summary>
         public IPAddress BroadcastIPAddress
         {
