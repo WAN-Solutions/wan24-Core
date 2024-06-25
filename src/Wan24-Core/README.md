@@ -183,6 +183,8 @@ including extensions for numeric type encoding/decoding)
     - `TimeoutStream` can timeout async reading/writing methods
     - `BlockingBufferStream` for writing to / reading from a buffer blocked
     - `HubStream` for forwarding writing operations to multiple target streams
+    - `DynamicHubStream` for forwarding writing operations to multiple target 
+    streams which can be exchanged
     - `LimitedStream` limits reading/writing/seeking capabilities of a stream
     - `ZeroStream` reads zero bytes and writes to nowhere
     - `CountingStream` counts red/written bytes
