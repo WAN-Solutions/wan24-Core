@@ -107,9 +107,7 @@
             {
                 EnsureUndisposed();
                 EnsureSeekable();
-                Stream[] targets = Targets;
-                if (targets.Length == 0) return;
-                foreach (Stream target in targets) target.Position = value;
+                foreach (Stream target in Targets) target.Position = value;
             }
         }
 
@@ -176,9 +174,7 @@
         {
             EnsureUndisposed();
             EnsureWritable();
-            Stream[] targets = Targets;
-            if (targets.Length == 0) return;
-            foreach (Stream target in targets) target.Flush();
+            foreach (Stream target in Targets) target.Flush();
         }
 
         /// <inheritdoc/>
@@ -207,10 +203,8 @@
         {
             EnsureUndisposed();
             EnsureReadable();
-            Stream[] targets = Targets;
-            if (targets.Length == 0) return 0;
             int? res = null;
-            foreach (Stream target in targets)
+            foreach (Stream target in Targets)
                 if (res.HasValue)
                 {
                     target.Position += res.Value;
@@ -253,10 +247,8 @@
         {
             EnsureUndisposed();
             EnsureSeekable();
-            Stream[] targets = Targets;
-            if (targets.Length == 0) return Position;
             long? res = null;
-            foreach (Stream target in targets)
+            foreach (Stream target in Targets)
                 if (res.HasValue)
                 {
                     target.Seek(offset, origin);
@@ -273,9 +265,7 @@
         {
             EnsureUndisposed();
             EnsureWritable();
-            Stream[] targets = Targets;
-            if (targets.Length == 0) return;
-            foreach (Stream target in targets) target.SetLength(value);
+            foreach (Stream target in Targets) target.SetLength(value);
         }
 
         /// <inheritdoc/>
@@ -286,9 +276,7 @@
         {
             EnsureUndisposed();
             EnsureWritable();
-            Stream[] targets = Targets;
-            if (targets.Length == 0) return;
-            foreach (Stream target in targets)
+            foreach (Stream target in Targets)
                 try
                 {
                     target.Write(buffer);
@@ -308,7 +296,7 @@
                             removed = true;
                         }
                     }
-                    RaiseOnError(target, ex, removed);
+                    RaiseOnWriteError(target, ex, removed);
                 }
         }
 
@@ -336,6 +324,7 @@
                     }
                     catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
                     {
+                        throw;
                     }
                     catch (Exception ex)
                     {
@@ -352,7 +341,7 @@
                                 removed = true;
                             }
                         }
-                        RaiseOnError(target, ex, removed);
+                        RaiseOnWriteError(target, ex, removed);
                     }
                 },
                 threads: concurrency,
@@ -408,7 +397,7 @@
         /// <param name="stream">Failed target stream</param>
         /// <param name="ex">Exception</param>
         /// <param name="removed">If the <c>stream</c> was removed</param>
-        protected virtual void RaiseOnError(in Stream stream, in Exception ex, in bool removed) => OnWriteError?.Invoke(this, new(stream, ex, removed));
+        protected virtual void RaiseOnWriteError(in Stream stream, in Exception ex, in bool removed) => OnWriteError?.Invoke(this, new(stream, ex, removed));
 
         /// <summary>
         /// <see cref="OnWriteError"/> event arguments
