@@ -67,6 +67,11 @@ namespace wan24.Core
         public string[]? SearchFolders { get; set; }
 
         /// <summary>
+        /// If to auto-create object mappings
+        /// </summary>
+        public bool? AutoCreateObjectMappings { get; set; }
+
+        /// <summary>
         /// Apply a CLI configuration from CLI arguments, too?
         /// </summary>
         [JsonIgnore]
@@ -103,6 +108,7 @@ namespace wan24.Core
             if (DefaultCliArguments is not null) ENV._CliArguments = ENV._CliArguments.Length == 0
                     ? [.. DefaultCliArguments, .. ENV._CliArguments]
                     : [ENV._CliArguments[0], .. DefaultCliArguments, .. ENV._CliArguments.AsSpan(1)];
+            if (AutoCreateObjectMappings.HasValue) ObjectMapping.AutoCreate = AutoCreateObjectMappings.Value;
             List<string> args = new(Properties.Count);
             foreach (var kvp in Properties)
                 if (kvp.Value is null)
@@ -155,6 +161,7 @@ namespace wan24.Core
             if (DefaultCliArguments is not null) ENV._CliArguments = ENV._CliArguments.Length == 0
                     ? [.. DefaultCliArguments, .. ENV._CliArguments]
                     : [ENV._CliArguments[0], .. DefaultCliArguments, .. ENV._CliArguments.AsSpan(1)];
+            if (AutoCreateObjectMappings.HasValue) ObjectMapping.AutoCreate = AutoCreateObjectMappings.Value;
             List<string> args = new(Properties.Count);
             foreach (var kvp in Properties)
                 if (kvp.Value is null)
