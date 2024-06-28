@@ -4,10 +4,12 @@
     public partial class ObjectMapping
     {
         /// <summary>
-        /// Target obect instance factory delegate
+        /// Target object instance factory delegate
         /// </summary>
+        /// <param name="targetType">Target object type</param>
+        /// <param name="requestedType">Requested target object type</param>
         /// <returns>New target object instance</returns>
-        public delegate object TargetInstanceFactoryDelegate();
+        public delegate object TargetInstanceFactoryDelegate(Type targetType, Type requestedType);
 
         /// <summary>
         /// Delegate for a mapper method

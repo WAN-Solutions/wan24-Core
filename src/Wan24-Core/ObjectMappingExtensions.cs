@@ -19,15 +19,8 @@ namespace wan24.Core
         {
             if (ObjectMapping<tSource, tTarget>.Get() is not ObjectMapping mapping)
             {
-                if (!ObjectMapping.AutoCreate) throw new InvalidOperationException("No mapping found");
-                MapAttribute? attr = typeof(tSource).GetCustomAttributeCached<MapAttribute>();
-                mapping = ObjectMapping<tSource, tTarget>.Create()
-                    .AddAutoMappings(
-                        optIn: attr is not null,
-                        attr?.PublicGetterOnly ?? false,
-                        attr?.PublicSetterOnly ?? false
-                        )
-                    .Register();
+                if (!ObjectMapping.AutoCreate) throw new MappingException($"No mapping for {typeof(tSource)} to {typeof(tTarget)} found");
+                mapping = ObjectMapping<tSource, tTarget>.Create().AddAutoMappings().Register();
             }
             mapping.ApplyMappings(source, target);
             return source;
@@ -42,15 +35,8 @@ namespace wan24.Core
         {
             if (ObjectMapping.Get(source.GetType(), target.GetType()) is not ObjectMapping mapping)
             {
-                if (!ObjectMapping.AutoCreate) throw new InvalidOperationException("No mapping found");
-                MapAttribute? attr = source.GetType().GetCustomAttributeCached<MapAttribute>();
-                mapping = ObjectMapping.Create(source.GetType(), target.GetType())
-                    .AddAutoMappings(
-                        optIn: attr is not null,
-                        attr?.PublicGetterOnly ?? false,
-                        attr?.PublicSetterOnly ?? false
-                        )
-                    .Register();
+                if (!ObjectMapping.AutoCreate) throw new MappingException($"No mapping for {source.GetType()} to {target.GetType()} found");
+                mapping = ObjectMapping.Create(source.GetType(), target.GetType()).AddAutoMappings().Register();
             }
             mapping.ApplyMappings(source, target);
         }
@@ -67,15 +53,8 @@ namespace wan24.Core
         {
             if (ObjectMapping<tSource, tTarget>.Get() is not ObjectMapping mapping)
             {
-                if (!ObjectMapping.AutoCreate) throw new InvalidOperationException("No mapping found");
-                MapAttribute? attr = typeof(tSource).GetCustomAttributeCached<MapAttribute>();
-                mapping = ObjectMapping<tSource, tTarget>.Create()
-                    .AddAutoMappings(
-                        optIn: attr is not null,
-                        attr?.PublicGetterOnly ?? false,
-                        attr?.PublicSetterOnly ?? false
-                        )
-                    .Register();
+                if (!ObjectMapping.AutoCreate) throw new MappingException($"No mapping for {typeof(tSource)} to {typeof(tTarget)} found");
+                mapping = ObjectMapping<tSource, tTarget>.Create().AddAutoMappings().Register();
             }
             await mapping.ApplyMappingsAsync(source, target, cancellationToken).DynamicContext();
         }
@@ -90,15 +69,8 @@ namespace wan24.Core
         {
             if (ObjectMapping.Get(source.GetType(), target.GetType()) is not ObjectMapping mapping)
             {
-                if (!ObjectMapping.AutoCreate) throw new InvalidOperationException("No mapping found");
-                MapAttribute? attr = source.GetType().GetCustomAttributeCached<MapAttribute>();
-                mapping = ObjectMapping.Create(source.GetType(), target.GetType())
-                    .AddAutoMappings(
-                        optIn: attr is not null,
-                        attr?.PublicGetterOnly ?? false,
-                        attr?.PublicSetterOnly ?? false
-                        )
-                    .Register();
+                if (!ObjectMapping.AutoCreate) throw new MappingException($"No mapping for {source.GetType()} to {target.GetType()} found");
+                mapping = ObjectMapping.Create(source.GetType(), target.GetType()).AddAutoMappings().Register();
             }
             await mapping.ApplyMappingsAsync(source, target, cancellationToken).DynamicContext();
         }
@@ -115,19 +87,12 @@ namespace wan24.Core
             ArgumentNullException.ThrowIfNull(source);
             if (ObjectMapping<tSource, tTarget>.Get() is not ObjectMapping mapping)
             {
-                if (!ObjectMapping.AutoCreate) throw new InvalidOperationException("No mapping found");
-                MapAttribute? attr = typeof(tSource).GetCustomAttributeCached<MapAttribute>();
-                mapping = ObjectMapping<tSource, tTarget>.Create()
-                    .AddAutoMappings(
-                        optIn: attr is not null,
-                        attr?.PublicGetterOnly ?? false,
-                        attr?.PublicSetterOnly ?? false
-                        )
-                    .Register();
+                if (!ObjectMapping.AutoCreate) throw new MappingException($"No mapping for {typeof(tSource)} to {typeof(tTarget)} found");
+                mapping = ObjectMapping<tSource, tTarget>.Create().AddAutoMappings().Register();
             }
             tTarget res = mapping.TargetInstanceFactory is null
-                ? (tTarget)(typeof(tTarget).ConstructAuto() ?? throw new InvalidOperationException($"Failed to instance {typeof(tTarget)}"))
-                : (tTarget)mapping.TargetInstanceFactory.Invoke();
+                ? (tTarget)(typeof(tTarget).ConstructAuto() ?? throw new MappingException($"Failed to instance target type {typeof(tTarget)}"))
+                : (tTarget)mapping.TargetInstanceFactory.Invoke(mapping.TargetType, typeof(tTarget));
             MapTo(source, res);
             return res;
         }
@@ -143,19 +108,12 @@ namespace wan24.Core
             ArgumentNullException.ThrowIfNull(source);
             if (ObjectMapping.Get(source.GetType(), targetType) is not ObjectMapping mapping)
             {
-                if (!ObjectMapping.AutoCreate) throw new InvalidOperationException("No mapping found");
-                MapAttribute? attr = source.GetType().GetCustomAttributeCached<MapAttribute>();
-                mapping = ObjectMapping.Create(source.GetType(), targetType)
-                    .AddAutoMappings(
-                        optIn: attr is not null,
-                        attr?.PublicGetterOnly ?? false,
-                        attr?.PublicSetterOnly ?? false
-                        )
-                    .Register();
+                if (!ObjectMapping.AutoCreate) throw new MappingException($"No mapping for {source.GetType()} to {targetType} found");
+                mapping = ObjectMapping.Create(source.GetType(), targetType).AddAutoMappings().Register();
             }
             object res = mapping.TargetInstanceFactory is null
-                ? targetType.ConstructAuto() ?? throw new InvalidOperationException($"Failed to instance {targetType}")
-                : mapping.TargetInstanceFactory.Invoke();
+                ? targetType.ConstructAuto() ?? throw new MappingException($"Failed to instance target type {targetType}")
+                : mapping.TargetInstanceFactory.Invoke(mapping.TargetType, targetType);
             MapObjectTo(source, res);
             return res;
         }
@@ -173,19 +131,12 @@ namespace wan24.Core
             ArgumentNullException.ThrowIfNull(source);
             if (ObjectMapping<tSource, tTarget>.Get() is not ObjectMapping mapping)
             {
-                if (!ObjectMapping.AutoCreate) throw new InvalidOperationException("No mapping found");
-                MapAttribute? attr = typeof(tSource).GetCustomAttributeCached<MapAttribute>();
-                mapping = ObjectMapping<tSource, tTarget>.Create()
-                    .AddAutoMappings(
-                        optIn: attr is not null,
-                        attr?.PublicGetterOnly ?? false,
-                        attr?.PublicSetterOnly ?? false
-                        )
-                    .Register();
+                if (!ObjectMapping.AutoCreate) throw new MappingException($"No mapping for {typeof(tSource)} to {typeof(tTarget)} found");
+                mapping = ObjectMapping<tSource, tTarget>.Create().AddAutoMappings().Register();
             }
             tTarget res = mapping.TargetInstanceFactory is null
-                ? (tTarget)(typeof(tTarget).ConstructAuto() ?? throw new InvalidOperationException($"Failed to instance {typeof(tTarget)}"))
-                : (tTarget)mapping.TargetInstanceFactory.Invoke();
+                ? (tTarget)(typeof(tTarget).ConstructAuto() ?? throw new MappingException($"Failed to instance target type{typeof(tTarget)}"))
+                : (tTarget)mapping.TargetInstanceFactory.Invoke(mapping.TargetType, typeof(tTarget));
             await MapToAsync(source, res, cancellationToken).DynamicContext();
             return res;
         }
@@ -202,19 +153,12 @@ namespace wan24.Core
             ArgumentNullException.ThrowIfNull(source);
             if (ObjectMapping.Get(source.GetType(), targetType) is not ObjectMapping mapping)
             {
-                if (!ObjectMapping.AutoCreate) throw new InvalidOperationException("No mapping found");
-                MapAttribute? attr = source.GetType().GetCustomAttributeCached<MapAttribute>();
-                mapping = ObjectMapping.Create(source.GetType(), targetType)
-                    .AddAutoMappings(
-                        optIn: attr is not null,
-                        attr?.PublicGetterOnly ?? false,
-                        attr?.PublicSetterOnly ?? false
-                        )
-                    .Register();
+                if (!ObjectMapping.AutoCreate) throw new MappingException($"No mapping for {source.GetType()} to {targetType} found");
+                mapping = ObjectMapping.Create(source.GetType(), targetType).AddAutoMappings().Register();
             }
             object res = mapping.TargetInstanceFactory is null
-                ? targetType.ConstructAuto() ?? throw new InvalidOperationException($"Failed to instance {targetType}")
-                : mapping.TargetInstanceFactory.Invoke();
+                ? targetType.ConstructAuto() ?? throw new MappingException($"Failed to instance target type {targetType}")
+                : mapping.TargetInstanceFactory.Invoke(mapping.TargetType, targetType);
             await MapObjectToAsync(source, res, cancellationToken).DynamicContext();
             return res;
         }

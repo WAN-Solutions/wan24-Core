@@ -1949,6 +1949,8 @@ ObjectMapping? mapping = ObjectMapping.Get(typeof(SourceType), typeof(TargetType
 ObjectMapping<SourceType, TargetType>? mapping = ObjectMapping<SourceType, TargetType>.Get();
 ```
 
+or using the `Map(Object)To(Async)` extension methods.
+
 **NOTE**: An `ObjectMapping` instance can always be casted to its generic 
 version. The `ObjectMapping.Create` method will call the generic types 
 `Create` method for this. If you want to extend the `ObjectMapping`, you can 
@@ -1971,7 +1973,7 @@ mappings:
 Then you could do something like this:
 
 ```cs
-class SourceType() : CastableMappingObjectBase()
+public sealed class SourceType() : CastableMappingObjectBase<SourceType, TargetType>()
 {
     ...
 }

@@ -25,7 +25,7 @@ namespace wan24.Core
         /// <summary>
         /// Registered object mappings
         /// </summary>
-        protected static readonly ConcurrentDictionary<(Type, Type), ObjectMapping> Registered = [];
+        protected static readonly ConcurrentDictionary<(Type, Type), ObjectMapping> RegisteredMappings = [];
 
         /// <summary>
         /// Static constructor
@@ -35,7 +35,7 @@ namespace wan24.Core
             ApplyMethod = typeof(ObjectMapping).GetMethodCached(nameof(ApplyMappings), BindingFlags.Instance | BindingFlags.Public)
                 ?? throw new InvalidProgramException("Failed to get apply method");
             AsyncApplyMethod = typeof(ObjectMapping).GetMethodCached(nameof(ApplyMappingsAsync), BindingFlags.Instance | BindingFlags.Public)
-                ?? throw new InvalidProgramException("Failed to get apply method");
+                ?? throw new InvalidProgramException("Failed to get asynchronous apply method");
             MapMethod = typeof(MapAttribute).GetMethodCached(nameof(MapAttribute.Map), BindingFlags.Instance | BindingFlags.Public)
                 ?? throw new InvalidProgramException("Failed to get map method");
             AsyncMapMethod = typeof(MapAttribute).GetMethodCached(nameof(MapAttribute.MapAsync), BindingFlags.Instance | BindingFlags.Public)
@@ -59,8 +59,7 @@ namespace wan24.Core
                                     mi.IsGenericMethod
                                 select mi)
                 .FirstOrDefault()
-                ?.MakeGenericMethod(sourceType, targetType)
-                .Invoke(obj: null, [])
+                ?.Invoke(obj: null, [])
                     ?? throw new InvalidProgramException("Failed to get create method"));
 
         /// <summary>
@@ -70,7 +69,7 @@ namespace wan24.Core
         /// <param name="targetType">Target object type</param>
         /// <returns>Object mapping</returns>
         public static ObjectMapping? Get(in Type sourceType, in Type targetType)
-            => Registered.TryGetValue((sourceType, targetType), out ObjectMapping? res)
+            => RegisteredMappings.TryGetValue((sourceType, targetType), out ObjectMapping? res)
                 ? res
                 : null;
 
@@ -81,8 +80,43 @@ namespace wan24.Core
         /// <param name="targetType">Target object type</param>
         /// <returns>Removed object mapping</returns>
         public static ObjectMapping? Remove(in Type sourceType, in Type targetType)
-            => Registered.TryRemove((sourceType, targetType), out ObjectMapping? res)
+            => RegisteredMappings.TryRemove((sourceType, targetType), out ObjectMapping? res)
                 ? res
                 : null;
+
+        /// <summary>
+        /// Determine if a value type can be mapped to a target object property
+        /// </summary>
+        /// <param name="valueType">Value type</param>
+        /// <param name="pi">Target property</param>
+        /// <param name="attr">Source property map attribute</param>
+        /// <returns>If mapping is possible</returns>
+        public static bool CanMapTypeTo(in Type valueType, in PropertyInfo pi, in MapAttribute? attr)
+            => pi.SetMethod is not null && 
+                (
+                    (attr?.Nested ?? false) || 
+                    pi.PropertyType.IsAssignableFrom(valueType) || 
+                    (attr?.CanMap ?? false) || 
+                    (attr?.CanMapAsync ?? false)
+                );
+
+        /// <summary>
+        /// Determine if a source object property can be mapped to a target object property
+        /// </summary>
+        /// <param name="sourceProperty">Source property</param>
+        /// <param name="targetProperty">Target property</param>
+        /// <returns>If mapping is possible</returns>
+        public static bool CanMapPropertyTo(in PropertyInfo sourceProperty, in PropertyInfo targetProperty)
+            => CanMapTypeTo(sourceProperty.PropertyType, targetProperty, sourceProperty.GetCustomAttributeCached<MapAttribute>());
+
+        /// <summary>
+        /// Determine if a source object property can be mapped to a target object property
+        /// </summary>
+        /// <param name="sourceProperty">Source property</param>
+        /// <param name="targetProperty">Target property</param>
+        /// <param name="attr">Source property map attribute</param>
+        /// <returns>If mapping is possible</returns>
+        public static bool CanMapPropertyTo(in PropertyInfo sourceProperty, in PropertyInfo targetProperty, out MapAttribute? attr)
+            => CanMapTypeTo(sourceProperty.PropertyType, targetProperty, attr = sourceProperty.GetCustomAttributeCached<MapAttribute>());
     }
 }

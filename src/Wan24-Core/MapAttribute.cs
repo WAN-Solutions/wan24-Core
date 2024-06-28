@@ -20,6 +20,11 @@
         public bool Nested { get; init; }
 
         /// <summary>
+        /// If to require a <see cref="MapAttribute"/> for properties to map
+        /// </summary>
+        public bool OptIn { get; init; } = true;
+
+        /// <summary>
         /// If to allow source properties having a public getter only (when applied to a source type for auto-mapping)
         /// </summary>
         public bool PublicGetterOnly { get; init; }

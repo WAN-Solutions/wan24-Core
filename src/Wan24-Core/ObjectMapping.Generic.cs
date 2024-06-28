@@ -70,7 +70,7 @@
         /// </summary>
         /// <returns>Object mapping</returns>
         public static ObjectMapping? Get()
-            => Registered.TryGetValue((typeof(tSource), typeof(tTarget)), out ObjectMapping? res)
+            => RegisteredMappings.TryGetValue((typeof(tSource), typeof(tTarget)), out ObjectMapping? res)
                 ? res
                 : null;
 
@@ -79,7 +79,7 @@
         /// </summary>
         /// <returns>Removed object mapping</returns>
         public static ObjectMapping? Remove()
-            => Registered.TryRemove((typeof(tSource), typeof(tTarget)), out ObjectMapping? res)
+            => RegisteredMappings.TryRemove((typeof(tSource), typeof(tTarget)), out ObjectMapping? res)
                 ? res
                 : null;
     }
