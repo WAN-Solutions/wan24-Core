@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace wan24.Core
 {
@@ -8,6 +10,15 @@ namespace wan24.Core
     /// </summary>
     public static class StringValueConverter
     {
+        /// <summary>
+        /// JSON value converter name
+        /// </summary>
+        public const string JSON_CONVERTER_NAME = "JSON";
+        /// <summary>
+        /// XML value converter name
+        /// </summary>
+        public const string XML_CONVERTER_NAME = "XML";
+
         /// <summary>
         /// Display string to value converter
         /// </summary>
@@ -31,39 +42,77 @@ namespace wan24.Core
         static StringValueConverter()
         {
             ValueConverter[typeof(string)] = (t, s) => s;
-            ValueConverter[typeof(bool)] = (t, s) => bool.TryParse(s, out var res) ? res : null;
-            ValueConverter[typeof(byte)] = (t, s) => byte.TryParse(s, out var res) ? res : null;
-            ValueConverter[typeof(sbyte)] = (t, s) => sbyte.TryParse(s, out var res) ? res : null;
-            ValueConverter[typeof(ushort)] = (t, s) => ushort.TryParse(s, out var res) ? res : null;
-            ValueConverter[typeof(short)] = (t, s) => short.TryParse(s, out var res) ? res : null;
-            ValueConverter[typeof(uint)] = (t, s) => uint.TryParse(s, out var res) ? res : null;
-            ValueConverter[typeof(int)] = (t, s) => int.TryParse(s, out var res) ? res : null;
-            ValueConverter[typeof(ulong)] = (t, s) => ulong.TryParse(s, out var res) ? res : null;
-            ValueConverter[typeof(long)] = (t, s) => long.TryParse(s, out var res) ? res : null;
-            ValueConverter[typeof(Half)] = (t, s) => Half.TryParse(s, out var res) ? res : null;
-            ValueConverter[typeof(float)] = (t, s) => float.TryParse(s, out var res) ? res : null;
-            ValueConverter[typeof(double)] = (t, s) => double.TryParse(s, out var res) ? res : null;
-            ValueConverter[typeof(decimal)] = (t, s) => decimal.TryParse(s, out var res) ? res : null;
-            ValueConverter[typeof(DateTime)] = (t, s) => DateTime.TryParse(s, out var res) ? res : null;
-            ValueConverter[typeof(DateOnly)] = (t, s) => DateOnly.TryParse(s, out var res) ? res : null;
-            ValueConverter[typeof(TimeOnly)] = (t, s) => TimeOnly.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(bool)] = (t, s) => s is not null && bool.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(byte)] = (t, s) => s is not null && byte.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(sbyte)] = (t, s) => s is not null && sbyte.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(ushort)] = (t, s) => s is not null && ushort.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(short)] = (t, s) => s is not null && short.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(uint)] = (t, s) => s is not null && uint.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(int)] = (t, s) => s is not null && int.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(ulong)] = (t, s) => s is not null && ulong.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(long)] = (t, s) => s is not null && long.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(Half)] = (t, s) => s is not null && Half.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(float)] = (t, s) => s is not null && float.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(double)] = (t, s) => s is not null && double.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(decimal)] = (t, s) => s is not null && decimal.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(DateTime)] = (t, s) => s is not null && DateTime.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(DateOnly)] = (t, s) => s is not null && DateOnly.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(TimeOnly)] = (t, s) => s is not null && TimeOnly.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(TimeSpan)] = (t, s) => s is not null && TimeSpan.TryParse(s, out var res) ? res : null;
             ValueConverter[typeof(Regex)] = (t, s) =>
             {
                 if (s is null) return null;
                 string[] info = s.Split(' ', 2);
-                if (info.Length != 2) throw new ArgumentException("Invalid regular expression string representation", nameof(s));
-                return new Regex(info[1], (RegexOptions)int.Parse(info[0]));
+                if (info.Length != 2) return null;
+                try
+                {
+                    return new Regex(info[1], (RegexOptions)int.Parse(info[0]));
+                }
+                catch
+                {
+                    return null;
+                }
             };
-            ValueConverter[typeof(Enum)] = (t, s) => Enum.TryParse(t, s, out var res) ? res : null;
-            ValueConverter[typeof(IpSubNet)] = (t, s) => IpSubNet.TryParse(s, out var res) ? res : new Nullable<IpSubNet>();
-            ValueConverter[typeof(HostEndPoint)] = (t, s) => s is not null && HostEndPoint.TryParse(s, out var res) ? res : new Nullable<HostEndPoint>();
-            ValueConverter[typeof(UnixTime)] = (t, s) => UnixTime.TryParse(s, out var res) ? res : new Nullable<UnixTime>();
-            ValueConverter[typeof(Uid)] = (t, s) => Uid.TryParse(s, out var res) ? res : new Nullable<Uid>();
-            ValueConverter[typeof(UidExt)] = (t, s) => UidExt.TryParse(s, out var res) ? res : new Nullable<UidExt>();
-            ValueConverter[typeof(Rgb)] = (t, s) => s is not null && Rgb.TryParse(s, out var res) ? res : new Nullable<Rgb>();
-            ValueConverter[typeof(RgbA)] = (t, s) => s is not null && RgbA.TryParse(s, out var res) ? res : new Nullable<RgbA>();
-            ValueConverter[typeof(Hsb)] = (t, s) => s is not null && Hsb.TryParse(s, out var res) ? res : new Nullable<Hsb>();
-            ValueConverter[typeof(IntRange)] = (t, s) => s is not null && IntRange.TryParse(s, out var res) ? res : new Nullable<IntRange>();
+            ValueConverter[typeof(Enum)] = (t, s) => s is not null && Enum.TryParse(t, s, out var res) ? res : null;
+            ValueConverter[typeof(IpSubNet)] = (t, s) => s is not null && IpSubNet.TryParse(s, out var res) ? (object)res : null;
+            ValueConverter[typeof(HostEndPoint)] = (t, s) => s is not null && HostEndPoint.TryParse(s, out var res) ? (object)res : null;
+            ValueConverter[typeof(UnixTime)] = (t, s) => s is not null && UnixTime.TryParse(s, out var res) ? (object)res : null;
+            ValueConverter[typeof(Uid)] = (t, s) => s is not null && Uid.TryParse(s, out var res) ? (object)res : null;
+            ValueConverter[typeof(UidExt)] = (t, s) => s is not null && UidExt.TryParse(s, out var res) ? (object)res : null;
+            ValueConverter[typeof(Rgb)] = (t, s) => s is not null && Rgb.TryParse(s, out var res) ? (object)res : null;
+            ValueConverter[typeof(RgbA)] = (t, s) => s is not null && RgbA.TryParse(s, out var res) ? (object)res : null;
+            ValueConverter[typeof(Hsb)] = (t, s) => s is not null && Hsb.TryParse(s, out var res) ? (object)res : null;
+            ValueConverter[typeof(IntRange)] = (t, s) => s is not null && IntRange.TryParse(s, out var res) ? (object)res : null;
+            ValueConverter[typeof(Uri)] = (t, s) => s is not null && Uri.TryCreate(s, new(), out var res) ? (object)res : null;
+            ValueConverter[typeof(Guid)] = (t, s) => s is not null && Guid.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(XmlDocument)] = (t, s) =>
+            {
+                if (s is null) return null;
+                XmlDocument res = new();
+                try
+                {
+                    res.LoadXml(s);
+                }
+                catch
+                {
+                    return null;
+                }
+                return res;
+            };
+            ValueConverter[typeof(XmlNode)] = (t, s) =>
+            {
+                if (s is null) return null;
+                XmlDocument res = new();
+                try
+                {
+                    res.LoadXml(s);
+                }
+                catch
+                {
+                    return null;
+                }
+                return res.FirstChild;
+            };
             StringConverter[typeof(string)] = (t, v) => v as string;
             StringConverter[typeof(bool)] = (t, v) => v?.ToString();
             StringConverter[typeof(byte)] = (t, v) => v?.ToString();
@@ -81,6 +130,7 @@ namespace wan24.Core
             StringConverter[typeof(DateTime)] = (t, v) => v?.ToString();
             StringConverter[typeof(DateOnly)] = (t, v) => v?.ToString();
             StringConverter[typeof(TimeOnly)] = (t, v) => v?.ToString();
+            StringConverter[typeof(TimeSpan)] = (t, v) => v?.ToString();
             StringConverter[typeof(Regex)] = (t, v) => v is not Regex rx ? null : $"{(int)rx.Options} {rx}";
             StringConverter[typeof(Enum)] = (t, v) => v?.ToString();
             StringConverter[typeof(IpSubNet)] = (t, v) => v?.ToString();
@@ -92,6 +142,56 @@ namespace wan24.Core
             StringConverter[typeof(RgbA)] = (t, v) => v?.ToString();
             StringConverter[typeof(Hsb)] = (t, v) => v?.ToString();
             StringConverter[typeof(IntRange)] = (t, v) => v?.ToString();
+            StringConverter[typeof(Uri)] = (t, v) => v?.ToString();
+            StringConverter[typeof(Guid)] = (t, v) => v?.ToString();
+            StringConverter[typeof(XmlDocument)] = (t, v) => (v as XmlDocument)?.OuterXml;
+            StringConverter[typeof(XmlNode)] = (t, v) => (v as XmlNode)?.OuterXml;
+            NamedValueConverter[JSON_CONVERTER_NAME] = (t, s) =>
+            {
+                if (s is null) return null;
+                try
+                {
+                    return JsonHelper.DecodeObject(t, s);
+                }
+                catch
+                {
+                    return null;
+                }
+            };
+            NamedValueConverter[XML_CONVERTER_NAME] = (t, s) =>
+            {
+                if (s is null) return null;
+                using MemoryPoolStream ms = new();
+                try
+                {
+                    ms.Write(s.GetBytes());
+                    ms.Position = 0;
+                    XmlSerializer serializer = new(t);
+                    return serializer.Deserialize(ms);
+                }
+                catch
+                {
+                    return null;
+                }
+            };
+            NamedStringConverter[JSON_CONVERTER_NAME] = (t, v) => JsonHelper.Encode(v);
+            NamedStringConverter[XML_CONVERTER_NAME] = (t, v) =>
+            {
+                using MemoryPoolStream ms = new();
+                XmlSerializer serializer = new(t);
+                try
+                {
+                    serializer.Serialize(ms, v);
+                    ms.Position = 0;
+                    using RentedArrayRefStruct<byte> buffer = new((int)ms.Length);
+                    ms.ReadExactly(buffer.Span);
+                    return buffer.Span.ToUtf8String();
+                }
+                catch
+                {
+                    return null;
+                }
+            };
         }
 
         /// <summary>

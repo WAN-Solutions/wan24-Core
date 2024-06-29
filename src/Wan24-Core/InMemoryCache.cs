@@ -177,6 +177,8 @@ namespace wan24.Core
                 return null;
             _Count--;
             res.OnRemoved();
+            HandleEntryRemoved(res);
+            RaiseOnEntryRemoved(res);
             return res;
         }
 
@@ -190,6 +192,8 @@ namespace wan24.Core
             {
                 _Count--;
                 entry.OnRemoved();
+                HandleEntryRemoved(entry);
+                RaiseOnEntryRemoved(entry);
                 return true;
             }
             return false;
