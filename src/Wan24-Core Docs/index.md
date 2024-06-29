@@ -183,6 +183,8 @@ including extensions for numeric type encoding/decoding)
     - `TimeoutStream` can timeout async reading/writing methods
     - `BlockingBufferStream` for writing to / reading from a buffer blocked
     - `HubStream` for forwarding writing operations to multiple target streams
+    - `DynamicHubStream` for forwarding writing operations to multiple target 
+    streams which can be exchanged
     - `LimitedStream` limits reading/writing/seeking capabilities of a stream
     - `ZeroStream` reads zero bytes and writes to nowhere
     - `CountingStream` counts red/written bytes
@@ -247,6 +249,7 @@ including extensions for numeric type encoding/decoding)
 - App JSON configuration
 - Customizable object serialization helper
 - In-memory cache
+- Object mapping
 
 ## How to get it
 
@@ -1891,3 +1894,102 @@ and is used for adding a new item only, the size property getter may return
 variable values during runtime, which will be respected during a cache cleanup.
 
 Returning cache entry options is optional.
+
+## Object mapping
+
+```cs
+source.MapTo(target);
+```
+
+This creates an atomatic mapping, which includes instance properties that 
+exist in the target type, too, having a getter in the source type and a setter 
+in the target type.
+
+**NOTE**: If you don't want to auto-create mappings (and you'll pre-define all 
+mappings in advance), set `ObjectMapping.AutoCreate` to `false`.
+
+Using the `MapAttribute` you can define properties to map, or how properties 
+will me mapped, by specifying an optional target object property name or 
+customizing the mapping by extending `MapAttribute` and overriding the 
+`CanMap(Async)` properties and the `Map(Async)` methods. The `MapAttribute` 
+can also be used for a source type to specify that when creating a mapping 
+automatic, opt-in should be used (also have a look at the `PublicGetterOnly` 
+and `PublicSetterOnly` properties).
+
+The `NoMapAttribute` is used to disclose a property from being mapped.
+
+For creating a manual mapping:
+
+```cs
+ObjectMapping<SourceType, TargetType> mapping = new();
+```
+
+Use the `Add*` methods for adding a mapping logic - example:
+
+```cs
+mapping.AddMapping(nameof(SourceType.PropertyName), nameof(TargetType.TargetProperty))
+    .AddMapping(nameof(SourceType.OtherPropertyName), (source, target) => target.OtherTargetProperty = source.OtherPropertyName)
+    ...
+    .Register();
+```
+
+Any mapping may be performed synchronous or asynchronous.
+
+The `ObjectMappingExtensions` offer some extension methods for mapping a list 
+of source objects to new target object instances. If you set the 
+`TargetInstanceFactory` property of a mapping to a factory method, this can be 
+used for target object types without a parameterless constructor also.
+
+Using the `Register` method will register a mapping, so you can get it later 
+by
+
+```cs
+ObjectMapping? mapping = ObjectMapping.Get(typeof(SourceType), typeof(TargetType));
+// OR
+ObjectMapping<SourceType, TargetType>? mapping = ObjectMapping<SourceType, TargetType>.Get();
+```
+
+or using the `Map(Object)To(Async)` extension methods.
+
+**NOTE**: An `ObjectMapping` instance can always be casted to its generic 
+version. The `ObjectMapping.Create` method will call the generic types 
+`Create` method for this. If you want to extend the `ObjectMapping`, you can 
+do this by using the `ObjectMapping<tSource, tTarget>` as base type.
+
+In the best case (if the required target object properties have the same name 
+and a compatible value type as the source properties) you won't have to pre-
+define any mapping and can fully rely on the automatic mapping creation (which 
+uses the `ObjectMapping.AddAutoMappings` method), maybe using the 
+`MapAttribute` and the `NoMapAttribute` for your types only.
+
+You can use some base types to implement implicit casting for your types using 
+mappings:
+
+- `CastableMappingObjectBase`
+- `CastableMappingRecordBase`
+- `DisposableCastableMappingObjectBase`
+- `DisposableCastableMappingRecordBase`
+
+Then you could do something like this:
+
+```cs
+public sealed class SourceType() : CastableMappingObjectBase<SourceType, TargetType>()
+{
+    ...
+}
+
+SourceType source = ...;
+TargetType target = source;
+```
+
+`source` is here mapped to a new instance of `TargetType` during casting.
+
+If you'd like to implement handlers for after-mapping actions, have a look at 
+the `IMappingObject` interfaces. The non-generic interface will always be 
+used, while the generic type will only be used for the used target object type 
+(implementations for multiple target object types are possible). If both 
+interfaces can be used, both interfaces will be used. If the synchronous/
+asynchronous handler methods are being called depends on their availability 
+and on which `ObjectMapping.ApplyMapping(Async)` method is processing (the 
+synchronous method prefers the synchronous handlers, the asynchronous method 
+prefers the asynchronous handlers).

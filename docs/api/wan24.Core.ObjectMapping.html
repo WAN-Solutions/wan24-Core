@@ -1,0 +1,1681 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class ObjectMapping | wan24-Core </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class ObjectMapping | wan24-Core ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <!-- Header required for docfx anchor scroll to work -->
+        <header id="head"></header>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../logo.svg" alt="" class="logomark">
+              <span class="brand-title"></span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../logo.svg" alt="" class="logomark">
+                          <span class="brand-title"></span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  (c) 2023 Andreas Zimmermann, wan24.de
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+ 
+
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                         <div id="contribution">
+                               <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                         </div>
+
+                    <article class="content wrap" id="_content" data-uid="wan24.Core.ObjectMapping">
+
+
+
+  <h1 id="wan24_Core_ObjectMapping" data-uid="wan24.Core.ObjectMapping" class="text-break">Class ObjectMapping</h1>
+  <div class="markdown level0 summary"><p>Object mapping</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">ObjectMapping</span></div>
+      <div class="level2"><a class="xref" href="wan24.Core.ObjectMapping-2.html">ObjectMapping&lt;tSource, tTarget&gt;</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_ObjectMapping_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ObjectMapping</code></pre>
+  </div>
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_ApplyMethod.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.ApplyMethod%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Static.cs/#L12">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ObjectMapping_ApplyMethod" data-uid="wan24.Core.ObjectMapping.ApplyMethod">ApplyMethod</h4>
+  <div class="markdown level1 summary"><p><a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_ApplyMappings__2___0____1__">ApplyMappings&lt;tSource, tTarget&gt;(in tSource, in tTarget)</a> method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static readonly MethodInfo ApplyMethod</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo">MethodInfo</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_AsyncApplyMethod.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.AsyncApplyMethod%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Static.cs/#L16">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ObjectMapping_AsyncApplyMethod" data-uid="wan24.Core.ObjectMapping.AsyncApplyMethod">AsyncApplyMethod</h4>
+  <div class="markdown level1 summary"><p><a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_ApplyMappingsAsync__2___0___1_System_Threading_CancellationToken_">ApplyMappingsAsync&lt;tSource, tTarget&gt;(tSource, tTarget, CancellationToken)</a> method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static readonly MethodInfo AsyncApplyMethod</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo">MethodInfo</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_AsyncMapMethod.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.AsyncMapMethod%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Static.cs/#L24">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ObjectMapping_AsyncMapMethod" data-uid="wan24.Core.ObjectMapping.AsyncMapMethod">AsyncMapMethod</h4>
+  <div class="markdown level1 summary"><p><a class="xref" href="wan24.Core.MapAttribute.html#wan24_Core_MapAttribute_MapAsync__2_System_String___0___1_System_Threading_CancellationToken_">MapAsync&lt;tSource, tTarget&gt;(string, tSource, tTarget, CancellationToken)</a> method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static readonly MethodInfo AsyncMapMethod</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo">MethodInfo</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_MapMethod.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.MapMethod%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Static.cs/#L20">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ObjectMapping_MapMethod" data-uid="wan24.Core.ObjectMapping.MapMethod">MapMethod</h4>
+  <div class="markdown level1 summary"><p><a class="xref" href="wan24.Core.MapAttribute.html#wan24_Core_MapAttribute_Map__2_System_String___0___1_">Map&lt;tSource, tTarget&gt;(string, tSource, tTarget)</a> method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static readonly MethodInfo MapMethod</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo">MethodInfo</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_Mappings.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.Mappings%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.cs/#L18">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ObjectMapping_Mappings" data-uid="wan24.Core.ObjectMapping.Mappings">Mappings</h4>
+  <div class="markdown level1 summary"><p>Mappings</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly OrderedDictionary&lt;string, object&gt; Mappings</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.OrderedDictionary-2.html">OrderedDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_PROPERTY_REFLECTION_FLAGS.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.PROPERTY_REFLECTION_FLAGS%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.cs/#L13">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ObjectMapping_PROPERTY_REFLECTION_FLAGS" data-uid="wan24.Core.ObjectMapping.PROPERTY_REFLECTION_FLAGS">PROPERTY_REFLECTION_FLAGS</h4>
+  <div class="markdown level1 summary"><p>Mapable property reflection flags</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected const BindingFlags PROPERTY_REFLECTION_FLAGS = Instance | Public | NonPublic</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags">BindingFlags</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_RegisteredMappings.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.RegisteredMappings%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Static.cs/#L28">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ObjectMapping_RegisteredMappings" data-uid="wan24.Core.ObjectMapping.RegisteredMappings">RegisteredMappings</h4>
+  <div class="markdown level1 summary"><p>Registered object mappings</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static readonly ConcurrentDictionary&lt;(Type, Type), ObjectMapping&gt; RegisteredMappings</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>), <a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_AutoCreate.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.AutoCreate%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Static.cs/#L48">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_AutoCreate_" data-uid="wan24.Core.ObjectMapping.AutoCreate*"></a>
+  <h4 id="wan24_Core_ObjectMapping_AutoCreate" data-uid="wan24.Core.ObjectMapping.AutoCreate">AutoCreate</h4>
+  <div class="markdown level1 summary"><p>Auto-create missing mappings?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool AutoCreate { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_SourceType.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.SourceType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.cs/#L28">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_SourceType_" data-uid="wan24.Core.ObjectMapping.SourceType*"></a>
+  <h4 id="wan24_Core_ObjectMapping_SourceType" data-uid="wan24.Core.ObjectMapping.SourceType">SourceType</h4>
+  <div class="markdown level1 summary"><p>Source object type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public required Type SourceType { get; init; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_TargetInstanceFactory.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.TargetInstanceFactory%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.cs/#L38">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_TargetInstanceFactory_" data-uid="wan24.Core.ObjectMapping.TargetInstanceFactory*"></a>
+  <h4 id="wan24_Core_ObjectMapping_TargetInstanceFactory" data-uid="wan24.Core.ObjectMapping.TargetInstanceFactory">TargetInstanceFactory</h4>
+  <div class="markdown level1 summary"><p>Target object instance factory</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ObjectMapping.TargetInstanceFactoryDelegate? TargetInstanceFactory { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a>.<a class="xref" href="wan24.Core.ObjectMapping.TargetInstanceFactoryDelegate.html">TargetInstanceFactoryDelegate</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_TargetType.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.TargetType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.cs/#L33">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_TargetType_" data-uid="wan24.Core.ObjectMapping.TargetType*"></a>
+  <h4 id="wan24_Core_ObjectMapping_TargetType" data-uid="wan24.Core.ObjectMapping.TargetType">TargetType</h4>
+  <div class="markdown level1 summary"><p>Target object type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public required Type TargetType { get; init; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_AddAsyncMapping_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.AddAsyncMapping(System.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.cs/#L118">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_AddAsyncMapping_" data-uid="wan24.Core.ObjectMapping.AddAsyncMapping*"></a>
+  <h4 id="wan24_Core_ObjectMapping_AddAsyncMapping_System_String__" data-uid="wan24.Core.ObjectMapping.AddAsyncMapping(System.String@)">AddAsyncMapping(in string)</h4>
+  <div class="markdown level1 summary"><p>Map a source object property value to the target object property having the same name (prefer to use asynchronous mapping possibilities, if possible)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ObjectMapping AddAsyncMapping(in string sourcePropertyName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">sourcePropertyName</span></td>
+        <td><p>Source property name</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_AddAsyncMapping_System_String__System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.AddAsyncMapping(System.String%40%2CSystem.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.cs/#L152">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_AddAsyncMapping_" data-uid="wan24.Core.ObjectMapping.AddAsyncMapping*"></a>
+  <h4 id="wan24_Core_ObjectMapping_AddAsyncMapping_System_String__System_String__" data-uid="wan24.Core.ObjectMapping.AddAsyncMapping(System.String@,System.String@)">AddAsyncMapping(in string, in string)</h4>
+  <div class="markdown level1 summary"><p>Map a source object property value to the given target object property (prefer to use asynchronous mapping possibilities, if possible)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ObjectMapping AddAsyncMapping(in string sourcePropertyName, in string targetPropertyName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">sourcePropertyName</span></td>
+        <td><p>Source property name</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">targetPropertyName</span></td>
+        <td><p>Target property name</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_AddAsyncMapping__2_System_String__wan24_Core_ObjectMapping_AsyncMapper_Delegate___0___1___.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.AddAsyncMapping%60%602(System.String%40%2Cwan24.Core.ObjectMapping.AsyncMapper_Delegate%7B%60%600%2C%60%601%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.cs/#L186">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_AddAsyncMapping_" data-uid="wan24.Core.ObjectMapping.AddAsyncMapping*"></a>
+  <h4 id="wan24_Core_ObjectMapping_AddAsyncMapping__2_System_String__wan24_Core_ObjectMapping_AsyncMapper_Delegate___0___1___" data-uid="wan24.Core.ObjectMapping.AddAsyncMapping``2(System.String@,wan24.Core.ObjectMapping.AsyncMapper_Delegate{``0,``1}@)">AddAsyncMapping&lt;tSource, tTarget&gt;(in string, in AsyncMapper_Delegate&lt;tSource, tTarget&gt;)</h4>
+  <div class="markdown level1 summary"><p>Map a source object property value to the target object using the given method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ObjectMapping AddAsyncMapping&lt;tSource, tTarget&gt;(in string sourcePropertyName, in ObjectMapping.AsyncMapper_Delegate&lt;tSource, tTarget&gt; mapper)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">sourcePropertyName</span></td>
+        <td><p>Source property name</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a>.<a class="xref" href="wan24.Core.ObjectMapping.AsyncMapper_Delegate-2.html">AsyncMapper_Delegate</a>&lt;tSource, tTarget&gt;</td>
+        <td><span class="parametername">mapper</span></td>
+        <td><p>Mapper method</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tSource</span></td>
+        <td><p>Source object type (must match <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_SourceType">SourceType</a>)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tTarget</span></td>
+        <td><p>Target object type (must match <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_TargetType">TargetType</a>)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_AddAutoMappings_System_Nullable_System_Boolean__System_Nullable_System_Boolean__System_Nullable_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.AddAutoMappings(System.Nullable%7BSystem.Boolean%7D%2CSystem.Nullable%7BSystem.Boolean%7D%2CSystem.Nullable%7BSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.cs/#L201">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_AddAutoMappings_" data-uid="wan24.Core.ObjectMapping.AddAutoMappings*"></a>
+  <h4 id="wan24_Core_ObjectMapping_AddAutoMappings_System_Nullable_System_Boolean__System_Nullable_System_Boolean__System_Nullable_System_Boolean__" data-uid="wan24.Core.ObjectMapping.AddAutoMappings(System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean})">AddAutoMappings(bool?, bool?, bool?)</h4>
+  <div class="markdown level1 summary"><p>Add automatic mappings from the types mapping configuration (all instance properties)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual ObjectMapping AddAutoMappings(bool? optIn = null, bool? publicGetterOnly = null, bool? publicSetterOnly = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</td>
+        <td><span class="parametername">optIn</span></td>
+        <td><p>If to use opt-in using the <a class="xref" href="wan24.Core.MapAttribute.html">MapAttribute</a> (if <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, it'll be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, if
+<a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_SourceType">SourceType</a> has a <a class="xref" href="wan24.Core.MapAttribute.html">MapAttribute</a>)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</td>
+        <td><span class="parametername">publicGetterOnly</span></td>
+        <td><p>If to allow source properties having a public getter only</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</td>
+        <td><span class="parametername">publicSetterOnly</span></td>
+        <td><p>If to allow target properties having a public setter only</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_AddMapping_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.AddMapping(System.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.cs/#L45">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_AddMapping_" data-uid="wan24.Core.ObjectMapping.AddMapping*"></a>
+  <h4 id="wan24_Core_ObjectMapping_AddMapping_System_String__" data-uid="wan24.Core.ObjectMapping.AddMapping(System.String@)">AddMapping(in string)</h4>
+  <div class="markdown level1 summary"><p>Map a source object property value to the target object property having the same name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ObjectMapping AddMapping(in string sourcePropertyName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">sourcePropertyName</span></td>
+        <td><p>Source property name</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_AddMapping_System_String__System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.AddMapping(System.String%40%2CSystem.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.cs/#L79">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_AddMapping_" data-uid="wan24.Core.ObjectMapping.AddMapping*"></a>
+  <h4 id="wan24_Core_ObjectMapping_AddMapping_System_String__System_String__" data-uid="wan24.Core.ObjectMapping.AddMapping(System.String@,System.String@)">AddMapping(in string, in string)</h4>
+  <div class="markdown level1 summary"><p>Map a source object property value to the given target object property</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ObjectMapping AddMapping(in string sourcePropertyName, in string targetPropertyName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">sourcePropertyName</span></td>
+        <td><p>Source property name</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">targetPropertyName</span></td>
+        <td><p>Target property name</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_AddMapping__2_System_String__wan24_Core_ObjectMapping_Mapper_Delegate___0___1___.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.AddMapping%60%602(System.String%40%2Cwan24.Core.ObjectMapping.Mapper_Delegate%7B%60%600%2C%60%601%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.cs/#L104">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_AddMapping_" data-uid="wan24.Core.ObjectMapping.AddMapping*"></a>
+  <h4 id="wan24_Core_ObjectMapping_AddMapping__2_System_String__wan24_Core_ObjectMapping_Mapper_Delegate___0___1___" data-uid="wan24.Core.ObjectMapping.AddMapping``2(System.String@,wan24.Core.ObjectMapping.Mapper_Delegate{``0,``1}@)">AddMapping&lt;tSource, tTarget&gt;(in string, in Mapper_Delegate&lt;tSource, tTarget&gt;)</h4>
+  <div class="markdown level1 summary"><p>Map a source object property value to the target object using the given method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ObjectMapping AddMapping&lt;tSource, tTarget&gt;(in string sourcePropertyName, in ObjectMapping.Mapper_Delegate&lt;tSource, tTarget&gt; mapper)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">sourcePropertyName</span></td>
+        <td><p>Source property name</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a>.<a class="xref" href="wan24.Core.ObjectMapping.Mapper_Delegate-2.html">Mapper_Delegate</a>&lt;tSource, tTarget&gt;</td>
+        <td><span class="parametername">mapper</span></td>
+        <td><p>Mapper method</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tSource</span></td>
+        <td><p>Source object type (must match <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_SourceType">SourceType</a>)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tTarget</span></td>
+        <td><p>Target object type (must match <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_TargetType">TargetType</a>)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_ApplyMappingsAsync__2___0___1_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.ApplyMappingsAsync%60%602(%60%600%2C%60%601%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.cs/#L331">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_ApplyMappingsAsync_" data-uid="wan24.Core.ObjectMapping.ApplyMappingsAsync*"></a>
+  <h4 id="wan24_Core_ObjectMapping_ApplyMappingsAsync__2___0___1_System_Threading_CancellationToken_" data-uid="wan24.Core.ObjectMapping.ApplyMappingsAsync``2(``0,``1,System.Threading.CancellationToken)">ApplyMappingsAsync&lt;tSource, tTarget&gt;(tSource, tTarget, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Apply mappings</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task ApplyMappingsAsync&lt;tSource, tTarget&gt;(tSource source, tTarget target, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tSource</span></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>Source object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">tTarget</span></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target object</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tSource</span></td>
+        <td><p>Source object type (must match <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_SourceType">SourceType</a>)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tTarget</span></td>
+        <td><p>Target object type (must match <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_TargetType">TargetType</a>)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_ApplyMappings__2___0____1__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.ApplyMappings%60%602(%60%600%40%2C%60%601%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.cs/#L266">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_ApplyMappings_" data-uid="wan24.Core.ObjectMapping.ApplyMappings*"></a>
+  <h4 id="wan24_Core_ObjectMapping_ApplyMappings__2___0____1__" data-uid="wan24.Core.ObjectMapping.ApplyMappings``2(``0@,``1@)">ApplyMappings&lt;tSource, tTarget&gt;(in tSource, in tTarget)</h4>
+  <div class="markdown level1 summary"><p>Apply mappings</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual ObjectMapping ApplyMappings&lt;tSource, tTarget&gt;(in tSource source, in tTarget target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tSource</span></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>Source object</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">tTarget</span></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tSource</span></td>
+        <td><p>Source object type (must match <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_SourceType">SourceType</a>)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tTarget</span></td>
+        <td><p>Target object type (must match <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_TargetType">TargetType</a>)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_ApplyObjectMappings_System_Object__System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.ApplyObjectMappings(System.Object%40%2CSystem.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.cs/#L315">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_ApplyObjectMappings_" data-uid="wan24.Core.ObjectMapping.ApplyObjectMappings*"></a>
+  <h4 id="wan24_Core_ObjectMapping_ApplyObjectMappings_System_Object__System_Object__" data-uid="wan24.Core.ObjectMapping.ApplyObjectMappings(System.Object@,System.Object@)">ApplyObjectMappings(in object, in object)</h4>
+  <div class="markdown level1 summary"><p>Apply mappings</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ObjectMapping ApplyObjectMappings(in object source, in object target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>Source object (type must match <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_SourceType">SourceType</a>)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target object (type must match <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_TargetType">TargetType</a>)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_ApplyObjectMappingsAsync_System_Object__System_Object__System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.ApplyObjectMappingsAsync(System.Object%40%2CSystem.Object%40%2CSystem.Threading.CancellationToken%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.cs/#L379">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_ApplyObjectMappingsAsync_" data-uid="wan24.Core.ObjectMapping.ApplyObjectMappingsAsync*"></a>
+  <h4 id="wan24_Core_ObjectMapping_ApplyObjectMappingsAsync_System_Object__System_Object__System_Threading_CancellationToken__" data-uid="wan24.Core.ObjectMapping.ApplyObjectMappingsAsync(System.Object@,System.Object@,System.Threading.CancellationToken@)">ApplyObjectMappingsAsync(in object, in object, in CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Apply mappings</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ApplyObjectMappingsAsync(in object source, in object target, in CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>Source object (type must match <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_SourceType">SourceType</a>)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Target object (type must match <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_TargetType">TargetType</a>)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_CanMapPropertyTo_System_Reflection_PropertyInfo__System_Reflection_PropertyInfo__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.CanMapPropertyTo(System.Reflection.PropertyInfo%40%2CSystem.Reflection.PropertyInfo%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Static.cs/#L109">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_CanMapPropertyTo_" data-uid="wan24.Core.ObjectMapping.CanMapPropertyTo*"></a>
+  <h4 id="wan24_Core_ObjectMapping_CanMapPropertyTo_System_Reflection_PropertyInfo__System_Reflection_PropertyInfo__" data-uid="wan24.Core.ObjectMapping.CanMapPropertyTo(System.Reflection.PropertyInfo@,System.Reflection.PropertyInfo@)">CanMapPropertyTo(in PropertyInfo, in PropertyInfo)</h4>
+  <div class="markdown level1 summary"><p>Determine if a source object property can be mapped to a target object property</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool CanMapPropertyTo(in PropertyInfo sourceProperty, in PropertyInfo targetProperty)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo">PropertyInfo</a></td>
+        <td><span class="parametername">sourceProperty</span></td>
+        <td><p>Source property</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo">PropertyInfo</a></td>
+        <td><span class="parametername">targetProperty</span></td>
+        <td><p>Target property</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If mapping is possible</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_CanMapPropertyTo_System_Reflection_PropertyInfo__System_Reflection_PropertyInfo__wan24_Core_MapAttribute__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.CanMapPropertyTo(System.Reflection.PropertyInfo%40%2CSystem.Reflection.PropertyInfo%40%2Cwan24.Core.MapAttribute%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Static.cs/#L119">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_CanMapPropertyTo_" data-uid="wan24.Core.ObjectMapping.CanMapPropertyTo*"></a>
+  <h4 id="wan24_Core_ObjectMapping_CanMapPropertyTo_System_Reflection_PropertyInfo__System_Reflection_PropertyInfo__wan24_Core_MapAttribute__" data-uid="wan24.Core.ObjectMapping.CanMapPropertyTo(System.Reflection.PropertyInfo@,System.Reflection.PropertyInfo@,wan24.Core.MapAttribute@)">CanMapPropertyTo(in PropertyInfo, in PropertyInfo, out MapAttribute?)</h4>
+  <div class="markdown level1 summary"><p>Determine if a source object property can be mapped to a target object property</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool CanMapPropertyTo(in PropertyInfo sourceProperty, in PropertyInfo targetProperty, out MapAttribute? attr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo">PropertyInfo</a></td>
+        <td><span class="parametername">sourceProperty</span></td>
+        <td><p>Source property</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo">PropertyInfo</a></td>
+        <td><span class="parametername">targetProperty</span></td>
+        <td><p>Target property</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.MapAttribute.html">MapAttribute</a></td>
+        <td><span class="parametername">attr</span></td>
+        <td><p>Source property map attribute</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If mapping is possible</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_CanMapTypeTo_System_Type__System_Reflection_PropertyInfo__wan24_Core_MapAttribute__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.CanMapTypeTo(System.Type%40%2CSystem.Reflection.PropertyInfo%40%2Cwan24.Core.MapAttribute%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Static.cs/#L94">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_CanMapTypeTo_" data-uid="wan24.Core.ObjectMapping.CanMapTypeTo*"></a>
+  <h4 id="wan24_Core_ObjectMapping_CanMapTypeTo_System_Type__System_Reflection_PropertyInfo__wan24_Core_MapAttribute__" data-uid="wan24.Core.ObjectMapping.CanMapTypeTo(System.Type@,System.Reflection.PropertyInfo@,wan24.Core.MapAttribute@)">CanMapTypeTo(in Type, in PropertyInfo, in MapAttribute?)</h4>
+  <div class="markdown level1 summary"><p>Determine if a value type can be mapped to a target object property</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool CanMapTypeTo(in Type valueType, in PropertyInfo pi, in MapAttribute? attr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">valueType</span></td>
+        <td><p>Value type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo">PropertyInfo</a></td>
+        <td><span class="parametername">pi</span></td>
+        <td><p>Target property</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.MapAttribute.html">MapAttribute</a></td>
+        <td><span class="parametername">attr</span></td>
+        <td><p>Source property map attribute</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If mapping is possible</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_Create_System_Type__System_Type__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.Create(System.Type%40%2CSystem.Type%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Static.cs/#L56">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_Create_" data-uid="wan24.Core.ObjectMapping.Create*"></a>
+  <h4 id="wan24_Core_ObjectMapping_Create_System_Type__System_Type__" data-uid="wan24.Core.ObjectMapping.Create(System.Type@,System.Type@)">Create(in Type, in Type)</h4>
+  <div class="markdown level1 summary"><p>Create an object mapping</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ObjectMapping Create(in Type sourceType, in Type targetType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">sourceType</span></td>
+        <td><p>Source object type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>Target object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></td>
+        <td><p>Object mapping</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_Get_System_Type__System_Type__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.Get(System.Type%40%2CSystem.Type%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Static.cs/#L71">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_Get_" data-uid="wan24.Core.ObjectMapping.Get*"></a>
+  <h4 id="wan24_Core_ObjectMapping_Get_System_Type__System_Type__" data-uid="wan24.Core.ObjectMapping.Get(System.Type@,System.Type@)">Get(in Type, in Type)</h4>
+  <div class="markdown level1 summary"><p>Get a registered object mapping</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ObjectMapping? Get(in Type sourceType, in Type targetType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">sourceType</span></td>
+        <td><p>Source object type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>Target object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></td>
+        <td><p>Object mapping</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_Register_System_Type__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.Register(System.Type%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.cs/#L250">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_Register_" data-uid="wan24.Core.ObjectMapping.Register*"></a>
+  <h4 id="wan24_Core_ObjectMapping_Register_System_Type__" data-uid="wan24.Core.ObjectMapping.Register(System.Type@)">Register(in Type?)</h4>
+  <div class="markdown level1 summary"><p>Register this object mapping</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ObjectMapping Register(in Type? targetType = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>Different target object type which is compatible with <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_TargetType">TargetType</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_Remove_System_Type__System_Type__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping.Remove(System.Type%40%2CSystem.Type%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Static.cs/#L82">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_Remove_" data-uid="wan24.Core.ObjectMapping.Remove*"></a>
+  <h4 id="wan24_Core_ObjectMapping_Remove_System_Type__System_Type__" data-uid="wan24.Core.ObjectMapping.Remove(System.Type@,System.Type@)">Remove(in Type, in Type)</h4>
+  <div class="markdown level1 summary"><p>Remove a registered object mapping</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ObjectMapping? Remove(in Type sourceType, in Type targetType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">sourceType</span></td>
+        <td><p>Source object type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>Target object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></td>
+        <td><p>Removed object mapping</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean__">JsonExtensions.ToJson(object, in bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(object, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectTo_System_Object_System_Object__">ObjectMappingExtensions.MapObjectTo(object, in object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectTo_System_Object_System_Type__">ObjectMappingExtensions.MapObjectTo(object, in Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectToAsync_System_Object_System_Object_System_Threading_CancellationToken_">ObjectMappingExtensions.MapObjectToAsync(object, object, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectToAsync_System_Object_System_Type_System_Threading_CancellationToken_">ObjectMappingExtensions.MapObjectToAsync(object, Type, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_">StringValueConverter.ConvertObjectToString(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_NamedStringConversion_System_Object_System_String__System_Type__">StringValueConverter.NamedStringConversion(object?, in string, in Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_System_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean__System_String__">ObjectExtensions.EnsureValidState&lt;T&gt;(T, in bool, in string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText__1___0_">ObjectExtensions.GetDisplayText&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_System_Collections_Generic_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T?&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsDisposable__1___0_">ObjectExtensions.IsDisposable&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2___0_System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(tSource, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2___0___1_System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(tSource, tTarget, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2___0_">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(tSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2___0___1__">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(tSource, in tTarget)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>
+  </div>
+
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>(c) 2023 Andreas Zimmermann, wan24.de</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+</html>

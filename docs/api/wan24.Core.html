@@ -251,6 +251,12 @@ Classes
       <h5><a class="xref" href="wan24.Core.Cancellations.html">Cancellations</a></h5>
       <section><p><a class="xref" href="wan24.Core.Cancellations.html">Cancellations</a> combines multiple <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> into one</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.CastableMappingObjectBase-2.html">CastableMappingObjectBase&lt;tFinal, tTarget&gt;</a></h5>
+      <section><p>Base class for a castable mapping source object</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.CastableMappingRecordBase-2.html">CastableMappingRecordBase&lt;tFinal, tTarget&gt;</a></h5>
+      <section><p>Base class for a castable mapping source object</p>
+</section>
       <h5><a class="xref" href="wan24.Core.CategoryLogger.html">CategoryLogger</a></h5>
       <section><p>Category logger prepends a category before the written message</p>
 </section>
@@ -395,6 +401,12 @@ Classes
       <h5><a class="xref" href="wan24.Core.DisposableBase-1.html">DisposableBase&lt;T&gt;</a></h5>
       <section><p>Base class for a disposable type</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.DisposableCastableMappingObjectBase-2.html">DisposableCastableMappingObjectBase&lt;tFinal, tTarget&gt;</a></h5>
+      <section><p>Base class for a disposable castable mapping source object</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.DisposableCastableMappingRecordBase-2.html">DisposableCastableMappingRecordBase&lt;tFinal, tTarget&gt;</a></h5>
+      <section><p>Base class for a disposable castable mapping source object</p>
+</section>
       <h5><a class="xref" href="wan24.Core.DisposableChangeToken.html">DisposableChangeToken</a></h5>
       <section><p>Disposable change token</p>
 </section>
@@ -427,6 +439,14 @@ Classes
 </section>
       <h5><a class="xref" href="wan24.Core.DisposingAsyncEnumerator-1.html">DisposingAsyncEnumerator&lt;T&gt;</a></h5>
       <section><p>Disposing asynchronous enumerator (disposes tagged objects when disposing)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.DynamicHubStream.html">DynamicHubStream</a></h5>
+      <section><p>Dynamic hub stream (writes to targets in parallel when using asynchronous methods; <a class="xref" href="wan24.Core.DynamicHubStream.html#wan24_Core_DynamicHubStream_Length">Length</a> and <a class="xref" href="wan24.Core.DynamicHubStream.html#wan24_Core_DynamicHubStream_Position">Position</a> getter target the first target
+stream; seeking target all target streams; reading target the first target stream, while other target streams position is being updated; reading and seeking won't be
+synchronized (adding target streams while reading/seeking may cause an overall random stream state); target streams can be added/removed thread-safe)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.DynamicHubStream.WriteErrorEventArgs.html">DynamicHubStream.WriteErrorEventArgs</a></h5>
+      <section><p><a class="xref" href="wan24.Core.DynamicHubStream.html#wan24_Core_DynamicHubStream_OnWriteError">OnWriteError</a> event arguments</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ENV.html">ENV</a></h5>
       <section><p>Environment information</p>
@@ -615,6 +635,9 @@ the first stream per default)</p>
       <h5><a class="xref" href="wan24.Core.InMemoryCache-1.AgeStrategy.html">InMemoryCache&lt;T&gt;.AgeStrategy</a></h5>
       <section><p>Age strategy (higher age has lower priority)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.EntryEventArgs.html">InMemoryCache&lt;T&gt;.EntryEventArgs</a></h5>
+      <section><p>Cache entry event arguments</p>
+</section>
       <h5><a class="xref" href="wan24.Core.InMemoryCache-1.LargerStrategy.html">InMemoryCache&lt;T&gt;.LargerStrategy</a></h5>
       <section><p>Larger strategy (larger size has lower priority)</p>
 </section>
@@ -690,6 +713,12 @@ the first stream per default)</p>
       <h5><a class="xref" href="wan24.Core.Logging.html">Logging</a></h5>
       <section><p>Logging</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.MapAttribute.html">MapAttribute</a></h5>
+      <section><p>Attribute for properties to include in an <a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a> (or for a source type which uses opt-in auto-mapping)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.MappingException.html">MappingException</a></h5>
+      <section><p>Thrown on any <a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a> exception</p>
+</section>
       <h5><a class="xref" href="wan24.Core.MemoryPoolStream.html">MemoryPoolStream</a></h5>
       <section><p>Memory pool stream (stores in arrays from an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.arraypool-1">ArrayPool&lt;T&gt;</a>)</p>
 </section>
@@ -711,6 +740,9 @@ restrictions for this)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.NetworkHelper.html">NetworkHelper</a></h5>
       <section><p>Network helper</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.NoMapAttribute.html">NoMapAttribute</a></h5>
+      <section><p>An attribute for properties to be sekipped for <a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></p>
 </section>
       <h5><a class="xref" href="wan24.Core.NonSeekablePartialStream.html">NonSeekablePartialStream</a></h5>
       <section><p>Non-seekable partial stream</p>
@@ -738,6 +770,15 @@ restrictions for this)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ObjectLockTable.html">ObjectLockTable</a></h5>
       <section><p>Object locks table</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></h5>
+      <section><p>Object mapping</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ObjectMappingExtensions.html">ObjectMappingExtensions</a></h5>
+      <section><p><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a> extension methods</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ObjectMapping-2.html">ObjectMapping&lt;tSource, tTarget&gt;</a></h5>
+      <section><p>Object mapping</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ObjectPool-1.html">ObjectPool&lt;T&gt;</a></h5>
       <section><p>Object pool</p>
@@ -1275,6 +1316,12 @@ Interfaces
       <h5><a class="xref" href="wan24.Core.IItemQueueWorker-1.html">IItemQueueWorker&lt;T&gt;</a></h5>
       <section><p>Interface for an item queue worker</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IMappingObject.html">IMappingObject</a></h5>
+      <section><p>Interface for a mapping object</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IMappingObject-1.html">IMappingObject&lt;T&gt;</a></h5>
+      <section><p>Interface for a mapping object</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IMta.html">IMta</a></h5>
       <section><p>Interface for a MTA</p>
 </section>
@@ -1479,6 +1526,9 @@ Delegates
       <h5><a class="xref" href="wan24.Core.DisposableWrapper-1.Dispose_Delegate.html">DisposableWrapper&lt;T&gt;.Dispose_Delegate</a></h5>
       <section><p>Dispose delegate</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.DynamicHubStream.DynamicHubStreamErrorEvent_Delegate.html">DynamicHubStream.DynamicHubStreamErrorEvent_Delegate</a></h5>
+      <section><p>Delegate for an <a class="xref" href="wan24.Core.DynamicHubStream.html#wan24_Core_DynamicHubStream_OnWriteError">OnWriteError</a> event handler</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ErrorHandling.ErrorHandler_Delegate.html">ErrorHandling.ErrorHandler_Delegate</a></h5>
       <section><p>Delegate for an error handler</p>
 </section>
@@ -1524,6 +1574,9 @@ Delegates
       <h5><a class="xref" href="wan24.Core.IdleState.Idle_Delegate.html">IdleState.Idle_Delegate</a></h5>
       <section><p>Delegate for an event handler</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.InMemoryCacheEvent_Delegate.html">InMemoryCache&lt;T&gt;.InMemoryCacheEvent_Delegate</a></h5>
+      <section><p>Delegate for an event handler</p>
+</section>
       <h5><a class="xref" href="wan24.Core.JsonHelper.Decoder_Delegate.html">JsonHelper.Decoder_Delegate</a></h5>
       <section><p>Delegate for a JSON decoder</p>
 </section>
@@ -1553,6 +1606,21 @@ Delegates
 </section>
       <h5><a class="xref" href="wan24.Core.ObjectLockManager-1.Lock_Delegate.html">ObjectLockManager&lt;T&gt;.Lock_Delegate</a></h5>
       <section><p>Delegate for locking events</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ObjectMapping.AsyncMapper_Delegate-2.html">ObjectMapping.AsyncMapper_Delegate&lt;tSource, tTarget&gt;</a></h5>
+      <section><p>Delegate for an asynchronous mapper method</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ObjectMapping.AsyncObjectMapper_Delegate.html">ObjectMapping.AsyncObjectMapper_Delegate</a></h5>
+      <section><p>Delegate for an asynchronous mapper method</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ObjectMapping.Mapper_Delegate-2.html">ObjectMapping.Mapper_Delegate&lt;tSource, tTarget&gt;</a></h5>
+      <section><p>Delegate for a mapper method</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ObjectMapping.ObjectMapper_Delegate.html">ObjectMapping.ObjectMapper_Delegate</a></h5>
+      <section><p>Delegate for a mapper method</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ObjectMapping.TargetInstanceFactoryDelegate.html">ObjectMapping.TargetInstanceFactoryDelegate</a></h5>
+      <section><p>Target object instance factory delegate</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ObjectSerializer.AsyncCustomDeserializer_Delegate.html">ObjectSerializer.AsyncCustomDeserializer_Delegate</a></h5>
       <section><p>Delegate for a custom deserializer</p>
