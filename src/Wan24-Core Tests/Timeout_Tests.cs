@@ -53,5 +53,17 @@
             Assert.IsTrue(didRun);
             Assert.IsTrue(timeout.IsDisposed);
         }
+
+        [TestMethod, Timeout(3000)]
+        public async Task WaitCondition_Tests()
+        {
+            bool condition = false;
+            Task task = wan24.Core.Timeout.WaitConditionAsync(TimeSpan.FromMilliseconds(50), (ct) => Task.FromResult(!ct.IsCancellationRequested && condition));
+            await Task.Delay(200);
+            Assert.IsFalse(task.IsCompleted);
+            condition = true;
+            await Task.Delay(200);
+            Assert.IsTrue(task.IsCompleted);
+        }
     }
 }
