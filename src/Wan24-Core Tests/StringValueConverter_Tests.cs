@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using System.Xml;
 using wan24.Core;
 
 namespace Wan24_Core_Tests
@@ -9,6 +10,10 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public void General_Tests()
         {
+            XmlDocument xml = new();
+            XmlNode node = xml.CreateElement("test");
+            node.AppendChild(xml.CreateElement("test2"));
+            xml.AppendChild(node);
             foreach (object value in new object[]
             {
                 "test",
@@ -28,8 +33,24 @@ namespace Wan24_Core_Tests
                 DateTime.UtcNow,
                 DateOnly.FromDateTime(DateTime.UtcNow),
                 TimeOnly.FromDateTime(DateTime.UtcNow),
+                TimeSpan.FromSeconds(42),
                 new Regex(".*", RegexOptions.IgnoreCase),
                 RegexOptions.IgnoreCase|RegexOptions.Compiled,
+                IpSubNet.LoopbackIPv4,
+                new HostEndPoint("localhost",12345),
+                UnixTime.Now,
+                new Uid(),
+                new UidExt(12345),
+                Rgb.White,
+                RgbA.White,
+                Hsb.White,
+                IntRange.MaxValue,
+                new Uri("http://localhost"),
+                Guid.NewGuid(),
+                xml,
+                node,
+                XY.MinValue,
+                XYZ.MaxValue,
                 new TestType()
             })
             {

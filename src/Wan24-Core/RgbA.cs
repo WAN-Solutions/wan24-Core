@@ -207,7 +207,7 @@ namespace wan24.Core
         /// <returns>If succeed</returns>
         public static bool TryParse(in string str, out RgbA result)
         {
-            string[] rgb = str.Split(',', 3);
+            string[] rgb = str.Split(',', 4);
             if (rgb.Length != 4)
             {
                 if (Logging.Debug) Logging.WriteDebug("String parsing failed: Invalid string format");

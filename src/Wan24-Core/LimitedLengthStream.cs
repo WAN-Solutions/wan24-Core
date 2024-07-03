@@ -79,7 +79,7 @@
         }
 
         /// <summary>
-        /// used stream position
+        /// Used stream position
         /// </summary>
         public long UsedPosition
         {
@@ -90,6 +90,11 @@
                 _Position = CanSeek ? Position : value;
             }
         }
+
+        /// <summary>
+        /// Internal counted position
+        /// </summary>
+        public long InternalPosition => IfUndisposed(_Position);
 
         /// <inheritdoc/>
         public override long Length => IfUndisposed(() => Math.Min(_BaseStream.Length, MaxLength));

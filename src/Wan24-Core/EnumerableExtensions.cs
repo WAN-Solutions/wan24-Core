@@ -31,7 +31,7 @@ namespace wan24.Core
         {
             ArgumentOutOfRangeException.ThrowIfLessThan(chunkSize, 1);
             List<T> res = new(chunkSize);
-            foreach(T item in enumerable)
+            foreach (T item in enumerable)
             {
                 res.Add(item);
                 if (res.Count < chunkSize) continue;
@@ -101,6 +101,116 @@ namespace wan24.Core
                 res++;
             }
             return found ? res : -1;
+        }
+
+        /// <summary>
+        /// Collect <see cref="XY"/> values from objects (Y values are summarized and grouped by X)
+        /// </summary>
+        /// <typeparam name="T">Source object type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="collector">Collector</param>
+        /// <returns><see cref="XY"/> values</returns>
+        public static XY[] CollectXy<T>(this IEnumerable<T> enumerable, in Func<T, XY?> collector)
+        {
+            Dictionary<double, double> values = [];
+            XY? xy;
+            foreach (T item in enumerable)
+            {
+                xy = collector(item);
+                if (xy.HasValue && !values.TryAdd(xy.Value.X, xy.Value.Y)) values[xy.Value.X] += xy.Value.Y;
+            }
+            return [.. values.Select(kvp => new XY(kvp.Key, kvp.Value))];
+        }
+
+        /// <summary>
+        /// Collect <see cref="XY"/> values from objects (Y values are summarized and grouped by X)
+        /// </summary>
+        /// <typeparam name="T">Source object type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="collector">Collector</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns><see cref="XY"/> values</returns>
+        public static async Task<XY[]> CollectXyAsync<T>(
+            this IEnumerable<T> enumerable, 
+            Func<T, CancellationToken, Task<XY?>> collector, 
+            CancellationToken cancellationToken = default
+            )
+        {
+            Dictionary<double, double> values = [];
+            XY? xy;
+            foreach (T item in enumerable)
+            {
+                xy = await collector(item, cancellationToken).DynamicContext();
+                if (xy.HasValue && !values.TryAdd(xy.Value.X, xy.Value.Y)) values[xy.Value.X] += xy.Value.Y;
+            }
+            return [.. values.Select(kvp => new XY(kvp.Key, kvp.Value))];
+        }
+
+        /// <summary>
+        /// Collect <see cref="XYZ"/> values from objects (Y values are summarized and grouped by Z (result index) and X)
+        /// </summary>
+        /// <typeparam name="T">Source object type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="collector">Collector</param>
+        /// <returns><see cref="XYZ"/> values (key is the Z value)</returns>
+        public static Dictionary<double, XYZ[]> CollectXyz<T>(this IEnumerable<T> enumerable, in Func<T, XYZ?> collector)
+        {
+            Dictionary<double, Dictionary<double, double>> values = [];
+            Dictionary<double, double>? values2;
+            XYZ? xyz;
+            foreach (T item in enumerable)
+            {
+                xyz = collector(item);
+                if (!xyz.HasValue) continue;
+                if (!values.TryGetValue(xyz.Value.Z, out values2))
+                {
+                    values2 = values[xyz.Value.Z] = new()
+                    {
+                        { xyz.Value.X, xyz.Value.Y }
+                    };
+                }
+                else if (!values2.TryAdd(xyz.Value.X, xyz.Value.Y))
+                {
+                    values2[xyz.Value.X] += xyz.Value.Y;
+                }
+            }
+            return new(values.Select(kvp => new KeyValuePair<double, XYZ[]>(kvp.Key, [.. kvp.Value.Select(kvp2 => new XYZ(kvp.Key, kvp2.Key, kvp2.Value))])));
+        }
+
+        /// <summary>
+        /// Collect <see cref="XYZ"/> values from objects (Y values are summarized and grouped by Z (result index) and X)
+        /// </summary>
+        /// <typeparam name="T">Source object type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="collector">Collector</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns><see cref="XYZ"/> values (key is the Z value)</returns>
+        public static async Task<Dictionary<double, XYZ[]>> CollectXyzAsync<T>(
+            this IEnumerable<T> enumerable, 
+            Func<T, CancellationToken, Task<XYZ?>> collector,
+            CancellationToken cancellationToken = default
+            )
+        {
+            Dictionary<double, Dictionary<double, double>> values = [];
+            Dictionary<double, double>? values2;
+            XYZ? xyz;
+            foreach (T item in enumerable)
+            {
+                xyz = await collector(item, cancellationToken).DynamicContext();
+                if (!xyz.HasValue) continue;
+                if (!values.TryGetValue(xyz.Value.Z, out values2))
+                {
+                    values2 = values[xyz.Value.Z] = new()
+                    {
+                        { xyz.Value.X, xyz.Value.Y }
+                    };
+                }
+                else if (!values2.TryAdd(xyz.Value.X, xyz.Value.Y))
+                {
+                    values2[xyz.Value.X] += xyz.Value.Y;
+                }
+            }
+            return new(values.Select(kvp => new KeyValuePair<double, XYZ[]>(kvp.Key, [.. kvp.Value.Select(kvp2 => new XYZ(kvp.Key, kvp2.Key, kvp2.Value))])));
         }
     }
 }
