@@ -47,5 +47,18 @@ namespace Wan24_Core_Tests
             Assert.IsFalse(cts.Token.IsEqualTo(default));
             Assert.IsTrue(cts.Token.IsEqualTo(cts.Token));
         }
+
+        [TestMethod]
+        public void Remove_Tests()
+        {
+            using CancellationTokenSource cts1 = new(),
+                cts2 = new();
+            CancellationToken[] tokens = [.. new CancellationToken[] { default, CancellationToken.None, cts1.Token, cts1.Token, cts2.Token, cts2.Token, default }
+                .RemoveNoneAndDefaultAnd(cts1.Token)
+                .RemoveDoubles()
+                ];
+            Assert.AreEqual(1, tokens.Length);
+            Assert.IsTrue(tokens[0].IsEqualTo(cts2.Token));
+        }
     }
 }

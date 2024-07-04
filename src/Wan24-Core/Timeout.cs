@@ -417,6 +417,17 @@ namespace wan24.Core
         /// <param name="checkInterval">Condition check interval</param>
         /// <param name="condition">Condition evaluator</param>
         /// <param name="cancellationToken">Cancellation token</param>
+        public static void WaitCondition(in TimeSpan checkInterval, in Func<CancellationToken, bool> condition, in CancellationToken cancellationToken = default)
+        {
+            for (; !cancellationToken.GetIsCancellationRequested() && !condition(cancellationToken); Thread.Sleep(checkInterval)) ;
+        }
+
+        /// <summary>
+        /// Wait for a condition
+        /// </summary>
+        /// <param name="checkInterval">Condition check interval</param>
+        /// <param name="condition">Condition evaluator</param>
+        /// <param name="cancellationToken">Cancellation token</param>
         public static async Task WaitConditionAsync(TimeSpan checkInterval, Func<CancellationToken, Task<bool>> condition, CancellationToken cancellationToken = default)
         {
             if (await condition(cancellationToken).DynamicContext()) return;

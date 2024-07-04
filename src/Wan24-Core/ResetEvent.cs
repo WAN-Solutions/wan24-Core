@@ -215,6 +215,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
+            using SemaphoreSync sync = Sync;
             using SemaphoreSyncContext ssc = Sync.SyncContext();
             using ManualResetEventSlim? syncSet = SyncSet;
             if (IsSet) TaskCompletion = new(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -225,6 +226,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
+            using SemaphoreSync sync = Sync;
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync().DynamicContext();
             using ManualResetEventSlim? syncSet = SyncSet;
             if (IsSet) TaskCompletion = new(TaskCreationOptions.RunContinuationsAsynchronously);

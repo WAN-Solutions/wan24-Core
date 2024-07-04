@@ -1,4 +1,6 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Runtime;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
@@ -92,6 +94,10 @@ namespace wan24.Core
         /// Get this structure as serialized data
         /// </summary>
         /// <returns>Serialized data</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public byte[] GetBytes()
         {
             byte[] res = new byte[STRUCTURE_SIZE];
@@ -104,6 +110,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="buffer">Buffer (min. <see cref="STRUCTURE_SIZE"/> bytes length required)</param>
         /// <returns>Buffer</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public Span<byte> GetBytes(in Span<byte> buffer)
         {
             if (buffer.Length < STRUCTURE_SIZE) throw new ArgumentOutOfRangeException(nameof(buffer));
@@ -113,72 +123,120 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public override string ToString() => $"{X};{Y}";
 
         /// <summary>
         /// Cast as serialized data
         /// </summary>
         /// <param name="xy">XY</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator byte[](in XY xy) => xy.GetBytes();
 
         /// <summary>
         /// Cast from serialized data
         /// </summary>
         /// <param name="data">Serialized data</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator XY(in byte[] data) => new(data);
 
         /// <summary>
         /// Cast from serialized data
         /// </summary>
         /// <param name="data">Serialized data</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator XY(in Span<byte> data) => new(data);
 
         /// <summary>
         /// Cast from serialized data
         /// </summary>
         /// <param name="data">Serialized data</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator XY(in ReadOnlySpan<byte> data) => new(data);
 
         /// <summary>
         /// Cast from serialized data
         /// </summary>
         /// <param name="data">Serialized data</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator XY(in Memory<byte> data) => new(data.Span);
 
         /// <summary>
         /// Cast from serialized data
         /// </summary>
         /// <param name="data">Serialized data</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator XY(in ReadOnlyMemory<byte> data) => new(data.Span);
 
         /// <summary>
         /// Cast as <see cref="string"/>
         /// </summary>
         /// <param name="xy"><see cref="XY"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator string(in XY xy) => xy.ToString();
 
         /// <summary>
         /// Cast as <see cref="string"/>
         /// </summary>
         /// <param name="xy"><see cref="XY"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator ReadOnlySpan<char>(in XY xy) => xy.ToString();
 
         /// <summary>
         /// Cast from a <see cref="string"/>
         /// </summary>
         /// <param name="str">String</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator XY(in ReadOnlySpan<char> str) => Parse(str);
 
         /// <summary>
         /// Cast from a <see cref="string"/>
         /// </summary>
         /// <param name="str">String</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator XY(in string str) => Parse(str);
 
         /// <summary>
         /// Cast as <see cref="double"/> array
         /// </summary>
         /// <param name="xy"><see cref="XY"/></param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator double[](in XY xy) => [xy.X, xy.Y];
 
         /// <summary>
@@ -186,6 +244,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns><see cref="XY"/></returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static XY Parse(in ReadOnlySpan<char> str)
         {
             int index = str.IndexOf(';');
@@ -199,6 +261,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="result"><see cref="XY"/></param>
         /// <returns>If succeed</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool TryParse(in ReadOnlySpan<char> str, out XY result)
         {
             result = default;
