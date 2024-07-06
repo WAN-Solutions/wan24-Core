@@ -1,0 +1,1045 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class RentedThread | wan24-Core </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class RentedThread | wan24-Core ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <!-- Header required for docfx anchor scroll to work -->
+        <header id="head"></header>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../logo.svg" alt="" class="logomark">
+              <span class="brand-title"></span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../logo.svg" alt="" class="logomark">
+                          <span class="brand-title"></span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  (c) 2023 Andreas Zimmermann, wan24.de
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+ 
+
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                         <div id="contribution">
+                               <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                         </div>
+
+                    <article class="content wrap" id="_content" data-uid="wan24.Core.RentedThread">
+
+
+
+  <h1 id="wan24_Core_RentedThread" data-uid="wan24.Core.RentedThread" class="text-break">Class RentedThread</h1>
+  <div class="markdown level0 summary"><p>Rented thread (can be used with <a class="xref" href="wan24.Core.ObjectPool-1.html">ObjectPool&lt;T&gt;</a> and <a class="xref" href="wan24.Core.RentedObject-1.html">RentedObject&lt;T&gt;</a>)</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><a class="xref" href="wan24.Core.DisposableBase.html">DisposableBase</a></div>
+    <div class="level2"><span class="xref">RentedThread</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></div>
+    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
+    <div><a class="xref" href="wan24.Core.IObjectPoolItem.html">IObjectPoolItem</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeSyncObject">DisposableBase.DisposeSyncObject</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AsyncDisposing">DisposableBase.AsyncDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AllowFinalizer">DisposableBase.AllowFinalizer</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeObjects">DisposableBase.DisposeObjects</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_StackInfo">DisposableBase.StackInfo</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_CreateStackInfo">DisposableBase.CreateStackInfo</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DestructorDisposing">DisposableBase.DestructorDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposing">DisposableBase.IsDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposed">DisposableBase.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_RegisterForDispose__1___0__">DisposableBase.RegisterForDispose&lt;T&gt;(in T)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_EnsureUndisposed_System_Boolean__System_Boolean__">DisposableBase.EnsureUndisposed(in bool, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_LockDisposing_System_TimeSpan__System_Threading_CancellationToken__">DisposableBase.LockDisposing(in TimeSpan, in CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_LockDisposingAsync_System_TimeSpan_System_Threading_CancellationToken_">DisposableBase.LockDisposingAsync(TimeSpan, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_TryLockDisposing_wan24_Core_SemaphoreSyncContext__System_TimeSpan__System_Threading_CancellationToken__">DisposableBase.TryLockDisposing(out SemaphoreSyncContext, in TimeSpan, in CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_TryLockDisposingAsync_System_TimeSpan_System_Threading_CancellationToken_">DisposableBase.TryLockDisposingAsync(TimeSpan, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed__1___0__System_Boolean__">DisposableBase.IfUndisposed&lt;T&gt;(in T, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed_System_Action__System_Boolean__">DisposableBase.IfUndisposed(in Action, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed__1_System_Func___0___System_Boolean__">DisposableBase.IfUndisposed&lt;T&gt;(in Func&lt;T&gt;, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposedNullable__1_System_Func___0___System_Boolean__">DisposableBase.IfUndisposedNullable&lt;T&gt;(in Func&lt;T&gt;, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributes">DisposableBase.DisposeAttributes()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributesAsync">DisposableBase.DisposeAttributesAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose">DisposableBase.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAsync">DisposableBase.DisposeAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposing">DisposableBase.OnDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposed">DisposableBase.OnDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_RentedThread_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class RentedThread : DisposableBase, IWillDispose, IDisposableObject, IDisposable, IAsyncDisposable, IObjectPoolItem</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L46">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedThread__ctor_" data-uid="wan24.Core.RentedThread.#ctor*"></a>
+  <h4 id="wan24_Core_RentedThread__ctor" data-uid="wan24.Core.RentedThread.#ctor">RentedThread()</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RentedThread()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread__ctor_wan24_Core_RentedThreadOptions_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.%23ctor(wan24.Core.RentedThreadOptions)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L52">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedThread__ctor_" data-uid="wan24.Core.RentedThread.#ctor*"></a>
+  <h4 id="wan24_Core_RentedThread__ctor_wan24_Core_RentedThreadOptions_" data-uid="wan24.Core.RentedThread.#ctor(wan24.Core.RentedThreadOptions)">RentedThread(RentedThreadOptions?)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RentedThread(RentedThreadOptions? options)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedThreadOptions.html">RentedThreadOptions</a></td>
+        <td><span class="parametername">options</span></td>
+        <td><p>Options</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_ManagedThread.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.ManagedThread%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L29">View Source</a>
+  </span>
+  <h4 id="wan24_Core_RentedThread_ManagedThread" data-uid="wan24.Core.RentedThread.ManagedThread">ManagedThread</h4>
+  <div class="markdown level1 summary"><p>Managed thread</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Thread ManagedThread</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.thread">Thread</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_Options.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.Options%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L25">View Source</a>
+  </span>
+  <h4 id="wan24_Core_RentedThread_Options" data-uid="wan24.Core.RentedThread.Options">Options</h4>
+  <div class="markdown level1 summary"><p>Default options</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly RentedThreadOptions Options</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedThreadOptions.html">RentedThreadOptions</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_Sync.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.Sync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L13">View Source</a>
+  </span>
+  <h4 id="wan24_Core_RentedThread_Sync" data-uid="wan24.Core.RentedThread.Sync">Sync</h4>
+  <div class="markdown level1 summary"><p>Thread synchronization</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly SemaphoreSync Sync</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.SemaphoreSync.html">SemaphoreSync</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_WorkDoneEvent.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.WorkDoneEvent%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L21">View Source</a>
+  </span>
+  <h4 id="wan24_Core_RentedThread_WorkDoneEvent" data-uid="wan24.Core.RentedThread.WorkDoneEvent">WorkDoneEvent</h4>
+  <div class="markdown level1 summary"><p>Work done event (raised when work was done; reset when working)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly ResetEvent WorkDoneEvent</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ResetEvent.html">ResetEvent</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_WorkEvent.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.WorkEvent%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L17">View Source</a>
+  </span>
+  <h4 id="wan24_Core_RentedThread_WorkEvent" data-uid="wan24.Core.RentedThread.WorkEvent">WorkEvent</h4>
+  <div class="markdown level1 summary"><p>Work event (raised when work is available; reset when work was done)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly ResetEvent WorkEvent</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ResetEvent.html">ResetEvent</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_Worker.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.Worker%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L33">View Source</a>
+  </span>
+  <h4 id="wan24_Core_RentedThread_Worker" data-uid="wan24.Core.RentedThread.Worker">Worker</h4>
+  <div class="markdown level1 summary"><p>Worker</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected RentedThread.Worker_Delegate? Worker</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedThread.html">RentedThread</a>.<a class="xref" href="wan24.Core.RentedThread.Worker_Delegate.html">Worker_Delegate</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_WorkerCancellation.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.WorkerCancellation%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L41">View Source</a>
+  </span>
+  <h4 id="wan24_Core_RentedThread_WorkerCancellation" data-uid="wan24.Core.RentedThread.WorkerCancellation">WorkerCancellation</h4>
+  <div class="markdown level1 summary"><p>Worker cancellation token</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected CancellationToken WorkerCancellation</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_WorkerCompletion.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.WorkerCompletion%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L37">View Source</a>
+  </span>
+  <h4 id="wan24_Core_RentedThread_WorkerCompletion" data-uid="wan24.Core.RentedThread.WorkerCompletion">WorkerCompletion</h4>
+  <div class="markdown level1 summary"><p>Worker completion</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected volatile TaskCompletionSource? WorkerCompletion</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.taskcompletionsource">TaskCompletionSource</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_CanWork.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.CanWork%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L104">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedThread_CanWork_" data-uid="wan24.Core.RentedThread.CanWork*"></a>
+  <h4 id="wan24_Core_RentedThread_CanWork" data-uid="wan24.Core.RentedThread.CanWork">CanWork</h4>
+  <div class="markdown level1 summary"><p>If can work</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool CanWork { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_CurrentWorkerTask.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.CurrentWorkerTask%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L109">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedThread_CurrentWorkerTask_" data-uid="wan24.Core.RentedThread.CurrentWorkerTask*"></a>
+  <h4 id="wan24_Core_RentedThread_CurrentWorkerTask" data-uid="wan24.Core.RentedThread.CurrentWorkerTask">CurrentWorkerTask</h4>
+  <div class="markdown level1 summary"><p>Current worker task</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task? CurrentWorkerTask { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_IsBackground.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.IsBackground%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L71">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedThread_IsBackground_" data-uid="wan24.Core.RentedThread.IsBackground*"></a>
+  <h4 id="wan24_Core_RentedThread_IsBackground" data-uid="wan24.Core.RentedThread.IsBackground">IsBackground</h4>
+  <div class="markdown level1 summary"><p>If the managed thread is a background thread</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsBackground { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_IsWorking.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.IsWorking%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L99">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedThread_IsWorking_" data-uid="wan24.Core.RentedThread.IsWorking*"></a>
+  <h4 id="wan24_Core_RentedThread_IsWorking" data-uid="wan24.Core.RentedThread.IsWorking">IsWorking</h4>
+  <div class="markdown level1 summary"><p>If working</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool IsWorking { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_LastException.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.LastException%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L94">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedThread_LastException_" data-uid="wan24.Core.RentedThread.LastException*"></a>
+  <h4 id="wan24_Core_RentedThread_LastException" data-uid="wan24.Core.RentedThread.LastException">LastException</h4>
+  <div class="markdown level1 summary"><p>Last exception of the thread worker</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Exception? LastException { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_Name.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.Name%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L62">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedThread_Name_" data-uid="wan24.Core.RentedThread.Name*"></a>
+  <h4 id="wan24_Core_RentedThread_Name" data-uid="wan24.Core.RentedThread.Name">Name</h4>
+  <div class="markdown level1 summary"><p>Thread name (will be reset, if the rented thread is returned to the pool)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? Name { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_Priority.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.Priority%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L80">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedThread_Priority_" data-uid="wan24.Core.RentedThread.Priority*"></a>
+  <h4 id="wan24_Core_RentedThread_Priority" data-uid="wan24.Core.RentedThread.Priority">Priority</h4>
+  <div class="markdown level1 summary"><p>Managed thread priority</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ThreadPriority Priority { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.threadpriority">ThreadPriority</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_Tag.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.Tag%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L89">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedThread_Tag_" data-uid="wan24.Core.RentedThread.Tag*"></a>
+  <h4 id="wan24_Core_RentedThread_Tag" data-uid="wan24.Core.RentedThread.Tag">Tag</h4>
+  <div class="markdown level1 summary"><p>Any tagged object (will be set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> when returned to the pool)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object? Tag { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_ApplyDefaultOptions.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.ApplyDefaultOptions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L164">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedThread_ApplyDefaultOptions_" data-uid="wan24.Core.RentedThread.ApplyDefaultOptions*"></a>
+  <h4 id="wan24_Core_RentedThread_ApplyDefaultOptions" data-uid="wan24.Core.RentedThread.ApplyDefaultOptions">ApplyDefaultOptions()</h4>
+  <div class="markdown level1 summary"><p>Apply the default options</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void ApplyDefaultOptions()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L220">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedThread_Dispose_" data-uid="wan24.Core.RentedThread.Dispose*"></a>
+  <h4 id="wan24_Core_RentedThread_Dispose_System_Boolean_" data-uid="wan24.Core.RentedThread.Dispose(System.Boolean)">Dispose(bool)</h4>
+  <div class="markdown level1 summary"><p>Dispose</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>Disposing? (may be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, if called from the destructor)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose_System_Boolean_">DisposableBase.Dispose(bool)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L231">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedThread_DisposeCore_" data-uid="wan24.Core.RentedThread.DisposeCore*"></a>
+  <h4 id="wan24_Core_RentedThread_DisposeCore" data-uid="wan24.Core.RentedThread.DisposeCore">DisposeCore()</h4>
+  <div class="markdown level1 summary"><p>Dispose</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task DisposeCore()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeCore">DisposableBase.DisposeCore()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_ThreadWorker.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.ThreadWorker%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L173">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedThread_ThreadWorker_" data-uid="wan24.Core.RentedThread.ThreadWorker*"></a>
+  <h4 id="wan24_Core_RentedThread_ThreadWorker" data-uid="wan24.Core.RentedThread.ThreadWorker">ThreadWorker()</h4>
+  <div class="markdown level1 summary"><p>Thread worker</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void ThreadWorker()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedThread_WorkAsync_wan24_Core_RentedThread_Worker_Delegate_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedThread.WorkAsync(wan24.Core.RentedThread.Worker_Delegate%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedThread.cs/#L116">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedThread_WorkAsync_" data-uid="wan24.Core.RentedThread.WorkAsync*"></a>
+  <h4 id="wan24_Core_RentedThread_WorkAsync_wan24_Core_RentedThread_Worker_Delegate_System_Threading_CancellationToken_" data-uid="wan24.Core.RentedThread.WorkAsync(wan24.Core.RentedThread.Worker_Delegate,System.Threading.CancellationToken)">WorkAsync(Worker_Delegate, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Work</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task WorkAsync(RentedThread.Worker_Delegate worker, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedThread.html">RentedThread</a>.<a class="xref" href="wan24.Core.RentedThread.Worker_Delegate.html">Worker_Delegate</a></td>
+        <td><span class="parametername">worker</span></td>
+        <td><p>Worker</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token (used for thead synchronization only)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IObjectPoolItem.html">IObjectPoolItem</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_DynamicContext_System_IAsyncDisposable_">AsyncDisposableExtensions.DynamicContext(IAsyncDisposable)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_FixedContext_System_IAsyncDisposable_">AsyncDisposableExtensions.FixedContext(IAsyncDisposable)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean__">JsonExtensions.ToJson(object, in bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(object, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectTo_System_Object_System_Object__">ObjectMappingExtensions.MapObjectTo(object, in object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectTo_System_Object_System_Type__">ObjectMappingExtensions.MapObjectTo(object, in Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectToAsync_System_Object_System_Object_System_Threading_CancellationToken_">ObjectMappingExtensions.MapObjectToAsync(object, object, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectToAsync_System_Object_System_Type_System_Threading_CancellationToken_">ObjectMappingExtensions.MapObjectToAsync(object, Type, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_">StringValueConverter.ConvertObjectToString(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_NamedStringConversion_System_Object_System_String__System_Type__">StringValueConverter.NamedStringConversion(object?, in string, in Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_System_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean__System_String__">ObjectExtensions.EnsureValidState&lt;T&gt;(T, in bool, in string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText__1___0_">ObjectExtensions.GetDisplayText&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_System_Collections_Generic_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T?&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsDisposable__1___0_">ObjectExtensions.IsDisposable&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2___0_System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(tSource, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2___0___1_System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(tSource, tTarget, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2___0_">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(tSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2___0___1__">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(tSource, in tTarget)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>
+  </div>
+
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>(c) 2023 Andreas Zimmermann, wan24.de</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+</html>

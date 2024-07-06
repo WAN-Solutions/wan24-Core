@@ -890,6 +890,113 @@ public virtual void Start()</code></pre>
 [DisplayText(&quot;Stop&quot;)]
 public virtual void Stop()</code></pre>
   </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Timeout_WaitCondition_System_TimeSpan__System_Func_System_Threading_CancellationToken_System_Boolean___System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.WaitCondition(System.TimeSpan%40%2CSystem.Func%7BSystem.Threading.CancellationToken%2CSystem.Boolean%7D%40%2CSystem.Threading.CancellationToken%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Timeout.cs/#L420">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_WaitCondition_" data-uid="wan24.Core.Timeout.WaitCondition*"></a>
+  <h4 id="wan24_Core_Timeout_WaitCondition_System_TimeSpan__System_Func_System_Threading_CancellationToken_System_Boolean___System_Threading_CancellationToken__" data-uid="wan24.Core.Timeout.WaitCondition(System.TimeSpan@,System.Func{System.Threading.CancellationToken,System.Boolean}@,System.Threading.CancellationToken@)">WaitCondition(in TimeSpan, in Func&lt;CancellationToken, bool&gt;, in CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Wait for a condition</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WaitCondition(in TimeSpan checkInterval, in Func&lt;CancellationToken, bool&gt; condition, in CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></td>
+        <td><span class="parametername">checkInterval</span></td>
+        <td><p>Condition check interval</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><span class="parametername">condition</span></td>
+        <td><p>Condition evaluator</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Timeout_WaitConditionAsync_System_TimeSpan_System_Func_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Timeout.WaitConditionAsync(System.TimeSpan%2CSystem.Func%7BSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.Task%7BSystem.Boolean%7D%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Timeout.cs/#L431">View Source</a>
+  </span>
+  <a id="wan24_Core_Timeout_WaitConditionAsync_" data-uid="wan24.Core.Timeout.WaitConditionAsync*"></a>
+  <h4 id="wan24_Core_Timeout_WaitConditionAsync_System_TimeSpan_System_Func_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_" data-uid="wan24.Core.Timeout.WaitConditionAsync(System.TimeSpan,System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},System.Threading.CancellationToken)">WaitConditionAsync(TimeSpan, Func&lt;CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Wait for a condition</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task WaitConditionAsync(TimeSpan checkInterval, Func&lt;CancellationToken, Task&lt;bool&gt;&gt; condition, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></td>
+        <td><span class="parametername">checkInterval</span></td>
+        <td><p>Condition check interval</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</td>
+        <td><span class="parametername">condition</span></td>
+        <td><p>Condition evaluator</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
