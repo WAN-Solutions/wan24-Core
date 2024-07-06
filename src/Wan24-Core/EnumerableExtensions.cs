@@ -1,4 +1,5 @@
 ﻿using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -101,6 +102,31 @@ namespace wan24.Core
                 res++;
             }
             return found ? res : -1;
+        }
+
+        /// <summary>
+        /// Filter non-<see langword="null"/> items
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <returns>Non-<see langword="null"/> items</returns>
+        public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> enumerable) => enumerable.Where(i => i is not null).Cast<T>();
+
+        /// <summary>
+        /// Filter non-<see langword="null"/> items
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Non-<see langword="null"/> items</returns>
+        public static async IAsyncEnumerable<T> WhereNotNullAsync<T>(
+            this IAsyncEnumerable<T?> enumerable, 
+            [EnumeratorCancellation] CancellationToken cancellationToken = default
+            )
+        {
+            await foreach (T? item in enumerable.DynamicContext().WithCancellation(cancellationToken))
+                if (item is not null)
+                    yield return item;
         }
 
         /// <summary>
