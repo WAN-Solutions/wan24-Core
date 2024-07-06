@@ -41,5 +41,39 @@
         /// <returns>If the cancellation tokens are equal</returns>
         public static bool IsEqualTo(this CancellationToken cancellationToken, CancellationToken other)
             => CancellationToken.Equals(cancellationToken, other);
+
+        /// <summary>
+        /// Remove the default and <see cref="CancellationToken.None"/> cancellation tokens
+        /// </summary>
+        /// <param name="tokens">Cancellation tokens</param>
+        /// <returns>Resulting cancellation tokens</returns>
+        public static IEnumerable<CancellationToken> RemoveNoneAndDefault(this IEnumerable<CancellationToken> tokens)
+            => Remove(tokens, default, CancellationToken.None);
+
+        /// <summary>
+        /// Remove the default and <see cref="CancellationToken.None"/> cancellation tokens
+        /// </summary>
+        /// <param name="tokens">Cancellation tokens</param>
+        /// <param name="removeTokens">Cancellation tokens to remove</param>
+        /// <returns>Resulting cancellation tokens</returns>
+        public static IEnumerable<CancellationToken> RemoveNoneAndDefaultAnd(this IEnumerable<CancellationToken> tokens, params CancellationToken[] removeTokens)
+            => Remove(tokens, [default, CancellationToken.None, ..removeTokens]);
+
+        /// <summary>
+        /// Remove the default and <see cref="CancellationToken.None"/> cancellation tokens
+        /// </summary>
+        /// <param name="tokens">Cancellation tokens</param>
+        /// <param name="removeTokens">Cancellation tokens to remove</param>
+        /// <returns>Resulting cancellation tokens</returns>
+        public static IEnumerable<CancellationToken> Remove(this IEnumerable<CancellationToken> tokens, params CancellationToken[] removeTokens)
+            => tokens.Where(t => !removeTokens.Any(rt => rt.IsEqualTo(t)));
+
+        /// <summary>
+        /// Remove double cancellation tokens (ensure having a distinct list)
+        /// </summary>
+        /// <param name="tokens">Cancellation tokens</param>
+        /// <returns>Resulting cancellation tokens</returns>
+        public static IEnumerable<CancellationToken> RemoveDoubles(this IEnumerable<CancellationToken> tokens)
+            => new HashSet<CancellationToken>().AddRange(tokens);
     }
 }

@@ -296,7 +296,8 @@ namespace wan24.Core
         protected override void Dispose(bool disposing)
         {
             ProcessingProgress[] subProgress;
-            using (SemaphoreSyncContext ssc = Sync.SyncContext()) subProgress = [.. _SubProgress];
+            using SemaphoreSync sync = Sync;
+            using (SemaphoreSyncContext ssc = sync) subProgress = [.. _SubProgress];
             foreach (ProcessingProgress progress in subProgress) RemoveSubProgressInt(progress);
             Info?.Dispose();
             Info = null;

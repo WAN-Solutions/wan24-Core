@@ -67,6 +67,13 @@ namespace Wan24_Core_Tests
             Assert.AreEqual(rgb, Rgb.ParseCss(rgb.ToCssString()));
             Assert.AreEqual(rgb, rgb);
             Assert.AreNotEqual(Rgb.White, rgb);
+
+            byte[] data = rgb;
+            Assert.AreEqual(Rgb.BINARY_SIZE, data.Length);
+            rgb = data;
+            Assert.AreEqual(1, rgb.R);
+            Assert.AreEqual(2, rgb.G);
+            Assert.AreEqual(3, rgb.B);
         }
     }
 }

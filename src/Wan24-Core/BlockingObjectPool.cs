@@ -324,6 +324,7 @@ namespace wan24.Core
                     ((IDisposable)item!).Dispose();
                 }
             Pool.Dispose();
+            Sync.Dispose();
         }
 
         /// <inheritdoc/>
@@ -344,6 +345,7 @@ namespace wan24.Core
                     }
                 }
             Pool.Dispose();
+            await Sync.DisposeAsync().DynamicContext();
         }
 
         /// <inheritdoc/>

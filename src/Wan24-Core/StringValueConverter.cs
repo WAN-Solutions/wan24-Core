@@ -113,6 +113,8 @@ namespace wan24.Core
                 }
                 return res.FirstChild;
             };
+            ValueConverter[typeof(XY)] = (t, s) => s is not null && XY.TryParse(s, out var res) ? (object)res : null;
+            ValueConverter[typeof(XYZ)] = (t, s) => s is not null && XYZ.TryParse(s, out var res) ? (object)res : null;
             StringConverter[typeof(string)] = (t, v) => v as string;
             StringConverter[typeof(bool)] = (t, v) => v?.ToString();
             StringConverter[typeof(byte)] = (t, v) => v?.ToString();
@@ -146,6 +148,8 @@ namespace wan24.Core
             StringConverter[typeof(Guid)] = (t, v) => v?.ToString();
             StringConverter[typeof(XmlDocument)] = (t, v) => (v as XmlDocument)?.OuterXml;
             StringConverter[typeof(XmlNode)] = (t, v) => (v as XmlNode)?.OuterXml;
+            StringConverter[typeof(XY)] = (t, v) => v?.ToString();
+            StringConverter[typeof(XYZ)] = (t, v) => v?.ToString();
             NamedValueConverter[JSON_CONVERTER_NAME] = (t, s) =>
             {
                 if (s is null) return null;

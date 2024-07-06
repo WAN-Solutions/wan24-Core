@@ -410,5 +410,50 @@ namespace wan24.Core
             res.Start();
             return res;
         }
+
+        /// <summary>
+        /// Wait for a condition
+        /// </summary>
+        /// <param name="checkInterval">Condition check interval</param>
+        /// <param name="condition">Condition evaluator</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public static void WaitCondition(in TimeSpan checkInterval, in Func<CancellationToken, bool> condition, in CancellationToken cancellationToken = default)
+        {
+            for (; !cancellationToken.GetIsCancellationRequested() && !condition(cancellationToken); Thread.Sleep(checkInterval)) ;
+        }
+
+        /// <summary>
+        /// Wait for a condition
+        /// </summary>
+        /// <param name="checkInterval">Condition check interval</param>
+        /// <param name="condition">Condition evaluator</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public static async Task WaitConditionAsync(TimeSpan checkInterval, Func<CancellationToken, Task<bool>> condition, CancellationToken cancellationToken = default)
+        {
+            if (await condition(cancellationToken).DynamicContext()) return;
+            using Timeout to = new(checkInterval)
+            {
+                Name = "Waiting for condition"
+            };
+            TaskCompletionSource tcs = new(TaskCreationOptions.RunContinuationsAsynchronously);
+            to.OnTimeout += async (s, e) =>
+            {
+                try
+                {
+                    if(!await condition(cancellationToken).DynamicContext())
+                    {
+                        to.Reset();
+                        return;
+                    }
+                    tcs.SetResult();
+                }
+                catch(Exception ex)
+                {
+                    tcs.SetException(ex);
+                }
+            };
+            to.Start();
+            await tcs.Task.WaitAsync(cancellationToken).DynamicContext();
+        }
     }
 }

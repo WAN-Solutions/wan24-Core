@@ -1,4 +1,6 @@
-﻿namespace Wan24_Core_Tests
+﻿using wan24.Core;
+
+namespace Wan24_Core_Tests
 {
     [TestClass]
     public class Timeout_Tests : TestBase
@@ -52,6 +54,36 @@
             await Task.Delay(200);
             Assert.IsTrue(didRun);
             Assert.IsTrue(timeout.IsDisposed);
+        }
+
+        [TestMethod, Timeout(3000)]
+        public void WaitCondition_Tests()
+        {
+            bool condition = false;
+            Task delay = ((Func<Task>)(async () =>
+            {
+                await Task.Yield();
+                await Task.Delay(200);
+                condition = true;
+            })).StartFairTask();
+            Thread.Sleep(50);
+            Assert.IsFalse(delay.IsCompleted);
+            Assert.IsFalse(condition);
+            wan24.Core.Timeout.WaitCondition(TimeSpan.FromMilliseconds(50), (ct) => condition);
+            Assert.IsTrue(delay.IsCompleted);
+            Assert.IsTrue(condition);
+        }
+
+        [TestMethod, Timeout(3000)]
+        public async Task WaitConditionAsync_Tests()
+        {
+            bool condition = false;
+            Task task = wan24.Core.Timeout.WaitConditionAsync(TimeSpan.FromMilliseconds(50), (ct) => Task.FromResult(!ct.IsCancellationRequested && condition));
+            await Task.Delay(200);
+            Assert.IsFalse(task.IsCompleted);
+            condition = true;
+            await Task.Delay(200);
+            Assert.IsTrue(task.IsCompleted);
         }
     }
 }

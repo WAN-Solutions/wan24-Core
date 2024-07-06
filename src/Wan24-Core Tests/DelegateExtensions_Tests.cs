@@ -18,7 +18,7 @@ namespace Wan24_Core_Tests
                 Bool_Method,
                 Bool_Method
             }.InvokeAll<Bool_Delegate, bool>(true).ToArray();
-            Assert.IsFalse(res[0]);//FIXME This fails on Windows 10 within Visual Studio when running all tests in DEBUG build ONLY
+            Assert.IsFalse(res[0]);//FIXME This fails on Windows 10 within Visual Studio when running all tests in DEBUG build ONLY (while "dotnet test" succeeds)
             Assert.IsFalse(res[1]);
         }
 
@@ -35,7 +35,7 @@ namespace Wan24_Core_Tests
                 BoolAsync_Method,
                 BoolAsync_Method
             }.InvokeAllAsync<BoolAsync_Delegate, bool>(default, true).ToArrayAsync();
-            Assert.IsFalse(res[0]);//FIXME This fails on Windows 10 within Visual Studio when running all tests in DEBUG build ONLY
+            Assert.IsFalse(res[0]);//FIXME This fails on Windows 10 within Visual Studio when running all tests in DEBUG build ONLY (while "dotnet test" succeeds)
             Assert.IsFalse(res[1]);
             res = await AsyncEnumerable(new BoolAsync_Delegate[]
             {
