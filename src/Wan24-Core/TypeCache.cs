@@ -1,5 +1,7 @@
 ﻿using System.Collections.Concurrent;
 
+//TODO Use type string hash code as key from version 3+
+
 namespace wan24.Core
 {
     /// <summary>
@@ -10,7 +12,7 @@ namespace wan24.Core
         /// <summary>
         /// Type cache (key is the types hash code)
         /// </summary>
-        public static readonly ConcurrentDictionary<int, Type> Types = new();
+        public static readonly ConcurrentDictionary<int, Type> Types = [];
 
         /// <summary>
         /// Add types to the <see cref="Types"/> cache
