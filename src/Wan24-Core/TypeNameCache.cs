@@ -3,12 +3,12 @@
 namespace wan24.Core
 {
     /// <summary>
-    /// Type cache
+    /// Type name cache
     /// </summary>
-    public static class TypeCache
+    public static class TypeNameCache
     {
         /// <summary>
-        /// Type cache (key is the types hash code)
+        /// Type cache (key is the type name (see <see cref="Type.ToString"/>) hash code)
         /// </summary>
         public static readonly ConcurrentDictionary<int, Type> Types = [];
 
@@ -18,7 +18,7 @@ namespace wan24.Core
         /// <param name="types">Types</param>
         public static void Add(params Type[] types)
         {
-            foreach(Type type in types) Types[type.GetHashCode()] = type;
+            foreach(Type type in types) Types[type.ToString().GetHashCode()] = type;
         }
     }
 }
