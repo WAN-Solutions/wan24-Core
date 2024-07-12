@@ -10,7 +10,11 @@ namespace wan24.Core
         /// <summary>
         /// Type cache (key is the types hash code)
         /// </summary>
-        public static readonly ConcurrentDictionary<int, Type> Types = [];
+        internal static readonly ConcurrentDictionary<int, Type> Types = [];
+        /// <summary>
+        /// Type cache (key is the types name (see <see cref="Type.ToString"/>) hash code)
+        /// </summary>
+        internal static readonly ConcurrentDictionary<int, Type> TypeNames = [];
 
         /// <summary>
         /// Constructor
@@ -40,12 +44,37 @@ namespace wan24.Core
             );
 
         /// <summary>
-        /// Add types to the <see cref="Types"/> cache
+        /// Add types to the <see cref="Types"/> and the <see cref="TypeNames"/> cache
         /// </summary>
         /// <param name="types">Types</param>
         public static void Add(params Type[] types)
         {
-            foreach(Type type in types) Types[type.GetHashCode()] = type;
+            foreach (Type type in types)
+            {
+                Types[type.GetHashCode()] = type;
+                TypeNames[type.ToString().GetHashCode()] = type;
+            }
         }
+
+        /// <summary>
+        /// Determine if a type was cached
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns></returns>
+        public static bool Contains(in Type type) => Types.ContainsKey(type.GetHashCode());
+
+        /// <summary>
+        /// Get a cached type by its hash code (see <see cref="Type.GetHashCode"/>)
+        /// </summary>
+        /// <param name="hashCode">Hash code (see <see cref="Type.GetHashCode"/>)</param>
+        /// <returns>Type</returns>
+        public static Type? GetByHashCode(in int hashCode) => Types.TryGetValue(hashCode, out Type? res) ? res : null;
+
+        /// <summary>
+        /// Get a cached type by its hash code (see <see cref="Type.ToString"/>)
+        /// </summary>
+        /// <param name="hashCode">Name hash code (see <see cref="Type.ToString"/>)</param>
+        /// <returns>Type</returns>
+        public static Type? GetByNameHashCode(in int hashCode) => TypeNames.TryGetValue(hashCode, out Type? res) ? res : null;
     }
 }

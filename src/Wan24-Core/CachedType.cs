@@ -16,6 +16,10 @@ namespace wan24.Core
         /// </summary>
         public readonly int HashCode;
         /// <summary>
+        /// <see cref="Type"/> name hash code (see <see cref="Type.ToString"/>)
+        /// </summary>
+        public readonly int NameHashCode;
+        /// <summary>
         /// Type
         /// </summary>
         public readonly Type Type;
@@ -31,11 +35,13 @@ namespace wan24.Core
         /// <param name="type">Type (will be registered to <see cref="TypeCache"/>, if <c>addToCache</c> is <see langword="true"/>)</param>
         /// <param name="addToCache">If to add the <c>type</c> to the <see cref="TypeCache"/></param>
         /// <param name="typeHashCode"><see cref="System.Type"/> hash code (see <see cref="Type.GetHashCode"/>)</param>
-        public CachedType(in Type type, in bool addToCache = true, in int? typeHashCode = null)
+        /// <param name="typeNameHashCode">Type name hash code (see <see cref="Type.ToString"/>)</param>
+        public CachedType(in Type type, in bool addToCache = true, in int? typeHashCode = null, in int? typeNameHashCode = null)
         {
             Type = type;
             HashCode = typeHashCode ?? type.GetHashCode();
-            if (addToCache) AddToCache();
+            NameHashCode = typeNameHashCode ?? type.ToString().GetHashCode();
+            if (addToCache) TypeCache.Add(type);
         }
 
         /// <summary>
@@ -47,18 +53,17 @@ namespace wan24.Core
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            get => TypeCache.Types.ContainsKey(HashCode);
+            get => TypeCache.GetByHashCode(HashCode) is not null;
         }
 
         /// <summary>
         /// Add the <see cref="Type"/> to the <see cref="TypeCache"/>
         /// </summary>
-        /// <returns>If added</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public bool AddToCache() => TypeCache.Types.TryAdd(HashCode, Type);
+        public void AddToCache() => TypeCache.Add(Type);
 
         /// <summary>
         /// Remove the <see cref="Type"/> from the <see cref="TypeCache"/>
@@ -68,7 +73,11 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public bool RemoveFromCache() => TypeCache.Types.TryRemove(HashCode, out _);
+        public void RemoveFromCache()
+        {
+            TypeCache.Types.TryRemove(HashCode, out _);
+            TypeCache.TypeNames.TryRemove(NameHashCode, out _);
+        }
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
