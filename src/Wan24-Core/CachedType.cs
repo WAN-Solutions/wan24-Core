@@ -53,7 +53,7 @@ namespace wan24.Core
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            get => TypeCache.GetByHashCode(HashCode) is not null;
+            get => TypeCache.GetTypeByHashCode(HashCode) is not null;
         }
 
         /// <summary>

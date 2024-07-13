@@ -68,13 +68,13 @@ namespace wan24.Core
         /// </summary>
         /// <param name="hashCode">Hash code (see <see cref="Type.GetHashCode"/>)</param>
         /// <returns>Type</returns>
-        public static Type? GetByHashCode(in int hashCode) => Types.TryGetValue(hashCode, out Type? res) ? res : null;
+        public static Type? GetTypeByHashCode(in int hashCode) => Types.TryGetValue(hashCode, out Type? res) ? res : null;
 
         /// <summary>
         /// Get a cached type by its hash code (see <see cref="Type.ToString"/>)
         /// </summary>
         /// <param name="hashCode">Name hash code (see <see cref="Type.ToString"/>)</param>
         /// <returns>Type</returns>
-        public static Type? GetByNameHashCode(in int hashCode) => TypeNames.TryGetValue(hashCode, out Type? res) ? res : null;
+        public static Type? GetTypeByNameHashCode(in int hashCode) => TypeNames.TryGetValue(hashCode, out Type? res) ? res : null;
     }
 }
