@@ -3,8 +3,16 @@
     /// <summary>
     /// Interface for a throttle
     /// </summary>
-    public interface IThrottle : IWillDispose
+    public interface IThrottle : IWillDispose, IStatusProvider
     {
+        /// <summary>
+        /// GUID
+        /// </summary>
+        string GUID { get; }
+        /// <summary>
+        /// Name
+        /// </summary>
+        string? Name { get; }
         /// <summary>
         /// Limit within <see cref="Timeout"/> (zero to disable throttling)
         /// </summary>
@@ -53,5 +61,19 @@
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
         Task ReleaseAsync(CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update settings (will restart the throttling timer)
+        /// </summary>
+        /// <param name="limit">Limit within <c>timeout</c> (zero to disable throttling)</param>
+        /// <param name="timeout">Timeout</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        void UpdateSettings(int limit, TimeSpan timeout, CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update settings (will restart the throttling timer)
+        /// </summary>
+        /// <param name="limit">Limit within <c>timeout</c> (zero to disable throttling)</param>
+        /// <param name="timeout">Timeout</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        Task UpdateSettingsAsync(int limit, TimeSpan timeout, CancellationToken cancellationToken = default);
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace wan24.Core
+﻿using System.ComponentModel;
+using static wan24.Core.TranslationHelper;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Generic throttling helper (if it's important to throttle more exact, and performance counts less, use <see cref="ExactThrottle"/> instead)
@@ -71,7 +74,14 @@
                     ErrorHandling.Handle(new("Throttle timer update failed", ex));
                 }
             };
+            ThrottleTable.Throttles[GUID] = this;
         }
+
+        /// <inheritdoc/>
+        public string GUID { get; } = Guid.NewGuid().ToString();
+
+        /// <inheritdoc/>
+        public string? Name { get; set; }
 
         /// <inheritdoc/>
         public virtual int Limit
@@ -123,6 +133,21 @@
         /// If throttling is applied when counting one more
         /// </summary>
         public bool WillThrottle => !IsDisposing && _Limit > 0 && CurrentCount >= _Limit;
+
+        /// <inheritdoc/>
+        public virtual IEnumerable<Status> State
+        {
+            get
+            {
+                yield return new(__("Type"), GetType(), __("Throttle CLR type"));
+                yield return new(__("GUID"), GUID, __("Throttle instance GUID"));
+                yield return new(__("Name"), Name, __("Throttle name"));
+                yield return new(__("Limit"), Limit, __("Limit within the timeout or zero, if disabled"));
+                yield return new(__("Timeout"), Timeout, __("Throttline timeout"));
+                yield return new(__("Count"), CurrentCount, __("Current count"));
+                yield return new(__("Throttling"), IsThrottling, __("If throttling at present"));
+            }
+        }
 
         /// <inheritdoc/>
         public void CountOne(CancellationToken cancellationToken = default) => Count(count: 1, cancellationToken);
@@ -191,6 +216,7 @@
         }
 
         /// <inheritdoc/>
+        [UserAction(MultiAction = true), DisplayText("Release"), Description("Clear the counter and release the throttle")]
         public virtual async Task ReleaseAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -205,8 +231,60 @@
         }
 
         /// <inheritdoc/>
+        public virtual void UpdateSettings(int limit, TimeSpan timeout, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            ArgumentOutOfRangeException.ThrowIfLessThan(limit, 0, nameof(limit));
+            ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(timeout, TimeSpan.Zero, nameof(timeout));
+            using SemaphoreSyncContext ssc = Sync.SyncContext(cancellationToken);
+            bool isTimerRunning = ThrottleTimer.Enabled;
+            if (isTimerRunning)
+                ThrottleTimer.Stop();
+            _Limit = limit;
+            if (limit < 1)
+            {
+                ThrottleEvent.Set(CancellationToken.None);
+            }
+            else if (CurrentCount >= limit)
+            {
+                ThrottleEvent.Reset(CancellationToken.None);
+            }
+            _Timeout = timeout;
+            ThrottleTimer.Interval = timeout.TotalMilliseconds;
+            if (isTimerRunning)
+                ThrottleTimer.Start();
+        }
+
+        /// <inheritdoc/>
+        [UserAction(MultiAction = true), DisplayText("Settings"), Description("Update the settings and restart the throttling timer")]
+        public virtual async Task UpdateSettingsAsync(int limit, TimeSpan timeout, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            ArgumentOutOfRangeException.ThrowIfLessThan(limit, 0, nameof(limit));
+            ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(timeout, TimeSpan.Zero, nameof(timeout));
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
+            bool isTimerRunning = ThrottleTimer.Enabled;
+            if (isTimerRunning)
+                ThrottleTimer.Stop();
+            _Limit = limit;
+            if (limit < 1)
+            {
+                await ThrottleEvent.SetAsync(CancellationToken.None).DynamicContext();
+            }
+            else if (CurrentCount >= limit)
+            {
+                await ThrottleEvent.ResetAsync(CancellationToken.None).DynamicContext();
+            }
+            _Timeout = timeout;
+            ThrottleTimer.Interval = timeout.TotalMilliseconds;
+            if (isTimerRunning)
+                ThrottleTimer.Start();
+        }
+
+        /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
+            ThrottleTable.Throttles.Remove(GUID, out _);
             using SemaphoreSync sync = Sync;
             using SemaphoreSyncContext ssc = sync;
             ThrottleEvent.Dispose();
@@ -216,6 +294,7 @@
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
+            ThrottleTable.Throttles.Remove(GUID, out _);
             using SemaphoreSync sync = Sync;
             using SemaphoreSyncContext ssc = await sync.SyncContextAsync().DynamicContext();
             await ThrottleEvent.DisposeAsync().DynamicContext();

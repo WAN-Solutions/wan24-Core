@@ -203,6 +203,20 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Determine if a type has a to string converter
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If the type can be converted to string</returns>
+        public static bool CanConvertToString(Type type) => StringConverter.Keys.GetClosestType(type) is not null;
+
+        /// <summary>
+        /// Determine if a type has a from string converter
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If the type can be converted from a string</returns>
+        public static bool CanConvertFromString(Type type) => ValueConverter.Keys.GetClosestType(type) is not null;
+
+        /// <summary>
         /// Convert a display string to a value
         /// </summary>
         /// <param name="type">Value type (may be abstract)</param>
@@ -213,7 +227,11 @@ namespace wan24.Core
             if (type == typeof(string)) return str;
             if (!ValueConverter.TryGetValue(type, out ValueConverter_Delegate? converter))
             {
-                converter = ValueConverter.FirstOrDefault(kvp => kvp.Key.IsAssignableFrom(type)).Value;
+                converter = ValueConverter.Keys.GetClosestType(type) is Type converterType
+                    ? ValueConverter.TryGetValue(converterType, out converter)
+                        ? converter
+                        : null
+                    : null;
                 if (converter is null)
                     if (typeof(IStringValueConverter).IsAssignableFrom(type))
                     {
@@ -230,12 +248,68 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Convert a display string to a value
+        /// </summary>
+        /// <param name="type">Value type (may be abstract)</param>
+        /// <param name="str">String</param>
+        /// <param name="result">Result</param>
+        /// <returns>If succeed</returns>
+        public static bool TryConvert(Type type, in string? str, out object? result)
+        {
+            if (type == typeof(string))
+            {
+                result = str;
+                return true;
+            }
+            if (!ValueConverter.TryGetValue(type, out ValueConverter_Delegate? converter))
+            {
+                converter = ValueConverter.Keys.GetClosestType(type) is Type converterType
+                    ? ValueConverter.TryGetValue(converterType, out converter)
+                        ? converter
+                        : null
+                    : null;
+                if (converter is null)
+                    if (typeof(IStringValueConverter).IsAssignableFrom(type))
+                    {
+                        object?[] param = [str, null];
+                        type.GetMethodCached(nameof(IStringValueConverter.TryParse), BindingFlags.Public | BindingFlags.Static)!.Invoke(obj: null, param);
+                        result = param[1];
+                        return true;
+                    }
+                    else
+                    {
+                        result = null;
+                        return false;
+                    }
+            }
+            result = converter(type, str);
+            return true;
+        }
+
+        /// <summary>
         /// Convert a value to a display string
         /// </summary>
         /// <typeparam name="T">Value type (may be abstract)</typeparam>
         /// <param name="value">Value</param>
         /// <returns>String</returns>
         public static string? Convert<T>(in T? value) => value is IStringValueConverter svc ? svc.DisplayString : Convert(typeof(T), value);
+
+        /// <summary>
+        /// Convert a value to a display string
+        /// </summary>
+        /// <typeparam name="T">Value type (may be abstract)</typeparam>
+        /// <param name="value">Value</param>
+        /// <param name="result">Result</param>
+        /// <returns>String</returns>
+        public static bool TryConvert<T>(in T? value, out string? result)
+        {
+            if (value is IStringValueConverter svc)
+            {
+                result = svc.DisplayString;
+                return true;
+            }
+            return TryConvert(typeof(T), value, out result);
+        }
 
         /// <summary>
         /// Convert a value to a display string
@@ -248,7 +322,11 @@ namespace wan24.Core
             if (value is string str) return str;
             if (!StringConverter.TryGetValue(type, out StringConverter_Delegate? converter))
             {
-                converter = StringConverter.FirstOrDefault(kvp => kvp.Key.IsAssignableFrom(type)).Value;
+                converter = StringConverter.Keys.GetClosestType(type) is Type converterType
+                    ? StringConverter.TryGetValue(converterType, out converter)
+                        ? converter
+                        : null
+                    : null;
                 if (converter is null)
                     if (typeof(IStringValueConverter).IsAssignableFrom(type))
                     {
@@ -263,6 +341,43 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Convert a value to a display string
+        /// </summary>
+        /// <param name="type">Value type (may be abstract)</param>
+        /// <param name="value">Value</param>
+        /// <param name="result">Result</param>
+        /// <returns>If succeed</returns>
+        public static bool TryConvert(Type type, in object? value, out string? result)
+        {
+            if (value is string str)
+            {
+                result = str;
+                return true;
+            }
+            if (!StringConverter.TryGetValue(type, out StringConverter_Delegate? converter))
+            {
+                converter = StringConverter.Keys.GetClosestType(type) is Type converterType
+                    ? StringConverter.TryGetValue(converterType, out converter)
+                        ? converter
+                        : null
+                    : null;
+                if (converter is null)
+                    if (typeof(IStringValueConverter).IsAssignableFrom(type))
+                    {
+                        result = (value as IStringValueConverter)?.DisplayString;
+                        return true;
+                    }
+                    else
+                    {
+                        result = null;
+                        return false;
+                    }
+            }
+            result = converter(type, value);
+            return true;
+        }
+
+        /// <summary>
         /// Convert an object to a string
         /// </summary>
         /// <typeparam name="T">Object type (may be abstract)</typeparam>
@@ -273,9 +388,26 @@ namespace wan24.Core
         /// <summary>
         /// Convert an object to a string
         /// </summary>
+        /// <typeparam name="T">Object type (may be abstract)</typeparam>
+        /// <param name="obj">Object</param>
+        /// <param name="result">Result</param>
+        /// <returns>If succeed</returns>
+        public static bool TryConvertToString<T>(this T obj, out string? result) => TryConvert(typeof(T), obj, out result);
+
+        /// <summary>
+        /// Convert an object to a string
+        /// </summary>
         /// <param name="obj">Object</param>
         /// <returns>String</returns>
         public static string? ConvertObjectToString(this object obj) => Convert(obj.GetType(), obj);
+
+        /// <summary>
+        /// Convert an object to a string
+        /// </summary>
+        /// <param name="obj">Object</param>
+        /// <param name="result">Result</param>
+        /// <returns>If succeed</returns>
+        public static bool ConvertObjectToString(this object obj, out string? result) => TryConvert(obj.GetType(), obj, out result);
 
         /// <summary>
         /// Comvert a string to an object
@@ -286,12 +418,49 @@ namespace wan24.Core
         public static T? ConvertFromString<T>(this string str) => (T?)Convert(typeof(T), str);
 
         /// <summary>
+        /// Comvert a string to an object
+        /// </summary>
+        /// <typeparam name="T">Object type (may be abstract)</typeparam>
+        /// <param name="str">String</param>
+        /// <param name="result">Result</param>
+        /// <returns>If succeed</returns>
+        public static bool TryConvertFromString<T>(this string str, out T? result)
+        {
+            if (!TryConvert(typeof(T), str, out object? res))
+            {
+                result = default(T?);
+                return false;
+            }
+            if(res is null)
+            {
+                result = default(T?);
+                return true;
+            }
+            if(typeof(T).IsAssignableFrom(res.GetType()))
+            {
+                result = (T)res;
+                return true;
+            }
+            result = default(T?);
+            return false;
+        }
+
+        /// <summary>
         /// Convert a string to an object
         /// </summary>
         /// <param name="str">String</param>
         /// <param name="type">Object type (may be abstract)</param>
         /// <returns>Objct</returns>
         public static object? ConvertObjectFromString(this string str, Type type) => Convert(type, str);
+
+        /// <summary>
+        /// Convert a string to an object
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="type">Object type (may be abstract)</param>
+        /// <param name="result">Result</param>
+        /// <returns>Ifsucceed</returns>
+        public static bool TryConvertObjectFromString(this string str, Type type, out object? result) => TryConvert(type, str, out result);
 
         /// <summary>
         /// Named string to value converter
@@ -314,6 +483,31 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Named string to value converter
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="name">Conversion name</param>
+        /// <param name="type">Object type (may be abstract)</param>
+        /// <param name="result">Result</param>
+        /// <returns>If succeed</returns>
+        public static bool TryNamedObjectConversion(this string? str, in string name, in Type type, out object? result)
+        {
+            if (!NamedValueConverter.TryGetValue(name, out ValueConverter_Delegate? converter))
+            {
+                result = null;
+                return false;
+            }
+            result = converter.Invoke(type, str);
+            if (result is not null && !type.IsAssignableFrom(result.GetType()))
+            {
+                result.TryDispose();
+                result = null;
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Named value to string converter
         /// </summary>
         /// <param name="obj">Object</param>
@@ -325,6 +519,23 @@ namespace wan24.Core
             if (!NamedStringConverter.TryGetValue(name, out StringConverter_Delegate? converter))
                 throw new ArgumentException("Unknown conversion", nameof(name));
             return converter.Invoke(type, obj);
+        }
+
+        /// <summary>
+        /// Named value to string converter
+        /// </summary>
+        /// <param name="obj">Object</param>
+        /// <param name="name">Conversion name</param>
+        /// <param name="type">Object type (may be abstract)</param>
+        /// <param name="result">Result</param>
+        /// <returns>If succeed</returns>
+        public static bool TryNamedStringConversion(this object? obj, in string name, in Type type, out string? result)
+        {
+            bool res;
+            result = (res = NamedStringConverter.TryGetValue(name, out StringConverter_Delegate? converter))
+                    ? converter!.Invoke(type, obj)
+                    : null;
+            return res;
         }
 
         /// <summary>

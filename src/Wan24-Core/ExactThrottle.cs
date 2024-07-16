@@ -1,4 +1,6 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.ComponentModel;
+using System.Runtime.InteropServices;
+using static wan24.Core.TranslationHelper;
 
 namespace wan24.Core
 {
@@ -65,7 +67,14 @@ namespace wan24.Core
                     ErrorHandling.Handle(new("Throttle timer update failed", ex));
                 }
             };
+            ThrottleTable.Throttles[GUID] = this;
         }
+
+        /// <inheritdoc/>
+        public string GUID { get; } = Guid.NewGuid().ToString();
+
+        /// <inheritdoc/>
+        public string? Name { get; set; }
 
         /// <inheritdoc/>
         public virtual int Limit
@@ -120,6 +129,22 @@ namespace wan24.Core
         /// If throttling is applied when counting one more
         /// </summary>
         public bool WillThrottle => !IsDisposing && _Limit > 0 && CurrentCount >= _Limit;
+
+        /// <inheritdoc/>
+        public virtual IEnumerable<Status> State
+        {
+            get
+            {
+                yield return new(__("Type"), GetType(), __("Throttle CLR type"));
+                yield return new(__("GUID"), GUID, __("Throttle instance GUID"));
+                yield return new(__("Name"), Name, __("Throttle name"));
+                yield return new(__("Limit"), Limit, __("Limit within the timeout or zero, if disabled"));
+                yield return new(__("Timeout"), Timeout, __("Throttline timeout"));
+                yield return new(__("Count"), CurrentCount, __("Current count"));
+                yield return new(__("Counter"), _Counter.Count, __("Current number of counting events"));
+                yield return new(__("Accurence"), Accurence, __("Throttle timer accurence in ms"));
+            }
+        }
 
         /// <inheritdoc/>
         public void CountOne(CancellationToken cancellationToken = default) => Count(count: 1, cancellationToken);
@@ -208,6 +233,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        [UserAction(MultiAction = true), DisplayText("Release"), Description("Clear the counter and release the throttle")]
         public virtual async Task ReleaseAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -218,6 +244,31 @@ namespace wan24.Core
                 return;
             _Counter.Clear();
             CurrentCount = 0;
+            await UpdateStateAsync().DynamicContext();
+        }
+
+        /// <inheritdoc/>
+        public virtual void UpdateSettings(int limit, TimeSpan timeout, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            ArgumentOutOfRangeException.ThrowIfLessThan(limit, 0, nameof(limit));
+            ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(timeout, TimeSpan.Zero, nameof(timeout));
+            using SemaphoreSyncContext ssc = Sync.SyncContext(cancellationToken);
+            _Limit = limit;
+            _Timeout = timeout;
+            UpdateState();
+        }
+
+        /// <inheritdoc/>
+        [UserAction(MultiAction = true), DisplayText("Settings"), Description("Update the settings and restart the throttling timer")]
+        public virtual async Task UpdateSettingsAsync(int limit, TimeSpan timeout, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            ArgumentOutOfRangeException.ThrowIfLessThan(limit, 0, nameof(limit));
+            ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(timeout, TimeSpan.Zero, nameof(timeout));
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
+            _Limit = limit;
+            _Timeout = timeout;
             await UpdateStateAsync().DynamicContext();
         }
 
@@ -310,6 +361,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
+            ThrottleTable.Throttles.Remove(GUID, out _);
             using SemaphoreSync sync = Sync;
             using SemaphoreSyncContext ssc = sync;
             ThrottleEvent.Dispose();
@@ -320,6 +372,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
+            ThrottleTable.Throttles.Remove(GUID, out _);
             using SemaphoreSync sync = Sync;
             using SemaphoreSyncContext ssc = await sync.SyncContextAsync().DynamicContext();
             await ThrottleEvent.DisposeAsync().DynamicContext();

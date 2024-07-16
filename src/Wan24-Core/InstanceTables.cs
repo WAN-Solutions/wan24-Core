@@ -19,7 +19,8 @@ namespace wan24.Core
             {typeof(IPool), typeof(PoolTable) },
             {typeof(IProcessingInfo), typeof(ProcessTable) },
             {typeof(IServiceWorker), typeof(ServiceWorkerTable) },
-            {typeof(ITimer), typeof(TimerTable) }
+            {typeof(ITimer), typeof(TimerTable) },
+            {typeof(IThrottle), typeof(ThrottleTable) }
         };
 
         /// <summary>

@@ -30,7 +30,7 @@ namespace wan24.Core
         /// Provider
         /// </summary>
         [JsonIgnore]
-        public Type? Provider => TypeHelper.Instance.GetType(ProviderType, throwOnError: true);
+        public Type? Provider => TypeHelper.Instance.GetType(ProviderType);
 
         /// <summary>
         /// Provider static dictionary field name
@@ -90,35 +90,23 @@ namespace wan24.Core
                 {
                     parameterList.Add(cancellationToken);
                 }
-                else if (pi.ParameterType == typeof(bool) && index < parameters.Length && bool.TryParse(parameters[index], out bool boolValue))
+                else if (index < parameters.Length && parameters[index] is not null && StringValueConverter.CanConvertToString(parameters[index]!.GetType()))
                 {
-                    parameterList.Add(boolValue);
+                    parameterList.Add(StringValueConverter.ConvertObjectToString(parameters[index]!));
                     index++;
                 }
-                else if (pi.ParameterType == typeof(string) && index < parameters.Length)
+                else if (index < parameters.Length && parameters[index] is null && pi.HasDefaultValue)
                 {
-                    if (parameters[index] is null && !pi.IsNullable(nic))
-                        throw new InvalidDataException($"Parameter {pi.Name} isn't nullable", new ArgumentNullException(pi.Name));
-                    parameterList.Add(parameters[index]);
-                    index++;
+                    parameterList.Add(pi.DefaultValue);
                 }
-                else if (pi.ParameterType == typeof(int) && index < parameters.Length && int.TryParse(parameters[index], out int intValue))
+                else if (index < parameters.Length && parameters[index] is null && pi.IsNullable(nic))
                 {
-                    parameterList.Add(intValue);
+                    parameterList.Add(null);
                     index++;
-                }
-                else if (pi.ParameterType == typeof(long) && index < parameters.Length && long.TryParse(parameters[index], out long longValue))
-                {
-                    parameterList.Add(longValue);
-                    index++;
-                }
-                else if (!pi.HasDefaultValue)
-                {
-                    throw new InvalidDataException($"Parameter {pi.Name} is missing", new ArgumentNullException(pi.Name));
                 }
                 else
                 {
-                    parameterList.Add(pi.DefaultValue);
+                    throw new InvalidDataException($"Parameter {pi.Name} is missing", new ArgumentNullException(pi.Name));
                 }
             // Execute the method
             try

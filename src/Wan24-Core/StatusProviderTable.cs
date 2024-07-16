@@ -155,6 +155,10 @@ namespace wan24.Core
                 // Regular expressions
                 foreach (var kvp in RegularExpressions.NamedExpressions)
                     yield return new(kvp.Key, kvp.Value, __("Named regular expression"), __("Regular expressions"));
+                // Throttles
+                foreach (var kvp in ThrottleTable.Throttles)
+                    foreach (Status status in kvp.Value.State)
+                        yield return new(status.Name, status.State, status.Description, $"Core\\{__("Throttles")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName().CombineStatusGroupNames(status.Group)}");
                 // Other states
                 foreach (KeyValuePair<string, IEnumerable<Status>> kvp in Providers)
                     foreach (Status status in kvp.Value)
