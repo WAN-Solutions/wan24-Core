@@ -1,4 +1,5 @@
-﻿using System.Runtime;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -8,7 +9,7 @@ namespace wan24.Core
     /// XY value
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public readonly record struct XYInt
+    public readonly record struct XYInt : ISerializeBinary<XYInt>, ISerializeString<XYInt>
     {
         /// <summary>
         /// Structure size in bytes
@@ -86,10 +87,19 @@ namespace wan24.Core
             Y = data[Y_FIELD_OFFSET..].ToInt();
         }
 
-        /// <summary>
-        /// Get this structure as serialized data
-        /// </summary>
-        /// <returns>Serialized data</returns>
+        /// <inheritdoc/>
+        public static int? MaxStructureSize => STRUCTURE_SIZE;
+
+        /// <inheritdoc/>
+        public static int? MaxStringSize => byte.MaxValue;
+
+        /// <inheritdoc/>
+        public int? StructureSize => STRUCTURE_SIZE;
+
+        /// <inheritdoc/>
+        public int? StringSize => null;
+
+        /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -101,21 +111,17 @@ namespace wan24.Core
             return res;
         }
 
-        /// <summary>
-        /// Get this structure as serialized data
-        /// </summary>
-        /// <param name="buffer">Buffer (min. <see cref="STRUCTURE_SIZE"/> bytes length required)</param>
-        /// <returns>Buffer</returns>
+        /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public Span<byte> GetBytes(in Span<byte> buffer)
+        public int GetBytes(in Span<byte> buffer)
         {
             if (buffer.Length < STRUCTURE_SIZE) throw new ArgumentOutOfRangeException(nameof(buffer));
             X.GetBytes(buffer);
             Y.GetBytes(buffer[Y_FIELD_OFFSET..]);
-            return buffer;
+            return STRUCTURE_SIZE;
         }
 
         /// <inheritdoc/>
@@ -235,11 +241,53 @@ namespace wan24.Core
 #endif
         public static implicit operator double[](in XYInt xy) => [xy.X, xy.Y];
 
-        /// <summary>
-        /// Parse a string
-        /// </summary>
-        /// <param name="str">String</param>
-        /// <returns><see cref="XYInt"/></returns>
+        /// <inheritdoc/>
+        public static object DeserializeFrom(in ReadOnlySpan<byte> buffer) => new XYInt(buffer);
+
+        /// <inheritdoc/>
+        public static bool TryDeserializeFrom(in ReadOnlySpan<byte> buffer, [NotNullWhen(true)] out object? result)
+        {
+            try
+            {
+                if (buffer.Length < STRUCTURE_SIZE)
+                {
+                    result = null;
+                    return false;
+                }
+                result = new XYInt(buffer);
+                return true;
+            }
+            catch
+            {
+                result = null;
+                return false;
+            }
+        }
+
+        /// <inheritdoc/>
+        public static XYInt DeserializeTypeFrom(in ReadOnlySpan<byte> buffer) => new(buffer);
+
+        /// <inheritdoc/>
+        public static bool TryDeserializeTypeFrom(in ReadOnlySpan<byte> buffer, [NotNullWhen(true)] out XYInt result)
+        {
+            try
+            {
+                if (buffer.Length < STRUCTURE_SIZE)
+                {
+                    result = default;
+                    return false;
+                }
+                result = new XYInt(buffer);
+                return true;
+            }
+            catch
+            {
+                result = default;
+                return false;
+            }
+        }
+
+        /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -251,17 +299,12 @@ namespace wan24.Core
             return new(int.Parse(str[..index]), int.Parse(str[(index + 1)..]));
         }
 
-        /// <summary>
-        /// Try parsing a string
-        /// </summary>
-        /// <param name="str">String</param>
-        /// <param name="result"><see cref="XYInt"/></param>
-        /// <returns>If succeed</returns>
+        /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static bool TryParse(in ReadOnlySpan<char> str, out XYInt result)
+        public static bool TryParse(in ReadOnlySpan<char> str, [NotNullWhen(returnValue: true)] out XYInt result)
         {
             result = default;
             int index = str.IndexOf(';');
@@ -270,6 +313,27 @@ namespace wan24.Core
             if (!int.TryParse(str[(index + 1)..], out int y)) return false;
             result = new(x, y);
             return true;
+        }
+
+        /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static object ParseObject(in ReadOnlySpan<char> str) => Parse(str);
+
+        /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool TryParseObject(in ReadOnlySpan<char> str, [NotNullWhen(returnValue: true)] out object? result)
+        {
+            bool res;
+            result = (res = TryParse(str, out XYInt xy))
+                ? xy
+                : default(XYInt?);
+            return res;
         }
     }
 }

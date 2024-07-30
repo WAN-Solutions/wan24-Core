@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 namespace wan24.Core
@@ -7,7 +8,7 @@ namespace wan24.Core
     /// 32 bit integer numeric range (increasing)
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public readonly record struct IntRange : IEnumerable<int>, IComparable
+    public readonly record struct IntRange : IEnumerable<int>, IComparable, ISerializeBinary<IntRange>, ISerializeString<IntRange>
     {
         /// <summary>
         /// Structure size in bytes
@@ -87,6 +88,18 @@ namespace wan24.Core
             From = from;
             To = to;
         }
+
+        /// <inheritdoc/>
+        public static int? MaxStructureSize => STRUCTURE_SIZE;
+
+        /// <inheritdoc/>
+        public static int? MaxStringSize => byte.MaxValue;
+
+        /// <inheritdoc/>
+        public int? StructureSize => STRUCTURE_SIZE;
+
+        /// <inheritdoc/>
+        public int? StringSize => null;
 
         /// <summary>
         /// Get the value from an index
@@ -204,10 +217,7 @@ namespace wan24.Core
                 yield return (int)(From + index);
         }
 
-        /// <summary>
-        /// Get as serialized data
-        /// </summary>
-        /// <returns>Serialized data</returns>
+        /// <inheritdoc/>
         public byte[] GetBytes()
         {
             byte[] res = new byte[STRUCTURE_SIZE];
@@ -215,16 +225,14 @@ namespace wan24.Core
             return res;
         }
 
-        /// <summary>
-        /// Get as serialized data
-        /// </summary>
-        /// <param name="data">Serialized data</param>
-        public void GetBytes(in Span<byte> data)
+        /// <inheritdoc/>
+        public int GetBytes(in Span<byte> data)
         {
             if (data.Length < STRUCTURE_SIZE)
                 throw new ArgumentOutOfRangeException(nameof(data));
             From.GetBytes(data);
             To.GetBytes(data[TO_OFFSET..]);
+            return STRUCTURE_SIZE;
         }
 
         /// <inheritdoc/>
@@ -336,36 +344,6 @@ namespace wan24.Core
         public static IntRange operator <<(in IntRange range, in int count) => new(range.From - count, range.To - count);
 
         /// <summary>
-        /// Parse from a string
-        /// </summary>
-        /// <param name="str">String</param>
-        /// <returns>Range</returns>
-        public static IntRange Parse(in string str)
-        {
-            string[] temp = str.Split(';', 2);
-            if (temp.Length != 2) throw new FormatException("Invalid string format");
-            return new(int.Parse(temp[0]), int.Parse(temp[1]));
-        }
-
-        /// <summary>
-        /// Try parsing from a string
-        /// </summary>
-        /// <param name="str">String</param>
-        /// <param name="result">Result</param>
-        /// <returns>If succeed</returns>
-        public static bool TryParse(in string str, out IntRange result)
-        {
-            string[] temp = str.Split(';', 2);
-            if (temp.Length != 2 || !int.TryParse(temp[0], out int from) || !int.TryParse(temp[1], out int to) || from > to)
-            {
-                result = Zero;
-                return false;
-            }
-            result = new(from, to);
-            return true;
-        }
-
-        /// <summary>
         /// Determine if values of an array are a range
         /// </summary>
         /// <param name="arr">Array</param>
@@ -381,6 +359,100 @@ namespace wan24.Core
                 if (arr[i] != value)
                     return false;
             return true;
+        }
+
+        /// <inheritdoc/>
+        public static object DeserializeFrom(in ReadOnlySpan<byte> buffer) => new IntRange(buffer);
+
+        /// <inheritdoc/>
+        public static bool TryDeserializeFrom(in ReadOnlySpan<byte> buffer, [NotNullWhen(true)] out object? result)
+        {
+            try
+            {
+                if (buffer.Length < STRUCTURE_SIZE)
+                {
+                    result = null;
+                    return false;
+                }
+                int from = buffer.ToInt(),
+                    to = buffer[TO_OFFSET..].ToInt();
+                if (to < from)
+                {
+                    result = null;
+                    return false;
+                }
+                result = new IntRange(from, to);
+                return true;
+            }
+            catch
+            {
+                result = null;
+                return false;
+            }
+        }
+
+        /// <inheritdoc/>
+        public static IntRange DeserializeTypeFrom(in ReadOnlySpan<byte> buffer) => new(buffer);
+
+        /// <inheritdoc/>
+        public static bool TryDeserializeTypeFrom(in ReadOnlySpan<byte> buffer, [NotNullWhen(true)] out IntRange result)
+        {
+            try
+            {
+                if (buffer.Length < STRUCTURE_SIZE)
+                {
+                    result = default;
+                    return false;
+                }
+                int from = buffer.ToInt(),
+                    to = buffer[TO_OFFSET..].ToInt();
+                if (to < from)
+                {
+                    result = default;
+                    return false;
+                }
+                result = new IntRange(from, to);
+                return true;
+            }
+            catch
+            {
+                result = default;
+                return false;
+            }
+        }
+
+        /// <inheritdoc/>
+        public static IntRange Parse(in ReadOnlySpan<char> str)
+        {
+            int index = str.IndexOf(';');
+            if (index < 0) throw new FormatException("Invalid string format");
+            return new(int.Parse(str[..index]), int.Parse(str[(index + 1)..]));
+        }
+
+        /// <inheritdoc/>
+        public static bool TryParse(in ReadOnlySpan<char> str, out IntRange result)
+        {
+            int index = str.IndexOf(';');
+            if (index < 0 || !int.TryParse(str[..index], out int from) || !int.TryParse(str[(index + 1)..], out int to) || from > to)
+            {
+                result = Zero;
+                return false;
+            }
+            result = new(from, to);
+            return true;
+        }
+
+        /// <inheritdoc/>
+        public static object ParseObject(in ReadOnlySpan<char> str) => Parse(str);
+
+        /// <inheritdoc/>
+        public static bool TryParseObject(in ReadOnlySpan<char> str, [NotNullWhen(returnValue: true)] out object? result)
+        {
+            bool res;
+            result = (res = TryParse(str, out IntRange range))
+                ? range
+                : default(IntRange?);
+            return res;
         }
     }
 }

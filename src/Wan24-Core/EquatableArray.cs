@@ -311,13 +311,11 @@ namespace wan24.Core
         /// <summary>
         /// Equality comparer
         /// </summary>
-        public sealed class EqualityComparer : IEqualityComparer<EquatableArray<T>>
+        /// <remarks>
+        /// Constructor
+        /// </remarks>
+        public sealed class EqualityComparer() : IEqualityComparer<EquatableArray<T>>
         {
-            /// <summary>
-            /// Constructor
-            /// </summary>
-            public EqualityComparer() { }
-
             /// <inheritdoc/>
             public bool Equals(EquatableArray<T> x, EquatableArray<T> y) => x == y;
 

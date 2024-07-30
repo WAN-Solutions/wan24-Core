@@ -1,47 +1,50 @@
-﻿namespace wan24.Core
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace wan24.Core
 {
     // Parsing
     public readonly partial record struct Rgb
     {
-        /// <summary>
-        /// Parse from a string
-        /// </summary>
-        /// <param name="str">String</param>
-        /// <returns><see cref="Rgb"/></returns>
-        public static Rgb Parse(in string str)
+        /// <inheritdoc/>
+        public static Rgb Parse(in ReadOnlySpan<char> str)
         {
-            string[] rgb = str.Split(',', 3);
-            return new(int.Parse(rgb[0]), int.Parse(rgb[1]), int.Parse(rgb[2]));
+            int index1 = str.IndexOf(',');
+            if (index1 < 0) throw new InvalidDataException("Invalid string format");
+            int index2 = str[(index1 + 1)..].IndexOf(',');
+            if (index2 < 0) throw new InvalidDataException("Invalid string format");
+            return new(int.Parse(str[..index1]), int.Parse(str.Slice(index1 + 1, index2)), int.Parse(str[(index1 + index2 + 2)..]));
         }
 
-        /// <summary>
-        /// Try parsing from a string
-        /// </summary>
-        /// <param name="str">String</param>
-        /// <param name="result"><see cref="Rgb"/></param>
-        /// <returns>If succeed</returns>
-        public static bool TryParse(in string str, out Rgb result)
+        /// <inheritdoc/>
+        public static bool TryParse(in ReadOnlySpan<char> str, out Rgb result)
         {
-            string[] rgb = str.Split(',', 3);
-            if (rgb.Length != 3)
+            int index1 = str.IndexOf(',');
+            if (index1 < 0)
             {
                 if (Logging.Debug) Logging.WriteDebug("String parsing failed: Invalid string format");
                 result = default;
                 return false;
             }
-            if (!int.TryParse(rgb[0], out int r) || r > byte.MaxValue)
+            int index2 = str[(index1 + 1)..].IndexOf(',');
+            if (index2 < 0)
+            {
+                if (Logging.Debug) Logging.WriteDebug("String parsing failed: Invalid string format");
+                result = default;
+                return false;
+            }
+            if (!int.TryParse(str[..index1], out int r) || r > byte.MaxValue)
             {
                 if (Logging.Debug) Logging.WriteDebug("String parsing failed: Invalid RGB red value");
                 result = default;
                 return false;
             }
-            if (!int.TryParse(rgb[1], out int g) || g > byte.MaxValue)
+            if (!int.TryParse(str.Slice(index1 + 1, index2), out int g) || g > byte.MaxValue)
             {
                 if (Logging.Debug) Logging.WriteDebug("String parsing failed: Invalid RGB green value");
                 result = default;
                 return false;
             }
-            if (!int.TryParse(rgb[2], out int b) || b > byte.MaxValue)
+            if (!int.TryParse(str[(index1 + index2 + 2)..], out int b) || b > byte.MaxValue)
             {
                 if (Logging.Debug) Logging.WriteDebug("String parsing failed: Invalid RGB blue value");
                 result = default;
@@ -49,6 +52,19 @@
             }
             result = new(r, g, b);
             return true;
+        }
+
+        /// <inheritdoc/>
+        public static object ParseObject(in ReadOnlySpan<char> str) => Parse(str);
+
+        /// <inheritdoc/>
+        public static bool TryParseObject(in ReadOnlySpan<char> str, [NotNullWhen(returnValue: true)] out object? result)
+        {
+            bool res;
+            result = (res = TryParse(str, out Rgb rgb))
+                ? rgb
+                : default(Rgb?);
+            return res;
         }
 
         /// <summary>

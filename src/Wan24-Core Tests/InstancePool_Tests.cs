@@ -12,12 +12,10 @@ namespace Wan24_Core_Tests
             await using (pool)
             {
                 await pool.StartAsync();
-                await Task.Delay(100);
-                Assert.AreEqual(1, pool.Available);
+                await wan24.Core.Timeout.WaitConditionAsync(TimeSpan.FromMilliseconds(50), (ct) => Task.FromResult(pool.Available == 1));
                 Assert.IsNotNull(pool.GetOne());
                 Assert.AreEqual(0, pool.Available);
-                await Task.Delay(100);
-                Assert.AreEqual(1, pool.Available);
+                await wan24.Core.Timeout.WaitConditionAsync(TimeSpan.FromMilliseconds(50), (ct) => Task.FromResult(pool.Available == 1));
                 DateTime started = DateTime.Now;
                 Assert.AreEqual(3, (await pool.GetManyAsync(3).ToListAsync()).Count);
                 Assert.IsTrue(pool.CreatedOnDemand != 0);

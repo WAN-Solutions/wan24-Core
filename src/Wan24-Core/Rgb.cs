@@ -117,6 +117,18 @@ namespace wan24.Core
             B = rgb[2];
         }
 
+        /// <inheritdoc/>
+        public static int? MaxStructureSize => BINARY_SIZE;
+
+        /// <inheritdoc/>
+        public static int? MaxStringSize => 13;
+
+        /// <inheritdoc/>
+        public int? StructureSize => BINARY_SIZE;
+
+        /// <inheritdoc/>
+        public int? StringSize => null;
+
         /// <summary>
         /// Determine if a 24 bit RGB unsigned integer value is valid
         /// </summary>

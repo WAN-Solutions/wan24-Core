@@ -50,7 +50,9 @@ namespace Wan24_Core_Tests
                 xml,
                 node,
                 XY.MinValue,
+                XYInt.MinValue,
                 XYZ.MaxValue,
+                XYZInt.MinValue,
                 new TestType()
             })
             {

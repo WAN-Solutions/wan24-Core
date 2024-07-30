@@ -141,6 +141,11 @@ namespace wan24.Core
             {
                 yield return new(__("Type"), GetType(), __("Throttle CLR type"));
                 yield return new(__("GUID"), GUID, __("Throttle instance GUID"));
+                if (StackInfo is not null)
+                {
+                    yield return new(__("Stack"), StackInfo.Stack, __("Instance creation stack"));
+                    yield return new(__("Created"), StackInfo.Created, __("Instance creation time"));
+                }
                 yield return new(__("Name"), Name, __("Throttle name"));
                 yield return new(__("Limit"), Limit, __("Limit within the timeout or zero, if disabled"));
                 yield return new(__("Timeout"), Timeout, __("Throttline timeout"));

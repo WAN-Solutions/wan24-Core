@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Net;
 using System.Net.Sockets;
 using System.Numerics;
 using System.Runtime;
@@ -7,7 +8,7 @@ using static wan24.Core.Logging;
 namespace wan24.Core
 {
     // Static
-    public readonly partial record struct IpSubNet
+    public readonly partial record struct IpSubNet : ISerializeBinary<IpSubNet>, ISerializeString<IpSubNet>
     {
         /// <summary>
         /// IPv6 Structure size in bytes (when using <see cref="GetBytes()"/>)
@@ -279,21 +280,84 @@ namespace wan24.Core
             return new(net.Network, newBits, net.IsIPv4);
         }
 
-        /// <summary>
-        /// Parse from a string
-        /// </summary>
-        /// <param name="subNet">Sub-net in IP/n CIDR notation</param>
-        /// <returns>Sub-net</returns>
+        /// <inheritdoc/>
+        public static object DeserializeFrom(in ReadOnlySpan<byte> buffer) => new IpSubNet(buffer);
+
+        /// <inheritdoc/>
+        public static bool TryDeserializeFrom(in ReadOnlySpan<byte> buffer, [NotNullWhen(true)] out object? result)
+        {
+            try
+            {
+                if (buffer.Length < IPV4_STRUCTURE_SIZE)
+                {
+                    result = null;
+                    return false;
+                }
+                bool isIPv4 = buffer[0] == 1;
+                if (!isIPv4 && buffer.Length < IPV6_STRUCTURE_SIZE)
+                {
+                    result = null;
+                    return false;
+                }
+                int maskBits = buffer[1];
+                if (maskBits > (isIPv4 ? IPV4_BITS : IPV6_BITS))
+                {
+                    result = null;
+                    return false;
+                }
+                BigInteger network = new(buffer.Slice(2, isIPv4 ? IPV4_BYTES : IPV6_BYTES), isUnsigned: true, isBigEndian: true);
+                result = new IpSubNet(network, maskBits);
+                return true;
+            }
+            catch
+            {
+                result = null;
+                return false;
+            }
+        }
+
+        /// <inheritdoc/>
+        public static IpSubNet DeserializeTypeFrom(in ReadOnlySpan<byte> buffer) => new(buffer);
+
+        /// <inheritdoc/>
+        public static bool TryDeserializeTypeFrom(in ReadOnlySpan<byte> buffer, [NotNullWhen(true)] out IpSubNet result)
+        {
+            try
+            {
+                if (buffer.Length < IPV4_STRUCTURE_SIZE)
+                {
+                    result = default;
+                    return false;
+                }
+                bool isIPv4 = buffer[0] == 1;
+                if (!isIPv4 && buffer.Length < IPV6_STRUCTURE_SIZE)
+                {
+                    result = default;
+                    return false;
+                }
+                int maskBits = buffer[1];
+                if (maskBits > (isIPv4 ? IPV4_BITS : IPV6_BITS))
+                {
+                    result = default;
+                    return false;
+                }
+                BigInteger network = new(buffer.Slice(2, isIPv4 ? IPV4_BYTES : IPV6_BYTES), isUnsigned: true, isBigEndian: true);
+                result = new IpSubNet(network, maskBits);
+                return true;
+            }
+            catch
+            {
+                result = default;
+                return false;
+            }
+        }
+
+        /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static IpSubNet Parse(in ReadOnlySpan<char> subNet) => new(subNet);
 
-        /// <summary>
-        /// Try parsing from a string
-        /// </summary>
-        /// <param name="subNet">Sub-net in IP/n CIDR notation</param>
-        /// <param name="result">Result</param>
-        /// <returns>If succeed</returns>
-        public static bool TryParse(in ReadOnlySpan<char> subNet, out IpSubNet result)
+        /// <inheritdoc/>
+        public static bool TryParse(in ReadOnlySpan<char> subNet, [NotNullWhen(returnValue: true)] out IpSubNet result)
         {
             try
             {
@@ -315,7 +379,7 @@ namespace wan24.Core
                         return true;
                     }
                 }
-                else if(Trace)
+                else if (Trace)
                 {
                     Logging.WriteTrace($"Sub-net \"{subNet}\" component parsing failed");
                 }
@@ -326,6 +390,21 @@ namespace wan24.Core
             }
             result = default;
             return false;
+        }
+
+        /// <inheritdoc/>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static object ParseObject(in ReadOnlySpan<char> subNet) => Parse(subNet);
+
+        /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static bool TryParseObject(in ReadOnlySpan<char> subNet, [NotNullWhen(returnValue: true)] out object? result)
+        {
+            bool res;
+            result = (res = TryParse(subNet, out IpSubNet net))
+                ? net
+                : default(IpSubNet?);
+            return res;
         }
     }
 }
