@@ -1,7 +1,7 @@
-﻿using System.Buffers.Text;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace wan24.Core
 {
@@ -13,14 +13,24 @@ namespace wan24.Core
         /// </summary>
         /// <param name="type">Type</param>
         /// <returns>If the type can be converted to string</returns>
-        public static bool CanConvertToString(Type type) => StringConverter.Keys.GetClosestType(type) is not null;
+        public static bool CanConvertToString(Type type)
+        {
+            if (Nullable.GetUnderlyingType(type) is Type underlyingType)
+                type = underlyingType;
+            return StringConverter.Keys.GetClosestType(type) is not null;
+        }
 
         /// <summary>
         /// Determine if a type has a from string converter
         /// </summary>
         /// <param name="type">Type</param>
         /// <returns>If the type can be converted from a string</returns>
-        public static bool CanConvertFromString(Type type) => ValueConverter.Keys.GetClosestType(type) is not null;
+        public static bool CanConvertFromString(Type type)
+        {
+            if (Nullable.GetUnderlyingType(type) is Type underlyingType)
+                type = underlyingType;
+            return ValueConverter.Keys.GetClosestType(type) is not null;
+        }
 
         /// <summary>
         /// Convert a display string to a value
@@ -30,6 +40,8 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static object? Convert(Type type, in string? str)
         {
+            if (Nullable.GetUnderlyingType(type) is Type underlyingType)
+                type = underlyingType;
             if (type == typeof(string)) return str;
             if (!ValueConverter.TryGetValue(type, out ValueConverter_Delegate? converter))
             {
@@ -62,6 +74,8 @@ namespace wan24.Core
         /// <returns>If succeed</returns>
         public static bool TryConvert(Type type, in string? str, out object? result)
         {
+            if (Nullable.GetUnderlyingType(type) is Type underlyingType)
+                type = underlyingType;
             if (type == typeof(string))
             {
                 result = str;
@@ -126,6 +140,10 @@ namespace wan24.Core
         public static string? Convert(Type type, in object? value)
         {
             if (value is string str) return str;
+            if (Nullable.GetUnderlyingType(type) is Type underlyingType)
+                type = underlyingType;
+            if (value?.GetType() is Type valueType && !type.IsAssignableFromExt(valueType))
+                throw new ArgumentException("Incompatible type", nameof(type));
             if (!StringConverter.TryGetValue(type, out StringConverter_Delegate? converter))
             {
                 converter = StringConverter.Keys.GetClosestType(type) is Type converterType
@@ -155,10 +173,17 @@ namespace wan24.Core
         /// <returns>If succeed</returns>
         public static bool TryConvert(Type type, in object? value, out string? result)
         {
+            if (Nullable.GetUnderlyingType(type) is Type underlyingType)
+                type = underlyingType;
             if (value is string str)
             {
                 result = str;
                 return true;
+            }
+            if (value?.GetType() is Type valueType && !type.IsAssignableFromExt(valueType))
+            {
+                result = null;
+                return false;
             }
             if (!StringConverter.TryGetValue(type, out StringConverter_Delegate? converter))
             {
@@ -216,7 +241,7 @@ namespace wan24.Core
         public static bool ConvertObjectToString(this object obj, out string? result) => TryConvert(obj.GetType(), obj, out result);
 
         /// <summary>
-        /// Comvert a string to an object
+        /// Convert a string to an object
         /// </summary>
         /// <typeparam name="T">Object type (may be abstract)</typeparam>
         /// <param name="str">String</param>
@@ -224,7 +249,7 @@ namespace wan24.Core
         public static T? ConvertFromString<T>(this string str) => (T?)Convert(typeof(T), str);
 
         /// <summary>
-        /// Comvert a string to an object
+        /// Convert a string to an object
         /// </summary>
         /// <typeparam name="T">Object type (may be abstract)</typeparam>
         /// <param name="str">String</param>
@@ -256,7 +281,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <param name="type">Object type (may be abstract)</param>
-        /// <returns>Objct</returns>
+        /// <returns>Object</returns>
         public static object? ConvertObjectFromString(this string str, Type type) => Convert(type, str);
 
         /// <summary>
@@ -265,7 +290,7 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="type">Object type (may be abstract)</param>
         /// <param name="result">Result</param>
-        /// <returns>Ifsucceed</returns>
+        /// <returns>If succeed</returns>
         public static bool TryConvertObjectFromString(this string str, Type type, out object? result) => TryConvert(type, str, out result);
 
         /// <summary>
@@ -275,12 +300,14 @@ namespace wan24.Core
         /// <param name="name">Conversion name</param>
         /// <param name="type">Object type (may be abstract)</param>
         /// <returns>Object</returns>
-        public static object? NamedObjectConversion(this string? str, in string name, in Type type)
+        public static object? NamedObjectConversion(this string? str, in string name, Type type)
         {
             if (!NamedValueConverter.TryGetValue(name, out ValueConverter_Delegate? converter))
                 throw new ArgumentException("Unknown conversion", nameof(name));
+            if (Nullable.GetUnderlyingType(type) is Type underlyingType)
+                type = underlyingType;
             object? res = converter.Invoke(type, str);
-            if (res is not null && !type.IsAssignableFrom(res.GetType()))
+            if (res is not null && !type.IsAssignableFromExt(res.GetType()))
             {
                 res.TryDispose();
                 throw new InvalidDataException($"Converted value type {res.GetType()} doesn't match the expected type {type}");
@@ -296,13 +323,15 @@ namespace wan24.Core
         /// <param name="type">Object type (may be abstract)</param>
         /// <param name="result">Result</param>
         /// <returns>If succeed</returns>
-        public static bool TryNamedObjectConversion(this string? str, in string name, in Type type, out object? result)
+        public static bool TryNamedObjectConversion(this string? str, in string name, Type type, out object? result)
         {
             if (!NamedValueConverter.TryGetValue(name, out ValueConverter_Delegate? converter))
             {
                 result = null;
                 return false;
             }
+            if (Nullable.GetUnderlyingType(type) is Type underlyingType)
+                type = underlyingType;
             result = converter.Invoke(type, str);
             if (result is not null && !type.IsAssignableFrom(result.GetType()))
             {
@@ -320,8 +349,10 @@ namespace wan24.Core
         /// <param name="name">Conversion name</param>
         /// <param name="type">Object type (may be abstract)</param>
         /// <returns>Object</returns>
-        public static string? NamedStringConversion(this object? obj, in string name, in Type type)
+        public static string? NamedStringConversion(this object? obj, in string name, Type type)
         {
+            if (Nullable.GetUnderlyingType(type) is Type underlyingType)
+                type = underlyingType;
             if (!NamedStringConverter.TryGetValue(name, out StringConverter_Delegate? converter))
                 throw new ArgumentException("Unknown conversion", nameof(name));
             return converter.Invoke(type, obj);
@@ -335,8 +366,10 @@ namespace wan24.Core
         /// <param name="type">Object type (may be abstract)</param>
         /// <param name="result">Result</param>
         /// <returns>If succeed</returns>
-        public static bool TryNamedStringConversion(this object? obj, in string name, in Type type, out string? result)
+        public static bool TryNamedStringConversion(this object? obj, in string name, Type type, out string? result)
         {
+            if (Nullable.GetUnderlyingType(type) is Type underlyingType)
+                type = underlyingType;
             bool res;
             result = (res = NamedStringConverter.TryGetValue(name, out StringConverter_Delegate? converter))
                     ? converter!.Invoke(type, obj)
@@ -371,15 +404,7 @@ namespace wan24.Core
             {
                 if (CanConvertToString(typeof(T))) return TryConvert(obj, out result);
                 using RentedArrayRefStruct<byte> buffer = new(Marshal.SizeOf(obj), clean: false);
-                GCHandle gch = GCHandle.Alloc(buffer.Array, GCHandleType.Pinned);
-                try
-                {
-                    Marshal.StructureToPtr(obj, gch.AddrOfPinnedObject(), fDeleteOld: true);
-                }
-                finally
-                {
-                    gch.Free();
-                }
+                obj.Value.GetMarshalBytes(buffer.Array);
                 result = System.Convert.ToBase64String(buffer.Span);
                 return true;
             }
@@ -411,24 +436,19 @@ namespace wan24.Core
                 result = null;
                 return true;
             }
-            if (!obj.GetType().IsValueType)
+            Type type = obj.GetType();
+            if (Nullable.GetUnderlyingType(type) is Type underlyingType)
+                type = underlyingType;
+            if (!type.IsValueType)
             {
                 result = null;
                 return false;
             }
             try
             {
-                if (CanConvertToString(obj.GetType())) return TryConvert(obj, out result);
+                if (CanConvertToString(type)) return TryConvert(type, obj, out result);
                 using RentedArrayRefStruct<byte> buffer = new(Marshal.SizeOf(obj), clean: false);
-                GCHandle gch = GCHandle.Alloc(buffer.Array, GCHandleType.Pinned);
-                try
-                {
-                    Marshal.StructureToPtr(obj, gch.AddrOfPinnedObject(), fDeleteOld: true);
-                }
-                finally
-                {
-                    gch.Free();
-                }
+                obj.GetMarshalBytes(buffer.Array);
                 result = System.Convert.ToBase64String(buffer.Span);
                 return true;
             }
@@ -462,7 +482,6 @@ namespace wan24.Core
                 result = null;
                 return true;
             }
-            //TODO Try StringValueConverter first
             try
             {
                 if (CanConvertFromString(typeof(T)))
@@ -471,18 +490,12 @@ namespace wan24.Core
                     result = (res = TryConvertFromString<T>(str, out T obj)) ? obj : null;
                     return res;
                 }
-                using RentedArrayRefStruct<byte> buffer = new(Base64.GetMaxDecodedFromUtf8Length(str.Length), clean: false);
+                int len = Encoding.UTF8.GetByteCount(str);
+                if (len < Marshal.SizeOf<T>()) throw new InvalidDataException("Not enough data");
+                using RentedArrayRefStruct<byte> buffer = new(len, clean: true);
                 str.GetBase64Bytes(buffer.Span);
-                GCHandle gch = GCHandle.Alloc(buffer.Array, GCHandleType.Pinned);
-                try
-                {
-                    result = Marshal.PtrToStructure<T>(gch.AddrOfPinnedObject());
-                    return true;
-                }
-                finally
-                {
-                    gch.Free();
-                }
+                result = buffer.Array.UnmarshalStructure<T>();
+                return true;
             }
             catch
             {
@@ -507,8 +520,10 @@ namespace wan24.Core
         /// <param name="type">Structure type</param>
         /// <param name="result">Result</param>
         /// <returns>If succeed</returns>
-        public static bool TryConvertStructInstance(this string? str, in Type type, [MaybeNullWhen(returnValue: true)] out object? result)
+        public static bool TryConvertStructInstance(this string? str, Type type, [MaybeNullWhen(returnValue: true)] out object? result)
         {
+            if (Nullable.GetUnderlyingType(type) is Type underlyingType)
+                type = underlyingType;
             if (!type.IsValueType)
             {
                 result = null;
@@ -522,18 +537,12 @@ namespace wan24.Core
             try
             {
                 if (CanConvertFromString(type)) return TryConvertObjectFromString(str, type, out result);
-                using RentedArrayRefStruct<byte> buffer = new(Base64.GetMaxDecodedFromUtf8Length(str.Length), clean: false);
+                int len = Encoding.UTF8.GetByteCount(str);
+                if (len < type.GetMarshaledSize()) throw new InvalidDataException("Not enough data");
+                using RentedArrayRefStruct<byte> buffer = new(len, clean: false);
                 str.GetBase64Bytes(buffer.Span);
-                GCHandle gch = GCHandle.Alloc(buffer.Array, GCHandleType.Pinned);
-                try
-                {
-                    result = MarshalStructureMethod.MakeGenericMethod(type).Invoke(obj: null, [gch.AddrOfPinnedObject()]);
-                    return result is not null;
-                }
-                finally
-                {
-                    gch.Free();
-                }
+                result = buffer.Array.UnmarshalStructure(type);
+                return true;
             }
             catch
             {

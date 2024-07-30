@@ -1,5 +1,7 @@
-﻿using System.Reflection;
+﻿using System.Buffers.Text;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Serialization;
@@ -19,6 +21,10 @@ namespace wan24.Core
         /// XML value converter name
         /// </summary>
         public const string XML_CONVERTER_NAME = "XML";
+        /// <summary>
+        /// String value converter name
+        /// </summary>
+        public const string STRING_CONVERTER_NAME = "STRING";
 
         /// <summary>
         /// <see cref="Marshal.PtrToStructure{T}(nint)"/> method
@@ -112,7 +118,13 @@ namespace wan24.Core
                 return res.FirstChild;
             };
             ValueConverter[typeof(ISerializeString)] = (t, s) => s is null ? null : t.ParseObject(s);
-            ValueConverter[typeof(ISerializeBinary)] = (t, s) => s is null ? null : t.DeserializeFrom(System.Convert.FromBase64String(s));
+            ValueConverter[typeof(ISerializeBinary)] = (t, s) =>
+            {
+                if (s is not string str) return null;
+                ReadOnlySpan<char> chars = str;
+                using RentedArrayRefStruct<byte> buffer = new(len: Encoding.UTF8.GetByteCount(chars), clean: false);
+                return t.DeserializeFrom(buffer.Span[..chars.GetBase64Bytes(buffer.Span)]);
+            };
             StringConverter[typeof(string)] = (t, v) => v as string;
             StringConverter[typeof(bool)] = (t, v) => v?.ToString();
             StringConverter[typeof(byte)] = (t, v) => v?.ToString();
@@ -138,53 +150,37 @@ namespace wan24.Core
             StringConverter[typeof(XmlDocument)] = (t, v) => (v as XmlDocument)?.OuterXml;
             StringConverter[typeof(XmlNode)] = (t, v) => (v as XmlNode)?.OuterXml;
             StringConverter[typeof(ISerializeString)] = (t, v) => v?.ToString();
-            StringConverter[typeof(ISerializeBinary)] = (t, v) => v is null ? null : System.Convert.ToBase64String(((ISerializeBinary)v).GetBytes());
-            NamedValueConverter[JSON_CONVERTER_NAME] = (t, s) =>
+            StringConverter[typeof(ISerializeBinary)] = (t, v) =>
             {
-                if (s is null) return null;
-                try
-                {
-                    return JsonHelper.DecodeObject(t, s);
-                }
-                catch
-                {
-                    return null;
-                }
+                if (v is null) return null;
+                if (v is not ISerializeBinary serializeBinary) throw new InvalidCastException();
+                if (serializeBinary.StructureSize is not int size) return serializeBinary.GetBytes().GetBase64String();
+                using RentedArrayRefStruct<byte> buffer = new(len: Base64.GetMaxEncodedToUtf8Length(size), clean: false);
+                return System.Convert.ToBase64String(buffer.Span[..serializeBinary.GetBytes(buffer.Span)]);
             };
+            NamedValueConverter[JSON_CONVERTER_NAME] = (t, s) => s is null ? null : JsonHelper.DecodeObject(t, s);
             NamedValueConverter[XML_CONVERTER_NAME] = (t, s) =>
             {
                 if (s is null) return null;
                 using MemoryPoolStream ms = new();
-                try
-                {
-                    ms.Write(s.GetBytes());
-                    ms.Position = 0;
-                    XmlSerializer serializer = new(t);
-                    return serializer.Deserialize(ms);
-                }
-                catch
-                {
-                    return null;
-                }
+                ms.Write(s.GetBytes());
+                ms.Position = 0;
+                XmlSerializer serializer = new(t);
+                return serializer.Deserialize(ms);
             };
+            NamedValueConverter[STRING_CONVERTER_NAME] = (t, s) => s is null ? null : ConvertObjectFromString(s, t);
             NamedStringConverter[JSON_CONVERTER_NAME] = (t, v) => JsonHelper.Encode(v);
             NamedStringConverter[XML_CONVERTER_NAME] = (t, v) =>
             {
                 using MemoryPoolStream ms = new();
                 XmlSerializer serializer = new(t);
-                try
-                {
-                    serializer.Serialize(ms, v);
-                    ms.Position = 0;
-                    using RentedArrayRefStruct<byte> buffer = new((int)ms.Length);
-                    ms.ReadExactly(buffer.Span);
-                    return buffer.Span.ToUtf8String();
-                }
-                catch
-                {
-                    return null;
-                }
+                serializer.Serialize(ms, v);
+                ms.Position = 0;
+                using RentedArrayRefStruct<byte> buffer = new((int)ms.Length, clean: false);
+                ms.ReadExactly(buffer.Span);
+                return buffer.Span.ToUtf8String();
             };
+            NamedStringConverter[STRING_CONVERTER_NAME] = (t, v) => v is null ? null : ConvertObjectToString(v);
         }
 
         /// <summary>

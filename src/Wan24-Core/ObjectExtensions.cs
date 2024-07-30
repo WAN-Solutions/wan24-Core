@@ -3,8 +3,6 @@ using System.Diagnostics.Contracts;
 using System.Reflection;
 using System.Runtime;
 
-//TODO Use StringValueConverter before JSON
-
 namespace wan24.Core
 {
     /// <summary>

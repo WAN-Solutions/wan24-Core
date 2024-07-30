@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Xml;
 using wan24.Core;
 
@@ -65,6 +66,49 @@ namespace Wan24_Core_Tests
             }
         }
 
+        [TestMethod]
+        public void Struct_Tests()
+        {
+            int value = 123;
+            string? converted = StringValueConverter.ConvertStructInstance(value);
+            Assert.IsNotNull(converted);
+            object? reconverted = StringValueConverter.ConvertStructInstance(converted, typeof(int));
+            Assert.IsNotNull(reconverted);
+            int? reconvertedValue = (int?)reconverted;
+            Assert.IsTrue(reconvertedValue.HasValue);
+            Assert.AreEqual(value, reconvertedValue.Value);
+
+            converted = StringValueConverter.ConvertStruct<int>(value);
+            Assert.IsNotNull(converted);
+            reconverted = StringValueConverter.ConvertStruct<int>(converted);
+            Assert.IsNotNull(reconverted);
+            reconvertedValue = (int?)reconverted;
+            Assert.IsTrue(reconvertedValue.HasValue);
+            Assert.AreEqual(value, reconvertedValue.Value);
+        }
+
+        [TestMethod]
+        public void Structure_Tests()
+        {
+            TestStruct a = default;
+            a.Value = 123;
+            string? converted = StringValueConverter.ConvertStructInstance(a);
+            Assert.IsNotNull(converted);
+            object? reconverted = StringValueConverter.ConvertStructInstance(converted, typeof(TestStruct));
+            Assert.IsNotNull(reconverted);
+            TestStruct? b = (TestStruct?)reconverted;
+            Assert.IsTrue(b.HasValue);
+            Assert.AreEqual(a.Value, b.Value.Value);
+
+            converted = StringValueConverter.ConvertStruct<TestStruct>(a);
+            Assert.IsNotNull(converted);
+            reconverted = StringValueConverter.ConvertStruct<TestStruct>(converted);
+            Assert.IsNotNull(reconverted);
+            b = (TestStruct?)reconverted;
+            Assert.IsTrue(b.HasValue);
+            Assert.AreEqual(a.Value, b.Value.Value);
+        }
+
         public sealed class TestType : IStringValueConverter
         {
             public TestType() { }
@@ -78,6 +122,14 @@ namespace Wan24_Core_Tests
                 value = new TestType();
                 return true;
             }
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct TestStruct
+        {
+            public int Value;
+
+            public TestStruct() => Value = 0;
         }
     }
 }
