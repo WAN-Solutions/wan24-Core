@@ -7,6 +7,15 @@ namespace wan24.Core
     public static partial class ReflectionExtensions
     {
         /// <summary>
+        /// Invoke a method
+        /// </summary>
+        /// <param name="mi">Method</param>
+        /// <param name="obj">Object</param>
+        /// <param name="param">Parameters</param>
+        /// <returns>Return value</returns>
+        public static object? InvokeFast(this MethodInfo mi, in object? obj, params object?[] param) => GetInvocationDelegate(mi)(obj, param);
+
+        /// <summary>
         /// Invoke a method and complete parameters with default values
         /// </summary>
         /// <param name="mi">Method</param>

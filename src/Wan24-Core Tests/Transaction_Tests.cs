@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class Transaction_Tests
+    public class Transaction_Tests : TestBase
     {
         [TestMethod]
         public void General_Tests()

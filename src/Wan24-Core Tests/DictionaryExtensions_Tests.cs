@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class DictionaryExtensions_Tests
+    public class DictionaryExtensions_Tests : TestBase
     {
         [TestMethod]
         public void Merge_Dictionary_Tests()

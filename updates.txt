@@ -1,0 +1,15 @@
++ Added `ReflectionExtensions.IsPropertyAccessor` extension method for `MethodInfo`
++ Added `ReflectionExtensions.DoesMatchInterface`
++ Added `ReflectionExtensions.DiffInterface`
++ Added `ReflectionExtensions.IsEventHandlerControl` extension method for `MethodInfo`
++ Added `ReflectionExtensions.GetEvent(s)Cached`
++ Added `ReflectionExtensions.InvokeReflected`
++ Added `ReflectionExtensions.Get/SetValueReflected`
++ Added `ReflectionExtensions.IsDelegate`
++ Added `ReflectionExtensions.GetDelegate(s)Cached`
++ Added `ReflectionExtensions.GetDelegateMethod`
++ Added `ReflectionExtensions.Create(Typed)(Static/Instance)PropertyGetter/Setter` extension methods for `PropertyInfo`
++ Added `Xml*DocComments`
++ `PropertyInfoExt.Getter/Setter` uses compiled lambda now per default, which should improve compatibility and performance
++ Added `PropertyInfoExtensions.CanCreatePropertyGetter/Setter` extension methods for `PropertyInfo`
++ Added `StringExtensions.CutAt/After`

@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class RentedThread_Tests
+    public class RentedThread_Tests : TestBase
     {
         [TestMethod, Timeout(3000)]
         public async Task GeneralAsync_Tests()

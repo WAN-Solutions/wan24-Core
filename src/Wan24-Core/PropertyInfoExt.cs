@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using System.Runtime;
 
 namespace wan24.Core
@@ -42,7 +43,7 @@ namespace wan24.Core
         /// <summary>
         /// Can read?
         /// </summary>
-        public bool CanRead => Getter is not null;
+        public bool CanRead => Property.CanRead;
 
         /// <summary>
         /// If the property has a public getter
@@ -62,7 +63,7 @@ namespace wan24.Core
         /// <summary>
         /// Can write?
         /// </summary>
-        public bool CanWrite => Setter is not null;
+        public bool CanWrite => Property.CanWrite;
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
@@ -82,6 +83,7 @@ namespace wan24.Core
         /// <param name="obj">Instance</param>
         /// <param name="ignoreMissingConverter">If to ignore a missing converter setup</param>
         /// <returns>Value</returns>
+        [MemberNotNull(nameof(Getter))]
         public object? GetConverted(object? obj, bool ignoreMissingConverter = false)
         {
             if (Getter is null)
@@ -110,6 +112,7 @@ namespace wan24.Core
         /// <param name="obj">Instance</param>
         /// <param name="value">Value to set</param>
         /// <param name="ignoreMissingConverter">If to ignore a missing converter setup</param>
+        [MemberNotNull(nameof(Setter))]
         public void SetConverted(object? obj, object? value, bool ignoreMissingConverter = false)
         {
             if (Setter is null)

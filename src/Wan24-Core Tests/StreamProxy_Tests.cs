@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class StreamProxy_Tests
+    public class StreamProxy_Tests : TestBase
     {
         [TestMethod, Timeout(3000)]
         public void General_Tests()

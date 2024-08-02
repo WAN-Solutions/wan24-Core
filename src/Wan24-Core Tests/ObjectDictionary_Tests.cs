@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class ObjectDictionary_Tests
+    public class ObjectDictionary_Tests : TestBase
     {
         private static readonly Test TestInstance = new();
         private static readonly ObjectDictionary<string> TestDict = new()

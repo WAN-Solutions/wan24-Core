@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using wan24.Core;
 
@@ -234,6 +233,161 @@ namespace Wan24_Core_Tests
             Assert.IsTrue(baseTypes.Contains(typeof(Stream)));
         }
 
+        [TestMethod]
+        public void DiffInterface_Tests()
+        {
+            // Differences
+            ICustomAttributeProvider[] diff = [.. typeof(DiffInterfaceType).DiffInterface(typeof(IDiffInterface))];
+            Logging.WriteInfo($"DIFFERENCES:\t{diff.Length}");
+            int unknown = 0;
+            foreach (ICustomAttributeProvider item in diff)
+                switch (item)
+                {
+                    case PropertyInfoExt pi:
+                        Logging.WriteInfo($"PROPERTY:\t{pi.Name}");
+                        break;
+                    case MethodInfo mi:
+                        Logging.WriteInfo($"METHOD:\t{mi.Name}");
+                        break;
+                    case EventInfo e:
+                        Logging.WriteInfo($"EVENT:\t{e.Name}");
+                        break;
+                    default:
+                        Logging.WriteInfo($"UNKNOWN:\t{item}");
+                        unknown++;
+                        break;
+                }
+            Assert.AreEqual(0, unknown);
+
+            // Properties
+            Assert.IsFalse(diff.Any(d => d is PropertyInfoExt pi && pi.Name == nameof(IDiffInterface.CompatibleProperty)));
+            Assert.IsFalse(diff.Any(d => d is PropertyInfoExt pi && pi.Name == nameof(DiffInterfaceType.AnyProperty)));
+            Assert.IsTrue(diff.Any(d => d is PropertyInfoExt pi && pi.Name == nameof(IDiffInterface.MissingGetter)));
+            Assert.IsTrue(diff.Any(d => d is PropertyInfoExt pi && pi.Name == nameof(IDiffInterface.MissingSetter)));
+            Assert.IsTrue(diff.Any(d => d is PropertyInfoExt pi && pi.Name == nameof(IDiffInterface.PrivateGetter)));
+            Assert.IsTrue(diff.Any(d => d is PropertyInfoExt pi && pi.Name == nameof(IDiffInterface.PrivateSetter)));
+            Assert.IsTrue(diff.Any(d => d is PropertyInfoExt pi && pi.Name == nameof(IDiffInterface.TypeMismatch)));
+            Assert.IsTrue(diff.Any(d => d is PropertyInfoExt pi && pi.Name == nameof(IDiffInterface.NullabilityMismatch)));
+            Assert.IsTrue(diff.Any(d => d is PropertyInfoExt pi && pi.Name == nameof(IDiffInterface.TypeMismatch)));
+            Assert.IsTrue(diff.Any(d => d is PropertyInfoExt pi && pi.Name == nameof(IDiffInterface.PrivateProperty)));
+            Assert.IsTrue(diff.Any(d => d is PropertyInfoExt pi && pi.Name == nameof(IDiffInterface.MissingProperty)));
+
+            // Methods
+            Assert.IsFalse(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.CompatibleMethod)));
+            Assert.IsFalse(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(DiffInterfaceType.AnyMethod)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.IncompatibleReturnType)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.ReturnTypeNullabilityMismatch)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.PrivateMethod)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.MissingMethod)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.IncompatibleParameter)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.ParameterNullabilityMismatch)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.MissingParameter)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.TooManyParameters)));
+
+            // Generic methods
+            Assert.IsFalse(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.CompatibleGenericMethod)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.IncompatibleGenericReturnType)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.GenericReturnTypeNullabilityMismatch)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.GenericArgumentMismatch)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.GenericParameterMismatch)));
+
+            // Events
+            Assert.IsFalse(diff.Any(d => d is EventInfo ei && ei.Name == nameof(IDiffInterface.CompatibleEvent)));
+            Assert.IsFalse(diff.Any(d => d is EventInfo ei && ei.Name == nameof(DiffInterfaceType.AnyEvent)));
+            Assert.IsTrue(diff.Any(d => d is EventInfo ei && ei.Name == nameof(IDiffInterface.IncompatibleEvent)));
+            Assert.IsTrue(diff.Any(d => d is EventInfo ei && ei.Name == nameof(IDiffInterface.MissingEvent)));
+
+            // Number of differences
+            Assert.AreEqual(22, diff.Length);
+        }
+
+        [TestMethod]
+        public void IsDelegate_Tests()
+        {
+            Assert.IsFalse(typeof(ReflectionExtensions_Tests).IsDelegate());
+            Assert.IsTrue(typeof(DiffInterfaceType.EventDelegate).IsDelegate());
+        }
+
+        [TestMethod]
+        public void CreateInstancePropertyGetter_Tests()
+        {
+            DiffInterfaceType obj = new()
+            {
+                AnyProperty = true
+            };
+            PropertyInfoExt pi = typeof(DiffInterfaceType).GetPropertyCached(nameof(DiffInterfaceType.AnyProperty)) ?? throw new InvalidProgramException();
+            Func<object?, object?> getter = pi.Property.CreateInstancePropertyGetter();
+            object? ret = getter(obj);
+            Assert.IsNotNull(ret);
+            Assert.AreEqual(true, ret);
+        }
+
+        [TestMethod]
+        public void CreateStaticPropertyGetter_Tests()
+        {
+            PropertyInfoExt pi = typeof(DiffInterfaceType).GetPropertyCached(nameof(DiffInterfaceType.StaticProperty)) ?? throw new InvalidProgramException();
+            Func<object?> getter = pi.Property.CreateStaticPropertyGetter();
+            object? ret = getter();
+            Assert.IsNotNull(ret);
+            Assert.AreEqual(true, ret);
+        }
+
+        [TestMethod]
+        public void CreateStaticPropertyGetter2_Tests()
+        {
+            PropertyInfoExt pi = typeof(DiffInterfaceType).GetPropertyCached(nameof(DiffInterfaceType.StaticProperty)) ?? throw new InvalidProgramException();
+            Func<object?, object?> getter = pi.Property.CreateStaticPropertyGetter2();
+            object? ret = getter(null);
+            Assert.IsNotNull(ret);
+            Assert.AreEqual(true, ret);
+        }
+
+        [TestMethod]
+        public void CreateInstancePropertySetter_Tests()
+        {
+            DiffInterfaceType obj = new();
+            PropertyInfoExt pi = typeof(DiffInterfaceType).GetPropertyCached(nameof(DiffInterfaceType.AnyProperty)) ?? throw new InvalidProgramException();
+            Action<object?, object?> setter = pi.Property.CreateInstancePropertySetter();
+            setter(obj, true);
+            Assert.IsTrue(obj.AnyProperty);
+        }
+
+        [TestMethod]
+        public void CreateStaticPropertySetter_Tests()
+        {
+            PropertyInfoExt pi = typeof(DiffInterfaceType).GetPropertyCached(nameof(DiffInterfaceType.StaticProperty)) ?? throw new InvalidProgramException();
+            Action<object?> setter = pi.Property.CreateStaticPropertySetter();
+            DiffInterfaceType.StaticProperty = false;
+            setter(true);
+            Assert.IsTrue(DiffInterfaceType.StaticProperty);
+        }
+
+        [TestMethod]
+        public void CreateStaticPropertySetter2_Tests()
+        {
+            PropertyInfoExt pi = typeof(DiffInterfaceType).GetPropertyCached(nameof(DiffInterfaceType.StaticProperty)) ?? throw new InvalidProgramException();
+            Action<object?, object?> setter = pi.Property.CreateStaticPropertySetter2();
+            DiffInterfaceType.StaticProperty = false;
+            setter(null, true);
+            Assert.IsTrue(DiffInterfaceType.StaticProperty);
+        }
+
+        [TestMethod]
+        public void InvokeReflected_Tests()
+        {
+            object? res = this.InvokeReflected(nameof(GetParam), true);
+            Assert.IsNotNull(res);
+            Assert.AreEqual(true, res);
+        }
+
+        [TestMethod]
+        public void InvokeReflectedGeneric_Tests()
+        {
+            object? res = this.InvokeReflectedGeneric(nameof(GetParamGeneric), [typeof(string)], "test");
+            Assert.IsNotNull(res);
+            Assert.AreEqual("test", res);
+        }
+
         public int? TestField = null;
 
         public int TestField2 = 0;
@@ -263,6 +417,10 @@ namespace Wan24_Core_Tests
         private static Task<ITryAsyncResult> GetTrueAsync(Type type, CancellationToken cancellationToken)
             => Task.FromResult<ITryAsyncResult>(new TryAsyncResult<bool>(true, true));
 
+        private static bool GetParam(bool param) => param;
+
+        private static T GetParamGeneric<T>(T param) => param;
+
         public sealed class ReflectionTestClass
         {
             public ReflectionTestClass(bool param1, string? str, bool param2 = true) { }
@@ -272,6 +430,121 @@ namespace Wan24_Core_Tests
             public bool InitOnlyProperty { get; init; }
 
             public bool GetterSetterProperty { get; set; }
+        }
+
+        public sealed class DiffInterfaceType
+        {
+            public static bool StaticProperty { get; set; } = true;
+
+            public bool CompatibleProperty { get; set; }
+
+            public bool AnyProperty { get; set; }// Ignored
+
+            public bool MissingGetter
+            {
+                set { }
+            }
+
+            public bool MissingSetter { get; }
+
+            public bool PrivateGetter { private get; set; }
+
+            public bool PrivateSetter { get; private set; }
+
+            public bool TypeMismatch { get; set; }
+
+            public bool NullabilityMismatch { get; set; }
+
+            private bool PrivateProperty { get; set; }
+
+            public void CompatibleMethod() { }
+
+            public bool IncompatibleReturnType() => throw new NotImplementedException();
+
+            public bool ReturnTypeNullabilityMismatch() => throw new NotImplementedException();
+
+            private void PrivateMethod() { }
+
+            public void AnyMethod() { }// Ignored
+
+            public void IncompatibleParameter(bool param) { }
+
+            public void ParameterNullabilityMismatch(bool param) { }
+
+            public void MissingParameter() { }
+
+            public void TooManyParameters(bool param1, bool param2) { }
+
+            public void CompatibleGenericMethod<T>() { }
+
+            public tA IncompatibleGenericReturnType<tA, tB>() => throw new NotImplementedException();
+
+            public tA? GenericReturnTypeNullabilityMismatch<tA, tB>() => throw new NotImplementedException();
+
+            public tA GenericArgumentMismatch<tA, tB>() where tA : struct => throw new NotImplementedException();
+
+            public void GenericParameterMismatch<tA, tB>(tB b) { }
+
+            public event IDiffInterface.EventDelegate? CompatibleEvent;
+
+            public delegate void EventDelegate();
+            public event EventDelegate? IncompatibleEvent;
+
+            public event EventDelegate? AnyEvent;// Ignored
+        }
+
+        public interface IDiffInterface
+        {
+            bool CompatibleProperty { get; set; }
+
+            bool MissingGetter { get; set; }
+
+            bool MissingSetter { get; set; }
+
+            bool PrivateGetter { get; set; }
+
+            bool PrivateSetter { get; set; }
+
+            string TypeMismatch { get; set; }
+
+            bool? NullabilityMismatch { get; set; }
+
+            bool PrivateProperty { get; set; }
+
+            bool MissingProperty { get; set; }
+
+            void CompatibleMethod();
+
+            string IncompatibleReturnType();
+
+            bool? ReturnTypeNullabilityMismatch();
+
+            void PrivateMethod();
+
+            void IncompatibleParameter(string param);
+
+            void ParameterNullabilityMismatch(bool? param);
+
+            void MissingParameter(bool param);
+
+            void TooManyParameters(bool param);
+
+            void MissingMethod();
+
+            void CompatibleGenericMethod<T>();
+
+            tB IncompatibleGenericReturnType<tA, tB>();
+
+            tA GenericReturnTypeNullabilityMismatch<tA, tB>();
+
+            tA GenericArgumentMismatch<tA, tB>() where tA : class;
+
+            void GenericParameterMismatch<tA, tB>(tA b);
+
+            public delegate void EventDelegate();
+            event EventDelegate? CompatibleEvent;
+            event EventDelegate? IncompatibleEvent;
+            event EventDelegate? MissingEvent;
         }
     }
 }

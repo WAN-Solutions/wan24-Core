@@ -4,7 +4,7 @@ using wan24.Core;
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class LogLevelExtensions_Tests
+    public class LogLevelExtensions_Tests : TestBase
     {
         [TestMethod]
         public void General_Tests()

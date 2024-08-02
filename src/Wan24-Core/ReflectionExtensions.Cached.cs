@@ -24,6 +24,14 @@ namespace wan24.Core
         /// </summary>
         private static readonly ConcurrentDictionary<int, ConcurrentDictionary<BindingFlags, ConstructorInfo[]>> ConstructorInfoCache = new();
         /// <summary>
+        /// <see cref="EventInfo"/> cache (key is the type hash code)
+        /// </summary>
+        private static readonly ConcurrentDictionary<int, ConcurrentDictionary<BindingFlags, EventInfo[]>> EventInfoCache = new();
+        /// <summary>
+        /// <see cref="EventInfo"/> cache (key is the delegate type hash code)
+        /// </summary>
+        private static readonly ConcurrentDictionary<int, ConcurrentDictionary<BindingFlags, Type[]>> DelegateCache = new();
+        /// <summary>
         /// <see cref="ParameterInfo"/> cache (key is the method/constructor hash code)
         /// </summary>
         private static readonly ConcurrentDictionary<int, ParameterInfo[]> ParameterInfoCache = new();
@@ -62,22 +70,23 @@ namespace wan24.Core
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Properties</returns>
         public static PropertyInfoExt[] GetPropertiesCached(
-            this Type type, 
+            this Type type,
             BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public
             )
             => PropertyInfoCache.GetOrAdd(
                 type.GetHashCode(),
                 (key) => new()).GetOrAdd(bindingFlags, (key) => (from pi in type.GetProperties(bindingFlags)
                                                                  where !pi.PropertyType.IsByRef && 
+                                                                    !pi.PropertyType.IsByRefLike && 
                                                                     pi.GetIndexParameters().Length == 0
                                                                  select new PropertyInfoExt(
-                                                                     pi, 
-                                                                     pi.CanRead 
-                                                                        ? pi.GetGetterDelegate() 
-                                                                        : null, 
-                                                                     pi.CanWrite 
-                                                                        ? pi.GetSetterDelegate() 
-                                                                        : null
+                                                                     pi,
+                                                                     pi.CanCreatePropertyGetter()
+                                                                         ? pi.CreatePropertyGetter() // Previously: GetGetterDelegate
+                                                                         : null,
+                                                                     pi.CanCreatePropertySetter()
+                                                                         ? pi.CreatePropertySetter() // Previously: GetSetterDelegate
+                                                                         : null
                                                                      ))
                 .ToArray());
 
@@ -115,6 +124,25 @@ namespace wan24.Core
             => GetMethodsCached(type, bindingFlags).FirstOrDefault(m => m.Name == name);
 
         /// <summary>
+        /// Get delegates from the cache
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="bindingFlags">Binding flags</param>
+        /// <returns>Delegates</returns>
+        public static Type[] GetDelegatesCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)
+            => DelegateCache.GetOrAdd(type.GetHashCode(), (key) => new()).GetOrAdd(bindingFlags, (key) => [..type.GetNestedTypes(bindingFlags).Where(t => t.IsDelegate())]);
+
+        /// <summary>
+        /// Get a delegate from the cache
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="name">Name</param>
+        /// <param name="bindingFlags">Binding flags</param>
+        /// <returns>Delegate</returns>
+        public static Type? GetDelegateCached(this Type type, string name, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)
+            => GetDelegatesCached(type, bindingFlags).FirstOrDefault(d => d.Name == name);
+
+        /// <summary>
         /// Get constructors from the cache
         /// </summary>
         /// <param name="type">Type</param>
@@ -122,6 +150,25 @@ namespace wan24.Core
         /// <returns>Constructors</returns>
         public static ConstructorInfo[] GetConstructorsCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)
             => ConstructorInfoCache.GetOrAdd(type.GetHashCode(), (key) => new()).GetOrAdd(bindingFlags, (key) => type.GetConstructors(bindingFlags));
+
+        /// <summary>
+        /// Get events from the cache
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="bindingFlags">Binding flags</param>
+        /// <returns>Events</returns>
+        public static EventInfo[] GetEventsCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)
+            => EventInfoCache.GetOrAdd(type.GetHashCode(), (key) => new()).GetOrAdd(bindingFlags, (key) => type.GetEvents(bindingFlags));
+
+        /// <summary>
+        /// Get an event from the cache
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="name">Name</param>
+        /// <param name="bindingFlags">Binding flags</param>
+        /// <returns>Event</returns>
+        public static EventInfo? GetEventCached(this Type type, string name, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)
+            => GetEventsCached(type, bindingFlags).FirstOrDefault(e => e.Name == name);
 
         /// <summary>
         /// Get method parameters from the cache

@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 
+//TODO Use compiled lambda for  object mapping
+
 namespace wan24.Core
 {
     /// <summary>

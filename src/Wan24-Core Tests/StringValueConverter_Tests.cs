@@ -6,7 +6,7 @@ using wan24.Core;
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class StringValueConverter_Tests
+    public class StringValueConverter_Tests : TestBase
     {
         [TestMethod]
         public void General_Tests()
