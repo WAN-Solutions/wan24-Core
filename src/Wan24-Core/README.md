@@ -250,6 +250,9 @@ including extensions for numeric type encoding/decoding)
 - Customizable object serialization helper
 - In-memory cache
 - Object mapping
+- Virtual interface checkjing using `Type.DiffInterface`
+- XML documentation comments parsing using `Xml*DocComments`
+- Structure (de)serializing using `StructExtensions`
 
 ## How to get it
 
