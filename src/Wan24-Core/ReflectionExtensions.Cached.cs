@@ -248,7 +248,7 @@ namespace wan24.Core
                     (key) => (from p in pi.DeclaringType!.GetProperties(bindingFlags)
                               where !pi.PropertyType.IsByRef && 
                                 pi.GetIndexParameters().Length == 0
-                              select new PropertyInfoExt(p, p.CanRead ? p.GetGetterDelegate() : null, p.CanWrite ? pi.GetSetterDelegate() : null)).ToArray());
+                              select new PropertyInfoExt(p, p.CanCreatePropertyGetter() ? p.CreatePropertyGetter() : null, p.CanCreatePropertySetter() ? pi.CreatePropertySetter() : null)).ToArray());
             PropertyInfoExt? prop = null;
             for (int i = 0, len = info.Length; i < len; i++)
             {
@@ -294,7 +294,7 @@ namespace wan24.Core
                     (key) => (from p in pi.DeclaringType!.GetProperties(bindingFlags)
                               where !p.PropertyType.IsByRef && 
                                 p.GetIndexParameters().Length == 0
-                              select new PropertyInfoExt(p, p.CanRead ? p.GetGetterDelegate() : null, p.CanWrite ? pi.GetSetterDelegate() : null)).ToArray());
+                              select new PropertyInfoExt(p, p.CanCreatePropertyGetter() ? p.CreatePropertyGetter() : null, p.CanCreatePropertySetter() ? pi.CreatePropertySetter() : null)).ToArray());
             PropertyInfoExt? prop = null;
             for (int i = 0, len = info.Length; i < len; i++)
             {

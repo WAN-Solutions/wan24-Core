@@ -111,7 +111,7 @@ namespace wan24.Core
             // Execute the method
             try
             {
-                object? returnValue = mi.Invoke(instance, [.. parameterList]);
+                object? returnValue = mi.InvokeFast(instance, [.. parameterList]);
                 while (returnValue is Task task)
                 {
                     await task.DynamicContext();

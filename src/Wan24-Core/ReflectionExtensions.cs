@@ -5,7 +5,9 @@ using System.Reflection;
 using System.Runtime;
 using System.Runtime.CompilerServices;
 
-//TODO Create compiled lambda for method invocation
+//TODO Add ConstructorInfoExt
+//TODO Add FieldInfoExt
+//TODO Add CreateConstructorInvoker
 
 namespace wan24.Core
 {
@@ -628,12 +630,12 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Get a delegate for method invocation
+        /// Create a delegate for method invocation
         /// </summary>
         /// <param name="mi">Method</param>
         /// <returns>Invocation delegate (first parameter is the target object, which must be <see langword="null"/> for a static method, 2nd parameter are the method parameters 
         /// (all are required!))</returns>
-        public static Func<object?, object?[], object?> GetInvocationDelegate(this MethodInfo mi)
+        public static Func<object?, object?[], object?> CreateMethodInvoker(this MethodInfo mi)
         {
             if (mi.IsSpecialName) throw new ArgumentException("Non-special method required", nameof(mi));
             if (mi.IsGenericMethod && !mi.IsConstructedGenericMethod) throw new ArgumentException("Constructed generic method required", nameof(mi));

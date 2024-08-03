@@ -59,7 +59,7 @@ namespace wan24.Core
                                     mi.IsGenericMethod
                                 select mi)
                 .FirstOrDefault()
-                ?.Invoke(obj: null, [])
+                ?.InvokeFast(obj: null, [])
                     ?? throw new InvalidProgramException("Failed to get create method"));
 
         /// <summary>

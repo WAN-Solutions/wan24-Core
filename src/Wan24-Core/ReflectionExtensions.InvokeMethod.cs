@@ -13,7 +13,7 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
-        public static object? InvokeFast(this MethodInfo mi, in object? obj, params object?[] param) => GetInvocationDelegate(mi)(obj, param);
+        public static object? InvokeFast(this MethodInfo mi, in object? obj, params object?[] param) => CreateMethodInvoker(mi)(obj, param);
 
         /// <summary>
         /// Invoke a method and complete parameters with default values
@@ -24,7 +24,7 @@ namespace wan24.Core
         /// <returns>Return value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static object? InvokeAuto(this MethodInfo mi, in object? obj, params object?[] param)
-            => mi.Invoke(obj, mi.GetParametersCached().GetDiObjects(param));
+            => mi.InvokeFast(obj, mi.GetParametersCached().GetDiObjects(param));
 
         /// <summary>
         /// Invoke a method and complete parameters with default values
@@ -36,7 +36,7 @@ namespace wan24.Core
         /// <returns>Return value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static object? InvokeAuto(this MethodInfo mi, in object? obj, in IServiceProvider serviceProvider, params object?[] param)
-            => mi.Invoke(obj, mi.GetParametersCached().GetDiObjects(param, serviceProvider));
+            => mi.InvokeFast(obj, mi.GetParametersCached().GetDiObjects(param, serviceProvider));
 
         /// <summary>
         /// Invoke a method and complete parameters with default values
@@ -75,7 +75,7 @@ namespace wan24.Core
             if (mi.ReturnType is not Type retType) throw new ArgumentException("Method has no return type (task expected)", nameof(mi));
             bool isTask = typeof(Task).IsAssignableFrom(retType);
             if (!isTask && !typeof(ValueTask).IsAssignableFrom(retType)) throw new ArgumentException("Task return type expected", nameof(mi));
-            if (mi.Invoke(obj, await mi.GetParametersCached().GetDiObjectsAsync(param).DynamicContext()) is not object res) return null;
+            if (mi.InvokeFast(obj, await mi.GetParametersCached().GetDiObjectsAsync(param).DynamicContext()) is not object res) return null;
             if (isTask)
             {
                 Task task = (Task)res;
@@ -104,7 +104,7 @@ namespace wan24.Core
             if (mi.ReturnType is not Type retType) throw new ArgumentException("Method has no return type (task expected)", nameof(mi));
             bool isTask = typeof(Task).IsAssignableFrom(retType);
             if (!isTask && !typeof(ValueTask).IsAssignableFrom(retType)) throw new ArgumentException("Task return type expected", nameof(mi));
-            if (mi.Invoke(obj, await mi.GetParametersCached().GetDiObjectsAsync(param, serviceProvider).DynamicContext()) is not object res) return null;
+            if (mi.InvokeFast(obj, await mi.GetParametersCached().GetDiObjectsAsync(param, serviceProvider).DynamicContext()) is not object res) return null;
             if (isTask)
             {
                 Task task = (Task)res;
@@ -133,7 +133,7 @@ namespace wan24.Core
             if (mi.ReturnType is not Type retType) throw new ArgumentException("Method has no return type (task expected)", nameof(mi));
             bool isTask = typeof(Task).IsAssignableFrom(retType);
             if (!isTask && !typeof(ValueTask).IsAssignableFrom(retType)) throw new ArgumentException("Task return type expected", nameof(mi));
-            if (mi.Invoke(obj, await mi.GetParametersCached().GetDiObjectsAsync(param, serviceProvider).DynamicContext()) is not object res) return null;
+            if (mi.InvokeFast(obj, await mi.GetParametersCached().GetDiObjectsAsync(param, serviceProvider).DynamicContext()) is not object res) return null;
             if (isTask)
             {
                 Task task = (Task)res;

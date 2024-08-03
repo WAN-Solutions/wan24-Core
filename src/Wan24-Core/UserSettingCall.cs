@@ -114,8 +114,8 @@ namespace wan24.Core
             // Execute the getter/setter
             try
             {
-                if (Get) return pi.Getter!.Invoke(instance);
-                pi.Setter!.Invoke(instance, value);
+                if (Get) return pi.Getter!(instance);
+                pi.Setter!(instance, value);
                 return null;
             }
             catch (Exception ex)

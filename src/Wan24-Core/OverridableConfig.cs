@@ -270,7 +270,7 @@ namespace wan24.Core
                                          where typeof(IConfigOption).IsAssignableFrom(pi.Property.PropertyType)
                                          select new KeyValuePair<string, (PropertyInfo Property, Func<object, IConfigOption?> Getter)>(
                                              pi.Property.Name,
-                                             (pi.Property, pi.Property.GetCastedGetterDelegate<IConfigOption>())
+                                             (pi.Property, pi.Property.CreateTypedInstancePropertyGetter<object, IConfigOption>())
                                              ))).Values;
 
         /// <summary>

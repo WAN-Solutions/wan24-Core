@@ -77,7 +77,7 @@ namespace wan24.Core
             get
             {
                 if (_MinGetter is null) return _Min;
-                object? value = _MinGetter.Getter?.Invoke(arg: null);
+                object? value = _MinGetter.Getter is null ? null : _MinGetter.Getter(arg: null);
                 if (value is null) return null;
                 return (long)Convert.ChangeType(value, typeof(long));
             }
@@ -86,7 +86,8 @@ namespace wan24.Core
         /// <summary>
         /// Maximum
         /// </summary>
-        public long Max => (long)Convert.ChangeType(_MaxGetter.Getter?.Invoke(arg: null) ?? throw new InvalidProgramException("Maximum getter returned NULL"), typeof(long));
+        public long Max
+            => (long)Convert.ChangeType((_MaxGetter.Getter is null ? null : _MaxGetter.Getter(arg: null)) ?? throw new InvalidProgramException("Maximum getter returned NULL"), typeof(long));
 
         /// <summary>
         /// Minimum getter static property

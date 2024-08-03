@@ -16,7 +16,7 @@ namespace Wan24_Core_Benchmark_Tests
         {
             Property = typeof(Reflection_Tests).GetPropertyCached(nameof(TestProperty), BindingFlags.Static | BindingFlags.NonPublic) ?? throw new InvalidProgramException();
             Method = typeof(Reflection_Tests).GetMethodCached(nameof(TestMethod), BindingFlags.Static | BindingFlags.NonPublic) ?? throw new InvalidProgramException();
-            MethodInvoker = Method.GetInvocationDelegate();
+            MethodInvoker = Method.CreateMethodInvoker();
             Contract.Assert(Property.Getter is not null);
             Contract.Assert(Property.Setter is not null);
             Property.Getter(null);

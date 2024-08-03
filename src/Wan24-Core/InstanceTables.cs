@@ -105,7 +105,7 @@ namespace wan24.Core
                 .GetMethodCached(nameof(ConcurrentDictionary<string, object>.TryGetValue), BindingFlags.Public | BindingFlags.Instance)
                     ?? throw new InvalidProgramException($"Failed to get the instance table {tableField.Name} get value method");
             object?[] param = [key, null];
-            if (getValueMethod.Invoke(tableField.GetValue(obj: null), param) is null)
+            if (getValueMethod.InvokeFast(tableField.GetValue(obj: null), param) is null)
                 throw new InvalidProgramException($"{tableField.Name} get value method returned no success flag");
             return param[0];
         }

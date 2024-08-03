@@ -1,7 +1,5 @@
 ﻿using System.Reflection;
 
-//TODO Use compiled lambda for  object mapping
-
 namespace wan24.Core
 {
     /// <summary>
@@ -52,7 +50,7 @@ namespace wan24.Core
             {
                 if (attr.CanMap)
                 {
-                    ObjectMapper_Delegate mapper = (source, target) => MapMethod.MakeGenericMethod(source.GetType(), target.GetType()).Invoke(attr, [source, target]);
+                    ObjectMapper_Delegate mapper = (source, target) => MapMethod.MakeGenericMethod(source.GetType(), target.GetType()).InvokeFast(attr, [source, target]);
                     if (!Mappings.TryAdd(sourcePropertyName, mapper))
                         throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
                     return this;
@@ -61,7 +59,7 @@ namespace wan24.Core
                 {
                     AsyncObjectMapper_Delegate mapper =
                         async (source, target, ct)
-                            => await ((Task)AsyncMapMethod.MakeGenericMethod(source.GetType(), target.GetType()).Invoke(attr, [source, target, ct])!).DynamicContext();
+                            => await ((Task)AsyncMapMethod.MakeGenericMethod(source.GetType(), target.GetType()).InvokeFast(attr, [source, target, ct])!).DynamicContext();
                     if (!Mappings.TryAdd(sourcePropertyName, mapper))
                         throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
                     return this;
@@ -84,12 +82,14 @@ namespace wan24.Core
                     ?? throw new MappingException($"Source property \"{SourceType}.{sourcePropertyName}\" not found"),
                 tp = TargetType.GetPropertyCached(targetPropertyName, PROPERTY_REFLECTION_FLAGS)
                     ?? throw new MappingException($"Target property \"{TargetType}.{targetPropertyName}\" not found");
+            if (sp.Getter is null) throw new MappingException($"Source property \"{SourceType}.{sourcePropertyName}\" has no usable getter");
+            if (tp.Setter is null) throw new MappingException($"Target property \"{TargetType}.{targetPropertyName}\" has no usable setter");
             MapAttribute? attr;
             if (!CanMapPropertyTo(sp, tp, out attr))
                 throw new MappingException($"{sp.DeclaringType}.{sp.Name} ({sp.PropertyType}) can't be mapped to {tp.DeclaringType}.{tp.Name} ({tp.PropertyType})");
             ObjectMapper_Delegate mapper = attr?.Nested ?? false
-                ? (source, target) => tp.SetValueFast(target, sp.GetValueFast(source)?.MapObjectTo(tp.PropertyType))
-                : (source, target) => tp.SetValueFast(target, sp.GetValueFast(source));
+                ? (source, target) => tp.Setter(target, sp.Getter(source)?.MapObjectTo(tp.PropertyType))
+                : (source, target) => tp.Setter(target, sp.Getter(source));
             if (!Mappings.TryAdd(sourcePropertyName, mapper))
                 throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
             return this;
@@ -127,14 +127,14 @@ namespace wan24.Core
                 {
                     AsyncObjectMapper_Delegate mapper =
                         async (source, target, ct)
-                            => await ((Task)AsyncMapMethod.MakeGenericMethod(source.GetType(), target.GetType()).Invoke(attr, [source, target, ct])!).DynamicContext();
+                            => await ((Task)AsyncMapMethod.MakeGenericMethod(source.GetType(), target.GetType()).InvokeFast(attr, [source, target, ct])!).DynamicContext();
                     if (!Mappings.TryAdd(sourcePropertyName, mapper))
                         throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
                     return this;
                 }
                 if (attr.CanMap)
                 {
-                    ObjectMapper_Delegate mapper = (source, target) => MapMethod.MakeGenericMethod(source.GetType(), target.GetType()).Invoke(attr, [source, target]);
+                    ObjectMapper_Delegate mapper = (source, target) => MapMethod.MakeGenericMethod(source.GetType(), target.GetType()).InvokeFast(attr, [source, target]);
                     if (!Mappings.TryAdd(sourcePropertyName, mapper))
                         throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
                     return this;
@@ -157,6 +157,8 @@ namespace wan24.Core
                     ?? throw new MappingException($"Source property \"{SourceType}.{sourcePropertyName}\" not found"),
                 tp = TargetType.GetPropertyCached(targetPropertyName, PROPERTY_REFLECTION_FLAGS)
                     ?? throw new MappingException($"Target property \"{TargetType}.{targetPropertyName}\" not found");
+            if (sp.Getter is null) throw new MappingException($"Source property \"{SourceType}.{sourcePropertyName}\" has no usable getter");
+            if (tp.Setter is null) throw new MappingException($"Target property \"{TargetType}.{targetPropertyName}\" has no usable setter");
             MapAttribute? attr;
             if (!CanMapPropertyTo(sp, tp, out attr))
                 throw new MappingException($"{sp.DeclaringType}.{sp.Name} ({sp.PropertyType}) can't be mapped to {tp.DeclaringType}.{tp.Name} ({tp.PropertyType})");
@@ -164,13 +166,13 @@ namespace wan24.Core
             {
                 AsyncObjectMapper_Delegate mapper =
                     async (source, target, ct)
-                        => tp.SetValueFast(target, sp.GetValueFast(source) is object value ? await value.MapObjectToAsync(tp.PropertyType, ct).DynamicContext() : null);
+                        => tp.Setter(target, sp.Getter(source) is object value ? await value.MapObjectToAsync(tp.PropertyType, ct).DynamicContext() : null);
                 if (!Mappings.TryAdd(sourcePropertyName, mapper))
                     throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
             }
             else
             {
-                ObjectMapper_Delegate mapper = (source, target) => tp.SetValueFast(target, sp.GetValueFast(source));
+                ObjectMapper_Delegate mapper = (source, target) => tp.Setter(target, sp.Getter(source));
                 if (!Mappings.TryAdd(sourcePropertyName, mapper))
                     throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
             }
@@ -211,7 +213,8 @@ namespace wan24.Core
             foreach (PropertyInfoExt pi in from pi in SourceType.GetPropertiesCached(PROPERTY_REFLECTION_FLAGS)
                                            where
                                             // Getter exists
-                                            pi.Property.GetMethod is not null &&
+                                            pi.Property.GetMethod is not null && 
+                                            pi.Getter is not null &&
                                             // Not excluded
                                             pi.GetCustomAttributeCached<NoMapAttribute>() is null &&
                                             // Opt-in
@@ -318,7 +321,7 @@ namespace wan24.Core
         {
             if (!SourceType.IsAssignableFrom(source.GetType())) throw new ArgumentException("Incompatible type", nameof(source));
             if (!TargetType.IsAssignableFrom(target.GetType())) throw new ArgumentException("Incompatible type", nameof(target));
-            ApplyMethod.MakeGenericMethod(SourceType, TargetType).Invoke(this, [source, target]);
+            ApplyMethod.MakeGenericMethod(SourceType, TargetType).InvokeFast(this, [source, target]);
             return this;
         }
 
@@ -382,7 +385,7 @@ namespace wan24.Core
         {
             if (!SourceType.IsAssignableFrom(source.GetType())) throw new ArgumentException("Incompatible type", nameof(source));
             if (!TargetType.IsAssignableFrom(target.GetType())) throw new ArgumentException("Incompatible type", nameof(target));
-            return (Task)AsyncApplyMethod.MakeGenericMethod(SourceType, TargetType).Invoke(this, [source, target, cancellationToken])!;
+            return (Task)AsyncApplyMethod.MakeGenericMethod(SourceType, TargetType).InvokeFast(this, [source, target, cancellationToken])!;
         }
     }
 }

@@ -52,7 +52,7 @@ namespace wan24.Core
         public static int GetMarshaledSize(this Type type)
         {
             if (!type.IsValueType) throw new ArgumentException("Not a structure type", nameof(type));
-            return (int)(MarshalStructureSizeMethod.MakeGenericMethod(type).Invoke(obj: null, []) ?? throw new InvalidProgramException());
+            return (int)(MarshalStructureSizeMethod.MakeGenericMethod(type).InvokeFast(obj: null, []) ?? throw new InvalidProgramException());
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace wan24.Core
             GCHandle gch = GCHandle.Alloc(bytes, GCHandleType.Pinned);
             try
             {
-                return MarshalStructureMethod.MakeGenericMethod(type).Invoke(obj: null, [gch.AddrOfPinnedObject()]) ?? throw new InvalidDataException();
+                return MarshalStructureMethod.MakeGenericMethod(type).InvokeFast(obj: null, [gch.AddrOfPinnedObject()]) ?? throw new InvalidDataException();
             }
             finally
             {
