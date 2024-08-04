@@ -106,6 +106,10 @@
   <div class="markdown level0 conceptual"></div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.ISerializeBinary-1.html">ISerializeBinary</a>&lt;<a class="xref" href="wan24.Core.XYInt.html">XYInt</a>&gt;</div>
+    <div><a class="xref" href="wan24.Core.ISerializeBinary.html">ISerializeBinary</a></div>
+    <div><a class="xref" href="wan24.Core.ISerializeString-1.html">ISerializeString</a>&lt;<a class="xref" href="wan24.Core.XYInt.html">XYInt</a>&gt;</div>
+    <div><a class="xref" href="wan24.Core.ISerializeString.html">ISerializeString</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="wan24.Core.XYInt.html">XYInt</a>&gt;</div>
   </div>
   <div class="inheritedMembers">
@@ -130,7 +134,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_XYInt_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly record struct XYInt : IEquatable&lt;XYInt&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly record struct XYInt : ISerializeBinary&lt;XYInt&gt;, ISerializeBinary, ISerializeString&lt;XYInt&gt;, ISerializeString, IEquatable&lt;XYInt&gt;</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -139,7 +143,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L61">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L62">View Source</a>
   </span>
   <a id="wan24_Core_XYInt__ctor_" data-uid="wan24.Core.XYInt.#ctor*"></a>
   <h4 id="wan24_Core_XYInt__ctor" data-uid="wan24.Core.XYInt.#ctor">XYInt()</h4>
@@ -155,7 +159,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt__ctor_System_Int32__System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.%23ctor(System.Int32%40%2CSystem.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L72">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L73">View Source</a>
   </span>
   <a id="wan24_Core_XYInt__ctor_" data-uid="wan24.Core.XYInt.#ctor*"></a>
   <h4 id="wan24_Core_XYInt__ctor_System_Int32__System_Int32__" data-uid="wan24.Core.XYInt.#ctor(System.Int32@,System.Int32@)">XYInt(in int, in int)</h4>
@@ -195,7 +199,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt__ctor_System_ReadOnlySpan_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.%23ctor(System.ReadOnlySpan%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L82">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L83">View Source</a>
   </span>
   <a id="wan24_Core_XYInt__ctor_" data-uid="wan24.Core.XYInt.#ctor*"></a>
   <h4 id="wan24_Core_XYInt__ctor_System_ReadOnlySpan_System_Byte___" data-uid="wan24.Core.XYInt.#ctor(System.ReadOnlySpan{System.Byte}@)">XYInt(in ReadOnlySpan&lt;byte&gt;)</h4>
@@ -231,7 +235,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_MaxValue.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.MaxValue%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L45">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L46">View Source</a>
   </span>
   <h4 id="wan24_Core_XYInt_MaxValue" data-uid="wan24.Core.XYInt.MaxValue">MaxValue</h4>
   <div class="markdown level1 summary"><p>Maximum value</p>
@@ -261,7 +265,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_MinValue.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.MinValue%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L41">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L42">View Source</a>
   </span>
   <h4 id="wan24_Core_XYInt_MinValue" data-uid="wan24.Core.XYInt.MinValue">MinValue</h4>
   <div class="markdown level1 summary"><p>Minimum value</p>
@@ -291,7 +295,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_STRUCTURE_SIZE.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.STRUCTURE_SIZE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L16">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L17">View Source</a>
   </span>
   <h4 id="wan24_Core_XYInt_STRUCTURE_SIZE" data-uid="wan24.Core.XYInt.STRUCTURE_SIZE">STRUCTURE_SIZE</h4>
   <div class="markdown level1 summary"><p>Structure size in bytes</p>
@@ -321,7 +325,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_X.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.X%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L51">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L52">View Source</a>
   </span>
   <h4 id="wan24_Core_XYInt_X" data-uid="wan24.Core.XYInt.X">X</h4>
   <div class="markdown level1 summary"><p>X value</p>
@@ -351,7 +355,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_X_FIELD_OFFSET.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.X_FIELD_OFFSET%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L20">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L21">View Source</a>
   </span>
   <h4 id="wan24_Core_XYInt_X_FIELD_OFFSET" data-uid="wan24.Core.XYInt.X_FIELD_OFFSET">X_FIELD_OFFSET</h4>
   <div class="markdown level1 summary"><p>X value field byte offset</p>
@@ -381,7 +385,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_X_FIELD_SIZE.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.X_FIELD_SIZE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L24">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L25">View Source</a>
   </span>
   <h4 id="wan24_Core_XYInt_X_FIELD_SIZE" data-uid="wan24.Core.XYInt.X_FIELD_SIZE">X_FIELD_SIZE</h4>
   <div class="markdown level1 summary"><p>X value field size in bytes</p>
@@ -411,7 +415,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_Y.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.Y%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L56">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L57">View Source</a>
   </span>
   <h4 id="wan24_Core_XYInt_Y" data-uid="wan24.Core.XYInt.Y">Y</h4>
   <div class="markdown level1 summary"><p>Y value</p>
@@ -441,7 +445,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_Y_FIELD_OFFSET.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.Y_FIELD_OFFSET%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L28">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L29">View Source</a>
   </span>
   <h4 id="wan24_Core_XYInt_Y_FIELD_OFFSET" data-uid="wan24.Core.XYInt.Y_FIELD_OFFSET">Y_FIELD_OFFSET</h4>
   <div class="markdown level1 summary"><p>Y value field byte offset</p>
@@ -471,7 +475,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_Y_FIELD_SIZE.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.Y_FIELD_SIZE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L32">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L33">View Source</a>
   </span>
   <h4 id="wan24_Core_XYInt_Y_FIELD_SIZE" data-uid="wan24.Core.XYInt.Y_FIELD_SIZE">Y_FIELD_SIZE</h4>
   <div class="markdown level1 summary"><p>Y value field size in bytes</p>
@@ -501,7 +505,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_Zero.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.Zero%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L37">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L38">View Source</a>
   </span>
   <h4 id="wan24_Core_XYInt_Zero" data-uid="wan24.Core.XYInt.Zero">Zero</h4>
   <div class="markdown level1 summary"><p>Zero X/Y</p>
@@ -526,18 +530,244 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_MaxStringSize.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.MaxStringSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L94">View Source</a>
+  </span>
+  <a id="wan24_Core_XYInt_MaxStringSize_" data-uid="wan24.Core.XYInt.MaxStringSize*"></a>
+  <h4 id="wan24_Core_XYInt_MaxStringSize" data-uid="wan24.Core.XYInt.MaxStringSize">MaxStringSize</h4>
+  <div class="markdown level1 summary"><p>Maximum serialized string size (length; or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if not predictable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int? MaxStringSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_MaxStructureSize.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.MaxStructureSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L91">View Source</a>
+  </span>
+  <a id="wan24_Core_XYInt_MaxStructureSize_" data-uid="wan24.Core.XYInt.MaxStructureSize*"></a>
+  <h4 id="wan24_Core_XYInt_MaxStructureSize" data-uid="wan24.Core.XYInt.MaxStructureSize">MaxStructureSize</h4>
+  <div class="markdown level1 summary"><p>Maximum binary structure size in bytes for all instances (or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if the size is too variable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int? MaxStructureSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_StringSize.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.StringSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L100">View Source</a>
+  </span>
+  <a id="wan24_Core_XYInt_StringSize_" data-uid="wan24.Core.XYInt.StringSize*"></a>
+  <h4 id="wan24_Core_XYInt_StringSize" data-uid="wan24.Core.XYInt.StringSize">StringSize</h4>
+  <div class="markdown level1 summary"><p>Serialized string size (length; or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if not predictable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? StringSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_StructureSize.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.StructureSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L97">View Source</a>
+  </span>
+  <a id="wan24_Core_XYInt_StructureSize_" data-uid="wan24.Core.XYInt.StructureSize*"></a>
+  <h4 id="wan24_Core_XYInt_StructureSize" data-uid="wan24.Core.XYInt.StructureSize">StructureSize</h4>
+  <div class="markdown level1 summary"><p>Binary serialized structure size in bytes (or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if the size is variable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? StructureSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
 </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_DeserializeFrom_System_ReadOnlySpan_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.DeserializeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L245">View Source</a>
+  </span>
+  <a id="wan24_Core_XYInt_DeserializeFrom_" data-uid="wan24.Core.XYInt.DeserializeFrom*"></a>
+  <h4 id="wan24_Core_XYInt_DeserializeFrom_System_ReadOnlySpan_System_Byte___" data-uid="wan24.Core.XYInt.DeserializeFrom(System.ReadOnlySpan{System.Byte}@)">DeserializeFrom(in ReadOnlySpan&lt;byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static object DeserializeFrom(in ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_DeserializeTypeFrom_System_ReadOnlySpan_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.DeserializeTypeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L268">View Source</a>
+  </span>
+  <a id="wan24_Core_XYInt_DeserializeTypeFrom_" data-uid="wan24.Core.XYInt.DeserializeTypeFrom*"></a>
+  <h4 id="wan24_Core_XYInt_DeserializeTypeFrom_System_ReadOnlySpan_System_Byte___" data-uid="wan24.Core.XYInt.DeserializeTypeFrom(System.ReadOnlySpan{System.Byte}@)">DeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static XYInt DeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.XYInt.html">XYInt</a></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_GetBytes.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.GetBytes%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L93">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L103">View Source</a>
   </span>
   <a id="wan24_Core_XYInt_GetBytes_" data-uid="wan24.Core.XYInt.GetBytes*"></a>
   <h4 id="wan24_Core_XYInt_GetBytes" data-uid="wan24.Core.XYInt.GetBytes">GetBytes()</h4>
-  <div class="markdown level1 summary"><p>Get this structure as serialized data</p>
+  <div class="markdown level1 summary"><p>Get as serialized data</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -566,17 +796,17 @@ public byte[] GetBytes()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_GetBytes_System_Span_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.GetBytes(System.Span%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L109">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L115">View Source</a>
   </span>
   <a id="wan24_Core_XYInt_GetBytes_" data-uid="wan24.Core.XYInt.GetBytes*"></a>
   <h4 id="wan24_Core_XYInt_GetBytes_System_Span_System_Byte___" data-uid="wan24.Core.XYInt.GetBytes(System.Span{System.Byte}@)">GetBytes(in Span&lt;byte&gt;)</h4>
-  <div class="markdown level1 summary"><p>Get this structure as serialized data</p>
+  <div class="markdown level1 summary"><p>Get as serialized data</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public Span&lt;byte&gt; GetBytes(in Span&lt;byte&gt; buffer)</code></pre>
+public int GetBytes(in Span&lt;byte&gt; buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -591,7 +821,7 @@ public Span&lt;byte&gt; GetBytes(in Span&lt;byte&gt; buffer)</code></pre>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td><span class="parametername">buffer</span></td>
-        <td><p>Buffer (min. <a class="xref" href="wan24.Core.XYInt.html#wan24_Core_XYInt_STRUCTURE_SIZE">STRUCTURE_SIZE</a> bytes length required)</p>
+        <td><p>Buffer</p>
 </td>
       </tr>
     </tbody>
@@ -606,8 +836,8 @@ public Span&lt;byte&gt; GetBytes(in Span&lt;byte&gt; buffer)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
-        <td><p>Buffer</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>Number of bytes written to the buffer</p>
 </td>
       </tr>
     </tbody>
@@ -617,11 +847,11 @@ public Span&lt;byte&gt; GetBytes(in Span&lt;byte&gt; buffer)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_Parse_System_ReadOnlySpan_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.Parse(System.ReadOnlySpan%7BSystem.Char%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L243">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L291">View Source</a>
   </span>
   <a id="wan24_Core_XYInt_Parse_" data-uid="wan24.Core.XYInt.Parse*"></a>
   <h4 id="wan24_Core_XYInt_Parse_System_ReadOnlySpan_System_Char___" data-uid="wan24.Core.XYInt.Parse(System.ReadOnlySpan{System.Char}@)">Parse(in ReadOnlySpan&lt;char&gt;)</h4>
-  <div class="markdown level1 summary"><p>Parse a string</p>
+  <div class="markdown level1 summary"><p>Parse from a string</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -642,7 +872,7 @@ public static XYInt Parse(in ReadOnlySpan&lt;char&gt; str)</code></pre>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
         <td><span class="parametername">str</span></td>
-        <td><p>String</p>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
 </td>
       </tr>
     </tbody>
@@ -658,7 +888,58 @@ public static XYInt Parse(in ReadOnlySpan&lt;char&gt; str)</code></pre>
     <tbody>
       <tr>
         <td><a class="xref" href="wan24.Core.XYInt.html">XYInt</a></td>
-        <td><p><a class="xref" href="wan24.Core.XYInt.html">XYInt</a></p>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_ParseObject_System_ReadOnlySpan_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.ParseObject(System.ReadOnlySpan%7BSystem.Char%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L319">View Source</a>
+  </span>
+  <a id="wan24_Core_XYInt_ParseObject_" data-uid="wan24.Core.XYInt.ParseObject*"></a>
+  <h4 id="wan24_Core_XYInt_ParseObject_System_ReadOnlySpan_System_Char___" data-uid="wan24.Core.XYInt.ParseObject(System.ReadOnlySpan{System.Char}@)">ParseObject(in ReadOnlySpan&lt;char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Parse from a string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static object ParseObject(in ReadOnlySpan&lt;char&gt; str)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
+        <td><span class="parametername">str</span></td>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><p>Instance</p>
 </td>
       </tr>
     </tbody>
@@ -668,7 +949,7 @@ public static XYInt Parse(in ReadOnlySpan&lt;char&gt; str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_ToString.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.ToString%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L122">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L128">View Source</a>
   </span>
   <a id="wan24_Core_XYInt_ToString_" data-uid="wan24.Core.XYInt.ToString*"></a>
   <h4 id="wan24_Core_XYInt_ToString" data-uid="wan24.Core.XYInt.ToString">ToString()</h4>
@@ -700,14 +981,126 @@ public override string ToString()</code></pre>
   <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.tostring">ValueType.ToString()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_TryDeserializeFrom_System_ReadOnlySpan_System_Byte___System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.TryDeserializeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40%2CSystem.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L248">View Source</a>
+  </span>
+  <a id="wan24_Core_XYInt_TryDeserializeFrom_" data-uid="wan24.Core.XYInt.TryDeserializeFrom*"></a>
+  <h4 id="wan24_Core_XYInt_TryDeserializeFrom_System_ReadOnlySpan_System_Byte___System_Object__" data-uid="wan24.Core.XYInt.TryDeserializeFrom(System.ReadOnlySpan{System.Byte}@,System.Object@)">TryDeserializeFrom(in ReadOnlySpan&lt;byte&gt;, out object?)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryDeserializeFrom(in ReadOnlySpan&lt;byte&gt; buffer, out object? result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If succeed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_TryDeserializeTypeFrom_System_ReadOnlySpan_System_Byte___wan24_Core_XYInt__.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.TryDeserializeTypeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40%2Cwan24.Core.XYInt%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L271">View Source</a>
+  </span>
+  <a id="wan24_Core_XYInt_TryDeserializeTypeFrom_" data-uid="wan24.Core.XYInt.TryDeserializeTypeFrom*"></a>
+  <h4 id="wan24_Core_XYInt_TryDeserializeTypeFrom_System_ReadOnlySpan_System_Byte___wan24_Core_XYInt__" data-uid="wan24.Core.XYInt.TryDeserializeTypeFrom(System.ReadOnlySpan{System.Byte}@,wan24.Core.XYInt@)">TryDeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt;, out XYInt)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryDeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt; buffer, out XYInt result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.XYInt.html">XYInt</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If succeed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_TryParse_System_ReadOnlySpan_System_Char___wan24_Core_XYInt__.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.TryParse(System.ReadOnlySpan%7BSystem.Char%7D%40%2Cwan24.Core.XYInt%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L260">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L303">View Source</a>
   </span>
   <a id="wan24_Core_XYInt_TryParse_" data-uid="wan24.Core.XYInt.TryParse*"></a>
   <h4 id="wan24_Core_XYInt_TryParse_System_ReadOnlySpan_System_Char___wan24_Core_XYInt__" data-uid="wan24.Core.XYInt.TryParse(System.ReadOnlySpan{System.Char}@,wan24.Core.XYInt@)">TryParse(in ReadOnlySpan&lt;char&gt;, out XYInt)</h4>
-  <div class="markdown level1 summary"><p>Try parsing a string</p>
+  <div class="markdown level1 summary"><p>Try parsing from a string</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -728,13 +1121,70 @@ public static bool TryParse(in ReadOnlySpan&lt;char&gt; str, out XYInt result)</
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
         <td><span class="parametername">str</span></td>
-        <td><p>String</p>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="wan24.Core.XYInt.html">XYInt</a></td>
         <td><span class="parametername">result</span></td>
-        <td><p><a class="xref" href="wan24.Core.XYInt.html">XYInt</a></p>
+        <td><p>Result</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If succeed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_TryParseObject_System_ReadOnlySpan_System_Char___System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.TryParseObject(System.ReadOnlySpan%7BSystem.Char%7D%40%2CSystem.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L326">View Source</a>
+  </span>
+  <a id="wan24_Core_XYInt_TryParseObject_" data-uid="wan24.Core.XYInt.TryParseObject*"></a>
+  <h4 id="wan24_Core_XYInt_TryParseObject_System_ReadOnlySpan_System_Char___System_Object__" data-uid="wan24.Core.XYInt.TryParseObject(System.ReadOnlySpan{System.Char}@,System.Object@)">TryParseObject(in ReadOnlySpan&lt;char&gt;, out object?)</h4>
+  <div class="markdown level1 summary"><p>Try parsing from a string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static bool TryParseObject(in ReadOnlySpan&lt;char&gt; str, out object? result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
+        <td><span class="parametername">str</span></td>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Result</p>
 </td>
       </tr>
     </tbody>
@@ -762,7 +1212,7 @@ public static bool TryParse(in ReadOnlySpan&lt;char&gt; str, out XYInt result)</
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_op_Implicit_System_Byte_____wan24_Core_XYInt.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.op_Implicit(System.Byte%5B%5D%40)~wan24.Core.XYInt%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L142">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L148">View Source</a>
   </span>
   <a id="wan24_Core_XYInt_op_Implicit_" data-uid="wan24.Core.XYInt.op_Implicit*"></a>
   <h4 id="wan24_Core_XYInt_op_Implicit_System_Byte_____wan24_Core_XYInt" data-uid="wan24.Core.XYInt.op_Implicit(System.Byte[]@)~wan24.Core.XYInt">implicit operator XYInt(in byte[])</h4>
@@ -812,7 +1262,7 @@ public static implicit operator XYInt(in byte[] data)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_op_Implicit_System_Memory_System_Byte____wan24_Core_XYInt.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.op_Implicit(System.Memory%7BSystem.Byte%7D%40)~wan24.Core.XYInt%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L172">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L178">View Source</a>
   </span>
   <a id="wan24_Core_XYInt_op_Implicit_" data-uid="wan24.Core.XYInt.op_Implicit*"></a>
   <h4 id="wan24_Core_XYInt_op_Implicit_System_Memory_System_Byte____wan24_Core_XYInt" data-uid="wan24.Core.XYInt.op_Implicit(System.Memory{System.Byte}@)~wan24.Core.XYInt">implicit operator XYInt(in Memory&lt;byte&gt;)</h4>
@@ -862,7 +1312,7 @@ public static implicit operator XYInt(in Memory&lt;byte&gt; data)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_op_Implicit_System_ReadOnlyMemory_System_Byte____wan24_Core_XYInt.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.op_Implicit(System.ReadOnlyMemory%7BSystem.Byte%7D%40)~wan24.Core.XYInt%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L182">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L188">View Source</a>
   </span>
   <a id="wan24_Core_XYInt_op_Implicit_" data-uid="wan24.Core.XYInt.op_Implicit*"></a>
   <h4 id="wan24_Core_XYInt_op_Implicit_System_ReadOnlyMemory_System_Byte____wan24_Core_XYInt" data-uid="wan24.Core.XYInt.op_Implicit(System.ReadOnlyMemory{System.Byte}@)~wan24.Core.XYInt">implicit operator XYInt(in ReadOnlyMemory&lt;byte&gt;)</h4>
@@ -912,7 +1362,7 @@ public static implicit operator XYInt(in ReadOnlyMemory&lt;byte&gt; data)</code>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_op_Implicit_System_ReadOnlySpan_System_Byte____wan24_Core_XYInt.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.op_Implicit(System.ReadOnlySpan%7BSystem.Byte%7D%40)~wan24.Core.XYInt%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L162">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L168">View Source</a>
   </span>
   <a id="wan24_Core_XYInt_op_Implicit_" data-uid="wan24.Core.XYInt.op_Implicit*"></a>
   <h4 id="wan24_Core_XYInt_op_Implicit_System_ReadOnlySpan_System_Byte____wan24_Core_XYInt" data-uid="wan24.Core.XYInt.op_Implicit(System.ReadOnlySpan{System.Byte}@)~wan24.Core.XYInt">implicit operator XYInt(in ReadOnlySpan&lt;byte&gt;)</h4>
@@ -962,7 +1412,7 @@ public static implicit operator XYInt(in ReadOnlySpan&lt;byte&gt; data)</code></
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_op_Implicit_System_ReadOnlySpan_System_Char____wan24_Core_XYInt.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.op_Implicit(System.ReadOnlySpan%7BSystem.Char%7D%40)~wan24.Core.XYInt%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L212">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L218">View Source</a>
   </span>
   <a id="wan24_Core_XYInt_op_Implicit_" data-uid="wan24.Core.XYInt.op_Implicit*"></a>
   <h4 id="wan24_Core_XYInt_op_Implicit_System_ReadOnlySpan_System_Char____wan24_Core_XYInt" data-uid="wan24.Core.XYInt.op_Implicit(System.ReadOnlySpan{System.Char}@)~wan24.Core.XYInt">implicit operator XYInt(in ReadOnlySpan&lt;char&gt;)</h4>
@@ -1012,7 +1462,7 @@ public static implicit operator XYInt(in ReadOnlySpan&lt;char&gt; str)</code></p
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_op_Implicit_System_Span_System_Byte____wan24_Core_XYInt.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.op_Implicit(System.Span%7BSystem.Byte%7D%40)~wan24.Core.XYInt%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L152">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L158">View Source</a>
   </span>
   <a id="wan24_Core_XYInt_op_Implicit_" data-uid="wan24.Core.XYInt.op_Implicit*"></a>
   <h4 id="wan24_Core_XYInt_op_Implicit_System_Span_System_Byte____wan24_Core_XYInt" data-uid="wan24.Core.XYInt.op_Implicit(System.Span{System.Byte}@)~wan24.Core.XYInt">implicit operator XYInt(in Span&lt;byte&gt;)</h4>
@@ -1062,7 +1512,7 @@ public static implicit operator XYInt(in Span&lt;byte&gt; data)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_op_Implicit_System_String___wan24_Core_XYInt.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.op_Implicit(System.String%40)~wan24.Core.XYInt%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L222">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L228">View Source</a>
   </span>
   <a id="wan24_Core_XYInt_op_Implicit_" data-uid="wan24.Core.XYInt.op_Implicit*"></a>
   <h4 id="wan24_Core_XYInt_op_Implicit_System_String___wan24_Core_XYInt" data-uid="wan24.Core.XYInt.op_Implicit(System.String@)~wan24.Core.XYInt">implicit operator XYInt(in string)</h4>
@@ -1112,7 +1562,7 @@ public static implicit operator XYInt(in string str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_op_Implicit_wan24_Core_XYInt___System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.op_Implicit(wan24.Core.XYInt%40)~System.Byte%5B%5D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L132">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L138">View Source</a>
   </span>
   <a id="wan24_Core_XYInt_op_Implicit_" data-uid="wan24.Core.XYInt.op_Implicit*"></a>
   <h4 id="wan24_Core_XYInt_op_Implicit_wan24_Core_XYInt___System_Byte__" data-uid="wan24.Core.XYInt.op_Implicit(wan24.Core.XYInt@)~System.Byte[]">implicit operator byte[](in XYInt)</h4>
@@ -1162,7 +1612,7 @@ public static implicit operator byte[](in XYInt xy)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_op_Implicit_wan24_Core_XYInt___System_Double__.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.op_Implicit(wan24.Core.XYInt%40)~System.Double%5B%5D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L232">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L238">View Source</a>
   </span>
   <a id="wan24_Core_XYInt_op_Implicit_" data-uid="wan24.Core.XYInt.op_Implicit*"></a>
   <h4 id="wan24_Core_XYInt_op_Implicit_wan24_Core_XYInt___System_Double__" data-uid="wan24.Core.XYInt.op_Implicit(wan24.Core.XYInt@)~System.Double[]">implicit operator double[](in XYInt)</h4>
@@ -1212,7 +1662,7 @@ public static implicit operator double[](in XYInt xy)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_op_Implicit_wan24_Core_XYInt___System_ReadOnlySpan_System_Char_.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.op_Implicit(wan24.Core.XYInt%40)~System.ReadOnlySpan%7BSystem.Char%7D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L202">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L208">View Source</a>
   </span>
   <a id="wan24_Core_XYInt_op_Implicit_" data-uid="wan24.Core.XYInt.op_Implicit*"></a>
   <h4 id="wan24_Core_XYInt_op_Implicit_wan24_Core_XYInt___System_ReadOnlySpan_System_Char_" data-uid="wan24.Core.XYInt.op_Implicit(wan24.Core.XYInt@)~System.ReadOnlySpan{System.Char}">implicit operator ReadOnlySpan&lt;char&gt;(in XYInt)</h4>
@@ -1262,7 +1712,7 @@ public static implicit operator ReadOnlySpan&lt;char&gt;(in XYInt xy)</code></pr
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_XYInt_op_Implicit_wan24_Core_XYInt___System_String.md&amp;value=---%0Auid%3A%20wan24.Core.XYInt.op_Implicit(wan24.Core.XYInt%40)~System.String%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L192">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/XYInt.cs/#L198">View Source</a>
   </span>
   <a id="wan24_Core_XYInt_op_Implicit_" data-uid="wan24.Core.XYInt.op_Implicit*"></a>
   <h4 id="wan24_Core_XYInt_op_Implicit_wan24_Core_XYInt___System_String" data-uid="wan24.Core.XYInt.op_Implicit(wan24.Core.XYInt@)~System.String">implicit operator string(in XYInt)</h4>
@@ -1309,6 +1759,18 @@ public static implicit operator string(in XYInt xy)</code></pre>
   </table>
   <h3 id="implements">Implements</h3>
   <div>
+      <a class="xref" href="wan24.Core.ISerializeBinary-1.html">ISerializeBinary&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ISerializeBinary.html">ISerializeBinary</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ISerializeString-1.html">ISerializeString&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ISerializeString.html">ISerializeString</a>
+  </div>
+  <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable&lt;T&gt;</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
@@ -1337,10 +1799,43 @@ public static implicit operator string(in XYInt xy)</code></pre>
       <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectToAsync_System_Object_System_Type_System_Threading_CancellationToken_">ObjectMappingExtensions.MapObjectToAsync(object, Type, CancellationToken)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetValueReflected_System_Object_System_String_">ReflectionExtensions.GetValueReflected(object, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflected_System_Object_System_String_System_Object___">ReflectionExtensions.InvokeReflected(object, string, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflectedGeneric_System_Object_System_String_System_Type___System_Object___">ReflectionExtensions.InvokeReflectedGeneric(object, string, Type[], params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_SetValueReflected_System_Object_System_String_System_Object_">ReflectionExtensions.SetValueReflected(object, string, object?)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_">StringValueConverter.ConvertObjectToString(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_NamedStringConversion_System_Object_System_String__System_Type__">StringValueConverter.NamedStringConversion(object?, in string, in Type)</a>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_System_String__">StringValueConverter.ConvertObjectToString(object, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertStructInstance_System_Object_">StringValueConverter.ConvertStructInstance(object?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_NamedStringConversion_System_Object_System_String__System_Type_">StringValueConverter.NamedStringConversion(object?, in string, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertStructInstance_System_Object_System_String__">StringValueConverter.TryConvertStructInstance(object?, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryNamedStringConversion_System_Object_System_String__System_Type_System_String__">StringValueConverter.TryNamedStringConversion(object?, in string, Type, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_">StructExtensions.GetMarshalBytes(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_System_Byte____">StructExtensions.GetMarshalBytes(object, in byte[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshaledSize_System_Object_">StructExtensions.GetMarshaledSize(object)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
@@ -1383,6 +1878,18 @@ public static implicit operator string(in XYInt xy)</code></pre>
   </div>
   <div>
       <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertToString__1___0_System_String__">StringValueConverter.TryConvertToString&lt;T&gt;(T, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes__1___0_">StructExtensions.GetMarshalBytes&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes__1___0_System_Byte____">StructExtensions.GetMarshalBytes&lt;T&gt;(T, in byte[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshaledSize__1___0_">StructExtensions.GetMarshaledSize&lt;T&gt;(T)</a>
   </div>
 
 </article>

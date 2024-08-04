@@ -302,7 +302,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Dictionary&lt;string, (PropertyInfo Property, Func&lt;object, IConfigOption?&gt; Getter)&gt;? OptionProperties</code></pre>
+    <pre><code class="lang-csharp hljs">protected Dictionary&lt;string, (PropertyInfoExt Property, Func&lt;object, IConfigOption?&gt; Getter)&gt;? OptionProperties</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
@@ -314,7 +314,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, (<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo">PropertyInfo</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.reflection.propertyinfo,system.func-system.object,wan24.core.iconfigoption--.property">Property</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>, <a class="xref" href="wan24.Core.IConfigOption.html">IConfigOption</a>&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.reflection.propertyinfo,system.func-system.object,wan24.core.iconfigoption--.getter">Getter</a>)&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, (<a class="xref" href="wan24.Core.PropertyInfoExt.html">PropertyInfoExt</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-wan24.core.propertyinfoext,system.func-system.object,wan24.core.iconfigoption--.property">Property</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>, <a class="xref" href="wan24.Core.IConfigOption.html">IConfigOption</a>&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-wan24.core.propertyinfoext,system.func-system.object,wan24.core.iconfigoption--.getter">Getter</a>)&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1119,7 +1119,7 @@ protected IConfigOption GetOption(in Func&lt;object, IConfigOption?&gt; getter)<
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected IEnumerable&lt;(PropertyInfo Property, Func&lt;object, IConfigOption?&gt; Getter)&gt; GetOptionProperties()</code></pre>
+    <pre><code class="lang-csharp hljs">protected IEnumerable&lt;(PropertyInfoExt Property, Func&lt;object, IConfigOption?&gt; Getter)&gt; GetOptionProperties()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
@@ -1131,7 +1131,7 @@ protected IConfigOption GetOption(in Func&lt;object, IConfigOption?&gt; getter)<
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo">PropertyInfo</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.reflection.propertyinfo,system.func-system.object,wan24.core.iconfigoption--.property">Property</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>, <a class="xref" href="wan24.Core.IConfigOption.html">IConfigOption</a>&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.reflection.propertyinfo,system.func-system.object,wan24.core.iconfigoption--.getter">Getter</a>)&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;(<a class="xref" href="wan24.Core.PropertyInfoExt.html">PropertyInfoExt</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-wan24.core.propertyinfoext,system.func-system.object,wan24.core.iconfigoption--.property">Property</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>, <a class="xref" href="wan24.Core.IConfigOption.html">IConfigOption</a>&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-wan24.core.propertyinfoext,system.func-system.object,wan24.core.iconfigoption--.getter">Getter</a>)&gt;</td>
         <td><p>Properties</p>
 </td>
       </tr>
@@ -1564,10 +1564,43 @@ protected object? GetPropertyValue(in Func&lt;object, IConfigOption?&gt; getter,
       <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectToAsync_System_Object_System_Type_System_Threading_CancellationToken_">ObjectMappingExtensions.MapObjectToAsync(object, Type, CancellationToken)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetValueReflected_System_Object_System_String_">ReflectionExtensions.GetValueReflected(object, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflected_System_Object_System_String_System_Object___">ReflectionExtensions.InvokeReflected(object, string, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflectedGeneric_System_Object_System_String_System_Type___System_Object___">ReflectionExtensions.InvokeReflectedGeneric(object, string, Type[], params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_SetValueReflected_System_Object_System_String_System_Object_">ReflectionExtensions.SetValueReflected(object, string, object?)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_">StringValueConverter.ConvertObjectToString(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_NamedStringConversion_System_Object_System_String__System_Type__">StringValueConverter.NamedStringConversion(object?, in string, in Type)</a>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_System_String__">StringValueConverter.ConvertObjectToString(object, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertStructInstance_System_Object_">StringValueConverter.ConvertStructInstance(object?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_NamedStringConversion_System_Object_System_String__System_Type_">StringValueConverter.NamedStringConversion(object?, in string, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertStructInstance_System_Object_System_String__">StringValueConverter.TryConvertStructInstance(object?, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryNamedStringConversion_System_Object_System_String__System_Type_System_String__">StringValueConverter.TryNamedStringConversion(object?, in string, Type, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_">StructExtensions.GetMarshalBytes(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_System_Byte____">StructExtensions.GetMarshalBytes(object, in byte[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshaledSize_System_Object_">StructExtensions.GetMarshaledSize(object)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
@@ -1610,6 +1643,9 @@ protected object? GetPropertyValue(in Func&lt;object, IConfigOption?&gt; getter,
   </div>
   <div>
       <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertToString__1___0_System_String__">StringValueConverter.TryConvertToString&lt;T&gt;(T, out string?)</a>
   </div>
 
 </article>

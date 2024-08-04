@@ -106,6 +106,10 @@
   <div class="markdown level0 conceptual"></div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.ISerializeBinary-1.html">ISerializeBinary</a>&lt;<a class="xref" href="wan24.Core.Uid.html">Uid</a>&gt;</div>
+    <div><a class="xref" href="wan24.Core.ISerializeBinary.html">ISerializeBinary</a></div>
+    <div><a class="xref" href="wan24.Core.ISerializeString-1.html">ISerializeString</a>&lt;<a class="xref" href="wan24.Core.Uid.html">Uid</a>&gt;</div>
+    <div><a class="xref" href="wan24.Core.ISerializeString.html">ISerializeString</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="wan24.Core.Uid.html">Uid</a>&gt;</div>
   </div>
   <div class="inheritedMembers">
@@ -130,7 +134,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_Uid_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly record struct Uid : IEquatable&lt;Uid&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly record struct Uid : ISerializeBinary&lt;Uid&gt;, ISerializeBinary, ISerializeString&lt;Uid&gt;, ISerializeString, IEquatable&lt;Uid&gt;</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -500,18 +504,244 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_MaxStringSize.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.MaxStringSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L133">View Source</a>
+  </span>
+  <a id="wan24_Core_Uid_MaxStringSize_" data-uid="wan24.Core.Uid.MaxStringSize*"></a>
+  <h4 id="wan24_Core_Uid_MaxStringSize" data-uid="wan24.Core.Uid.MaxStringSize">MaxStringSize</h4>
+  <div class="markdown level1 summary"><p>Maximum serialized string size (length; or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if not predictable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int? MaxStringSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_MaxStructureSize.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.MaxStructureSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L130">View Source</a>
+  </span>
+  <a id="wan24_Core_Uid_MaxStructureSize_" data-uid="wan24.Core.Uid.MaxStructureSize*"></a>
+  <h4 id="wan24_Core_Uid_MaxStructureSize" data-uid="wan24.Core.Uid.MaxStructureSize">MaxStructureSize</h4>
+  <div class="markdown level1 summary"><p>Maximum binary structure size in bytes for all instances (or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if the size is too variable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int? MaxStructureSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_StringSize.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.StringSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L139">View Source</a>
+  </span>
+  <a id="wan24_Core_Uid_StringSize_" data-uid="wan24.Core.Uid.StringSize*"></a>
+  <h4 id="wan24_Core_Uid_StringSize" data-uid="wan24.Core.Uid.StringSize">StringSize</h4>
+  <div class="markdown level1 summary"><p>Serialized string size (length; or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if not predictable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? StringSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_StructureSize.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.StructureSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L136">View Source</a>
+  </span>
+  <a id="wan24_Core_Uid_StructureSize_" data-uid="wan24.Core.Uid.StructureSize*"></a>
+  <h4 id="wan24_Core_Uid_StructureSize" data-uid="wan24.Core.Uid.StructureSize">StructureSize</h4>
+  <div class="markdown level1 summary"><p>Binary serialized structure size in bytes (or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if the size is variable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? StructureSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
 </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_DeserializeFrom_System_ReadOnlySpan_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.DeserializeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L361">View Source</a>
+  </span>
+  <a id="wan24_Core_Uid_DeserializeFrom_" data-uid="wan24.Core.Uid.DeserializeFrom*"></a>
+  <h4 id="wan24_Core_Uid_DeserializeFrom_System_ReadOnlySpan_System_Byte___" data-uid="wan24.Core.Uid.DeserializeFrom(System.ReadOnlySpan{System.Byte}@)">DeserializeFrom(in ReadOnlySpan&lt;byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static object DeserializeFrom(in ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_DeserializeTypeFrom_System_ReadOnlySpan_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.DeserializeTypeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L386">View Source</a>
+  </span>
+  <a id="wan24_Core_Uid_DeserializeTypeFrom_" data-uid="wan24.Core.Uid.DeserializeTypeFrom*"></a>
+  <h4 id="wan24_Core_Uid_DeserializeTypeFrom_System_ReadOnlySpan_System_Byte___" data-uid="wan24.Core.Uid.DeserializeTypeFrom(System.ReadOnlySpan{System.Byte}@)">DeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Uid DeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Uid.html">Uid</a></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_GetBytes.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.GetBytes%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L133">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L142">View Source</a>
   </span>
   <a id="wan24_Core_Uid_GetBytes_" data-uid="wan24.Core.Uid.GetBytes*"></a>
   <h4 id="wan24_Core_Uid_GetBytes" data-uid="wan24.Core.Uid.GetBytes">GetBytes()</h4>
-  <div class="markdown level1 summary"><p>Get bytes</p>
+  <div class="markdown level1 summary"><p>Get as serialized data</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -540,17 +770,17 @@ public byte[] GetBytes()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_GetBytes_System_Span_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.GetBytes(System.Span%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L149">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L154">View Source</a>
   </span>
   <a id="wan24_Core_Uid_GetBytes_" data-uid="wan24.Core.Uid.GetBytes*"></a>
   <h4 id="wan24_Core_Uid_GetBytes_System_Span_System_Byte___" data-uid="wan24.Core.Uid.GetBytes(System.Span{System.Byte}@)">GetBytes(in Span&lt;byte&gt;)</h4>
-  <div class="markdown level1 summary"><p>Get bytes</p>
+  <div class="markdown level1 summary"><p>Get as serialized data</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public Span&lt;byte&gt; GetBytes(in Span&lt;byte&gt; buffer)</code></pre>
+public int GetBytes(in Span&lt;byte&gt; buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -565,7 +795,7 @@ public Span&lt;byte&gt; GetBytes(in Span&lt;byte&gt; buffer)</code></pre>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td><span class="parametername">buffer</span></td>
-        <td><p>Serialized data buffer (length needs to fit <a class="xref" href="wan24.Core.Uid.html#wan24_Core_Uid_STRUCTURE_SIZE">STRUCTURE_SIZE</a>)</p>
+        <td><p>Buffer</p>
 </td>
       </tr>
     </tbody>
@@ -580,8 +810,8 @@ public Span&lt;byte&gt; GetBytes(in Span&lt;byte&gt; buffer)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
-        <td><p>Serialized data buffer</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>Number of bytes written to the buffer</p>
 </td>
       </tr>
     </tbody>
@@ -591,7 +821,7 @@ public Span&lt;byte&gt; GetBytes(in Span&lt;byte&gt; buffer)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_Parse_System_ReadOnlySpan_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.Parse(System.ReadOnlySpan%7BSystem.Char%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L360">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L411">View Source</a>
   </span>
   <a id="wan24_Core_Uid_Parse_" data-uid="wan24.Core.Uid.Parse*"></a>
   <h4 id="wan24_Core_Uid_Parse_System_ReadOnlySpan_System_Char___" data-uid="wan24.Core.Uid.Parse(System.ReadOnlySpan{System.Char}@)">Parse(in ReadOnlySpan&lt;char&gt;)</h4>
@@ -616,7 +846,7 @@ public static Uid Parse(in ReadOnlySpan&lt;char&gt; str)</code></pre>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
         <td><span class="parametername">str</span></td>
-        <td><p>String</p>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
 </td>
       </tr>
     </tbody>
@@ -632,7 +862,58 @@ public static Uid Parse(in ReadOnlySpan&lt;char&gt; str)</code></pre>
     <tbody>
       <tr>
         <td><a class="xref" href="wan24.Core.Uid.html">Uid</a></td>
-        <td><p>UID</p>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_ParseObject_System_ReadOnlySpan_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.ParseObject(System.ReadOnlySpan%7BSystem.Char%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L482">View Source</a>
+  </span>
+  <a id="wan24_Core_Uid_ParseObject_" data-uid="wan24.Core.Uid.ParseObject*"></a>
+  <h4 id="wan24_Core_Uid_ParseObject_System_ReadOnlySpan_System_Char___" data-uid="wan24.Core.Uid.ParseObject(System.ReadOnlySpan{System.Char}@)">ParseObject(in ReadOnlySpan&lt;char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Parse from a string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static object ParseObject(in ReadOnlySpan&lt;char&gt; str)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
+        <td><span class="parametername">str</span></td>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><p>Instance</p>
 </td>
       </tr>
     </tbody>
@@ -642,7 +923,7 @@ public static Uid Parse(in ReadOnlySpan&lt;char&gt; str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_ToString.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.ToString%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L163">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L168">View Source</a>
   </span>
   <a id="wan24_Core_Uid_ToString_" data-uid="wan24.Core.Uid.ToString*"></a>
   <h4 id="wan24_Core_Uid_ToString" data-uid="wan24.Core.Uid.ToString">ToString()</h4>
@@ -674,20 +955,132 @@ public override string ToString()</code></pre>
   <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.tostring">ValueType.ToString()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_TryParse_System_ReadOnlySpan_System_Char___System_Nullable_wan24_Core_Uid___.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.TryParse(System.ReadOnlySpan%7BSystem.Char%7D%40%2CSystem.Nullable%7Bwan24.Core.Uid%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_TryDeserializeFrom_System_ReadOnlySpan_System_Byte___System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.TryDeserializeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40%2CSystem.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L394">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L364">View Source</a>
+  </span>
+  <a id="wan24_Core_Uid_TryDeserializeFrom_" data-uid="wan24.Core.Uid.TryDeserializeFrom*"></a>
+  <h4 id="wan24_Core_Uid_TryDeserializeFrom_System_ReadOnlySpan_System_Byte___System_Object__" data-uid="wan24.Core.Uid.TryDeserializeFrom(System.ReadOnlySpan{System.Byte}@,System.Object@)">TryDeserializeFrom(in ReadOnlySpan&lt;byte&gt;, out object?)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryDeserializeFrom(in ReadOnlySpan&lt;byte&gt; buffer, out object? result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If succeed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_TryDeserializeTypeFrom_System_ReadOnlySpan_System_Byte___wan24_Core_Uid__.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.TryDeserializeTypeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40%2Cwan24.Core.Uid%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L389">View Source</a>
+  </span>
+  <a id="wan24_Core_Uid_TryDeserializeTypeFrom_" data-uid="wan24.Core.Uid.TryDeserializeTypeFrom*"></a>
+  <h4 id="wan24_Core_Uid_TryDeserializeTypeFrom_System_ReadOnlySpan_System_Byte___wan24_Core_Uid__" data-uid="wan24.Core.Uid.TryDeserializeTypeFrom(System.ReadOnlySpan{System.Byte}@,wan24.Core.Uid@)">TryDeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt;, out Uid)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryDeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt; buffer, out Uid result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Uid.html">Uid</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If succeed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_TryParse_System_ReadOnlySpan_System_Char___wan24_Core_Uid__.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.TryParse(System.ReadOnlySpan%7BSystem.Char%7D%40%2Cwan24.Core.Uid%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L440">View Source</a>
   </span>
   <a id="wan24_Core_Uid_TryParse_" data-uid="wan24.Core.Uid.TryParse*"></a>
-  <h4 id="wan24_Core_Uid_TryParse_System_ReadOnlySpan_System_Char___System_Nullable_wan24_Core_Uid___" data-uid="wan24.Core.Uid.TryParse(System.ReadOnlySpan{System.Char}@,System.Nullable{wan24.Core.Uid}@)">TryParse(in ReadOnlySpan&lt;char&gt;, out Uid?)</h4>
+  <h4 id="wan24_Core_Uid_TryParse_System_ReadOnlySpan_System_Char___wan24_Core_Uid__" data-uid="wan24.Core.Uid.TryParse(System.ReadOnlySpan{System.Char}@,wan24.Core.Uid@)">TryParse(in ReadOnlySpan&lt;char&gt;, out Uid)</h4>
   <div class="markdown level1 summary"><p>Try parsing from a string</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static bool TryParse(in ReadOnlySpan&lt;char&gt; str, out Uid? result)</code></pre>
+public static bool TryParse(in ReadOnlySpan&lt;char&gt; str, out Uid result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -702,13 +1095,70 @@ public static bool TryParse(in ReadOnlySpan&lt;char&gt; str, out Uid? result)</c
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
         <td><span class="parametername">str</span></td>
-        <td><p>String</p>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.Uid.html">Uid</a>?</td>
+        <td><a class="xref" href="wan24.Core.Uid.html">Uid</a></td>
         <td><span class="parametername">result</span></td>
-        <td><p>UID</p>
+        <td><p>Result</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If succeed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_TryParseObject_System_ReadOnlySpan_System_Char___System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.TryParseObject(System.ReadOnlySpan%7BSystem.Char%7D%40%2CSystem.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L489">View Source</a>
+  </span>
+  <a id="wan24_Core_Uid_TryParseObject_" data-uid="wan24.Core.Uid.TryParseObject*"></a>
+  <h4 id="wan24_Core_Uid_TryParseObject_System_ReadOnlySpan_System_Char___System_Object__" data-uid="wan24.Core.Uid.TryParseObject(System.ReadOnlySpan{System.Char}@,System.Object@)">TryParseObject(in ReadOnlySpan&lt;char&gt;, out object?)</h4>
+  <div class="markdown level1 summary"><p>Try parsing from a string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static bool TryParseObject(in ReadOnlySpan&lt;char&gt; str, out object? result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
+        <td><span class="parametername">str</span></td>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Result</p>
 </td>
       </tr>
     </tbody>
@@ -736,7 +1186,7 @@ public static bool TryParse(in ReadOnlySpan&lt;char&gt; str, out Uid? result)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_op_Implicit_System_Byte_____wan24_Core_Uid.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.op_Implicit(System.Byte%5B%5D%40)~wan24.Core.Uid%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L207">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L212">View Source</a>
   </span>
   <a id="wan24_Core_Uid_op_Implicit_" data-uid="wan24.Core.Uid.op_Implicit*"></a>
   <h4 id="wan24_Core_Uid_op_Implicit_System_Byte_____wan24_Core_Uid" data-uid="wan24.Core.Uid.op_Implicit(System.Byte[]@)~wan24.Core.Uid">implicit operator Uid(in byte[])</h4>
@@ -786,7 +1236,7 @@ public static implicit operator Uid(in byte[] buffer)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_op_Implicit_System_DateTime___wan24_Core_Uid.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.op_Implicit(System.DateTime%40)~wan24.Core.Uid%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L318">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L323">View Source</a>
   </span>
   <a id="wan24_Core_Uid_op_Implicit_" data-uid="wan24.Core.Uid.op_Implicit*"></a>
   <h4 id="wan24_Core_Uid_op_Implicit_System_DateTime___wan24_Core_Uid" data-uid="wan24.Core.Uid.op_Implicit(System.DateTime@)~wan24.Core.Uid">implicit operator Uid(in DateTime)</h4>
@@ -836,7 +1286,7 @@ public static implicit operator Uid(in DateTime dt)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_op_Implicit_System_Memory_System_Byte____wan24_Core_Uid.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.op_Implicit(System.Memory%7BSystem.Byte%7D%40)~wan24.Core.Uid%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L237">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L242">View Source</a>
   </span>
   <a id="wan24_Core_Uid_op_Implicit_" data-uid="wan24.Core.Uid.op_Implicit*"></a>
   <h4 id="wan24_Core_Uid_op_Implicit_System_Memory_System_Byte____wan24_Core_Uid" data-uid="wan24.Core.Uid.op_Implicit(System.Memory{System.Byte}@)~wan24.Core.Uid">implicit operator Uid(in Memory&lt;byte&gt;)</h4>
@@ -886,7 +1336,7 @@ public static implicit operator Uid(in Memory&lt;byte&gt; buffer)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_op_Implicit_System_ReadOnlyMemory_System_Byte____wan24_Core_Uid.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.op_Implicit(System.ReadOnlyMemory%7BSystem.Byte%7D%40)~wan24.Core.Uid%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L247">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L252">View Source</a>
   </span>
   <a id="wan24_Core_Uid_op_Implicit_" data-uid="wan24.Core.Uid.op_Implicit*"></a>
   <h4 id="wan24_Core_Uid_op_Implicit_System_ReadOnlyMemory_System_Byte____wan24_Core_Uid" data-uid="wan24.Core.Uid.op_Implicit(System.ReadOnlyMemory{System.Byte}@)~wan24.Core.Uid">implicit operator Uid(in ReadOnlyMemory&lt;byte&gt;)</h4>
@@ -936,7 +1386,7 @@ public static implicit operator Uid(in ReadOnlyMemory&lt;byte&gt; buffer)</code>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_op_Implicit_System_ReadOnlySpan_System_Byte____wan24_Core_Uid.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.op_Implicit(System.ReadOnlySpan%7BSystem.Byte%7D%40)~wan24.Core.Uid%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L227">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L232">View Source</a>
   </span>
   <a id="wan24_Core_Uid_op_Implicit_" data-uid="wan24.Core.Uid.op_Implicit*"></a>
   <h4 id="wan24_Core_Uid_op_Implicit_System_ReadOnlySpan_System_Byte____wan24_Core_Uid" data-uid="wan24.Core.Uid.op_Implicit(System.ReadOnlySpan{System.Byte}@)~wan24.Core.Uid">implicit operator Uid(in ReadOnlySpan&lt;byte&gt;)</h4>
@@ -986,7 +1436,7 @@ public static implicit operator Uid(in ReadOnlySpan&lt;byte&gt; buffer)</code></
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_op_Implicit_System_Span_System_Byte____wan24_Core_Uid.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.op_Implicit(System.Span%7BSystem.Byte%7D%40)~wan24.Core.Uid%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L217">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L222">View Source</a>
   </span>
   <a id="wan24_Core_Uid_op_Implicit_" data-uid="wan24.Core.Uid.op_Implicit*"></a>
   <h4 id="wan24_Core_Uid_op_Implicit_System_Span_System_Byte____wan24_Core_Uid" data-uid="wan24.Core.Uid.op_Implicit(System.Span{System.Byte}@)~wan24.Core.Uid">implicit operator Uid(in Span&lt;byte&gt;)</h4>
@@ -1036,7 +1486,7 @@ public static implicit operator Uid(in Span&lt;byte&gt; buffer)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_op_Implicit_System_String___wan24_Core_Uid.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.op_Implicit(System.String%40)~wan24.Core.Uid%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L267">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L272">View Source</a>
   </span>
   <a id="wan24_Core_Uid_op_Implicit_" data-uid="wan24.Core.Uid.op_Implicit*"></a>
   <h4 id="wan24_Core_Uid_op_Implicit_System_String___wan24_Core_Uid" data-uid="wan24.Core.Uid.op_Implicit(System.String@)~wan24.Core.Uid">implicit operator Uid(in string)</h4>
@@ -1086,7 +1536,7 @@ public static implicit operator Uid(in string str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_op_Implicit_wan24_Core_Uid___System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.op_Implicit(wan24.Core.Uid%40)~System.Byte%5B%5D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L197">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L202">View Source</a>
   </span>
   <a id="wan24_Core_Uid_op_Implicit_" data-uid="wan24.Core.Uid.op_Implicit*"></a>
   <h4 id="wan24_Core_Uid_op_Implicit_wan24_Core_Uid___System_Byte__" data-uid="wan24.Core.Uid.op_Implicit(wan24.Core.Uid@)~System.Byte[]">implicit operator byte[](in Uid)</h4>
@@ -1136,7 +1586,7 @@ public static implicit operator byte[](in Uid uid)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_op_Implicit_wan24_Core_Uid___System_DateTime.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.op_Implicit(wan24.Core.Uid%40)~System.DateTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L308">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L313">View Source</a>
   </span>
   <a id="wan24_Core_Uid_op_Implicit_" data-uid="wan24.Core.Uid.op_Implicit*"></a>
   <h4 id="wan24_Core_Uid_op_Implicit_wan24_Core_Uid___System_DateTime" data-uid="wan24.Core.Uid.op_Implicit(wan24.Core.Uid@)~System.DateTime">implicit operator DateTime(in Uid)</h4>
@@ -1186,7 +1636,7 @@ public static implicit operator DateTime(in Uid uid)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_op_Implicit_wan24_Core_Uid___System_String.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.op_Implicit(wan24.Core.Uid%40)~System.String%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L257">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L262">View Source</a>
   </span>
   <a id="wan24_Core_Uid_op_Implicit_" data-uid="wan24.Core.Uid.op_Implicit*"></a>
   <h4 id="wan24_Core_Uid_op_Implicit_wan24_Core_Uid___System_String" data-uid="wan24.Core.Uid.op_Implicit(wan24.Core.Uid@)~System.String">implicit operator string(in Uid)</h4>
@@ -1236,7 +1686,7 @@ public static implicit operator string(in Uid uid)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_op_Implicit_wan24_Core_Uid___wan24_Core_UidExt.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.op_Implicit(wan24.Core.Uid%40)~wan24.Core.UidExt%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L277">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L282">View Source</a>
   </span>
   <a id="wan24_Core_Uid_op_Implicit_" data-uid="wan24.Core.Uid.op_Implicit*"></a>
   <h4 id="wan24_Core_Uid_op_Implicit_wan24_Core_Uid___wan24_Core_UidExt" data-uid="wan24.Core.Uid.op_Implicit(wan24.Core.Uid@)~wan24.Core.UidExt">implicit operator UidExt(in Uid)</h4>
@@ -1286,7 +1736,7 @@ public static implicit operator UidExt(in Uid uid)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Uid_op_Implicit_wan24_Core_UidExt___wan24_Core_Uid.md&amp;value=---%0Auid%3A%20wan24.Core.Uid.op_Implicit(wan24.Core.UidExt%40)~wan24.Core.Uid%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L328">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Uid.cs/#L333">View Source</a>
   </span>
   <a id="wan24_Core_Uid_op_Implicit_" data-uid="wan24.Core.Uid.op_Implicit*"></a>
   <h4 id="wan24_Core_Uid_op_Implicit_wan24_Core_UidExt___wan24_Core_Uid" data-uid="wan24.Core.Uid.op_Implicit(wan24.Core.UidExt@)~wan24.Core.Uid">implicit operator Uid(in UidExt)</h4>
@@ -1333,6 +1783,18 @@ public static implicit operator Uid(in UidExt uid)</code></pre>
   </table>
   <h3 id="implements">Implements</h3>
   <div>
+      <a class="xref" href="wan24.Core.ISerializeBinary-1.html">ISerializeBinary&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ISerializeBinary.html">ISerializeBinary</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ISerializeString-1.html">ISerializeString&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ISerializeString.html">ISerializeString</a>
+  </div>
+  <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable&lt;T&gt;</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
@@ -1361,10 +1823,43 @@ public static implicit operator Uid(in UidExt uid)</code></pre>
       <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectToAsync_System_Object_System_Type_System_Threading_CancellationToken_">ObjectMappingExtensions.MapObjectToAsync(object, Type, CancellationToken)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetValueReflected_System_Object_System_String_">ReflectionExtensions.GetValueReflected(object, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflected_System_Object_System_String_System_Object___">ReflectionExtensions.InvokeReflected(object, string, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflectedGeneric_System_Object_System_String_System_Type___System_Object___">ReflectionExtensions.InvokeReflectedGeneric(object, string, Type[], params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_SetValueReflected_System_Object_System_String_System_Object_">ReflectionExtensions.SetValueReflected(object, string, object?)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_">StringValueConverter.ConvertObjectToString(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_NamedStringConversion_System_Object_System_String__System_Type__">StringValueConverter.NamedStringConversion(object?, in string, in Type)</a>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_System_String__">StringValueConverter.ConvertObjectToString(object, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertStructInstance_System_Object_">StringValueConverter.ConvertStructInstance(object?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_NamedStringConversion_System_Object_System_String__System_Type_">StringValueConverter.NamedStringConversion(object?, in string, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertStructInstance_System_Object_System_String__">StringValueConverter.TryConvertStructInstance(object?, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryNamedStringConversion_System_Object_System_String__System_Type_System_String__">StringValueConverter.TryNamedStringConversion(object?, in string, Type, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_">StructExtensions.GetMarshalBytes(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_System_Byte____">StructExtensions.GetMarshalBytes(object, in byte[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshaledSize_System_Object_">StructExtensions.GetMarshaledSize(object)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
@@ -1407,6 +1902,18 @@ public static implicit operator Uid(in UidExt uid)</code></pre>
   </div>
   <div>
       <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertToString__1___0_System_String__">StringValueConverter.TryConvertToString&lt;T&gt;(T, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes__1___0_">StructExtensions.GetMarshalBytes&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes__1___0_System_Byte____">StructExtensions.GetMarshalBytes&lt;T&gt;(T, in byte[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshaledSize__1___0_">StructExtensions.GetMarshaledSize&lt;T&gt;(T)</a>
   </div>
 
 </article>

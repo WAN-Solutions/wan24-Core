@@ -326,6 +326,9 @@ Classes
       <h5><a class="xref" href="wan24.Core.ConsoleLogger.html">ConsoleLogger</a></h5>
       <section><p>Console logger</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ConstructorInfoExt.html">ConstructorInfoExt</a></h5>
+      <section><p>Extended constructor information</p>
+</section>
       <h5><a class="xref" href="wan24.Core.CopyStream.html">CopyStream</a></h5>
       <section><p>Copy stream (copies the wrapped stream to a target stream using a background task)</p>
 </section>
@@ -435,7 +438,7 @@ Classes
       <section><p>Disposable wrapper</p>
 </section>
       <h5><a class="xref" href="wan24.Core.DisposeAttribute.html">DisposeAttribute</a></h5>
-      <section><p>Attribute for fields or properties to dispose automatic when disposing</p>
+      <section><p>Attribute for fields or properties to dispose automatic when disposing (see <a class="xref" href="wan24.Core.DisposableBase.html">DisposableBase</a>/<a class="xref" href="wan24.Core.DisposableRecordBase.html">DisposableRecordBase</a>)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.DisposingAsyncEnumerator-1.html">DisposingAsyncEnumerator&lt;T&gt;</a></h5>
       <section><p>Disposing asynchronous enumerator (disposes tagged objects when disposing)</p>
@@ -523,6 +526,9 @@ synchronized (adding target streams while reading/seeking may cause an overall r
       <h5><a class="xref" href="wan24.Core.ExactStream-1.html">ExactStream&lt;T&gt;</a></h5>
       <section><p>Exact stream (tries to read exactly the given number of bytes until no bytes were red)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ExactThrottle.html">ExactThrottle</a></h5>
+      <section><p>(Almost) Exact throttle (with an overhead; use <a class="xref" href="wan24.Core.Throttle.html">Throttle</a> for a low overhead instead, if performance is more important than being exact)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ExceptionExtensions.html">ExceptionExtensions</a></h5>
       <section><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a> extensions</p>
 </section>
@@ -534,6 +540,9 @@ synchronized (adding target streams while reading/seeking may cause an overall r
 </section>
       <h5><a class="xref" href="wan24.Core.ExcludeValueAttribute.html">ExcludeValueAttribute</a></h5>
       <section><p>Attribute for <a class="xref" href="wan24.Core.AutoValueObjectBase-1.html">AutoValueObjectBase&lt;T&gt;</a> properties to exclude from the objects hash code calculation</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.FieldInfoExt.html">FieldInfoExt</a></h5>
+      <section><p>Extended field information</p>
 </section>
       <h5><a class="xref" href="wan24.Core.FileLogger.html">FileLogger</a></h5>
       <section><p>File logger (don't forget to dispose an instance!)</p>
@@ -722,6 +731,9 @@ the first stream per default)</p>
       <h5><a class="xref" href="wan24.Core.MemoryPoolStream.html">MemoryPoolStream</a></h5>
       <section><p>Memory pool stream (stores in arrays from an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.arraypool-1">ArrayPool&lt;T&gt;</a>)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.MethodInfoExt.html">MethodInfoExt</a></h5>
+      <section><p>Extended method information</p>
+</section>
       <h5><a class="xref" href="wan24.Core.MultiFileSystemEvents.html">MultiFileSystemEvents</a></h5>
       <section><p>Multi file system events</p>
 </section>
@@ -742,7 +754,7 @@ restrictions for this)</p>
       <section><p>Network helper</p>
 </section>
       <h5><a class="xref" href="wan24.Core.NoMapAttribute.html">NoMapAttribute</a></h5>
-      <section><p>An attribute for properties to be sekipped for <a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></p>
+      <section><p>An attribute for properties to be skipped for <a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></p>
 </section>
       <h5><a class="xref" href="wan24.Core.NonSeekablePartialStream.html">NonSeekablePartialStream</a></h5>
       <section><p>Non-seekable partial stream</p>
@@ -877,6 +889,18 @@ restrictions for this)</p>
       <h5><a class="xref" href="wan24.Core.PriorityQueueWorker-1.html">PriorityQueueWorker&lt;T&gt;</a></h5>
       <section><p>Priority queue worker</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ProblemInfo.html">ProblemInfo</a></h5>
+      <section><p>Problem informations</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ProblemStackInfo.html">ProblemStackInfo</a></h5>
+      <section><p>Problem call stack informations (equality is compared using the call stack only)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.Problems.html">Problems</a></h5>
+      <section><p>Collected problems</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.Problems.ProblemEventArgs.html">Problems.ProblemEventArgs</a></h5>
+      <section><p>Arguments for the <a class="xref" href="wan24.Core.Problems.html#wan24_Core_Problems_OnProblem">OnProblem</a> event</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ProcessExtensions.html">ProcessExtensions</a></h5>
       <section><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.diagnostics.process">Process</a> extensions</p>
 </section>
@@ -970,6 +994,9 @@ restrictions for this)</p>
       <h5><a class="xref" href="wan24.Core.SensitiveDataAttribute.html">SensitiveDataAttribute</a></h5>
       <section><p>Attribute for sensitive data</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.SerializeExtensions.html">SerializeExtensions</a></h5>
+      <section><p>Serialize extensions for <a class="xref" href="wan24.Core.ISerializeBinary.html">ISerializeBinary</a>/<a class="xref" href="wan24.Core.ISerializeBinary-1.html">ISerializeBinary&lt;T&gt;</a> and <a class="xref" href="wan24.Core.ISerializeString.html">ISerializeString</a>/<a class="xref" href="wan24.Core.ISerializeString-1.html">ISerializeString&lt;T&gt;</a></p>
+</section>
       <h5><a class="xref" href="wan24.Core.ServiceWorkerTable.html">ServiceWorkerTable</a></h5>
       <section><p>Service worker table</p>
 </section>
@@ -1036,6 +1063,9 @@ restrictions for this)</p>
       <h5><a class="xref" href="wan24.Core.StringValueConverterAttribute.html">StringValueConverterAttribute</a></h5>
       <section><p>Attribute for a property which has a value that supports display string conversion</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.StructExtensions.html">StructExtensions</a></h5>
+      <section><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/struct">struct</a> extension methods</p>
+</section>
       <h5><a class="xref" href="wan24.Core.SynchronizedStream.html">SynchronizedStream</a></h5>
       <section><p>Synchronized stream (synchronizes reading/writing/seeking operations; the base stream should implement each single asynchronous reading/writing method! Any asynchronous
 reading/writing method which adopts or calls to another asynchronous reading/writing or any seeking method will cause a dead-lock!)</p>
@@ -1052,6 +1082,12 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
 </section>
       <h5><a class="xref" href="wan24.Core.ThreadSafeValue-1.html">ThreadSafeValue&lt;T&gt;</a></h5>
       <section><p>Thread-safe value</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.Throttle.html">Throttle</a></h5>
+      <section><p>Generic throttling helper (if it's important to throttle more exact, and performance counts less, use <a class="xref" href="wan24.Core.ExactThrottle.html">ExactThrottle</a> instead)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ThrottleTable.html">ThrottleTable</a></h5>
+      <section><p><a class="xref" href="wan24.Core.IThrottle.html">IThrottle</a> table</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ThrottledStream.html">ThrottledStream</a></h5>
       <section><p>Throttled stream</p>
@@ -1122,10 +1158,19 @@ be served, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.t
       <section><p>User action call</p>
 </section>
       <h5><a class="xref" href="wan24.Core.UserActionInfo.html">UserActionInfo</a></h5>
-      <section><p>User action information</p>
+      <section><p>User action informations</p>
 </section>
       <h5><a class="xref" href="wan24.Core.UserActionInfo.UserActionParameterInfo.html">UserActionInfo.UserActionParameterInfo</a></h5>
       <section><p>User action parameter information</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.UserSettingAttribute.html">UserSettingAttribute</a></h5>
+      <section><p>Attribute for properties which are user settings</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.UserSettingCall.html">UserSettingCall</a></h5>
+      <section><p>User action call</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.UserSettingInfo.html">UserSettingInfo</a></h5>
+      <section><p>User setting informations</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ValueConverter.html">ValueConverter</a></h5>
       <section><p>Value conversion (see <a class="xref" href="wan24.Core.ValueConverterAttribute.html">ValueConverterAttribute</a>)</p>
@@ -1144,6 +1189,33 @@ be served, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.t
 </section>
       <h5><a class="xref" href="wan24.Core.WrapperStream-1.html">WrapperStream&lt;T&gt;</a></h5>
       <section><p>Stream wrapper (will dispose, if the base stream is a <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a> and has been disposed)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XmlConstructorDocComments.html">XmlConstructorDocComments</a></h5>
+      <section><p>Constructor XML documentation comments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XmlDocComments.html">XmlDocComments</a></h5>
+      <section><p>XML documentation comments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XmlEventDocComments.html">XmlEventDocComments</a></h5>
+      <section><p>Event XML documentation comments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XmlFieldDocComments.html">XmlFieldDocComments</a></h5>
+      <section><p>Field XML documentation comments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XmlGenericArgumentDocComments.html">XmlGenericArgumentDocComments</a></h5>
+      <section><p>Generic argument XML documentation comments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XmlMethodDocComments.html">XmlMethodDocComments</a></h5>
+      <section><p>Method XML documentation comments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XmlParameterDocComments.html">XmlParameterDocComments</a></h5>
+      <section><p>Parameter XML documentation comments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XmlPropertyDocComments.html">XmlPropertyDocComments</a></h5>
+      <section><p>Property XML documentation comments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XmlTypeDocComments.html">XmlTypeDocComments</a></h5>
+      <section><p>Type XML documentation comments</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ZeroStream.html">ZeroStream</a></h5>
       <section><p>A zero stream, which will read zero bytes and write nothing</p>
@@ -1165,6 +1237,9 @@ Structs
 </section>
       <h5><a class="xref" href="wan24.Core.EquatableArray-1.html">EquatableArray&lt;T&gt;</a></h5>
       <section><p>Equatable array (validates sequence validity, not object references)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ExactThrottle.Counted.html">ExactThrottle.Counted</a></h5>
+      <section><p>Counted</p>
 </section>
       <h5><a class="xref" href="wan24.Core.HostEndPoint.html">HostEndPoint</a></h5>
       <section><p>Host endpoint</p>
@@ -1320,6 +1395,9 @@ Interfaces
       <h5><a class="xref" href="wan24.Core.IExportUserActions.html">IExportUserActions</a></h5>
       <section><p>Interface for a type which exports instance user actions (see <a class="xref" href="wan24.Core.UserActionAttribute.html">UserActionAttribute</a> also)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IExportUserSettings.html">IExportUserSettings</a></h5>
+      <section><p>Interface for a type which exports instance user settings (see <a class="xref" href="wan24.Core.UserSettingAttribute.html">UserSettingAttribute</a> also)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IGlobalLock.html">IGlobalLock</a></h5>
       <section><p>Interface for a global lock</p>
 </section>
@@ -1398,6 +1476,9 @@ Interfaces
       <h5><a class="xref" href="wan24.Core.IPriorityQueueWorker-1.html">IPriorityQueueWorker&lt;T&gt;</a></h5>
       <section><p>Interface for a priority queue worker</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IProblemInfo.html">IProblemInfo</a></h5>
+      <section><p>Interface for problem informations</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IProcessingInfo.html">IProcessingInfo</a></h5>
       <section><p>Interface for a processing information</p>
 </section>
@@ -1418,6 +1499,18 @@ Interfaces
 </section>
       <h5><a class="xref" href="wan24.Core.ISecureArray-1.html">ISecureArray&lt;T&gt;</a></h5>
       <section><p>Interface for a secure array</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ISerializeBinary.html">ISerializeBinary</a></h5>
+      <section><p>Interface for a type which can serialize binary</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ISerializeBinary-1.html">ISerializeBinary&lt;T&gt;</a></h5>
+      <section><p>Interface for a type which can serialize binary</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ISerializeString.html">ISerializeString</a></h5>
+      <section><p>Interface for types which serialize deserializable to a string using <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">ToString()</a></p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ISerializeString-1.html">ISerializeString&lt;T&gt;</a></h5>
+      <section><p>Interface for types which serialize deserializable to a string using <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">ToString()</a></p>
 </section>
       <h5><a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a></h5>
       <section><p>Interface for a service worker object</p>
@@ -1448,6 +1541,9 @@ Interfaces
 </section>
       <h5><a class="xref" href="wan24.Core.IStringValueConverter-1.html">IStringValueConverter&lt;T&gt;</a></h5>
       <section><p>Interface for a type which supports display string/value conversion</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IThrottle.html">IThrottle</a></h5>
+      <section><p>Interface for a throttle</p>
 </section>
       <h5><a class="xref" href="wan24.Core.IThrottledStream.html">IThrottledStream</a></h5>
       <section><p>Interface for a throttled stream</p>
@@ -1688,6 +1784,9 @@ Delegates
 </section>
       <h5><a class="xref" href="wan24.Core.PriorityQueueWorker-1.Task_Delegate.html">PriorityQueueWorker&lt;T&gt;.Task_Delegate</a></h5>
       <section><p>Delegate for a task</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.Problems.Problem_Delegate.html">Problems.Problem_Delegate</a></h5>
+      <section><p>Delegate for a problem handler</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ProcessThrottle.ProcessThrottleEvent_Delegate.html">ProcessThrottle.ProcessThrottleEvent_Delegate</a></h5>
       <section><p>Delegate for a process throttle event</p>

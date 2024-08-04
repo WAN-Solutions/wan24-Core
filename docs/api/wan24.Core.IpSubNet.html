@@ -111,6 +111,10 @@
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">IComparable</a>&lt;<a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a>&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable">IComparable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a>&gt;</div>
+    <div><a class="xref" href="wan24.Core.ISerializeBinary-1.html">ISerializeBinary</a>&lt;<a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a>&gt;</div>
+    <div><a class="xref" href="wan24.Core.ISerializeBinary.html">ISerializeBinary</a></div>
+    <div><a class="xref" href="wan24.Core.ISerializeString-1.html">ISerializeString</a>&lt;<a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a>&gt;</div>
+    <div><a class="xref" href="wan24.Core.ISerializeString.html">ISerializeString</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -134,7 +138,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_IpSubNet_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly record struct IpSubNet : IEnumerable&lt;IPAddress&gt;, IEnumerable, IComparable&lt;IpSubNet&gt;, IComparable, IEquatable&lt;IpSubNet&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly record struct IpSubNet : IEnumerable&lt;IPAddress&gt;, IEnumerable, IComparable&lt;IpSubNet&gt;, IComparable, IEquatable&lt;IpSubNet&gt;, ISerializeBinary&lt;IpSubNet&gt;, ISerializeBinary, ISerializeString&lt;IpSubNet&gt;, ISerializeString</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -475,7 +479,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_IPV4_BITS.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.IPV4_BITS%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L31">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L32">View Source</a>
   </span>
   <h4 id="wan24_Core_IpSubNet_IPV4_BITS" data-uid="wan24.Core.IpSubNet.IPV4_BITS">IPV4_BITS</h4>
   <div class="markdown level1 summary"><p>IPv4 bits</p>
@@ -505,7 +509,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_IPV4_BYTES.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.IPV4_BYTES%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L35">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L36">View Source</a>
   </span>
   <h4 id="wan24_Core_IpSubNet_IPV4_BYTES" data-uid="wan24.Core.IpSubNet.IPV4_BYTES">IPV4_BYTES</h4>
   <div class="markdown level1 summary"><p>IPv4 bits</p>
@@ -535,7 +539,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_IPV4_STRUCTURE_SIZE.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.IPV4_STRUCTURE_SIZE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L19">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L20">View Source</a>
   </span>
   <h4 id="wan24_Core_IpSubNet_IPV4_STRUCTURE_SIZE" data-uid="wan24.Core.IpSubNet.IPV4_STRUCTURE_SIZE">IPV4_STRUCTURE_SIZE</h4>
   <div class="markdown level1 summary"><p>IPv4 structure size in bytes (when using <a class="xref" href="wan24.Core.IpSubNet.html#wan24_Core_IpSubNet_GetBytes">GetBytes()</a>)</p>
@@ -565,7 +569,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_IPV6_BITS.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.IPV6_BITS%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L23">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L24">View Source</a>
   </span>
   <h4 id="wan24_Core_IpSubNet_IPV6_BITS" data-uid="wan24.Core.IpSubNet.IPV6_BITS">IPV6_BITS</h4>
   <div class="markdown level1 summary"><p>IPv6 bits</p>
@@ -595,7 +599,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_IPV6_BYTES.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.IPV6_BYTES%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L27">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L28">View Source</a>
   </span>
   <h4 id="wan24_Core_IpSubNet_IPV6_BYTES" data-uid="wan24.Core.IpSubNet.IPV6_BYTES">IPV6_BYTES</h4>
   <div class="markdown level1 summary"><p>IPv6 bits</p>
@@ -625,7 +629,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_IPV6_STRUCTURE_SIZE.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.IPV6_STRUCTURE_SIZE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L15">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L16">View Source</a>
   </span>
   <h4 id="wan24_Core_IpSubNet_IPV6_STRUCTURE_SIZE" data-uid="wan24.Core.IpSubNet.IPV6_STRUCTURE_SIZE">IPV6_STRUCTURE_SIZE</h4>
   <div class="markdown level1 summary"><p>IPv6 Structure size in bytes (when using <a class="xref" href="wan24.Core.IpSubNet.html#wan24_Core_IpSubNet_GetBytes">GetBytes()</a>)</p>
@@ -685,7 +689,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_LoopbackIPv4.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.LoopbackIPv4%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L52">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L53">View Source</a>
   </span>
   <h4 id="wan24_Core_IpSubNet_LoopbackIPv4" data-uid="wan24.Core.IpSubNet.LoopbackIPv4">LoopbackIPv4</h4>
   <div class="markdown level1 summary"><p>IPv4 loopback sub-net</p>
@@ -715,7 +719,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_LoopbackIPv6.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.LoopbackIPv6%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L48">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L49">View Source</a>
   </span>
   <h4 id="wan24_Core_IpSubNet_LoopbackIPv6" data-uid="wan24.Core.IpSubNet.LoopbackIPv6">LoopbackIPv6</h4>
   <div class="markdown level1 summary"><p>IPv6 loopback sub-net</p>
@@ -775,7 +779,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_MaxIPv4.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.MaxIPv4%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L44">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L45">View Source</a>
   </span>
   <h4 id="wan24_Core_IpSubNet_MaxIPv4" data-uid="wan24.Core.IpSubNet.MaxIPv4">MaxIPv4</h4>
   <div class="markdown level1 summary"><p>Max. IPv4 value</p>
@@ -805,7 +809,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_MaxIPv6.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.MaxIPv6%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L40">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L41">View Source</a>
   </span>
   <h4 id="wan24_Core_IpSubNet_MaxIPv6" data-uid="wan24.Core.IpSubNet.MaxIPv6">MaxIPv6</h4>
   <div class="markdown level1 summary"><p>Max. IPv6 value</p>
@@ -865,7 +869,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_ZeroV4.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.ZeroV4%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L60">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L61">View Source</a>
   </span>
   <h4 id="wan24_Core_IpSubNet_ZeroV4" data-uid="wan24.Core.IpSubNet.ZeroV4">ZeroV4</h4>
   <div class="markdown level1 summary"><p>IPv4 zero sub-net</p>
@@ -895,7 +899,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_ZeroV6.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.ZeroV6%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L56">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L57">View Source</a>
   </span>
   <h4 id="wan24_Core_IpSubNet_ZeroV6" data-uid="wan24.Core.IpSubNet.ZeroV6">ZeroV6</h4>
   <div class="markdown level1 summary"><p>IPv6 zero sub-net</p>
@@ -927,7 +931,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_AddressFamily.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.AddressFamily%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L128">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L140">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_AddressFamily_" data-uid="wan24.Core.IpSubNet.AddressFamily*"></a>
   <h4 id="wan24_Core_IpSubNet_AddressFamily" data-uid="wan24.Core.IpSubNet.AddressFamily">AddressFamily</h4>
@@ -958,7 +962,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_AsIpNetwork.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.AsIpNetwork%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L372">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L384">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_AsIpNetwork_" data-uid="wan24.Core.IpSubNet.AsIpNetwork*"></a>
   <h4 id="wan24_Core_IpSubNet_AsIpNetwork" data-uid="wan24.Core.IpSubNet.AsIpNetwork">AsIpNetwork</h4>
@@ -989,7 +993,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_BitCount.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.BitCount%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L56">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L68">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_BitCount_" data-uid="wan24.Core.IpSubNet.BitCount*"></a>
   <h4 id="wan24_Core_IpSubNet_BitCount" data-uid="wan24.Core.IpSubNet.BitCount">BitCount</h4>
@@ -1020,7 +1024,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_Broadcast.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.Broadcast%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L152">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L164">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_Broadcast_" data-uid="wan24.Core.IpSubNet.Broadcast*"></a>
   <h4 id="wan24_Core_IpSubNet_Broadcast" data-uid="wan24.Core.IpSubNet.Broadcast">Broadcast</h4>
@@ -1051,7 +1055,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_BroadcastIPAddress.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.BroadcastIPAddress%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L200">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L212">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_BroadcastIPAddress_" data-uid="wan24.Core.IpSubNet.BroadcastIPAddress*"></a>
   <h4 id="wan24_Core_IpSubNet_BroadcastIPAddress" data-uid="wan24.Core.IpSubNet.BroadcastIPAddress">BroadcastIPAddress</h4>
@@ -1082,7 +1086,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_ByteCount.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.ByteCount%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L68">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L80">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_ByteCount_" data-uid="wan24.Core.IpSubNet.ByteCount*"></a>
   <h4 id="wan24_Core_IpSubNet_ByteCount" data-uid="wan24.Core.IpSubNet.ByteCount">ByteCount</h4>
@@ -1113,7 +1117,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_FirstUsable.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.FirstUsable%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L224">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L236">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_FirstUsable_" data-uid="wan24.Core.IpSubNet.FirstUsable*"></a>
   <h4 id="wan24_Core_IpSubNet_FirstUsable" data-uid="wan24.Core.IpSubNet.FirstUsable">FirstUsable</h4>
@@ -1144,7 +1148,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_FullMask.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.FullMask%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L92">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L104">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_FullMask_" data-uid="wan24.Core.IpSubNet.FullMask*"></a>
   <h4 id="wan24_Core_IpSubNet_FullMask" data-uid="wan24.Core.IpSubNet.FullMask">FullMask</h4>
@@ -1175,7 +1179,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_IPAddressCount.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.IPAddressCount%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L104">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L116">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_IPAddressCount_" data-uid="wan24.Core.IpSubNet.IPAddressCount*"></a>
   <h4 id="wan24_Core_IpSubNet_IPAddressCount" data-uid="wan24.Core.IpSubNet.IPAddressCount">IPAddressCount</h4>
@@ -1206,7 +1210,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_IPAddresses.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.IPAddresses%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L242">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L254">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_IPAddresses_" data-uid="wan24.Core.IpSubNet.IPAddresses*"></a>
   <h4 id="wan24_Core_IpSubNet_IPAddresses" data-uid="wan24.Core.IpSubNet.IPAddresses">IPAddresses</h4>
@@ -1237,7 +1241,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_IsLan.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.IsLan%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L274">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L286">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_IsLan_" data-uid="wan24.Core.IpSubNet.IsLan*"></a>
   <h4 id="wan24_Core_IpSubNet_IsLan" data-uid="wan24.Core.IpSubNet.IsLan">IsLan</h4>
@@ -1268,7 +1272,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_IsLoopback.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.IsLoopback%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L283">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L295">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_IsLoopback_" data-uid="wan24.Core.IpSubNet.IsLoopback*"></a>
   <h4 id="wan24_Core_IpSubNet_IsLoopback" data-uid="wan24.Core.IpSubNet.IsLoopback">IsLoopback</h4>
@@ -1299,7 +1303,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_IsWan.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.IsWan%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L292">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L304">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_IsWan_" data-uid="wan24.Core.IpSubNet.IsWan*"></a>
   <h4 id="wan24_Core_IpSubNet_IsWan" data-uid="wan24.Core.IpSubNet.IsWan">IsWan</h4>
@@ -1330,7 +1334,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_Item_System_Numerics_BigInteger_System_Numerics_BigInteger_.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.Item(System.Numerics.BigInteger%2CSystem.Numerics.BigInteger)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L35">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L47">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_Item_" data-uid="wan24.Core.IpSubNet.Item*"></a>
   <h4 id="wan24_Core_IpSubNet_Item_System_Numerics_BigInteger_System_Numerics_BigInteger_" data-uid="wan24.Core.IpSubNet.Item(System.Numerics.BigInteger,System.Numerics.BigInteger)">this[BigInteger, BigInteger]</h4>
@@ -1386,7 +1390,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_Item_System_Numerics_BigInteger__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.Item(System.Numerics.BigInteger%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L18">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L30">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_Item_" data-uid="wan24.Core.IpSubNet.Item*"></a>
   <h4 id="wan24_Core_IpSubNet_Item_System_Numerics_BigInteger__" data-uid="wan24.Core.IpSubNet.Item(System.Numerics.BigInteger@)">this[BigInteger]</h4>
@@ -1436,7 +1440,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_LastUsable.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.LastUsable%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L233">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L245">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_LastUsable_" data-uid="wan24.Core.IpSubNet.LastUsable*"></a>
   <h4 id="wan24_Core_IpSubNet_LastUsable" data-uid="wan24.Core.IpSubNet.LastUsable">LastUsable</h4>
@@ -1467,7 +1471,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_Mask.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.Mask%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L140">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L152">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_Mask_" data-uid="wan24.Core.IpSubNet.Mask*"></a>
   <h4 id="wan24_Core_IpSubNet_Mask" data-uid="wan24.Core.IpSubNet.Mask">Mask</h4>
@@ -1498,7 +1502,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_MaskIPAddress.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.MaskIPAddress%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L188">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L200">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_MaskIPAddress_" data-uid="wan24.Core.IpSubNet.MaskIPAddress*"></a>
   <h4 id="wan24_Core_IpSubNet_MaskIPAddress" data-uid="wan24.Core.IpSubNet.MaskIPAddress">MaskIPAddress</h4>
@@ -1529,7 +1533,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_MaskedNetwork.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.MaskedNetwork%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L164">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L176">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_MaskedNetwork_" data-uid="wan24.Core.IpSubNet.MaskedNetwork*"></a>
   <h4 id="wan24_Core_IpSubNet_MaskedNetwork" data-uid="wan24.Core.IpSubNet.MaskedNetwork">MaskedNetwork</h4>
@@ -1560,7 +1564,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_MaskedNetworkIPAddress.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.MaskedNetworkIPAddress%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L212">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L224">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_MaskedNetworkIPAddress_" data-uid="wan24.Core.IpSubNet.MaskedNetworkIPAddress*"></a>
   <h4 id="wan24_Core_IpSubNet_MaskedNetworkIPAddress" data-uid="wan24.Core.IpSubNet.MaskedNetworkIPAddress">MaskedNetworkIPAddress</h4>
@@ -1588,10 +1592,72 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_MaxStringSize.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.MaxStringSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L17">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNet_MaxStringSize_" data-uid="wan24.Core.IpSubNet.MaxStringSize*"></a>
+  <h4 id="wan24_Core_IpSubNet_MaxStringSize" data-uid="wan24.Core.IpSubNet.MaxStringSize">MaxStringSize</h4>
+  <div class="markdown level1 summary"><p>Maximum serialized string size (length; or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if not predictable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int? MaxStringSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_MaxStructureSize.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.MaxStructureSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L14">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNet_MaxStructureSize_" data-uid="wan24.Core.IpSubNet.MaxStructureSize*"></a>
+  <h4 id="wan24_Core_IpSubNet_MaxStructureSize" data-uid="wan24.Core.IpSubNet.MaxStructureSize">MaxStructureSize</h4>
+  <div class="markdown level1 summary"><p>Maximum binary structure size in bytes for all instances (or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if the size is too variable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int? MaxStructureSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_NetworkIPAddress.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.NetworkIPAddress%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L176">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L188">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_NetworkIPAddress_" data-uid="wan24.Core.IpSubNet.NetworkIPAddress*"></a>
   <h4 id="wan24_Core_IpSubNet_NetworkIPAddress" data-uid="wan24.Core.IpSubNet.NetworkIPAddress">NetworkIPAddress</h4>
@@ -1622,7 +1688,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_NetworkInterfaces.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.NetworkInterfaces%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L333">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L345">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_NetworkInterfaces_" data-uid="wan24.Core.IpSubNet.NetworkInterfaces*"></a>
   <h4 id="wan24_Core_IpSubNet_NetworkInterfaces" data-uid="wan24.Core.IpSubNet.NetworkInterfaces">NetworkInterfaces</h4>
@@ -1653,7 +1719,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_NetworkKind.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.NetworkKind%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L301">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L313">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_NetworkKind_" data-uid="wan24.Core.IpSubNet.NetworkKind*"></a>
   <h4 id="wan24_Core_IpSubNet_NetworkKind" data-uid="wan24.Core.IpSubNet.NetworkKind">NetworkKind</h4>
@@ -1684,7 +1750,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_ParentSubNet.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.ParentSubNet%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L315">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L327">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_ParentSubNet_" data-uid="wan24.Core.IpSubNet.ParentSubNet*"></a>
   <h4 id="wan24_Core_IpSubNet_ParentSubNet" data-uid="wan24.Core.IpSubNet.ParentSubNet">ParentSubNet</h4>
@@ -1712,10 +1778,41 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_StringSize.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.StringSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L23">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNet_StringSize_" data-uid="wan24.Core.IpSubNet.StringSize*"></a>
+  <h4 id="wan24_Core_IpSubNet_StringSize" data-uid="wan24.Core.IpSubNet.StringSize">StringSize</h4>
+  <div class="markdown level1 summary"><p>Serialized string size (length; or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if not predictable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? StringSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_StructureSize.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.StructureSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L80">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L92">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_StructureSize_" data-uid="wan24.Core.IpSubNet.StructureSize*"></a>
   <h4 id="wan24_Core_IpSubNet_StructureSize" data-uid="wan24.Core.IpSubNet.StructureSize">StructureSize</h4>
@@ -1746,7 +1843,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_UnicastAddresses.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.UnicastAddresses%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L353">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L365">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_UnicastAddresses_" data-uid="wan24.Core.IpSubNet.UnicastAddresses*"></a>
   <h4 id="wan24_Core_IpSubNet_UnicastAddresses" data-uid="wan24.Core.IpSubNet.UnicastAddresses">UnicastAddresses</h4>
@@ -1777,7 +1874,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_UsableIPAddressCount.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.UsableIPAddressCount%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L116">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L128">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_UsableIPAddressCount_" data-uid="wan24.Core.IpSubNet.UsableIPAddressCount*"></a>
   <h4 id="wan24_Core_IpSubNet_UsableIPAddressCount" data-uid="wan24.Core.IpSubNet.UsableIPAddressCount">UsableIPAddressCount</h4>
@@ -1808,7 +1905,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_UsableIPAddresses.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.UsableIPAddresses%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L258">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Properties.cs/#L270">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_UsableIPAddresses_" data-uid="wan24.Core.IpSubNet.UsableIPAddresses*"></a>
   <h4 id="wan24_Core_IpSubNet_UsableIPAddresses" data-uid="wan24.Core.IpSubNet.UsableIPAddresses">UsableIPAddresses</h4>
@@ -1891,7 +1988,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_CompareTo_wan24_Core_IpSubNet_.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.CompareTo(wan24.Core.IpSubNet)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Methods.cs/#L164">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Methods.cs/#L159">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_CompareTo_" data-uid="wan24.Core.IpSubNet.CompareTo*"></a>
   <h4 id="wan24_Core_IpSubNet_CompareTo_wan24_Core_IpSubNet_" data-uid="wan24.Core.IpSubNet.CompareTo(wan24.Core.IpSubNet)">CompareTo(IpSubNet)</h4>
@@ -1939,10 +2036,110 @@ public int CompareTo(IpSubNet other)</code></pre>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_DeserializeFrom_System_ReadOnlySpan_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.DeserializeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L284">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNet_DeserializeFrom_" data-uid="wan24.Core.IpSubNet.DeserializeFrom*"></a>
+  <h4 id="wan24_Core_IpSubNet_DeserializeFrom_System_ReadOnlySpan_System_Byte___" data-uid="wan24.Core.IpSubNet.DeserializeFrom(System.ReadOnlySpan{System.Byte}@)">DeserializeFrom(in ReadOnlySpan&lt;byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static object DeserializeFrom(in ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_DeserializeTypeFrom_System_ReadOnlySpan_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.DeserializeTypeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L320">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNet_DeserializeTypeFrom_" data-uid="wan24.Core.IpSubNet.DeserializeTypeFrom*"></a>
+  <h4 id="wan24_Core_IpSubNet_DeserializeTypeFrom_System_ReadOnlySpan_System_Byte___" data-uid="wan24.Core.IpSubNet.DeserializeTypeFrom(System.ReadOnlySpan{System.Byte}@)">DeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IpSubNet DeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_GetBigInteger_System_Net_IPAddress__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.GetBigInteger(System.Net.IPAddress%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Methods.cs/#L217">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Methods.cs/#L212">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_GetBigInteger_" data-uid="wan24.Core.IpSubNet.GetBigInteger*"></a>
   <h4 id="wan24_Core_IpSubNet_GetBigInteger_System_Net_IPAddress__" data-uid="wan24.Core.IpSubNet.GetBigInteger(System.Net.IPAddress@)">GetBigInteger(in IPAddress)</h4>
@@ -1992,11 +2189,11 @@ public int CompareTo(IpSubNet other)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_GetBytes.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.GetBytes%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Methods.cs/#L110">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Methods.cs/#L107">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_GetBytes_" data-uid="wan24.Core.IpSubNet.GetBytes*"></a>
   <h4 id="wan24_Core_IpSubNet_GetBytes" data-uid="wan24.Core.IpSubNet.GetBytes">GetBytes()</h4>
-  <div class="markdown level1 summary"><p>Get bytes</p>
+  <div class="markdown level1 summary"><p>Get as serialized data</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -2015,7 +2212,7 @@ public byte[] GetBytes()</code></pre>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
-        <td><p>Bytes (<a class="xref" href="wan24.Core.IpSubNet.html#wan24_Core_IpSubNet_IPV6_STRUCTURE_SIZE">IPV6_STRUCTURE_SIZE</a> or <a class="xref" href="wan24.Core.IpSubNet.html#wan24_Core_IpSubNet_IPV4_STRUCTURE_SIZE">IPV4_STRUCTURE_SIZE</a>)</p>
+        <td><p>Serialized data</p>
 </td>
       </tr>
     </tbody>
@@ -2025,16 +2222,16 @@ public byte[] GetBytes()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_GetBytes_System_Span_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.GetBytes(System.Span%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Methods.cs/#L126">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Methods.cs/#L120">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_GetBytes_" data-uid="wan24.Core.IpSubNet.GetBytes*"></a>
   <h4 id="wan24_Core_IpSubNet_GetBytes_System_Span_System_Byte___" data-uid="wan24.Core.IpSubNet.GetBytes(System.Span{System.Byte}@)">GetBytes(in Span&lt;byte&gt;)</h4>
-  <div class="markdown level1 summary"><p>Get bytes</p>
+  <div class="markdown level1 summary"><p>Get as serialized data</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void GetBytes(in Span&lt;byte&gt; buffer)</code></pre>
+    <pre><code class="lang-csharp hljs">public int GetBytes(in Span&lt;byte&gt; buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2049,7 +2246,23 @@ public byte[] GetBytes()</code></pre>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td><span class="parametername">buffer</span></td>
-        <td><p>Buffer (<a class="xref" href="wan24.Core.IpSubNet.html#wan24_Core_IpSubNet_IPV6_STRUCTURE_SIZE">IPV6_STRUCTURE_SIZE</a> or <a class="xref" href="wan24.Core.IpSubNet.html#wan24_Core_IpSubNet_IPV4_STRUCTURE_SIZE">IPV4_STRUCTURE_SIZE</a> required)</p>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>Number of bytes written to the buffer</p>
 </td>
       </tr>
     </tbody>
@@ -2059,7 +2272,7 @@ public byte[] GetBytes()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_GetEnumerator.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.GetEnumerator%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Methods.cs/#L149">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Methods.cs/#L144">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_GetEnumerator_" data-uid="wan24.Core.IpSubNet.GetEnumerator*"></a>
   <h4 id="wan24_Core_IpSubNet_GetEnumerator" data-uid="wan24.Core.IpSubNet.GetEnumerator">GetEnumerator()</h4>
@@ -2092,7 +2305,7 @@ public IEnumerator&lt;IPAddress&gt; GetEnumerator()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_GetIPAddress_System_Numerics_BigInteger__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.GetIPAddress(System.Numerics.BigInteger%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Methods.cs/#L183">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Methods.cs/#L178">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_GetIPAddress_" data-uid="wan24.Core.IpSubNet.GetIPAddress*"></a>
   <h4 id="wan24_Core_IpSubNet_GetIPAddress_System_Numerics_BigInteger__" data-uid="wan24.Core.IpSubNet.GetIPAddress(System.Numerics.BigInteger@)">GetIPAddress(in BigInteger)</h4>
@@ -2417,7 +2630,7 @@ public bool IsWithin(in IpSubNet net)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_Parse_System_ReadOnlySpan_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.Parse(System.ReadOnlySpan%7BSystem.Char%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L287">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L356">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_Parse_" data-uid="wan24.Core.IpSubNet.Parse*"></a>
   <h4 id="wan24_Core_IpSubNet_Parse_System_ReadOnlySpan_System_Char___" data-uid="wan24.Core.IpSubNet.Parse(System.ReadOnlySpan{System.Char}@)">Parse(in ReadOnlySpan&lt;char&gt;)</h4>
@@ -2442,8 +2655,7 @@ public static IpSubNet Parse(in ReadOnlySpan&lt;char&gt; subNet)</code></pre>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
         <td><span class="parametername">subNet</span></td>
-        <td><p>Sub-net in IP/n CIDR notation</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -2458,7 +2670,57 @@ public static IpSubNet Parse(in ReadOnlySpan&lt;char&gt; subNet)</code></pre>
     <tbody>
       <tr>
         <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
-        <td><p>Sub-net</p>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_ParseObject_System_ReadOnlySpan_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.ParseObject(System.ReadOnlySpan%7BSystem.Char%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L396">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNet_ParseObject_" data-uid="wan24.Core.IpSubNet.ParseObject*"></a>
+  <h4 id="wan24_Core_IpSubNet_ParseObject_System_ReadOnlySpan_System_Char___" data-uid="wan24.Core.IpSubNet.ParseObject(System.ReadOnlySpan{System.Char}@)">ParseObject(in ReadOnlySpan&lt;char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Parse from a string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static object ParseObject(in ReadOnlySpan&lt;char&gt; subNet)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
+        <td><span class="parametername">subNet</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><p>Instance</p>
 </td>
       </tr>
     </tbody>
@@ -2468,7 +2730,7 @@ public static IpSubNet Parse(in ReadOnlySpan&lt;char&gt; subNet)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_ToString.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.ToString%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Methods.cs/#L139">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Methods.cs/#L134">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_ToString_" data-uid="wan24.Core.IpSubNet.ToString*"></a>
   <h4 id="wan24_Core_IpSubNet_ToString" data-uid="wan24.Core.IpSubNet.ToString">ToString()</h4>
@@ -2500,10 +2762,122 @@ public override string ToString()</code></pre>
   <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.tostring">ValueType.ToString()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_TryDeserializeFrom_System_ReadOnlySpan_System_Byte___System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.TryDeserializeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40%2CSystem.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L287">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNet_TryDeserializeFrom_" data-uid="wan24.Core.IpSubNet.TryDeserializeFrom*"></a>
+  <h4 id="wan24_Core_IpSubNet_TryDeserializeFrom_System_ReadOnlySpan_System_Byte___System_Object__" data-uid="wan24.Core.IpSubNet.TryDeserializeFrom(System.ReadOnlySpan{System.Byte}@,System.Object@)">TryDeserializeFrom(in ReadOnlySpan&lt;byte&gt;, out object?)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryDeserializeFrom(in ReadOnlySpan&lt;byte&gt; buffer, out object? result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If succeed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_TryDeserializeTypeFrom_System_ReadOnlySpan_System_Byte___wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.TryDeserializeTypeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40%2Cwan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L323">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNet_TryDeserializeTypeFrom_" data-uid="wan24.Core.IpSubNet.TryDeserializeTypeFrom*"></a>
+  <h4 id="wan24_Core_IpSubNet_TryDeserializeTypeFrom_System_ReadOnlySpan_System_Byte___wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNet.TryDeserializeTypeFrom(System.ReadOnlySpan{System.Byte}@,wan24.Core.IpSubNet@)">TryDeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt;, out IpSubNet)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryDeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt; buffer, out IpSubNet result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If succeed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_TryParse_System_ReadOnlySpan_System_Char___wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.TryParse(System.ReadOnlySpan%7BSystem.Char%7D%40%2Cwan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L296">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L360">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_TryParse_" data-uid="wan24.Core.IpSubNet.TryParse*"></a>
   <h4 id="wan24_Core_IpSubNet_TryParse_System_ReadOnlySpan_System_Char___wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNet.TryParse(System.ReadOnlySpan{System.Char}@,wan24.Core.IpSubNet@)">TryParse(in ReadOnlySpan&lt;char&gt;, out IpSubNet)</h4>
@@ -2527,11 +2901,66 @@ public override string ToString()</code></pre>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
         <td><span class="parametername">subNet</span></td>
-        <td><p>Sub-net in IP/n CIDR notation</p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Result</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If succeed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_TryParseObject_System_ReadOnlySpan_System_Char___System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.TryParseObject(System.ReadOnlySpan%7BSystem.Char%7D%40%2CSystem.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L400">View Source</a>
+  </span>
+  <a id="wan24_Core_IpSubNet_TryParseObject_" data-uid="wan24.Core.IpSubNet.TryParseObject*"></a>
+  <h4 id="wan24_Core_IpSubNet_TryParseObject_System_ReadOnlySpan_System_Char___System_Object__" data-uid="wan24.Core.IpSubNet.TryParseObject(System.ReadOnlySpan{System.Char}@,System.Object@)">TryParseObject(in ReadOnlySpan&lt;char&gt;, out object?)</h4>
+  <div class="markdown level1 summary"><p>Try parsing from a string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static bool TryParseObject(in ReadOnlySpan&lt;char&gt; subNet, out object? result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
+        <td><span class="parametername">subNet</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
         <td><span class="parametername">result</span></td>
         <td><p>Result</p>
 </td>
@@ -2561,7 +2990,7 @@ public override string ToString()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_Addition_wan24_Core_IpSubNet__wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_Addition(wan24.Core.IpSubNet%40%2Cwan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L222">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L223">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_Addition_" data-uid="wan24.Core.IpSubNet.op_Addition*"></a>
   <h4 id="wan24_Core_IpSubNet_op_Addition_wan24_Core_IpSubNet__wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNet.op_Addition(wan24.Core.IpSubNet@,wan24.Core.IpSubNet@)">operator +(in IpSubNet, in IpSubNet)</h4>
@@ -2618,7 +3047,7 @@ public static IpSubNet operator +(in IpSubNet a, in IpSubNet b)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_BitwiseAnd_wan24_Core_IpSubNet__wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_BitwiseAnd(wan24.Core.IpSubNet%40%2Cwan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L241">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L242">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_BitwiseAnd_" data-uid="wan24.Core.IpSubNet.op_BitwiseAnd*"></a>
   <h4 id="wan24_Core_IpSubNet_op_BitwiseAnd_wan24_Core_IpSubNet__wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNet.op_BitwiseAnd(wan24.Core.IpSubNet@,wan24.Core.IpSubNet@)">operator &amp;(in IpSubNet, in IpSubNet)</h4>
@@ -2675,7 +3104,7 @@ public static IpSubNet operator &amp;(in IpSubNet a, in IpSubNet b)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_BitwiseOr_wan24_Core_IpSubNet__wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_BitwiseOr(wan24.Core.IpSubNet%40%2Cwan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L231">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L232">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_BitwiseOr_" data-uid="wan24.Core.IpSubNet.op_BitwiseOr*"></a>
   <h4 id="wan24_Core_IpSubNet_op_BitwiseOr_wan24_Core_IpSubNet__wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNet.op_BitwiseOr(wan24.Core.IpSubNet@,wan24.Core.IpSubNet@)">operator |(in IpSubNet, in IpSubNet)</h4>
@@ -2732,7 +3161,7 @@ public static IpSubNet operator |(in IpSubNet a, in IpSubNet b)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_Equality_System_Net_IPAddress__wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_Equality(System.Net.IPAddress%40%2Cwan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L168">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L169">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_Equality_" data-uid="wan24.Core.IpSubNet.op_Equality*"></a>
   <h4 id="wan24_Core_IpSubNet_op_Equality_System_Net_IPAddress__wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNet.op_Equality(System.Net.IPAddress@,wan24.Core.IpSubNet@)">operator ==(in IPAddress, in IpSubNet)</h4>
@@ -2789,7 +3218,7 @@ public static bool operator ==(in IPAddress ip, in IpSubNet net)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_Equality_wan24_Core_IpSubNet__System_Net_IPAddress__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_Equality(wan24.Core.IpSubNet%40%2CSystem.Net.IPAddress%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L150">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L151">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_Equality_" data-uid="wan24.Core.IpSubNet.op_Equality*"></a>
   <h4 id="wan24_Core_IpSubNet_op_Equality_wan24_Core_IpSubNet__System_Net_IPAddress__" data-uid="wan24.Core.IpSubNet.op_Equality(wan24.Core.IpSubNet@,System.Net.IPAddress@)">operator ==(in IpSubNet, in IPAddress)</h4>
@@ -2846,7 +3275,7 @@ public static bool operator ==(in IpSubNet net, in IPAddress ip)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_GreaterThan_wan24_Core_IpSubNet__wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_GreaterThan(wan24.Core.IpSubNet%40%2Cwan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L195">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L196">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_GreaterThan_" data-uid="wan24.Core.IpSubNet.op_GreaterThan*"></a>
   <h4 id="wan24_Core_IpSubNet_op_GreaterThan_wan24_Core_IpSubNet__wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNet.op_GreaterThan(wan24.Core.IpSubNet@,wan24.Core.IpSubNet@)">operator &gt;(in IpSubNet, in IpSubNet)</h4>
@@ -2903,7 +3332,7 @@ public static bool operator &gt;(in IpSubNet a, in IpSubNet b)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_GreaterThanOrEqual_wan24_Core_IpSubNet__wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_GreaterThanOrEqual(wan24.Core.IpSubNet%40%2Cwan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L213">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L214">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_GreaterThanOrEqual_" data-uid="wan24.Core.IpSubNet.op_GreaterThanOrEqual*"></a>
   <h4 id="wan24_Core_IpSubNet_op_GreaterThanOrEqual_wan24_Core_IpSubNet__wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNet.op_GreaterThanOrEqual(wan24.Core.IpSubNet@,wan24.Core.IpSubNet@)">operator &gt;=(in IpSubNet, in IpSubNet)</h4>
@@ -2960,7 +3389,7 @@ public static bool operator &gt;=(in IpSubNet a, in IpSubNet b)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_Implicit_System_Byte_____wan24_Core_IpSubNet.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_Implicit(System.Byte%5B%5D%40)~wan24.Core.IpSubNet%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L113">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L114">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_Implicit_" data-uid="wan24.Core.IpSubNet.op_Implicit*"></a>
   <h4 id="wan24_Core_IpSubNet_op_Implicit_System_Byte_____wan24_Core_IpSubNet" data-uid="wan24.Core.IpSubNet.op_Implicit(System.Byte[]@)~wan24.Core.IpSubNet">implicit operator IpSubNet(in byte[])</h4>
@@ -3010,7 +3439,7 @@ public static implicit operator IpSubNet(in byte[] data)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_Implicit_System_Memory_System_Byte____wan24_Core_IpSubNet.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_Implicit(System.Memory%7BSystem.Byte%7D%40)~wan24.Core.IpSubNet%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L127">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L128">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_Implicit_" data-uid="wan24.Core.IpSubNet.op_Implicit*"></a>
   <h4 id="wan24_Core_IpSubNet_op_Implicit_System_Memory_System_Byte____wan24_Core_IpSubNet" data-uid="wan24.Core.IpSubNet.op_Implicit(System.Memory{System.Byte}@)~wan24.Core.IpSubNet">implicit operator IpSubNet(in Memory&lt;byte&gt;)</h4>
@@ -3060,7 +3489,7 @@ public static implicit operator IpSubNet(in Memory&lt;byte&gt; data)</code></pre
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_Implicit_System_Net_IPAddress___wan24_Core_IpSubNet.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_Implicit(System.Net.IPAddress%40)~wan24.Core.IpSubNet%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L92">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L93">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_Implicit_" data-uid="wan24.Core.IpSubNet.op_Implicit*"></a>
   <h4 id="wan24_Core_IpSubNet_op_Implicit_System_Net_IPAddress___wan24_Core_IpSubNet" data-uid="wan24.Core.IpSubNet.op_Implicit(System.Net.IPAddress@)~wan24.Core.IpSubNet">implicit operator IpSubNet(in IPAddress)</h4>
@@ -3110,7 +3539,7 @@ public static implicit operator IpSubNet(in IPAddress network)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_Implicit_System_Net_IPNetwork___wan24_Core_IpSubNet.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_Implicit(System.Net.IPNetwork%40)~wan24.Core.IpSubNet%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L72">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L73">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_Implicit_" data-uid="wan24.Core.IpSubNet.op_Implicit*"></a>
   <h4 id="wan24_Core_IpSubNet_op_Implicit_System_Net_IPNetwork___wan24_Core_IpSubNet" data-uid="wan24.Core.IpSubNet.op_Implicit(System.Net.IPNetwork@)~wan24.Core.IpSubNet">implicit operator IpSubNet(in IPNetwork)</h4>
@@ -3159,7 +3588,7 @@ public static implicit operator IpSubNet(in IPAddress network)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_Implicit_System_ReadOnlyMemory_System_Byte____wan24_Core_IpSubNet.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_Implicit(System.ReadOnlyMemory%7BSystem.Byte%7D%40)~wan24.Core.IpSubNet%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L141">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L142">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_Implicit_" data-uid="wan24.Core.IpSubNet.op_Implicit*"></a>
   <h4 id="wan24_Core_IpSubNet_op_Implicit_System_ReadOnlyMemory_System_Byte____wan24_Core_IpSubNet" data-uid="wan24.Core.IpSubNet.op_Implicit(System.ReadOnlyMemory{System.Byte}@)~wan24.Core.IpSubNet">implicit operator IpSubNet(in ReadOnlyMemory&lt;byte&gt;)</h4>
@@ -3209,7 +3638,7 @@ public static implicit operator IpSubNet(in ReadOnlyMemory&lt;byte&gt; data)</co
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_Implicit_System_ReadOnlySpan_System_Byte____wan24_Core_IpSubNet.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_Implicit(System.ReadOnlySpan%7BSystem.Byte%7D%40)~wan24.Core.IpSubNet%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L134">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L135">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_Implicit_" data-uid="wan24.Core.IpSubNet.op_Implicit*"></a>
   <h4 id="wan24_Core_IpSubNet_op_Implicit_System_ReadOnlySpan_System_Byte____wan24_Core_IpSubNet" data-uid="wan24.Core.IpSubNet.op_Implicit(System.ReadOnlySpan{System.Byte}@)~wan24.Core.IpSubNet">implicit operator IpSubNet(in ReadOnlySpan&lt;byte&gt;)</h4>
@@ -3259,7 +3688,7 @@ public static implicit operator IpSubNet(in ReadOnlySpan&lt;byte&gt; data)</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_Implicit_System_Span_System_Byte____wan24_Core_IpSubNet.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_Implicit(System.Span%7BSystem.Byte%7D%40)~wan24.Core.IpSubNet%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L120">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L121">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_Implicit_" data-uid="wan24.Core.IpSubNet.op_Implicit*"></a>
   <h4 id="wan24_Core_IpSubNet_op_Implicit_System_Span_System_Byte____wan24_Core_IpSubNet" data-uid="wan24.Core.IpSubNet.op_Implicit(System.Span{System.Byte}@)~wan24.Core.IpSubNet">implicit operator IpSubNet(in Span&lt;byte&gt;)</h4>
@@ -3309,7 +3738,7 @@ public static implicit operator IpSubNet(in Span&lt;byte&gt; data)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_Implicit_wan24_Core_IpSubNet___System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_Implicit(wan24.Core.IpSubNet%40)~System.Byte%5B%5D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L106">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L107">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_Implicit_" data-uid="wan24.Core.IpSubNet.op_Implicit*"></a>
   <h4 id="wan24_Core_IpSubNet_op_Implicit_wan24_Core_IpSubNet___System_Byte__" data-uid="wan24.Core.IpSubNet.op_Implicit(wan24.Core.IpSubNet@)~System.Byte[]">implicit operator byte[](in IpSubNet)</h4>
@@ -3359,7 +3788,7 @@ public static implicit operator byte[](in IpSubNet net)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_Implicit_wan24_Core_IpSubNet___System_Net_IPAddress.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_Implicit(wan24.Core.IpSubNet%40)~System.Net.IPAddress%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L99">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L100">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_Implicit_" data-uid="wan24.Core.IpSubNet.op_Implicit*"></a>
   <h4 id="wan24_Core_IpSubNet_op_Implicit_wan24_Core_IpSubNet___System_Net_IPAddress" data-uid="wan24.Core.IpSubNet.op_Implicit(wan24.Core.IpSubNet@)~System.Net.IPAddress">implicit operator IPAddress(in IpSubNet)</h4>
@@ -3409,7 +3838,7 @@ public static implicit operator IPAddress(in IpSubNet network)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_Implicit_wan24_Core_IpSubNet___System_Net_IPAddress__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_Implicit(wan24.Core.IpSubNet%40)~System.Net.IPAddress%5B%5D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L78">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L79">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_Implicit_" data-uid="wan24.Core.IpSubNet.op_Implicit*"></a>
   <h4 id="wan24_Core_IpSubNet_op_Implicit_wan24_Core_IpSubNet___System_Net_IPAddress__" data-uid="wan24.Core.IpSubNet.op_Implicit(wan24.Core.IpSubNet@)~System.Net.IPAddress[]">implicit operator IPAddress[](in IpSubNet)</h4>
@@ -3459,7 +3888,7 @@ public static implicit operator IPAddress[](in IpSubNet net)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_Implicit_wan24_Core_IpSubNet___System_Net_IPNetwork.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_Implicit(wan24.Core.IpSubNet%40)~System.Net.IPNetwork%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L66">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L67">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_Implicit_" data-uid="wan24.Core.IpSubNet.op_Implicit*"></a>
   <h4 id="wan24_Core_IpSubNet_op_Implicit_wan24_Core_IpSubNet___System_Net_IPNetwork" data-uid="wan24.Core.IpSubNet.op_Implicit(wan24.Core.IpSubNet@)~System.Net.IPNetwork">implicit operator IPNetwork(in IpSubNet)</h4>
@@ -3508,7 +3937,7 @@ public static implicit operator IPAddress[](in IpSubNet net)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_Inequality_System_Net_IPAddress__wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_Inequality(System.Net.IPAddress%40%2Cwan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L177">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L178">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_Inequality_" data-uid="wan24.Core.IpSubNet.op_Inequality*"></a>
   <h4 id="wan24_Core_IpSubNet_op_Inequality_System_Net_IPAddress__wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNet.op_Inequality(System.Net.IPAddress@,wan24.Core.IpSubNet@)">operator !=(in IPAddress, in IpSubNet)</h4>
@@ -3565,7 +3994,7 @@ public static bool operator !=(in IPAddress ip, in IpSubNet net)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_Inequality_wan24_Core_IpSubNet__System_Net_IPAddress__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_Inequality(wan24.Core.IpSubNet%40%2CSystem.Net.IPAddress%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L159">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L160">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_Inequality_" data-uid="wan24.Core.IpSubNet.op_Inequality*"></a>
   <h4 id="wan24_Core_IpSubNet_op_Inequality_wan24_Core_IpSubNet__System_Net_IPAddress__" data-uid="wan24.Core.IpSubNet.op_Inequality(wan24.Core.IpSubNet@,System.Net.IPAddress@)">operator !=(in IpSubNet, in IPAddress)</h4>
@@ -3622,7 +4051,7 @@ public static bool operator !=(in IpSubNet net, in IPAddress ip)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_LeftShift_wan24_Core_IpSubNet__System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_LeftShift(wan24.Core.IpSubNet%40%2CSystem.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L258">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L259">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_LeftShift_" data-uid="wan24.Core.IpSubNet.op_LeftShift*"></a>
   <h4 id="wan24_Core_IpSubNet_op_LeftShift_wan24_Core_IpSubNet__System_Int32__" data-uid="wan24.Core.IpSubNet.op_LeftShift(wan24.Core.IpSubNet@,System.Int32@)">operator &lt;&lt;(in IpSubNet, in int)</h4>
@@ -3679,7 +4108,7 @@ public static IpSubNet operator &lt;&lt;(in IpSubNet net, in int bits)</code></p
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_LessThan_wan24_Core_IpSubNet__wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_LessThan(wan24.Core.IpSubNet%40%2Cwan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L186">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L187">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_LessThan_" data-uid="wan24.Core.IpSubNet.op_LessThan*"></a>
   <h4 id="wan24_Core_IpSubNet_op_LessThan_wan24_Core_IpSubNet__wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNet.op_LessThan(wan24.Core.IpSubNet@,wan24.Core.IpSubNet@)">operator &lt;(in IpSubNet, in IpSubNet)</h4>
@@ -3736,7 +4165,7 @@ public static bool operator &lt;(in IpSubNet a, in IpSubNet b)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_LessThanOrEqual_wan24_Core_IpSubNet__wan24_Core_IpSubNet__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_LessThanOrEqual(wan24.Core.IpSubNet%40%2Cwan24.Core.IpSubNet%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L204">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L205">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_LessThanOrEqual_" data-uid="wan24.Core.IpSubNet.op_LessThanOrEqual*"></a>
   <h4 id="wan24_Core_IpSubNet_op_LessThanOrEqual_wan24_Core_IpSubNet__wan24_Core_IpSubNet__" data-uid="wan24.Core.IpSubNet.op_LessThanOrEqual(wan24.Core.IpSubNet@,wan24.Core.IpSubNet@)">operator &lt;=(in IpSubNet, in IpSubNet)</h4>
@@ -3793,7 +4222,7 @@ public static bool operator &lt;=(in IpSubNet a, in IpSubNet b)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_IpSubNet_op_RightShift_wan24_Core_IpSubNet__System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.IpSubNet.op_RightShift(wan24.Core.IpSubNet%40%2CSystem.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L273">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/IpSubNet.Static.cs/#L274">View Source</a>
   </span>
   <a id="wan24_Core_IpSubNet_op_RightShift_" data-uid="wan24.Core.IpSubNet.op_RightShift*"></a>
   <h4 id="wan24_Core_IpSubNet_op_RightShift_wan24_Core_IpSubNet__System_Int32__" data-uid="wan24.Core.IpSubNet.op_RightShift(wan24.Core.IpSubNet@,System.Int32@)">operator &gt;&gt;(in IpSubNet, in int)</h4>
@@ -3860,6 +4289,18 @@ public static IpSubNet operator &gt;&gt;(in IpSubNet net, in int bits)</code></p
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ISerializeBinary-1.html">ISerializeBinary&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ISerializeBinary.html">ISerializeBinary</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ISerializeString-1.html">ISerializeString&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ISerializeString.html">ISerializeString</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
@@ -3959,10 +4400,43 @@ public static IpSubNet operator &gt;&gt;(in IpSubNet net, in int bits)</code></p
       <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectToAsync_System_Object_System_Type_System_Threading_CancellationToken_">ObjectMappingExtensions.MapObjectToAsync(object, Type, CancellationToken)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetValueReflected_System_Object_System_String_">ReflectionExtensions.GetValueReflected(object, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflected_System_Object_System_String_System_Object___">ReflectionExtensions.InvokeReflected(object, string, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflectedGeneric_System_Object_System_String_System_Type___System_Object___">ReflectionExtensions.InvokeReflectedGeneric(object, string, Type[], params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_SetValueReflected_System_Object_System_String_System_Object_">ReflectionExtensions.SetValueReflected(object, string, object?)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_">StringValueConverter.ConvertObjectToString(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_NamedStringConversion_System_Object_System_String__System_Type__">StringValueConverter.NamedStringConversion(object?, in string, in Type)</a>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_System_String__">StringValueConverter.ConvertObjectToString(object, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertStructInstance_System_Object_">StringValueConverter.ConvertStructInstance(object?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_NamedStringConversion_System_Object_System_String__System_Type_">StringValueConverter.NamedStringConversion(object?, in string, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertStructInstance_System_Object_System_String__">StringValueConverter.TryConvertStructInstance(object?, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryNamedStringConversion_System_Object_System_String__System_Type_System_String__">StringValueConverter.TryNamedStringConversion(object?, in string, Type, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_">StructExtensions.GetMarshalBytes(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_System_Byte____">StructExtensions.GetMarshalBytes(object, in byte[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshaledSize_System_Object_">StructExtensions.GetMarshaledSize(object)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
@@ -4005,6 +4479,18 @@ public static IpSubNet operator &gt;&gt;(in IpSubNet net, in int bits)</code></p
   </div>
   <div>
       <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertToString__1___0_System_String__">StringValueConverter.TryConvertToString&lt;T&gt;(T, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes__1___0_">StructExtensions.GetMarshalBytes&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes__1___0_System_Byte____">StructExtensions.GetMarshalBytes&lt;T&gt;(T, in byte[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshaledSize__1___0_">StructExtensions.GetMarshaledSize&lt;T&gt;(T)</a>
   </div>
 
 </article>

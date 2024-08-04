@@ -106,6 +106,10 @@
   <div class="markdown level0 conceptual"></div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.ISerializeBinary-1.html">ISerializeBinary</a>&lt;<a class="xref" href="wan24.Core.UnixTime.html">UnixTime</a>&gt;</div>
+    <div><a class="xref" href="wan24.Core.ISerializeBinary.html">ISerializeBinary</a></div>
+    <div><a class="xref" href="wan24.Core.ISerializeString-1.html">ISerializeString</a>&lt;<a class="xref" href="wan24.Core.UnixTime.html">UnixTime</a>&gt;</div>
+    <div><a class="xref" href="wan24.Core.ISerializeString.html">ISerializeString</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable">IComparable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">IComparable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">IComparable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a>&gt;</div>
@@ -145,7 +149,7 @@
   <h5 id="wan24_Core_UnixTime_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Serializable]
-public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, IComparable&lt;ulong&gt;, IComparable&lt;DateTime&gt;, IComparable&lt;DateOnly&gt;, IComparable&lt;TimeOnly&gt;, IConvertible, IEquatable&lt;long&gt;, IEquatable&lt;ulong&gt;, IEquatable&lt;DateTime&gt;, IEquatable&lt;DateOnly&gt;, IEquatable&lt;TimeOnly&gt;, IFormattable, ISerializable, IEquatable&lt;UnixTime&gt;</code></pre>
+public readonly record struct UnixTime : ISerializeBinary&lt;UnixTime&gt;, ISerializeBinary, ISerializeString&lt;UnixTime&gt;, ISerializeString, IComparable, IComparable&lt;long&gt;, IComparable&lt;ulong&gt;, IComparable&lt;DateTime&gt;, IComparable&lt;DateOnly&gt;, IComparable&lt;TimeOnly&gt;, IConvertible, IEquatable&lt;long&gt;, IEquatable&lt;ulong&gt;, IEquatable&lt;DateTime&gt;, IEquatable&lt;DateOnly&gt;, IEquatable&lt;TimeOnly&gt;, IFormattable, ISerializable, IEquatable&lt;UnixTime&gt;</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -154,7 +158,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L55">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L58">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime__ctor_" data-uid="wan24.Core.UnixTime.#ctor*"></a>
   <h4 id="wan24_Core_UnixTime__ctor" data-uid="wan24.Core.UnixTime.#ctor">UnixTime()</h4>
@@ -170,7 +174,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime__ctor_System_DateTime__.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.%23ctor(System.DateTime%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L81">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L84">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime__ctor_" data-uid="wan24.Core.UnixTime.#ctor*"></a>
   <h4 id="wan24_Core_UnixTime__ctor_System_DateTime__" data-uid="wan24.Core.UnixTime.#ctor(System.DateTime@)">UnixTime(in DateTime)</h4>
@@ -204,7 +208,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime__ctor_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.%23ctor(System.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L71">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L74">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime__ctor_" data-uid="wan24.Core.UnixTime.#ctor*"></a>
   <h4 id="wan24_Core_UnixTime__ctor_System_Int32__" data-uid="wan24.Core.UnixTime.#ctor(System.Int32@)">UnixTime(in int)</h4>
@@ -238,7 +242,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime__ctor_System_Int64__.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.%23ctor(System.Int64%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L61">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L64">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime__ctor_" data-uid="wan24.Core.UnixTime.#ctor*"></a>
   <h4 id="wan24_Core_UnixTime__ctor_System_Int64__" data-uid="wan24.Core.UnixTime.#ctor(System.Int64@)">UnixTime(in long)</h4>
@@ -272,7 +276,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime__ctor_System_ReadOnlySpan_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.%23ctor(System.ReadOnlySpan%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L93">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L96">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime__ctor_" data-uid="wan24.Core.UnixTime.#ctor*"></a>
   <h4 id="wan24_Core_UnixTime__ctor_System_ReadOnlySpan_System_Byte___" data-uid="wan24.Core.UnixTime.#ctor(System.ReadOnlySpan{System.Byte}@)">UnixTime(in ReadOnlySpan&lt;byte&gt;)</h4>
@@ -308,7 +312,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_EPOCH_SECONDS_OFFSET.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.EPOCH_SECONDS_OFFSET%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L19">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L22">View Source</a>
   </span>
   <h4 id="wan24_Core_UnixTime_EPOCH_SECONDS_OFFSET" data-uid="wan24.Core.UnixTime.EPOCH_SECONDS_OFFSET">EPOCH_SECONDS_OFFSET</h4>
   <div class="markdown level1 summary"><p>Byte offset of the</p>
@@ -338,7 +342,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_EpochSeconds.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.EpochSeconds%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L50">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L53">View Source</a>
   </span>
   <h4 id="wan24_Core_UnixTime_EpochSeconds" data-uid="wan24.Core.UnixTime.EpochSeconds">EpochSeconds</h4>
   <div class="markdown level1 summary"><p>Epoch seconds (seconds since 1970-01-01 UTC)</p>
@@ -368,7 +372,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_MaxValue.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.MaxValue%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L40">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L43">View Source</a>
   </span>
   <h4 id="wan24_Core_UnixTime_MaxValue" data-uid="wan24.Core.UnixTime.MaxValue">MaxValue</h4>
   <div class="markdown level1 summary"><p>Max. value</p>
@@ -398,7 +402,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_MinValue.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.MinValue%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L36">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L39">View Source</a>
   </span>
   <h4 id="wan24_Core_UnixTime_MinValue" data-uid="wan24.Core.UnixTime.MinValue">MinValue</h4>
   <div class="markdown level1 summary"><p>Min. value (equals <a class="xref" href="wan24.Core.UnixTime.html#wan24_Core_UnixTime_UnixEpoch">UnixEpoch</a>)</p>
@@ -428,7 +432,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_ONE_DAY.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.ONE_DAY%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L31">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L34">View Source</a>
   </span>
   <h4 id="wan24_Core_UnixTime_ONE_DAY" data-uid="wan24.Core.UnixTime.ONE_DAY">ONE_DAY</h4>
   <div class="markdown level1 summary"><p>One day in seconds</p>
@@ -458,7 +462,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_ONE_HOUR.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.ONE_HOUR%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L27">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L30">View Source</a>
   </span>
   <h4 id="wan24_Core_UnixTime_ONE_HOUR" data-uid="wan24.Core.UnixTime.ONE_HOUR">ONE_HOUR</h4>
   <div class="markdown level1 summary"><p>One hour in seconds</p>
@@ -488,7 +492,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_ONE_MINUTE.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.ONE_MINUTE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L23">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L26">View Source</a>
   </span>
   <h4 id="wan24_Core_UnixTime_ONE_MINUTE" data-uid="wan24.Core.UnixTime.ONE_MINUTE">ONE_MINUTE</h4>
   <div class="markdown level1 summary"><p>One minute in seconds</p>
@@ -518,7 +522,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_STRUCTURE_SIZE.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.STRUCTURE_SIZE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L15">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L18">View Source</a>
   </span>
   <h4 id="wan24_Core_UnixTime_STRUCTURE_SIZE" data-uid="wan24.Core.UnixTime.STRUCTURE_SIZE">STRUCTURE_SIZE</h4>
   <div class="markdown level1 summary"><p>Structure size in bytes</p>
@@ -548,7 +552,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_UnixEpoch.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.UnixEpoch%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L44">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L47">View Source</a>
   </span>
   <h4 id="wan24_Core_UnixTime_UnixEpoch" data-uid="wan24.Core.UnixTime.UnixEpoch">UnixEpoch</h4>
   <div class="markdown level1 summary"><p>Unix epoch date and time (UTC)</p>
@@ -580,7 +584,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_AsDateOnly.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.AsDateOnly%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L145">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L160">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_AsDateOnly_" data-uid="wan24.Core.UnixTime.AsDateOnly*"></a>
   <h4 id="wan24_Core_UnixTime_AsDateOnly" data-uid="wan24.Core.UnixTime.AsDateOnly">AsDateOnly</h4>
@@ -611,7 +615,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_AsDateTime.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.AsDateTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L135">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L150">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_AsDateTime_" data-uid="wan24.Core.UnixTime.AsDateTime*"></a>
   <h4 id="wan24_Core_UnixTime_AsDateTime" data-uid="wan24.Core.UnixTime.AsDateTime">AsDateTime</h4>
@@ -642,7 +646,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_AsTimeOnly.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.AsTimeOnly%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L155">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L170">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_AsTimeOnly_" data-uid="wan24.Core.UnixTime.AsTimeOnly*"></a>
   <h4 id="wan24_Core_UnixTime_AsTimeOnly" data-uid="wan24.Core.UnixTime.AsTimeOnly">AsTimeOnly</h4>
@@ -673,7 +677,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_AsUtcDateOnly.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.AsUtcDateOnly%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L150">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L165">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_AsUtcDateOnly_" data-uid="wan24.Core.UnixTime.AsUtcDateOnly*"></a>
   <h4 id="wan24_Core_UnixTime_AsUtcDateOnly" data-uid="wan24.Core.UnixTime.AsUtcDateOnly">AsUtcDateOnly</h4>
@@ -704,7 +708,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_AsUtcDateTime.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.AsUtcDateTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L140">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L155">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_AsUtcDateTime_" data-uid="wan24.Core.UnixTime.AsUtcDateTime*"></a>
   <h4 id="wan24_Core_UnixTime_AsUtcDateTime" data-uid="wan24.Core.UnixTime.AsUtcDateTime">AsUtcDateTime</h4>
@@ -735,7 +739,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_AsUtcTimeOnly.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.AsUtcTimeOnly%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L160">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L175">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_AsUtcTimeOnly_" data-uid="wan24.Core.UnixTime.AsUtcTimeOnly*"></a>
   <h4 id="wan24_Core_UnixTime_AsUtcTimeOnly" data-uid="wan24.Core.UnixTime.AsUtcTimeOnly">AsUtcTimeOnly</h4>
@@ -766,7 +770,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_Difference.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.Difference%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L165">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L180">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_Difference_" data-uid="wan24.Core.UnixTime.Difference*"></a>
   <h4 id="wan24_Core_UnixTime_Difference" data-uid="wan24.Core.UnixTime.Difference">Difference</h4>
@@ -797,7 +801,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_IsFuture.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.IsFuture%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L190">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L205">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_IsFuture_" data-uid="wan24.Core.UnixTime.IsFuture*"></a>
   <h4 id="wan24_Core_UnixTime_IsFuture" data-uid="wan24.Core.UnixTime.IsFuture">IsFuture</h4>
@@ -828,7 +832,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_IsNow.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.IsNow%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L175">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L190">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_IsNow_" data-uid="wan24.Core.UnixTime.IsNow*"></a>
   <h4 id="wan24_Core_UnixTime_IsNow" data-uid="wan24.Core.UnixTime.IsNow">IsNow</h4>
@@ -859,7 +863,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_IsPast.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.IsPast%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L170">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L185">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_IsPast_" data-uid="wan24.Core.UnixTime.IsPast*"></a>
   <h4 id="wan24_Core_UnixTime_IsPast" data-uid="wan24.Core.UnixTime.IsPast">IsPast</h4>
@@ -887,10 +891,72 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_MaxStringSize.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.MaxStringSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L139">View Source</a>
+  </span>
+  <a id="wan24_Core_UnixTime_MaxStringSize_" data-uid="wan24.Core.UnixTime.MaxStringSize*"></a>
+  <h4 id="wan24_Core_UnixTime_MaxStringSize" data-uid="wan24.Core.UnixTime.MaxStringSize">MaxStringSize</h4>
+  <div class="markdown level1 summary"><p>Maximum serialized string size (length; or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if not predictable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int? MaxStringSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_MaxStructureSize.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.MaxStructureSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L136">View Source</a>
+  </span>
+  <a id="wan24_Core_UnixTime_MaxStructureSize_" data-uid="wan24.Core.UnixTime.MaxStructureSize*"></a>
+  <h4 id="wan24_Core_UnixTime_MaxStructureSize" data-uid="wan24.Core.UnixTime.MaxStructureSize">MaxStructureSize</h4>
+  <div class="markdown level1 summary"><p>Maximum binary structure size in bytes for all instances (or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if the size is too variable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int? MaxStructureSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_Now.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.Now%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L106">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L109">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_Now_" data-uid="wan24.Core.UnixTime.Now*"></a>
   <h4 id="wan24_Core_UnixTime_Now" data-uid="wan24.Core.UnixTime.Now">Now</h4>
@@ -918,10 +984,72 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_StringSize.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.StringSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L145">View Source</a>
+  </span>
+  <a id="wan24_Core_UnixTime_StringSize_" data-uid="wan24.Core.UnixTime.StringSize*"></a>
+  <h4 id="wan24_Core_UnixTime_StringSize" data-uid="wan24.Core.UnixTime.StringSize">StringSize</h4>
+  <div class="markdown level1 summary"><p>Serialized string size (length; or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if not predictable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? StringSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_StructureSize.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.StructureSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L142">View Source</a>
+  </span>
+  <a id="wan24_Core_UnixTime_StructureSize_" data-uid="wan24.Core.UnixTime.StructureSize*"></a>
+  <h4 id="wan24_Core_UnixTime_StructureSize" data-uid="wan24.Core.UnixTime.StructureSize">StructureSize</h4>
+  <div class="markdown level1 summary"><p>Binary serialized structure size in bytes (or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if the size is variable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? StructureSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_Today.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.Today%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L111">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L114">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_Today_" data-uid="wan24.Core.UnixTime.Today*"></a>
   <h4 id="wan24_Core_UnixTime_Today" data-uid="wan24.Core.UnixTime.Today">Today</h4>
@@ -952,7 +1080,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_UtcToday.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.UtcToday%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L123">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L126">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_UtcToday_" data-uid="wan24.Core.UnixTime.UtcToday*"></a>
   <h4 id="wan24_Core_UnixTime_UtcToday" data-uid="wan24.Core.UnixTime.UtcToday">UtcToday</h4>
@@ -985,7 +1113,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_AddDays_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.AddDays(System.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L218">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L233">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_AddDays_" data-uid="wan24.Core.UnixTime.AddDays*"></a>
   <h4 id="wan24_Core_UnixTime_AddDays_System_Int32__" data-uid="wan24.Core.UnixTime.AddDays(System.Int32@)">AddDays(in int)</h4>
@@ -1035,7 +1163,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_AddHours_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.AddHours(System.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L211">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L226">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_AddHours_" data-uid="wan24.Core.UnixTime.AddHours*"></a>
   <h4 id="wan24_Core_UnixTime_AddHours_System_Int32__" data-uid="wan24.Core.UnixTime.AddHours(System.Int32@)">AddHours(in int)</h4>
@@ -1085,7 +1213,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_AddMinutes_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.AddMinutes(System.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L204">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L219">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_AddMinutes_" data-uid="wan24.Core.UnixTime.AddMinutes*"></a>
   <h4 id="wan24_Core_UnixTime_AddMinutes_System_Int32__" data-uid="wan24.Core.UnixTime.AddMinutes(System.Int32@)">AddMinutes(in int)</h4>
@@ -1135,7 +1263,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_AddMonths_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.AddMonths(System.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L225">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L240">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_AddMonths_" data-uid="wan24.Core.UnixTime.AddMonths*"></a>
   <h4 id="wan24_Core_UnixTime_AddMonths_System_Int32__" data-uid="wan24.Core.UnixTime.AddMonths(System.Int32@)">AddMonths(in int)</h4>
@@ -1185,7 +1313,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_AddSeconds_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.AddSeconds(System.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L197">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L212">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_AddSeconds_" data-uid="wan24.Core.UnixTime.AddSeconds*"></a>
   <h4 id="wan24_Core_UnixTime_AddSeconds_System_Int32__" data-uid="wan24.Core.UnixTime.AddSeconds(System.Int32@)">AddSeconds(in int)</h4>
@@ -1235,7 +1363,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_AddYears_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.AddYears(System.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L232">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L247">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_AddYears_" data-uid="wan24.Core.UnixTime.AddYears*"></a>
   <h4 id="wan24_Core_UnixTime_AddYears_System_Int32__" data-uid="wan24.Core.UnixTime.AddYears(System.Int32@)">AddYears(in int)</h4>
@@ -1604,6 +1732,106 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_DeserializeFrom_System_ReadOnlySpan_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.DeserializeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L263">View Source</a>
+  </span>
+  <a id="wan24_Core_UnixTime_DeserializeFrom_" data-uid="wan24.Core.UnixTime.DeserializeFrom*"></a>
+  <h4 id="wan24_Core_UnixTime_DeserializeFrom_System_ReadOnlySpan_System_Byte___" data-uid="wan24.Core.UnixTime.DeserializeFrom(System.ReadOnlySpan{System.Byte}@)">DeserializeFrom(in ReadOnlySpan&lt;byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static object DeserializeFrom(in ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_DeserializeTypeFrom_System_ReadOnlySpan_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.DeserializeTypeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L292">View Source</a>
+  </span>
+  <a id="wan24_Core_UnixTime_DeserializeTypeFrom_" data-uid="wan24.Core.UnixTime.DeserializeTypeFrom*"></a>
+  <h4 id="wan24_Core_UnixTime_DeserializeTypeFrom_System_ReadOnlySpan_System_Byte___" data-uid="wan24.Core.UnixTime.DeserializeTypeFrom(System.ReadOnlySpan{System.Byte}@)">DeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UnixTime DeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.UnixTime.html">UnixTime</a></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_Equals_System_DateOnly_.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.Equals(System.DateOnly)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -1857,11 +2085,11 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_GetBytes.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.GetBytes%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L238">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L250">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_GetBytes_" data-uid="wan24.Core.UnixTime.GetBytes*"></a>
   <h4 id="wan24_Core_UnixTime_GetBytes" data-uid="wan24.Core.UnixTime.GetBytes">GetBytes()</h4>
-  <div class="markdown level1 summary"><p>Get serialized bytes</p>
+  <div class="markdown level1 summary"><p>Get as serialized data</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1879,7 +2107,7 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
-        <td><p>Seralized data</p>
+        <td><p>Serialized data</p>
 </td>
       </tr>
     </tbody>
@@ -1889,16 +2117,16 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_GetBytes_System_Span_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.GetBytes(System.Span%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L244">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L253">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_GetBytes_" data-uid="wan24.Core.UnixTime.GetBytes*"></a>
   <h4 id="wan24_Core_UnixTime_GetBytes_System_Span_System_Byte___" data-uid="wan24.Core.UnixTime.GetBytes(System.Span{System.Byte}@)">GetBytes(in Span&lt;byte&gt;)</h4>
-  <div class="markdown level1 summary"><p>Get serialized bytes</p>
+  <div class="markdown level1 summary"><p>Get as serialized data</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void GetBytes(in Span&lt;byte&gt; data)</code></pre>
+    <pre><code class="lang-csharp hljs">public int GetBytes(in Span&lt;byte&gt; data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1913,7 +2141,22 @@ public readonly record struct UnixTime : IComparable, IComparable&lt;long&gt;, I
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td><span class="parametername">data</span></td>
-        <td><p>Target buffer (size must fit <a class="xref" href="wan24.Core.UnixTime.html#wan24_Core_UnixTime_STRUCTURE_SIZE">STRUCTURE_SIZE</a>)</p>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>Number of bytes written to the buffer</p>
 </td>
       </tr>
     </tbody>
@@ -2012,7 +2255,7 @@ public void GetObjectData(SerializationInfo info, StreamingContext context)</cod
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_Parse_System_ReadOnlySpan_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.Parse(System.ReadOnlySpan%7BSystem.Char%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L254">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L321">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_Parse_" data-uid="wan24.Core.UnixTime.Parse*"></a>
   <h4 id="wan24_Core_UnixTime_Parse_System_ReadOnlySpan_System_Char___" data-uid="wan24.Core.UnixTime.Parse(System.ReadOnlySpan{System.Char}@)">Parse(in ReadOnlySpan&lt;char&gt;)</h4>
@@ -2036,7 +2279,7 @@ public void GetObjectData(SerializationInfo info, StreamingContext context)</cod
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
         <td><span class="parametername">str</span></td>
-        <td><p>String</p>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
 </td>
       </tr>
     </tbody>
@@ -2052,7 +2295,58 @@ public void GetObjectData(SerializationInfo info, StreamingContext context)</cod
     <tbody>
       <tr>
         <td><a class="xref" href="wan24.Core.UnixTime.html">UnixTime</a></td>
-        <td><p><a class="xref" href="wan24.Core.UnixTime.html">UnixTime</a></p>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_ParseObject_System_ReadOnlySpan_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.ParseObject(System.ReadOnlySpan%7BSystem.Char%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L336">View Source</a>
+  </span>
+  <a id="wan24_Core_UnixTime_ParseObject_" data-uid="wan24.Core.UnixTime.ParseObject*"></a>
+  <h4 id="wan24_Core_UnixTime_ParseObject_System_ReadOnlySpan_System_Char___" data-uid="wan24.Core.UnixTime.ParseObject(System.ReadOnlySpan{System.Char}@)">ParseObject(in ReadOnlySpan&lt;char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Parse from a string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static object ParseObject(in ReadOnlySpan&lt;char&gt; str)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
+        <td><span class="parametername">str</span></td>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><p>Instance</p>
 </td>
       </tr>
     </tbody>
@@ -2612,7 +2906,7 @@ public void GetObjectData(SerializationInfo info, StreamingContext context)</cod
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_ToString.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.ToString%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L247">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L260">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_ToString_" data-uid="wan24.Core.UnixTime.ToString*"></a>
   <h4 id="wan24_Core_UnixTime_ToString" data-uid="wan24.Core.UnixTime.ToString">ToString()</h4>
@@ -2959,10 +3253,122 @@ public void GetObjectData(SerializationInfo info, StreamingContext context)</cod
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_TryDeserializeFrom_System_ReadOnlySpan_System_Byte___System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.TryDeserializeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40%2CSystem.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L266">View Source</a>
+  </span>
+  <a id="wan24_Core_UnixTime_TryDeserializeFrom_" data-uid="wan24.Core.UnixTime.TryDeserializeFrom*"></a>
+  <h4 id="wan24_Core_UnixTime_TryDeserializeFrom_System_ReadOnlySpan_System_Byte___System_Object__" data-uid="wan24.Core.UnixTime.TryDeserializeFrom(System.ReadOnlySpan{System.Byte}@,System.Object@)">TryDeserializeFrom(in ReadOnlySpan&lt;byte&gt;, out object?)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryDeserializeFrom(in ReadOnlySpan&lt;byte&gt; buffer, out object? result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If succeed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_TryDeserializeTypeFrom_System_ReadOnlySpan_System_Byte___wan24_Core_UnixTime__.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.TryDeserializeTypeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40%2Cwan24.Core.UnixTime%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L295">View Source</a>
+  </span>
+  <a id="wan24_Core_UnixTime_TryDeserializeTypeFrom_" data-uid="wan24.Core.UnixTime.TryDeserializeTypeFrom*"></a>
+  <h4 id="wan24_Core_UnixTime_TryDeserializeTypeFrom_System_ReadOnlySpan_System_Byte___wan24_Core_UnixTime__" data-uid="wan24.Core.UnixTime.TryDeserializeTypeFrom(System.ReadOnlySpan{System.Byte}@,wan24.Core.UnixTime@)">TryDeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt;, out UnixTime)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryDeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt; buffer, out UnixTime result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.UnixTime.html">UnixTime</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If succeed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_TryParse_System_ReadOnlySpan_System_Char___wan24_Core_UnixTime__.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.TryParse(System.ReadOnlySpan%7BSystem.Char%7D%40%2Cwan24.Core.UnixTime%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L262">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L324">View Source</a>
   </span>
   <a id="wan24_Core_UnixTime_TryParse_" data-uid="wan24.Core.UnixTime.TryParse*"></a>
   <h4 id="wan24_Core_UnixTime_TryParse_System_ReadOnlySpan_System_Char___wan24_Core_UnixTime__" data-uid="wan24.Core.UnixTime.TryParse(System.ReadOnlySpan{System.Char}@,wan24.Core.UnixTime@)">TryParse(in ReadOnlySpan&lt;char&gt;, out UnixTime)</h4>
@@ -2986,11 +3392,68 @@ public void GetObjectData(SerializationInfo info, StreamingContext context)</cod
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
         <td><span class="parametername">str</span></td>
-        <td><p>String</p>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="wan24.Core.UnixTime.html">UnixTime</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Result</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If succeed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_UnixTime_TryParseObject_System_ReadOnlySpan_System_Char___System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.UnixTime.TryParseObject(System.ReadOnlySpan%7BSystem.Char%7D%40%2CSystem.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/UnixTime.cs/#L343">View Source</a>
+  </span>
+  <a id="wan24_Core_UnixTime_TryParseObject_" data-uid="wan24.Core.UnixTime.TryParseObject*"></a>
+  <h4 id="wan24_Core_UnixTime_TryParseObject_System_ReadOnlySpan_System_Char___System_Object__" data-uid="wan24.Core.UnixTime.TryParseObject(System.ReadOnlySpan{System.Char}@,System.Object@)">TryParseObject(in ReadOnlySpan&lt;char&gt;, out object?)</h4>
+  <div class="markdown level1 summary"><p>Try parsing from a string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static bool TryParseObject(in ReadOnlySpan&lt;char&gt; str, out object? result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
+        <td><span class="parametername">str</span></td>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
         <td><span class="parametername">result</span></td>
         <td><p>Result</p>
 </td>
@@ -5091,6 +5554,18 @@ public void GetObjectData(SerializationInfo info, StreamingContext context)</cod
   </table>
   <h3 id="implements">Implements</h3>
   <div>
+      <a class="xref" href="wan24.Core.ISerializeBinary-1.html">ISerializeBinary&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ISerializeBinary.html">ISerializeBinary</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ISerializeString-1.html">ISerializeString&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ISerializeString.html">ISerializeString</a>
+  </div>
+  <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable">IComparable</a>
   </div>
   <div>
@@ -5161,10 +5636,43 @@ public void GetObjectData(SerializationInfo info, StreamingContext context)</cod
       <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectToAsync_System_Object_System_Type_System_Threading_CancellationToken_">ObjectMappingExtensions.MapObjectToAsync(object, Type, CancellationToken)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetValueReflected_System_Object_System_String_">ReflectionExtensions.GetValueReflected(object, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflected_System_Object_System_String_System_Object___">ReflectionExtensions.InvokeReflected(object, string, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflectedGeneric_System_Object_System_String_System_Type___System_Object___">ReflectionExtensions.InvokeReflectedGeneric(object, string, Type[], params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_SetValueReflected_System_Object_System_String_System_Object_">ReflectionExtensions.SetValueReflected(object, string, object?)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_">StringValueConverter.ConvertObjectToString(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_NamedStringConversion_System_Object_System_String__System_Type__">StringValueConverter.NamedStringConversion(object?, in string, in Type)</a>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_System_String__">StringValueConverter.ConvertObjectToString(object, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertStructInstance_System_Object_">StringValueConverter.ConvertStructInstance(object?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_NamedStringConversion_System_Object_System_String__System_Type_">StringValueConverter.NamedStringConversion(object?, in string, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertStructInstance_System_Object_System_String__">StringValueConverter.TryConvertStructInstance(object?, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryNamedStringConversion_System_Object_System_String__System_Type_System_String__">StringValueConverter.TryNamedStringConversion(object?, in string, Type, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_">StructExtensions.GetMarshalBytes(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_System_Byte____">StructExtensions.GetMarshalBytes(object, in byte[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshaledSize_System_Object_">StructExtensions.GetMarshaledSize(object)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
@@ -5207,6 +5715,18 @@ public void GetObjectData(SerializationInfo info, StreamingContext context)</cod
   </div>
   <div>
       <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertToString__1___0_System_String__">StringValueConverter.TryConvertToString&lt;T&gt;(T, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes__1___0_">StructExtensions.GetMarshalBytes&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes__1___0_System_Byte____">StructExtensions.GetMarshalBytes&lt;T&gt;(T, in byte[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshaledSize__1___0_">StructExtensions.GetMarshaledSize&lt;T&gt;(T)</a>
   </div>
 
 </article>
