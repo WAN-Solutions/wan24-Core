@@ -16,11 +16,11 @@ namespace wan24.Core
         {
             if (
                 obj.GetType().GetMethodsCached(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
-                    .FirstOrDefault(m => m.Name == method && m.GetParameters().Length == param.Length) is not MethodInfo mi
+                    .FirstOrDefault(m => m.Name == method && m.Parameters.Length == param.Length) is not MethodInfoExt mi
                 )
                 throw new InvalidOperationException("Method not found");
-            if (mi.IsGenericMethod) throw new InvalidOperationException($"Can't invoke generic method {mi.DeclaringType}.{mi.Name}`{mi.GetGenericArguments().Length}");
-            return InvokeFast(mi, mi.IsStatic ? null : obj, param);
+            if (mi.Method.IsGenericMethod) throw new InvalidOperationException($"Can't invoke generic method {mi.Method.DeclaringType}.{mi.Name}`{mi.Method.GetGenericArguments().Length}");
+            return InvokeFast(mi, mi.Method.IsStatic ? null : obj, param);
         }
 
         /// <summary>
@@ -35,11 +35,11 @@ namespace wan24.Core
         {
             if (
                 obj.GetType().GetMethodsCached(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
-                    .FirstOrDefault(m => m.Name == method && m.IsGenericMethod && m.GetGenericArguments().Length == genericArgs.Length && m.GetParameters().Length == param.Length)
-                        is not MethodInfo mi
+                    .FirstOrDefault(m => m.Name == method && m.Method.IsGenericMethod && m.Method.GetGenericArguments().Length == genericArgs.Length && m.Parameters.Length == param.Length)
+                        is not MethodInfoExt mi
                 )
                 throw new InvalidOperationException("Method not found");
-            return InvokeFast(mi.MakeGenericMethod(genericArgs), mi.IsStatic ? null : obj, param);
+            return InvokeFast(mi.Method.MakeGenericMethod(genericArgs), mi.Method.IsStatic ? null : obj, param);
         }
 
         /// <summary>
@@ -56,9 +56,10 @@ namespace wan24.Core
                 if (pi.Getter is null) throw new InvalidOperationException($"Property {type}.{pi.Name} has no usable getter");
                 return pi.Getter(pi.Property.GetMethod!.IsStatic ? null : obj);
             }
-            else if(type.GetFieldCached(fieldOrProperty, BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic) is FieldInfo fi)
+            else if(type.GetFieldCached(fieldOrProperty, BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic) is FieldInfoExt fi)
             {
-                return fi.GetValue(obj);
+                if (fi.Getter is null) throw new InvalidOperationException($"Field {type}.{fi.Name} has no usable getter");
+                return fi.Getter(obj);
             }
             throw new InvalidOperationException("Field/property not found");
         }
@@ -77,9 +78,10 @@ namespace wan24.Core
                 if (pi.Setter is null) throw new InvalidOperationException($"Property {type}.{pi.Name} has no usable setter");
                 pi.Setter(pi.Property.SetMethod!.IsStatic ? null : obj, value);
             }
-            else if (type.GetFieldCached(fieldOrProperty, BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic) is FieldInfo fi)
+            else if (type.GetFieldCached(fieldOrProperty, BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic) is FieldInfoExt fi)
             {
-                fi.SetValue(obj, value);
+                if (fi.Setter is null) throw new InvalidOperationException($"Field {type}.{fi.Name} has no usable setter");
+                fi.Setter(obj, value);
             }
             else
             {

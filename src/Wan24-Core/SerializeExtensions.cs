@@ -58,14 +58,14 @@ namespace wan24.Core
             result = null;
             if (!typeof(ISerializeBinary).IsAssignableFrom(type))
                 return false;
-            MethodInfo? mi = type.GetMethodCached(nameof(ISerializeBinary.TryDeserializeFrom), BindingFlags.Public | BindingFlags.Static);
+            MethodInfoExt? mi = type.GetMethodCached(nameof(ISerializeBinary.TryDeserializeFrom), BindingFlags.Public | BindingFlags.Static);
             if (mi is null)
                 return false;
             try
             {
                 if (!TryDeserializeDelegates.TryGetValue(mi.GetHashCode(), out TryDeserialize_Delegate? method))
                 {
-                    method = mi.CreateDelegate<TryDeserialize_Delegate>();
+                    method = mi.Method.CreateDelegate<TryDeserialize_Delegate>();
                     TryDeserializeDelegates.TryAdd(mi.GetHashCode(), method);
                 }
                 return method(buffer, out result);
@@ -135,14 +135,14 @@ namespace wan24.Core
                     return result is not null;
                 return false;
             }
-            MethodInfo? mi = type.GetMethodCached(nameof(ISerializeString.TryParseObject), BindingFlags.Public | BindingFlags.Static);
+            MethodInfoExt? mi = type.GetMethodCached(nameof(ISerializeString.TryParseObject), BindingFlags.Public | BindingFlags.Static);
             if (mi is null)
                 return false;
             try
             {
                 if (!TryParseObjectDelegates.TryGetValue(mi.GetHashCode(), out TryParseObject_Delegate? method))
                 {
-                    method = mi.CreateDelegate<TryParseObject_Delegate>();
+                    method = mi.Method.CreateDelegate<TryParseObject_Delegate>();
                     TryParseObjectDelegates.TryAdd(mi.GetHashCode(), method);
                 }
                 return method(str, out result);
@@ -220,10 +220,10 @@ namespace wan24.Core
             {
                 DeserializeTypeMethod = (typeof(ISerializeBinary<T>).GetMethodCached(nameof(ISerializeBinary<T>.DeserializeTypeFrom))
                     ?? throw new InvalidProgramException($"Failed to get {typeof(ISerializeBinary<T>)}.{nameof(ISerializeBinary<T>.DeserializeTypeFrom)} method"))
-                    .CreateDelegate<DeserializeType_Delegate>();
+                    .Method.CreateDelegate<DeserializeType_Delegate>();
                 TryDeserializeTypeMethod = (typeof(ISerializeBinary<T>).GetMethodCached(nameof(ISerializeBinary<T>.TryDeserializeTypeFrom))
                     ?? throw new InvalidProgramException($"Failed to get {typeof(ISerializeBinary<T>)}.{nameof(ISerializeBinary<T>.TryDeserializeTypeFrom)} method"))
-                    .CreateDelegate<TryDeserializeType_Delegate>();
+                    .Method.CreateDelegate<TryDeserializeType_Delegate>();
             }
 
             /// <summary>
@@ -264,10 +264,10 @@ namespace wan24.Core
             {
                 ParseMethod = (typeof(ISerializeString<T>).GetMethodCached(nameof(ISerializeString<T>.Parse))
                     ?? throw new InvalidProgramException($"Failed to get {typeof(ISerializeString<T>)}.{nameof(ISerializeString<T>.Parse)} method"))
-                    .CreateDelegate<Parse_Delegate>();
+                    .Method.CreateDelegate<Parse_Delegate>();
                 TryParseMethod = (typeof(ISerializeString<T>).GetMethodCached(nameof(ISerializeString<T>.TryParse))
                     ?? throw new InvalidProgramException($"Failed to get {typeof(ISerializeString<T>)}.{nameof(ISerializeString<T>.TryParse)} method"))
-                    .CreateDelegate<TryParse_Delegate>();
+                    .Method.CreateDelegate<TryParse_Delegate>();
             }
 
             /// <summary>

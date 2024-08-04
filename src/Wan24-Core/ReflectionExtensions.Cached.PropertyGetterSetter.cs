@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace wan24.Core
 {
-    // Property getter/setter
+    // Property/field getter/setter
     public static partial class ReflectionExtensions
     {
         /// <summary>
@@ -23,7 +23,7 @@ namespace wan24.Core
                 pi.GetMethod.GetParameters().Length == 0;
 
         /// <summary>
-        /// Determine if a property getter can be created (using <see cref="CreatePropertyGetter(PropertyInfo)"/>)
+        /// Determine if a property getter can be created (using <see cref="CreatePropertySetter(PropertyInfo)"/>)
         /// </summary>
         /// <param name="pi">Property</param>
         /// <returns>If a getter can be created</returns>
@@ -62,15 +62,15 @@ namespace wan24.Core
             EnsureCanCreatePropertyGetter(pi);
             if (pi.GetMethod!.IsStatic) throw new ArgumentException("Non-static property required", nameof(pi));
             ParameterExpression objArg = Expression.Parameter(typeof(object), "obj");
+            MemberExpression getter = Expression.Property(
+                pi.DeclaringType!.IsValueType
+                    ? Expression.Convert(objArg, pi.DeclaringType)
+                    : Expression.TypeAs(objArg, pi.DeclaringType),
+                pi);
             return Expression.Lambda<Func<object?, object?>>(
-                Expression.TypeAs(
-                    Expression.Property(
-                        pi.DeclaringType!.IsValueType
-                            ? Expression.Convert(objArg, pi.DeclaringType)
-                            : Expression.TypeAs(objArg, pi.DeclaringType),
-                        pi),
-                    typeof(object)
-                    ),
+                pi.PropertyType.IsValueType
+                    ? Expression.Convert(getter, typeof(object))
+                    : Expression.TypeAs(getter, typeof(object)),
                 objArg
                 )
                 .Compile();

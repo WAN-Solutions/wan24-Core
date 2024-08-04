@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using System.Xml.XPath;
+﻿using System.Xml.XPath;
 
 namespace wan24.Core
 {
@@ -19,7 +18,7 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="field">Field</param>
         /// <param name="xml">XML documentation comments</param>
-        internal XmlFieldDocComments(in XmlTypeDocComments type, in FieldInfo field, in XPathNavigator? xml)
+        internal XmlFieldDocComments(in XmlTypeDocComments type, in FieldInfoExt field, in XPathNavigator? xml)
         {
             Type = type;
             Field = field;
@@ -35,7 +34,7 @@ namespace wan24.Core
         /// <summary>
         /// Field
         /// </summary>
-        public FieldInfo Field { get; }
+        public FieldInfoExt Field { get; }
 
         /// <summary>
         /// Description

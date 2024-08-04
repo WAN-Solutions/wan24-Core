@@ -13,7 +13,7 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static object InvokeAuto(this ConstructorInfo ci, params object?[] param) => ci.Invoke(ci.GetParametersCached().GetDiObjects(param));
+        public static object InvokeAuto(this ConstructorInfo ci, params object?[] param) => ci.CreateConstructorInvoker()(ci.GetParametersCached().GetDiObjects(param));
 
         /// <summary>
         /// Invoke a constructor and complete parameters with default values
@@ -24,7 +24,7 @@ namespace wan24.Core
         /// <returns>Instance</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static object InvokeAuto(this ConstructorInfo ci, IServiceProvider serviceProvider, params object?[] param)
-             => ci.Invoke(ci.GetParametersCached().GetDiObjects(param, serviceProvider));
+             => ci.CreateConstructorInvoker()(ci.GetParametersCached().GetDiObjects(param, serviceProvider));
 
         /// <summary>
         /// Invoke a constructor and complete parameters with default values
@@ -56,7 +56,7 @@ namespace wan24.Core
         /// <returns>Instance</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static async Task<object> InvokeAutoAsync(this ConstructorInfo ci, IAsyncServiceProvider serviceProvider, params object?[] param)
-            => ci.Invoke(await ci.GetParametersCached().GetDiObjectsAsync(param,serviceProvider).DynamicContext());
+            => ci.Invoke(await ci.GetParametersCached().GetDiObjectsAsync(param, serviceProvider).DynamicContext());
 
         /// <summary>
         /// Invoke a constructor and complete parameters with default values
@@ -109,13 +109,13 @@ namespace wan24.Core
                 : BindingFlags.Public | BindingFlags.Instance;
             object?[] par;
             ParameterInfo[] parameters;
-            foreach (ConstructorInfo ci in type.GetConstructors(flags).OrderByDescending(c => c.GetParametersCached().Length))
+            foreach (ConstructorInfoExt ci in type.GetConstructorsCached(flags).OrderByDescending(c => c.Parameters.Length))
             {
-                parameters = ci.GetParametersCached();
+                parameters = ci.Parameters;
                 par = parameters.GetDiObjects(param, nic: nic, throwOnMissing: false);
                 if (par.Length != parameters.Length) continue;
                 usedConstructor = ci;
-                return ci.Invoke(par);
+                return ci.Invoker is null ? ci.Constructor.Invoke([.. par]) : ci.Invoker(par);
             }
             throw new InvalidOperationException($"{type} can't be instanced (private: {usePrivate}) with the given parameters");
         }
@@ -130,10 +130,10 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
         public static object ConstructAuto(
-            this Type type, 
-            in IServiceProvider serviceProvider, 
-            out ConstructorInfo? usedConstructor, 
-            in bool usePrivate = false, 
+            this Type type,
+            in IServiceProvider serviceProvider,
+            out ConstructorInfo? usedConstructor,
+            in bool usePrivate = false,
             params object?[] param
             )
         {
@@ -143,13 +143,13 @@ namespace wan24.Core
                 : BindingFlags.Public | BindingFlags.Instance;
             object?[] par;
             ParameterInfo[] parameters;
-            foreach (ConstructorInfo ci in type.GetConstructors(flags).OrderByDescending(c => c.GetParametersCached().Length))
+            foreach (ConstructorInfoExt ci in type.GetConstructorsCached(flags).OrderByDescending(c => c.Parameters.Length))
             {
-                parameters = ci.GetParametersCached();
+                parameters = ci.Parameters;
                 par = parameters.GetDiObjects(param, serviceProvider, nic, throwOnMissing: false);
                 if (par.Length != parameters.Length) continue;
                 usedConstructor = ci;
-                return ci.Invoke([.. par]);
+                return ci.Invoker is null ? ci.Constructor.Invoke([.. par]) : ci.Invoker([.. par]);
             }
             throw new InvalidOperationException($"{type} can't be instanced (private: {usePrivate}) with the given parameters");
         }
@@ -164,9 +164,9 @@ namespace wan24.Core
         /// <returns>Instance</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static async Task<object> ConstructInstanceAutoAsync(
-            this Type type, 
-            IAsyncServiceProvider serviceProvider, 
-            bool usePrivate = false, 
+            this Type type,
+            IAsyncServiceProvider serviceProvider,
+            bool usePrivate = false,
             params object?[] param
             )
             => (await ConstructAutoAsync(type, serviceProvider, usePrivate, param)).Object;
@@ -180,9 +180,9 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Instance and the used constructor (or <see langword="null"/>)</returns>
         public static async Task<(object Object, ConstructorInfo Constructor)> ConstructAutoAsync(
-            this Type type, 
-            IAsyncServiceProvider serviceProvider, 
-            bool usePrivate = false, 
+            this Type type,
+            IAsyncServiceProvider serviceProvider,
+            bool usePrivate = false,
             params object?[] param
             )
         {
@@ -192,12 +192,12 @@ namespace wan24.Core
                 : BindingFlags.Public | BindingFlags.Instance;
             object?[] par;
             ParameterInfo[] parameters;
-            foreach (ConstructorInfo ci in type.GetConstructors(flags).OrderByDescending(c => c.GetParametersCached().Length))
+            foreach (ConstructorInfoExt ci in type.GetConstructorsCached(flags).OrderByDescending(c => c.Parameters.Length))
             {
-                parameters = ci.GetParametersCached();
+                parameters = ci.Parameters;
                 par = await parameters.GetDiObjectsAsync(param, serviceProvider, nic, throwOnMissing: false).DynamicContext();
                 if (par.Length != parameters.Length) continue;
-                return (ci.Invoke([.. par]), ci);
+                return ci.Invoker is null ? (ci.Constructor.Invoke([.. par]), ci) : (ci.Invoker([.. par]), ci);
             }
             throw new InvalidOperationException($"{type} can't be instanced (private: {usePrivate}) with the given parameters");
         }

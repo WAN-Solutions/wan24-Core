@@ -72,7 +72,23 @@ namespace wan24.Core
                     sb.Append('.');
                     sb.Append(fi.Name);
                     break;
+                case FieldInfoExt fi:
+                    if (fi.Field.DeclaringType is null) throw new ArgumentException($"No declaring type for field {fi.Name.ToQuotedLiteral()}", nameof(member));
+                    sb.Append('F');
+                    sb.Append(':');
+                    sb.Append(GetGenericName(fi.Field.DeclaringType));
+                    sb.Append('.');
+                    sb.Append(fi.Name);
+                    break;
                 case PropertyInfo pi:
+                    if (pi.DeclaringType is null) throw new ArgumentException($"No declaring type for property {pi.Name.ToQuotedLiteral()}", nameof(member));
+                    sb.Append('P');
+                    sb.Append(':');
+                    sb.Append(GetGenericName(pi.DeclaringType));
+                    sb.Append('.');
+                    sb.Append(pi.Name);
+                    break;
+                case PropertyInfoExt pi:
                     if (pi.DeclaringType is null) throw new ArgumentException($"No declaring type for property {pi.Name.ToQuotedLiteral()}", nameof(member));
                     sb.Append('P');
                     sb.Append(':');
@@ -89,8 +105,17 @@ namespace wan24.Core
                     sb.Append(GetGenericName(mi));
                     parameters = mi.GetParameters();
                     break;
+                case MethodInfoExt mi:
+                    if (mi.Method.DeclaringType is null) throw new ArgumentException($"No declaring type for method {mi.Name.ToQuotedLiteral()}", nameof(member));
+                    sb.Append('M');
+                    sb.Append(':');
+                    sb.Append(GetGenericName(mi.Method.DeclaringType));
+                    sb.Append('.');
+                    sb.Append(GetGenericName(mi));
+                    parameters = mi.Parameters;
+                    break;
                 case ConstructorInfo ci:
-                    if (ci.DeclaringType is null) throw new ArgumentException($"No declaring type for constructor {ci.Name.ToQuotedLiteral()}", nameof(member));
+                    if (ci.DeclaringType is null) throw new ArgumentException("No declaring type for constructor", nameof(member));
                     sb.Append('M');
                     sb.Append(':');
                     sb.Append(GetGenericName(ci.DeclaringType));
@@ -98,8 +123,17 @@ namespace wan24.Core
                     sb.Append("#ctor");
                     parameters = ci.GetParameters();
                     break;
+                case ConstructorInfoExt ci:
+                    if (ci.DeclaringType is null) throw new ArgumentException("No declaring type for constructor", nameof(member));
+                    sb.Append('M');
+                    sb.Append(':');
+                    sb.Append(GetGenericName(ci.DeclaringType));
+                    sb.Append('.');
+                    sb.Append("#ctor");
+                    parameters = ci.Parameters;
+                    break;
             }
-            if(parameters is not null && parameters.Length != 0)
+            if (parameters is not null && parameters.Length != 0)
             {
                 sb.Append('(');
                 List<string> types = new(parameters.Length);
@@ -132,6 +166,10 @@ namespace wan24.Core
                     sb.Append(mi.Name);
                     if (mi.IsGenericMethod) genericParameters = mi.GetGenericArguments();
                     break;
+                case MethodInfoExt mi:
+                    sb.Append(mi.Name);
+                    if (mi.Method.IsGenericMethod) genericParameters = mi.Method.GetGenericArguments();
+                    break;
                 default:
                     throw new ArgumentException("Invalid member type", nameof(member));
             }
@@ -161,15 +199,9 @@ namespace wan24.Core
         /// <returns>Node value</returns>
         public static string? GetNodeValue(in XPathNavigator xml, in string xpath)
         {
-            //Logging.WriteInfo($"XPath {xpath}");
             try
             {
                 XPathNavigator? found = xml.SelectSingleNode(xpath);
-                /*if (found is not null && !found.IsNode)
-                {
-                    Logging.WriteError("XPath matched non-node");
-                    System.Diagnostics.Debugger.Break();//TODO Remove
-                }*/
                 return found?.IsNode ?? false ? found.Value : null;
             }
             catch(Exception ex)

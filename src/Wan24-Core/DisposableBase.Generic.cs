@@ -12,7 +12,7 @@ namespace wan24.Core
         /// <summary>
         /// Disposable fields
         /// </summary>
-        protected static readonly FieldInfo[] DisposableFields;
+        protected static readonly FieldInfoExt[] DisposableFields;
         /// <summary>
         /// Disposable properties
         /// </summary>
@@ -36,32 +36,33 @@ namespace wan24.Core
         static DisposableBase()
         {
             DisposableFields = (from fi in typeof(T).GetFieldsCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-                                where fi.GetCustomAttributeCached<DisposeAttribute>() is not null
+                                where fi.GetCustomAttributeCached<DisposeAttribute>() is not null && 
+                                    fi.Getter is not null
                                 select fi).ToArray();
-            SyncDisposableProperties = (from pi in typeof(T).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).Select(p => p.Property)
+            SyncDisposableProperties = (from pi in typeof(T).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
                                         where pi.GetCustomAttributeCached<DisposeAttribute>() is not null &&
-                                            pi.GetMethod is not null &&
+                                            pi.Getter is not null &&
                                             typeof(IDisposable).IsAssignableFrom(pi.PropertyType) &&
                                             !typeof(IAsyncDisposable).IsAssignableFrom(pi.PropertyType)
-                                        select pi.CreateTypedInstancePropertyGetter<T, IDisposable>()).ToArray();
-            AsyncDisposableProperties = (from pi in typeof(T).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).Select(p => p.Property)
+                                        select pi.Property.CreateTypedInstancePropertyGetter<T, IDisposable>()).ToArray();
+            AsyncDisposableProperties = (from pi in typeof(T).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
                                          where pi.GetCustomAttributeCached<DisposeAttribute>() is not null &&
-                                             pi.GetMethod is not null &&
+                                             pi.Getter is not null &&
                                              typeof(IAsyncDisposable).IsAssignableFrom(pi.PropertyType) &&
                                              !typeof(IDisposable).IsAssignableFrom(pi.PropertyType)
-                                         select pi.CreateTypedInstancePropertyGetter<T, IAsyncDisposable>()).ToArray();
-            HybridDisposableProperties = (from pi in typeof(T).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).Select(p => p.Property)
+                                         select pi.Property.CreateTypedInstancePropertyGetter<T, IAsyncDisposable>()).ToArray();
+            HybridDisposableProperties = (from pi in typeof(T).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
                                           where pi.GetCustomAttributeCached<DisposeAttribute>() is not null &&
-                                              pi.GetMethod is not null &&
+                                              pi.Getter is not null &&
                                               typeof(IAsyncDisposable).IsAssignableFrom(pi.PropertyType) &&
                                               typeof(IDisposable).IsAssignableFrom(pi.PropertyType)
-                                          select pi.CreateTypedInstancePropertyGetter<T, object>()).ToArray();
-            OtherDisposableProperties = (from pi in typeof(T).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).Select(p => p.Property)
+                                          select pi.Property.CreateTypedInstancePropertyGetter<T, object>()).ToArray();
+            OtherDisposableProperties = (from pi in typeof(T).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
                                          where pi.GetCustomAttributeCached<DisposeAttribute>() is not null &&
-                                             pi.GetMethod is not null &&
+                                             pi.Getter is not null &&
                                              !typeof(IAsyncDisposable).IsAssignableFrom(pi.PropertyType) &&
                                              !typeof(IDisposable).IsAssignableFrom(pi.PropertyType)
-                                         select pi.CreateTypedInstancePropertyGetter<T, object>()).ToArray();
+                                         select pi.Property.CreateTypedInstancePropertyGetter<T, object>()).ToArray();
         }
 
         /// <summary>
@@ -73,8 +74,8 @@ namespace wan24.Core
         protected override void DisposeAttributes()
         {
             Queue<IEnumerable> enumerables = new();
-            foreach (FieldInfo fi in DisposableFields)
-                switch (fi.GetValue(this))
+            foreach (FieldInfoExt fi in DisposableFields)
+                switch (fi.Getter!(this))
                 {
                     case IDisposableObject dObj:
                         if (!dObj.IsDisposing) dObj.Dispose();
@@ -151,8 +152,8 @@ namespace wan24.Core
         protected override async Task DisposeAttributesAsync()
         {
             Queue<IEnumerable> enumerables = new();
-            foreach (FieldInfo fi in DisposableFields)
-                switch (fi.GetValue(this))
+            foreach (FieldInfoExt fi in DisposableFields)
+                switch (fi.Getter!(this))
                 {
                     case IDisposableObject dObj:
                         if (!dObj.IsDisposing) await dObj.DisposeAsync().DynamicContext();

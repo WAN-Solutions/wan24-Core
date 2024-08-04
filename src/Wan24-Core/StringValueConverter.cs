@@ -29,7 +29,7 @@ namespace wan24.Core
         /// <summary>
         /// <see cref="Marshal.PtrToStructure{T}(nint)"/> method
         /// </summary>
-        private static readonly MethodInfo MarshalStructureMethod;
+        private static readonly MethodInfoExt MarshalStructureMethod;
         /// <summary>
         /// Display string to value converter
         /// </summary>
@@ -53,7 +53,7 @@ namespace wan24.Core
         static StringValueConverter()
         {
             MarshalStructureMethod = typeof(Marshal).GetMethodsCached(BindingFlags.Public | BindingFlags.Static)
-                .First(m => m.Name == nameof(Marshal.PtrToStructure) && m.GetParameters().Length == 1);
+                .First(m => m.Name == nameof(Marshal.PtrToStructure) && m.Parameters.Length == 1);
             ValueConverter[typeof(string)] = (t, s) => s;
             ValueConverter[typeof(bool)] = (t, s) => s is not null && bool.TryParse(s, out var res) ? res : null;
             ValueConverter[typeof(byte)] = (t, s) => s is not null && byte.TryParse(s, out var res) ? res : null;

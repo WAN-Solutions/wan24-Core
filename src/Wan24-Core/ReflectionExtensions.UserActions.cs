@@ -6,11 +6,11 @@ namespace wan24.Core
     public static partial class ReflectionExtensions
     {
         /// <summary>
-        /// Get exported user action informations
+        /// Get exported user action information
         /// </summary>
         /// <param name="obj">Object</param>
         /// <param name="providerKey">Provider key of the object instance (leave empty to create user action information templates only)</param>
-        /// <returns>User action informations</returns>
+        /// <returns>User action information</returns>
         public static IEnumerable<UserActionInfo> GetUserActionInfos(this IExportUserActions obj, string? providerKey = null)
         {
             providerKey ??= string.Empty;

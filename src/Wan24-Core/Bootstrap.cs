@@ -87,7 +87,7 @@ namespace wan24.Core
             {
                 if (startAssembly is not null) TypeHelper.Instance.ScanAssemblies(startAssembly);
                 // Fixed type and method
-                IEnumerable<MethodInfo> methods = from ass in TypeHelper.Instance.Assemblies
+                IEnumerable<MethodInfoExt> methods = from ass in TypeHelper.Instance.Assemblies
                                                   where ass.GetCustomAttributeCached<BootstrapperAttribute>() is BootstrapperAttribute attr &&
                                                      attr.Type is not null &&
                                                      attr.Method is not null
@@ -104,7 +104,7 @@ namespace wan24.Core
                                                 attr.Method is null &&
                                                 attr.ScanClasses
                                              from mi in ass.GetCustomAttributeCached<BootstrapperAttribute>()!.Type!.GetMethodsCached(BindingFlags.Public | BindingFlags.Static)
-                                             where !mi.IsGenericMethod && mi.GetCustomAttributeCached<BootstrapperAttribute>() is not null
+                                             where !mi.Method.IsGenericMethod && mi.GetCustomAttributeCached<BootstrapperAttribute>() is not null
                                              select mi);
                 // Find types and methods
                 if (FindMethods)
@@ -118,29 +118,29 @@ namespace wan24.Core
                                               !type.IsGenericTypeDefinition &&
                                               type.GetCustomAttributeCached<BootstrapperAttribute>() is not null
                                              from mi in type.GetMethodsCached(BindingFlags.Public | BindingFlags.Static)
-                                             where !mi.IsGenericMethod &&
+                                             where !mi.Method.IsGenericMethod &&
                                               mi.GetCustomAttributeCached<BootstrapperAttribute>() is not null
                                              select mi);
                 // Run the bootstrapper methods
-                foreach (MethodInfo mi in methods.OrderByDescending(mi => mi.DeclaringType!.Assembly.GetCustomAttributeCached<BootstrapperAttribute>()!.Priority)
-                    .ThenByDescending(mi => mi.DeclaringType!.GetCustomAttributeCached<BootstrapperAttribute>()?.Priority ?? 0)
+                foreach (MethodInfoExt mi in methods.OrderByDescending(mi => mi.Method.DeclaringType!.Assembly.GetCustomAttributeCached<BootstrapperAttribute>()!.Priority)
+                    .ThenByDescending(mi => mi.Method.DeclaringType!.GetCustomAttributeCached<BootstrapperAttribute>()?.Priority ?? 0)
                     .ThenByDescending(mi => mi.GetCustomAttributeCached<BootstrapperAttribute>()?.Priority ?? 0)
                     .ThenBy(mi => mi.Name))
                 {
-                    if (Debug) Logging.WriteDebug($"Calling bootstrapper {mi.DeclaringType}.{mi.Name}");
-                    if (mi.DeclaringType is not null)
+                    if (Debug) Logging.WriteDebug($"Calling bootstrapper {mi.Method.DeclaringType}.{mi.Name}");
+                    if (mi.Method.DeclaringType is not null)
                     {
                         using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
-                        BootedAssemblies.Add(mi.DeclaringType.Assembly.GetHashCode());
+                        BootedAssemblies.Add(mi.Method.DeclaringType.Assembly.GetHashCode());
                     }
                     cancellationToken.ThrowIfCancellationRequested();
                     if (mi.ReturnType != typeof(void) && (typeof(Task).IsAssignableFrom(mi.ReturnType) || typeof(ValueTask).IsAssignableFrom(mi.ReturnType)))
                     {
-                        await mi.InvokeAutoAsync(obj: null).DynamicContext();
+                        await mi.Method.InvokeAutoAsync(obj: null).DynamicContext();
                     }
                     else
                     {
-                        mi.InvokeAuto(obj: null);
+                        mi.Method.InvokeAuto(obj: null);
                     }
                 }
                 // Raise the events
@@ -193,10 +193,10 @@ namespace wan24.Core
             if (!DidBoot && !IsBooting) await Async(cancellationToken: cancellationToken).DynamicContext();
             TypeHelper.Instance.ScanAssemblies(assembly);
             // Fixed type and method
-            IEnumerable<MethodInfo> methods = assembly.GetCustomAttributeCached<BootstrapperAttribute>() is BootstrapperAttribute attr &&
+            IEnumerable<MethodInfoExt> methods = assembly.GetCustomAttributeCached<BootstrapperAttribute>() is BootstrapperAttribute attr &&
                 attr.Type is not null &&
                 attr.Method is not null
-                ? new MethodInfo[]
+                ? new MethodInfoExt[]
                 {
                         assembly.GetCustomAttributeCached<BootstrapperAttribute>()!.Type!.GetMethodCached(
                                                       assembly.GetCustomAttributeCached<BootstrapperAttribute>()!.Method!,
@@ -213,7 +213,7 @@ namespace wan24.Core
                                             attr.Method is null &&
                                             attr.ScanClasses
                                          from mi in ass.GetCustomAttributeCached<BootstrapperAttribute>()!.Type!.GetMethodsCached(BindingFlags.Public | BindingFlags.Static)
-                                         where !mi.IsGenericMethod && mi.GetCustomAttributeCached<BootstrapperAttribute>() is not null
+                                         where !mi.Method.IsGenericMethod && mi.GetCustomAttributeCached<BootstrapperAttribute>() is not null
                                          select mi);
             // Find types and methods
             if (findMethods)
@@ -227,24 +227,24 @@ namespace wan24.Core
                                           !type.IsGenericTypeDefinition &&
                                           type.GetCustomAttributeCached<BootstrapperAttribute>() is not null
                                          from mi in type.GetMethodsCached(BindingFlags.Public | BindingFlags.Static)
-                                         where !mi.IsGenericMethod &&
+                                         where !mi.Method.IsGenericMethod &&
                                           mi.GetCustomAttributeCached<BootstrapperAttribute>() is not null
                                          select mi);
             // Run the bootstrapper methods
-            foreach (MethodInfo mi in methods.OrderByDescending(mi => mi.DeclaringType!.Assembly.GetCustomAttributeCached<BootstrapperAttribute>()!.Priority)
-                .ThenByDescending(mi => mi.DeclaringType!.GetCustomAttributeCached<BootstrapperAttribute>()?.Priority ?? 0)
+            foreach (MethodInfoExt mi in methods.OrderByDescending(mi => mi.Method.DeclaringType!.Assembly.GetCustomAttributeCached<BootstrapperAttribute>()!.Priority)
+                .ThenByDescending(mi => mi.Method.DeclaringType!.GetCustomAttributeCached<BootstrapperAttribute>()?.Priority ?? 0)
                 .ThenByDescending(mi => mi.GetCustomAttributeCached<BootstrapperAttribute>()?.Priority ?? 0)
                 .ThenBy(mi => mi.Name))
             {
-                if (Debug) Logging.WriteDebug($"Calling bootstrapper {mi.DeclaringType}.{mi.Name}");
+                if (Debug) Logging.WriteDebug($"Calling bootstrapper {mi.Method.DeclaringType}.{mi.Name}");
                 cancellationToken.ThrowIfCancellationRequested();
                 if (mi.ReturnType != typeof(void) && (typeof(Task).IsAssignableFrom(mi.ReturnType) || typeof(ValueTask).IsAssignableFrom(mi.ReturnType)))
                 {
-                    await mi.InvokeAutoAsync(obj: null, cancellationToken).DynamicContext();
+                    await mi.Method.InvokeAutoAsync(obj: null, cancellationToken).DynamicContext();
                 }
                 else
                 {
-                    mi.InvokeAuto(obj: null);
+                    mi.Method.InvokeAuto(obj: null);
                 }
             }
         }

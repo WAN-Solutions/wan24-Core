@@ -19,7 +19,7 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="property">Property</param>
         /// <param name="xml">XML documentation comments</param>
-        internal XmlPropertyDocComments(in XmlTypeDocComments type, in PropertyInfo property, in XPathNavigator? xml)
+        internal XmlPropertyDocComments(in XmlTypeDocComments type, in PropertyInfoExt property, in XPathNavigator? xml)
         {
             Type = type;
             Property = property;
@@ -35,7 +35,7 @@ namespace wan24.Core
         /// <summary>
         /// Property
         /// </summary>
-        public PropertyInfo Property { get; }
+        public PropertyInfoExt Property { get; }
 
         /// <summary>
         /// Description

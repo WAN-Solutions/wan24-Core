@@ -5,10 +5,6 @@ using System.Reflection;
 using System.Runtime;
 using System.Runtime.CompilerServices;
 
-//TODO Add ConstructorInfoExt
-//TODO Add FieldInfoExt
-//TODO Add CreateConstructorInvoker
-
 namespace wan24.Core
 {
     /// <summary>
@@ -24,6 +20,10 @@ namespace wan24.Core
         /// Method invocation delegate cache (key is the <see cref="MethodInfo"/> hash code)
         /// </summary>
         private static readonly ConcurrentDictionary<int, Func<object?, object?[], object?>> MethodInvokeDelegateCache = new();
+        /// <summary>
+        /// Constructor invocation delegate cache (key is the <see cref="ConstructorInfo"/> hash code)
+        /// </summary>
+        private static readonly ConcurrentDictionary<int, Func<object?[], object>> ConstructorInvokeDelegateCache = new();
 
         /// <summary>
         /// Determine if a type is nullable
@@ -554,13 +554,13 @@ namespace wan24.Core
                 }
             }
             // Methods
-            MethodInfo[] typeMethods = [.. type.GetMethodsCached(bf).Where(m => !m.IsSpecialName)];
+            MethodInfo[] typeMethods = [.. type.GetMethodsCached(bf).Where(m => !m.Method.IsSpecialName)];
             MethodInfo? method;
             Type[] typeArguments,
                 ifArguments;
             bool found;
             len = typeMethods.Length;
-            foreach (MethodInfo mi in interfaceType.GetMethodsCached(bf).Where(m => !m.IsSpecialName))
+            foreach (MethodInfo mi in interfaceType.GetMethodsCached(bf).Where(m => !m.Method.IsSpecialName))
             {
                 for (found = false, i = 0; i < len; i++)
                 {
@@ -630,6 +630,27 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Determine if a method invoker can be created
+        /// </summary>
+        /// <param name="mi">Method</param>
+        /// <returns>If a method invoker can be created</returns>
+        public static bool CanCreateMethodInvoker(this MethodInfo mi)
+            => !mi.IsSpecialName &&
+                (
+                    mi.DeclaringType is null || 
+                    (
+                        !mi.DeclaringType.IsGenericTypeDefinition && 
+                        !mi.DeclaringType.ContainsGenericParameters
+                    )
+                ) && 
+                (
+                    !mi.IsGenericMethod ||
+                    mi.IsConstructedGenericMethod
+                ) &&
+                !mi.GetParametersCached().Any(p => p.ParameterType.IsByRef || p.ParameterType.IsByRefLike || p.IsOut || p.ParameterType.IsPointer);
+
+
+        /// <summary>
         /// Create a delegate for method invocation
         /// </summary>
         /// <param name="mi">Method</param>
@@ -678,10 +699,13 @@ namespace wan24.Core
             else
             {
                 ParameterExpression objArg = Expression.Parameter(typeof(object), "obj");
+                UnaryExpression objArg2 = mi.DeclaringType!.IsValueType
+                    ? Expression.Convert(objArg, mi.DeclaringType)
+                    : Expression.TypeAs(objArg, mi.DeclaringType);
                 if (mi.ReturnType == typeof(void))
                 {
                     Action<object?, object?[]> lambda = Expression.Lambda<Action<object?, object?[]>>(
-                        Expression.Call(objArg, mi, [.. parameters]),
+                        Expression.Call(objArg2, mi, [.. parameters]),
                         objArg,
                         paramsArg
                         ).Compile();
@@ -695,14 +719,230 @@ namespace wan24.Core
                 {
                     res = Expression.Lambda<Func<object?, object?[], object?>>(
                         mi.ReturnType.IsValueType
-                            ? Expression.Convert(Expression.Call(objArg, mi, [.. parameters]), typeof(object))
-                            : Expression.TypeAs(Expression.Call(objArg, mi, [.. parameters]), typeof(object)),
+                            ? Expression.Convert(Expression.Call(objArg2, mi, [.. parameters]), typeof(object))
+                            : Expression.TypeAs(Expression.Call(objArg2, mi, [.. parameters]), typeof(object)),
                         objArg,
                         paramsArg
                         ).Compile();
                 }
             }
             MethodInvokeDelegateCache.TryAdd(hc, res);
+            return res;
+        }
+
+        /// <summary>
+        /// Determine if a constructor invoker can be created
+        /// </summary>
+        /// <param name="ci">Constructor</param>
+        /// <returns>If a constructor invoker can be created</returns>
+        public static bool CanCreateConstructorInvoker(this ConstructorInfo ci)
+            => ci.DeclaringType is not null &&
+                !ci.IsStatic &&
+                ci.DeclaringType.CanConstruct() && 
+                (
+                    !ci.IsGenericMethod ||
+                    (
+                        ci.IsConstructedGenericMethod && 
+                        !ci.ContainsGenericParameters
+                    )
+                ) &&
+                !ci.GetParameters().Any(p => p.ParameterType.IsByRef || p.ParameterType.IsByRefLike || p.IsOut || p.ParameterType.IsPointer);
+
+        /// <summary>
+        /// Create a delegate for type constructor invocation
+        /// </summary>
+        /// <param name="ci">Constructor</param>
+        /// <returns>Invocation delegate (parameter is the constructor parameters (all are required!))</returns>
+        public static Func<object?[], object> CreateConstructorInvoker(this ConstructorInfo ci)
+        {
+            if (ci.DeclaringType is null) throw new ArgumentException("Missing declaring type", nameof(ci));
+            if (ci.IsGenericMethod && !ci.IsConstructedGenericMethod) throw new ArgumentException("Constructed generic constructor required", nameof(ci));
+            int hc = ci.GetHashCode();
+            if (ConstructorInvokeDelegateCache.TryGetValue(hc, out Func<object?[], object>? res)) return res;
+            ParameterExpression paramsArg = Expression.Parameter(typeof(object?[]), "parameters");
+            ParameterInfo[] pis = ci.GetParameters();
+            List<Expression> parameters = new(pis.Length);
+            for (int i = 0; i < pis.Length; i++)
+                parameters.Add(
+                    pis[i].ParameterType.IsValueType
+                        ? Expression.Convert(Expression.ArrayIndex(paramsArg, Expression.Constant(i)), pis[i].ParameterType)
+                        : Expression.TypeAs(Expression.ArrayIndex(paramsArg, Expression.Constant(i)), pis[i].ParameterType)
+                    );
+            res = Expression.Lambda<Func<object?[], object>>(
+                ci.DeclaringType.IsValueType
+                    ? Expression.Convert(Expression.New(ci, [.. parameters]), typeof(object))
+                    : Expression.TypeAs(Expression.New(ci, [.. parameters]), typeof(object)),
+                paramsArg
+                ).Compile();
+            ConstructorInvokeDelegateCache.TryAdd(hc, res);
+            return res;
+        }
+
+        /// <summary>
+        /// Determine if <see cref="BindingFlags"/> do match an object (which may be a field/property/method/constructor/event information)
+        /// </summary>
+        /// <param name="flags">Flags</param>
+        /// <param name="obj">Object</param>
+        /// <param name="type">Type</param>
+        /// <returns>If match</returns>
+        public static bool DoesMatch(this BindingFlags flags, in ICustomAttributeProvider obj, in Type? type = null)
+        {
+            bool wantPublic = (flags & BindingFlags.Public) == BindingFlags.Public,
+                wantsPrivate = (flags & BindingFlags.NonPublic) == BindingFlags.NonPublic,
+                requirePublic = wantPublic && !wantsPrivate,
+                requirePrivate = wantsPrivate && !wantPublic,
+                wantStatic = obj is not Type && (flags & BindingFlags.Static) == BindingFlags.Static,
+                wantInstance = obj is not Type && (flags & BindingFlags.Instance) == BindingFlags.Instance,
+                requireStatic = obj is not Type && wantStatic && !wantInstance,
+                requireInstance = obj is not Type && wantInstance && !wantStatic,
+                isPublic,
+                isStatic,
+                isProtected;
+            Type? declaringType;
+            switch (obj)
+            {
+                case Type o:
+                    isPublic = o.IsPublic || (o.IsDelegate() && o.IsVisible);
+                    isStatic = true;
+                    isProtected = o.IsNestedFamily;
+                    declaringType = o.DeclaringType;
+                    break;
+                case FieldInfo o:
+                    isPublic = o.IsPublic;
+                    isStatic = o.IsStatic;
+                    isProtected = !isPublic && o.IsFamily;
+                    declaringType = o.DeclaringType;
+                    break;
+                case FieldInfoExt o:
+                    isPublic = o.Field.IsPublic;
+                    isStatic = o.Field.IsStatic;
+                    isProtected = !isPublic && o.Field.IsFamily;
+                    declaringType = o.Field.DeclaringType;
+                    break;
+                case PropertyInfo o:
+                    {
+                        MethodInfo? mi = o.GetMethod ?? o.SetMethod;
+                        isPublic = mi?.IsPublic ?? false;
+                        isStatic = mi?.IsStatic ?? false;
+                        isProtected = !isPublic && (mi?.IsFamily ?? false);
+                        declaringType = o.DeclaringType;
+                    }
+                    break;
+                case PropertyInfoExt o:
+                    {
+                        MethodInfo? mi = o.Property.GetMethod ?? o.Property.SetMethod;
+                        isPublic = mi?.IsPublic ?? false;
+                        isStatic = mi?.IsStatic ?? false;
+                        isProtected = !isPublic && (mi?.IsFamily ?? false);
+                        declaringType = o.DeclaringType;
+                    }
+                    break;
+                case MethodInfo o:
+                    isPublic = o.IsPublic;
+                    isStatic = o.IsStatic;
+                    isProtected = !isPublic && o.IsFamily;
+                    declaringType = o.DeclaringType;
+                    break;
+                case MethodInfoExt o:
+                    isPublic = o.Method.IsPublic;
+                    isStatic = o.Method.IsStatic;
+                    isProtected = !isPublic && o.Method.IsFamily;
+                    declaringType = o.Method.DeclaringType;
+                    break;
+                case ConstructorInfo o:
+                    isPublic = o.IsPublic;
+                    isStatic = o.IsStatic;
+                    isProtected = !isPublic && o.IsFamily;
+                    declaringType = o.DeclaringType;
+                    break;
+                case ConstructorInfoExt o:
+                    isPublic = o.Constructor.IsPublic;
+                    isStatic = o.Constructor.IsStatic;
+                    isProtected = !isPublic && o.Constructor.IsFamily;
+                    declaringType = o.DeclaringType;
+                    break;
+                case EventInfo o:
+                    {
+                        MethodInfo? mi = o.AddMethod ?? o.RemoveMethod;
+                        isPublic = mi?.IsPublic ?? false;
+                        isStatic = mi?.IsStatic ?? false;
+                        isProtected = !isPublic && (mi?.IsFamily ?? false);
+                        declaringType = o.DeclaringType;
+                    }
+                    break;
+                default:
+                    return false;
+            }
+            if (requirePublic && !isPublic) return false;
+            if (requirePrivate && isPublic) return false;
+            if (requireStatic && !isStatic) return false;
+            if (requireInstance && isStatic) return false;
+            if (type is not null && type != declaringType)
+            {
+                if ((flags & BindingFlags.DeclaredOnly) == BindingFlags.DeclaredOnly) return false;
+                if ((flags & BindingFlags.FlattenHierarchy) == BindingFlags.FlattenHierarchy && isStatic && !isPublic && !isProtected) return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Get the binding flags of a field/property/method/constructor/event information
+        /// </summary>
+        /// <param name="obj">Object</param>
+        /// <returns>Binding flags</returns>
+        public static BindingFlags GetBindingFlags(this ICustomAttributeProvider obj)
+        {
+            BindingFlags res = BindingFlags.Default;
+            switch (obj)
+            {
+                case FieldInfo o:
+                    res |= o.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
+                    res |= o.IsStatic ? BindingFlags.Static : BindingFlags.Instance;
+                    break;
+                case FieldInfoExt o:
+                    res |= o.Field.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
+                    res |= o.Field.IsStatic ? BindingFlags.Static : BindingFlags.Instance;
+                    break;
+                case PropertyInfo o:
+                    {
+                        MethodInfo? mi = o.GetMethod ?? o.SetMethod;
+                        res |= mi?.IsPublic ?? false ? BindingFlags.Public : BindingFlags.NonPublic;
+                        res |= mi?.IsStatic ?? false ? BindingFlags.Static : BindingFlags.Instance;
+                    }
+                    break;
+                case PropertyInfoExt o:
+                    {
+                        MethodInfo? mi = o.Property.GetMethod ?? o.Property.SetMethod;
+                        res |= mi?.IsPublic ?? false ? BindingFlags.Public : BindingFlags.NonPublic;
+                        res |= mi?.IsStatic ?? false ? BindingFlags.Static : BindingFlags.Instance;
+                    }
+                    break;
+                case MethodInfo o:
+                    res |= o.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
+                    res |= o.IsStatic ? BindingFlags.Static : BindingFlags.Instance;
+                    break;
+                case MethodInfoExt o:
+                    res |= o.Method.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
+                    res |= o.Method.IsStatic ? BindingFlags.Static : BindingFlags.Instance;
+                    break;
+                case ConstructorInfo o:
+                    res |= o.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
+                    res |= o.IsStatic ? BindingFlags.Static : BindingFlags.Instance;
+                    break;
+                case ConstructorInfoExt o:
+                    res |= o.Constructor.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
+                    res |= o.Constructor.IsStatic ? BindingFlags.Static : BindingFlags.Instance;
+                    break;
+                case EventInfo o:
+                    {
+                        MethodInfo? mi = o.AddMethod ?? o.RemoveMethod;
+                        res |= mi?.IsPublic ?? false ? BindingFlags.Public : BindingFlags.NonPublic;
+                        res |= mi?.IsStatic ?? false ? BindingFlags.Static : BindingFlags.Instance;
+                    }
+                    break;
+                default:
+                    throw new ArgumentException("Unsupported object type", nameof(obj));
+            }
             return res;
         }
 

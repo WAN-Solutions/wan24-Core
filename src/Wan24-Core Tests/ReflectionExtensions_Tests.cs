@@ -372,6 +372,70 @@ namespace Wan24_Core_Tests
             Assert.IsTrue(DiffInterfaceType.StaticProperty);
         }
 
+
+        [TestMethod]
+        public void CreateInstanceFieldGetter_Tests()
+        {
+            FieldInfoExt fi = typeof(ReflectionExtensions_Tests).GetFieldCached(nameof(TestField3)) ?? throw new InvalidProgramException();
+            Func<object?, object?> getter = fi.Field.CreateInstanceFieldGetter();
+            TestField3 = true;
+            object? ret = getter(this);
+            Assert.IsNotNull(ret);
+            Assert.AreEqual(true, ret);
+        }
+
+        [TestMethod]
+        public void CreateStaticFieldGetter_Tests()
+        {
+            FieldInfoExt fi = typeof(ReflectionExtensions_Tests).GetFieldCached(nameof(StaticTestField), BindingFlags.Static|BindingFlags.NonPublic) ?? throw new InvalidProgramException();
+            Func<object?> getter = fi.Field.CreateStaticFieldGetter();
+            StaticTestField = true;
+            object? ret = getter();
+            Assert.IsNotNull(ret);
+            Assert.AreEqual(true, ret);
+        }
+
+        [TestMethod]
+        public void CreateStaticFieldGetter2_Tests()
+        {
+            FieldInfoExt fi = typeof(ReflectionExtensions_Tests).GetFieldCached(nameof(StaticTestField), BindingFlags.Static | BindingFlags.NonPublic) ?? throw new InvalidProgramException();
+            Func<object?, object?> getter = fi.Field.CreateStaticFieldGetter2();
+            StaticTestField = true;
+            object? ret = getter(null);
+            Assert.IsNotNull(ret);
+            Assert.AreEqual(true, ret);
+        }
+
+        [TestMethod]
+        public void CreateInstanceFieldSetter_Tests()
+        {
+            FieldInfoExt fi = typeof(ReflectionExtensions_Tests).GetFieldCached(nameof(TestField3)) ?? throw new InvalidProgramException();
+            Action<object?, object?> setter = fi.Field.CreateInstanceFieldSetter();
+            TestField3 = false;
+            setter(this, true);
+            Assert.IsTrue(TestField3);
+        }
+
+        [TestMethod]
+        public void CreateStaticFieldSetter_Tests()
+        {
+            FieldInfoExt fi = typeof(ReflectionExtensions_Tests).GetFieldCached(nameof(StaticTestField), BindingFlags.Static | BindingFlags.NonPublic) ?? throw new InvalidProgramException();
+            Action<object?> setter = fi.Field.CreateStaticFieldSetter();
+            StaticTestField = false;
+            setter(true);
+            Assert.IsTrue(StaticTestField);
+        }
+
+        [TestMethod]
+        public void CreateStaticFieldSetter2_Tests()
+        {
+            FieldInfoExt fi = typeof(ReflectionExtensions_Tests).GetFieldCached(nameof(StaticTestField), BindingFlags.Static | BindingFlags.NonPublic) ?? throw new InvalidProgramException();
+            Action<object?, object?> setter = fi.Field.CreateStaticFieldSetter2();
+            StaticTestField = false;
+            setter(null, true);
+            Assert.IsTrue(StaticTestField);
+        }
+
         [TestMethod]
         public void InvokeReflected_Tests()
         {
@@ -388,13 +452,90 @@ namespace Wan24_Core_Tests
             Assert.AreEqual("test", res);
         }
 
+        [TestMethod]
+        public void DoesMatch_Tests()
+        {
+            MethodInfo mi = typeof(ReflectionExtensions_Tests).GetMethod(nameof(GetBindingFlags_Tests), BindingFlags.Instance | BindingFlags.Public) ?? throw new InvalidProgramException();
+            Assert.IsTrue((BindingFlags.Instance | BindingFlags.Public).DoesMatch(mi));
+            Assert.IsTrue((BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public).DoesMatch(mi));
+
+            mi = typeof(ReflectionExtensions_Tests).GetMethod(nameof(TestMethod), BindingFlags.Static | BindingFlags.Public) ?? throw new InvalidProgramException();
+            Assert.IsTrue((BindingFlags.Static | BindingFlags.Public).DoesMatch(mi));
+            Assert.IsTrue((BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public).DoesMatch(mi));
+
+            FieldInfo fi = typeof(ReflectionExtensions_Tests).GetField(nameof(StaticTestField), BindingFlags.Static | BindingFlags.NonPublic) ?? throw new InvalidProgramException();
+            Assert.IsTrue((BindingFlags.Static | BindingFlags.NonPublic).DoesMatch(fi));
+            Assert.IsTrue((BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic).DoesMatch(fi));
+
+            fi = typeof(ReflectionExtensions_Tests).GetField(nameof(TestField), BindingFlags.Instance | BindingFlags.Public) ?? throw new InvalidProgramException();
+            Assert.IsTrue((BindingFlags.Instance | BindingFlags.Public).DoesMatch(fi));
+            Assert.IsTrue((BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public).DoesMatch(fi));
+
+            PropertyInfo pi = typeof(ReflectionExtensions_Tests).GetProperty(nameof(TestProperty), BindingFlags.Instance | BindingFlags.Public) ?? throw new InvalidProgramException();
+            Assert.IsTrue((BindingFlags.Instance | BindingFlags.Public).DoesMatch(pi));
+            Assert.IsTrue((BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public).DoesMatch(pi));
+
+            pi = typeof(ReflectionExtensions_Tests).GetProperty(nameof(StaticTestProperty), BindingFlags.Static | BindingFlags.NonPublic) ?? throw new InvalidProgramException();
+            Assert.IsTrue((BindingFlags.Static | BindingFlags.NonPublic).DoesMatch(pi));
+            Assert.IsTrue((BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic).DoesMatch(pi));
+        }
+
+        [TestMethod]
+        public void GetBindingFlags_Tests()
+        {
+            MethodInfo mi = typeof(ReflectionExtensions_Tests).GetMethod(nameof(GetBindingFlags_Tests), BindingFlags.Instance | BindingFlags.Public) ?? throw new InvalidProgramException();
+            BindingFlags flags = mi.GetBindingFlags();
+            Assert.AreEqual(BindingFlags.Instance | BindingFlags.Public, flags);
+
+            mi = typeof(ReflectionExtensions_Tests).GetMethod(nameof(TestMethod), BindingFlags.Static | BindingFlags.Public) ?? throw new InvalidProgramException();
+            flags = mi.GetBindingFlags();
+            Assert.AreEqual(BindingFlags.Static | BindingFlags.Public, flags);
+
+            FieldInfo fi = typeof(ReflectionExtensions_Tests).GetField(nameof(StaticTestField), BindingFlags.Static | BindingFlags.NonPublic) ?? throw new InvalidProgramException();
+            flags = fi.GetBindingFlags();
+            Assert.AreEqual(BindingFlags.Static | BindingFlags.NonPublic, flags);
+
+            fi = typeof(ReflectionExtensions_Tests).GetField(nameof(TestField), BindingFlags.Instance | BindingFlags.Public) ?? throw new InvalidProgramException();
+            flags = fi.GetBindingFlags();
+            Assert.AreEqual(BindingFlags.Instance | BindingFlags.Public, flags);
+
+            PropertyInfo pi = typeof(ReflectionExtensions_Tests).GetProperty(nameof(TestProperty), BindingFlags.Instance | BindingFlags.Public) ?? throw new InvalidProgramException();
+            flags = pi.GetBindingFlags();
+            Assert.AreEqual(BindingFlags.Instance | BindingFlags.Public, flags);
+
+            pi = typeof(ReflectionExtensions_Tests).GetProperty(nameof(StaticTestProperty), BindingFlags.Static | BindingFlags.NonPublic) ?? throw new InvalidProgramException();
+            flags = pi.GetBindingFlags();
+            Assert.AreEqual(BindingFlags.Static | BindingFlags.NonPublic, flags);
+        }
+
+        [TestMethod]
+        public void GetDelegates_Tests()
+        {
+            Type[] delegates = typeof(DiffInterfaceType).GetDelegatesCached();
+            Assert.AreEqual(1, delegates.Length);
+        }
+
+        [TestMethod]
+        public void GetDelegate_Tests()
+        {
+            Assert.IsNotNull(typeof(DiffInterfaceType).GetDelegateCached(nameof(DiffInterfaceType.EventDelegate)));
+        }
+
+        private static bool StaticTestField = true;
+
         public int? TestField = null;
 
         public int TestField2 = 0;
 
+        public bool TestField3 = true;
+
+        private static bool StaticTestProperty { get; set; } = true;
+
         public int? TestProperty { get; set; }
 
         public int TestProperty2 { get; set; }
+
+        public bool TestProperty3 { get; set; } = true;
 
         public static bool InvokedMethod(bool param1, bool param2 = true) => param2;
 

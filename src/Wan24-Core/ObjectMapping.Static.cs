@@ -56,10 +56,10 @@ namespace wan24.Core
         public static ObjectMapping Create(in Type sourceType, in Type targetType)
             => (ObjectMapping)((from mi in typeof(ObjectMapping<,>).MakeGenericType(sourceType, targetType).GetMethodsCached(BindingFlags.Static | BindingFlags.Public)
                                 where mi.Name == nameof(Create) &&
-                                    mi.IsGenericMethod
+                                    mi.Method.IsGenericMethod
                                 select mi)
                 .FirstOrDefault()
-                ?.InvokeFast(obj: null, [])
+                ?.Invoker!(null, [])
                     ?? throw new InvalidProgramException("Failed to get create method"));
 
         /// <summary>

@@ -54,7 +54,7 @@ namespace wan24.Core
                     if (typeof(IStringValueConverter).IsAssignableFrom(type))
                     {
                         object?[] param = [str, null];
-                        type.GetMethodCached(nameof(IStringValueConverter.TryParse), BindingFlags.Public | BindingFlags.Static)!.Invoke(obj: null, param);
+                        type.GetMethodCached(nameof(IStringValueConverter.TryParse), BindingFlags.Public | BindingFlags.Static)!.Method.Invoke(obj: null, param);
                         return param[1];
                     }
                     else
@@ -92,7 +92,7 @@ namespace wan24.Core
                     if (typeof(IStringValueConverter).IsAssignableFrom(type))
                     {
                         object?[] param = [str, null];
-                        type.GetMethodCached(nameof(IStringValueConverter.TryParse), BindingFlags.Public | BindingFlags.Static)!.Invoke(obj: null, param);
+                        type.GetMethodCached(nameof(IStringValueConverter.TryParse), BindingFlags.Public | BindingFlags.Static)!.Method.Invoke(obj: null, param);
                         result = param[1];
                         return true;
                     }

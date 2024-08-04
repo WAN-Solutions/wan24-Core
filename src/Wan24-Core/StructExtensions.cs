@@ -24,9 +24,9 @@ namespace wan24.Core
         static StructExtensions()
         {
             MarshalStructureMethod = typeof(Marshal).GetMethodsCached(BindingFlags.Public | BindingFlags.Static)
-                .First(m => m.Name == nameof(Marshal.PtrToStructure) && m.GetParameters().Length == 1);
+                .First(m => m.Name == nameof(Marshal.PtrToStructure) && m.Parameters.Length == 1);
             MarshalStructureSizeMethod = typeof(Marshal).GetMethodsCached(BindingFlags.Public | BindingFlags.Static)
-                .First(m => m.Name == nameof(Marshal.SizeOf) && m.GetParameters().Length == 0);
+                .First(m => m.Name == nameof(Marshal.SizeOf) && m.Parameters.Length == 0);
         }
 
         /// <summary>

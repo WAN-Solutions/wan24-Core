@@ -50,25 +50,26 @@ namespace wan24.Core
                 Constructors = constructors.ToFrozenSet();
                 // Constants
                 HashSet<XmlFieldDocComments> constants = [];
-                foreach (FieldInfo fi in type.GetFieldsCached(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic).Where(f => f.DeclaringType == type && f.IsLiteral))
+                foreach (FieldInfoExt fi in type.GetFieldsCached(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+                    .Where(f => f.Field.DeclaringType == type && f.Field.IsLiteral))
                     constants.Add(new(this, fi, xml));
                 Constants = constants.ToFrozenSet();
                 // Fields
                 HashSet<XmlFieldDocComments> fields = [];
-                foreach (FieldInfo fi in type.GetFieldsCached(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
-                    .Where(f => f.DeclaringType == type && !f.IsLiteral && !f.Name.StartsWith('<') && f.GetCustomAttributeCached<CompilerGeneratedAttribute>() is null))
+                foreach (FieldInfoExt fi in type.GetFieldsCached(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+                    .Where(f => f.Field.DeclaringType == type && !f.Field.IsLiteral && !f.Name.StartsWith('<') && f.GetCustomAttributeCached<CompilerGeneratedAttribute>() is null))
                     fields.Add(new(this, fi, xml));
                 Fields = fields.ToFrozenSet();
                 // Properties
                 HashSet<XmlPropertyDocComments> properties = [];
-                foreach (PropertyInfo pi in type.GetPropertiesCached(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
-                    .Where(p => p.DeclaringType == type).Select(p => p.Property))
+                foreach (PropertyInfoExt pi in type.GetPropertiesCached(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+                    .Where(p => p.DeclaringType == type))
                     properties.Add(new(this, pi, xml));
                 Properties = properties.ToFrozenSet();
                 // Methods
                 HashSet<XmlMethodDocComments> methods = [];
-                foreach (MethodInfo mi in type.GetMethodsCached(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
-                    .Where(m => m.DeclaringType == type && !m.IsSpecialName))
+                foreach (MethodInfoExt mi in type.GetMethodsCached(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+                    .Where(m => m.Method.DeclaringType == type && !m.Method.IsSpecialName))
                     methods.Add(new(this, mi, xml));
                 Methods = methods.ToFrozenSet();
                 // Delegates
