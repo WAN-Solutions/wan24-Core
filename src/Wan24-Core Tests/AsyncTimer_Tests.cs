@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class AsyncTimer_Tests
+    public class AsyncTimer_Tests : TestBase
     {
         [TestMethod]
         public async Task GeneralAsync_Tests()

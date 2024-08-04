@@ -331,10 +331,11 @@ namespace wan24.Core
         protected virtual void DisposeAttributes()
         {
             Queue<IEnumerable> enumerables = new();
-            foreach (FieldInfo fi in from fi in GetType().GetFieldsCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-                                     where fi.GetCustomAttributeCached<DisposeAttribute>() is not null
+            foreach (FieldInfoExt fi in from fi in GetType().GetFieldsCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                                     where fi.GetCustomAttributeCached<DisposeAttribute>() is not null && 
+                                        fi.Getter is not null
                                      select fi)
-                switch (fi.GetValue(this))
+                switch (fi.Getter!(this))
                 {
                     case IDisposableObject dObj:
                         if (!dObj.IsDisposing) dObj.Dispose();
@@ -355,11 +356,11 @@ namespace wan24.Core
                         enumerables.Enqueue(enumerable);
                         break;
                 }
-            foreach (PropertyInfo pi in from pi in GetType().GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            foreach (PropertyInfoExt pi in from pi in GetType().GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
                                         where pi.Property.GetCustomAttributeCached<DisposeAttribute>() is not null &&
-                                            pi.Property.GetMethod is not null
-                                        select pi.Property)
-                switch (pi.GetValueFast(this))
+                                            pi.Getter is not null
+                                        select pi)
+                switch (pi.Getter!(this))
                 {
                     case IDisposableObject dObj:
                         if (!dObj.IsDisposing) dObj.Dispose();
@@ -411,10 +412,11 @@ namespace wan24.Core
         protected virtual async Task DisposeAttributesAsync()
         {
             Queue<IEnumerable> enumerables = new();
-            foreach (FieldInfo fi in from fi in GetType().GetFieldsCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-                                     where fi.GetCustomAttributeCached<DisposeAttribute>() is not null
+            foreach (FieldInfoExt fi in from fi in GetType().GetFieldsCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                                     where fi.GetCustomAttributeCached<DisposeAttribute>() is not null &&
+                                        fi.Getter is not null
                                      select fi)
-                switch (fi.GetValue(this))
+                switch (fi.Getter!(this))
                 {
                     case IDisposableObject dObj:
                         if (!dObj.IsDisposing) await dObj.DisposeAsync().DynamicContext();
@@ -435,11 +437,11 @@ namespace wan24.Core
                         enumerables.Enqueue(enumerable);
                         break;
                 }
-            foreach (PropertyInfo pi in from pi in GetType().GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            foreach (PropertyInfoExt pi in from pi in GetType().GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
                                         where pi.Property.GetCustomAttributeCached<DisposeAttribute>() is not null &&
-                                            pi.Property.GetMethod is not null
-                                        select pi.Property)
-                switch (pi.GetValueFast(this))
+                                            pi.Getter is not null
+                                        select pi)
+                switch (pi.Getter!(this))
                 {
                     case IDisposableObject dObj:
                         if (!dObj.IsDisposing) await dObj.DisposeAsync().DynamicContext();

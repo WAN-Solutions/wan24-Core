@@ -360,7 +360,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Unubscribe from item property change notifications
+        /// Unsubscribe from item property change notifications
         /// </summary>
         /// <param name="value">Value</param>
         private void UnsubscribeFrom(in tValue value)

@@ -1,4 +1,7 @@
-﻿using System.Reflection;
+﻿using System.Buffers.Text;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Serialization;
@@ -8,7 +11,7 @@ namespace wan24.Core
     /// <summary>
     /// (Display) String to value conversion
     /// </summary>
-    public static class StringValueConverter
+    public static partial class StringValueConverter
     {
         /// <summary>
         /// JSON value converter name
@@ -18,7 +21,15 @@ namespace wan24.Core
         /// XML value converter name
         /// </summary>
         public const string XML_CONVERTER_NAME = "XML";
+        /// <summary>
+        /// String value converter name
+        /// </summary>
+        public const string STRING_CONVERTER_NAME = "STRING";
 
+        /// <summary>
+        /// <see cref="Marshal.PtrToStructure{T}(nint)"/> method
+        /// </summary>
+        private static readonly MethodInfoExt MarshalStructureMethod;
         /// <summary>
         /// Display string to value converter
         /// </summary>
@@ -41,6 +52,8 @@ namespace wan24.Core
         /// </summary>
         static StringValueConverter()
         {
+            MarshalStructureMethod = typeof(Marshal).GetMethodsCached(BindingFlags.Public | BindingFlags.Static)
+                .First(m => m.Name == nameof(Marshal.PtrToStructure) && m.Parameters.Length == 1);
             ValueConverter[typeof(string)] = (t, s) => s;
             ValueConverter[typeof(bool)] = (t, s) => s is not null && bool.TryParse(s, out var res) ? res : null;
             ValueConverter[typeof(byte)] = (t, s) => s is not null && byte.TryParse(s, out var res) ? res : null;
@@ -74,15 +87,6 @@ namespace wan24.Core
                 }
             };
             ValueConverter[typeof(Enum)] = (t, s) => s is not null && Enum.TryParse(t, s, out var res) ? res : null;
-            ValueConverter[typeof(IpSubNet)] = (t, s) => s is not null && IpSubNet.TryParse(s, out var res) ? (object)res : null;
-            ValueConverter[typeof(HostEndPoint)] = (t, s) => s is not null && HostEndPoint.TryParse(s, out var res) ? (object)res : null;
-            ValueConverter[typeof(UnixTime)] = (t, s) => s is not null && UnixTime.TryParse(s, out var res) ? (object)res : null;
-            ValueConverter[typeof(Uid)] = (t, s) => s is not null && Uid.TryParse(s, out var res) ? (object)res : null;
-            ValueConverter[typeof(UidExt)] = (t, s) => s is not null && UidExt.TryParse(s, out var res) ? (object)res : null;
-            ValueConverter[typeof(Rgb)] = (t, s) => s is not null && Rgb.TryParse(s, out var res) ? (object)res : null;
-            ValueConverter[typeof(RgbA)] = (t, s) => s is not null && RgbA.TryParse(s, out var res) ? (object)res : null;
-            ValueConverter[typeof(Hsb)] = (t, s) => s is not null && Hsb.TryParse(s, out var res) ? (object)res : null;
-            ValueConverter[typeof(IntRange)] = (t, s) => s is not null && IntRange.TryParse(s, out var res) ? (object)res : null;
             ValueConverter[typeof(Uri)] = (t, s) => s is not null && Uri.TryCreate(s, new(), out var res) ? (object)res : null;
             ValueConverter[typeof(Guid)] = (t, s) => s is not null && Guid.TryParse(s, out var res) ? res : null;
             ValueConverter[typeof(XmlDocument)] = (t, s) =>
@@ -113,10 +117,14 @@ namespace wan24.Core
                 }
                 return res.FirstChild;
             };
-            ValueConverter[typeof(XY)] = (t, s) => s is not null && XY.TryParse(s, out var res) ? (object)res : null;
-            ValueConverter[typeof(XYZ)] = (t, s) => s is not null && XYZ.TryParse(s, out var res) ? (object)res : null;
-            ValueConverter[typeof(XYInt)] = (t, s) => s is not null && XYInt.TryParse(s, out var res) ? (object)res : null;
-            ValueConverter[typeof(XYZInt)] = (t, s) => s is not null && XYZInt.TryParse(s, out var res) ? (object)res : null;
+            ValueConverter[typeof(ISerializeString)] = (t, s) => s is null ? null : t.ParseObject(s);
+            ValueConverter[typeof(ISerializeBinary)] = (t, s) =>
+            {
+                if (s is not string str) return null;
+                ReadOnlySpan<char> chars = str;
+                using RentedArrayRefStruct<byte> buffer = new(len: Encoding.UTF8.GetByteCount(chars), clean: false);
+                return t.DeserializeFrom(buffer.Span[..chars.GetBase64Bytes(buffer.Span)]);
+            };
             StringConverter[typeof(string)] = (t, v) => v as string;
             StringConverter[typeof(bool)] = (t, v) => v?.ToString();
             StringConverter[typeof(byte)] = (t, v) => v?.ToString();
@@ -137,194 +145,42 @@ namespace wan24.Core
             StringConverter[typeof(TimeSpan)] = (t, v) => v?.ToString();
             StringConverter[typeof(Regex)] = (t, v) => v is not Regex rx ? null : $"{(int)rx.Options} {rx}";
             StringConverter[typeof(Enum)] = (t, v) => v?.ToString();
-            StringConverter[typeof(IpSubNet)] = (t, v) => v?.ToString();
-            StringConverter[typeof(HostEndPoint)] = (t, v) => v?.ToString();
-            StringConverter[typeof(UnixTime)] = (t, v) => v?.ToString();
-            StringConverter[typeof(Uid)] = (t, v) => v?.ToString();
-            StringConverter[typeof(UidExt)] = (t, v) => v?.ToString();
-            StringConverter[typeof(Rgb)] = (t, v) => v?.ToString();
-            StringConverter[typeof(RgbA)] = (t, v) => v?.ToString();
-            StringConverter[typeof(Hsb)] = (t, v) => v?.ToString();
-            StringConverter[typeof(IntRange)] = (t, v) => v?.ToString();
             StringConverter[typeof(Uri)] = (t, v) => v?.ToString();
             StringConverter[typeof(Guid)] = (t, v) => v?.ToString();
             StringConverter[typeof(XmlDocument)] = (t, v) => (v as XmlDocument)?.OuterXml;
             StringConverter[typeof(XmlNode)] = (t, v) => (v as XmlNode)?.OuterXml;
-            StringConverter[typeof(XY)] = (t, v) => v?.ToString();
-            StringConverter[typeof(XYZ)] = (t, v) => v?.ToString();
-            StringConverter[typeof(XYInt)] = (t, v) => v?.ToString();
-            StringConverter[typeof(XYZInt)] = (t, v) => v?.ToString();
-            NamedValueConverter[JSON_CONVERTER_NAME] = (t, s) =>
+            StringConverter[typeof(ISerializeString)] = (t, v) => v?.ToString();
+            StringConverter[typeof(ISerializeBinary)] = (t, v) =>
             {
-                if (s is null) return null;
-                try
-                {
-                    return JsonHelper.DecodeObject(t, s);
-                }
-                catch
-                {
-                    return null;
-                }
+                if (v is null) return null;
+                if (v is not ISerializeBinary serializeBinary) throw new InvalidCastException();
+                if (serializeBinary.StructureSize is not int size) return serializeBinary.GetBytes().GetBase64String();
+                using RentedArrayRefStruct<byte> buffer = new(len: Base64.GetMaxEncodedToUtf8Length(size), clean: false);
+                return System.Convert.ToBase64String(buffer.Span[..serializeBinary.GetBytes(buffer.Span)]);
             };
+            NamedValueConverter[JSON_CONVERTER_NAME] = (t, s) => s is null ? null : JsonHelper.DecodeObject(t, s);
             NamedValueConverter[XML_CONVERTER_NAME] = (t, s) =>
             {
                 if (s is null) return null;
                 using MemoryPoolStream ms = new();
-                try
-                {
-                    ms.Write(s.GetBytes());
-                    ms.Position = 0;
-                    XmlSerializer serializer = new(t);
-                    return serializer.Deserialize(ms);
-                }
-                catch
-                {
-                    return null;
-                }
+                ms.Write(s.GetBytes());
+                ms.Position = 0;
+                XmlSerializer serializer = new(t);
+                return serializer.Deserialize(ms);
             };
+            NamedValueConverter[STRING_CONVERTER_NAME] = (t, s) => s is null ? null : ConvertObjectFromString(s, t);
             NamedStringConverter[JSON_CONVERTER_NAME] = (t, v) => JsonHelper.Encode(v);
             NamedStringConverter[XML_CONVERTER_NAME] = (t, v) =>
             {
                 using MemoryPoolStream ms = new();
                 XmlSerializer serializer = new(t);
-                try
-                {
-                    serializer.Serialize(ms, v);
-                    ms.Position = 0;
-                    using RentedArrayRefStruct<byte> buffer = new((int)ms.Length);
-                    ms.ReadExactly(buffer.Span);
-                    return buffer.Span.ToUtf8String();
-                }
-                catch
-                {
-                    return null;
-                }
+                serializer.Serialize(ms, v);
+                ms.Position = 0;
+                using RentedArrayRefStruct<byte> buffer = new((int)ms.Length, clean: false);
+                ms.ReadExactly(buffer.Span);
+                return buffer.Span.ToUtf8String();
             };
-        }
-
-        /// <summary>
-        /// Convert a display string to a value
-        /// </summary>
-        /// <param name="type">Value type (may be abstract)</param>
-        /// <param name="str">String</param>
-        /// <returns>Value</returns>
-        public static object? Convert(Type type, in string? str)
-        {
-            if (type == typeof(string)) return str;
-            if (!ValueConverter.TryGetValue(type, out ValueConverter_Delegate? converter))
-            {
-                converter = ValueConverter.FirstOrDefault(kvp => kvp.Key.IsAssignableFrom(type)).Value;
-                if (converter is null)
-                    if (typeof(IStringValueConverter).IsAssignableFrom(type))
-                    {
-                        object?[] param = [str, null];
-                        type.GetMethodCached(nameof(IStringValueConverter.TryParse), BindingFlags.Public | BindingFlags.Static)!.Invoke(obj: null, param);
-                        return param[1];
-                    }
-                    else
-                    {
-                        throw new ArgumentException("Unknown type", nameof(type));
-                    }
-            }
-            return converter(type, str);
-        }
-
-        /// <summary>
-        /// Convert a value to a display string
-        /// </summary>
-        /// <typeparam name="T">Value type (may be abstract)</typeparam>
-        /// <param name="value">Value</param>
-        /// <returns>String</returns>
-        public static string? Convert<T>(in T? value) => value is IStringValueConverter svc ? svc.DisplayString : Convert(typeof(T), value);
-
-        /// <summary>
-        /// Convert a value to a display string
-        /// </summary>
-        /// <param name="type">Value type (may be abstract)</param>
-        /// <param name="value">Value</param>
-        /// <returns>String</returns>
-        public static string? Convert(Type type, in object? value)
-        {
-            if (value is string str) return str;
-            if (!StringConverter.TryGetValue(type, out StringConverter_Delegate? converter))
-            {
-                converter = StringConverter.FirstOrDefault(kvp => kvp.Key.IsAssignableFrom(type)).Value;
-                if (converter is null)
-                    if (typeof(IStringValueConverter).IsAssignableFrom(type))
-                    {
-                        return (value as IStringValueConverter)?.DisplayString;
-                    }
-                    else
-                    {
-                        throw new ArgumentException("Unknown type", nameof(type));
-                    }
-            }
-            return converter(type, value);
-        }
-
-        /// <summary>
-        /// Convert an object to a string
-        /// </summary>
-        /// <typeparam name="T">Object type (may be abstract)</typeparam>
-        /// <param name="obj">Object</param>
-        /// <returns>String</returns>
-        public static string? ConvertToString<T>(this T obj) => Convert(typeof(T), obj);
-
-        /// <summary>
-        /// Convert an object to a string
-        /// </summary>
-        /// <param name="obj">Object</param>
-        /// <returns>String</returns>
-        public static string? ConvertObjectToString(this object obj) => Convert(obj.GetType(), obj);
-
-        /// <summary>
-        /// Comvert a string to an object
-        /// </summary>
-        /// <typeparam name="T">Object type (may be abstract)</typeparam>
-        /// <param name="str">String</param>
-        /// <returns>Object</returns>
-        public static T? ConvertFromString<T>(this string str) => (T?)Convert(typeof(T), str);
-
-        /// <summary>
-        /// Convert a string to an object
-        /// </summary>
-        /// <param name="str">String</param>
-        /// <param name="type">Object type (may be abstract)</param>
-        /// <returns>Objct</returns>
-        public static object? ConvertObjectFromString(this string str, Type type) => Convert(type, str);
-
-        /// <summary>
-        /// Named string to value converter
-        /// </summary>
-        /// <param name="str">String</param>
-        /// <param name="name">Conversion name</param>
-        /// <param name="type">Object type (may be abstract)</param>
-        /// <returns>Object</returns>
-        public static object? NamedObjectConversion(this string? str, in string name, in Type type)
-        {
-            if (!NamedValueConverter.TryGetValue(name, out ValueConverter_Delegate? converter))
-                throw new ArgumentException("Unknown conversion", nameof(name));
-            object? res = converter.Invoke(type, str);
-            if (res is not null && !type.IsAssignableFrom(res.GetType()))
-            {
-                res.TryDispose();
-                throw new InvalidDataException($"Converted value type {res.GetType()} doesn't match the expected type {type}");
-            }
-            return res;
-        }
-
-        /// <summary>
-        /// Named value to string converter
-        /// </summary>
-        /// <param name="obj">Object</param>
-        /// <param name="name">Conversion name</param>
-        /// <param name="type">Object type (may be abstract)</param>
-        /// <returns>Object</returns>
-        public static string? NamedStringConversion(this object? obj, in string name, in Type type)
-        {
-            if (!NamedStringConverter.TryGetValue(name, out StringConverter_Delegate? converter))
-                throw new ArgumentException("Unknown conversion", nameof(name));
-            return converter.Invoke(type, obj);
+            NamedStringConverter[STRING_CONVERTER_NAME] = (t, v) => v is null ? null : ConvertObjectToString(v);
         }
 
         /// <summary>

@@ -14,7 +14,7 @@
         /// Ensure a folder exists
         /// </summary>
         /// <param name="path">Path</param>
-        /// <param name="permissions">New folder permissons</param>
+        /// <param name="permissions">New folder permissions</param>
         /// <returns>New folder created?</returns>
         public static bool EnsureFolder(in string path, in UnixFileMode? permissions = null)
         {

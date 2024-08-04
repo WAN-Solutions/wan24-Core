@@ -19,11 +19,12 @@ namespace wan24.Core
             {typeof(IPool), typeof(PoolTable) },
             {typeof(IProcessingInfo), typeof(ProcessTable) },
             {typeof(IServiceWorker), typeof(ServiceWorkerTable) },
-            {typeof(ITimer), typeof(TimerTable) }
+            {typeof(ITimer), typeof(TimerTable) },
+            {typeof(IThrottle), typeof(ThrottleTable) }
         };
 
         /// <summary>
-        /// Find instance table provider informations for a value type
+        /// Find instance table provider information for a value type
         /// </summary>
         /// <param name="valueType">Value type</param>
         /// <returns>Instance table information (key is the tables value type, value the instance table provider type)</returns>
@@ -35,7 +36,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="providerType">Instance table provider type</param>
         /// <returns>Instance table field</returns>
-        public static FieldInfo? FindTableProviderField(Type providerType)
+        public static FieldInfoExt? FindTableProviderField(Type providerType)
             => (from field in providerType.GetFieldsCached(BindingFlags.Public | BindingFlags.Static)
                 where field.GetCustomAttributeCached<InstanceTableAttribute>() is not null
                 select field)
@@ -71,7 +72,7 @@ namespace wan24.Core
         /// <returns>Instance</returns>
         public static object? FindInstanceOf(in Type valueType, in string key)
             => FindTableProviderInfo(valueType) is not KeyValuePair<Type, Type> providerTable
-                ? throw new InvalidOperationException($"{valueType} is not a suported value type (instance table provider not found)")
+                ? throw new InvalidOperationException($"{valueType} is not a supported value type (instance table provider not found)")
                 : FindInstance(providerTable.Value, key);
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace wan24.Core
         /// <param name="key">Instance key</param>
         /// <returns>Instance</returns>
         public static object? FindInstance(in Type providerType, in string key)
-            => FindTableProviderField(providerType) is not FieldInfo fi
+            => FindTableProviderField(providerType) is not FieldInfoExt fi
                 ? throw new ArgumentException("Not an instance table provider type (instance table field not found)", nameof(providerType))
                 : FindInstance(fi, key);
 
@@ -100,11 +101,11 @@ namespace wan24.Core
                 : tableField.FieldType.GetBaseTypes().FirstOrDefault(t => IsValidTableType(t))
                     ?? throw new ArgumentException($"Invalid instance table field type {tableField.FieldType}", nameof(tableField)),
                 valueType = fieldType.GetGenericArguments()[1];
-            MethodInfo getValueMethod = typeof(ConcurrentDictionary<,>).MakeGenericType(typeof(string), valueType)
+            MethodInfoExt getValueMethod = typeof(ConcurrentDictionary<,>).MakeGenericType(typeof(string), valueType)
                 .GetMethodCached(nameof(ConcurrentDictionary<string, object>.TryGetValue), BindingFlags.Public | BindingFlags.Instance)
                     ?? throw new InvalidProgramException($"Failed to get the instance table {tableField.Name} get value method");
             object?[] param = [key, null];
-            if (getValueMethod.Invoke(tableField.GetValue(obj: null), param) is null)
+            if (getValueMethod.Invoker!(tableField.GetValueFast(obj: null), param) is null)
                 throw new InvalidProgramException($"{tableField.Name} get value method returned no success flag");
             return param[0];
         }

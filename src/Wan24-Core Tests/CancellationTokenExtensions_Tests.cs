@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class CancellationTokenExtensions_Tests
+    public class CancellationTokenExtensions_Tests : TestBase
     {
         [TestMethod, Timeout(3000)]
         public async Task GetAwaiter_Tests()

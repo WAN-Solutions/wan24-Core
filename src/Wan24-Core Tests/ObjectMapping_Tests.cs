@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class ObjectMapping_Tests
+    public class ObjectMapping_Tests : TestBase
     {
         [TestMethod]
         public void General_Tests()

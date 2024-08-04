@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -46,18 +47,21 @@ namespace wan24.Core
         /// Cast as succeed-flag
         /// </summary>
         /// <param name="instance">Instance</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static implicit operator bool(in TryAsyncResult<T> instance) => instance.Succeed;
 
         /// <summary>
         /// Cast as non-<see langword="null"/> result
         /// </summary>
         /// <param name="instance">Instance</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static implicit operator T(in TryAsyncResult<T> instance) => instance.Result ?? throw new InvalidOperationException();
 
         /// <summary>
         /// Cast failed result
         /// </summary>
         /// <param name="result"><see langword="false"/></param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static implicit operator TryAsyncResult<T>(in bool result)
         {
             if (result) throw new InvalidCastException($"{typeof(TryAsyncResult<T>)} can only be casted from FALSE");
@@ -68,6 +72,7 @@ namespace wan24.Core
         /// Cast from succeed result
         /// </summary>
         /// <param name="result">Result</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static implicit operator TryAsyncResult<T>(in T result) => new(result, succeed: true);
     }
 }

@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace wan24.Core
 {
     /// <summary>
-    /// User action information
+    /// User action informations
     /// </summary>
     /// <remarks>
     /// Constructor
@@ -184,7 +184,7 @@ namespace wan24.Core
             /// Type
             /// </summary>
             [JsonIgnore]
-            public Type? Type => TypeHelper.Instance.GetType(ClrType, throwOnError: true);
+            public Type? Type => TypeHelper.Instance.GetType(ClrType);
 
             /// <summary>
             /// Default value

@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class XY_Z_Int_Tests
+    public class XY_Z_Int_Tests : TestBase
     {
         [TestMethod]
         public void XYInt_Tests()

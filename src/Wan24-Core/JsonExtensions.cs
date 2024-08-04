@@ -35,7 +35,7 @@ namespace wan24.Core
         public static T? DecodeJson<T>(this string json) => JsonHelper.Decode<T>(json);
 
         /// <summary>
-        /// Get a value from a deep JSON ditionary (an object)
+        /// Get a value from a deep JSON dictionary (an object)
         /// </summary>
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="jsonDict">JSON dictionary</param>
@@ -63,7 +63,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Get a value from a deep JSON ditionary (an object)
+        /// Get a value from a deep JSON dictionary (an object)
         /// </summary>
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="jsonDict">JSON dictionary</param>
@@ -95,7 +95,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Determine if a deep JSON ditionary (an object) contains a value
+        /// Determine if a deep JSON dictionary (an object) contains a value
         /// </summary>
         /// <param name="jsonDict">JSON dictionary</param>
         /// <param name="path">Path (dot separated property names)</param>

@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class InMemoryCache_Tests
+    public class InMemoryCache_Tests : TestBase
     {
         [TestMethod]
         public void Sync_Tests()

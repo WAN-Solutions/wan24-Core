@@ -9,6 +9,46 @@ namespace wan24.Core
     public static partial class BytesExtensions
     {
         /// <summary>
+        /// Get the max. base64 encoded string length in characters
+        /// </summary>
+        /// <param name="bytes">Bytes</param>
+        /// <returns>Number of characters</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static int GetBase64StringLength(this byte[] bytes) => Base64.GetMaxEncodedToUtf8Length(bytes.Length);
+
+        /// <summary>
+        /// Get the max. base64 encoded string length in characters
+        /// </summary>
+        /// <param name="bytes">Bytes</param>
+        /// <returns>Number of characters</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static int GetBase64StringLength(this Span<byte> bytes) => Base64.GetMaxEncodedToUtf8Length(bytes.Length);
+
+        /// <summary>
+        /// Get the max. base64 encoded string length in characters
+        /// </summary>
+        /// <param name="bytes">Bytes</param>
+        /// <returns>Number of characters</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static int GetBase64StringLength(this ReadOnlySpan<byte> bytes) => Base64.GetMaxEncodedToUtf8Length(bytes.Length);
+
+        /// <summary>
+        /// Get the max. base64 encoded string length in characters
+        /// </summary>
+        /// <param name="bytes">Bytes</param>
+        /// <returns>Number of characters</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static int GetBase64StringLength(this Memory<byte> bytes) => Base64.GetMaxEncodedToUtf8Length(bytes.Length);
+
+        /// <summary>
+        /// Get the max. base64 encoded string length in characters
+        /// </summary>
+        /// <param name="bytes">Bytes</param>
+        /// <returns>Number of characters</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static int GetBase64StringLength(this ReadOnlyMemory<byte> bytes) => Base64.GetMaxEncodedToUtf8Length(bytes.Length);
+
+        /// <summary>
         /// Get a base64 string
         /// </summary>
         /// <param name="bytes">Bytes</param>

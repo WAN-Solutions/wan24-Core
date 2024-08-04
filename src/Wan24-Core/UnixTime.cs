@@ -1,4 +1,7 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+using System.Runtime;
+using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
@@ -7,7 +10,7 @@ namespace wan24.Core
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
     [Serializable]
-    public readonly partial record struct UnixTime
+    public readonly partial record struct UnixTime : ISerializeBinary<UnixTime>, ISerializeString<UnixTime>
     {
         /// <summary>
         /// Structure size in bytes
@@ -129,6 +132,18 @@ namespace wan24.Core
             }
         }
 
+        /// <inheritdoc/>
+        public static int? MaxStructureSize => STRUCTURE_SIZE;
+
+        /// <inheritdoc/>
+        public static int? MaxStringSize => byte.MaxValue;
+
+        /// <inheritdoc/>
+        public int? StructureSize => STRUCTURE_SIZE;
+
+        /// <inheritdoc/>
+        public int? StringSize => null;
+
         /// <summary>
         /// Get as <see cref="DateTime"/>
         /// </summary>
@@ -231,43 +246,111 @@ namespace wan24.Core
         /// <returns>New <see cref="UnixTime"/></returns>
         public UnixTime AddYears(in int years) => new(AsUtcDateTime.AddYears(years));
 
-        /// <summary>
-        /// Get serialized bytes
-        /// </summary>
-        /// <returns>Seralized data</returns>
+        /// <inheritdoc/>
         public byte[] GetBytes() => EpochSeconds.GetBytes();
 
-        /// <summary>
-        /// Get serialized bytes
-        /// </summary>
-        /// <param name="data">Target buffer (size must fit <see cref="STRUCTURE_SIZE"/>)</param>
-        public void GetBytes(in Span<byte> data) => EpochSeconds.GetBytes(data);
+        /// <inheritdoc/>
+        public int GetBytes(in Span<byte> data)
+        {
+            EpochSeconds.GetBytes(data);
+            return STRUCTURE_SIZE;
+        }
 
         /// <inheritdoc/>
         public override string ToString() => EpochSeconds.ToString();
 
-        /// <summary>
-        /// Parse from a string
-        /// </summary>
-        /// <param name="str">String</param>
-        /// <returns><see cref="UnixTime"/></returns>
+        /// <inheritdoc/>
+        public static object DeserializeFrom(in ReadOnlySpan<byte> buffer) => new UnixTime(buffer);
+
+        /// <inheritdoc/>
+        public static bool TryDeserializeFrom(in ReadOnlySpan<byte> buffer, [NotNullWhen(true)] out object? result)
+        {
+            try
+            {
+                if (buffer.Length < STRUCTURE_SIZE)
+                {
+                    result = null;
+                    return false;
+                }
+                long epochSeconds = buffer.ToLong();
+                if (epochSeconds < 0)
+                {
+                    result = null;
+                    return false;
+                }
+                result = new UnixTime(epochSeconds);
+                return true;
+            }
+            catch
+            {
+                result = null;
+                return false;
+            }
+        }
+
+        /// <inheritdoc/>
+        public static UnixTime DeserializeTypeFrom(in ReadOnlySpan<byte> buffer) => new(buffer);
+
+        /// <inheritdoc/>
+        public static bool TryDeserializeTypeFrom(in ReadOnlySpan<byte> buffer, [NotNullWhen(true)] out UnixTime result)
+        {
+            try
+            {
+                if (buffer.Length < STRUCTURE_SIZE)
+                {
+                    result = default;
+                    return false;
+                }
+                long epochSeconds = buffer.ToLong();
+                if (epochSeconds < 0)
+                {
+                    result = default;
+                    return false;
+                }
+                result = new UnixTime(epochSeconds);
+                return true;
+            }
+            catch
+            {
+                result = default;
+                return false;
+            }
+        }
+
+        /// <inheritdoc/>
         public static UnixTime Parse(in ReadOnlySpan<char> str) => new(long.Parse(str));
 
-        /// <summary>
-        /// Try parsing from a string
-        /// </summary>
-        /// <param name="str">String</param>
-        /// <param name="result">Result</param>
-        /// <returns>If succeed</returns>
+        /// <inheritdoc/>
         public static bool TryParse(in ReadOnlySpan<char> str, out UnixTime result)
         {
-            if(long.TryParse(str, out long epochSeconds) && epochSeconds >= 0)
+            if (long.TryParse(str, out long epochSeconds) && epochSeconds >= 0)
             {
                 result = new(epochSeconds);
                 return true;
             }
             result = MinValue;
             return false;
+        }
+
+        /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static object ParseObject(in ReadOnlySpan<char> str) => Parse(str);
+
+        /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool TryParseObject(in ReadOnlySpan<char> str, [NotNullWhen(returnValue: true)] out object? result)
+        {
+            bool res;
+            result = (res = TryParse(str, out UnixTime uid))
+                ? uid
+                : default(UnixTime?);
+            return res;
         }
     }
 }

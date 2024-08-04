@@ -55,6 +55,7 @@ namespace wan24.Core
                 yield return new(__("Log level"), Settings.LogLevel, __("Default log level"), "Core");
                 yield return new(__("Delayed processes"), DelayTable.Delays.Count, __("Number of delayed processes"), "Core");
                 yield return new(__("Exceptions"), ErrorHandling.ExceptionCount, __("Total number of exceptions"), "Core");
+                yield return new(__("Problems"), Problems.Count, __("Total number of collected problems"));
                 // Services
                 foreach (var kvp in ServiceWorkerTable.ServiceWorkers)
                     if (kvp.Value is IStatusProvider sp)
@@ -155,6 +156,10 @@ namespace wan24.Core
                 // Regular expressions
                 foreach (var kvp in RegularExpressions.NamedExpressions)
                     yield return new(kvp.Key, kvp.Value, __("Named regular expression"), __("Regular expressions"));
+                // Throttles
+                foreach (var kvp in ThrottleTable.Throttles)
+                    foreach (Status status in kvp.Value.State)
+                        yield return new(status.Name, status.State, status.Description, $"Core\\{__("Throttles")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName().CombineStatusGroupNames(status.Group)}");
                 // Other states
                 foreach (KeyValuePair<string, IEnumerable<Status>> kvp in Providers)
                     foreach (Status status in kvp.Value)

@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class Rgba_Tests
+    public class Rgba_Tests : TestBase
     {
         [TestMethod]
         public void General_Tests()

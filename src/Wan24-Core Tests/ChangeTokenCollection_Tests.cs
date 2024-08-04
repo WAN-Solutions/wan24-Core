@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class ChangeTokenCollection_Tests
+    public class ChangeTokenCollection_Tests : TestBase
     {
         [TestMethod]
         public void General_Tests()

@@ -17,7 +17,13 @@ namespace wan24.Core
         /// <param name="objects">Object list</param>
         /// <returns>Is within the object list?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool In(this object obj, params object?[] objects) => objects.Contains(obj);
+        public static bool In(this object obj, params object?[] objects)
+        {
+            int len = objects.Length;
+            if (len == 0) return false;
+            for (int i = 0; i < len; i++) if (objects[i] is not null && obj.Equals(objects[i])) return true;
+            return false;
+        }
 
         /// <summary>
         /// Determine if an object is within an object list

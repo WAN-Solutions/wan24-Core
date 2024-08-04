@@ -62,7 +62,7 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="concurrencyLevel">Cuncurrency level</param>
+        /// <param name="concurrencyLevel">Concurrency level</param>
         /// <param name="capacity">Initial capacity</param>
         public ConcurrentChangeTokenDictionary(in int concurrencyLevel, in int capacity) : base()
         {

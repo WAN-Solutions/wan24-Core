@@ -23,7 +23,7 @@ namespace wan24.Core
         /// <param name="rx">Regular expression for matching a filename</param>
         /// <param name="searchPattern">Search pattern</param>
         /// <param name="recursive">Recursive?</param>
-        /// <param name="extensionComparsion">File extension string comparsion</param>
+        /// <param name="extensionComparison">File extension string comparison</param>
         /// <param name="extensions">File extensions</param>
         /// <returns>Found files</returns>
         public static IEnumerable<string> FindFiles(
@@ -31,14 +31,14 @@ namespace wan24.Core
             Regex? rx = null,
             in string? searchPattern = null,
             in bool recursive = true,
-            StringComparison extensionComparsion = StringComparison.OrdinalIgnoreCase,
+            StringComparison extensionComparison = StringComparison.OrdinalIgnoreCase,
             params string[] extensions
             )
             => rx is null && extensions.Length < 1
                 ? Directory.EnumerateFiles(path, searchPattern ?? "*", recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly)
                 : from file in Directory.EnumerateFiles(path, searchPattern ?? "*", recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly)
                   where (rx?.IsMatch(file) ?? true) &&
-                   (extensions.Length < 1 || extensions.Any(ext => file.EndsWith(ext, extensionComparsion)))
+                   (extensions.Length < 1 || extensions.Any(ext => file.EndsWith(ext, extensionComparison)))
                   select file;
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace wan24.Core
         /// <param name="searchPattern">Search pattern</param>
         /// <param name="stopPath">Parent path to stop at (won't go up more from that path)</param>
         /// <param name="stopIfNotFound">Stop in the folder where no file was found (don't go up more)?</param>
-        /// <param name="extensionComparsion">File extension string comparsion</param>
+        /// <param name="extensionComparison">File extension string comparison</param>
         /// <param name="extensions">File extensions</param>
         /// <returns>Found files</returns>
         public static IEnumerable<string> FindFilesBackward(
@@ -73,7 +73,7 @@ namespace wan24.Core
             string? searchPattern = null,
             string? stopPath = null,
             bool stopIfNotFound = false,
-            StringComparison extensionComparsion = StringComparison.OrdinalIgnoreCase,
+            StringComparison extensionComparison = StringComparison.OrdinalIgnoreCase,
             params string[] extensions
             )
         {
@@ -88,7 +88,7 @@ namespace wan24.Core
                 // Find files in the current path
                 try
                 {
-                    files = FindFiles(currentPath, rx, searchPattern, recursive: false, extensionComparsion, extensions);
+                    files = FindFiles(currentPath, rx, searchPattern, recursive: false, extensionComparison, extensions);
                     filesEnumerator = files.GetEnumerator();
                 }
                 catch (SecurityException)
@@ -151,7 +151,7 @@ namespace wan24.Core
         /// Find folders in a folder backward to the root (or the first unreadable parent folder or I/O error)
         /// </summary>
         /// <param name="path">Folder path</param>
-        /// <param name="rx">Regular expression for matching a foldername</param>
+        /// <param name="rx">Regular expression for matching a folder name</param>
         /// <param name="searchPattern">Search pattern</param>
         /// <param name="stopPath">Parent path to stop at (won't go up more from that path)</param>
         /// <param name="stopIfNotFound">Stop in the folder where no folder was found (don't go up more)?</param>

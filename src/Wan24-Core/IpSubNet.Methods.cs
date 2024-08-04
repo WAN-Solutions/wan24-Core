@@ -103,10 +103,7 @@ namespace wan24.Core
             }
         }
 
-        /// <summary>
-        /// Get bytes
-        /// </summary>
-        /// <returns>Bytes (<see cref="IPV6_STRUCTURE_SIZE"/> or <see cref="IPV4_STRUCTURE_SIZE"/>)</returns>
+        /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -118,14 +115,11 @@ namespace wan24.Core
             return res;
         }
 
-        /// <summary>
-        /// Get bytes
-        /// </summary>
-        /// <param name="buffer">Buffer (<see cref="IPV6_STRUCTURE_SIZE"/> or <see cref="IPV4_STRUCTURE_SIZE"/> required)</param>
+        /// <inheritdoc/>
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public void GetBytes(in Span<byte> buffer)
+        public int GetBytes(in Span<byte> buffer)
         {
             if (buffer.Length < (IsIPv4 ? IPV4_STRUCTURE_SIZE : IPV6_STRUCTURE_SIZE)) throw new OutOfMemoryException();
             buffer[0] = (byte)(IsIPv4 ? 1 : 0);
@@ -133,6 +127,7 @@ namespace wan24.Core
             if (!Network.TryWriteBytes(buffer[2..], out int written, isUnsigned: true, isBigEndian: true)) throw new InvalidProgramException();
             int byteCount = ByteCount;
             if (written != byteCount) buffer.Slice(2 + byteCount, byteCount - written).Clear();
+            return IsIPv4 ? IPV4_STRUCTURE_SIZE : IPV6_STRUCTURE_SIZE;
         }
 
         /// <inheritdoc/>

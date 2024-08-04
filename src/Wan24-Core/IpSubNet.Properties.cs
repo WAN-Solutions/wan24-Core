@@ -10,6 +10,18 @@ namespace wan24.Core
     // Properties
     public readonly partial record struct IpSubNet
     {
+        /// <inheritdoc/>
+        public static int? MaxStructureSize => IPV6_STRUCTURE_SIZE;
+
+        /// <inheritdoc/>
+        public static int? MaxStringSize => byte.MaxValue;
+
+        /// <inheritdoc/>
+        int? ISerializeBinary.StructureSize => StructureSize;
+
+        /// <inheritdoc/>
+        public int? StringSize => null;
+
         /// <summary>
         /// Get an IP address
         /// </summary>

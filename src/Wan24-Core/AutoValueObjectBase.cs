@@ -18,7 +18,8 @@ namespace wan24.Core
         /// </summary>
         internal static readonly ReadOnlyCollection<PropertyInfoExt> ValuePropertyInfos =
             (from pi in typeof(T).GetPropertiesCached(BindingFlags.Public | BindingFlags.Instance)
-             where (pi.Property.GetMethod?.IsPublic ?? false) &&
+             where pi.HasPublicGetter &&
+                pi.Getter is not null &&
                 pi.GetCustomAttributeCached<ExcludeValueAttribute>() is null
              orderby pi.Name
              select pi)
@@ -35,7 +36,7 @@ namespace wan24.Core
             foreach (PropertyInfoExt pi in ValuePropertyInfos)
             {
                 if (IncludePropertyNames) yield return pi.Name;
-                yield return pi.GetValueFast(this);
+                yield return pi.Getter!(this);
             }
         }
     }
