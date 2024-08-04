@@ -20,13 +20,13 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="ci">Constructor</param>
         /// <param name="xml">XML documentation comments</param>
-        internal XmlConstructorDocComments(in XmlTypeDocComments type, in ConstructorInfo ci, in XPathNavigator? xml)
+        internal XmlConstructorDocComments(in XmlTypeDocComments type, in ConstructorInfoExt ci, in XPathNavigator? xml)
         {
             Type = type;
             Constructor = ci;
             // Parameters
             HashSet<XmlParameterDocComments> parameters = [];
-            foreach (ParameterInfo pi in ci.GetParameters())
+            foreach (ParameterInfo pi in ci.Parameters)
                 parameters.Add(new(this, pi, xml));
             Parameters = parameters.ToFrozenSet();
             if (xml is null) return;
@@ -41,7 +41,7 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        public ConstructorInfo Constructor { get; }
+        public ConstructorInfoExt Constructor { get; }
 
         /// <summary>
         /// Description

@@ -9,19 +9,19 @@ namespace wan24.Core
         /// <summary>
         /// <see cref="ApplyMappings{tSource, tTarget}(in tSource, in tTarget)"/> method
         /// </summary>
-        protected static readonly MethodInfo ApplyMethod;
+        protected static readonly MethodInfoExt ApplyMethod;
         /// <summary>
         /// <see cref="ApplyMappingsAsync{tSource, tTarget}(tSource, tTarget, CancellationToken)"/> method
         /// </summary>
-        protected static readonly MethodInfo AsyncApplyMethod;
+        protected static readonly MethodInfoExt AsyncApplyMethod;
         /// <summary>
         /// <see cref="MapAttribute.Map{tSource, tTarget}(string, tSource, tTarget)"/> method
         /// </summary>
-        protected static readonly MethodInfo MapMethod;
+        protected static readonly MethodInfoExt MapMethod;
         /// <summary>
         /// <see cref="MapAttribute.MapAsync{tSource, tTarget}(string, tSource, tTarget, CancellationToken)"/> method
         /// </summary>
-        protected static readonly MethodInfo AsyncMapMethod;
+        protected static readonly MethodInfoExt AsyncMapMethod;
         /// <summary>
         /// Registered object mappings
         /// </summary>

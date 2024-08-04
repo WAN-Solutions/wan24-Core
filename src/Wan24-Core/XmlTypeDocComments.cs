@@ -44,7 +44,7 @@ namespace wan24.Core
             {
                 // Constructors
                 HashSet<XmlConstructorDocComments> constructors = [];
-                foreach (ConstructorInfo ci in type.GetConstructorsCached(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+                foreach (ConstructorInfoExt ci in type.GetConstructorsCached(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
                     .Where(c => c.DeclaringType == type))
                     constructors.Add(new(this, ci, xml));
                 Constructors = constructors.ToFrozenSet();

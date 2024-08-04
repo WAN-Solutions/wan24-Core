@@ -212,11 +212,11 @@ namespace wan24.Core
         /// <param name="parameterTypes">Parameter types (or <see langword="null"/> to skip parameter type checks; a single <see langword="null"/> parameter type would allow any parameter 
         /// type)</param>
         /// <returns>Matching method</returns>
-        public static MethodInfo? GetMethod(
+        public static MethodInfoExt? GetMethod(
             this Type type,
             in string? name = null,
             in BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic,
-            in Func<MethodInfo, bool>? filter = null,
+            in Func<MethodInfoExt, bool>? filter = null,
             in int? genericArgumentCount = null,
             in bool exactTypes = true,
             in Type? returnType = null,
@@ -224,19 +224,19 @@ namespace wan24.Core
             )
         {
             Type[] pt;
-            foreach (MethodInfo mi in type.GetMethodsCached(bindingFlags))
+            foreach (MethodInfoExt mi in type.GetMethodsCached(bindingFlags))
             {
                 // Check method name, return type and generic argument count
                 if (
                     (name is not null && mi.Name != name) ||
                     (returnType is not null && !MatchReturnType(mi, returnType, exactTypes)) ||
-                    (genericArgumentCount is not null && (genericArgumentCount.Value != 0 != mi.IsGenericMethodDefinition || mi.GetGenericArguments().Length != genericArgumentCount.Value))
+                    (genericArgumentCount is not null && (genericArgumentCount.Value != 0 != mi.Method.IsGenericMethodDefinition || mi.Method.GetGenericArguments().Length != genericArgumentCount.Value))
                     )
                     continue;
                 // Check parameters
                 if (parameterTypes is not null)
                 {
-                    pt = mi.GetParametersCached().Select(p => p.ParameterType).ToArray();
+                    pt = mi.Parameters.Select(p => p.ParameterType).ToArray();
                     if (pt.Length != parameterTypes.Length) continue;
                     bool isMatch = true;
                     for (int i = 0; i < parameterTypes.Length; i++)
@@ -264,21 +264,21 @@ namespace wan24.Core
         /// <param name="parameterTypes">Parameter types (or <see langword="null"/> to skip parameter type checks; a single <see langword="null"/> parameter type would allow any parameter 
         /// type)</param>
         /// <returns>Matching constructor</returns>
-        public static ConstructorInfo? GetConstructor(
+        public static ConstructorInfoExt? GetConstructor(
             this Type type,
             in BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic,
-            in Func<ConstructorInfo, bool>? filter = null,
+            in Func<ConstructorInfoExt, bool>? filter = null,
             in bool exactTypes = true,
             params Type?[]? parameterTypes
             )
         {
             Type[] pt;
-            foreach (ConstructorInfo ci in type.GetConstructorsCached(bindingFlags))
+            foreach (ConstructorInfoExt ci in type.GetConstructorsCached(bindingFlags))
             {
                 // Check parameters
                 if (parameterTypes is not null)
                 {
-                    pt = ci.GetParametersCached().Select(p => p.ParameterType).ToArray();
+                    pt = ci.Constructor.GetParametersCached().Select(p => p.ParameterType).ToArray();
                     if (pt.Length != parameterTypes.Length) continue;
                     bool isMatch = true;
                     for (int i = 0; i < parameterTypes.Length; i++)

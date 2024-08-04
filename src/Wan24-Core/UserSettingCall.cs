@@ -58,7 +58,7 @@ namespace wan24.Core
             // Find the object instance and the object type (for static properties only), then get the user setting property
             object? instance = null;
             Type? providerType = Provider ?? throw new InvalidDataException("Failed to get the instance provider type");
-            FieldInfo fi = providerType.GetFieldCached(ProviderField, BindingFlags.Public | BindingFlags.Static)
+            FieldInfoExt fi = providerType.GetFieldCached(ProviderField, BindingFlags.Public | BindingFlags.Static)
                 ?? throw new InvalidDataException($"Failed to find instance table field in {providerType}");
             if (fi.GetCustomAttributeCached<InstanceTableAttribute>() is null)
                 throw new InvalidDataException($"{providerType}.{fi.Name} is missing the {typeof(InstanceTableAttribute)}");

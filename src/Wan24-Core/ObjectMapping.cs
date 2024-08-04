@@ -50,7 +50,7 @@ namespace wan24.Core
             {
                 if (attr.CanMap)
                 {
-                    ObjectMapper_Delegate mapper = (source, target) => MapMethod.MakeGenericMethod(source.GetType(), target.GetType()).InvokeFast(attr, [source, target]);
+                    ObjectMapper_Delegate mapper = (source, target) => MapMethod.Method.MakeGenericMethod(source.GetType(), target.GetType()).InvokeFast(attr, [source, target]);
                     if (!Mappings.TryAdd(sourcePropertyName, mapper))
                         throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
                     return this;
@@ -59,7 +59,7 @@ namespace wan24.Core
                 {
                     AsyncObjectMapper_Delegate mapper =
                         async (source, target, ct)
-                            => await ((Task)AsyncMapMethod.MakeGenericMethod(source.GetType(), target.GetType()).InvokeFast(attr, [source, target, ct])!).DynamicContext();
+                            => await ((Task)AsyncMapMethod.Method.MakeGenericMethod(source.GetType(), target.GetType()).InvokeFast(attr, [source, target, ct])!).DynamicContext();
                     if (!Mappings.TryAdd(sourcePropertyName, mapper))
                         throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
                     return this;
@@ -127,14 +127,14 @@ namespace wan24.Core
                 {
                     AsyncObjectMapper_Delegate mapper =
                         async (source, target, ct)
-                            => await ((Task)AsyncMapMethod.MakeGenericMethod(source.GetType(), target.GetType()).InvokeFast(attr, [source, target, ct])!).DynamicContext();
+                            => await ((Task)AsyncMapMethod.Method.MakeGenericMethod(source.GetType(), target.GetType()).InvokeFast(attr, [source, target, ct])!).DynamicContext();
                     if (!Mappings.TryAdd(sourcePropertyName, mapper))
                         throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
                     return this;
                 }
                 if (attr.CanMap)
                 {
-                    ObjectMapper_Delegate mapper = (source, target) => MapMethod.MakeGenericMethod(source.GetType(), target.GetType()).InvokeFast(attr, [source, target]);
+                    ObjectMapper_Delegate mapper = (source, target) => MapMethod.Method.MakeGenericMethod(source.GetType(), target.GetType()).InvokeFast(attr, [source, target]);
                     if (!Mappings.TryAdd(sourcePropertyName, mapper))
                         throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
                     return this;
@@ -321,7 +321,7 @@ namespace wan24.Core
         {
             if (!SourceType.IsAssignableFrom(source.GetType())) throw new ArgumentException("Incompatible type", nameof(source));
             if (!TargetType.IsAssignableFrom(target.GetType())) throw new ArgumentException("Incompatible type", nameof(target));
-            ApplyMethod.MakeGenericMethod(SourceType, TargetType).InvokeFast(this, [source, target]);
+            ApplyMethod.Method.MakeGenericMethod(SourceType, TargetType).InvokeFast(this, [source, target]);
             return this;
         }
 
@@ -385,7 +385,7 @@ namespace wan24.Core
         {
             if (!SourceType.IsAssignableFrom(source.GetType())) throw new ArgumentException("Incompatible type", nameof(source));
             if (!TargetType.IsAssignableFrom(target.GetType())) throw new ArgumentException("Incompatible type", nameof(target));
-            return (Task)AsyncApplyMethod.MakeGenericMethod(SourceType, TargetType).InvokeFast(this, [source, target, cancellationToken])!;
+            return (Task)AsyncApplyMethod.Method.MakeGenericMethod(SourceType, TargetType).InvokeFast(this, [source, target, cancellationToken])!;
         }
     }
 }

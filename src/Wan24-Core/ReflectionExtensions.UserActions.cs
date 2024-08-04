@@ -18,7 +18,7 @@ namespace wan24.Core
             KeyValuePair<Type,Type> provider = InstanceTables.FindTableProviderInfo(obj.GetType())
                 ?? throw new ArgumentException($"Failed to find provider table object type for {obj.GetType()} in InstanceTables.Registered", nameof(obj));
             // Find the instance table field
-            FieldInfo fi = InstanceTables.FindTableProviderField(provider.Value)
+            FieldInfoExt fi = InstanceTables.FindTableProviderField(provider.Value)
                 ?? throw new InvalidProgramException($"Provider table type {provider.Value} for {obj.GetType()} has no field with an {typeof(InstanceTableAttribute)}");
             // Validate the instance table field and it's value type is matching for the given object
             Type fieldType = InstanceTables.IsValidTableType(fi.FieldType)
@@ -29,10 +29,10 @@ namespace wan24.Core
             if (!valueType.IsAssignableFromExt(obj.GetType()))
                 throw new InvalidProgramException($"{obj.GetType()} can not be hosted by {provider.Value}.{fi.Name} ({valueType})");
             // Find user action methods
-            foreach (MethodInfo mi in from method in obj.GetType().GetMethodsCached(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)
+            foreach (MethodInfoExt mi in from method in obj.GetType().GetMethodsCached(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)
                                       where method.GetCustomAttributeCached<UserActionAttribute>() is not null
                                       select method)
-                yield return UserActionInfo.FromMethod(mi, provider.Value.ToString(), fi.Name, mi.IsStatic ? string.Empty : providerKey);
+                yield return UserActionInfo.FromMethod(mi, provider.Value.ToString(), fi.Name, mi.Method.IsStatic ? string.Empty : providerKey);
         }
     }
 }

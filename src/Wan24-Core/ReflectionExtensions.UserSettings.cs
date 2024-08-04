@@ -18,7 +18,7 @@ namespace wan24.Core
             KeyValuePair<Type, Type> provider = InstanceTables.FindTableProviderInfo(obj.GetType())
                 ?? throw new ArgumentException($"Failed to find provider table object type for {obj.GetType()} in InstanceTables.Registered", nameof(obj));
             // Find the instance table field
-            FieldInfo fi = InstanceTables.FindTableProviderField(provider.Value)
+            FieldInfoExt fi = InstanceTables.FindTableProviderField(provider.Value)
                 ?? throw new InvalidProgramException($"Provider table type {provider.Value} for {obj.GetType()} has no field with an {typeof(InstanceTableAttribute)}");
             // Validate the instance table field and it's value type is matching for the given object
             Type fieldType = InstanceTables.IsValidTableType(fi.FieldType)

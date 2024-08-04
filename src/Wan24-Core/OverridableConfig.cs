@@ -17,7 +17,7 @@ namespace wan24.Core
         /// <summary>
         /// Properties
         /// </summary>
-        protected Dictionary<string, (PropertyInfo Property, Func<object, IConfigOption?> Getter)>? OptionProperties = null;
+        protected Dictionary<string, (PropertyInfoExt Property, Func<object, IConfigOption?> Getter)>? OptionProperties = null;
         /// <summary>
         /// Sub-configuration tree key
         /// </summary>
@@ -265,12 +265,12 @@ namespace wan24.Core
         /// Get option properties
         /// </summary>
         /// <returns>Properties</returns>
-        protected IEnumerable<(PropertyInfo Property, Func<object, IConfigOption?> Getter)> GetOptionProperties()
+        protected IEnumerable<(PropertyInfoExt Property, Func<object, IConfigOption?> Getter)> GetOptionProperties()
             => (OptionProperties ??= new(from pi in typeof(tFinal).GetPropertiesCached(BindingFlags.Instance | BindingFlags.Public)
                                          where typeof(IConfigOption).IsAssignableFrom(pi.Property.PropertyType)
-                                         select new KeyValuePair<string, (PropertyInfo Property, Func<object, IConfigOption?> Getter)>(
+                                         select new KeyValuePair<string, (PropertyInfoExt Property, Func<object, IConfigOption?> Getter)>(
                                              pi.Property.Name,
-                                             (pi.Property, pi.Property.CreateTypedInstancePropertyGetter<object, IConfigOption>())
+                                             (pi, pi.Property.CreateTypedInstancePropertyGetter<object, IConfigOption>())
                                              ))).Values;
 
         /// <summary>

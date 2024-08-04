@@ -36,11 +36,11 @@ namespace wan24.Core
         {
             if (!typeof(ISerializeBinary).IsAssignableFrom(type))
                 throw new InvalidOperationException($"{type} isn't an {typeof(ISerializeBinary)}");
-            MethodInfo mi = type.GetMethodCached(nameof(ISerializeBinary.DeserializeFrom), BindingFlags.Public | BindingFlags.Static)
+            MethodInfoExt mi = type.GetMethodCached(nameof(ISerializeBinary.DeserializeFrom), BindingFlags.Public | BindingFlags.Static)
                 ?? throw new InvalidProgramException($"{type} doesn't implement {typeof(ISerializeBinary)}.{nameof(ISerializeBinary.DeserializeFrom)}");
             if (!DeserializeDelegates.TryGetValue(mi.GetHashCode(), out Deserialize_Delegate? method))
             {
-                method = mi.CreateDelegate<Deserialize_Delegate>();
+                method = mi.Method.CreateDelegate<Deserialize_Delegate>();
                 DeserializeDelegates.TryAdd(mi.GetHashCode(), method);
             }
             return method(buffer) ?? throw new InvalidDataException("NULL deserialized");
@@ -109,11 +109,11 @@ namespace wan24.Core
                     return res;
                 throw new InvalidOperationException($"{type} isn't an {typeof(ISerializeString)}");
             }
-            MethodInfo mi = type.GetMethodCached(nameof(ISerializeString.ParseObject), BindingFlags.Public | BindingFlags.Static)
+            MethodInfoExt mi = type.GetMethodCached(nameof(ISerializeString.ParseObject), BindingFlags.Public | BindingFlags.Static)
                 ?? throw new InvalidProgramException($"{type} doesn't implement {typeof(ISerializeString)}.{nameof(ISerializeString.ParseObject)}");
             if (!ParseObjectDelegates.TryGetValue(mi.GetHashCode(), out ParseObject_Delegate? method))
             {
-                method = mi.CreateDelegate<ParseObject_Delegate>();
+                method = mi.Method.CreateDelegate<ParseObject_Delegate>();
                 ParseObjectDelegates.TryAdd(mi.GetHashCode(), method);
             }
             return method(str) ?? throw new InvalidDataException("NULL deserialized");

@@ -103,7 +103,7 @@ namespace Wan24_Core_Tests
         public void GetMethod_Tests()
         {
             // Match method
-            MethodInfo? mi = typeof(ByteEncoding).GetMethod(
+            MethodInfoExt? mi = typeof(ByteEncoding).GetMethod(
                 nameof(ByteEncoding.GetEncodedLength),
                 BindingFlags.Public | BindingFlags.Static,
                 filter: null,
@@ -114,12 +114,12 @@ namespace Wan24_Core_Tests
                 );
             Assert.IsNotNull(mi);
             Assert.AreEqual(nameof(ByteEncoding.GetEncodedLength), mi.Name);
-            ParameterInfo[] param = mi.GetParameters();
+            ParameterInfo[] param = mi.Parameters;
             Assert.AreEqual(1, param.Length);
             Assert.AreEqual(typeof(byte[]), param[0].ParameterType);
 
             // Miss generic parameter count
-            mi = mi = typeof(ByteEncoding).GetMethod(
+            mi = typeof(ByteEncoding).GetMethod(
                 nameof(ByteEncoding.GetEncodedLength),
                 BindingFlags.Public | BindingFlags.Static,
                 filter: null,
@@ -131,7 +131,7 @@ namespace Wan24_Core_Tests
             Assert.IsNull(mi);
 
             // Skipped type checks
-            mi = mi = typeof(ByteEncoding).GetMethod(
+            mi = typeof(ByteEncoding).GetMethod(
                 nameof(ByteEncoding.GetEncodedLength),
                 BindingFlags.Public | BindingFlags.Static,
                 filter: null,
@@ -143,7 +143,7 @@ namespace Wan24_Core_Tests
             Assert.IsNotNull(mi);
 
             // Miss return type
-            mi = mi = typeof(ByteEncoding).GetMethod(
+            mi = typeof(ByteEncoding).GetMethod(
                 nameof(ByteEncoding.GetEncodedLength),
                 BindingFlags.Public | BindingFlags.Static,
                 filter: null,

@@ -53,7 +53,7 @@ namespace wan24.Core
             // Find the object instance and the object type (for static methods only), then get the user action method
             object? instance = null;
             Type? providerType = Provider ?? throw new InvalidDataException("Failed to get the instance provider type");
-            FieldInfo fi = providerType.GetFieldCached(ProviderField, BindingFlags.Public | BindingFlags.Static)
+            FieldInfoExt fi = providerType.GetFieldCached(ProviderField, BindingFlags.Public | BindingFlags.Static)
                 ?? throw new InvalidDataException($"Failed to find instance table field in {providerType}");
             if (fi.GetCustomAttributeCached<InstanceTableAttribute>() is null)
                 throw new InvalidDataException($"{providerType}.{fi.Name} is missing the {typeof(InstanceTableAttribute)}");
@@ -62,7 +62,7 @@ namespace wan24.Core
                 : fi.FieldType.GetBaseTypes().FirstOrDefault(t => InstanceTables.IsValidTableType(t))
                     ?? throw new InvalidProgramException($"Invalid instance table field type {fi.FieldType} for {providerType}"),
                 valueType = fieldType.GetGenericArguments()[1];
-            MethodInfo mi;
+            MethodInfoExt mi;
             if (ProviderKey.Length > 0)
             {
                 instance = InstanceTables.FindInstance(fi, ProviderKey);
@@ -81,7 +81,7 @@ namespace wan24.Core
             if (mi.GetCustomAttributeCached<UserActionAttribute>() is null)
                 throw new UnauthorizedAccessException($"{valueType.GetType()}.{mi.Name} isn't an user action method");
             // Prepare execution parameters
-            ParameterInfo[] pis = mi.GetParameters();
+            ParameterInfo[] pis = mi.Parameters;
             List<object?> parameterList = new(pis.Length);
             int index = 0;
             NullabilityInfoContext nic = new();
@@ -111,7 +111,7 @@ namespace wan24.Core
             // Execute the method
             try
             {
-                object? returnValue = mi.InvokeFast(instance, [.. parameterList]);
+                object? returnValue = mi.Method.InvokeFast(instance, [.. parameterList]);
                 while (returnValue is Task task)
                 {
                     await task.DynamicContext();

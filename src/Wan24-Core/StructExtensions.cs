@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace wan24.Core
@@ -12,11 +11,11 @@ namespace wan24.Core
         /// <summary>
         /// <see cref="Marshal.PtrToStructure{T}(nint)"/> method
         /// </summary>
-        private static readonly MethodInfo MarshalStructureMethod;
+        private static readonly MethodInfoExt MarshalStructureMethod;
         /// <summary>
         /// <see cref="Marshal.SizeOf{T}()"/> method
         /// </summary>
-        private static readonly MethodInfo MarshalStructureSizeMethod;
+        private static readonly MethodInfoExt MarshalStructureSizeMethod;
 
         /// <summary>
         /// Constructor
@@ -52,7 +51,7 @@ namespace wan24.Core
         public static int GetMarshaledSize(this Type type)
         {
             if (!type.IsValueType) throw new ArgumentException("Not a structure type", nameof(type));
-            return (int)(MarshalStructureSizeMethod.MakeGenericMethod(type).InvokeFast(obj: null, []) ?? throw new InvalidProgramException());
+            return (int)(MarshalStructureSizeMethod.Method.MakeGenericMethod(type).InvokeFast(obj: null, []) ?? throw new InvalidProgramException());
         }
 
         /// <summary>
@@ -160,7 +159,7 @@ namespace wan24.Core
             GCHandle gch = GCHandle.Alloc(bytes, GCHandleType.Pinned);
             try
             {
-                return MarshalStructureMethod.MakeGenericMethod(type).InvokeFast(obj: null, [gch.AddrOfPinnedObject()]) ?? throw new InvalidDataException();
+                return MarshalStructureMethod.Method.MakeGenericMethod(type).InvokeFast(obj: null, [gch.AddrOfPinnedObject()]) ?? throw new InvalidDataException();
             }
             finally
             {

@@ -101,7 +101,7 @@ namespace wan24.Core
         /// <param name="usePrivate">Use private constructors, too?</param>
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
-        public static object ConstructAuto(this Type type, out ConstructorInfo? usedConstructor, in bool usePrivate = false, params object?[] param)
+        public static object ConstructAuto(this Type type, out ConstructorInfoExt? usedConstructor, in bool usePrivate = false, params object?[] param)
         {
             NullabilityInfoContext nic = new();
             BindingFlags flags = usePrivate
@@ -132,7 +132,7 @@ namespace wan24.Core
         public static object ConstructAuto(
             this Type type,
             in IServiceProvider serviceProvider,
-            out ConstructorInfo? usedConstructor,
+            out ConstructorInfoExt? usedConstructor,
             in bool usePrivate = false,
             params object?[] param
             )
