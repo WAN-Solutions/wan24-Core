@@ -84,8 +84,7 @@ namespace wan24.Core
                     ?? throw new MappingException($"Target property \"{TargetType}.{targetPropertyName}\" not found");
             if (sp.Getter is null) throw new MappingException($"Source property \"{SourceType}.{sourcePropertyName}\" has no usable getter");
             if (tp.Setter is null) throw new MappingException($"Target property \"{TargetType}.{targetPropertyName}\" has no usable setter");
-            MapAttribute? attr;
-            if (!CanMapPropertyTo(sp, tp, out attr))
+            if (!CanMapPropertyTo(sp, tp, out MapAttribute? attr))
                 throw new MappingException($"{sp.DeclaringType}.{sp.Name} ({sp.PropertyType}) can't be mapped to {tp.DeclaringType}.{tp.Name} ({tp.PropertyType})");
             ObjectMapper_Delegate mapper = attr?.Nested ?? false
                 ? (source, target) => tp.Setter(target, sp.Getter(source)?.MapObjectTo(tp.PropertyType))
@@ -159,8 +158,7 @@ namespace wan24.Core
                     ?? throw new MappingException($"Target property \"{TargetType}.{targetPropertyName}\" not found");
             if (sp.Getter is null) throw new MappingException($"Source property \"{SourceType}.{sourcePropertyName}\" has no usable getter");
             if (tp.Setter is null) throw new MappingException($"Target property \"{TargetType}.{targetPropertyName}\" has no usable setter");
-            MapAttribute? attr;
-            if (!CanMapPropertyTo(sp, tp, out attr))
+            if (!CanMapPropertyTo(sp, tp, out MapAttribute? attr))
                 throw new MappingException($"{sp.DeclaringType}.{sp.Name} ({sp.PropertyType}) can't be mapped to {tp.DeclaringType}.{tp.Name} ({tp.PropertyType})");
             if (attr?.Nested ?? false)
             {
@@ -204,7 +202,7 @@ namespace wan24.Core
         /// <returns>This</returns>
         public virtual ObjectMapping AddAutoMappings(bool? optIn = null, bool? publicGetterOnly = null, bool? publicSetterOnly = null)
         {
-            MapAttribute? attr = SourceType.GetCustomAttribute<MapAttribute>();
+            MapAttribute? attr = SourceType.GetCustomAttributeCached<MapAttribute>();
             optIn ??= attr?.OptIn ?? false;
             publicGetterOnly ??= attr?.PublicGetterOnly ?? false;
             publicSetterOnly ??= attr?.PublicSetterOnly ?? false;
@@ -295,7 +293,7 @@ namespace wan24.Core
                 {
                     mappingObject.OnAfterMapping(target);
                 }
-                else if (mappingObject.HasAsyncHandlers && !mappingObject.HasSyncHandlers)
+                else if (mappingObject.HasAsyncHandlers)
                 {
                     mappingObject.OnAfterMappingAsync(target, CancellationToken.None).GetAwaiter().GetResult();
                 }
@@ -304,7 +302,7 @@ namespace wan24.Core
                 {
                     mappingObject2.OnAfterMapping(target);
                 }
-                else if (mappingObject2.HasAsyncHandlers && !mappingObject2.HasSyncHandlers)
+                else if (mappingObject2.HasAsyncHandlers)
                 {
                     mappingObject2.OnAfterMappingAsync(target, CancellationToken.None).GetAwaiter().GetResult();
                 }
@@ -321,7 +319,7 @@ namespace wan24.Core
         {
             if (!SourceType.IsAssignableFrom(source.GetType())) throw new ArgumentException("Incompatible type", nameof(source));
             if (!TargetType.IsAssignableFrom(target.GetType())) throw new ArgumentException("Incompatible type", nameof(target));
-            ApplyMethod.Method.MakeGenericMethod(SourceType, TargetType).InvokeFast(this, [source, target]);
+            ApplyMethod.MakeGenericMethod(SourceType, TargetType).Invoker!(this, [source, target]);
             return this;
         }
 
@@ -385,7 +383,7 @@ namespace wan24.Core
         {
             if (!SourceType.IsAssignableFrom(source.GetType())) throw new ArgumentException("Incompatible type", nameof(source));
             if (!TargetType.IsAssignableFrom(target.GetType())) throw new ArgumentException("Incompatible type", nameof(target));
-            return (Task)AsyncApplyMethod.Method.MakeGenericMethod(SourceType, TargetType).InvokeFast(this, [source, target, cancellationToken])!;
+            return (Task)AsyncApplyMethod.MakeGenericMethod(SourceType, TargetType).Invoker!(this, [source, target, cancellationToken])!;
         }
     }
 }
