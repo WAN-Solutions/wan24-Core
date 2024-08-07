@@ -180,9 +180,9 @@ namespace wan24.Core
         /// <param name="maxRecursionDepth">Maximum recursion depth</param>
         /// <returns>Dictionary</returns>
         private static OrderedDictionary<string, object?> ToOrderedDictionary<T>(
-            in OrderedDictionary<string, object?> dict, 
-            in T obj, 
-            in HashSet<object> seen, 
+            in OrderedDictionary<string, object?> dict,
+            in T obj,
+            in HashSet<object> seen,
             in int maxRecursionDepth
             )
         {

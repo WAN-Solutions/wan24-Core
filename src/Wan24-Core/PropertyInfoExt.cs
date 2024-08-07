@@ -38,7 +38,7 @@ namespace wan24.Core
         /// <summary>
         /// Getter
         /// </summary>
-        public Func<object?, object?>? Getter { get; } = Getter;
+        public Func<object?, object?>? Getter { get; set; } = Getter;
 
         /// <summary>
         /// Can read?
@@ -53,7 +53,7 @@ namespace wan24.Core
         /// <summary>
         /// Setter
         /// </summary>
-        public Action<object?, object?>? Setter { get; } = Setter;
+        public Action<object?, object?>? Setter { get; set; } = Setter;
 
         /// <summary>
         /// If the property has a public setter
@@ -67,15 +67,15 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
-        public object[] GetCustomAttributes(bool inherit) => ((ICustomAttributeProvider)Property).GetCustomAttributes(inherit);
+        public object[] GetCustomAttributes(bool inherit) => Property.GetCustomAttributes(inherit);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
-        public object[] GetCustomAttributes(Type attributeType, bool inherit) => ((ICustomAttributeProvider)Property).GetCustomAttributes(attributeType, inherit);
+        public object[] GetCustomAttributes(Type attributeType, bool inherit) => Property.GetCustomAttributes(attributeType, inherit);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
-        public bool IsDefined(Type attributeType, bool inherit) => ((ICustomAttributeProvider)Property).IsDefined(attributeType, inherit);
+        public bool IsDefined(Type attributeType, bool inherit) => Property.IsDefined(attributeType, inherit);
 
         /// <summary>
         /// Get a value converted (see <see cref="ValueConverterAttribute"/>)

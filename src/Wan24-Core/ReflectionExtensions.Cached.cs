@@ -44,11 +44,11 @@ namespace wan24.Core
         /// <summary>
         /// <see cref="ParameterInfo"/> cache (key is the method/constructor hash code)
         /// </summary>
-        private static readonly ConcurrentDictionary<int, FrozenSet<ParameterInfo>> ParameterInfoCache = new();
+        private static readonly ConcurrentDictionary<int, ParameterInfo[]> ParameterInfoCache = new();
         /// <summary>
         /// Generic <see cref="Type"/> arguments cache (key is the type hash code)
         /// </summary>
-        private static readonly ConcurrentDictionary<int, FrozenSet<Type>> GenericArgumentsCache = new();
+        private static readonly ConcurrentDictionary<int, Type[]> GenericArgumentsCache = new();
         /// <summary>
         /// <see cref="Attribute"/> cache (key is the provider hash code)
         /// </summary>
@@ -188,7 +188,7 @@ namespace wan24.Core
         /// <param name="mi">Method</param>
         /// <returns>Method parameters</returns>
         public static ParameterInfo[] GetParametersCached(this MethodInfo mi)
-            => [.. ParameterInfoCache.GetOrAdd(mi.GetHashCode(), (key) => mi.GetParameters().ToFrozenSet())];
+            => [.. ParameterInfoCache.GetOrAdd(mi.GetHashCode(), (key) => mi.GetParameters())];
 
         /// <summary>
         /// Get constructor parameters from the cache
@@ -196,7 +196,7 @@ namespace wan24.Core
         /// <param name="ci">Constructor</param>
         /// <returns>Constructor parameters</returns>
         public static ParameterInfo[] GetParametersCached(this ConstructorInfo ci)
-            => [.. ParameterInfoCache.GetOrAdd(ci.GetHashCode(), (key) => ci.GetParameters().ToFrozenSet())];
+            => [.. ParameterInfoCache.GetOrAdd(ci.GetHashCode(), (key) => ci.GetParameters())];
 
         /// <summary>
         /// Get generic type arguments from the cache
@@ -204,7 +204,7 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <returns>Generic arguments</returns>
         public static Type[] GetGenericArgumentsCached(this Type type)
-            => [.. GenericArgumentsCache.GetOrAdd(type.GetHashCode(), (key) => type.IsGenericType ? type.GetGenericArguments().ToFrozenSet() : Array.Empty<Type>().ToFrozenSet())];
+            => [.. GenericArgumentsCache.GetOrAdd(type.GetHashCode(), (key) => type.IsGenericType ? type.GetGenericArguments() : Array.Empty<Type>())];
 
         /// <summary>
         /// Get an attribute (inherited)

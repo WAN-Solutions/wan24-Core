@@ -172,10 +172,10 @@ namespace wan24.Core
                 .Any(e => e.AddMethod == mi || e.RemoveMethod == mi);
 
         /// <summary>
-        /// Get the final array element type of a multi-dimensional array type
+        /// Get the final element type of a multi-dimensional type
         /// </summary>
-        /// <param name="type">Array type</param>
-        /// <returns>Final array element type</returns>
+        /// <param name="type">Type</param>
+        /// <returns>Final element type</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -184,7 +184,7 @@ namespace wan24.Core
         {
             if (type.IsAbstract) throw new ArgumentException("Not an array type", nameof(type));
             Type res = type.GetElementType()!;
-            while (res.IsArray) res = res.GetElementType()!;
+            while (res.HasElementType) res = res.GetElementType()!;
             return res;
         }
 
@@ -663,45 +663,34 @@ namespace wan24.Core
             int hc = mi.GetHashCode();
             if (MethodInvokeDelegateCache.TryGetValue(hc, out Func<object?, object?[], object?>? res)) return res;
             ParameterExpression paramsArg = Expression.Parameter(typeof(object?[]), "parameters");
-            ParameterInfo[] pis = mi.GetParameters();
-            List<Expression> parameters = new(pis.Length);
+            ParameterInfo[] pis = mi.GetParametersCached();
+            Expression[] parameters = new Expression[pis.Length];
             for (int i = 0; i < pis.Length; i++)
-                parameters.Add(
-                    pis[i].ParameterType.IsValueType
-                        ? Expression.Convert(Expression.ArrayIndex(paramsArg, Expression.Constant(i)), pis[i].ParameterType)
-                        : Expression.TypeAs(Expression.ArrayIndex(paramsArg, Expression.Constant(i)), pis[i].ParameterType)
-                    );
+                parameters[i] = Expression.Convert(Expression.ArrayIndex(paramsArg, Expression.Constant(i)), pis[i].ParameterType);
             if (mi.IsStatic)
             {
                 if (mi.ReturnType == typeof(void))
                 {
-                    Action<object?[]> lambda = Expression.Lambda<Action<object?[]>>(
-                        Expression.Call(null, mi, [.. parameters]),
-                        paramsArg
-                        ).Compile();
-                    res = (obj, parameters) =>
+                    Action<object?[]> lambda = Expression.Lambda<Action<object?[]>>(Expression.Call(null, mi, [.. parameters]), paramsArg).Compile();
+                    res = (obj, param) =>
                     {
-                        lambda(parameters);
+                        lambda(param);
                         return null;
                     };
                 }
                 else
                 {
                     Func<object?[], object?> lambda = Expression.Lambda<Func<object?[], object?>>(
-                        mi.ReturnType.IsValueType
-                            ? Expression.Convert(Expression.Call(null, mi, [.. parameters]), typeof(object))
-                            : Expression.TypeAs(Expression.Call(null, mi, [.. parameters]), typeof(object)),
+                        Expression.Convert(Expression.Call(null, mi, [.. parameters]), typeof(object)),
                         paramsArg
                         ).Compile();
-                    res = (obj, parameters) => lambda(parameters);
+                    res = (obj, param) => lambda(param);
                 }
             }
             else
             {
                 ParameterExpression objArg = Expression.Parameter(typeof(object), "obj");
-                UnaryExpression objArg2 = mi.DeclaringType!.IsValueType
-                    ? Expression.Convert(objArg, mi.DeclaringType)
-                    : Expression.TypeAs(objArg, mi.DeclaringType);
+                UnaryExpression objArg2 = Expression.Convert(objArg, mi.DeclaringType!);
                 if (mi.ReturnType == typeof(void))
                 {
                     Action<object?, object?[]> lambda = Expression.Lambda<Action<object?, object?[]>>(
@@ -709,21 +698,20 @@ namespace wan24.Core
                         objArg,
                         paramsArg
                         ).Compile();
-                    res = (obj, parameters) =>
+                    res = (obj, param) =>
                     {
-                        lambda(obj, parameters);
+                        lambda(obj, param);
                         return null;
                     };
                 }
                 else
                 {
-                    res = Expression.Lambda<Func<object?, object?[], object?>>(
-                        mi.ReturnType.IsValueType
-                            ? Expression.Convert(Expression.Call(objArg2, mi, [.. parameters]), typeof(object))
-                            : Expression.TypeAs(Expression.Call(objArg2, mi, [.. parameters]), typeof(object)),
+                    Func<object?, object?[], object?> lambda = Expression.Lambda<Func<object?, object?[], object?>>(
+                        Expression.Convert(Expression.Call(objArg2, mi, [.. parameters]), typeof(object)),
                         objArg,
                         paramsArg
                         ).Compile();
+                    res = (obj, param) => lambda(obj, param);
                 }
             }
             MethodInvokeDelegateCache.TryAdd(hc, res);
@@ -760,20 +748,11 @@ namespace wan24.Core
             int hc = ci.GetHashCode();
             if (ConstructorInvokeDelegateCache.TryGetValue(hc, out Func<object?[], object>? res)) return res;
             ParameterExpression paramsArg = Expression.Parameter(typeof(object?[]), "parameters");
-            ParameterInfo[] pis = ci.GetParameters();
-            List<Expression> parameters = new(pis.Length);
+            ParameterInfo[] pis = ci.GetParametersCached();
+            Expression[] parameters = new Expression[pis.Length];
             for (int i = 0; i < pis.Length; i++)
-                parameters.Add(
-                    pis[i].ParameterType.IsValueType
-                        ? Expression.Convert(Expression.ArrayIndex(paramsArg, Expression.Constant(i)), pis[i].ParameterType)
-                        : Expression.TypeAs(Expression.ArrayIndex(paramsArg, Expression.Constant(i)), pis[i].ParameterType)
-                    );
-            res = Expression.Lambda<Func<object?[], object>>(
-                ci.DeclaringType.IsValueType
-                    ? Expression.Convert(Expression.New(ci, [.. parameters]), typeof(object))
-                    : Expression.TypeAs(Expression.New(ci, [.. parameters]), typeof(object)),
-                paramsArg
-                ).Compile();
+                parameters[i] = Expression.Convert(Expression.ArrayIndex(paramsArg, Expression.Constant(i)), pis[i].ParameterType);
+            res = Expression.Lambda<Func<object?[], object>>(Expression.Convert(Expression.New(ci, [.. parameters]), typeof(object)), paramsArg).Compile();
             ConstructorInvokeDelegateCache.TryAdd(hc, res);
             return res;
         }
@@ -945,6 +924,17 @@ namespace wan24.Core
             }
             return res;
         }
+
+        /// <summary>
+        /// Get the non-<see cref="Nullable{T}"/> type
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>Non-nullable type</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static Type GetNonNullableType(this Type type) => Nullable.GetUnderlyingType(type) is Type res ? res.GetNonNullableType() : type;
 
         /// <summary>
         /// Match a method return type against an expected type

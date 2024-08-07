@@ -6,10 +6,13 @@ namespace wan24.Core
     /// <summary>
     /// Extended field information
     /// </summary>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
     /// <param name="Field">Field</param>
     /// <param name="Getter">Getter</param>
     /// <param name="Setter">Setter</param>
-    public sealed class FieldInfoExt(in FieldInfo Field, in Func<object?, object?>? Getter, in Action<object?, object?>? Setter) : ICustomAttributeProvider
+    public sealed record class FieldInfoExt(in FieldInfo Field, in Func<object?, object?>? Getter, in Action<object?, object?>? Setter) : ICustomAttributeProvider
     {
         /// <summary>
         /// Field
@@ -20,6 +23,11 @@ namespace wan24.Core
         /// Field name
         /// </summary>
         public string Name => Field.Name;
+
+        /// <summary>
+        /// Field declaring type
+        /// </summary>
+        public Type? DeclaringType => Field.DeclaringType;
 
         /// <summary>
         /// Field type
@@ -34,24 +42,24 @@ namespace wan24.Core
         /// <summary>
         /// Getter delegate
         /// </summary>
-        public Func<object?, object?>? Getter { get; } = Getter;
+        public Func<object?, object?>? Getter { get; set; } = Getter;
 
         /// <summary>
         /// Setter delegate
         /// </summary>
-        public Action<object?, object?>? Setter { get; } = Setter;
+        public Action<object?, object?>? Setter { get; set; } = Setter;
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
-        public object[] GetCustomAttributes(bool inherit) => ((ICustomAttributeProvider)Field).GetCustomAttributes(inherit);
+        public object[] GetCustomAttributes(bool inherit) => Field.GetCustomAttributes(inherit);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
-        public object[] GetCustomAttributes(Type attributeType, bool inherit) => ((ICustomAttributeProvider)Field).GetCustomAttributes(attributeType, inherit);
+        public object[] GetCustomAttributes(Type attributeType, bool inherit) => Field.GetCustomAttributes(attributeType, inherit);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
-        public bool IsDefined(Type attributeType, bool inherit) => ((ICustomAttributeProvider)Field).IsDefined(attributeType, inherit);
+        public bool IsDefined(Type attributeType, bool inherit) => Field.IsDefined(attributeType, inherit);
 
         /// <summary>
         /// Cast as <see cref="FieldInfo"/>
