@@ -3,9 +3,7 @@
     // ACID functionality
     public partial class AcidStream<T> where T : Stream
     {
-        /// <summary>
-        /// Commit the changes since the last commit
-        /// </summary>
+        /// <inheritdoc/>
         public virtual void Commit()
         {
             EnsureUndisposed();
@@ -13,10 +11,7 @@
             CommitInt();
         }
 
-        /// <summary>
-        /// Commit the changes since the last commit
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
+        /// <inheritdoc/>
         public virtual async Task CommitAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -24,9 +19,7 @@
             await CommitIntAsync(cancellationToken).DynamicContext();
         }
 
-        /// <summary>
-        /// Perform a rollback
-        /// </summary>
+        /// <inheritdoc/>
         public virtual void Rollback()
         {
             EnsureUndisposed();
@@ -34,10 +27,7 @@
             RollbackInt();
         }
 
-        /// <summary>
-        /// Perform a rollback
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token</param>
+        /// <inheritdoc/>
         public virtual async Task RollbackAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
