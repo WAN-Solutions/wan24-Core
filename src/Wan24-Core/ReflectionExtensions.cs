@@ -732,6 +732,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="type">Type</param>
         /// <returns>Constructor</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ConstructorInfoExt? GetParameterlessConstructor(this Type type)
             => type.GetConstructorsCached(ALL_BINDINGS).FirstOrDefault(c => c.ParameterCount == 0);
 
