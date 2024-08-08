@@ -46,6 +46,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
+        [Obsolete("Use PropertyInfoExt.IsInitOnly instead")]
         public static bool IsInitOnly(this PropertyInfoExt pi)
             => pi.Property.SetMethod is MethodInfo mi && mi.ReturnParameter.GetRequiredCustomModifiers().Any(m => m.Name == "IsExternalInit");
 
