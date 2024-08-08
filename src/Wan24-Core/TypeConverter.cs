@@ -137,6 +137,9 @@ namespace wan24.Core
                 TargetType = target.GetHashCode();
                 HashCode = SourceType ^ TargetType;
             }
+
+            /// <inheritdoc/>
+            public override int GetHashCode() => HashCode;
         }
 
         /// <summary>
