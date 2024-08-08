@@ -75,6 +75,10 @@ namespace wan24.Core
                 IEnumInfo info = EnumExtensions.GetEnumInfo(t);
                 return info.ValueDisplayTexts.TryGetValue(str, out string? text) ? text : str;
             }
+            else if (StringValueConverter.CanConvertToString(value.GetType()) && StringValueConverter.Convert(value) is string txt)
+            {
+                return txt;
+            }
             else
             {
                 return value.ToString() ?? t.ToString();
@@ -345,5 +349,27 @@ namespace wan24.Core
         /// <returns>If disposable</returns>
         [TargetedPatchingOptOut("Tiny method")]
         public static bool IsDisposable<T>(this T obj) => obj is IDisposable || obj is IAsyncDisposable;
+
+        /// <summary>
+        /// Determine if an object is a task
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="obj">Object</param>
+        /// <returns>If the object is a task</returns>
+        public static bool IsTask<T>(this T obj) => obj is Task || IsValueTask(obj);
+
+        /// <summary>
+        /// Determine if an object is a value task
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="obj">Object</param>
+        /// <returns>If the object is a value task</returns>
+        public static bool IsValueTask<T>(this T obj)
+        {
+            if (obj is null) return false;
+            if (obj is ValueTask) return true;
+            Type type = obj.GetType();
+            return type.IsValueType && type.IsGenericType && type.GetGenericTypeDefinition() == typeof(ValueTask<>);
+        }
     }
 }

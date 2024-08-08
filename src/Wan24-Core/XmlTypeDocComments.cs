@@ -27,7 +27,7 @@ namespace wan24.Core
             ClrType = type;
             // Generic arguments
             HashSet<XmlGenericArgumentDocComments> genericArguments = [];
-            foreach (Type t in type.GetGenericArguments())
+            foreach (Type t in type.GetGenericArgumentsCached())
                 genericArguments.Add(new(this, t, xml));
             GenericArguments = genericArguments.ToFrozenSet();
             if (type.IsDelegate())

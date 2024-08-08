@@ -8,14 +8,14 @@ namespace Wan24_Core_Tests
         [TestMethod("TaskExtensions_Tests.GetResult_Tests"), Timeout(1000)]
         public async Task GetResult_Tests()
         {
-            Task task = ResultTask(true);
+            Task<bool> task = ResultTask(true);
             await task;
-            Assert.IsTrue(task.GetResult<bool>());
-            Assert.IsTrue((bool)task.GetResult(typeof(bool)));
-            task = ResultTask((bool?)null);
-            await task;
-            Assert.IsNull(task.GetResultNullable<bool?>());
-            Assert.IsNull((bool?)task.GetResultNullable(typeof(bool?)));
+            Assert.IsTrue(wan24.Core.TaskExtensions.GetResult<bool>(task));
+            Assert.IsTrue((bool)wan24.Core.TaskExtensions.GetResult(task, typeof(bool)));
+            Task<bool?> task2 = ResultTask((bool?)null);
+            await task2;
+            Assert.IsNull(wan24.Core.TaskExtensions.GetResultNullable<bool?>(task2));
+            Assert.IsNull((bool?)wan24.Core.TaskExtensions.GetResultNullable(task2, typeof(bool?)));
             {
                 Task[] tasks = new Task[] { VoidTask(), VoidTask(), VoidTask() };
                 await tasks.WaitAll();

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Collections.Concurrent;
+using System.Reflection;
 using System.Runtime;
 
 namespace wan24.Core
@@ -15,9 +16,28 @@ namespace wan24.Core
     public sealed record class FieldInfoExt(in FieldInfo Field, in Func<object?, object?>? Getter, in Action<object?, object?>? Setter) : ICustomAttributeProvider
     {
         /// <summary>
+        /// Cache (key is the field hash code)
+        /// </summary>
+        private static readonly ConcurrentDictionary<int, FieldInfoExt> Cache = [];
+
+        /// <summary>
+        /// If the property is nullable
+        /// </summary>
+        private bool? _IsNullable = null;
+        /// <summary>
+        /// Bindings
+        /// </summary>
+        private BindingFlags? _Bindings = null;
+
+        /// <summary>
         /// Field
         /// </summary>
         public FieldInfo Field { get; } = Field;
+
+        /// <summary>
+        /// Bindings
+        /// </summary>
+        public BindingFlags Bindings => _Bindings ??= Field.GetBindingFlags();
 
         /// <summary>
         /// Field name
@@ -40,6 +60,11 @@ namespace wan24.Core
         public bool IsInitOnly => Field.IsInitOnly;
 
         /// <summary>
+        /// If the field is nullable
+        /// </summary>
+        public bool IsNullable => _IsNullable ??= Field.IsNullable();
+
+        /// <summary>
         /// Getter delegate
         /// </summary>
         public Func<object?, object?>? Getter { get; set; } = Getter;
@@ -50,15 +75,15 @@ namespace wan24.Core
         public Action<object?, object?>? Setter { get; set; } = Setter;
 
         /// <inheritdoc/>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
         public object[] GetCustomAttributes(bool inherit) => Field.GetCustomAttributes(inherit);
 
         /// <inheritdoc/>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
         public object[] GetCustomAttributes(Type attributeType, bool inherit) => Field.GetCustomAttributes(attributeType, inherit);
 
         /// <inheritdoc/>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
         public bool IsDefined(Type attributeType, bool inherit) => Field.IsDefined(attributeType, inherit);
 
         /// <summary>
@@ -67,5 +92,26 @@ namespace wan24.Core
         /// <param name="fi"><see cref="FieldInfoExt"/></param>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator FieldInfo(in FieldInfoExt fi) => fi.Field;
+
+        /// <summary>
+        /// Cast from <see cref="FieldInfo"/>
+        /// </summary>
+        /// <param name="fi"><see cref="FieldInfo"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator FieldInfoExt(in FieldInfo fi) => From(fi);
+
+        /// <summary>
+        /// Create
+        /// </summary>
+        /// <param name="fi">Field</param>
+        /// <returns>Instance</returns>
+        public static FieldInfoExt From(in FieldInfo fi)
+        {
+            int hc = fi.GetHashCode();
+            if (Cache.TryGetValue(hc, out FieldInfoExt? res)) return res;
+            res = new(fi, fi.CanCreateFieldGetter() ? fi.CreateFieldGetter() : null, fi.CanCreateFieldSetter() ? fi.CreateFieldSetter() : null);
+            Cache.TryAdd(hc, res);
+            return res;
+        }
     }
 }

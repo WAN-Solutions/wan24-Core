@@ -5,17 +5,17 @@ namespace wan24.Core
     /// <summary>
     /// State change
     /// </summary>
-    [StructLayout(LayoutKind.Auto)]
+    [StructLayout(LayoutKind.Sequential)]
     public readonly record struct QueueEntryStateChange
     {
-        /// <summary>
-        /// Time
-        /// </summary>
-        public readonly DateTime Time = DateTime.Now;
         /// <summary>
         /// State
         /// </summary>
         public readonly QueueEntryStates State;
+        /// <summary>
+        /// Time
+        /// </summary>
+        public readonly DateTime Time = DateTime.Now;
         /// <summary>
         /// Exception
         /// </summary>

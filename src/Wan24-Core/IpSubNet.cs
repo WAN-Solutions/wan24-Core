@@ -9,13 +9,9 @@ namespace wan24.Core
     /// <summary>
     /// IP sub-net
     /// </summary>
-    [StructLayout(LayoutKind.Auto)]
+    [StructLayout(LayoutKind.Sequential)]
     public readonly partial record struct IpSubNet
     {
-        /// <summary>
-        /// Network
-        /// </summary>
-        public readonly BigInteger Network;
         /// <summary>
         /// Mask bits length
         /// </summary>
@@ -24,6 +20,10 @@ namespace wan24.Core
         /// Is an IPv4 sub-net?
         /// </summary>
         public readonly bool IsIPv4;
+        /// <summary>
+        /// Network
+        /// </summary>
+        public readonly BigInteger Network;
 
         /// <summary>
         /// Constructor

@@ -26,12 +26,12 @@ namespace wan24.Core
             Method = mi;
             // Generic arguments
             HashSet<XmlGenericArgumentDocComments> genericArguments = [];
-            foreach (Type t in Method.GetGenericArguments())
+            foreach (Type t in Method.GetGenericArgumentsCached())
                 genericArguments.Add(new(this, t, xml));
             GenericArguments = genericArguments.ToFrozenSet();
             // Parameters
             HashSet<XmlParameterDocComments> parameters = [];
-            foreach (ParameterInfo pi in mi.GetParameters())
+            foreach (ParameterInfo pi in mi.GetParametersCached())
                 parameters.Add(new(this, pi, xml));
             Parameters = parameters.ToFrozenSet();
             if (xml is null) return;
@@ -54,12 +54,12 @@ namespace wan24.Core
             Method = delegateType.GetDelegateMethod();
             // Generic arguments
             HashSet<XmlGenericArgumentDocComments> genericArguments = [];
-            foreach (Type t in Method.GetGenericArguments())
+            foreach (Type t in Method.GetGenericArgumentsCached())
                 genericArguments.Add(new(this, t, xml));
             GenericArguments = genericArguments.ToFrozenSet();
             // Parameters
             HashSet<XmlParameterDocComments> parameters = [];
-            foreach (ParameterInfo pi in Method.GetParameters())
+            foreach (ParameterInfo pi in Method.GetParametersCached())
                 parameters.Add(new(this, pi, xml));
             Parameters = parameters.ToFrozenSet();
             if (xml is null) return;

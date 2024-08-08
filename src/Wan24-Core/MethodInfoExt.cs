@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime;
+using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
@@ -16,6 +17,10 @@ namespace wan24.Core
     public sealed record class MethodInfoExt(in MethodInfo Method, Func<object?, object?[], object?>? Invoker) : ICustomAttributeProvider
     {
         /// <summary>
+        /// Cache (key is the method hash code)
+        /// </summary>
+        private static readonly ConcurrentDictionary<int, MethodInfoExt> Cache = [];
+        /// <summary>
         /// Generic methods
         /// </summary>
         private static readonly ConcurrentDictionary<GenericMethodKey, MethodInfoExt> GenericMethods = new(new EqualityComparer());
@@ -28,11 +33,44 @@ namespace wan24.Core
         /// Generic arguments
         /// </summary>
         private Type[]? _GenericArguments = null;
+        /// <summary>
+        /// If the method returns a task
+        /// </summary>
+        private bool? _IsAsync = null;
+        /// <summary>
+        /// If the method return value is nullable
+        /// </summary>
+        private bool? _IsNullable = null;
+        /// <summary>
+        /// Bindings
+        /// </summary>
+        private BindingFlags? _Bindings = null;
+        /// <summary>
+        /// If the method is a property accessor
+        /// </summary>
+        private bool? _IsPropertyAccessor = null;
+        /// <summary>
+        /// If the method is an event handler control
+        /// </summary>
+        private bool? _IsEventHandlerControl = null;
+        /// <summary>
+        /// Accessed property
+        /// </summary>
+        private PropertyInfoExt? _AccessedProperty = null;
+        /// <summary>
+        /// Accessed event
+        /// </summary>
+        private EventInfo? _AccessedEvent = null;
 
         /// <summary>
         /// Method
         /// </summary>
         public MethodInfo Method { get; } = Method;
+
+        /// <summary>
+        /// Bindings
+        /// </summary>
+        public BindingFlags Bindings => _Bindings ??= Method.GetBindingFlags();
 
         /// <summary>
         /// Method name
@@ -62,7 +100,17 @@ namespace wan24.Core
         /// <summary>
         /// If the method is asynchronous and await able
         /// </summary>
-        public bool IsAsync => typeof(Task).IsAssignableFrom(Method.ReturnType);
+        public bool IsAsync => _IsAsync ??= Method.ReturnType.IsTask();
+
+        /// <summary>
+        /// If the method is generic
+        /// </summary>
+        public bool IsGenericMethod => Method.IsGenericMethod;
+
+        /// <summary>
+        /// If the method is a generic method definition
+        /// </summary>
+        public bool IsGenericMethodDefinition => Method.IsGenericMethodDefinition;
 
         /// <summary>
         /// Parameters
@@ -70,9 +118,52 @@ namespace wan24.Core
         public ParameterInfo[] Parameters => [.. _Parameters ??= Method.GetParametersCached()];
 
         /// <summary>
+        /// Number of parameters
+        /// </summary>
+        public int ParameterCount => (_Parameters ??= Method.GetParametersCached()).Length;
+
+        /// <summary>
         /// Generic arguments
         /// </summary>
-        public Type[] GenericArguments => [.. _GenericArguments ??= Method.GetGenericArguments()];
+        public Type[] GenericArguments => [.. _GenericArguments ??= Method.GetGenericArgumentsCached()];
+
+        /// <summary>
+        /// Number of generic arguments
+        /// </summary>
+        public int GenericArgumentCount => (_GenericArguments ??= Method.GetGenericArgumentsCached()).Length;
+
+        /// <summary>
+        /// If the method return value is nullable
+        /// </summary>
+        public bool IsNullable => _IsNullable ??= Method.ReturnParameter.IsNullable();
+
+        /// <summary>
+        /// If the method is a property accessor
+        /// </summary>
+        public bool IsPropertyAccessor => _IsPropertyAccessor ??= Method.IsPropertyAccessor();
+
+        /// <summary>
+        /// Accessed property
+        /// </summary>
+        public PropertyInfoExt? AccessedProperty
+            => IsPropertyAccessor
+                ? _AccessedProperty ??= Method.DeclaringType?.GetPropertiesCached(ReflectionExtensions.ALL_BINDINGS)
+                    .FirstOrDefault(p => p.Property.GetMethod == Method || p.Property.SetMethod == Method)
+                : null;
+
+        /// <summary>
+        /// If the method is an event handler control
+        /// </summary>
+        public bool IsEventHandlerControl => _IsEventHandlerControl ??= Method.IsEventHandlerControl();
+
+        /// <summary>
+        /// Accessed event
+        /// </summary>
+        public EventInfo? AccessedEvent
+            => IsEventHandlerControl
+                ? _AccessedEvent ??= Method.DeclaringType?.GetEventsCached(Bindings)
+                    .FirstOrDefault(e => e.AddMethod == Method || e.RemoveMethod == Method)
+                : null;
 
         /// <summary>
         /// Invoker delegate
@@ -101,39 +192,65 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
         public object[] GetCustomAttributes(bool inherit) => Method.GetCustomAttributes(inherit);
 
         /// <inheritdoc/>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
         public object[] GetCustomAttributes(Type attributeType, bool inherit) => Method.GetCustomAttributes(attributeType, inherit);
 
         /// <inheritdoc/>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
         public bool IsDefined(Type attributeType, bool inherit) => Method.IsDefined(attributeType, inherit);
 
         /// <summary>
         /// Cast as <see cref="MethodInfo"/>
         /// </summary>
         /// <param name="mi"><see cref="MethodInfoExt"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator MethodInfo(in MethodInfoExt mi) => mi.Method;
+
+        /// <summary>
+        /// Cast from <see cref="MethodInfo"/>
+        /// </summary>
+        /// <param name="mi"><see cref="MethodInfo"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator MethodInfoExt(in MethodInfo mi) => From(mi);
+
+        /// <summary>
+        /// Create
+        /// </summary>
+        /// <param name="mi">Method</param>
+        /// <returns>Instance</returns>
+        public static MethodInfoExt From(in MethodInfo mi)
+        {
+            int hc = mi.GetHashCode();
+            if(Cache.TryGetValue(hc, out MethodInfoExt? res)) return res;
+            res = new(mi, mi.CanCreateMethodInvoker() ? mi.CreateMethodInvoker() : null);
+            Cache.TryAdd(hc, res);
+            return res;
+        }
 
         /// <summary>
         /// Generic method key
         /// </summary>
+        [StructLayout(LayoutKind.Explicit)]
         private readonly record struct GenericMethodKey
         {
             /// <summary>
             /// Hash code
             /// </summary>
+            [FieldOffset(0)]
             public readonly int HashCode;
             /// <summary>
             /// Method
             /// </summary>
+            [FieldOffset(sizeof(int))]
             public readonly int MethodHashCode;
             /// <summary>
             /// Generic arguments
             /// </summary>
+            [FieldOffset(sizeof(int) << 1)]
             public readonly EquatableArray<Type> GenericArguments;
 
             /// <summary>

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Concurrent;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
@@ -24,97 +24,6 @@ namespace wan24.Core
         /// Constructor invocation delegate cache (key is the <see cref="ConstructorInfo"/> hash code)
         /// </summary>
         private static readonly ConcurrentDictionary<int, Func<object?[], object>> ConstructorInvokeDelegateCache = new();
-
-        /// <summary>
-        /// Determine if a type is nullable
-        /// </summary>
-        /// <param name="type">Type</param>
-        /// <returns>Is nullable?</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static bool IsNullable(this Type type) => Nullable.GetUnderlyingType(type) is not null;
-
-        /// <summary>
-        /// Determine if a method return value is nullable
-        /// </summary>
-        /// <param name="mi">Method</param>
-        /// <param name="nic">Nullability info context</param>
-        /// <returns>Is nullable?</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static bool IsNullable(this MethodInfo mi, in NullabilityInfoContext? nic = null)
-            => IsNullable((ICustomAttributeProvider)mi) && IsNullable(mi.ReturnParameter, nic);
-
-        /// <summary>
-        /// Determine if a parameter is nullable
-        /// </summary>
-        /// <param name="pi">Parameter</param>
-        /// <param name="nic">Nullability info context</param>
-        /// <returns>Is nullable?</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static bool IsNullable(this ParameterInfo pi, in NullabilityInfoContext? nic = null)
-            => IsNullable((ICustomAttributeProvider)pi) && (nic ?? new NullabilityInfoContext()).Create(pi).IsNullable();
-
-        /// <summary>
-        /// Determine if a property is nullable
-        /// </summary>
-        /// <param name="pi">Property</param>
-        /// <param name="nic">Nullability info context</param>
-        /// <returns>Is nullable?</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static bool IsNullable(this PropertyInfo pi, in NullabilityInfoContext? nic = null)
-            => IsNullable((ICustomAttributeProvider)pi) && (nic ?? new NullabilityInfoContext()).Create(pi).IsNullable();
-
-        /// <summary>
-        /// Determine if a field is nullable
-        /// </summary>
-        /// <param name="fi">Field</param>
-        /// <param name="nic">Nullability info context</param>
-        /// <returns>Is nullable?</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static bool IsNullable(this FieldInfo fi, in NullabilityInfoContext? nic = null)
-            => IsNullable((ICustomAttributeProvider)fi) && (nic ?? new NullabilityInfoContext()).Create(fi).IsNullable();
-
-        /// <summary>
-        /// Determine if nullable
-        /// </summary>
-        /// <param name="ni">Nullability info</param>
-        /// <returns>Is nullable?</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static bool IsNullable(this NullabilityInfo ni) => !(ni.ReadState == NullabilityState.NotNull || ni.WriteState == NullabilityState.NotNull);
-
-        /// <summary>
-        /// Determine if nullable
-        /// </summary>
-        /// <param name="cap">Custom attribute provider</param>
-        /// <returns>Is nullable?</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static bool IsNullable(this ICustomAttributeProvider cap)
-        {
-            Attribute[] attributes = cap.GetCustomAttributesCached<Attribute>();
-            if (attributes.Any(a => a is DisallowNullAttribute)) return false;
-            if (attributes.Any(a => a is AllowNullAttribute)) return true;
-            return true;
-        }
 
         /// <summary>
         /// Determine if a property is init-only
@@ -230,7 +139,7 @@ namespace wan24.Core
                 if (
                     (name is not null && mi.Name != name) ||
                     (returnType is not null && !MatchReturnType(mi, returnType, exactTypes)) ||
-                    (genericArgumentCount is not null && (genericArgumentCount.Value != 0 != mi.Method.IsGenericMethodDefinition || mi.Method.GetGenericArguments().Length != genericArgumentCount.Value))
+                    (genericArgumentCount is not null && (genericArgumentCount.Value != 0 != mi.Method.IsGenericMethodDefinition || mi.GenericArguments.Length != genericArgumentCount.Value))
                     )
                     continue;
                 // Check parameters
@@ -311,7 +220,7 @@ namespace wan24.Core
             while (true)
             {
                 if (!task.IsGenericType || !typeof(Task).IsAssignableFrom(task)) return task;
-                task = task.GetGenericArguments()[0];
+                task = task.GetGenericArgumentsCached()[0];
             }
         }
 
@@ -344,8 +253,8 @@ namespace wan24.Core
         /// <summary>
         /// Determine if a type implements a base type
         /// </summary>
-        /// <param name="type">Type (may be a generic type definition)</param>
-        /// <param name="baseType">Base type (may be a generic type definition, can't be <see cref="object"/>)</param>
+        /// <param name="type">Type (may be a generic type definition, but not an interface)</param>
+        /// <param name="baseType">Base type (may be a generic type definition, but not an interface, can't be <see cref="object"/>)</param>
         /// <returns>If the base type is implemented</returns>
         [TargetedPatchingOptOut("Tiny method")]
         public static bool HasBaseType(this Type type, in Type baseType)
@@ -554,28 +463,28 @@ namespace wan24.Core
                 }
             }
             // Methods
-            MethodInfo[] typeMethods = [.. type.GetMethodsCached(bf).Where(m => !m.Method.IsSpecialName)];
-            MethodInfo? method;
+            MethodInfoExt[] typeMethods = [.. type.GetMethodsCached(bf).Where(m => !m.Method.IsSpecialName)];
+            MethodInfoExt? method;
             Type[] typeArguments,
                 ifArguments;
             bool found;
             len = typeMethods.Length;
-            foreach (MethodInfo mi in interfaceType.GetMethodsCached(bf).Where(m => !m.Method.IsSpecialName))
+            foreach (MethodInfoExt mi in interfaceType.GetMethodsCached(bf).Where(m => !m.Method.IsSpecialName))
             {
                 for (found = false, i = 0; i < len; i++)
                 {
-                    if (typeMethods[i].Name != mi.Name || typeMethods[i].IsStatic != mi.IsStatic) continue;
+                    if (typeMethods[i].Name != mi.Name || typeMethods[i].Method.IsStatic != mi.Method.IsStatic) continue;
                     method = typeMethods[i];
                     // Get generic arguments and parameters
-                    typeArguments = method.GetGenericArguments();
-                    ifArguments = mi.GetGenericArguments();
-                    typeParameters = method.GetParameters();
-                    ifParameters = mi.GetParameters();
+                    typeArguments = method.GenericArguments;
+                    ifArguments = mi.GenericArguments;
+                    typeParameters = method.Parameters;
+                    ifParameters = mi.Parameters;
                     // Compare the method equality
                     if (
                         // Generic definition
-                        (mi.IsGenericMethod != method.IsGenericMethod) ||
-                        (mi.IsGenericMethod && mi.IsGenericMethodDefinition != method.IsGenericMethodDefinition) ||
+                        (mi.Method.IsGenericMethod != method.Method.IsGenericMethod) ||
+                        (mi.Method.IsGenericMethod && mi.Method.IsGenericMethodDefinition != method.Method.IsGenericMethodDefinition) ||
                         typeArguments.Length != ifArguments.Length ||
                         (
                             typeArguments.Length != 0 &&
@@ -584,10 +493,10 @@ namespace wan24.Core
                         ) ||
                         // Return type
                         !mi.ReturnType.IsAssignableFrom(method.ReturnType) ||
-                        (mi.IsNullable(nic) && !method.IsNullable(nic)) ||
+                        (mi.Method.IsNullable(nic) && !method.Method.IsNullable(nic)) ||
                         // Parameters
                         typeParameters.Length != ifParameters.Length ||
-                        !ifParameters.SequenceEqual(method.GetParameters()) ||
+                        !ifParameters.SequenceEqual(method.Parameters) ||
                         (
                             typeParameters.Length != 0 &&
                             Enumerable.Range(0, typeParameters.Length)
@@ -758,183 +667,65 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Determine if <see cref="BindingFlags"/> do match an object (which may be a field/property/method/constructor/event information)
+        /// Reflect all elements (which was defined by <see cref="IReflect"/> or <see cref="ReflectAttribute"/>, if <c>bindings</c> wasn't given - or <see cref="DEFAULT_BINDINGS"/>)
         /// </summary>
-        /// <param name="flags">Flags</param>
         /// <param name="obj">Object</param>
+        /// <param name="bindings">Bindings (<see cref="BindingFlags.GetField"/>, <see cref="BindingFlags.GetProperty"/> and <see cref="BindingFlags.InvokeMethod"/>)</param>
+        /// <returns>Elements (<see cref="FieldInfoExt"/>, <see cref="PropertyInfoExt"/> or <see cref="MethodInfoExt"/>)</returns>
+        public static IEnumerable<ICustomAttributeProvider> Reflect(this object obj, BindingFlags? bindings = null)
+            => Reflect(obj.GetType(), bindings ?? (obj as IReflect)?.Bindings);
+
+        /// <summary>
+        /// Reflect all (which was defined by <see cref="ReflectAttribute"/>, if <c>bindings</c> wasn't given - or <see cref="DEFAULT_BINDINGS"/>)
+        /// </summary>
         /// <param name="type">Type</param>
-        /// <returns>If match</returns>
-        public static bool DoesMatch(this BindingFlags flags, in ICustomAttributeProvider obj, in Type? type = null)
+        /// <param name="bindings">Bindings (<see cref="BindingFlags.GetField"/>, <see cref="BindingFlags.GetProperty"/> and <see cref="BindingFlags.InvokeMethod"/>)</param>
+        /// <returns>Elements (<see cref="FieldInfoExt"/>, <see cref="PropertyInfoExt"/> or <see cref="MethodInfoExt"/>)</returns>
+        public static IEnumerable<ICustomAttributeProvider> Reflect(this Type type, BindingFlags? bindings = null)
         {
-            bool wantPublic = (flags & BindingFlags.Public) == BindingFlags.Public,
-                wantsPrivate = (flags & BindingFlags.NonPublic) == BindingFlags.NonPublic,
-                requirePublic = wantPublic && !wantsPrivate,
-                requirePrivate = wantsPrivate && !wantPublic,
-                wantStatic = obj is not Type && (flags & BindingFlags.Static) == BindingFlags.Static,
-                wantInstance = obj is not Type && (flags & BindingFlags.Instance) == BindingFlags.Instance,
-                requireStatic = obj is not Type && wantStatic && !wantInstance,
-                requireInstance = obj is not Type && wantInstance && !wantStatic,
-                isPublic,
-                isStatic,
-                isProtected;
-            Type? declaringType;
-            switch (obj)
-            {
-                case Type o:
-                    isPublic = o.IsPublic || (o.IsDelegate() && o.IsVisible);
-                    isStatic = true;
-                    isProtected = o.IsNestedFamily;
-                    declaringType = o.DeclaringType;
-                    break;
-                case FieldInfo o:
-                    isPublic = o.IsPublic;
-                    isStatic = o.IsStatic;
-                    isProtected = !isPublic && o.IsFamily;
-                    declaringType = o.DeclaringType;
-                    break;
-                case FieldInfoExt o:
-                    isPublic = o.Field.IsPublic;
-                    isStatic = o.Field.IsStatic;
-                    isProtected = !isPublic && o.Field.IsFamily;
-                    declaringType = o.Field.DeclaringType;
-                    break;
-                case PropertyInfo o:
-                    {
-                        MethodInfo? mi = o.GetMethod ?? o.SetMethod;
-                        isPublic = mi?.IsPublic ?? false;
-                        isStatic = mi?.IsStatic ?? false;
-                        isProtected = !isPublic && (mi?.IsFamily ?? false);
-                        declaringType = o.DeclaringType;
-                    }
-                    break;
-                case PropertyInfoExt o:
-                    {
-                        MethodInfo? mi = o.Property.GetMethod ?? o.Property.SetMethod;
-                        isPublic = mi?.IsPublic ?? false;
-                        isStatic = mi?.IsStatic ?? false;
-                        isProtected = !isPublic && (mi?.IsFamily ?? false);
-                        declaringType = o.DeclaringType;
-                    }
-                    break;
-                case MethodInfo o:
-                    isPublic = o.IsPublic;
-                    isStatic = o.IsStatic;
-                    isProtected = !isPublic && o.IsFamily;
-                    declaringType = o.DeclaringType;
-                    break;
-                case MethodInfoExt o:
-                    isPublic = o.Method.IsPublic;
-                    isStatic = o.Method.IsStatic;
-                    isProtected = !isPublic && o.Method.IsFamily;
-                    declaringType = o.Method.DeclaringType;
-                    break;
-                case ConstructorInfo o:
-                    isPublic = o.IsPublic;
-                    isStatic = o.IsStatic;
-                    isProtected = !isPublic && o.IsFamily;
-                    declaringType = o.DeclaringType;
-                    break;
-                case ConstructorInfoExt o:
-                    isPublic = o.Constructor.IsPublic;
-                    isStatic = o.Constructor.IsStatic;
-                    isProtected = !isPublic && o.Constructor.IsFamily;
-                    declaringType = o.DeclaringType;
-                    break;
-                case EventInfo o:
-                    {
-                        MethodInfo? mi = o.AddMethod ?? o.RemoveMethod;
-                        isPublic = mi?.IsPublic ?? false;
-                        isStatic = mi?.IsStatic ?? false;
-                        isProtected = !isPublic && (mi?.IsFamily ?? false);
-                        declaringType = o.DeclaringType;
-                    }
-                    break;
-                default:
-                    return false;
-            }
-            if (requirePublic && !isPublic) return false;
-            if (requirePrivate && isPublic) return false;
-            if (requireStatic && !isStatic) return false;
-            if (requireInstance && isStatic) return false;
-            if (type is not null && type != declaringType)
-            {
-                if ((flags & BindingFlags.DeclaredOnly) == BindingFlags.DeclaredOnly) return false;
-                if ((flags & BindingFlags.FlattenHierarchy) == BindingFlags.FlattenHierarchy && isStatic && !isPublic && !isProtected) return false;
-            }
-            return true;
+            BindingFlags flags = bindings ?? type.GetCustomAttributeCached<ReflectAttribute>()?.Bindings ?? ALL_BINDINGS,
+                cleanFlags = flags & (BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly | BindingFlags.FlattenHierarchy);
+            if (cleanFlags == BindingFlags.Default) cleanFlags = DEFAULT_BINDINGS;
+            if ((flags & BindingFlags.GetField) == BindingFlags.GetField)
+                foreach (FieldInfoExt fi in type.GetFieldsCached(cleanFlags))
+                    yield return fi;
+            if ((flags & BindingFlags.GetProperty) == BindingFlags.GetProperty)
+                foreach (PropertyInfoExt pi in type.GetPropertiesCached(cleanFlags))
+                    yield return pi;
+            if ((flags & BindingFlags.InvokeMethod) == BindingFlags.InvokeMethod)
+                foreach (MethodInfoExt mi in type.GetMethodsCached(cleanFlags))
+                    yield return mi;
         }
 
         /// <summary>
-        /// Get the binding flags of a field/property/method/constructor/event information
-        /// </summary>
-        /// <param name="obj">Object</param>
-        /// <returns>Binding flags</returns>
-        public static BindingFlags GetBindingFlags(this ICustomAttributeProvider obj)
-        {
-            BindingFlags res = BindingFlags.Default;
-            switch (obj)
-            {
-                case FieldInfo o:
-                    res |= o.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
-                    res |= o.IsStatic ? BindingFlags.Static : BindingFlags.Instance;
-                    break;
-                case FieldInfoExt o:
-                    res |= o.Field.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
-                    res |= o.Field.IsStatic ? BindingFlags.Static : BindingFlags.Instance;
-                    break;
-                case PropertyInfo o:
-                    {
-                        MethodInfo? mi = o.GetMethod ?? o.SetMethod;
-                        res |= mi?.IsPublic ?? false ? BindingFlags.Public : BindingFlags.NonPublic;
-                        res |= mi?.IsStatic ?? false ? BindingFlags.Static : BindingFlags.Instance;
-                    }
-                    break;
-                case PropertyInfoExt o:
-                    {
-                        MethodInfo? mi = o.Property.GetMethod ?? o.Property.SetMethod;
-                        res |= mi?.IsPublic ?? false ? BindingFlags.Public : BindingFlags.NonPublic;
-                        res |= mi?.IsStatic ?? false ? BindingFlags.Static : BindingFlags.Instance;
-                    }
-                    break;
-                case MethodInfo o:
-                    res |= o.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
-                    res |= o.IsStatic ? BindingFlags.Static : BindingFlags.Instance;
-                    break;
-                case MethodInfoExt o:
-                    res |= o.Method.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
-                    res |= o.Method.IsStatic ? BindingFlags.Static : BindingFlags.Instance;
-                    break;
-                case ConstructorInfo o:
-                    res |= o.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
-                    res |= o.IsStatic ? BindingFlags.Static : BindingFlags.Instance;
-                    break;
-                case ConstructorInfoExt o:
-                    res |= o.Constructor.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
-                    res |= o.Constructor.IsStatic ? BindingFlags.Static : BindingFlags.Instance;
-                    break;
-                case EventInfo o:
-                    {
-                        MethodInfo? mi = o.AddMethod ?? o.RemoveMethod;
-                        res |= mi?.IsPublic ?? false ? BindingFlags.Public : BindingFlags.NonPublic;
-                        res |= mi?.IsStatic ?? false ? BindingFlags.Static : BindingFlags.Instance;
-                    }
-                    break;
-                default:
-                    throw new ArgumentException("Unsupported object type", nameof(obj));
-            }
-            return res;
-        }
-
-        /// <summary>
-        /// Get the non-<see cref="Nullable{T}"/> type
+        /// Determine if a type is a task type
         /// </summary>
         /// <param name="type">Type</param>
-        /// <returns>Non-nullable type</returns>
+        /// <returns>If the type is a task type</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static Type GetNonNullableType(this Type type) => Nullable.GetUnderlyingType(type) is Type res ? res.GetNonNullableType() : type;
+        public static bool IsTask(this Type type) => typeof(Task).IsAssignableFrom(type) || IsValueTask(type);
+
+        /// <summary>
+        /// Determine if a type is a task type
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If the type is a task type</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsValueTask(this Type type)
+            => type.IsValueType &&
+                (
+                    type == typeof(ValueTask) ||
+                    (
+                        type.IsGenericType &&
+                        type.GetGenericTypeDefinition() == typeof(ValueTask<>)
+                    )
+                );
 
         /// <summary>
         /// Match a method return type against an expected type
@@ -948,7 +739,7 @@ namespace wan24.Core
 #endif
         private static bool MatchReturnType(in MethodInfo method, in Type expectedReturnType, in bool exact)
         {
-            if (method.IsGenericMethod && method.ReturnType.IsGenericType && method.ReturnType.GetGenericArguments()[0].IsGenericMethodParameter)
+            if (method.IsGenericMethod && method.ReturnType.IsGenericType && method.ReturnType.GetGenericArgumentsCached()[0].IsGenericMethodParameter)
                 return expectedReturnType.IsAssignableFrom(method.ReturnType.GetGenericTypeDefinition());
             return (exact && method.ReturnType == expectedReturnType) || (!exact && expectedReturnType.IsAssignableFrom(method.ReturnType));
         }
@@ -966,7 +757,7 @@ namespace wan24.Core
 #endif
         private static bool MatchParameterType(in MethodInfo method, in Type parameterType, in Type expectedType, in bool exact)
         {
-            if (method.IsGenericMethod && parameterType.IsGenericType && parameterType.GetGenericArguments()[0].IsGenericMethodParameter)
+            if (method.IsGenericMethod && parameterType.IsGenericType && parameterType.GetGenericArgumentsCached()[0].IsGenericMethodParameter)
                 return parameterType.GetGenericTypeDefinition().IsAssignableFrom(expectedType);
             return (exact && parameterType == expectedType) || (!exact && parameterType.IsAssignableFrom(expectedType));
         }
@@ -987,15 +778,18 @@ namespace wan24.Core
         /// <summary>
         /// <see cref="DiffInterfaceCache"/> key
         /// </summary>
+        [StructLayout(LayoutKind.Explicit)]
         private readonly record struct DiffInterfaceCacheKey
         {
             /// <summary>
             /// Type hash code
             /// </summary>
+            [FieldOffset(0)]
             public readonly int TypeHashCode;
             /// <summary>
             /// Interface hash code
             /// </summary>
+            [FieldOffset(sizeof(int))]
             public readonly int InterfaceTypeHashCode;
 
             /// <summary>

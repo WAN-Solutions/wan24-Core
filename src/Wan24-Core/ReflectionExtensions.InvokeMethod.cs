@@ -63,7 +63,7 @@ namespace wan24.Core
             => (T?)InvokeAuto(mi, obj, serviceProvider, param);
 
         /// <summary>
-        /// Invoke a method and complete parameters with default values
+        /// Invoke a method and complete parameters with default values (and wait for a possible task result)
         /// </summary>
         /// <param name="mi">Method</param>
         /// <param name="obj">Object</param>
@@ -72,26 +72,12 @@ namespace wan24.Core
         public static async Task<object?> InvokeAutoAsync(this MethodInfo mi, object? obj, params object?[] param)
         {
             await Task.Yield();
-            if (mi.ReturnType is not Type retType) throw new ArgumentException("Method has no return type (task expected)", nameof(mi));
-            bool isTask = typeof(Task).IsAssignableFrom(retType);
-            if (!isTask && !typeof(ValueTask).IsAssignableFrom(retType)) throw new ArgumentException("Task return type expected", nameof(mi));
             if (mi.InvokeFast(obj, await mi.GetParametersCached().GetDiObjectsAsync(param).DynamicContext()) is not object res) return null;
-            if (isTask)
-            {
-                Task task = (Task)res;
-                await task.DynamicContext();
-                return retType.IsGenericType ? task.GetResult(retType.GetGenericArguments()[0]) : null;
-            }
-            else
-            {
-                ValueTask task = (ValueTask)res;
-                await task.DynamicContext();
-                return retType.IsGenericType ? task.GetResult(retType.GetGenericArguments()[0]) : null;
-            }
+            return res.IsTask() ? await TaskExtensions.GetAnyTaskResultAsync(res).DynamicContext() : null;
         }
 
         /// <summary>
-        /// Invoke a method and complete parameters with default values
+        /// Invoke a method and complete parameters with default values (and wait for a possible task result)
         /// </summary>
         /// <param name="mi">Method</param>
         /// <param name="obj">Object</param>
@@ -101,26 +87,12 @@ namespace wan24.Core
         public static async Task<object?> InvokeAutoAsync(this MethodInfo mi, object? obj, IServiceProvider serviceProvider, params object?[] param)
         {
             await Task.Yield();
-            if (mi.ReturnType is not Type retType) throw new ArgumentException("Method has no return type (task expected)", nameof(mi));
-            bool isTask = typeof(Task).IsAssignableFrom(retType);
-            if (!isTask && !typeof(ValueTask).IsAssignableFrom(retType)) throw new ArgumentException("Task return type expected", nameof(mi));
             if (mi.InvokeFast(obj, await mi.GetParametersCached().GetDiObjectsAsync(param, serviceProvider).DynamicContext()) is not object res) return null;
-            if (isTask)
-            {
-                Task task = (Task)res;
-                await task.DynamicContext();
-                return retType.IsGenericType ? task.GetResult(retType.GetGenericArguments()[0]) : null;
-            }
-            else
-            {
-                ValueTask task = (ValueTask)res;
-                await task.DynamicContext();
-                return retType.IsGenericType ? task.GetResult(retType.GetGenericArguments()[0]) : null;
-            }
+            return res.IsTask() ? await TaskExtensions.GetAnyTaskResultAsync(res).DynamicContext() : null;
         }
 
         /// <summary>
-        /// Invoke a method and complete parameters with default values
+        /// Invoke a method and complete parameters with default values (and wait for a possible task result)
         /// </summary>
         /// <param name="mi">Method</param>
         /// <param name="obj">Object</param>
@@ -130,26 +102,12 @@ namespace wan24.Core
         public static async Task<object?> InvokeAutoAsync(this MethodInfo mi, object? obj, IAsyncServiceProvider serviceProvider, params object?[] param)
         {
             await Task.Yield();
-            if (mi.ReturnType is not Type retType) throw new ArgumentException("Method has no return type (task expected)", nameof(mi));
-            bool isTask = typeof(Task).IsAssignableFrom(retType);
-            if (!isTask && !typeof(ValueTask).IsAssignableFrom(retType)) throw new ArgumentException("Task return type expected", nameof(mi));
             if (mi.InvokeFast(obj, await mi.GetParametersCached().GetDiObjectsAsync(param, serviceProvider).DynamicContext()) is not object res) return null;
-            if (isTask)
-            {
-                Task task = (Task)res;
-                await task.DynamicContext();
-                return retType.IsGenericType ? task.GetResult(retType.GetGenericArguments()[0]) : null;
-            }
-            else
-            {
-                ValueTask task = (ValueTask)res;
-                await task.DynamicContext();
-                return retType.IsGenericType ? task.GetResult(retType.GetGenericArguments()[0]) : null;
-            }
+            return res.IsTask() ? await TaskExtensions.GetAnyTaskResultAsync(res).DynamicContext() : res;
         }
 
         /// <summary>
-        /// Invoke a method and complete parameters with default values
+        /// Invoke a method and complete parameters with default values (and wait for a possible task result)
         /// </summary>
         /// <typeparam name="T">Return type</typeparam>
         /// <param name="mi">Method</param>
@@ -161,7 +119,7 @@ namespace wan24.Core
             => (T?)await InvokeAutoAsync(mi, obj, param).DynamicContext();
 
         /// <summary>
-        /// Invoke a method and complete parameters with default values
+        /// Invoke a method and complete parameters with default values (and wait for a possible task result)
         /// </summary>
         /// <typeparam name="T">Return type</typeparam>
         /// <param name="mi">Method</param>
@@ -174,7 +132,7 @@ namespace wan24.Core
             => (T?)await InvokeAutoAsync(mi, obj, serviceProvider, param).DynamicContext();
 
         /// <summary>
-        /// Invoke a method and complete parameters with default values
+        /// Invoke a method and complete parameters with default values (and wait for a possible task result)
         /// </summary>
         /// <typeparam name="T">Return type</typeparam>
         /// <param name="mi">Method</param>
