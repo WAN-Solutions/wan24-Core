@@ -113,7 +113,7 @@ namespace wan24.Core
             try
             {
                 object? returnValue = mi.Method.InvokeFast(instance, [.. parameterList]);
-                if (returnValue?.IsTask() ?? false) returnValue = await TaskExtensions.GetAnyFinalTaskResultAsync(returnValue).DynamicContext();
+                if (returnValue?.IsTask() ?? false) returnValue = await TaskHelper.GetAnyFinalTaskResultAsync(returnValue).DynamicContext();
                 if (returnValue is not null)
                     await returnValue.TryDisposeAsync().DynamicContext();
             }

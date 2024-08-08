@@ -73,7 +73,7 @@ namespace wan24.Core
         {
             await Task.Yield();
             if (mi.InvokeFast(obj, await mi.GetParametersCached().GetDiObjectsAsync(param).DynamicContext()) is not object res) return null;
-            return res.IsTask() ? await TaskExtensions.GetAnyTaskResultAsync(res).DynamicContext() : null;
+            return res.IsTask() ? await TaskHelper.GetAnyTaskResultAsync(res).DynamicContext() : null;
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace wan24.Core
         {
             await Task.Yield();
             if (mi.InvokeFast(obj, await mi.GetParametersCached().GetDiObjectsAsync(param, serviceProvider).DynamicContext()) is not object res) return null;
-            return res.IsTask() ? await TaskExtensions.GetAnyTaskResultAsync(res).DynamicContext() : null;
+            return res.IsTask() ? await TaskHelper.GetAnyTaskResultAsync(res).DynamicContext() : null;
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace wan24.Core
         {
             await Task.Yield();
             if (mi.InvokeFast(obj, await mi.GetParametersCached().GetDiObjectsAsync(param, serviceProvider).DynamicContext()) is not object res) return null;
-            return res.IsTask() ? await TaskExtensions.GetAnyTaskResultAsync(res).DynamicContext() : res;
+            return res.IsTask() ? await TaskHelper.GetAnyTaskResultAsync(res).DynamicContext() : res;
         }
 
         /// <summary>
