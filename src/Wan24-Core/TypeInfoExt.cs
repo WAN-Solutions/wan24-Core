@@ -67,6 +67,10 @@ namespace wan24.Core
         /// If the type can be constructed
         /// </summary>
         private bool? _CanConstruct = null;
+        /// <summary>
+        /// The parameterless constructor
+        /// </summary>
+        private ConstructorInfoExt? _ParameterlessConstructor = null;
 
         /// <summary>
         /// Type
@@ -142,6 +146,11 @@ namespace wan24.Core
         /// Constructor count
         /// </summary>
         public int ConstructorCount => (_Constructors ??= Type.GetConstructorsCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet()).Count;
+
+        /// <summary>
+        /// The parameterless constructor
+        /// </summary>
+        public ConstructorInfoExt? ParameterlessConstructor => _ParameterlessConstructor ??= Type.GetParameterlessConstructor();
 
         /// <summary>
         /// Fields

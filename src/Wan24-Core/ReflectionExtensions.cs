@@ -728,6 +728,14 @@ namespace wan24.Core
                 );
 
         /// <summary>
+        /// Get the parameterless constructor
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>Constructor</returns>
+        public static ConstructorInfoExt? GetParameterlessConstructor(this Type type)
+            => type.GetConstructorsCached(ALL_BINDINGS).FirstOrDefault(c => c.ParameterCount == 0);
+
+        /// <summary>
         /// Match a method return type against an expected type
         /// </summary>
         /// <param name="method">Method</param>
