@@ -192,7 +192,7 @@ namespace wan24.Core
         /// <summary>
         /// Entry
         /// </summary>
-        [StructLayout(LayoutKind.Auto)]
+        [StructLayout(LayoutKind.Sequential)]
         public readonly record struct Entry
         {
             /// <summary>

@@ -29,19 +29,22 @@ namespace wan24.Core
         {
             if (valuesAreOrdered && values is null)
                 throw new ArgumentNullException(nameof(values));
-            List<object?> valueList = new(values ?? []);
-            List<object?> res = [];
+            List<object?> valueList = new(values ?? []),
+                res = [];
             int i,
                 len = valueList.Count,
                 current = -1;
             object? value;
             bool found,
                 nullable;
+            Type paramType;
+            nic ??= new();
             foreach (ParameterInfo pi in parameters)
             {
                 found = false;
                 current++;
-                nullable = pi.IsNullable(nic ??= new());
+                paramType = pi.ParameterType.GetNonNullableType();
+                nullable = paramType != pi.ParameterType || pi.IsNullable(nic);
                 if (valuesAreOrdered)
                 {
                     if (current < len)
@@ -51,34 +54,34 @@ namespace wan24.Core
                             if (!nullable)
                                 throw new ArgumentNullException(pi.Name);
                         }
-                        else if (!pi.ParameterType.IsAssignableFrom(valueList[current]!.GetType()))
+                        else if (!paramType.IsAssignableFrom(valueList[current]!.GetType().GetNonNullableType()))
                         {
                             throw new ArgumentException($"{pi.ParameterType} value type expected ({valueList[current]!.GetType()} given)", pi.Name);
                         }
                         res.Add(valueList[current]);
-                        found = true;
+                        continue;
                     }
                 }
                 else
                 {
                     for (i = 0; i < len; i++)
                     {
-                        if (valueList[i] is null || !pi.ParameterType.IsAssignableFrom(valueList[i]!.GetType())) continue;
+                        if (valueList[i] is null || !paramType.IsAssignableFrom(valueList[i]!.GetType().GetNonNullableType())) continue;
                         res.Add(valueList[i]);
                         valueList.RemoveAt(i);
                         len--;
                         found = true;
                         break;
                     }
+                    if (found) continue;
                 }
-                if (found) continue;
                 if (pi.GetCustomAttributeCached<FromKeyedServicesAttribute>() is FromKeyedServicesAttribute attr)
                 {
-                    if (DiHelper.GetKeyedDiObject(attr.Key, pi.ParameterType, out value, serviceProvider))
-                        throw new ArgumentException($"Can't get keyed DI value of type {pi.ParameterType}", pi.Name);
+                    if (!DiHelper.GetKeyedDiObject(attr.Key, paramType, out value, serviceProvider))
+                        throw new ArgumentException($"Can't get keyed DI value of type {pi.ParameterType} from key \"{attr.Key}\"", pi.Name);
                     res.Add(value);
                 }
-                else if (DiHelper.GetDiObject(pi.ParameterType, out value, serviceProvider)) res.Add(value);
+                else if (DiHelper.GetDiObject(paramType, out value, serviceProvider)) res.Add(value);
                 else if (nullable && (!pi.HasDefaultValue || pi.DefaultValue is null)) res.Add(null);
                 else if (pi.HasDefaultValue) res.Add(pi.DefaultValue);
                 else if (throwOnMissing) throw new ArgumentException($"Can't get value of type {pi.ParameterType}", pi.Name);
@@ -109,19 +112,22 @@ namespace wan24.Core
         {
             if (valuesAreOrdered && values is null)
                 throw new ArgumentNullException(nameof(values));
-            List<object?> valueList = new(values ?? []);
-            List<object?> res = [];
+            List<object?> valueList = new(values ?? []),
+                res = [];
             int i,
                 len = valueList.Count,
                 current = -1;
             ITryAsyncResult di;
             bool found,
                 nullable;
+            Type paramType;
+            nic ??= new();
             foreach (ParameterInfo pi in parameters)
             {
                 found = false;
                 current++;
-                nullable = pi.IsNullable(nic ??= new());
+                paramType = pi.ParameterType.GetNonNullableType();
+                nullable = paramType != pi.ParameterType || pi.IsNullable(nic);
                 if (valuesAreOrdered)
                 {
                     if (current < len)
@@ -131,36 +137,36 @@ namespace wan24.Core
                             if (!nullable)
                                 throw new ArgumentNullException(pi.Name);
                         }
-                        else if (!pi.ParameterType.IsAssignableFrom(valueList[current]!.GetType()))
+                        else if (!paramType.IsAssignableFrom(valueList[current]!.GetType().GetNonNullableType()))
                         {
                             throw new ArgumentException($"{pi.ParameterType} value type expected ({valueList[current]!.GetType()} given)", pi.Name);
                         }
                         res.Add(valueList[current]);
-                        found = true;
+                        continue;
                     }
                 }
                 else
                 {
                     for (i = 0; i < len; i++)
                     {
-                        if (valueList[i] is null || !pi.ParameterType.IsAssignableFrom(valueList[i]!.GetType())) continue;
+                        if (valueList[i] is null || !paramType.IsAssignableFrom(valueList[i]!.GetType().GetNonNullableType())) continue;
                         res.Add(valueList[i]);
                         valueList.RemoveAt(i);
                         len--;
                         found = true;
                         break;
                     }
+                    if (found) continue;
                 }
-                if (found) continue;
                 if (pi.GetCustomAttributeCached<FromKeyedServicesAttribute>() is FromKeyedServicesAttribute attr)
                 {
-                    di = await DiHelper.GetKeyedDiObjectAsync(attr.Key, pi.ParameterType, serviceProvider, cancellationToken: cancellationToken).DynamicContext();
+                    di = await DiHelper.GetKeyedDiObjectAsync(attr.Key, paramType, serviceProvider, cancellationToken: cancellationToken).DynamicContext();
                     if (!di.Succeed)
-                        throw new ArgumentException($"Can't get keyed DI value of type {pi.ParameterType}", pi.Name);
+                        throw new ArgumentException($"Can't get keyed DI value of type {pi.ParameterType} from key \"{attr.Key}\"", pi.Name);
                     res.Add(di.Result);
                     continue;
                 }
-                di = await DiHelper.GetDiObjectAsync(pi.ParameterType, serviceProvider, cancellationToken).DynamicContext();
+                di = await DiHelper.GetDiObjectAsync(paramType, serviceProvider, cancellationToken).DynamicContext();
                 if (di.Succeed) res.Add(di.Result);
                 else if (nullable && (!pi.HasDefaultValue || pi.DefaultValue is null)) res.Add(null);
                 else if (pi.HasDefaultValue) res.Add(pi.DefaultValue);
@@ -186,23 +192,29 @@ namespace wan24.Core
             bool valuesAreOrdered = false
             )
         {
-            List<object?> valueList = new(values ?? []);
-            List<object?> res = [];
+            List<object?> valueList = new(values ?? []),
+                res = [];
             int i,
                 len = valueList.Count,
                 index = 0;
 #pragma warning disable IDE0018 // Declare inline
             object? value;
 #pragma warning restore IDE0018 // Declare inline
-            bool found;
+            bool found,
+                nullable;
+            Type current;
             foreach (Type type in types)
             {
                 found = false;
+                current = type.GetNonNullableType();
+                nullable = current != type || type.IsNullable();
                 if (valuesAreOrdered)
                 {
                     if (index < len)
                     {
-                        if (valueList[index] is not null && !type.IsAssignableFrom(valueList[index]!.GetType()))
+                        if (valueList[index] is null && !nullable)
+                            throw new ArgumentNullException(nameof(values), $"{type} value type expected (NULL given)");
+                        if (valueList[index] is not null && !current.IsAssignableFrom(valueList[index]!.GetType().GetNonNullableType()))
                             throw new ArgumentException($"{type} value type expected ({valueList[index]!.GetType()} given)", nameof(values));
                         res.Add(valueList[index]);
                         found = true;
@@ -212,7 +224,7 @@ namespace wan24.Core
                 {
                     for (i = 0; i < len; i++)
                     {
-                        if (valueList[i] is null || !type.IsAssignableFrom(valueList[i]!.GetType())) continue;
+                        if (valueList[i] is null || !current.IsAssignableFrom(valueList[i]!.GetType().GetNonNullableType())) continue;
                         res.Add(valueList[i]);
                         valueList.RemoveAt(i);
                         len--;
@@ -222,8 +234,8 @@ namespace wan24.Core
                 }
                 if (!found)
                 {
-                    if (DiHelper.GetDiObject(type, out value, serviceProvider)) res.Add(value);
-                    else if (type.IsNullable()) res.Add(null);
+                    if (DiHelper.GetDiObject(current, out value, serviceProvider)) res.Add(value);
+                    else if (nullable) res.Add(null);
                     else if (throwOnMissing) throw new ArgumentException($"Missing value #{index} of type {type}", nameof(values));
                 }
                 index++;
@@ -250,21 +262,27 @@ namespace wan24.Core
             CancellationToken cancellationToken = default
             )
         {
-            List<object?> valueList = new(values ?? []);
-            List<object?> res = [];
+            List<object?> valueList = new(values ?? []),
+                res = [];
             int i,
                 len = valueList.Count,
                 index = 0;
             ITryAsyncResult di;
-            bool found;
+            bool found,
+                nullable;
+            Type current;
             foreach (Type type in types)
             {
                 found = false;
+                current = type.GetNonNullableType();
+                nullable = current != type || type.IsNullable();
                 if (valuesAreOrdered)
                 {
                     if (index < len)
                     {
-                        if (valueList[index] is not null && !type.IsAssignableFrom(valueList[index]!.GetType()))
+                        if (valueList[index] is null && !nullable)
+                            throw new ArgumentNullException(nameof(values), $"{type} value type expected (NULL given)");
+                        if (valueList[index] is not null && !current.IsAssignableFrom(valueList[index]!.GetType().GetNonNullableType()))
                             throw new ArgumentException($"{type} value type expected ({valueList[index]!.GetType()} given)", nameof(values));
                         res.Add(valueList[index]);
                         found = true;
@@ -274,7 +292,7 @@ namespace wan24.Core
                 {
                     for (i = 0; i < len; i++)
                     {
-                        if (valueList[i] is null || !type.IsAssignableFrom(valueList[i]!.GetType())) continue;
+                        if (valueList[i] is null || !current.IsAssignableFrom(valueList[i]!.GetType().GetNonNullableType())) continue;
                         res.Add(valueList[i]);
                         valueList.RemoveAt(i);
                         len--;
@@ -287,9 +305,9 @@ namespace wan24.Core
                     index++;
                     continue;
                 }
-                di = await DiHelper.GetDiObjectAsync(type, serviceProvider, cancellationToken).DynamicContext();
+                di = await DiHelper.GetDiObjectAsync(current, serviceProvider, cancellationToken).DynamicContext();
                 if (di.Succeed) res.Add(di.Result);
-                else if (type.IsNullable()) res.Add(null);
+                else if (nullable) res.Add(null);
                 else if (throwOnMissing) throw new ArgumentException($"Missing value #{index} of type {type}", nameof(values));
                 index++;
             }

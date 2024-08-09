@@ -1,26 +1,31 @@
 ﻿using System.Collections;
 using System.Runtime;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
     /// <summary>
     /// Encoded bytes structure
     /// </summary>
+    [StructLayout(LayoutKind.Explicit)]
     public readonly record struct EncodedBytes : IList, IStructuralComparable, IStructuralEquatable
     {
         /// <summary>
-        /// Encoded data
-        /// </summary>
-        public readonly char[] Data;
-        /// <summary>
         /// Length
         /// </summary>
+        [FieldOffset(0)]
         public readonly int Length;
         /// <summary>
         /// Decoded length
         /// </summary>
+        [FieldOffset(sizeof(int))]
         public readonly int DecodedLength;
+        /// <summary>
+        /// Encoded data
+        /// </summary>
+        [FieldOffset(sizeof(int) << 1)]
+        public readonly char[] Data;
 
         /// <summary>
         /// Constructor

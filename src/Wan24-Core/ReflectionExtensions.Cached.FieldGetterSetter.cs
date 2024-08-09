@@ -16,7 +16,8 @@ namespace wan24.Core
                 !fi.DeclaringType.IsGenericTypeDefinition && 
                 !fi.DeclaringType.ContainsGenericParameters && 
                 !fi.FieldType.IsByRef && 
-                !fi.FieldType.IsByRefLike;
+                !fi.FieldType.IsByRefLike && 
+                !fi.FieldType.IsPointer;
 
         /// <summary>
         /// Determine if a field setter can be created (using <see cref="CreateFieldSetter(FieldInfo)"/>)
@@ -30,7 +31,8 @@ namespace wan24.Core
                 !fi.IsLiteral && 
                 !fi.IsInitOnly && 
                 !fi.FieldType.IsByRef && 
-                !fi.FieldType.IsByRefLike;
+                !fi.FieldType.IsByRefLike &&
+                !fi.FieldType.IsPointer;
 
         /// <summary>
         /// Create a field getter
@@ -55,18 +57,7 @@ namespace wan24.Core
             EnsureCanCreateFieldGetter(fi);
             if (fi.IsStatic) throw new ArgumentException("Field is static", nameof(fi));
             ParameterExpression objArg = Expression.Parameter(typeof(object), "obj");
-            MemberExpression field = Expression.Field(
-                fi.DeclaringType!.IsValueType
-                    ? Expression.Convert(objArg, fi.DeclaringType)
-                    : Expression.TypeAs(objArg, fi.DeclaringType),
-                fi);
-            return Expression.Lambda<Func<object?, object?>>(
-                fi.FieldType.IsValueType
-                    ? Expression.Convert(field, typeof(object))
-                    : Expression.TypeAs(field, typeof(object)),
-                objArg
-                )
-                .Compile();
+            return Expression.Lambda<Func<object?, object?>>(Expression.Convert(Expression.Field(Expression.Convert(objArg, fi.DeclaringType!), fi), typeof(object)), objArg).Compile();
         }
 
         /// <summary>
@@ -83,22 +74,11 @@ namespace wan24.Core
             if (!typeof(tValue).IsAssignableFrom(fi.FieldType)) throw new ArgumentException($"Value type mismatch ({typeof(tValue)}/{fi.FieldType})", nameof(tValue));
             if (fi.IsStatic) throw new ArgumentException("Field is static", nameof(fi));
             ParameterExpression objArg = Expression.Parameter(typeof(tObj), "obj");
-            MemberExpression getter = Expression.Field(
-                fi.DeclaringType.IsValueType
-                    ? Expression.Convert(objArg, fi.DeclaringType)
-                    : Expression.TypeAs(objArg, fi.DeclaringType),
-                fi
-                );
+            MemberExpression getter = Expression.Field(Expression.Convert(objArg, fi.DeclaringType), fi);
             Expression? returnValue = typeof(tValue) == fi.FieldType
                 ? null
-                : typeof(tValue).IsValueType
-                    ? Expression.Convert(getter, typeof(tValue))
-                    : Expression.TypeAs(getter, typeof(tValue));
-            return Expression.Lambda<Func<tObj, tValue?>>(
-                returnValue ?? getter,
-                objArg
-                )
-                .Compile();
+                : Expression.Convert(getter, typeof(tValue));
+            return Expression.Lambda<Func<tObj, tValue?>>(returnValue ?? getter, objArg).Compile();
         }
 
         /// <summary>
@@ -110,12 +90,7 @@ namespace wan24.Core
         {
             EnsureCanCreateFieldGetter(fi);
             if (!fi.IsStatic) throw new ArgumentException("Field is not static", nameof(fi));
-            return Expression.Lambda<Func<object?>>(
-                fi.FieldType.IsValueType
-                    ? Expression.Convert(Expression.Field(null, fi), typeof(object))
-                    : Expression.TypeAs(Expression.Field(null, fi), typeof(object))
-                )
-                .Compile();
+            return Expression.Lambda<Func<object?>>(Expression.Convert(Expression.Field(null, fi), typeof(object))).Compile();
         }
 
         /// <summary>
@@ -169,15 +144,8 @@ namespace wan24.Core
                 valueArg = Expression.Parameter(typeof(object), "value");
             return Expression.Lambda<Action<object?, object?>>(
                 Expression.Assign(
-                    Expression.Field(
-                        fi.DeclaringType!.IsValueType
-                            ? Expression.Convert(objArg, fi.DeclaringType)
-                            : Expression.TypeAs(objArg, fi.DeclaringType),
-                        fi
-                        ),
-                    fi.FieldType.IsValueType
-                        ? Expression.Convert(valueArg, fi.FieldType)
-                        : Expression.TypeAs(valueArg, fi.FieldType)
+                    Expression.Field(Expression.Convert(objArg, fi.DeclaringType!), fi),
+                    Expression.Convert(valueArg, fi.FieldType)
                     ),
                 objArg,
                 valueArg
@@ -202,12 +170,7 @@ namespace wan24.Core
                 valueArg = Expression.Parameter(typeof(tValue), "value");
             return Expression.Lambda<Action<tObj, tValue?>>(
                 Expression.Assign(
-                    Expression.Field(
-                        fi.DeclaringType.IsValueType
-                            ? Expression.Convert(objArg, fi.DeclaringType)
-                            : Expression.TypeAs(objArg, fi.DeclaringType),
-                        fi
-                        ),
+                    Expression.Field(Expression.Convert(objArg, fi.DeclaringType), fi),
                     valueArg
                     ),
                 objArg,
@@ -229,9 +192,7 @@ namespace wan24.Core
             return Expression.Lambda<Action<object?>>(
                 Expression.Assign(
                     Expression.Field(null, fi),
-                    fi.FieldType.IsValueType
-                        ? Expression.Convert(valueArg, fi.FieldType)
-                        : Expression.TypeAs(valueArg, fi.FieldType)
+                    Expression.Convert(valueArg, fi.FieldType)
                     ),
                 valueArg
                 )
@@ -250,14 +211,7 @@ namespace wan24.Core
             if (!fi.FieldType.IsAssignableFrom(typeof(T))) throw new ArgumentException($"Value type mismatch ({typeof(T)}/{fi.FieldType})", nameof(T));
             if (!fi.IsStatic) throw new ArgumentException("Field is not static", nameof(fi));
             ParameterExpression valueArg = Expression.Parameter(typeof(T), "value");
-            return Expression.Lambda<Action<T?>>(
-                Expression.Assign(
-                    Expression.Field(null, fi),
-                    valueArg
-                    ),
-                valueArg
-                )
-                .Compile();
+            return Expression.Lambda<Action<T?>>(Expression.Assign(Expression.Field(null, fi), valueArg), valueArg).Compile();
         }
 
         /// <summary>

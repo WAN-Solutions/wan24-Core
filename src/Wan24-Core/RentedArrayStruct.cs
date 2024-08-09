@@ -10,7 +10,7 @@ namespace wan24.Core
     /// Pool rented array (returns the array to the pool, when disposed)
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
-    [StructLayout(LayoutKind.Auto)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct RentedArrayStruct<T> : IRentedArray<T>
     {
         /// <summary>

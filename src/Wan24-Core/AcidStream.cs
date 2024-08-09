@@ -16,7 +16,7 @@ namespace wan24.Core
     /// ACID stream (IO is synchronized)
     /// </summary>
     /// <typeparam name="T">Target stream type</typeparam>
-    public partial class AcidStream<T> : WrapperStream<T> where T : Stream
+    public partial class AcidStream<T> : WrapperStream<T>, ITransaction where T : Stream
     {
         /// <summary>
         /// Constructor

@@ -10,6 +10,7 @@ namespace wan24.Core
     /// Pinned array (not thread-safe)
     /// </summary>
     /// <typeparam name="T">Pointer type</typeparam>
+    [StructLayout(LayoutKind.Sequential)]
     public unsafe readonly ref struct PinnedArrayRef<T> where T : struct
     {
         /// <summary>

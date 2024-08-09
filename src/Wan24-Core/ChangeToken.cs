@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Primitives;
 using System.ComponentModel;
 using System.Runtime;
+using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
@@ -160,6 +161,7 @@ namespace wan24.Core
         /// <summary>
         /// Dummy object notification subscription
         /// </summary>
+        [StructLayout(LayoutKind.Sequential)]
         protected readonly record struct DummySubscription : IDisposable
         {
             /// <inheritdoc/>

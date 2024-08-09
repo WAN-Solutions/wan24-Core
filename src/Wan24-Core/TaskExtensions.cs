@@ -1,4 +1,5 @@
-﻿using System.Runtime;
+﻿using System.Reflection;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 
 namespace wan24.Core
@@ -8,134 +9,6 @@ namespace wan24.Core
     /// </summary>
     public static class TaskExtensions
     {
-        /// <summary>
-        /// Get the result from a task (the task should be completed already!)
-        /// </summary>
-        /// <typeparam name="T">Result type</typeparam>
-        /// <param name="task">Task</param>
-        /// <returns>Result</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static T GetResult<T>(this Task task)
-        {
-            PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
-                ?? throw new ArgumentException("Not a result task", nameof(task));
-            if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
-            if (!typeof(T).IsAssignableFrom(pi.PropertyType)) throw new ArgumentException($"Result type {pi.PropertyType} mismatch", nameof(task));
-            return (T)(pi.Getter(task) ?? throw new InvalidDataException("Task result is NULL"));
-        }
-
-        /// <summary>
-        /// Get the result from a task (the task should be completed already!)
-        /// </summary>
-        /// <typeparam name="T">Result type</typeparam>
-        /// <param name="task">Task</param>
-        /// <returns>Result</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static T? GetResultNullable<T>(this Task task)
-        {
-            PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
-                ?? throw new ArgumentException("Not a result task", nameof(task));
-            if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
-            if (!typeof(T).IsAssignableFrom(pi.PropertyType)) throw new ArgumentException($"Result type {pi.PropertyType} mismatch", nameof(task));
-            return (T?)pi.Getter(task);
-        }
-
-        /// <summary>
-        /// Get the result from a task (the task should be completed already!)
-        /// </summary>
-        /// <param name="task">Task</param>
-        /// <param name="type">Result type</param>
-        /// <returns>Result</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static object GetResult(this Task task, in Type type)
-        {
-            PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
-                ?? throw new ArgumentException("Not a result task", nameof(task));
-            if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
-            if (!type.IsAssignableFrom(pi.PropertyType)) throw new ArgumentException("Result type mismatch", nameof(task));
-            return pi.Getter(task) ?? throw new InvalidDataException("Task result is NULL");
-        }
-
-        /// <summary>
-        /// Get the result from a task (the task should be completed already!)
-        /// </summary>
-        /// <param name="task">Task</param>
-        /// <param name="type">Result type</param>
-        /// <returns>Result</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static object? GetResultNullable(this Task task, in Type type)
-        {
-            PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
-                ?? throw new ArgumentException("Not a result task", nameof(task));
-            if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
-            if (!type.IsAssignableFrom(pi.PropertyType)) throw new ArgumentException("Result type mismatch", nameof(task));
-            return pi.Getter(task);
-        }
-
-        /// <summary>
-        /// Get the result from a task (the task should be completed already!)
-        /// </summary>
-        /// <typeparam name="T">Result type</typeparam>
-        /// <param name="task">Task</param>
-        /// <returns>Result</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static T GetResult<T>(this ValueTask task)
-        {
-            PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
-                ?? throw new ArgumentException("Not a result task", nameof(task));
-            if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
-            if (!typeof(T).IsAssignableFrom(pi.PropertyType)) throw new ArgumentException($"Result type {pi.PropertyType} mismatch", nameof(task));
-            return (T)(pi.Getter(task) ?? throw new InvalidDataException("Task result is NULL"));
-        }
-
-        /// <summary>
-        /// Get the result from a task (the task should be completed already!)
-        /// </summary>
-        /// <typeparam name="T">Result type</typeparam>
-        /// <param name="task">Task</param>
-        /// <returns>Result</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static T? GetResultNullable<T>(this ValueTask task)
-        {
-            PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
-                ?? throw new ArgumentException("Not a result task", nameof(task));
-            if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
-            if (!typeof(T).IsAssignableFrom(pi.PropertyType)) throw new ArgumentException($"Result type {pi.PropertyType} mismatch", nameof(task));
-            return (T?)pi.Getter(task);
-        }
-
-        /// <summary>
-        /// Get the result from a task (the task should be completed already!)
-        /// </summary>
-        /// <param name="task">Task</param>
-        /// <param name="type">Result type</param>
-        /// <returns>Result</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static object GetResult(this ValueTask task, in Type type)
-        {
-            PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
-                ?? throw new ArgumentException("Not a result task", nameof(task));
-            if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
-            if (!type.IsAssignableFrom(pi.PropertyType)) throw new ArgumentException("Result type mismatch", nameof(task));
-            return pi.Getter(task) ?? throw new InvalidDataException("Task result is NULL");
-        }
-
-        /// <summary>
-        /// Get the result from a task (the task should be completed already!)
-        /// </summary>
-        /// <param name="task">Task</param>
-        /// <param name="type">Result type</param>
-        /// <returns>Result</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static object? GetResultNullable(this ValueTask task, in Type type)
-        {
-            PropertyInfoExt pi = task.GetType().GetPropertyCached("Result")
-                ?? throw new ArgumentException("Not a result task", nameof(task));
-            if (pi.Getter is null) throw new ArgumentException("Result property has no getter", nameof(task));
-            if (!type.IsAssignableFrom(pi.PropertyType)) throw new ArgumentException("Result type mismatch", nameof(task));
-            return pi.Getter(task);
-        }
-
         /// <summary>
         /// Wait for all tasks
         /// </summary>
@@ -367,14 +240,15 @@ namespace wan24.Core
         /// </summary>
         /// <param name="task">Task</param>
         /// <returns>Final result type</returns>
-        public static Type? UnwrapFinalResultType(this Task task)
+        public static Type? UnwrapFinalResultType(this object task)
         {
             Type type = task.GetType();
+            if (!type.IsTask()) return null;
             Type? res = null;
             while (true)
             {
-                if (!type.IsGenericType || !typeof(Task).IsAssignableFrom(type)) return res;
-                res = type = type.GetGenericArguments()[0];
+                if (!type.IsGenericType || !type.IsTask()) return res;
+                res = type = type.GetGenericArgumentsCached()[0];
             }
         }
     }

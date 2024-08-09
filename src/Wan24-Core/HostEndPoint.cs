@@ -11,7 +11,7 @@ namespace wan24.Core
     /// <summary>
     /// Host endpoint
     /// </summary>
-    [StructLayout(LayoutKind.Auto)]
+    [StructLayout(LayoutKind.Sequential)]
     public readonly record struct HostEndPoint : IEnumerable<IPEndPoint>, IAsyncEnumerable<IPEndPoint>, ISerializeBinary<HostEndPoint>, ISerializeString<HostEndPoint>
     {
         /// <summary>

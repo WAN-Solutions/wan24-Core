@@ -5,7 +5,7 @@ namespace wan24.Core
     /// <summary>
     /// Parallel transaction
     /// </summary>
-    public sealed partial class ParallelTransaction : DisposableBase
+    public sealed partial class ParallelTransaction : DisposableBase, ITransaction
     {
         /// <summary>
         /// Constructor
@@ -66,7 +66,8 @@ namespace wan24.Core
         /// <summary>
         /// Running action tasks
         /// </summary>
-        public IReadOnlyDictionary<int, Task<object?>> Tasks => new Dictionary<int, Task<object?>>(_RunningActions.Select(a => new KeyValuePair<int, Task<object?>>(a.Key, a.Value.Completion.Task)));
+        public IReadOnlyDictionary<int, Task<object?>> Tasks
+            => new Dictionary<int, Task<object?>>(_RunningActions.Select(a => new KeyValuePair<int, Task<object?>>(a.Key, a.Value.Completion.Task)));
 
         /// <summary>
         /// Exceptions
@@ -88,10 +89,11 @@ namespace wan24.Core
         /// </summary>
         /// <param name="action">Action</param>
         /// <param name="rollback">Rollback</param>
+        /// <param name="commit">Commit</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Running action result</returns>
         /// <exception cref="InvalidOperationException">Previous actions had exceptions</exception>
-        public RunningActionResult Execute(in Action_Delegate action, in Rollback_Delegate rollback, in CancellationToken cancellationToken = default)
+        public RunningActionResult Execute(in Action_Delegate action, in Rollback_Delegate rollback, in Commit_Delegate? commit = null, in CancellationToken cancellationToken = default)
         {
             RunningAction runningAction;
             RunningActionResult result;
@@ -106,7 +108,8 @@ namespace wan24.Core
                 runningAction = new(this, result);
                 result.Task = runningAction.Completion.Task;
                 _RunningActions[index] = runningAction;
-                Rollback[index] = rollback;
+                RollbackActions[index] = rollback;
+                CommitActions[index] = commit;
                 ActionCount++;
             }
             runningAction.RunActionAsync(action, cancellationToken);
@@ -118,10 +121,16 @@ namespace wan24.Core
         /// </summary>
         /// <param name="action">Action</param>
         /// <param name="rollback">Rollback</param>
+        /// <param name="commit">Commit</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Running action result</returns>
         /// <exception cref="InvalidOperationException">Previous actions had exceptions</exception>
-        public RunningActionResult Execute(in ReturningAction_Delegate action, in Rollback_Delegate rollback, in CancellationToken cancellationToken = default)
+        public RunningActionResult Execute(
+            in ReturningAction_Delegate action, 
+            in Rollback_Delegate rollback, 
+            in Commit_Delegate? commit = null, 
+            in CancellationToken cancellationToken = default
+            )
         {
             RunningAction runningAction;
             RunningActionResult result;
@@ -136,7 +145,8 @@ namespace wan24.Core
                 runningAction = new(this, result);
                 result.Task = runningAction.Completion.Task;
                 _RunningActions[index] = runningAction;
-                Rollback[index] = rollback;
+                RollbackActions[index] = rollback;
+                CommitActions[index] = commit;
                 ActionCount++;
             }
             runningAction.RunActionAsync(action, cancellationToken);
@@ -148,10 +158,11 @@ namespace wan24.Core
         /// </summary>
         /// <param name="action">Action</param>
         /// <param name="rollback">Rollback</param>
+        /// <param name="commit">Commit</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Running action result</returns>
         /// <exception cref="InvalidOperationException">Previous actions had exceptions</exception>
-        public async Task<RunningActionResult> ExecuteAsync(Action_Delegate action, Rollback_Delegate rollback, CancellationToken cancellationToken = default)
+        public async Task<RunningActionResult> ExecuteAsync(Action_Delegate action, Rollback_Delegate rollback, Commit_Delegate? commit = null, CancellationToken cancellationToken = default)
         {
             RunningAction runningAction;
             RunningActionResult result;
@@ -166,7 +177,8 @@ namespace wan24.Core
                 runningAction = new(this, result);
                 result.Task = runningAction.Completion.Task;
                 _RunningActions[index] = runningAction;
-                Rollback[index] = rollback;
+                RollbackActions[index] = rollback;
+                CommitActions[index] = commit;
                 ActionCount++;
             }
             runningAction.RunActionAsync(action, cancellationToken);
@@ -178,10 +190,16 @@ namespace wan24.Core
         /// </summary>
         /// <param name="action">Action</param>
         /// <param name="rollback">Rollback</param>
+        /// <param name="commit">Commit</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Running action result</returns>
         /// <exception cref="InvalidOperationException">Previous actions had exceptions</exception>
-        public async Task<RunningActionResult> ExecuteAsync(ReturningAction_Delegate action, Rollback_Delegate rollback, CancellationToken cancellationToken = default)
+        public async Task<RunningActionResult> ExecuteAsync(
+            ReturningAction_Delegate action, 
+            Rollback_Delegate rollback, 
+            Commit_Delegate? commit = null, 
+            CancellationToken cancellationToken = default
+            )
         {
             RunningAction runningAction;
             RunningActionResult result;
@@ -196,7 +214,8 @@ namespace wan24.Core
                 runningAction = new(this, result);
                 result.Task = runningAction.Completion.Task;
                 _RunningActions[index] = runningAction;
-                Rollback[index] = rollback;
+                RollbackActions[index] = rollback;
+                CommitActions[index] = commit;
                 ActionCount++;
             }
             runningAction.RunActionAsync(action, cancellationToken);
@@ -209,7 +228,7 @@ namespace wan24.Core
         /// <param name="transaction">Transaction (won't be disposed)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Running action result</returns>
-        public RunningActionResult Append(Transaction transaction, in CancellationToken cancellationToken = default)
+        public RunningActionResult Append(ITransaction transaction, in CancellationToken cancellationToken = default)
             => Execute(
                 (ct) =>
                 {
@@ -217,6 +236,7 @@ namespace wan24.Core
                     return Task.CompletedTask;
                 },
                 async (ta, ret, ct) => await transaction.RollbackAsync(ct).DynamicContext(),
+                async (ta, ret, ct) => await transaction.CommitAsync(ct).DynamicContext(),
                 cancellationToken);
 
         /// <summary>
@@ -225,7 +245,7 @@ namespace wan24.Core
         /// <param name="transaction">Transaction (won't be disposed)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Running action result</returns>
-        public Task<RunningActionResult> AppendAsync(Transaction transaction, CancellationToken cancellationToken = default)
+        public Task<RunningActionResult> AppendAsync(ITransaction transaction, CancellationToken cancellationToken = default)
             => ExecuteAsync(
                 (ct) =>
                 {
@@ -233,38 +253,7 @@ namespace wan24.Core
                     return Task.CompletedTask;
                 },
                 async (ta, ret, ct) => await transaction.RollbackAsync(ct).DynamicContext(),
-                cancellationToken);
-
-        /// <summary>
-        /// Append a transaction
-        /// </summary>
-        /// <param name="transaction">Transaction (won't be disposed)</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Running action result</returns>
-        public RunningActionResult Append(ParallelTransaction transaction, in CancellationToken cancellationToken = default)
-            => Execute(
-                (ct) =>
-                {
-                    ct.ThrowIfCancellationRequested();
-                    return Task.CompletedTask;
-                },
-                async (ta, ret, ct) => await transaction.RollbackAsync(ct).DynamicContext(),
-                cancellationToken);
-
-        /// <summary>
-        /// Append a transaction
-        /// </summary>
-        /// <param name="transaction">Transaction (won't be disposed)</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Running action result</returns>
-        public Task<RunningActionResult> AppendAsync(ParallelTransaction transaction, CancellationToken cancellationToken = default)
-            => ExecuteAsync(
-                (ct) =>
-                {
-                    ct.ThrowIfCancellationRequested();
-                    return Task.CompletedTask;
-                },
-                async (ta, ret, ct) => await transaction.RollbackAsync(ct).DynamicContext(),
+                async (ta, ret, ct) => await transaction.CommitAsync(ct).DynamicContext(),
                 cancellationToken);
 
         /// <summary>
@@ -277,6 +266,9 @@ namespace wan24.Core
             EnsureUndisposed();
             return WaitDoneIntAsync(throwOnError, cancellationToken);
         }
+
+        /// <inheritdoc/>
+        void ITransaction.Commit() => Commit();
 
         /// <summary>
         /// Commit all actions since the last commit
@@ -293,6 +285,22 @@ namespace wan24.Core
             if (Cancellation.IsCancellationRequested) throw new InvalidOperationException("Transaction has been canceled");
             if (IsExceptional) throw new InvalidOperationException("Some actions had exceptions");
             if (Debug) Logging.WriteDebug($"{this} committing {ActionCount} actions");
+            CommitIntAsync(cancellationToken).GetAwaiter().GetResult();
+            Initialize();
+        }
+
+        /// <inheritdoc/>
+        public async Task CommitAsync(CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
+            EnsureUndisposed();
+            if (Debug) Logging.WriteDebug($"{this} commit called");
+            if (RunningActions != 0) throw new InvalidOperationException("Some actions are still running");
+            if (Cancellation.IsCancellationRequested) throw new InvalidOperationException("Transaction has been canceled");
+            if (IsExceptional) throw new InvalidOperationException("Some actions had exceptions");
+            if (Debug) Logging.WriteDebug($"{this} committing {ActionCount} actions");
+            await CommitIntAsync(cancellationToken).DynamicContext();
             Initialize();
         }
 
@@ -309,10 +317,23 @@ namespace wan24.Core
             await CancelIntAsync(cancellationToken).DynamicContext();
         }
 
+        /// <inheritdoc/>
+        void ITransaction.Rollback() => Rollback();
+
         /// <summary>
         /// Cancel all running actions and perform a rollback
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
+        public void Rollback(CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            using SemaphoreSyncContext ssc = Sync.SyncContext(cancellationToken);
+            EnsureUndisposed();
+            if (Debug) Logging.WriteDebug($"{this} rollback called");
+            RollbackIntAsync(cancellationToken).GetAwaiter().GetResult();
+        }
+
+        /// <inheritdoc/>
         public async Task RollbackAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -345,6 +366,14 @@ namespace wan24.Core
         /// <param name="returnValue">Action return value</param>
         /// <param name="cancellationToken">Cancellation token</param>
         public delegate Task Rollback_Delegate(ParallelTransaction transaction, object? returnValue, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Delegate for a commit action
+        /// </summary>
+        /// <param name="transaction">Transaction</param>
+        /// <param name="returnValue">Action return value</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public delegate Task Commit_Delegate(ParallelTransaction transaction, object? returnValue, CancellationToken cancellationToken);
 
         /// <summary>
         /// Delegate for an <see cref="OnError"/> handler

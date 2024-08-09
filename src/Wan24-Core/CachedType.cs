@@ -8,20 +8,23 @@ namespace wan24.Core
     /// <summary>
     /// Cached type (see <see cref="TypeCache"/>)
     /// </summary>
-    [StructLayout(LayoutKind.Auto)]
+    [StructLayout(LayoutKind.Explicit)]
     public readonly struct CachedType
     {
         /// <summary>
         /// <see cref="Type"/> hash code (see <see cref="Type.GetHashCode"/>)
         /// </summary>
+        [FieldOffset(0)]
         public readonly int HashCode;
         /// <summary>
         /// <see cref="Type"/> name hash code (see <see cref="Type.ToString"/>)
         /// </summary>
+        [FieldOffset(sizeof(int))]
         public readonly int NameHashCode;
         /// <summary>
         /// Type
         /// </summary>
+        [FieldOffset(sizeof(int) << 1)]
         public readonly Type Type;
 
         /// <summary>

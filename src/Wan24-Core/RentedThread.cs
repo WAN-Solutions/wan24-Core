@@ -112,7 +112,7 @@ namespace wan24.Core
         /// Work
         /// </summary>
         /// <param name="worker">Worker</param>
-        /// <param name="cancellationToken">Cancellation token (used for thead synchronization only)</param>
+        /// <param name="cancellationToken">Cancellation token (used for thread synchronization only)</param>
         public virtual async Task WorkAsync(Worker_Delegate worker, CancellationToken cancellationToken = default)
         {
             while (EnsureUndisposed())

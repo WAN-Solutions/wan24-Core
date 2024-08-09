@@ -20,6 +20,7 @@ namespace wan24.Core
                 (!pi.GetMethod.IsStatic || !pi.DeclaringType.IsInterface) &&
                 !pi.PropertyType.IsByRef &&
                 !pi.PropertyType.IsByRefLike &&
+                !pi.PropertyType.IsPointer &&
                 pi.GetMethod.GetParameters().Length == 0;
 
         /// <summary>
@@ -36,6 +37,7 @@ namespace wan24.Core
                 (!pi.SetMethod.IsStatic || !pi.DeclaringType.IsInterface) &&
                 !pi.PropertyType.IsByRef &&
                 !pi.PropertyType.IsByRefLike &&
+                !pi.PropertyType.IsPointer &&
                 pi.SetMethod.GetParameters().Length == 1;
 
         /// <summary>
@@ -62,18 +64,7 @@ namespace wan24.Core
             EnsureCanCreatePropertyGetter(pi);
             if (pi.GetMethod!.IsStatic) throw new ArgumentException("Non-static property required", nameof(pi));
             ParameterExpression objArg = Expression.Parameter(typeof(object), "obj");
-            MemberExpression getter = Expression.Property(
-                pi.DeclaringType!.IsValueType
-                    ? Expression.Convert(objArg, pi.DeclaringType)
-                    : Expression.TypeAs(objArg, pi.DeclaringType),
-                pi);
-            return Expression.Lambda<Func<object?, object?>>(
-                pi.PropertyType.IsValueType
-                    ? Expression.Convert(getter, typeof(object))
-                    : Expression.TypeAs(getter, typeof(object)),
-                objArg
-                )
-                .Compile();
+            return Expression.Lambda<Func<object?, object?>>(Expression.Convert(Expression.Property(Expression.Convert(objArg, pi.DeclaringType!), pi), typeof(object)), objArg).Compile();
         }
 
         /// <summary>
@@ -90,22 +81,11 @@ namespace wan24.Core
             if (!typeof(tValue).IsAssignableFrom(pi.PropertyType)) throw new ArgumentException($"Value type mismatch ({typeof(tValue)}/{pi.PropertyType})", nameof(tValue));
             if (pi.GetMethod!.IsStatic) throw new ArgumentException("Non-static property required", nameof(pi));
             ParameterExpression objArg = Expression.Parameter(typeof(tObj), "obj");
-            MemberExpression getter = Expression.Property(
-                pi.DeclaringType.IsValueType
-                    ? Expression.Convert(objArg, pi.DeclaringType)
-                    : Expression.TypeAs(objArg, pi.DeclaringType),
-                pi
-                );
+            MemberExpression getter = Expression.Property(Expression.Convert(objArg, pi.DeclaringType), pi);
             Expression? returnValue = typeof(tValue) == pi.PropertyType
                 ? null
-                : typeof(tValue).IsValueType
-                    ? Expression.Convert(getter, typeof(tValue))
-                    : Expression.TypeAs(getter, typeof(tValue));
-            return Expression.Lambda<Func<tObj, tValue?>>(
-                returnValue ?? getter,
-                objArg
-                )
-                .Compile();
+                : Expression.Convert(getter, typeof(tValue));
+            return Expression.Lambda<Func<tObj, tValue?>>(returnValue ?? getter, objArg).Compile();
         }
 
         /// <summary>
@@ -117,18 +97,7 @@ namespace wan24.Core
         {
             EnsureCanCreatePropertyGetter(pi);
             if (!pi.GetMethod!.IsStatic) throw new ArgumentException("Static property required", nameof(pi));
-            return Expression.Lambda<Func<object?>>(
-                pi.PropertyType.IsValueType
-                    ? Expression.Convert(
-                        Expression.Property(null, pi),
-                        typeof(object)
-                        )
-                    : Expression.TypeAs(
-                        Expression.Property(null, pi),
-                        typeof(object)
-                        )
-                )
-                .Compile();
+            return Expression.Lambda<Func<object?>>(Expression.Convert(Expression.Property(null, pi), typeof(object))).Compile();
         }
 
         /// <summary>
@@ -145,13 +114,8 @@ namespace wan24.Core
             MemberExpression getter = Expression.Property(null, pi);
             Expression? returnValue = typeof(T) == pi.PropertyType
                 ? null
-                : typeof(T).IsValueType
-                    ? Expression.Convert(getter, typeof(T))
-                    : Expression.TypeAs(getter, typeof(T));
-            return Expression.Lambda<Func<T>>(
-                returnValue ?? getter
-                )
-                .Compile();
+                : Expression.Convert(getter, typeof(T));
+            return Expression.Lambda<Func<T>>(returnValue ?? getter).Compile();
         }
 
         /// <summary>
@@ -191,15 +155,8 @@ namespace wan24.Core
                 valueArg = Expression.Parameter(typeof(object), "value");
             return Expression.Lambda<Action<object?, object?>>(
                 Expression.Assign(
-                    Expression.Property(
-                        pi.DeclaringType!.IsValueType
-                            ? Expression.Convert(objArg, pi.DeclaringType)
-                            : Expression.TypeAs(objArg, pi.DeclaringType),
-                        pi
-                        ),
-                    pi.PropertyType.IsValueType
-                        ? Expression.Convert(valueArg, pi.PropertyType)
-                        : Expression.TypeAs(valueArg, pi.PropertyType)
+                    Expression.Property(Expression.Convert(objArg, pi.DeclaringType!),pi),
+                    Expression.Convert(valueArg, pi.PropertyType)
                     ),
                 objArg,
                 valueArg
@@ -224,12 +181,7 @@ namespace wan24.Core
                 valueArg = Expression.Parameter(typeof(tValue), "value");
             return Expression.Lambda<Action<tObj, tValue?>>(
                 Expression.Assign(
-                    Expression.Property(
-                        pi.DeclaringType.IsValueType
-                            ? Expression.Convert(objArg, pi.DeclaringType)
-                            : Expression.TypeAs(objArg, pi.DeclaringType),
-                        pi
-                        ),
+                    Expression.Property(Expression.Convert(objArg, pi.DeclaringType), pi),
                     valueArg
                     ),
                 objArg,
@@ -248,16 +200,7 @@ namespace wan24.Core
             EnsureCanCreatePropertySetter(pi);
             if (!pi.SetMethod!.IsStatic) throw new ArgumentException("Static property required", nameof(pi));
             ParameterExpression valueArg = Expression.Parameter(typeof(object), "value");
-            return Expression.Lambda<Action<object?>>(
-                Expression.Assign(
-                    Expression.Property(null, pi),
-                    pi.PropertyType.IsValueType
-                        ? Expression.Convert(valueArg, pi.PropertyType)
-                        : Expression.TypeAs(valueArg, pi.PropertyType)
-                    ),
-                valueArg
-                )
-                .Compile();
+            return Expression.Lambda<Action<object?>>(Expression.Assign(Expression.Property(null, pi), Expression.Convert(valueArg, pi.PropertyType)), valueArg).Compile();
         }
 
         /// <summary>
@@ -272,14 +215,7 @@ namespace wan24.Core
             if (!pi.PropertyType.IsAssignableFrom(typeof(T))) throw new ArgumentException($"Value type mismatch ({typeof(T)}/{pi.PropertyType})", nameof(T));
             if (!pi.SetMethod!.IsStatic) throw new ArgumentException("Static property required", nameof(pi));
             ParameterExpression valueArg = Expression.Parameter(typeof(T), "value");
-            return Expression.Lambda<Action<T?>>(
-                Expression.Assign(
-                    Expression.Property(null, pi),
-                    valueArg
-                    ),
-                valueArg
-                )
-                .Compile();
+            return Expression.Lambda<Action<T?>>(Expression.Assign(Expression.Property(null, pi), valueArg), valueArg).Compile();
         }
 
         /// <summary>

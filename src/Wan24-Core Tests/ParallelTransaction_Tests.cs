@@ -25,7 +25,7 @@ namespace Wan24_Core_Tests
                 Assert.AreEqual(5, counter);
 
                 // Commit
-                transaction.Commit();
+                await transaction.CommitAsync();
                 Assert.IsTrue(transaction.IsCommitted);
                 Assert.AreEqual(0, transaction.ActionCount);
                 Assert.AreEqual(5, counter);

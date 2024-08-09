@@ -1,10 +1,12 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
     /// <summary>
     /// Cancellation awaiter
     /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
     public readonly record struct CancellationAwaiter : ICriticalNotifyCompletion
     {
         /// <summary>

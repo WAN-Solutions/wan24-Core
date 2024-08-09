@@ -22,7 +22,7 @@ namespace wan24.Core
         public required bool Get { get; init; }
 
         /// <summary>
-        /// Valut to set
+        /// Value to set
         /// </summary>
         public string? Value { get; init; }
 
@@ -66,11 +66,11 @@ namespace wan24.Core
                 ? fi.FieldType
                 : fi.FieldType.GetBaseTypes().FirstOrDefault(t => InstanceTables.IsValidTableType(t))
                     ?? throw new InvalidProgramException($"Invalid instance table field type {fi.FieldType} for {providerType}"),
-                valueType = fieldType.GetGenericArguments()[1];
+                valueType = fieldType.GetGenericArgumentsCached()[1];
             PropertyInfoExt pi;
             if (ProviderKey.Length > 0)
             {
-                instance = InstanceTables.FindInstance(fi, ProviderKey);
+                instance = InstanceTables.FindInstance(fi.Field, ProviderKey);
                 if (instance is null)
                     throw new InvalidOperationException("The object instance with the given key wasn't found in the instance provider table");
                 if (!valueType.IsAssignableFrom(instance.GetType()))

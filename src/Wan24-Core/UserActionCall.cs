@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace wan24.Core
 {
@@ -61,11 +62,11 @@ namespace wan24.Core
                 ? fi.FieldType
                 : fi.FieldType.GetBaseTypes().FirstOrDefault(t => InstanceTables.IsValidTableType(t))
                     ?? throw new InvalidProgramException($"Invalid instance table field type {fi.FieldType} for {providerType}"),
-                valueType = fieldType.GetGenericArguments()[1];
+                valueType = fieldType.GetGenericArgumentsCached()[1];
             MethodInfoExt mi;
             if (ProviderKey.Length > 0)
             {
-                instance = InstanceTables.FindInstance(fi, ProviderKey);
+                instance = InstanceTables.FindInstance(fi.Field, ProviderKey);
                 if (instance is null)
                     throw new InvalidOperationException("The object instance with the given key wasn't found in the instance provider table");
                 if (!valueType.IsAssignableFrom(instance.GetType()))
@@ -112,13 +113,7 @@ namespace wan24.Core
             try
             {
                 object? returnValue = mi.Method.InvokeFast(instance, [.. parameterList]);
-                while (returnValue is Task task)
-                {
-                    await task.DynamicContext();
-                    returnValue = task.GetType().IsGenericType
-                        ? task.GetResult(task.GetType().GetGenericArguments()[0])
-                        : null;
-                }
+                if (returnValue?.IsTask() ?? false) returnValue = await TaskHelper.GetAnyFinalTaskResultAsync(returnValue).DynamicContext();
                 if (returnValue is not null)
                     await returnValue.TryDisposeAsync().DynamicContext();
             }

@@ -39,17 +39,23 @@ namespace wan24.Core
                 else if (memory.HasValue) uid = memory.Value.Span;
                 else uid = roMemory!.Value.Span;
             }
-            else if (value is string str && !Uid.TryParse(str, out uid))
+            else
             {
-                return this.CreateValidationResult($"Invalid UID string format", validationContext);
-            }
-            else if (value is not Uid)
-            {
-                return this.CreateValidationResult($"Invalid value ({typeof(Uid)} expected, {value.GetType()} given)", validationContext);
-            }
-            else if (!uid.HasValue)
-            {
-                uid = (Uid)value;
+                if (value is string str)
+                {
+                    if (!Uid.TryParse(str, out Uid uid2))
+                        return this.CreateValidationResult($"Invalid UID string format", validationContext);
+                    uid = uid2;
+                }
+                if (!uid.HasValue)
+                    if (value is not string && value is not Uid)
+                    {
+                        return this.CreateValidationResult($"Invalid value ({typeof(Uid)} expected, {value.GetType()} given)", validationContext);
+                    }
+                    else
+                    {
+                        uid = (Uid)value;
+                    }
             }
             if (!AllowFutureTime && uid.Value.Time > DateTime.UtcNow)
                 return this.CreateValidationResult($"Invalid future time", validationContext);
