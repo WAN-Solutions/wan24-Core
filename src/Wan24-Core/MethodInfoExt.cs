@@ -126,12 +126,12 @@ namespace wan24.Core
         /// <summary>
         /// Generic arguments
         /// </summary>
-        public Type[] GenericArguments => [.. _GenericArguments ??= Method.GetGenericArgumentsCached()];
+        public Type[] GenericArguments => [.. _GenericArguments ??= Method.IsGenericMethod ? Method.GetGenericArgumentsCached() : []];
 
         /// <summary>
         /// Number of generic arguments
         /// </summary>
-        public int GenericArgumentCount => (_GenericArguments ??= Method.GetGenericArgumentsCached()).Length;
+        public int GenericArgumentCount => (_GenericArguments ??= Method.IsGenericMethod ? Method.GetGenericArgumentsCached() : []).Length;
 
         /// <summary>
         /// If the method return value is nullable

@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Frozen;
 using System.Reflection;
 using System.Runtime;
+using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
@@ -48,6 +49,10 @@ namespace wan24.Core
         /// Events
         /// </summary>
         private FrozenSet<EventInfo>? _Events = null;
+        /// <summary>
+        /// Generic arguments
+        /// </summary>
+        private Type[]? _GenericArguments = null;
         /// <summary>
         /// If it's a delegate
         /// </summary>
@@ -127,6 +132,16 @@ namespace wan24.Core
         /// If the type is a generic type definition
         /// </summary>
         public bool IsGenericTypeDefinition => Type.IsGenericTypeDefinition;
+
+        /// <summary>
+        /// Generic arguments
+        /// </summary>
+        public Type[] GenericArguments => _GenericArguments ??= Type.IsGenericType ? Type.GetGenericArgumentsCached() : [];
+
+        /// <summary>
+        /// Generic argument count
+        /// </summary>
+        public int GenericArgumentCount => (_GenericArguments ??= Type.IsGenericType ? Type.GetGenericArgumentsCached() : []).Length;
 
         /// <summary>
         /// Attributes
