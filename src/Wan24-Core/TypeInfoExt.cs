@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Frozen;
 using System.Reflection;
 using System.Runtime;
@@ -12,7 +13,7 @@ namespace wan24.Core
     /// Constructor
     /// </remarks>
     /// <param name="Type">Type</param>
-    public sealed record class TypeInfoExt(in Type Type) : ICustomAttributeProvider
+    public sealed record class TypeInfoExt(in Type Type) : ICustomAttributeProvider, IEnumerable<PropertyInfoExt>
     {
         /// <summary>
         /// Cached instances (key is the type hash code)
@@ -214,6 +215,13 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public bool IsDefined(Type attributeType, bool inherit) => Type.IsDefined(attributeType, inherit);
 
+        /// <inheritdoc/>
+        public IEnumerator<PropertyInfoExt> GetEnumerator()
+            => ((IEnumerable<PropertyInfoExt>)(_Properties ??= Type.GetPropertiesCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet())).GetEnumerator();
+
+        /// <inheritdoc/>
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
         /// <summary>
         /// Cast as <see cref="Type"/>
         /// </summary>
@@ -225,6 +233,12 @@ namespace wan24.Core
         /// </summary>
         /// <param name="type">Type</param>
         public static implicit operator TypeInfoExt(in Type type) => From(type);
+
+        /// <summary>
+        /// Cast as <see cref="ParameterlessConstructor"/>
+        /// </summary>
+        /// <param name="ci"><see cref="TypeInfoExt"/></param>
+        public static implicit operator ConstructorInfoExt?(in TypeInfoExt ci) => ci.ParameterlessConstructor;
 
         /// <summary>
         /// Create from a type

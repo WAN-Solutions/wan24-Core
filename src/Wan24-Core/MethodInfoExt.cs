@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System.Collections;
+using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime;
@@ -14,7 +15,7 @@ namespace wan24.Core
     /// </remarks>
     /// <param name="Method">Method</param>
     /// <param name="Invoker">Invoker delegate</param>
-    public sealed record class MethodInfoExt(in MethodInfo Method, Func<object?, object?[], object?>? Invoker) : ICustomAttributeProvider
+    public sealed record class MethodInfoExt(in MethodInfo Method, Func<object?, object?[], object?>? Invoker) : ICustomAttributeProvider, IEnumerable<ParameterInfo>
     {
         /// <summary>
         /// Cache (key is the method hash code)
@@ -203,6 +204,12 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Just a method adapter")]
         public bool IsDefined(Type attributeType, bool inherit) => Method.IsDefined(attributeType, inherit);
 
+        /// <inheritdoc/>
+        public IEnumerator<ParameterInfo> GetEnumerator() => ((IEnumerable<ParameterInfo>)(_Parameters ??= Method.GetParametersCached())).GetEnumerator();
+
+        /// <inheritdoc/>
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
         /// <summary>
         /// Cast as <see cref="MethodInfo"/>
         /// </summary>
@@ -216,6 +223,13 @@ namespace wan24.Core
         /// <param name="mi"><see cref="MethodInfo"/></param>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator MethodInfoExt(in MethodInfo mi) => From(mi);
+
+        /// <summary>
+        /// Cast as <see cref="ReturnType"/>
+        /// </summary>
+        /// <param name="mi"><see cref="MethodInfoExt"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator Type(in MethodInfoExt mi) => mi.ReturnType;
 
         /// <summary>
         /// Create

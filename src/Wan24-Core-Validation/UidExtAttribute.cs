@@ -19,7 +19,7 @@ namespace wan24.Core
         public int RequiredId { get; } = requiredId;
 
         /// <summary>
-        /// Maiximum Required ID
+        /// Maximum Required ID
         /// </summary>
         public int? MaxRequiredId { get; set; }
 
@@ -46,7 +46,8 @@ namespace wan24.Core
             {
                 if (!AllowUid) return this.CreateValidationResult($"UID not allowed", validationContext);
                 using RentedArrayRefStruct<byte> buffer = new(UidExt.STRUCTURE_SIZE);
-                uid = ((Uid)value).GetBytes(buffer.Span);
+                ((Uid)value).GetBytes(buffer.Span);
+                uid = buffer.Span;
             }
             if (uid.Id < RequiredId || (MaxRequiredId.HasValue && uid.Id > MaxRequiredId.Value) || (!MaxRequiredId.HasValue && uid.Id != RequiredId))
                 return this.CreateValidationResult($"Invalid ID", validationContext);

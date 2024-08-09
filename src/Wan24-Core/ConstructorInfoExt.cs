@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System.Collections;
+using System.Collections.Concurrent;
 using System.Reflection;
 using System.Runtime;
 
@@ -12,7 +13,7 @@ namespace wan24.Core
     /// </remarks>
     /// <param name="Constructor">Constructor</param>
     /// <param name="Invoker">Invoker delegate</param>
-    public sealed record class ConstructorInfoExt(in ConstructorInfo Constructor, in Func<object?[], object>? Invoker) : ICustomAttributeProvider
+    public sealed record class ConstructorInfoExt(in ConstructorInfo Constructor, in Func<object?[], object>? Invoker) : ICustomAttributeProvider, IEnumerable<ParameterInfo>
     {
         /// <summary>
         /// Cache (key is the constructor hash code)
@@ -69,6 +70,12 @@ namespace wan24.Core
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
         public bool IsDefined(Type attributeType, bool inherit) => Constructor.IsDefined(attributeType, inherit);
+
+        /// <inheritdoc/>
+        public IEnumerator<ParameterInfo> GetEnumerator() => ((IEnumerable<ParameterInfo>)(_Parameters ??= Constructor.GetParametersCached())).GetEnumerator();
+
+        /// <inheritdoc/>
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         /// <summary>
         /// Cast as <see cref="ConstructorInfo"/>

@@ -66,7 +66,7 @@ namespace wan24.Core
             MethodInfoExt mi;
             if (ProviderKey.Length > 0)
             {
-                instance = InstanceTables.FindInstance(fi, ProviderKey);
+                instance = InstanceTables.FindInstance(fi.Field, ProviderKey);
                 if (instance is null)
                     throw new InvalidOperationException("The object instance with the given key wasn't found in the instance provider table");
                 if (!valueType.IsAssignableFrom(instance.GetType()))

@@ -22,7 +22,7 @@ namespace wan24.Core
         public required bool Get { get; init; }
 
         /// <summary>
-        /// Valut to set
+        /// Value to set
         /// </summary>
         public string? Value { get; init; }
 
@@ -70,7 +70,7 @@ namespace wan24.Core
             PropertyInfoExt pi;
             if (ProviderKey.Length > 0)
             {
-                instance = InstanceTables.FindInstance(fi, ProviderKey);
+                instance = InstanceTables.FindInstance(fi.Field, ProviderKey);
                 if (instance is null)
                     throw new InvalidOperationException("The object instance with the given key wasn't found in the instance provider table");
                 if (!valueType.IsAssignableFrom(instance.GetType()))

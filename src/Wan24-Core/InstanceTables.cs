@@ -84,7 +84,7 @@ namespace wan24.Core
         public static object? FindInstance(in Type providerType, in string key)
             => FindTableProviderField(providerType) is not FieldInfoExt fi
                 ? throw new ArgumentException("Not an instance table provider type (instance table field not found)", nameof(providerType))
-                : FindInstance(fi, key);
+                : FindInstance(fi.Field, key);
 
         /// <summary>
         /// Find an instance

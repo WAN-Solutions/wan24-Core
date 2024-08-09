@@ -101,6 +101,13 @@ namespace wan24.Core
         public static implicit operator FieldInfoExt(in FieldInfo fi) => From(fi);
 
         /// <summary>
+        /// Cast as <see cref="FieldType"/>
+        /// </summary>
+        /// <param name="fi"><see cref="FieldInfoExt"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator Type(in FieldInfoExt fi) => fi.FieldType;
+
+        /// <summary>
         /// Create
         /// </summary>
         /// <param name="fi">Field</param>

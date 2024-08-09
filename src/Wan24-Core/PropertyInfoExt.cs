@@ -187,6 +187,13 @@ namespace wan24.Core
         public static implicit operator PropertyInfoExt(in PropertyInfo pi) => From(pi);
 
         /// <summary>
+        /// Cast as <see cref="PropertyType"/>
+        /// </summary>
+        /// <param name="pi"><see cref="PropertyInfoExt"/></param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+        public static implicit operator Type(in PropertyInfoExt pi) => pi.PropertyType;
+
+        /// <summary>
         /// Create
         /// </summary>
         /// <param name="pi">Property</param>

@@ -70,7 +70,7 @@ namespace wan24.Core
                 HashSet<XmlMethodDocComments> methods = [];
                 foreach (MethodInfoExt mi in type.GetMethodsCached(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
                     .Where(m => m.Method.DeclaringType == type && !m.Method.IsSpecialName))
-                    methods.Add(new(this, mi, xml));
+                    methods.Add(new(this, mi.Method, xml));
                 Methods = methods.ToFrozenSet();
                 // Delegates
                 HashSet<XmlMethodDocComments> delegates = [];
