@@ -6,32 +6,23 @@
     public static class SerializerSettings
     {
         /// <summary>
-        /// Serializer version number
-        /// </summary>
-        public const int VERSION = 1;
-        /// <summary>
-        /// Minimum supported serializer version number
-        /// </summary>
-        public const int MIN_VERSION = 1;
-
-        /// <summary>
         /// Custom serializer version number
         /// </summary>
-        private static int _CustomVersion = VERSION;
+        private static int _CustomVersion = SerializerConstants.VERSION;
 
         /// <summary>
         /// Serializer version number to use
         /// </summary>
         public static int Version
         {
-            get => _CustomVersion | VERSION;
+            get => _CustomVersion | SerializerConstants.VERSION;
             set => _CustomVersion = value & ~byte.MaxValue;
         }
 
         /// <summary>
         /// Base serializer version number
         /// </summary>
-        public static int BaseVersion => VERSION;
+        public static int BaseVersion => SerializerConstants.VERSION;
 
         /// <summary>
         /// Custom serializer version number

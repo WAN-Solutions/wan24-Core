@@ -25,11 +25,11 @@ namespace wan24.Core
         /// </summary>
         public static readonly Dictionary<string, AsyncCustomSerializer_Delegate> NamedAsyncSerializers;
         /// <summary>
-        /// Named deserializers
+        /// Named deserializer
         /// </summary>
         public static readonly Dictionary<string, CustomDeserializer_Delegate> NamedDeserializers;
         /// <summary>
-        /// Named deserializers
+        /// Named deserializer
         /// </summary>
         public static readonly Dictionary<string, AsyncCustomDeserializer_Delegate> NamedAsyncDeserializers;
 

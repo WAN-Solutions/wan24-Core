@@ -27,6 +27,24 @@ namespace wan24.Core
         private static readonly ConcurrentDictionary<int, TryParseObject_Delegate> TryParseObjectDelegates = [];
 
         /// <summary>
+        /// Determine if a type can be deserialized using <see cref="DeserializeFrom(Type, in ReadOnlySpan{byte})"/>
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If deserialization is possible</returns>
+        public static bool CanDeserialize(this Type type)
+            => typeof(ISerializeBinary).IsAssignableFrom(type) && type.GetMethodCached(nameof(ISerializeBinary.TryDeserializeFrom), BindingFlags.Public | BindingFlags.Static) is not null;
+
+        /// <summary>
+        /// Determine if a type can be parsed using <see cref="ParseObject(Type, in ReadOnlySpan{char})"/>
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If parsing is possible</returns>
+        public static bool CanParse(this Type type)
+            => typeof(ISerializeString).IsAssignableFrom(type)
+                ? type.GetMethodCached(nameof(ISerializeString.TryParseObject), BindingFlags.Public | BindingFlags.Static) is not null
+                : StringValueConverter.CanConvertFromString(type);
+
+        /// <summary>
         /// Deserialize an instance from binary serialized data
         /// </summary>
         /// <param name="type">Type</param>
