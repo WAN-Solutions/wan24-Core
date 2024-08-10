@@ -24,14 +24,6 @@ namespace wan24.Core
         /// </summary>
         private static readonly Dictionary<Type, Delegate> AsyncDeserializer = [];
         /// <summary>
-        /// Allowed serializer types
-        /// </summary>
-        public static readonly HashSet<Type> AllowedTypes = [];
-        /// <summary>
-        /// Allowed serializer types (explicit)
-        /// </summary>
-        public static readonly HashSet<Type> AllowedTypesExplicit = [];
-        /// <summary>
         /// Denied serializer types
         /// </summary>
         public static readonly HashSet<Type> DeniedTypes = [];
@@ -41,21 +33,25 @@ namespace wan24.Core
         public static readonly HashSet<Type> DeniedTypesExplicit = [];
 
         /// <summary>
+        /// Registered types
+        /// </summary>
+        public static IEnumerable<Type> RegisteredTypes => SyncSerializer.Keys;
+
+        /// <summary>
         /// Determine if a type can be (de)serialized
         /// </summary>
         /// <param name="type">Type</param>
+        /// <param name="checkDenied">If to check for denied types using <see cref="IsDeniedForSerialization(in Type)"/></param>
         /// <returns>If the given type can be (de)serialized</returns>
-        public static bool CanSerialize(in Type type)
-            => SyncDeserializer.Keys.GetClosestType(type) is not null &&
-                (
-                    AllowedTypesExplicit.Contains(type) ||
-                    AllowedTypes.GetClosestType(type) is not null || 
-                    (
-                        !DeniedTypesExplicit.Contains(type) &&
-                        DeniedTypes.GetClosestType(type) is null &&
-                        SyncDeserializer.Keys.GetClosestType(type) is not null
-                    )
-                );
+        public static bool CanSerialize(in Type type, in bool checkDenied = true)
+            => SyncDeserializer.Keys.GetClosestType(type) is not null && (!checkDenied || !IsDeniedForSerialization(type));
+
+        /// <summary>
+        /// Determine if a type was denied for serialization
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If denied for serialization</returns>
+        public static bool IsDeniedForSerialization(in Type type) => DeniedTypesExplicit.Contains(type) || DeniedTypesExplicit.GetClosestType(type) is not null;
 
         /// <summary>
         /// Add a serializer (existing serializer may be overwritten)
@@ -120,6 +116,8 @@ namespace wan24.Core
             AsyncDeserializer[type] = asyncDeserializer;
         }
 
+        //TODO Method for adding an automatic object serializer
+
         /// <summary>
         /// Get a serializer
         /// </summary>
@@ -127,10 +125,8 @@ namespace wan24.Core
         /// <returns>Serializer (first argument must be <see langword="null"/>, second is the <see cref="SyncTypeSerializer_Delegate{T}"/> arguments, return value is 
         /// <see langword="null"/>)</returns>
         public static Func<object?, object?[], object?>? GetSerializer(in Type type)
-            => CanSerialize(type)
-                ? MethodInfoExt.From(
-                    SyncSerializer[SyncSerializer.Keys.GetClosestType(type) ?? throw new InvalidProgramException($"{type} sync. serializer not found")].Method
-                    ).MakeGenericMethod(type).Invoker
+            => !IsDeniedForSerialization(type) && SyncSerializer.Keys.GetClosestType(type) is Type key
+                ? MethodInfoExt.From(SyncSerializer[key].Method).MakeGenericMethod(type).Invoker
                 : null;
 
         /// <summary>
@@ -140,10 +136,8 @@ namespace wan24.Core
         /// <returns>Serializer (first argument must be <see langword="null"/>, second is the <see cref="AsyncTypeSerializer_Delegate{T}"/> arguments, return value is a 
         /// <see cref="Task"/>)</returns>
         public static Func<object?, object?[], object?>? GetAsyncSerializer(in Type type)
-            => CanSerialize(type)
-                ? MethodInfoExt.From(
-                    AsyncSerializer[AsyncSerializer.Keys.GetClosestType(type) ?? throw new InvalidProgramException($"{type} async. serializer not found")].Method
-                    ).MakeGenericMethod(type).Invoker
+            => !IsDeniedForSerialization(type) && AsyncSerializer.Keys.GetClosestType(type) is Type serializerType
+                ? MethodInfoExt.From(AsyncSerializer[serializerType].Method).MakeGenericMethod(type).Invoker
                 : null;
 
         /// <summary>
@@ -153,10 +147,8 @@ namespace wan24.Core
         /// <returns>Deserializer (first argument must be <see langword="null"/>, second is the <see cref="SyncTypeDeserializer_Delegate{T}"/> arguments, return value is the deserialized 
         /// object (must not be <see langword="null"/>))</returns>
         public static Func<object?, object?[], object?>? GetDeserializer(in Type type)
-            => CanSerialize(type)
-                ? MethodInfoExt.From(
-                    SyncDeserializer[SyncDeserializer.Keys.GetClosestType(type) ?? throw new InvalidProgramException($"{type} sync. deserializer not found")].Method
-                    ).MakeGenericMethod(type).Invoker
+            => !IsDeniedForSerialization(type) && SyncDeserializer.Keys.GetClosestType(type) is Type serializerType
+                ? MethodInfoExt.From(SyncDeserializer[serializerType].Method).MakeGenericMethod(type).Invoker
                 : null;
 
         /// <summary>
@@ -166,10 +158,8 @@ namespace wan24.Core
         /// <returns>Deserializer (first argument must be <see langword="null"/>, second is the <see cref="AsyncTypeDeserializer_Delegate{T}"/> arguments, return value is the deserialized 
         /// object task (result must not be <see langword="null"/>))</returns>
         public static Func<object?, object?[], object?>? GetAsyncDeserializer(in Type type)
-            => CanSerialize(type)
-                ? MethodInfoExt.From(
-                    AsyncDeserializer[AsyncDeserializer.Keys.GetClosestType(type) ?? throw new InvalidProgramException($"{type} async. deserializer not found")].Method
-                    ).MakeGenericMethod(type).Invoker
+            => !IsDeniedForSerialization(type) && AsyncDeserializer.Keys.GetClosestType(type) is Type serializerType
+                ? MethodInfoExt.From(AsyncDeserializer[serializerType].Method).MakeGenericMethod(type).Invoker
                 : null;
 
         /// <summary>
@@ -228,10 +218,10 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Deserialize an object to a stream
+        /// Deserialize an object from a stream
         /// </summary>
         /// <param name="type">Object type</param>
-        /// <param name="stream">Target stream</param>
+        /// <param name="stream">Source stream</param>
         /// <param name="version">Serializer version number</param>
         /// <param name="options">Options</param>
         public static object Deserialize(in Type type, in Stream stream, in int? version = null, in DeserializerOptions? options = null)
@@ -242,10 +232,10 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Deserialize an object to a stream
+        /// Deserialize an object from a stream
         /// </summary>
         /// <param name="type">Object type</param>
-        /// <param name="stream">Target stream</param>
+        /// <param name="stream">Source stream</param>
         /// <param name="version">Serializer version number</param>
         /// <param name="options">Options</param>
         /// <param name="cancellationToken">Cancellation token</param>
@@ -270,11 +260,11 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Deserialize an object to a stream
+        /// Deserialize an object from a stream
         /// </summary>
         /// <typeparam name="T">Object type</typeparam>
         /// <param name="type">Object type</param>
-        /// <param name="stream">Target stream</param>
+        /// <param name="stream">Source stream</param>
         /// <param name="version">Serializer version number</param>
         /// <param name="options">Options</param>
         public static T Deserialize<T>(in Type type, in Stream stream, in int? version = null, in DeserializerOptions? options = null)
@@ -298,11 +288,11 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Deserialize an object to a stream
+        /// Deserialize an object from a stream
         /// </summary>
         /// <typeparam name="T">Object type</typeparam>
         /// <param name="type">Object type</param>
-        /// <param name="stream">Target stream</param>
+        /// <param name="stream">Source stream</param>
         /// <param name="version">Serializer version number</param>
         /// <param name="options">Options</param>
         /// <param name="cancellationToken">Cancellation token</param>

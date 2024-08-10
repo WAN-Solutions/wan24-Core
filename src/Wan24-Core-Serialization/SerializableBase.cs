@@ -1,4 +1,5 @@
-﻿namespace wan24.Core
+﻿
+namespace wan24.Core
 {
     /// <summary>
     /// Base class for a serializable type
@@ -16,6 +17,10 @@
         /// Serializer version number used for deserialization (is <see langword="null"/>, if the instance wasn't deserialized)
         /// </summary>
         protected int? DeserializerVersion = null;
+        /// <summary>
+        /// Serializer custom version number used for deserialization (is <see langword="null"/>, if the instance wasn't deserialized)
+        /// </summary>
+        protected int? DeserializerCustomVersion = null;
         /// <summary>
         /// Deserialized object versions
         /// </summary>
@@ -94,14 +99,22 @@
         /// <param name="options">Options</param>
         protected virtual void DeserializeFrom(Stream stream, int version, DeserializerOptions? options)
         {
-            DeserializerVersion = version;
             if (IncludeSerializerVersion)
             {
-                //TODO Deserialize serializer version
-                if (MinCustomSerializerVersion.HasValue && MinCustomSerializerVersion.Value > (DeserializerVersion.Value & ~byte.MaxValue))
+                if (MinCustomSerializerVersion.HasValue && MinCustomSerializerVersion.Value > (version >> 8))
                     throw new InvalidDataException(
-                        $"Custom serializer version used to serialize {GetType()} #{DeserializerVersion.Value & ~byte.MaxValue} is lower then the min. supported custom serializer version {MinCustomSerializerVersion}"
+                        $"Custom serializer version #{version >> 8} used to deserialize {GetType()} is lower then the min. supported custom serializer version {MinCustomSerializerVersion}"
                         );
+                //TODO Deserialize serializer version
+                if (MinCustomSerializerVersion.HasValue && MinCustomSerializerVersion.Value > DeserializerCustomVersion.Value)
+                    throw new InvalidDataException(
+                        $"Custom serializer version #{version >> 8} used to serialize {GetType()} is lower then the min. supported custom serializer version {MinCustomSerializerVersion}"
+                        );
+            }
+            else
+            {
+                DeserializerVersion = version & byte.MaxValue;
+                DeserializerCustomVersion = version >> 8;
             }
             if (SerializerObjectVersion is not null)
             {
