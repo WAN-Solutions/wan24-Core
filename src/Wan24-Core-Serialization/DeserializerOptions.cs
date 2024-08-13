@@ -1,6 +1,4 @@
-﻿using System.Buffers;
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Deserializer options
@@ -11,38 +9,9 @@ namespace wan24.Core
     public record class DeserializerOptions()
     {
         /// <summary>
-        /// Service provider
-        /// </summary>
-        private IServiceProvider? _ServiceProvider = DefaultServiceProvider;
-
-        /// <summary>
         /// Default
         /// </summary>
         public static DeserializerOptions Default { get; set; } = new();
-
-        /// <summary>
-        /// Default buffer pool
-        /// </summary>
-        public static ArrayPool<byte> DefaultBufferPool { get; set; } = ArrayPool<byte>.Shared;
-
-        /// <summary>
-        /// Default service provider
-        /// </summary>
-        public static IServiceProvider? DefaultServiceProvider { get; set; } = DiHelper.ServiceProvider;
-
-        /// <summary>
-        /// Buffer pool
-        /// </summary>
-        public ArrayPool<byte> BufferPool { get; init; } = DefaultBufferPool;
-
-        /// <summary>
-        /// Service provider
-        /// </summary>
-        public IServiceProvider? ServiceProvider
-        {
-            get => _ServiceProvider ?? DefaultServiceProvider ?? DiHelper.ServiceProvider;
-            init => _ServiceProvider = value;
-        }
 
         /// <summary>
         /// Minimum length
@@ -55,6 +24,11 @@ namespace wan24.Core
         public int? MaxLength { get; init; }
 
         /// <summary>
+        /// Seen objects (for working with references)
+        /// </summary>
+        public List<object>? Seen { get; set; }
+
+        /// <summary>
         /// Object serializer name (see <see cref="ObjectSerializer"/>)
         /// </summary>
         public string? ObjectSerializerName { get; init; }
@@ -65,23 +39,51 @@ namespace wan24.Core
         public string? StringValueConverterName { get; init; }
 
         /// <summary>
+        /// Stream serializer to use
+        /// </summary>
+        public StreamSerializerTypes? StreamSerializer { get; init; }
+
+        /// <summary>
         /// If to use the <see cref="TypeCache"/>
         /// </summary>
-        public bool UseTypeCache { get; init; }
+        public bool UseTypeCache { get; init; } = SerializerSettings.UseTypeCache;
 
         /// <summary>
         /// If to use the named <see cref="TypeCache"/> (has no effect, if <see cref="UseTypeCache"/> is <see langword="false"/>)
         /// </summary>
-        public bool UseNamedTypeCache { get; init; } = true;
+        public bool UseNamedTypeCache { get; init; } = SerializerSettings.UseNamedTypeCache;
 
         /// <summary>
         /// If to try <see cref="TypeConverter"/> for converting an object to a serializable type
         /// </summary>
-        public bool TryTypeConversion { get; init; }
+        public bool TryTypeConversion { get; init; } = SerializerSettings.TryTypeConversion;
 
         /// <summary>
-        /// Stream serializer to use
+        /// Add a seen object
         /// </summary>
-        public StreamSerializerTypes? StreamSerializer { get; init; }
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="value">Value</param>
+        /// <returns>Value</returns>
+        public T AddSeen<T>(in T value)
+        {
+            if (value is null) throw new ArgumentNullException(nameof(value));
+            Seen?.Add(value);
+            return value;
+        }
+
+        /// <summary>
+        /// Get a referenced object
+        /// </summary>
+        /// <param name="index">Reference index</param>
+        /// <param name="type">Expected referenced object type</param>
+        /// <returns>Referenced object</returns>
+        public object GetReferencedObject(in int index, in Type? type = null)
+        {
+            if (Seen is null) throw new InvalidDataException("Object referencing is disabled");
+            if (index < 0 || index > Seen.Count) throw new InvalidDataException($"Out of bound object reference index #{index}");
+            object res = Seen[index];
+            if (type is not null && !type.IsAssignableFrom(res.GetType())) throw new InvalidDataException($"Unexpected referenced object type {res.GetType()} (expected {type})");
+            return res;
+        }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Buffers;
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Serialization helper
@@ -8,25 +6,38 @@ namespace wan24.Core
     public static class SerializationHelper
     {
         /// <summary>
-        /// Get the buffer pool
+        /// Ensure a valid length
         /// </summary>
-        /// <param name="options">Options</param>
-        /// <returns>Buffer pool</returns>
-        public static ArrayPool<byte> GetBufferPool(in SerializerOptions? options) => options?.BufferPool ?? SerializerOptions.DefaultBufferPool;
-
-        /// <summary>
-        /// Get the buffer pool
-        /// </summary>
-        /// <param name="options">Options</param>
-        /// <returns>Buffer pool</returns>
-        public static ArrayPool<byte> GetBufferPool(in DeserializerOptions? options) => options?.BufferPool ?? DeserializerOptions.DefaultBufferPool;
-
-        /// <summary>
-        /// Get the service provider
-        /// </summary>
-        /// <param name="options">Options</param>
-        /// <returns>Service provider</returns>
-        public static IServiceProvider? GetServiceProvider(in DeserializerOptions? options) => options?.ServiceProvider ?? DiHelper.ServiceProvider;
+        /// <param name="len">Positive length</param>
+        /// <param name="minLen">Positive minimum length (including)</param>
+        /// <param name="maxLen">Maximum length (including)</param>
+        /// <param name="throwOnError">If to throw an exception on invalid length</param>
+        /// <returns>The valid length or <c>-1</c>, if invalid</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Invalid min./max. length</exception>
+        /// <exception cref="InvalidDataException">Invalid length</exception>
+        public static int EnsureValidLength(in int len, in int? minLen = null, in int? maxLen = null, in bool throwOnError = true)
+        {
+            if (minLen.HasValue && minLen.Value < 0)
+                throw new ArgumentOutOfRangeException(nameof(minLen));
+            if (minLen.HasValue && maxLen.HasValue && minLen.Value > maxLen.Value)
+                throw new ArgumentOutOfRangeException(nameof(maxLen), "Max. length is greater than the min. length");
+            if (len < 0)
+            {
+                if (!throwOnError) return -1;
+                throw new InvalidDataException($"Invalid negative length {len}");
+            }
+            if(minLen.HasValue && len < minLen.Value)
+            {
+                if (!throwOnError) return -1;
+                throw new InvalidDataException($"Length of {len} doesn't fit the min. length of {minLen}");
+            }
+            if (maxLen.HasValue && len > maxLen.Value)
+            {
+                if (!throwOnError) return -1;
+                throw new InvalidDataException($"Length of {len} doesn't fit the max. length of {maxLen}");
+            }
+            return len;
+        }
 
         /// <summary>
         /// Find the serializer type which would be used to serialize the given type

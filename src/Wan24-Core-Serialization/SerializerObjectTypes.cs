@@ -12,9 +12,9 @@
         [DisplayText("NULL")]
         Null = 0,
         /// <summary>
-        /// Reference to previously processed object
+        /// Reference to a previously processed object
         /// </summary>
-        [DisplayText("Reference to previously processed object")]
+        [DisplayText("Reference to a previously processed object")]
         Reference = 1,
         /// <summary>
         /// Serialized object using any serializer
@@ -27,30 +27,35 @@
         [DisplayText("Smallest matching numeric type")]
         Number = 3,
         /// <summary>
-        /// Boolean value (<see langword="true"/>, if <see cref="False"/> wasn't used)
+        /// Boolean value (<see langword="true"/>, if <see cref="Empty"/> wasn't used)
         /// </summary>
         [DisplayText("Boolean value (TRUE)")]
-        Boolean = Enumerable | Array,
-        /// <summary>
-        /// Boolean <see langword="false"/> value
-        /// </summary>
-        [DisplayText("Boolean FALSE")]
-        False = Boolean | Empty,
+        Boolean = Reference | HasSerializerInfo,
         /// <summary>
         /// String value
         /// </summary>
         [DisplayText("String value")]
-        String = Boolean | HasSerializerInfo,
+        String = Reference | HasTypeInfo,
         /// <summary>
         /// <see cref="List{T}"/> value
         /// </summary>
         [DisplayText("Generic list value")]
-        List = Boolean | HasTypeInfo,
+        List = Number | HasSerializerInfo,
         /// <summary>
         /// <see cref="Dictionary{TKey, TValue}"/> value
         /// </summary>
         [DisplayText("Dictionary value")]
-        Dictionary = String | List,
+        Dictionary = Number | HasTypeInfo,
+        /// <summary>
+        /// Enum value
+        /// </summary>
+        [DisplayText("Enum value")]
+        Enum = List | Dictionary,
+        /// <summary>
+        /// <see cref="ISerializeStream"/> object
+        /// </summary>
+        [DisplayText("Serializable value")]
+        Serializable = Enumerable,
         /*
          * Only flags from here
          */
@@ -80,7 +85,7 @@
         [DisplayText("If serializer information is included")]
         HasSerializerInfo = 64,
         /// <summary>
-        /// Type information flag (includes a <see cref="Type"/>; if not included, type must be known when deserializing)
+        /// Type information flag (includes a <see cref="SerializerTypeInformation"/>; if not included, type must be known when deserializing)
         /// </summary>
         [DisplayText("If type information is included")]
         HasTypeInfo = 128,

@@ -1,6 +1,4 @@
-﻿using System.Buffers;
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Serializer options
@@ -11,19 +9,18 @@ namespace wan24.Core
     public record class SerializerOptions()
     {
         /// <summary>
-        /// Default buffer pool
+        /// Default options
         /// </summary>
-        public static ArrayPool<byte> DefaultBufferPool { get; set; } = ArrayPool<byte>.Shared;
+        private static SerializerOptions _Default = new();
 
         /// <summary>
         /// Default
         /// </summary>
-        public static SerializerOptions Default { get; set; } = new();
-
-        /// <summary>
-        /// Buffer pool
-        /// </summary>
-        public ArrayPool<byte> BufferPool { get; init; } = DefaultBufferPool;
+        public static SerializerOptions Default
+        {
+            get => _Default with { };
+            set => _Default = value;
+        }
 
         /// <summary>
         /// Seen objects (to avoid an endless recursion)
@@ -41,24 +38,24 @@ namespace wan24.Core
         public string? StringValueConverterName { get; init; }
 
         /// <summary>
+        /// Stream serializer to use
+        /// </summary>
+        public StreamSerializerTypes? StreamSerializer { get; init; }
+
+        /// <summary>
         /// If to use the <see cref="TypeCache"/>
         /// </summary>
-        public bool UseTypeCache { get; init; }
+        public bool UseTypeCache { get; init; } = SerializerSettings.UseTypeCache;
 
         /// <summary>
         /// If to use the named <see cref="TypeCache"/> (has no effect, if <see cref="UseTypeCache"/> is <see langword="false"/>)
         /// </summary>
-        public bool UseNamedTypeCache { get; init; } = true;
+        public bool UseNamedTypeCache { get; init; } = SerializerSettings.UseNamedTypeCache;
 
         /// <summary>
         /// If to try <see cref="TypeConverter"/> for converting an object to a serializable type
         /// </summary>
-        public bool TryTypeConversion { get; init; }
-
-        /// <summary>
-        /// Stream serializer to use
-        /// </summary>
-        public StreamSerializerTypes? StreamSerializer { get; init; }
+        public bool TryTypeConversion { get; init; } = SerializerSettings.TryTypeConversion;
 
         /// <summary>
         /// Add an object to <see cref="Seen"/>

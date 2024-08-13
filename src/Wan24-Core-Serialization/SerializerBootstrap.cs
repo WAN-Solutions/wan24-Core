@@ -16,7 +16,7 @@ namespace wan24.Core
         {
             StringValueConverter.NamedStringConverter[SerializerConstants.STRING_VALUE_CONVERTER_NAME] = (t, v) =>
             {
-                using MemoryPoolStream ms = new(pool: SerializerOptions.DefaultBufferPool);
+                using MemoryPoolStream ms = new(pool: SerializerSettings.BufferPool);
                 //TODO Serialize v as t to ms
                 using RentedArrayRefStruct<byte> buffer = new(len: (int)ms.Length);
                 ms.Position = 0;

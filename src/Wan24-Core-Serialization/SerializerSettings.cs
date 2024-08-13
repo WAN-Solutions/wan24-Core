@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Buffers;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Serializer settings
@@ -9,6 +11,11 @@
         /// Custom version
         /// </summary>
         private static int _CustomVersion = 0;
+
+        /// <summary>
+        /// Serializer types (see <see cref="SerializerTypeInformation"/>; key is the <see cref="SerializerTypeInformation"/> <see cref="int"/> value)
+        /// </summary>
+        public static readonly Dictionary<int, Type> SerializerTypes = [];
 
         /// <summary>
         /// Serializer version number to use (bits 9+ for the custom version, which will be set to <see cref="CustomVersion"/>)
@@ -23,11 +30,6 @@
                 CustomVersion = value >> 8;
             }
         }
-
-        /// <summary>
-        /// Base serializer version number
-        /// </summary>
-        public static int BaseVersion => SerializerConstants.VERSION;
 
         /// <summary>
         /// Custom serializer version number (24 bit signed)
@@ -57,5 +59,20 @@
         /// If to try <see cref="TypeConverter"/> for converting an object to a serializable type during serialization
         /// </summary>
         public static bool TryTypeConversion { get; set; }
+
+        /// <summary>
+        /// Buffer pool
+        /// </summary>
+        public static ArrayPool<byte> BufferPool { get; set; } = ArrayPool<byte>.Shared;
+
+        /// <summary>
+        /// Service provider
+        /// </summary>
+        public static IServiceProvider? ServiceProvider { get; set; } = DiHelper.ServiceProvider;
+
+        /// <summary>
+        /// Max. stream chunk length in bytes
+        /// </summary>
+        public static int MaxStreamChunkLength { get; set; } = ushort.MaxValue;
     }
 }
