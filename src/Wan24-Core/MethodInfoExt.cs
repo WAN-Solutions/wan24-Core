@@ -134,6 +134,11 @@ namespace wan24.Core
         public int GenericArgumentCount => (_GenericArguments ??= Method.IsGenericMethod ? Method.GetGenericArgumentsCached() : []).Length;
 
         /// <summary>
+        /// First generic argument
+        /// </summary>
+        public Type? FirstGenericArgument => Method.IsGenericMethod ? (_GenericArguments ??= Method.GetGenericArgumentsCached())[0] : null;
+
+        /// <summary>
         /// If the method return value is nullable
         /// </summary>
         public bool IsNullable => _IsNullable ??= Method.ReturnParameter.IsNullable();

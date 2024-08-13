@@ -144,6 +144,11 @@ namespace wan24.Core
         public int GenericArgumentCount => (_GenericArguments ??= Type.IsGenericType ? Type.GetGenericArgumentsCached() : []).Length;
 
         /// <summary>
+        /// First generic argument
+        /// </summary>
+        public Type? FirstGenericArgument => Type.IsGenericType ? (_GenericArguments ??= Type.GetGenericArgumentsCached())[0] : null;
+
+        /// <summary>
         /// Attributes
         /// </summary>
         public Attribute[] Attributes => [.. _Attributes ??= Type.GetCustomAttributesCached<Attribute>().ToFrozenSet()];
