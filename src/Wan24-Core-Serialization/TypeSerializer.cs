@@ -24,13 +24,21 @@ namespace wan24.Core
         /// </summary>
         private static readonly Dictionary<Type, Delegate> AsyncDeserializer = [];
         /// <summary>
-        /// Denied serializer types
+        /// Types denied for serialization
         /// </summary>
         public static readonly HashSet<Type> DeniedTypes = [];
         /// <summary>
-        /// Denied serializer types (explicit)
+        /// Explicit types denied for serialization
         /// </summary>
         public static readonly HashSet<Type> DeniedTypesExplicit = [];
+        /// <summary>
+        /// Types which shouldn't be referenced
+        /// </summary>
+        public static readonly HashSet<Type> NoReferenceTypes = [];
+        /// <summary>
+        /// Types which shouldn't be referenced
+        /// </summary>
+        public static readonly HashSet<Type> NoReferenceTypesExplicit = [];
 
         /// <summary>
         /// Registered types
@@ -52,6 +60,13 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <returns>If denied for serialization</returns>
         public static bool IsDeniedForSerialization(in Type type) => DeniedTypesExplicit.Contains(type) || DeniedTypesExplicit.GetClosestType(type) is not null;
+
+        /// <summary>
+        /// Determine if a type was denied for referencing
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If denied for referencing</returns>
+        public static bool IsReferenceable(in Type type) => !NoReferenceTypesExplicit.Contains(type) && NoReferenceTypesExplicit.GetClosestType(type) is null;
 
         /// <summary>
         /// Add a serializer (existing serializer may be overwritten)

@@ -124,6 +124,10 @@ TypeSerializer.AddAutoSerializer(typeof(ValueType));
 
 **NOTE**: The type may also be abstract or an interface.
 
+You can also extend your type from `(Disposable)AutoSerializable(Record)Base` 
+and work with `SerializerAttribute` on properties to implement automatic 
+(de)serialization.
+
 ### Special (de)serializers
 
 #### Compressing numeric values when the deserializing code knowns the value type
@@ -316,10 +320,11 @@ All (de)serializer methods allow an options argument.
 | `Seen` | Set to a `HashSet<object>` for endless recursion protection when serializing objects or lists of values (like array, list, dictionary, ...) |
 | `ObjectSerializerName` | Name of the `wan24.Core.ObjectSerializer` to use for (de)serialization |
 | `StringValueConverterName` | Name of the `wan24.Core.StringValueConverter` to use for (de)serialization |
+| `StreamSerializer` | Fixed stream serializer to use |
+| `IncludeSerializerInfo` | If information about the used serialized should be included |
 | `UseTypeCache` | If to use the `wan24.Core.TypeCache` for type information compression |
 | `UseNamedTypeCache` | If to use the type name hash code for accessing `wan24.Core.TypeCache` |
 | `TryTypeConversion` | If to use `wan24.Core.TypeConverter` for finding a serializable type |
-| `StreamSerializer` | Fixed stream serializer to use |
 
 Using the `TryAddSeen` you can try adding an object to the `Seen` hash set 
 before serializing. Depending on the result your serializer method should 
@@ -335,7 +340,7 @@ property is `null` (object referencing was disabled)
 Example serializer:
 
 ```cs
-if(!options.TryAddSeen(obj, out int index) && index != -1)
+if(!options.TryAddSeen(obj, out int index) && index != -1 && TypeSerializer.IsReferenceable(obj.GetType()))
 {
 	// Serialize object reference
 	stream.WriteSerialized(true);
@@ -343,7 +348,7 @@ if(!options.TryAddSeen(obj, out int index) && index != -1)
 	return;
 }
 stream.WriteSerialized(false);
-stream.WriteSerialized(obj);
+// Serialize obj here
 ```
 
 Example deserializer:
@@ -351,12 +356,41 @@ Example deserializer:
 ```cs
 if(stream.ReadSerialized<bool>())
 {
+	// Return a previous object reference
 	return options.GetReferencedObject(stream.ReadNumber<int>(), typeof(ValueType));
 }
 else
 {
-	return options.AddSeen(stream.ReadSerialized<ValueType>());
+	// Deserialize obj here
+	return options.AddSeen(obj);
 }
+```
+
+Normally every (de)serializing method does try to read references as soon as 
+`Seen` has a value, except the `References` property of the option was set to 
+`false`. Instead of using `TryAddSeen` and `GetReferencedObject`, you can also 
+use higher level helper methods.
+
+Example serializer:
+
+```cs
+if(options.TryWriteReference(stream, obj))
+{
+	// A reference was written
+	return;
+}
+// Serialize obj here
+```
+
+Example deserializer:
+
+```cs
+if(options.TryReadReference<ValueType>(stream, version, out ValueType? obj))
+{
+	// A references has been red
+	return obj;
+}
+// Deserialize obj here
 ```
 
 #### Deserializer options
@@ -369,10 +403,11 @@ else
 | `Seen` | Set to a `HashSet<object>` for object reference support when deserializing objects or lists of values (like array, list, dictionary, ...) |
 | `ObjectSerializerName` | Name of the `wan24.Core.ObjectSerializer` to use for (de)serialization |
 | `StringValueConverterName` | Name of the `wan24.Core.StringValueConverter` to use for (de)serialization |
+| `StreamSerializer` | Fixed stream serializer to use |
+| `SerializerInfoIncluded` | If information about the used serialized was included |
 | `UseTypeCache` | If to use the `wan24.Core.TypeCache` for type information compression |
 | `UseNamedTypeCache` | If to use the type name hash code for accessing `wan24.Core.TypeCache` |
 | `TryTypeConversion` | If to use `wan24.Core.TypeConverter` for converting the serialized type to the requested target type |
-| `StreamSerializer` | Fixed stream serializer to use |
 
 Using the `GetReferencedObject` method you can resolve an object reference.
 

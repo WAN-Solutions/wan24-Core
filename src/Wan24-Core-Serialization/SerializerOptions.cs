@@ -43,6 +43,11 @@
         public StreamSerializerTypes? StreamSerializer { get; init; }
 
         /// <summary>
+        /// If to include serializer information
+        /// </summary>
+        public bool IncludeSerializerInfo { get; init; }
+
+        /// <summary>
         /// If to use the <see cref="TypeCache"/>
         /// </summary>
         public bool UseTypeCache { get; init; } = SerializerSettings.UseTypeCache;
@@ -77,6 +82,51 @@
             }
             index = Seen.Count;
             Seen.Add(obj);
+            return true;
+        }
+
+        /// <summary>
+        /// Try writing a reference
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="stream">Stream</param>
+        /// <param name="obj">Object</param>
+        /// <returns>If a reference was written</returns>
+        public virtual bool TryWriteReference<T>(in Stream stream, in T obj)
+        {
+            ArgumentNullException.ThrowIfNull(obj, nameof(obj));
+            bool added = TryAddSeen(obj, out int index);
+            if (Seen is null || !TypeSerializer.IsReferenceable(obj.GetType())) return false;
+            if (added)
+            {
+                TypeSerializer.Serialize(typeof(bool), obj: false, stream, this);//TODO Use nullable number
+                return false;
+            }
+            TypeSerializer.Serialize(typeof(bool), obj: true, stream, this);//TODO Use nullable number
+            //TODO Write reference information to stream
+            return true;
+        }
+
+        /// <summary>
+        /// Try writing a reference
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="stream">Stream</param>
+        /// <param name="obj">Object</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>If a reference was written</returns>
+        public virtual async Task<bool> TryWriteReferenceAsync<T>(Stream stream, T obj, CancellationToken cancellationToken)
+        {
+            ArgumentNullException.ThrowIfNull(obj, nameof(obj));
+            bool added = TryAddSeen(obj, out int index);
+            if (Seen is null || !TypeSerializer.IsReferenceable(obj.GetType())) return false;
+            if (added)
+            {
+                await TypeSerializer.SerializeAsync(typeof(bool), obj: false, stream, this, cancellationToken).DynamicContext();//TODO Use nullable number
+                return false;
+            }
+            await TypeSerializer.SerializeAsync(typeof(bool), obj: true, stream, this, cancellationToken).DynamicContext();//TODO Use nullable number
+            //TODO Write reference information to stream
             return true;
         }
     }

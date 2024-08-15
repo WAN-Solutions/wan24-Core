@@ -28,6 +28,7 @@ namespace wan24.Core
         public SerializationContext(SerializerOptions options)
         {
             DeleteSeen = options.Seen is null;
+            options.Seen ??= [];
             SerializerOptions = options;
             DeserializerOptions = null;
         }
@@ -39,6 +40,7 @@ namespace wan24.Core
         public SerializationContext(DeserializerOptions options)
         {
             DeleteSeen = options.Seen is null;
+            options.Seen ??= [];
             SerializerOptions = null;
             DeserializerOptions = options;
         }

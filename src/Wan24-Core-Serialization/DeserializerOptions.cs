@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Deserializer options
@@ -44,6 +46,11 @@
         public StreamSerializerTypes? StreamSerializer { get; init; }
 
         /// <summary>
+        /// If serializer information was included
+        /// </summary>
+        public bool SerializerInfoIncluded { get; init; }
+
+        /// <summary>
         /// If to use the <see cref="TypeCache"/>
         /// </summary>
         public bool UseTypeCache { get; init; } = SerializerSettings.UseTypeCache;
@@ -64,7 +71,7 @@
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
-        public T AddSeen<T>(in T value)
+        public virtual T AddSeen<T>(in T value)
         {
             if (value is null) throw new ArgumentNullException(nameof(value));
             Seen?.Add(value);
@@ -77,13 +84,88 @@
         /// <param name="index">Reference index</param>
         /// <param name="type">Expected referenced object type</param>
         /// <returns>Referenced object</returns>
-        public object GetReferencedObject(in int index, in Type? type = null)
+        public virtual object GetReferencedObject(in int index, in Type? type = null)
         {
             if (Seen is null) throw new InvalidDataException("Object referencing is disabled");
             if (index < 0 || index > Seen.Count) throw new InvalidDataException($"Out of bound object reference index #{index}");
             object res = Seen[index];
             if (type is not null && !type.IsAssignableFrom(res.GetType())) throw new InvalidDataException($"Unexpected referenced object type {res.GetType()} (expected {type})");
             return res;
+        }
+
+        /// <summary>
+        /// Try reading a reference
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="type">Object type</param>
+        /// <param name="version">Serializer version</param>
+        /// <param name="result">Result</param>
+        /// <returns>If succeed</returns>
+        public virtual bool TryReadReference(in Stream stream, in Type type, in int version, [NotNullWhen(returnValue: true)] out object? result)
+        {
+            if (Seen is null || !TypeSerializer.IsReferenceable(type) || !TypeSerializer.Deserialize<bool>(typeof(bool), stream, version, this))//TODO Use nullable number
+            {
+                result = null;
+                return false;
+            }
+            //TODO Deserialize reference
+        }
+
+        /// <summary>
+        /// Try reading a reference
+        /// </summary>
+        /// <typeparam name="T">Object reference</typeparam>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Serializer version</param>
+        /// <param name="result">Result</param>
+        /// <returns>If succeed</returns>
+        public virtual bool TryReadReference<T>(in Stream stream, in int version, [NotNullWhen(returnValue: true)] out T? result)
+        {
+            if (!TryReadReference(stream, typeof(T), version, out object? res))
+            {
+                result = default;
+                return false;
+            }
+            if (!typeof(T).IsAssignableFrom(res.GetType()))
+                throw new SerializerException($"Deserialized {res.GetType()} is incompatible with expected {typeof(T)}", new InvalidDataException());
+            result = (T)res;
+            return true;
+        }
+
+        /// <summary>
+        /// Try reading a reference
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="type">Object type</param>
+        /// <param name="version">Serializer version</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Result</returns>
+        public virtual async Task<TryAsyncResult<object>> TryReadReferenceAsync(Stream stream, Type type, int version, CancellationToken cancellationToken = default)
+        {
+            if (
+                Seen is null || 
+                !TypeSerializer.IsReferenceable(type) || 
+                !await TypeSerializer.DeserializeAsync<bool>(typeof(bool), stream, version, this, cancellationToken).DynamicContext()//TODO Use nullable number
+                )
+                return false;
+            //TODO Deserialize reference
+        }
+
+        /// <summary>
+        /// Try reading a reference
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Serializer version</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Result</returns>
+        public virtual async Task<TryAsyncResult<T>> TryReadReferenceAsync<T>(Stream stream, int version, CancellationToken cancellationToken = default)
+        {
+            TryAsyncResult<object> res = await TryReadReferenceAsync(stream, typeof(T), version, cancellationToken).DynamicContext();
+            if (!res) return false;
+            if (!typeof(T).IsAssignableFrom(res.Result!.GetType()))
+                throw new SerializerException($"Deserialized {res.Result.GetType()} is incompatible with expected {typeof(T)}", new InvalidDataException());
+            return new((T)res.Result);
         }
     }
 }
