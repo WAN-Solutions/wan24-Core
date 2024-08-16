@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime;
+using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
@@ -7,6 +8,7 @@ namespace wan24.Core
     /// Result of an asynchronous try-action
     /// </summary>
     /// <typeparam name="T">Result type</typeparam>
+    [StructLayout(LayoutKind.Sequential)]
     public readonly record struct TryAsyncResult<T> : ITryAsyncResult
     {
         /// <summary>

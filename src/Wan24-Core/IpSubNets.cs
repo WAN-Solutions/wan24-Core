@@ -9,13 +9,9 @@ namespace wan24.Core
     /// <summary>
     /// Read-only IP sub-net list
     /// </summary>
-    [StructLayout(LayoutKind.Auto)]
+    [StructLayout(LayoutKind.Sequential)]
     public readonly record struct IpSubNets : IEnumerable<IpSubNet>
     {
-        /// <summary>
-        /// IP sub-nets
-        /// </summary>
-        private readonly IpSubNet[] SubNets;
         /// <summary>
         /// Number of IP sub-nets
         /// </summary>
@@ -35,11 +31,17 @@ namespace wan24.Core
         /// <summary>
         /// IP sub-nets address family (<see cref="AddressFamily.Unknown"/>, if empty, or <see cref="AddressFamily.Unspecified"/> if mixed)
         /// </summary>
+        [MarshalAs(UnmanagedType.I4)]
         public readonly AddressFamily AddressFamily;
         /// <summary>
         /// Contained IP network kinds
         /// </summary>
+        [MarshalAs(UnmanagedType.U1)]
         public readonly IpNetworkKind NetworkKind;
+        /// <summary>
+        /// IP sub-nets
+        /// </summary>
+        private readonly IpSubNet[] SubNets;
 
         /// <summary>
         /// Constructor

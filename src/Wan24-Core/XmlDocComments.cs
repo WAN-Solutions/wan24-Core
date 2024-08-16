@@ -160,15 +160,15 @@ namespace wan24.Core
             {
                 case Type type:
                     sb.Append(type.ToString().CutAt('`'));
-                    if (type.IsGenericType) genericParameters = type.GetGenericArguments();
+                    if (type.IsGenericType) genericParameters = type.GetGenericArgumentsCached();
                     break;
                 case MethodInfo mi:
                     sb.Append(mi.Name);
-                    if (mi.IsGenericMethod) genericParameters = mi.GetGenericArguments();
+                    if (mi.IsGenericMethod) genericParameters = mi.GetGenericArgumentsCached();
                     break;
                 case MethodInfoExt mi:
                     sb.Append(mi.Name);
-                    if (mi.Method.IsGenericMethod) genericParameters = mi.Method.GetGenericArguments();
+                    if (mi.Method.IsGenericMethod) genericParameters = mi.GenericArguments;
                     break;
                 default:
                     throw new ArgumentException("Invalid member type", nameof(member));

@@ -19,7 +19,7 @@ namespace wan24.Core
                     .FirstOrDefault(m => m.Name == method && m.Parameters.Length == param.Length) is not MethodInfoExt mi
                 )
                 throw new InvalidOperationException("Method not found");
-            if (mi.Method.IsGenericMethod) throw new InvalidOperationException($"Can't invoke generic method {mi.Method.DeclaringType}.{mi.Name}`{mi.Method.GetGenericArguments().Length}");
+            if (mi.Method.IsGenericMethod) throw new InvalidOperationException($"Can't invoke generic method {mi.Method.DeclaringType}.{mi.Name}`{mi.GenericArguments.Length}");
             return InvokeFast(mi, mi.Method.IsStatic ? null : obj, param);
         }
 
@@ -35,7 +35,7 @@ namespace wan24.Core
         {
             if (
                 obj.GetType().GetMethodsCached(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
-                    .FirstOrDefault(m => m.Name == method && m.Method.IsGenericMethod && m.Method.GetGenericArguments().Length == genericArgs.Length && m.Parameters.Length == param.Length)
+                    .FirstOrDefault(m => m.Name == method && m.Method.IsGenericMethod && m.GenericArguments.Length == genericArgs.Length && m.Parameters.Length == param.Length)
                         is not MethodInfoExt mi
                 )
                 throw new InvalidOperationException("Method not found");

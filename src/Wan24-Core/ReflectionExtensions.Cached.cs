@@ -11,7 +11,7 @@ namespace wan24.Core
         /// <summary>
         /// All bindings
         /// </summary>
-        private const BindingFlags ALL_BINDINGS = BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic;
+        public const BindingFlags ALL_BINDINGS = BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic;
         /// <summary>
         /// Default bindings
         /// </summary>
@@ -44,11 +44,11 @@ namespace wan24.Core
         /// <summary>
         /// <see cref="ParameterInfo"/> cache (key is the method/constructor hash code)
         /// </summary>
-        private static readonly ConcurrentDictionary<int, FrozenSet<ParameterInfo>> ParameterInfoCache = new();
+        private static readonly ConcurrentDictionary<int, ParameterInfo[]> ParameterInfoCache = new();
         /// <summary>
-        /// Generic <see cref="Type"/> arguments cache (key is the type hash code)
+        /// Generic <see cref="Type"/> arguments cache (key is the type/method hash code)
         /// </summary>
-        private static readonly ConcurrentDictionary<int, FrozenSet<Type>> GenericArgumentsCache = new();
+        private static readonly ConcurrentDictionary<int, Type[]> GenericArgumentsCache = new();
         /// <summary>
         /// <see cref="Attribute"/> cache (key is the provider hash code)
         /// </summary>
@@ -63,8 +63,7 @@ namespace wan24.Core
         public static FieldInfoExt[] GetFieldsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
             => [.. FieldInfoCache.GetOrAdd(
                 type.GetHashCode(),
-                (key) => type.GetFields(ALL_BINDINGS)
-                    .Select(f => new FieldInfoExt(f, f.CanCreateFieldGetter() ? f.CreateFieldGetter() : null, f.CanCreateFieldSetter() ? f.CreateFieldSetter() : null)).ToFrozenSet()
+                (key) => type.GetFields(ALL_BINDINGS).Select(f => FieldInfoExt.From(f)).ToFrozenSet()
                 )
                 .Where(f => bindingFlags.DoesMatch(f, type))];
 
@@ -91,11 +90,8 @@ namespace wan24.Core
                           where !pi.PropertyType.IsByRef &&
                              !pi.PropertyType.IsByRefLike &&
                              pi.GetIndexParameters().Length == 0
-                          select new PropertyInfoExt(
-                              pi,
-                              pi.CanCreatePropertyGetter()? pi.CreatePropertyGetter(): null,
-                              pi.CanCreatePropertySetter()? pi.CreatePropertySetter(): null
-                              )).ToFrozenSet()
+                          select PropertyInfoExt.From(pi)
+                        ).ToFrozenSet()
                     ).Where(p => bindingFlags.DoesMatch(p, type))];
 
         /// <summary>
@@ -117,7 +113,7 @@ namespace wan24.Core
         public static MethodInfoExt[] GetMethodsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
             => [.. MethodInfoCache.GetOrAdd(
                 type.GetHashCode(),
-                (key) => type.GetMethods(ALL_BINDINGS).Select(m => new MethodInfoExt(m, m.CanCreateMethodInvoker() ? m.CreateMethodInvoker() : null)).ToFrozenSet()
+                (key) => type.GetMethods(ALL_BINDINGS).Select(m => MethodInfoExt.From(m)).ToFrozenSet()
                 )
                 .Where(m => bindingFlags.DoesMatch(m, type))];
 
@@ -159,7 +155,7 @@ namespace wan24.Core
         public static ConstructorInfoExt[] GetConstructorsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
             => [..ConstructorInfoCache.GetOrAdd(
                 type.GetHashCode(),
-                (key) => type.GetConstructors(ALL_BINDINGS).Select(c => new ConstructorInfoExt(c, c.CanCreateConstructorInvoker()? c.CreateConstructorInvoker() : null)).ToFrozenSet()
+                (key) => type.GetConstructors(ALL_BINDINGS).Select(c => ConstructorInfoExt.From(c)).ToFrozenSet()
                     ).Where(c=>bindingFlags.DoesMatch(c)
                 )];
 
@@ -188,7 +184,7 @@ namespace wan24.Core
         /// <param name="mi">Method</param>
         /// <returns>Method parameters</returns>
         public static ParameterInfo[] GetParametersCached(this MethodInfo mi)
-            => [.. ParameterInfoCache.GetOrAdd(mi.GetHashCode(), (key) => mi.GetParameters().ToFrozenSet())];
+            => [.. ParameterInfoCache.GetOrAdd(mi.GetHashCode(), (key) => mi.GetParameters())];
 
         /// <summary>
         /// Get constructor parameters from the cache
@@ -196,7 +192,7 @@ namespace wan24.Core
         /// <param name="ci">Constructor</param>
         /// <returns>Constructor parameters</returns>
         public static ParameterInfo[] GetParametersCached(this ConstructorInfo ci)
-            => [.. ParameterInfoCache.GetOrAdd(ci.GetHashCode(), (key) => ci.GetParameters().ToFrozenSet())];
+            => [.. ParameterInfoCache.GetOrAdd(ci.GetHashCode(), (key) => ci.GetParameters())];
 
         /// <summary>
         /// Get generic type arguments from the cache
@@ -204,7 +200,15 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <returns>Generic arguments</returns>
         public static Type[] GetGenericArgumentsCached(this Type type)
-            => [.. GenericArgumentsCache.GetOrAdd(type.GetHashCode(), (key) => type.IsGenericType ? type.GetGenericArguments().ToFrozenSet() : Array.Empty<Type>().ToFrozenSet())];
+            => [.. GenericArgumentsCache.GetOrAdd(type.GetHashCode(), (key) => type.IsGenericType ? type.GetGenericArguments() : [])];
+
+        /// <summary>
+        /// Get generic method arguments from the cache
+        /// </summary>
+        /// <param name="mi">Method</param>
+        /// <returns>Generic arguments</returns>
+        public static Type[] GetGenericArgumentsCached(this MethodInfo mi)
+            => [.. GenericArgumentsCache.GetOrAdd(mi.GetHashCode(), (key) => mi.IsGenericMethod ? mi.GetGenericArguments() : [])];
 
         /// <summary>
         /// Get an attribute (inherited)

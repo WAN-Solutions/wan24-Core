@@ -7,7 +7,7 @@
     /// Constructor
     /// </remarks>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Property)]
-    public class MapAttribute() : Attribute()
+    public class MapAttribute() : Attribute(), IOptInOut
     {
         /// <summary>
         /// Target object property name
@@ -23,6 +23,9 @@
         /// If to require a <see cref="MapAttribute"/> for properties to map
         /// </summary>
         public bool OptIn { get; init; } = true;
+
+        /// <inheritdoc/>
+        public OptInOut Opt => OptIn ? OptInOut.OptIn : OptInOut.OptOut;
 
         /// <summary>
         /// If to allow source properties having a public getter only (when applied to a source type for auto-mapping)

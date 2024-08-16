@@ -246,7 +246,7 @@ namespace Wan24_Core_Tests
                     case PropertyInfoExt pi:
                         Logging.WriteInfo($"PROPERTY:\t{pi.Name}");
                         break;
-                    case MethodInfo mi:
+                    case MethodInfoExt mi:
                         Logging.WriteInfo($"METHOD:\t{mi.Name}");
                         break;
                     case EventInfo e:
@@ -273,23 +273,23 @@ namespace Wan24_Core_Tests
             Assert.IsTrue(diff.Any(d => d is PropertyInfoExt pi && pi.Name == nameof(IDiffInterface.MissingProperty)));
 
             // Methods
-            Assert.IsFalse(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.CompatibleMethod)));
-            Assert.IsFalse(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(DiffInterfaceType.AnyMethod)));
-            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.IncompatibleReturnType)));
-            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.ReturnTypeNullabilityMismatch)));
-            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.PrivateMethod)));
-            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.MissingMethod)));
-            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.IncompatibleParameter)));
-            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.ParameterNullabilityMismatch)));
-            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.MissingParameter)));
-            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.TooManyParameters)));
+            Assert.IsFalse(diff.Any(d => d is MethodInfoExt mi && mi.Name == nameof(IDiffInterface.CompatibleMethod)));
+            Assert.IsFalse(diff.Any(d => d is MethodInfoExt mi && mi.Name == nameof(DiffInterfaceType.AnyMethod)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfoExt mi && mi.Name == nameof(IDiffInterface.IncompatibleReturnType)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfoExt mi && mi.Name == nameof(IDiffInterface.ReturnTypeNullabilityMismatch)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfoExt mi && mi.Name == nameof(IDiffInterface.PrivateMethod)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfoExt mi && mi.Name == nameof(IDiffInterface.MissingMethod)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfoExt mi && mi.Name == nameof(IDiffInterface.IncompatibleParameter)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfoExt mi && mi.Name == nameof(IDiffInterface.ParameterNullabilityMismatch)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfoExt mi && mi.Name == nameof(IDiffInterface.MissingParameter)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfoExt mi && mi.Name == nameof(IDiffInterface.TooManyParameters)));
 
             // Generic methods
-            Assert.IsFalse(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.CompatibleGenericMethod)));
-            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.IncompatibleGenericReturnType)));
-            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.GenericReturnTypeNullabilityMismatch)));
-            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.GenericArgumentMismatch)));
-            Assert.IsTrue(diff.Any(d => d is MethodInfo mi && mi.Name == nameof(IDiffInterface.GenericParameterMismatch)));
+            Assert.IsFalse(diff.Any(d => d is MethodInfoExt mi && mi.Name == nameof(IDiffInterface.CompatibleGenericMethod)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfoExt mi && mi.Name == nameof(IDiffInterface.IncompatibleGenericReturnType)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfoExt mi && mi.Name == nameof(IDiffInterface.GenericReturnTypeNullabilityMismatch)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfoExt mi && mi.Name == nameof(IDiffInterface.GenericArgumentMismatch)));
+            Assert.IsTrue(diff.Any(d => d is MethodInfoExt mi && mi.Name == nameof(IDiffInterface.GenericParameterMismatch)));
 
             // Events
             Assert.IsFalse(diff.Any(d => d is EventInfo ei && ei.Name == nameof(IDiffInterface.CompatibleEvent)));

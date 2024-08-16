@@ -13,7 +13,11 @@ namespace wan24.Core
         /// <summary>
         /// Rollback methods
         /// </summary>
-        private readonly Dictionary<int, Rollback_Delegate> Rollback = [];
+        private readonly Dictionary<int, Rollback_Delegate> RollbackActions = [];
+        /// <summary>
+        /// Commit methods
+        /// </summary>
+        private readonly Dictionary<int, Commit_Delegate?> CommitActions = [];
         /// <summary>
         /// Exception
         /// </summary>
@@ -120,6 +124,27 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Commit all running actions
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        private async Task CommitIntAsync(CancellationToken cancellationToken)
+        {
+            if (!IsCommitted)
+            {
+                if (Debug) Logging.WriteDebug($"{this} committing {ActionCount} actions");
+                await WaitDoneAsync(cancellationToken: cancellationToken).DynamicContext();
+                foreach (KeyValuePair<int, Commit_Delegate?> kvp in CommitActions.OrderBy(kvp => kvp.Key))
+                {
+                    if (kvp.Value is null) continue;
+                    if (Trace) Logging.WriteTrace($"{this} committing action #{kvp.Key}");
+                    _ReturnValues.TryGetValue(kvp.Key, out object? returnValue);
+                    await kvp.Value(this, returnValue, cancellationToken).DynamicContext();
+                }
+            }
+            Initialize();
+        }
+
+        /// <summary>
         /// Cancel all running actions and perform a rollback
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
@@ -129,7 +154,7 @@ namespace wan24.Core
             {
                 if (Debug) Logging.WriteDebug($"{this} rolling back {ActionCount} actions");
                 await CancelIntAsync(cancellationToken).DynamicContext();
-                foreach (KeyValuePair<int, Rollback_Delegate> kvp in Rollback.OrderBy(kvp => kvp.Key))
+                foreach (KeyValuePair<int, Rollback_Delegate> kvp in RollbackActions.OrderBy(kvp => kvp.Key))
                 {
                     if (Trace) Logging.WriteTrace($"{this} rolling back action #{kvp.Key}");
                     _ReturnValues.TryGetValue(kvp.Key, out object? returnValue);
@@ -151,7 +176,8 @@ namespace wan24.Core
                 CancelToken = Cancellation.Token;
             }
             _RunningActions.Clear();
-            Rollback.Clear();
+            RollbackActions.Clear();
+            CommitActions.Clear();
             _Exceptions.Clear();
             _ReturnValues.Clear();
             ActionCount = 0;

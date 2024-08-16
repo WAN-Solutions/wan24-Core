@@ -27,7 +27,7 @@ namespace wan24.Core
             ClrType = type;
             // Generic arguments
             HashSet<XmlGenericArgumentDocComments> genericArguments = [];
-            foreach (Type t in type.GetGenericArguments())
+            foreach (Type t in type.GetGenericArgumentsCached())
                 genericArguments.Add(new(this, t, xml));
             GenericArguments = genericArguments.ToFrozenSet();
             if (type.IsDelegate())
@@ -70,7 +70,7 @@ namespace wan24.Core
                 HashSet<XmlMethodDocComments> methods = [];
                 foreach (MethodInfoExt mi in type.GetMethodsCached(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
                     .Where(m => m.Method.DeclaringType == type && !m.Method.IsSpecialName))
-                    methods.Add(new(this, mi, xml));
+                    methods.Add(new(this, mi.Method, xml));
                 Methods = methods.ToFrozenSet();
                 // Delegates
                 HashSet<XmlMethodDocComments> delegates = [];

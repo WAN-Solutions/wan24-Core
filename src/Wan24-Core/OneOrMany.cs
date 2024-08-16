@@ -12,7 +12,7 @@ namespace wan24.Core
     /// <see langword="default"/>)
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
-    [StructLayout(LayoutKind.Auto)]
+    [StructLayout(LayoutKind.Sequential)]
     public readonly struct OneOrMany<T>
         : ICollection, IEnumerable, IList, IStructuralComparable, IStructuralEquatable, ICloneable, ICollection<T>, IEnumerable<T>, IList<T>
     {
