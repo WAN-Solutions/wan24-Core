@@ -10,13 +10,13 @@
         /// </summary>
         /// <param name="obj">Object</param>
         /// <param name="includeSerializerVersion">If to include the serializer version number</param>
-        /// <param name="cleanBuffer">If to clean the buffer</param>
+        /// <param name="options">Options</param>
         /// <returns>Serialized object data</returns>
-        public static byte[] Serialize(this object obj, in bool includeSerializerVersion = true, in bool cleanBuffer = false)
+        public static byte[] Serialize(this object obj, in bool includeSerializerVersion = true, in SerializerOptions? options = null)
         {
             using MemoryPoolStream ms = new(pool: SerializerSettings.BufferPool)
             {
-                CleanReturned = cleanBuffer
+                CleanReturned = options?.ClearBuffers ?? SerializerSettings.ClearBuffers
             };
             //TODO Include serializer version
             //TODO Serialize obj to ms
@@ -29,13 +29,13 @@
         /// <param name="obj">Object</param>
         /// <param name="buffer">Serialized object data buffer</param>
         /// <param name="includeSerializerVersion">If to include the serializer version number</param>
-        /// <param name="cleanBuffer">If to clean the internal buffer</param>
+        /// <param name="options">Options</param>
         /// <returns>Number of bytes written to the buffer</returns>
-        public static int Serialize(this object obj, in Span<byte> buffer, in bool includeSerializerVersion = true, in bool cleanBuffer = false)
+        public static int Serialize(this object obj, in Span<byte> buffer, in bool includeSerializerVersion = true, in SerializerOptions? options = null)
         {
             using Stream stream = new LimitedLengthStream(new MemoryPoolStream(pool: SerializerSettings.BufferPool)
             {
-                CleanReturned = cleanBuffer
+                CleanReturned = options?.ClearBuffers ?? SerializerSettings.ClearBuffers
             }, buffer.Length);
             //TODO Include serializer version
             //TODO Serialize obj to ms

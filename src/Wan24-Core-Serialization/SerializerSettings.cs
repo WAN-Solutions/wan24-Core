@@ -74,5 +74,15 @@ namespace wan24.Core
         /// Max. stream chunk length in bytes
         /// </summary>
         public static int MaxStreamChunkLength { get; set; } = ushort.MaxValue;
+
+        /// <summary>
+        /// If to clear buffers after use
+        /// </summary>
+        public static bool ClearBuffers { get; set; }
+
+        /// <summary>
+        /// Maximum object recursion depth when (de)serializing
+        /// </summary>
+        public static int MaxRecursionDepth { get; set; } = 32;
     }
 }

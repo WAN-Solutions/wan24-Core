@@ -39,6 +39,14 @@ namespace wan24.Core
         /// Types which shouldn't be referenced
         /// </summary>
         public static readonly HashSet<Type> NoReferenceTypesExplicit = [];
+        /// <summary>
+        /// Default type serializer options
+        /// </summary>
+        public static readonly Dictionary<Type, SerializerOptions> DefaultSerializerOptions = [];
+        /// <summary>
+        /// Default type deserializer options
+        /// </summary>
+        public static readonly Dictionary<Type, DeserializerOptions> DefaultDeserializerOptions = [];
 
         /// <summary>
         /// Registered types
@@ -67,6 +75,26 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <returns>If denied for referencing</returns>
         public static bool IsReferenceable(in Type type) => !NoReferenceTypesExplicit.Contains(type) && NoReferenceTypesExplicit.GetClosestType(type) is null;
+
+        /// <summary>
+        /// Get default serializer options for a type
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>Options</returns>
+        public static SerializerOptions GetSerializerOptions(Type type)
+            => (DefaultSerializerOptions.Keys.GetClosestType(type) is Type key
+                ? DefaultSerializerOptions[key]
+                : SerializerOptions.Default) with { };
+
+        /// <summary>
+        /// Get default deserializer options for a type
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>Options</returns>
+        public static DeserializerOptions GetDeserializerOptions(Type type)
+            => (DefaultDeserializerOptions.Keys.GetClosestType(type) is Type key
+                ? DefaultDeserializerOptions[key]
+                : DeserializerOptions.Default) with { };
 
         /// <summary>
         /// Add a serializer (existing serializer may be overwritten)

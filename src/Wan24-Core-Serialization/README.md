@@ -126,7 +126,43 @@ TypeSerializer.AddAutoSerializer(typeof(ValueType));
 
 You can also extend your type from `(Disposable)AutoSerializable(Record)Base` 
 and work with `SerializerAttribute` on properties to implement automatic 
-(de)serialization.
+(de)serialization. Depending on the `Opt` value of the type attribute you'll 
+need to add attributes to opt-in or -out properties to/from serialization. You 
+can also implement versioning using that attribute:
+
+```cs
+[Serializer(Version = 3)]// Current object version is 3, using opt-in
+public class ValueType
+{
+	// Not included in any version (not opt-in by a SerializerAttribute)
+	public string NotIncludedProperty { get; set; }
+
+	// Included in all object versions (simple opt-in)
+	[Serializer]
+	public string AnyProperty { get; set; }
+
+	// Included in object version 2+
+	[Serializer(FromVersion = 2)]
+	public string AnotherProperty { get; set; }
+
+	// Included in object versions 1 and 2
+	[Serializer(ToVersion = 2)]
+	public string YetAnotherProperty { get; set; }
+
+	// Included in object versions 1 and 3
+	[Serializer(1, 3)]
+	public string AndAnotherProperty { get; set; }
+}
+```
+
+The attribute has properties for almost all options that can be set for 
+configuring the property value (de)serialization.
+
+You may also extend the attribute with your custom implementation to override 
+
+- Included version determination
+- Serializer options
+- Deserializer options
 
 ### Special (de)serializers
 
@@ -151,6 +187,9 @@ foreach(ValueType v in stream.ReadEnumerable<ValueType>())
 }
 ```
 
+**NOTE**: Use `WriteEnumerableNullable` and `ReadEnumerableNullable` for 
+nullable types.
+
 #### Write from/read as `IList` or `IList<T>`
 
 ```cs
@@ -160,7 +199,7 @@ _ = stream.ReadGenericList<ValueType>();
 ```
 
 **NOTE**: Use the `WriteList` and `ReadList` methods for lists with abstract 
-item types (`IList`).
+item types (`IList`). Use the `*Nullable` methods for nullable types.
 
 #### Write from/read as `IDictionary` or `IDictionary<tKey, tValue>`
 
@@ -171,7 +210,8 @@ _ = stream.ReadGenericDictionary<string, ValueType>();
 ```
 
 **NOTE**: Use the `WriteDictionary` and `ReadDictionary` methods for 
-dictionaries with abstract key/value types (`IDictionary`).
+dictionaries with abstract key/value types (`IDictionary`). Use the 
+`*Nullable` methods for nullable types.
 
 #### Write/read a `Stream`
 
@@ -185,7 +225,7 @@ using Stream serializedStream = stream.ReadStream();
 `Read(Any)Serialized`. The difference is that `ReadStream` won't extract the 
 full serialized stream. In this example no other object can (should!) be 
 deserialized from `stream` until `serializedStream` was red to the end or 
-disposed.
+disposed. Use the `*Nullable` methods for nullable types.
 
 ### Custom type serialization
 
@@ -313,11 +353,24 @@ _ = stream.ReadSerialized<ValueType>(options: DeserializerOptions.Default with
 
 All (de)serializer methods allow an options argument.
 
+You can define default type (de)serializer options in the 
+`TypeHelper.DefaultSerializerOptions` and 
+`TypeHelper.DefaultDeserializerOptions`. They'll be used in case no options 
+were given to the (de)serializer method.
+
+**WARNING**: An options instance IS NOT thread safe! Use an instance copy if 
+you're going to branch tasks to multiple threads, and be sure to reset the 
+`Seen` property value, because a `HashSet<T>` isn't thread safe, too. The 
+recursion `Depth` value may be be shared to other threads, which will then be 
+continued per thread.
+
 #### Serialization options
 
 | Option | Description |
 | `BufferPool` | The buffer pool to use (the default is the value of the static `DefaultBufferPool` property) |
 | `Seen` | Set to a `HashSet<object>` for endless recursion protection when serializing objects or lists of values (like array, list, dictionary, ...) |
+| `References` | Used to disable references when `Seen` has a non-NULL value |
+| `Depth` | Used by `SerializationContext` to store the current recursion depth |
 | `ObjectSerializerName` | Name of the `wan24.Core.ObjectSerializer` to use for (de)serialization |
 | `StringValueConverterName` | Name of the `wan24.Core.StringValueConverter` to use for (de)serialization |
 | `StreamSerializer` | Fixed stream serializer to use |
@@ -326,50 +379,46 @@ All (de)serializer methods allow an options argument.
 | `UseNamedTypeCache` | If to use the type name hash code for accessing `wan24.Core.TypeCache` |
 | `TryTypeConversion` | If to use `wan24.Core.TypeConverter` for finding a serializable type |
 
-Using the `TryAddSeen` you can try adding an object to the `Seen` hash set 
-before serializing. Depending on the result your serializer method should 
-continue serializing or return:
+#### Deserializer options
 
-- `true` and `n` index value: The object was added and should be serialized as 
-usual
-- `false` and `n` index value: The object was added previously and should be 
-serialized as a reference
-- `false` and `-1` index value: The object wasn't added, because the `Seen` 
-property is `null` (object referencing was disabled)
+| Option | Description |
+| `BufferPool` | The buffer pool to use (the default is the value of the static `DefaultBufferPool` property) |
+| `ServiceProvider` | The service provider to use for constructing types |
+| `MinLength` | Minimum expected length |
+| `MaxLength` | Maximum expected length |
+| `Seen` | Set to a `HashSet<object>` for object reference support when deserializing objects or lists of values (like array, list, dictionary, ...) |
+| `References` | Used to disable references when `Seen` has a non-NULL value |
+| `Depth` | Used by `SerializationContext` to store the current recursion depth |
+| `ObjectSerializerName` | Name of the `wan24.Core.ObjectSerializer` to use for (de)serialization |
+| `StringValueConverterName` | Name of the `wan24.Core.StringValueConverter` to use for (de)serialization |
+| `StreamSerializer` | Fixed stream serializer to use |
+| `SerializerInfoIncluded` | If information about the used serialized was included |
+| `UseTypeCache` | If to use the `wan24.Core.TypeCache` for type information compression |
+| `UseNamedTypeCache` | If to use the type name hash code for accessing `wan24.Core.TypeCache` |
+| `TryTypeConversion` | If to use `wan24.Core.TypeConverter` for converting the serialized type to the requested target type |
 
-Example serializer:
+### Object references
 
-```cs
-if(!options.TryAddSeen(obj, out int index) && index != -1 && TypeSerializer.IsReferenceable(obj.GetType()))
-{
-	// Serialize object reference
-	stream.WriteSerialized(true);
-	stream.WriteNumber(index);
-	return;
-}
-stream.WriteSerialized(false);
-// Serialize obj here
-```
-
-Example deserializer:
+For using object references, the `Seen` property of the options need to be set 
+to a non-NULL value. You can also use a `SerializationContex` for this:
 
 ```cs
-if(stream.ReadSerialized<bool>())
-{
-	// Return a previous object reference
-	return options.GetReferencedObject(stream.ReadNumber<int>(), typeof(ValueType));
-}
-else
-{
-	// Deserialize obj here
-	return options.AddSeen(obj);
-}
+options.Seen = [];
+// OR
+using SerializerContext context = options;
 ```
+
+The context will set `Seen` and unset it when disposing, if `Seen` wasn't set 
+already when the context was created.
+
+Single or abstract types can be disclosed from referencing values by adding a 
+type to `TypeSerializer.NoReferenceTypes(Explicit)`.
+
+#### Implementing object referencing in your custom (de)serializer
 
 Normally every (de)serializing method does try to read references as soon as 
 `Seen` has a value, except the `References` property of the option was set to 
-`false`. Instead of using `TryAddSeen` and `GetReferencedObject`, you can also 
-use higher level helper methods.
+`false`. This is how to use referencing in a custom (de)serializer:
 
 Example serializer:
 
@@ -387,29 +436,11 @@ Example deserializer:
 ```cs
 if(options.TryReadReference<ValueType>(stream, version, out ValueType? obj))
 {
-	// A references has been red
+	// A reference was used
 	return obj;
 }
 // Deserialize obj here
 ```
-
-#### Deserializer options
-
-| Option | Description |
-| `BufferPool` | The buffer pool to use (the default is the value of the static `DefaultBufferPool` property) |
-| `ServiceProvider` | The service provider to use for constructing types |
-| `MinLength` | Minimum expected length |
-| `MaxLength` | Maximum expected length |
-| `Seen` | Set to a `HashSet<object>` for object reference support when deserializing objects or lists of values (like array, list, dictionary, ...) |
-| `ObjectSerializerName` | Name of the `wan24.Core.ObjectSerializer` to use for (de)serialization |
-| `StringValueConverterName` | Name of the `wan24.Core.StringValueConverter` to use for (de)serialization |
-| `StreamSerializer` | Fixed stream serializer to use |
-| `SerializerInfoIncluded` | If information about the used serialized was included |
-| `UseTypeCache` | If to use the `wan24.Core.TypeCache` for type information compression |
-| `UseNamedTypeCache` | If to use the type name hash code for accessing `wan24.Core.TypeCache` |
-| `TryTypeConversion` | If to use `wan24.Core.TypeConverter` for converting the serialized type to the requested target type |
-
-Using the `GetReferencedObject` method you can resolve an object reference.
 
 ### Long vs. short term storage
 
@@ -425,6 +456,28 @@ a new serializer version with incompatibilities, and also your serializable
 types may change from time to time, which does break the serialized data 
 structure sequence compatibility easily.
 
+To be safe in the long term, each serialized structure should include:
+
+- A custom version number which targets the serialization environment
+- The serializer version number
+- The serialized object version number
+
+The custom version number may be any value and is being used to determine the 
+serialization environment which was used for serialization. For example, if 
+you've used `Stream-Serializer-Extensions` before and then switched to 
+`wan24-Core-Serializer` later, you'd store `1` for 
+`Stream-Serializer-Extensions`, and then increase to `2` for 
+`wan24-Core-Serializer` serialized objects. You can also increase the custom 
+version, if you need to run any upgrade code on your stored serialized 
+structures in case there's an incompatibility between the previous and a newer 
+serializer revision. To give a custom version value to deserialization 
+methods, you can use the `DeserializerOptions.CustomVersion` property, which 
+was added for exactly this purpose.
+
+**TIP**: If you're serious about that, increase the custom version number with 
+every release of your app. In case you've created an incompatibility between 
+two releases, you'll be able to fix the issue using a bugfix release more easy.
+
 ### Security
 
 The object types which may be deserialized are simply the types which have a 
@@ -438,16 +491,27 @@ the value with the expected limits.
 
 As soon as you (de)serialize an object, an array, a list or a dictionary - or 
 any other custom type which hosts nested objects to serialize, you should set 
-the `Seen` property of the options, which cna be done using a 
+the `Seen` property of the options, which can be done using a 
 `SerializationContext` - example:
 
 ```cs
-using SerializationContext context = new(options);
+using SerializationContext context = options;
 // (De)Serialization code here
 ```
 
 A `SerializationContext` may wrap any and also of course multiple 
-(de)serializer operations.
+(de)serializer operations. Using a context detects and avoids endless 
+recursion, and it also limits the recursion stack depth using the limit which 
+was configured to `SerializerSettings.MaxRecursionDepth`.
+
+**NOTE**: Don't use a context as method argument. Instead create a new context 
+within each method that requires a context!
+
+Set `SerializerSettings.ClearBuffers` to `true` to clear buffer contents as 
+soon as the buffer won't be used anymore (and returned to the buffer pool). 
+This may be required for security sensitive apps. There is also a 
+`ClearBuffers` property in the options, which allows to configure the behavior 
+at operation level.
 
 The `SerializerException` will be thrown on any (de)serializer issue. Any 
 other exception may be thrown for problems with arguments, for example.

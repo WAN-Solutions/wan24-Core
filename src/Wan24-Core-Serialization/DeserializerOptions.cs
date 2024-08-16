@@ -16,6 +16,16 @@ namespace wan24.Core
         public static DeserializerOptions Default { get; set; } = new();
 
         /// <summary>
+        /// If to clear buffers after use
+        /// </summary>
+        public bool ClearBuffers { get; init; } = SerializerSettings.ClearBuffers;
+
+        /// <summary>
+        /// Custom version
+        /// </summary>
+        public int? CustomVersion { get; set; }
+
+        /// <summary>
         /// Minimum length
         /// </summary>
         public int? MinLength { get; init; }
@@ -29,6 +39,16 @@ namespace wan24.Core
         /// Seen objects (for working with references)
         /// </summary>
         public List<object>? Seen { get; set; }
+
+        /// <summary>
+        /// If references are enabled (<see cref="Seen"/> must have a non-<see langword="null"/> value)
+        /// </summary>
+        public bool References { get; init; } = true;
+
+        /// <summary>
+        /// Current depth (used by <see cref="SerializationContext"/>)
+        /// </summary>
+        public int Depth { get; set; }
 
         /// <summary>
         /// Object serializer name (see <see cref="ObjectSerializer"/>)
@@ -64,6 +84,12 @@ namespace wan24.Core
         /// If to try <see cref="TypeConverter"/> for converting an object to a serializable type
         /// </summary>
         public bool TryTypeConversion { get; init; } = SerializerSettings.TryTypeConversion;
+
+        /// <summary>
+        /// Get a copy of this instance
+        /// </summary>
+        /// <returns>Instance copy</returns>
+        public virtual DeserializerOptions GetCopy() => this with { };
 
         /// <summary>
         /// Add a seen object
@@ -103,7 +129,7 @@ namespace wan24.Core
         /// <returns>If succeed</returns>
         public virtual bool TryReadReference(in Stream stream, in Type type, in int version, [NotNullWhen(returnValue: true)] out object? result)
         {
-            if (Seen is null || !TypeSerializer.IsReferenceable(type) || !TypeSerializer.Deserialize<bool>(typeof(bool), stream, version, this))//TODO Use nullable number
+            if (Seen is null || !References || !TypeSerializer.IsReferenceable(type) || !TypeSerializer.Deserialize<bool>(typeof(bool), stream, version, this))//TODO Use nullable number
             {
                 result = null;
                 return false;
@@ -144,6 +170,7 @@ namespace wan24.Core
         {
             if (
                 Seen is null || 
+                !References || 
                 !TypeSerializer.IsReferenceable(type) || 
                 !await TypeSerializer.DeserializeAsync<bool>(typeof(bool), stream, version, this, cancellationToken).DynamicContext()//TODO Use nullable number
                 )

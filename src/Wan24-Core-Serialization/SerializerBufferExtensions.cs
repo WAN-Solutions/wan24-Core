@@ -11,13 +11,13 @@
         /// <param name="buffer">Serialized data buffer</param>
         /// <param name="type">Object type to deserialize</param>
         /// <param name="serializerVersionIncluded">If the serializer version was included</param>
-        /// <param name="cleanBuffer">If to clean the internal buffer</param>
+        /// <param name="options">Options</param>
         /// <returns>Deserialized object</returns>
-        public static object Deserialize(this ReadOnlySpan<byte> buffer, in Type type, in bool serializerVersionIncluded = true, in bool cleanBuffer = false)
+        public static object Deserialize(this ReadOnlySpan<byte> buffer, in Type type, in bool serializerVersionIncluded = true, in DeserializerOptions? options = null)
         {
             using RentedArrayRefStruct<byte> temp = new(buffer.Length, clean: false)
             {
-                Clear = cleanBuffer
+                Clear = options?.ClearBuffers ?? SerializerSettings.ClearBuffers
             };
             buffer.CopyTo(temp.Span);
             using MemoryStream ms = new(temp.Array, 0, buffer.Length);
@@ -31,10 +31,10 @@
         /// <typeparam name="T">Object type to deserialize</typeparam>
         /// <param name="buffer">Serialized data buffer</param>
         /// <param name="serializerVersionIncluded">If the serializer version was included</param>
-        /// <param name="cleanBuffer">If to clean the internal buffer</param>
+        /// <param name="options">Options</param>
         /// <returns>Deserialized object</returns>
-        public static T Deserialize<T>(this ReadOnlySpan<byte> buffer, in bool serializerVersionIncluded = true, in bool cleanBuffer = false)
-            => (T)Deserialize(buffer, typeof(T), serializerVersionIncluded, cleanBuffer);
+        public static T Deserialize<T>(this ReadOnlySpan<byte> buffer, in bool serializerVersionIncluded = true, in DeserializerOptions? options = null)
+            => (T)Deserialize(buffer, typeof(T), serializerVersionIncluded, options);
 
         /// <summary>
         /// Deserialize an object from a serialized data buffer
@@ -42,8 +42,9 @@
         /// <param name="buffer">Serialized data buffer</param>
         /// <param name="type">Object type to deserialize</param>
         /// <param name="serializerVersionIncluded">If the serializer version was included</param>
+        /// <param name="options">Options</param>
         /// <returns>Deserialized object</returns>
-        public static object Deserialize(this byte[] buffer, in Type type, in bool serializerVersionIncluded = true)
+        public static object Deserialize(this byte[] buffer, in Type type, in bool serializerVersionIncluded = true, in DeserializerOptions? options = null)
         {
             using MemoryStream ms = new(buffer);
             //TODO Deserialize the serializer version
@@ -56,8 +57,9 @@
         /// <typeparam name="T">Object type to deserialize</typeparam>
         /// <param name="buffer">Serialized data buffer</param>
         /// <param name="serializerVersionIncluded">If the serializer version was included</param>
+        /// <param name="options">Options</param>
         /// <returns>Deserialized object</returns>
-        public static T Deserialize<T>(this byte[] buffer, in bool serializerVersionIncluded = true)
-            => (T)Deserialize(buffer, typeof(T), serializerVersionIncluded);
+        public static T Deserialize<T>(this byte[] buffer, in bool serializerVersionIncluded = true, in DeserializerOptions? options = null)
+            => (T)Deserialize(buffer, typeof(T), serializerVersionIncluded, options);
     }
 }

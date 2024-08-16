@@ -23,9 +23,24 @@
         }
 
         /// <summary>
+        /// If to clear buffers after use
+        /// </summary>
+        public bool ClearBuffers { get; init; } = SerializerSettings.ClearBuffers;
+
+        /// <summary>
         /// Seen objects (to avoid an endless recursion)
         /// </summary>
         public List<object>? Seen { get; set; }
+
+        /// <summary>
+        /// If references are enabled (<see cref="Seen"/> must have a non-<see langword="null"/> value)
+        /// </summary>
+        public bool References { get; init; } = true;
+
+        /// <summary>
+        /// Current depth (used by <see cref="SerializationContext"/>)
+        /// </summary>
+        public int Depth { get; set; }
 
         /// <summary>
         /// Object serializer name (see <see cref="ObjectSerializer"/>)
@@ -63,6 +78,12 @@
         public bool TryTypeConversion { get; init; } = SerializerSettings.TryTypeConversion;
 
         /// <summary>
+        /// Get a copy of this instance
+        /// </summary>
+        /// <returns>Instance copy</returns>
+        public virtual SerializerOptions GetCopy() => this with { };
+
+        /// <summary>
         /// Add an object to <see cref="Seen"/>
         /// </summary>
         /// <param name="obj">Object</param>
@@ -96,7 +117,7 @@
         {
             ArgumentNullException.ThrowIfNull(obj, nameof(obj));
             bool added = TryAddSeen(obj, out int index);
-            if (Seen is null || !TypeSerializer.IsReferenceable(obj.GetType())) return false;
+            if (Seen is null || !References || !TypeSerializer.IsReferenceable(obj.GetType())) return false;
             if (added)
             {
                 TypeSerializer.Serialize(typeof(bool), obj: false, stream, this);//TODO Use nullable number
@@ -119,7 +140,7 @@
         {
             ArgumentNullException.ThrowIfNull(obj, nameof(obj));
             bool added = TryAddSeen(obj, out int index);
-            if (Seen is null || !TypeSerializer.IsReferenceable(obj.GetType())) return false;
+            if (Seen is null || !References || !TypeSerializer.IsReferenceable(obj.GetType())) return false;
             if (added)
             {
                 await TypeSerializer.SerializeAsync(typeof(bool), obj: false, stream, this, cancellationToken).DynamicContext();//TODO Use nullable number

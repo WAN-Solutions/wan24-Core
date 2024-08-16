@@ -26,7 +26,7 @@
                 if (!throwOnError) return -1;
                 throw new InvalidDataException($"Invalid negative length {len}");
             }
-            if(minLen.HasValue && len < minLen.Value)
+            if (minLen.HasValue && len < minLen.Value)
             {
                 if (!throwOnError) return -1;
                 throw new InvalidDataException($"Length of {len} doesn't fit the min. length of {minLen}");
@@ -49,7 +49,7 @@
         {
             if (options?.StreamSerializer.HasValue ?? false) return options.StreamSerializer.Value;
             if (TypeSerializer.IsDeniedForSerialization(type)) return StreamSerializerTypes.None;
-            if(options is not null)
+            if (options is not null)
             {
                 if (options.StringValueConverterName is not null) return StreamSerializerTypes.StringValueConverter | StreamSerializerTypes.NamedSerializer;
                 if (options.ObjectSerializerName is not null) return StreamSerializerTypes.ObjectSerializer | StreamSerializerTypes.NamedSerializer;
@@ -151,16 +151,17 @@
         /// <param name="stream">Target stream</param>
         /// <param name="obj">Object</param>
         /// <param name="options">Options</param>
-        public static void Serialize(in Stream stream, object obj, in SerializerOptions? options = null)
+        public static void Serialize(in Stream stream, object obj, SerializerOptions? options = null)
         {
             // Find the serializer to use
-            StreamSerializerTypes serializer = options is null ? StreamSerializerTypes.None : GetStreamSerializerType(options);
+            options ??= TypeSerializer.GetSerializerOptions(obj.GetType());
+            StreamSerializerTypes serializer = GetStreamSerializerType(options);
             Type type = obj.GetType();
             if (serializer == StreamSerializerTypes.None)
             {
                 serializer = FindStreamSerializerType(type, options);
                 if (serializer == StreamSerializerTypes.None)
-                    if (options?.TryTypeConversion ?? false)
+                    if (options.TryTypeConversion)
                     {
                         Type convertType = FindSerializableType(type, options) ?? throw new SerializerException($"Failed to find serializable type for {type}");
                         if (convertType != type)
@@ -185,7 +186,6 @@
             // Apply type conversion
             if (serializer.RequiresTypeConversion())
             {
-                if (options is null) throw new SerializerException("Missing options", new InvalidProgramException());
                 Type convertType = FindSerializableType(type, options) ?? throw new SerializerException($"Failed to find serializable type for {type}");
                 if (convertType != type)
                 {
@@ -198,7 +198,7 @@
                 }
             }
             // Write serializer information
-            if (options?.IncludeSerializerInfo ?? false)
+            if (options.IncludeSerializerInfo)
                 TypeSerializer.Serialize(typeof(StreamSerializerTypes), serializer, stream, options);
             // Serialize
             switch (serializer & ~StreamSerializerTypes.FLAGS)
@@ -209,9 +209,9 @@
                 case StreamSerializerTypes.StringValueConverter:
                     if (serializer.UsesNamedSerializer())
                     {
-                        if (options?.StringValueConverterName is null)
-                            throw new SerializerException("Missing options or string value converter name", new InvalidProgramException());
-                        if(StringValueConverter.NamedStringConversion(obj,options.StringValueConverterName,type) is not string str)
+                        if (options.StringValueConverterName is null)
+                            throw new SerializerException("Missing string value converter name", new InvalidProgramException());
+                        if (StringValueConverter.NamedStringConversion(obj, options.StringValueConverterName, type) is not string str)
                             throw new SerializerException($"Named string value converter \"{options.StringValueConverterName}\" converted {type} to NULL");
                         TypeSerializer.Serialize(typeof(string), str, stream, options);
                     }
@@ -225,8 +225,8 @@
                 case StreamSerializerTypes.ObjectSerializer:
                     if (serializer.UsesNamedSerializer())
                     {
-                        if (options?.ObjectSerializerName is null)
-                            throw new SerializerException("Missing options or string value converter name", new InvalidProgramException());
+                        if (options.ObjectSerializerName is null)
+                            throw new SerializerException("Missing string value converter name", new InvalidProgramException());
                         ObjectSerializer.Serialize(options.ObjectSerializerName, obj, stream);
                     }
                     else
@@ -249,13 +249,14 @@
         public static async Task SerializeAsync(Stream stream, object obj, SerializerOptions? options = null, CancellationToken cancellationToken = default)
         {
             // Find the serializer to use
-            StreamSerializerTypes serializer = options is null ? StreamSerializerTypes.None : GetStreamSerializerType(options);
+            options ??= TypeSerializer.GetSerializerOptions(obj.GetType());
+            StreamSerializerTypes serializer = GetStreamSerializerType(options);
             Type type = obj.GetType();
             if (serializer == StreamSerializerTypes.None)
             {
                 serializer = FindStreamSerializerType(type, options);
                 if (serializer == StreamSerializerTypes.None)
-                    if (options?.TryTypeConversion ?? false)
+                    if (options.TryTypeConversion)
                     {
                         Type convertType = FindSerializableType(type, options) ?? throw new SerializerException($"Failed to find serializable type for {type}");
                         if (convertType != type)
@@ -280,7 +281,6 @@
             // Apply type conversion
             if (serializer.RequiresTypeConversion())
             {
-                if (options is null) throw new SerializerException("Missing options", new InvalidProgramException());
                 Type convertType = FindSerializableType(type, options) ?? throw new SerializerException($"Failed to find serializable type for {type}");
                 if (convertType != type)
                 {
@@ -293,7 +293,7 @@
                 }
             }
             // Write serializer information
-            if (options?.IncludeSerializerInfo ?? false)
+            if (options.IncludeSerializerInfo)
                 await TypeSerializer.SerializeAsync(typeof(StreamSerializerTypes), serializer, stream, options, cancellationToken).DynamicContext();
             // Serialize
             switch (serializer & ~StreamSerializerTypes.FLAGS)
@@ -304,8 +304,8 @@
                 case StreamSerializerTypes.StringValueConverter:
                     if (serializer.UsesNamedSerializer())
                     {
-                        if (options?.StringValueConverterName is null)
-                            throw new SerializerException("Missing options or string value converter name", new InvalidProgramException());
+                        if (options.StringValueConverterName is null)
+                            throw new SerializerException("Missing string value converter name", new InvalidProgramException());
                         if (StringValueConverter.NamedStringConversion(obj, options.StringValueConverterName, type) is not string str)
                             throw new SerializerException($"Named string value converter \"{options.StringValueConverterName}\" converted {type} to NULL");
                         await TypeSerializer.SerializeAsync(typeof(string), str, stream, options, cancellationToken).DynamicContext();
@@ -320,8 +320,8 @@
                 case StreamSerializerTypes.ObjectSerializer:
                     if (serializer.UsesNamedSerializer())
                     {
-                        if (options?.ObjectSerializerName is null)
-                            throw new SerializerException("Missing options or string value converter name", new InvalidProgramException());
+                        if (options.ObjectSerializerName is null)
+                            throw new SerializerException("Missing string value converter name", new InvalidProgramException());
                         await ObjectSerializer.SerializeAsync(options.ObjectSerializerName, obj, stream, cancellationToken).DynamicContext();
                     }
                     else
@@ -342,12 +342,13 @@
         /// <param name="version">Serializer version</param>
         /// <param name="options">Options</param>
         /// <returns>Deserialized object</returns>
-        public static object Deserialize(in Stream stream, Type type, int? version = null, in DeserializerOptions? options = null)
+        public static object Deserialize(in Stream stream, Type type, int? version = null, DeserializerOptions? options = null)
         {
             version ??= SerializerSettings.Version;
+            options ??= TypeSerializer.GetDeserializerOptions(type);
             // Read serializer information
             StreamSerializerTypes serializer = StreamSerializerTypes.None;
-            if (options?.SerializerInfoIncluded ?? false)
+            if (options.SerializerInfoIncluded)
             {
                 serializer = TypeSerializer.Deserialize<StreamSerializerTypes>(typeof(StreamSerializerTypes), stream, version, options);
                 if (serializer == StreamSerializerTypes.None)
@@ -355,13 +356,13 @@
             }
             // Find the serializer to use
             if (serializer == StreamSerializerTypes.None)
-                serializer = options is null ? StreamSerializerTypes.None : GetStreamSerializerType(options);
+                serializer = GetStreamSerializerType(options);
             Type? convertType = null;
             if (serializer == StreamSerializerTypes.None)
             {
                 serializer = FindStreamDeserializerType(type, options);
                 if (serializer == StreamSerializerTypes.None)
-                    if (options?.TryTypeConversion ?? false)
+                    if (options.TryTypeConversion)
                     {
                         convertType = FindDeserializableType(type, options) ?? throw new SerializerException($"Failed to find deserializable type for {type}");
                         if (convertType != type)
@@ -391,8 +392,8 @@
                     string str = TypeSerializer.Deserialize<string>(typeof(string), stream, version, options);
                     if (serializer.UsesNamedSerializer())
                     {
-                        if (options?.StringValueConverterName is null)
-                            throw new SerializerException("Missing options or string value converter name", new InvalidProgramException());
+                        if (options.StringValueConverterName is null)
+                            throw new SerializerException("Missing string value converter name", new InvalidProgramException());
                         res = StringValueConverter.NamedObjectConversion(str, options.StringValueConverterName, convertType ?? type)
                             ?? throw new SerializerException($"Named string value converter \"{options.StringValueConverterName}\" converted {type} to NULL");
                     }
@@ -405,8 +406,8 @@
                 case StreamSerializerTypes.ObjectSerializer:
                     if (serializer.UsesNamedSerializer())
                     {
-                        if (options?.ObjectSerializerName is null)
-                            throw new SerializerException("Missing options or string value converter name", new InvalidProgramException());
+                        if (options.ObjectSerializerName is null)
+                            throw new SerializerException("Missing string value converter name", new InvalidProgramException());
                         res = ObjectSerializer.Deserialize(options.ObjectSerializerName, convertType ?? type, stream)
                             ?? throw new SerializerException($"Named object serializer \"{options.ObjectSerializerName}\" deserialized {type} to NULL", new InvalidDataException());
                     }
@@ -443,9 +444,10 @@
         public static async Task<object> DeserializeAsync(Stream stream, Type type, int? version = null, DeserializerOptions? options = null, CancellationToken cancellationToken = default)
         {
             version ??= SerializerSettings.Version;
+            options ??= TypeSerializer.GetDeserializerOptions(type);
             // Read serializer information
             StreamSerializerTypes serializer = StreamSerializerTypes.None;
-            if (options?.SerializerInfoIncluded ?? false)
+            if (options.SerializerInfoIncluded)
             {
                 serializer = await TypeSerializer.DeserializeAsync<StreamSerializerTypes>(typeof(StreamSerializerTypes), stream, version, options, cancellationToken).DynamicContext();
                 if (serializer == StreamSerializerTypes.None)
@@ -453,13 +455,13 @@
             }
             // Find the serializer to use
             if (serializer == StreamSerializerTypes.None)
-                serializer = options is null ? StreamSerializerTypes.None : GetStreamSerializerType(options);
+                serializer = GetStreamSerializerType(options);
             Type? convertType = null;
             if (serializer == StreamSerializerTypes.None)
             {
                 serializer = FindStreamDeserializerType(type, options);
                 if (serializer == StreamSerializerTypes.None)
-                    if (options?.TryTypeConversion ?? false)
+                    if (options.TryTypeConversion)
                     {
                         convertType = FindDeserializableType(type, options) ?? throw new SerializerException($"Failed to find deserializable type for {type}");
                         if (convertType != type)
@@ -489,8 +491,8 @@
                     string str = await TypeSerializer.DeserializeAsync<string>(typeof(string), stream, version, options, cancellationToken).DynamicContext();
                     if (serializer.UsesNamedSerializer())
                     {
-                        if (options?.StringValueConverterName is null)
-                            throw new SerializerException("Missing options or string value converter name", new InvalidProgramException());
+                        if (options.StringValueConverterName is null)
+                            throw new SerializerException("Missing string value converter name", new InvalidProgramException());
                         res = StringValueConverter.NamedObjectConversion(str, options.StringValueConverterName, convertType ?? type)
                             ?? throw new SerializerException($"Named string value converter \"{options.StringValueConverterName}\" converted {type} to NULL");
                     }
@@ -503,8 +505,8 @@
                 case StreamSerializerTypes.ObjectSerializer:
                     if (serializer.UsesNamedSerializer())
                     {
-                        if (options?.ObjectSerializerName is null)
-                            throw new SerializerException("Missing options or string value converter name", new InvalidProgramException());
+                        if (options.ObjectSerializerName is null)
+                            throw new SerializerException("Missing string value converter name", new InvalidProgramException());
                         res = await ObjectSerializer.DeserializeAsync(options.ObjectSerializerName, convertType ?? type, stream, cancellationToken).DynamicContext()
                             ?? throw new SerializerException($"Named object serializer \"{options.ObjectSerializerName}\" deserialized {type} to NULL", new InvalidDataException());
                     }
@@ -520,7 +522,7 @@
             // Apply type conversion
             if (convertType is not null && convertType != type) res = TypeConverter.Convert(res, type);
             // Ensure having a valid result type
-            if(res is null) throw new SerializerException($"{type} was deserialized to NULL", new InvalidDataException());
+            if (res is null) throw new SerializerException($"{type} was deserialized to NULL", new InvalidDataException());
             if (!type.IsAssignableFrom(res.GetType()))
             {
                 await res.TryDisposeAsync().DynamicContext();
