@@ -122,6 +122,7 @@
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
+    <div><a class="xref" href="wan24.Core.ITransaction.html">ITransaction</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -598,7 +599,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_AcidStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AcidStream : AcidStream&lt;Stream&gt;, IStreamWrapper, IStream, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class AcidStream : AcidStream&lt;Stream&gt;, IStreamWrapper, IStream, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider, ITransaction</code></pre>
   </div>
   <h5 id="wan24_Core_AcidStream_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Constructor</p>
@@ -666,6 +667,9 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ITransaction.html">ITransaction</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
@@ -765,6 +769,9 @@
       <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflectedGeneric_System_Object_System_String_System_Type___System_Object___">ReflectionExtensions.InvokeReflectedGeneric(object, string, Type[], params object?[])</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_Reflect_System_Object_System_Nullable_System_Reflection_BindingFlags__">ReflectionExtensions.Reflect(object, BindingFlags?)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_SetValueReflected_System_Object_System_String_System_Object_">ReflectionExtensions.SetValueReflected(object, string, object?)</a>
   </div>
   <div>
@@ -795,6 +802,9 @@
       <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshaledSize_System_Object_">StructExtensions.GetMarshaledSize(object)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
@@ -814,6 +824,12 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsDisposable__1___0_">ObjectExtensions.IsDisposable&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsTask__1___0_">ObjectExtensions.IsTask&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsValueTask__1___0_">ObjectExtensions.IsValueTask&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in int)</a>

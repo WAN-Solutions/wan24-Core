@@ -110,6 +110,10 @@
     <div class="level1"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.attribute">Attribute</a></div>
     <div class="level2"><span class="xref">MapAttribute</span></div>
   </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IOptInOut.html">IOptInOut</a></div>
+  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
@@ -244,7 +248,7 @@
   <h5 id="wan24_Core_MapAttribute_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[AttributeUsage(AttributeTargets.Class|AttributeTargets.Property)]
-public class MapAttribute : Attribute</code></pre>
+public class MapAttribute : Attribute, IOptInOut</code></pre>
   </div>
   <h5 id="wan24_Core_MapAttribute_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Constructor</p>
@@ -277,7 +281,7 @@ public class MapAttribute : Attribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MapAttribute_CanMap.md&amp;value=---%0Auid%3A%20wan24.Core.MapAttribute.CanMap%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MapAttribute.cs/#L40">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MapAttribute.cs/#L43">View Source</a>
   </span>
   <a id="wan24_Core_MapAttribute_CanMap_" data-uid="wan24.Core.MapAttribute.CanMap*"></a>
   <h4 id="wan24_Core_MapAttribute_CanMap" data-uid="wan24.Core.MapAttribute.CanMap">CanMap</h4>
@@ -308,7 +312,7 @@ public class MapAttribute : Attribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MapAttribute_CanMapAsync.md&amp;value=---%0Auid%3A%20wan24.Core.MapAttribute.CanMapAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MapAttribute.cs/#L45">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MapAttribute.cs/#L48">View Source</a>
   </span>
   <a id="wan24_Core_MapAttribute_CanMapAsync_" data-uid="wan24.Core.MapAttribute.CanMapAsync*"></a>
   <h4 id="wan24_Core_MapAttribute_CanMapAsync" data-uid="wan24.Core.MapAttribute.CanMapAsync">CanMapAsync</h4>
@@ -367,6 +371,37 @@ public class MapAttribute : Attribute</code></pre>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MapAttribute_Opt.md&amp;value=---%0Auid%3A%20wan24.Core.MapAttribute.Opt%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MapAttribute.cs/#L28">View Source</a>
+  </span>
+  <a id="wan24_Core_MapAttribute_Opt_" data-uid="wan24.Core.MapAttribute.Opt*"></a>
+  <h4 id="wan24_Core_MapAttribute_Opt" data-uid="wan24.Core.MapAttribute.Opt">Opt</h4>
+  <div class="markdown level1 summary"><p>Opt in/out</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OptInOut Opt { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.OptInOut.html">OptInOut</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MapAttribute_OptIn.md&amp;value=---%0Auid%3A%20wan24.Core.MapAttribute.OptIn%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -401,7 +436,7 @@ public class MapAttribute : Attribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MapAttribute_PublicGetterOnly.md&amp;value=---%0Auid%3A%20wan24.Core.MapAttribute.PublicGetterOnly%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MapAttribute.cs/#L30">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MapAttribute.cs/#L33">View Source</a>
   </span>
   <a id="wan24_Core_MapAttribute_PublicGetterOnly_" data-uid="wan24.Core.MapAttribute.PublicGetterOnly*"></a>
   <h4 id="wan24_Core_MapAttribute_PublicGetterOnly" data-uid="wan24.Core.MapAttribute.PublicGetterOnly">PublicGetterOnly</h4>
@@ -432,7 +467,7 @@ public class MapAttribute : Attribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MapAttribute_PublicSetterOnly.md&amp;value=---%0Auid%3A%20wan24.Core.MapAttribute.PublicSetterOnly%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MapAttribute.cs/#L35">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MapAttribute.cs/#L38">View Source</a>
   </span>
   <a id="wan24_Core_MapAttribute_PublicSetterOnly_" data-uid="wan24.Core.MapAttribute.PublicSetterOnly*"></a>
   <h4 id="wan24_Core_MapAttribute_PublicSetterOnly" data-uid="wan24.Core.MapAttribute.PublicSetterOnly">PublicSetterOnly</h4>
@@ -496,7 +531,7 @@ public class MapAttribute : Attribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MapAttribute_MapAsync__2_System_String___0___1_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.MapAttribute.MapAsync%60%602(System.String%2C%60%600%2C%60%601%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MapAttribute.cs/#L67">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MapAttribute.cs/#L70">View Source</a>
   </span>
   <a id="wan24_Core_MapAttribute_MapAsync_" data-uid="wan24.Core.MapAttribute.MapAsync*"></a>
   <h4 id="wan24_Core_MapAttribute_MapAsync__2_System_String___0___1_System_Threading_CancellationToken_" data-uid="wan24.Core.MapAttribute.MapAsync``2(System.String,``0,``1,System.Threading.CancellationToken)">MapAsync&lt;tSource, tTarget&gt;(string, tSource, tTarget, CancellationToken)</h4>
@@ -584,7 +619,7 @@ public class MapAttribute : Attribute</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MapAttribute_Map__2_System_String___0___1_.md&amp;value=---%0Auid%3A%20wan24.Core.MapAttribute.Map%60%602(System.String%2C%60%600%2C%60%601)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MapAttribute.cs/#L55">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MapAttribute.cs/#L58">View Source</a>
   </span>
   <a id="wan24_Core_MapAttribute_Map_" data-uid="wan24.Core.MapAttribute.Map*"></a>
   <h4 id="wan24_Core_MapAttribute_Map__2_System_String___0___1_" data-uid="wan24.Core.MapAttribute.Map``2(System.String,``0,``1)">Map&lt;tSource, tTarget&gt;(string, tSource, tTarget)</h4>
@@ -646,6 +681,10 @@ public class MapAttribute : Attribute</code></pre>
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IOptInOut.html">IOptInOut</a>
+  </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(object)</a>
@@ -681,6 +720,9 @@ public class MapAttribute : Attribute</code></pre>
       <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflectedGeneric_System_Object_System_String_System_Type___System_Object___">ReflectionExtensions.InvokeReflectedGeneric(object, string, Type[], params object?[])</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_Reflect_System_Object_System_Nullable_System_Reflection_BindingFlags__">ReflectionExtensions.Reflect(object, BindingFlags?)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_SetValueReflected_System_Object_System_String_System_Object_">ReflectionExtensions.SetValueReflected(object, string, object?)</a>
   </div>
   <div>
@@ -711,6 +753,9 @@ public class MapAttribute : Attribute</code></pre>
       <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshaledSize_System_Object_">StructExtensions.GetMarshaledSize(object)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
@@ -730,6 +775,12 @@ public class MapAttribute : Attribute</code></pre>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsDisposable__1___0_">ObjectExtensions.IsDisposable&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsTask__1___0_">ObjectExtensions.IsTask&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsValueTask__1___0_">ObjectExtensions.IsValueTask&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in int)</a>

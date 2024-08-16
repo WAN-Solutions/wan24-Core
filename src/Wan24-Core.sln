@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wan24-Core-Serialization", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wan24-Core-Serialization Tests", "Wan24-Core-Serialization Tests\Wan24-Core-Serialization Tests.csproj", "{C2E53DA2-70CA-46F0-8295-E93DCA56DAB0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Referenced", "Referenced", "{F4B9E829-D39C-46BA-B3A1-915972529463}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B3A3709B-6950-42C1-8DBD-1A331A77F4FE} = {F4B9E829-D39C-46BA-B3A1-915972529463}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48BC12D6-0419-474B-933B-E06B49F6226D}
