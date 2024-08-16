@@ -116,6 +116,7 @@
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
+    <div><a class="xref" href="wan24.Core.ITransaction.html">ITransaction</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -163,7 +164,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_Transaction_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class Transaction : DisposableBase, IWillDispose, IDisposableObject, IDisposable, IAsyncDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class Transaction : DisposableBase, IWillDispose, IDisposableObject, IDisposable, IAsyncDisposable, ITransaction</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -172,7 +173,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L30">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L38">View Source</a>
   </span>
   <a id="wan24_Core_Transaction__ctor_" data-uid="wan24.Core.Transaction.#ctor*"></a>
   <h4 id="wan24_Core_Transaction__ctor" data-uid="wan24.Core.Transaction.#ctor">Transaction()</h4>
@@ -190,7 +191,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_ActionCount.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.ActionCount%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L45">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L53">View Source</a>
   </span>
   <a id="wan24_Core_Transaction_ActionCount_" data-uid="wan24.Core.Transaction.ActionCount*"></a>
   <h4 id="wan24_Core_Transaction_ActionCount" data-uid="wan24.Core.Transaction.ActionCount">ActionCount</h4>
@@ -221,7 +222,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_IsCommitted.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.IsCommitted%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L50">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L58">View Source</a>
   </span>
   <a id="wan24_Core_Transaction_IsCommitted_" data-uid="wan24.Core.Transaction.IsCommitted*"></a>
   <h4 id="wan24_Core_Transaction_IsCommitted" data-uid="wan24.Core.Transaction.IsCommitted">IsCommitted</h4>
@@ -252,7 +253,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_Name.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.Name%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L35">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L43">View Source</a>
   </span>
   <a id="wan24_Core_Transaction_Name_" data-uid="wan24.Core.Transaction.Name*"></a>
   <h4 id="wan24_Core_Transaction_Name" data-uid="wan24.Core.Transaction.Name">Name</h4>
@@ -283,7 +284,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_Tag.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.Tag%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L40">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L48">View Source</a>
   </span>
   <a id="wan24_Core_Transaction_Tag_" data-uid="wan24.Core.Transaction.Tag*"></a>
   <h4 id="wan24_Core_Transaction_Tag" data-uid="wan24.Core.Transaction.Tag">Tag</h4>
@@ -313,19 +314,19 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_Append_wan24_Core_Transaction_.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.Append(wan24.Core.Transaction)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_Append_wan24_Core_ITransaction_.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.Append(wan24.Core.ITransaction)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L122">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L138">View Source</a>
   </span>
   <a id="wan24_Core_Transaction_Append_" data-uid="wan24.Core.Transaction.Append*"></a>
-  <h4 id="wan24_Core_Transaction_Append_wan24_Core_Transaction_" data-uid="wan24.Core.Transaction.Append(wan24.Core.Transaction)">Append(Transaction)</h4>
+  <h4 id="wan24_Core_Transaction_Append_wan24_Core_ITransaction_" data-uid="wan24.Core.Transaction.Append(wan24.Core.ITransaction)">Append(ITransaction)</h4>
   <div class="markdown level1 summary"><p>Append a transaction</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Append(Transaction transaction)</code></pre>
+    <pre><code class="lang-csharp hljs">public void Append(ITransaction transaction)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -338,7 +339,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="wan24.Core.Transaction.html">Transaction</a></td>
+        <td><a class="xref" href="wan24.Core.ITransaction.html">ITransaction</a></td>
         <td><span class="parametername">transaction</span></td>
         <td><p>Transaction (won't be disposed)</p>
 </td>
@@ -347,10 +348,65 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_AppendAsync_wan24_Core_ITransaction_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.AppendAsync(wan24.Core.ITransaction%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L145">View Source</a>
+  </span>
+  <a id="wan24_Core_Transaction_AppendAsync_" data-uid="wan24.Core.Transaction.AppendAsync*"></a>
+  <h4 id="wan24_Core_Transaction_AppendAsync_wan24_Core_ITransaction_System_Threading_CancellationToken_" data-uid="wan24.Core.Transaction.AppendAsync(wan24.Core.ITransaction,System.Threading.CancellationToken)">AppendAsync(ITransaction, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Append a transaction</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task AppendAsync(ITransaction transaction, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ITransaction.html">ITransaction</a></td>
+        <td><span class="parametername">transaction</span></td>
+        <td><p>Transaction (won't be disposed)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_AppendAsync_wan24_Core_ParallelTransaction_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.AppendAsync(wan24.Core.ParallelTransaction%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L137">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L153">View Source</a>
   </span>
   <a id="wan24_Core_Transaction_AppendAsync_" data-uid="wan24.Core.Transaction.AppendAsync*"></a>
   <h4 id="wan24_Core_Transaction_AppendAsync_wan24_Core_ParallelTransaction_System_Threading_CancellationToken_" data-uid="wan24.Core.Transaction.AppendAsync(wan24.Core.ParallelTransaction,System.Threading.CancellationToken)">AppendAsync(ParallelTransaction, CancellationToken)</h4>
@@ -402,19 +458,35 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_AppendAsync_wan24_Core_Transaction_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.AppendAsync(wan24.Core.Transaction%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_Commit.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.Commit%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L129">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L157">View Source</a>
   </span>
-  <a id="wan24_Core_Transaction_AppendAsync_" data-uid="wan24.Core.Transaction.AppendAsync*"></a>
-  <h4 id="wan24_Core_Transaction_AppendAsync_wan24_Core_Transaction_System_Threading_CancellationToken_" data-uid="wan24.Core.Transaction.AppendAsync(wan24.Core.Transaction,System.Threading.CancellationToken)">AppendAsync(Transaction, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Append a transaction</p>
+  <a id="wan24_Core_Transaction_Commit_" data-uid="wan24.Core.Transaction.Commit*"></a>
+  <h4 id="wan24_Core_Transaction_Commit" data-uid="wan24.Core.Transaction.Commit">Commit()</h4>
+  <div class="markdown level1 summary"><p>Commit changes</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task AppendAsync(Transaction transaction, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public void Commit()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_CommitAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.CommitAsync(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L188">View Source</a>
+  </span>
+  <a id="wan24_Core_Transaction_CommitAsync_" data-uid="wan24.Core.Transaction.CommitAsync*"></a>
+  <h4 id="wan24_Core_Transaction_CommitAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.Transaction.CommitAsync(System.Threading.CancellationToken)">CommitAsync(CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Commit changes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task CommitAsync(CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -426,12 +498,6 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><a class="xref" href="wan24.Core.Transaction.html">Transaction</a></td>
-        <td><span class="parametername">transaction</span></td>
-        <td><p>Transaction (won't be disposed)</p>
-</td>
-      </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
         <td><span class="parametername">cancellationToken</span></td>
@@ -457,26 +523,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_Commit.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.Commit%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L143">View Source</a>
-  </span>
-  <a id="wan24_Core_Transaction_Commit_" data-uid="wan24.Core.Transaction.Commit*"></a>
-  <h4 id="wan24_Core_Transaction_Commit" data-uid="wan24.Core.Transaction.Commit">Commit()</h4>
-  <div class="markdown level1 summary"><p>Commit</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Commit()</code></pre>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L227">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L292">View Source</a>
   </span>
   <a id="wan24_Core_Transaction_Dispose_" data-uid="wan24.Core.Transaction.Dispose*"></a>
   <h4 id="wan24_Core_Transaction_Dispose_System_Boolean_" data-uid="wan24.Core.Transaction.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -512,7 +562,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L245">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L310">View Source</a>
   </span>
   <a id="wan24_Core_Transaction_DisposeCore_" data-uid="wan24.Core.Transaction.DisposeCore*"></a>
   <h4 id="wan24_Core_Transaction_DisposeCore" data-uid="wan24.Core.Transaction.DisposeCore">DisposeCore()</h4>
@@ -542,19 +592,19 @@
   <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeCore">DisposableBase.DisposeCore()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_Execute_System_Action_wan24_Core_Transaction_SyncRollback_Delegate_.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.Execute(System.Action%2Cwan24.Core.Transaction.SyncRollback_Delegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_Execute_System_Action_wan24_Core_Transaction_SyncRollback_Delegate_wan24_Core_Transaction_SyncCommit_Delegate_.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.Execute(System.Action%2Cwan24.Core.Transaction.SyncRollback_Delegate%2Cwan24.Core.Transaction.SyncCommit_Delegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L57">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L66">View Source</a>
   </span>
   <a id="wan24_Core_Transaction_Execute_" data-uid="wan24.Core.Transaction.Execute*"></a>
-  <h4 id="wan24_Core_Transaction_Execute_System_Action_wan24_Core_Transaction_SyncRollback_Delegate_" data-uid="wan24.Core.Transaction.Execute(System.Action,wan24.Core.Transaction.SyncRollback_Delegate)">Execute(Action, SyncRollback_Delegate)</h4>
+  <h4 id="wan24_Core_Transaction_Execute_System_Action_wan24_Core_Transaction_SyncRollback_Delegate_wan24_Core_Transaction_SyncCommit_Delegate_" data-uid="wan24.Core.Transaction.Execute(System.Action,wan24.Core.Transaction.SyncRollback_Delegate,wan24.Core.Transaction.SyncCommit_Delegate)">Execute(Action, SyncRollback_Delegate, SyncCommit_Delegate?)</h4>
   <div class="markdown level1 summary"><p>Execute an action</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Execute(Action action, Transaction.SyncRollback_Delegate rollback)</code></pre>
+    <pre><code class="lang-csharp hljs">public void Execute(Action action, Transaction.SyncRollback_Delegate rollback, Transaction.SyncCommit_Delegate? commit = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -578,23 +628,29 @@
         <td><p>Rollback action</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Transaction.html">Transaction</a>.<a class="xref" href="wan24.Core.Transaction.SyncCommit_Delegate.html">SyncCommit_Delegate</a></td>
+        <td><span class="parametername">commit</span></td>
+        <td><p>Commit action</p>
+</td>
+      </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_ExecuteAsync_System_Func_System_Threading_Tasks_Task__wan24_Core_Transaction_AsyncRollback_Delegate_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.ExecuteAsync(System.Func%7BSystem.Threading.Tasks.Task%7D%2Cwan24.Core.Transaction.AsyncRollback_Delegate%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_ExecuteAsync_System_Func_System_Threading_Tasks_Task__wan24_Core_Transaction_AsyncRollback_Delegate_wan24_Core_Transaction_AsyncCommit_Delegate_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.ExecuteAsync(System.Func%7BSystem.Threading.Tasks.Task%7D%2Cwan24.Core.Transaction.AsyncRollback_Delegate%2Cwan24.Core.Transaction.AsyncCommit_Delegate%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L90">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L103">View Source</a>
   </span>
   <a id="wan24_Core_Transaction_ExecuteAsync_" data-uid="wan24.Core.Transaction.ExecuteAsync*"></a>
-  <h4 id="wan24_Core_Transaction_ExecuteAsync_System_Func_System_Threading_Tasks_Task__wan24_Core_Transaction_AsyncRollback_Delegate_System_Threading_CancellationToken_" data-uid="wan24.Core.Transaction.ExecuteAsync(System.Func{System.Threading.Tasks.Task},wan24.Core.Transaction.AsyncRollback_Delegate,System.Threading.CancellationToken)">ExecuteAsync(Func&lt;Task&gt;, AsyncRollback_Delegate, CancellationToken)</h4>
+  <h4 id="wan24_Core_Transaction_ExecuteAsync_System_Func_System_Threading_Tasks_Task__wan24_Core_Transaction_AsyncRollback_Delegate_wan24_Core_Transaction_AsyncCommit_Delegate_System_Threading_CancellationToken_" data-uid="wan24.Core.Transaction.ExecuteAsync(System.Func{System.Threading.Tasks.Task},wan24.Core.Transaction.AsyncRollback_Delegate,wan24.Core.Transaction.AsyncCommit_Delegate,System.Threading.CancellationToken)">ExecuteAsync(Func&lt;Task&gt;, AsyncRollback_Delegate, AsyncCommit_Delegate?, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Execute an action</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task ExecuteAsync(Func&lt;Task&gt; action, Transaction.AsyncRollback_Delegate rollback, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task ExecuteAsync(Func&lt;Task&gt; action, Transaction.AsyncRollback_Delegate rollback, Transaction.AsyncCommit_Delegate? commit = null, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -616,6 +672,12 @@
         <td><a class="xref" href="wan24.Core.Transaction.html">Transaction</a>.<a class="xref" href="wan24.Core.Transaction.AsyncRollback_Delegate.html">AsyncRollback_Delegate</a></td>
         <td><span class="parametername">rollback</span></td>
         <td><p>Rollback action</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Transaction.html">Transaction</a>.<a class="xref" href="wan24.Core.Transaction.AsyncCommit_Delegate.html">AsyncCommit_Delegate</a></td>
+        <td><span class="parametername">commit</span></td>
+        <td><p>Commit action</p>
 </td>
       </tr>
       <tr>
@@ -643,19 +705,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_ExecuteAsync__1_System_Func_System_Threading_Tasks_Task___0___wan24_Core_Transaction_AsyncRollback_Delegate_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.ExecuteAsync%60%601(System.Func%7BSystem.Threading.Tasks.Task%7B%60%600%7D%7D%2Cwan24.Core.Transaction.AsyncRollback_Delegate%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_ExecuteAsync__1_System_Func_System_Threading_Tasks_Task___0___wan24_Core_Transaction_AsyncRollback_Delegate_wan24_Core_Transaction_AsyncCommit_Delegate_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.ExecuteAsync%60%601(System.Func%7BSystem.Threading.Tasks.Task%7B%60%600%7D%7D%2Cwan24.Core.Transaction.AsyncRollback_Delegate%2Cwan24.Core.Transaction.AsyncCommit_Delegate%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L107">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L122">View Source</a>
   </span>
   <a id="wan24_Core_Transaction_ExecuteAsync_" data-uid="wan24.Core.Transaction.ExecuteAsync*"></a>
-  <h4 id="wan24_Core_Transaction_ExecuteAsync__1_System_Func_System_Threading_Tasks_Task___0___wan24_Core_Transaction_AsyncRollback_Delegate_System_Threading_CancellationToken_" data-uid="wan24.Core.Transaction.ExecuteAsync``1(System.Func{System.Threading.Tasks.Task{``0}},wan24.Core.Transaction.AsyncRollback_Delegate,System.Threading.CancellationToken)">ExecuteAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt;, AsyncRollback_Delegate, CancellationToken)</h4>
+  <h4 id="wan24_Core_Transaction_ExecuteAsync__1_System_Func_System_Threading_Tasks_Task___0___wan24_Core_Transaction_AsyncRollback_Delegate_wan24_Core_Transaction_AsyncCommit_Delegate_System_Threading_CancellationToken_" data-uid="wan24.Core.Transaction.ExecuteAsync``1(System.Func{System.Threading.Tasks.Task{``0}},wan24.Core.Transaction.AsyncRollback_Delegate,wan24.Core.Transaction.AsyncCommit_Delegate,System.Threading.CancellationToken)">ExecuteAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt;, AsyncRollback_Delegate, AsyncCommit_Delegate?, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Execute an action</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;T&gt; ExecuteAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; action, Transaction.AsyncRollback_Delegate rollback, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;T&gt; ExecuteAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; action, Transaction.AsyncRollback_Delegate rollback, Transaction.AsyncCommit_Delegate? commit = null, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -677,6 +739,12 @@
         <td><a class="xref" href="wan24.Core.Transaction.html">Transaction</a>.<a class="xref" href="wan24.Core.Transaction.AsyncRollback_Delegate.html">AsyncRollback_Delegate</a></td>
         <td><span class="parametername">rollback</span></td>
         <td><p>Rollback action</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Transaction.html">Transaction</a>.<a class="xref" href="wan24.Core.Transaction.AsyncCommit_Delegate.html">AsyncCommit_Delegate</a></td>
+        <td><span class="parametername">commit</span></td>
+        <td><p>Commit action</p>
 </td>
       </tr>
       <tr>
@@ -721,19 +789,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_Execute__1_System_Func___0__wan24_Core_Transaction_SyncRollback_Delegate_.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.Execute%60%601(System.Func%7B%60%600%7D%2Cwan24.Core.Transaction.SyncRollback_Delegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_Execute__1_System_Func___0__wan24_Core_Transaction_SyncRollback_Delegate_wan24_Core_Transaction_SyncCommit_Delegate_.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.Execute%60%601(System.Func%7B%60%600%7D%2Cwan24.Core.Transaction.SyncRollback_Delegate%2Cwan24.Core.Transaction.SyncCommit_Delegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L73">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L84">View Source</a>
   </span>
   <a id="wan24_Core_Transaction_Execute_" data-uid="wan24.Core.Transaction.Execute*"></a>
-  <h4 id="wan24_Core_Transaction_Execute__1_System_Func___0__wan24_Core_Transaction_SyncRollback_Delegate_" data-uid="wan24.Core.Transaction.Execute``1(System.Func{``0},wan24.Core.Transaction.SyncRollback_Delegate)">Execute&lt;T&gt;(Func&lt;T&gt;, SyncRollback_Delegate)</h4>
+  <h4 id="wan24_Core_Transaction_Execute__1_System_Func___0__wan24_Core_Transaction_SyncRollback_Delegate_wan24_Core_Transaction_SyncCommit_Delegate_" data-uid="wan24.Core.Transaction.Execute``1(System.Func{``0},wan24.Core.Transaction.SyncRollback_Delegate,wan24.Core.Transaction.SyncCommit_Delegate)">Execute&lt;T&gt;(Func&lt;T&gt;, SyncRollback_Delegate, SyncCommit_Delegate?)</h4>
   <div class="markdown level1 summary"><p>Execute an action</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public T Execute&lt;T&gt;(Func&lt;T&gt; action, Transaction.SyncRollback_Delegate rollback)</code></pre>
+    <pre><code class="lang-csharp hljs">public T Execute&lt;T&gt;(Func&lt;T&gt; action, Transaction.SyncRollback_Delegate rollback, Transaction.SyncCommit_Delegate? commit = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -755,6 +823,12 @@
         <td><a class="xref" href="wan24.Core.Transaction.html">Transaction</a>.<a class="xref" href="wan24.Core.Transaction.SyncRollback_Delegate.html">SyncRollback_Delegate</a></td>
         <td><span class="parametername">rollback</span></td>
         <td><p>Rollback action</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Transaction.html">Transaction</a>.<a class="xref" href="wan24.Core.Transaction.SyncCommit_Delegate.html">SyncCommit_Delegate</a></td>
+        <td><span class="parametername">commit</span></td>
+        <td><p>Commit action</p>
 </td>
       </tr>
     </tbody>
@@ -796,11 +870,11 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_Rollback.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.Rollback%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L155">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L219">View Source</a>
   </span>
   <a id="wan24_Core_Transaction_Rollback_" data-uid="wan24.Core.Transaction.Rollback*"></a>
   <h4 id="wan24_Core_Transaction_Rollback" data-uid="wan24.Core.Transaction.Rollback">Rollback()</h4>
-  <div class="markdown level1 summary"><p>Rollback</p>
+  <div class="markdown level1 summary"><p>Perform a rollback</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -812,11 +886,11 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_RollbackAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.RollbackAsync(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L191">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L254">View Source</a>
   </span>
   <a id="wan24_Core_Transaction_RollbackAsync_" data-uid="wan24.Core.Transaction.RollbackAsync*"></a>
   <h4 id="wan24_Core_Transaction_RollbackAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.Transaction.RollbackAsync(System.Threading.CancellationToken)">RollbackAsync(CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Rollback</p>
+  <div class="markdown level1 summary"><p>Perform a rollback</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -861,7 +935,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Transaction_ToString.md&amp;value=---%0Auid%3A%20wan24.Core.Transaction.ToString%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L224">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Transaction.cs/#L289">View Source</a>
   </span>
   <a id="wan24_Core_Transaction_ToString_" data-uid="wan24.Core.Transaction.ToString*"></a>
   <h4 id="wan24_Core_Transaction_ToString" data-uid="wan24.Core.Transaction.ToString">ToString()</h4>
@@ -902,6 +976,9 @@
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ITransaction.html">ITransaction</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
@@ -944,6 +1021,9 @@
       <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflectedGeneric_System_Object_System_String_System_Type___System_Object___">ReflectionExtensions.InvokeReflectedGeneric(object, string, Type[], params object?[])</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_Reflect_System_Object_System_Nullable_System_Reflection_BindingFlags__">ReflectionExtensions.Reflect(object, BindingFlags?)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_SetValueReflected_System_Object_System_String_System_Object_">ReflectionExtensions.SetValueReflected(object, string, object?)</a>
   </div>
   <div>
@@ -974,6 +1054,9 @@
       <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshaledSize_System_Object_">StructExtensions.GetMarshaledSize(object)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
@@ -993,6 +1076,12 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsDisposable__1___0_">ObjectExtensions.IsDisposable&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsTask__1___0_">ObjectExtensions.IsTask&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsValueTask__1___0_">ObjectExtensions.IsValueTask&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in int)</a>
