@@ -14,8 +14,8 @@ namespace wan24.Core
         /// <typeparam name="tTarget">Target object type</typeparam>
         /// <param name="source">Source object</param>
         /// <param name="target">Target object</param>
-        /// <returns>Source object</returns>
-        public static tSource MapTo<tSource, tTarget>(this tSource source, in tTarget target)
+        /// <returns>Target object</returns>
+        public static tTarget MapTo<tSource, tTarget>(this tSource source, in tTarget target)
         {
             if (ObjectMapping<tSource, tTarget>.Get() is not ObjectMapping mapping)
             {
@@ -23,7 +23,7 @@ namespace wan24.Core
                 mapping = ObjectMapping<tSource, tTarget>.Create().AddAutoMappings().Register();
             }
             mapping.ApplyMappings(source, target);
-            return source;
+            return target;
         }
 
         /// <summary>
@@ -49,7 +49,8 @@ namespace wan24.Core
         /// <param name="source">Source object</param>
         /// <param name="target">Target object</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        public static async Task MapToAsync<tSource, tTarget>(this tSource source, tTarget target, CancellationToken cancellationToken = default)
+        /// <returns>Target object</returns>
+        public static async Task<tTarget> MapToAsync<tSource, tTarget>(this tSource source, tTarget target, CancellationToken cancellationToken = default)
         {
             if (ObjectMapping<tSource, tTarget>.Get() is not ObjectMapping mapping)
             {
@@ -57,6 +58,7 @@ namespace wan24.Core
                 mapping = ObjectMapping<tSource, tTarget>.Create().AddAutoMappings().Register();
             }
             await mapping.ApplyMappingsAsync(source, target, cancellationToken).DynamicContext();
+            return target;
         }
 
         /// <summary>
