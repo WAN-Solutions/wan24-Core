@@ -68,7 +68,7 @@ namespace wan24.Core
                         catch (OperationCanceledException ex)
                         {
                             // Throw, if canceled - otherwise continue the port knocking sequence
-                            if (ex.CancellationToken != cancellation.Token) throw;
+                            if (!ex.CancellationToken.IsEqualTo(cancellation.Token)) throw;
                             continue;
                         }
                         catch (Exception ex)
@@ -96,7 +96,7 @@ namespace wan24.Core
         /// <summary>
         /// Call a WebSocket URI sequence
         /// </summary>
-        /// <param name="delay">Delay between connecion attempts</param>
+        /// <param name="delay">Delay between connection attempts</param>
         /// <param name="clientFactory">WebSocket client factory</param>
         /// <param name="progress">Progress (updated after each WebSocket URI was contacted)</param>
         /// <param name="serviceProvider">Service provider to use for getting the <see cref="ClientWebSocket"/> instance</param>
@@ -138,7 +138,7 @@ namespace wan24.Core
                         catch (OperationCanceledException ex)
                         {
                             // Throw, if canceled - otherwise continue the port knocking sequence
-                            if (ex.CancellationToken != cancellation.Token) throw;
+                            if (!ex.CancellationToken.IsEqualTo(cancellation.Token)) throw;
                             continue;
                         }
                         catch (Exception ex)
@@ -168,7 +168,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="client">http client to use (won't be disposed)</param>
         /// <param name="requestFactory">http request message factory</param>
-        /// <param name="delay">Delay between connecion attempts</param>
+        /// <param name="delay">Delay between connection attempts</param>
         /// <param name="progress">Progress (updated after each http(s) URI was contacted)</param>
         /// <param name="serviceProvider">Service provider to use for getting the <see cref="HttpClient"/> instance</param>
         /// <param name="cancellationToken">Cancellation token</param>
@@ -210,7 +210,7 @@ namespace wan24.Core
                     catch (OperationCanceledException ex)
                     {
                         // Throw, if canceled - otherwise continue the port knocking sequence
-                        if (ex.CancellationToken != cancellation.Token) throw;
+                        if (!ex.CancellationToken.IsEqualTo(cancellation.Token)) throw;
                         continue;
                     }
                     catch (Exception ex)

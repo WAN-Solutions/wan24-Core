@@ -144,9 +144,8 @@ namespace wan24.Core
                                 return;
                             }
                         }
-                        catch (OperationCanceledException ex)
+                        catch (OperationCanceledException ex) when (!ex.CancellationToken.IsEqualTo(cancellationToken))
                         {
-                            if (ex.CancellationToken != cancellationToken) throw;
                             return;
                         }
                         output = outItem;
@@ -170,9 +169,8 @@ namespace wan24.Core
                     {
                         await syncOutput.WaitAsync(cancellationToken).DynamicContext();
                     }
-                    catch (OperationCanceledException ex)
+                    catch (OperationCanceledException ex) when (!ex.CancellationToken.IsEqualTo(cancellationToken))
                     {
-                        if (ex.CancellationToken != cancellationToken) throw;
                         break;
                     }
                     if (done) break;
@@ -231,9 +229,8 @@ namespace wan24.Core
                                 return;
                             }
                         }
-                        catch (OperationCanceledException ex)
+                        catch (OperationCanceledException ex) when (!ex.CancellationToken.IsEqualTo(cancellationToken))
                         {
-                            if (ex.CancellationToken != cancellationToken) throw;
                             return;
                         }
                         output = outItem;
@@ -257,9 +254,8 @@ namespace wan24.Core
                     {
                         await syncOutput.WaitAsync(cancellationToken).DynamicContext();
                     }
-                    catch (OperationCanceledException ex)
+                    catch (OperationCanceledException ex) when (!ex.CancellationToken.IsEqualTo(cancellationToken))
                     {
-                        if (ex.CancellationToken != cancellationToken) throw;
                         break;
                     }
                     if (done) break;
@@ -319,9 +315,8 @@ namespace wan24.Core
                                 return;
                             }
                         }
-                        catch (OperationCanceledException ex)
+                        catch (OperationCanceledException ex) when (!ex.CancellationToken.IsEqualTo(cancellationToken))
                         {
-                            if (ex.CancellationToken != cancellationToken) throw;
                             return;
                         }
                         output = outItem;
@@ -345,9 +340,8 @@ namespace wan24.Core
                     {
                         await syncOutput.WaitAsync(cancellationToken).DynamicContext();
                     }
-                    catch (OperationCanceledException ex)
+                    catch (OperationCanceledException ex) when (!ex.CancellationToken.IsEqualTo(cancellationToken))
                     {
-                        if (ex.CancellationToken != cancellationToken) throw;
                         break;
                     }
                     if (done) break;
@@ -407,9 +401,8 @@ namespace wan24.Core
                                 return;
                             }
                         }
-                        catch (OperationCanceledException ex)
+                        catch (OperationCanceledException ex) when (!ex.CancellationToken.IsEqualTo(cancellationToken))
                         {
-                            if (ex.CancellationToken != cancellationToken) throw;
                             return;
                         }
                         output = outItem;
@@ -433,9 +426,8 @@ namespace wan24.Core
                     {
                         await syncOutput.WaitAsync(cancellationToken).DynamicContext();
                     }
-                    catch (OperationCanceledException ex)
+                    catch (OperationCanceledException ex) when (!ex.CancellationToken.IsEqualTo(cancellationToken))
                     {
-                        if (ex.CancellationToken != cancellationToken) throw;
                         break;
                     }
                     if (done) break;
@@ -494,9 +486,8 @@ namespace wan24.Core
                                 return;
                             }
                         }
-                        catch (OperationCanceledException ex)
+                        catch (OperationCanceledException ex) when (!ex.CancellationToken.IsEqualTo(cancellationToken))
                         {
-                            if (ex.CancellationToken != cancellationToken) throw;
                             return;
                         }
                         output = outItem;
@@ -519,9 +510,8 @@ namespace wan24.Core
                     {
                         syncOutput.Wait(cancellationToken);
                     }
-                    catch (OperationCanceledException ex)
+                    catch (OperationCanceledException ex) when (!ex.CancellationToken.IsEqualTo(cancellationToken))
                     {
-                        if (ex.CancellationToken != cancellationToken) throw;
                         break;
                     }
                     if (done) break;
