@@ -741,6 +741,34 @@ namespace wan24.Core
             => type.GetConstructorsCached(ALL_BINDINGS).FirstOrDefault(c => c.ParameterCount == 0);
 
         /// <summary>
+        /// Get the common base type
+        /// </summary>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="includeInterfaces">If interfaces are included</param>
+        /// <param name="includeMainType">If to include the main type</param>
+        /// <returns>Common base type</returns>
+        public static Type? CommonBaseType(this IEnumerable<Type> enumerable, bool includeInterfaces = false, bool includeMainType = true)
+        {
+            HashSet<Type> baseTypes = [];
+            Type[] types;
+            // Find all base types and interfaces
+            foreach (Type type in enumerable)
+            {
+                types = [.. type.GetBaseTypes()];
+                if (includeMainType) baseTypes.Add(type);
+                baseTypes.AddRange(types);
+                if (!includeInterfaces) continue;
+                baseTypes.AddRange(type.GetInterfaces());
+                foreach (Type t in types) baseTypes.AddRange(t.GetInterfaces());
+            }
+            // Filter out incompatible base types and interfaces
+            foreach (Type type in enumerable)
+                foreach (Type incompatible in baseTypes.Where(t => !t.IsAssignableFrom(type)).ToArray())
+                    baseTypes.Remove(incompatible);
+            return baseTypes.FirstOrDefault();
+        }
+
+        /// <summary>
         /// Match a method return type against an expected type
         /// </summary>
         /// <param name="method">Method</param>
