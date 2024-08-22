@@ -69,6 +69,11 @@ namespace wan24.Core
         public MethodInfo Method { get; } = Method;
 
         /// <summary>
+        /// Full name including namespace and type
+        /// </summary>
+        public string FullName => $"{Method.DeclaringType}.{Method.Name}";
+
+        /// <summary>
         /// Bindings
         /// </summary>
         public BindingFlags Bindings => _Bindings ??= Method.GetBindingFlags();

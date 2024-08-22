@@ -84,6 +84,11 @@ namespace wan24.Core
         public Type Type { get; } = Type;
 
         /// <summary>
+        /// Full name including namespace
+        /// </summary>
+        public string FullName => Type.ToString();
+
+        /// <summary>
         /// Bindings
         /// </summary>
         public BindingFlags Bindings => _Bindings ??= Type.GetBindingFlags();

@@ -35,6 +35,11 @@ namespace wan24.Core
         public ConstructorInfo Constructor { get; } = Constructor;
 
         /// <summary>
+        /// Full name including namespace and type
+        /// </summary>
+        public string FullName => $"{Constructor.DeclaringType}.ctor";
+
+        /// <summary>
         /// Bindings
         /// </summary>
         public BindingFlags Bindings => _Bindings ??= Constructor.GetBindingFlags();

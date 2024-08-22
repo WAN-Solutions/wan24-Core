@@ -40,6 +40,11 @@ namespace wan24.Core
         public PropertyInfo Property { get; } = Property;
 
         /// <summary>
+        /// Full name including namespace and type
+        /// </summary>
+        public string FullName => $"{Property.DeclaringType}.{Property.Name}";
+
+        /// <summary>
         /// Bindings
         /// </summary>
         public BindingFlags Bindings => _Bindings ??= Property.GetBindingFlags();

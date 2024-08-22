@@ -35,6 +35,11 @@ namespace wan24.Core
         public FieldInfo Field { get; } = Field;
 
         /// <summary>
+        /// Full name including namespace and type
+        /// </summary>
+        public string FullName => $"{Field.DeclaringType}.{Field.Name}";
+
+        /// <summary>
         /// Bindings
         /// </summary>
         public BindingFlags Bindings => _Bindings ??= Field.GetBindingFlags();
