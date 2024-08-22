@@ -60,7 +60,8 @@ namespace wan24.Core
             using SemaphoreSyncContext ssc = Sync;
             foreach (CancellationToken cancellationToken in cancellationTokens)
             {
-                if (_BoundTokens.Contains(cancellationToken)) continue;
+
+                if (_BoundTokens.Any(t => t.IsEqualTo(cancellationToken))) continue;
                 CancelRegistrations.Add(cancellationToken.Register(() =>
                 {
                     try
@@ -87,7 +88,7 @@ namespace wan24.Core
             using SemaphoreSyncContext ssc = Sync;
             for (int i = 0, len = _BoundTokens.Count; i < len; i++)
             {
-                if (_BoundTokens[i] != cancellationToken) continue;
+                if (!_BoundTokens[i].IsEqualTo(cancellationToken)) continue;
                 CancelRegistrations[i].Dispose();
                 CancelRegistrations.RemoveAt(i);
                 _BoundTokens.RemoveAt(i);

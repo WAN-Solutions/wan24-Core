@@ -9,13 +9,9 @@ namespace wan24.Core
     /// <summary>
     /// IP sub-net
     /// </summary>
-    [StructLayout(LayoutKind.Auto)]
+    [StructLayout(LayoutKind.Sequential)]
     public readonly partial record struct IpSubNet
     {
-        /// <summary>
-        /// Network
-        /// </summary>
-        public readonly BigInteger Network;
         /// <summary>
         /// Mask bits length
         /// </summary>
@@ -24,6 +20,10 @@ namespace wan24.Core
         /// Is an IPv4 sub-net?
         /// </summary>
         public readonly bool IsIPv4;
+        /// <summary>
+        /// Network
+        /// </summary>
+        public readonly BigInteger Network;
 
         /// <summary>
         /// Constructor
@@ -44,15 +44,20 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="subNet">Sub-net in IP/n CIDR notation</param>
+        /// <exception cref="FormatException">Invalid sub-net CIDR notation</exception>
         public IpSubNet(in ReadOnlySpan<char> subNet)
         {
             int netIndex = subNet.IndexOf('/');
-            if (netIndex == -1) throw new ArgumentException("Sub-net must be notated as IP/n, where n is the sub-net bits length", nameof(subNet));
-            int bits = int.Parse(subNet[(netIndex + 1)..]);
-            IPAddress networkIp = IPAddress.Parse(subNet[..netIndex]);
+            if (netIndex == -1) throw new FormatException("Sub-net must be notated as IP/n, where n is the sub-net bits length");
+            if (!int.TryParse(subNet[(netIndex + 1)..], out int bits))
+                throw new FormatException("Invalid sub-net bits length value");
+            if (bits < 0 || bits > IPV6_BITS)
+                throw new FormatException("Invalid sub-net bits length");
+            if (!IPAddress.TryParse(subNet[..netIndex], out IPAddress? networkIp))
+                throw new FormatException("Invalid sub-net network IP address");
             IsIPv4 = networkIp.AddressFamily == AddressFamily.InterNetwork;
-            if (!IsIPv4 && networkIp.AddressFamily != AddressFamily.InterNetworkV6) throw new ArgumentException("Sub-net supports only IPv4/6 addresses", nameof(subNet));
-            if (bits < 0 || bits > (IsIPv4 ? IPV4_BITS : IPV6_BITS)) throw new ArgumentOutOfRangeException(nameof(subNet));
+            if (!IsIPv4 && networkIp.AddressFamily != AddressFamily.InterNetworkV6) throw new FormatException("Sub-net supports only IPv4/6 addresses");
+            if (IsIPv4 && bits > IPV4_BITS) throw new FormatException("Invalid IPv4 sub-net bits length");
             MaskBits = (byte)bits;
             Network = GetBigInteger(networkIp);
         }

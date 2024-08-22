@@ -1,14 +1,20 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
+using System.Xml;
 using wan24.Core;
 
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class StringValueConverter_Tests
+    public class StringValueConverter_Tests : TestBase
     {
         [TestMethod]
         public void General_Tests()
         {
+            XmlDocument xml = new();
+            XmlNode node = xml.CreateElement("test");
+            node.AppendChild(xml.CreateElement("test2"));
+            xml.AppendChild(node);
             foreach (object value in new object[]
             {
                 "test",
@@ -28,8 +34,26 @@ namespace Wan24_Core_Tests
                 DateTime.UtcNow,
                 DateOnly.FromDateTime(DateTime.UtcNow),
                 TimeOnly.FromDateTime(DateTime.UtcNow),
+                TimeSpan.FromSeconds(42),
                 new Regex(".*", RegexOptions.IgnoreCase),
                 RegexOptions.IgnoreCase|RegexOptions.Compiled,
+                IpSubNet.LoopbackIPv4,
+                new HostEndPoint("localhost",12345),
+                UnixTime.Now,
+                new Uid(),
+                new UidExt(12345),
+                Rgb.White,
+                RgbA.White,
+                Hsb.White,
+                IntRange.MaxValue,
+                new Uri("http://localhost"),
+                Guid.NewGuid(),
+                xml,
+                node,
+                XY.MinValue,
+                XYInt.MinValue,
+                XYZ.MaxValue,
+                XYZInt.MinValue,
                 new TestType()
             })
             {
@@ -40,6 +64,49 @@ namespace Wan24_Core_Tests
                     value.GetType().ToString()
                     );
             }
+        }
+
+        [TestMethod]
+        public void Struct_Tests()
+        {
+            int value = 123;
+            string? converted = StringValueConverter.ConvertStructInstance(value);
+            Assert.IsNotNull(converted);
+            object? reconverted = StringValueConverter.ConvertStructInstance(converted, typeof(int));
+            Assert.IsNotNull(reconverted);
+            int? reconvertedValue = (int?)reconverted;
+            Assert.IsTrue(reconvertedValue.HasValue);
+            Assert.AreEqual(value, reconvertedValue.Value);
+
+            converted = StringValueConverter.ConvertStruct<int>(value);
+            Assert.IsNotNull(converted);
+            reconverted = StringValueConverter.ConvertStruct<int>(converted);
+            Assert.IsNotNull(reconverted);
+            reconvertedValue = (int?)reconverted;
+            Assert.IsTrue(reconvertedValue.HasValue);
+            Assert.AreEqual(value, reconvertedValue.Value);
+        }
+
+        [TestMethod]
+        public void Structure_Tests()
+        {
+            TestStruct a = default;
+            a.Value = 123;
+            string? converted = StringValueConverter.ConvertStructInstance(a);
+            Assert.IsNotNull(converted);
+            object? reconverted = StringValueConverter.ConvertStructInstance(converted, typeof(TestStruct));
+            Assert.IsNotNull(reconverted);
+            TestStruct? b = (TestStruct?)reconverted;
+            Assert.IsTrue(b.HasValue);
+            Assert.AreEqual(a.Value, b.Value.Value);
+
+            converted = StringValueConverter.ConvertStruct<TestStruct>(a);
+            Assert.IsNotNull(converted);
+            reconverted = StringValueConverter.ConvertStruct<TestStruct>(converted);
+            Assert.IsNotNull(reconverted);
+            b = (TestStruct?)reconverted;
+            Assert.IsTrue(b.HasValue);
+            Assert.AreEqual(a.Value, b.Value.Value);
         }
 
         public sealed class TestType : IStringValueConverter
@@ -55,6 +122,14 @@ namespace Wan24_Core_Tests
                 value = new TestType();
                 return true;
             }
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct TestStruct
+        {
+            public int Value;
+
+            public TestStruct() => Value = 0;
         }
     }
 }

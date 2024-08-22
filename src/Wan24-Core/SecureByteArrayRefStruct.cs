@@ -7,6 +7,7 @@ namespace wan24.Core
     /// <summary>
     /// Secure byte array (will delete its contents when disposing; not thread-safe)
     /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
 #if NO_UNSAFE
     public ref struct SecureByteArrayRefStruct
 #else

@@ -135,5 +135,10 @@ namespace wan24.Core
         /// Is this process privileged to perform security sensitive actions?
         /// </summary>
         public static bool IsPrivileged { get; }
+
+        /// <summary>
+        /// Current call stack
+        /// </summary>
+        public static string Stack => new StackTrace(fNeedFileInfo: true).ToString();
     }
 }

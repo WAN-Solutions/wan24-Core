@@ -83,6 +83,7 @@ jobs:
         dotnet restore ./src/Wan24-Core.sln --ignore-failed-sources
         dotnet build ./src/Wan24-Core/Wan24-Core.csproj --no-restore
         dotnet build ./src/Wan24-Core-Validation/Wan24-Core-Validation.csproj --no-restore
+        dotnet build ./src/Wan24-Core-Serialization/Wan24-Core-Serialization.csproj --no-restore
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3

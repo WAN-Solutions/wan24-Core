@@ -167,6 +167,12 @@ Classes
       <h5><a class="xref" href="wan24.Core.AsyncTimer.html">AsyncTimer</a></h5>
       <section><p>Asynchronous timer</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.AutoDisposer-1.html">AutoDisposer&lt;T&gt;</a></h5>
+      <section><p>Automatic disposer (disposes an object and itself after use)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.AutoDisposer-1.Context.html">AutoDisposer&lt;T&gt;.Context</a></h5>
+      <section><p>Usage context</p>
+</section>
       <h5><a class="xref" href="wan24.Core.AutoValueObjectBase-1.html">AutoValueObjectBase&lt;T&gt;</a></h5>
       <section><p>Base class for an automatic value object (uses properties with a public getter for building the objects hash code)</p>
 </section>
@@ -245,6 +251,12 @@ Classes
       <h5><a class="xref" href="wan24.Core.Cancellations.html">Cancellations</a></h5>
       <section><p><a class="xref" href="wan24.Core.Cancellations.html">Cancellations</a> combines multiple <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> into one</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.CastableMappingObjectBase-2.html">CastableMappingObjectBase&lt;tFinal, tTarget&gt;</a></h5>
+      <section><p>Base class for a castable mapping source object</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.CastableMappingRecordBase-2.html">CastableMappingRecordBase&lt;tFinal, tTarget&gt;</a></h5>
+      <section><p>Base class for a castable mapping source object</p>
+</section>
       <h5><a class="xref" href="wan24.Core.CategoryLogger.html">CategoryLogger</a></h5>
       <section><p>Category logger prepends a category before the written message</p>
 </section>
@@ -302,6 +314,9 @@ Classes
       <h5><a class="xref" href="wan24.Core.ConcurrentChangeTokenDictionary-2.html">ConcurrentChangeTokenDictionary&lt;tKey, tValue&gt;</a></h5>
       <section><p>Concurrent change token dictionary (observes values; don't forget to dispose!)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ConcurrentObjectDictionary-1.html">ConcurrentObjectDictionary&lt;T&gt;</a></h5>
+      <section><p>Object dictionary</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ConfigEventArgs.html">ConfigEventArgs</a></h5>
       <section><p>Configuration event arguments</p>
 </section>
@@ -310,6 +325,9 @@ Classes
 </section>
       <h5><a class="xref" href="wan24.Core.ConsoleLogger.html">ConsoleLogger</a></h5>
       <section><p>Console logger</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ConstructorInfoExt.html">ConstructorInfoExt</a></h5>
+      <section><p>Extended constructor information</p>
 </section>
       <h5><a class="xref" href="wan24.Core.CopyStream.html">CopyStream</a></h5>
       <section><p>Copy stream (copies the wrapped stream to a target stream using a background task)</p>
@@ -386,6 +404,12 @@ Classes
       <h5><a class="xref" href="wan24.Core.DisposableBase-1.html">DisposableBase&lt;T&gt;</a></h5>
       <section><p>Base class for a disposable type</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.DisposableCastableMappingObjectBase-2.html">DisposableCastableMappingObjectBase&lt;tFinal, tTarget&gt;</a></h5>
+      <section><p>Base class for a disposable castable mapping source object</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.DisposableCastableMappingRecordBase-2.html">DisposableCastableMappingRecordBase&lt;tFinal, tTarget&gt;</a></h5>
+      <section><p>Base class for a disposable castable mapping source object</p>
+</section>
       <h5><a class="xref" href="wan24.Core.DisposableChangeToken.html">DisposableChangeToken</a></h5>
       <section><p>Disposable change token</p>
 </section>
@@ -414,10 +438,24 @@ Classes
       <section><p>Disposable wrapper</p>
 </section>
       <h5><a class="xref" href="wan24.Core.DisposeAttribute.html">DisposeAttribute</a></h5>
-      <section><p>Attribute for fields or properties to dispose automatic when disposing</p>
+      <section><p>Attribute for fields or properties to dispose automatic when disposing (see <a class="xref" href="wan24.Core.DisposableBase.html">DisposableBase</a>/<a class="xref" href="wan24.Core.DisposableRecordBase.html">DisposableRecordBase</a>)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.DisposingAsyncEnumerator-1.html">DisposingAsyncEnumerator&lt;T&gt;</a></h5>
       <section><p>Disposing asynchronous enumerator (disposes tagged objects when disposing)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.DtoBase-2.html">DtoBase&lt;tMain, tFinal&gt;</a></h5>
+      <section><p>Base class for a DTO which implements automatic object mapping</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.DtoRecordBase-2.html">DtoRecordBase&lt;tMain, tFinal&gt;</a></h5>
+      <section><p>Base class for a DTO which implements automatic object mapping</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.DynamicHubStream.html">DynamicHubStream</a></h5>
+      <section><p>Dynamic hub stream (writes to targets in parallel when using asynchronous methods; <a class="xref" href="wan24.Core.DynamicHubStream.html#wan24_Core_DynamicHubStream_Length">Length</a> and <a class="xref" href="wan24.Core.DynamicHubStream.html#wan24_Core_DynamicHubStream_Position">Position</a> getter target the first target
+stream; seeking target all target streams; reading target the first target stream, while other target streams position is being updated; reading and seeking won't be
+synchronized (adding target streams while reading/seeking may cause an overall random stream state); target streams can be added/removed thread-safe)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.DynamicHubStream.WriteErrorEventArgs.html">DynamicHubStream.WriteErrorEventArgs</a></h5>
+      <section><p><a class="xref" href="wan24.Core.DynamicHubStream.html#wan24_Core_DynamicHubStream_OnWriteError">OnWriteError</a> event arguments</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ENV.html">ENV</a></h5>
       <section><p>Environment information</p>
@@ -494,6 +532,9 @@ Classes
       <h5><a class="xref" href="wan24.Core.ExactStream-1.html">ExactStream&lt;T&gt;</a></h5>
       <section><p>Exact stream (tries to read exactly the given number of bytes until no bytes were red)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ExactThrottle.html">ExactThrottle</a></h5>
+      <section><p>(Almost) Exact throttle (with an overhead; use <a class="xref" href="wan24.Core.Throttle.html">Throttle</a> for a low overhead instead, if performance is more important than being exact)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ExceptionExtensions.html">ExceptionExtensions</a></h5>
       <section><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a> extensions</p>
 </section>
@@ -505,6 +546,9 @@ Classes
 </section>
       <h5><a class="xref" href="wan24.Core.ExcludeValueAttribute.html">ExcludeValueAttribute</a></h5>
       <section><p>Attribute for <a class="xref" href="wan24.Core.AutoValueObjectBase-1.html">AutoValueObjectBase&lt;T&gt;</a> properties to exclude from the objects hash code calculation</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.FieldInfoExt.html">FieldInfoExt</a></h5>
+      <section><p>Extended field information</p>
 </section>
       <h5><a class="xref" href="wan24.Core.FileLogger.html">FileLogger</a></h5>
       <section><p>File logger (don't forget to dispose an instance!)</p>
@@ -576,8 +620,56 @@ Classes
       <section><p>Hub stream (write-only, all writing operations go to all target streams - in parallel, when using asynchronous methods; length/position targets
 the first stream per default)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IdleState.html">IdleState</a></h5>
+      <section><p>Timed idle state</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache.html">InMemoryCache</a></h5>
+      <section><p>In-memory cache</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCacheEntryOptions.html">InMemoryCacheEntryOptions</a></h5>
+      <section><p>In-memory cache entry options</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCacheEntry-1.html">InMemoryCacheEntry&lt;T&gt;</a></h5>
+      <section><p>In-memory cache entry</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCacheExtensions.html">InMemoryCacheExtensions</a></h5>
+      <section><p><a class="xref" href="wan24.Core.InMemoryCache.html">InMemoryCache</a> extensions</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCacheOptions.html">InMemoryCacheOptions</a></h5>
+      <section><p>In-memory cache options</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCacheTable.html">InMemoryCacheTable</a></h5>
+      <section><p>In-memory cache table</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.html">InMemoryCache&lt;T&gt;</a></h5>
+      <section><p>In-memory cache</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.AccessTimeStrategy.html">InMemoryCache&lt;T&gt;.AccessTimeStrategy</a></h5>
+      <section><p>Access time strategy (higher idle time has lower priority)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.AgeStrategy.html">InMemoryCache&lt;T&gt;.AgeStrategy</a></h5>
+      <section><p>Age strategy (higher age has lower priority)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.EntryEventArgs.html">InMemoryCache&lt;T&gt;.EntryEventArgs</a></h5>
+      <section><p>Cache entry event arguments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.LargerStrategy.html">InMemoryCache&lt;T&gt;.LargerStrategy</a></h5>
+      <section><p>Larger strategy (larger size has lower priority)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.SmallerStrategy.html">InMemoryCache&lt;T&gt;.SmallerStrategy</a></h5>
+      <section><p>Smaller strategy (smaller size has lower priority)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.TidyStrategy.html">InMemoryCache&lt;T&gt;.TidyStrategy</a></h5>
+      <section><p>Tidy strategy</p>
+</section>
       <h5><a class="xref" href="wan24.Core.InstancePool-1.html">InstancePool&lt;T&gt;</a></h5>
       <section><p>Instance pool</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InstanceTableAttribute.html">InstanceTableAttribute</a></h5>
+      <section><p>Attribute for an instance table static dictionary field (key must be a string)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InstanceTables.html">InstanceTables</a></h5>
+      <section><p>Instance tables</p>
 </section>
       <h5><a class="xref" href="wan24.Core.IpSubNetAttribute.html">IpSubNetAttribute</a></h5>
       <section><p>IP sub-net validation attribute (for validating <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> or <a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a> value properties)</p>
@@ -636,8 +728,17 @@ the first stream per default)</p>
       <h5><a class="xref" href="wan24.Core.Logging.html">Logging</a></h5>
       <section><p>Logging</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.MapAttribute.html">MapAttribute</a></h5>
+      <section><p>Attribute for properties to include in an <a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a> (or for a source type which uses opt-in auto-mapping)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.MappingException.html">MappingException</a></h5>
+      <section><p>Thrown on any <a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a> exception</p>
+</section>
       <h5><a class="xref" href="wan24.Core.MemoryPoolStream.html">MemoryPoolStream</a></h5>
       <section><p>Memory pool stream (stores in arrays from an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.arraypool-1">ArrayPool&lt;T&gt;</a>)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.MethodInfoExt.html">MethodInfoExt</a></h5>
+      <section><p>Extended method information</p>
 </section>
       <h5><a class="xref" href="wan24.Core.MultiFileSystemEvents.html">MultiFileSystemEvents</a></h5>
       <section><p>Multi file system events</p>
@@ -658,6 +759,9 @@ restrictions for this)</p>
       <h5><a class="xref" href="wan24.Core.NetworkHelper.html">NetworkHelper</a></h5>
       <section><p>Network helper</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.NoMapAttribute.html">NoMapAttribute</a></h5>
+      <section><p>An attribute for properties to be skipped for <a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></p>
+</section>
       <h5><a class="xref" href="wan24.Core.NonSeekablePartialStream.html">NonSeekablePartialStream</a></h5>
       <section><p>Non-seekable partial stream</p>
 </section>
@@ -666,6 +770,9 @@ restrictions for this)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.NumberExtensions.html">NumberExtensions</a></h5>
       <section><p>Number extensions</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ObjectDictionary-1.html">ObjectDictionary&lt;T&gt;</a></h5>
+      <section><p>Object dictionary</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ObjectExtensions.html">ObjectExtensions</a></h5>
       <section><p>Object extensions</p>
@@ -682,6 +789,15 @@ restrictions for this)</p>
       <h5><a class="xref" href="wan24.Core.ObjectLockTable.html">ObjectLockTable</a></h5>
       <section><p>Object locks table</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a></h5>
+      <section><p>Object mapping</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ObjectMappingExtensions.html">ObjectMappingExtensions</a></h5>
+      <section><p><a class="xref" href="wan24.Core.ObjectMapping.html">ObjectMapping</a> extension methods</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ObjectMapping-2.html">ObjectMapping&lt;tSource, tTarget&gt;</a></h5>
+      <section><p>Object mapping</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ObjectPool-1.html">ObjectPool&lt;T&gt;</a></h5>
       <section><p>Object pool</p>
 </section>
@@ -693,6 +809,9 @@ restrictions for this)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ObjectStorageBase-2.StoredObject.html">ObjectStorageBase&lt;tKey, tObj&gt;.StoredObject</a></h5>
       <section><p>Stored object</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.OptInOutExtensions.html">OptInOutExtensions</a></h5>
+      <section><p>Extension methods for <a class="xref" href="wan24.Core.IOptInOut.html">IOptInOut</a> and <a class="xref" href="wan24.Core.OptInOut.html">OptInOut</a></p>
 </section>
       <h5><a class="xref" href="wan24.Core.OptionalDisposeAction.html">OptionalDisposeAction</a></h5>
       <section><p>Optional dispose action</p>
@@ -749,6 +868,12 @@ restrictions for this)</p>
       <h5><a class="xref" href="wan24.Core.PausableStream-1.html">PausableStream&lt;T&gt;</a></h5>
       <section><p>Pausable stream wrapper (will pause reading/writing)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.PerformanceStream.html">PerformanceStream</a></h5>
+      <section><p>Performance stream (stores time statistical information during I/O operations excluding seeking or stream length changes)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PerformanceStream-1.html">PerformanceStream&lt;T&gt;</a></h5>
+      <section><p>Performance stream (stores time statistical information during I/O operations excluding seeking or stream length changes)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.PluralTranslationTerms.html">PluralTranslationTerms</a></h5>
       <section><p>Simple dictionary based translation with plural support</p>
 </section>
@@ -767,11 +892,26 @@ restrictions for this)</p>
       <h5><a class="xref" href="wan24.Core.PortKnocking.html">PortKnocking</a></h5>
       <section><p>Port knocking helper</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.PriorityExtensions.html">PriorityExtensions</a></h5>
+      <section><p>Extension methods for <a class="xref" href="wan24.Core.IPriority.html">IPriority</a></p>
+</section>
       <h5><a class="xref" href="wan24.Core.PriorityItemQueueWorkerBase-2.html">PriorityItemQueueWorkerBase&lt;tItem, tPriority&gt;</a></h5>
       <section><p>Base class for an item queue worker</p>
 </section>
       <h5><a class="xref" href="wan24.Core.PriorityQueueWorker-1.html">PriorityQueueWorker&lt;T&gt;</a></h5>
       <section><p>Priority queue worker</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ProblemInfo.html">ProblemInfo</a></h5>
+      <section><p>Problem informations</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ProblemStackInfo.html">ProblemStackInfo</a></h5>
+      <section><p>Problem call stack informations (equality is compared using the call stack only)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.Problems.html">Problems</a></h5>
+      <section><p>Collected problems</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.Problems.ProblemEventArgs.html">Problems.ProblemEventArgs</a></h5>
+      <section><p>Arguments for the <a class="xref" href="wan24.Core.Problems.html#wan24_Core_Problems_OnProblem">OnProblem</a> event</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ProcessExtensions.html">ProcessExtensions</a></h5>
       <section><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.diagnostics.process">Process</a> extensions</p>
@@ -800,11 +940,20 @@ restrictions for this)</p>
       <h5><a class="xref" href="wan24.Core.QueueEntry-1.html">QueueEntry&lt;T&gt;</a></h5>
       <section><p>Queue entry</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.QueueItemPriorityBase.html">QueueItemPriorityBase</a></h5>
+      <section><p>Base class for a <a class="xref" href="wan24.Core.PriorityQueueWorker-1.html">PriorityQueueWorker&lt;T&gt;</a> priority (to be compared using <a class="xref" href="wan24.Core.QueueItemPriorityComparer.html">QueueItemPriorityComparer</a>)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.QueueItemPriorityComparer.html">QueueItemPriorityComparer</a></h5>
+      <section><p>Queue item priority comparer</p>
+</section>
       <h5><a class="xref" href="wan24.Core.QueueWorker.html">QueueWorker</a></h5>
       <section><p>Queue worker</p>
 </section>
       <h5><a class="xref" href="wan24.Core.RandomStream.html">RandomStream</a></h5>
       <section><p>Random stream (uses <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.randomnumbergenerator">RandomNumberGenerator</a> for reading random bytes into the given buffers)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ReflectAttribute.html">ReflectAttribute</a></h5>
+      <section><p>Attribute for types which tell what to reflect using <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_Reflect_System_Type_System_Nullable_System_Reflection_BindingFlags__">Reflect(Type, BindingFlags?)</a></p>
 </section>
       <h5><a class="xref" href="wan24.Core.ReflectionExtensions.html">ReflectionExtensions</a></h5>
       <section><p>Reflection extensions</p>
@@ -817,6 +966,15 @@ restrictions for this)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.RentedObject-1.html">RentedObject&lt;T&gt;</a></h5>
       <section><p>Rented object (returns the rented object to the pool when disposing)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.RentedThread.html">RentedThread</a></h5>
+      <section><p>Rented thread (can be used with <a class="xref" href="wan24.Core.ObjectPool-1.html">ObjectPool&lt;T&gt;</a> and <a class="xref" href="wan24.Core.RentedObject-1.html">RentedObject&lt;T&gt;</a>)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.RentedThreadOptions.html">RentedThreadOptions</a></h5>
+      <section><p><a class="xref" href="wan24.Core.RentedThread.html">RentedThread</a> options</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.RentedThread-1.html">RentedThread&lt;T&gt;</a></h5>
+      <section><p>Rented thread (can be used with <a class="xref" href="wan24.Core.ObjectPool-1.html">ObjectPool&lt;T&gt;</a> and <a class="xref" href="wan24.Core.RentedObject-1.html">RentedObject&lt;T&gt;</a>)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ResetEvent.html">ResetEvent</a></h5>
       <section><p>Reset event</p>
@@ -850,6 +1008,9 @@ restrictions for this)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.SensitiveDataAttribute.html">SensitiveDataAttribute</a></h5>
       <section><p>Attribute for sensitive data</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.SerializeExtensions.html">SerializeExtensions</a></h5>
+      <section><p>Serialize extensions for <a class="xref" href="wan24.Core.ISerializeBinary.html">ISerializeBinary</a>/<a class="xref" href="wan24.Core.ISerializeBinary-1.html">ISerializeBinary&lt;T&gt;</a> and <a class="xref" href="wan24.Core.ISerializeString.html">ISerializeString</a>/<a class="xref" href="wan24.Core.ISerializeString-1.html">ISerializeString&lt;T&gt;</a></p>
 </section>
       <h5><a class="xref" href="wan24.Core.ServiceWorkerTable.html">ServiceWorkerTable</a></h5>
       <section><p>Service worker table</p>
@@ -914,6 +1075,12 @@ restrictions for this)</p>
       <h5><a class="xref" href="wan24.Core.StringValueConverter.html">StringValueConverter</a></h5>
       <section><p>(Display) String to value conversion</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.StringValueConverterAttribute.html">StringValueConverterAttribute</a></h5>
+      <section><p>Attribute for a property which has a value that supports display string conversion</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.StructExtensions.html">StructExtensions</a></h5>
+      <section><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/struct">struct</a> extension methods</p>
+</section>
       <h5><a class="xref" href="wan24.Core.SynchronizedStream.html">SynchronizedStream</a></h5>
       <section><p>Synchronized stream (synchronizes reading/writing/seeking operations; the base stream should implement each single asynchronous reading/writing method! Any asynchronous
 reading/writing method which adopts or calls to another asynchronous reading/writing or any seeking method will cause a dead-lock!)</p>
@@ -928,8 +1095,17 @@ reading/writing method which adopts or calls to another asynchronous reading/wri
       <h5><a class="xref" href="wan24.Core.TaskExtensions.html">TaskExtensions</a></h5>
       <section><p>Task extensions</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.TaskHelper.html">TaskHelper</a></h5>
+      <section><p>Task helper</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ThreadSafeValue-1.html">ThreadSafeValue&lt;T&gt;</a></h5>
       <section><p>Thread-safe value</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.Throttle.html">Throttle</a></h5>
+      <section><p>Generic throttling helper (if it's important to throttle more exact, and performance counts less, use <a class="xref" href="wan24.Core.ExactThrottle.html">ExactThrottle</a> instead)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ThrottleTable.html">ThrottleTable</a></h5>
+      <section><p><a class="xref" href="wan24.Core.IThrottle.html">IThrottle</a> table</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ThrottledStream.html">ThrottledStream</a></h5>
       <section><p>Throttled stream</p>
@@ -980,8 +1156,14 @@ translation texts in your source code)</p>
       <h5><a class="xref" href="wan24.Core.TypeCache.html">TypeCache</a></h5>
       <section><p>Type cache</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.TypeConverter.html">TypeConverter</a></h5>
+      <section><p>Type converter</p>
+</section>
       <h5><a class="xref" href="wan24.Core.TypeHelper.html">TypeHelper</a></h5>
       <section><p>Type helper</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.TypeInfoExt.html">TypeInfoExt</a></h5>
+      <section><p>Extended type information</p>
 </section>
       <h5><a class="xref" href="wan24.Core.UdpBroadcast-1.html">UdpBroadcast&lt;T&gt;</a></h5>
       <section><p>UDP broadcast helper (broadcaster and listener)</p>
@@ -992,8 +1174,39 @@ translation texts in your source code)</p>
       <h5><a class="xref" href="wan24.Core.UidExtAttribute.html">UidExtAttribute</a></h5>
       <section><p><a class="xref" href="wan24.Core.UidExt.html">UidExt</a> validation attribute</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.UserActionAttribute.html">UserActionAttribute</a></h5>
+      <section><p>Attribute for a method that can be executed from an user (only <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a> and <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a> parameters can
+be served, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> will be provided - other parameters need a default value; see <a class="xref" href="wan24.Core.IExportUserActions.html">IExportUserActions</a> also)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.UserActionCall.html">UserActionCall</a></h5>
+      <section><p>User action call</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.UserActionInfo.html">UserActionInfo</a></h5>
+      <section><p>User action informations</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.UserActionInfo.UserActionParameterInfo.html">UserActionInfo.UserActionParameterInfo</a></h5>
+      <section><p>User action parameter information</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.UserSettingAttribute.html">UserSettingAttribute</a></h5>
+      <section><p>Attribute for properties which are user settings</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.UserSettingCall.html">UserSettingCall</a></h5>
+      <section><p>User action call</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.UserSettingInfo.html">UserSettingInfo</a></h5>
+      <section><p>User setting informations</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ValueConverter.html">ValueConverter</a></h5>
+      <section><p>Value conversion (see <a class="xref" href="wan24.Core.ValueConverterAttribute.html">ValueConverterAttribute</a>)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ValueConverterAttribute.html">ValueConverterAttribute</a></h5>
+      <section><p>Attribute for a property that supports value conversion (see <a class="xref" href="wan24.Core.ValueConverter.html">ValueConverter</a>)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ValueObjectBase-1.html">ValueObjectBase&lt;T&gt;</a></h5>
       <section><p>A base class for a value object</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.VersioningExtensions.html">VersioningExtensions</a></h5>
+      <section><p>Extension methods for <a class="xref" href="wan24.Core.IVersioning.html">IVersioning</a> and <a class="xref" href="wan24.Core.IVersioningExt.html">IVersioningExt</a></p>
 </section>
       <h5><a class="xref" href="wan24.Core.VolatileValueBase-1.html">VolatileValueBase&lt;T&gt;</a></h5>
       <section><p>Base class for a volatile value</p>
@@ -1004,12 +1217,42 @@ translation texts in your source code)</p>
       <h5><a class="xref" href="wan24.Core.WrapperStream-1.html">WrapperStream&lt;T&gt;</a></h5>
       <section><p>Stream wrapper (will dispose, if the base stream is a <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a> and has been disposed)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.XmlConstructorDocComments.html">XmlConstructorDocComments</a></h5>
+      <section><p>Constructor XML documentation comments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XmlDocComments.html">XmlDocComments</a></h5>
+      <section><p>XML documentation comments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XmlEventDocComments.html">XmlEventDocComments</a></h5>
+      <section><p>Event XML documentation comments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XmlFieldDocComments.html">XmlFieldDocComments</a></h5>
+      <section><p>Field XML documentation comments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XmlGenericArgumentDocComments.html">XmlGenericArgumentDocComments</a></h5>
+      <section><p>Generic argument XML documentation comments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XmlMethodDocComments.html">XmlMethodDocComments</a></h5>
+      <section><p>Method XML documentation comments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XmlParameterDocComments.html">XmlParameterDocComments</a></h5>
+      <section><p>Parameter XML documentation comments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XmlPropertyDocComments.html">XmlPropertyDocComments</a></h5>
+      <section><p>Property XML documentation comments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XmlTypeDocComments.html">XmlTypeDocComments</a></h5>
+      <section><p>Type XML documentation comments</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ZeroStream.html">ZeroStream</a></h5>
       <section><p>A zero stream, which will read zero bytes and write nothing</p>
 </section>
     <h3 id="structs">
 Structs
 </h3>
+      <h5><a class="xref" href="wan24.Core.CachedType.html">CachedType</a></h5>
+      <section><p>Cached type (see <a class="xref" href="wan24.Core.TypeCache.html">TypeCache</a>)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.CancellationAwaiter.html">CancellationAwaiter</a></h5>
       <section><p>Cancellation awaiter</p>
 </section>
@@ -1022,17 +1265,27 @@ Structs
       <h5><a class="xref" href="wan24.Core.EquatableArray-1.html">EquatableArray&lt;T&gt;</a></h5>
       <section><p>Equatable array (validates sequence validity, not object references)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ExactThrottle.Counted.html">ExactThrottle.Counted</a></h5>
+      <section><p>Counted</p>
+</section>
       <h5><a class="xref" href="wan24.Core.HostEndPoint.html">HostEndPoint</a></h5>
       <section><p>Host endpoint</p>
 </section>
       <h5><a class="xref" href="wan24.Core.Hsb.html">Hsb</a></h5>
       <section><p>HSB</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IntRange.html">IntRange</a></h5>
+      <section><p>32 bit integer numeric range (increasing)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IpSubNet.html">IpSubNet</a></h5>
       <section><p>IP sub-net</p>
 </section>
       <h5><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></h5>
       <section><p>Read-only IP sub-net list</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.OneOrMany-1.html">OneOrMany&lt;T&gt;</a></h5>
+      <section><p>One or many items (can cast implicit from/to a single or all items; casts from <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> to an empty structure; casts from an empty structure to
+<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/default">default</a>)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.PinnedArrayRef-1.html">PinnedArrayRef&lt;T&gt;</a></h5>
       <section><p>Pinned array (not thread-safe)</p>
@@ -1094,11 +1347,29 @@ Structs
       <h5><a class="xref" href="wan24.Core.TryAsyncResult-1.html">TryAsyncResult&lt;T&gt;</a></h5>
       <section><p>Result of an asynchronous try-action</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.TypeConverter.TypeConverterKey.html">TypeConverter.TypeConverterKey</a></h5>
+      <section><p>Type converter key for <a class="xref" href="wan24.Core.TypeConverter.html#wan24_Core_TypeConverter_Registered">Registered</a></p>
+</section>
       <h5><a class="xref" href="wan24.Core.Uid.html">Uid</a></h5>
       <section><p>Unique ID</p>
 </section>
       <h5><a class="xref" href="wan24.Core.UidExt.html">UidExt</a></h5>
       <section><p>Unique ID with an ID extension</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.UnixTime.html">UnixTime</a></h5>
+      <section><p>Unix timestamp (64 bit)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XY.html">XY</a></h5>
+      <section><p>XY value</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XYInt.html">XYInt</a></h5>
+      <section><p>XY value</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XYZ.html">XYZ</a></h5>
+      <section><p>XYZ value</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.XYZInt.html">XYZInt</a></h5>
+      <section><p>XYZ value</p>
 </section>
     <h3 id="interfaces">
 Interfaces
@@ -1151,8 +1422,26 @@ Interfaces
       <h5><a class="xref" href="wan24.Core.IEventThrottle.html">IEventThrottle</a></h5>
       <section><p>Interface for an event throttle</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IExportUserActions.html">IExportUserActions</a></h5>
+      <section><p>Interface for a type which exports instance user actions (see <a class="xref" href="wan24.Core.UserActionAttribute.html">UserActionAttribute</a> also)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IExportUserSettings.html">IExportUserSettings</a></h5>
+      <section><p>Interface for a type which exports instance user settings (see <a class="xref" href="wan24.Core.UserSettingAttribute.html">UserSettingAttribute</a> also)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IGlobalLock.html">IGlobalLock</a></h5>
       <section><p>Interface for a global lock</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IInMemoryCache.html">IInMemoryCache</a></h5>
+      <section><p>Interface for an in-memory cache</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IInMemoryCacheItem.html">IInMemoryCacheItem</a></h5>
+      <section><p>Interface for an in-memory cacheable item</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IInMemoryCacheStrategy-1.html">IInMemoryCacheStrategy&lt;T&gt;</a></h5>
+      <section><p>Interface for an in-memory cache management strategy</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IInMemoryCache-1.html">IInMemoryCache&lt;T&gt;</a></h5>
+      <section><p>Interface for an in-memory cache</p>
 </section>
       <h5><a class="xref" href="wan24.Core.IInstancePool.html">IInstancePool</a></h5>
       <section><p>Interface for an instance pool</p>
@@ -1162,6 +1451,12 @@ Interfaces
 </section>
       <h5><a class="xref" href="wan24.Core.IItemQueueWorker-1.html">IItemQueueWorker&lt;T&gt;</a></h5>
       <section><p>Interface for an item queue worker</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IMappingObject.html">IMappingObject</a></h5>
+      <section><p>Interface for a mapping object</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IMappingObject-1.html">IMappingObject&lt;T&gt;</a></h5>
+      <section><p>Interface for a mapping object</p>
 </section>
       <h5><a class="xref" href="wan24.Core.IMta.html">IMta</a></h5>
       <section><p>Interface for a MTA</p>
@@ -1193,6 +1488,9 @@ Interfaces
       <h5><a class="xref" href="wan24.Core.IObjectStorage-2.html">IObjectStorage&lt;tKey, tObj&gt;</a></h5>
       <section><p>Interface for an object storage</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IOptInOut.html">IOptInOut</a></h5>
+      <section><p>Interface for an object which does opt in/out</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IOrderedDictionary-2.html">IOrderedDictionary&lt;tKey, tValue&gt;</a></h5>
       <section><p>Interface for an ordered dictionary</p>
 </section>
@@ -1205,11 +1503,17 @@ Interfaces
       <h5><a class="xref" href="wan24.Core.IPool.html">IPool</a></h5>
       <section><p>Interface for a pool</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IPriority.html">IPriority</a></h5>
+      <section><p>Interface for an object which exports its priority (higher priority comes first)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IPriorityItemQueueWorker-2.html">IPriorityItemQueueWorker&lt;tItem, tPriority&gt;</a></h5>
       <section><p>Interface for a priority item queue worker</p>
 </section>
       <h5><a class="xref" href="wan24.Core.IPriorityQueueWorker-1.html">IPriorityQueueWorker&lt;T&gt;</a></h5>
       <section><p>Interface for a priority queue worker</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IProblemInfo.html">IProblemInfo</a></h5>
+      <section><p>Interface for problem informations</p>
 </section>
       <h5><a class="xref" href="wan24.Core.IProcessingInfo.html">IProcessingInfo</a></h5>
       <section><p>Interface for a processing information</p>
@@ -1217,8 +1521,14 @@ Interfaces
       <h5><a class="xref" href="wan24.Core.IQueueEntry.html">IQueueEntry</a></h5>
       <section><p>Interface for a queue entry</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IQueueItemPriority.html">IQueueItemPriority</a></h5>
+      <section><p>Interface for a queue item priority (see <a class="xref" href="wan24.Core.QueueItemPriorityBase.html">QueueItemPriorityBase</a>)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IQueueWorker.html">IQueueWorker</a></h5>
       <section><p>Interface for a queue worker</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IReflect.html">IReflect</a></h5>
+      <section><p>Interface for an object which exports bindings to reflect using <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_Reflect_System_Type_System_Nullable_System_Reflection_BindingFlags__">Reflect(Type, BindingFlags?)</a></p>
 </section>
       <h5><a class="xref" href="wan24.Core.IRentedArray-1.html">IRentedArray&lt;T&gt;</a></h5>
       <section><p>Interface for a rented array</p>
@@ -1228,6 +1538,18 @@ Interfaces
 </section>
       <h5><a class="xref" href="wan24.Core.ISecureArray-1.html">ISecureArray&lt;T&gt;</a></h5>
       <section><p>Interface for a secure array</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ISerializeBinary.html">ISerializeBinary</a></h5>
+      <section><p>Interface for a type which can serialize binary</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ISerializeBinary-1.html">ISerializeBinary&lt;T&gt;</a></h5>
+      <section><p>Interface for a type which can serialize binary</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ISerializeString.html">ISerializeString</a></h5>
+      <section><p>Interface for types which serialize deserializable to a string using <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">ToString()</a></p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ISerializeString-1.html">ISerializeString&lt;T&gt;</a></h5>
+      <section><p>Interface for types which serialize deserializable to a string using <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">ToString()</a></p>
 </section>
       <h5><a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a></h5>
       <section><p>Interface for a service worker object</p>
@@ -1259,17 +1581,35 @@ Interfaces
       <h5><a class="xref" href="wan24.Core.IStringValueConverter-1.html">IStringValueConverter&lt;T&gt;</a></h5>
       <section><p>Interface for a type which supports display string/value conversion</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IThrottle.html">IThrottle</a></h5>
+      <section><p>Interface for a throttle</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IThrottledStream.html">IThrottledStream</a></h5>
       <section><p>Interface for a throttled stream</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ITimer.html">ITimer</a></h5>
       <section><p>Interface for a timer object</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ITransaction.html">ITransaction</a></h5>
+      <section><p>Interface for a transaction</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ITranslationTerms.html">ITranslationTerms</a></h5>
       <section><p>Interface for a translation</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ITryAsyncResult.html">ITryAsyncResult</a></h5>
       <section><p>Interface for a <a class="xref" href="wan24.Core.TryAsyncResult-1.html">TryAsyncResult&lt;T&gt;</a></p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ITypeConverter-1.html">ITypeConverter&lt;T&gt;</a></h5>
+      <section><p>Interface for a type which can be converted to a target type</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IVersion.html">IVersion</a></h5>
+      <section><p>Interface for an object which exports its version</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IVersioning.html">IVersioning</a></h5>
+      <section><p>Interface which is being used for versioning</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IVersioningExt.html">IVersioningExt</a></h5>
+      <section><p>Interface for an object which supports extended versioning</p>
 </section>
       <h5><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></h5>
       <section><p>Interface for a disposable object which will dispose foreign disposables when disposing</p>
@@ -1289,11 +1629,20 @@ Enums
       <h5><a class="xref" href="wan24.Core.HostedServiceTimers.html">HostedServiceTimers</a></h5>
       <section><p>Hosted service timer types</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCacheEntryTypes.html">InMemoryCacheEntryTypes</a></h5>
+      <section><p>In-memory cache entry types</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCacheStrategy.html">InMemoryCacheStrategy</a></h5>
+      <section><p>In-memory cache management strategies for automatic cache entry cleanup selection</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IpNetworkKind.html">IpNetworkKind</a></h5>
       <section><p>IP network kind enumeration</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ObjectSerializer.Serializer.html">ObjectSerializer.Serializer</a></h5>
       <section><p>Serializer enumeration</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.OptInOut.html">OptInOut</a></h5>
+      <section><p>Opt in/out enumeration</p>
 </section>
       <h5><a class="xref" href="wan24.Core.QueueEntryStates.html">QueueEntryStates</a></h5>
       <section><p>Queue entry states</p>
@@ -1358,6 +1707,9 @@ Delegates
       <h5><a class="xref" href="wan24.Core.DisposableWrapper-1.Dispose_Delegate.html">DisposableWrapper&lt;T&gt;.Dispose_Delegate</a></h5>
       <section><p>Dispose delegate</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.DynamicHubStream.DynamicHubStreamErrorEvent_Delegate.html">DynamicHubStream.DynamicHubStreamErrorEvent_Delegate</a></h5>
+      <section><p>Delegate for an <a class="xref" href="wan24.Core.DynamicHubStream.html#wan24_Core_DynamicHubStream_OnWriteError">OnWriteError</a> event handler</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ErrorHandling.ErrorHandler_Delegate.html">ErrorHandling.ErrorHandler_Delegate</a></h5>
       <section><p>Delegate for an error handler</p>
 </section>
@@ -1388,6 +1740,9 @@ Delegates
       <h5><a class="xref" href="wan24.Core.IDisposableObject.Dispose_Delegate.html">IDisposableObject.Dispose_Delegate</a></h5>
       <section><p>Delegate for the disposing events</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IInMemoryCache-1.CacheEntryFactory_Delegate.html">IInMemoryCache&lt;T&gt;.CacheEntryFactory_Delegate</a></h5>
+      <section><p>Delegate for a cache entry factory</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IInstancePool-1.InstanceAsync_Delegate.html">IInstancePool&lt;T&gt;.InstanceAsync_Delegate</a></h5>
       <section><p>Asynchronous instance factory delegate</p>
 </section>
@@ -1396,6 +1751,12 @@ Delegates
 </section>
       <h5><a class="xref" href="wan24.Core.IOverridableConfig.Config_Delegate.html">IOverridableConfig.Config_Delegate</a></h5>
       <section><p>Delegate for configuration events</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IdleState.Idle_Delegate.html">IdleState.Idle_Delegate</a></h5>
+      <section><p>Delegate for an event handler</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.InMemoryCache-1.InMemoryCacheEvent_Delegate.html">InMemoryCache&lt;T&gt;.InMemoryCacheEvent_Delegate</a></h5>
+      <section><p>Delegate for an event handler</p>
 </section>
       <h5><a class="xref" href="wan24.Core.JsonHelper.Decoder_Delegate.html">JsonHelper.Decoder_Delegate</a></h5>
       <section><p>Delegate for a JSON decoder</p>
@@ -1427,6 +1788,21 @@ Delegates
       <h5><a class="xref" href="wan24.Core.ObjectLockManager-1.Lock_Delegate.html">ObjectLockManager&lt;T&gt;.Lock_Delegate</a></h5>
       <section><p>Delegate for locking events</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ObjectMapping.AsyncMapper_Delegate-2.html">ObjectMapping.AsyncMapper_Delegate&lt;tSource, tTarget&gt;</a></h5>
+      <section><p>Delegate for an asynchronous mapper method</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ObjectMapping.AsyncObjectMapper_Delegate.html">ObjectMapping.AsyncObjectMapper_Delegate</a></h5>
+      <section><p>Delegate for an asynchronous mapper method</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ObjectMapping.Mapper_Delegate-2.html">ObjectMapping.Mapper_Delegate&lt;tSource, tTarget&gt;</a></h5>
+      <section><p>Delegate for a mapper method</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ObjectMapping.ObjectMapper_Delegate.html">ObjectMapping.ObjectMapper_Delegate</a></h5>
+      <section><p>Delegate for a mapper method</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ObjectMapping.TargetInstanceFactoryDelegate.html">ObjectMapping.TargetInstanceFactoryDelegate</a></h5>
+      <section><p>Target object instance factory delegate</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ObjectSerializer.AsyncCustomDeserializer_Delegate.html">ObjectSerializer.AsyncCustomDeserializer_Delegate</a></h5>
       <section><p>Delegate for a custom deserializer</p>
 </section>
@@ -1444,6 +1820,9 @@ Delegates
 </section>
       <h5><a class="xref" href="wan24.Core.ParallelTransaction.Action_Delegate.html">ParallelTransaction.Action_Delegate</a></h5>
       <section><p>Delegate for an action</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ParallelTransaction.Commit_Delegate.html">ParallelTransaction.Commit_Delegate</a></h5>
+      <section><p>Delegate for a commit action</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ParallelTransaction.Done_Delegate.html">ParallelTransaction.Done_Delegate</a></h5>
       <section><p>Delegate for an <a class="xref" href="wan24.Core.ParallelTransaction.html#wan24_Core_ParallelTransaction_OnDone">OnDone</a> handler</p>
@@ -1466,6 +1845,9 @@ Delegates
       <h5><a class="xref" href="wan24.Core.PriorityQueueWorker-1.Task_Delegate.html">PriorityQueueWorker&lt;T&gt;.Task_Delegate</a></h5>
       <section><p>Delegate for a task</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.Problems.Problem_Delegate.html">Problems.Problem_Delegate</a></h5>
+      <section><p>Delegate for a problem handler</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ProcessThrottle.ProcessThrottleEvent_Delegate.html">ProcessThrottle.ProcessThrottleEvent_Delegate</a></h5>
       <section><p>Delegate for a process throttle event</p>
 </section>
@@ -1480,6 +1862,12 @@ Delegates
 </section>
       <h5><a class="xref" href="wan24.Core.QueueWorker.Task_Delegate.html">QueueWorker.Task_Delegate</a></h5>
       <section><p>Delegate for a task</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.RentedThread.Worker_Delegate.html">RentedThread.Worker_Delegate</a></h5>
+      <section><p>Delegate for a worker</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.RentedThread-1.Worker_Delegate.html">RentedThread&lt;T&gt;.Worker_Delegate</a></h5>
+      <section><p>Delegate for a worker</p>
 </section>
       <h5><a class="xref" href="wan24.Core.RetryHelper.RetryOnError_Delegate.html">RetryHelper.RetryOnError_Delegate</a></h5>
       <section><p>Delegate to decide if to continue with the next try after an error (is being called before the delay)</p>
@@ -1526,8 +1914,14 @@ Delegates
       <h5><a class="xref" href="wan24.Core.Timeout.Timeout_Delegate.html">Timeout.Timeout_Delegate</a></h5>
       <section><p>Delegate for timeout events</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.Transaction.AsyncCommit_Delegate.html">Transaction.AsyncCommit_Delegate</a></h5>
+      <section><p>Delegate for a commit action</p>
+</section>
       <h5><a class="xref" href="wan24.Core.Transaction.AsyncRollback_Delegate.html">Transaction.AsyncRollback_Delegate</a></h5>
       <section><p>Delegate for a rollback action</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.Transaction.SyncCommit_Delegate.html">Transaction.SyncCommit_Delegate</a></h5>
+      <section><p>Delegate for a commit action</p>
 </section>
       <h5><a class="xref" href="wan24.Core.Transaction.SyncRollback_Delegate.html">Transaction.SyncRollback_Delegate</a></h5>
       <section><p>Delegate for a rollback action</p>
@@ -1535,8 +1929,14 @@ Delegates
       <h5><a class="xref" href="wan24.Core.Translation.LocaleChanged_Delegate.html">Translation.LocaleChanged_Delegate</a></h5>
       <section><p>Delegate for an <a class="xref" href="wan24.Core.Translation.html#wan24_Core_Translation_OnLocaleChanged">OnLocaleChanged</a> event handler</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.TypeConverter.Convert_Delegate.html">TypeConverter.Convert_Delegate</a></h5>
+      <section><p>Type converter delegate</p>
+</section>
       <h5><a class="xref" href="wan24.Core.TypeHelper.LoadType_Delegate.html">TypeHelper.LoadType_Delegate</a></h5>
       <section><p>Delegate for the type loader event</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ValueConverter.Converter_Delegate.html">ValueConverter.Converter_Delegate</a></h5>
+      <section><p>Delegate for a converter</p>
 </section>
 
 

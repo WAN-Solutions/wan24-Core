@@ -3,12 +3,11 @@
     /// <summary>
     /// Attribute for a CLI argument configurable public static property
     /// </summary>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class CliConfigAttribute : Attribute
+    public sealed class CliConfigAttribute() : Attribute()
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public CliConfigAttribute() : base() { }
     }
 }

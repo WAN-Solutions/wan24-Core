@@ -51,7 +51,18 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="concurrencyLevel">Cuncurrency level</param>
+        /// <param name="dict">Dictionary to observe</param>
+        public ConcurrentChangeTokenDictionary(in ConcurrentDictionary<tKey, tValue> dict) : base()
+        {
+            Disposable = new((disposing) => Clear());
+            Dict = dict;
+            Subscriptions = [];
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="concurrencyLevel">Concurrency level</param>
         /// <param name="capacity">Initial capacity</param>
         public ConcurrentChangeTokenDictionary(in int concurrencyLevel, in int capacity) : base()
         {
@@ -95,6 +106,11 @@ namespace wan24.Core
             get => this[(tKey)key];
             set => this[(tKey)key] = (tValue)value!;
         }
+
+        /// <summary>
+        /// Any tagged object
+        /// </summary>
+        public object? Tag { get; set; }
 
         /// <summary>
         /// Observe the dictionary (if items have been added/removed)?

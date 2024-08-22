@@ -6,13 +6,11 @@ namespace wan24.Core
     /// Retry information
     /// </summary>
     /// <typeparam name="T">Result type</typeparam>
-    public sealed class RetryInfo<T>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    public sealed class RetryInfo<T>()
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public RetryInfo() { }
-
         /// <summary>
         /// Start time
         /// </summary>

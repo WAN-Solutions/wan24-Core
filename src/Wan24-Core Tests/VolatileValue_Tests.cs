@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class VolatileValue_Tests
+    public class VolatileValue_Tests : TestBase
     {
         [TestMethod, Timeout(3000)]
         public async Task General_Tests()

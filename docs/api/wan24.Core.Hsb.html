@@ -106,6 +106,10 @@
   <div class="markdown level0 conceptual"></div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.ISerializeBinary-1.html">ISerializeBinary</a>&lt;<a class="xref" href="wan24.Core.Hsb.html">Hsb</a>&gt;</div>
+    <div><a class="xref" href="wan24.Core.ISerializeBinary.html">ISerializeBinary</a></div>
+    <div><a class="xref" href="wan24.Core.ISerializeString-1.html">ISerializeString</a>&lt;<a class="xref" href="wan24.Core.Hsb.html">Hsb</a>&gt;</div>
+    <div><a class="xref" href="wan24.Core.ISerializeString.html">ISerializeString</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="wan24.Core.Hsb.html">Hsb</a>&gt;</div>
   </div>
   <div class="inheritedMembers">
@@ -130,7 +134,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_Hsb_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly record struct Hsb : IEquatable&lt;Hsb&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly record struct Hsb : ISerializeBinary&lt;Hsb&gt;, ISerializeBinary, ISerializeString&lt;Hsb&gt;, ISerializeString, IEquatable&lt;Hsb&gt;</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -139,7 +143,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L69">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L70">View Source</a>
   </span>
   <a id="wan24_Core_Hsb__ctor_" data-uid="wan24.Core.Hsb.#ctor*"></a>
   <h4 id="wan24_Core_Hsb__ctor" data-uid="wan24.Core.Hsb.#ctor">Hsb()</h4>
@@ -155,7 +159,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb__ctor_System_ReadOnlySpan_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.%23ctor(System.ReadOnlySpan%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L100">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L101">View Source</a>
   </span>
   <a id="wan24_Core_Hsb__ctor_" data-uid="wan24.Core.Hsb.#ctor*"></a>
   <h4 id="wan24_Core_Hsb__ctor_System_ReadOnlySpan_System_Byte___" data-uid="wan24.Core.Hsb.#ctor(System.ReadOnlySpan{System.Byte}@)">Hsb(in ReadOnlySpan&lt;byte&gt;)</h4>
@@ -189,7 +193,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb__ctor_System_Single__System_Single__System_Single__System_Single__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.%23ctor(System.Single%40%2CSystem.Single%40%2CSystem.Single%40%2CSystem.Single%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L84">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L85">View Source</a>
   </span>
   <a id="wan24_Core_Hsb__ctor_" data-uid="wan24.Core.Hsb.#ctor*"></a>
   <h4 id="wan24_Core_Hsb__ctor_System_Single__System_Single__System_Single__System_Single__" data-uid="wan24.Core.Hsb.#ctor(System.Single@,System.Single@,System.Single@,System.Single@)">Hsb(in float, in float, in float, in float)</h4>
@@ -243,7 +247,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_ALPHA_FIELD_BYTE_OFFSET.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.ALPHA_FIELD_BYTE_OFFSET%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L34">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L35">View Source</a>
   </span>
   <h4 id="wan24_Core_Hsb_ALPHA_FIELD_BYTE_OFFSET" data-uid="wan24.Core.Hsb.ALPHA_FIELD_BYTE_OFFSET">ALPHA_FIELD_BYTE_OFFSET</h4>
   <div class="markdown level1 summary"><p>Alpha field byte offset</p>
@@ -273,7 +277,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_Alpha.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.Alpha%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L64">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L65">View Source</a>
   </span>
   <h4 id="wan24_Core_Hsb_Alpha" data-uid="wan24.Core.Hsb.Alpha">Alpha</h4>
   <div class="markdown level1 summary"><p>Alpha (%)</p>
@@ -303,7 +307,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_BINARY_SIZE.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.BINARY_SIZE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L18">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L19">View Source</a>
   </span>
   <h4 id="wan24_Core_Hsb_BINARY_SIZE" data-uid="wan24.Core.Hsb.BINARY_SIZE">BINARY_SIZE</h4>
   <div class="markdown level1 summary"><p>Binary size in bytes</p>
@@ -333,7 +337,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_BRIGHTNESS_FIELD_BYTE_OFFSET.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.BRIGHTNESS_FIELD_BYTE_OFFSET%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L30">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L31">View Source</a>
   </span>
   <h4 id="wan24_Core_Hsb_BRIGHTNESS_FIELD_BYTE_OFFSET" data-uid="wan24.Core.Hsb.BRIGHTNESS_FIELD_BYTE_OFFSET">BRIGHTNESS_FIELD_BYTE_OFFSET</h4>
   <div class="markdown level1 summary"><p>Brightness field byte offset</p>
@@ -363,7 +367,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_Black.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.Black%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L43">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L44">View Source</a>
   </span>
   <h4 id="wan24_Core_Hsb_Black" data-uid="wan24.Core.Hsb.Black">Black</h4>
   <div class="markdown level1 summary"><p>Black</p>
@@ -393,7 +397,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_Brightness.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.Brightness%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L59">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L60">View Source</a>
   </span>
   <h4 id="wan24_Core_Hsb_Brightness" data-uid="wan24.Core.Hsb.Brightness">Brightness</h4>
   <div class="markdown level1 summary"><p>Brightness (%)</p>
@@ -423,7 +427,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_HUE_FIELD_BYTE_OFFSET.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.HUE_FIELD_BYTE_OFFSET%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L22">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L23">View Source</a>
   </span>
   <h4 id="wan24_Core_Hsb_HUE_FIELD_BYTE_OFFSET" data-uid="wan24.Core.Hsb.HUE_FIELD_BYTE_OFFSET">HUE_FIELD_BYTE_OFFSET</h4>
   <div class="markdown level1 summary"><p>Hue field byte offset</p>
@@ -453,7 +457,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_Hue.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.Hue%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L49">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L50">View Source</a>
   </span>
   <h4 id="wan24_Core_Hsb_Hue" data-uid="wan24.Core.Hsb.Hue">Hue</h4>
   <div class="markdown level1 summary"><p>Hue (%)</p>
@@ -483,7 +487,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_SATURATION_FIELD_BYTE_OFFSET.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.SATURATION_FIELD_BYTE_OFFSET%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L26">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L27">View Source</a>
   </span>
   <h4 id="wan24_Core_Hsb_SATURATION_FIELD_BYTE_OFFSET" data-uid="wan24.Core.Hsb.SATURATION_FIELD_BYTE_OFFSET">SATURATION_FIELD_BYTE_OFFSET</h4>
   <div class="markdown level1 summary"><p>Saturation field byte offset</p>
@@ -513,7 +517,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_STRUCTURE_SIZE.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.STRUCTURE_SIZE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L14">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L15">View Source</a>
   </span>
   <h4 id="wan24_Core_Hsb_STRUCTURE_SIZE" data-uid="wan24.Core.Hsb.STRUCTURE_SIZE">STRUCTURE_SIZE</h4>
   <div class="markdown level1 summary"><p>Structure size in bytes</p>
@@ -543,7 +547,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_Saturation.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.Saturation%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L54">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L55">View Source</a>
   </span>
   <h4 id="wan24_Core_Hsb_Saturation" data-uid="wan24.Core.Hsb.Saturation">Saturation</h4>
   <div class="markdown level1 summary"><p>Saturation (%)</p>
@@ -573,7 +577,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_White.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.White%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L39">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L40">View Source</a>
   </span>
   <h4 id="wan24_Core_Hsb_White" data-uid="wan24.Core.Hsb.White">White</h4>
   <div class="markdown level1 summary"><p>White</p>
@@ -605,7 +609,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_HueDegree.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.HueDegree%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L112">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L129">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_HueDegree_" data-uid="wan24.Core.Hsb.HueDegree*"></a>
   <h4 id="wan24_Core_Hsb_HueDegree" data-uid="wan24.Core.Hsb.HueDegree">HueDegree</h4>
@@ -631,6 +635,130 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_MaxStringSize.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.MaxStringSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L118">View Source</a>
+  </span>
+  <a id="wan24_Core_Hsb_MaxStringSize_" data-uid="wan24.Core.Hsb.MaxStringSize*"></a>
+  <h4 id="wan24_Core_Hsb_MaxStringSize" data-uid="wan24.Core.Hsb.MaxStringSize">MaxStringSize</h4>
+  <div class="markdown level1 summary"><p>Maximum serialized string size (length; or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if not predictable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int? MaxStringSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_MaxStructureSize.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.MaxStructureSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L115">View Source</a>
+  </span>
+  <a id="wan24_Core_Hsb_MaxStructureSize_" data-uid="wan24.Core.Hsb.MaxStructureSize*"></a>
+  <h4 id="wan24_Core_Hsb_MaxStructureSize" data-uid="wan24.Core.Hsb.MaxStructureSize">MaxStructureSize</h4>
+  <div class="markdown level1 summary"><p>Maximum binary structure size in bytes for all instances (or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if the size is too variable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int? MaxStructureSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_StringSize.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.StringSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L124">View Source</a>
+  </span>
+  <a id="wan24_Core_Hsb_StringSize_" data-uid="wan24.Core.Hsb.StringSize*"></a>
+  <h4 id="wan24_Core_Hsb_StringSize" data-uid="wan24.Core.Hsb.StringSize">StringSize</h4>
+  <div class="markdown level1 summary"><p>Serialized string size (length; or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if not predictable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? StringSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_StructureSize.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.StructureSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L121">View Source</a>
+  </span>
+  <a id="wan24_Core_Hsb_StructureSize_" data-uid="wan24.Core.Hsb.StructureSize*"></a>
+  <h4 id="wan24_Core_Hsb_StructureSize" data-uid="wan24.Core.Hsb.StructureSize">StructureSize</h4>
+  <div class="markdown level1 summary"><p>Binary serialized structure size in bytes (or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, if the size is variable)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? StructureSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
@@ -638,7 +766,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_AddAlpha_System_Single__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.AddAlpha(System.Single%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L196">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L213">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_AddAlpha_" data-uid="wan24.Core.Hsb.AddAlpha*"></a>
   <h4 id="wan24_Core_Hsb_AddAlpha_System_Single__" data-uid="wan24.Core.Hsb.AddAlpha(System.Single@)">AddAlpha(in float)</h4>
@@ -688,7 +816,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_AddBrightness_System_Single__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.AddBrightness(System.Single%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L174">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L191">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_AddBrightness_" data-uid="wan24.Core.Hsb.AddBrightness*"></a>
   <h4 id="wan24_Core_Hsb_AddBrightness_System_Single__" data-uid="wan24.Core.Hsb.AddBrightness(System.Single@)">AddBrightness(in float)</h4>
@@ -738,7 +866,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_AddHue_System_Single__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.AddHue(System.Single%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L130">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L147">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_AddHue_" data-uid="wan24.Core.Hsb.AddHue*"></a>
   <h4 id="wan24_Core_Hsb_AddHue_System_Single__" data-uid="wan24.Core.Hsb.AddHue(System.Single@)">AddHue(in float)</h4>
@@ -788,7 +916,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_AddSaturation_System_Single__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.AddSaturation(System.Single%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L152">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L169">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_AddSaturation_" data-uid="wan24.Core.Hsb.AddSaturation*"></a>
   <h4 id="wan24_Core_Hsb_AddSaturation_System_Single__" data-uid="wan24.Core.Hsb.AddSaturation(System.Single@)">AddSaturation(in float)</h4>
@@ -835,10 +963,110 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_DeserializeFrom_System_ReadOnlySpan_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.DeserializeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L433">View Source</a>
+  </span>
+  <a id="wan24_Core_Hsb_DeserializeFrom_" data-uid="wan24.Core.Hsb.DeserializeFrom*"></a>
+  <h4 id="wan24_Core_Hsb_DeserializeFrom_System_ReadOnlySpan_System_Byte___" data-uid="wan24.Core.Hsb.DeserializeFrom(System.ReadOnlySpan{System.Byte}@)">DeserializeFrom(in ReadOnlySpan&lt;byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static object DeserializeFrom(in ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_DeserializeTypeFrom_System_ReadOnlySpan_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.DeserializeTypeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L465">View Source</a>
+  </span>
+  <a id="wan24_Core_Hsb_DeserializeTypeFrom_" data-uid="wan24.Core.Hsb.DeserializeTypeFrom*"></a>
+  <h4 id="wan24_Core_Hsb_DeserializeTypeFrom_System_ReadOnlySpan_System_Byte___" data-uid="wan24.Core.Hsb.DeserializeTypeFrom(System.ReadOnlySpan{System.Byte}@)">DeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Hsb DeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Hsb.html">Hsb</a></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_FromRgb_wan24_Core_Rgb__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.FromRgb(wan24.Core.Rgb%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L396">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L406">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_FromRgb_" data-uid="wan24.Core.Hsb.FromRgb*"></a>
   <h4 id="wan24_Core_Hsb_FromRgb_wan24_Core_Rgb__" data-uid="wan24.Core.Hsb.FromRgb(wan24.Core.Rgb@)">FromRgb(in Rgb)</h4>
@@ -888,7 +1116,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_FromRgbA_wan24_Core_RgbA__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.FromRgbA(wan24.Core.RgbA%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L365">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L375">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_FromRgbA_" data-uid="wan24.Core.Hsb.FromRgbA*"></a>
   <h4 id="wan24_Core_Hsb_FromRgbA_wan24_Core_RgbA__" data-uid="wan24.Core.Hsb.FromRgbA(wan24.Core.RgbA@)">FromRgbA(in RgbA)</h4>
@@ -938,11 +1166,11 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_GetBytes.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.GetBytes%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L206">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L220">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_GetBytes_" data-uid="wan24.Core.Hsb.GetBytes*"></a>
   <h4 id="wan24_Core_Hsb_GetBytes" data-uid="wan24.Core.Hsb.GetBytes">GetBytes()</h4>
-  <div class="markdown level1 summary"><p>Get bytes</p>
+  <div class="markdown level1 summary"><p>Get as serialized data</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -960,7 +1188,7 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
-        <td><p>Bytes</p>
+        <td><p>Serialized data</p>
 </td>
       </tr>
     </tbody>
@@ -970,16 +1198,16 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_GetBytes_System_Span_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.GetBytes(System.Span%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L218">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L228">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_GetBytes_" data-uid="wan24.Core.Hsb.GetBytes*"></a>
   <h4 id="wan24_Core_Hsb_GetBytes_System_Span_System_Byte___" data-uid="wan24.Core.Hsb.GetBytes(System.Span{System.Byte}@)">GetBytes(in Span&lt;byte&gt;)</h4>
-  <div class="markdown level1 summary"><p>Get bytes</p>
+  <div class="markdown level1 summary"><p>Get as serialized data</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Span&lt;byte&gt; GetBytes(in Span&lt;byte&gt; buffer)</code></pre>
+    <pre><code class="lang-csharp hljs">public int GetBytes(in Span&lt;byte&gt; buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1009,27 +1237,27 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
-        <td><p>Buffer</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>Number of bytes written to the buffer</p>
 </td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_Parse_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.Parse(System.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_Parse_System_ReadOnlySpan_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.Parse(System.ReadOnlySpan%7BSystem.Char%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L427">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L497">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_Parse_" data-uid="wan24.Core.Hsb.Parse*"></a>
-  <h4 id="wan24_Core_Hsb_Parse_System_String__" data-uid="wan24.Core.Hsb.Parse(System.String@)">Parse(in string)</h4>
-  <div class="markdown level1 summary"><p>Parse from a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
+  <h4 id="wan24_Core_Hsb_Parse_System_ReadOnlySpan_System_Char___" data-uid="wan24.Core.Hsb.Parse(System.ReadOnlySpan{System.Char}@)">Parse(in ReadOnlySpan&lt;char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Parse from a string</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Hsb Parse(in string str)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Hsb Parse(in ReadOnlySpan&lt;char&gt; str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1042,7 +1270,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
         <td><span class="parametername">str</span></td>
         <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
 </td>
@@ -1060,7 +1288,57 @@
     <tbody>
       <tr>
         <td><a class="xref" href="wan24.Core.Hsb.html">Hsb</a></td>
-        <td><p><a class="xref" href="wan24.Core.Hsb.html">Hsb</a></p>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_ParseObject_System_ReadOnlySpan_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.ParseObject(System.ReadOnlySpan%7BSystem.Char%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L569">View Source</a>
+  </span>
+  <a id="wan24_Core_Hsb_ParseObject_" data-uid="wan24.Core.Hsb.ParseObject*"></a>
+  <h4 id="wan24_Core_Hsb_ParseObject_System_ReadOnlySpan_System_Char___" data-uid="wan24.Core.Hsb.ParseObject(System.ReadOnlySpan{System.Char}@)">ParseObject(in ReadOnlySpan&lt;char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Parse from a string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static object ParseObject(in ReadOnlySpan&lt;char&gt; str)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
+        <td><span class="parametername">str</span></td>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><p>Instance</p>
 </td>
       </tr>
     </tbody>
@@ -1070,7 +1348,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_ToRgbA.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.ToRgbA%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L232">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L242">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_ToRgbA_" data-uid="wan24.Core.Hsb.ToRgbA*"></a>
   <h4 id="wan24_Core_Hsb_ToRgbA" data-uid="wan24.Core.Hsb.ToRgbA">ToRgbA()</h4>
@@ -1102,7 +1380,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_ToString.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.ToString%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L297">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L307">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_ToString_" data-uid="wan24.Core.Hsb.ToString*"></a>
   <h4 id="wan24_Core_Hsb_ToString" data-uid="wan24.Core.Hsb.ToString">ToString()</h4>
@@ -1133,19 +1411,19 @@
   <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.tostring">ValueType.ToString()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_TryParse_System_String__wan24_Core_Hsb__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.TryParse(System.String%40%2Cwan24.Core.Hsb%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_TryDeserializeFrom_System_ReadOnlySpan_System_Byte___System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.TryDeserializeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40%2CSystem.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L447">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L436">View Source</a>
   </span>
-  <a id="wan24_Core_Hsb_TryParse_" data-uid="wan24.Core.Hsb.TryParse*"></a>
-  <h4 id="wan24_Core_Hsb_TryParse_System_String__wan24_Core_Hsb__" data-uid="wan24.Core.Hsb.TryParse(System.String@,wan24.Core.Hsb@)">TryParse(in string, out Hsb)</h4>
-  <div class="markdown level1 summary"><p>Parse from a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
+  <a id="wan24_Core_Hsb_TryDeserializeFrom_" data-uid="wan24.Core.Hsb.TryDeserializeFrom*"></a>
+  <h4 id="wan24_Core_Hsb_TryDeserializeFrom_System_ReadOnlySpan_System_Byte___System_Object__" data-uid="wan24.Core.Hsb.TryDeserializeFrom(System.ReadOnlySpan{System.Byte}@,System.Object@)">TryDeserializeFrom(in ReadOnlySpan&lt;byte&gt;, out object?)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool TryParse(in string str, out Hsb result)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool TryDeserializeFrom(in ReadOnlySpan&lt;byte&gt; buffer, out object? result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1158,7 +1436,119 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If succeed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_TryDeserializeTypeFrom_System_ReadOnlySpan_System_Byte___wan24_Core_Hsb__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.TryDeserializeTypeFrom(System.ReadOnlySpan%7BSystem.Byte%7D%40%2Cwan24.Core.Hsb%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L468">View Source</a>
+  </span>
+  <a id="wan24_Core_Hsb_TryDeserializeTypeFrom_" data-uid="wan24.Core.Hsb.TryDeserializeTypeFrom*"></a>
+  <h4 id="wan24_Core_Hsb_TryDeserializeTypeFrom_System_ReadOnlySpan_System_Byte___wan24_Core_Hsb__" data-uid="wan24.Core.Hsb.TryDeserializeTypeFrom(System.ReadOnlySpan{System.Byte}@,wan24.Core.Hsb@)">TryDeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt;, out Hsb)</h4>
+  <div class="markdown level1 summary"><p>Deserialize from previously serialized data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryDeserializeTypeFrom(in ReadOnlySpan&lt;byte&gt; buffer, out Hsb result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Hsb.html">Hsb</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If succeed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_TryParse_System_ReadOnlySpan_System_Char___wan24_Core_Hsb__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.TryParse(System.ReadOnlySpan%7BSystem.Char%7D%40%2Cwan24.Core.Hsb%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L515">View Source</a>
+  </span>
+  <a id="wan24_Core_Hsb_TryParse_" data-uid="wan24.Core.Hsb.TryParse*"></a>
+  <h4 id="wan24_Core_Hsb_TryParse_System_ReadOnlySpan_System_Char___wan24_Core_Hsb__" data-uid="wan24.Core.Hsb.TryParse(System.ReadOnlySpan{System.Char}@,wan24.Core.Hsb@)">TryParse(in ReadOnlySpan&lt;char&gt;, out Hsb)</h4>
+  <div class="markdown level1 summary"><p>Try parsing from a string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryParse(in ReadOnlySpan&lt;char&gt; str, out Hsb result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
         <td><span class="parametername">str</span></td>
         <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
 </td>
@@ -1189,10 +1579,66 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_TryParseObject_System_ReadOnlySpan_System_Char___System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.TryParseObject(System.ReadOnlySpan%7BSystem.Char%7D%40%2CSystem.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L572">View Source</a>
+  </span>
+  <a id="wan24_Core_Hsb_TryParseObject_" data-uid="wan24.Core.Hsb.TryParseObject*"></a>
+  <h4 id="wan24_Core_Hsb_TryParseObject_System_ReadOnlySpan_System_Char___System_Object__" data-uid="wan24.Core.Hsb.TryParseObject(System.ReadOnlySpan{System.Char}@,System.Object@)">TryParseObject(in ReadOnlySpan&lt;char&gt;, out object?)</h4>
+  <div class="markdown level1 summary"><p>Try parsing from a string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryParseObject(in ReadOnlySpan&lt;char&gt; str, out object? result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
+        <td><span class="parametername">str</span></td>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Result</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If succeed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_WithAlpha_System_Single__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.WithAlpha(System.Single%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L185">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L202">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_WithAlpha_" data-uid="wan24.Core.Hsb.WithAlpha*"></a>
   <h4 id="wan24_Core_Hsb_WithAlpha_System_Single__" data-uid="wan24.Core.Hsb.WithAlpha(System.Single@)">WithAlpha(in float)</h4>
@@ -1242,7 +1688,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_WithBrightness_System_Single__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.WithBrightness(System.Single%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L163">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L180">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_WithBrightness_" data-uid="wan24.Core.Hsb.WithBrightness*"></a>
   <h4 id="wan24_Core_Hsb_WithBrightness_System_Single__" data-uid="wan24.Core.Hsb.WithBrightness(System.Single@)">WithBrightness(in float)</h4>
@@ -1292,7 +1738,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_WithHue_System_Single__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.WithHue(System.Single%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L119">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L136">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_WithHue_" data-uid="wan24.Core.Hsb.WithHue*"></a>
   <h4 id="wan24_Core_Hsb_WithHue_System_Single__" data-uid="wan24.Core.Hsb.WithHue(System.Single@)">WithHue(in float)</h4>
@@ -1342,7 +1788,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_WithSaturation_System_Single__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.WithSaturation(System.Single%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L141">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L158">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_WithSaturation_" data-uid="wan24.Core.Hsb.WithSaturation*"></a>
   <h4 id="wan24_Core_Hsb_WithSaturation_System_Single__" data-uid="wan24.Core.Hsb.WithSaturation(System.Single@)">WithSaturation(in float)</h4>
@@ -1394,7 +1840,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_op_Implicit_System_Byte_____wan24_Core_Hsb.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.op_Implicit(System.Byte%5B%5D%40)~wan24.Core.Hsb%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L316">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L326">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_op_Implicit_" data-uid="wan24.Core.Hsb.op_Implicit*"></a>
   <h4 id="wan24_Core_Hsb_op_Implicit_System_Byte_____wan24_Core_Hsb" data-uid="wan24.Core.Hsb.op_Implicit(System.Byte[]@)~wan24.Core.Hsb">implicit operator Hsb(in byte[])</h4>
@@ -1443,7 +1889,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_op_Implicit_System_Memory_System_Byte____wan24_Core_Hsb.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.op_Implicit(System.Memory%7BSystem.Byte%7D%40)~wan24.Core.Hsb%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L334">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L344">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_op_Implicit_" data-uid="wan24.Core.Hsb.op_Implicit*"></a>
   <h4 id="wan24_Core_Hsb_op_Implicit_System_Memory_System_Byte____wan24_Core_Hsb" data-uid="wan24.Core.Hsb.op_Implicit(System.Memory{System.Byte}@)~wan24.Core.Hsb">implicit operator Hsb(in Memory&lt;byte&gt;)</h4>
@@ -1492,7 +1938,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_op_Implicit_System_ReadOnlyMemory_System_Byte____wan24_Core_Hsb.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.op_Implicit(System.ReadOnlyMemory%7BSystem.Byte%7D%40)~wan24.Core.Hsb%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L340">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L350">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_op_Implicit_" data-uid="wan24.Core.Hsb.op_Implicit*"></a>
   <h4 id="wan24_Core_Hsb_op_Implicit_System_ReadOnlyMemory_System_Byte____wan24_Core_Hsb" data-uid="wan24.Core.Hsb.op_Implicit(System.ReadOnlyMemory{System.Byte}@)~wan24.Core.Hsb">implicit operator Hsb(in ReadOnlyMemory&lt;byte&gt;)</h4>
@@ -1541,7 +1987,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_op_Implicit_System_ReadOnlySpan_System_Byte____wan24_Core_Hsb.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.op_Implicit(System.ReadOnlySpan%7BSystem.Byte%7D%40)~wan24.Core.Hsb%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L328">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L338">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_op_Implicit_" data-uid="wan24.Core.Hsb.op_Implicit*"></a>
   <h4 id="wan24_Core_Hsb_op_Implicit_System_ReadOnlySpan_System_Byte____wan24_Core_Hsb" data-uid="wan24.Core.Hsb.op_Implicit(System.ReadOnlySpan{System.Byte}@)~wan24.Core.Hsb">implicit operator Hsb(in ReadOnlySpan&lt;byte&gt;)</h4>
@@ -1590,7 +2036,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_op_Implicit_System_Span_System_Byte____wan24_Core_Hsb.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.op_Implicit(System.Span%7BSystem.Byte%7D%40)~wan24.Core.Hsb%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L322">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L332">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_op_Implicit_" data-uid="wan24.Core.Hsb.op_Implicit*"></a>
   <h4 id="wan24_Core_Hsb_op_Implicit_System_Span_System_Byte____wan24_Core_Hsb" data-uid="wan24.Core.Hsb.op_Implicit(System.Span{System.Byte}@)~wan24.Core.Hsb">implicit operator Hsb(in Span&lt;byte&gt;)</h4>
@@ -1639,7 +2085,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_op_Implicit_wan24_Core_Hsb___System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.op_Implicit(wan24.Core.Hsb%40)~System.Byte%5B%5D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L358">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L368">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_op_Implicit_" data-uid="wan24.Core.Hsb.op_Implicit*"></a>
   <h4 id="wan24_Core_Hsb_op_Implicit_wan24_Core_Hsb___System_Byte__" data-uid="wan24.Core.Hsb.op_Implicit(wan24.Core.Hsb@)~System.Byte[]">implicit operator byte[](in Hsb)</h4>
@@ -1688,7 +2134,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_op_Implicit_wan24_Core_Hsb___wan24_Core_Rgb.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.op_Implicit(wan24.Core.Hsb%40)~wan24.Core.Rgb%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L346">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L356">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_op_Implicit_" data-uid="wan24.Core.Hsb.op_Implicit*"></a>
   <h4 id="wan24_Core_Hsb_op_Implicit_wan24_Core_Hsb___wan24_Core_Rgb" data-uid="wan24.Core.Hsb.op_Implicit(wan24.Core.Hsb@)~wan24.Core.Rgb">implicit operator Rgb(in Hsb)</h4>
@@ -1737,7 +2183,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_op_Implicit_wan24_Core_Hsb___wan24_Core_RgbA.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.op_Implicit(wan24.Core.Hsb%40)~wan24.Core.RgbA%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L352">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L362">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_op_Implicit_" data-uid="wan24.Core.Hsb.op_Implicit*"></a>
   <h4 id="wan24_Core_Hsb_op_Implicit_wan24_Core_Hsb___wan24_Core_RgbA" data-uid="wan24.Core.Hsb.op_Implicit(wan24.Core.Hsb@)~wan24.Core.RgbA">implicit operator RgbA(in Hsb)</h4>
@@ -1786,7 +2232,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_op_Implicit_wan24_Core_Rgb___wan24_Core_Hsb.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.op_Implicit(wan24.Core.Rgb%40)~wan24.Core.Hsb%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L304">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L314">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_op_Implicit_" data-uid="wan24.Core.Hsb.op_Implicit*"></a>
   <h4 id="wan24_Core_Hsb_op_Implicit_wan24_Core_Rgb___wan24_Core_Hsb" data-uid="wan24.Core.Hsb.op_Implicit(wan24.Core.Rgb@)~wan24.Core.Hsb">implicit operator Hsb(in Rgb)</h4>
@@ -1835,7 +2281,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Hsb_op_Implicit_wan24_Core_RgbA___wan24_Core_Hsb.md&amp;value=---%0Auid%3A%20wan24.Core.Hsb.op_Implicit(wan24.Core.RgbA%40)~wan24.Core.Hsb%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L310">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Hsb.cs/#L320">View Source</a>
   </span>
   <a id="wan24_Core_Hsb_op_Implicit_" data-uid="wan24.Core.Hsb.op_Implicit*"></a>
   <h4 id="wan24_Core_Hsb_op_Implicit_wan24_Core_RgbA___wan24_Core_Hsb" data-uid="wan24.Core.Hsb.op_Implicit(wan24.Core.RgbA@)~wan24.Core.Hsb">implicit operator Hsb(in RgbA)</h4>
@@ -1881,6 +2327,18 @@
   </table>
   <h3 id="implements">Implements</h3>
   <div>
+      <a class="xref" href="wan24.Core.ISerializeBinary-1.html">ISerializeBinary&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ISerializeBinary.html">ISerializeBinary</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ISerializeString-1.html">ISerializeString&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ISerializeString.html">ISerializeString</a>
+  </div>
+  <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable&lt;T&gt;</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
@@ -1895,6 +2353,63 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(object, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectTo_System_Object_System_Object__">ObjectMappingExtensions.MapObjectTo(object, in object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectTo_System_Object_System_Type__">ObjectMappingExtensions.MapObjectTo(object, in Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectToAsync_System_Object_System_Object_System_Threading_CancellationToken_">ObjectMappingExtensions.MapObjectToAsync(object, object, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectToAsync_System_Object_System_Type_System_Threading_CancellationToken_">ObjectMappingExtensions.MapObjectToAsync(object, Type, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetValueReflected_System_Object_System_String_">ReflectionExtensions.GetValueReflected(object, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflected_System_Object_System_String_System_Object___">ReflectionExtensions.InvokeReflected(object, string, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflectedGeneric_System_Object_System_String_System_Type___System_Object___">ReflectionExtensions.InvokeReflectedGeneric(object, string, Type[], params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_Reflect_System_Object_System_Nullable_System_Reflection_BindingFlags__">ReflectionExtensions.Reflect(object, BindingFlags?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_SetValueReflected_System_Object_System_String_System_Object_">ReflectionExtensions.SetValueReflected(object, string, object?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_">StringValueConverter.ConvertObjectToString(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_System_String__">StringValueConverter.ConvertObjectToString(object, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertStructInstance_System_Object_">StringValueConverter.ConvertStructInstance(object?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_NamedStringConversion_System_Object_System_String__System_Type_">StringValueConverter.NamedStringConversion(object?, in string, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertStructInstance_System_Object_System_String__">StringValueConverter.TryConvertStructInstance(object?, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryNamedStringConversion_System_Object_System_String__System_Type_System_String__">StringValueConverter.TryNamedStringConversion(object?, in string, Type, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_">StructExtensions.GetMarshalBytes(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_System_Byte____">StructExtensions.GetMarshalBytes(object, in byte[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshaledSize_System_Object_">StructExtensions.GetMarshaledSize(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
@@ -1918,10 +2433,43 @@
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsDisposable__1___0_">ObjectExtensions.IsDisposable&lt;T&gt;(T)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsTask__1___0_">ObjectExtensions.IsTask&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsValueTask__1___0_">ObjectExtensions.IsValueTask&lt;T&gt;(T)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in int)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2___0_System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(tSource, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2___0___1_System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(tSource, tTarget, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2___0_">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(tSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2___0___1__">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(tSource, in tTarget)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertToString__1___0_System_String__">StringValueConverter.TryConvertToString&lt;T&gt;(T, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes__1___0_">StructExtensions.GetMarshalBytes&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes__1___0_System_Byte____">StructExtensions.GetMarshalBytes&lt;T&gt;(T, in byte[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshaledSize__1___0_">StructExtensions.GetMarshaledSize&lt;T&gt;(T)</a>
   </div>
 
 </article>

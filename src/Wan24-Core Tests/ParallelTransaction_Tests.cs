@@ -4,7 +4,7 @@ using wan24.Core;
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class ParallelTransaction_Tests
+    public class ParallelTransaction_Tests : TestBase
     {
         [TestMethod, Timeout(10000)]
         public async Task GeneralAsync_Tests()
@@ -25,7 +25,7 @@ namespace Wan24_Core_Tests
                 Assert.AreEqual(5, counter);
 
                 // Commit
-                transaction.Commit();
+                await transaction.CommitAsync();
                 Assert.IsTrue(transaction.IsCommitted);
                 Assert.AreEqual(0, transaction.ActionCount);
                 Assert.AreEqual(5, counter);

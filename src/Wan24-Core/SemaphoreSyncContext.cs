@@ -7,7 +7,7 @@ namespace wan24.Core
     /// <summary>
     /// Semaphore synchronization context (should be consumed within a method, not giving the structure away as a parameter, nor returning it to somewhere!)
     /// </summary>
-    [StructLayout(LayoutKind.Auto)]
+    [StructLayout(LayoutKind.Sequential)]
     public record struct SemaphoreSyncContext : IDisposable
     {
         /// <summary>

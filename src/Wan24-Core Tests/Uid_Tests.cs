@@ -3,7 +3,7 @@
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class Uid_Tests
+    public class Uid_Tests : TestBase
     {
         [TestMethod]
         public void General_Uid_Tests()

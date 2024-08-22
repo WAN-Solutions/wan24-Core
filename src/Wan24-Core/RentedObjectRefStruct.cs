@@ -7,7 +7,7 @@ namespace wan24.Core
     /// Rented object (returns the rented object to the pool when disposing)
     /// </summary>
     /// <typeparam name="T">Rented object type</typeparam>
-    [StructLayout(LayoutKind.Auto)]
+    [StructLayout(LayoutKind.Sequential)]
     public ref struct RentedObjectRefStruct<T> where T : struct
     {
         /// <summary>

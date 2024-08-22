@@ -55,6 +55,7 @@ namespace wan24.Core
                 yield return new(__("Log level"), Settings.LogLevel, __("Default log level"), "Core");
                 yield return new(__("Delayed processes"), DelayTable.Delays.Count, __("Number of delayed processes"), "Core");
                 yield return new(__("Exceptions"), ErrorHandling.ExceptionCount, __("Total number of exceptions"), "Core");
+                yield return new(__("Problems"), Problems.Count, __("Total number of collected problems"));
                 // Services
                 foreach (var kvp in ServiceWorkerTable.ServiceWorkers)
                     if (kvp.Value is IStatusProvider sp)
@@ -114,6 +115,10 @@ namespace wan24.Core
                         yield return new(__("Capacity"), kvp.Value.Capacity, __("Pool item capacity"), group);
                         yield return new(__("Available"), kvp.Value.Available, __("Number of currently available items"), group);
                     }
+                // In-memory caches
+                foreach (var kvp in InMemoryCacheTable.Caches)
+                    foreach (Status status in kvp.Value.State)
+                        yield return new(status.Name, status.State, status.Description, $"Core\\{__("In-memory caches")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName().CombineStatusGroupNames(status.Group)}");
                 // Object lock managers
                 foreach (var kvp in ObjectLockTable.ObjectLocks)
                     if (kvp.Value is IStatusProvider sp)
@@ -151,10 +156,14 @@ namespace wan24.Core
                 // Regular expressions
                 foreach (var kvp in RegularExpressions.NamedExpressions)
                     yield return new(kvp.Key, kvp.Value, __("Named regular expression"), __("Regular expressions"));
+                // Throttles
+                foreach (var kvp in ThrottleTable.Throttles)
+                    foreach (Status status in kvp.Value.State)
+                        yield return new(status.Name, status.State, status.Description, $"Core\\{__("Throttles")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName().CombineStatusGroupNames(status.Group)}");
                 // Other states
                 foreach (KeyValuePair<string, IEnumerable<Status>> kvp in Providers)
                     foreach (Status status in kvp.Value)
-                        yield return new(status.Name, status.State, status.Description, kvp.Key.CombineStatusGroupNames(status.Group));
+                        yield return new(status.Name, status.State, status.Description, kvp.Key.NormalizeStatusGroupName().CombineStatusGroupNames(status.Group));
             }
         }
 

@@ -114,6 +114,7 @@
       <div class="level4"><a class="xref" href="wan24.Core.BlockingBufferStream.html">BlockingBufferStream</a></div>
       <div class="level4"><a class="xref" href="wan24.Core.ChunkedStream.html">ChunkedStream</a></div>
       <div class="level4"><a class="xref" href="wan24.Core.CombinedStream.html">CombinedStream</a></div>
+      <div class="level4"><a class="xref" href="wan24.Core.DynamicHubStream.html">DynamicHubStream</a></div>
       <div class="level4"><a class="xref" href="wan24.Core.EnumerableStream.html">EnumerableStream</a></div>
       <div class="level4"><a class="xref" href="wan24.Core.HubStream.html">HubStream</a></div>
       <div class="level4"><a class="xref" href="wan24.Core.MemoryPoolStream.html">MemoryPoolStream</a></div>
@@ -318,7 +319,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L22">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L26">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase__ctor_" data-uid="wan24.Core.StreamBase.#ctor*"></a>
   <h4 id="wan24_Core_StreamBase__ctor" data-uid="wan24.Core.StreamBase.#ctor">StreamBase()</h4>
@@ -327,10 +328,40 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public StreamBase()</code></pre>
+    <pre><code class="lang-csharp hljs">protected StreamBase()</code></pre>
   </div>
   <h3 id="fields">Fields
 </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_StackInfo.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.StackInfo%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L21">View Source</a>
+  </span>
+  <h4 id="wan24_Core_StreamBase_StackInfo" data-uid="wan24.Core.StreamBase.StackInfo">StackInfo</h4>
+  <div class="markdown level1 summary"><p>Stack information</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly IStackInfo? StackInfo</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IStackInfo.html">IStackInfo</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_SyncObject.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.SyncObject%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
@@ -365,10 +396,41 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_CreateStackInfo.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.CreateStackInfo%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L34">View Source</a>
+  </span>
+  <a id="wan24_Core_StreamBase_CreateStackInfo_" data-uid="wan24.Core.StreamBase.CreateStackInfo*"></a>
+  <h4 id="wan24_Core_StreamBase_CreateStackInfo" data-uid="wan24.Core.StreamBase.CreateStackInfo">CreateStackInfo</h4>
+  <div class="markdown level1 summary"><p>Create a <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_StackInfo">StackInfo</a> for every instance?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool CreateStackInfo { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_IsClosed.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.IsClosed%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L28">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L40">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase_IsClosed_" data-uid="wan24.Core.StreamBase.IsClosed*"></a>
   <h4 id="wan24_Core_StreamBase_IsClosed" data-uid="wan24.Core.StreamBase.IsClosed">IsClosed</h4>
@@ -399,7 +461,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_IsDisposed.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.IsDisposed%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L31">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L43">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase_IsDisposed_" data-uid="wan24.Core.StreamBase.IsDisposed*"></a>
   <h4 id="wan24_Core_StreamBase_IsDisposed" data-uid="wan24.Core.StreamBase.IsDisposed">IsDisposed</h4>
@@ -430,7 +492,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_IsDisposing.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.IsDisposing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L34">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L46">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase_IsDisposing_" data-uid="wan24.Core.StreamBase.IsDisposing*"></a>
   <h4 id="wan24_Core_StreamBase_IsDisposing" data-uid="wan24.Core.StreamBase.IsDisposing">IsDisposing</h4>
@@ -461,7 +523,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_Name.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.Name%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L25">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L37">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase_Name_" data-uid="wan24.Core.StreamBase.Name*"></a>
   <h4 id="wan24_Core_StreamBase_Name" data-uid="wan24.Core.StreamBase.Name">Name</h4>
@@ -494,7 +556,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_Close.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.Close%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L37">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L49">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase_Close_" data-uid="wan24.Core.StreamBase.Close*"></a>
   <h4 id="wan24_Core_StreamBase_Close" data-uid="wan24.Core.StreamBase.Close">Close()</h4>
@@ -512,7 +574,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L56">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L68">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase_Dispose_" data-uid="wan24.Core.StreamBase.Dispose*"></a>
   <h4 id="wan24_Core_StreamBase_Dispose_System_Boolean_" data-uid="wan24.Core.StreamBase.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -548,7 +610,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_DisposeAsync.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.DisposeAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L44">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L56">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase_DisposeAsync_" data-uid="wan24.Core.StreamBase.DisposeAsync*"></a>
   <h4 id="wan24_Core_StreamBase_DisposeAsync" data-uid="wan24.Core.StreamBase.DisposeAsync">DisposeAsync()</h4>
@@ -582,7 +644,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L69">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L81">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase_DisposeCore_" data-uid="wan24.Core.StreamBase.DisposeCore*"></a>
   <h4 id="wan24_Core_StreamBase_DisposeCore" data-uid="wan24.Core.StreamBase.DisposeCore">DisposeCore()</h4>
@@ -612,7 +674,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_DoClose.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.DoClose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L75">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L87">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase_DoClose_" data-uid="wan24.Core.StreamBase.DoClose*"></a>
   <h4 id="wan24_Core_StreamBase_DoClose" data-uid="wan24.Core.StreamBase.DoClose">DoClose()</h4>
@@ -644,7 +706,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_EnsureReadable.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.EnsureReadable%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L236">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L248">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase_EnsureReadable_" data-uid="wan24.Core.StreamBase.EnsureReadable*"></a>
   <h4 id="wan24_Core_StreamBase_EnsureReadable" data-uid="wan24.Core.StreamBase.EnsureReadable">EnsureReadable()</h4>
@@ -677,7 +739,7 @@ protected void EnsureReadable()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_EnsureSeekable.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.EnsureSeekable%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L214">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L226">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase_EnsureSeekable_" data-uid="wan24.Core.StreamBase.EnsureSeekable*"></a>
   <h4 id="wan24_Core_StreamBase_EnsureSeekable" data-uid="wan24.Core.StreamBase.EnsureSeekable">EnsureSeekable()</h4>
@@ -710,7 +772,7 @@ protected void EnsureSeekable()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_EnsureUndisposed_System_Boolean__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.EnsureUndisposed(System.Boolean%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L148">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L160">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase_EnsureUndisposed_" data-uid="wan24.Core.StreamBase.EnsureUndisposed*"></a>
   <h4 id="wan24_Core_StreamBase_EnsureUndisposed_System_Boolean__System_Boolean__" data-uid="wan24.Core.StreamBase.EnsureUndisposed(System.Boolean@,System.Boolean@)">EnsureUndisposed(in bool, in bool)</h4>
@@ -767,7 +829,7 @@ protected bool EnsureUndisposed(in bool allowDisposing = false, in bool throwExc
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_EnsureWritable.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.EnsureWritable%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L225">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L237">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase_EnsureWritable_" data-uid="wan24.Core.StreamBase.EnsureWritable*"></a>
   <h4 id="wan24_Core_StreamBase_EnsureWritable" data-uid="wan24.Core.StreamBase.EnsureWritable">EnsureWritable()</h4>
@@ -800,7 +862,7 @@ protected void EnsureWritable()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_IfUndisposed_System_Action__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.IfUndisposed(System.Action%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L175">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L187">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase_IfUndisposed_" data-uid="wan24.Core.StreamBase.IfUndisposed*"></a>
   <h4 id="wan24_Core_StreamBase_IfUndisposed_System_Action__System_Boolean__" data-uid="wan24.Core.StreamBase.IfUndisposed(System.Action@,System.Boolean@)">IfUndisposed(in Action, in bool)</h4>
@@ -841,7 +903,7 @@ protected void IfUndisposed(in Action action, in bool allowDisposing = false)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_IfUndisposedNullable__1_System_Func___0___System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.IfUndisposedNullable%60%601(System.Func%7B%60%600%7D%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L203">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L215">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase_IfUndisposedNullable_" data-uid="wan24.Core.StreamBase.IfUndisposedNullable*"></a>
   <h4 id="wan24_Core_StreamBase_IfUndisposedNullable__1_System_Func___0___System_Boolean__" data-uid="wan24.Core.StreamBase.IfUndisposedNullable``1(System.Func{``0}@,System.Boolean@)">IfUndisposedNullable&lt;T&gt;(in Func&lt;T?&gt;, in bool)</h4>
@@ -914,7 +976,7 @@ protected T? IfUndisposedNullable&lt;T&gt;(in Func&lt;T?&gt; action, in bool all
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_IfUndisposed__1_System_Func___0___System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.IfUndisposed%60%601(System.Func%7B%60%600%7D%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L189">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L201">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase_IfUndisposed_" data-uid="wan24.Core.StreamBase.IfUndisposed*"></a>
   <h4 id="wan24_Core_StreamBase_IfUndisposed__1_System_Func___0___System_Boolean__" data-uid="wan24.Core.StreamBase.IfUndisposed``1(System.Func{``0}@,System.Boolean@)">IfUndisposed&lt;T&gt;(in Func&lt;T&gt;, in bool)</h4>
@@ -987,7 +1049,7 @@ protected T IfUndisposed&lt;T&gt;(in Func&lt;T&gt; action, in bool allowDisposin
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_IfUndisposed__1___0__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.IfUndisposed%60%601(%60%600%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L163">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L175">View Source</a>
   </span>
   <a id="wan24_Core_StreamBase_IfUndisposed_" data-uid="wan24.Core.StreamBase.IfUndisposed*"></a>
   <h4 id="wan24_Core_StreamBase_IfUndisposed__1___0__System_Boolean__" data-uid="wan24.Core.StreamBase.IfUndisposed``1(``0@,System.Boolean@)">IfUndisposed&lt;T&gt;(in T, in bool)</h4>
@@ -1062,7 +1124,7 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_OnDisposed.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.OnDisposed%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L247">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L259">View Source</a>
   </span>
   <h4 id="wan24_Core_StreamBase_OnDisposed" data-uid="wan24.Core.StreamBase.OnDisposed">OnDisposed</h4>
   <div class="markdown level1 summary"><p>Raised when disposed</p>
@@ -1092,7 +1154,7 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StreamBase_OnDisposing.md&amp;value=---%0Auid%3A%20wan24.Core.StreamBase.OnDisposing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L244">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StreamBase.cs/#L256">View Source</a>
   </span>
   <h4 id="wan24_Core_StreamBase_OnDisposing" data-uid="wan24.Core.StreamBase.OnDisposing">OnDisposing</h4>
   <div class="markdown level1 summary"><p>Raised when disposing</p>
@@ -1171,6 +1233,18 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
       <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_GetRemainingBytes_System_IO_Stream_">StreamExtensions.GetRemainingBytes(Stream)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_Read_System_IO_Stream_System_Int32__">StreamExtensions.Read(Stream, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_ReadAsync_System_IO_Stream_System_Int32_System_Threading_CancellationToken_">StreamExtensions.ReadAsync(Stream, int, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_ReadExactly_System_IO_Stream_System_Int32__">StreamExtensions.ReadExactly(Stream, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_ReadExactlyAsync_System_IO_Stream_System_Int32_System_Threading_CancellationToken_">StreamExtensions.ReadExactlyAsync(Stream, int, CancellationToken)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_WriteRandom_System_IO_Stream_System_Int64__">StreamExtensions.WriteRandom(Stream, in long)</a>
   </div>
   <div>
@@ -1195,6 +1269,63 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(object, params object?[])</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectTo_System_Object_System_Object__">ObjectMappingExtensions.MapObjectTo(object, in object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectTo_System_Object_System_Type__">ObjectMappingExtensions.MapObjectTo(object, in Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectToAsync_System_Object_System_Object_System_Threading_CancellationToken_">ObjectMappingExtensions.MapObjectToAsync(object, object, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectToAsync_System_Object_System_Type_System_Threading_CancellationToken_">ObjectMappingExtensions.MapObjectToAsync(object, Type, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetValueReflected_System_Object_System_String_">ReflectionExtensions.GetValueReflected(object, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflected_System_Object_System_String_System_Object___">ReflectionExtensions.InvokeReflected(object, string, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflectedGeneric_System_Object_System_String_System_Type___System_Object___">ReflectionExtensions.InvokeReflectedGeneric(object, string, Type[], params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_Reflect_System_Object_System_Nullable_System_Reflection_BindingFlags__">ReflectionExtensions.Reflect(object, BindingFlags?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_SetValueReflected_System_Object_System_String_System_Object_">ReflectionExtensions.SetValueReflected(object, string, object?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_">StringValueConverter.ConvertObjectToString(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_System_String__">StringValueConverter.ConvertObjectToString(object, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertStructInstance_System_Object_">StringValueConverter.ConvertStructInstance(object?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_NamedStringConversion_System_Object_System_String__System_Type_">StringValueConverter.NamedStringConversion(object?, in string, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertStructInstance_System_Object_System_String__">StringValueConverter.TryConvertStructInstance(object?, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryNamedStringConversion_System_Object_System_String__System_Type_System_String__">StringValueConverter.TryNamedStringConversion(object?, in string, Type, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_">StructExtensions.GetMarshalBytes(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_System_Byte____">StructExtensions.GetMarshalBytes(object, in byte[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshaledSize_System_Object_">StructExtensions.GetMarshaledSize(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
@@ -1216,10 +1347,34 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsDisposable__1___0_">ObjectExtensions.IsDisposable&lt;T&gt;(T)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsTask__1___0_">ObjectExtensions.IsTask&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsValueTask__1___0_">ObjectExtensions.IsValueTask&lt;T&gt;(T)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in int)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2___0_System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(tSource, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2___0___1_System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(tSource, tTarget, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2___0_">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(tSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2___0___1__">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(tSource, in tTarget)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertToString__1___0_System_String__">StringValueConverter.TryConvertToString&lt;T&gt;(T, out string?)</a>
   </div>
 
 </article>

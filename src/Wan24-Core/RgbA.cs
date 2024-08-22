@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
@@ -8,7 +8,7 @@ namespace wan24.Core
     /// RGB with alpha
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public readonly record struct RgbA
+    public readonly record struct RgbA : ISerializeBinary<RgbA>, ISerializeString<RgbA>
     {
         /// <summary>
         /// Structure size in bytes
@@ -88,6 +88,18 @@ namespace wan24.Core
             if (Alpha < 0 || Alpha > 1) throw new ArgumentException("Invalid alpha", nameof(rgb));
         }
 
+        /// <inheritdoc/>
+        public static int? MaxStructureSize => BINARY_SIZE;
+
+        /// <inheritdoc/>
+        public static int? MaxStringSize => byte.MaxValue;
+
+        /// <inheritdoc/>
+        public int? StructureSize => BINARY_SIZE;
+
+        /// <inheritdoc/>
+        public int? StringSize => null;
+
         /// <summary>
         /// Mix with another color
         /// </summary>
@@ -102,10 +114,7 @@ namespace wan24.Core
         /// <returns>Mixed color</returns>
         public RgbA Mix(in Rgb other) => new(RGB.Mix(other), Alpha);
 
-        /// <summary>
-        /// Get the bytes of this RGB value
-        /// </summary>
-        /// <returns>RGB bytes</returns>
+        /// <inheritdoc/>
         public byte[] GetBytes()
         {
             byte[] res = new byte[BINARY_SIZE];
@@ -113,16 +122,13 @@ namespace wan24.Core
             return res;
         }
 
-        /// <summary>
-        /// Get the bytes of this RGB value
-        /// </summary>
-        /// <returns>RGB bytes</returns>
-        public Span<byte> GetBytes(in Span<byte> buffer)
+        /// <inheritdoc/>
+        public int GetBytes(in Span<byte> buffer)
         {
             if (buffer.Length < BINARY_SIZE) throw new ArgumentOutOfRangeException(nameof(buffer));
             RGB.GetBytes(buffer);
             Alpha.GetBytes(buffer[Rgb.BINARY_SIZE..]);
-            return buffer;
+            return BINARY_SIZE;
         }
 
         /// <summary>
@@ -189,60 +195,6 @@ namespace wan24.Core
         public static implicit operator RgbA(in ReadOnlyMemory<byte> rgb) => new(rgb.Span);
 
         /// <summary>
-        /// Parse from a string
-        /// </summary>
-        /// <param name="str">String</param>
-        /// <returns><see cref="RgbA"/></returns>
-        public static RgbA Parse(in string str)
-        {
-            string[] rgb = str.Split(',', 4);
-            return new(new Rgb(int.Parse(rgb[0]), int.Parse(rgb[1]), int.Parse(rgb[2])), float.Parse(rgb[3].Replace('.', ',')));
-        }
-
-        /// <summary>
-        /// Try parsing from a string
-        /// </summary>
-        /// <param name="str">String</param>
-        /// <param name="result"><see cref="RgbA"/></param>
-        /// <returns>If succeed</returns>
-        public static bool TryParse(in string str, out RgbA result)
-        {
-            string[] rgb = str.Split(',', 3);
-            if (rgb.Length != 4)
-            {
-                if (Logging.Debug) Logging.WriteDebug("String parsing failed: Invalid string format");
-                result = default;
-                return false;
-            }
-            if (!int.TryParse(rgb[0], out int r) || r > byte.MaxValue)
-            {
-                if (Logging.Debug) Logging.WriteDebug("String parsing failed: Invalid RGBA red value");
-                result = default;
-                return false;
-            }
-            if (!int.TryParse(rgb[1], out int g) || g > byte.MaxValue)
-            {
-                if (Logging.Debug) Logging.WriteDebug("String parsing failed: Invalid RGBA green value");
-                result = default;
-                return false;
-            }
-            if (!int.TryParse(rgb[2], out int b) || b > byte.MaxValue)
-            {
-                if (Logging.Debug) Logging.WriteDebug("String parsing failed: Invalid RGBA blue value");
-                result = default;
-                return false;
-            }
-            if (!float.TryParse(rgb[3].Replace('.', ','), out float a) || a > 1)
-            {
-                if (Logging.Debug) Logging.WriteDebug("String parsing failed: Invalid RGBA alpha value");
-                result = default;
-                return false;
-            }
-            result = new(new Rgb(r, g, b), a);
-            return true;
-        }
-
-        /// <summary>
         /// Parse a CSS RGBA color string (<c>rgba</c>)
         /// </summary>
         /// <param name="css">CSS RGBA color string</param>
@@ -287,7 +239,7 @@ namespace wan24.Core
                 result = default;
                 return false;
             }
-            if (!float.TryParse(rgb[3].Replace('.',','), out float a) || a > 1)
+            if (!float.TryParse(rgb[3].Replace('.', ','), out float a) || a > 1)
             {
                 if (Logging.Debug) Logging.WriteDebug("CSS RGBA string parsing failed: Invalid CSS RGBA alpha value");
                 result = default;
@@ -295,6 +247,112 @@ namespace wan24.Core
             }
             result = new(new Rgb(r, g, b), a);
             return true;
+        }
+
+        /// <inheritdoc/>
+        public static object DeserializeFrom(in ReadOnlySpan<byte> buffer) => new RgbA(buffer);
+
+        /// <inheritdoc/>
+        public static bool TryDeserializeFrom(in ReadOnlySpan<byte> buffer, [NotNullWhen(true)] out object? result)
+        {
+            try
+            {
+                if (buffer.Length < BINARY_SIZE)
+                {
+                    result = null;
+                    return false;
+                }
+                Rgb rgb = buffer;
+                float alpha = buffer[Rgb.BINARY_SIZE..].ToFloat();
+                if (alpha < 0 || alpha > 1)
+                {
+                    result = null;
+                    return false;
+                }
+                result = new RgbA(rgb, alpha);
+                return true;
+            }
+            catch
+            {
+                result = null;
+                return false;
+            }
+        }
+
+        /// <inheritdoc/>
+        public static RgbA DeserializeTypeFrom(in ReadOnlySpan<byte> buffer) => new(buffer);
+
+        /// <inheritdoc/>
+        public static bool TryDeserializeTypeFrom(in ReadOnlySpan<byte> buffer, [NotNullWhen(true)] out RgbA result)
+        {
+            try
+            {
+                if (buffer.Length < BINARY_SIZE)
+                {
+                    result = default;
+                    return false;
+                }
+                Rgb rgb = buffer;
+                float alpha = buffer[Rgb.BINARY_SIZE..].ToFloat();
+                if (alpha < 0 || alpha > 1)
+                {
+                    result = default;
+                    return false;
+                }
+                result = new RgbA(rgb, alpha);
+                return true;
+            }
+            catch
+            {
+                result = default;
+                return false;
+            }
+        }
+
+        /// <inheritdoc/>
+        public static RgbA Parse(in ReadOnlySpan<char> str)
+        {
+            int index = str.LastIndexOf(',');
+            if (index < 0) throw new InvalidDataException("Invalid string format");
+            return new(Rgb.Parse(str[..index]), float.Parse(new string(str[(index + 1)..]).Replace('.', ',')));
+        }
+
+        /// <inheritdoc/>
+        public static bool TryParse(in ReadOnlySpan<char> str, [NotNullWhen(returnValue: true)] out RgbA result)
+        {
+            int index = str.LastIndexOf(',');
+            if (index < 0)
+            {
+                if (Logging.Debug) Logging.WriteDebug("String parsing failed: Invalid string format");
+                result = default;
+                return false;
+            }
+            if (!Rgb.TryParse(str[..index], out Rgb rgb))
+            {
+                result = default;
+                return false;
+            }
+            if (!float.TryParse(new string(str[(index + 1)..]).Replace('.', ','), out float a) || a > 1)
+            {
+                if (Logging.Debug) Logging.WriteDebug("String parsing failed: Invalid RGBA alpha value");
+                result = default;
+                return false;
+            }
+            result = new(rgb, a);
+            return true;
+        }
+
+        /// <inheritdoc/>
+        public static object ParseObject(in ReadOnlySpan<char> str) => Parse(str);
+
+        /// <inheritdoc/>
+        public static bool TryParseObject(in ReadOnlySpan<char> str, [NotNullWhen(returnValue: true)] out object? result)
+        {
+            bool res;
+            result = (res = TryParse(str, out RgbA rgba))
+                ? rgba
+                : default(RgbA?);
+            return res;
         }
     }
 }

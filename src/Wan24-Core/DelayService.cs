@@ -50,8 +50,8 @@
                         catch(Exception ex2)
                         {
                             ErrorHandling.Handle(new("Delay service failed to complete a delay with a failure", ex2, ErrorHandling.DELAYED_SERVICE_ERROR));
+                            await delay.DisposeAsync().DynamicContext();
                         }
-                        await delay.DisposeAsync().DynamicContext();
                     }
                 }
                 else

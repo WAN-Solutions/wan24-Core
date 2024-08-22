@@ -51,7 +51,12 @@ namespace wan24.Core
     /// Base class for an enumeration
     /// </summary>
     /// <typeparam name="T">Final type (should be sealed with a private constructor!)</typeparam>
-    public abstract class EnumerationBase<T> : EnumerationBase, IComparable<T>, IEquatable<T> where T : EnumerationBase<T>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="value">Numeric value</param>
+    /// <param name="name">Name</param>
+    public abstract class EnumerationBase<T>(in int value, in string name) : EnumerationBase(value, name), IComparable<T>, IEquatable<T> where T : EnumerationBase<T>
     {
         /// <summary>
         /// All values
@@ -78,13 +83,6 @@ namespace wan24.Core
             if (!typeof(T).IsSealed) throw new InvalidProgramException($"{typeof(T)} must be sealed");
             if (typeof(T).GetConstructorsCached(BindingFlags.Public).Length != 0) throw new InvalidProgramException($"{typeof(T)} must use private construction");
         }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="value">Numeric value</param>
-        /// <param name="name">Name</param>
-        protected EnumerationBase(in int value, in string name) : base(value, name) { }
 
         /// <summary>
         /// All values
@@ -254,11 +252,12 @@ namespace wan24.Core
         {
             List<T> allValues = [];
             T value;
-            foreach(FieldInfo fi in from fi in typeof(T).GetFieldsCached(BindingFlags.Static | BindingFlags.Public)
-                                    where fi.FieldType == typeof(T)
+            foreach(FieldInfoExt fi in from fi in typeof(T).GetFieldsCached(BindingFlags.Static | BindingFlags.Public)
+                                    where fi.FieldType == typeof(T) && 
+                                        fi.Getter is not null
                                     select fi)
             {
-                value = fi.GetValue(obj: null) as T ?? throw new InvalidProgramException($"{typeof(T)}.{fi.Name} value is NULL");
+                value = fi.Getter!(null) as T ?? throw new InvalidProgramException($"{typeof(T)}.{fi.Name} value is NULL");
                 if (value.Name != fi.Name) throw new InvalidProgramException($"Field {typeof(T)}.{fi.Name} enumeration value name mismatch");
                 allValues.Add(value);
             }

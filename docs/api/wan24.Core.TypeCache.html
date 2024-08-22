@@ -139,38 +139,6 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static class TypeCache</code></pre>
   </div>
-  <h3 id="fields">Fields
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_TypeCache_Types.md&amp;value=---%0Auid%3A%20wan24.Core.TypeCache.Types%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TypeCache.cs/#L13">View Source</a>
-  </span>
-  <h4 id="wan24_Core_TypeCache_Types" data-uid="wan24.Core.TypeCache.Types">Types</h4>
-  <div class="markdown level1 summary"><p>Type cache (key is the types hash code)</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly ConcurrentDictionary&lt;int, Type&gt; Types</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
@@ -178,11 +146,11 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_TypeCache_Add_System_Type___.md&amp;value=---%0Auid%3A%20wan24.Core.TypeCache.Add(System.Type%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TypeCache.cs/#L19">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TypeCache.cs/#L50">View Source</a>
   </span>
   <a id="wan24_Core_TypeCache_Add_" data-uid="wan24.Core.TypeCache.Add*"></a>
   <h4 id="wan24_Core_TypeCache_Add_System_Type___" data-uid="wan24.Core.TypeCache.Add(System.Type[])">Add(params Type[])</h4>
-  <div class="markdown level1 summary"><p>Add types to the <a class="xref" href="wan24.Core.TypeCache.html#wan24_Core_TypeCache_Types">Types</a> cache</p>
+  <div class="markdown level1 summary"><p>Add types to the <a class="xref" href="wan24.Core.TypeCache.html#wan24_Core_TypeCache_Types">Types</a> and the <a class="xref" href="wan24.Core.TypeCache.html#wan24_Core_TypeCache_TypeNames">TypeNames</a> cache</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -203,6 +171,155 @@
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>[]</td>
         <td><span class="parametername">types</span></td>
         <td><p>Types</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_TypeCache_Contains_System_Type__.md&amp;value=---%0Auid%3A%20wan24.Core.TypeCache.Contains(System.Type%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TypeCache.cs/#L64">View Source</a>
+  </span>
+  <a id="wan24_Core_TypeCache_Contains_" data-uid="wan24.Core.TypeCache.Contains*"></a>
+  <h4 id="wan24_Core_TypeCache_Contains_System_Type__" data-uid="wan24.Core.TypeCache.Contains(System.Type@)">Contains(in Type)</h4>
+  <div class="markdown level1 summary"><p>Determine if a type was cached</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool Contains(in Type type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_TypeCache_GetTypeByHashCode_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.TypeCache.GetTypeByHashCode(System.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TypeCache.cs/#L71">View Source</a>
+  </span>
+  <a id="wan24_Core_TypeCache_GetTypeByHashCode_" data-uid="wan24.Core.TypeCache.GetTypeByHashCode*"></a>
+  <h4 id="wan24_Core_TypeCache_GetTypeByHashCode_System_Int32__" data-uid="wan24.Core.TypeCache.GetTypeByHashCode(System.Int32@)">GetTypeByHashCode(in int)</h4>
+  <div class="markdown level1 summary"><p>Get a cached type by its hash code (see <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gethashcode">GetHashCode()</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Type? GetTypeByHashCode(in int hashCode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">hashCode</span></td>
+        <td><p>Hash code (see <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gethashcode">GetHashCode()</a>)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><p>Type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_TypeCache_GetTypeByNameHashCode_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.TypeCache.GetTypeByNameHashCode(System.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/TypeCache.cs/#L78">View Source</a>
+  </span>
+  <a id="wan24_Core_TypeCache_GetTypeByNameHashCode_" data-uid="wan24.Core.TypeCache.GetTypeByNameHashCode*"></a>
+  <h4 id="wan24_Core_TypeCache_GetTypeByNameHashCode_System_Int32__" data-uid="wan24.Core.TypeCache.GetTypeByNameHashCode(System.Int32@)">GetTypeByNameHashCode(in int)</h4>
+  <div class="markdown level1 summary"><p>Get a cached type by its hash code (see <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.tostring">ToString()</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Type? GetTypeByNameHashCode(in int hashCode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">hashCode</span></td>
+        <td><p>Name hash code (see <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.tostring">ToString()</a>)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><p>Type</p>
 </td>
       </tr>
     </tbody>

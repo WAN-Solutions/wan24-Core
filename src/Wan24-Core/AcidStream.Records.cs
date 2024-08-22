@@ -21,35 +21,28 @@
         /// <summary>
         /// Base class for a backup record
         /// </summary>
-        public abstract class BackupRecordBase
+        /// <remarks>
+        /// Constructor
+        /// </remarks>
+        /// <param name="offset">Backup stream byte offset</param>
+        /// <param name="type">Record type</param>
+        /// <param name="time">Timestamp</param>
+        public abstract class BackupRecordBase(long offset, AcidStream<T>.IoTypes type, DateTime time)
         {
-            /// <summary>
-            /// Constructor
-            /// </summary>
-            /// <param name="offset">Backup stream byte offset</param>
-            /// <param name="type">Record type</param>
-            /// <param name="time">Timestamp</param>
-            protected BackupRecordBase(long offset, IoTypes type, DateTime time)
-            {
-                Offset = offset;
-                Type = type;
-                Time = time;
-            }
-
             /// <summary>
             /// Backup stream byte offset
             /// </summary>
-            public long Offset { get; }
+            public long Offset { get; } = offset;
 
             /// <summary>
             /// Record type
             /// </summary>
-            public IoTypes Type { get; }
+            public IoTypes Type { get; } = type;
 
             /// <summary>
             /// Timestamp
             /// </summary>
-            public DateTime Time { get; }
+            public DateTime Time { get; } = time;
         }
 
         /// <summary>

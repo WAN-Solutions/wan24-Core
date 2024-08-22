@@ -307,6 +307,66 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Read a number of bytes
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="count">Number of bytes to read</param>
+        /// <returns>Red bytes</returns>
+        public static byte[] Read(this Stream stream, in int count)
+        {
+            using RentedArray<byte> buffer = new(count, clean: false);
+            int red = stream.Read(buffer.Span);
+            if (red < 1) return [];
+            byte[] res = new byte[red];
+            buffer.Span[..red].CopyTo(res);
+            return res;
+        }
+
+        /// <summary>
+        /// Read a number of bytes
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="count">Number of bytes to read</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Red bytes</returns>
+        public static async Task<byte[]> ReadAsync(this Stream stream, int count, CancellationToken cancellationToken = default)
+        {
+            using RentedArray<byte> buffer = new(count, clean: false);
+            int red = await stream.ReadAsync(buffer.Memory, cancellationToken).DynamicContext();
+            if (red < 1) return [];
+            byte[] res = new byte[red];
+            buffer.Span[..red].CopyTo(res);
+            return res;
+        }
+
+        /// <summary>
+        /// Read an exact number of bytes
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="count">Number of bytes to read</param>
+        /// <returns>Red bytes</returns>
+        public static byte[] ReadExactly(this Stream stream, in int count)
+        {
+            byte[] res = new byte[count];
+            stream.ReadExactly(res);
+            return res;
+        }
+
+        /// <summary>
+        /// Read an exact number of bytes
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="count">Number of bytes to read</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Red bytes</returns>
+        public static async Task<byte[]> ReadExactlyAsync(this Stream stream, int count, CancellationToken cancellationToken = default)
+        {
+            byte[] res = new byte[count];
+            await stream.ReadExactlyAsync(res, cancellationToken).DynamicContext();
+            return res;
+        }
+
+        /// <summary>
         /// Create stream chunks
         /// </summary>
         /// <param name="stream">Stream (will be chunked from position <c>0</c>)</param>

@@ -16,17 +16,17 @@ namespace wan24.Core
         /// <summary>
         /// String
         /// </summary>
-        public string String { get; init; } = null!;
+        public required string String { get; init; }
 
         /// <summary>
         /// Regular expression to parse a string (<c>$1</c> is the whole placeholder, <c>$2</c> the inner variable declaration)
         /// </summary>
-        public Regex Rx { get; set; } = null!;
+        public required Regex Rx { get; set; }
 
         /// <summary>
-        /// Regular expression content group
+        /// Regular expression content group (2 per default)
         /// </summary>
-        public int RxGroup { get; set; }
+        public required int RxGroup { get; set; }
 
         /// <summary>
         /// Current value
@@ -36,37 +36,37 @@ namespace wan24.Core
         /// <summary>
         /// Matches
         /// </summary>
-        public MatchCollection Matches { get; init; } = null!;
+        public required MatchCollection Matches { get; init; } = null!;
 
         /// <summary>
         /// Current match
         /// </summary>
-        public Match M { get; init; } = null!;
+        public required Match M { get; init; } = null!;
 
         /// <summary>
         /// Parser data
         /// </summary>
-        public Dictionary<string, string> Data { get; init; } = null!;
+        public required Dictionary<string, string> Data { get; init; } = null!;
 
         /// <summary>
         /// Parsed data (key is the placeholder)
         /// </summary>
-        public Dictionary<string, string> Parsed { get; init; } = null!;
+        public required Dictionary<string, string> Parsed { get; init; } = null!;
 
         /// <summary>
         /// Current parser round (zero based)
         /// </summary>
-        public int Round { get; init; }
+        public required int Round { get; init; }
 
         /// <summary>
         /// Maximum number of parser rounds
         /// </summary>
-        public int MaxRounds { get; init; }
+        public required int MaxRounds { get; init; }
 
         /// <summary>
         /// Current match parts
         /// </summary>
-        public string[] Match { get; init; } = null!;
+        public required string[] Match { get; init; } = null!;
 
         /// <summary>
         /// Current function call match part index (zero based)
@@ -111,7 +111,7 @@ namespace wan24.Core
         /// <param name="key">Key (including <c>$</c> prefix!)</param>
         /// <param name="value">Value</param>
         /// <returns>Succeed?</returns>
-        public bool TryGetData(in string key, [NotNullWhen(true)] out string? value)
+        public bool TryGetData(in string key, [NotNullWhen(returnValue: true)] out string? value)
         {
             if (!key.StartsWith('$'))
             {
@@ -119,7 +119,7 @@ namespace wan24.Core
                 return true;
             }
             if (Data.TryGetValue(key[1..], out value)) return true;
-            Error = $"Unknown parser data key \"{key[1..]}\"";
+            Error = $"Unknown parser data key {key[1..].ToQuotedLiteral()}";
             return false;
         }
     }

@@ -55,7 +55,9 @@ namespace wan24.Core
                 yield return new(__("Object lock managers"), ObjectLockTable.ObjectLocks.Count, __("Number of registered object lock manager instances"));
                 yield return new(__("Active processes"), ProcessTable.Processing.Count, __("Number of active registered processes"));
                 yield return new(__("Delayed processes"), DelayTable.Delays.Count, __("Number of delayed processes"));
+                yield return new(__("Throttles"), ThrottleTable.Throttles.Count, __("Number of throttles"));
                 yield return new(__("Exceptions"), ErrorHandling.ExceptionCount, __("Total number of exceptions"));
+                yield return new(__("Problems"), Problems.Count, __("Total number of collected problems"));
                 if (!IncludeSummaries) yield break;
                 yield return new(__("Running services"), ServiceWorkerTable.ServiceWorkers.Values.Count(s => s.IsRunning), __("Number of running service workers"));
                 yield return new(__("Queued items"), ServiceWorkerTable.ServiceWorkers.Values.Sum(s => (long)(s is IQueueWorker qw ? qw.Queued : 0)), __("Number of enqueued items to be processed by service workers"));

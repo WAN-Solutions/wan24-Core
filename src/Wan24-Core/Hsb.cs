@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
@@ -6,7 +7,7 @@ namespace wan24.Core
     /// HSB
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public readonly record struct Hsb
+    public readonly record struct Hsb : ISerializeBinary<Hsb>, ISerializeString<Hsb>
     {
         /// <summary>
         /// Structure size in bytes
@@ -104,7 +105,23 @@ namespace wan24.Core
             Saturation = buffer[SATURATION_FIELD_BYTE_OFFSET..].ToFloat();
             Brightness = buffer[BRIGHTNESS_FIELD_BYTE_OFFSET..].ToFloat();
             Alpha = buffer[ALPHA_FIELD_BYTE_OFFSET..].ToFloat();
+            if (Hue < 0 || Hue > 1) throw new InvalidDataException("Invalid hue value");
+            if (Saturation < 0 || Saturation > 1) throw new InvalidDataException("Invalid saturation value");
+            if (Brightness < 0 || Brightness > 1) throw new InvalidDataException("Invalid brightness value");
+            if (Alpha < 0 || Alpha > 1) throw new InvalidDataException("Invalid alpha value");
         }
+
+        /// <inheritdoc/>
+        public static int? MaxStructureSize => BINARY_SIZE;
+
+        /// <inheritdoc/>
+        public static int? MaxStringSize => null;
+
+        /// <inheritdoc/>
+        public int? StructureSize => BINARY_SIZE;
+
+        /// <inheritdoc/>
+        public int? StringSize => null;
 
         /// <summary>
         /// Hue degree value
@@ -199,10 +216,7 @@ namespace wan24.Core
             return new(Hue, Saturation, Brightness, MathF.Min(1, MathF.Max(0, Alpha + alpha)));
         }
 
-        /// <summary>
-        /// Get bytes
-        /// </summary>
-        /// <returns>Bytes</returns>
+        /// <inheritdoc/>
         public byte[] GetBytes()
         {
             byte[] res = new byte[BINARY_SIZE];
@@ -210,19 +224,15 @@ namespace wan24.Core
             return res;
         }
 
-        /// <summary>
-        /// Get bytes
-        /// </summary>
-        /// <param name="buffer">Buffer</param>
-        /// <returns>Buffer</returns>
-        public Span<byte> GetBytes(in Span<byte> buffer)
+        /// <inheritdoc/>
+        public int GetBytes(in Span<byte> buffer)
         {
             if (buffer.Length < BINARY_SIZE) throw new ArgumentOutOfRangeException(nameof(buffer));
             Hue.GetBytes(buffer);
             Saturation.GetBytes(buffer[SATURATION_FIELD_BYTE_OFFSET..]);
             Brightness.GetBytes(buffer[BRIGHTNESS_FIELD_BYTE_OFFSET..]);
             Alpha.GetBytes(buffer[ALPHA_FIELD_BYTE_OFFSET..]);
-            return buffer;
+            return BINARY_SIZE;
         }
 
         /// <summary>
@@ -419,62 +429,128 @@ namespace wan24.Core
             return new(hue * (1f / 360), diff / max, max);
         }
 
-        /// <summary>
-        /// Parse from a <see cref="string"/>
-        /// </summary>
-        /// <param name="str"><see cref="string"/></param>
-        /// <returns><see cref="Hsb"/></returns>
-        public static Hsb Parse(in string str)
+        /// <inheritdoc/>
+        public static object DeserializeFrom(in ReadOnlySpan<byte> buffer) => new Hsb(buffer);
+
+        /// <inheritdoc/>
+        public static bool TryDeserializeFrom(in ReadOnlySpan<byte> buffer, [NotNullWhen(true)] out object? result)
         {
-            string[] hsba = str.Split(',');
-            if (hsba.Length < 3 || hsba.Length > 4) throw new ArgumentException("Invalid string format", nameof(str));
+            try
+            {
+                if (buffer.Length < BINARY_SIZE)
+                {
+                    result = null;
+                    return false;
+                }
+                float hue = buffer.ToFloat(),
+                    saturation = buffer[SATURATION_FIELD_BYTE_OFFSET..].ToFloat(),
+                    brightness = buffer[BRIGHTNESS_FIELD_BYTE_OFFSET..].ToFloat(),
+                    alpha = buffer[ALPHA_FIELD_BYTE_OFFSET..].ToFloat();
+                if (hue < 0 || hue > 1 || saturation < 0 || saturation > 1 || brightness < 0 || brightness > 1 || alpha < 0 || alpha > 1)
+                {
+                    result = null;
+                    return false;
+                }
+                result = new Hsb(hue, saturation, brightness, alpha);
+                return true;
+            }
+            catch
+            {
+                result = null;
+                return false;
+            }
+        }
+
+        /// <inheritdoc/>
+        public static Hsb DeserializeTypeFrom(in ReadOnlySpan<byte> buffer) => new(buffer);
+
+        /// <inheritdoc/>
+        public static bool TryDeserializeTypeFrom(in ReadOnlySpan<byte> buffer, [NotNullWhen(true)] out Hsb result)
+        {
+            try
+            {
+                if (buffer.Length < BINARY_SIZE)
+                {
+                    result = default;
+                    return false;
+                }
+                float hue = buffer.ToFloat(),
+                    saturation = buffer[SATURATION_FIELD_BYTE_OFFSET..].ToFloat(),
+                    brightness = buffer[BRIGHTNESS_FIELD_BYTE_OFFSET..].ToFloat(),
+                    alpha = buffer[ALPHA_FIELD_BYTE_OFFSET..].ToFloat();
+                if (hue < 0 || hue > 1 || saturation < 0 || saturation > 1 || brightness < 0 || brightness > 1 || alpha < 0 || alpha > 1)
+                {
+                    result = default;
+                    return false;
+                }
+                result = new Hsb(hue, saturation, brightness, alpha);
+                return true;
+            }
+            catch
+            {
+                result = default;
+                return false;
+            }
+        }
+
+        /// <inheritdoc/>
+        public static Hsb Parse(in ReadOnlySpan<char> str)
+        {
+            int index1 = str.IndexOf(',');
+            if (index1 < 0) throw new ArgumentException("Invalid string format", nameof(str));
+            int index2 = str[(index1 + 1)..].IndexOf(',');
+            if (index2 < 0) throw new ArgumentException("Invalid string format", nameof(str));
+            int index3 = str[(index1 + index2 + 2)..].IndexOf(',');
             return new(
-                float.Parse(hsba[0].Replace('.', ',')),
-                float.Parse(hsba[1].Replace('.', ',')),
-                float.Parse(hsba[2].Replace('.', ',')),
-                hsba.Length == 3
+                float.Parse(new string(str[..index1]).Replace('.', ',')),
+                float.Parse(new string(str.Slice(index1 + 1, index2)).Replace('.', ',')),
+                float.Parse(new string(index3 < 0 ? str[(index1 + index2 + 2)..] : str.Slice(index1 + index2 + 2, index3)).Replace('.', ',')),
+                index3 < 0
                     ? 1
-                    : float.Parse(hsba[3].Replace('.', ','))
+                    : float.Parse(new string(str[(index1 + index2 + index3 + 3)..]).Replace('.', ','))
                 );
         }
 
-        /// <summary>
-        /// Parse from a <see cref="string"/>
-        /// </summary>
-        /// <param name="str"><see cref="string"/></param>
-        /// <param name="result">Result</param>
-        /// <returns>If succeed</returns>
-        public static bool TryParse(in string str, out Hsb result)
+        /// <inheritdoc/>
+        public static bool TryParse(in ReadOnlySpan<char> str, [NotNullWhen(returnValue: true)] out Hsb result)
         {
-            string[] hsba = str.Split(',');
-            if (hsba.Length < 3 || hsba.Length > 4)
+            int index1 = str.IndexOf(',');
+            if (index1 < 0)
             {
                 if (Logging.Debug) Logging.WriteDebug("Failed to parse HSB value: Invalid string format");
                 result = default;
                 return false;
             }
-            if (!float.TryParse(hsba[0].Replace('.', ','), out float h))
+            int index2 = str[(index1 + 1)..].IndexOf(',');
+            if (index2 < 0)
+            {
+                if (Logging.Debug) Logging.WriteDebug("Failed to parse HSB value: Invalid string format");
+                result = default;
+                return false;
+            }
+            int index3 = str[(index1 + index2 + 2)..].IndexOf(',');
+            if (!float.TryParse(new string(str[..index1]).Replace('.', ','), out float h))
             {
                 if (Logging.Debug) Logging.WriteDebug("Failed to parse HSB value: Invalid hue value");
                 result = default;
                 return false;
             }
-            if (!float.TryParse(hsba[1].Replace('.', ','), out float s))
+            if (!float.TryParse(new string(str.Slice(index1 + 1, index2)).Replace('.', ','), out float s))
             {
                 if (Logging.Debug) Logging.WriteDebug("Failed to parse HSB value: Invalid saturation value");
                 result = default;
                 return false;
             }
-            if (!float.TryParse(hsba[2].Replace('.', ','), out float b))
+            if (!float.TryParse(new string(str.Slice(index1 + index2 + 2, index2)).Replace('.', ','), out float b))
             {
                 if (Logging.Debug) Logging.WriteDebug("Failed to parse HSB value: Invalid brightness value");
                 result = default;
                 return false;
             }
             float a;
-            if (hsba.Length > 3)
+            if (index3 >= 0)
             {
-                if (!float.TryParse(hsba[3].Replace('.', ','), out a))
+                if (!float.TryParse(new string(str[(index1 + index2 + index3 + 3)..]).Replace('.', ','), out a))
                 {
                     if (Logging.Debug) Logging.WriteDebug("Failed to parse HSB value: Invalid alpha value");
                     result = default;
@@ -487,6 +563,19 @@ namespace wan24.Core
             }
             result = new(h, s, b, a);
             return true;
+        }
+
+        /// <inheritdoc/>
+        public static object ParseObject(in ReadOnlySpan<char> str) => Parse(str);
+
+        /// <inheritdoc/>
+        public static bool TryParseObject(in ReadOnlySpan<char> str, [NotNullWhen(returnValue: true)] out object? result)
+        {
+            bool res;
+            result = (res = TryParse(str, out Hsb hsb))
+                ? hsb
+                : default(Hsb?);
+            return res;
         }
     }
 }

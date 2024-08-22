@@ -1,5 +1,6 @@
 ﻿using System.Collections.Frozen;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -74,7 +75,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this string str) => Encoding.UTF8.GetBytes(str);
 
         /// <summary>
@@ -83,7 +87,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int GetBytes(this string str, in byte[] buffer) => Encoding.UTF8.GetBytes(str, buffer);
 
         /// <summary>
@@ -92,7 +99,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int GetBytes(this string str, in Span<byte> buffer) => Encoding.UTF8.GetBytes(str, buffer);
 
         /// <summary>
@@ -100,7 +110,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes16(this string str) => Encoding.Unicode.GetBytes(str);
 
         /// <summary>
@@ -109,7 +122,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int GetBytes16(this string str, in byte[] buffer) => Encoding.Unicode.GetBytes(str, buffer);
 
         /// <summary>
@@ -118,7 +134,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int GetBytes16(this string str, in Span<byte> buffer) => Encoding.Unicode.GetBytes(str, buffer);
 
         /// <summary>
@@ -126,7 +145,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes32(this string str) => Encoding.UTF32.GetBytes(str);
 
         /// <summary>
@@ -135,7 +157,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int GetBytes32(this string str, in byte[] buffer) => Encoding.UTF32.GetBytes(str, buffer);
 
         /// <summary>
@@ -144,7 +169,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int GetBytes32(this string str, in Span<byte> buffer) => Encoding.UTF32.GetBytes(str, buffer);
 
         /// <summary>
@@ -152,7 +180,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this char[] str) => Encoding.UTF8.GetBytes(str);
 
         /// <summary>
@@ -161,7 +192,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int GetBytes(this char[] str, in byte[] buffer) => Encoding.UTF8.GetBytes(str, buffer);
 
         /// <summary>
@@ -170,7 +204,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int GetBytes(this char[] str, in Span<byte> buffer) => Encoding.UTF8.GetBytes(str, buffer);
 
         /// <summary>
@@ -178,7 +215,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes16(this char[] str) => Encoding.Unicode.GetBytes(str);
 
         /// <summary>
@@ -187,7 +227,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int GetBytes16(this char[] str, in byte[] buffer) => Encoding.Unicode.GetBytes(str, buffer);
 
         /// <summary>
@@ -196,7 +239,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int GetBytes16(this char[] str, in Span<byte> buffer) => Encoding.Unicode.GetBytes(str, buffer);
 
         /// <summary>
@@ -204,7 +250,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes32(this char[] str) => Encoding.UTF32.GetBytes(str);
 
         /// <summary>
@@ -213,7 +262,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int GetBytes32(this char[] str, in byte[] buffer) => Encoding.UTF32.GetBytes(str, buffer);
 
         /// <summary>
@@ -222,7 +274,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int GetBytes32(this char[] str, in Span<byte> buffer) => Encoding.UTF32.GetBytes(str, buffer);
 
         /// <summary>
@@ -230,7 +285,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Byte</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte GetByteFromBits(this string str) => GetByteFromBits((ReadOnlySpan<char>)str);
 
         /// <summary>
@@ -239,6 +297,9 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <returns>Byte</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte GetByteFromBits(this ReadOnlySpan<char> str)
         {
             if (str.Length != 8) throw new ArgumentOutOfRangeException(nameof(str));
@@ -252,7 +313,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">Hex string</param>
         /// <returns>Byte array</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytesFromHex(this string str) => Convert.FromHexString(str);
 
         /// <summary>
@@ -260,7 +324,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">Hex string</param>
         /// <returns>Byte array</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytesFromHex(this ReadOnlySpan<char> str) => Convert.FromHexString(str);
 
         /// <summary>
@@ -269,6 +336,9 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <returns>If the string contains only ASCII characters</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsAscii(this ReadOnlySpan<char> str)
         {
             unchecked
@@ -295,7 +365,10 @@ namespace wan24.Core
         /// <param name="options">Regular expression options</param>
         /// <param name="timeout">Timeout</param>
         /// <returns>If the pattern does match the given string</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsMatch(this string str, in string pattern, in RegexOptions options = RegexOptions.None, in TimeSpan timeout = default)
             => timeout == default
                 ? new Regex(pattern, options).IsMatch(str)
@@ -310,7 +383,10 @@ namespace wan24.Core
         /// <param name="options">Regular expression options</param>
         /// <param name="timeout">Timeout</param>
         /// <returns>If the pattern does match the given string</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsMatch(this string str, in string pattern, in int start, in RegexOptions options = RegexOptions.None, in TimeSpan timeout = default)
             => timeout == default
                 ? new Regex(pattern, options).IsMatch(str, start)
@@ -322,6 +398,9 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <returns>Literal string</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ToQuotedLiteral(this string str) => ToLiteral(str, withinDoubleQuotes: true);
 
         /// <summary>
@@ -331,6 +410,9 @@ namespace wan24.Core
         /// <param name="withinDoubleQuotes">Return within double quotes?</param>
         /// <returns>Literal string</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ToLiteral(this string str, in bool withinDoubleQuotes = false)
         {
             if (str.Length < 1) return withinDoubleQuotes ? "\"\"" : str;
@@ -377,6 +459,9 @@ namespace wan24.Core
         /// <param name="characters">Characters to replace</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ReplaceCharacters(this string str, in IReadOnlyDictionary<char, char> characters)
         {
             if (str.Length < 1 || characters.Count < 1) return str;
@@ -407,6 +492,9 @@ namespace wan24.Core
         /// <param name="characters">Characters to replace</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ReplaceCharacters(this string str, in IReadOnlyDictionary<char, string> characters)
         {
             if (str.Length < 1 || characters.Count < 1) return str;
@@ -450,6 +538,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="defaultReturn">Default return vaue (if no dot or comma was found)</param>
         /// <returns>Comma character</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static char FindComma(this string str, in char defaultReturn = '.')
         {
             int dotIndex = str.LastIndexOf('.'),
@@ -464,6 +556,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="result">Comma character</param>
         /// <returns>If a comma character was found</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool TryFindComma(this string str, out char result)
         {
             int dotIndex = str.LastIndexOf('.'),
@@ -480,6 +576,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="defaultSeparator">Default return value (if no (back)slash was found)</param>
         /// <returns>Path separator</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static char FindPathSeparator(this string str, in char defaultSeparator = '/')
         {
             if (str.Contains('\\')) return '\\';
@@ -492,6 +592,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="result">>Path separator</param>
         /// <returns>If a comma character was found</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool TryFindPathSeparator(this string str, out char result)
         {
             if (str.Contains('\\')) result = '\\';
@@ -507,6 +611,10 @@ namespace wan24.Core
         /// <param name="maxLength">Max. length</param>
         /// <param name="ellipsis">Ellipsis</param>
         /// <returns>String</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string MaxLength(this string str, in int maxLength, in string? ellipsis = null)
         {
             if (ellipsis is not null && ellipsis.Length > maxLength) throw new ArgumentOutOfRangeException(nameof(ellipsis));
@@ -520,6 +628,73 @@ namespace wan24.Core
         /// <param name="other">Other string</param>
         /// <returns>Is the <c>str</c> like the <c>other</c>?</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsLike(this string str, in string other) => str.Length == other.Length && str.Equals(other, StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Get a sub-string until a character (if contained)
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="chr">Character</param>
+        /// <returns>Sub-string</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static string CutAt(this string str, in char chr)
+        {
+            int index = str.IndexOf(chr);
+            return index < 0 ? str : str[..index];
+        }
+
+        /// <summary>
+        /// Get a sub-string until a token (if contained)
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="token">Token</param>
+        /// <returns>Sub-string</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static string CutAt(this string str, in string token)
+        {
+            int index = str.IndexOf(token);
+            return index < 0 ? str : str[..index];
+        }
+
+        /// <summary>
+        /// Get a sub-string from after a character (if contained)
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="chr">Character</param>
+        /// <returns>Sub-string (empty, if the character wasn't contained)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static string CutAfter(this string str, in char chr)
+        {
+            int index = str.IndexOf(chr);
+            return index < 0 ? string.Empty : str[(index + 1)..];
+        }
+
+        /// <summary>
+        /// Get a sub-string from after a token (if contained)
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="token">Token</param>
+        /// <returns>Sub-string (empty, if the token wasn't contained)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static string CutAfter(this string str, in string token)
+        {
+            int index = str.IndexOf(token);
+            return index < 0 ? string.Empty : str[(index + 1)..];
+        }
     }
 }

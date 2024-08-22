@@ -10,7 +10,7 @@ namespace wan24.Core
     /// Unique ID with an ID extension
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public readonly record struct UidExt
+    public readonly record struct UidExt : ISerializeBinary<UidExt>
     {
         /// <summary>
         /// Structure size in byte
@@ -174,10 +174,13 @@ namespace wan24.Core
             Id = buffer[ID_OFFSET..].ToInt();
         }
 
-        /// <summary>
-        /// Get bytes
-        /// </summary>
-        /// <returns>Serialized data</returns>
+        /// <inheritdoc/>
+        public static int? MaxStructureSize => STRUCTURE_SIZE;
+
+        /// <inheritdoc/>
+        public int? StructureSize => STRUCTURE_SIZE;
+
+        /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -189,22 +192,18 @@ namespace wan24.Core
             return res;
         }
 
-        /// <summary>
-        /// Get bytes
-        /// </summary>
-        /// <param name="buffer">Serialized data buffer (length needs to fit <see cref="STRUCTURE_SIZE"/>)</param>
-        /// <returns>Serialized data buffer</returns>
+        /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public Span<byte> GetBytes(in Span<byte> buffer)
+        public int GetBytes(in Span<byte> buffer)
         {
             if (buffer.Length < STRUCTURE_SIZE) throw new ArgumentOutOfRangeException(nameof(buffer));
             Time.ToUniversalTime().Ticks.GetBytes(buffer);
             Random.GetBytes(buffer[RANDOM_OFFSET..]);
             Id.GetBytes(buffer[ID_OFFSET..]);
-            return buffer;
+            return STRUCTURE_SIZE;
         }
 
         /// <inheritdoc/>
@@ -401,11 +400,59 @@ namespace wan24.Core
 #endif
         public static implicit operator int(in UidExt uid) => uid.Id;
 
-        /// <summary>
-        /// Parse from a string
-        /// </summary>
-        /// <param name="str">String</param>
-        /// <returns>UID</returns>
+        /// <inheritdoc/>
+        public static object DeserializeFrom(in ReadOnlySpan<byte> buffer) => new UidExt(buffer);
+
+        /// <inheritdoc/>
+        public static bool TryDeserializeFrom(in ReadOnlySpan<byte> buffer, [NotNullWhen(true)] out object? result)
+        {
+            try
+            {
+                if (buffer.Length < STRUCTURE_SIZE)
+                {
+                    result = null;
+                    return false;
+                }
+                DateTime time = new(buffer.ToLong(), DateTimeKind.Utc);
+                int random = buffer[RANDOM_OFFSET..].ToInt();
+                int id = buffer[ID_OFFSET..].ToInt();
+                result = new UidExt(time, random, id);
+                return true;
+            }
+            catch
+            {
+                result = null;
+                return false;
+            }
+        }
+
+        /// <inheritdoc/>
+        public static UidExt DeserializeTypeFrom(in ReadOnlySpan<byte> buffer) => new(buffer);
+
+        /// <inheritdoc/>
+        public static bool TryDeserializeTypeFrom(in ReadOnlySpan<byte> buffer, [NotNullWhen(true)] out UidExt result)
+        {
+            try
+            {
+                if (buffer.Length < STRUCTURE_SIZE)
+                {
+                    result = default;
+                    return false;
+                }
+                DateTime time = new(buffer.ToLong(), DateTimeKind.Utc);
+                int random = buffer[RANDOM_OFFSET..].ToInt();
+                int id = buffer[ID_OFFSET..].ToInt();
+                result = new UidExt(time, random, id);
+                return true;
+            }
+            catch
+            {
+                result = default;
+                return false;
+            }
+        }
+
+        /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -434,12 +481,7 @@ namespace wan24.Core
 #endif
         }
 
-        /// <summary>
-        /// Try parsing from a string
-        /// </summary>
-        /// <param name="str">String</param>
-        /// <param name="result">UID</param>
-        /// <returns>If succeed</returns>
+        /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -447,13 +489,13 @@ namespace wan24.Core
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
-        public static bool TryParse(in ReadOnlySpan<char> str, [NotNullWhen(returnValue: true)] out UidExt? result)
+        public static bool TryParse(in ReadOnlySpan<char> str, [NotNullWhen(returnValue: true)] out UidExt result)
         {
             try
             {
                 if (str.Length != STRING_LEN)
                 {
-                    result = null;
+                    result = default;
                     return false;
                 }
 #if !NO_UNSAFE
@@ -476,9 +518,30 @@ namespace wan24.Core
             }
             catch
             {
-                result = null;
+                result = default;
                 return false;
             }
+        }
+
+        /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static object ParseObject(in ReadOnlySpan<char> str) => Parse(str);
+
+        /// <inheritdoc/>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool TryParseObject(in ReadOnlySpan<char> str, [NotNullWhen(returnValue: true)] out object? result)
+        {
+            bool res;
+            result = (res = TryParse(str, out UidExt uid))
+                ? uid
+                : default(UidExt?);
+            return res;
         }
     }
 }

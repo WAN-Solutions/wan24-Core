@@ -1,7 +1,7 @@
 ﻿namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class EnumerationBase_Tests
+    public class EnumerationBase_Tests : TestBase
     {
         [TestMethod]
         public void General_Test()

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime;
 
@@ -7,7 +8,7 @@ namespace wan24.Core
     /// <summary>
     /// Timeout (when comparing instances, and not the timeout time, you should use the <see cref="Equals(object?)"/> method!)
     /// </summary>
-    public class Timeout : DisposableBase, ITimer
+    public class Timeout : DisposableBase, ITimer, IExportUserActions
     {
         /// <summary>
         /// Timer
@@ -106,6 +107,7 @@ namespace wan24.Core
         /// <summary>
         /// Start
         /// </summary>
+        [UserAction(), DisplayText("Start"), Description("Start the timer")]
         public virtual void Start()
         {
             if (Timer.Enabled) return;
@@ -137,6 +139,7 @@ namespace wan24.Core
         /// <summary>
         /// Stop
         /// </summary>
+        [UserAction(), DisplayText("Stop"), Description("Stop the timer")]
         public virtual void Stop()
         {
             if (!Timer.Enabled) return;
@@ -161,6 +164,7 @@ namespace wan24.Core
         /// <summary>
         /// Reset
         /// </summary>
+        [UserAction(), DisplayText("Reset"), Description("Stop and start the timer")]
         public virtual void Reset()
         {
             Stop();
@@ -405,6 +409,51 @@ namespace wan24.Core
             };
             res.Start();
             return res;
+        }
+
+        /// <summary>
+        /// Wait for a condition
+        /// </summary>
+        /// <param name="checkInterval">Condition check interval</param>
+        /// <param name="condition">Condition evaluator</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public static void WaitCondition(in TimeSpan checkInterval, in Func<CancellationToken, bool> condition, in CancellationToken cancellationToken = default)
+        {
+            for (; !cancellationToken.GetIsCancellationRequested() && !condition(cancellationToken); Thread.Sleep(checkInterval)) ;
+        }
+
+        /// <summary>
+        /// Wait for a condition
+        /// </summary>
+        /// <param name="checkInterval">Condition check interval</param>
+        /// <param name="condition">Condition evaluator</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public static async Task WaitConditionAsync(TimeSpan checkInterval, Func<CancellationToken, Task<bool>> condition, CancellationToken cancellationToken = default)
+        {
+            if (await condition(cancellationToken).DynamicContext()) return;
+            using Timeout to = new(checkInterval)
+            {
+                Name = "Waiting for condition"
+            };
+            TaskCompletionSource tcs = new(TaskCreationOptions.RunContinuationsAsynchronously);
+            to.OnTimeout += async (s, e) =>
+            {
+                try
+                {
+                    if(!await condition(cancellationToken).DynamicContext())
+                    {
+                        to.Reset();
+                        return;
+                    }
+                    tcs.SetResult();
+                }
+                catch(Exception ex)
+                {
+                    tcs.SetException(ex);
+                }
+            };
+            to.Start();
+            await tcs.Task.WaitAsync(cancellationToken).DynamicContext();
         }
     }
 }

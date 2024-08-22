@@ -1,7 +1,9 @@
-﻿namespace wan24.Core
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace wan24.Core
 {
     // Methods
-    public readonly partial record struct Rgb
+    public readonly partial record struct Rgb : ISerializeBinary<Rgb>, ISerializeString<Rgb>
     {
         /// <summary>
         /// Shade the color
@@ -63,23 +65,17 @@
         /// <returns>Mixed color</returns>
         public Rgb Mix(in Rgb other) => new((R + other.R) >> 1, (G + other.G) >> 1, (B + other.B) >> 1);
 
-        /// <summary>
-        /// Get the bytes of this RGB value
-        /// </summary>
-        /// <returns>RGB bytes</returns>
+        /// <inheritdoc/>
         public byte[] GetBytes() => [(byte)R, (byte)G, (byte)B];
 
-        /// <summary>
-        /// Get the bytes of this RGB value
-        /// </summary>
-        /// <returns>RGB bytes</returns>
-        public Span<byte> GetBytes(in Span<byte> buffer)
+        /// <inheritdoc/>
+        public int GetBytes(in Span<byte> buffer)
         {
             if (buffer.Length < BINARY_SIZE) throw new ArgumentOutOfRangeException(nameof(buffer));
             buffer[0] = (byte)R;
             buffer[1] = (byte)G;
             buffer[2] = (byte)B;
-            return buffer;
+            return BINARY_SIZE;
         }
 
         /// <summary>
@@ -89,7 +85,8 @@
         public string ToHexString()
         {
             using RentedArrayRefStruct<byte> buffer = new(len: BINARY_SIZE, clean: false);
-            return Convert.ToHexString(GetBytes(buffer.Span));
+            GetBytes(buffer.Span);
+            return Convert.ToHexString(buffer.Span);
         }
 
         /// <summary>
@@ -123,5 +120,51 @@
 
         /// <inheritdoc/>
         public override string ToString() => $"{R}, {G}, {B}";
+
+        /// <inheritdoc/>
+        public static object DeserializeFrom(in ReadOnlySpan<byte> buffer) => new Rgb(buffer);
+
+        /// <inheritdoc/>
+        public static bool TryDeserializeFrom(in ReadOnlySpan<byte> buffer, [NotNullWhen(true)] out object? result)
+        {
+            try
+            {
+                if (buffer.Length < BINARY_SIZE)
+                {
+                    result = null;
+                    return false;
+                }
+                result = new Rgb(buffer);
+                return true;
+            }
+            catch
+            {
+                result = null;
+                return false;
+            }
+        }
+
+        /// <inheritdoc/>
+        public static Rgb DeserializeTypeFrom(in ReadOnlySpan<byte> buffer) => new(buffer);
+
+        /// <inheritdoc/>
+        public static bool TryDeserializeTypeFrom(in ReadOnlySpan<byte> buffer, [NotNullWhen(true)] out Rgb result)
+        {
+            try
+            {
+                if (buffer.Length < BINARY_SIZE)
+                {
+                    result = default;
+                    return false;
+                }
+                result = new Rgb(buffer);
+                return true;
+            }
+            catch
+            {
+                result = default;
+                return false;
+            }
+        }
     }
 }

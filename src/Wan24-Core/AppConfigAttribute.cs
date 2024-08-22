@@ -3,14 +3,12 @@
     /// <summary>
     /// Attribute for a <see cref="AppConfig"/> property which contains a configuration with an <see cref="IAppConfig"/> to apply
     /// </summary>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class AppConfigAttribute : Attribute
+    public sealed class AppConfigAttribute() : Attribute()
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public AppConfigAttribute() { }
-
         /// <summary>
         /// Apply after bootstrapping?
         /// </summary>

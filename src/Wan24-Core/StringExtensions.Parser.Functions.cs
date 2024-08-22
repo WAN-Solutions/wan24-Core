@@ -338,7 +338,7 @@ namespace wan24.Core
                     }
                 case 's': return (-values[0]).ToString(CultureInfo.InvariantCulture.NumberFormat);
                 default:
-                    context.Error = $"Invalid math operator \"{context.Param[0]}\"";
+                    context.Error = $"Invalid math operator {context.Param[0].ToQuotedLiteral()}";
                     return context.Value;
             }
         }

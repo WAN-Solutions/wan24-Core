@@ -349,9 +349,12 @@ including extensions for numeric type encoding/decoding)</li>
 <li><code>TimeoutStream</code> can timeout async reading/writing methods</li>
 <li><code>BlockingBufferStream</code> for writing to / reading from a buffer blocked</li>
 <li><code>HubStream</code> for forwarding writing operations to multiple target streams</li>
+<li><code>DynamicHubStream</code> for forwarding writing operations to multiple target
+streams which can be exchanged</li>
 <li><code>LimitedStream</code> limits reading/writing/seeking capabilities of a stream</li>
 <li><code>ZeroStream</code> reads zero bytes and writes to nowhere</li>
 <li><code>CountingStream</code> counts red/written bytes</li>
+<li><code>PerformanceStream</code> counts red/written bytes and I/O time</li>
 <li><code>PauseableStream</code> is a stream which can temporary pause reading/writing</li>
 <li><code>EnumerableStream</code> streams an enumerable/enumerator</li>
 <li><code>CombinedStream</code> combines multiple streams into one stream (read-only)</li>
@@ -428,6 +431,11 @@ data is available</li>
 </li>
 <li>App JSON configuration</li>
 <li>Customizable object serialization helper</li>
+<li>In-memory cache</li>
+<li>Object mapping</li>
+<li>Virtual interface checkjing using <code>Type.DiffInterface</code></li>
+<li>XML documentation comments parsing using <code>Xml*DocComments</code></li>
+<li>Structure (de)serializing using <code>StructExtensions</code></li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
@@ -1860,6 +1868,181 @@ factory defaults</li>
 <p>You may disable CLI argument configuration and bootstrapping using the
 <code>ApplyCliArguments</code> and <code>Bootstrap</code> properties (which can't be overridden by
 the JSON configuration, but by extending <code>AppConfig</code>!).</p>
+<h2 id="in-memory-cache">In-memory cache</h2>
+<p>The <code>InMemoryCache</code> can be used for caching any kind of object in memory:</p>
+<pre><code class="lang-cs">InMemoryCacheOptions options = new()
+{
+    SoftCountLimit = 1_000
+    // SoftCountLimit, SoftSizeLimit, AgeLimit or IdleLimit is required
+};
+using InMemoryCache cache = new(options);
+await cache.StartAsync();
+
+// Adding a new item to the cache
+cache.Add(&quot;key&quot;, item);
+await cache.AddAsync(&quot;key&quot;, item);
+
+// Get (or add) an item from the cache
+item = cache.Get(&quot;key&quot;)?.Item;
+item = (await cache.GetAsync(&quot;key&quot;))?.Item;
+
+// Remove an item from the cache
+cache.TryRemove(&quot;key&quot;);
+
+// Clear the cache while the cache is still serving items
+cache.Clear(disposeItems: true);
+await cache.ClearAsync(disposeItems: true);
+</code></pre>
+<p><strong>NOTE</strong>: This in-memory cache implementation isn't compatible with the .NET
+built-in approaches. It implements <code>IHostedService</code> and needs to be started
+before it can be used! The asynchronous methods should be used where possible,
+if the chached item type implements <code>IAsyncDisposable</code> - otherwise the
+synchronous methods are fine, too.</p>
+<p>The cache capacity can be limited by</p>
+<ul>
+<li>number of cache entries (hard limit)</li>
+<li>cached item size (hard limit)</li>
+</ul>
+<p>while auto-removing the cache is being done by a background job by</p>
+<ul>
+<li>cache entry timeout (removals won't be timed exactly!)</li>
+<li>cache entry age</li>
+<li>cache entry idle state</li>
+<li>number of cache entries (soft limit)</li>
+<li>cached item size (soft limit)</li>
+<li>max. memory usage in bytes</li>
+<li>optional custom management strategies</li>
+</ul>
+<p>in a fixed interval. An item may also be removed when disposing, if it's an
+<code>IDisposableObject</code> and the cache entry was configured to observe the items
+disposing (not recommended if avoidable).</p>
+<p><strong>NOTE</strong>: The in-memory cache isn't too strict with limits, they might
+overflow slightly.</p>
+<p>Hard limits are being applied when adding new items, while soft limits are
+being applied by the tidy process. The cache size can be manually reduced at
+any time by</p>
+<ul>
+<li>a max. number of cache entries</li>
+<li>a max. item size</li>
+<li>a max. cache entry age</li>
+<li>a max. cache entry idle time</li>
+<li>an optional custom cache entry reducing strategy</li>
+</ul>
+<p>The <code>GetAsync</code> method allows a delegate for creating a new cached item, which
+will be added to the cache in case there was no cache entry for the requested
+key already.</p>
+<p>Cached items which are being auto-removed from the cache will be disposed, if
+possible. To avoid disposing an item while it's still in use, you can wrap the
+item with an <code>AutoDisposer&lt;T&gt;</code>:</p>
+<pre><code class="lang-cs">InMemoryCacheOptions options = new()
+{
+    SoftCountLimit = 1_000
+    // SoftCountLimit, SoftSizeLimit, AgeLimit or IdleLimit is required
+};
+using InMemoryCache&lt;AutoDisposer&lt;ItemType&gt;&gt; cache = new(options);
+await cache.StartAsync();
+
+// Add a new item to the cache
+cache.Add(&quot;key&quot;, new(item));
+await cache.AddAsync(&quot;key&quot;, new(item));
+
+// Get (or add) an item from the cache
+using AutoDisposer&lt;ItemType&gt;.Context? itemContext = 
+    await cache.GetItemContext(&quot;key&quot;);
+using AutoDisposer&lt;ItemType&gt;.Context? itemContext = 
+    await cache.GetItemContextAsync(&quot;key&quot;);
+// Now itemContext.Object can be used while it's not being disposed for sure
+
+// Remove an item from the cache
+if(cache.TryRemove(&quot;key&quot;)?.Item is AutoDisposer&lt;ItemType&gt; removedItemDisposer)
+    removedItemDisposer.ShouldDispose = true;
+if(cache.TryRemove(&quot;key&quot;)?.Item is AutoDisposer&lt;ItemType&gt; removedItemDisposer)
+    await removedItemDisposer.SetShouldDisposeAsync();
+</code></pre>
+<p><strong>WARNING</strong>: If the cache is being disposed, all cached items will be
+disposed, too, no matter if they're still in use or not!</p>
+<p><strong>CAUTION</strong>: If the <code>InMemoryCacheOptions.MaxItemSize</code> value was set, and an
+oversized disposable item is being added, an <code>OutOfMemoryException</code> will be
+thrown.</p>
+<h3 id="iinmemorycacheitem-interface"><code>IInMemoryCacheItem</code> interface</h3>
+<p>By implementing the <code>IInMemoryCacheItem</code> interface a cacheable item can export
+its unique key and its size in the cache. While the key should never change
+and is used for adding a new item only, the size property getter may return
+variable values during runtime, which will be respected during a cache cleanup.</p>
+<p>Returning cache entry options is optional.</p>
+<h2 id="object-mapping">Object mapping</h2>
+<pre><code class="lang-cs">source.MapTo(target);
+</code></pre>
+<p>This creates an atomatic mapping, which includes instance properties that
+exist in the target type, too, having a getter in the source type and a setter
+in the target type.</p>
+<p><strong>NOTE</strong>: If you don't want to auto-create mappings (and you'll pre-define all
+mappings in advance), set <code>ObjectMapping.AutoCreate</code> to <code>false</code>.</p>
+<p>Using the <code>MapAttribute</code> you can define properties to map, or how properties
+will me mapped, by specifying an optional target object property name or
+customizing the mapping by extending <code>MapAttribute</code> and overriding the
+<code>CanMap(Async)</code> properties and the <code>Map(Async)</code> methods. The <code>MapAttribute</code>
+can also be used for a source type to specify that when creating a mapping
+automatic, opt-in should be used (also have a look at the <code>PublicGetterOnly</code>
+and <code>PublicSetterOnly</code> properties).</p>
+<p>The <code>NoMapAttribute</code> is used to disclose a property from being mapped.</p>
+<p>For creating a manual mapping:</p>
+<pre><code class="lang-cs">ObjectMapping&lt;SourceType, TargetType&gt; mapping = new();
+</code></pre>
+<p>Use the <code>Add*</code> methods for adding a mapping logic - example:</p>
+<pre><code class="lang-cs">mapping.AddMapping(nameof(SourceType.PropertyName), nameof(TargetType.TargetProperty))
+    .AddMapping(nameof(SourceType.OtherPropertyName), (source, target) =&gt; target.OtherTargetProperty = source.OtherPropertyName)
+    ...
+    .Register();
+</code></pre>
+<p>Any mapping may be performed synchronous or asynchronous.</p>
+<p>The <code>ObjectMappingExtensions</code> offer some extension methods for mapping a list
+of source objects to new target object instances. If you set the
+<code>TargetInstanceFactory</code> property of a mapping to a factory method, this can be
+used for target object types without a parameterless constructor also.</p>
+<p>Using the <code>Register</code> method will register a mapping, so you can get it later
+by</p>
+<pre><code class="lang-cs">ObjectMapping? mapping = ObjectMapping.Get(typeof(SourceType), typeof(TargetType));
+// OR
+ObjectMapping&lt;SourceType, TargetType&gt;? mapping = ObjectMapping&lt;SourceType, TargetType&gt;.Get();
+</code></pre>
+<p>or using the <code>Map(Object)To(Async)</code> extension methods.</p>
+<p><strong>NOTE</strong>: An <code>ObjectMapping</code> instance can always be casted to its generic
+version. The <code>ObjectMapping.Create</code> method will call the generic types
+<code>Create</code> method for this. If you want to extend the <code>ObjectMapping</code>, you can
+do this by using the <code>ObjectMapping&lt;tSource, tTarget&gt;</code> as base type.</p>
+<p>In the best case (if the required target object properties have the same name
+and a compatible value type as the source properties) you won't have to pre-
+define any mapping and can fully rely on the automatic mapping creation (which
+uses the <code>ObjectMapping.AddAutoMappings</code> method), maybe using the
+<code>MapAttribute</code> and the <code>NoMapAttribute</code> for your types only.</p>
+<p>You can use some base types to implement implicit casting for your types using
+mappings:</p>
+<ul>
+<li><code>CastableMappingObjectBase</code></li>
+<li><code>CastableMappingRecordBase</code></li>
+<li><code>DisposableCastableMappingObjectBase</code></li>
+<li><code>DisposableCastableMappingRecordBase</code></li>
+</ul>
+<p>Then you could do something like this:</p>
+<pre><code class="lang-cs">public sealed class SourceType() : CastableMappingObjectBase&lt;SourceType, TargetType&gt;()
+{
+    ...
+}
+
+SourceType source = ...;
+TargetType target = source;
+</code></pre>
+<p><code>source</code> is here mapped to a new instance of <code>TargetType</code> during casting.</p>
+<p>If you'd like to implement handlers for after-mapping actions, have a look at
+the <code>IMappingObject</code> interfaces. The non-generic interface will always be
+used, while the generic type will only be used for the used target object type
+(implementations for multiple target object types are possible). If both
+interfaces can be used, both interfaces will be used. If the synchronous/
+asynchronous handler methods are being called depends on their availability
+and on which <code>ObjectMapping.ApplyMapping(Async)</code> method is processing (the
+synchronous method prefers the synchronous handlers, the asynchronous method
+prefers the asynchronous handlers).</p>
 
 </article>
                 </div>

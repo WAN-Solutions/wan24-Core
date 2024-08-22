@@ -138,6 +138,11 @@ namespace wan24.Core
             {
                 yield return new(__("Name"), Name, __("Name of the stream"));
                 yield return new(__("Type"), GetType().ToString(), __("Stream type"));
+                if (StackInfo is not null)
+                {
+                    yield return new(__("Stack"), StackInfo.Stack, __("Instance creation stack"));
+                    yield return new(__("Created"), StackInfo.Created, __("Instance creation time"));
+                }
                 yield return new(__("Size"), Length, __("Length in bytes"));
                 yield return new(__("Buffers"), BufferCount, __("Number of buffers"));
                 yield return new(__("Buffer"), BufferLength, __("All buffer length in bytes"));

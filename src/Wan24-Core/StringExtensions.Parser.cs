@@ -202,12 +202,12 @@ namespace wan24.Core
                             {
                                 if (options?.ThrowOnError ?? true)
                                 {
-                                    throw new InvalidDataException($"Unknown parser function \"{func}\" in \"{m.Groups[rxGroup].Value}\" in round {round}");
+                                    throw new InvalidDataException($"Unknown parser function {func.ToQuotedLiteral()} in {m.Groups[rxGroup].Value.ToQuotedLiteral()} in round {round}");
                                 }
                                 else
                                 {
                                     if (Error)
-                                        Logging.WriteError($"Unknown parser function \"{func}\" in \"{m.Groups[rxGroup].Value}\" in round {round}");
+                                        Logging.WriteError($"Unknown parser function {func.ToQuotedLiteral()} in {m.Groups[rxGroup].Value.ToQuotedLiteral()} in round {round}");
                                 }
                                 continue;
                             }
@@ -224,12 +224,12 @@ namespace wan24.Core
                                 if (context.Error is not null)
                                     if (options?.ThrowOnError ?? true)
                                     {
-                                        throw new InvalidDataException($"Failed to execute function \"{match[index]}\" in \"{m.Groups[rxGroup].Value}\" in round {round}: {context.Error}");
+                                        throw new InvalidDataException($"Failed to execute function {match[index].ToQuotedLiteral()} in {m.Groups[rxGroup].Value.ToQuotedLiteral()} in round {round}: {context.Error}");
                                     }
                                     else
                                     {
                                         if (Error)
-                                            Logging.WriteError($"Failed to execute function \"{match[index]}\" in \"{m.Groups[rxGroup].Value}\" in round {round}: {context.Error}");
+                                            Logging.WriteError($"Failed to execute function {match[index].ToQuotedLiteral()} in {m.Groups[rxGroup].Value.ToQuotedLiteral()} in round {round}: {context.Error}");
                                     }
                             }
                             catch (InvalidDataException)
@@ -240,12 +240,12 @@ namespace wan24.Core
                             {
                                 if (options?.ThrowOnError ?? true)
                                 {
-                                    throw new InvalidDataException($"Failed to handle function call \"{match[index]}\" in \"{m.Groups[rxGroup].Value}\" in round {round}: {ex.Message}", ex);
+                                    throw new InvalidDataException($"Failed to handle function call {match[index].ToQuotedLiteral()} in {m.Groups[rxGroup].Value.ToQuotedLiteral()} in round {round}: {ex.Message}", ex);
                                 }
                                 else
                                 {
                                     if (Error)
-                                        Logging.WriteError($"Failed to handle function call \"{match[index]}\" in \"{m.Groups[rxGroup].Value}\" in round {round}: {ex.Message}");
+                                        Logging.WriteError($"Failed to handle function call {match[index].ToQuotedLiteral()} in {m.Groups[rxGroup].Value.ToQuotedLiteral()} in round {round}: {ex.Message}");
                                 }
                             }
                             // Apply new settings

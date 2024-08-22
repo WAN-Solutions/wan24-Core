@@ -10,6 +10,18 @@ namespace wan24.Core
     // Properties
     public readonly partial record struct IpSubNet
     {
+        /// <inheritdoc/>
+        public static int? MaxStructureSize => IPV6_STRUCTURE_SIZE;
+
+        /// <inheritdoc/>
+        public static int? MaxStringSize => byte.MaxValue;
+
+        /// <inheritdoc/>
+        int? ISerializeBinary.StructureSize => StructureSize;
+
+        /// <inheritdoc/>
+        public int? StringSize => null;
+
         /// <summary>
         /// Get an IP address
         /// </summary>
@@ -147,7 +159,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Broadcast
+        /// Broadcast (IPv4 only!)
         /// </summary>
         public BigInteger Broadcast
         {
@@ -155,7 +167,7 @@ namespace wan24.Core
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            get => IsIPv4 ? Network | ((IsIPv4 ? MaxIPv4 : MaxIPv6) >> MaskBits) : throw new InvalidOperationException();
+            get => IsIPv4 ? Network | (MaxIPv4 >> MaskBits) : throw new InvalidOperationException();
         }
 
         /// <summary>
@@ -195,7 +207,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Get the broadcast IP address
+        /// Get the broadcast IP address (IPv4 only!)
         /// </summary>
         public IPAddress BroadcastIPAddress
         {

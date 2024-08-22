@@ -17,7 +17,13 @@ namespace wan24.Core
         /// <param name="objects">Object list</param>
         /// <returns>Is within the object list?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool In(this object obj, params object?[] objects) => objects.Contains(obj);
+        public static bool In(this object obj, params object?[] objects)
+        {
+            int len = objects.Length;
+            if (len == 0) return false;
+            for (int i = 0; i < len; i++) if (objects[i] is not null && obj.Equals(objects[i])) return true;
+            return false;
+        }
 
         /// <summary>
         /// Determine if an object is within an object list
@@ -68,6 +74,10 @@ namespace wan24.Core
                 string str = value.ToString() ?? throw new ArgumentException("Not an enumeration value", nameof(value));
                 IEnumInfo info = EnumExtensions.GetEnumInfo(t);
                 return info.ValueDisplayTexts.TryGetValue(str, out string? text) ? text : str;
+            }
+            else if (StringValueConverter.CanConvertToString(value.GetType()) && StringValueConverter.Convert(value) is string txt)
+            {
+                return txt;
             }
             else
             {
@@ -174,9 +184,9 @@ namespace wan24.Core
         /// <param name="maxRecursionDepth">Maximum recursion depth</param>
         /// <returns>Dictionary</returns>
         private static OrderedDictionary<string, object?> ToOrderedDictionary<T>(
-            in OrderedDictionary<string, object?> dict, 
-            in T obj, 
-            in HashSet<object> seen, 
+            in OrderedDictionary<string, object?> dict,
+            in T obj,
+            in HashSet<object> seen,
             in int maxRecursionDepth
             )
         {
@@ -339,5 +349,27 @@ namespace wan24.Core
         /// <returns>If disposable</returns>
         [TargetedPatchingOptOut("Tiny method")]
         public static bool IsDisposable<T>(this T obj) => obj is IDisposable || obj is IAsyncDisposable;
+
+        /// <summary>
+        /// Determine if an object is a task
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="obj">Object</param>
+        /// <returns>If the object is a task</returns>
+        public static bool IsTask<T>(this T obj) => obj is Task || IsValueTask(obj);
+
+        /// <summary>
+        /// Determine if an object is a value task
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="obj">Object</param>
+        /// <returns>If the object is a value task</returns>
+        public static bool IsValueTask<T>(this T obj)
+        {
+            if (obj is null) return false;
+            if (obj is ValueTask) return true;
+            Type type = obj.GetType();
+            return type.IsValueType && type.IsGenericType && type.GetGenericTypeDefinition() == typeof(ValueTask<>);
+        }
     }
 }

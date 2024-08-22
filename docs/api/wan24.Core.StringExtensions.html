@@ -299,10 +299,238 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_CutAfter_System_String_System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.CutAfter(System.String%2CSystem.Char%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L674">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_CutAfter_" data-uid="wan24.Core.StringExtensions.CutAfter*"></a>
+  <h4 id="wan24_Core_StringExtensions_CutAfter_System_String_System_Char__" data-uid="wan24.Core.StringExtensions.CutAfter(System.String,System.Char@)">CutAfter(string, in char)</h4>
+  <div class="markdown level1 summary"><p>Get a sub-string from after a character (if contained)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static string CutAfter(this string str, in char chr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">str</span></td>
+        <td><p>String</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></td>
+        <td><span class="parametername">chr</span></td>
+        <td><p>Character</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>Sub-string (empty, if the character wasn't contained)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_CutAfter_System_String_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.CutAfter(System.String%2CSystem.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L690">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_CutAfter_" data-uid="wan24.Core.StringExtensions.CutAfter*"></a>
+  <h4 id="wan24_Core_StringExtensions_CutAfter_System_String_System_String__" data-uid="wan24.Core.StringExtensions.CutAfter(System.String,System.String@)">CutAfter(string, in string)</h4>
+  <div class="markdown level1 summary"><p>Get a sub-string from after a token (if contained)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static string CutAfter(this string str, in string token)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">str</span></td>
+        <td><p>String</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">token</span></td>
+        <td><p>Token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>Sub-string (empty, if the token wasn't contained)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_CutAt_System_String_System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.CutAt(System.String%2CSystem.Char%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L642">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_CutAt_" data-uid="wan24.Core.StringExtensions.CutAt*"></a>
+  <h4 id="wan24_Core_StringExtensions_CutAt_System_String_System_Char__" data-uid="wan24.Core.StringExtensions.CutAt(System.String,System.Char@)">CutAt(string, in char)</h4>
+  <div class="markdown level1 summary"><p>Get a sub-string until a character (if contained)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static string CutAt(this string str, in char chr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">str</span></td>
+        <td><p>String</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></td>
+        <td><span class="parametername">chr</span></td>
+        <td><p>Character</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>Sub-string</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_CutAt_System_String_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.CutAt(System.String%2CSystem.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L658">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_CutAt_" data-uid="wan24.Core.StringExtensions.CutAt*"></a>
+  <h4 id="wan24_Core_StringExtensions_CutAt_System_String_System_String__" data-uid="wan24.Core.StringExtensions.CutAt(System.String,System.String@)">CutAt(string, in string)</h4>
+  <div class="markdown level1 summary"><p>Get a sub-string until a token (if contained)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static string CutAt(this string str, in string token)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">str</span></td>
+        <td><p>String</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">token</span></td>
+        <td><p>Token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>Sub-string</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_FindComma_System_String_System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.FindComma(System.String%2CSystem.Char%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L453">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L541">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_FindComma_" data-uid="wan24.Core.StringExtensions.FindComma*"></a>
   <h4 id="wan24_Core_StringExtensions_FindComma_System_String_System_Char__" data-uid="wan24.Core.StringExtensions.FindComma(System.String,System.Char@)">FindComma(string, in char)</h4>
@@ -311,7 +539,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static char FindComma(this string str, in char defaultReturn = &#39;.&#39;)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static char FindComma(this string str, in char defaultReturn = &#39;.&#39;)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -358,7 +587,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_FindPathSeparator_System_String_System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.FindPathSeparator(System.String%2CSystem.Char%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L483">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L579">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_FindPathSeparator_" data-uid="wan24.Core.StringExtensions.FindPathSeparator*"></a>
   <h4 id="wan24_Core_StringExtensions_FindPathSeparator_System_String_System_Char__" data-uid="wan24.Core.StringExtensions.FindPathSeparator(System.String,System.Char@)">FindPathSeparator(string, in char)</h4>
@@ -367,7 +596,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static char FindPathSeparator(this string str, in char defaultSeparator = &#39;/&#39;)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static char FindPathSeparator(this string str, in char defaultSeparator = &#39;/&#39;)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -414,7 +644,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBase64Bytes_System_ReadOnlySpan_System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBase64Bytes(System.ReadOnlySpan%7BSystem.Char%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.Base64.cs/#L16">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.Base64.cs/#L24">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBase64Bytes_" data-uid="wan24.Core.StringExtensions.GetBase64Bytes*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBase64Bytes_System_ReadOnlySpan_System_Char__" data-uid="wan24.Core.StringExtensions.GetBase64Bytes(System.ReadOnlySpan{System.Char})">GetBase64Bytes(ReadOnlySpan&lt;char&gt;)</h4>
@@ -465,7 +695,7 @@ public static byte[] GetBase64Bytes(this ReadOnlySpan&lt;char&gt; str)</code></p
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBase64Bytes_System_ReadOnlySpan_System_Char__System_Span_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBase64Bytes(System.ReadOnlySpan%7BSystem.Char%7D%2CSystem.Span%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.Base64.cs/#L35">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.Base64.cs/#L61">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBase64Bytes_" data-uid="wan24.Core.StringExtensions.GetBase64Bytes*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBase64Bytes_System_ReadOnlySpan_System_Char__System_Span_System_Byte___" data-uid="wan24.Core.StringExtensions.GetBase64Bytes(System.ReadOnlySpan{System.Char},System.Span{System.Byte}@)">GetBase64Bytes(ReadOnlySpan&lt;char&gt;, in Span&lt;byte&gt;)</h4>
@@ -496,7 +726,7 @@ public static int GetBase64Bytes(this ReadOnlySpan&lt;char&gt; str, in Span&lt;b
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td><span class="parametername">buffer</span></td>
-        <td><p>Output buffer</p>
+        <td><p>Output buffer (large enough to fit the UTF-8 decoded <code>str</code> bytes and the base64 decoded <code>str</code> bytes)</p>
 </td>
       </tr>
     </tbody>
@@ -519,10 +749,169 @@ public static int GetBase64Bytes(this ReadOnlySpan&lt;char&gt; str, in Span&lt;b
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBase64Bytes_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBase64Bytes(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.Base64.cs/#L42">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_GetBase64Bytes_" data-uid="wan24.Core.StringExtensions.GetBase64Bytes*"></a>
+  <h4 id="wan24_Core_StringExtensions_GetBase64Bytes_System_String_" data-uid="wan24.Core.StringExtensions.GetBase64Bytes(System.String)">GetBase64Bytes(string)</h4>
+  <div class="markdown level1 summary"><p>Get bytes from a base64 string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static byte[] GetBase64Bytes(this string str)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">str</span></td>
+        <td><p>String</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
+        <td><p>Bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBase64Bytes_System_String_System_Span_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBase64Bytes(System.String%2CSystem.Span%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.Base64.cs/#L80">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_GetBase64Bytes_" data-uid="wan24.Core.StringExtensions.GetBase64Bytes*"></a>
+  <h4 id="wan24_Core_StringExtensions_GetBase64Bytes_System_String_System_Span_System_Byte___" data-uid="wan24.Core.StringExtensions.GetBase64Bytes(System.String,System.Span{System.Byte}@)">GetBase64Bytes(string, in Span&lt;byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get bytes from a base64 string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static int GetBase64Bytes(this string str, in Span&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">str</span></td>
+        <td><p>String</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Output buffer (large enough to fit the UTF-8 decoded <code>str</code> bytes and the base64 decoded <code>str</code> bytes)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>Number of bytes written to <code>buffer</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBase64BytesLength_System_ReadOnlySpan_System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBase64BytesLength(System.ReadOnlySpan%7BSystem.Char%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.Base64.cs/#L16">View Source</a>
+  </span>
+  <a id="wan24_Core_StringExtensions_GetBase64BytesLength_" data-uid="wan24.Core.StringExtensions.GetBase64BytesLength*"></a>
+  <h4 id="wan24_Core_StringExtensions_GetBase64BytesLength_System_ReadOnlySpan_System_Char__" data-uid="wan24.Core.StringExtensions.GetBase64BytesLength(System.ReadOnlySpan{System.Char})">GetBase64BytesLength(ReadOnlySpan&lt;char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get the max. number of decoded bytes from a base64 string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static int GetBase64BytesLength(this ReadOnlySpan&lt;char&gt; str)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</td>
+        <td><span class="parametername">str</span></td>
+        <td><p>String</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>Number of bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetByteFromBits_System_ReadOnlySpan_System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetByteFromBits(System.ReadOnlySpan%7BSystem.Char%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L241">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L299">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetByteFromBits_" data-uid="wan24.Core.StringExtensions.GetByteFromBits*"></a>
   <h4 id="wan24_Core_StringExtensions_GetByteFromBits_System_ReadOnlySpan_System_Char__" data-uid="wan24.Core.StringExtensions.GetByteFromBits(System.ReadOnlySpan{System.Char})">GetByteFromBits(ReadOnlySpan&lt;char&gt;)</h4>
@@ -573,7 +962,7 @@ public static byte GetByteFromBits(this ReadOnlySpan&lt;char&gt; str)</code></pr
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetByteFromBits_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetByteFromBits(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L233">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L288">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetByteFromBits_" data-uid="wan24.Core.StringExtensions.GetByteFromBits*"></a>
   <h4 id="wan24_Core_StringExtensions_GetByteFromBits_System_String_" data-uid="wan24.Core.StringExtensions.GetByteFromBits(System.String)">GetByteFromBits(string)</h4>
@@ -582,7 +971,7 @@ public static byte GetByteFromBits(this ReadOnlySpan&lt;char&gt; str)</code></pr
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static byte GetByteFromBits(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -624,7 +1013,7 @@ public static byte GetByteFromBits(this string str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes(System.Char%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L155">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L183">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes_" data-uid="wan24.Core.StringExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes_System_Char___" data-uid="wan24.Core.StringExtensions.GetBytes(System.Char[])">GetBytes(char[])</h4>
@@ -633,7 +1022,7 @@ public static byte GetByteFromBits(this string str)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static byte[] GetBytes(this char[] str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -675,7 +1064,7 @@ public static byte[] GetBytes(this char[] str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes_System_Char___System_Byte____.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes(System.Char%5B%5D%2CSystem.Byte%5B%5D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L164">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L195">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes_" data-uid="wan24.Core.StringExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes_System_Char___System_Byte____" data-uid="wan24.Core.StringExtensions.GetBytes(System.Char[],System.Byte[]@)">GetBytes(char[], in byte[])</h4>
@@ -684,7 +1073,7 @@ public static byte[] GetBytes(this char[] str)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static int GetBytes(this char[] str, in byte[] buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -732,7 +1121,7 @@ public static int GetBytes(this char[] str, in byte[] buffer)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes_System_Char___System_Span_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes(System.Char%5B%5D%2CSystem.Span%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L173">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L207">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes_" data-uid="wan24.Core.StringExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes_System_Char___System_Span_System_Byte___" data-uid="wan24.Core.StringExtensions.GetBytes(System.Char[],System.Span{System.Byte}@)">GetBytes(char[], in Span&lt;byte&gt;)</h4>
@@ -741,7 +1130,7 @@ public static int GetBytes(this char[] str, in byte[] buffer)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static int GetBytes(this char[] str, in Span&lt;byte&gt; buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -789,7 +1178,7 @@ public static int GetBytes(this char[] str, in Span&lt;byte&gt; buffer)</code></
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L77">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L78">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes_" data-uid="wan24.Core.StringExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes_System_String_" data-uid="wan24.Core.StringExtensions.GetBytes(System.String)">GetBytes(string)</h4>
@@ -798,7 +1187,7 @@ public static int GetBytes(this char[] str, in Span&lt;byte&gt; buffer)</code></
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static byte[] GetBytes(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -840,7 +1229,7 @@ public static byte[] GetBytes(this string str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes_System_String_System_Byte____.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes(System.String%2CSystem.Byte%5B%5D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L86">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L90">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes_" data-uid="wan24.Core.StringExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes_System_String_System_Byte____" data-uid="wan24.Core.StringExtensions.GetBytes(System.String,System.Byte[]@)">GetBytes(string, in byte[])</h4>
@@ -849,7 +1238,7 @@ public static byte[] GetBytes(this string str)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static int GetBytes(this string str, in byte[] buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -897,7 +1286,7 @@ public static int GetBytes(this string str, in byte[] buffer)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes_System_String_System_Span_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes(System.String%2CSystem.Span%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L95">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L102">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes_" data-uid="wan24.Core.StringExtensions.GetBytes*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes_System_String_System_Span_System_Byte___" data-uid="wan24.Core.StringExtensions.GetBytes(System.String,System.Span{System.Byte}@)">GetBytes(string, in Span&lt;byte&gt;)</h4>
@@ -906,7 +1295,7 @@ public static int GetBytes(this string str, in byte[] buffer)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static int GetBytes(this string str, in Span&lt;byte&gt; buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -954,7 +1343,7 @@ public static int GetBytes(this string str, in Span&lt;byte&gt; buffer)</code></
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes16_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes16(System.Char%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L181">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L218">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes16_" data-uid="wan24.Core.StringExtensions.GetBytes16*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes16_System_Char___" data-uid="wan24.Core.StringExtensions.GetBytes16(System.Char[])">GetBytes16(char[])</h4>
@@ -963,7 +1352,7 @@ public static int GetBytes(this string str, in Span&lt;byte&gt; buffer)</code></
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static byte[] GetBytes16(this char[] str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1005,7 +1394,7 @@ public static byte[] GetBytes16(this char[] str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes16_System_Char___System_Byte____.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes16(System.Char%5B%5D%2CSystem.Byte%5B%5D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L190">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L230">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes16_" data-uid="wan24.Core.StringExtensions.GetBytes16*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes16_System_Char___System_Byte____" data-uid="wan24.Core.StringExtensions.GetBytes16(System.Char[],System.Byte[]@)">GetBytes16(char[], in byte[])</h4>
@@ -1014,7 +1403,7 @@ public static byte[] GetBytes16(this char[] str)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static int GetBytes16(this char[] str, in byte[] buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1062,7 +1451,7 @@ public static int GetBytes16(this char[] str, in byte[] buffer)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes16_System_Char___System_Span_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes16(System.Char%5B%5D%2CSystem.Span%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L199">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L242">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes16_" data-uid="wan24.Core.StringExtensions.GetBytes16*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes16_System_Char___System_Span_System_Byte___" data-uid="wan24.Core.StringExtensions.GetBytes16(System.Char[],System.Span{System.Byte}@)">GetBytes16(char[], in Span&lt;byte&gt;)</h4>
@@ -1071,7 +1460,7 @@ public static int GetBytes16(this char[] str, in byte[] buffer)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static int GetBytes16(this char[] str, in Span&lt;byte&gt; buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1119,7 +1508,7 @@ public static int GetBytes16(this char[] str, in Span&lt;byte&gt; buffer)</code>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes16_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes16(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L103">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L113">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes16_" data-uid="wan24.Core.StringExtensions.GetBytes16*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes16_System_String_" data-uid="wan24.Core.StringExtensions.GetBytes16(System.String)">GetBytes16(string)</h4>
@@ -1128,7 +1517,7 @@ public static int GetBytes16(this char[] str, in Span&lt;byte&gt; buffer)</code>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static byte[] GetBytes16(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1170,7 +1559,7 @@ public static byte[] GetBytes16(this string str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes16_System_String_System_Byte____.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes16(System.String%2CSystem.Byte%5B%5D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L112">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L125">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes16_" data-uid="wan24.Core.StringExtensions.GetBytes16*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes16_System_String_System_Byte____" data-uid="wan24.Core.StringExtensions.GetBytes16(System.String,System.Byte[]@)">GetBytes16(string, in byte[])</h4>
@@ -1179,7 +1568,7 @@ public static byte[] GetBytes16(this string str)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static int GetBytes16(this string str, in byte[] buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1227,7 +1616,7 @@ public static int GetBytes16(this string str, in byte[] buffer)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes16_System_String_System_Span_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes16(System.String%2CSystem.Span%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L121">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L137">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes16_" data-uid="wan24.Core.StringExtensions.GetBytes16*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes16_System_String_System_Span_System_Byte___" data-uid="wan24.Core.StringExtensions.GetBytes16(System.String,System.Span{System.Byte}@)">GetBytes16(string, in Span&lt;byte&gt;)</h4>
@@ -1236,7 +1625,7 @@ public static int GetBytes16(this string str, in byte[] buffer)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static int GetBytes16(this string str, in Span&lt;byte&gt; buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1284,7 +1673,7 @@ public static int GetBytes16(this string str, in Span&lt;byte&gt; buffer)</code>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes32_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes32(System.Char%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L207">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L253">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes32_" data-uid="wan24.Core.StringExtensions.GetBytes32*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes32_System_Char___" data-uid="wan24.Core.StringExtensions.GetBytes32(System.Char[])">GetBytes32(char[])</h4>
@@ -1293,7 +1682,7 @@ public static int GetBytes16(this string str, in Span&lt;byte&gt; buffer)</code>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static byte[] GetBytes32(this char[] str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1335,7 +1724,7 @@ public static byte[] GetBytes32(this char[] str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes32_System_Char___System_Byte____.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes32(System.Char%5B%5D%2CSystem.Byte%5B%5D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L216">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L265">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes32_" data-uid="wan24.Core.StringExtensions.GetBytes32*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes32_System_Char___System_Byte____" data-uid="wan24.Core.StringExtensions.GetBytes32(System.Char[],System.Byte[]@)">GetBytes32(char[], in byte[])</h4>
@@ -1344,7 +1733,7 @@ public static byte[] GetBytes32(this char[] str)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static int GetBytes32(this char[] str, in byte[] buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1392,7 +1781,7 @@ public static int GetBytes32(this char[] str, in byte[] buffer)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes32_System_Char___System_Span_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes32(System.Char%5B%5D%2CSystem.Span%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L225">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L277">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes32_" data-uid="wan24.Core.StringExtensions.GetBytes32*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes32_System_Char___System_Span_System_Byte___" data-uid="wan24.Core.StringExtensions.GetBytes32(System.Char[],System.Span{System.Byte}@)">GetBytes32(char[], in Span&lt;byte&gt;)</h4>
@@ -1401,7 +1790,7 @@ public static int GetBytes32(this char[] str, in byte[] buffer)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static int GetBytes32(this char[] str, in Span&lt;byte&gt; buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1449,7 +1838,7 @@ public static int GetBytes32(this char[] str, in Span&lt;byte&gt; buffer)</code>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes32_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes32(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L129">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L148">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes32_" data-uid="wan24.Core.StringExtensions.GetBytes32*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes32_System_String_" data-uid="wan24.Core.StringExtensions.GetBytes32(System.String)">GetBytes32(string)</h4>
@@ -1458,7 +1847,7 @@ public static int GetBytes32(this char[] str, in Span&lt;byte&gt; buffer)</code>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static byte[] GetBytes32(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1500,7 +1889,7 @@ public static byte[] GetBytes32(this string str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes32_System_String_System_Byte____.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes32(System.String%2CSystem.Byte%5B%5D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L138">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L160">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes32_" data-uid="wan24.Core.StringExtensions.GetBytes32*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes32_System_String_System_Byte____" data-uid="wan24.Core.StringExtensions.GetBytes32(System.String,System.Byte[]@)">GetBytes32(string, in byte[])</h4>
@@ -1509,7 +1898,7 @@ public static byte[] GetBytes32(this string str)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static int GetBytes32(this string str, in byte[] buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1557,7 +1946,7 @@ public static int GetBytes32(this string str, in byte[] buffer)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytes32_System_String_System_Span_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytes32(System.String%2CSystem.Span%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L147">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L172">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytes32_" data-uid="wan24.Core.StringExtensions.GetBytes32*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytes32_System_String_System_Span_System_Byte___" data-uid="wan24.Core.StringExtensions.GetBytes32(System.String,System.Span{System.Byte}@)">GetBytes32(string, in Span&lt;byte&gt;)</h4>
@@ -1566,7 +1955,7 @@ public static int GetBytes32(this string str, in byte[] buffer)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static int GetBytes32(this string str, in Span&lt;byte&gt; buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1614,7 +2003,7 @@ public static int GetBytes32(this string str, in Span&lt;byte&gt; buffer)</code>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytesFromHex_System_ReadOnlySpan_System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytesFromHex(System.ReadOnlySpan%7BSystem.Char%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L263">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L327">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytesFromHex_" data-uid="wan24.Core.StringExtensions.GetBytesFromHex*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytesFromHex_System_ReadOnlySpan_System_Char__" data-uid="wan24.Core.StringExtensions.GetBytesFromHex(System.ReadOnlySpan{System.Char})">GetBytesFromHex(ReadOnlySpan&lt;char&gt;)</h4>
@@ -1623,7 +2012,7 @@ public static int GetBytes32(this string str, in Span&lt;byte&gt; buffer)</code>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static byte[] GetBytesFromHex(this ReadOnlySpan&lt;char&gt; str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1665,7 +2054,7 @@ public static byte[] GetBytesFromHex(this ReadOnlySpan&lt;char&gt; str)</code></
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_GetBytesFromHex_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.GetBytesFromHex(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L255">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L316">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_GetBytesFromHex_" data-uid="wan24.Core.StringExtensions.GetBytesFromHex*"></a>
   <h4 id="wan24_Core_StringExtensions_GetBytesFromHex_System_String_" data-uid="wan24.Core.StringExtensions.GetBytesFromHex(System.String)">GetBytesFromHex(string)</h4>
@@ -1674,7 +2063,7 @@ public static byte[] GetBytesFromHex(this ReadOnlySpan&lt;char&gt; str)</code></
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static byte[] GetBytesFromHex(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1716,7 +2105,7 @@ public static byte[] GetBytesFromHex(this string str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_IsAscii_System_ReadOnlySpan_System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.IsAscii(System.ReadOnlySpan%7BSystem.Char%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L271">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L338">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_IsAscii_" data-uid="wan24.Core.StringExtensions.IsAscii*"></a>
   <h4 id="wan24_Core_StringExtensions_IsAscii_System_ReadOnlySpan_System_Char__" data-uid="wan24.Core.StringExtensions.IsAscii(System.ReadOnlySpan{System.Char})">IsAscii(ReadOnlySpan&lt;char&gt;)</h4>
@@ -1767,7 +2156,7 @@ public static bool IsAscii(this ReadOnlySpan&lt;char&gt; str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_IsLike_System_String_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.IsLike(System.String%2CSystem.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L522">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L630">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_IsLike_" data-uid="wan24.Core.StringExtensions.IsLike*"></a>
   <h4 id="wan24_Core_StringExtensions_IsLike_System_String_System_String__" data-uid="wan24.Core.StringExtensions.IsLike(System.String,System.String@)">IsLike(string, in string)</h4>
@@ -1824,7 +2213,7 @@ public static bool IsLike(this string str, in string other)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_IsMatch_System_String_System_String__System_Int32__System_Text_RegularExpressions_RegexOptions__System_TimeSpan__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.IsMatch(System.String%2CSystem.String%40%2CSystem.Int32%40%2CSystem.Text.RegularExpressions.RegexOptions%40%2CSystem.TimeSpan%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L313">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L386">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_IsMatch_" data-uid="wan24.Core.StringExtensions.IsMatch*"></a>
   <h4 id="wan24_Core_StringExtensions_IsMatch_System_String_System_String__System_Int32__System_Text_RegularExpressions_RegexOptions__System_TimeSpan__" data-uid="wan24.Core.StringExtensions.IsMatch(System.String,System.String@,System.Int32@,System.Text.RegularExpressions.RegexOptions@,System.TimeSpan@)">IsMatch(string, in string, in int, in RegexOptions, in TimeSpan)</h4>
@@ -1833,7 +2222,7 @@ public static bool IsLike(this string str, in string other)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static bool IsMatch(this string str, in string pattern, in int start, in RegexOptions options = RegexOptions.None, in TimeSpan timeout = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1899,7 +2288,7 @@ public static bool IsMatch(this string str, in string pattern, in int start, in 
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_IsMatch_System_String_System_String__System_Text_RegularExpressions_RegexOptions__System_TimeSpan__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.IsMatch(System.String%2CSystem.String%40%2CSystem.Text.RegularExpressions.RegexOptions%40%2CSystem.TimeSpan%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L298">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L368">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_IsMatch_" data-uid="wan24.Core.StringExtensions.IsMatch*"></a>
   <h4 id="wan24_Core_StringExtensions_IsMatch_System_String_System_String__System_Text_RegularExpressions_RegexOptions__System_TimeSpan__" data-uid="wan24.Core.StringExtensions.IsMatch(System.String,System.String@,System.Text.RegularExpressions.RegexOptions@,System.TimeSpan@)">IsMatch(string, in string, in RegexOptions, in TimeSpan)</h4>
@@ -1908,7 +2297,7 @@ public static bool IsMatch(this string str, in string pattern, in int start, in 
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
 public static bool IsMatch(this string str, in string pattern, in RegexOptions options = RegexOptions.None, in TimeSpan timeout = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1968,7 +2357,7 @@ public static bool IsMatch(this string str, in string pattern, in RegexOptions o
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_MaxLength_System_String_System_Int32__System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.MaxLength(System.String%2CSystem.Int32%40%2CSystem.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L510">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L614">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_MaxLength_" data-uid="wan24.Core.StringExtensions.MaxLength*"></a>
   <h4 id="wan24_Core_StringExtensions_MaxLength_System_String_System_Int32__System_String__" data-uid="wan24.Core.StringExtensions.MaxLength(System.String,System.Int32@,System.String@)">MaxLength(string, in int, in string?)</h4>
@@ -1977,7 +2366,8 @@ public static bool IsMatch(this string str, in string pattern, in RegexOptions o
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string MaxLength(this string str, in int maxLength, in string? ellipsis = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static string MaxLength(this string str, in int maxLength, in string? ellipsis = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -3711,7 +4101,7 @@ variable names with a <code>$</code> prefix)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_ReplaceCharacters_System_String_System_Collections_Generic_IReadOnlyDictionary_System_Char_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.ReplaceCharacters(System.String%2CSystem.Collections.Generic.IReadOnlyDictionary%7BSystem.Char%2CSystem.Char%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L379">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L461">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_ReplaceCharacters_" data-uid="wan24.Core.StringExtensions.ReplaceCharacters*"></a>
   <h4 id="wan24_Core_StringExtensions_ReplaceCharacters_System_String_System_Collections_Generic_IReadOnlyDictionary_System_Char_System_Char___" data-uid="wan24.Core.StringExtensions.ReplaceCharacters(System.String,System.Collections.Generic.IReadOnlyDictionary{System.Char,System.Char}@)">ReplaceCharacters(string, in IReadOnlyDictionary&lt;char, char&gt;)</h4>
@@ -3768,7 +4158,7 @@ public static string ReplaceCharacters(this string str, in IReadOnlyDictionary&l
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_ReplaceCharacters_System_String_System_Collections_Generic_IReadOnlyDictionary_System_Char_System_String___.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.ReplaceCharacters(System.String%2CSystem.Collections.Generic.IReadOnlyDictionary%7BSystem.Char%2CSystem.String%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L409">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L494">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_ReplaceCharacters_" data-uid="wan24.Core.StringExtensions.ReplaceCharacters*"></a>
   <h4 id="wan24_Core_StringExtensions_ReplaceCharacters_System_String_System_Collections_Generic_IReadOnlyDictionary_System_Char_System_String___" data-uid="wan24.Core.StringExtensions.ReplaceCharacters(System.String,System.Collections.Generic.IReadOnlyDictionary{System.Char,System.String}@)">ReplaceCharacters(string, in IReadOnlyDictionary&lt;char, string&gt;)</h4>
@@ -3825,7 +4215,7 @@ public static string ReplaceCharacters(this string str, in IReadOnlyDictionary&l
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_ToLiteral_System_String_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.ToLiteral(System.String%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L333">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L412">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_ToLiteral_" data-uid="wan24.Core.StringExtensions.ToLiteral*"></a>
   <h4 id="wan24_Core_StringExtensions_ToLiteral_System_String_System_Boolean__" data-uid="wan24.Core.StringExtensions.ToLiteral(System.String,System.Boolean@)">ToLiteral(string, in bool)</h4>
@@ -3882,7 +4272,7 @@ public static string ToLiteral(this string str, in bool withinDoubleQuotes = fal
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_ToQuotedLiteral_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.ToQuotedLiteral(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L324">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L400">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_ToQuotedLiteral_" data-uid="wan24.Core.StringExtensions.ToQuotedLiteral*"></a>
   <h4 id="wan24_Core_StringExtensions_ToQuotedLiteral_System_String_" data-uid="wan24.Core.StringExtensions.ToQuotedLiteral(System.String)">ToQuotedLiteral(string)</h4>
@@ -3933,7 +4323,7 @@ public static string ToQuotedLiteral(this string str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_TryFindComma_System_String_System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.TryFindComma(System.String%2CSystem.Char%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L467">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L559">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_TryFindComma_" data-uid="wan24.Core.StringExtensions.TryFindComma*"></a>
   <h4 id="wan24_Core_StringExtensions_TryFindComma_System_String_System_Char__" data-uid="wan24.Core.StringExtensions.TryFindComma(System.String,System.Char@)">TryFindComma(string, out char)</h4>
@@ -3942,7 +4332,8 @@ public static string ToQuotedLiteral(this string str)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool TryFindComma(this string str, out char result)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static bool TryFindComma(this string str, out char result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -3989,7 +4380,7 @@ public static string ToQuotedLiteral(this string str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_StringExtensions_TryFindPathSeparator_System_String_System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.StringExtensions.TryFindPathSeparator(System.String%2CSystem.Char%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L495">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/StringExtensions.cs/#L595">View Source</a>
   </span>
   <a id="wan24_Core_StringExtensions_TryFindPathSeparator_" data-uid="wan24.Core.StringExtensions.TryFindPathSeparator*"></a>
   <h4 id="wan24_Core_StringExtensions_TryFindPathSeparator_System_String_System_Char__" data-uid="wan24.Core.StringExtensions.TryFindPathSeparator(System.String,System.Char@)">TryFindPathSeparator(string, out char)</h4>
@@ -3998,7 +4389,8 @@ public static string ToQuotedLiteral(this string str)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool TryFindPathSeparator(this string str, out char result)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static bool TryFindPathSeparator(this string str, out char result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">

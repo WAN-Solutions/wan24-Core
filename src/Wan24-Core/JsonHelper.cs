@@ -23,6 +23,14 @@ namespace wan24.Core
         /// </summary>
         public const string FALSE = "false";
         /// <summary>
+        /// JSON empty string value
+        /// </summary>
+        public const string EMPTY = "\"\"";
+        /// <summary>
+        /// JSON zero numeric value
+        /// </summary>
+        public const string ZERO = "0";
+        /// <summary>
         /// JSON MIME type
         /// </summary>
         public const string MIME_TYPE = "application/json";

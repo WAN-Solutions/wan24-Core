@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime;
+using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
@@ -32,16 +33,17 @@ namespace wan24.Core
     /// Equatable array (validates sequence validity, not object references)
     /// </summary>
     /// <typeparam name="T">Element type</typeparam>
+    [StructLayout(LayoutKind.Sequential)]
     public readonly struct EquatableArray<T> : ICloneable, IList, IStructuralComparable, IStructuralEquatable, IEquatable<T[]>, IEquatable<EquatableArray<T>>
     {
-        /// <summary>
-        /// Hosted array
-        /// </summary>
-        public readonly T[] Array;
         /// <summary>
         /// Hash code
         /// </summary>
         public readonly int HashCode;
+        /// <summary>
+        /// Hosted array
+        /// </summary>
+        public readonly T[] Array;
 
         /// <summary>
         /// Constructor
@@ -311,13 +313,11 @@ namespace wan24.Core
         /// <summary>
         /// Equality comparer
         /// </summary>
-        public sealed class EqualityComparer : IEqualityComparer<EquatableArray<T>>
+        /// <remarks>
+        /// Constructor
+        /// </remarks>
+        public sealed class EqualityComparer() : IEqualityComparer<EquatableArray<T>>
         {
-            /// <summary>
-            /// Constructor
-            /// </summary>
-            public EqualityComparer() { }
-
             /// <inheritdoc/>
             public bool Equals(EquatableArray<T> x, EquatableArray<T> y) => x == y;
 

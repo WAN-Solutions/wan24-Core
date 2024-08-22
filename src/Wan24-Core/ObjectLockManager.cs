@@ -1,6 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Runtime;
 using System.Runtime.CompilerServices;
+using static wan24.Core.TranslationHelper;
 
 namespace wan24.Core
 {
@@ -47,6 +48,11 @@ namespace wan24.Core
                 yield return new("GUID", GUID, "Unique ID of the service object");
                 yield return new("Name", Name, "Object lock manager name");
                 yield return new("Object type", typeof(T), "Managing object type");
+                if (StackInfo is not null)
+                {
+                    yield return new(__("Stack"), StackInfo.Stack, __("Instance creation stack"));
+                    yield return new(__("Created"), StackInfo.Created, __("Instance creation time"));
+                }
                 yield return new("Active locks", ActiveLocks.Count, "Number of active locks");
             }
         }

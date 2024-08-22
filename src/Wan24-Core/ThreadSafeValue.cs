@@ -26,7 +26,9 @@ namespace wan24.Core
         /// </summary>
         public virtual T? Value
         {
+            [TargetedPatchingOptOut("Tiny method")]
             get => _Value;
+            [TargetedPatchingOptOut("Tiny method")]
             set
             {
                 using SemaphoreSyncContext ssc = Sync.SyncContext();
@@ -39,7 +41,8 @@ namespace wan24.Core
         /// </summary>
         /// <param name="value">Value</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Old value</returns>
+        /// <returns>Previous value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public virtual async Task<T?> SetValueAsync(T? value, CancellationToken cancellationToken = default)
         {
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
@@ -53,6 +56,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="action">Action</param>
         /// <returns>Current value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public virtual T? Execute(in Action_Delegate action)
         {
             using SemaphoreSyncContext ssc = Sync.SyncContext();
@@ -65,10 +69,11 @@ namespace wan24.Core
         /// <param name="action">Action</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Current value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public virtual async Task<T?> ExecuteAsync(AsyncAction_Delegate action, CancellationToken cancellationToken = default)
         {
             using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
-            return await action(_Value).DynamicContext();
+            return _Value = await action(_Value).DynamicContext();
         }
 
         /// <inheritdoc/>
