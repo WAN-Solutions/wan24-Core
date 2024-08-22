@@ -1,6 +1,4 @@
-﻿using wan24.Core;
-
-namespace Wan24_Core_Tests
+﻿namespace Wan24_Core_Tests
 {
     [TestClass]
     public class OrderedDictionary_Tests : TestBase
@@ -8,7 +6,7 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public void General_Tests()
         {
-            OrderedDictionary<string, int> dict = new()
+            wan24.Core.OrderedDictionary<string, int> dict = new()
             {
                 { "0", 0 },
                 { "1", 1 },
