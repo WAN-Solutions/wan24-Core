@@ -270,8 +270,8 @@ namespace wan24.Core
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(target);
-            foreach (object mapping in Mappings.Values)
-                switch (mapping)
+            for(int i = 0, len = Mappings.Count; i < len; i++)
+                switch (Mappings[i])
                 {
                     case Mapper_Delegate<tSource, tTarget> mapper:
                         mapper(source, target);
@@ -286,7 +286,7 @@ namespace wan24.Core
                         mapper(source, target, CancellationToken.None).GetAwaiter().GetResult();
                         break;
                     default:
-                        throw new MappingException($"Invalid mapper type {mapping.GetType()} in object mapping configuration for mapping {SourceType} to {TargetType}");
+                        throw new MappingException($"Invalid mapper type {Mappings[i].GetType()} in object mapping configuration for mapping {SourceType} to {TargetType}");
                 }
             if (source is IMappingObject mappingObject)
                 if (mappingObject.HasSyncHandlers)
@@ -335,8 +335,8 @@ namespace wan24.Core
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(target);
-            foreach (object mapping in Mappings.Values)
-                switch (mapping)
+            for (int i = 0, len = Mappings.Count; i < len; i++)
+                switch (Mappings[i])
                 {
                     case Mapper_Delegate<tSource, tTarget> mapper:
                         mapper(source, target);
@@ -351,7 +351,7 @@ namespace wan24.Core
                         await mapper(source, target, cancellationToken).DynamicContext();
                         break;
                     default:
-                        throw new MappingException($"Invalid mapper type {mapping.GetType()} in object mapping configuration for mapping {SourceType} to {TargetType}");
+                        throw new MappingException($"Invalid mapper type {Mappings[i].GetType()} in object mapping configuration for mapping {SourceType} to {TargetType}");
                 }
             if (source is IMappingObject mappingObject)
                 if (mappingObject.HasAsyncHandlers)
