@@ -68,7 +68,9 @@
         /// Enumerable type flag
         /// </summary>
         [DisplayText("Enumerable type")]
+#pragma warning disable CA1069 // Same constant value as..
         Enumerable = 8,
+#pragma warning restore CA1069 // Same constant value as..
         /// <summary>
         /// Array type flag
         /// </summary>

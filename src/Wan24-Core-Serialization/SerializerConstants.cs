@@ -21,12 +21,5 @@
         /// <see cref="ObjectSerializer"/> serializer name
         /// </summary>
         public const string OBJECT_SERIALIZER_NAME = "STREAM";
-        /// <summary>
-        /// <see cref="SerializerNumericTypes"/> flags
-        /// </summary>
-        public const SerializerNumericTypes NUMERIC_TYPES_FLAGS = SerializerNumericTypes.MinValue | 
-            SerializerNumericTypes.MaxValue | 
-            SerializerNumericTypes.Infinity | 
-            SerializerNumericTypes.Signed;
     }
 }

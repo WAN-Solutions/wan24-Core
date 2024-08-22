@@ -11,18 +11,18 @@ namespace wan24.Core
         /// Get the type and flags from <see cref="SerializerNumericTypes"/>
         /// </summary>
         /// <param name="types">Types</param>
-        /// <returns>Type and flags (see <see cref="SerializerConstants.NUMERIC_TYPES_FLAGS"/>)</returns>
+        /// <returns>Type and flags (see <see cref="SerializerNumericTypes.SPECIAL_FLAGS"/>)</returns>
         public static (SerializerNumericTypes Type, SerializerNumericTypes Flags) SeparateTypeAndFlags(this SerializerNumericTypes types)
-            => (types & ~SerializerConstants.NUMERIC_TYPES_FLAGS, types & SerializerConstants.NUMERIC_TYPES_FLAGS);
+            => (types & ~SerializerNumericTypes.SPECIAL_FLAGS, types & SerializerNumericTypes.SPECIAL_FLAGS);
 
         /// <summary>
         /// Get the CLR type from a type
         /// </summary>
-        /// <param name="type">Type (may contain <see cref="SerializerConstants.NUMERIC_TYPES_FLAGS"/>)</param>
+        /// <param name="type">Type (may contain <see cref="SerializerNumericTypes.SPECIAL_FLAGS"/>)</param>
         /// <returns>CLR type</returns>
         /// <exception cref="ArgumentException">Invalid numeric type</exception>
         public static Type ToClrType(this SerializerNumericTypes type)
-            => (type & ~SerializerConstants.NUMERIC_TYPES_FLAGS) switch
+            => (type & ~SerializerNumericTypes.SPECIAL_FLAGS) switch
             {
                 SerializerNumericTypes.Byte => typeof(byte),
                 SerializerNumericTypes.SByte => typeof(sbyte),
@@ -43,7 +43,7 @@ namespace wan24.Core
         /// <summary>
         /// Get the numeric value of a serializer numeric type and its flags
         /// </summary>
-        /// <param name="type">Type (may contain <see cref="SerializerConstants.NUMERIC_TYPES_FLAGS"/>)</param>
+        /// <param name="type">Type (may contain <see cref="SerializerNumericTypes.SPECIAL_FLAGS"/>)</param>
         /// <returns>Numeric value</returns>
         /// <exception cref="ArgumentException">Invalid numeric type or invalid flags</exception>
         public static object ToNumericValue(this SerializerNumericTypes type)
@@ -56,7 +56,7 @@ namespace wan24.Core
         /// Get the numeric value of a serializer numeric type and its flags
         /// </summary>
         /// <param name="type">Type (without flags)</param>
-        /// <param name="flags">Flags (see <see cref="SerializerConstants.NUMERIC_TYPES_FLAGS"/>)</param>
+        /// <param name="flags">Flags (see <see cref="SerializerNumericTypes.SPECIAL_FLAGS"/>)</param>
         /// <returns>Numeric value</returns>
         /// <exception cref="ArgumentException">Invalid numeric type or invalid flags</exception>
         public static object ToNumericValue(this SerializerNumericTypes type, in SerializerNumericTypes flags)
@@ -162,9 +162,8 @@ namespace wan24.Core
         /// <summary>
         /// Get the serializer numeric type for a number
         /// </summary>
-        /// <typeparam name="T">Number type</typeparam>
         /// <param name="type">Number</param>
-        /// <returns><see cref="SerializerNumericTypes"/> including <see cref="SerializerConstants.NUMERIC_TYPES_FLAGS"/></returns>
+        /// <returns><see cref="SerializerNumericTypes"/> including <see cref="SerializerNumericTypes.SPECIAL_FLAGS"/></returns>
         /// <exception cref="ArgumentException">Not a supported numeric value</exception>
         public static SerializerNumericTypes ToSerializerNumericTypes(this object type)
         {
@@ -238,7 +237,7 @@ namespace wan24.Core
         /// Get the serializer numeric type for a type
         /// </summary>
         /// <param name="type">Type</param>
-        /// <returns><see cref="SerializerNumericTypes"/> including <see cref="SerializerConstants.NUMERIC_TYPES_FLAGS"/></returns>
+        /// <returns><see cref="SerializerNumericTypes"/> including <see cref="SerializerNumericTypes.SPECIAL_FLAGS"/></returns>
         public static SerializerNumericTypes ToSerializerNumericTypes(this Type type)
         {
             if (type == typeof(byte)) return SerializerNumericTypes.Byte;
@@ -261,7 +260,7 @@ namespace wan24.Core
         /// Get the serializer numeric type for a number
         /// </summary>
         /// <param name="number">Number</param>
-        /// <param name="result"><see cref="SerializerNumericTypes"/> including <see cref="SerializerConstants.NUMERIC_TYPES_FLAGS"/></param>
+        /// <param name="result"><see cref="SerializerNumericTypes"/> including <see cref="SerializerNumericTypes.SPECIAL_FLAGS"/></param>
         /// <returns>If succeed</returns>
         public static bool TryGetSerializerNumericTypes(this object number, out SerializerNumericTypes result)
         {
@@ -350,7 +349,7 @@ namespace wan24.Core
         /// </summary>
         /// <typeparam name="T">Number type</typeparam>
         /// <param name="number">Number (special values and zero won't be converted)</param>
-        /// <returns>Converted number and its type (including <see cref="SerializerConstants.NUMERIC_TYPES_FLAGS"/>)</returns>
+        /// <returns>Converted number and its type (including <see cref="SerializerNumericTypes.SPECIAL_FLAGS"/>)</returns>
         /// <exception cref="ArgumentException">Not a supported numeric value</exception>
         public static (object Number, SerializerNumericTypes Type) ToSmallestMatchingSerializerNumericTypes<T>(this T number) where T : struct, IConvertible
         {
@@ -489,7 +488,7 @@ namespace wan24.Core
         /// <param name="type"><see cref="SerializerNumericTypes"/></param>
         /// <returns><see cref="SerializerTypeInformation"/></returns>
         public static SerializerTypeInformation ToSerializerTypeInformation(this SerializerNumericTypes type)
-            => (type & ~SerializerConstants.NUMERIC_TYPES_FLAGS) switch
+            => (type & ~SerializerNumericTypes.SPECIAL_FLAGS) switch
             {
                 SerializerNumericTypes.Byte => SerializerTypeInformation.Byte,
                 SerializerNumericTypes.SByte => SerializerTypeInformation.SByte,
