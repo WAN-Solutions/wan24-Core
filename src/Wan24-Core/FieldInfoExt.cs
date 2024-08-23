@@ -1,6 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Reflection;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -37,7 +38,14 @@ namespace wan24.Core
         /// <summary>
         /// Full name including namespace and type
         /// </summary>
-        public string FullName => $"{Field.DeclaringType}.{Field.Name}";
+        public string FullName
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => $"{Field.DeclaringType}.{Field.Name}";
+        }
 
         /// <summary>
         /// Bindings
@@ -47,22 +55,50 @@ namespace wan24.Core
         /// <summary>
         /// Field name
         /// </summary>
-        public string Name => Field.Name;
+        public string Name
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Field.Name;
+        }
 
         /// <summary>
         /// Field declaring type
         /// </summary>
-        public Type? DeclaringType => Field.DeclaringType;
+        public Type? DeclaringType
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Field.DeclaringType;
+        }
 
         /// <summary>
         /// Field type
         /// </summary>
-        public Type FieldType => Field.FieldType;
+        public Type FieldType
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Field.FieldType;
+        }
 
         /// <summary>
         /// If the field is read-only
         /// </summary>
-        public bool IsInitOnly => Field.IsInitOnly;
+        public bool IsInitOnly
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Field.IsInitOnly;
+        }
 
         /// <summary>
         /// If the field is nullable
@@ -81,14 +117,23 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public object[] GetCustomAttributes(bool inherit) => Field.GetCustomAttributes(inherit);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public object[] GetCustomAttributes(Type attributeType, bool inherit) => Field.GetCustomAttributes(attributeType, inherit);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public bool IsDefined(Type attributeType, bool inherit) => Field.IsDefined(attributeType, inherit);
 
         /// <summary>
@@ -96,6 +141,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="fi"><see cref="FieldInfoExt"/></param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator FieldInfo(in FieldInfoExt fi) => fi.Field;
 
         /// <summary>
@@ -103,6 +151,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="fi"><see cref="FieldInfo"/></param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator FieldInfoExt(in FieldInfo fi) => From(fi);
 
         /// <summary>
@@ -110,6 +161,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="fi"><see cref="FieldInfoExt"/></param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator Type(in FieldInfoExt fi) => fi.FieldType;
 
         /// <summary>

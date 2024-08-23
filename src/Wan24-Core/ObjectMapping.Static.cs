@@ -1,5 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Reflection;
+using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -43,7 +45,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Auto-create missing mappings?
+        /// If to auto-create missing mappings
         /// </summary>
         public static bool AutoCreate { get; set; } = true;
 
@@ -91,6 +93,10 @@ namespace wan24.Core
         /// <param name="pi">Target property</param>
         /// <param name="attr">Source property map attribute</param>
         /// <returns>If mapping is possible</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool CanMapTypeTo(in Type valueType, in PropertyInfo pi, in MapAttribute? attr)
             => pi.SetMethod is not null && 
                 (
@@ -106,6 +112,10 @@ namespace wan24.Core
         /// <param name="sourceProperty">Source property</param>
         /// <param name="targetProperty">Target property</param>
         /// <returns>If mapping is possible</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool CanMapPropertyTo(in PropertyInfo sourceProperty, in PropertyInfo targetProperty)
             => CanMapTypeTo(sourceProperty.PropertyType, targetProperty, sourceProperty.GetCustomAttributeCached<MapAttribute>());
 
@@ -116,6 +126,10 @@ namespace wan24.Core
         /// <param name="targetProperty">Target property</param>
         /// <param name="attr">Source property map attribute</param>
         /// <returns>If mapping is possible</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool CanMapPropertyTo(in PropertyInfo sourceProperty, in PropertyInfo targetProperty, out MapAttribute? attr)
             => CanMapTypeTo(sourceProperty.PropertyType, targetProperty, attr = sourceProperty.GetCustomAttributeCached<MapAttribute>());
     }
