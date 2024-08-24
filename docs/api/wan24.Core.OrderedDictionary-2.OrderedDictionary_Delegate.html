@@ -108,7 +108,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_OrderedDictionary_2_OrderedDictionary_Delegate_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate void OrderedDictionary&lt;tKey, tValue&gt;.OrderedDictionary_Delegate(OrderedDictionary&lt;tKey, tValue&gt; sender, int index, tKey key, tValue value)</code></pre>
+    <pre><code class="lang-csharp hljs">public delegate void OrderedDictionary&lt;tKey, tValue&gt;.OrderedDictionary_Delegate(OrderedDictionary&lt;tKey, tValue&gt; sender, OrderedDictionary&lt;tKey, tValue&gt;.OrderedDictionaryEventArgs e)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -127,21 +127,9 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">index</span></td>
-        <td><p>Key/value pair index</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">tKey</span></td>
-        <td><span class="parametername">key</span></td>
-        <td><p>Key</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">tValue</span></td>
-        <td><span class="parametername">value</span></td>
-        <td><p>Value</p>
+        <td><a class="xref" href="wan24.Core.OrderedDictionary-2.html">OrderedDictionary</a>&lt;tKey, tValue&gt;.<a class="xref" href="wan24.Core.OrderedDictionary-2.OrderedDictionaryEventArgs.html">OrderedDictionaryEventArgs</a></td>
+        <td><span class="parametername">e</span></td>
+        <td><p>Arguments</p>
 </td>
       </tr>
     </tbody>
