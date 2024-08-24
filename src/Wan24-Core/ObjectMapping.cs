@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -8,7 +9,7 @@ namespace wan24.Core
     public partial class ObjectMapping
     {
         /// <summary>
-        /// Mapable property reflection flags
+        /// Mappable property reflection flags
         /// </summary>
         protected const BindingFlags PROPERTY_REFLECTION_FLAGS = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
@@ -16,6 +17,10 @@ namespace wan24.Core
         /// Mappings
         /// </summary>
         protected readonly OrderedDictionary<string, object> Mappings = [];
+        /// <summary>
+        /// Source object type
+        /// </summary>
+        protected readonly TypeInfoExt _SourceType = null!;
 
         /// <summary>
         /// Constructor
@@ -25,12 +30,28 @@ namespace wan24.Core
         /// <summary>
         /// Source object type
         /// </summary>
-        public required Type SourceType { get; init; }
+        public required TypeInfoExt SourceType
+        {
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => _SourceType;
+            init
+            {
+                _SourceType = value;
+                SourceMappingOptions = value.Type.GetCustomAttributeCached<MapAttribute>();
+            }
+        }
 
         /// <summary>
         /// Target object type
         /// </summary>
-        public required Type TargetType { get; init; }
+        public required TypeInfoExt TargetType { get; init; }
+
+        /// <summary>
+        /// Source type mapping options
+        /// </summary>
+        public MapAttribute? SourceMappingOptions { get; protected init; }
 
         /// <summary>
         /// Target object instance factory
@@ -42,10 +63,13 @@ namespace wan24.Core
         /// </summary>
         /// <param name="sourcePropertyName">Source property name</param>
         /// <returns>This</returns>
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public ObjectMapping AddMapping(in string sourcePropertyName)
         {
-            if (SourceType.GetPropertyCached(sourcePropertyName, PROPERTY_REFLECTION_FLAGS) is not PropertyInfoExt pi)
-                throw new MappingException($"Source property \"{SourceType}.{sourcePropertyName}\" not found");
+            if (SourceType.Type.GetPropertyCached(sourcePropertyName, PROPERTY_REFLECTION_FLAGS) is not PropertyInfoExt pi)
+                throw new MappingException($"Source property \"{SourceType.Type}.{sourcePropertyName}\" not found");
             if (pi.GetCustomAttributeCached<MapAttribute>() is MapAttribute attr)
             {
                 if (attr.CanMap)
@@ -76,14 +100,17 @@ namespace wan24.Core
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="targetPropertyName">Target property name</param>
         /// <returns>This</returns>
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public ObjectMapping AddMapping(in string sourcePropertyName, in string targetPropertyName)
         {
-            PropertyInfoExt sp = SourceType.GetPropertyCached(sourcePropertyName, PROPERTY_REFLECTION_FLAGS)
-                    ?? throw new MappingException($"Source property \"{SourceType}.{sourcePropertyName}\" not found"),
-                tp = TargetType.GetPropertyCached(targetPropertyName, PROPERTY_REFLECTION_FLAGS)
-                    ?? throw new MappingException($"Target property \"{TargetType}.{targetPropertyName}\" not found");
-            if (sp.Getter is null) throw new MappingException($"Source property \"{SourceType}.{sourcePropertyName}\" has no usable getter");
-            if (tp.Setter is null) throw new MappingException($"Target property \"{TargetType}.{targetPropertyName}\" has no usable setter");
+            PropertyInfoExt sp = SourceType.Type.GetPropertyCached(sourcePropertyName, PROPERTY_REFLECTION_FLAGS)
+                    ?? throw new MappingException($"Source property \"{SourceType.Type}.{sourcePropertyName}\" not found"),
+                tp = TargetType.Type.GetPropertyCached(targetPropertyName, PROPERTY_REFLECTION_FLAGS)
+                    ?? throw new MappingException($"Target property \"{TargetType.Type}.{targetPropertyName}\" not found");
+            if (sp.Getter is null) throw new MappingException($"Source property \"{SourceType.Type}.{sourcePropertyName}\" has no usable getter");
+            if (tp.Setter is null) throw new MappingException($"Target property \"{TargetType.Type}.{targetPropertyName}\" has no usable setter");
             if (!CanMapPropertyTo(sp, tp, out MapAttribute? attr))
                 throw new MappingException($"{sp.DeclaringType}.{sp.Name} ({sp.PropertyType}) can't be mapped to {tp.DeclaringType}.{tp.Name} ({tp.PropertyType})");
             ObjectMapper_Delegate mapper = attr?.Nested ?? false
@@ -102,10 +129,13 @@ namespace wan24.Core
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="mapper">Mapper method</param>
         /// <returns>This</returns>
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public ObjectMapping AddMapping<tSource, tTarget>(in string sourcePropertyName, in Mapper_Delegate<tSource, tTarget> mapper)
         {
-            if (typeof(tSource) != SourceType) throw new MappingException($"Source object type from {nameof(tSource)} mismatch ({SourceType} / {typeof(tSource)})");
-            if (typeof(tTarget) != TargetType) throw new MappingException($"Target object type from {nameof(tTarget)} mismatch ({TargetType} / {typeof(tTarget)})");
+            if (typeof(tSource) != SourceType.Type) throw new MappingException($"Source object type from {nameof(tSource)} mismatch ({SourceType.Type} / {typeof(tSource)})");
+            if (typeof(tTarget) != TargetType.Type) throw new MappingException($"Target object type from {nameof(tTarget)} mismatch ({TargetType.Type} / {typeof(tTarget)})");
             if (!Mappings.TryAdd(sourcePropertyName, mapper))
                 throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
             return this;
@@ -116,10 +146,13 @@ namespace wan24.Core
         /// </summary>
         /// <param name="sourcePropertyName">Source property name</param>
         /// <returns>This</returns>
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public ObjectMapping AddAsyncMapping(in string sourcePropertyName)
         {
-            if (SourceType.GetPropertyCached(sourcePropertyName, PROPERTY_REFLECTION_FLAGS) is not PropertyInfoExt pi)
-                throw new MappingException($"Source property \"{SourceType}.{sourcePropertyName}\" not found");
+            if (SourceType.Type.GetPropertyCached(sourcePropertyName, PROPERTY_REFLECTION_FLAGS) is not PropertyInfoExt pi)
+                throw new MappingException($"Source property \"{SourceType.Type}.{sourcePropertyName}\" not found");
             if (pi.GetCustomAttributeCached<MapAttribute>() is MapAttribute attr)
             {
                 if (attr.CanMapAsync)
@@ -150,14 +183,17 @@ namespace wan24.Core
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="targetPropertyName">Target property name</param>
         /// <returns>This</returns>
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public ObjectMapping AddAsyncMapping(in string sourcePropertyName, in string targetPropertyName)
         {
-            PropertyInfoExt sp = SourceType.GetPropertyCached(sourcePropertyName, PROPERTY_REFLECTION_FLAGS)
-                    ?? throw new MappingException($"Source property \"{SourceType}.{sourcePropertyName}\" not found"),
-                tp = TargetType.GetPropertyCached(targetPropertyName, PROPERTY_REFLECTION_FLAGS)
-                    ?? throw new MappingException($"Target property \"{TargetType}.{targetPropertyName}\" not found");
-            if (sp.Getter is null) throw new MappingException($"Source property \"{SourceType}.{sourcePropertyName}\" has no usable getter");
-            if (tp.Setter is null) throw new MappingException($"Target property \"{TargetType}.{targetPropertyName}\" has no usable setter");
+            PropertyInfoExt sp = SourceType.Type.GetPropertyCached(sourcePropertyName, PROPERTY_REFLECTION_FLAGS)
+                    ?? throw new MappingException($"Source property \"{SourceType.Type}.{sourcePropertyName}\" not found"),
+                tp = TargetType.Type.GetPropertyCached(targetPropertyName, PROPERTY_REFLECTION_FLAGS)
+                    ?? throw new MappingException($"Target property \"{TargetType.Type}.{targetPropertyName}\" not found");
+            if (sp.Getter is null) throw new MappingException($"Source property \"{SourceType.Type}.{sourcePropertyName}\" has no usable getter");
+            if (tp.Setter is null) throw new MappingException($"Target property \"{TargetType.Type}.{targetPropertyName}\" has no usable setter");
             if (!CanMapPropertyTo(sp, tp, out MapAttribute? attr))
                 throw new MappingException($"{sp.DeclaringType}.{sp.Name} ({sp.PropertyType}) can't be mapped to {tp.DeclaringType}.{tp.Name} ({tp.PropertyType})");
             if (attr?.Nested ?? false)
@@ -185,6 +221,9 @@ namespace wan24.Core
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="mapper">Mapper method</param>
         /// <returns>This</returns>
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public ObjectMapping AddAsyncMapping<tSource, tTarget>(in string sourcePropertyName, in AsyncMapper_Delegate<tSource, tTarget> mapper)
         {
             if (!Mappings.TryAdd(sourcePropertyName, mapper))
@@ -202,44 +241,42 @@ namespace wan24.Core
         /// <returns>This</returns>
         public virtual ObjectMapping AddAutoMappings(bool? optIn = null, bool? publicGetterOnly = null, bool? publicSetterOnly = null)
         {
-            MapAttribute? attr = SourceType.GetCustomAttributeCached<MapAttribute>();
+            MapAttribute? attr = SourceMappingOptions;
             optIn ??= attr?.OptIn ?? false;
             publicGetterOnly ??= attr?.PublicGetterOnly ?? false;
             publicSetterOnly ??= attr?.PublicSetterOnly ?? false;
-            string? targetPropertyName;
+            string targetPropertyName;
             PropertyInfoExt? tp;
-            foreach (PropertyInfoExt pi in from pi in SourceType.GetPropertiesCached(PROPERTY_REFLECTION_FLAGS)
+            foreach (PropertyInfoExt pi in from pi in SourceType.Type.GetPropertiesCached(PROPERTY_REFLECTION_FLAGS)
                                            where
                                             // Getter exists
-                                            pi.Property.GetMethod is not null && 
                                             pi.Getter is not null &&
+                                            pi.Property.GetMethod is not null && 
                                             // Not excluded
                                             pi.GetCustomAttributeCached<NoMapAttribute>() is null &&
                                             // Opt-in
-                                            (!optIn.Value || pi.GetCustomAttributeCached<MapAttribute>() is not null) &&
+                                            (pi.GetCustomAttributeCached<MapAttribute>()?.OptIn ?? !optIn.Value) &&
                                             // Public getter exists
-                                            (!publicGetterOnly.Value || pi.Property.GetMethod.IsPublic)
+                                            (!publicGetterOnly.Value || pi.HasPublicGetter)
                                            select pi)
             {
                 attr = pi.GetCustomAttributeCached<MapAttribute>();
-                targetPropertyName = attr?.TargetPropertyName;
-                tp = targetPropertyName is not null
-                    ? TargetType.GetPropertyCached(targetPropertyName, PROPERTY_REFLECTION_FLAGS)
-                    : TargetType.GetPropertyCached(pi.Name, PROPERTY_REFLECTION_FLAGS);
-                if (tp is null || !CanMapTypeTo(pi.PropertyType, tp, attr) || (publicSetterOnly.Value && !(tp.Property.SetMethod?.IsPublic ?? false)))
+                targetPropertyName = attr?.TargetPropertyName ?? pi.Name;
+                tp = TargetType.Type.GetPropertyCached(targetPropertyName, PROPERTY_REFLECTION_FLAGS);
+                if (tp is null || !CanMapTypeTo(pi.PropertyType, tp.Property, attr) || (publicSetterOnly.Value && !tp.HasPublicSetter))
                 {
                     if (attr is not null)
                         throw new MappingException(
-                            $"Invalid mapping configuration for mapping source object property {SourceType}.{pi.Name} to target object property {TargetType}.{targetPropertyName ?? pi.Name}"
+                            $"Invalid mapping configuration for mapping source object property {SourceType.Type}.{pi.Name} to target object property {TargetType.Type}.{targetPropertyName}"
                             );
                 }
-                else if (targetPropertyName is not null)
+                else if(attr?.TargetPropertyName is null)
                 {
-                    AddMapping(pi.Name, targetPropertyName);
+                    AddMapping(pi.Name);
                 }
                 else
                 {
-                    AddMapping(pi.Name);
+                    AddMapping(pi.Name, targetPropertyName);
                 }
             }
             return this;
@@ -252,9 +289,9 @@ namespace wan24.Core
         /// <returns>This</returns>
         public ObjectMapping Register(in Type? targetType = null)
         {
-            if (targetType is not null && !TargetType.IsAssignableFrom(targetType))
-                throw new MappingException($"Invalid target object type ({targetType} is not assignable to {TargetType})");
-            RegisteredMappings[(SourceType, targetType ?? TargetType)] = this;
+            if (targetType is not null && !TargetType.Type.IsAssignableFrom(targetType))
+                throw new MappingException($"Invalid target object type ({targetType} is not assignable to {TargetType.Type})");
+            RegisteredMappings[(SourceType.Type, targetType ?? TargetType.Type)] = this;
             return this;
         }
 
@@ -270,8 +307,8 @@ namespace wan24.Core
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(target);
-            foreach (object mapping in Mappings.Values)
-                switch (mapping)
+            for(int i = 0, len = Mappings.Count; i < len; i++)
+                switch (Mappings[i])
                 {
                     case Mapper_Delegate<tSource, tTarget> mapper:
                         mapper(source, target);
@@ -286,7 +323,7 @@ namespace wan24.Core
                         mapper(source, target, CancellationToken.None).GetAwaiter().GetResult();
                         break;
                     default:
-                        throw new MappingException($"Invalid mapper type {mapping.GetType()} in object mapping configuration for mapping {SourceType} to {TargetType}");
+                        throw new MappingException($"Invalid mapper type {Mappings[i].GetType()} in object mapping configuration for mapping {SourceType.Type} to {TargetType.Type}");
                 }
             if (source is IMappingObject mappingObject)
                 if (mappingObject.HasSyncHandlers)
@@ -317,9 +354,9 @@ namespace wan24.Core
         /// <returns>This</returns>
         public ObjectMapping ApplyObjectMappings(in object source, in object target)
         {
-            if (!SourceType.IsAssignableFrom(source.GetType())) throw new ArgumentException("Incompatible type", nameof(source));
-            if (!TargetType.IsAssignableFrom(target.GetType())) throw new ArgumentException("Incompatible type", nameof(target));
-            ApplyMethod.MakeGenericMethod(SourceType, TargetType).Invoker!(this, [source, target]);
+            if (!SourceType.Type.IsAssignableFrom(source.GetType())) throw new ArgumentException("Incompatible type", nameof(source));
+            if (!TargetType.Type.IsAssignableFrom(target.GetType())) throw new ArgumentException("Incompatible type", nameof(target));
+            ApplyMethod.MakeGenericMethod(SourceType.Type, TargetType.Type).Invoker!(this, [source, target]);
             return this;
         }
 
@@ -335,8 +372,8 @@ namespace wan24.Core
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(target);
-            foreach (object mapping in Mappings.Values)
-                switch (mapping)
+            for (int i = 0, len = Mappings.Count; i < len; i++)
+                switch (Mappings[i])
                 {
                     case Mapper_Delegate<tSource, tTarget> mapper:
                         mapper(source, target);
@@ -351,7 +388,7 @@ namespace wan24.Core
                         await mapper(source, target, cancellationToken).DynamicContext();
                         break;
                     default:
-                        throw new MappingException($"Invalid mapper type {mapping.GetType()} in object mapping configuration for mapping {SourceType} to {TargetType}");
+                        throw new MappingException($"Invalid mapper type {Mappings[i].GetType()} in object mapping configuration for mapping {SourceType.Type} to {TargetType.Type}");
                 }
             if (source is IMappingObject mappingObject)
                 if (mappingObject.HasAsyncHandlers)
@@ -381,9 +418,9 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         public Task ApplyObjectMappingsAsync(in object source, in object target, in CancellationToken cancellationToken)
         {
-            if (!SourceType.IsAssignableFrom(source.GetType())) throw new ArgumentException("Incompatible type", nameof(source));
-            if (!TargetType.IsAssignableFrom(target.GetType())) throw new ArgumentException("Incompatible type", nameof(target));
-            return (Task)AsyncApplyMethod.MakeGenericMethod(SourceType, TargetType).Invoker!(this, [source, target, cancellationToken])!;
+            if (!SourceType.Type.IsAssignableFrom(source.GetType())) throw new ArgumentException("Incompatible type", nameof(source));
+            if (!TargetType.Type.IsAssignableFrom(target.GetType())) throw new ArgumentException("Incompatible type", nameof(target));
+            return (Task)AsyncApplyMethod.MakeGenericMethod(SourceType.Type, TargetType.Type).Invoker!(this, [source, target, cancellationToken])!;
         }
     }
 }

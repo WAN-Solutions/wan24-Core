@@ -144,7 +144,7 @@ namespace wan24.Core
                 }
                 yield return new(__("Name"), Name, __("Throttle name"));
                 yield return new(__("Limit"), Limit, __("Limit within the timeout or zero, if disabled"));
-                yield return new(__("Timeout"), Timeout, __("Throttline timeout"));
+                yield return new(__("Timeout"), Timeout, __("Throttling timeout"));
                 yield return new(__("Count"), CurrentCount, __("Current count"));
                 yield return new(__("Counter"), _Counter.Count, __("Current number of counting events"));
                 yield return new(__("Accurence"), Accurence, __("Throttle timer accurence in ms"));
@@ -292,11 +292,11 @@ namespace wan24.Core
             {
                 Counted counted;
                 TimeSpan timeout;
-                int uncount = 0;
+                int unCount = 0;
                 while (true)
                 {
                     while (_Counter.TryPeek(out counted) && counted >= _Timeout && _Counter.TryDequeue(out counted))
-                        uncount += counted;
+                        unCount += counted;
                     if (_Counter.TryPeek(out counted))
                     {
                         timeout = _Timeout - counted;
@@ -307,8 +307,8 @@ namespace wan24.Core
                     }
                     break;
                 }
-                if (uncount > 0)
-                    CurrentCount -= uncount;
+                if (unCount > 0)
+                    CurrentCount -= unCount;
             }
             if (_Limit < 1 || CurrentCount < _Limit)
             {
@@ -335,11 +335,11 @@ namespace wan24.Core
             {
                 Counted counted;
                 TimeSpan timeout;
-                int uncount = 0;
+                int unCount = 0;
                 while (true)
                 {
                     while (_Counter.TryPeek(out counted) && counted >= _Timeout && _Counter.TryDequeue(out counted))
-                        uncount += counted;
+                        unCount += counted;
                     if (_Counter.TryPeek(out counted))
                     {
                         timeout = _Timeout - counted;
@@ -350,8 +350,8 @@ namespace wan24.Core
                     }
                     break;
                 }
-                if (uncount > 0)
-                    CurrentCount -= uncount;
+                if (unCount > 0)
+                    CurrentCount -= unCount;
             }
             if (_Limit < 1 || CurrentCount < _Limit)
             {

@@ -4,7 +4,9 @@
     /// An attribute for properties to be skipped for <see cref="ObjectMapping"/>
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class NoMapAttribute() : Attribute()
+    public class NoMapAttribute() : Attribute(), IOptInOut
     {
+        /// <inheritdoc/>
+        public OptInOut Opt => OptInOut.OptOut;
     }
 }

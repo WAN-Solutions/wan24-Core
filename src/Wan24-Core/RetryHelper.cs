@@ -49,7 +49,7 @@
                 catch (OperationCanceledException ex)
                 {
                     res.Exceptions.Add(ex);
-                    if (ex.CancellationToken == cancellationToken || !HandleException(ex, maxNumberOfTries, i, retryOnError, delay))
+                    if (ex.CancellationToken.IsEqualTo(cancellationToken) || !HandleException(ex, maxNumberOfTries, i, retryOnError, delay))
                     {
                         Finalize(res, i);
                         break;
@@ -118,7 +118,7 @@
                 catch (OperationCanceledException ex)
                 {
                     res.Exceptions.Add(ex);
-                    if (ex.CancellationToken == cancellationToken || !HandleException(ex, maxNumberOfTries, i, retryOnError, delay))
+                    if (ex.CancellationToken.IsEqualTo(cancellationToken) || !HandleException(ex, maxNumberOfTries, i, retryOnError, delay))
                     {
                         Finalize(res, i);
                         break;
@@ -190,7 +190,7 @@
                 catch (OperationCanceledException ex)
                 {
                     res.Exceptions.Add(ex);
-                    if (ex.CancellationToken == cancellationToken || !await HandleExceptionAsync(ex, maxNumberOfTries, i, retryOnError, delay).DynamicContext())
+                    if (ex.CancellationToken.IsEqualTo(cancellationToken) || !await HandleExceptionAsync(ex, maxNumberOfTries, i, retryOnError, delay).DynamicContext())
                     {
                         Finalize(res, i);
                         break;
@@ -266,7 +266,7 @@
                 catch (OperationCanceledException ex)
                 {
                     res.Exceptions.Add(ex);
-                    if (ex.CancellationToken == cancellationToken || !await HandleExceptionAsync(ex, maxNumberOfTries, i, retryOnError, delay).DynamicContext())
+                    if (ex.CancellationToken.IsEqualTo(cancellationToken) || !await HandleExceptionAsync(ex, maxNumberOfTries, i, retryOnError, delay).DynamicContext())
                     {
                         Finalize(res, i);
                         break;

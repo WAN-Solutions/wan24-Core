@@ -11,7 +11,7 @@
         /// <param name="cache">Cache</param>
         /// <param name="item">Cached item (will be disposed, if a newer revision can be returned)</param>
         /// <param name="options">Options</param>
-        /// <param name="removeExisting">Remove the existign entry?</param>
+        /// <param name="removeExisting">Remove the existing entry?</param>
         /// <param name="disposeUnused">Dispose the given <c>item</c>, if a newer item was found?</param>
         /// <returns>Cache entry (may be another revision, if not removing or a newer item revision has been cached during processing)</returns>
         /// <exception cref="OutOfMemoryException">Item exceeds the <see cref="InMemoryCacheOptions.MaxItemSize"/>, and type is <see cref="AutoDisposer{T}"/></exception>
@@ -34,7 +34,7 @@
         /// <param name="cache">Cache</param>
         /// <param name="item">Cached item (will be disposed, if a newer revision can be returned)</param>
         /// <param name="options">Options</param>
-        /// <param name="removeExisting">Remove the existign entry?</param>
+        /// <param name="removeExisting">Remove the existing entry?</param>
         /// <param name="disposeUnused">Dispose the given <c>item</c>, if a newer item was found?</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Cache entry (may be another revision, if not removing or a newer item revision has been cached during processing)</returns>

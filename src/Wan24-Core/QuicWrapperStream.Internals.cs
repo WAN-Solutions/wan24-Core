@@ -56,7 +56,7 @@ namespace wan24.Core
             catch (TimeoutException)
             {
             }
-            catch (OperationCanceledException ex) when (ex.CancellationToken == cancellationToken)
+            catch (OperationCanceledException ex) when (ex.CancellationToken.IsEqualTo(cancellationToken))
             {
             }
         }
@@ -72,7 +72,7 @@ namespace wan24.Core
             {
                 await BaseStream.ReadsClosed.WaitAsync(Cancellation.Token).DynamicContext();
             }
-            catch (OperationCanceledException ex) when (ex.CancellationToken == Cancellation.Token)
+            catch (OperationCanceledException ex) when (ex.CancellationToken.IsEqualTo(Cancellation.Token))
             {
             }
             catch (QuicException)
@@ -103,7 +103,7 @@ namespace wan24.Core
             {
                 await BaseStream.WritesClosed.WaitAsync(Cancellation.Token).DynamicContext();
             }
-            catch (OperationCanceledException ex) when (ex.CancellationToken == Cancellation.Token)
+            catch (OperationCanceledException ex) when (ex.CancellationToken.IsEqualTo(Cancellation.Token))
             {
             }
             catch (QuicException)

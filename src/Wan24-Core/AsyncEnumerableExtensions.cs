@@ -15,6 +15,7 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Array</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static async Task<T[]> ToArrayAsync<T>(this IAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
             => [.. (await enumerable.ToListAsync(cancellationToken).DynamicContext())];
 
@@ -25,6 +26,7 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>List</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static async Task<List<T>> ToListAsync<T>(this IAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
         {
             List<T> res = [];
@@ -39,6 +41,7 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Array</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static async Task<T[]> ToArrayAsync<T>(this ConfiguredCancelableAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
             => [.. (await enumerable.ToListAsync(cancellationToken).DynamicContext())];
 
@@ -49,6 +52,7 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>List</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static async Task<List<T>> ToListAsync<T>(this ConfiguredCancelableAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
         {
             List<T> res = [];
@@ -83,6 +87,7 @@ namespace wan24.Core
         /// <param name="enumerables">Enumerables</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Combined enumerable</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static async IAsyncEnumerable<T> CombineAsync<T>(
             this IAsyncEnumerable<IEnumerable<T>> enumerables,
             [EnumeratorCancellation] CancellationToken cancellationToken = default)
@@ -99,6 +104,7 @@ namespace wan24.Core
         /// <param name="enumerables">Enumerables</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Combined enumerable</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static async IAsyncEnumerable<T> CombineAsync<T>(
             this IAsyncEnumerable<IAsyncEnumerable<T>> enumerables,
             [EnumeratorCancellation] CancellationToken cancellationToken = default)
@@ -116,6 +122,7 @@ namespace wan24.Core
         /// <param name="chunkSize">Chunk size</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Chunks</returns>
+        [TargetedPatchingOptOut("Tiny method")]
         public static async IAsyncEnumerable<T[]> ChunkEnumAsync<T>(
             this IAsyncEnumerable<T> enumerable,
             int chunkSize,
@@ -139,6 +146,7 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="disposables">Disposables</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static DisposingAsyncEnumerator<T> ToDisposingAsyncEnumerator<T>(
             this IAsyncEnumerable<T> enumerable,
             in CancellationToken cancellationToken,
@@ -151,6 +159,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="disposables">Disposables</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static DisposingAsyncEnumerator<T> ToDisposingAsyncEnumerator<T>(
             this IAsyncEnumerable<T> enumerable,
             params object?[] disposables
@@ -163,6 +172,7 @@ namespace wan24.Core
         /// <param name="enumerator">Enumerator (will be disposed)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="disposables">Disposables</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static DisposingAsyncEnumerator<T> ToDisposingAsyncEnumerator<T>(
             this IAsyncEnumerator<T> enumerator,
             in CancellationToken cancellationToken,
@@ -175,6 +185,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="enumerator">Enumerator (will be disposed)</param>
         /// <param name="disposables">Disposables</param>
+        [TargetedPatchingOptOut("Tiny method")]
         public static DisposingAsyncEnumerator<T> ToDisposingAsyncEnumerator<T>(
             this IAsyncEnumerator<T> enumerator,
             params object?[] disposables

@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Frozen;
 using System.Reflection;
 using System.Runtime;
-using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -79,9 +79,55 @@ namespace wan24.Core
         private ConstructorInfoExt? _ParameterlessConstructor = null;
 
         /// <summary>
+        /// Get a field/property/method/delegate/event by its name
+        /// </summary>
+        /// <param name="name">Name</param>
+        /// <returns>Field/property/method/delegate/event</returns>
+        public ICustomAttributeProvider? this[string name]
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Properties.FirstOrDefault(p => p.Name == name)
+                ?? Methods.FirstOrDefault(m => m.Name == name)
+                ?? Fields.FirstOrDefault(f => f.Name == name)
+                ?? ((ICustomAttributeProvider?)Delegates.FirstOrDefault(d => d.Name == name))
+                ?? Events.FirstOrDefault(e => e.Name == name);
+        }
+
+        /// <summary>
+        /// Get a custom attribute by its type
+        /// </summary>
+        /// <param name="type">Attribute type</param>
+        /// <returns>Attribute</returns>
+        public Attribute? this[Type type]
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => typeof(Attribute).IsAssignableFrom(type)
+                ? Attributes.FirstOrDefault(a => type.IsAssignableFrom(a.GetType()))
+                : throw new ArgumentException("Not an attribute type", nameof(type));
+        }
+
+        /// <summary>
         /// Type
         /// </summary>
         public Type Type { get; } = Type;
+
+        /// <summary>
+        /// Full name including namespace
+        /// </summary>
+        public string FullName
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Type.ToString();
+        }
 
         /// <summary>
         /// Bindings
@@ -91,17 +137,38 @@ namespace wan24.Core
         /// <summary>
         /// Name
         /// </summary>
-        public string Name => Type.Name;
+        public string Name
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Type.Name;
+        }
 
         /// <summary>
         /// Assembly
         /// </summary>
-        public Assembly Assembly => Type.Assembly;
+        public Assembly Assembly
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Type.Assembly;
+        }
 
         /// <summary>
         /// Declaring type
         /// </summary>
-        public Type? DeclaringType => Type.DeclaringType;
+        public Type? DeclaringType
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Type.DeclaringType;
+        }
 
         /// <summary>
         /// If the type can be constructed
@@ -126,12 +193,26 @@ namespace wan24.Core
         /// <summary>
         /// If the type is generic
         /// </summary>
-        public bool IsGenericType => Type.IsGenericType;
+        public bool IsGenericType
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Type.IsGenericType;
+        }
 
         /// <summary>
         /// If the type is a generic type definition
         /// </summary>
-        public bool IsGenericTypeDefinition => Type.IsGenericTypeDefinition;
+        public bool IsGenericTypeDefinition
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Type.IsGenericTypeDefinition;
+        }
 
         /// <summary>
         /// Generic arguments
@@ -223,16 +304,69 @@ namespace wan24.Core
         /// </summary>
         public int EventCount => (_Events ??= Type.GetEventsCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet()).Count;
 
+        /// <summary>
+        /// Create an instance
+        /// </summary>
+        /// <param name="param">Parameters</param>
+        /// <returns>Instance</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public object CreateInstance(params object?[] param)
+            => param.Length == 0 && ParameterlessConstructor is ConstructorInfoExt ci && ci.Invoker is not null
+                ? ci.Invoker(param)
+                : Type.ConstructAuto(usePrivate: true, param);
+
+        /// <summary>
+        /// Create an instance
+        /// </summary>
+        /// <param name="sp">Service provider</param>
+        /// <param name="param">Parameters</param>
+        /// <returns>Instance</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public object CreateInstance(IServiceProvider sp, params object?[] param)
+            => param.Length == 0 && ParameterlessConstructor is ConstructorInfoExt ci && ci.Invoker is not null
+                ? ci.Invoker(param)
+                : Type.ConstructAuto(sp, usePrivate: true, param);
+
+        /// <summary>
+        /// Create an instance
+        /// </summary>
+        /// <param name="sp">Service provider</param>
+        /// <param name="param">Parameters</param>
+        /// <returns>Instance</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public async Task<object> CreateInstanceAsync(IAsyncServiceProvider sp, params object?[] param)
+            => param.Length == 0 && ParameterlessConstructor is ConstructorInfoExt ci && ci.Invoker is not null
+                ? ci.Invoker(param)
+                : await Type.ConstructAutoAsync(sp, usePrivate: true, param).DynamicContext();
+
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public object[] GetCustomAttributes(bool inherit) => Type.GetCustomAttributes(inherit);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public object[] GetCustomAttributes(Type attributeType, bool inherit) => Type.GetCustomAttributes(attributeType, inherit);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public bool IsDefined(Type attributeType, bool inherit) => Type.IsDefined(attributeType, inherit);
 
         /// <inheritdoc/>
@@ -246,18 +380,30 @@ namespace wan24.Core
         /// Cast as <see cref="Type"/>
         /// </summary>
         /// <param name="ci"><see cref="TypeInfoExt"/></param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator Type(in TypeInfoExt ci) => ci.Type;
 
         /// <summary>
         /// Cast from <see cref="Type"/>
         /// </summary>
         /// <param name="type">Type</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator TypeInfoExt(in Type type) => From(type);
 
         /// <summary>
         /// Cast as <see cref="ParameterlessConstructor"/>
         /// </summary>
         /// <param name="ci"><see cref="TypeInfoExt"/></param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator ConstructorInfoExt?(in TypeInfoExt ci) => ci.ParameterlessConstructor;
 
         /// <summary>
