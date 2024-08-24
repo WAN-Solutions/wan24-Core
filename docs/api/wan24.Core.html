@@ -707,6 +707,9 @@ the first stream per default)</p>
       <h5><a class="xref" href="wan24.Core.LimitedStream-1.html">LimitedStream&lt;T&gt;</a></h5>
       <section><p>Limited stream limits reading/writing/seeking (which can't be overridden from an inheriting or wrapped stream)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ListExtensions.html">ListExtensions</a></h5>
+      <section><p>List extensions</p>
+</section>
       <h5><a class="xref" href="wan24.Core.LoadTypeEventArgs.html">LoadTypeEventArgs</a></h5>
       <section><p>Type loader event arguments</p>
 </section>
@@ -755,6 +758,9 @@ the first stream per default)</p>
       <h5><a class="xref" href="wan24.Core.MultiThrottledStream.html">MultiThrottledStream</a></h5>
       <section><p>Multiple combined throttled streams (will balance a total read/write limit to all hosted streams, based on quotas; all streams need to use the same time
 restrictions for this)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.NetworkEvents.html">NetworkEvents</a></h5>
+      <section><p>Network events</p>
 </section>
       <h5><a class="xref" href="wan24.Core.NetworkHelper.html">NetworkHelper</a></h5>
       <section><p>Network helper</p>
@@ -824,6 +830,9 @@ restrictions for this)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.OrderedDictionary-2.DictionaryEnumerator.html">OrderedDictionary&lt;tKey, tValue&gt;.DictionaryEnumerator</a></h5>
       <section><p>Dictionary enumerator</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.OrderedDictionary-2.OrderedDictionaryEventArgs.html">OrderedDictionary&lt;tKey, tValue&gt;.OrderedDictionaryEventArgs</a></h5>
+      <section><p>Event arguments</p>
 </section>
       <h5><a class="xref" href="wan24.Core.OverridableConfig-1.html">OverridableConfig&lt;tFinal&gt;</a></h5>
       <section><p>Base class for an overridable configuration</p>
@@ -952,6 +961,12 @@ restrictions for this)</p>
       <h5><a class="xref" href="wan24.Core.RandomStream.html">RandomStream</a></h5>
       <section><p>Random stream (uses <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.randomnumbergenerator">RandomNumberGenerator</a> for reading random bytes into the given buffers)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ReadWriteLock.html">ReadWriteLock</a></h5>
+      <section><p>Read/write lock (allows multiple reader, but only sequential writing)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ReadWriteLock.Context.html">ReadWriteLock.Context</a></h5>
+      <section><p>Read/write lock context</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ReflectAttribute.html">ReflectAttribute</a></h5>
       <section><p>Attribute for types which tell what to reflect using <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_Reflect_System_Type_System_Nullable_System_Reflection_BindingFlags__">Reflect(Type, BindingFlags?)</a></p>
 </section>
@@ -968,10 +983,13 @@ restrictions for this)</p>
       <section><p>Rented object (returns the rented object to the pool when disposing)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.RentedThread.html">RentedThread</a></h5>
-      <section><p>Rented thread (can be used with <a class="xref" href="wan24.Core.ObjectPool-1.html">ObjectPool&lt;T&gt;</a> and <a class="xref" href="wan24.Core.RentedObject-1.html">RentedObject&lt;T&gt;</a>)</p>
+      <section><p>Rented thread</p>
 </section>
       <h5><a class="xref" href="wan24.Core.RentedThreadOptions.html">RentedThreadOptions</a></h5>
       <section><p><a class="xref" href="wan24.Core.RentedThread.html">RentedThread</a> options</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.RentedThreadPool.html">RentedThreadPool</a></h5>
+      <section><p>Rented thread pool</p>
 </section>
       <h5><a class="xref" href="wan24.Core.RentedThread-1.html">RentedThread&lt;T&gt;</a></h5>
       <section><p>Rented thread (can be used with <a class="xref" href="wan24.Core.ObjectPool-1.html">ObjectPool&lt;T&gt;</a> and <a class="xref" href="wan24.Core.RentedObject-1.html">RentedObject&lt;T&gt;</a>)</p>
@@ -1282,6 +1300,9 @@ Structs
 </section>
       <h5><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></h5>
       <section><p>Read-only IP sub-net list</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ObjectReflection.html">ObjectReflection</a></h5>
+      <section><p>Object reflection</p>
 </section>
       <h5><a class="xref" href="wan24.Core.OneOrMany-1.html">OneOrMany&lt;T&gt;</a></h5>
       <section><p>One or many items (can cast implicit from/to a single or all items; casts from <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> to an empty structure; casts from an empty structure to
@@ -1785,6 +1806,9 @@ Delegates
       <h5><a class="xref" href="wan24.Core.MultiFileSystemEvents.MultiFileSystemEvents_Delegate.html">MultiFileSystemEvents.MultiFileSystemEvents_Delegate</a></h5>
       <section><p>Delegate for an event hander</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.NetworkEvents.NetworkEvent_Delegate.html">NetworkEvents.NetworkEvent_Delegate</a></h5>
+      <section><p>Delegate for a network event</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ObjectLockManager-1.Lock_Delegate.html">ObjectLockManager&lt;T&gt;.Lock_Delegate</a></h5>
       <section><p>Delegate for locking events</p>
 </section>
@@ -1862,6 +1886,9 @@ Delegates
 </section>
       <h5><a class="xref" href="wan24.Core.QueueWorker.Task_Delegate.html">QueueWorker.Task_Delegate</a></h5>
       <section><p>Delegate for a task</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ReadWriteLock.ReadWriteLock_Delegate.html">ReadWriteLock.ReadWriteLock_Delegate</a></h5>
+      <section><p>Delegate for an <a class="xref" href="wan24.Core.ReadWriteLock.html#wan24_Core_ReadWriteLock_OnWriteRequested">OnWriteRequested</a> handler</p>
 </section>
       <h5><a class="xref" href="wan24.Core.RentedThread.Worker_Delegate.html">RentedThread.Worker_Delegate</a></h5>
       <section><p>Delegate for a worker</p>

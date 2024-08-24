@@ -16,16 +16,16 @@ namespace Wan24_Core_Tests
             mapping.AddMapping(nameof(A.PropertyC), static (source, target) => target.PropertyC = source.PropertyC);
             mapping.ApplyMappings(a, b);
             Assert.IsTrue(b.TargetPropertyA);
-            Assert.IsFalse(b.PropertyB);
-            Assert.IsTrue(b.PropertyC);
+            Assert.IsFalse(b.PropertyB);// No mapping
+            Assert.IsTrue(b.PropertyC);// Custom mapping
 
             b = new();
             mapping = ObjectMapping<A, B>.Create();
             mapping.AddAutoMappings();
             mapping.ApplyMappings(a, b);
-            Assert.IsTrue(b.TargetPropertyA);
-            Assert.IsFalse(b.PropertyB);
-            Assert.IsFalse(b.PropertyC);// NoMapAttribute in effect
+            Assert.IsTrue(b.TargetPropertyA);// Opt-in by MapAttribute
+            Assert.IsFalse(b.PropertyB);// NoMapAttribute
+            Assert.IsFalse(b.PropertyC);// Opt-out (no MapAttribute)
         }
 
         [TestMethod]
@@ -39,16 +39,16 @@ namespace Wan24_Core_Tests
             mapping.AddMapping(nameof(A.PropertyC), static (source, target) => target.PropertyC = source.PropertyC);
             await mapping.ApplyMappingsAsync(a, b);
             Assert.IsTrue(b.TargetPropertyA);
-            Assert.IsFalse(b.PropertyB);
-            Assert.IsTrue(b.PropertyC);
+            Assert.IsFalse(b.PropertyB);// No mapping
+            Assert.IsTrue(b.PropertyC);// Custom mapping
 
             b = new();
             mapping = ObjectMapping<A, B>.Create();
             mapping.AddAutoMappings();
             await mapping.ApplyMappingsAsync(a, b);
-            Assert.IsTrue(b.TargetPropertyA);
-            Assert.IsFalse(b.PropertyB);
-            Assert.IsFalse(b.PropertyC);// NoMapAttribute in effect
+            Assert.IsTrue(b.TargetPropertyA);// Opt-in by MapAttribute
+            Assert.IsFalse(b.PropertyB);// NoMapAttribute
+            Assert.IsFalse(b.PropertyC);// Opt-out (no MapAttribute)
         }
 
         [Map]

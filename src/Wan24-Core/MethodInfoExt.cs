@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace wan24.Core
@@ -69,6 +70,18 @@ namespace wan24.Core
         public MethodInfo Method { get; } = Method;
 
         /// <summary>
+        /// Full name including namespace and type
+        /// </summary>
+        public string FullName
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => $"{Method.DeclaringType}.{Method.Name}";
+        }
+
+        /// <summary>
         /// Bindings
         /// </summary>
         public BindingFlags Bindings => _Bindings ??= Method.GetBindingFlags();
@@ -76,27 +89,62 @@ namespace wan24.Core
         /// <summary>
         /// Method name
         /// </summary>
-        public string Name => Method.Name;
+        public string Name
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Method.Name;
+        }
 
         /// <summary>
         /// Declaring type
         /// </summary>
-        public Type? DeclaringType => Method.DeclaringType;
+        public Type? DeclaringType
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Method.DeclaringType;
+        }
 
         /// <summary>
         /// Method return type
         /// </summary>
-        public Type ReturnType => Method.ReturnType;
+        public Type ReturnType
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Method.ReturnType;
+        }
 
         /// <summary>
         /// If the method return type is void (the method has no return value)
         /// </summary>
-        public bool IsVoid => Method.ReturnType == typeof(void);
+        public bool IsVoid
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Method.ReturnType == typeof(void);
+        }
 
         /// <summary>
         /// If the method return type is void (the asynchronous method has no return value)
         /// </summary>
-        public bool IsVoidTask => Method.ReturnType == typeof(Task);
+        public bool IsVoidTask
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Method.ReturnType == typeof(Task);
+        }
 
         /// <summary>
         /// If the method is asynchronous and await able
@@ -106,12 +154,26 @@ namespace wan24.Core
         /// <summary>
         /// If the method is generic
         /// </summary>
-        public bool IsGenericMethod => Method.IsGenericMethod;
+        public bool IsGenericMethod
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Method.IsGenericMethod;
+        }
 
         /// <summary>
         /// If the method is a generic method definition
         /// </summary>
-        public bool IsGenericMethodDefinition => Method.IsGenericMethodDefinition;
+        public bool IsGenericMethodDefinition
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Method.IsGenericMethodDefinition;
+        }
 
         /// <summary>
         /// Parameters
@@ -199,14 +261,23 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public object[] GetCustomAttributes(bool inherit) => Method.GetCustomAttributes(inherit);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public object[] GetCustomAttributes(Type attributeType, bool inherit) => Method.GetCustomAttributes(attributeType, inherit);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public bool IsDefined(Type attributeType, bool inherit) => Method.IsDefined(attributeType, inherit);
 
         /// <inheritdoc/>
@@ -220,6 +291,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="mi"><see cref="MethodInfoExt"/></param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator MethodInfo(in MethodInfoExt mi) => mi.Method;
 
         /// <summary>
@@ -227,6 +301,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="mi"><see cref="MethodInfo"/></param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator MethodInfoExt(in MethodInfo mi) => From(mi);
 
         /// <summary>
@@ -234,6 +311,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="mi"><see cref="MethodInfoExt"/></param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator Type(in MethodInfoExt mi) => mi.ReturnType;
 
         /// <summary>
@@ -285,6 +365,10 @@ namespace wan24.Core
             }
 
             /// <inheritdoc/>
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             public override int GetHashCode() => HashCode;
         }
 

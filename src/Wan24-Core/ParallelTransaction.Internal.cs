@@ -113,7 +113,7 @@ namespace wan24.Core
                 }
                 catch (OperationCanceledException ex)
                 {
-                    if (ex.CancellationToken == cancellationToken) throw;
+                    if (ex.CancellationToken.IsEqualTo(cancellationToken)) throw;
                     if (throwOnError) exceptions.Add(ex);
                 }
                 catch (Exception ex)

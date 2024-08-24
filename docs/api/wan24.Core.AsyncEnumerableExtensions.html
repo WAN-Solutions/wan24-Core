@@ -146,7 +146,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerableExtensions_ChunkEnumAsync__1_System_Collections_Generic_IAsyncEnumerable___0__System_Int32_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerableExtensions.ChunkEnumAsync%60%601(System.Collections.Generic.IAsyncEnumerable%7B%60%600%7D%2CSystem.Int32%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L119">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L125">View Source</a>
   </span>
   <a id="wan24_Core_AsyncEnumerableExtensions_ChunkEnumAsync_" data-uid="wan24.Core.AsyncEnumerableExtensions.ChunkEnumAsync*"></a>
   <h4 id="wan24_Core_AsyncEnumerableExtensions_ChunkEnumAsync__1_System_Collections_Generic_IAsyncEnumerable___0__System_Int32_System_Threading_CancellationToken_" data-uid="wan24.Core.AsyncEnumerableExtensions.ChunkEnumAsync``1(System.Collections.Generic.IAsyncEnumerable{``0},System.Int32,System.Threading.CancellationToken)">ChunkEnumAsync&lt;T&gt;(IAsyncEnumerable&lt;T&gt;, int, CancellationToken)</h4>
@@ -155,7 +155,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IAsyncEnumerable&lt;T[]&gt; ChunkEnumAsync&lt;T&gt;(this IAsyncEnumerable&lt;T&gt; enumerable, int chunkSize, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IAsyncEnumerable&lt;T[]&gt; ChunkEnumAsync&lt;T&gt;(this IAsyncEnumerable&lt;T&gt; enumerable, int chunkSize, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -224,7 +225,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerableExtensions_CombineAsync__1_System_Collections_Generic_IAsyncEnumerable_System_Collections_Generic_IAsyncEnumerable___0___System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerableExtensions.CombineAsync%60%601(System.Collections.Generic.IAsyncEnumerable%7BSystem.Collections.Generic.IAsyncEnumerable%7B%60%600%7D%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L102">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L107">View Source</a>
   </span>
   <a id="wan24_Core_AsyncEnumerableExtensions_CombineAsync_" data-uid="wan24.Core.AsyncEnumerableExtensions.CombineAsync*"></a>
   <h4 id="wan24_Core_AsyncEnumerableExtensions_CombineAsync__1_System_Collections_Generic_IAsyncEnumerable_System_Collections_Generic_IAsyncEnumerable___0___System_Threading_CancellationToken_" data-uid="wan24.Core.AsyncEnumerableExtensions.CombineAsync``1(System.Collections.Generic.IAsyncEnumerable{System.Collections.Generic.IAsyncEnumerable{``0}},System.Threading.CancellationToken)">CombineAsync&lt;T&gt;(IAsyncEnumerable&lt;IAsyncEnumerable&lt;T&gt;&gt;, CancellationToken)</h4>
@@ -233,7 +234,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IAsyncEnumerable&lt;T&gt; CombineAsync&lt;T&gt;(this IAsyncEnumerable&lt;IAsyncEnumerable&lt;T&gt;&gt; enumerables, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IAsyncEnumerable&lt;T&gt; CombineAsync&lt;T&gt;(this IAsyncEnumerable&lt;IAsyncEnumerable&lt;T&gt;&gt; enumerables, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -296,7 +298,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerableExtensions_CombineAsync__1_System_Collections_Generic_IAsyncEnumerable_System_Collections_Generic_IEnumerable___0___System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerableExtensions.CombineAsync%60%601(System.Collections.Generic.IAsyncEnumerable%7BSystem.Collections.Generic.IEnumerable%7B%60%600%7D%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L86">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L90">View Source</a>
   </span>
   <a id="wan24_Core_AsyncEnumerableExtensions_CombineAsync_" data-uid="wan24.Core.AsyncEnumerableExtensions.CombineAsync*"></a>
   <h4 id="wan24_Core_AsyncEnumerableExtensions_CombineAsync__1_System_Collections_Generic_IAsyncEnumerable_System_Collections_Generic_IEnumerable___0___System_Threading_CancellationToken_" data-uid="wan24.Core.AsyncEnumerableExtensions.CombineAsync``1(System.Collections.Generic.IAsyncEnumerable{System.Collections.Generic.IEnumerable{``0}},System.Threading.CancellationToken)">CombineAsync&lt;T&gt;(IAsyncEnumerable&lt;IEnumerable&lt;T&gt;&gt;, CancellationToken)</h4>
@@ -305,7 +307,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IAsyncEnumerable&lt;T&gt; CombineAsync&lt;T&gt;(this IAsyncEnumerable&lt;IEnumerable&lt;T&gt;&gt; enumerables, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IAsyncEnumerable&lt;T&gt; CombineAsync&lt;T&gt;(this IAsyncEnumerable&lt;IEnumerable&lt;T&gt;&gt; enumerables, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -368,7 +371,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerableExtensions_DynamicContext__1_System_Collections_Generic_IAsyncEnumerable___0__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerableExtensions.DynamicContext%60%601(System.Collections.Generic.IAsyncEnumerable%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L75">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L79">View Source</a>
   </span>
   <a id="wan24_Core_AsyncEnumerableExtensions_DynamicContext_" data-uid="wan24.Core.AsyncEnumerableExtensions.DynamicContext*"></a>
   <h4 id="wan24_Core_AsyncEnumerableExtensions_DynamicContext__1_System_Collections_Generic_IAsyncEnumerable___0__" data-uid="wan24.Core.AsyncEnumerableExtensions.DynamicContext``1(System.Collections.Generic.IAsyncEnumerable{``0})">DynamicContext&lt;T&gt;(IAsyncEnumerable&lt;T&gt;)</h4>
@@ -435,7 +438,7 @@ public static ConfiguredCancelableAsyncEnumerable&lt;T&gt; DynamicContext&lt;T&g
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerableExtensions_FixedContext__1_System_Collections_Generic_IAsyncEnumerable___0__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerableExtensions.FixedContext%60%601(System.Collections.Generic.IAsyncEnumerable%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L65">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L69">View Source</a>
   </span>
   <a id="wan24_Core_AsyncEnumerableExtensions_FixedContext_" data-uid="wan24.Core.AsyncEnumerableExtensions.FixedContext*"></a>
   <h4 id="wan24_Core_AsyncEnumerableExtensions_FixedContext__1_System_Collections_Generic_IAsyncEnumerable___0__" data-uid="wan24.Core.AsyncEnumerableExtensions.FixedContext``1(System.Collections.Generic.IAsyncEnumerable{``0})">FixedContext&lt;T&gt;(IAsyncEnumerable&lt;T&gt;)</h4>
@@ -511,7 +514,8 @@ public static ConfiguredCancelableAsyncEnumerable&lt;T&gt; FixedContext&lt;T&gt;
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;T[]&gt; ToArrayAsync&lt;T&gt;(this IAsyncEnumerable&lt;T&gt; enumerable, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static Task&lt;T[]&gt; ToArrayAsync&lt;T&gt;(this IAsyncEnumerable&lt;T&gt; enumerable, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -574,7 +578,7 @@ public static ConfiguredCancelableAsyncEnumerable&lt;T&gt; FixedContext&lt;T&gt;
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerableExtensions_ToArrayAsync__1_System_Runtime_CompilerServices_ConfiguredCancelableAsyncEnumerable___0__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerableExtensions.ToArrayAsync%60%601(System.Runtime.CompilerServices.ConfiguredCancelableAsyncEnumerable%7B%60%600%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L42">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L44">View Source</a>
   </span>
   <a id="wan24_Core_AsyncEnumerableExtensions_ToArrayAsync_" data-uid="wan24.Core.AsyncEnumerableExtensions.ToArrayAsync*"></a>
   <h4 id="wan24_Core_AsyncEnumerableExtensions_ToArrayAsync__1_System_Runtime_CompilerServices_ConfiguredCancelableAsyncEnumerable___0__System_Threading_CancellationToken_" data-uid="wan24.Core.AsyncEnumerableExtensions.ToArrayAsync``1(System.Runtime.CompilerServices.ConfiguredCancelableAsyncEnumerable{``0},System.Threading.CancellationToken)">ToArrayAsync&lt;T&gt;(ConfiguredCancelableAsyncEnumerable&lt;T&gt;, CancellationToken)</h4>
@@ -583,7 +587,8 @@ public static ConfiguredCancelableAsyncEnumerable&lt;T&gt; FixedContext&lt;T&gt;
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;T[]&gt; ToArrayAsync&lt;T&gt;(this ConfiguredCancelableAsyncEnumerable&lt;T&gt; enumerable, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static Task&lt;T[]&gt; ToArrayAsync&lt;T&gt;(this ConfiguredCancelableAsyncEnumerable&lt;T&gt; enumerable, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -646,7 +651,7 @@ public static ConfiguredCancelableAsyncEnumerable&lt;T&gt; FixedContext&lt;T&gt;
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerableExtensions_ToDisposingAsyncEnumerator__1_System_Collections_Generic_IAsyncEnumerable___0__System_Object___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerableExtensions.ToDisposingAsyncEnumerator%60%601(System.Collections.Generic.IAsyncEnumerable%7B%60%600%7D%2CSystem.Object%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L154">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L162">View Source</a>
   </span>
   <a id="wan24_Core_AsyncEnumerableExtensions_ToDisposingAsyncEnumerator_" data-uid="wan24.Core.AsyncEnumerableExtensions.ToDisposingAsyncEnumerator*"></a>
   <h4 id="wan24_Core_AsyncEnumerableExtensions_ToDisposingAsyncEnumerator__1_System_Collections_Generic_IAsyncEnumerable___0__System_Object___" data-uid="wan24.Core.AsyncEnumerableExtensions.ToDisposingAsyncEnumerator``1(System.Collections.Generic.IAsyncEnumerable{``0},System.Object[])">ToDisposingAsyncEnumerator&lt;T&gt;(IAsyncEnumerable&lt;T&gt;, params object?[])</h4>
@@ -655,7 +660,8 @@ public static ConfiguredCancelableAsyncEnumerable&lt;T&gt; FixedContext&lt;T&gt;
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static DisposingAsyncEnumerator&lt;T&gt; ToDisposingAsyncEnumerator&lt;T&gt;(this IAsyncEnumerable&lt;T&gt; enumerable, params object?[] disposables)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static DisposingAsyncEnumerator&lt;T&gt; ToDisposingAsyncEnumerator&lt;T&gt;(this IAsyncEnumerable&lt;T&gt; enumerable, params object?[] disposables)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -716,7 +722,7 @@ public static ConfiguredCancelableAsyncEnumerable&lt;T&gt; FixedContext&lt;T&gt;
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerableExtensions_ToDisposingAsyncEnumerator__1_System_Collections_Generic_IAsyncEnumerable___0__System_Threading_CancellationToken__System_Object___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerableExtensions.ToDisposingAsyncEnumerator%60%601(System.Collections.Generic.IAsyncEnumerable%7B%60%600%7D%2CSystem.Threading.CancellationToken%40%2CSystem.Object%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L142">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L149">View Source</a>
   </span>
   <a id="wan24_Core_AsyncEnumerableExtensions_ToDisposingAsyncEnumerator_" data-uid="wan24.Core.AsyncEnumerableExtensions.ToDisposingAsyncEnumerator*"></a>
   <h4 id="wan24_Core_AsyncEnumerableExtensions_ToDisposingAsyncEnumerator__1_System_Collections_Generic_IAsyncEnumerable___0__System_Threading_CancellationToken__System_Object___" data-uid="wan24.Core.AsyncEnumerableExtensions.ToDisposingAsyncEnumerator``1(System.Collections.Generic.IAsyncEnumerable{``0},System.Threading.CancellationToken@,System.Object[])">ToDisposingAsyncEnumerator&lt;T&gt;(IAsyncEnumerable&lt;T&gt;, in CancellationToken, params object?[])</h4>
@@ -725,7 +731,8 @@ public static ConfiguredCancelableAsyncEnumerable&lt;T&gt; FixedContext&lt;T&gt;
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static DisposingAsyncEnumerator&lt;T&gt; ToDisposingAsyncEnumerator&lt;T&gt;(this IAsyncEnumerable&lt;T&gt; enumerable, in CancellationToken cancellationToken, params object?[] disposables)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static DisposingAsyncEnumerator&lt;T&gt; ToDisposingAsyncEnumerator&lt;T&gt;(this IAsyncEnumerable&lt;T&gt; enumerable, in CancellationToken cancellationToken, params object?[] disposables)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -792,7 +799,7 @@ public static ConfiguredCancelableAsyncEnumerable&lt;T&gt; FixedContext&lt;T&gt;
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerableExtensions_ToDisposingAsyncEnumerator__1_System_Collections_Generic_IAsyncEnumerator___0__System_Object___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerableExtensions.ToDisposingAsyncEnumerator%60%601(System.Collections.Generic.IAsyncEnumerator%7B%60%600%7D%2CSystem.Object%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L178">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L188">View Source</a>
   </span>
   <a id="wan24_Core_AsyncEnumerableExtensions_ToDisposingAsyncEnumerator_" data-uid="wan24.Core.AsyncEnumerableExtensions.ToDisposingAsyncEnumerator*"></a>
   <h4 id="wan24_Core_AsyncEnumerableExtensions_ToDisposingAsyncEnumerator__1_System_Collections_Generic_IAsyncEnumerator___0__System_Object___" data-uid="wan24.Core.AsyncEnumerableExtensions.ToDisposingAsyncEnumerator``1(System.Collections.Generic.IAsyncEnumerator{``0},System.Object[])">ToDisposingAsyncEnumerator&lt;T&gt;(IAsyncEnumerator&lt;T&gt;, params object?[])</h4>
@@ -801,7 +808,8 @@ public static ConfiguredCancelableAsyncEnumerable&lt;T&gt; FixedContext&lt;T&gt;
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static DisposingAsyncEnumerator&lt;T&gt; ToDisposingAsyncEnumerator&lt;T&gt;(this IAsyncEnumerator&lt;T&gt; enumerator, params object?[] disposables)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static DisposingAsyncEnumerator&lt;T&gt; ToDisposingAsyncEnumerator&lt;T&gt;(this IAsyncEnumerator&lt;T&gt; enumerator, params object?[] disposables)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -862,7 +870,7 @@ public static ConfiguredCancelableAsyncEnumerable&lt;T&gt; FixedContext&lt;T&gt;
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerableExtensions_ToDisposingAsyncEnumerator__1_System_Collections_Generic_IAsyncEnumerator___0__System_Threading_CancellationToken__System_Object___.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerableExtensions.ToDisposingAsyncEnumerator%60%601(System.Collections.Generic.IAsyncEnumerator%7B%60%600%7D%2CSystem.Threading.CancellationToken%40%2CSystem.Object%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L166">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L175">View Source</a>
   </span>
   <a id="wan24_Core_AsyncEnumerableExtensions_ToDisposingAsyncEnumerator_" data-uid="wan24.Core.AsyncEnumerableExtensions.ToDisposingAsyncEnumerator*"></a>
   <h4 id="wan24_Core_AsyncEnumerableExtensions_ToDisposingAsyncEnumerator__1_System_Collections_Generic_IAsyncEnumerator___0__System_Threading_CancellationToken__System_Object___" data-uid="wan24.Core.AsyncEnumerableExtensions.ToDisposingAsyncEnumerator``1(System.Collections.Generic.IAsyncEnumerator{``0},System.Threading.CancellationToken@,System.Object[])">ToDisposingAsyncEnumerator&lt;T&gt;(IAsyncEnumerator&lt;T&gt;, in CancellationToken, params object?[])</h4>
@@ -871,7 +879,8 @@ public static ConfiguredCancelableAsyncEnumerable&lt;T&gt; FixedContext&lt;T&gt;
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static DisposingAsyncEnumerator&lt;T&gt; ToDisposingAsyncEnumerator&lt;T&gt;(this IAsyncEnumerator&lt;T&gt; enumerator, in CancellationToken cancellationToken, params object?[] disposables)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static DisposingAsyncEnumerator&lt;T&gt; ToDisposingAsyncEnumerator&lt;T&gt;(this IAsyncEnumerator&lt;T&gt; enumerator, in CancellationToken cancellationToken, params object?[] disposables)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -938,7 +947,7 @@ public static ConfiguredCancelableAsyncEnumerable&lt;T&gt; FixedContext&lt;T&gt;
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerableExtensions_ToListAsync__1_System_Collections_Generic_IAsyncEnumerable___0__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerableExtensions.ToListAsync%60%601(System.Collections.Generic.IAsyncEnumerable%7B%60%600%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L28">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L29">View Source</a>
   </span>
   <a id="wan24_Core_AsyncEnumerableExtensions_ToListAsync_" data-uid="wan24.Core.AsyncEnumerableExtensions.ToListAsync*"></a>
   <h4 id="wan24_Core_AsyncEnumerableExtensions_ToListAsync__1_System_Collections_Generic_IAsyncEnumerable___0__System_Threading_CancellationToken_" data-uid="wan24.Core.AsyncEnumerableExtensions.ToListAsync``1(System.Collections.Generic.IAsyncEnumerable{``0},System.Threading.CancellationToken)">ToListAsync&lt;T&gt;(IAsyncEnumerable&lt;T&gt;, CancellationToken)</h4>
@@ -947,7 +956,8 @@ public static ConfiguredCancelableAsyncEnumerable&lt;T&gt; FixedContext&lt;T&gt;
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;List&lt;T&gt;&gt; ToListAsync&lt;T&gt;(this IAsyncEnumerable&lt;T&gt; enumerable, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static Task&lt;List&lt;T&gt;&gt; ToListAsync&lt;T&gt;(this IAsyncEnumerable&lt;T&gt; enumerable, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1010,7 +1020,7 @@ public static ConfiguredCancelableAsyncEnumerable&lt;T&gt; FixedContext&lt;T&gt;
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerableExtensions_ToListAsync__1_System_Runtime_CompilerServices_ConfiguredCancelableAsyncEnumerable___0__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerableExtensions.ToListAsync%60%601(System.Runtime.CompilerServices.ConfiguredCancelableAsyncEnumerable%7B%60%600%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L52">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerableExtensions.cs/#L55">View Source</a>
   </span>
   <a id="wan24_Core_AsyncEnumerableExtensions_ToListAsync_" data-uid="wan24.Core.AsyncEnumerableExtensions.ToListAsync*"></a>
   <h4 id="wan24_Core_AsyncEnumerableExtensions_ToListAsync__1_System_Runtime_CompilerServices_ConfiguredCancelableAsyncEnumerable___0__System_Threading_CancellationToken_" data-uid="wan24.Core.AsyncEnumerableExtensions.ToListAsync``1(System.Runtime.CompilerServices.ConfiguredCancelableAsyncEnumerable{``0},System.Threading.CancellationToken)">ToListAsync&lt;T&gt;(ConfiguredCancelableAsyncEnumerable&lt;T&gt;, CancellationToken)</h4>
@@ -1019,7 +1029,8 @@ public static ConfiguredCancelableAsyncEnumerable&lt;T&gt; FixedContext&lt;T&gt;
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;List&lt;T&gt;&gt; ToListAsync&lt;T&gt;(this ConfiguredCancelableAsyncEnumerable&lt;T&gt; enumerable, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static Task&lt;List&lt;T&gt;&gt; ToListAsync&lt;T&gt;(this ConfiguredCancelableAsyncEnumerable&lt;T&gt; enumerable, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">

@@ -3,7 +3,7 @@
 namespace wan24.Core
 {
     /// <summary>
-    /// Rented thread (can be used with <see cref="ObjectPool{T}"/> and <see cref="RentedObject{T}"/>)
+    /// Rented thread
     /// </summary>
     public class RentedThread : DisposableBase, IObjectPoolItem
     {
@@ -156,6 +156,7 @@ namespace wan24.Core
             ApplyDefaultOptions();
             Name = null;
             Tag = null;
+            LastException = null;
         }
 
         /// <summary>

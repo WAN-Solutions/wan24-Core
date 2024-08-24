@@ -1,4 +1,7 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+using System.Runtime.CompilerServices;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Object mapping
@@ -16,6 +19,10 @@
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="mapper">Mapper method</param>
         /// <returns>This</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public ObjectMapping<tSource, tTarget> AddMapping(in string sourcePropertyName, in Mapper_Delegate<tSource, tTarget> mapper)
         {
             AddMapping<tSource, tTarget>(sourcePropertyName, mapper);
@@ -28,6 +35,10 @@
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="mapper">Mapper method</param>
         /// <returns>This</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public ObjectMapping<tSource, tTarget> AddAsyncMapping(in string sourcePropertyName, in AsyncMapper_Delegate<tSource, tTarget> mapper)
         {
             AddAsyncMapping<tSource, tTarget>(sourcePropertyName, mapper);
@@ -40,6 +51,10 @@
         /// <param name="source">Source object</param>
         /// <param name="target">Target object</param>
         /// <returns>This</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public virtual ObjectMapping<tSource, tTarget> ApplyMappings(in tSource source, in tTarget target)
         {
             ApplyMappings<tSource, tTarget>(source, target);
@@ -52,6 +67,10 @@
         /// <param name="source">Source object</param>
         /// <param name="target">Target object</param>
         /// <param name="cancellationToken">Cancellation token</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public virtual Task ApplyMappingsAsync(tSource source, tTarget target, CancellationToken cancellationToken = default)
             => ApplyMappingsAsync<tSource, tTarget>(source, target, cancellationToken);
 
@@ -61,8 +80,8 @@
         /// <returns>Object mapping</returns>
         public static ObjectMapping<tSource, tTarget> Create() => new()
         {
-            SourceType = typeof(tSource),
-            TargetType = typeof(tTarget)
+            SourceType = TypeInfoExt.From(typeof(tSource)),
+            TargetType = TypeInfoExt.From(typeof(tTarget))
         };
 
         /// <summary>

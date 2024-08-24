@@ -176,7 +176,7 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public override readonly bool Equals(object? obj) => Array.Equals(obj);
+        public override readonly bool Equals(object? obj) => Memory.Equals(obj);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
@@ -188,10 +188,10 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public readonly IEnumerator<T> GetEnumerator() => ((IEnumerable<T>)Array).GetEnumerator();
+        public readonly IEnumerator<T> GetEnumerator() => Array.Take(Length).GetEnumerator();
 
         /// <inheritdoc/>
-        readonly IEnumerator IEnumerable.GetEnumerator() => Array.GetEnumerator();
+        readonly IEnumerator IEnumerable.GetEnumerator() => Array.Take(Length).GetEnumerator();
 
         /// <summary>
         /// Ensure an undisposed object state

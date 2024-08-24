@@ -21,6 +21,22 @@ namespace wan24.Core
         where tKey : notnull
     {
         /// <summary>
+        /// Swap the item at an index with the item at a target index
+        /// </summary>
+        /// <param name="index">Index (0..n)</param>
+        /// <param name="targetIndex">Target index (0..n)</param>
+        void SwapIndex(int index, int targetIndex);
+        /// <summary>
+        /// Move the item at an index up (decrease the index)
+        /// </summary>
+        /// <param name="index">Index (1..n)</param>
+        void MoveIndexUp(int index);
+        /// <summary>
+        /// Move the item at an index down (increase the index)
+        /// </summary>
+        /// <param name="index">Index (0..n-1)</param>
+        void MoveIndexDown(int index);
+        /// <summary>
         /// Get a key/value pair from an index
         /// </summary>
         /// <param name="index">Index</param>

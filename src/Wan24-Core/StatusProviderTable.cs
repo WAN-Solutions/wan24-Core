@@ -19,7 +19,7 @@ namespace wan24.Core
         {
             get
             {
-                yield return new(__("App path"), ENV.App, __("App assemly path"), "Core");
+                yield return new(__("App path"), ENV.App, __("App assembly path"), "Core");
                 yield return new(__("App folder"), ENV.AppFolder, __("App folder"), "Core");
                 yield return new(__("App command"), ENV.AppCommand, __("App command"), "Core");
                 yield return new(__("CLI arguments"), ENV.CliArguments.Length, __("Number of CLI arguments"), "Core");
@@ -46,7 +46,7 @@ namespace wan24.Core
                 yield return new(__("Current folder"), Environment.CurrentDirectory, __("Current folder"), "Core");
                 yield return new(__("Page size"), Environment.SystemPageSize, __("Operating system memory page size in bytes"), "Core");
                 yield return new(__("Working set"), Environment.WorkingSet, __("Physical memory mapped to the current process in bytes"), "Core");
-                yield return new(__("Buffer size"), Settings.BufferSize, __("Default bufer size in bytes"), "Core");
+                yield return new(__("Buffer size"), Settings.BufferSize, __("Default buffer size in bytes"), "Core");
                 yield return new(__("stackalloc border"), Settings.StackAllocBorder, __("Stack allocation limitation border in bytes"), "Core");
                 yield return new(__("App ID"), Settings.AppId, __("App ID"), "Core");
                 yield return new(__("App process"), Settings.ProcessId, __("App process ID"), "Core");

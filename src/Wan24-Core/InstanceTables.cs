@@ -9,7 +9,7 @@ namespace wan24.Core
     public static class InstanceTables
     {
         /// <summary>
-        /// Registered instance tables
+        /// Registered instance tables (key is the instance type, value the type which exports the static <see cref="InstanceTableAttribute"/> field)
         /// </summary>
         public static readonly Dictionary<Type, Type> Registered = new()
         {

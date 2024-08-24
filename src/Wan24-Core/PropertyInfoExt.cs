@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -40,6 +41,18 @@ namespace wan24.Core
         public PropertyInfo Property { get; } = Property;
 
         /// <summary>
+        /// Full name including namespace and type
+        /// </summary>
+        public string FullName
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => $"{Property.DeclaringType}.{Property.Name}";
+        }
+
+        /// <summary>
         /// Bindings
         /// </summary>
         public BindingFlags Bindings => _Bindings ??= Property.GetBindingFlags();
@@ -47,17 +60,38 @@ namespace wan24.Core
         /// <summary>
         /// Property type
         /// </summary>
-        public Type PropertyType => Property.PropertyType;
+        public Type PropertyType
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Property.PropertyType;
+        }
 
         /// <summary>
         /// Property name
         /// </summary>
-        public string Name => Property.Name;
+        public string Name
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Property.Name;
+        }
 
         /// <summary>
         /// Property declaring type
         /// </summary>
-        public Type? DeclaringType => Property.DeclaringType;
+        public Type? DeclaringType
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Property.DeclaringType;
+        }
 
         /// <summary>
         /// Getter
@@ -67,7 +101,14 @@ namespace wan24.Core
         /// <summary>
         /// Can read?
         /// </summary>
-        public bool CanRead => Property.CanRead;
+        public bool CanRead
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Property.CanRead;
+        }
 
         /// <summary>
         /// If the property has a public getter
@@ -87,7 +128,14 @@ namespace wan24.Core
         /// <summary>
         /// Can write?
         /// </summary>
-        public bool CanWrite => Property.CanWrite;
+        public bool CanWrite
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => Property.CanWrite;
+        }
 
         /// <summary>
         /// If the property is init-only
@@ -101,14 +149,23 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public object[] GetCustomAttributes(bool inherit) => Property.GetCustomAttributes(inherit);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public object[] GetCustomAttributes(Type attributeType, bool inherit) => Property.GetCustomAttributes(attributeType, inherit);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public bool IsDefined(Type attributeType, bool inherit) => Property.IsDefined(attributeType, inherit);
 
         /// <summary>
@@ -177,6 +234,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pi"><see cref="PropertyInfoExt"/></param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator PropertyInfo(in PropertyInfoExt pi) => pi.Property;
 
         /// <summary>
@@ -184,6 +244,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pi"><see cref="PropertyInfo"/></param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator PropertyInfoExt(in PropertyInfo pi) => From(pi);
 
         /// <summary>
@@ -191,6 +254,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pi"><see cref="PropertyInfoExt"/></param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator Type(in PropertyInfoExt pi) => pi.PropertyType;
 
         /// <summary>

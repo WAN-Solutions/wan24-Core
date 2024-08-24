@@ -379,6 +379,69 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Read to the end
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="cleanBuffer">If to clean used buffers</param>
+        /// <param name="progress">Progress</param>
+        /// <returns>Red bytes</returns>
+        public static byte[] ReadToEnd(this Stream stream, in bool cleanBuffer = false, in ProcessingProgress? progress = null)
+        {
+            if (stream.CanSeek)
+            {
+                long remaining = GetRemainingBytes(stream);
+                if (remaining < 1) return [];
+                if (remaining > int.MaxValue) throw new OutOfMemoryException();
+                if (progress is not null) progress.Total += remaining;
+                byte[] res = new byte[remaining];
+                stream.ReadExactly(res);
+                progress?.Update((int)remaining);
+                return res;
+            }
+            else
+            {
+                using MemoryPoolStream ms = new()
+                {
+                    CleanReturned = cleanBuffer
+                };
+                stream.GenericCopyTo(ms, progress: progress);
+                return ms.ToArray();
+            }
+        }
+
+        /// <summary>
+        /// Read to the end
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="cleanBuffer">If to clean used buffers</param>
+        /// <param name="progress">Progress</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Red bytes</returns>
+        public static async Task<byte[]> ReadToEndAsync(this Stream stream, bool cleanBuffer = false, ProcessingProgress? progress = null, CancellationToken cancellationToken = default)
+        {
+            if (stream.CanSeek)
+            {
+                long remaining = GetRemainingBytes(stream);
+                if (remaining < 1) return [];
+                if (remaining > int.MaxValue) throw new OutOfMemoryException();
+                if (progress is not null) progress.Total += remaining;
+                byte[] res = new byte[remaining];
+                await stream.ReadExactlyAsync(res, cancellationToken).DynamicContext();
+                progress?.Update((int)remaining);
+                return res;
+            }
+            else
+            {
+                using MemoryPoolStream ms = new()
+                {
+                    CleanReturned = cleanBuffer
+                };
+                await stream.GenericCopyToAsync(ms, progress: progress, cancellationToken: cancellationToken).DynamicContext();
+                return ms.ToArray();
+            }
+        }
+
+        /// <summary>
         /// Stream chunk enumerator
         /// </summary>
         internal sealed class StreamChunkEnumerator : DisposableBase, IEnumerable<StreamBase>, IEnumerator<StreamBase>

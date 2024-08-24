@@ -22,16 +22,16 @@ namespace wan24.Core
         /// <summary>
         /// Serialization info
         /// </summary>
-        protected SerializationInfo? Info = null;
+        protected readonly SerializationInfo? Info = null;
         /// <summary>
         /// Streaming context
         /// </summary>
-        protected StreamingContext? Context = null;
+        protected readonly StreamingContext? Context = null;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public OrderedDictionary() : this(0) { }
+        public OrderedDictionary() : this(capacity: 0) { }
 
         /// <summary>
         /// Constructor
@@ -49,9 +49,9 @@ namespace wan24.Core
         /// Constructor (creates a read-only dictionary)
         /// </summary>
         /// <param name="dict">Ordered dictionary</param>
-        public OrderedDictionary(in OrderedDictionary<tKey, tValue> dict) : this(0)
+        public OrderedDictionary(in OrderedDictionary<tKey, tValue> dict) : this(capacity: 0)
         {
-            Items.AddRange(dict);
+            Items.AddRange(dict.Items);
             IsReadOnly = true;
         }
 
@@ -60,7 +60,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="info">Serialization info</param>
         /// <param name="context">Streaming context</param>
-        protected OrderedDictionary(in SerializationInfo info, in StreamingContext context) : this(0)
+        protected OrderedDictionary(in SerializationInfo info, in StreamingContext context) : this(capacity: 0)
         {
             Info = info;
             Context = context;
@@ -154,6 +154,49 @@ namespace wan24.Core
                 EnsureWritable();
                 this[EnsureValidIndex(index)] = (tValue)EnsureValidValue(value)!;
             }
+        }
+
+        /// <inheritdoc/>
+        public virtual void SwapIndex(int index, int targetIndex)
+        {
+            EnsureWritable();
+            EnsureValidIndex(index);
+            EnsureValidIndex(targetIndex);
+            if (index == targetIndex) return;
+            KeyValuePair<tKey, tValue> item = Items[index],
+                targetItem = Items[targetIndex];
+            Items[targetIndex] = item;
+            Items[index] = targetItem;
+            RaiseOnUpdated(index, targetItem.Key, targetItem.Value);
+            RaiseOnUpdated(targetIndex, item.Key, item.Value);
+        }
+
+        /// <inheritdoc/>
+        public virtual void MoveIndexUp(int index)
+        {
+            EnsureWritable();
+            if (index < 1 || index >= Items.Count) throw new IndexOutOfRangeException();
+            int prevIndex = index - 1;
+            KeyValuePair<tKey, tValue> item = Items[index],
+                prevItem = Items[prevIndex];
+            Items[prevIndex] = item;
+            Items[index] = prevItem;
+            RaiseOnUpdated(prevIndex, item.Key, item.Value);
+            RaiseOnUpdated(index, prevItem.Key, prevItem.Value);
+        }
+
+        /// <inheritdoc/>
+        public virtual void MoveIndexDown(int index)
+        {
+            EnsureWritable();
+            if (index < 0 || index >= Items.Count - 1) throw new IndexOutOfRangeException();
+            int nextIndex = index + 1;
+            KeyValuePair<tKey, tValue> item = Items[index],
+                nextItem = Items[nextIndex];
+            Items[nextIndex] = item;
+            Items[index] = nextItem;
+            RaiseOnUpdated(index, nextItem.Key, nextItem.Value);
+            RaiseOnUpdated(nextIndex, item.Key, item.Value);
         }
 
         /// <inheritdoc/>
@@ -461,10 +504,8 @@ namespace wan24.Core
         /// Delegate for an <see cref="OrderedDictionary{tKey, tValue}"/> event
         /// </summary>
         /// <param name="sender">Sender</param>
-        /// <param name="index">Key/value pair index</param>
-        /// <param name="key">Key</param>
-        /// <param name="value">Value</param>
-        public delegate void OrderedDictionary_Delegate(OrderedDictionary<tKey, tValue> sender, int index, tKey key, tValue value);
+        /// <param name="e">Arguments</param>
+        public delegate void OrderedDictionary_Delegate(OrderedDictionary<tKey, tValue> sender, OrderedDictionaryEventArgs e);
 
         /// <summary>
         /// Raised when added a key/value pair
@@ -476,7 +517,7 @@ namespace wan24.Core
         /// <param name="index">Index</param>
         /// <param name="key">Key</param>
         /// <param name="value">Value</param>
-        protected virtual void RaiseOnAdded(in int index, in tKey key, in tValue value) => OnAdded?.Invoke(this, index, key, value);
+        protected virtual void RaiseOnAdded(in int index, in tKey key, in tValue value) => OnAdded?.Invoke(this, new(index, key, value));
 
         /// <summary>
         /// Raised when updated a value (the event handler will get the previous index, key and value)
@@ -488,7 +529,7 @@ namespace wan24.Core
         /// <param name="index">Previous index</param>
         /// <param name="key">Previous key</param>
         /// <param name="value">Previous value</param>
-        protected virtual void RaiseOnUpdated(in int index, in tKey key, in tValue value) => OnUpdated?.Invoke(this, index, key, value);
+        protected virtual void RaiseOnUpdated(in int index, in tKey key, in tValue value) => OnUpdated?.Invoke(this, new(index, key, value));
 
         /// <summary>
         /// Raised when removed a key/value pair
@@ -500,7 +541,7 @@ namespace wan24.Core
         /// <param name="index">Index</param>
         /// <param name="key">Key</param>
         /// <param name="value">Value</param>
-        protected virtual void RaiseOnRemoved(in int index, in tKey key, in tValue value) => OnRemoved?.Invoke(this, index, key, value);
+        protected virtual void RaiseOnRemoved(in int index, in tKey key, in tValue value) => OnRemoved?.Invoke(this, new(index, key, value));
 
         /// <summary>
         /// Cast as item count
@@ -508,6 +549,33 @@ namespace wan24.Core
         /// <param name="dict">Dictionary</param>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static implicit operator int(in OrderedDictionary<tKey, tValue> dict) => dict.Count;
+
+        /// <summary>
+        /// Event arguments
+        /// </summary>
+        /// <remarks>
+        /// Constructor
+        /// </remarks>
+        /// <param name="index">Index</param>
+        /// <param name="key">Key</param>
+        /// <param name="value">Value</param>
+        public class OrderedDictionaryEventArgs(in int index, in tKey key, in tValue value) : EventArgs()
+        {
+            /// <summary>
+            /// Index
+            /// </summary>
+            public int Index { get; } = index;
+
+            /// <summary>
+            /// Key
+            /// </summary>
+            public tKey Key { get; } = key;
+
+            /// <summary>
+            /// Value
+            /// </summary>
+            public tValue Value { get; } = value;
+        }
 
         /// <summary>
         /// Dictionary enumerator
