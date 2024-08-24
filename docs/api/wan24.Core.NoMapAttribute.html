@@ -110,6 +110,10 @@
     <div class="level1"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.attribute">Attribute</a></div>
     <div class="level2"><span class="xref">NoMapAttribute</span></div>
   </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IOptInOut.html">IOptInOut</a></div>
+  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
@@ -244,7 +248,7 @@
   <h5 id="wan24_Core_NoMapAttribute_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[AttributeUsage(AttributeTargets.Property)]
-public class NoMapAttribute : Attribute</code></pre>
+public class NoMapAttribute : Attribute, IOptInOut</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -263,6 +267,43 @@ public class NoMapAttribute : Attribute</code></pre>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public NoMapAttribute()</code></pre>
+  </div>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_NoMapAttribute_Opt.md&amp;value=---%0Auid%3A%20wan24.Core.NoMapAttribute.Opt%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/NoMapAttribute.cs/#L10">View Source</a>
+  </span>
+  <a id="wan24_Core_NoMapAttribute_Opt_" data-uid="wan24.Core.NoMapAttribute.Opt*"></a>
+  <h4 id="wan24_Core_NoMapAttribute_Opt" data-uid="wan24.Core.NoMapAttribute.Opt">Opt</h4>
+  <div class="markdown level1 summary"><p>Opt in/out</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OptInOut Opt { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.OptInOut.html">OptInOut</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IOptInOut.html">IOptInOut</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>

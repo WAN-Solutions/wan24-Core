@@ -125,7 +125,7 @@ namespace wan24.Core
                 yield return new(__("Name"), Name, __("Name"));
                 yield return new(__("Item type"), typeof(T), __("Cached item CLR type"));
                 yield return new(__("Type disposable"), IsItemTypeDisposable, __("If the cached item type is or may be disposable"));
-                yield return new(__("Diposing"), IsItemDisposable, __("If cached items will be disposed on removal, if possible"));
+                yield return new(__("Disposing"), IsItemDisposable, __("If cached items will be disposed on removal, if possible"));
                 yield return new(__("Pause"), CanPause, __("If the service worker can pause"));
                 yield return new(__("Paused"), IsPaused, __("If the service worker is paused"));
                 yield return new(__("Running"), IsRunning, __("If the service worker is running"));

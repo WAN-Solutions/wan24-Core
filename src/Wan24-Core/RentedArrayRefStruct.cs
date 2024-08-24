@@ -138,14 +138,6 @@ namespace wan24.Core
             return res;
         }
 
-        /// <inheritdoc/>
-        [TargetedPatchingOptOut("Just a method adapter")]
-        public override readonly bool Equals(object? obj) => Array.Equals(obj);
-
-        /// <inheritdoc/>
-        [TargetedPatchingOptOut("Just a method adapter")]
-        public override readonly int GetHashCode() => Array.GetHashCode();
-
         /// <summary>
         /// Dispose
         /// </summary>

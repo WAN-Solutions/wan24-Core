@@ -1,9 +1,10 @@
 ﻿using wan24.Core;
+using wan24.Tests;
 
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class RuntimeCountLimit_Tests
+    public class RuntimeCountLimit_Tests : TestBase
     {
         public static int MinLimit { get; set; } = 123;
 

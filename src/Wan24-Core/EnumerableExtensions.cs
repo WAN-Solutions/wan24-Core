@@ -1,4 +1,5 @@
-﻿using System.Runtime;
+﻿using System.Collections;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 
 namespace wan24.Core
@@ -347,6 +348,114 @@ namespace wan24.Core
                 }
             }
             return new(values.Select(kvp => new KeyValuePair<double, XYZInt[]>(kvp.Key, [.. kvp.Value.Select(kvp2 => new XYZInt(kvp.Key, kvp2.Key, kvp2.Value))])));
+        }
+
+        /// <summary>
+        /// Filter all objects which are assignable to a type
+        /// </summary>
+        /// <typeparam name="tItem">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="type">Type</param>
+        /// <param name="extended">If to match the generic type definition, too</param>
+        /// <returns>Items</returns>
+        public static IEnumerable<tItem> WhereIsAssignableTo<tItem>(this IEnumerable<tItem> enumerable, Type type, bool extended = false)
+        {
+            foreach (tItem item in enumerable)
+                if (item is not null && (extended ? type.IsAssignableFromExt(item.GetType()) : type.IsAssignableFrom(item.GetType())))
+                    yield return item;
+        }
+
+        /// <summary>
+        /// Filter all objects which are assignable to a type
+        /// </summary>
+        /// <typeparam name="tItem">Item type</typeparam>
+        /// <typeparam name="tType">Type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="extended">If to match the generic type definition, too</param>
+        /// <returns>Items</returns>
+        public static IEnumerable<tItem> WhereIsAssignableTo<tItem, tType>(this IEnumerable<tItem> enumerable, bool extended = false)
+        {
+            Type type = typeof(tType);
+            foreach (tItem item in enumerable)
+                if (item is not null && (extended ? type.IsAssignableFromExt(item.GetType()) : type.IsAssignableFrom(item.GetType())))
+                    yield return item;
+        }
+
+        /// <summary>
+        /// Filter all objects which are assignable to a type
+        /// </summary>
+        /// <typeparam name="tItem">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="type">Type</param>
+        /// <param name="extended">If to match the generic type definition, too</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Items</returns>
+        public static async IAsyncEnumerable<tItem> WhereIsAssignableToAsync<tItem>(
+            this IAsyncEnumerable<tItem> enumerable, 
+            Type type, 
+            bool extended = false,
+            [EnumeratorCancellation] CancellationToken cancellationToken = default
+            )
+        {
+            await foreach (tItem item in enumerable.DynamicContext().WithCancellation(cancellationToken))
+                if (item is not null && (extended ? type.IsAssignableFromExt(item.GetType()) : type.IsAssignableFrom(item.GetType())))
+                    yield return item;
+        }
+
+        /// <summary>
+        /// Filter all objects which are assignable to a type
+        /// </summary>
+        /// <typeparam name="tItem">Item type</typeparam>
+        /// <typeparam name="tType">Type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="extended">If to match the generic type definition, too</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Items</returns>
+        public static async IAsyncEnumerable<tItem> WhereIsAssignableToAsync<tItem, tType>(
+            this IAsyncEnumerable<tItem> enumerable, 
+            bool extended = false,
+            [EnumeratorCancellation] CancellationToken cancellationToken = default
+            )
+        {
+            Type type = typeof(tType);
+            await foreach (tItem item in enumerable.DynamicContext().WithCancellation(cancellationToken))
+                if (item is not null && (extended ? type.IsAssignableFromExt(item.GetType()) : type.IsAssignableFrom(item.GetType())))
+                    yield return item;
+        }
+
+        /// <summary>
+        /// Get the common base type
+        /// </summary>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="includeInterfaces">If interfaces are included</param>
+        /// <param name="includeMainType">If to include the main type</param>
+        /// <returns>Common base type</returns>
+        public static Type? CommonBaseType(this IEnumerable enumerable, in bool includeInterfaces = false, in bool includeMainType = true)
+        {
+            HashSet<Type> baseTypes = [];
+            Type type;
+            Type[] types;
+            // Find all base types and interfaces
+            foreach (object? item in enumerable)
+            {
+                if (item is null) continue;
+                type = item.GetType();
+                types = [.. type.GetBaseTypes()];
+                if (includeMainType) baseTypes.Add(type);
+                baseTypes.AddRange(types);
+                if (!includeInterfaces) continue;
+                baseTypes.AddRange(type.GetInterfaces());
+                foreach (Type t in types) baseTypes.AddRange(t.GetInterfaces());
+            }
+            // Filter out incompatible base types and interfaces
+            foreach(object? item in enumerable)
+            {
+                if (item is null) continue;
+                type = item.GetType();
+                foreach (Type incompatible in baseTypes.Where(t => !t.IsAssignableFrom(type)).ToArray())
+                    baseTypes.Remove(incompatible);
+            }
+            return baseTypes.FirstOrDefault();
         }
     }
 }

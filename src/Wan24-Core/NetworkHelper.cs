@@ -33,6 +33,27 @@ namespace wan24.Core
         ], isLoopBack: true, isLan: false);
 
         /// <summary>
+        /// Get the first LAN adapter
+        /// </summary>
+        /// <returns>Adapter</returns>
+        public static NetworkInterface? GetLanAdapter()
+            => (from adapter in GetOnlineLanEthernetAdapters()
+                where adapter.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
+                    adapter.NetworkInterfaceType == NetworkInterfaceType.Wireless80211
+                select adapter)
+                .FirstOrDefault();
+
+        /// <summary>
+        /// Get the first default gateway adapter
+        /// </summary>
+        /// <returns>Adapter</returns>
+        public static NetworkInterface? GetDefaultGatewayAdapter()
+            => (from adapter in GetOnlineEthernetAdapters()
+                where adapter.GetIPProperties().GatewayAddresses.Any(a => a.Address is not null)
+                select adapter)
+                .FirstOrDefault();
+
+        /// <summary>
         /// Get all (real) online ethernet adapters
         /// </summary>
         /// <returns>Ethernet adapters which are online</returns>

@@ -182,7 +182,7 @@ namespace wan24.Core
             if (!HasHandlers) return;
             timeout ??= Timeout;
             if (Cancellation.HasValue && cancellationToken.IsEqualTo(default)) cancellationToken = Cancellation.Value;
-            CancellationToken cancellation = !Cancellation.HasValue || cancellationToken == Cancellation ? cancellationToken : Cancellation.Value;
+            CancellationToken cancellation = !Cancellation.HasValue || cancellationToken.IsEqualTo(Cancellation.Value) ? cancellationToken : Cancellation.Value;
             DateTime started = DateTime.Now;
             TimeSpan to = timeout ?? TimeSpan.Zero;
             void throwTimeoutException()

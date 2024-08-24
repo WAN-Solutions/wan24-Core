@@ -231,9 +231,8 @@ namespace wan24.Core
                     await Task.Delay(DataDelay, Cancellation.Token).DynamicContext();
                 }
             }
-            catch(OperationCanceledException ex)
+            catch (OperationCanceledException ex) when (ex.CancellationToken.IsEqualTo(Cancellation.Token))
             {
-                if (ex.CancellationToken != Cancellation.Token) throw;
             }
         }
 
