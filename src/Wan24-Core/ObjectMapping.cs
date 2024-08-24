@@ -241,7 +241,7 @@ namespace wan24.Core
         /// <returns>This</returns>
         public virtual ObjectMapping AddAutoMappings(bool? optIn = null, bool? publicGetterOnly = null, bool? publicSetterOnly = null)
         {
-            MapAttribute? attr = SourceType.GetCustomAttributeCached<MapAttribute>();
+            MapAttribute? attr = SourceMappingOptions;
             optIn ??= attr?.OptIn ?? false;
             publicGetterOnly ??= attr?.PublicGetterOnly ?? false;
             publicSetterOnly ??= attr?.PublicSetterOnly ?? false;

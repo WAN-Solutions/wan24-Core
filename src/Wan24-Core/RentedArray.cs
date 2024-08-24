@@ -120,7 +120,7 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public override bool Equals([NotNullWhen(true)] object? obj) => Array.Equals(obj);
+        public override bool Equals([NotNullWhen(true)] object? obj) => Memory.Equals(obj);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
@@ -131,10 +131,10 @@ namespace wan24.Core
         public override int GetHashCode() => Array.GetHashCode();
 
         /// <inheritdoc/>
-        public IEnumerator<T> GetEnumerator() => ((IEnumerable<T>)Array).GetEnumerator();
+        public IEnumerator<T> GetEnumerator() => Array.Take(Length).GetEnumerator();
 
         /// <inheritdoc/>
-        IEnumerator IEnumerable.GetEnumerator() => Array.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => Array.Take(Length).GetEnumerator();
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
