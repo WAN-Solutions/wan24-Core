@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Reflection;
 using System.Runtime;
@@ -67,8 +68,15 @@ namespace wan24.Core
         /// <returns>Display text</returns>
         public static string GetDisplayText<T>(this T value)
         {
-            if ((value as ICustomAttributeProvider)?.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText is string res) return res;
-            Type t = value!.GetType();
+            Contract.Assert(value is not null);
+            if (
+                value is ICustomAttributeProvider attributeProvider && 
+                (
+                    attributeProvider.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ??
+                    attributeProvider.GetCustomAttributeCached<DisplayNameAttribute>()?.DisplayName
+                ) is string res
+                ) return res;
+            Type t = value.GetType();
             if (t.IsEnum)
             {
                 string str = value.ToString() ?? throw new ArgumentException("Not an enumeration value", nameof(value));

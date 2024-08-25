@@ -130,8 +130,8 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static T RemoveFlags<T>(this T value) where T : struct, Enum, IConvertible
             => CastType<T>(EnumInfo<T>.IsUnsigned
-                ? CastType<ulong>(value) & ~(ulong)EnumInfo<T>.Flags
-                : CastType<long>(value) & ~(long)EnumInfo<T>.Flags);
+                ? CastType<ulong>(value) & ~EnumInfo<T>.AllULongFlags
+                : CastType<long>(value) & ~EnumInfo<T>.AllLongFlags);
 
         /// <summary>
         /// Get only the flags from a mixed enumeration flags value
@@ -142,8 +142,8 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static T OnlyFlags<T>(this T value) where T : struct, Enum, IConvertible
             => CastType<T>(EnumInfo<T>.IsUnsigned
-                ? CastType<ulong>(value) & (ulong)EnumInfo<T>.Flags
-                : CastType<long>(value) & (long)EnumInfo<T>.Flags);
+                ? CastType<ulong>(value) & EnumInfo<T>.AllULongFlags
+                : CastType<long>(value) & EnumInfo<T>.AllLongFlags);
 
         /// <summary>
         /// Determine if a mixed enumeration value is a flag
@@ -196,5 +196,32 @@ namespace wan24.Core
         /// <returns>Numeric value</returns>
         [TargetedPatchingOptOut("Tiny method")]
         public static T CastType<T>(object value) where T : struct, IConvertible => typeof(T).IsEnum ? (T)Enum.ToObject(typeof(T), value) : (T)Convert.ChangeType(value, typeof(T));
+
+        /// <summary>
+        /// Get the enumeration value as string
+        /// </summary>
+        /// <typeparam name="T">Enumeration type</typeparam>
+        /// <param name="value">Value</param>
+        /// <returns>String</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static string AsString<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.AsStringExpression(value);
+
+        /// <summary>
+        /// Get the enumeration value name
+        /// </summary>
+        /// <typeparam name="T">Enumeration type</typeparam>
+        /// <param name="value">Value</param>
+        /// <returns>Name or <see langword="null"/>, if the value doesn't exist (or isn't a single value)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static string? AsName<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.AsNameExpression(value);
+
+        /// <summary>
+        /// Get the enumeration value as its numeric value
+        /// </summary>
+        /// <typeparam name="T">Enumeration type</typeparam>
+        /// <param name="value">Value</param>
+        /// <returns>Numeric value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static object AsNumericValue<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.AsNumericValueExpression(value);
     }
 }

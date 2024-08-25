@@ -1,5 +1,7 @@
 ﻿using System.Collections.Frozen;
+using System.ComponentModel;
 using System.Reflection;
+using System.Runtime.Serialization;
 
 //TODO Improve enumeration performance using expressions for reflection
 
@@ -9,7 +11,10 @@ namespace wan24.Core
     /// Enumeration information
     /// </summary>
     /// <typeparam name="T">Enumeration type</typeparam>
-    public sealed partial class EnumInfo<T> : IEnumInfo<T> where T : struct, Enum, IConvertible
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    public sealed partial class EnumInfo<T>() : IEnumInfo<T> where T : struct, Enum, IConvertible
     {
         /// <summary>
         /// Flags value name
@@ -24,6 +29,14 @@ namespace wan24.Core
         /// All values as <see cref="long"/> (if signed)
         /// </summary>
         public static readonly long AllLongValues;
+        /// <summary>
+        /// All flags as <see cref="ulong"/> (if unsigned)
+        /// </summary>
+        public static readonly ulong AllULongFlags;
+        /// <summary>
+        /// All flags as <see cref="long"/> (if signed)
+        /// </summary>
+        public static readonly long AllLongFlags;
 
         /// <summary>
         /// Static constructor
@@ -46,6 +59,8 @@ namespace wan24.Core
             if (IsUnsigned)
             {
                 Flags = IsMixedEnum ? EnumExtensions.CastType<ulong>(Enum.Parse<T>(FLAGS_NAME)) : 0;
+                AllULongFlags = (ulong)Flags;
+                AllLongFlags = 0;
                 NumericValues = new OrderedDictionary<string, object>(from value in values.Cast<object>()
                                                                       orderby EnumExtensions.CastType<ulong>(value)
                                                                       select new KeyValuePair<string, object>(value.ToString()!, value)
@@ -64,7 +79,12 @@ namespace wan24.Core
                         typeof(T).GetFieldCached(
                             value.ToString(),
                             BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public
-                            )?.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ?? value.ToString()
+                            ) is FieldInfoExt field
+                            ? field.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ??
+                                field.GetCustomAttributeCached<DisplayNameAttribute>()?.DisplayName ??
+                                field.GetCustomAttributeCached<EnumMemberAttribute>()?.Value ??
+                                value.ToString()
+                            : value.ToString()
                         )
                     ).ToFrozenDictionary();
                 if (IsMixedEnum)
@@ -92,6 +112,8 @@ namespace wan24.Core
             else
             {
                 Flags = IsMixedEnum ? EnumExtensions.CastType<long>(Enum.Parse<T>(FLAGS_NAME)) : 0;
+                AllLongFlags = (long)Flags;
+                AllULongFlags = 0;
                 NumericValues = new OrderedDictionary<string, object>(from value in values.Cast<object>()
                                                                       orderby EnumExtensions.CastType<long>(value)
                                                                       select new KeyValuePair<string, object>(value.ToString()!, value)
@@ -110,7 +132,12 @@ namespace wan24.Core
                         typeof(T).GetFieldCached(
                             value.ToString(),
                             BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public
-                            )?.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ?? value.ToString()
+                            ) is FieldInfoExt field
+                            ? field.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ??
+                                field.GetCustomAttributeCached<DisplayNameAttribute>()?.DisplayName ??
+                                field.GetCustomAttributeCached<EnumMemberAttribute>()?.Value ?? 
+                                value.ToString()
+                            : value.ToString()
                         )
                     ).ToFrozenDictionary();
                 if (IsMixedEnum)
@@ -134,11 +161,6 @@ namespace wan24.Core
                 }
             }
         }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public EnumInfo() { }
 
         /// <summary>
         /// Default value
@@ -234,34 +256,18 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Is valid?</returns>
         public static bool IsValid(in T value)
-        {
-            if (IsUnsigned)
-            {
-                if ((EnumExtensions.CastType<ulong>(value) & ~AllULongValues) != 0) return false;
-            }
-            else if ((EnumExtensions.CastType<long>(value) & ~AllLongValues) != 0)
-            {
-                return false;
-            }
-            return true;
-        }
+            => (IsUnsigned && (EnumExtensions.CastType<ulong>(value) & ~AllULongValues) == 0) ||
+                (!IsUnsigned && (EnumExtensions.CastType<long>(value) & ~AllLongValues) == 0);
 
         /// <inheritdoc/>
         public bool IsValidValue(in T value) => IsValid(value);
 
         /// <inheritdoc/>
         public bool IsValidValue(in object value)
-        {
-            if (value.GetType() != typeof(T)) return false;
-            if (IsUnsigned)
-            {
-                if (((ulong)Convert.ChangeType(value, typeof(ulong)) & ~AllULongValues) != 0) return false;
-            }
-            else if (((long)Convert.ChangeType(value, typeof(long)) & ~AllLongValues) != 0)
-            {
-                return false;
-            }
-            return true;
-        }
+            => (value.GetType() == typeof(T)) &&
+                (
+                    (IsUnsigned && ((ulong)Convert.ChangeType(value, typeof(ulong)) & ~AllULongValues) == 0) ||
+                    (!IsUnsigned && ((long)Convert.ChangeType(value, typeof(long)) & ~AllLongValues) == 0)
+                );
     }
 }
