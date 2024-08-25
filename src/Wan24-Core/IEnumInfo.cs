@@ -1,5 +1,4 @@
 ﻿using System.Collections.Frozen;
-using System.Collections.ObjectModel;
 
 namespace wan24.Core
 {
@@ -8,6 +7,10 @@ namespace wan24.Core
     /// </summary>
     public interface IEnumInfo
     {
+        /// <summary>
+        /// Enumeration type
+        /// </summary>
+        Type Type { get; }
         /// <summary>
         /// Default value
         /// </summary>

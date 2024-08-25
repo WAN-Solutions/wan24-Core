@@ -162,6 +162,9 @@ namespace wan24.Core
             }
         }
 
+        /// <inheritdoc/>
+        public Type Type => typeof(T);
+
         /// <summary>
         /// Default value
         /// </summary>
