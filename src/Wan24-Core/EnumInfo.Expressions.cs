@@ -8,7 +8,7 @@
         /// </summary>
         internal static readonly Func<T, string> AsStringExpression;
         /// <summary>
-        /// Get an enumeration value as a string
+        /// Get the name of an enumeration value
         /// </summary>
         internal static readonly Func<T, string?> AsNameExpression;
         /// <summary>
