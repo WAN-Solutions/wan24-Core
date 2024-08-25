@@ -1,18 +1,29 @@
 ﻿using System.Collections.Frozen;
 using System.Reflection;
 
+//TODO Improve enumeration performance using expressions for reflection
+
 namespace wan24.Core
 {
     /// <summary>
     /// Enumeration information
     /// </summary>
     /// <typeparam name="T">Enumeration type</typeparam>
-    public sealed class EnumInfo<T> : IEnumInfo<T> where T : struct, Enum, IConvertible
+    public sealed partial class EnumInfo<T> : IEnumInfo<T> where T : struct, Enum, IConvertible
     {
         /// <summary>
         /// Flags value name
         /// </summary>
         public const string FLAGS_NAME = "FLAGS";
+
+        /// <summary>
+        /// All values as <see cref="ulong"/> (if unsigned)
+        /// </summary>
+        public static readonly ulong AllULongValues;
+        /// <summary>
+        /// All values as <see cref="long"/> (if signed)
+        /// </summary>
+        public static readonly long AllLongValues;
 
         /// <summary>
         /// Static constructor
@@ -39,6 +50,8 @@ namespace wan24.Core
                                                                       orderby EnumExtensions.CastType<ulong>(value)
                                                                       select new KeyValuePair<string, object>(value.ToString()!, value)
                           ).ToFrozenDictionary();
+                AllULongValues = (ulong)NumericValues.Values.Aggregate((a, b) => (ulong)a | (ulong)b)!;
+                AllLongValues = 0;
                 KeyValues = new OrderedDictionary<string, T>(from value in values
                                                              orderby EnumExtensions.CastType<ulong>(value)
                                                              select new KeyValuePair<string, T>(value.ToString()!, value)
@@ -83,6 +96,8 @@ namespace wan24.Core
                                                                       orderby EnumExtensions.CastType<long>(value)
                                                                       select new KeyValuePair<string, object>(value.ToString()!, value)
                           ).ToFrozenDictionary();
+                AllLongValues = (long)NumericValues.Values.Aggregate((a, b) => (long)a | (long)b)!;
+                AllULongValues = 0;
                 KeyValues = new OrderedDictionary<string, T>(from value in values
                                                              orderby EnumExtensions.CastType<long>(value)
                                                              select new KeyValuePair<string, T>(value.ToString()!, value)
@@ -222,15 +237,11 @@ namespace wan24.Core
         {
             if (IsUnsigned)
             {
-                ulong allValues = 0;
-                foreach (T v in KeyValues.Values) allValues |= EnumExtensions.CastType<ulong>(v);
-                if ((EnumExtensions.CastType<ulong>(value) & ~allValues) != 0) return false;
+                if ((EnumExtensions.CastType<ulong>(value) & ~AllULongValues) != 0) return false;
             }
-            else
+            else if ((EnumExtensions.CastType<long>(value) & ~AllLongValues) != 0)
             {
-                long allValues = 0;
-                foreach (T v in KeyValues.Values) allValues |= EnumExtensions.CastType<long>(v);
-                if ((EnumExtensions.CastType<long>(value) & ~allValues) != 0) return false;
+                return false;
             }
             return true;
         }
@@ -244,15 +255,11 @@ namespace wan24.Core
             if (value.GetType() != typeof(T)) return false;
             if (IsUnsigned)
             {
-                ulong allValues = 0;
-                foreach (T v in KeyValues.Values) allValues |= EnumExtensions.CastType<ulong>(v);
-                if (((ulong)Convert.ChangeType(value, typeof(ulong)) & ~allValues) != 0) return false;
+                if (((ulong)Convert.ChangeType(value, typeof(ulong)) & ~AllULongValues) != 0) return false;
             }
-            else
+            else if (((long)Convert.ChangeType(value, typeof(long)) & ~AllLongValues) != 0)
             {
-                long allValues = 0;
-                foreach (T v in KeyValues.Values) allValues |= EnumExtensions.CastType<long>(v);
-                if (((long)Convert.ChangeType(value, typeof(long)) & ~allValues) != 0) return false;
+                return false;
             }
             return true;
         }

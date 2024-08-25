@@ -9,3 +9,4 @@ if (args.Length == 0 || args[0] == "ByteEncoding") BenchmarkRunner.Run<ByteEncod
 if (args.Length == 0 || args[0] == "IpSubNet") BenchmarkRunner.Run<IpSubNet_Tests>();
 if (args.Length == 0 || args[0] == "Reflection") BenchmarkRunner.Run<Reflection_Tests>();
 if (args.Length == 0 || args[0] == "ObjectMapping") BenchmarkRunner.Run<ObjectMapping_Tests>();
+if (args.Length == 0 || args[0] == "EnumInfo") BenchmarkRunner.Run<EnumInfo_Tests>();
