@@ -6,14 +6,12 @@ namespace wan24.Core
     /// <summary>
     /// <see cref="Uid"/> validation attribute
     /// </summary>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Parameter)]
-    public class UidAttribute : ValidationAttributeBase
+    public class UidAttribute() : ValidationAttributeBase()
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public UidAttribute() : base() { }
-
         /// <summary>
         /// Allow a future time?
         /// </summary>
