@@ -421,14 +421,118 @@ sub-net)</p>
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EndPointAttribute_CheckIfExists.md&amp;value=---%0Auid%3A%20wan24.Core.EndPointAttribute.CheckIfExists%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/EndPointAttribute.cs/#L37">View Source</a>
+  </span>
+  <a id="wan24_Core_EndPointAttribute_CheckIfExists_" data-uid="wan24.Core.EndPointAttribute.CheckIfExists*"></a>
+  <h4 id="wan24_Core_EndPointAttribute_CheckIfExists" data-uid="wan24.Core.EndPointAttribute.CheckIfExists">CheckIfExists</h4>
+  <div class="markdown level1 summary"><p>If to check if the endpoint exists (you need to implement <a class="xref" href="wan24.Core.EndPointAttribute.html#wan24_Core_EndPointAttribute_CheckExists_System_Net_IPEndPoint_wan24_Core_HostEndPoint_">CheckExists(IPEndPoint?, HostEndPoint)</a> in order to use this feature!)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CheckIfExists { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
 </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EndPointAttribute_CheckExists_System_Net_IPEndPoint_wan24_Core_HostEndPoint_.md&amp;value=---%0Auid%3A%20wan24.Core.EndPointAttribute.CheckExists(System.Net.IPEndPoint%2Cwan24.Core.HostEndPoint)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/EndPointAttribute.cs/#L47">View Source</a>
+  </span>
+  <a id="wan24_Core_EndPointAttribute_CheckExists_" data-uid="wan24.Core.EndPointAttribute.CheckExists*"></a>
+  <h4 id="wan24_Core_EndPointAttribute_CheckExists_System_Net_IPEndPoint_wan24_Core_HostEndPoint_" data-uid="wan24.Core.EndPointAttribute.CheckExists(System.Net.IPEndPoint,wan24.Core.HostEndPoint)">CheckExists(IPEndPoint?, HostEndPoint)</h4>
+  <div class="markdown level1 summary"><p>Check if an IP/host endpoint exists</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual bool CheckExists(IPEndPoint? ipEndPoint, HostEndPoint hostEndPoint)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipendpoint">IPEndPoint</a></td>
+        <td><span class="parametername">ipEndPoint</span></td>
+        <td><p>IP endpoint</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.HostEndPoint.html">HostEndPoint</a></td>
+        <td><span class="parametername">hostEndPoint</span></td>
+        <td><p>Host endpoint (may be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/default">default</a>)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If exists</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notimplementedexception">NotImplementedException</a></td>
+        <td><p>You need to implement the <a class="xref" href="wan24.Core.EndPointAttribute.html#wan24_Core_EndPointAttribute_CheckExists_System_Net_IPEndPoint_wan24_Core_HostEndPoint_">CheckExists(IPEndPoint?, HostEndPoint)</a> method in order to be able to use
+<code>CheckIfExists</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EndPointAttribute_IsValid_System_Object_System_ComponentModel_DataAnnotations_ValidationContext_.md&amp;value=---%0Auid%3A%20wan24.Core.EndPointAttribute.IsValid(System.Object%2CSystem.ComponentModel.DataAnnotations.ValidationContext)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/EndPointAttribute.cs/#L35">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core-Validation/EndPointAttribute.cs/#L50">View Source</a>
   </span>
   <a id="wan24_Core_EndPointAttribute_IsValid_" data-uid="wan24.Core.EndPointAttribute.IsValid*"></a>
   <h4 id="wan24_Core_EndPointAttribute_IsValid_System_Object_System_ComponentModel_DataAnnotations_ValidationContext_" data-uid="wan24.Core.EndPointAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)">IsValid(object?, ValidationContext)</h4>
