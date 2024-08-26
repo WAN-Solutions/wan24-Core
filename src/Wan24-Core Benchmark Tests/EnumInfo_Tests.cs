@@ -14,67 +14,67 @@ namespace Wan24_Core_Benchmark_Tests
         }
 
         [Benchmark]
-        public void NetGetValues() => Enum.GetValues<TestEnum>();
+        public TestEnum[] NetGetValues() => Enum.GetValues<TestEnum>();
 
         [Benchmark]
         public IReadOnlySet<TestEnum> Wan24GetValues() => EnumInfo<TestEnum>.Values;
 
         [Benchmark]
-        public void FastEnumGetValues() => FastEnum.GetValues<TestEnum>();
+        public IReadOnlyList<TestEnum> FastEnumGetValues() => FastEnum.GetValues<TestEnum>();
 
         [Benchmark]
-        public void NetGetNames() => Enum.GetNames<TestEnum>();
+        public string[] NetGetNames() => Enum.GetNames<TestEnum>();
 
         [Benchmark]
         public IReadOnlySet<string> Wan24GetNames() => EnumInfo<TestEnum>.Names;
 
         [Benchmark]
-        public void FastEnumGetNames() => FastEnum.GetNames<TestEnum>();
+        public IReadOnlyList<string> FastEnumGetNames() => FastEnum.GetNames<TestEnum>();
 
         [Benchmark]
-        public void NetGetName() => Enum.GetName(TestEnum.Value0);
+        public string? NetGetName() => Enum.GetName(TestEnum.Value0);
 
         [Benchmark]
-        public void Wan24GetName() => TestEnum.Value0.AsName();
+        public string? Wan24GetName() => TestEnum.Value0.AsName();
 
         [Benchmark]
-        public void FastEnumGetName() => FastEnum.GetName(TestEnum.Value0);
+        public string? FastEnumGetName() => FastEnum.GetName(TestEnum.Value0);
 
         [Benchmark]
-        public void NetToString() => TestEnum.Value0.ToString();
+        public string NetToString() => TestEnum.Value0.ToString();
 
         [Benchmark]
-        public void Wan24ToString() => TestEnum.Value0.AsString();
+        public string Wan24ToString() => TestEnum.Value0.AsString();
 
         [Benchmark]
-        public void FestEnumToString() => TestEnum.Value0.FastToString();
+        public string FastEnumToString() => TestEnum.Value0.FastToString();
 
         [Benchmark]
-        public void NetIsDefined() => Enum.IsDefined(TestEnum.Value0);
+        public bool NetIsDefined() => Enum.IsDefined(TestEnum.Value0);
 
         [Benchmark]
         public bool Wan24IsDefined() => EnumInfo<TestEnum>.Values.Contains(TestEnum.Value0) || EnumInfo<TestEnum>.FlagValues.Contains(TestEnum.Value0);
 
         [Benchmark]
-        public void FatsEnumIsValid() => FastEnum.IsDefined(TestEnum.Value0);
+        public bool FastEnumIsDefined() => FastEnum.IsDefined(TestEnum.Value0);
 
         [Benchmark]
-        public void NetParse() => Enum.Parse<TestEnum>("Value0");
+        public TestEnum NetParse() => Enum.Parse<TestEnum>("Value0");
 
         [Benchmark]
-        public void Wan24Parse() => EnumHelper.ParseEnum<TestEnum>("Value0");
+        public TestEnum Wan24Parse() => EnumHelper.ParseEnum<TestEnum>("Value0");
 
         [Benchmark]
-        public void FastEnumParse() => FastEnum.Parse<TestEnum>("Value0");
+        public TestEnum FastEnumParse() => FastEnum.Parse<TestEnum>("Value0");
 
         [Benchmark]
-        public void NetTryParse() => Enum.TryParse<TestEnum>("Value0", out _);
+        public bool NetTryParse() => Enum.TryParse<TestEnum>("Value0", out _);
 
         [Benchmark]
-        public void Wan24TryParse() => EnumHelper.TryParseEnum<TestEnum>("Value0", out _);
+        public bool Wan24TryParse() => EnumHelper.TryParseEnum<TestEnum>("Value0", out _);
 
         [Benchmark]
-        public void FastEnumTryParse() => FastEnum.TryParse<TestEnum>("Value0", out _);
+        public bool FastEnumTryParse() => FastEnum.TryParse<TestEnum>("Value0", out _);
 
         public enum TestEnum
         {

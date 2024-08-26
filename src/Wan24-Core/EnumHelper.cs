@@ -42,10 +42,9 @@ namespace wan24.Core
         /// <returns>If succeed</returns>
         public static bool TryParseEnum<T>(in string value, out T result, in bool ignoreCase = false) where T : struct, Enum, IConvertible
         {
-            T? res = EnumInfo<T>.ParseStringExpression(value, ignoreCase);
-            if (res.HasValue)
+            if(EnumInfo<T>.ParseStringHelper(value, ignoreCase) is T res)
             {
-                result = res.Value;
+                result = res;
                 return true;
             }
             else

@@ -173,11 +173,18 @@ namespace wan24.Core
         /// <returns>Instance</returns>
         public static FieldInfoExt From(in FieldInfo fi)
         {
-            int hc = fi.GetHashCode();
-            if (Cache.TryGetValue(hc, out FieldInfoExt? res)) return res;
-            res = new(fi, fi.CanCreateFieldGetter() ? fi.CreateFieldGetter() : null, fi.CanCreateFieldSetter() ? fi.CreateFieldSetter() : null);
-            Cache.TryAdd(hc, res);
-            return res;
+            try
+            {
+                int hc = fi.GetHashCode();
+                if (Cache.TryGetValue(hc, out FieldInfoExt? res)) return res;
+                res = new(fi, fi.CanCreateFieldGetter() ? fi.CreateFieldGetter() : null, fi.CanCreateFieldSetter() ? fi.CreateFieldSetter() : null);
+                Cache.TryAdd(hc, res);
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException($"Failed to create {typeof(FieldInfoExt)} for {fi.DeclaringType}.{fi.Name}", ex);
+            }
         }
     }
 }

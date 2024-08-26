@@ -557,7 +557,8 @@ namespace wan24.Core
                     !mi.IsGenericMethod ||
                     mi.IsConstructedGenericMethod
                 ) &&
-                !mi.GetParametersCached().Any(p => p.ParameterType.IsByRef || p.ParameterType.IsByRefLike || p.IsOut || p.ParameterType.IsPointer);
+                !mi.GetParametersCached().Any(p => p.ParameterType.IsByRef || p.ParameterType.IsByRefLike || p.IsOut || p.ParameterType.IsPointer) && 
+                !mi.ReturnType.IsByRef && !mi.ReturnType.IsByRefLike && !mi.ReturnType.IsPointer;
 
 
         /// <summary>

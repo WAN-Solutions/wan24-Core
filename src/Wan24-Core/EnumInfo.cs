@@ -1,5 +1,6 @@
 ﻿using System.Collections.Frozen;
 using System.ComponentModel;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.Serialization;
 
@@ -61,11 +62,14 @@ namespace wan24.Core
                 Flags = IsMixedEnum ? EnumExtensions.CastType<ulong>(Enum.Parse<T>(FLAGS_NAME)) : 0;
                 AllULongFlags = (ulong)Flags;
                 AllLongFlags = 0;
-                NumericValues = new OrderedDictionary<string, object>(from value in values.Cast<object>()
+                NumericValues = new OrderedDictionary<string, object>(from value in values
                                                                       orderby EnumExtensions.CastType<ulong>(value)
-                                                                      select new KeyValuePair<string, object>(value.ToString()!, value)
+                                                                      select new KeyValuePair<string, object>(
+                                                                          value.ToString()!,
+                                                                          Convert.ChangeType(value, typeof(T).GetEnumUnderlyingType())
+                                                                          )
                           ).ToFrozenDictionary();
-                AllULongValues = (ulong)NumericValues.Values.Aggregate((a, b) => (ulong)a | (ulong)b)!;
+                AllULongValues = (ulong)NumericValues.Values.Aggregate((a, b) => (ulong)Convert.ChangeType(a, typeof(ulong)) | (ulong)Convert.ChangeType(b, typeof(ulong)))!;
                 AllLongValues = 0;
                 KeyValues = new OrderedDictionary<string, T>(from value in values
                                                              orderby EnumExtensions.CastType<ulong>(value)
@@ -114,11 +118,14 @@ namespace wan24.Core
                 Flags = IsMixedEnum ? EnumExtensions.CastType<long>(Enum.Parse<T>(FLAGS_NAME)) : 0;
                 AllLongFlags = (long)Flags;
                 AllULongFlags = 0;
-                NumericValues = new OrderedDictionary<string, object>(from value in values.Cast<object>()
+                NumericValues = new OrderedDictionary<string, object>(from value in values
                                                                       orderby EnumExtensions.CastType<long>(value)
-                                                                      select new KeyValuePair<string, object>(value.ToString()!, value)
+                                                                      select new KeyValuePair<string, object>(
+                                                                          value.ToString()!, 
+                                                                          Convert.ChangeType(value, typeof(T).GetEnumUnderlyingType())
+                                                                          )
                           ).ToFrozenDictionary();
-                AllLongValues = (long)NumericValues.Values.Aggregate((a, b) => (long)a | (long)b)!;
+                AllLongValues = (long)NumericValues.Values.Aggregate((a, b) => (long)Convert.ChangeType(a, typeof(long)) | (long)Convert.ChangeType(b, typeof(long)))!;
                 AllULongValues = 0;
                 KeyValues = new OrderedDictionary<string, T>(from value in values
                                                              orderby EnumExtensions.CastType<long>(value)
@@ -135,7 +142,7 @@ namespace wan24.Core
                             ) is FieldInfoExt field
                             ? field.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ??
                                 field.GetCustomAttributeCached<DisplayNameAttribute>()?.DisplayName ??
-                                field.GetCustomAttributeCached<EnumMemberAttribute>()?.Value ?? 
+                                field.GetCustomAttributeCached<EnumMemberAttribute>()?.Value ??
                                 value.ToString()
                             : value.ToString()
                         )
@@ -159,6 +166,117 @@ namespace wan24.Core
                               select value).ToFrozenSet();
                     FlagValues = Array.Empty<T>().ToFrozenSet();
                 }
+            }
+            // Value lookup table
+            EnumValueLookup = KeyValues
+                .Select(kvp => new KeyValuePair<int, EnumValue>(kvp.Value.GetHashCode(), new(kvp.Value)))
+                .DistinctBy(kvp => kvp.Key)
+                .ToFrozenDictionary();
+            // AsString expression
+            {
+                ParameterExpression valueParam = Expression.Parameter(typeof(T), "value"),
+                    resultVar = Expression.Variable(typeof(EnumValue));
+                AsStringExpression = Expression.Lambda<Func<T, string>>(
+                    Expression.Block(
+                        [resultVar],
+                        Expression.Condition(
+                            Expression.Call(
+                                Expression.Constant(EnumValueLookup),
+                                typeof(FrozenDictionary<int, EnumValue>)
+                                    .GetMethodsCached()
+                                    .FirstOrDefault(m => m.Name == nameof(FrozenDictionary<int, EnumValue>.TryGetValue) && m.ParameterCount == 2)
+                                    ?? throw new InvalidProgramException(),
+                                Expression.Call(
+                                    valueParam,
+                                    typeof(T).GetMethodCached(nameof(object.GetHashCode)) ?? throw new InvalidProgramException()
+                                    ),
+                                resultVar
+                                ),
+                            Expression.Field(resultVar, typeof(EnumValue).GetFieldCached(nameof(EnumValue.Name))?.Field ?? throw new InvalidProgramException()),
+                            Expression.Call(
+                                valueParam,
+                                typeof(T).GetMethodsCached().FirstOrDefault(m => m.Name == nameof(ToString) && m.ParameterCount == 0)
+                                    ?? throw new InvalidProgramException()
+                                )
+                            )
+                        ),
+                    valueParam
+                    )
+                    .Compile();
+            }
+            // AsNameExpression
+            {
+                ParameterExpression valueParam = Expression.Parameter(typeof(T), "value"),
+                    resultVar = Expression.Variable(typeof(EnumValue));
+                AsNameExpression = Expression.Lambda<Func<T, string?>>(
+                    Expression.Block(
+                        [resultVar],
+                        Expression.Condition(
+                            Expression.Call(
+                                Expression.Constant(EnumValueLookup),
+                                typeof(FrozenDictionary<int, EnumValue>)
+                                    .GetMethodsCached()
+                                    .FirstOrDefault(m => m.Name == nameof(FrozenDictionary<int, EnumValue>.TryGetValue) && m.ParameterCount == 2)
+                                    ?? throw new InvalidProgramException(),
+                                Expression.Call(
+                                    valueParam,
+                                    typeof(T).GetMethodCached(nameof(object.GetHashCode)) ?? throw new InvalidProgramException()
+                                    ),
+                                resultVar
+                                ),
+                            Expression.Field(resultVar, typeof(EnumValue).GetFieldCached(nameof(EnumValue.Name))?.Field ?? throw new InvalidProgramException()),
+                            Expression.Constant(value: null, typeof(string))
+                            )
+                        ),
+                    valueParam
+                    )
+                    .Compile();
+            }
+            // AsNumericValueExpression
+            {
+                ParameterExpression valueParam = Expression.Parameter(typeof(T), "value");
+                AsNumericValueExpression = Expression.Lambda<Func<T, object>>(
+                    Expression.Convert(Expression.Convert(valueParam, typeof(T).GetEnumUnderlyingType() ?? throw new InvalidProgramException()), typeof(object)),
+                    valueParam
+                    )
+                    .Compile();
+            }
+            // GetKeyExpression
+            {
+                ParameterExpression valueParam = Expression.Parameter(typeof(string), "value"),
+                    ignoreCaseParam = Expression.Parameter(typeof(bool), "ignoreCase");
+                GetKeyExpression = Expression.Lambda<Func<string, bool, string>>(
+                    Expression.Condition(
+                        ignoreCaseParam,
+                        Expression.Switch(
+                            Expression.Call(
+                                valueParam,
+                                typeof(string)
+                                    .GetMethodsCached()
+                                    .FirstOrDefault(m => m.Name == nameof(string.Empty.ToLower) && m.ParameterCount == 0)
+                                    ?? throw new InvalidProgramException()
+                                ),
+                            Expression.Constant(string.Empty),
+                            [..from key in KeyValues.Keys
+                               select Expression.SwitchCase(Expression.Constant(key), Expression.Constant(key.ToLower()))]
+                            ),
+                        Expression.Condition(
+                            Expression.Call(
+                                Expression.Constant(KeyValues),
+                                typeof(FrozenDictionary<string, T>)
+                                    .GetMethodsCached()
+                                    .FirstOrDefault(m => m.Name == nameof(FrozenDictionary<string, T>.ContainsKey) && m.ParameterCount == 1 && m.Parameters[0].ParameterType == typeof(string))
+                                    ?? throw new InvalidProgramException(),
+                                valueParam
+                                ),
+                            valueParam,
+                            Expression.Constant(string.Empty)
+                            )
+                        ),
+                    valueParam,
+                    ignoreCaseParam
+                    )
+                    .Compile();
             }
         }
 
@@ -266,11 +384,10 @@ namespace wan24.Core
         public bool IsValidValue(in T value) => IsValid(value);
 
         /// <inheritdoc/>
-        public bool IsValidValue(in object value)
-            => (value.GetType() == typeof(T)) &&
-                (
-                    (IsUnsigned && ((ulong)Convert.ChangeType(value, typeof(ulong)) & ~AllULongValues) == 0) ||
-                    (!IsUnsigned && ((long)Convert.ChangeType(value, typeof(long)) & ~AllLongValues) == 0)
-                );
+        public bool IsValidValue(in object value) => value switch
+        {
+            T enumValue => IsValid(enumValue),
+            _ => false
+        };
     }
 }

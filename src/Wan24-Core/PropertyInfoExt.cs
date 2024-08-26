@@ -266,11 +266,18 @@ namespace wan24.Core
         /// <returns>Instance</returns>
         public static PropertyInfoExt From(in PropertyInfo pi)
         {
-            int hc = pi.GetHashCode();
-            if (Cache.TryGetValue(hc, out PropertyInfoExt? res)) return res;
-            res ??= new(pi, pi.CanCreatePropertyGetter() ? pi.CreatePropertyGetter() : null, pi.CanCreatePropertySetter() ? pi.CreatePropertySetter() : null);
-            Cache.TryAdd(hc, res);
-            return res;
+            try
+            {
+                int hc = pi.GetHashCode();
+                if (Cache.TryGetValue(hc, out PropertyInfoExt? res)) return res;
+                res ??= new(pi, pi.CanCreatePropertyGetter() ? pi.CreatePropertyGetter() : null, pi.CanCreatePropertySetter() ? pi.CreatePropertySetter() : null);
+                Cache.TryAdd(hc, res);
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException($"Failed to create {typeof(PropertyInfoExt)} for {pi.DeclaringType}.{pi.Name}", ex);
+            }
         }
     }
 }

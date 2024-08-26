@@ -323,11 +323,18 @@ namespace wan24.Core
         /// <returns>Instance</returns>
         public static MethodInfoExt From(in MethodInfo mi)
         {
-            int hc = mi.GetHashCode();
-            if(Cache.TryGetValue(hc, out MethodInfoExt? res)) return res;
-            res = new(mi, mi.CanCreateMethodInvoker() ? mi.CreateMethodInvoker() : null);
-            Cache.TryAdd(hc, res);
-            return res;
+            try
+            {
+                int hc = mi.GetHashCode();
+                if (Cache.TryGetValue(hc, out MethodInfoExt? res)) return res;
+                res = new(mi, mi.CanCreateMethodInvoker() ? mi.CreateMethodInvoker() : null);
+                Cache.TryAdd(hc, res);
+                return res;
+            }
+            catch(Exception ex)
+            {
+                throw new InvalidOperationException($"Failed to create {typeof(MethodInfoExt)} for {mi.DeclaringType}.{mi.Name}", ex);
+            }
         }
 
         /// <summary>

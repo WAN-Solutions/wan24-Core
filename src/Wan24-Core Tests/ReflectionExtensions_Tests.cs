@@ -521,6 +521,13 @@ namespace Wan24_Core_Tests
             Assert.IsNotNull(typeof(DiffInterfaceType).GetDelegateCached(nameof(DiffInterfaceType.EventDelegate)));
         }
 
+        [TestMethod]
+        public void MethodInfoExt_string_GetPinnableReference_Test()
+        {
+            // by-ref(-like) return types failed until the bugfix
+            typeof(string).GetMethodsCached();
+        }
+
         private static bool StaticTestField = true;
 
         public int? TestField = null;
