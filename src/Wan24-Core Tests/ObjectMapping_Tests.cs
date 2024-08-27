@@ -26,6 +26,14 @@ namespace Wan24_Core_Tests
             Assert.IsTrue(b.TargetPropertyA);// Opt-in by MapAttribute
             Assert.IsFalse(b.PropertyB);// NoMapAttribute
             Assert.IsFalse(b.PropertyC);// Opt-out (no MapAttribute)
+
+            b = new();
+            mapping.CompileMapping();
+            Assert.IsNotNull(mapping.CompiledMapping);
+            mapping.CompiledMapping(a, b);
+            Assert.IsTrue(b.TargetPropertyA);// Opt-in by MapAttribute
+            Assert.IsFalse(b.PropertyB);// NoMapAttribute
+            Assert.IsFalse(b.PropertyC);// Opt-out (no MapAttribute)
         }
 
         [TestMethod]

@@ -1936,6 +1936,10 @@ mapping.AddMapping(nameof(SourceType.PropertyName), nameof(TargetType.TargetProp
     .Register();
 ```
 
+**TIP**: The `AddAutoMappings` method will create automatic mappings for all 
+public properties with a public getter in the source type and a public 
+property with a public setter in the target type, which has the same name.
+
 Any mapping may be performed synchronous or asynchronous.
 
 The `ObjectMappingExtensions` offer some extension methods for mapping a list 
@@ -1996,3 +2000,20 @@ asynchronous handler methods are being called depends on their availability
 and on which `ObjectMapping.ApplyMapping(Async)` method is processing (the 
 synchronous method prefers the synchronous handlers, the asynchronous method 
 prefers the asynchronous handlers).
+
+### Compiled object mapping
+
+Creating a compiled object mapping requires more time for creating and a bit 
+more memory for storage, but it's about 100 times faster than an uncompiled 
+mapping:
+
+```cs
+ObjectMapping<SourceType, TargetType> mapping = new();
+mapping.AddAutoMappings();
+mapping.Compile();
+```
+
+The usage of a compiled mapping is the same, but the performance outperforms 
+everything else I know (except manual mapping code).
+
+**NOTE**: Compiled mappings won't work with `ApplyMappingsAsync`!

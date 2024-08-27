@@ -86,13 +86,9 @@ namespace wan24.Core
         public static PropertyInfoExt[] GetPropertiesCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
             => [..PropertyInfoCache.GetOrAdd(
                 type.GetHashCode(),
-                (key) => (from pi in type.GetProperties(ALL_BINDINGS)
-                          where !pi.PropertyType.IsByRef &&
-                             !pi.PropertyType.IsByRefLike &&
-                             pi.GetIndexParameters().Length == 0
-                          select PropertyInfoExt.From(pi)
-                        ).ToFrozenSet()
-                    ).Where(p => bindingFlags.DoesMatch(p, type))];
+                (key) => type.GetProperties(ALL_BINDINGS).Select(p => PropertyInfoExt.From(p)).ToFrozenSet()
+                )
+                .Where(p => bindingFlags.DoesMatch(p, type))];
 
         /// <summary>
         /// Get a property from the cache

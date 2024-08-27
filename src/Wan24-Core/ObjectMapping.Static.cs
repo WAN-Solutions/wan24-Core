@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime;
 using System.Runtime.CompilerServices;
@@ -25,6 +26,26 @@ namespace wan24.Core
         /// </summary>
         protected static readonly MethodInfoExt AsyncMapMethod;
         /// <summary>
+        /// <see cref="ObjectMappingExtensions.MapObjectTo(object, in Type)"/> method
+        /// </summary>
+        protected static readonly MethodInfoExt MapObjectToMethod;
+        /// <summary>
+        /// Object source parameter expression
+        /// </summary>
+        protected static readonly ParameterExpression ObjectSourceParameter;
+        /// <summary>
+        /// Object target parameter expression
+        /// </summary>
+        protected static readonly ParameterExpression ObjectTargetParameter;
+        /// <summary>
+        /// Object target parameter expression
+        /// </summary>
+        protected static readonly ParameterExpression CancellationParameter;
+        /// <summary>
+        /// <see langword="null"/> value expression
+        /// </summary>
+        protected static readonly ConstantExpression NullValueExpression;
+        /// <summary>
         /// Registered object mappings
         /// </summary>
         protected static readonly ConcurrentDictionary<(Type, Type), ObjectMapping> RegisteredMappings = [];
@@ -42,6 +63,14 @@ namespace wan24.Core
                 ?? throw new InvalidProgramException("Failed to get map method");
             AsyncMapMethod = typeof(MapAttribute).GetMethodCached(nameof(MapAttribute.MapAsync), BindingFlags.Instance | BindingFlags.Public)
                 ?? throw new InvalidProgramException("Failed to get asynchronous map method");
+            MapObjectToMethod = typeof(ObjectMappingExtensions)
+                .GetMethodsCached()
+                .FirstOrDefault(m => m.Name == nameof(ObjectMappingExtensions.MapObjectTo))
+                ?? throw new InvalidProgramException();
+            ObjectSourceParameter = Expression.Parameter(typeof(object), "source");
+            ObjectTargetParameter = Expression.Parameter(typeof(object), "target");
+            CancellationParameter = Expression.Parameter(typeof(CancellationToken), "cancellation");
+            NullValueExpression = Expression.Constant(value: null);
         }
 
         /// <summary>

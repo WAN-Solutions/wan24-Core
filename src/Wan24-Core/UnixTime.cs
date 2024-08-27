@@ -205,7 +205,7 @@ namespace wan24.Core
         public bool IsFuture => !IsNow && AsUtcDateTime > DateTime.UtcNow;
 
         /// <summary>
-        /// Add sconds
+        /// Add seconds
         /// </summary>
         /// <param name="seconds">Seconds to add</param>
         /// <returns>New <see cref="UnixTime"/></returns>

@@ -198,8 +198,8 @@ namespace Wan24_Core_Tests
             Type type = typeof(ReflectionTestClass);
             PropertyInfoExt initOnly = type.GetPropertyCached(nameof(ReflectionTestClass.InitOnlyProperty)) ?? throw new InvalidProgramException(),
                 getterSetter = type.GetPropertyCached(nameof(ReflectionTestClass.GetterSetterProperty)) ?? throw new InvalidProgramException();
-            Assert.IsTrue(initOnly.IsInitOnly());
-            Assert.IsFalse(getterSetter.IsInitOnly());
+            Assert.IsTrue(initOnly.IsInitOnly);
+            Assert.IsFalse(getterSetter.IsInitOnly);
         }
 
         [TestMethod]
