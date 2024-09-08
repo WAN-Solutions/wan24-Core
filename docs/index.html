@@ -1995,6 +1995,9 @@ and <code>PublicSetterOnly</code> properties).</p>
     ...
     .Register();
 </code></pre>
+<p><strong>TIP</strong>: The <code>AddAutoMappings</code> method will create automatic mappings for all
+public properties with a public getter in the source type and a public
+property with a public setter in the target type, which has the same name.</p>
 <p>Any mapping may be performed synchronous or asynchronous.</p>
 <p>The <code>ObjectMappingExtensions</code> offer some extension methods for mapping a list
 of source objects to new target object instances. If you set the
@@ -2043,6 +2046,60 @@ asynchronous handler methods are being called depends on their availability
 and on which <code>ObjectMapping.ApplyMapping(Async)</code> method is processing (the
 synchronous method prefers the synchronous handlers, the asynchronous method
 prefers the asynchronous handlers).</p>
+<h3 id="mapping-of-enumeration-values">Mapping of enumeration values</h3>
+<p>To map an enumeration value to a target property with another enumeration
+value type, you may want to use <code>EnumMapping&lt;tSource, tTarget&gt;</code>:</p>
+<pre><code class="lang-cs">new EnumMapping&lt;SourceType, TargetType&gt;(new Dictionary&lt;SourceType, TargetType&gt;()
+{
+    { SourcType.ValueA, TargetType.ValueA },
+    ...
+}).Register();
+</code></pre>
+<p>This example code registers an enumeration mapping, which can be used by the
+<code>ObjectMapping</code> by setting the <code>ApplyEnumMapping</code> property of a
+<code>MapAttribute</code> to <code>true</code>:</p>
+<pre><code class="lang-cs">[Map(ApplyEnumMapping = true)]
+public SourceType SourceProperty { get; set; }
+</code></pre>
+<p>The <code>EnumMapping</code> constructor offers some more options:</p>
+<ul>
+<li><code>discardedValues</code>: This is a list of source value bits which should be
+discarded (not mapped)</li>
+<li><code>throwOnUnmappedBits</code>: By setting this to <code>true</code>, an exception would be
+thrown, if the source value contained unmapable bits (otherwise those bits
+would be discarded from the target value)</li>
+</ul>
+<p>The mapping will be compiled once, and <code>Register</code> stores it as default for the
+given source and target value types. If you need to access a registered
+mapping from your code:</p>
+<pre><code class="lang-cs">EnumMapping&lt;SourceType, TargetType&gt; mapping = EnumMapping&lt;SourceType, TargetType&gt;.Get()
+    ?? throw new InvalidProgramException(&quot;Enumeration mapping not found&quot;);
+</code></pre>
+<p>Because the mapping was compiled, it's immutable, but you may still
+investigate the construction information from the objects properties. The
+<code>Map</code> method is available for an <code>object</code> and <code>SourceType</code> source value.</p>
+<p>It's also possible to create a custom mapping by giving a map method to the
+second constructor.</p>
+<h3 id="compiled-object-mapping">Compiled object mapping</h3>
+<p>Creating a compiled object mapping requires more time for creating and a bit
+more memory for storage, but it's about 100 times faster than an uncompiled
+mapping:</p>
+<pre><code class="lang-cs">ObjectMapping&lt;SourceType, TargetType&gt; mapping = new();
+mapping.AddAutoMappings();
+mapping.Compile();
+</code></pre>
+<p>The usage of a compiled mapping is the same, but the performance outperforms
+everything else I know (except manual mapping code).</p>
+<p><strong>NOTE</strong>: Compiled mappings won't work with <code>ApplyMappingsAsync</code>!</p>
+<h4 id="mapping-expressions">Mapping expressions</h4>
+<p>When you compile a mapping, you may add mapping expressions using the
+<code>AddMappingExpression</code> methods, also:</p>
+<pre><code class="lang-cs">ObjectMapping&lt;SourceType, TargetType&gt; mapping = new();
+mapping.AddMappingExpression(&quot;Mapping expression&quot;, [EXPRESSION]);
+mapping.Compile();
+</code></pre>
+<p><strong>WARNING</strong>: As soon as any mapping expression was added, asynchronous
+mappings will be executed synchronous (using <code>.GetAwaiter().GetResult()</code>).</p>
 
 </article>
                 </div>
