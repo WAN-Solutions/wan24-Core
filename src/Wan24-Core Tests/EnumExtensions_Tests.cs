@@ -1,4 +1,5 @@
-﻿using System.Net.Sockets;
+﻿using System.Collections.Frozen;
+using System.Net.Sockets;
 using wan24.Core;
 
 namespace Wan24_Core_Tests
@@ -32,44 +33,36 @@ namespace Wan24_Core_Tests
             Assert.IsTrue(typeof(TestEnum).GetEnumInfo().IsMixed);
             Assert.IsFalse(typeof(AddressFamily).GetEnumInfo().IsMixed);
             {
-                IReadOnlyDictionary<string, object> dict = info.NumericEnumValues;
-                Assert.AreEqual(7, dict.Count);
-                string[] keys = dict.Keys.ToArray();
-                object[] values = dict.Values.ToArray();
-                Assert.AreEqual(nameof(TestEnum.None), keys[0]);
-                Assert.AreEqual(TestEnum.None, values[0]);
-                Assert.AreEqual(nameof(TestEnum.Value1), keys[1]);
-                Assert.AreEqual(TestEnum.Value1, values[1]);
-                Assert.AreEqual(nameof(TestEnum.Value2), keys[2]);
-                Assert.AreEqual(TestEnum.Value2, values[2]);
-                Assert.AreEqual(nameof(TestEnum.Value3), keys[3]);
-                Assert.AreEqual(TestEnum.Value3, values[3]);
-                Assert.AreEqual(nameof(TestEnum.Flag1), keys[4]);
-                Assert.AreEqual(TestEnum.Flag1, values[4]);
-                Assert.AreEqual(nameof(TestEnum.Flag2), keys[5]);
-                Assert.AreEqual(TestEnum.Flag2, values[5]);
-                Assert.AreEqual(nameof(TestEnum.FLAGS), keys[6]);
-                Assert.AreEqual(TestEnum.FLAGS, values[6]);
+                FrozenDictionary<string, object> dict = info.NumericEnumValues;
+                Assert.AreEqual(6, dict.Count);
+                Assert.IsTrue(dict.ContainsKey(nameof(TestEnum.None)));
+                Assert.IsTrue(dict.ContainsKey(nameof(TestEnum.Value1)));
+                Assert.IsTrue(dict.ContainsKey(nameof(TestEnum.Value2)));
+                Assert.IsTrue(dict.ContainsKey(nameof(TestEnum.Value3)));
+                Assert.IsTrue(dict.ContainsKey(nameof(TestEnum.Flag1)));
+                Assert.IsTrue(dict.ContainsKey(nameof(TestEnum.Flag2)));
+                Assert.IsTrue(dict.ContainsValue((short)TestEnum.None));
+                Assert.IsTrue(dict.ContainsValue((short)TestEnum.Value1));
+                Assert.IsTrue(dict.ContainsValue((short)TestEnum.Value2));
+                Assert.IsTrue(dict.ContainsValue((short)TestEnum.Value3));
+                Assert.IsTrue(dict.ContainsValue((short)TestEnum.Flag1));
+                Assert.IsTrue(dict.ContainsValue((short)TestEnum.Flag2));
             }
             {
-                IReadOnlyDictionary<string, TestEnum> dict = EnumInfo<TestEnum>.KeyValues;
-                Assert.AreEqual(7, dict.Count);
-                string[] keys = dict.Keys.ToArray();
-                TestEnum[] values = dict.Values.ToArray();
-                Assert.AreEqual(nameof(TestEnum.None), keys[0]);
-                Assert.AreEqual(TestEnum.None, values[0]);
-                Assert.AreEqual(nameof(TestEnum.Value1), keys[1]);
-                Assert.AreEqual(TestEnum.Value1, values[1]);
-                Assert.AreEqual(nameof(TestEnum.Value2), keys[2]);
-                Assert.AreEqual(TestEnum.Value2, values[2]);
-                Assert.AreEqual(nameof(TestEnum.Value3), keys[3]);
-                Assert.AreEqual(TestEnum.Value3, values[3]);
-                Assert.AreEqual(nameof(TestEnum.Flag1), keys[4]);
-                Assert.AreEqual(TestEnum.Flag1, values[4]);
-                Assert.AreEqual(nameof(TestEnum.Flag2), keys[5]);
-                Assert.AreEqual(TestEnum.Flag2, values[5]);
-                Assert.AreEqual(nameof(TestEnum.FLAGS), keys[6]);
-                Assert.AreEqual(TestEnum.FLAGS, values[6]);
+                FrozenDictionary<string, TestEnum> dict = EnumInfo<TestEnum>.KeyValues;
+                Assert.AreEqual(6, dict.Count);
+                Assert.IsTrue(dict.ContainsKey(nameof(TestEnum.None)));
+                Assert.IsTrue(dict.ContainsKey(nameof(TestEnum.Value1)));
+                Assert.IsTrue(dict.ContainsKey(nameof(TestEnum.Value2)));
+                Assert.IsTrue(dict.ContainsKey(nameof(TestEnum.Value3)));
+                Assert.IsTrue(dict.ContainsKey(nameof(TestEnum.Flag1)));
+                Assert.IsTrue(dict.ContainsKey(nameof(TestEnum.Flag2)));
+                Assert.IsTrue(dict.ContainsValue(TestEnum.None));
+                Assert.IsTrue(dict.ContainsValue(TestEnum.Value1));
+                Assert.IsTrue(dict.ContainsValue(TestEnum.Value2));
+                Assert.IsTrue(dict.ContainsValue(TestEnum.Value3));
+                Assert.IsTrue(dict.ContainsValue(TestEnum.Flag1));
+                Assert.IsTrue(dict.ContainsValue(TestEnum.Flag2));
             }
         }
 

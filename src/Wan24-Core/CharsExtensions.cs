@@ -33,14 +33,11 @@ namespace wan24.Core
                     fixed (byte* r = random.Span)
                     fixed (char* a = arr)
 #endif
-                        unchecked
-                        {
 #if NO_UNSAFE
-                            for (int i = 0, len = arr.Length; i < len; arr[i] = (char)random[i], i++) ;
+                        for (int i = 0, len = arr.Length; i < len; arr[i] = (char)random[i], i++) ;
 #else
-                            for (int i = 0, len = arr.Length; i < len; a[i] = (char)r[i], a[i] = '\0', i++) ;
+                        for (int i = 0, len = arr.Length; i < len; a[i] = (char)r[i], a[i] = '\0', i++) ;
 #endif
-                        }
 #if !NO_UNSAFE
                 }
 #else
@@ -56,10 +53,7 @@ namespace wan24.Core
                 {
                     fixed (byte* r = random)
                     fixed (char* a = arr)
-                        unchecked
-                        {
-                            for (int i = 0, len = arr.Length; i < len; a[i] = (char)r[i], a[i] = '\0', i++) ;
-                        }
+                        for (int i = 0, len = arr.Length; i < len; a[i] = (char)r[i], a[i] = '\0', i++) ;
                 }
             }
 #endif

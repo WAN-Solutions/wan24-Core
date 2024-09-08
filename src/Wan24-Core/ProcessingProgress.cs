@@ -382,7 +382,7 @@ namespace wan24.Core
         private void RaiseOnProgress(ProcessingProgress? progress = null)
         {
             if (IsDisposing) return;
-            OnProgress?.Invoke(progress ?? this, new());
+            OnProgress?.Invoke(progress ?? this, EventArgs.Empty);
             RaiseOnAllProgress();
         }
 
@@ -393,7 +393,7 @@ namespace wan24.Core
         /// <summary>
         /// Raise the <see cref="OnAllProgress"/> event
         /// </summary>
-        private void RaiseOnAllProgress() => OnAllProgress?.Invoke(this, new());
+        private void RaiseOnAllProgress() => OnAllProgress?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Raised on a status update
@@ -403,7 +403,7 @@ namespace wan24.Core
         /// Raise the <see cref="OnStatus"/> event
         /// </summary>
         /// <param name="progress">Progress</param>
-        private void RaiseOnStatus(ProcessingProgress? progress = null) => OnStatus?.Invoke(progress ?? this, new());
+        private void RaiseOnStatus(ProcessingProgress? progress = null) => OnStatus?.Invoke(progress ?? this, EventArgs.Empty);
 
         /// <summary>
         /// Raised if done
@@ -413,6 +413,6 @@ namespace wan24.Core
         /// Raise the <see cref="OnDone"/> event
         /// </summary>
         /// <param name="progress">Progress</param>
-        private void RaiseOnDone(ProcessingProgress? progress = null) => OnDone?.Invoke(progress ?? this, new());
+        private void RaiseOnDone(ProcessingProgress? progress = null) => OnDone?.Invoke(progress ?? this, EventArgs.Empty);
     }
 }

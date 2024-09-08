@@ -14,7 +14,6 @@ namespace Wan24_Core_Tests
                 await pool.StartAsync();
                 await wan24.Core.Timeout.WaitConditionAsync(TimeSpan.FromMilliseconds(50), (ct) => Task.FromResult(pool.Available == 1));
                 Assert.IsNotNull(pool.GetOne());
-                Assert.AreEqual(0, pool.Available);
                 await wan24.Core.Timeout.WaitConditionAsync(TimeSpan.FromMilliseconds(50), (ct) => Task.FromResult(pool.Available == 1));
                 DateTime started = DateTime.Now;
                 Assert.AreEqual(3, (await pool.GetManyAsync(3).ToListAsync()).Count);

@@ -294,6 +294,6 @@ namespace wan24.Core
         /// <summary>
         /// Raise the <see cref="OnError"/> event
         /// </summary>
-        protected virtual void RaiseOnError() => OnError?.Invoke(this, new());
+        protected virtual void RaiseOnError() => OnError?.Invoke(this, EventArgs.Empty);
     }
 }

@@ -132,6 +132,7 @@
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="wan24.Core.InMemoryCacheEntry-1.html">InMemoryCacheEntry</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="wan24.Core.InMemoryCacheEntry-1.html">InMemoryCacheEntry</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="wan24.Core.InMemoryCacheEntry-1.html">InMemoryCacheEntry</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;&gt;</div>
+    <div><a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</div>
@@ -149,10 +150,10 @@
       <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_ContainsKey_System_String__">InMemoryCache&lt;object&gt;.ContainsKey(in string)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_Get_System_String__wan24_Core_IInMemoryCache__0__CacheEntryFactory_Delegate__wan24_Core_InMemoryCacheEntryOptions__">InMemoryCache&lt;object&gt;.Get(in string, in IInMemoryCache&lt;object&gt;.CacheEntryFactory_Delegate, in InMemoryCacheEntryOptions)</a>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_Get_System_String__wan24_Core_ICache__0__CacheEntryFactory_Delegate__wan24_Core_InMemoryCacheEntryOptions__">InMemoryCache&lt;object&gt;.Get(in string, in ICache&lt;object&gt;.CacheEntryFactory_Delegate, in InMemoryCacheEntryOptions)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_GetAsync_System_String_wan24_Core_IInMemoryCache__0__CacheEntryFactory_Delegate_wan24_Core_InMemoryCacheEntryOptions_System_Threading_CancellationToken_">InMemoryCache&lt;object&gt;.GetAsync(string, IInMemoryCache&lt;object&gt;.CacheEntryFactory_Delegate, InMemoryCacheEntryOptions, CancellationToken)</a>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_GetAsync_System_String_wan24_Core_ICache__0__CacheEntryFactory_Delegate_wan24_Core_InMemoryCacheEntryOptions_System_Threading_CancellationToken_">InMemoryCache&lt;object&gt;.GetAsync(string, ICache&lt;object&gt;.CacheEntryFactory_Delegate, InMemoryCacheEntryOptions, CancellationToken)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_HasChanged">InMemoryCache&lt;object&gt;.HasChanged</a>
@@ -236,13 +237,19 @@
       <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_OnEntryAdded">InMemoryCache&lt;object&gt;.OnEntryAdded</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_RaiseOnEntryAdded_wan24_Core_InMemoryCacheEntry__0___">InMemoryCache&lt;object&gt;.RaiseOnEntryAdded(in InMemoryCacheEntry&lt;object&gt;)</a>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_RaiseOnEntryAdded_wan24_Core_InMemoryCacheEntry__0___wan24_Core_CacheEventReasons__">InMemoryCache&lt;object&gt;.RaiseOnEntryAdded(in InMemoryCacheEntry&lt;object&gt;, in CacheEventReasons)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_OnEntryRemoved">InMemoryCache&lt;object&gt;.OnEntryRemoved</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_RaiseOnEntryRemoved_wan24_Core_InMemoryCacheEntry__0___">InMemoryCache&lt;object&gt;.RaiseOnEntryRemoved(in InMemoryCacheEntry&lt;object&gt;)</a>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_RaiseOnEntryRemoved_wan24_Core_InMemoryCacheEntry__0___wan24_Core_CacheEventReasons__">InMemoryCache&lt;object&gt;.RaiseOnEntryRemoved(in InMemoryCacheEntry&lt;object&gt;, in CacheEventReasons)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_OnCacheEntryAdded">InMemoryCache&lt;object&gt;.OnCacheEntryAdded</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_OnCacheEntryRemoved">InMemoryCache&lt;object&gt;.OnCacheEntryRemoved</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_IsItemTypeDisposable">InMemoryCache&lt;object&gt;.IsItemTypeDisposable</a>
@@ -264,6 +271,12 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_ApplyHardLimits_wan24_Core_InMemoryCacheEntry__0__System_Threading_CancellationToken_">InMemoryCache&lt;object&gt;.ApplyHardLimits(InMemoryCacheEntry&lt;object&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_TryRemoveInt_System_String__wan24_Core_CacheEventReasons__">InMemoryCache&lt;object&gt;.TryRemoveInt(in string, in CacheEventReasons)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_RemoveInt_wan24_Core_InMemoryCacheEntry__0___wan24_Core_CacheEventReasons__">InMemoryCache&lt;object&gt;.RemoveInt(in InMemoryCacheEntry&lt;object&gt;, in CacheEventReasons)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_DisposeItem__0_">InMemoryCache&lt;object&gt;.DisposeItem(object)</a>
@@ -585,7 +598,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_InMemoryCache_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class InMemoryCache : InMemoryCache&lt;object&gt;, IInMemoryCache&lt;object&gt;, IInMemoryCache, IWillDispose, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider, IChangeToken, INotifyPropertyChanged, IExportUserActions, IObservable&lt;ConcurrentChangeTokenDictionary&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;&gt;, IEnumerable&lt;object&gt;, IDictionary&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;, ICollection&lt;KeyValuePair&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;&gt;, IDictionary&lt;string, object&gt;, ICollection&lt;KeyValuePair&lt;string, object&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, object&gt;&gt;, IEnumerable</code></pre>
+    <pre><code class="lang-csharp hljs">public class InMemoryCache : InMemoryCache&lt;object&gt;, IInMemoryCache&lt;object&gt;, IInMemoryCache, IWillDispose, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider, IChangeToken, INotifyPropertyChanged, IExportUserActions, IObservable&lt;ConcurrentChangeTokenDictionary&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;&gt;, IEnumerable&lt;object&gt;, IDictionary&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;, ICollection&lt;KeyValuePair&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;&gt;, ICache&lt;object&gt;, IDictionary&lt;string, object&gt;, ICollection&lt;KeyValuePair&lt;string, object&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, object&gt;&gt;, IEnumerable</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -679,6 +692,9 @@
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable&lt;T&gt;</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.ICache-1.html">ICache&lt;T&gt;</a>
+  </div>
+  <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary&lt;TKey, TValue&gt;</a>
   </div>
   <div>
@@ -717,6 +733,9 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean__">JsonExtensions.ToJson(object, in bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_CastType__1_System_Object_">ObjectExtensions.CastType&lt;T&gt;(object)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(object)</a>
@@ -816,6 +835,9 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_CreateObjectClone__1___0_System_Boolean_System_Boolean_System_Nullable_System_Boolean__">ObjectMappingExtensions.CreateObjectClone&lt;T&gt;(T, bool, bool, bool?)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2___0_System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(tSource, CancellationToken)</a>

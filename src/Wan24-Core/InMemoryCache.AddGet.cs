@@ -84,7 +84,7 @@
             {
                 if (disposeItem)
                 {
-                    if (removeEntry && !Remove(entry))
+                    if (removeEntry && !RemoveInt(entry, CacheEventReasons.Automatic))
                         entry.OnRemoved();
                     if (disposeUnused && IsItemDisposable)
                         item.TryDispose();
@@ -174,7 +174,7 @@
             {
                 if (disposeItem)
                 {
-                    if (removeEntry && !Remove(entry))
+                    if (removeEntry && !RemoveInt(entry, CacheEventReasons.Automatic))
                         entry.OnRemoved();
                     if (disposeUnused && IsItemDisposable)
                         await item.TryDisposeAsync().DynamicContext();
@@ -201,7 +201,7 @@
             if (Cache.TryGetValue(key, out InMemoryCacheEntry<T>? existing) || (existing = GetEntry(key)) is not null)
                 if (!existing.CanUse)
                 {
-                    if (Remove(existing) && IsItemDisposable)
+                    if (RemoveInt(existing, CacheEventReasons.Automatic) && IsItemDisposable)
                         DisposeItem(existing.Item);
                 }
                 else
@@ -211,8 +211,8 @@
                 }
             if (entryFactory is null) return null;
             // Create the item
-            InMemoryCacheEntry<T>? newEntry = entryFactory(this, key, options, CancelToken).GetAwaiter().GetResult();
-            if (newEntry is null) return null;
+            if (entryFactory(this, key, options, CancelToken).GetAwaiter().GetResult() is not InMemoryCacheEntry<T> newEntry)
+                return null;
             if (newEntry.Item is null)
                 throw new InvalidProgramException("Entry factory created an entry with a NULL item");
             bool disposeItem = false,
@@ -266,7 +266,7 @@
                 // If the created item wasn't used, finally, dispose it
                 if (disposeItem)
                 {
-                    if (removeEntry && !Remove(newEntry))
+                    if (removeEntry && !RemoveInt(newEntry, CacheEventReasons.Automatic))
                         newEntry.OnRemoved();
                     if (IsItemDisposable)
                         newEntry.Item.TryDispose();
@@ -287,7 +287,7 @@
             if (Cache.TryGetValue(key, out InMemoryCacheEntry<T>? existing) || (existing = await GetEntryAsync(key, cancellationToken).DynamicContext()) is not null)
                 if (!existing.CanUse)
                 {
-                    if (Remove(existing) && IsItemDisposable)
+                    if (RemoveInt(existing, CacheEventReasons.Automatic) && IsItemDisposable)
                         await DisposeItemAsync(existing.Item).DynamicContext();
                 }
                 else
@@ -297,8 +297,8 @@
                 }
             if (entryFactory is null) return null;
             // Create the item
-            InMemoryCacheEntry<T>? newEntry = await entryFactory(this, key, options, cancellationToken).DynamicContext();
-            if (newEntry is null) return null;
+            if (await entryFactory(this, key, options, cancellationToken).DynamicContext() is not InMemoryCacheEntry<T> newEntry)
+                return null;
             if (newEntry.Item is null)
                 throw new InvalidProgramException("Entry factory created an entry with a NULL item");
             bool disposeItem = false,
@@ -352,7 +352,7 @@
                 // If the created item wasn't used, finally, dispose it
                 if (disposeItem)
                 {
-                    if (removeEntry && !Remove(newEntry))
+                    if (removeEntry && !RemoveInt(newEntry, CacheEventReasons.Automatic))
                         newEntry.OnRemoved();
                     if (IsItemDisposable)
                         await newEntry.Item.TryDisposeAsync().DynamicContext();

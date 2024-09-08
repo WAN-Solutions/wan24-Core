@@ -69,23 +69,22 @@ namespace wan24.Core
                 char c;
                 fixed (char* s = str)
                 fixed (char* cm = charMap.Value.Span)
+                {
 #endif
-                    unchecked
+                    for (int i = 0; i < len; i++)
                     {
-                        for (int i = 0; i < len; i++)
-                        {
 #if NO_UNSAFE
-                            if (charMap.Value.IndexOf(str[i]) != -1) continue;
+                        if (charMap.Value.IndexOf(str[i]) != -1) continue;
 #else
-                            c = s[i];
-                            for (j = 0; j < 64 && c != cm[j]; j++) ;
-                            if (j != 64) continue;
+                        c = s[i];
+                        for (j = 0; j < 64 && c != cm[j]; j++) ;
+                        if (j != 64) continue;
 #endif
-                            if (throwOnError) throw new FormatException($"Invalid character at offset #{i}");
-                            return false;
-                        }
+                        if (throwOnError) throw new FormatException($"Invalid character at offset #{i}");
+                        return false;
                     }
 #if !NO_UNSAFE
+                }
             }
 #endif
             return true;
@@ -120,23 +119,22 @@ namespace wan24.Core
                 char c;
                 fixed (char* s = str)
                 fixed (char* cm = charMap)
+                {
 #endif
-                    unchecked
+                    for (int i = 0; i < len; i++)
                     {
-                        for (int i = 0; i < len; i++)
-                        {
 #if NO_UNSAFE
-                            if (charMap.Value.IndexOf(str[i]) != -1) continue;
+                        if (charMap.Value.IndexOf(str[i]) != -1) continue;
 #else
-                            c = s[i];
-                            for (j = 0; j < 64 && c != cm[j]; j++) ;
-                            if (j != 64) continue;
+                        c = s[i];
+                        for (j = 0; j < 64 && c != cm[j]; j++) ;
+                        if (j != 64) continue;
 #endif
-                            if (throwOnError) throw new FormatException($"Invalid character at offset #{i}");
-                            return false;
-                        }
+                        if (throwOnError) throw new FormatException($"Invalid character at offset #{i}");
+                        return false;
                     }
 #if !NO_UNSAFE
+                }
             }
 #endif
             return true;
@@ -220,78 +218,75 @@ namespace wan24.Core
         public static ReadOnlySpan<char> ValidateCharMap(in ReadOnlySpan<char> charMap)
         {
             if (charMap.Length != 64) throw new ArgumentOutOfRangeException(nameof(charMap));
-            unchecked
-            {
-                if (
-                    (
-                        charMap[0] |
-                        charMap[1] |
-                        charMap[2] |
-                        charMap[3] |
-                        charMap[4] |
-                        charMap[5] |
-                        charMap[6] |
-                        charMap[7] |
-                        charMap[8] |
-                        charMap[9] |
-                        charMap[10] |
-                        charMap[11] |
-                        charMap[12] |
-                        charMap[13] |
-                        charMap[14] |
-                        charMap[15] |
-                        charMap[16] |
-                        charMap[17] |
-                        charMap[18] |
-                        charMap[19] |
-                        charMap[20] |
-                        charMap[21] |
-                        charMap[22] |
-                        charMap[23] |
-                        charMap[24] |
-                        charMap[25] |
-                        charMap[26] |
-                        charMap[27] |
-                        charMap[28] |
-                        charMap[29] |
-                        charMap[30] |
-                        charMap[31] |
-                        charMap[32] |
-                        charMap[33] |
-                        charMap[34] |
-                        charMap[35] |
-                        charMap[36] |
-                        charMap[37] |
-                        charMap[38] |
-                        charMap[39] |
-                        charMap[40] |
-                        charMap[41] |
-                        charMap[42] |
-                        charMap[43] |
-                        charMap[44] |
-                        charMap[45] |
-                        charMap[46] |
-                        charMap[47] |
-                        charMap[48] |
-                        charMap[49] |
-                        charMap[50] |
-                        charMap[51] |
-                        charMap[52] |
-                        charMap[53] |
-                        charMap[54] |
-                        charMap[55] |
-                        charMap[56] |
-                        charMap[57] |
-                        charMap[58] |
-                        charMap[59] |
-                        charMap[60] |
-                        charMap[61] |
-                        charMap[62] |
-                        charMap[63]
-                    ) > sbyte.MaxValue
-                    )
-                    throw new ArgumentException("Invalid ASCII character found", nameof(charMap));
-            }
+            if (
+                (
+                    charMap[0] |
+                    charMap[1] |
+                    charMap[2] |
+                    charMap[3] |
+                    charMap[4] |
+                    charMap[5] |
+                    charMap[6] |
+                    charMap[7] |
+                    charMap[8] |
+                    charMap[9] |
+                    charMap[10] |
+                    charMap[11] |
+                    charMap[12] |
+                    charMap[13] |
+                    charMap[14] |
+                    charMap[15] |
+                    charMap[16] |
+                    charMap[17] |
+                    charMap[18] |
+                    charMap[19] |
+                    charMap[20] |
+                    charMap[21] |
+                    charMap[22] |
+                    charMap[23] |
+                    charMap[24] |
+                    charMap[25] |
+                    charMap[26] |
+                    charMap[27] |
+                    charMap[28] |
+                    charMap[29] |
+                    charMap[30] |
+                    charMap[31] |
+                    charMap[32] |
+                    charMap[33] |
+                    charMap[34] |
+                    charMap[35] |
+                    charMap[36] |
+                    charMap[37] |
+                    charMap[38] |
+                    charMap[39] |
+                    charMap[40] |
+                    charMap[41] |
+                    charMap[42] |
+                    charMap[43] |
+                    charMap[44] |
+                    charMap[45] |
+                    charMap[46] |
+                    charMap[47] |
+                    charMap[48] |
+                    charMap[49] |
+                    charMap[50] |
+                    charMap[51] |
+                    charMap[52] |
+                    charMap[53] |
+                    charMap[54] |
+                    charMap[55] |
+                    charMap[56] |
+                    charMap[57] |
+                    charMap[58] |
+                    charMap[59] |
+                    charMap[60] |
+                    charMap[61] |
+                    charMap[62] |
+                    charMap[63]
+                ) > sbyte.MaxValue
+                )
+                throw new ArgumentException("Invalid ASCII character found", nameof(charMap));
             return charMap;
         }
 
@@ -306,77 +301,74 @@ namespace wan24.Core
 #endif
         public static bool IsCharMapValid(in ReadOnlySpan<char> charMap)
         {
-            unchecked
-            {
-                if (charMap.Length != 64 ||
-                    (
-                        charMap[0] |
-                        charMap[1] |
-                        charMap[2] |
-                        charMap[3] |
-                        charMap[4] |
-                        charMap[5] |
-                        charMap[6] |
-                        charMap[7] |
-                        charMap[8] |
-                        charMap[9] |
-                        charMap[10] |
-                        charMap[11] |
-                        charMap[12] |
-                        charMap[13] |
-                        charMap[14] |
-                        charMap[15] |
-                        charMap[16] |
-                        charMap[17] |
-                        charMap[18] |
-                        charMap[19] |
-                        charMap[20] |
-                        charMap[21] |
-                        charMap[22] |
-                        charMap[23] |
-                        charMap[24] |
-                        charMap[25] |
-                        charMap[26] |
-                        charMap[27] |
-                        charMap[28] |
-                        charMap[29] |
-                        charMap[30] |
-                        charMap[31] |
-                        charMap[32] |
-                        charMap[33] |
-                        charMap[34] |
-                        charMap[35] |
-                        charMap[36] |
-                        charMap[37] |
-                        charMap[38] |
-                        charMap[39] |
-                        charMap[40] |
-                        charMap[41] |
-                        charMap[42] |
-                        charMap[43] |
-                        charMap[44] |
-                        charMap[45] |
-                        charMap[46] |
-                        charMap[47] |
-                        charMap[48] |
-                        charMap[49] |
-                        charMap[50] |
-                        charMap[51] |
-                        charMap[52] |
-                        charMap[53] |
-                        charMap[54] |
-                        charMap[55] |
-                        charMap[56] |
-                        charMap[57] |
-                        charMap[58] |
-                        charMap[59] |
-                        charMap[60] |
-                        charMap[61] |
-                        charMap[62] |
-                        charMap[63]
-                    ) > sbyte.MaxValue)
-                    return false;
-            }
+            if (charMap.Length != 64 ||
+                (
+                    charMap[0] |
+                    charMap[1] |
+                    charMap[2] |
+                    charMap[3] |
+                    charMap[4] |
+                    charMap[5] |
+                    charMap[6] |
+                    charMap[7] |
+                    charMap[8] |
+                    charMap[9] |
+                    charMap[10] |
+                    charMap[11] |
+                    charMap[12] |
+                    charMap[13] |
+                    charMap[14] |
+                    charMap[15] |
+                    charMap[16] |
+                    charMap[17] |
+                    charMap[18] |
+                    charMap[19] |
+                    charMap[20] |
+                    charMap[21] |
+                    charMap[22] |
+                    charMap[23] |
+                    charMap[24] |
+                    charMap[25] |
+                    charMap[26] |
+                    charMap[27] |
+                    charMap[28] |
+                    charMap[29] |
+                    charMap[30] |
+                    charMap[31] |
+                    charMap[32] |
+                    charMap[33] |
+                    charMap[34] |
+                    charMap[35] |
+                    charMap[36] |
+                    charMap[37] |
+                    charMap[38] |
+                    charMap[39] |
+                    charMap[40] |
+                    charMap[41] |
+                    charMap[42] |
+                    charMap[43] |
+                    charMap[44] |
+                    charMap[45] |
+                    charMap[46] |
+                    charMap[47] |
+                    charMap[48] |
+                    charMap[49] |
+                    charMap[50] |
+                    charMap[51] |
+                    charMap[52] |
+                    charMap[53] |
+                    charMap[54] |
+                    charMap[55] |
+                    charMap[56] |
+                    charMap[57] |
+                    charMap[58] |
+                    charMap[59] |
+                    charMap[60] |
+                    charMap[61] |
+                    charMap[62] |
+                    charMap[63]
+                ) > sbyte.MaxValue)
+                return false;
             return true;
         }
     }

@@ -132,6 +132,7 @@
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="wan24.Core.InMemoryCacheEntry-1.html">InMemoryCacheEntry</a>&lt;T&gt;&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="wan24.Core.InMemoryCacheEntry-1.html">InMemoryCacheEntry</a>&lt;T&gt;&gt;&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="wan24.Core.InMemoryCacheEntry-1.html">InMemoryCacheEntry</a>&lt;T&gt;&gt;&gt;</div>
+    <div><a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;T&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, T&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, T&gt;&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, T&gt;&gt;</div>
@@ -360,7 +361,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_InMemoryCache_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class InMemoryCache&lt;T&gt; : HostedServiceBase, IInMemoryCache&lt;T&gt;, IInMemoryCache, IWillDispose, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider, IChangeToken, INotifyPropertyChanged, IExportUserActions, IObservable&lt;ConcurrentChangeTokenDictionary&lt;string, InMemoryCacheEntry&lt;T&gt;&gt;&gt;, IEnumerable&lt;T&gt;, IDictionary&lt;string, InMemoryCacheEntry&lt;T&gt;&gt;, ICollection&lt;KeyValuePair&lt;string, InMemoryCacheEntry&lt;T&gt;&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, InMemoryCacheEntry&lt;T&gt;&gt;&gt;, IDictionary&lt;string, T&gt;, ICollection&lt;KeyValuePair&lt;string, T&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, T&gt;&gt;, IEnumerable</code></pre>
+    <pre><code class="lang-csharp hljs">public class InMemoryCache&lt;T&gt; : HostedServiceBase, IInMemoryCache&lt;T&gt;, IInMemoryCache, IWillDispose, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider, IChangeToken, INotifyPropertyChanged, IExportUserActions, IObservable&lt;ConcurrentChangeTokenDictionary&lt;string, InMemoryCacheEntry&lt;T&gt;&gt;&gt;, IEnumerable&lt;T&gt;, IDictionary&lt;string, InMemoryCacheEntry&lt;T&gt;&gt;, ICollection&lt;KeyValuePair&lt;string, InMemoryCacheEntry&lt;T&gt;&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, InMemoryCacheEntry&lt;T&gt;&gt;&gt;, ICache&lt;T&gt;, IDictionary&lt;string, T&gt;, ICollection&lt;KeyValuePair&lt;string, T&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, T&gt;&gt;, IEnumerable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1363,7 +1364,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_Clear_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.Clear(System.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.cs/#L203">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.cs/#L190">View Source</a>
   </span>
   <a id="wan24_Core_InMemoryCache_1_Clear_" data-uid="wan24.Core.InMemoryCache`1.Clear*"></a>
   <h4 id="wan24_Core_InMemoryCache_1_Clear_System_Boolean__" data-uid="wan24.Core.InMemoryCache`1.Clear(System.Boolean@)">Clear(in bool)</h4>
@@ -1413,7 +1414,7 @@ poll <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.exte
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_ClearAsync_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.ClearAsync(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.cs/#L214">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.cs/#L201">View Source</a>
   </span>
   <a id="wan24_Core_InMemoryCache_1_ClearAsync_" data-uid="wan24.Core.InMemoryCache`1.ClearAsync*"></a>
   <h4 id="wan24_Core_InMemoryCache_1_ClearAsync_System_Boolean_" data-uid="wan24.Core.InMemoryCache`1.ClearAsync(System.Boolean)">ClearAsync(bool)</h4>
@@ -1515,7 +1516,7 @@ public virtual Task&lt;InMemoryCacheEntry&lt;T&gt;[]&gt; ClearAsync(bool dispose
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_CreateEntry_System_String___0__wan24_Core_InMemoryCacheEntryOptions_.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.CreateEntry(System.String%40%2C%600%40%2Cwan24.Core.InMemoryCacheEntryOptions)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.cs/#L157">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.cs/#L160">View Source</a>
   </span>
   <a id="wan24_Core_InMemoryCache_1_CreateEntry_" data-uid="wan24.Core.InMemoryCache`1.CreateEntry*"></a>
   <h4 id="wan24_Core_InMemoryCache_1_CreateEntry_System_String___0__wan24_Core_InMemoryCacheEntryOptions_" data-uid="wan24.Core.InMemoryCache`1.CreateEntry(System.String@,`0@,wan24.Core.InMemoryCacheEntryOptions)">CreateEntry(in string, in T, InMemoryCacheEntryOptions?)</h4>
@@ -1577,7 +1578,7 @@ public virtual Task&lt;InMemoryCacheEntry&lt;T&gt;[]&gt; ClearAsync(bool dispose
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Internals.cs/#L95">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Internals.cs/#L123">View Source</a>
   </span>
   <a id="wan24_Core_InMemoryCache_1_Dispose_" data-uid="wan24.Core.InMemoryCache`1.Dispose*"></a>
   <h4 id="wan24_Core_InMemoryCache_1_Dispose_System_Boolean_" data-uid="wan24.Core.InMemoryCache`1.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -1613,7 +1614,7 @@ public virtual Task&lt;InMemoryCacheEntry&lt;T&gt;[]&gt; ClearAsync(bool dispose
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Internals.cs/#L105">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Internals.cs/#L133">View Source</a>
   </span>
   <a id="wan24_Core_InMemoryCache_1_DisposeCore_" data-uid="wan24.Core.InMemoryCache`1.DisposeCore*"></a>
   <h4 id="wan24_Core_InMemoryCache_1_DisposeCore" data-uid="wan24.Core.InMemoryCache`1.DisposeCore">DisposeCore()</h4>
@@ -1646,7 +1647,7 @@ public virtual Task&lt;InMemoryCacheEntry&lt;T&gt;[]&gt; ClearAsync(bool dispose
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_DisposeItem__0_.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.DisposeItem(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Internals.cs/#L60">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Internals.cs/#L88">View Source</a>
   </span>
   <a id="wan24_Core_InMemoryCache_1_DisposeItem_" data-uid="wan24.Core.InMemoryCache`1.DisposeItem*"></a>
   <h4 id="wan24_Core_InMemoryCache_1_DisposeItem__0_" data-uid="wan24.Core.InMemoryCache`1.DisposeItem(`0)">DisposeItem(T)</h4>
@@ -1680,7 +1681,7 @@ public virtual Task&lt;InMemoryCacheEntry&lt;T&gt;[]&gt; ClearAsync(bool dispose
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_DisposeItemAsync__0_.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.DisposeItemAsync(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Internals.cs/#L74">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Internals.cs/#L102">View Source</a>
   </span>
   <a id="wan24_Core_InMemoryCache_1_DisposeItemAsync_" data-uid="wan24.Core.InMemoryCache`1.DisposeItemAsync*"></a>
   <h4 id="wan24_Core_InMemoryCache_1_DisposeItemAsync__0_" data-uid="wan24.Core.InMemoryCache`1.DisposeItemAsync(`0)">DisposeItemAsync(T)</h4>
@@ -1729,7 +1730,7 @@ public virtual Task&lt;InMemoryCacheEntry&lt;T&gt;[]&gt; ClearAsync(bool dispose
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_EnsureEntryOptions_wan24_Core_InMemoryCacheEntryOptions_.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.EnsureEntryOptions(wan24.Core.InMemoryCacheEntryOptions)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.cs/#L150">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.cs/#L153">View Source</a>
   </span>
   <a id="wan24_Core_InMemoryCache_1_EnsureEntryOptions_" data-uid="wan24.Core.InMemoryCache`1.EnsureEntryOptions*"></a>
   <h4 id="wan24_Core_InMemoryCache_1_EnsureEntryOptions_wan24_Core_InMemoryCacheEntryOptions_" data-uid="wan24.Core.InMemoryCache`1.EnsureEntryOptions(wan24.Core.InMemoryCacheEntryOptions)">EnsureEntryOptions(InMemoryCacheEntryOptions?)</h4>
@@ -1776,19 +1777,19 @@ public virtual Task&lt;InMemoryCacheEntry&lt;T&gt;[]&gt; ClearAsync(bool dispose
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_Get_System_String__wan24_Core_IInMemoryCache__0__CacheEntryFactory_Delegate__wan24_Core_InMemoryCacheEntryOptions__.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.Get(System.String%40%2Cwan24.Core.IInMemoryCache%7B%600%7D.CacheEntryFactory_Delegate%40%2Cwan24.Core.InMemoryCacheEntryOptions%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_Get_System_String__wan24_Core_ICache__0__CacheEntryFactory_Delegate__wan24_Core_InMemoryCacheEntryOptions__.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.Get(System.String%40%2Cwan24.Core.ICache%7B%600%7D.CacheEntryFactory_Delegate%40%2Cwan24.Core.InMemoryCacheEntryOptions%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.AddGet.cs/#L193">View Source</a>
   </span>
   <a id="wan24_Core_InMemoryCache_1_Get_" data-uid="wan24.Core.InMemoryCache`1.Get*"></a>
-  <h4 id="wan24_Core_InMemoryCache_1_Get_System_String__wan24_Core_IInMemoryCache__0__CacheEntryFactory_Delegate__wan24_Core_InMemoryCacheEntryOptions__" data-uid="wan24.Core.InMemoryCache`1.Get(System.String@,wan24.Core.IInMemoryCache{`0}.CacheEntryFactory_Delegate@,wan24.Core.InMemoryCacheEntryOptions@)">Get(in string, in CacheEntryFactory_Delegate?, in InMemoryCacheEntryOptions?)</h4>
+  <h4 id="wan24_Core_InMemoryCache_1_Get_System_String__wan24_Core_ICache__0__CacheEntryFactory_Delegate__wan24_Core_InMemoryCacheEntryOptions__" data-uid="wan24.Core.InMemoryCache`1.Get(System.String@,wan24.Core.ICache{`0}.CacheEntryFactory_Delegate@,wan24.Core.InMemoryCacheEntryOptions@)">Get(in string, in CacheEntryFactory_Delegate?, in InMemoryCacheEntryOptions?)</h4>
   <div class="markdown level1 summary"><p>Get a cache entry</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual InMemoryCacheEntry&lt;T&gt;? Get(in string key, in IInMemoryCache&lt;T&gt;.CacheEntryFactory_Delegate? entryFactory = null, in InMemoryCacheEntryOptions? options = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual InMemoryCacheEntry&lt;T&gt;? Get(in string key, in ICache&lt;T&gt;.CacheEntryFactory_Delegate? entryFactory = null, in InMemoryCacheEntryOptions? options = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1807,7 +1808,7 @@ public virtual Task&lt;InMemoryCacheEntry&lt;T&gt;[]&gt; ClearAsync(bool dispose
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.IInMemoryCache-1.html">IInMemoryCache</a>&lt;T&gt;.<a class="xref" href="wan24.Core.IInMemoryCache-1.CacheEntryFactory_Delegate.html">CacheEntryFactory_Delegate</a></td>
+        <td><a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;T&gt;.<a class="xref" href="wan24.Core.ICache-1.CacheEntryFactory_Delegate.html">CacheEntryFactory_Delegate</a></td>
         <td><span class="parametername">entryFactory</span></td>
         <td><p>Cache entry factory (used to create a new item from the given <code>key</code>, if no existing item was found)</p>
 </td>
@@ -1902,19 +1903,19 @@ public virtual Task&lt;InMemoryCacheEntry&lt;T&gt;[]&gt; ClearAsync(bool dispose
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_GetAsync_System_String_wan24_Core_IInMemoryCache__0__CacheEntryFactory_Delegate_wan24_Core_InMemoryCacheEntryOptions_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.GetAsync(System.String%2Cwan24.Core.IInMemoryCache%7B%600%7D.CacheEntryFactory_Delegate%2Cwan24.Core.InMemoryCacheEntryOptions%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_GetAsync_System_String_wan24_Core_ICache__0__CacheEntryFactory_Delegate_wan24_Core_InMemoryCacheEntryOptions_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.GetAsync(System.String%2Cwan24.Core.ICache%7B%600%7D.CacheEntryFactory_Delegate%2Cwan24.Core.InMemoryCacheEntryOptions%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.AddGet.cs/#L278">View Source</a>
   </span>
   <a id="wan24_Core_InMemoryCache_1_GetAsync_" data-uid="wan24.Core.InMemoryCache`1.GetAsync*"></a>
-  <h4 id="wan24_Core_InMemoryCache_1_GetAsync_System_String_wan24_Core_IInMemoryCache__0__CacheEntryFactory_Delegate_wan24_Core_InMemoryCacheEntryOptions_System_Threading_CancellationToken_" data-uid="wan24.Core.InMemoryCache`1.GetAsync(System.String,wan24.Core.IInMemoryCache{`0}.CacheEntryFactory_Delegate,wan24.Core.InMemoryCacheEntryOptions,System.Threading.CancellationToken)">GetAsync(string, CacheEntryFactory_Delegate?, InMemoryCacheEntryOptions?, CancellationToken)</h4>
+  <h4 id="wan24_Core_InMemoryCache_1_GetAsync_System_String_wan24_Core_ICache__0__CacheEntryFactory_Delegate_wan24_Core_InMemoryCacheEntryOptions_System_Threading_CancellationToken_" data-uid="wan24.Core.InMemoryCache`1.GetAsync(System.String,wan24.Core.ICache{`0}.CacheEntryFactory_Delegate,wan24.Core.InMemoryCacheEntryOptions,System.Threading.CancellationToken)">GetAsync(string, CacheEntryFactory_Delegate?, InMemoryCacheEntryOptions?, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Get a cache entry</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual Task&lt;InMemoryCacheEntry&lt;T&gt;?&gt; GetAsync(string key, IInMemoryCache&lt;T&gt;.CacheEntryFactory_Delegate? entryFactory = null, InMemoryCacheEntryOptions? options = null, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;InMemoryCacheEntry&lt;T&gt;?&gt; GetAsync(string key, ICache&lt;T&gt;.CacheEntryFactory_Delegate? entryFactory = null, InMemoryCacheEntryOptions? options = null, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1933,7 +1934,7 @@ public virtual Task&lt;InMemoryCacheEntry&lt;T&gt;[]&gt; ClearAsync(bool dispose
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.IInMemoryCache-1.html">IInMemoryCache</a>&lt;T&gt;.<a class="xref" href="wan24.Core.IInMemoryCache-1.CacheEntryFactory_Delegate.html">CacheEntryFactory_Delegate</a></td>
+        <td><a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;T&gt;.<a class="xref" href="wan24.Core.ICache-1.CacheEntryFactory_Delegate.html">CacheEntryFactory_Delegate</a></td>
         <td><span class="parametername">entryFactory</span></td>
         <td><p>Cache entry factory (used to create a new item from the given <code>key</code>, if no existing item was found)</p>
 </td>
@@ -2508,19 +2509,19 @@ public virtual Task&lt;InMemoryCacheEntry&lt;T&gt;[]&gt; ClearAsync(bool dispose
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_RaiseOnEntryAdded_wan24_Core_InMemoryCacheEntry__0___.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.RaiseOnEntryAdded(wan24.Core.InMemoryCacheEntry%7B%600%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_RaiseOnEntryAdded_wan24_Core_InMemoryCacheEntry__0___wan24_Core_CacheEventReasons__.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.RaiseOnEntryAdded(wan24.Core.InMemoryCacheEntry%7B%600%7D%40%2Cwan24.Core.CacheEventReasons%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Events.cs/#L63">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Events.cs/#L64">View Source</a>
   </span>
   <a id="wan24_Core_InMemoryCache_1_RaiseOnEntryAdded_" data-uid="wan24.Core.InMemoryCache`1.RaiseOnEntryAdded*"></a>
-  <h4 id="wan24_Core_InMemoryCache_1_RaiseOnEntryAdded_wan24_Core_InMemoryCacheEntry__0___" data-uid="wan24.Core.InMemoryCache`1.RaiseOnEntryAdded(wan24.Core.InMemoryCacheEntry{`0}@)">RaiseOnEntryAdded(in InMemoryCacheEntry&lt;T&gt;)</h4>
+  <h4 id="wan24_Core_InMemoryCache_1_RaiseOnEntryAdded_wan24_Core_InMemoryCacheEntry__0___wan24_Core_CacheEventReasons__" data-uid="wan24.Core.InMemoryCache`1.RaiseOnEntryAdded(wan24.Core.InMemoryCacheEntry{`0}@,wan24.Core.CacheEventReasons@)">RaiseOnEntryAdded(in InMemoryCacheEntry&lt;T&gt;, in CacheEventReasons)</h4>
   <div class="markdown level1 summary"><p>Raise the <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_OnEntryAdded">OnEntryAdded</a> event</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void RaiseOnEntryAdded(in InMemoryCacheEntry&lt;T&gt; entry)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual void RaiseOnEntryAdded(in InMemoryCacheEntry&lt;T&gt; entry, in CacheEventReasons reason = CacheEventReasons.UserAction)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2538,23 +2539,29 @@ public virtual Task&lt;InMemoryCacheEntry&lt;T&gt;[]&gt; ClearAsync(bool dispose
         <td><p>Cache entry</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.CacheEventReasons.html">CacheEventReasons</a></td>
+        <td><span class="parametername">reason</span></td>
+        <td><p>Reason</p>
+</td>
+      </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_RaiseOnEntryRemoved_wan24_Core_InMemoryCacheEntry__0___.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.RaiseOnEntryRemoved(wan24.Core.InMemoryCacheEntry%7B%600%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_RaiseOnEntryRemoved_wan24_Core_InMemoryCacheEntry__0___wan24_Core_CacheEventReasons__.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.RaiseOnEntryRemoved(wan24.Core.InMemoryCacheEntry%7B%600%7D%40%2Cwan24.Core.CacheEventReasons%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Events.cs/#L73">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Events.cs/#L79">View Source</a>
   </span>
   <a id="wan24_Core_InMemoryCache_1_RaiseOnEntryRemoved_" data-uid="wan24.Core.InMemoryCache`1.RaiseOnEntryRemoved*"></a>
-  <h4 id="wan24_Core_InMemoryCache_1_RaiseOnEntryRemoved_wan24_Core_InMemoryCacheEntry__0___" data-uid="wan24.Core.InMemoryCache`1.RaiseOnEntryRemoved(wan24.Core.InMemoryCacheEntry{`0}@)">RaiseOnEntryRemoved(in InMemoryCacheEntry&lt;T&gt;)</h4>
+  <h4 id="wan24_Core_InMemoryCache_1_RaiseOnEntryRemoved_wan24_Core_InMemoryCacheEntry__0___wan24_Core_CacheEventReasons__" data-uid="wan24.Core.InMemoryCache`1.RaiseOnEntryRemoved(wan24.Core.InMemoryCacheEntry{`0}@,wan24.Core.CacheEventReasons@)">RaiseOnEntryRemoved(in InMemoryCacheEntry&lt;T&gt;, in CacheEventReasons)</h4>
   <div class="markdown level1 summary"><p>Raise the <a class="xref" href="wan24.Core.InMemoryCache-1.html#wan24_Core_InMemoryCache_1_OnEntryRemoved">OnEntryRemoved</a> event</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void RaiseOnEntryRemoved(in InMemoryCacheEntry&lt;T&gt; entry)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual void RaiseOnEntryRemoved(in InMemoryCacheEntry&lt;T&gt; entry, in CacheEventReasons reason = CacheEventReasons.UserAction)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2570,6 +2577,12 @@ public virtual Task&lt;InMemoryCacheEntry&lt;T&gt;[]&gt; ClearAsync(bool dispose
         <td><a class="xref" href="wan24.Core.InMemoryCacheEntry-1.html">InMemoryCacheEntry</a>&lt;T&gt;</td>
         <td><span class="parametername">entry</span></td>
         <td><p>Cache entry</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.CacheEventReasons.html">CacheEventReasons</a></td>
+        <td><span class="parametername">reason</span></td>
+        <td><p>Reason</p>
 </td>
       </tr>
     </tbody>
@@ -3212,7 +3225,7 @@ public virtual Task ReduceSizeAsync(long targetSize, CancellationToken cancellat
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_Remove_wan24_Core_InMemoryCacheEntry__0___.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.Remove(wan24.Core.InMemoryCacheEntry%7B%600%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.cs/#L186">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.cs/#L183">View Source</a>
   </span>
   <a id="wan24_Core_InMemoryCache_1_Remove_" data-uid="wan24.Core.InMemoryCache`1.Remove*"></a>
   <h4 id="wan24_Core_InMemoryCache_1_Remove_wan24_Core_InMemoryCacheEntry__0___" data-uid="wan24.Core.InMemoryCache`1.Remove(wan24.Core.InMemoryCacheEntry{`0}@)">Remove(in InMemoryCacheEntry&lt;T&gt;)</h4>
@@ -3254,6 +3267,58 @@ public virtual Task ReduceSizeAsync(long targetSize, CancellationToken cancellat
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><p>If removed</p>
 </td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_RemoveInt_wan24_Core_InMemoryCacheEntry__0___wan24_Core_CacheEventReasons__.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.RemoveInt(wan24.Core.InMemoryCacheEntry%7B%600%7D%40%2Cwan24.Core.CacheEventReasons%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Internals.cs/#L69">View Source</a>
+  </span>
+  <a id="wan24_Core_InMemoryCache_1_RemoveInt_" data-uid="wan24.Core.InMemoryCache`1.RemoveInt*"></a>
+  <h4 id="wan24_Core_InMemoryCache_1_RemoveInt_wan24_Core_InMemoryCacheEntry__0___wan24_Core_CacheEventReasons__" data-uid="wan24.Core.InMemoryCache`1.RemoveInt(wan24.Core.InMemoryCacheEntry{`0}@,wan24.Core.CacheEventReasons@)">RemoveInt(in InMemoryCacheEntry&lt;T&gt;, in CacheEventReasons)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual bool RemoveInt(in InMemoryCacheEntry&lt;T&gt; entry, in CacheEventReasons reason)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.InMemoryCacheEntry-1.html">InMemoryCacheEntry</a>&lt;T&gt;</td>
+        <td><span class="parametername">entry</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.CacheEventReasons.html">CacheEventReasons</a></td>
+        <td><span class="parametername">reason</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -3361,7 +3426,7 @@ public virtual Task ReduceSizeAsync(long targetSize, CancellationToken cancellat
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_TryRemove_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.TryRemove(System.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.cs/#L173">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.cs/#L176">View Source</a>
   </span>
   <a id="wan24_Core_InMemoryCache_1_TryRemove_" data-uid="wan24.Core.InMemoryCache`1.TryRemove*"></a>
   <h4 id="wan24_Core_InMemoryCache_1_TryRemove_System_String__" data-uid="wan24.Core.InMemoryCache`1.TryRemove(System.String@)">TryRemove(in string)</h4>
@@ -3408,10 +3473,62 @@ public virtual Task ReduceSizeAsync(long targetSize, CancellationToken cancellat
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_TryRemoveInt_System_String__wan24_Core_CacheEventReasons__.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.TryRemoveInt(System.String%40%2Cwan24.Core.CacheEventReasons%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Internals.cs/#L57">View Source</a>
+  </span>
+  <a id="wan24_Core_InMemoryCache_1_TryRemoveInt_" data-uid="wan24.Core.InMemoryCache`1.TryRemoveInt*"></a>
+  <h4 id="wan24_Core_InMemoryCache_1_TryRemoveInt_System_String__wan24_Core_CacheEventReasons__" data-uid="wan24.Core.InMemoryCache`1.TryRemoveInt(System.String@,wan24.Core.CacheEventReasons@)">TryRemoveInt(in string, in CacheEventReasons)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual InMemoryCacheEntry&lt;T&gt;? TryRemoveInt(in string key, in CacheEventReasons reason)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.CacheEventReasons.html">CacheEventReasons</a></td>
+        <td><span class="parametername">reason</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.InMemoryCacheEntry-1.html">InMemoryCacheEntry</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_WorkerAsync.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.WorkerAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Internals.cs/#L85">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Internals.cs/#L113">View Source</a>
   </span>
   <a id="wan24_Core_InMemoryCache_1_WorkerAsync_" data-uid="wan24.Core.InMemoryCache`1.WorkerAsync*"></a>
   <h4 id="wan24_Core_InMemoryCache_1_WorkerAsync" data-uid="wan24.Core.InMemoryCache`1.WorkerAsync">WorkerAsync()</h4>
@@ -3441,6 +3558,66 @@ public virtual Task ReduceSizeAsync(long targetSize, CancellationToken cancellat
   <div><a class="xref" href="wan24.Core.HostedServiceBase.html#wan24_Core_HostedServiceBase_WorkerAsync">HostedServiceBase.WorkerAsync()</a></div>
   <h3 id="events">Events
 </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_OnCacheEntryAdded.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.OnCacheEntryAdded%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.ICache.cs/#L76">View Source</a>
+  </span>
+  <h4 id="wan24_Core_InMemoryCache_1_OnCacheEntryAdded" data-uid="wan24.Core.InMemoryCache`1.OnCacheEntryAdded">OnCacheEntryAdded</h4>
+  <div class="markdown level1 summary"><p>Raised when an entry was added</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ICache&lt;T&gt;.CacheEntryEvent_Delegate? OnCacheEntryAdded</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;T&gt;.<a class="xref" href="wan24.Core.ICache-1.CacheEntryEvent_Delegate.html">CacheEntryEvent_Delegate</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_OnCacheEntryRemoved.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.OnCacheEntryRemoved%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.ICache.cs/#L79">View Source</a>
+  </span>
+  <h4 id="wan24_Core_InMemoryCache_1_OnCacheEntryRemoved" data-uid="wan24.Core.InMemoryCache`1.OnCacheEntryRemoved">OnCacheEntryRemoved</h4>
+  <div class="markdown level1 summary"><p>Raised when an entry was removed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ICache&lt;T&gt;.CacheEntryEvent_Delegate? OnCacheEntryRemoved</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;T&gt;.<a class="xref" href="wan24.Core.ICache-1.CacheEntryEvent_Delegate.html">CacheEntryEvent_Delegate</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_OnEntryAdded.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.OnEntryAdded%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
@@ -3476,7 +3653,7 @@ public virtual Task ReduceSizeAsync(long targetSize, CancellationToken cancellat
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCache_1_OnEntryRemoved.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCache%601.OnEntryRemoved%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Events.cs/#L68">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCache.Events.cs/#L73">View Source</a>
   </span>
   <h4 id="wan24_Core_InMemoryCache_1_OnEntryRemoved" data-uid="wan24.Core.InMemoryCache`1.OnEntryRemoved">OnEntryRemoved</h4>
   <div class="markdown level1 summary"><p>Raised when an entry was removed</p>
@@ -3587,6 +3764,9 @@ public virtual Task ReduceSizeAsync(long targetSize, CancellationToken cancellat
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable&lt;T&gt;</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.ICache-1.html">ICache&lt;T&gt;</a>
+  </div>
+  <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary&lt;TKey, TValue&gt;</a>
   </div>
   <div>
@@ -3613,6 +3793,9 @@ public virtual Task ReduceSizeAsync(long targetSize, CancellationToken cancellat
   </div>
   <div>
       <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean__">JsonExtensions.ToJson(object, in bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_CastType__1_System_Object_">ObjectExtensions.CastType&lt;T&gt;(object)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(object)</a>
@@ -3718,6 +3901,9 @@ public virtual Task ReduceSizeAsync(long targetSize, CancellationToken cancellat
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_CreateObjectClone__1___0_System_Boolean_System_Boolean_System_Nullable_System_Boolean__">ObjectMappingExtensions.CreateObjectClone&lt;T&gt;(T, bool, bool, bool?)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2___0_System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(tSource, CancellationToken)</a>

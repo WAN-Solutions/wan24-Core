@@ -107,12 +107,9 @@ namespace wan24.Core
 #else
             unsafe
             {
-                unchecked
-                {
-                    fixed (byte* dataPtr = data)
-                    fixed (byte* checksumPtr = checksum)
-                        for (int i = 0, dataLen = data.Length; i < dataLen; checksumPtr[dataPtr[i] & mask] ^= dataPtr[i], i++) ;
-                }
+                fixed (byte* dataPtr = data)
+                fixed (byte* checksumPtr = checksum)
+                    for (int i = 0, dataLen = data.Length; i < dataLen; checksumPtr[dataPtr[i] & mask] ^= dataPtr[i], i++) ;
             }
 #endif
         }

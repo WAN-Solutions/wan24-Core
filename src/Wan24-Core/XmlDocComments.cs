@@ -155,20 +155,20 @@ namespace wan24.Core
         public static string GetGenericName<T>(in T member, in bool isParameter = false) where T : class, ICustomAttributeProvider
         {
             StringBuilder sb = new();
-            Type[]? genericParameters = null;
+            IList<Type>? genericParameters = null;
             switch (member)
             {
                 case Type type:
                     sb.Append(type.ToString().CutAt('`'));
-                    if (type.IsGenericType) genericParameters = type.GetGenericArgumentsCached();
+                    if (type.IsGenericType) genericParameters = ReflectionExtensions.GetCachedGenericArguments(type);
                     break;
                 case MethodInfo mi:
                     sb.Append(mi.Name);
-                    if (mi.IsGenericMethod) genericParameters = mi.GetGenericArgumentsCached();
+                    if (mi.IsGenericMethod) genericParameters = ReflectionExtensions.GetCachedGenericArguments(mi);
                     break;
                 case MethodInfoExt mi:
                     sb.Append(mi.Name);
-                    if (mi.Method.IsGenericMethod) genericParameters = mi.GenericArguments;
+                    if (mi.Method.IsGenericMethod) genericParameters = mi.GetGenericArguments();
                     break;
                 default:
                     throw new ArgumentException("Invalid member type", nameof(member));
@@ -177,7 +177,7 @@ namespace wan24.Core
             if (isParameter)
             {
                 sb.Append('{');
-                List<string> genericParameterInfos = new(genericParameters.Length);
+                List<string> genericParameterInfos = [];
                 foreach (Type type in genericParameters)
                     sb.Append(type.IsGenericParameter ? type.Name : GetGenericName(type));
                 sb.Append(string.Join(',', genericParameterInfos));
@@ -186,7 +186,7 @@ namespace wan24.Core
             else
             {
                 sb.Append('`');
-                sb.Append(genericParameters.Length);
+                sb.Append(genericParameters.Count);
             }
             return sb.ToString();
         }

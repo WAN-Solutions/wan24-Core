@@ -255,7 +255,7 @@ namespace wan24.Core
         /// <returns>Is not disposing?</returns>
         [TargetedPatchingOptOut("Tiny method")]
         protected bool EnsureUndisposed(in bool allowDisposing = false, in bool throwException = true)
-            => !IsDisposing || (allowDisposing && !IsDisposed) || (throwException ? throw new ObjectDisposedException(GetType().ToString()) : false);
+            => !IsDisposing || (allowDisposing && !IsDisposed) || (throwException ? throw new ObjectDisposedException(ToString() ?? GetType().ToString()) : false);
 
         /// <summary>
         /// Return a value if not disposing/disposed
@@ -513,7 +513,7 @@ namespace wan24.Core
             {
                 if (release) DisposeSyncObject.Release();
             }
-            OnDisposing?.Invoke(this, new());
+            OnDisposing?.Invoke(this, EventArgs.Empty);
             return true;
         }
 
@@ -542,7 +542,7 @@ namespace wan24.Core
             {
                 if (release) DisposeSyncObject.Release();
             }
-            OnDisposing?.Invoke(this, new());
+            OnDisposing?.Invoke(this, EventArgs.Empty);
             return true;
         }
 
@@ -555,7 +555,7 @@ namespace wan24.Core
             DisposeSyncObject.Dispose();
             IsDisposed = true;
             GC.SuppressFinalize(this);
-            OnDisposed?.Invoke(this, new());
+            OnDisposed?.Invoke(this, EventArgs.Empty);
         }
 
         /// <inheritdoc/>
@@ -572,7 +572,7 @@ namespace wan24.Core
             DisposeSyncObject.Dispose();
             IsDisposed = true;
             GC.SuppressFinalize(this);
-            OnDisposed?.Invoke(this, new());
+            OnDisposed?.Invoke(this, EventArgs.Empty);
         }
 
         /// <inheritdoc/>

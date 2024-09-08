@@ -4,12 +4,15 @@ using System.Security.Cryptography;
 using System.Text;
 using wan24.Core;
 
+/*
+ * NOTE: The results depend on the underlying hardware, 'cause wan24-Core makes heavy use of intrinsic CPU command sets, as available (AVX2, AVX512F, AdvSIMD, SSE2).
+ */
+
 namespace Wan24_Core_Benchmark_Tests
 {
     [MemoryDiagnoser]
     public class ByteEncoding_Tests
     {
-        private const int RUN_COUNT = 100;
         private const int TEST_DATA_LEN = 81_920;
 
         private static readonly byte[] TestData;
@@ -41,76 +44,37 @@ namespace Wan24_Core_Benchmark_Tests
         [Benchmark]
         public void Base64_Encoding()
         {
-            ReadOnlySpan<byte> data = TestData.AsSpan();
-            Span<byte> encoded = Base64Encoded.AsSpan();
-            Span<char> encodedChars = Base64EncodedChars.AsSpan();
-            for (int i = 0; i < RUN_COUNT; i++)
-            {
-                Base64.EncodeToUtf8(data, encoded, out _, out _);
-                Encoding.UTF8.GetChars(encoded, encodedChars);
-            }
+            Base64.EncodeToUtf8(TestData, Base64Encoded, out _, out _);
+            Encoding.UTF8.GetChars(Base64Encoded, Base64EncodedChars);
         }
 
         [Benchmark]
         public void Base64_Decoding()
         {
-            ReadOnlySpan<char> data = TestData_Base64EncodedChars.AsSpan();
-            Span<byte> dataBytes = Base64Encoded.AsSpan();
-            Span<byte> decoded = Base64Decoded.AsSpan();
-            for (int i = 0; i < RUN_COUNT; i++)
-            {
-                Encoding.UTF8.GetBytes(data, dataBytes);
-                Base64.DecodeFromUtf8(dataBytes, decoded, out _, out _);
-            }
+            Encoding.UTF8.GetBytes(TestData_Base64EncodedChars, Base64Encoded);
+            Base64.DecodeFromUtf8(Base64Encoded, Base64Decoded, out _, out _);
         }
 
         [Benchmark]
         public void Base64_All()
         {
-            ReadOnlySpan<byte> data = TestData.AsSpan();
-            Span<byte> encoded = Base64Encoded.AsSpan();
-            Span<char> encodedChars = Base64EncodedChars.AsSpan();
-            Span<byte> decoded = Base64Decoded.AsSpan();
-            for (int i = 0; i < RUN_COUNT; i++)
-            {
-                Base64.EncodeToUtf8(data, encoded, out _, out _);
-                Encoding.UTF8.GetChars(encoded, encodedChars);
-                Encoding.UTF8.GetBytes(encodedChars, encoded);
-                Base64.DecodeFromUtf8(encoded, decoded, out _, out _);
-            }
+            Base64.EncodeToUtf8(TestData, Base64Encoded, out _, out _);
+            Encoding.UTF8.GetChars(Base64Encoded, Base64EncodedChars);
+            Encoding.UTF8.GetBytes(Base64EncodedChars, Base64Encoded);
+            Base64.DecodeFromUtf8(Base64Encoded, Base64Decoded, out _, out _);
         }
 
         [Benchmark]
-        public void Byte_Encoding()
-        {
-            ReadOnlySpan<byte> data = TestData.AsSpan();
-            Span<char> encoded = ByteEncoded.AsSpan();
-            ReadOnlySpan<char> charMap = ByteEncoding.DefaultCharMap.Span;
-            for (int i = 0; i < RUN_COUNT; i++) data.Encode(encoded, charMap);
-        }
+        public void Byte_Encoding() => ByteEncoding.Encode(TestData, ByteEncoded, ByteEncoding.DefaultCharMap.Span);
 
         [Benchmark]
-        public void Byte_Decoding()
-        {
-            ReadOnlySpan<char> data = TestData_ByteEncoded.AsSpan();
-            Span<byte> decoded = ByteDecoded.AsSpan();
-            ReadOnlySpan<char> charMap = ByteEncoding.DefaultCharMap.Span;
-            for (int i = 0; i < RUN_COUNT; i++) data.Decode(decoded, charMap);
-        }
+        public void Byte_Decoding() => ByteEncoding.Decode(TestData_ByteEncoded, ByteDecoded, ByteEncoding.DefaultCharMap.Span);
 
         [Benchmark]
         public void Byte_All()
         {
-            ReadOnlySpan<byte> data = TestData.AsSpan();
-            Span<char> encoded = ByteEncoded.AsSpan();
-            ReadOnlySpan<char> encodedReadOnly = encoded;
-            Span<byte> decoded = ByteDecoded.AsSpan();
-            ReadOnlySpan<char> charMap = ByteEncoding.DefaultCharMap.Span;
-            for (int i = 0; i < RUN_COUNT; i++)
-            {
-                data.Encode(encoded, charMap);
-                encodedReadOnly.Decode(decoded, charMap);
-            }
+            ByteEncoding.Encode(TestData, ByteEncoded, ByteEncoding.DefaultCharMap.Span);
+            ByteEncoding.Decode(ByteEncoded, ByteDecoded, ByteEncoding.DefaultCharMap.Span);
         }
     }
 }

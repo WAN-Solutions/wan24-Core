@@ -195,6 +195,6 @@
         /// <summary>
         /// Raise the <see cref="OnNeedData"/> event
         /// </summary>
-        protected virtual void RaiseOnNeedData() => OnNeedData?.Invoke(this, new());
+        protected virtual void RaiseOnNeedData() => OnNeedData?.Invoke(this, EventArgs.Empty);
     }
 }
