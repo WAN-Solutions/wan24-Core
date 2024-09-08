@@ -93,7 +93,7 @@ namespace wan24.Core
 #endif
         public static bool IsNullable(this ICustomAttributeProvider cap)
         {
-            Attribute[] attributes = cap.GetCustomAttributesCached<Attribute>();
+            IEnumerable<Attribute> attributes = cap.GetCustomAttributesCached<Attribute>();
             if (attributes.Any(a => a is DisallowNullAttribute)) return false;
             if (attributes.Any(a => a is AllowNullAttribute)) return true;
             return true;

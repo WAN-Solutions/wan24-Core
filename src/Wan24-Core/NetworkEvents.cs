@@ -122,7 +122,7 @@ namespace wan24.Core
         /// <summary>
         /// Raise the <see cref="OnConnected"/> event
         /// </summary>
-        protected virtual void RaiseOnConnected() => OnConnected?.Invoke(this, new());
+        protected virtual void RaiseOnConnected() => OnConnected?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Raised when the network adapter was disconnected
@@ -131,6 +131,6 @@ namespace wan24.Core
         /// <summary>
         /// Raise the <see cref="OnDisconnected"/> event
         /// </summary>
-        protected virtual void RaiseOnDisconnected() => OnDisconnected?.Invoke(this, new());
+        protected virtual void RaiseOnDisconnected() => OnDisconnected?.Invoke(this, EventArgs.Empty);
     }
 }

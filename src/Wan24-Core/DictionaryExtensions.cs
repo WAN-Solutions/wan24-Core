@@ -1,4 +1,6 @@
-﻿using System.Collections.Specialized;
+﻿using System.Collections.Frozen;
+using System.Collections.Specialized;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime;
 using System.Web;
 
@@ -135,6 +137,195 @@ namespace wan24.Core
             NameValueCollection nvc = HttpUtility.ParseQueryString(string.Empty);
             foreach (var kvp in dict) nvc.Add(kvp.Key, kvp.Value);
             return nvc.ToString()!;
+        }
+
+        /// <summary>
+        /// Determine if a value is contained
+        /// </summary>
+        /// <typeparam name="tKey">Key type</typeparam>
+        /// <typeparam name="tValue">Value type</typeparam>
+        /// <param name="dict">Dictionary</param>
+        /// <param name="value">Value</param>
+        /// <returns>If the value is contained</returns>
+        public static bool ContainsValue<tKey, tValue>(this IDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
+            => dict.Values.Any(v => (v is null && value is null) || (v is not null && v.Equals(value)));
+
+        /// <summary>
+        /// Determine if a value is contained
+        /// </summary>
+        /// <typeparam name="tKey">Key type</typeparam>
+        /// <typeparam name="tValue">Value type</typeparam>
+        /// <param name="dict">Dictionary</param>
+        /// <param name="value">Value</param>
+        /// <returns>If the value is contained</returns>
+        public static bool ContainsValue<tKey, tValue>(this IReadOnlyDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
+            => dict.Values.Any(v => (v is null && value is null) || (v is not null && v.Equals(value)));
+
+        /// <summary>
+        /// Determine if a value is contained
+        /// </summary>
+        /// <typeparam name="tKey">Key type</typeparam>
+        /// <typeparam name="tValue">Value type</typeparam>
+        /// <param name="dict">Dictionary</param>
+        /// <param name="value">Value</param>
+        /// <returns>If the value is contained</returns>
+        public static bool ContainsValue<tKey, tValue>(this FrozenDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
+            => dict.Values.Any(v => (v is null && value is null) || (v is not null && v.Equals(value)));
+
+        /// <summary>
+        /// Get the first key of a value
+        /// </summary>
+        /// <typeparam name="tKey">Key type</typeparam>
+        /// <typeparam name="tValue">Value type</typeparam>
+        /// <param name="dict">Dictionary</param>
+        /// <param name="value">Value</param>
+        /// <returns>Key</returns>
+        /// <exception cref="KeyNotFoundException">Key not found</exception>
+        public static tKey GetKeyOfValue<tKey, tValue>(this IDictionary<tKey, tValue> dict, in tValue value) where tKey : notnull
+        {
+            if (!TryGetKeyOfValue(dict, value, out tKey? res))
+                throw new KeyNotFoundException();
+            return res;
+        }
+
+        /// <summary>
+        /// Get the first key of a value
+        /// </summary>
+        /// <typeparam name="tKey">Key type</typeparam>
+        /// <typeparam name="tValue">Value type</typeparam>
+        /// <param name="dict">Dictionary</param>
+        /// <param name="value">Value</param>
+        /// <returns>Key</returns>
+        /// <exception cref="KeyNotFoundException">Key not found</exception>
+        public static tKey GetKeyOfValue<tKey, tValue>(this FrozenDictionary<tKey, tValue> dict, in tValue value) where tKey : notnull
+        {
+            if (!TryGetKeyOfValue(dict, value, out tKey? res))
+                throw new KeyNotFoundException();
+            return res;
+        }
+
+        /// <summary>
+        /// Get the first key of a value
+        /// </summary>
+        /// <typeparam name="tKey">Key type</typeparam>
+        /// <typeparam name="tValue">Value type</typeparam>
+        /// <param name="dict">Dictionary</param>
+        /// <param name="value">Value</param>
+        /// <returns>Key</returns>
+        /// <exception cref="KeyNotFoundException">Key not found</exception>
+        public static tKey GetKeyOfValue<tKey, tValue>(this IReadOnlyDictionary<tKey, tValue> dict, in tValue value) where tKey : notnull
+        {
+            if (!TryGetKeyOfValue(dict, value, out tKey? res))
+                throw new KeyNotFoundException();
+            return res;
+        }
+
+        /// <summary>
+        /// Get the first key of a value
+        /// </summary>
+        /// <typeparam name="tKey">Key type</typeparam>
+        /// <typeparam name="tValue">Value type</typeparam>
+        /// <param name="dict">Dictionary</param>
+        /// <param name="value">Value</param>
+        /// <param name="key">Found key</param>
+        /// <returns>If succeed</returns>
+        public static bool TryGetKeyOfValue<tKey, tValue>(this IDictionary<tKey, tValue> dict, in tValue value, [MaybeNullWhen(returnValue: false)] out tKey key) where tKey : notnull
+        {
+            foreach (KeyValuePair<tKey, tValue> kvp in dict)
+                if (kvp.Value?.Equals(value) ?? value is null)
+                {
+                    key = kvp.Key;
+                    return true;
+                }
+            key = default;
+            return false;
+        }
+
+        /// <summary>
+        /// Get the first key of a value
+        /// </summary>
+        /// <typeparam name="tKey">Key type</typeparam>
+        /// <typeparam name="tValue">Value type</typeparam>
+        /// <param name="dict">Dictionary</param>
+        /// <param name="value">Value</param>
+        /// <param name="key">Found key</param>
+        /// <returns>If succeed</returns>
+        public static bool TryGetKeyOfValue<tKey, tValue>(this FrozenDictionary<tKey, tValue> dict, in tValue value, [MaybeNullWhen(returnValue: false)] out tKey key) where tKey : notnull
+        {
+            foreach (KeyValuePair<tKey, tValue> kvp in dict)
+                if (kvp.Value?.Equals(value) ?? value is null)
+                {
+                    key = kvp.Key;
+                    return true;
+                }
+            key = default;
+            return false;
+        }
+
+        /// <summary>
+        /// Get the first key of a value
+        /// </summary>
+        /// <typeparam name="tKey">Key type</typeparam>
+        /// <typeparam name="tValue">Value type</typeparam>
+        /// <param name="dict">Dictionary</param>
+        /// <param name="value">Value</param>
+        /// <param name="key">Found key</param>
+        /// <returns>If succeed</returns>
+        public static bool TryGetKeyOfValue<tKey, tValue>(this IReadOnlyDictionary<tKey, tValue> dict, in tValue value, [MaybeNullWhen(returnValue: false)] out tKey key) where tKey : notnull
+        {
+            foreach (KeyValuePair<tKey, tValue> kvp in dict)
+                if (kvp.Value?.Equals(value) ?? value is null)
+                {
+                    key = kvp.Key;
+                    return true;
+                }
+            key = default;
+            return false;
+        }
+
+        /// <summary>
+        /// Get the keys of a value
+        /// </summary>
+        /// <typeparam name="tKey">Key type</typeparam>
+        /// <typeparam name="tValue">Value type</typeparam>
+        /// <param name="dict">Dictionary</param>
+        /// <param name="value">Value</param>
+        /// <returns>Keys</returns>
+        public static IEnumerable<tKey> GetKeysOfValue<tKey, tValue>(this IDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
+        {
+            foreach (KeyValuePair<tKey, tValue> kvp in dict)
+                if (kvp.Value?.Equals(value) ?? value is null)
+                    yield return kvp.Key;
+        }
+
+        /// <summary>
+        /// Get the keys of a value
+        /// </summary>
+        /// <typeparam name="tKey">Key type</typeparam>
+        /// <typeparam name="tValue">Value type</typeparam>
+        /// <param name="dict">Dictionary</param>
+        /// <param name="value">Value</param>
+        /// <returns>Keys</returns>
+        public static IEnumerable<tKey> GetKeysOfValue<tKey, tValue>(this FrozenDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
+        {
+            foreach (KeyValuePair<tKey, tValue> kvp in dict)
+                if (kvp.Value?.Equals(value) ?? value is null)
+                    yield return kvp.Key;
+        }
+
+        /// <summary>
+        /// Get the keys of a value
+        /// </summary>
+        /// <typeparam name="tKey">Key type</typeparam>
+        /// <typeparam name="tValue">Value type</typeparam>
+        /// <param name="dict">Dictionary</param>
+        /// <param name="value">Value</param>
+        /// <returns>Keys</returns>
+        public static IEnumerable<tKey> GetKeysOfValue<tKey, tValue>(this IReadOnlyDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
+        {
+            foreach (KeyValuePair<tKey, tValue> kvp in dict)
+                if (kvp.Value?.Equals(value) ?? value is null)
+                    yield return kvp.Key;
         }
     }
 }

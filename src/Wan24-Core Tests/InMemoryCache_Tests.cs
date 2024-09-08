@@ -455,13 +455,17 @@ namespace Wan24_Core_Tests
         {
         }
 
-        public static Task<InMemoryCacheEntry<TestItem>?> ItemFactory(
-            InMemoryCache<TestItem> cache, 
-            string key, 
-            InMemoryCacheEntryOptions? options,
+        public static Task<ICacheEntry<TestItem>?> ItemFactory(
+            ICache<TestItem> cache,
+            string key,
+            ICacheEntryOptions? options,
             CancellationToken cancellationToken
             )
-            => Task.FromResult((InMemoryCacheEntry<TestItem>?)new InMemoryCacheEntry<TestItem>(key, new(key, options?.Size)) { Cache = cache });
+        {
+            TestCache testCache = cache as TestCache ?? throw new InvalidProgramException();
+            InMemoryCacheEntryOptions entryOptions = options as InMemoryCacheEntryOptions ?? throw new InvalidProgramException();
+            return Task.FromResult((ICacheEntry<TestItem>?)new InMemoryCacheEntry<TestItem>(key, new(key, entryOptions?.Size)) { Cache = testCache });
+        }
 
         public sealed class TestItem(string key, int? size = null) : DisposableBase(asyncDisposing: false), IInMemoryCacheItem
         {

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Concurrent;
 using System.Collections.Frozen;
+using System.Collections.Immutable;
 using System.Reflection;
 using System.Runtime;
 using System.Runtime.CompilerServices;
@@ -14,70 +14,8 @@ namespace wan24.Core
     /// Constructor
     /// </remarks>
     /// <param name="Type">Type</param>
-    public sealed record class TypeInfoExt(in Type Type) : ICustomAttributeProvider, IEnumerable<PropertyInfoExt>
+    public sealed partial record class TypeInfoExt(in Type Type) : ICustomAttributeProvider, IEnumerable<PropertyInfoExt>
     {
-        /// <summary>
-        /// Cached instances (key is the type hash code)
-        /// </summary>
-        private static readonly ConcurrentDictionary<int, TypeInfoExt> Cache = [];
-        
-        /// <summary>
-        /// Attributes
-        /// </summary>
-        private FrozenSet<Attribute>? _Attributes = null;
-        /// <summary>
-        /// Constructors
-        /// </summary>
-        private FrozenSet<ConstructorInfoExt>? _Constructors = null;
-        /// <summary>
-        /// Fields
-        /// </summary>
-        private FrozenSet<FieldInfoExt>? _Fields = null;
-        /// <summary>
-        /// Properties
-        /// </summary>
-        private FrozenSet<PropertyInfoExt>? _Properties = null;
-        /// <summary>
-        /// Methods
-        /// </summary>
-        private FrozenSet<MethodInfoExt>? _Methods = null;
-        /// <summary>
-        /// Delegates
-        /// </summary>
-        private FrozenSet<Type>? _Delegates = null;
-        /// <summary>
-        /// Events
-        /// </summary>
-        private FrozenSet<EventInfo>? _Events = null;
-        /// <summary>
-        /// Generic arguments
-        /// </summary>
-        private Type[]? _GenericArguments = null;
-        /// <summary>
-        /// If it's a delegate
-        /// </summary>
-        private bool? _IsDelegate = null;
-        /// <summary>
-        /// If it's a (value) task
-        /// </summary>
-        private bool? _IsTask = null;
-        /// <summary>
-        /// Is it's a value task
-        /// </summary>
-        private bool? _IsValueTask = null;
-        /// <summary>
-        /// Bindings
-        /// </summary>
-        private BindingFlags? _Bindings = null;
-        /// <summary>
-        /// If the type can be constructed
-        /// </summary>
-        private bool? _CanConstruct = null;
-        /// <summary>
-        /// The parameterless constructor
-        /// </summary>
-        private ConstructorInfoExt? _ParameterlessConstructor = null;
-
         /// <summary>
         /// Get a field/property/method/delegate/event by its name
         /// </summary>
@@ -89,11 +27,11 @@ namespace wan24.Core
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            get => Properties.FirstOrDefault(p => p.Name == name)
-                ?? Methods.FirstOrDefault(m => m.Name == name)
-                ?? Fields.FirstOrDefault(f => f.Name == name)
-                ?? ((ICustomAttributeProvider?)Delegates.FirstOrDefault(d => d.Name == name))
-                ?? Events.FirstOrDefault(e => e.Name == name);
+            get => GetProperties().FirstOrDefault(p => p.Name == name)
+                ?? GetMethods().FirstOrDefault(m => m.Name == name)
+                ?? GetFields().FirstOrDefault(f => f.Name == name)
+                ?? ((ICustomAttributeProvider?)GetDelegates().FirstOrDefault(d => d.Name == name))
+                ?? GetEvents().FirstOrDefault(e => e.Name == name);
         }
 
         /// <summary>
@@ -108,8 +46,22 @@ namespace wan24.Core
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
             get => typeof(Attribute).IsAssignableFrom(type)
-                ? Attributes.FirstOrDefault(a => type.IsAssignableFrom(a.GetType()))
+                ? GetAttributes().FirstOrDefault(a => type.IsAssignableFrom(a.GetType()))
                 : throw new ArgumentException("Not an attribute type", nameof(type));
+        }
+
+        /// <summary>
+        /// Get a property by its index
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <returns>Property</returns>
+        public PropertyInfoExt this[in int index]
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => GetProperties().Items[index];
         }
 
         /// <summary>
@@ -132,7 +84,7 @@ namespace wan24.Core
         /// <summary>
         /// Bindings
         /// </summary>
-        public BindingFlags Bindings => _Bindings ??= Type.GetBindingFlags();
+        public BindingFlags Bindings => GetBindings();
 
         /// <summary>
         /// Name
@@ -217,37 +169,37 @@ namespace wan24.Core
         /// <summary>
         /// Generic arguments
         /// </summary>
-        public Type[] GenericArguments => _GenericArguments ??= Type.IsGenericType ? Type.GetGenericArgumentsCached() : [];
+        public Type[] GenericArguments => [.. GetGenericArguments()];
 
         /// <summary>
         /// Generic argument count
         /// </summary>
-        public int GenericArgumentCount => (_GenericArguments ??= Type.IsGenericType ? Type.GetGenericArgumentsCached() : []).Length;
+        public int GenericArgumentCount => GetGenericArguments().Length;
 
         /// <summary>
         /// First generic argument
         /// </summary>
-        public Type? FirstGenericArgument => Type.IsGenericType ? (_GenericArguments ??= Type.GetGenericArgumentsCached())[0] : null;
+        public Type? FirstGenericArgument => Type.IsGenericType ? GetGenericArguments()[0] : null;
 
         /// <summary>
         /// Attributes
         /// </summary>
-        public Attribute[] Attributes => [.. _Attributes ??= Type.GetCustomAttributesCached<Attribute>().ToFrozenSet()];
+        public Attribute[] Attributes => [.. GetAttributes()];
 
         /// <summary>
         /// Attribute count
         /// </summary>
-        public int AttributeCount => (_Attributes ??= Type.GetCustomAttributesCached<Attribute>().ToFrozenSet()).Count;
+        public int AttributeCount => GetAttributes().Count;
 
         /// <summary>
         /// Constructors
         /// </summary>
-        public ConstructorInfoExt[] Constructors => [.. _Constructors ??= Type.GetConstructorsCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet()];
+        public ConstructorInfoExt[] Constructors => [.. GetConstructors()];
 
         /// <summary>
         /// Constructor count
         /// </summary>
-        public int ConstructorCount => (_Constructors ??= Type.GetConstructorsCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet()).Count;
+        public int ConstructorCount => GetConstructors().Count;
 
         /// <summary>
         /// The parameterless constructor
@@ -257,52 +209,77 @@ namespace wan24.Core
         /// <summary>
         /// Fields
         /// </summary>
-        public FieldInfoExt[] Fields => [.. _Fields ??= Type.GetFieldsCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet()];
+        public FieldInfoExt[] Fields => [.. GetFields()];
 
         /// <summary>
         /// Field count
         /// </summary>
-        public int FieldCount => (_Fields ??= Type.GetFieldsCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet()).Count;
+        public int FieldCount => GetFields().Count;
+
+        /// <summary>
+        /// Field names
+        /// </summary>
+        public IEnumerable<string> FieldNames => GetFields().Select(f => f.Name);
 
         /// <summary>
         /// Properties
         /// </summary>
-        public PropertyInfoExt[] Properties => [.. _Properties ??= Type.GetPropertiesCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet()];
+        public PropertyInfoExt[] Properties => [.. GetProperties()];
 
         /// <summary>
         /// Property count
         /// </summary>
-        public int PropertyCount => (_Properties ??= Type.GetPropertiesCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet()).Count;
+        public int PropertyCount => GetProperties().Count;
+
+        /// <summary>
+        /// Property names
+        /// </summary>
+        public IEnumerable<string> PropertyNames => GetProperties().Select(p => p.Name);
 
         /// <summary>
         /// Methods
         /// </summary>
-        public MethodInfoExt[] Methods => [.. _Methods ??= Type.GetMethodsCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet()];
+        public MethodInfoExt[] Methods => [.. GetMethods()];
 
         /// <summary>
         /// Method count
         /// </summary>
-        public int MethodCount => (_Methods ??= Type.GetMethodsCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet()).Count;
+        public int MethodCount => GetMethods().Count;
+
+        /// <summary>
+        /// Method names
+        /// </summary>
+        public IEnumerable<string> MethodNames => GetMethods().Select(m => m.Name).Distinct();
 
         /// <summary>
         /// Delegates
         /// </summary>
-        public Type[] Delegates => [.. _Delegates ??= Type.GetDelegatesCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet()];
+        public Type[] Delegates => [.. GetDelegates()];
 
         /// <summary>
         /// Delegate count
         /// </summary>
-        public int DelegateCount => (_Delegates ??= Type.GetDelegatesCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet()).Count;
+        public int DelegateCount => GetDelegates().Count;
+
+        /// <summary>
+        /// Delegate names
+        /// </summary>
+        public IEnumerable<string> DelegateNames => GetDelegates().Select(d => d.Name);
 
         /// <summary>
         /// Events
         /// </summary>
-        public EventInfo[] Events => [.. _Events ??= Type.GetEventsCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet()];
+        public EventInfo[] Events => [.. GetEvents()];
 
         /// <summary>
         /// Event count
         /// </summary>
-        public int EventCount => (_Events ??= Type.GetEventsCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet()).Count;
+        public int EventCount => GetEvents().Count;
+
+        /// <summary>
+        /// Event names
+        /// </summary>
+        public IEnumerable<string> EventNames => GetDelegates().Select(e => e.Name);
 
         /// <summary>
         /// Create an instance
@@ -348,6 +325,104 @@ namespace wan24.Core
                 ? ci.Invoker(param)
                 : await Type.ConstructAutoAsync(sp, usePrivate: true, param).DynamicContext();
 
+        /// <summary>
+        /// Construct a generic type
+        /// </summary>
+        /// <param name="genericArguments">Generic arguments</param>
+        /// <returns>Constructed generic type</returns>
+        public TypeInfoExt MakeGenericType(params Type[] genericArguments)
+        {
+            if (!Type.IsGenericTypeDefinition) throw new InvalidOperationException();
+            if (genericArguments.Length != GenericArgumentCount)
+                throw new ArgumentOutOfRangeException(nameof(genericArguments), $"{GenericArgumentCount} generic arguments required");
+            GenericTypeKey key = new(GetHashCode(), genericArguments);
+            if (GenericTypes.TryGetValue(key, out TypeInfoExt? res)) return res;
+            res = From(Type.MakeGenericType(genericArguments));
+            res._GenericArguments ??= [.. genericArguments];
+            GenericTypes.TryAdd(key, res);
+            return res;
+        }
+
+        /// <summary>
+        /// Get the generic arguments
+        /// </summary>
+        /// <returns>Arguments</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public ImmutableArray<Type> GetGenericArguments() => _GenericArguments ??= Type.IsGenericType ? ReflectionExtensions.GetCachedGenericArguments(Type) : [];
+
+        /// <summary>
+        /// Get the constructors
+        /// </summary>
+        /// <returns>Constructors</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public FrozenSet<ConstructorInfoExt> GetConstructors() => _Constructors ??= Type.GetConstructorsCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet();
+
+        /// <summary>
+        /// Get the properties
+        /// </summary>
+        /// <returns>Properties</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public FrozenSet<PropertyInfoExt> GetProperties() => _Properties ??= Type.GetPropertiesCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet();
+
+        /// <summary>
+        /// Get the fields
+        /// </summary>
+        /// <returns>Fields</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public FrozenSet<FieldInfoExt> GetFields() => _Fields ??= Type.GetFieldsCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet();
+
+        /// <summary>
+        /// Get the methods
+        /// </summary>
+        /// <returns>Methods</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public FrozenSet<MethodInfoExt> GetMethods() => _Methods ??= Type.GetMethodsCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet();
+
+        /// <summary>
+        /// Get the delegates
+        /// </summary>
+        /// <returns>Delegates</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public FrozenSet<Type> GetDelegates() => _Delegates ??= Type.GetDelegatesCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet();
+
+        /// <summary>
+        /// Get the events
+        /// </summary>
+        /// <returns>Events</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public FrozenSet<EventInfo> GetEvents() => _Events ??= Type.GetEvents(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet();
+
+        /// <summary>
+        /// Get the attributes
+        /// </summary>
+        /// <returns>Attributes</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public FrozenSet<Attribute> GetAttributes() => _Attributes ??= Type.GetCustomAttributesCached<Attribute>().ToFrozenSet();
+
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
@@ -370,8 +445,7 @@ namespace wan24.Core
         public bool IsDefined(Type attributeType, bool inherit) => Type.IsDefined(attributeType, inherit);
 
         /// <inheritdoc/>
-        public IEnumerator<PropertyInfoExt> GetEnumerator()
-            => ((IEnumerable<PropertyInfoExt>)(_Properties ??= Type.GetPropertiesCached(ReflectionExtensions.ALL_BINDINGS).ToFrozenSet())).GetEnumerator();
+        public IEnumerator<PropertyInfoExt> GetEnumerator() => ((IEnumerable<PropertyInfoExt>)GetProperties()).GetEnumerator();
 
         /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

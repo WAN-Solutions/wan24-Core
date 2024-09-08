@@ -367,19 +367,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCacheExtensions_GetItemContextAsync__1_wan24_Core_InMemoryCache_wan24_Core_AutoDisposer___0___System_String_wan24_Core_IInMemoryCache_wan24_Core_AutoDisposer___0___CacheEntryFactory_Delegate_wan24_Core_InMemoryCacheEntryOptions_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCacheExtensions.GetItemContextAsync%60%601(wan24.Core.InMemoryCache%7Bwan24.Core.AutoDisposer%7B%60%600%7D%7D%2CSystem.String%2Cwan24.Core.IInMemoryCache%7Bwan24.Core.AutoDisposer%7B%60%600%7D%7D.CacheEntryFactory_Delegate%2Cwan24.Core.InMemoryCacheEntryOptions%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCacheExtensions_GetItemContextAsync__1_wan24_Core_InMemoryCache_wan24_Core_AutoDisposer___0___System_String_wan24_Core_ICache_wan24_Core_AutoDisposer___0___CacheEntryFactory_Delegate_wan24_Core_InMemoryCacheEntryOptions_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCacheExtensions.GetItemContextAsync%60%601(wan24.Core.InMemoryCache%7Bwan24.Core.AutoDisposer%7B%60%600%7D%7D%2CSystem.String%2Cwan24.Core.ICache%7Bwan24.Core.AutoDisposer%7B%60%600%7D%7D.CacheEntryFactory_Delegate%2Cwan24.Core.InMemoryCacheEntryOptions%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCacheExtensions.cs/#L102">View Source</a>
   </span>
   <a id="wan24_Core_InMemoryCacheExtensions_GetItemContextAsync_" data-uid="wan24.Core.InMemoryCacheExtensions.GetItemContextAsync*"></a>
-  <h4 id="wan24_Core_InMemoryCacheExtensions_GetItemContextAsync__1_wan24_Core_InMemoryCache_wan24_Core_AutoDisposer___0___System_String_wan24_Core_IInMemoryCache_wan24_Core_AutoDisposer___0___CacheEntryFactory_Delegate_wan24_Core_InMemoryCacheEntryOptions_System_Threading_CancellationToken_" data-uid="wan24.Core.InMemoryCacheExtensions.GetItemContextAsync``1(wan24.Core.InMemoryCache{wan24.Core.AutoDisposer{``0}},System.String,wan24.Core.IInMemoryCache{wan24.Core.AutoDisposer{``0}}.CacheEntryFactory_Delegate,wan24.Core.InMemoryCacheEntryOptions,System.Threading.CancellationToken)">GetItemContextAsync&lt;T&gt;(InMemoryCache&lt;AutoDisposer&lt;T&gt;&gt;, string, CacheEntryFactory_Delegate?, InMemoryCacheEntryOptions?, CancellationToken)</h4>
+  <h4 id="wan24_Core_InMemoryCacheExtensions_GetItemContextAsync__1_wan24_Core_InMemoryCache_wan24_Core_AutoDisposer___0___System_String_wan24_Core_ICache_wan24_Core_AutoDisposer___0___CacheEntryFactory_Delegate_wan24_Core_InMemoryCacheEntryOptions_System_Threading_CancellationToken_" data-uid="wan24.Core.InMemoryCacheExtensions.GetItemContextAsync``1(wan24.Core.InMemoryCache{wan24.Core.AutoDisposer{``0}},System.String,wan24.Core.ICache{wan24.Core.AutoDisposer{``0}}.CacheEntryFactory_Delegate,wan24.Core.InMemoryCacheEntryOptions,System.Threading.CancellationToken)">GetItemContextAsync&lt;T&gt;(InMemoryCache&lt;AutoDisposer&lt;T&gt;&gt;, string, CacheEntryFactory_Delegate?, InMemoryCacheEntryOptions?, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Get an item usage context for a cached item</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;AutoDisposer&lt;T&gt;.Context?&gt; GetItemContextAsync&lt;T&gt;(this InMemoryCache&lt;AutoDisposer&lt;T&gt;&gt; cache, string key, IInMemoryCache&lt;AutoDisposer&lt;T&gt;&gt;.CacheEntryFactory_Delegate? entryFactory = null, InMemoryCacheEntryOptions? options = null, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;AutoDisposer&lt;T&gt;.Context?&gt; GetItemContextAsync&lt;T&gt;(this InMemoryCache&lt;AutoDisposer&lt;T&gt;&gt; cache, string key, ICache&lt;AutoDisposer&lt;T&gt;&gt;.CacheEntryFactory_Delegate? entryFactory = null, InMemoryCacheEntryOptions? options = null, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -404,7 +404,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.IInMemoryCache-1.html">IInMemoryCache</a>&lt;<a class="xref" href="wan24.Core.AutoDisposer-1.html">AutoDisposer</a>&lt;T&gt;&gt;.<a class="xref" href="wan24.Core.IInMemoryCache-1.CacheEntryFactory_Delegate.html">CacheEntryFactory_Delegate</a></td>
+        <td><a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;<a class="xref" href="wan24.Core.AutoDisposer-1.html">AutoDisposer</a>&lt;T&gt;&gt;.<a class="xref" href="wan24.Core.ICache-1.CacheEntryFactory_Delegate.html">CacheEntryFactory_Delegate</a></td>
         <td><span class="parametername">entryFactory</span></td>
         <td><p>Cache entry factory</p>
 </td>
@@ -457,19 +457,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCacheExtensions_GetItemContext__1_wan24_Core_InMemoryCache_wan24_Core_AutoDisposer___0___System_String_wan24_Core_IInMemoryCache_wan24_Core_AutoDisposer___0___CacheEntryFactory_Delegate_wan24_Core_InMemoryCacheEntryOptions_.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCacheExtensions.GetItemContext%60%601(wan24.Core.InMemoryCache%7Bwan24.Core.AutoDisposer%7B%60%600%7D%7D%2CSystem.String%2Cwan24.Core.IInMemoryCache%7Bwan24.Core.AutoDisposer%7B%60%600%7D%7D.CacheEntryFactory_Delegate%2Cwan24.Core.InMemoryCacheEntryOptions)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_InMemoryCacheExtensions_GetItemContext__1_wan24_Core_InMemoryCache_wan24_Core_AutoDisposer___0___System_String_wan24_Core_ICache_wan24_Core_AutoDisposer___0___CacheEntryFactory_Delegate_wan24_Core_InMemoryCacheEntryOptions_.md&amp;value=---%0Auid%3A%20wan24.Core.InMemoryCacheExtensions.GetItemContext%60%601(wan24.Core.InMemoryCache%7Bwan24.Core.AutoDisposer%7B%60%600%7D%7D%2CSystem.String%2Cwan24.Core.ICache%7Bwan24.Core.AutoDisposer%7B%60%600%7D%7D.CacheEntryFactory_Delegate%2Cwan24.Core.InMemoryCacheEntryOptions)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/InMemoryCacheExtensions.cs/#L65">View Source</a>
   </span>
   <a id="wan24_Core_InMemoryCacheExtensions_GetItemContext_" data-uid="wan24.Core.InMemoryCacheExtensions.GetItemContext*"></a>
-  <h4 id="wan24_Core_InMemoryCacheExtensions_GetItemContext__1_wan24_Core_InMemoryCache_wan24_Core_AutoDisposer___0___System_String_wan24_Core_IInMemoryCache_wan24_Core_AutoDisposer___0___CacheEntryFactory_Delegate_wan24_Core_InMemoryCacheEntryOptions_" data-uid="wan24.Core.InMemoryCacheExtensions.GetItemContext``1(wan24.Core.InMemoryCache{wan24.Core.AutoDisposer{``0}},System.String,wan24.Core.IInMemoryCache{wan24.Core.AutoDisposer{``0}}.CacheEntryFactory_Delegate,wan24.Core.InMemoryCacheEntryOptions)">GetItemContext&lt;T&gt;(InMemoryCache&lt;AutoDisposer&lt;T&gt;&gt;, string, CacheEntryFactory_Delegate?, InMemoryCacheEntryOptions?)</h4>
+  <h4 id="wan24_Core_InMemoryCacheExtensions_GetItemContext__1_wan24_Core_InMemoryCache_wan24_Core_AutoDisposer___0___System_String_wan24_Core_ICache_wan24_Core_AutoDisposer___0___CacheEntryFactory_Delegate_wan24_Core_InMemoryCacheEntryOptions_" data-uid="wan24.Core.InMemoryCacheExtensions.GetItemContext``1(wan24.Core.InMemoryCache{wan24.Core.AutoDisposer{``0}},System.String,wan24.Core.ICache{wan24.Core.AutoDisposer{``0}}.CacheEntryFactory_Delegate,wan24.Core.InMemoryCacheEntryOptions)">GetItemContext&lt;T&gt;(InMemoryCache&lt;AutoDisposer&lt;T&gt;&gt;, string, CacheEntryFactory_Delegate?, InMemoryCacheEntryOptions?)</h4>
   <div class="markdown level1 summary"><p>Get an item usage context for a cached item</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static AutoDisposer&lt;T&gt;.Context? GetItemContext&lt;T&gt;(this InMemoryCache&lt;AutoDisposer&lt;T&gt;&gt; cache, string key, IInMemoryCache&lt;AutoDisposer&lt;T&gt;&gt;.CacheEntryFactory_Delegate? entryFactory = null, InMemoryCacheEntryOptions? options = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static AutoDisposer&lt;T&gt;.Context? GetItemContext&lt;T&gt;(this InMemoryCache&lt;AutoDisposer&lt;T&gt;&gt; cache, string key, ICache&lt;AutoDisposer&lt;T&gt;&gt;.CacheEntryFactory_Delegate? entryFactory = null, InMemoryCacheEntryOptions? options = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -494,7 +494,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.IInMemoryCache-1.html">IInMemoryCache</a>&lt;<a class="xref" href="wan24.Core.AutoDisposer-1.html">AutoDisposer</a>&lt;T&gt;&gt;.<a class="xref" href="wan24.Core.IInMemoryCache-1.CacheEntryFactory_Delegate.html">CacheEntryFactory_Delegate</a></td>
+        <td><a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;<a class="xref" href="wan24.Core.AutoDisposer-1.html">AutoDisposer</a>&lt;T&gt;&gt;.<a class="xref" href="wan24.Core.ICache-1.CacheEntryFactory_Delegate.html">CacheEntryFactory_Delegate</a></td>
         <td><span class="parametername">entryFactory</span></td>
         <td><p>Cache entry factory</p>
 </td>

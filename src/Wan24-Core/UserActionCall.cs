@@ -62,7 +62,7 @@ namespace wan24.Core
                 ? fi.FieldType
                 : fi.FieldType.GetBaseTypes().FirstOrDefault(t => InstanceTables.IsValidTableType(t))
                     ?? throw new InvalidProgramException($"Invalid instance table field type {fi.FieldType} for {providerType}"),
-                valueType = fieldType.GetGenericArgumentsCached()[1];
+                valueType = fieldType.GetGenericArgumentCached(index: 1);
             MethodInfoExt mi;
             if (ProviderKey.Length > 0)
             {

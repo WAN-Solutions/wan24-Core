@@ -28,7 +28,7 @@ namespace wan24.Core
         public static Type? GetTaskResultType(object task)
         {
             Type type = task.GetType();
-            Type? res = type.IsTask() && type.IsGenericType ? type.GetGenericArgumentsCached()[0] : null;
+            Type? res = type.IsTask() && type.IsGenericType ? type.GetGenericArgumentCached(index: 0) : null;
             return res is null || res == typeof(void) ? null : res;
         }
 
@@ -130,7 +130,7 @@ namespace wan24.Core
             if (!task.IsTask()) throw new ArgumentException("Not a task", nameof(task));
             Type taskType = task.GetType();
             if (!taskType.IsGenericType) throw new ArgumentException("Not a result task", nameof(task));
-            Type resultType = taskType.GetGenericArgumentsCached()[0];
+            Type resultType = taskType.GetGenericArgumentCached(index: 0);
             if (type is not null && !type.IsAssignableFrom(resultType)) throw new ArgumentException($"Task returns {resultType}", nameof(type));
             type ??= resultType;
             Type awaiterType = typeof(TaskAwaiter<>).MakeGenericType(resultType);
@@ -157,7 +157,7 @@ namespace wan24.Core
             if (!task.IsTask()) throw new ArgumentException("Not a task", nameof(task));
             Type taskType = task.GetType();
             if (!taskType.IsGenericType) throw new ArgumentException("Not a result task", nameof(task));
-            Type resultType = taskType.GetGenericArgumentsCached()[0];
+            Type resultType = taskType.GetGenericArgumentCached(index: 0);
             if (type is not null && !type.IsAssignableFrom(resultType)) throw new ArgumentException($"Task returns {resultType}", nameof(type));
             type ??= resultType;
             Type awaiterType = typeof(TaskAwaiter<>).MakeGenericType(resultType);
@@ -201,7 +201,7 @@ namespace wan24.Core
         {
             Type taskType = task.GetType();
             if (!taskType.IsGenericType) throw new ArgumentException("Not a result task", nameof(task));
-            Type resultType = taskType.GetGenericArgumentsCached()[0];
+            Type resultType = taskType.GetGenericArgumentCached(index: 0);
             if (type is not null && !type.IsAssignableFrom(resultType)) throw new ArgumentException($"Task returns {resultType}", nameof(type));
             type ??= resultType;
             if (taskType.GetGenericTypeDefinition() != typeof(ValueTask<>)) throw new ArgumentException("Not a ValueTask<>", nameof(task));
@@ -228,7 +228,7 @@ namespace wan24.Core
         {
             Type taskType = task.GetType();
             if (!taskType.IsGenericType) throw new ArgumentException("Not a result task", nameof(task));
-            Type resultType = taskType.GetGenericArgumentsCached()[0];
+            Type resultType = taskType.GetGenericArgumentCached(index: 0);
             if (type is not null && !type.IsAssignableFrom(resultType)) throw new ArgumentException($"Task returns {resultType}", nameof(type));
             type ??= resultType;
             if (taskType.GetGenericTypeDefinition() != typeof(ValueTask<>)) throw new ArgumentException("Not a ValueTask<>", nameof(task));

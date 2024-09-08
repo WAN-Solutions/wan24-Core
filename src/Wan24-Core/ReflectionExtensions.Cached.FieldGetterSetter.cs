@@ -57,7 +57,8 @@ namespace wan24.Core
             EnsureCanCreateFieldGetter(fi);
             if (fi.IsStatic) throw new ArgumentException("Field is static", nameof(fi));
             ParameterExpression objArg = Expression.Parameter(typeof(object), "obj");
-            return Expression.Lambda<Func<object?, object?>>(Expression.Convert(Expression.Field(Expression.Convert(objArg, fi.DeclaringType!), fi), typeof(object)), objArg).Compile();
+            return Expression.Lambda<Func<object?, object?>>(Expression.Convert(Expression.Field(Expression.Convert(objArg, fi.DeclaringType!), fi), typeof(object)), objArg)
+                .CompileExt();
         }
 
         /// <summary>
@@ -78,7 +79,7 @@ namespace wan24.Core
             Expression? returnValue = typeof(tValue) == fi.FieldType
                 ? null
                 : Expression.Convert(getter, typeof(tValue));
-            return Expression.Lambda<Func<tObj, tValue?>>(returnValue ?? getter, objArg).Compile();
+            return Expression.Lambda<Func<tObj, tValue?>>(returnValue ?? getter, objArg).CompileExt();
         }
 
         /// <summary>
@@ -90,7 +91,7 @@ namespace wan24.Core
         {
             EnsureCanCreateFieldGetter(fi);
             if (!fi.IsStatic) throw new ArgumentException("Field is not static", nameof(fi));
-            return Expression.Lambda<Func<object?>>(Expression.Convert(Expression.Field(null, fi), typeof(object))).Compile();
+            return Expression.Lambda<Func<object?>>(Expression.Convert(Expression.Field(null, fi), typeof(object))).CompileExt();
         }
 
         /// <summary>
@@ -103,7 +104,7 @@ namespace wan24.Core
         {
             EnsureCanCreateFieldGetter(fi);
             if (!fi.IsStatic) throw new ArgumentException("Field is not static", nameof(fi));
-            return Expression.Lambda<Func<object?>>(Expression.Field(null, fi)).Compile();
+            return Expression.Lambda<Func<object?>>(Expression.Field(null, fi)).CompileExt();
         }
 
         /// <summary>
@@ -150,7 +151,7 @@ namespace wan24.Core
                 objArg,
                 valueArg
                 )
-                .Compile();
+                .CompileExt();
         }
 
         /// <summary>
@@ -176,7 +177,7 @@ namespace wan24.Core
                 objArg,
                 valueArg
                 )
-                .Compile();
+                .CompileExt();
         }
 
         /// <summary>
@@ -196,7 +197,7 @@ namespace wan24.Core
                     ),
                 valueArg
                 )
-                .Compile();
+                .CompileExt();
         }
 
         /// <summary>
@@ -211,7 +212,7 @@ namespace wan24.Core
             if (!fi.FieldType.IsAssignableFrom(typeof(T))) throw new ArgumentException($"Value type mismatch ({typeof(T)}/{fi.FieldType})", nameof(T));
             if (!fi.IsStatic) throw new ArgumentException("Field is not static", nameof(fi));
             ParameterExpression valueArg = Expression.Parameter(typeof(T), "value");
-            return Expression.Lambda<Action<T?>>(Expression.Assign(Expression.Field(null, fi), valueArg), valueArg).Compile();
+            return Expression.Lambda<Action<T?>>(Expression.Assign(Expression.Field(null, fi), valueArg), valueArg).CompileExt();
         }
 
         /// <summary>

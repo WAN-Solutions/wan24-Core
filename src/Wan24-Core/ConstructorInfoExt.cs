@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Concurrent;
+using System.Collections.Immutable;
 using System.Reflection;
 using System.Runtime;
 using System.Runtime.CompilerServices;
@@ -24,11 +25,39 @@ namespace wan24.Core
         /// <summary>
         /// Parameters
         /// </summary>
-        private ParameterInfo[]? _Parameters = null;
+        private ImmutableArray<ParameterInfo>? _Parameters = null;
         /// <summary>
         /// Bindings
         /// </summary>
         private BindingFlags? _Bindings = null;
+
+        /// <summary>
+        /// Get the parameter at the specified index
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <returns>Parameter</returns>
+        public ParameterInfo this[in int index]
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => GetParameters()[index];
+        }
+
+        /// <summary>
+        /// Get the parameter of the specified name
+        /// </summary>
+        /// <param name="name">Name</param>
+        /// <returns>Parameter</returns>
+        public ParameterInfo? this[string name]
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => GetParameters().FirstOrDefault(p => p.Name == name);
+        }
 
         /// <summary>
         /// Constructor
@@ -44,13 +73,13 @@ namespace wan24.Core
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            get => $"{Constructor.DeclaringType}.ctor";
+            get => $"{Constructor.DeclaringType}.{Constructor.Name}";
         }
 
         /// <summary>
         /// Bindings
         /// </summary>
-        public BindingFlags Bindings => _Bindings ??= Constructor.GetBindingFlags();
+        public BindingFlags Bindings => GetBindings();
 
         /// <summary>
         /// Constructor declaring type
@@ -67,17 +96,32 @@ namespace wan24.Core
         /// <summary>
         /// Parameters
         /// </summary>
-        public ParameterInfo[] Parameters => [.. _Parameters ??= Constructor.GetParametersCached()];
+        public ParameterInfo[] Parameters => [.. GetParameters()];
 
         /// <summary>
         /// Number of parameters
         /// </summary>
-        public int ParameterCount => (_Parameters ??= Constructor.GetParametersCached()).Length;
+        public int ParameterCount => GetParameters().Length;
+
+        /// <summary>
+        /// Parameter names
+        /// </summary>
+        public IEnumerable<string> ParameterNames => GetParameters().Select(p => p.Name!);
 
         /// <summary>
         /// Invoker delegate
         /// </summary>
         public Func<object?[], object>? Invoker { get; set; } = Invoker;
+
+        /// <summary>
+        /// Get the parameters
+        /// </summary>
+        /// <returns>Parameters</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public ImmutableArray<ParameterInfo> GetParameters() => _Parameters ??= ReflectionExtensions.GetCachedParameters(Constructor);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
@@ -101,10 +145,20 @@ namespace wan24.Core
         public bool IsDefined(Type attributeType, bool inherit) => Constructor.IsDefined(attributeType, inherit);
 
         /// <inheritdoc/>
-        public IEnumerator<ParameterInfo> GetEnumerator() => ((IEnumerable<ParameterInfo>)(_Parameters ??= Constructor.GetParametersCached())).GetEnumerator();
+        public IEnumerator<ParameterInfo> GetEnumerator() => ((IEnumerable<ParameterInfo>)GetParameters()).GetEnumerator();
 
         /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        /// <summary>
+        /// Get the bindings
+        /// </summary>
+        /// <returns>Bindings</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        private BindingFlags GetBindings() => _Bindings ??= Constructor.GetBindingFlags();
 
         /// <summary>
         /// Cast as <see cref="ConstructorInfo"/>

@@ -413,7 +413,7 @@ namespace wan24.Core
         /// <summary>
         /// Raise the <see cref="OnDone"/> event
         /// </summary>
-        private void RaiseOnDone() => OnDone?.Invoke(this, new());
+        private void RaiseOnDone() => OnDone?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Error event arguments

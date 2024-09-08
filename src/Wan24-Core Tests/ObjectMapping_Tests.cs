@@ -11,7 +11,7 @@ namespace Wan24_Core_Tests
             A a = new();
             B b = new();
 
-            ObjectMapping<A, B> mapping = ObjectMapping<A, B>.Create();
+            ObjectMapping<A, B> mapping = ObjectMapping<A, B>.Create(autoCompile: false);
             mapping.AddMapping(nameof(A.PropertyA));
             mapping.AddMapping(nameof(A.PropertyC), static (source, target) => target.PropertyC = source.PropertyC);
             mapping.ApplyMappings(a, b);
@@ -20,9 +20,17 @@ namespace Wan24_Core_Tests
             Assert.IsTrue(b.PropertyC);// Custom mapping
 
             b = new();
-            mapping = ObjectMapping<A, B>.Create();
+            mapping = ObjectMapping<A, B>.Create(autoCompile: false);
             mapping.AddAutoMappings();
             mapping.ApplyMappings(a, b);
+            Assert.IsTrue(b.TargetPropertyA);// Opt-in by MapAttribute
+            Assert.IsFalse(b.PropertyB);// NoMapAttribute
+            Assert.IsFalse(b.PropertyC);// Opt-out (no MapAttribute)
+
+            b = new();
+            mapping.CompileMapping();
+            Assert.IsNotNull(mapping.CompiledMapping);
+            mapping.CompiledMapping(a, b);
             Assert.IsTrue(b.TargetPropertyA);// Opt-in by MapAttribute
             Assert.IsFalse(b.PropertyB);// NoMapAttribute
             Assert.IsFalse(b.PropertyC);// Opt-out (no MapAttribute)
@@ -34,7 +42,7 @@ namespace Wan24_Core_Tests
             A a = new();
             B b = new();
 
-            ObjectMapping<A, B> mapping = ObjectMapping<A, B>.Create();
+            ObjectMapping<A, B> mapping = ObjectMapping<A, B>.Create(autoCompile: false);
             mapping.AddMapping(nameof(A.PropertyA));
             mapping.AddMapping(nameof(A.PropertyC), static (source, target) => target.PropertyC = source.PropertyC);
             await mapping.ApplyMappingsAsync(a, b);
@@ -43,7 +51,7 @@ namespace Wan24_Core_Tests
             Assert.IsTrue(b.PropertyC);// Custom mapping
 
             b = new();
-            mapping = ObjectMapping<A, B>.Create();
+            mapping = ObjectMapping<A, B>.Create(autoCompile: false);
             mapping.AddAutoMappings();
             await mapping.ApplyMappingsAsync(a, b);
             Assert.IsTrue(b.TargetPropertyA);// Opt-in by MapAttribute

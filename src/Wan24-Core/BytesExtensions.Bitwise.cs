@@ -2,6 +2,8 @@
 using System.Runtime.Intrinsics.Arm;
 using System.Runtime.Intrinsics.X86;
 
+//TODO Rotating XOR should use Xor methods in the first place
+
 namespace wan24.Core
 {
     // Bitwise
@@ -28,19 +30,16 @@ namespace wan24.Core
         /// <returns>A</returns>
         public static Span<byte> Xor(this Span<byte> a, in ReadOnlySpan<byte> b)
         {
-            unchecked
-            {
 #if NO_UNSAFE
-                for (int i = 0, len = Math.Min(a.Length, b.Length); i < len; a[i] ^= b[i], i++) ;
+            for (int i = 0, len = Math.Min(a.Length, b.Length); i < len; a[i] ^= b[i], i++) ;
 #else
-                unsafe
-                {
-                    fixed (byte* aPtr = a)
-                    fixed (byte* bPtr = b)
-                        Xor(aPtr, bPtr, Math.Min(a.Length, b.Length));
-                }
-#endif
+            unsafe
+            {
+                fixed (byte* aPtr = a)
+                fixed (byte* bPtr = b)
+                    Xor(aPtr, bPtr, Math.Min(a.Length, b.Length));
             }
+#endif
             return a;
         }
 
@@ -56,33 +55,33 @@ namespace wan24.Core
         {
             ArgumentOutOfRangeException.ThrowIfLessThan(len, 0);
             if (len == 0) return ptrA;
-            unchecked
+            if (len >= 64 && Avx512F.IsSupported)
             {
-                if (len >= 64 && Avx512F.IsSupported)
+                for (byte* ptrAEnd = ptrA + (len & ~63); ptrA < ptrAEnd; ptrA += 64, ptrB += 64)
+                    Avx512F.Store(ptrA, Avx512F.Xor(Avx512F.LoadVector512(ptrA), Avx512F.LoadVector512(ptrB)));
+                len &= 63;
+            }
+            if (len >= 32 && Avx2.IsSupported)
+            {
+                for (byte* ptrAEnd = ptrA + (len & ~31); ptrA < ptrAEnd; ptrA += 32, ptrB += 32)
+                    Avx.Store(ptrA, Avx2.Xor(Avx.LoadVector256(ptrA), Avx.LoadVector256(ptrB)));
+                len &= 31;
+            }
+            if (len >= 16)
+                if (Sse2.IsSupported)
                 {
-                    for (byte* ptrAEnd = ptrA + (len & ~63); ptrA < ptrAEnd; ptrA += 64, ptrB += 64)
-                        Avx512F.Store(ptrA, Avx512F.Xor(Avx512F.LoadVector512(ptrA), Avx512F.LoadVector512(ptrB)));
-                    len &= 63;
+                    for (byte* ptrAEnd = ptrA + (len & ~15); ptrA < ptrAEnd; ptrA += 16, ptrB += 16)
+                        Sse2.Store(ptrA, Sse2.Xor(Sse2.LoadVector128(ptrA), Sse2.LoadVector128(ptrB)));
+                    len &= 15;
                 }
-                if (len >= 32 && Avx2.IsSupported)
+                else if (AdvSimd.IsSupported)
                 {
-                    for (byte* ptrAEnd = ptrA + (len & ~31); ptrA < ptrAEnd; ptrA += 32, ptrB += 32)
-                        Avx.Store(ptrA, Avx2.Xor(Avx.LoadVector256(ptrA), Avx.LoadVector256(ptrB)));
-                    len &= 31;
+                    for (byte* ptrAEnd = ptrA + (len & ~15); ptrA < ptrAEnd; ptrA += 16, ptrB += 16)
+                        AdvSimd.Store(ptrA, AdvSimd.Xor(AdvSimd.LoadVector128(ptrA), AdvSimd.LoadVector128(ptrB)));
+                    len &= 15;
                 }
-                if (len >= 16)
-                    if (AdvSimd.IsSupported)
-                    {
-                        for (byte* ptrAEnd = ptrA + (len & ~15); ptrA < ptrAEnd; ptrA += 16, ptrB += 16)
-                            AdvSimd.Store(ptrA, AdvSimd.Xor(AdvSimd.LoadVector128(ptrA), AdvSimd.LoadVector128(ptrB)));
-                        len &= 15;
-                    }
-                    else if (Sse2.IsSupported)
-                    {
-                        for (byte* ptrAEnd = ptrA + (len & ~15); ptrA < ptrAEnd; ptrA += 16, ptrB += 16)
-                            Sse2.Store(ptrA, Sse2.Xor(Sse2.LoadVector128(ptrA), Sse2.LoadVector128(ptrB)));
-                        len &= 15;
-                    }
+            if (len >= 2)
+            {
                 if (len >= 8)
                 {
                     for (byte* ptrAEnd = ptrA + (len & ~7); ptrA < ptrAEnd; *(ulong*)ptrA ^= *(ulong*)ptrB, ptrA += 8, ptrB += 8) ;
@@ -102,8 +101,8 @@ namespace wan24.Core
                     ptrB += 2;
                     len &= 1;
                 }
-                if (len != 0) *ptrA ^= *ptrB;
             }
+            if (len != 0) *ptrA ^= *ptrB;
             return ptrA;
         }
 #endif
@@ -129,19 +128,16 @@ namespace wan24.Core
         /// <returns>A</returns>
         public static Span<byte> And(this Span<byte> a, in ReadOnlySpan<byte> b)
         {
-            unchecked
-            {
 #if NO_UNSAFE
-                for (int i = 0, len = Math.Min(a.Length, b.Length); i < len; a[i] &= b[i], i++) ;
+            for (int i = 0, len = Math.Min(a.Length, b.Length); i < len; a[i] &= b[i], i++) ;
 #else
-                unsafe
-                {
-                    fixed (byte* aPtr = a)
-                    fixed (byte* bPtr = b)
-                        And(aPtr, bPtr, Math.Min(a.Length, b.Length));
-                }
-#endif
+            unsafe
+            {
+                fixed (byte* aPtr = a)
+                fixed (byte* bPtr = b)
+                    And(aPtr, bPtr, Math.Min(a.Length, b.Length));
             }
+#endif
             return a;
         }
 
@@ -157,33 +153,33 @@ namespace wan24.Core
         {
             ArgumentOutOfRangeException.ThrowIfLessThan(len, 0);
             if (len == 0) return ptrA;
-            unchecked
+            if (len >= 64 && Avx512F.IsSupported)
             {
-                if (len >= 64 && Avx512F.IsSupported)
+                for (byte* ptrAEnd = ptrA + (len & ~63); ptrA < ptrAEnd; ptrA += 64, ptrB += 64)
+                    Avx512F.Store(ptrA, Avx512F.And(Avx512F.LoadVector512(ptrA), Avx512F.LoadVector512(ptrB)));
+                len &= 63;
+            }
+            if (len >= 32 && Avx2.IsSupported)
+            {
+                for (byte* ptrAEnd = ptrA + (len & ~31); ptrA < ptrAEnd; ptrA += 32, ptrB += 32)
+                    Avx.Store(ptrA, Avx2.And(Avx.LoadVector256(ptrA), Avx.LoadVector256(ptrB)));
+                len &= 31;
+            }
+            if (len >= 16)
+                if (Sse2.IsSupported)
                 {
-                    for (byte* ptrAEnd = ptrA + (len & ~63); ptrA < ptrAEnd; ptrA += 64, ptrB += 64)
-                        Avx512F.Store(ptrA, Avx512F.And(Avx512F.LoadVector512(ptrA), Avx512F.LoadVector512(ptrB)));
-                    len &= 63;
+                    for (byte* ptrAEnd = ptrA + (len & ~15); ptrA < ptrAEnd; ptrA += 16, ptrB += 16)
+                        Sse2.Store(ptrA, Sse2.And(Sse2.LoadVector128(ptrA), Sse2.LoadVector128(ptrB)));
+                    len &= 15;
                 }
-                if (len >= 32 && Avx2.IsSupported)
+                else if (AdvSimd.IsSupported)
                 {
-                    for (byte* ptrAEnd = ptrA + (len & ~31); ptrA < ptrAEnd; ptrA += 32, ptrB += 32)
-                        Avx.Store(ptrA, Avx2.And(Avx.LoadVector256(ptrA), Avx.LoadVector256(ptrB)));
-                    len &= 31;
+                    for (byte* ptrAEnd = ptrA + (len & ~15); ptrA < ptrAEnd; ptrA += 16, ptrB += 16)
+                        AdvSimd.Store(ptrA, AdvSimd.And(AdvSimd.LoadVector128(ptrA), AdvSimd.LoadVector128(ptrB)));
+                    len &= 15;
                 }
-                if (len >= 16)
-                    if (AdvSimd.IsSupported)
-                    {
-                        for (byte* ptrAEnd = ptrA + (len & ~15); ptrA < ptrAEnd; ptrA += 16, ptrB += 16)
-                            AdvSimd.Store(ptrA, AdvSimd.And(AdvSimd.LoadVector128(ptrA), AdvSimd.LoadVector128(ptrB)));
-                        len &= 15;
-                    }
-                    else if (Sse2.IsSupported)
-                    {
-                        for (byte* ptrAEnd = ptrA + (len & ~15); ptrA < ptrAEnd; ptrA += 16, ptrB += 16)
-                            Sse2.Store(ptrA, Sse2.And(Sse2.LoadVector128(ptrA), Sse2.LoadVector128(ptrB)));
-                        len &= 15;
-                    }
+            if (len >= 2)
+            {
                 if (len >= 8)
                 {
                     for (byte* ptrAEnd = ptrA + (len & ~7); ptrA < ptrAEnd; *(ulong*)ptrA &= *(ulong*)ptrB, ptrA += 8, ptrB += 8) ;
@@ -203,8 +199,8 @@ namespace wan24.Core
                     ptrB += 2;
                     len &= 1;
                 }
-                if (len != 0) *ptrA &= *ptrB;
             }
+            if (len != 0) *ptrA &= *ptrB;
             return ptrA;
         }
 #endif
@@ -230,19 +226,16 @@ namespace wan24.Core
         /// <returns>A</returns>
         public static Span<byte> Or(this Span<byte> a, in ReadOnlySpan<byte> b)
         {
-            unchecked
-            {
 #if NO_UNSAFE
-                for (int i = 0, len = Math.Min(a.Length, b.Length); i < len; a[i] |= b[i], i++) ;
+            for (int i = 0, len = Math.Min(a.Length, b.Length); i < len; a[i] |= b[i], i++) ;
 #else
-                unsafe
-                {
-                    fixed (byte* aPtr = a)
-                    fixed (byte* bPtr = b)
-                        Or(aPtr, bPtr, Math.Min(a.Length, b.Length));
-                }
-#endif
+            unsafe
+            {
+                fixed (byte* aPtr = a)
+                fixed (byte* bPtr = b)
+                    Or(aPtr, bPtr, Math.Min(a.Length, b.Length));
             }
+#endif
             return a;
         }
 
@@ -258,33 +251,33 @@ namespace wan24.Core
         {
             ArgumentOutOfRangeException.ThrowIfLessThan(len, 0);
             if (len == 0) return ptrA;
-            unchecked
+            if (len >= 64 && Avx512F.IsSupported)
             {
-                if (len >= 64 && Avx512F.IsSupported)
+                for (byte* ptrAEnd = ptrA + (len & ~63); ptrA < ptrAEnd; ptrA += 64, ptrB += 64)
+                    Avx512F.Store(ptrA, Avx512F.Or(Avx512F.LoadVector512(ptrA), Avx512F.LoadVector512(ptrB)));
+                len &= 63;
+            }
+            if (len >= 32 && Avx2.IsSupported)
+            {
+                for (byte* ptrAEnd = ptrA + (len & ~31); ptrA < ptrAEnd; ptrA += 32, ptrB += 32)
+                    Avx.Store(ptrA, Avx2.Or(Avx.LoadVector256(ptrA), Avx.LoadVector256(ptrB)));
+                len &= 31;
+            }
+            if (len >= 16)
+                if (Sse2.IsSupported)
                 {
-                    for (byte* ptrAEnd = ptrA + (len & ~63); ptrA < ptrAEnd; ptrA += 64, ptrB += 64)
-                        Avx512F.Store(ptrA, Avx512F.Or(Avx512F.LoadVector512(ptrA), Avx512F.LoadVector512(ptrB)));
-                    len &= 63;
+                    for (byte* ptrAEnd = ptrA + (len & ~15); ptrA < ptrAEnd; ptrA += 16, ptrB += 16)
+                        Sse2.Store(ptrA, Sse2.Or(Sse2.LoadVector128(ptrA), Sse2.LoadVector128(ptrB)));
+                    len &= 15;
                 }
-                if (len >= 32 && Avx2.IsSupported)
+                else if (AdvSimd.IsSupported)
                 {
-                    for (byte* ptrAEnd = ptrA + (len & ~31); ptrA < ptrAEnd; ptrA += 32, ptrB += 32)
-                        Avx.Store(ptrA, Avx2.Or(Avx.LoadVector256(ptrA), Avx.LoadVector256(ptrB)));
-                    len &= 31;
+                    for (byte* ptrAEnd = ptrA + (len & ~15); ptrA < ptrAEnd; ptrA += 16, ptrB += 16)
+                        AdvSimd.Store(ptrA, AdvSimd.Or(AdvSimd.LoadVector128(ptrA), AdvSimd.LoadVector128(ptrB)));
+                    len &= 15;
                 }
-                if (len >= 16)
-                    if (AdvSimd.IsSupported)
-                    {
-                        for (byte* ptrAEnd = ptrA + (len & ~15); ptrA < ptrAEnd; ptrA += 16, ptrB += 16)
-                            AdvSimd.Store(ptrA, AdvSimd.Or(AdvSimd.LoadVector128(ptrA), AdvSimd.LoadVector128(ptrB)));
-                        len &= 15;
-                    }
-                    else if (Sse2.IsSupported)
-                    {
-                        for (byte* ptrAEnd = ptrA + (len & ~15); ptrA < ptrAEnd; ptrA += 16, ptrB += 16)
-                            Sse2.Store(ptrA, Sse2.Or(Sse2.LoadVector128(ptrA), Sse2.LoadVector128(ptrB)));
-                        len &= 15;
-                    }
+            if (len >= 2)
+            {
                 if (len >= 8)
                 {
                     for (byte* ptrAEnd = ptrA + (len & ~7); ptrA < ptrAEnd; *(ulong*)ptrA |= *(ulong*)ptrB, ptrA += 8, ptrB += 8) ;
@@ -304,8 +297,8 @@ namespace wan24.Core
                     ptrB += 2;
                     len &= 1;
                 }
-                if (len != 0) *ptrA |= *ptrB;
             }
+            if (len != 0) *ptrA |= *ptrB;
             return ptrA;
         }
 #endif
@@ -332,19 +325,16 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static Span<byte> RotatingXor(this Span<byte> a, in ReadOnlySpan<byte> b)
         {
-            unchecked
-            {
 #if NO_UNSAFE
-                for (int i = 0, lenA = a.Length, lenB = b.Length; i < lenB; Xor(a, b[i..]), i += lenA) ;
+            for (int i = 0, lenA = a.Length, lenB = b.Length; i < lenB; Xor(a, b[i..]), i += lenA) ;
 #else
-                unsafe
-                {
-                    fixed (byte* aPtr = a)
-                    fixed (byte* bPtr = b)
-                        RotatingXor(aPtr, a.Length, bPtr, b.Length);
-                }
-#endif
+            unsafe
+            {
+                fixed (byte* aPtr = a)
+                fixed (byte* bPtr = b)
+                    RotatingXor(aPtr, a.Length, bPtr, b.Length);
             }
+#endif
             return a;
         }
 
@@ -360,10 +350,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static unsafe byte* RotatingXor(in byte* aPtr, in int lenA, byte* bPtr, in int lenB)
         {
-            unchecked
-            {
-                for (byte* ptrBEnd = bPtr + lenB; bPtr < ptrBEnd; Xor(aPtr, bPtr, Math.Min(lenA, (int)(ptrBEnd - bPtr))), bPtr += lenA) ;
-            }
+            for (byte* ptrBEnd = bPtr + lenB; bPtr < ptrBEnd; Xor(aPtr, bPtr, Math.Min(lenA, (int)(ptrBEnd - bPtr))), bPtr += lenA) ;
             return aPtr;
         }
 #endif
